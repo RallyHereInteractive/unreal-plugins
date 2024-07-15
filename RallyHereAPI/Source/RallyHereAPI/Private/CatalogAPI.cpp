@@ -182,19 +182,11 @@ FString FResponse_GetCatalogAll::GetHttpResponseCodeDescription(EHttpResponseCod
 
 bool FResponse_GetCatalogAll::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
@@ -223,7 +215,6 @@ bool FResponse_GetCatalogAll::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -350,9 +341,8 @@ bool FResponse_GetCatalogAll::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	return bParsed;
 }
 
-FResponse_GetCatalogAll::FResponse_GetCatalogAll(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_GetCatalogAll::FResponse_GetCatalogAll(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -528,19 +518,11 @@ FString FResponse_GetCatalogEntitlementSku::GetHttpResponseCodeDescription(EHttp
 
 bool FResponse_GetCatalogEntitlementSku::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
@@ -569,7 +551,6 @@ bool FResponse_GetCatalogEntitlementSku::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -696,9 +677,8 @@ bool FResponse_GetCatalogEntitlementSku::FromJson(const TSharedPtr<FJsonValue>& 
 	return bParsed;
 }
 
-FResponse_GetCatalogEntitlementSku::FResponse_GetCatalogEntitlementSku(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_GetCatalogEntitlementSku::FResponse_GetCatalogEntitlementSku(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -868,19 +848,11 @@ FString FResponse_GetCatalogEntitlementSkuAll::GetHttpResponseCodeDescription(EH
 
 bool FResponse_GetCatalogEntitlementSkuAll::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
@@ -909,7 +881,6 @@ bool FResponse_GetCatalogEntitlementSkuAll::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -1036,9 +1007,8 @@ bool FResponse_GetCatalogEntitlementSkuAll::FromJson(const TSharedPtr<FJsonValue
 	return bParsed;
 }
 
-FResponse_GetCatalogEntitlementSkuAll::FResponse_GetCatalogEntitlementSkuAll(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_GetCatalogEntitlementSkuAll::FResponse_GetCatalogEntitlementSkuAll(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -1213,19 +1183,11 @@ FString FResponse_GetCatalogInventoryBucketUseRuleSet::GetHttpResponseCodeDescri
 
 bool FResponse_GetCatalogInventoryBucketUseRuleSet::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
@@ -1254,7 +1216,6 @@ bool FResponse_GetCatalogInventoryBucketUseRuleSet::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -1381,9 +1342,8 @@ bool FResponse_GetCatalogInventoryBucketUseRuleSet::FromJson(const TSharedPtr<FJ
 	return bParsed;
 }
 
-FResponse_GetCatalogInventoryBucketUseRuleSet::FResponse_GetCatalogInventoryBucketUseRuleSet(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_GetCatalogInventoryBucketUseRuleSet::FResponse_GetCatalogInventoryBucketUseRuleSet(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -1553,19 +1513,11 @@ FString FResponse_GetCatalogInventoryBucketUseRuleSetsAll::GetHttpResponseCodeDe
 
 bool FResponse_GetCatalogInventoryBucketUseRuleSetsAll::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
@@ -1594,7 +1546,6 @@ bool FResponse_GetCatalogInventoryBucketUseRuleSetsAll::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -1721,9 +1672,8 @@ bool FResponse_GetCatalogInventoryBucketUseRuleSetsAll::FromJson(const TSharedPt
 	return bParsed;
 }
 
-FResponse_GetCatalogInventoryBucketUseRuleSetsAll::FResponse_GetCatalogInventoryBucketUseRuleSetsAll(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_GetCatalogInventoryBucketUseRuleSetsAll::FResponse_GetCatalogInventoryBucketUseRuleSetsAll(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -1898,19 +1848,11 @@ FString FResponse_GetCatalogItem::GetHttpResponseCodeDescription(EHttpResponseCo
 
 bool FResponse_GetCatalogItem::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
@@ -1939,7 +1881,6 @@ bool FResponse_GetCatalogItem::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -2066,9 +2007,8 @@ bool FResponse_GetCatalogItem::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	return bParsed;
 }
 
-FResponse_GetCatalogItem::FResponse_GetCatalogItem(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_GetCatalogItem::FResponse_GetCatalogItem(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -2238,19 +2178,11 @@ FString FResponse_GetCatalogItemsAll::GetHttpResponseCodeDescription(EHttpRespon
 
 bool FResponse_GetCatalogItemsAll::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
@@ -2279,7 +2211,6 @@ bool FResponse_GetCatalogItemsAll::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -2406,9 +2337,8 @@ bool FResponse_GetCatalogItemsAll::FromJson(const TSharedPtr<FJsonValue>& JsonVa
 	return bParsed;
 }
 
-FResponse_GetCatalogItemsAll::FResponse_GetCatalogItemsAll(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_GetCatalogItemsAll::FResponse_GetCatalogItemsAll(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -2583,19 +2513,11 @@ FString FResponse_GetCatalogLoot::GetHttpResponseCodeDescription(EHttpResponseCo
 
 bool FResponse_GetCatalogLoot::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
@@ -2624,7 +2546,6 @@ bool FResponse_GetCatalogLoot::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -2751,9 +2672,8 @@ bool FResponse_GetCatalogLoot::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	return bParsed;
 }
 
-FResponse_GetCatalogLoot::FResponse_GetCatalogLoot(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_GetCatalogLoot::FResponse_GetCatalogLoot(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -2923,19 +2843,11 @@ FString FResponse_GetCatalogLootsAll::GetHttpResponseCodeDescription(EHttpRespon
 
 bool FResponse_GetCatalogLootsAll::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
@@ -2964,7 +2876,6 @@ bool FResponse_GetCatalogLootsAll::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -3091,9 +3002,8 @@ bool FResponse_GetCatalogLootsAll::FromJson(const TSharedPtr<FJsonValue>& JsonVa
 	return bParsed;
 }
 
-FResponse_GetCatalogLootsAll::FResponse_GetCatalogLootsAll(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_GetCatalogLootsAll::FResponse_GetCatalogLootsAll(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -3268,19 +3178,11 @@ FString FResponse_GetCatalogPortalUseRuleset::GetHttpResponseCodeDescription(EHt
 
 bool FResponse_GetCatalogPortalUseRuleset::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
@@ -3309,7 +3211,6 @@ bool FResponse_GetCatalogPortalUseRuleset::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -3436,9 +3337,8 @@ bool FResponse_GetCatalogPortalUseRuleset::FromJson(const TSharedPtr<FJsonValue>
 	return bParsed;
 }
 
-FResponse_GetCatalogPortalUseRuleset::FResponse_GetCatalogPortalUseRuleset(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_GetCatalogPortalUseRuleset::FResponse_GetCatalogPortalUseRuleset(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -3608,19 +3508,11 @@ FString FResponse_GetCatalogPortalUseRulesetsAll::GetHttpResponseCodeDescription
 
 bool FResponse_GetCatalogPortalUseRulesetsAll::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
@@ -3649,7 +3541,6 @@ bool FResponse_GetCatalogPortalUseRulesetsAll::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -3776,9 +3667,8 @@ bool FResponse_GetCatalogPortalUseRulesetsAll::FromJson(const TSharedPtr<FJsonVa
 	return bParsed;
 }
 
-FResponse_GetCatalogPortalUseRulesetsAll::FResponse_GetCatalogPortalUseRulesetsAll(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_GetCatalogPortalUseRulesetsAll::FResponse_GetCatalogPortalUseRulesetsAll(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -3953,19 +3843,11 @@ FString FResponse_GetCatalogPricePoint::GetHttpResponseCodeDescription(EHttpResp
 
 bool FResponse_GetCatalogPricePoint::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
@@ -3994,7 +3876,6 @@ bool FResponse_GetCatalogPricePoint::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -4121,9 +4002,8 @@ bool FResponse_GetCatalogPricePoint::FromJson(const TSharedPtr<FJsonValue>& Json
 	return bParsed;
 }
 
-FResponse_GetCatalogPricePoint::FResponse_GetCatalogPricePoint(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_GetCatalogPricePoint::FResponse_GetCatalogPricePoint(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -4293,19 +4173,11 @@ FString FResponse_GetCatalogPricePointsAll::GetHttpResponseCodeDescription(EHttp
 
 bool FResponse_GetCatalogPricePointsAll::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
@@ -4334,7 +4206,6 @@ bool FResponse_GetCatalogPricePointsAll::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -4461,9 +4332,8 @@ bool FResponse_GetCatalogPricePointsAll::FromJson(const TSharedPtr<FJsonValue>& 
 	return bParsed;
 }
 
-FResponse_GetCatalogPricePointsAll::FResponse_GetCatalogPricePointsAll(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_GetCatalogPricePointsAll::FResponse_GetCatalogPricePointsAll(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -4638,19 +4508,11 @@ FString FResponse_GetCatalogTimeFrame::GetHttpResponseCodeDescription(EHttpRespo
 
 bool FResponse_GetCatalogTimeFrame::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
@@ -4679,7 +4541,6 @@ bool FResponse_GetCatalogTimeFrame::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -4806,9 +4667,8 @@ bool FResponse_GetCatalogTimeFrame::FromJson(const TSharedPtr<FJsonValue>& JsonV
 	return bParsed;
 }
 
-FResponse_GetCatalogTimeFrame::FResponse_GetCatalogTimeFrame(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_GetCatalogTimeFrame::FResponse_GetCatalogTimeFrame(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -4978,19 +4838,11 @@ FString FResponse_GetCatalogTimeFramesAll::GetHttpResponseCodeDescription(EHttpR
 
 bool FResponse_GetCatalogTimeFramesAll::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
@@ -5019,7 +4871,6 @@ bool FResponse_GetCatalogTimeFramesAll::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -5146,9 +4997,8 @@ bool FResponse_GetCatalogTimeFramesAll::FromJson(const TSharedPtr<FJsonValue>& J
 	return bParsed;
 }
 
-FResponse_GetCatalogTimeFramesAll::FResponse_GetCatalogTimeFramesAll(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_GetCatalogTimeFramesAll::FResponse_GetCatalogTimeFramesAll(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -5323,19 +5173,11 @@ FString FResponse_GetCatalogVendor::GetHttpResponseCodeDescription(EHttpResponse
 
 bool FResponse_GetCatalogVendor::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
@@ -5364,7 +5206,6 @@ bool FResponse_GetCatalogVendor::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -5491,9 +5332,8 @@ bool FResponse_GetCatalogVendor::FromJson(const TSharedPtr<FJsonValue>& JsonValu
 	return bParsed;
 }
 
-FResponse_GetCatalogVendor::FResponse_GetCatalogVendor(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_GetCatalogVendor::FResponse_GetCatalogVendor(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -5663,19 +5503,11 @@ FString FResponse_GetCatalogVendorsAll::GetHttpResponseCodeDescription(EHttpResp
 
 bool FResponse_GetCatalogVendorsAll::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
@@ -5704,7 +5536,6 @@ bool FResponse_GetCatalogVendorsAll::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -5831,9 +5662,8 @@ bool FResponse_GetCatalogVendorsAll::FromJson(const TSharedPtr<FJsonValue>& Json
 	return bParsed;
 }
 
-FResponse_GetCatalogVendorsAll::FResponse_GetCatalogVendorsAll(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_GetCatalogVendorsAll::FResponse_GetCatalogVendorsAll(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -6003,19 +5833,11 @@ FString FResponse_GetCatalogXpAll::GetHttpResponseCodeDescription(EHttpResponseC
 
 bool FResponse_GetCatalogXpAll::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
@@ -6044,7 +5866,6 @@ bool FResponse_GetCatalogXpAll::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -6171,9 +5992,8 @@ bool FResponse_GetCatalogXpAll::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 	return bParsed;
 }
 
-FResponse_GetCatalogXpAll::FResponse_GetCatalogXpAll(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_GetCatalogXpAll::FResponse_GetCatalogXpAll(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -6348,19 +6168,11 @@ FString FResponse_GetCatalogXpTable::GetHttpResponseCodeDescription(EHttpRespons
 
 bool FResponse_GetCatalogXpTable::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
@@ -6389,7 +6201,6 @@ bool FResponse_GetCatalogXpTable::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -6516,9 +6327,8 @@ bool FResponse_GetCatalogXpTable::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 	return bParsed;
 }
 
-FResponse_GetCatalogXpTable::FResponse_GetCatalogXpTable(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_GetCatalogXpTable::FResponse_GetCatalogXpTable(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 

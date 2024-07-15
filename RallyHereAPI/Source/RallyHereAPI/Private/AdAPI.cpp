@@ -191,19 +191,11 @@ FString FResponse_BeginNewSession::GetHttpResponseCodeDescription(EHttpResponseC
 
 bool FResponse_BeginNewSession::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
@@ -230,7 +222,6 @@ bool FResponse_BeginNewSession::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -349,9 +340,8 @@ bool FResponse_BeginNewSession::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 	return bParsed;
 }
 
-FResponse_BeginNewSession::FResponse_BeginNewSession(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_BeginNewSession::FResponse_BeginNewSession(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -530,19 +520,11 @@ FString FResponse_FindOpportunities::GetHttpResponseCodeDescription(EHttpRespons
 
 bool FResponse_FindOpportunities::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
@@ -569,7 +551,6 @@ bool FResponse_FindOpportunities::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -688,9 +669,8 @@ bool FResponse_FindOpportunities::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 	return bParsed;
 }
 
-FResponse_FindOpportunities::FResponse_FindOpportunities(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_FindOpportunities::FResponse_FindOpportunities(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -845,19 +825,11 @@ FString FResponse_UnityAdWatched::GetHttpResponseCodeDescription(EHttpResponseCo
 
 bool FResponse_UnityAdWatched::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -870,7 +842,6 @@ bool FResponse_UnityAdWatched::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -939,9 +910,8 @@ bool FResponse_UnityAdWatched::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	return bParsed;
 }
 
-FResponse_UnityAdWatched::FResponse_UnityAdWatched(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_UnityAdWatched::FResponse_UnityAdWatched(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -1097,19 +1067,11 @@ FString FResponse_UnityMediationAdWatched::GetHttpResponseCodeDescription(EHttpR
 
 bool FResponse_UnityMediationAdWatched::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -1122,7 +1084,6 @@ bool FResponse_UnityMediationAdWatched::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -1191,9 +1152,8 @@ bool FResponse_UnityMediationAdWatched::FromJson(const TSharedPtr<FJsonValue>& J
 	return bParsed;
 }
 
-FResponse_UnityMediationAdWatched::FResponse_UnityMediationAdWatched(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_UnityMediationAdWatched::FResponse_UnityMediationAdWatched(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -1377,19 +1337,11 @@ FString FResponse_UpdateOpportunityById::GetHttpResponseCodeDescription(EHttpRes
 
 bool FResponse_UpdateOpportunityById::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
@@ -1416,7 +1368,6 @@ bool FResponse_UpdateOpportunityById::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -1535,9 +1486,8 @@ bool FResponse_UpdateOpportunityById::FromJson(const TSharedPtr<FJsonValue>& Jso
 	return bParsed;
 }
 
-FResponse_UpdateOpportunityById::FResponse_UpdateOpportunityById(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_UpdateOpportunityById::FResponse_UpdateOpportunityById(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 

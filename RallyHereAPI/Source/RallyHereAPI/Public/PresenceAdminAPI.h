@@ -55,8 +55,10 @@ struct RALLYHEREAPI_API FRequest_AdminGetKnownPlatforms : public FRequest
 };
 
 /** The response type for FRequest_AdminGetKnownPlatforms */
-struct RALLYHEREAPI_API FResponse_AdminGetKnownPlatforms : public FResponse
+struct RALLYHEREAPI_API FResponse_AdminGetKnownPlatforms : public FResponseAccessorTemplate<FRHAPI_Platforms, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_Platforms, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_AdminGetKnownPlatforms(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_AdminGetKnownPlatforms() = default;
 	
@@ -67,77 +69,10 @@ struct RALLYHEREAPI_API FResponse_AdminGetKnownPlatforms : public FResponse
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant<FRHAPI_Platforms, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_Platforms Content;
-	
-
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -225,8 +160,10 @@ struct RALLYHEREAPI_API FRequest_AdminGetPlayerPresence : public FRequest
 };
 
 /** The response type for FRequest_AdminGetPlayerPresence */
-struct RALLYHEREAPI_API FResponse_AdminGetPlayerPresence : public FResponse
+struct RALLYHEREAPI_API FResponse_AdminGetPlayerPresence : public FResponseAccessorTemplate<FRHAPI_PlayerPresence, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerPresence, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_AdminGetPlayerPresence(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_AdminGetPlayerPresence() = default;
 	
@@ -237,77 +174,10 @@ struct RALLYHEREAPI_API FResponse_AdminGetPlayerPresence : public FResponse
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant<FRHAPI_PlayerPresence, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlayerPresence Content;
-	
-
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -400,8 +270,10 @@ struct RALLYHEREAPI_API FRequest_AdminGetPlayerPresenceId : public FRequest
 };
 
 /** The response type for FRequest_AdminGetPlayerPresenceId */
-struct RALLYHEREAPI_API FResponse_AdminGetPlayerPresenceId : public FResponse
+struct RALLYHEREAPI_API FResponse_AdminGetPlayerPresenceId : public FResponseAccessorTemplate<FRHAPI_PlayerPresence, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerPresence, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_AdminGetPlayerPresenceId(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_AdminGetPlayerPresenceId() = default;
 	
@@ -412,77 +284,10 @@ struct RALLYHEREAPI_API FResponse_AdminGetPlayerPresenceId : public FResponse
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant<FRHAPI_PlayerPresence, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlayerPresence Content;
-	
-
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -578,8 +383,10 @@ struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcu : public FRequest
 };
 
 /** The response type for FRequest_AdminGetRequestingCcu */
-struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcu : public FResponse
+struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcu : public FResponseAccessorTemplate<FRHAPI_UnionCCU, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_UnionCCU, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_AdminGetRequestingCcu(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_AdminGetRequestingCcu() = default;
 	
@@ -590,77 +397,10 @@ struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcu : public FResponse
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant<FRHAPI_UnionCCU, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_UnionCCU Content;
-	
-
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -747,8 +487,10 @@ struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuAllPlatformCombined : publ
 };
 
 /** The response type for FRequest_AdminGetRequestingCcuAllPlatformCombined */
-struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuAllPlatformCombined : public FResponse
+struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuAllPlatformCombined : public FResponseAccessorTemplate<FRHAPI_PlatformUnionCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_PlatformUnionCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_AdminGetRequestingCcuAllPlatformCombined(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_AdminGetRequestingCcuAllPlatformCombined() = default;
 	
@@ -759,77 +501,10 @@ struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuAllPlatformCombined : pub
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant<FRHAPI_PlatformUnionCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlatformUnionCCUs Content;
-	
-
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -916,8 +591,10 @@ struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuAllPlatformIndividual : pu
 };
 
 /** The response type for FRequest_AdminGetRequestingCcuAllPlatformIndividual */
-struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuAllPlatformIndividual : public FResponse
+struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuAllPlatformIndividual : public FResponseAccessorTemplate<FRHAPI_PlatformIndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_PlatformIndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_AdminGetRequestingCcuAllPlatformIndividual(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_AdminGetRequestingCcuAllPlatformIndividual() = default;
 	
@@ -928,77 +605,10 @@ struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuAllPlatformIndividual : p
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant<FRHAPI_PlatformIndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlatformIndividualCCUs Content;
-	
-
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -1087,8 +697,10 @@ struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuIndividual : public FReque
 };
 
 /** The response type for FRequest_AdminGetRequestingCcuIndividual */
-struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuIndividual : public FResponse
+struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuIndividual : public FResponseAccessorTemplate<FRHAPI_IndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_IndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_AdminGetRequestingCcuIndividual(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_AdminGetRequestingCcuIndividual() = default;
 	
@@ -1099,77 +711,10 @@ struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuIndividual : public FResp
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant<FRHAPI_IndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_IndividualCCUs Content;
-	
-
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -1257,8 +802,10 @@ struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuPlatformCombined : public 
 };
 
 /** The response type for FRequest_AdminGetRequestingCcuPlatformCombined */
-struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuPlatformCombined : public FResponse
+struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuPlatformCombined : public FResponseAccessorTemplate<FRHAPI_PlatformUnionCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_PlatformUnionCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_AdminGetRequestingCcuPlatformCombined(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_AdminGetRequestingCcuPlatformCombined() = default;
 	
@@ -1269,77 +816,10 @@ struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuPlatformCombined : public
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant<FRHAPI_PlatformUnionCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlatformUnionCCUs Content;
-	
-
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -1427,8 +907,10 @@ struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuPlatformIndividual : publi
 };
 
 /** The response type for FRequest_AdminGetRequestingCcuPlatformIndividual */
-struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuPlatformIndividual : public FResponse
+struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuPlatformIndividual : public FResponseAccessorTemplate<FRHAPI_PlatformIndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_PlatformIndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_AdminGetRequestingCcuPlatformIndividual(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_AdminGetRequestingCcuPlatformIndividual() = default;
 	
@@ -1439,77 +921,10 @@ struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuPlatformIndividual : publ
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant<FRHAPI_PlatformIndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlatformIndividualCCUs Content;
-	
-
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -1600,8 +1015,10 @@ struct RALLYHEREAPI_API FRequest_AdminGetTotalCcu : public FRequest
 };
 
 /** The response type for FRequest_AdminGetTotalCcu */
-struct RALLYHEREAPI_API FResponse_AdminGetTotalCcu : public FResponse
+struct RALLYHEREAPI_API FResponse_AdminGetTotalCcu : public FResponseAccessorTemplate<FRHAPI_UnionCCU, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_UnionCCU, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_AdminGetTotalCcu(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_AdminGetTotalCcu() = default;
 	
@@ -1612,77 +1029,10 @@ struct RALLYHEREAPI_API FResponse_AdminGetTotalCcu : public FResponse
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant<FRHAPI_UnionCCU, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_UnionCCU Content;
-	
-
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -1769,8 +1119,10 @@ struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuAllPlatformCombined : public FR
 };
 
 /** The response type for FRequest_AdminGetTotalCcuAllPlatformCombined */
-struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuAllPlatformCombined : public FResponse
+struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuAllPlatformCombined : public FResponseAccessorTemplate<FRHAPI_PlatformUnionCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_PlatformUnionCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_AdminGetTotalCcuAllPlatformCombined(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_AdminGetTotalCcuAllPlatformCombined() = default;
 	
@@ -1781,77 +1133,10 @@ struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuAllPlatformCombined : public F
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant<FRHAPI_PlatformUnionCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlatformUnionCCUs Content;
-	
-
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -1938,8 +1223,10 @@ struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuAllPlatformIndividual : public 
 };
 
 /** The response type for FRequest_AdminGetTotalCcuAllPlatformIndividual */
-struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuAllPlatformIndividual : public FResponse
+struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuAllPlatformIndividual : public FResponseAccessorTemplate<FRHAPI_PlatformIndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_PlatformIndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_AdminGetTotalCcuAllPlatformIndividual(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_AdminGetTotalCcuAllPlatformIndividual() = default;
 	
@@ -1950,77 +1237,10 @@ struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuAllPlatformIndividual : public
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant<FRHAPI_PlatformIndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlatformIndividualCCUs Content;
-	
-
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -2109,8 +1329,10 @@ struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuIndividual : public FRequest
 };
 
 /** The response type for FRequest_AdminGetTotalCcuIndividual */
-struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuIndividual : public FResponse
+struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuIndividual : public FResponseAccessorTemplate<FRHAPI_IndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_IndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_AdminGetTotalCcuIndividual(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_AdminGetTotalCcuIndividual() = default;
 	
@@ -2121,77 +1343,10 @@ struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuIndividual : public FResponse
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant<FRHAPI_IndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_IndividualCCUs Content;
-	
-
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -2279,8 +1434,10 @@ struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuPlatformCombined : public FRequ
 };
 
 /** The response type for FRequest_AdminGetTotalCcuPlatformCombined */
-struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuPlatformCombined : public FResponse
+struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuPlatformCombined : public FResponseAccessorTemplate<FRHAPI_PlatformUnionCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_PlatformUnionCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_AdminGetTotalCcuPlatformCombined(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_AdminGetTotalCcuPlatformCombined() = default;
 	
@@ -2291,77 +1448,10 @@ struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuPlatformCombined : public FRes
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant<FRHAPI_PlatformUnionCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlatformUnionCCUs Content;
-	
-
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -2449,8 +1539,10 @@ struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuPlatformIndividual : public FRe
 };
 
 /** The response type for FRequest_AdminGetTotalCcuPlatformIndividual */
-struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuPlatformIndividual : public FResponse
+struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuPlatformIndividual : public FResponseAccessorTemplate<FRHAPI_PlatformIndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_PlatformIndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_AdminGetTotalCcuPlatformIndividual(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_AdminGetTotalCcuPlatformIndividual() = default;
 	
@@ -2461,77 +1553,10 @@ struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuPlatformIndividual : public FR
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant<FRHAPI_PlatformIndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlatformIndividualCCUs Content;
-	
-
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -2622,8 +1647,10 @@ struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcu : public FRequest
 };
 
 /** The response type for FRequest_AdminGetUpdatingCcu */
-struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcu : public FResponse
+struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcu : public FResponseAccessorTemplate<FRHAPI_UnionCCU, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_UnionCCU, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_AdminGetUpdatingCcu(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_AdminGetUpdatingCcu() = default;
 	
@@ -2634,77 +1661,10 @@ struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcu : public FResponse
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant<FRHAPI_UnionCCU, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_UnionCCU Content;
-	
-
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -2791,8 +1751,10 @@ struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuAllPlatformCombined : public
 };
 
 /** The response type for FRequest_AdminGetUpdatingCcuAllPlatformCombined */
-struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuAllPlatformCombined : public FResponse
+struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuAllPlatformCombined : public FResponseAccessorTemplate<FRHAPI_PlatformUnionCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_PlatformUnionCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_AdminGetUpdatingCcuAllPlatformCombined(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_AdminGetUpdatingCcuAllPlatformCombined() = default;
 	
@@ -2803,77 +1765,10 @@ struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuAllPlatformCombined : publi
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant<FRHAPI_PlatformUnionCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlatformUnionCCUs Content;
-	
-
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -2960,8 +1855,10 @@ struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuAllPlatformIndividual : publ
 };
 
 /** The response type for FRequest_AdminGetUpdatingCcuAllPlatformIndividual */
-struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuAllPlatformIndividual : public FResponse
+struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuAllPlatformIndividual : public FResponseAccessorTemplate<FRHAPI_PlatformIndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_PlatformIndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_AdminGetUpdatingCcuAllPlatformIndividual(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_AdminGetUpdatingCcuAllPlatformIndividual() = default;
 	
@@ -2972,77 +1869,10 @@ struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuAllPlatformIndividual : pub
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant<FRHAPI_PlatformIndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlatformIndividualCCUs Content;
-	
-
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -3131,8 +1961,10 @@ struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuIndividual : public FRequest
 };
 
 /** The response type for FRequest_AdminGetUpdatingCcuIndividual */
-struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuIndividual : public FResponse
+struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuIndividual : public FResponseAccessorTemplate<FRHAPI_IndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_IndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_AdminGetUpdatingCcuIndividual(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_AdminGetUpdatingCcuIndividual() = default;
 	
@@ -3143,77 +1975,10 @@ struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuIndividual : public FRespon
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant<FRHAPI_IndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_IndividualCCUs Content;
-	
-
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -3301,8 +2066,10 @@ struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuPlatformCombined : public FR
 };
 
 /** The response type for FRequest_AdminGetUpdatingCcuPlatformCombined */
-struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuPlatformCombined : public FResponse
+struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuPlatformCombined : public FResponseAccessorTemplate<FRHAPI_PlatformUnionCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_PlatformUnionCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_AdminGetUpdatingCcuPlatformCombined(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_AdminGetUpdatingCcuPlatformCombined() = default;
 	
@@ -3313,77 +2080,10 @@ struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuPlatformCombined : public F
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant<FRHAPI_PlatformUnionCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlatformUnionCCUs Content;
-	
-
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -3471,8 +2171,10 @@ struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuPlatformIndividual : public 
 };
 
 /** The response type for FRequest_AdminGetUpdatingCcuPlatformIndividual */
-struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuPlatformIndividual : public FResponse
+struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuPlatformIndividual : public FResponseAccessorTemplate<FRHAPI_PlatformIndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_PlatformIndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_AdminGetUpdatingCcuPlatformIndividual(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_AdminGetUpdatingCcuPlatformIndividual() = default;
 	
@@ -3483,77 +2185,10 @@ struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuPlatformIndividual : public
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant<FRHAPI_PlatformIndividualCCUs, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlatformIndividualCCUs Content;
-	
-
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -3642,8 +2277,10 @@ struct RALLYHEREAPI_API FRequest_AdminUpdatePlayerLastSeen : public FRequest
 };
 
 /** The response type for FRequest_AdminUpdatePlayerLastSeen */
-struct RALLYHEREAPI_API FResponse_AdminUpdatePlayerLastSeen : public FResponse
+struct RALLYHEREAPI_API FResponse_AdminUpdatePlayerLastSeen : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_AdminUpdatePlayerLastSeen(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_AdminUpdatePlayerLastSeen() = default;
 	
@@ -3654,72 +2291,8 @@ struct RALLYHEREAPI_API FResponse_AdminUpdatePlayerLastSeen : public FResponse
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
+
 	
 	/** Default Response Headers */
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -3727,6 +2300,7 @@ public:
 	TOptional<FString> ETag;
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
+	
 	/** @brief Attempt to retrieve a specific header of the default response */
 	bool TryGetDefaultHeader_ETag(FString& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
 	/** @brief Attempt to retrieve a specific header of the default response */
@@ -3818,8 +2392,10 @@ struct RALLYHEREAPI_API FRequest_AdminUpdatePlayerLastSeenId : public FRequest
 };
 
 /** The response type for FRequest_AdminUpdatePlayerLastSeenId */
-struct RALLYHEREAPI_API FResponse_AdminUpdatePlayerLastSeenId : public FResponse
+struct RALLYHEREAPI_API FResponse_AdminUpdatePlayerLastSeenId : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_AdminUpdatePlayerLastSeenId(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_AdminUpdatePlayerLastSeenId() = default;
 	
@@ -3830,72 +2406,8 @@ struct RALLYHEREAPI_API FResponse_AdminUpdatePlayerLastSeenId : public FResponse
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
+
 	
 	/** Default Response Headers */
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -3903,6 +2415,7 @@ public:
 	TOptional<FString> ETag;
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
+	
 	/** @brief Attempt to retrieve a specific header of the default response */
 	bool TryGetDefaultHeader_ETag(FString& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
 	/** @brief Attempt to retrieve a specific header of the default response */

@@ -57,8 +57,10 @@ struct RALLYHEREAPI_API FRequest_GenerateKey : public FRequest
 };
 
 /** The response type for FRequest_GenerateKey */
-struct RALLYHEREAPI_API FResponse_GenerateKey : public FResponse
+struct RALLYHEREAPI_API FResponse_GenerateKey : public FResponseAccessorTemplate<FRHAPI_JsonValue>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_JsonValue> Super;
+
 	FResponse_GenerateKey(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GenerateKey() = default;
 	
@@ -69,77 +71,10 @@ struct RALLYHEREAPI_API FResponse_GenerateKey : public FResponse
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant<FRHAPI_JsonValue> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_JsonValue Content;
-	
-
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -211,8 +146,10 @@ struct RALLYHEREAPI_API FRequest_GetAllPublicKeys : public FRequest
 };
 
 /** The response type for FRequest_GetAllPublicKeys */
-struct RALLYHEREAPI_API FResponse_GetAllPublicKeys : public FResponse
+struct RALLYHEREAPI_API FResponse_GetAllPublicKeys : public FResponseAccessorTemplate<FRHAPI_PublicKeyList>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_PublicKeyList> Super;
+
 	FResponse_GetAllPublicKeys(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetAllPublicKeys() = default;
 	
@@ -223,77 +160,10 @@ struct RALLYHEREAPI_API FResponse_GetAllPublicKeys : public FResponse
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant<FRHAPI_PublicKeyList> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PublicKeyList Content;
-	
-
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -364,8 +234,10 @@ struct RALLYHEREAPI_API FRequest_GetPortalTokenDetails : public FRequest
 };
 
 /** The response type for FRequest_GetPortalTokenDetails */
-struct RALLYHEREAPI_API FResponse_GetPortalTokenDetails : public FResponse
+struct RALLYHEREAPI_API FResponse_GetPortalTokenDetails : public FResponseAccessorTemplate<TMap<FString, FString>, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<TMap<FString, FString>, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_GetPortalTokenDetails(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetPortalTokenDetails() = default;
 	
@@ -376,77 +248,10 @@ struct RALLYHEREAPI_API FResponse_GetPortalTokenDetails : public FResponse
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant<TMap<FString, FString>, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	TMap<FString, FString> Content;
-	
-
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -527,8 +332,10 @@ struct RALLYHEREAPI_API FRequest_GetPublicKeyById : public FRequest
 };
 
 /** The response type for FRequest_GetPublicKeyById */
-struct RALLYHEREAPI_API FResponse_GetPublicKeyById : public FResponse
+struct RALLYHEREAPI_API FResponse_GetPublicKeyById : public FResponseAccessorTemplate<FRHAPI_PublicKey, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_PublicKey, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_GetPublicKeyById(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetPublicKeyById() = default;
 	
@@ -539,77 +346,10 @@ struct RALLYHEREAPI_API FResponse_GetPublicKeyById : public FResponse
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant<FRHAPI_PublicKey, FRHAPI_HTTPValidationError> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PublicKey Content;
-	
-
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -697,8 +437,10 @@ struct RALLYHEREAPI_API FRequest_Login : public FRequest
 };
 
 /** The response type for FRequest_Login */
-struct RALLYHEREAPI_API FResponse_Login : public FResponse
+struct RALLYHEREAPI_API FResponse_Login : public FResponseAccessorTemplate<FRHAPI_LoginResult, FRHAPI_AgreementMessage, FRHAPI_HTTPValidationError, FRHAPI_HzApiErrorModel>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_LoginResult, FRHAPI_AgreementMessage, FRHAPI_HTTPValidationError, FRHAPI_HzApiErrorModel> Super;
+
 	FResponse_Login(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_Login() = default;
 	
@@ -709,77 +451,10 @@ struct RALLYHEREAPI_API FResponse_Login : public FResponse
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant<FRHAPI_LoginResult, FRHAPI_AgreementMessage, FRHAPI_HTTPValidationError, FRHAPI_HzApiErrorModel> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_LoginResult Content;
-	
-
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -867,8 +542,10 @@ struct RALLYHEREAPI_API FRequest_Logout : public FRequest
 };
 
 /** The response type for FRequest_Logout */
-struct RALLYHEREAPI_API FResponse_Logout : public FResponse
+struct RALLYHEREAPI_API FResponse_Logout : public FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_Logout(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_Logout() = default;
 	
@@ -879,77 +556,10 @@ struct RALLYHEREAPI_API FResponse_Logout : public FResponse
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant<FRHAPI_JsonValue, FRHAPI_HTTPValidationError> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_JsonValue Content;
-	
-
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -1037,8 +647,10 @@ struct RALLYHEREAPI_API FRequest_OauthLogin : public FRequest
 };
 
 /** The response type for FRequest_OauthLogin */
-struct RALLYHEREAPI_API FResponse_OauthLogin : public FResponse
+struct RALLYHEREAPI_API FResponse_OauthLogin : public FResponseAccessorTemplate< FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate< FRHAPI_HTTPValidationError> Super;
+
 	FResponse_OauthLogin(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_OauthLogin() = default;
 	
@@ -1049,72 +661,8 @@ struct RALLYHEREAPI_API FResponse_OauthLogin : public FResponse
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant< FRHAPI_HTTPValidationError> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
+
 	
 	/** Default Response Headers */
 	/*  URL that the user should be redirected to complete the next step of the OAuth flow.  Redirects to the `redirect_uri` and may include the following query parameters: - `code`: The authorization_code that can be exchanged for an access token for the user. - `state`: The state value that was provided in the original request. - `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:     - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.     - `no_redirects_configured` - No redirect urls setup for oauth.     - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.     - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.     - `failed_to_verify_state` - Failed to verify the state associated with the request.     - `failed_to_save_state` - Error occurred saving the state.     - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator     - `too_many_users` - Account has too many users associated with it.  Contact an administrator     - `user_auth_restricted` - Authentication for this user has been restricted     - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required     - `error_retrieving_player_results` - Error retrieving player results     - `failed_to_retrieve_roles` - Failed to retrieve roles     - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid     - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later     - `authentication_locked` - Authentication is currently locked.  Please try again later     - `invalid_grant_type` - Grant Type {grant_type} is not supported     - `user_auth_disabled` - User authentication is not permitted for this policy     - `client_auth_disabled` - Client authentication is not permitted for this policy     - `amazon_disabled` - Amazon authentication is currently disabled     - `amazon_token_empty` - Amazon access token is empty     - `amazon_invalid_access_token` - Amazon access token is invalid     - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon     - `anon_disabled` - Anon authentication is currently disabled     - `anon_token_empty` - Anon access token is empty     - `apple_disabled` - Apple authentication is currently disabled     - `apple_token_empty` - Apple access token is empty     - `apple_failed_key_lookup` - Failed to retrieve keys from Apple     - `apple_token_exchange_failed` - Problem exchanging code for token with Apple     - `apple_token_key_not_valid` - public key not found     - `apple_token_not_valid` - Apple access token is not valid     - `authorization_code_not_found` - Authorization code not found or expired     - `basic_disabled` - Basic authentication is currently disabled     - `basic_token_empty` - Basic access token is empty     - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`     - `basic_auth_credentials_not_found` - Basic auth credentials not found     - `developer_api_disabled` - Developer API authentication is currently disabled     - `developer_api_token_empty` - Developer API access token is empty     - `developer_api_token_invalid` - Developer API access token is invalid or expired     - `epic_disabled` - Epic authentication is currently disabled     - `epic_token_empty` - Epic access token is empty     - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id     - `epic_v1_token_invalid` - Epic v1 token is invalid     - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator     - `epic_v2_token_invalid` - Epic v2 token is invalid     - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic     - `google_disabled` - Google authentication is currently disabled     - `google_token_empty` - Google access token is empty     - `google_keys_not_available` - Google keys are not available.  Please contact an administrator     - `google_token_not_valid` - Google access token is not valid     - `google_token_exchange_failed` - Problem exchanging code for token with Google     - `nintendo_disabled` - Nintendo authentication is currently disabled     - `nintendo_token_empty` - Nintendo access token is empty     - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found     - `nintendo_access_token_not_valid` - Nintendo access token is not valid     - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID     - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.     - `nintendo_ppid_conversion_failed` - error during PPID conversion     - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion     - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion     - `nintendo_ppid_missing` - PPID is missing for user     - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid     - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.     - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid     - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app     - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.     - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo     - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled     - `ps4_v1_token_empty` - PS4 v1 access token is empty     - `ps4_v1_token_expired` - PS4 v1 access token is expired     - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4     - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid     - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled     - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4     - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled     - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled     - `ps4_v3_token_empty` - PS4 v3 access token is empty     - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid     - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled     - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled     - `ps5_v3_token_empty` - PS5 v3 access token is empty     - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5     - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid     - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.     - `refresh_disabled` - Refresh authentication is currently disabled     - `refresh_token_empty` - Refresh token is empty     - `refresh_token_not_found` - Refresh token was not found or has expired     - `refresh_token_invalid_user` - Refresh token refrences invalid user     - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token     - `steam_disabled` - Steam authentication is currently disabled     - `steam_token_empty` - Steam code (Ticket) is empty     - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam     - `steam_user_vacbanned` - User is VAC banned     - `steam_user_publisherbanned` - User is publisher banned     - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate     - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam     - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application     - `twitch_disabled` - Twitch authentication is currently disabled     - `twitch_token_empty` - Twitch access token is empty     - `twitch_token_invalid` - Twitch access token is not valid     - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator     - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch     - `xbox_disabled` - Xbox authentication is currently disabled     - `xbox_xsts_token_empty` - Xbox XSTS token is empty     - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid     - `xbox_xtoken_invalid` - Xbox XToken is not valid     - `xbox_access_token_request_failed` - Problem requesting access token from Xbox     - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox     - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox  - `error_description`: The description for the error that occurred during the OAuth flow. - `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:     - `NO_CODE_IN_REQUEST` - No code in request.     - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.     - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.     - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.     - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.     - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.     - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.     - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.   */
@@ -1122,6 +670,7 @@ public:
 	TOptional<FString> Location;
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
+	
 	/** @brief Attempt to retrieve a specific header of the default response */
 	bool TryGetDefaultHeader_Location(FString& OutValue) const { return TryGetHeader(TEXT("location"), OutValue); }
 	/** @brief Attempt to retrieve a specific header of the default response */
@@ -1202,8 +751,10 @@ struct RALLYHEREAPI_API FRequest_OauthResponse : public FRequest
 };
 
 /** The response type for FRequest_OauthResponse */
-struct RALLYHEREAPI_API FResponse_OauthResponse : public FResponse
+struct RALLYHEREAPI_API FResponse_OauthResponse : public FResponseAccessorTemplate< FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate< FRHAPI_HTTPValidationError> Super;
+
 	FResponse_OauthResponse(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_OauthResponse() = default;
 	
@@ -1214,72 +765,8 @@ struct RALLYHEREAPI_API FResponse_OauthResponse : public FResponse
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant< FRHAPI_HTTPValidationError> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
+
 	
 	/** Default Response Headers */
 	/*  URL that the user should be redirected to complete the next step of the OAuth flow.  Redirects to the `redirect_uri` and may include the following query parameters: - `code`: The authorization_code that can be exchanged for an access token for the user. - `state`: The state value that was provided in the original request. - `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:     - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.     - `no_redirects_configured` - No redirect urls setup for oauth.     - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.     - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.     - `failed_to_verify_state` - Failed to verify the state associated with the request.     - `failed_to_save_state` - Error occurred saving the state.     - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator     - `too_many_users` - Account has too many users associated with it.  Contact an administrator     - `user_auth_restricted` - Authentication for this user has been restricted     - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required     - `error_retrieving_player_results` - Error retrieving player results     - `failed_to_retrieve_roles` - Failed to retrieve roles     - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid     - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later     - `authentication_locked` - Authentication is currently locked.  Please try again later     - `invalid_grant_type` - Grant Type {grant_type} is not supported     - `user_auth_disabled` - User authentication is not permitted for this policy     - `client_auth_disabled` - Client authentication is not permitted for this policy     - `amazon_disabled` - Amazon authentication is currently disabled     - `amazon_token_empty` - Amazon access token is empty     - `amazon_invalid_access_token` - Amazon access token is invalid     - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon     - `anon_disabled` - Anon authentication is currently disabled     - `anon_token_empty` - Anon access token is empty     - `apple_disabled` - Apple authentication is currently disabled     - `apple_token_empty` - Apple access token is empty     - `apple_failed_key_lookup` - Failed to retrieve keys from Apple     - `apple_token_exchange_failed` - Problem exchanging code for token with Apple     - `apple_token_key_not_valid` - public key not found     - `apple_token_not_valid` - Apple access token is not valid     - `authorization_code_not_found` - Authorization code not found or expired     - `basic_disabled` - Basic authentication is currently disabled     - `basic_token_empty` - Basic access token is empty     - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`     - `basic_auth_credentials_not_found` - Basic auth credentials not found     - `developer_api_disabled` - Developer API authentication is currently disabled     - `developer_api_token_empty` - Developer API access token is empty     - `developer_api_token_invalid` - Developer API access token is invalid or expired     - `epic_disabled` - Epic authentication is currently disabled     - `epic_token_empty` - Epic access token is empty     - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id     - `epic_v1_token_invalid` - Epic v1 token is invalid     - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator     - `epic_v2_token_invalid` - Epic v2 token is invalid     - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic     - `google_disabled` - Google authentication is currently disabled     - `google_token_empty` - Google access token is empty     - `google_keys_not_available` - Google keys are not available.  Please contact an administrator     - `google_token_not_valid` - Google access token is not valid     - `google_token_exchange_failed` - Problem exchanging code for token with Google     - `nintendo_disabled` - Nintendo authentication is currently disabled     - `nintendo_token_empty` - Nintendo access token is empty     - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found     - `nintendo_access_token_not_valid` - Nintendo access token is not valid     - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID     - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.     - `nintendo_ppid_conversion_failed` - error during PPID conversion     - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion     - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion     - `nintendo_ppid_missing` - PPID is missing for user     - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid     - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.     - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid     - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app     - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.     - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo     - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled     - `ps4_v1_token_empty` - PS4 v1 access token is empty     - `ps4_v1_token_expired` - PS4 v1 access token is expired     - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4     - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid     - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled     - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4     - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled     - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled     - `ps4_v3_token_empty` - PS4 v3 access token is empty     - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid     - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled     - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled     - `ps5_v3_token_empty` - PS5 v3 access token is empty     - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5     - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid     - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.     - `refresh_disabled` - Refresh authentication is currently disabled     - `refresh_token_empty` - Refresh token is empty     - `refresh_token_not_found` - Refresh token was not found or has expired     - `refresh_token_invalid_user` - Refresh token refrences invalid user     - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token     - `steam_disabled` - Steam authentication is currently disabled     - `steam_token_empty` - Steam code (Ticket) is empty     - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam     - `steam_user_vacbanned` - User is VAC banned     - `steam_user_publisherbanned` - User is publisher banned     - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate     - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam     - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application     - `twitch_disabled` - Twitch authentication is currently disabled     - `twitch_token_empty` - Twitch access token is empty     - `twitch_token_invalid` - Twitch access token is not valid     - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator     - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch     - `xbox_disabled` - Xbox authentication is currently disabled     - `xbox_xsts_token_empty` - Xbox XSTS token is empty     - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid     - `xbox_xtoken_invalid` - Xbox XToken is not valid     - `xbox_access_token_request_failed` - Problem requesting access token from Xbox     - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox     - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox  - `error_description`: The description for the error that occurred during the OAuth flow. - `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:     - `NO_CODE_IN_REQUEST` - No code in request.     - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.     - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.     - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.     - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.     - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.     - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.     - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.   */
@@ -1287,6 +774,7 @@ public:
 	TOptional<FString> Location;
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
+	
 	/** @brief Attempt to retrieve a specific header of the default response */
 	bool TryGetDefaultHeader_Location(FString& OutValue) const { return TryGetHeader(TEXT("location"), OutValue); }
 	/** @brief Attempt to retrieve a specific header of the default response */
@@ -1366,8 +854,10 @@ struct RALLYHEREAPI_API FRequest_OauthTokenExchange : public FRequest
 };
 
 /** The response type for FRequest_OauthTokenExchange */
-struct RALLYHEREAPI_API FResponse_OauthTokenExchange : public FResponse
+struct RALLYHEREAPI_API FResponse_OauthTokenExchange : public FResponseAccessorTemplate<FRHAPI_OAuthTokenResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_OAuthTokenResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_OauthTokenExchange(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_OauthTokenExchange() = default;
 	
@@ -1378,77 +868,10 @@ struct RALLYHEREAPI_API FResponse_OauthTokenExchange : public FResponse
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant<FRHAPI_OAuthTokenResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_OAuthTokenResponse Content;
-	
-
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -1535,8 +958,10 @@ struct RALLYHEREAPI_API FRequest_Token : public FRequest
 };
 
 /** The response type for FRequest_Token */
-struct RALLYHEREAPI_API FResponse_Token : public FResponse
+struct RALLYHEREAPI_API FResponse_Token : public FResponseAccessorTemplate<FRHAPI_TokenResponse, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_TokenResponse, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_Token(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_Token() = default;
 	
@@ -1547,77 +972,10 @@ struct RALLYHEREAPI_API FResponse_Token : public FResponse
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant<FRHAPI_TokenResponse, FRHAPI_HTTPValidationError> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_TokenResponse Content;
-	
-
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -1696,8 +1054,10 @@ struct RALLYHEREAPI_API FRequest_Verify : public FRequest
 };
 
 /** The response type for FRequest_Verify */
-struct RALLYHEREAPI_API FResponse_Verify : public FResponse
+struct RALLYHEREAPI_API FResponse_Verify : public FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel> Super;
+
 	FResponse_Verify(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_Verify() = default;
 	
@@ -1708,77 +1068,10 @@ struct RALLYHEREAPI_API FResponse_Verify : public FResponse
 	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-protected:
-	/** Variant type representing the potential content responses for this call */
-	typedef TVariant<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel> ContentVariantType;
-	
-	/** A variant containing the parsed content */
-	ContentVariantType ParsedContent;
-
-	/** A parsed map of the headers from the request */
-	TMap<FString, FString> HeadersMap;
-
-public:
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @param [out] OutContent A copy of the response data, if the type matched
-	 * @return Whether or not the response was of the given type
-	 */
-	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
-	 */
-	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
-	/**
-	 * @brief Attempt to get the response content in a specific type
-	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
-	 */
-	template<typename T>
-	const TOptional<T> TryGetContentAsOptional() const { const auto Ptr = TryGetContentAsPointer<T>(); return Ptr != nullptr ? *Ptr : TOptional<T>(); }
-	
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A string to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
-	 * @return Whether or not the header was found
-	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
-	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
-	/**
-	 * @brief Attempt to fetch a header by name
-	 * @param [in] Header The name of the header to fetch
-	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
-	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
-
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_JsonValue Content;
-	
-
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers

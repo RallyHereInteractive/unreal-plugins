@@ -182,19 +182,11 @@ FString FResponse_DeleteAllPlayerIdSettingsForSettingType::GetHttpResponseCodeDe
 
 bool FResponse_DeleteAllPlayerIdSettingsForSettingType::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -213,7 +205,6 @@ bool FResponse_DeleteAllPlayerIdSettingsForSettingType::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -348,9 +339,8 @@ bool FResponse_DeleteAllPlayerIdSettingsForSettingType::FromJson(const TSharedPt
 	return bParsed;
 }
 
-FResponse_DeleteAllPlayerIdSettingsForSettingType::FResponse_DeleteAllPlayerIdSettingsForSettingType(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_DeleteAllPlayerIdSettingsForSettingType::FResponse_DeleteAllPlayerIdSettingsForSettingType(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -520,19 +510,11 @@ FString FResponse_DeleteAllPlayerUuidSettingsForSettingType::GetHttpResponseCode
 
 bool FResponse_DeleteAllPlayerUuidSettingsForSettingType::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -551,7 +533,6 @@ bool FResponse_DeleteAllPlayerUuidSettingsForSettingType::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -686,9 +667,8 @@ bool FResponse_DeleteAllPlayerUuidSettingsForSettingType::FromJson(const TShared
 	return bParsed;
 }
 
-FResponse_DeleteAllPlayerUuidSettingsForSettingType::FResponse_DeleteAllPlayerUuidSettingsForSettingType(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_DeleteAllPlayerUuidSettingsForSettingType::FResponse_DeleteAllPlayerUuidSettingsForSettingType(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -857,19 +837,11 @@ FString FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf::GetHttpResponse
 
 bool FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -888,7 +860,6 @@ bool FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -1023,9 +994,8 @@ bool FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf::FromJson(const TSh
 	return bParsed;
 }
 
-FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf::FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf::FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -1196,19 +1166,11 @@ FString FResponse_DeleteSinglePlayerIdSetting::GetHttpResponseCodeDescription(EH
 
 bool FResponse_DeleteSinglePlayerIdSetting::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -1227,7 +1189,6 @@ bool FResponse_DeleteSinglePlayerIdSetting::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -1362,9 +1323,8 @@ bool FResponse_DeleteSinglePlayerIdSetting::FromJson(const TSharedPtr<FJsonValue
 	return bParsed;
 }
 
-FResponse_DeleteSinglePlayerIdSetting::FResponse_DeleteSinglePlayerIdSetting(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_DeleteSinglePlayerIdSetting::FResponse_DeleteSinglePlayerIdSetting(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -1535,19 +1495,11 @@ FString FResponse_DeleteSinglePlayerUuidSetting::GetHttpResponseCodeDescription(
 
 bool FResponse_DeleteSinglePlayerUuidSetting::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -1566,7 +1518,6 @@ bool FResponse_DeleteSinglePlayerUuidSetting::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -1701,9 +1652,8 @@ bool FResponse_DeleteSinglePlayerUuidSetting::FromJson(const TSharedPtr<FJsonVal
 	return bParsed;
 }
 
-FResponse_DeleteSinglePlayerUuidSetting::FResponse_DeleteSinglePlayerUuidSetting(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_DeleteSinglePlayerUuidSetting::FResponse_DeleteSinglePlayerUuidSetting(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -1873,19 +1823,11 @@ FString FResponse_DeleteSinglePlayerUuidSettingSelf::GetHttpResponseCodeDescript
 
 bool FResponse_DeleteSinglePlayerUuidSettingSelf::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -1904,7 +1846,6 @@ bool FResponse_DeleteSinglePlayerUuidSettingSelf::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -2039,9 +1980,8 @@ bool FResponse_DeleteSinglePlayerUuidSettingSelf::FromJson(const TSharedPtr<FJso
 	return bParsed;
 }
 
-FResponse_DeleteSinglePlayerUuidSettingSelf::FResponse_DeleteSinglePlayerUuidSettingSelf(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_DeleteSinglePlayerUuidSettingSelf::FResponse_DeleteSinglePlayerUuidSettingSelf(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -2219,19 +2159,11 @@ FString FResponse_GetAllPlayerIdSettingsForSettingType::GetHttpResponseCodeDescr
 
 bool FResponse_GetAllPlayerIdSettingsForSettingType::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -2250,7 +2182,6 @@ bool FResponse_GetAllPlayerIdSettingsForSettingType::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -2385,9 +2316,8 @@ bool FResponse_GetAllPlayerIdSettingsForSettingType::FromJson(const TSharedPtr<F
 	return bParsed;
 }
 
-FResponse_GetAllPlayerIdSettingsForSettingType::FResponse_GetAllPlayerIdSettingsForSettingType(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_GetAllPlayerIdSettingsForSettingType::FResponse_GetAllPlayerIdSettingsForSettingType(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -2565,19 +2495,11 @@ FString FResponse_GetAllPlayerUuidSettingsForSettingType::GetHttpResponseCodeDes
 
 bool FResponse_GetAllPlayerUuidSettingsForSettingType::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -2596,7 +2518,6 @@ bool FResponse_GetAllPlayerUuidSettingsForSettingType::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -2731,9 +2652,8 @@ bool FResponse_GetAllPlayerUuidSettingsForSettingType::FromJson(const TSharedPtr
 	return bParsed;
 }
 
-FResponse_GetAllPlayerUuidSettingsForSettingType::FResponse_GetAllPlayerUuidSettingsForSettingType(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_GetAllPlayerUuidSettingsForSettingType::FResponse_GetAllPlayerUuidSettingsForSettingType(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -2910,19 +2830,11 @@ FString FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::GetHttpResponseCod
 
 bool FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -2941,7 +2853,6 @@ bool FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -3076,9 +2987,8 @@ bool FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::FromJson(const TShare
 	return bParsed;
 }
 
-FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -3234,19 +3144,11 @@ FString FResponse_GetConfigForAllSettingTypes::GetHttpResponseCodeDescription(EH
 
 bool FResponse_GetConfigForAllSettingTypes::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -3257,7 +3159,6 @@ bool FResponse_GetConfigForAllSettingTypes::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -3304,9 +3205,8 @@ bool FResponse_GetConfigForAllSettingTypes::FromJson(const TSharedPtr<FJsonValue
 	return bParsed;
 }
 
-FResponse_GetConfigForAllSettingTypes::FResponse_GetConfigForAllSettingTypes(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_GetConfigForAllSettingTypes::FResponse_GetConfigForAllSettingTypes(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -3473,19 +3373,11 @@ FString FResponse_GetConfigForSingleSettingTypeAllVersions::GetHttpResponseCodeD
 
 bool FResponse_GetConfigForSingleSettingTypeAllVersions::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -3502,7 +3394,6 @@ bool FResponse_GetConfigForSingleSettingTypeAllVersions::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -3615,9 +3506,8 @@ bool FResponse_GetConfigForSingleSettingTypeAllVersions::FromJson(const TSharedP
 	return bParsed;
 }
 
-FResponse_GetConfigForSingleSettingTypeAllVersions::FResponse_GetConfigForSingleSettingTypeAllVersions(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_GetConfigForSingleSettingTypeAllVersions::FResponse_GetConfigForSingleSettingTypeAllVersions(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -3785,19 +3675,11 @@ FString FResponse_GetConfigForSingleSettingTypeAndVersion::GetHttpResponseCodeDe
 
 bool FResponse_GetConfigForSingleSettingTypeAndVersion::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -3814,7 +3696,6 @@ bool FResponse_GetConfigForSingleSettingTypeAndVersion::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -3927,9 +3808,8 @@ bool FResponse_GetConfigForSingleSettingTypeAndVersion::FromJson(const TSharedPt
 	return bParsed;
 }
 
-FResponse_GetConfigForSingleSettingTypeAndVersion::FResponse_GetConfigForSingleSettingTypeAndVersion(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_GetConfigForSingleSettingTypeAndVersion::FResponse_GetConfigForSingleSettingTypeAndVersion(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -4100,19 +3980,11 @@ FString FResponse_GetSinglePlayerIdSetting::GetHttpResponseCodeDescription(EHttp
 
 bool FResponse_GetSinglePlayerIdSetting::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -4131,7 +4003,6 @@ bool FResponse_GetSinglePlayerIdSetting::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -4266,9 +4137,8 @@ bool FResponse_GetSinglePlayerIdSetting::FromJson(const TSharedPtr<FJsonValue>& 
 	return bParsed;
 }
 
-FResponse_GetSinglePlayerIdSetting::FResponse_GetSinglePlayerIdSetting(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_GetSinglePlayerIdSetting::FResponse_GetSinglePlayerIdSetting(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -4439,19 +4309,11 @@ FString FResponse_GetSinglePlayerUuidSetting::GetHttpResponseCodeDescription(EHt
 
 bool FResponse_GetSinglePlayerUuidSetting::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -4470,7 +4332,6 @@ bool FResponse_GetSinglePlayerUuidSetting::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -4605,9 +4466,8 @@ bool FResponse_GetSinglePlayerUuidSetting::FromJson(const TSharedPtr<FJsonValue>
 	return bParsed;
 }
 
-FResponse_GetSinglePlayerUuidSetting::FResponse_GetSinglePlayerUuidSetting(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_GetSinglePlayerUuidSetting::FResponse_GetSinglePlayerUuidSetting(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -4777,19 +4637,11 @@ FString FResponse_GetSinglePlayerUuidSettingSelf::GetHttpResponseCodeDescription
 
 bool FResponse_GetSinglePlayerUuidSettingSelf::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -4808,7 +4660,6 @@ bool FResponse_GetSinglePlayerUuidSettingSelf::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -4943,9 +4794,8 @@ bool FResponse_GetSinglePlayerUuidSettingSelf::FromJson(const TSharedPtr<FJsonVa
 	return bParsed;
 }
 
-FResponse_GetSinglePlayerUuidSettingSelf::FResponse_GetSinglePlayerUuidSettingSelf(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_GetSinglePlayerUuidSettingSelf::FResponse_GetSinglePlayerUuidSettingSelf(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -5129,19 +4979,11 @@ FString FResponse_SetSinglePlayerIdSetting::GetHttpResponseCodeDescription(EHttp
 
 bool FResponse_SetSinglePlayerIdSetting::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -5162,7 +5004,6 @@ bool FResponse_SetSinglePlayerIdSetting::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -5319,9 +5160,8 @@ bool FResponse_SetSinglePlayerIdSetting::FromJson(const TSharedPtr<FJsonValue>& 
 	return bParsed;
 }
 
-FResponse_SetSinglePlayerIdSetting::FResponse_SetSinglePlayerIdSetting(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_SetSinglePlayerIdSetting::FResponse_SetSinglePlayerIdSetting(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -5505,19 +5345,11 @@ FString FResponse_SetSinglePlayerUuidSetting::GetHttpResponseCodeDescription(EHt
 
 bool FResponse_SetSinglePlayerUuidSetting::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -5538,7 +5370,6 @@ bool FResponse_SetSinglePlayerUuidSetting::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -5695,9 +5526,8 @@ bool FResponse_SetSinglePlayerUuidSetting::FromJson(const TSharedPtr<FJsonValue>
 	return bParsed;
 }
 
-FResponse_SetSinglePlayerUuidSetting::FResponse_SetSinglePlayerUuidSetting(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_SetSinglePlayerUuidSetting::FResponse_SetSinglePlayerUuidSetting(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -5880,19 +5710,11 @@ FString FResponse_SetSinglePlayerUuidSettingSelf::GetHttpResponseCodeDescription
 
 bool FResponse_SetSinglePlayerUuidSettingSelf::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -5913,7 +5735,6 @@ bool FResponse_SetSinglePlayerUuidSettingSelf::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -6070,9 +5891,8 @@ bool FResponse_SetSinglePlayerUuidSettingSelf::FromJson(const TSharedPtr<FJsonVa
 	return bParsed;
 }
 
-FResponse_SetSinglePlayerUuidSettingSelf::FResponse_SetSinglePlayerUuidSettingSelf(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_SetSinglePlayerUuidSettingSelf::FResponse_SetSinglePlayerUuidSettingSelf(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 

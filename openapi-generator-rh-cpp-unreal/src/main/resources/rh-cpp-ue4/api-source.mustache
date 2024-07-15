@@ -422,19 +422,11 @@ FString FResponse_{{operationIdCamelCase}}::GetHttpResponseCodeDescription(EHttp
 
 bool FResponse_{{operationIdCamelCase}}::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 {{#responses.0}}{{#headers.0}}
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
@@ -463,7 +455,6 @@ bool FResponse_{{operationIdCamelCase}}::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -547,9 +538,8 @@ bool FResponse_{{operationIdCamelCase}}::FromJson(const TSharedPtr<FJsonValue>& 
 	{{/returnType}}
 }
 
-FResponse_{{operationIdCamelCase}}::FResponse_{{operationIdCamelCase}}(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_{{operationIdCamelCase}}::FResponse_{{operationIdCamelCase}}(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 

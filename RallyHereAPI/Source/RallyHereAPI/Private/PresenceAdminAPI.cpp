@@ -180,19 +180,11 @@ FString FResponse_AdminGetKnownPlatforms::GetHttpResponseCodeDescription(EHttpRe
 
 bool FResponse_AdminGetKnownPlatforms::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -207,7 +199,6 @@ bool FResponse_AdminGetKnownPlatforms::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -298,9 +289,8 @@ bool FResponse_AdminGetKnownPlatforms::FromJson(const TSharedPtr<FJsonValue>& Js
 	return bParsed;
 }
 
-FResponse_AdminGetKnownPlatforms::FResponse_AdminGetKnownPlatforms(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_AdminGetKnownPlatforms::FResponse_AdminGetKnownPlatforms(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -475,19 +465,11 @@ FString FResponse_AdminGetPlayerPresence::GetHttpResponseCodeDescription(EHttpRe
 
 bool FResponse_AdminGetPlayerPresence::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -504,7 +486,6 @@ bool FResponse_AdminGetPlayerPresence::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -617,9 +598,8 @@ bool FResponse_AdminGetPlayerPresence::FromJson(const TSharedPtr<FJsonValue>& Js
 	return bParsed;
 }
 
-FResponse_AdminGetPlayerPresence::FResponse_AdminGetPlayerPresence(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_AdminGetPlayerPresence::FResponse_AdminGetPlayerPresence(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -794,19 +774,11 @@ FString FResponse_AdminGetPlayerPresenceId::GetHttpResponseCodeDescription(EHttp
 
 bool FResponse_AdminGetPlayerPresenceId::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -823,7 +795,6 @@ bool FResponse_AdminGetPlayerPresenceId::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -936,9 +907,8 @@ bool FResponse_AdminGetPlayerPresenceId::FromJson(const TSharedPtr<FJsonValue>& 
 	return bParsed;
 }
 
-FResponse_AdminGetPlayerPresenceId::FResponse_AdminGetPlayerPresenceId(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_AdminGetPlayerPresenceId::FResponse_AdminGetPlayerPresenceId(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -1108,19 +1078,11 @@ FString FResponse_AdminGetRequestingCcu::GetHttpResponseCodeDescription(EHttpRes
 
 bool FResponse_AdminGetRequestingCcu::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -1135,7 +1097,6 @@ bool FResponse_AdminGetRequestingCcu::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -1226,9 +1187,8 @@ bool FResponse_AdminGetRequestingCcu::FromJson(const TSharedPtr<FJsonValue>& Jso
 	return bParsed;
 }
 
-FResponse_AdminGetRequestingCcu::FResponse_AdminGetRequestingCcu(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_AdminGetRequestingCcu::FResponse_AdminGetRequestingCcu(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -1398,19 +1358,11 @@ FString FResponse_AdminGetRequestingCcuAllPlatformCombined::GetHttpResponseCodeD
 
 bool FResponse_AdminGetRequestingCcuAllPlatformCombined::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -1425,7 +1377,6 @@ bool FResponse_AdminGetRequestingCcuAllPlatformCombined::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -1516,9 +1467,8 @@ bool FResponse_AdminGetRequestingCcuAllPlatformCombined::FromJson(const TSharedP
 	return bParsed;
 }
 
-FResponse_AdminGetRequestingCcuAllPlatformCombined::FResponse_AdminGetRequestingCcuAllPlatformCombined(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_AdminGetRequestingCcuAllPlatformCombined::FResponse_AdminGetRequestingCcuAllPlatformCombined(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -1688,19 +1638,11 @@ FString FResponse_AdminGetRequestingCcuAllPlatformIndividual::GetHttpResponseCod
 
 bool FResponse_AdminGetRequestingCcuAllPlatformIndividual::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -1715,7 +1657,6 @@ bool FResponse_AdminGetRequestingCcuAllPlatformIndividual::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -1806,9 +1747,8 @@ bool FResponse_AdminGetRequestingCcuAllPlatformIndividual::FromJson(const TShare
 	return bParsed;
 }
 
-FResponse_AdminGetRequestingCcuAllPlatformIndividual::FResponse_AdminGetRequestingCcuAllPlatformIndividual(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_AdminGetRequestingCcuAllPlatformIndividual::FResponse_AdminGetRequestingCcuAllPlatformIndividual(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -1978,19 +1918,11 @@ FString FResponse_AdminGetRequestingCcuIndividual::GetHttpResponseCodeDescriptio
 
 bool FResponse_AdminGetRequestingCcuIndividual::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -2005,7 +1937,6 @@ bool FResponse_AdminGetRequestingCcuIndividual::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -2096,9 +2027,8 @@ bool FResponse_AdminGetRequestingCcuIndividual::FromJson(const TSharedPtr<FJsonV
 	return bParsed;
 }
 
-FResponse_AdminGetRequestingCcuIndividual::FResponse_AdminGetRequestingCcuIndividual(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_AdminGetRequestingCcuIndividual::FResponse_AdminGetRequestingCcuIndividual(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -2273,19 +2203,11 @@ FString FResponse_AdminGetRequestingCcuPlatformCombined::GetHttpResponseCodeDesc
 
 bool FResponse_AdminGetRequestingCcuPlatformCombined::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -2300,7 +2222,6 @@ bool FResponse_AdminGetRequestingCcuPlatformCombined::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -2391,9 +2312,8 @@ bool FResponse_AdminGetRequestingCcuPlatformCombined::FromJson(const TSharedPtr<
 	return bParsed;
 }
 
-FResponse_AdminGetRequestingCcuPlatformCombined::FResponse_AdminGetRequestingCcuPlatformCombined(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_AdminGetRequestingCcuPlatformCombined::FResponse_AdminGetRequestingCcuPlatformCombined(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -2568,19 +2488,11 @@ FString FResponse_AdminGetRequestingCcuPlatformIndividual::GetHttpResponseCodeDe
 
 bool FResponse_AdminGetRequestingCcuPlatformIndividual::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -2595,7 +2507,6 @@ bool FResponse_AdminGetRequestingCcuPlatformIndividual::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -2686,9 +2597,8 @@ bool FResponse_AdminGetRequestingCcuPlatformIndividual::FromJson(const TSharedPt
 	return bParsed;
 }
 
-FResponse_AdminGetRequestingCcuPlatformIndividual::FResponse_AdminGetRequestingCcuPlatformIndividual(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_AdminGetRequestingCcuPlatformIndividual::FResponse_AdminGetRequestingCcuPlatformIndividual(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -2858,19 +2768,11 @@ FString FResponse_AdminGetTotalCcu::GetHttpResponseCodeDescription(EHttpResponse
 
 bool FResponse_AdminGetTotalCcu::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -2885,7 +2787,6 @@ bool FResponse_AdminGetTotalCcu::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -2976,9 +2877,8 @@ bool FResponse_AdminGetTotalCcu::FromJson(const TSharedPtr<FJsonValue>& JsonValu
 	return bParsed;
 }
 
-FResponse_AdminGetTotalCcu::FResponse_AdminGetTotalCcu(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_AdminGetTotalCcu::FResponse_AdminGetTotalCcu(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -3148,19 +3048,11 @@ FString FResponse_AdminGetTotalCcuAllPlatformCombined::GetHttpResponseCodeDescri
 
 bool FResponse_AdminGetTotalCcuAllPlatformCombined::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -3175,7 +3067,6 @@ bool FResponse_AdminGetTotalCcuAllPlatformCombined::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -3266,9 +3157,8 @@ bool FResponse_AdminGetTotalCcuAllPlatformCombined::FromJson(const TSharedPtr<FJ
 	return bParsed;
 }
 
-FResponse_AdminGetTotalCcuAllPlatformCombined::FResponse_AdminGetTotalCcuAllPlatformCombined(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_AdminGetTotalCcuAllPlatformCombined::FResponse_AdminGetTotalCcuAllPlatformCombined(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -3438,19 +3328,11 @@ FString FResponse_AdminGetTotalCcuAllPlatformIndividual::GetHttpResponseCodeDesc
 
 bool FResponse_AdminGetTotalCcuAllPlatformIndividual::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -3465,7 +3347,6 @@ bool FResponse_AdminGetTotalCcuAllPlatformIndividual::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -3556,9 +3437,8 @@ bool FResponse_AdminGetTotalCcuAllPlatformIndividual::FromJson(const TSharedPtr<
 	return bParsed;
 }
 
-FResponse_AdminGetTotalCcuAllPlatformIndividual::FResponse_AdminGetTotalCcuAllPlatformIndividual(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_AdminGetTotalCcuAllPlatformIndividual::FResponse_AdminGetTotalCcuAllPlatformIndividual(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -3728,19 +3608,11 @@ FString FResponse_AdminGetTotalCcuIndividual::GetHttpResponseCodeDescription(EHt
 
 bool FResponse_AdminGetTotalCcuIndividual::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -3755,7 +3627,6 @@ bool FResponse_AdminGetTotalCcuIndividual::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -3846,9 +3717,8 @@ bool FResponse_AdminGetTotalCcuIndividual::FromJson(const TSharedPtr<FJsonValue>
 	return bParsed;
 }
 
-FResponse_AdminGetTotalCcuIndividual::FResponse_AdminGetTotalCcuIndividual(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_AdminGetTotalCcuIndividual::FResponse_AdminGetTotalCcuIndividual(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -4023,19 +3893,11 @@ FString FResponse_AdminGetTotalCcuPlatformCombined::GetHttpResponseCodeDescripti
 
 bool FResponse_AdminGetTotalCcuPlatformCombined::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -4050,7 +3912,6 @@ bool FResponse_AdminGetTotalCcuPlatformCombined::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -4141,9 +4002,8 @@ bool FResponse_AdminGetTotalCcuPlatformCombined::FromJson(const TSharedPtr<FJson
 	return bParsed;
 }
 
-FResponse_AdminGetTotalCcuPlatformCombined::FResponse_AdminGetTotalCcuPlatformCombined(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_AdminGetTotalCcuPlatformCombined::FResponse_AdminGetTotalCcuPlatformCombined(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -4318,19 +4178,11 @@ FString FResponse_AdminGetTotalCcuPlatformIndividual::GetHttpResponseCodeDescrip
 
 bool FResponse_AdminGetTotalCcuPlatformIndividual::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -4345,7 +4197,6 @@ bool FResponse_AdminGetTotalCcuPlatformIndividual::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -4436,9 +4287,8 @@ bool FResponse_AdminGetTotalCcuPlatformIndividual::FromJson(const TSharedPtr<FJs
 	return bParsed;
 }
 
-FResponse_AdminGetTotalCcuPlatformIndividual::FResponse_AdminGetTotalCcuPlatformIndividual(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_AdminGetTotalCcuPlatformIndividual::FResponse_AdminGetTotalCcuPlatformIndividual(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -4608,19 +4458,11 @@ FString FResponse_AdminGetUpdatingCcu::GetHttpResponseCodeDescription(EHttpRespo
 
 bool FResponse_AdminGetUpdatingCcu::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -4635,7 +4477,6 @@ bool FResponse_AdminGetUpdatingCcu::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -4726,9 +4567,8 @@ bool FResponse_AdminGetUpdatingCcu::FromJson(const TSharedPtr<FJsonValue>& JsonV
 	return bParsed;
 }
 
-FResponse_AdminGetUpdatingCcu::FResponse_AdminGetUpdatingCcu(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_AdminGetUpdatingCcu::FResponse_AdminGetUpdatingCcu(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -4898,19 +4738,11 @@ FString FResponse_AdminGetUpdatingCcuAllPlatformCombined::GetHttpResponseCodeDes
 
 bool FResponse_AdminGetUpdatingCcuAllPlatformCombined::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -4925,7 +4757,6 @@ bool FResponse_AdminGetUpdatingCcuAllPlatformCombined::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -5016,9 +4847,8 @@ bool FResponse_AdminGetUpdatingCcuAllPlatformCombined::FromJson(const TSharedPtr
 	return bParsed;
 }
 
-FResponse_AdminGetUpdatingCcuAllPlatformCombined::FResponse_AdminGetUpdatingCcuAllPlatformCombined(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_AdminGetUpdatingCcuAllPlatformCombined::FResponse_AdminGetUpdatingCcuAllPlatformCombined(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -5188,19 +5018,11 @@ FString FResponse_AdminGetUpdatingCcuAllPlatformIndividual::GetHttpResponseCodeD
 
 bool FResponse_AdminGetUpdatingCcuAllPlatformIndividual::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -5215,7 +5037,6 @@ bool FResponse_AdminGetUpdatingCcuAllPlatformIndividual::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -5306,9 +5127,8 @@ bool FResponse_AdminGetUpdatingCcuAllPlatformIndividual::FromJson(const TSharedP
 	return bParsed;
 }
 
-FResponse_AdminGetUpdatingCcuAllPlatformIndividual::FResponse_AdminGetUpdatingCcuAllPlatformIndividual(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_AdminGetUpdatingCcuAllPlatformIndividual::FResponse_AdminGetUpdatingCcuAllPlatformIndividual(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -5478,19 +5298,11 @@ FString FResponse_AdminGetUpdatingCcuIndividual::GetHttpResponseCodeDescription(
 
 bool FResponse_AdminGetUpdatingCcuIndividual::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -5505,7 +5317,6 @@ bool FResponse_AdminGetUpdatingCcuIndividual::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -5596,9 +5407,8 @@ bool FResponse_AdminGetUpdatingCcuIndividual::FromJson(const TSharedPtr<FJsonVal
 	return bParsed;
 }
 
-FResponse_AdminGetUpdatingCcuIndividual::FResponse_AdminGetUpdatingCcuIndividual(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_AdminGetUpdatingCcuIndividual::FResponse_AdminGetUpdatingCcuIndividual(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -5773,19 +5583,11 @@ FString FResponse_AdminGetUpdatingCcuPlatformCombined::GetHttpResponseCodeDescri
 
 bool FResponse_AdminGetUpdatingCcuPlatformCombined::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -5800,7 +5602,6 @@ bool FResponse_AdminGetUpdatingCcuPlatformCombined::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -5891,9 +5692,8 @@ bool FResponse_AdminGetUpdatingCcuPlatformCombined::FromJson(const TSharedPtr<FJ
 	return bParsed;
 }
 
-FResponse_AdminGetUpdatingCcuPlatformCombined::FResponse_AdminGetUpdatingCcuPlatformCombined(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_AdminGetUpdatingCcuPlatformCombined::FResponse_AdminGetUpdatingCcuPlatformCombined(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -6068,19 +5868,11 @@ FString FResponse_AdminGetUpdatingCcuPlatformIndividual::GetHttpResponseCodeDesc
 
 bool FResponse_AdminGetUpdatingCcuPlatformIndividual::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
@@ -6095,7 +5887,6 @@ bool FResponse_AdminGetUpdatingCcuPlatformIndividual::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -6186,9 +5977,8 @@ bool FResponse_AdminGetUpdatingCcuPlatformIndividual::FromJson(const TSharedPtr<
 	return bParsed;
 }
 
-FResponse_AdminGetUpdatingCcuPlatformIndividual::FResponse_AdminGetUpdatingCcuPlatformIndividual(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_AdminGetUpdatingCcuPlatformIndividual::FResponse_AdminGetUpdatingCcuPlatformIndividual(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -6374,19 +6164,11 @@ FString FResponse_AdminUpdatePlayerLastSeen::GetHttpResponseCodeDescription(EHtt
 
 bool FResponse_AdminUpdatePlayerLastSeen::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
@@ -6413,7 +6195,6 @@ bool FResponse_AdminUpdatePlayerLastSeen::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -6474,9 +6255,8 @@ bool FResponse_AdminUpdatePlayerLastSeen::FromJson(const TSharedPtr<FJsonValue>&
 	return true;
 }
 
-FResponse_AdminUpdatePlayerLastSeen::FResponse_AdminUpdatePlayerLastSeen(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_AdminUpdatePlayerLastSeen::FResponse_AdminUpdatePlayerLastSeen(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
@@ -6662,19 +6442,11 @@ FString FResponse_AdminUpdatePlayerLastSeenId::GetHttpResponseCodeDescription(EH
 
 bool FResponse_AdminUpdatePlayerLastSeenId::ParseHeaders()
 {
-	// Reset and presize the header map we will parse into
-	HeadersMap.Empty(HttpResponse->GetAllHeaders().Num());
-	
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
+
 
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
@@ -6701,7 +6473,6 @@ bool FResponse_AdminUpdatePlayerLastSeenId::ParseHeaders()
 	default:
 		break;
 	}
-	
 	
 	return bParsedAllRequiredHeaders;
 }
@@ -6762,9 +6533,8 @@ bool FResponse_AdminUpdatePlayerLastSeenId::FromJson(const TSharedPtr<FJsonValue
 	return true;
 }
 
-FResponse_AdminUpdatePlayerLastSeenId::FResponse_AdminUpdatePlayerLastSeenId(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
-	, ParsedContent()
+FResponse_AdminUpdatePlayerLastSeenId::FResponse_AdminUpdatePlayerLastSeenId(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
