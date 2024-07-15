@@ -152,7 +152,8 @@ bool URH_FriendSubsystem::FetchFriendsList(const FRH_GenericFriendBlock& Delegat
 
 void URH_FriendSubsystem::OnFetchFriendsListResponse(const GetFriendsListType::Response& Resp, const FRH_GenericFriendBlock Delegate)
 {
-	if (Resp.IsSuccessful())
+	const auto Content = Resp.TryGetDefaultContentAsPointer();
+	if (Resp.IsSuccessful() && Content != nullptr)
 	{
 		 Resp.TryGetDefaultHeader_ETag(FriendsETag);
 
@@ -201,7 +202,7 @@ void URH_FriendSubsystem::OnFetchFriendsListResponse(const GetFriendsListType::R
 		URH_PlayerInfoSubsystem* PSS = GetRH_PlayerInfoSubsystem();
 
 		TArray<URH_RHFriendAndPlatformFriend*> UpdatedFriends;
-		for (auto NewFriend : Resp.Content.Friends)
+		for (auto NewFriend : Content->Friends)
 		{
 			const auto ExistingFriend = Friends.FindByPredicate([NewFriend](const URH_RHFriendAndPlatformFriend* cachedFr)
 				{

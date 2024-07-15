@@ -670,7 +670,8 @@ void URH_PlayerInfo::SetPlayerSettings(const FString& SettingTypeId, FRH_PlayerS
 
 void URH_PlayerInfo::OnSetPlayerSettingsResponse(const SetSettings::Response& Response, const FRH_PlayerInfoSetPlayerSettingsBlock Delegate, const FString SettingTypeId, const FString SettingKey, FRH_PlayerSettingsDataWrapper SettingsData)
 {
-	if (Response.IsSuccessful())
+	const auto Content = Response.TryGetDefaultContentAsPointer();
+	if (Response.IsSuccessful() && Content != nullptr)
 	{
 		const auto FoundPendingSettings = PendingSettingRequestsByTypeId.Find(SettingTypeId);
 		if (FoundPendingSettings && FoundPendingSettings->SettingKeySet.Contains(SettingKey))
@@ -685,7 +686,7 @@ void URH_PlayerInfo::OnSetPlayerSettingsResponse(const SetSettings::Response& Re
 
 			if (auto FoundResponses = SetPlayerSettingResponses.Find(SettingKey))
 			{
-				for (const auto& pair : Response.Content)
+				for (const auto& pair : *Content)
 				{
 					FoundResponses->Content.Add(pair);
 				}
@@ -804,11 +805,12 @@ void URH_PlayerInfo::GetPlayerRankings(const FTimespan& StaleThreshold /* = FTim
 
 void URH_PlayerInfo::OnGetPlayerRankingsResponse(const GetRankings::Response& Response, const FRH_PlayerInfoGetPlayerRankingsBlock Delegate)
 {
-	if (Response.IsSuccessful())
+	const auto Content = Response.TryGetDefaultContentAsPointer();
+	if (Response.IsSuccessful() && Content != nullptr)
 	{
 		PlayerRankingsByRankingId.Empty();
 
-		for (const auto& PlayerRankResponse : Response.Content.GetPlayerRanks())
+		for (const auto& PlayerRankResponse : Content->GetPlayerRanks())
 		{
 			PlayerRankingsByRankingId.Add(PlayerRankResponse.GetRankId(), PlayerRankResponse);
 		}
@@ -839,9 +841,10 @@ void URH_PlayerInfo::UpdatePlayerRanking(const FString& RankId, const FRHAPI_Pla
 
 void URH_PlayerInfo::OnUpdatePlayerRankingResponse(const UpdateRanking::Response& Response, const FRH_PlayerInfoGetPlayerRankingsBlock Delegate)
 {
-	if (Response.IsSuccessful())
+	const auto Content = Response.TryGetDefaultContentAsPointer();
+	if (Response.IsSuccessful() && Content != nullptr)
 	{
-		for (const auto& Player : Response.Content.UpdatedPlayers)
+		for (const auto& Player : Content->UpdatedPlayers)
 		{
 			if (Player.GetPlayerUuid() == GetRHPlayerUuid())
 			{
@@ -1084,7 +1087,11 @@ void URH_PlayerDeserter::SetDeserterStatus(const FString& DeserterId, const FRHA
 	const auto Helper = MakeShared<FRH_SimpleQueryHelper<SetDeserterType>>(
 		SetDeserterType::Delegate::CreateWeakLambda(this, [this, Delegate](const SetDeserterType::Response& Response)
 			{
-				DeserterStatus.Add(Response.Content.DeserterId, Response.Content);
+				const auto Content = Response.TryGetDefaultContentAsPointer();
+				if (Response.IsSuccessful() && Content != nullptr)
+				{
+					DeserterStatus.Add(Content->GetDeserterId(), *Content);
+				}
 			}),
 		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 			{

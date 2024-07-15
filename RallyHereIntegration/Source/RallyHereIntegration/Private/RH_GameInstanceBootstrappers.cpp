@@ -909,9 +909,10 @@ void URH_GameInstanceServerBootstrapper::OnReservationComplete(bool bSuccess)
 		auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 			BaseType::Delegate::CreateWeakLambda(this, [this](const BaseType::Response& Resp)
 				{
-					if (Resp.IsSuccessful())
+					const auto Content = Resp.TryGetDefaultContentAsPointer();
+					if (Resp.IsSuccessful() && Content != nullptr)
 					{
-						BootstrappingResult.AllocationInfo.SessionId = Resp.Content.GetSessionId();
+						BootstrappingResult.AllocationInfo.SessionId = Content->GetSessionId();
 					}
 				}),
 			FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this](bool bSuccess, const FRH_ErrorInfo& Error)

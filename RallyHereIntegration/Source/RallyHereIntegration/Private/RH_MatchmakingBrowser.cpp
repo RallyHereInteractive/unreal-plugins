@@ -75,9 +75,10 @@ void URH_MatchmakingBrowserCache::SearchMatchmakingTemplateGroup(const FGuid& Te
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateWeakLambda(this, [this](const BaseType::Response& Resp)
 			{
-				if (Resp.IsSuccessful())
+				const auto Content = Resp.TryGetDefaultContentAsPointer();
+				if (Resp.IsSuccessful() && Content != nullptr)
 				{
-					ImportAPIMatchmakingTemplateGroup(Resp.Content, Resp.ETag.Get(TEXT("")));
+					ImportAPIMatchmakingTemplateGroup(*Content, Resp.TryGetDefaultHeaderAsOptional_ETag().Get(TEXT("")));
 				}
 			}),
 		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, TemplateId, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
@@ -136,9 +137,10 @@ void URH_MatchmakingBrowserCache::SearchMatchmakingProfile(const FString& Profil
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateWeakLambda(this, [this](const BaseType::Response& Resp)
 			{
-				if (Resp.IsSuccessful())
+				const auto Content = Resp.TryGetDefaultContentAsPointer();
+				if (Resp.IsSuccessful() && Content != nullptr)
 				{
-					ImportAPIMatchmakingProfile(Resp.Content, Resp.ETag.Get(TEXT("")));
+					ImportAPIMatchmakingProfile(*Content, Resp.TryGetDefaultHeaderAsOptional_ETag().Get(TEXT("")));
 				}
 			}),
 		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, ProfileId, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
@@ -188,9 +190,10 @@ void URH_MatchmakingBrowserCache::SearchInstanceRequestTemplate(const FGuid& Tem
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateWeakLambda(this, [this](const BaseType::Response& Resp)
 			{
-				if (Resp.IsSuccessful())
+				const auto Content = Resp.TryGetDefaultContentAsPointer();
+				if (Resp.IsSuccessful() && Content != nullptr)
 				{
-					ImportAPIInstanceRequestTemplate(Resp.Content, Resp.ETag.Get(TEXT("")));
+					ImportAPIInstanceRequestTemplate(*Content, Resp.TryGetDefaultHeaderAsOptional_ETag().Get(TEXT("")));
 				}
 			}),
 		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, TemplateId, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
