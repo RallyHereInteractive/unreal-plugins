@@ -232,5 +232,7 @@ void URH_PlayerNotifications::OnNotificationCreated(const RallyHereAPI::FRespons
                                                       const FRH_OnSingularNotificationIDDelegateBlock Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
-	Delegate.ExecuteIfBound(Resp.IsSuccessful(), Resp.Content.NotificationId, Resp);
+	const auto Content = Resp.TryGetDefaultContentAsPointer();
+	FString NotificationId = Content ? Content->NotificationId : TEXT("");
+	Delegate.ExecuteIfBound(Resp.IsSuccessful(), NotificationId, Resp);
 }

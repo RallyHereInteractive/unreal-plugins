@@ -121,9 +121,8 @@ protected:
 
 		HttpRequest = nullptr;
 
-		if (Resp.IsSuccessful())
+		if (Resp.IsSuccessful() && Resp.TryGetDefaultContent(NotificationsResult))
 		{
-			NotificationsResult = Resp.Content;
 			Completed(true);
 		}
 		else

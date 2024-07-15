@@ -546,17 +546,17 @@ protected:
 	/** @brief Inventory Bucket to Inventory Bucket Use Ruleset Map */
 	TMap<FString, FRHAPI_InventoryBucketUseRuleSet> InventoryBucketUseRuleSets;
 	/** @brief ETag of last GetCatalogAll call response */
-	FString GetCatalogAllETag;
+	TOptional<FString> GetCatalogAllETag;
 	/** @brief ETag of last GetCatalogXpAll call response */
-	FString GetCatalogXpAllETag;
+	TOptional<FString> GetCatalogXpAllETag;
 	/** @brief ETag of last GetCatalogPricePointsAll call response */
-	FString GetCatalogPricePointsAllETag;
+	TOptional<FString> GetCatalogPricePointsAllETag;
 	/** @brief ETag of last GetCatalogVendorsAll call response */
-	FString GetCatalogVendorsAllETag;
+	TOptional<FString> GetCatalogVendorsAllETag;
 	/** @brief ETag of last GetCatalogTimeFramesAll call response */
-	FString GetCatalogTimeFramesAllETag;
+	TOptional<FString> GetCatalogTimeFramesAllETag;
 	/** @brief ETag of last GetCatalogInventoryBucketUseRuleSetsAll call response */
-	FString GetCatalogInventoryBucketUseRuleSetsAllETag;
+	TOptional<FString> GetCatalogInventoryBucketUseRuleSetsAllETag;
 	/**
 	 * @brief Array of GetCatalogItemCalls yet to be sent to the API layer.
 	 */

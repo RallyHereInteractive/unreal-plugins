@@ -385,11 +385,10 @@ protected:
 	 */
 	void ProcessPlatformInventoryComplete(const RallyHereAPI::FResponse_ProcessPlatformEntitlementsByPlayerUuid& Resp)
 	{
-		if (Resp.IsSuccessful() && EntitlementSubsystem.IsValid())
+		if (Resp.IsSuccessful() && EntitlementSubsystem.IsValid() && Resp.TryGetDefaultContent(ProcessEntitlementResult))
 		{
-			UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] Successfully Submitted Process Platform Entitlements to RallyHere with returned RequestId: %s"), *GetName(), *Resp.Content.GetRequestId());
-
-			ProcessEntitlementResult = Resp.Content;
+			UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] Successfully Submitted Process Platform Entitlements to RallyHere with returned RequestId: %s"), *GetName(), *ProcessEntitlementResult.GetRequestId());
+			
 			EntitlementSubsystem->GetEntitlementResults()->Emplace(TaskId, ProcessEntitlementResult);
 
 			if(CheckIfWeNeedToPoll())
@@ -447,9 +446,9 @@ protected:
 	*/
 	void PollEntitlementComplete(const RallyHereAPI::FResponse_RetrieveEntitlementRequestByPlayerUuid& Resp, FRH_PollCompleteFunc Delegate)
 	{
-		ProcessEntitlementResult = Resp.Content;
+		bool bHadContent = Resp.TryGetDefaultContent(ProcessEntitlementResult);
 
-		if(!CheckIfWeNeedToPoll())
+		if(bHadContent && !CheckIfWeNeedToPoll())
 		{
 			Delegate.ExecuteIfBound(true, false);
 			StopPoll();
@@ -461,7 +460,7 @@ protected:
 			Delegate.ExecuteIfBound(true, true);
 		}
 
-		if (EntitlementSubsystem.IsValid())
+		if (bHadContent && EntitlementSubsystem.IsValid())
 		{
 			EntitlementSubsystem->GetEntitlementResults()->Emplace(TaskId, ProcessEntitlementResult);
 		}

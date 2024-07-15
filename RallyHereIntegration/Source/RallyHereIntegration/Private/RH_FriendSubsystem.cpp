@@ -154,7 +154,7 @@ void URH_FriendSubsystem::OnFetchFriendsListResponse(const GetFriendsListType::R
 {
 	if (Resp.IsSuccessful())
 	{
-		FriendsETag = Resp.ETag.Get(TEXT(""));
+		 Resp.TryGetDefaultHeader_ETag(FriendsETag);
 
 		for (const auto Friend : Friends)
 		{
@@ -315,27 +315,27 @@ bool URH_FriendSubsystem::FetchFriend(const FGuid& PlayerUuid, const FRH_Generic
 
 void URH_FriendSubsystem::OnFetchFriendResponse(const GetFriendRelationshipType::Response& Resp, const FRH_GenericFriendWithUuidBlock Delegate)
 {
-	if (Resp.IsSuccessful())
+	const auto NewFriend = Resp.TryGetDefaultContentAsPointer();
+	if (Resp.IsSuccessful() && NewFriend != nullptr)
 	{
-		auto NewFriend = Resp.Content;
 		URH_RHFriendAndPlatformFriend* UpdatedFriend;
-		if (const auto ExistingFriend = GetFriendByUuid(Resp.Content.FriendsPlayerUuid))
+		if (const auto ExistingFriend = GetFriendByUuid(NewFriend->GetFriendsPlayerUuid()))
 		{
 			UpdatedFriend = ExistingFriend;
 			if (URH_PlayerInfoSubsystem* PSS = GetRH_PlayerInfoSubsystem())
 			{
-				ExistingFriend->PlayerAndPlatformInfo.PlayerUuid = NewFriend.FriendsPlayerUuid;
-				if (URH_PlayerInfo* PlayerInfo = PSS->GetOrCreatePlayerInfo(NewFriend.FriendsPlayerUuid))
+				ExistingFriend->PlayerAndPlatformInfo.PlayerUuid = NewFriend->GetFriendsPlayerUuid();
+				if (URH_PlayerInfo* PlayerInfo = PSS->GetOrCreatePlayerInfo(NewFriend->GetFriendsPlayerUuid()))
 				{
 					PlayerInfo->GetPresence()->OnUpdatedDelegate.AddUObject(ExistingFriend, &URH_RHFriendAndPlatformFriend::OnPresenceUpdated);
 				}
 
 				ExistingFriend->OnPresenceUpdatedDelegate.AddUObject(this, &URH_FriendSubsystem::OnPresenceUpdated);
 			}
-			ExistingFriend->RHFriendshipStatus = static_cast<FriendshipStatus>(NewFriend.Status);
-			ExistingFriend->LastModifiedOn = NewFriend.LastModifiedOn;
-			ExistingFriend->Etag = Resp.ETag.Get(TEXT(""));
-			NewFriend.GetNotes(ExistingFriend->Notes);
+			ExistingFriend->RHFriendshipStatus = static_cast<FriendshipStatus>(NewFriend->GetStatus());
+			ExistingFriend->LastModifiedOn = NewFriend->GetLastModifiedOn();
+			Resp.TryGetDefaultHeader_ETag(ExistingFriend->Etag);
+			NewFriend->GetNotes(ExistingFriend->Notes);
 		}
 		else
 		{
@@ -343,18 +343,18 @@ void URH_FriendSubsystem::OnFetchFriendResponse(const GetFriendRelationshipType:
 			UpdatedFriend = newEntry;
 			if (URH_PlayerInfoSubsystem* PSS = GetRH_PlayerInfoSubsystem())
 			{
-				newEntry->PlayerAndPlatformInfo.PlayerUuid = NewFriend.FriendsPlayerUuid;
-				if (URH_PlayerInfo* PlayerInfo = PSS->GetOrCreatePlayerInfo(NewFriend.FriendsPlayerUuid))
+				newEntry->PlayerAndPlatformInfo.PlayerUuid = NewFriend->GetFriendsPlayerUuid();
+				if (URH_PlayerInfo* PlayerInfo = PSS->GetOrCreatePlayerInfo(NewFriend->GetFriendsPlayerUuid()))
 				{
 					PlayerInfo->GetPresence()->OnUpdatedDelegate.AddUObject(newEntry, &URH_RHFriendAndPlatformFriend::OnPresenceUpdated);
 				}
 
 				newEntry->OnPresenceUpdatedDelegate.AddUObject(this, &URH_FriendSubsystem::OnPresenceUpdated);
 			}
-			newEntry->RHFriendshipStatus = static_cast<FriendshipStatus>(NewFriend.Status);
-			newEntry->LastModifiedOn = NewFriend.LastModifiedOn;
-			newEntry->Etag = Resp.ETag.Get(TEXT(""));
-			NewFriend.GetNotes(newEntry->Notes);
+			newEntry->RHFriendshipStatus = static_cast<FriendshipStatus>(NewFriend->GetStatus());
+			newEntry->LastModifiedOn = NewFriend->GetLastModifiedOn();
+			Resp.TryGetDefaultHeader_ETag(ExistingFriend->Etag);
+			NewFriend->GetNotes(ExistingFriend->Notes);
 			Friends.Emplace(newEntry);
 		}
 
@@ -365,7 +365,7 @@ void URH_FriendSubsystem::OnFetchFriendResponse(const GetFriendRelationshipType:
 		}
 	}
 
-	Delegate.ExecuteIfBound(Resp.IsSuccessful() || Resp.GetHttpResponseCode() == 304, Resp.Content.FriendsPlayerUuid);
+	Delegate.ExecuteIfBound(Resp.IsSuccessful() || Resp.GetHttpResponseCode() == 304, NewFriend ? NewFriend->GetFriendsPlayerUuid() : FGuid());
 }
 
 bool URH_FriendSubsystem::SetDefaultParamsForGetFriendRequest(GetFriendRelationshipType::Request& Request) const

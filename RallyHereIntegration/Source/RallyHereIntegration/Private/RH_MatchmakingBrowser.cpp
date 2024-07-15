@@ -20,11 +20,12 @@ void URH_MatchmakingBrowserCache::SearchQueues(const FRH_QueueSearchParams& para
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateWeakLambda(this, [this, Result](const BaseType::Response& Resp)
 			{
-				if (Resp.IsSuccessful())
+				const auto Content = Resp.TryGetDefaultContentAsPointer();
+				if (Resp.IsSuccessful() && Content != nullptr)
 				{
-					for (const auto& Queue : Resp.Content.Queues)
+					for (const auto& Queue : Content->Queues)
 					{
-						ImportAPIQueue(Queue, Resp.ETag.Get(TEXT("")));
+						ImportAPIQueue(Queue, Resp.TryGetDefaultHeaderAsOptional_ETag().Get(TEXT("")));
 
 						// add to the result
 						auto* ImportedQueue = GetQueue(Queue.QueueId);
@@ -249,16 +250,17 @@ void URH_MatchmakingBrowserCache::SearchRegions(int32 Cursor, const FRH_OnRegion
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateWeakLambda(this, [this](const BaseType::Response& Resp)
 			{
-				if (Resp.IsSuccessful())
+				const auto Content = Resp.TryGetDefaultContentAsPointer();
+				if (Resp.IsSuccessful() && Content != nullptr)
 				{
 					// merge the regions in to the cache
-					for (auto Region : Resp.Content.GetRegions())
+					for (auto Region : Content->GetRegions())
 					{
 						ImportAPIRegion(Region);
 					}
 
 					// stash cursor for callback
-					LastRegionCursor = Resp.Content.GetCursor();
+					LastRegionCursor = Content->GetCursor();
 
 					{
 						SCOPED_NAMED_EVENT(RallyHere_BroadcastRegionsUpdated, FColor::Purple);

@@ -57,12 +57,13 @@ protected:
 	void OnSessionLookupById(const SessionByIdType::Response& Resp)
 	{
 		HttpRequest = nullptr;
-		if (Resp.IsSuccessful())
+		const auto Content = Resp.TryGetDefaultContentAsPointer(); 
+		if (Resp.IsSuccessful() && Content != nullptr)
 		{
-			BootstrappingResult.Session = Resp.Content;
-			BootstrappingResult.ETag = Resp.ETag;
+			BootstrappingResult.Session = *Content;
+			BootstrappingResult.ETag = Resp.TryGetDefaultHeaderAsOptional_ETag();
 
-			LookupSessionTemplate(Resp.Content.Type);
+			LookupSessionTemplate(Content->Type);
 		}
 		else
 		{
@@ -74,9 +75,10 @@ protected:
 	void OnSessionLookupByAllocationId(const SessionByAllocationIdType::Response& Resp)
 	{
 		HttpRequest = nullptr;
-		if (Resp.IsSuccessful())
+		const auto Content = Resp.TryGetDefaultContentAsPointer();
+		if (Resp.IsSuccessful() && Content != nullptr)
 		{
-			const auto Instance = Resp.Content.GetInstanceOrNull();
+			const auto Instance = Content->GetInstanceOrNull();
 			if (!Instance)
 			{
 				Failed(TEXT("Allocation lookup found a session but instance was not set, treating session as no longer valid"));
@@ -94,10 +96,10 @@ protected:
 			if (AllocationID && *AllocationID == BootstrappingResult.AllocationInfo.AllocationId)
 			{
 				// everything matches, we are done
-				BootstrappingResult.Session = Resp.Content;
-				BootstrappingResult.ETag = Resp.ETag;
+				BootstrappingResult.Session = *Content;
+				BootstrappingResult.ETag = Resp.TryGetDefaultHeaderAsOptional_ETag();
 
-				LookupSessionTemplate(Resp.Content.Type);
+				LookupSessionTemplate(Content->Type);
 			}
 			else if (AllocationID)
 			{
@@ -138,10 +140,8 @@ protected:
 	}
 	void OnLooupSessionTemplateComplete(const TemplateLookupType::Response& Resp)
 	{
-		if (Resp.IsSuccessful())
+		if (Resp.IsSuccessful() && Resp.TryGetDefaultContent(BootstrappingResult.Template))
 		{
-			BootstrappingResult.Template = Resp.Content;
-
 			Completed(BootstrappingResult.IsComplete());
 		}
 		else
