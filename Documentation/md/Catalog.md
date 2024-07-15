@@ -216,12 +216,12 @@ Class used to help track and interact with the catalog to get Items, Vendors, an
 `protected TMap< int32, `[`FRHAPI_TimeFrame`](models/RHAPI_TimeFrame.md#structFRHAPI__TimeFrame)` > `[`TimeFrames`](#classURH__CatalogSubsystem_1a7903aa3c86221227f123eb1243febf96) | Timeframe Id to Timeframe Map.
 `protected TMap< FGuid, `[`FRHAPI_PricePoint`](models/RHAPI_PricePoint.md#structFRHAPI__PricePoint)` > `[`CatalogPricePoints`](#classURH__CatalogSubsystem_1a4121dd65bdf66c3d8bb1e0052f02e38c) | Price Point ID to Price Points.
 `protected TMap< FString, `[`FRHAPI_InventoryBucketUseRuleSet`](models/RHAPI_InventoryBucketUseRuleSet.md#structFRHAPI__InventoryBucketUseRuleSet)` > `[`InventoryBucketUseRuleSets`](#classURH__CatalogSubsystem_1a2a9ad401aa84679f58df5890a81a70ad) | Inventory Bucket to Inventory Bucket Use Ruleset Map.
-`protected FString `[`GetCatalogAllETag`](#classURH__CatalogSubsystem_1adeaefdfa290e6241c9fc1a8b3ac678db) | ETag of last GetCatalogAll call response.
-`protected FString `[`GetCatalogXpAllETag`](#classURH__CatalogSubsystem_1a098fc792364c09ec0a7681dde7539065) | ETag of last GetCatalogXpAll call response.
-`protected FString `[`GetCatalogPricePointsAllETag`](#classURH__CatalogSubsystem_1a5b51f5e3badbe2de517747ba1472bf71) | ETag of last GetCatalogPricePointsAll call response.
-`protected FString `[`GetCatalogVendorsAllETag`](#classURH__CatalogSubsystem_1a6eeaffe101e1e88748eb11f22f972302) | ETag of last GetCatalogVendorsAll call response.
-`protected FString `[`GetCatalogTimeFramesAllETag`](#classURH__CatalogSubsystem_1a71f792816adb9636fc226e70a98be22a) | ETag of last GetCatalogTimeFramesAll call response.
-`protected FString `[`GetCatalogInventoryBucketUseRuleSetsAllETag`](#classURH__CatalogSubsystem_1a087cc903b21b5a25a45b030cb4dce33e) | ETag of last GetCatalogInventoryBucketUseRuleSetsAll call response.
+`protected TOptional< FString > `[`GetCatalogAllETag`](#classURH__CatalogSubsystem_1a2afc344bc584a1386e97396f8d09d5a1) | ETag of last GetCatalogAll call response.
+`protected TOptional< FString > `[`GetCatalogXpAllETag`](#classURH__CatalogSubsystem_1ad175a18a4269df821470bedb02fb1311) | ETag of last GetCatalogXpAll call response.
+`protected TOptional< FString > `[`GetCatalogPricePointsAllETag`](#classURH__CatalogSubsystem_1ac3e4a166ea225df77362bae21123d59b) | ETag of last GetCatalogPricePointsAll call response.
+`protected TOptional< FString > `[`GetCatalogVendorsAllETag`](#classURH__CatalogSubsystem_1ae430f8bdbdf53105e786fecf43e580ab) | ETag of last GetCatalogVendorsAll call response.
+`protected TOptional< FString > `[`GetCatalogTimeFramesAllETag`](#classURH__CatalogSubsystem_1acca5d440762e246fe4d6f90ad2470e26) | ETag of last GetCatalogTimeFramesAll call response.
+`protected TOptional< FString > `[`GetCatalogInventoryBucketUseRuleSetsAllETag`](#classURH__CatalogSubsystem_1ae959ddd04f62604ce6edab0396fa8312) | ETag of last GetCatalogInventoryBucketUseRuleSetsAll call response.
 `protected TMap< int32, TArray< FRH_CatalogCallBlock > > `[`PendingGetCatalogItemCalls`](#classURH__CatalogSubsystem_1a72a9e161cf234e6843e9b601e7bd925e) | Array of GetCatalogItemCalls yet to be sent to the API layer.
 `protected TMap< int32, TArray< FRH_CatalogCallBlock > > `[`SubmittedGetCatalogItemCalls`](#classURH__CatalogSubsystem_1a661262ecd1024e523d6ab788f8e5ce22) | Array of GetCatalogItemCalls yet being executed by the API layer at this time.
 `protected void `[`GetCatalogVendorSingle`](#classURH__CatalogSubsystem_1ac215132f09ff28de858ccaa71867e379)`(int32 VendorId)` | Makes an API call for a single vendor Id.
@@ -461,27 +461,27 @@ Price Point ID to Price Points.
 
 Inventory Bucket to Inventory Bucket Use Ruleset Map.
 
-#### `protected FString `[`GetCatalogAllETag`](#classURH__CatalogSubsystem_1adeaefdfa290e6241c9fc1a8b3ac678db) <a id="classURH__CatalogSubsystem_1adeaefdfa290e6241c9fc1a8b3ac678db"></a>
+#### `protected TOptional< FString > `[`GetCatalogAllETag`](#classURH__CatalogSubsystem_1a2afc344bc584a1386e97396f8d09d5a1) <a id="classURH__CatalogSubsystem_1a2afc344bc584a1386e97396f8d09d5a1"></a>
 
 ETag of last GetCatalogAll call response.
 
-#### `protected FString `[`GetCatalogXpAllETag`](#classURH__CatalogSubsystem_1a098fc792364c09ec0a7681dde7539065) <a id="classURH__CatalogSubsystem_1a098fc792364c09ec0a7681dde7539065"></a>
+#### `protected TOptional< FString > `[`GetCatalogXpAllETag`](#classURH__CatalogSubsystem_1ad175a18a4269df821470bedb02fb1311) <a id="classURH__CatalogSubsystem_1ad175a18a4269df821470bedb02fb1311"></a>
 
 ETag of last GetCatalogXpAll call response.
 
-#### `protected FString `[`GetCatalogPricePointsAllETag`](#classURH__CatalogSubsystem_1a5b51f5e3badbe2de517747ba1472bf71) <a id="classURH__CatalogSubsystem_1a5b51f5e3badbe2de517747ba1472bf71"></a>
+#### `protected TOptional< FString > `[`GetCatalogPricePointsAllETag`](#classURH__CatalogSubsystem_1ac3e4a166ea225df77362bae21123d59b) <a id="classURH__CatalogSubsystem_1ac3e4a166ea225df77362bae21123d59b"></a>
 
 ETag of last GetCatalogPricePointsAll call response.
 
-#### `protected FString `[`GetCatalogVendorsAllETag`](#classURH__CatalogSubsystem_1a6eeaffe101e1e88748eb11f22f972302) <a id="classURH__CatalogSubsystem_1a6eeaffe101e1e88748eb11f22f972302"></a>
+#### `protected TOptional< FString > `[`GetCatalogVendorsAllETag`](#classURH__CatalogSubsystem_1ae430f8bdbdf53105e786fecf43e580ab) <a id="classURH__CatalogSubsystem_1ae430f8bdbdf53105e786fecf43e580ab"></a>
 
 ETag of last GetCatalogVendorsAll call response.
 
-#### `protected FString `[`GetCatalogTimeFramesAllETag`](#classURH__CatalogSubsystem_1a71f792816adb9636fc226e70a98be22a) <a id="classURH__CatalogSubsystem_1a71f792816adb9636fc226e70a98be22a"></a>
+#### `protected TOptional< FString > `[`GetCatalogTimeFramesAllETag`](#classURH__CatalogSubsystem_1acca5d440762e246fe4d6f90ad2470e26) <a id="classURH__CatalogSubsystem_1acca5d440762e246fe4d6f90ad2470e26"></a>
 
 ETag of last GetCatalogTimeFramesAll call response.
 
-#### `protected FString `[`GetCatalogInventoryBucketUseRuleSetsAllETag`](#classURH__CatalogSubsystem_1a087cc903b21b5a25a45b030cb4dce33e) <a id="classURH__CatalogSubsystem_1a087cc903b21b5a25a45b030cb4dce33e"></a>
+#### `protected TOptional< FString > `[`GetCatalogInventoryBucketUseRuleSetsAllETag`](#classURH__CatalogSubsystem_1ae959ddd04f62604ce6edab0396fa8312) <a id="classURH__CatalogSubsystem_1ae959ddd04f62604ce6edab0396fa8312"></a>
 
 ETag of last GetCatalogInventoryBucketUseRuleSetsAll call response.
 
