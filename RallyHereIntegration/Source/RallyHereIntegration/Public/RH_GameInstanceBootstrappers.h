@@ -249,6 +249,10 @@ protected:
 	virtual void UpdateBootstrapStep(ERH_ServerBootstrapFlowStep NewStep);
 
 	/**
+	* @brief Bootstrapping Flow [Failed] - trigger a deferred bootstrapping failure to be processed a later time (generally next tick).  Useful for handling failures that occur during a callback or in a different thread
+	*/
+	virtual void DeferBootstrappingFailed(const FString& FailureReason);
+	/**
 	* @brief Bootstrapping Flow [Failed] - trigger bootstrapping failure and handles failure logic
 	*/
 	virtual void OnBootstrappingFailed(const FString& FailureReason);
