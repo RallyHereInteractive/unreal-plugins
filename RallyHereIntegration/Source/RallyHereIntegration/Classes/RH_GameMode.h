@@ -14,6 +14,14 @@ public:
 	/** @brief Constructor */
 	ARH_GameMode(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
 
+	/**
+	 * Initialize the game.
+	 * The GameMode's InitGame() event is called before any other functions (including PreInitializeComponents() )
+	 * and is used by the GameMode to initialize parameters and spawn its helper classes.
+	 * @warning: this is called before actors' PreInitializeComponents.
+	 */
+	virtual void InitGame(const FString& MapName, const FString& Options, FString& ErrorMessage);
+
 	/** @brief Called when a new player logs in, updates empty timer */
 	virtual void PostLogin(APlayerController* NewPlayer) override;
 	/** @brief Called when a player logs out, updates empty timer */
@@ -43,6 +51,11 @@ protected:
 	virtual void FinalizeMatchFlow();
 	/** @brief Backup timer for shutdown in case session ending flow was not successful, exits the engine (for dedicated servers) and disconnects (for clients) */
 	virtual void FinalShutdown();
+
+	/*
+	 * @brief Called when a soft stop is requested.  Normally, gameplay is expected to finish out, but for very long lived gamemodes (such as a city map), this may need specialized handling
+	 */
+	virtual void NotifySoftStopRequested() {};
 
 	// Shutdown timers
 	/** @brief Delay before shutting down the server when no players are present, in seconds */

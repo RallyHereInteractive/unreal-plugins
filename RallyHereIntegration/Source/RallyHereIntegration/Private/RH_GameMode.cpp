@@ -2,6 +2,7 @@
 
 #include "RH_GameMode.h"
 #include "RH_Common.h"
+#include "RH_GameInstanceBootstrappers.h"
 #include "Engine/Engine.h"
 #include "Engine/GameInstance.h"
 #include "RH_GameInstanceSubsystem.h"
@@ -17,6 +18,15 @@ ARH_GameMode::ARH_GameMode(const FObjectInitializer& ObjectInitializer /*= FObje
 
 	ShutdownOnEmptyDelay = 20 * 60; // 20 minutes
 }
+
+void ARH_GameMode::InitGame(const FString& MapName, const FString& Options, FString& ErrorMessage)
+{
+	Super::InitGame(MapName, Options, ErrorMessage);
+
+	// register for soft stop notifications
+	RallyHere::TermSignalHandler::OnSoftStopRequstedGameThread.AddUObject(this, &ARH_GameMode::NotifySoftStopRequested);
+}
+
 
 void ARH_GameMode::PostLogin(APlayerController* NewPlayer)
 {

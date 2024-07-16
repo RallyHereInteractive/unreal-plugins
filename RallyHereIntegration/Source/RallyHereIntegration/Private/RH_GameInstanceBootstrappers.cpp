@@ -283,30 +283,57 @@ namespace RallyHere
 		bool bHasReceivedTermSignal = false;
 		bool bHasNotifiedProvider = false;
 
+		// delegates for when soft stop is requested
+		FTSSimpleMulticastDelegate OnSoftStopRequstedAnyThread;
+		FTSSimpleMulticastDelegate OnSoftStopRequstedGameThread;
+		
+		// whether a soft stop has been requested
+		bool IsSoftStopRequested() { return bHasReceivedTermSignal; }
+
+		// notify via delegates anyone who is listening that a soft stop has been requested
+		void BroadcastTerminationSignal()
+		{
+			const bool bGameThread = IsInGameThread();
+			UE_LOG(LogRallyHereIntegration, Warning, TEXT("Termination signal received (GameThread == %s), marking for spindown rather than exiting"), bGameThread ? TEXT("true") : TEXT("false"));
+
+			OnSoftStopRequstedAnyThread.Broadcast();
+			
+			// if on the main thread, broadcast soft stop immediately, otherwise defer to main thread
+			if (bGameThread)
+			{
+				OnSoftStopRequstedGameThread.Broadcast();
+			}
+			else
+			{
+				const FGraphEventRef Task = FSimpleDelegateGraphTask::CreateAndDispatchWhenReady(
+					FSimpleDelegateGraphTask::FDelegate::CreateLambda([]() { OnSoftStopRequstedGameThread.Broadcast(); }),
+					QUICK_USE_CYCLE_STAT(FRH_SoftStopRequested, STATGROUP_TaskGraphTasks),
+					nullptr,
+					ENamedThreads::GameThread);
+
+				// wait on the task to ensure we process the full termination?
+				FTaskGraphInterface::Get().WaitUntilTaskCompletes(Task);
+			}
+		}
+		
 		void TerminationSignalHandler()
 		{
 			if (!bHasReceivedTermSignal)
 			{
 				bHasReceivedTermSignal = true;
-
+				
 				UE_LOG(LogRallyHereIntegration, Warning, TEXT("Termination signal received, marking for spindown rather than exiting"));
+
+				BroadcastTerminationSignal();
 			}
 		}
 
 		void ProviderTerminationSignalHandler()
 		{
-			if (!bHasReceivedTermSignal)
-			{
-				bHasNotifiedProvider = true;	// if signal came from provider, we do not need to notify it again
-				bHasReceivedTermSignal = true;
-
-				UE_LOG(LogRallyHereIntegration, Warning, TEXT("Termination signal received, marking for spindown rather than exiting"));
-			}
+			bHasNotifiedProvider = true;	// if signal came from provider, we do not need to notify it again
+			TerminationSignalHandler();		// forward to main handler
 		}
-
-		// whether a soft stop has been requested
-		bool IsSoftStopRequested() { return bHasReceivedTermSignal; }
-
+		
 		// simple gate to ensure we only notify the provider once.  Will return true if this is the one and only time provider should be notified
 		bool CheckShouldNotifyProvider() { bool bOldValue = bHasNotifiedProvider; bHasNotifiedProvider = true; return bOldValue; }
 
