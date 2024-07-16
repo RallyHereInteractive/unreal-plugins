@@ -155,6 +155,12 @@ namespace RallyHere
 	{
 		/** @brief Whether or not a soft stop has been requested */
 		extern RALLYHEREINTEGRATION_API bool IsSoftStopRequested();
+		
+		/** @brief Delegate fired when soft stop is requested, can be triggered on any thread */
+		extern FTSSimpleMulticastDelegate OnSoftStopRequstedAnyThread;
+		
+		/** @brief Game thread delegate (deferred to game thread if not sourced from it) fired when soft stop is requested */
+		extern FTSSimpleMulticastDelegate OnSoftStopRequstedGameThread;
 	}
 }
 
