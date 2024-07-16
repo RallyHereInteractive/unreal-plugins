@@ -8,6 +8,7 @@ pushd $DIR
 OPENAPI_SPEC_LOCATION="https://raw.githubusercontent.com/RallyHereInteractive/openapi-spec-environment/main/environment.openapi.json"
 GENERATOR_DIR="$(pwd)/../openapi-generator-rh-cpp-unreal"
 OUTPUT_DIR="$(pwd)/Source/RallyHereAPI"
+LOCAL_SPEC_FILE="$(pwd)/Source/RallyHereAPI/openapi.json"
 ADDITIONAL_PROPERTIES="unrealModuleName=RallyHereAPI,specCppNamespace=RallyHereAPI,unrealCategory=RallyHere,unrealEnumPrefix=ERHAPI_,unrealModelPrefix=FRHAPI_,unrealClassPrefix=URHAPI_"
 
 ########################################
@@ -19,6 +20,10 @@ while [[ $# -gt 0 ]]; do
       OPENAPI_SPEC_LOCATION="$2"
       shift # past argument
       shift # past value
+      ;;
+    -r|--reimport-local-spec)
+      OPENAPI_SPEC_LOCATION=$LOCAL_SPEC_FILE
+      shift # past argument
       ;;
     -g|--generator-dir)
       GENERATOR_DIR="$2"
