@@ -1066,7 +1066,7 @@ void URH_GameInstanceServerBootstrapper::OnRegistrationFinalizerComplete(bool bS
 				}
 
 				InstanceRequest.SetInstanceStartupParams(InstanceStartupParams);
-				InstanceRequest.SetHostType(ERHAPI_HostType::Player); // TODO - make dedicated instance type
+				InstanceRequest.SetHostType(ERHAPI_HostType::Preallocated);
 
 				RHSession->RequestInstance(InstanceRequest, FRH_OnSessionUpdatedDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnSessionInstanceCreationCompleted));
 			}

@@ -48,6 +48,11 @@ void FRHAPI_MapConfigV2::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		Writer->WriteIdentifierPrefix(TEXT("description"));
 		RallyHereAPI::WriteJsonValue(Writer, Description_Optional);
 	}
+	if (MiscParams_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("misc_params"));
+		RallyHereAPI::WriteJsonValue(Writer, MiscParams_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -88,6 +93,12 @@ bool FRHAPI_MapConfigV2::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	{
 		Description_IsSet = TryGetJsonValue(JsonDescriptionField, Description_Optional);
 		ParseSuccess &= Description_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonMiscParamsField = (*Object)->TryGetField(TEXT("misc_params"));
+	if (JsonMiscParamsField.IsValid() && !JsonMiscParamsField->IsNull())
+	{
+		MiscParams_IsSet = TryGetJsonValue(JsonMiscParamsField, MiscParams_Optional);
+		ParseSuccess &= MiscParams_IsSet;
 	}
 
 	return ParseSuccess;

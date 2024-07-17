@@ -855,20 +855,6 @@ void URH_GameInstanceSessionSubsystem::CreateMatchForSession(const URH_JoinedSes
 		UpdateRequest.SetStartTimestamp(FDateTime::UtcNow());
 		UpdateRequest.SetState(ERHAPI_MatchState::Pending);
 
-		// set the allocation id
-		{
-			if (InstanceData != nullptr)
-			{
-				TArray<FRHAPI_MatchAllocation> Allocations;
-				{
-					FRHAPI_MatchAllocation NewAllocation;
-					NewAllocation.SetAllocationId(InstanceData->GetAllocationId());
-					Allocations.Add(NewAllocation);
-				}
-				UpdateRequest.SetAllocations(Allocations);
-			}
-		}
-
 		// set the session id
 		const FString SessionId = Session->GetSessionId();
 		{
@@ -930,6 +916,22 @@ void URH_GameInstanceSessionSubsystem::CreateMatchForSession(const URH_JoinedSes
 			UpdateRequest.SetInstances(Instances);
 		}
 
+		// set the allocation id
+		if (InstanceData != nullptr)
+		{
+			const auto AllocationId = InstanceData->GetAllocationIdOrNull();
+			if (AllocationId != nullptr)
+			{
+				TArray<FRHAPI_MatchAllocation> Allocations;
+				{
+					FRHAPI_MatchAllocation NewAllocation;
+					NewAllocation.SetAllocationId(InstanceData->GetAllocationId());
+					Allocations.Add(NewAllocation);
+				}
+				UpdateRequest.SetAllocations(Allocations);
+			}
+		}
+		
 		// scan through all known local and remote players for connected players, and add them.  We do not set much state since we cannot determine much here
 		auto* pWorld = GetGameInstanceSubsystem()->GetGameInstance()->GetWorld();
 		if (Settings->bAutoAddConnectedPlayersToMatches && pWorld != nullptr)

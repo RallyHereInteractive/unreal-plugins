@@ -19,6 +19,7 @@ UENUM(BlueprintType)
 enum class ERHAPI_DeleteTicketReason : uint8
 {
 	Assigned UMETA(ToolTip="An enumeration."),
+	Backfilled UMETA(ToolTip="An enumeration."),
 	LeftQueue UMETA(ToolTip="An enumeration."),
 	Timeout UMETA(ToolTip="An enumeration."),
 	PartyChanged UMETA(ToolTip="An enumeration."),

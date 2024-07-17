@@ -26,6 +26,8 @@ FString EnumToString(const ERHAPI_HostType& Value)
 		return TEXT("dedicated");
 	case ERHAPI_HostType::Player:
 		return TEXT("player");
+	case ERHAPI_HostType::Preallocated:
+		return TEXT("preallocated");
 	}
 
 	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_HostType::Values Value (%d)"), (int)Value);
@@ -36,7 +38,8 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_HostType& Value)
 {
 	static TMap<FString, ERHAPI_HostType> StringToEnum = { 
 		{ TEXT("dedicated"), ERHAPI_HostType::Dedicated },
-		{ TEXT("player"), ERHAPI_HostType::Player },	};
+		{ TEXT("player"), ERHAPI_HostType::Player },
+		{ TEXT("preallocated"), ERHAPI_HostType::Preallocated },	};
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)
