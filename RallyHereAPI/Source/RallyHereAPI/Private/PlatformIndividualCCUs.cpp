@@ -36,7 +36,7 @@ bool FRHAPI_PlatformIndividualCCUs::FromJson(const TSharedPtr<FJsonValue>& JsonV
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPlatformCcusField = (*Object)->TryGetField(TEXT("platform_ccus"));
-	ParseSuccess &= JsonPlatformCcusField.IsValid() && !JsonPlatformCcusField->IsNull() && TryGetJsonValue(JsonPlatformCcusField, PlatformCcus);
+	ParseSuccess &= JsonPlatformCcusField.IsValid() && (!JsonPlatformCcusField->IsNull() &&  TryGetJsonValue(JsonPlatformCcusField, PlatformCcus));
 
 	return ParseSuccess;
 }

@@ -53,23 +53,23 @@ bool FRHAPI_LootEntitlement::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
-	ParseSuccess &= JsonTypeField.IsValid() && !JsonTypeField->IsNull() && TryGetJsonValue(JsonTypeField, Type);
+	ParseSuccess &= JsonTypeField.IsValid() && (!JsonTypeField->IsNull() &&  TryGetJsonValue(JsonTypeField, Type));
 	const TSharedPtr<FJsonValue> JsonLootIdField = (*Object)->TryGetField(TEXT("loot_id"));
-	ParseSuccess &= JsonLootIdField.IsValid() && !JsonLootIdField->IsNull() && TryGetJsonValue(JsonLootIdField, LootId);
+	ParseSuccess &= JsonLootIdField.IsValid() && (!JsonLootIdField->IsNull() &&  TryGetJsonValue(JsonLootIdField, LootId));
 	const TSharedPtr<FJsonValue> JsonRefundLootIdField = (*Object)->TryGetField(TEXT("refund_loot_id"));
-	if (JsonRefundLootIdField.IsValid() && !JsonRefundLootIdField->IsNull())
+	if (JsonRefundLootIdField.IsValid())
 	{
 		RefundLootId_IsSet = TryGetJsonValue(JsonRefundLootIdField, RefundLootId_Optional);
 		ParseSuccess &= RefundLootId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonChargebackLootIdField = (*Object)->TryGetField(TEXT("chargeback_loot_id"));
-	if (JsonChargebackLootIdField.IsValid() && !JsonChargebackLootIdField->IsNull())
+	if (JsonChargebackLootIdField.IsValid())
 	{
 		ChargebackLootId_IsSet = TryGetJsonValue(JsonChargebackLootIdField, ChargebackLootId_Optional);
 		ParseSuccess &= ChargebackLootId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonChargebackReversalLootIdField = (*Object)->TryGetField(TEXT("chargeback_reversal_loot_id"));
-	if (JsonChargebackReversalLootIdField.IsValid() && !JsonChargebackReversalLootIdField->IsNull())
+	if (JsonChargebackReversalLootIdField.IsValid())
 	{
 		ChargebackReversalLootId_IsSet = TryGetJsonValue(JsonChargebackReversalLootIdField, ChargebackReversalLootId_Optional);
 		ParseSuccess &= ChargebackReversalLootId_IsSet;

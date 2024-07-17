@@ -60,31 +60,31 @@ bool FRHAPI_MapConfigV2::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonMapIdField = (*Object)->TryGetField(TEXT("map_id"));
-	ParseSuccess &= JsonMapIdField.IsValid() && !JsonMapIdField->IsNull() && TryGetJsonValue(JsonMapIdField, MapId);
+	ParseSuccess &= JsonMapIdField.IsValid() && (!JsonMapIdField->IsNull() &&  TryGetJsonValue(JsonMapIdField, MapId));
 	const TSharedPtr<FJsonValue> JsonMapNameField = (*Object)->TryGetField(TEXT("map_name"));
-	ParseSuccess &= JsonMapNameField.IsValid() && !JsonMapNameField->IsNull() && TryGetJsonValue(JsonMapNameField, MapName);
+	ParseSuccess &= JsonMapNameField.IsValid() && (!JsonMapNameField->IsNull() &&  TryGetJsonValue(JsonMapNameField, MapName));
 	const TSharedPtr<FJsonValue> JsonModeField = (*Object)->TryGetField(TEXT("mode"));
-	if (JsonModeField.IsValid() && !JsonModeField->IsNull())
+	if (JsonModeField.IsValid())
 	{
 		Mode_IsSet = TryGetJsonValue(JsonModeField, Mode_Optional);
 		ParseSuccess &= Mode_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonMapWeightField = (*Object)->TryGetField(TEXT("map_weight"));
-	ParseSuccess &= JsonMapWeightField.IsValid() && !JsonMapWeightField->IsNull() && TryGetJsonValue(JsonMapWeightField, MapWeight);
+	ParseSuccess &= JsonMapWeightField.IsValid() && (!JsonMapWeightField->IsNull() &&  TryGetJsonValue(JsonMapWeightField, MapWeight));
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	if (JsonCustomDataField.IsValid())
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonNameField = (*Object)->TryGetField(TEXT("name"));
-	if (JsonNameField.IsValid() && !JsonNameField->IsNull())
+	if (JsonNameField.IsValid())
 	{
 		Name_IsSet = TryGetJsonValue(JsonNameField, Name_Optional);
 		ParseSuccess &= Name_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonDescriptionField = (*Object)->TryGetField(TEXT("description"));
-	if (JsonDescriptionField.IsValid() && !JsonDescriptionField->IsNull())
+	if (JsonDescriptionField.IsValid())
 	{
 		Description_IsSet = TryGetJsonValue(JsonDescriptionField, Description_Optional);
 		ParseSuccess &= Description_IsSet;

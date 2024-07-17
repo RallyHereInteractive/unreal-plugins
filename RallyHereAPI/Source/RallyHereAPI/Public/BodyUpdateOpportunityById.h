@@ -32,14 +32,14 @@ struct RALLYHEREAPI_API FRHAPI_BodyUpdateOpportunityById : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief State of the opportunity */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -49,9 +49,9 @@ struct RALLYHEREAPI_API FRHAPI_BodyUpdateOpportunityById : public FRHAPI_Model
 	/** @brief Gets the value of State */
 	const ERHAPI_OpportunityState& GetState() const { return State; }
 	/** @brief Sets the value of State */
-	void SetState(const ERHAPI_OpportunityState& NewValue) { State = NewValue;  }
+	void SetState(const ERHAPI_OpportunityState& NewValue) { State = NewValue;   }
 	/** @brief Sets the value of State using move semantics */
-	void SetState(ERHAPI_OpportunityState&& NewValue) { State = NewValue;  }
+	void SetState(ERHAPI_OpportunityState&& NewValue) { State = NewValue;   }
 
 	/** @brief Reason for aborting the opportunity */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -68,15 +68,15 @@ struct RALLYHEREAPI_API FRHAPI_BodyUpdateOpportunityById : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of AbortReason_Optional and returns true if it has been set, otherwise returns false */
 	bool GetAbortReason(ERHAPI_OpportunityAbortReason& OutValue) const { if (AbortReason_IsSet) OutValue = AbortReason_Optional; return AbortReason_IsSet; }
 	/** @brief Returns a pointer to AbortReason_Optional, if it has been set, otherwise returns nullptr */
-	ERHAPI_OpportunityAbortReason* GetAbortReasonOrNull() { if (AbortReason_IsSet) return &AbortReason_Optional; return nullptr; }
+	ERHAPI_OpportunityAbortReason* GetAbortReasonOrNull() { if (AbortReason_IsSet) return (&AbortReason_Optional); return nullptr; }
 	/** @brief Returns a pointer to AbortReason_Optional, if it has been set, otherwise returns nullptr */
-	const ERHAPI_OpportunityAbortReason* GetAbortReasonOrNull() const { if (AbortReason_IsSet) return &AbortReason_Optional; return nullptr; }
+	const ERHAPI_OpportunityAbortReason* GetAbortReasonOrNull() const { if (AbortReason_IsSet) return (&AbortReason_Optional); return nullptr; }
 	/** @brief Sets the value of AbortReason_Optional and also sets AbortReason_IsSet to true */
-	void SetAbortReason(const ERHAPI_OpportunityAbortReason& NewValue) { AbortReason_Optional = NewValue; AbortReason_IsSet = true; }
+	void SetAbortReason(const ERHAPI_OpportunityAbortReason& NewValue) { AbortReason_Optional = NewValue; AbortReason_IsSet = true;  }
 	/** @brief Sets the value of AbortReason_Optional and also sets AbortReason_IsSet to true using move semantics */
-	void SetAbortReason(ERHAPI_OpportunityAbortReason&& NewValue) { AbortReason_Optional = NewValue; AbortReason_IsSet = true; }
+	void SetAbortReason(ERHAPI_OpportunityAbortReason&& NewValue) { AbortReason_Optional = NewValue; AbortReason_IsSet = true;  }
 	 /** @brief Clears the value of AbortReason_Optional and sets AbortReason_IsSet to false */
-	void ClearAbortReason() { AbortReason_IsSet = false; }
+	void ClearAbortReason() { AbortReason_IsSet = false;  }
 
 	/** @brief Number of seconds into the video when the abort happened */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -93,19 +93,19 @@ struct RALLYHEREAPI_API FRHAPI_BodyUpdateOpportunityById : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of AbortSeconds_Optional and returns true if it has been set, otherwise returns false */
 	bool GetAbortSeconds(int32& OutValue) const { if (AbortSeconds_IsSet) OutValue = AbortSeconds_Optional; return AbortSeconds_IsSet; }
 	/** @brief Returns a pointer to AbortSeconds_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetAbortSecondsOrNull() { if (AbortSeconds_IsSet) return &AbortSeconds_Optional; return nullptr; }
+	int32* GetAbortSecondsOrNull() { if (AbortSeconds_IsSet) return (&AbortSeconds_Optional); return nullptr; }
 	/** @brief Returns a pointer to AbortSeconds_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetAbortSecondsOrNull() const { if (AbortSeconds_IsSet) return &AbortSeconds_Optional; return nullptr; }
+	const int32* GetAbortSecondsOrNull() const { if (AbortSeconds_IsSet) return (&AbortSeconds_Optional); return nullptr; }
 	/** @brief Sets the value of AbortSeconds_Optional and also sets AbortSeconds_IsSet to true */
-	void SetAbortSeconds(const int32& NewValue) { AbortSeconds_Optional = NewValue; AbortSeconds_IsSet = true; }
+	void SetAbortSeconds(const int32& NewValue) { AbortSeconds_Optional = NewValue; AbortSeconds_IsSet = true;  }
 	/** @brief Sets the value of AbortSeconds_Optional and also sets AbortSeconds_IsSet to true using move semantics */
-	void SetAbortSeconds(int32&& NewValue) { AbortSeconds_Optional = NewValue; AbortSeconds_IsSet = true; }
+	void SetAbortSeconds(int32&& NewValue) { AbortSeconds_Optional = NewValue; AbortSeconds_IsSet = true;  }
 	 /** @brief Clears the value of AbortSeconds_Optional and sets AbortSeconds_IsSet to false */
-	void ClearAbortSeconds() { AbortSeconds_Optional = 0; AbortSeconds_IsSet = false; }
+	void ClearAbortSeconds() { AbortSeconds_Optional = 0; AbortSeconds_IsSet = false;  }
 	/** @brief Returns true if AbortSeconds_Optional is set and matches the default value */
 	bool IsAbortSecondsDefaultValue() const { return AbortSeconds_IsSet && AbortSeconds_Optional == 0; }
 	/** @brief Sets the value of AbortSeconds_Optional to its default and also sets AbortSeconds_IsSet to true */
-	void SetAbortSecondsToDefault() { AbortSeconds_Optional = 0; AbortSeconds_IsSet = true; }
+	void SetAbortSecondsToDefault() { SetAbortSeconds(0); }
 };
 
 /** @} */

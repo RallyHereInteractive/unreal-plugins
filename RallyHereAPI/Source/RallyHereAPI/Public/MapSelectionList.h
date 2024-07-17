@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_MapSelectionList : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief ID to uniquely identify this map selection list */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -48,9 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_MapSelectionList : public FRHAPI_Model
 	/** @brief Gets the value of MapSelectionListId */
 	const FString& GetMapSelectionListId() const { return MapSelectionListId; }
 	/** @brief Sets the value of MapSelectionListId */
-	void SetMapSelectionListId(const FString& NewValue) { MapSelectionListId = NewValue;  }
+	void SetMapSelectionListId(const FString& NewValue) { MapSelectionListId = NewValue;   }
 	/** @brief Sets the value of MapSelectionListId using move semantics */
-	void SetMapSelectionListId(FString&& NewValue) { MapSelectionListId = NewValue;  }
+	void SetMapSelectionListId(FString&& NewValue) { MapSelectionListId = NewValue;   }
 
 	/** @brief List of maps that can be chosen in this selection list */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -60,9 +60,9 @@ struct RALLYHEREAPI_API FRHAPI_MapSelectionList : public FRHAPI_Model
 	/** @brief Gets the value of Maps */
 	const TArray<FRHAPI_MapConfig>& GetMaps() const { return Maps; }
 	/** @brief Sets the value of Maps */
-	void SetMaps(const TArray<FRHAPI_MapConfig>& NewValue) { Maps = NewValue;  }
+	void SetMaps(const TArray<FRHAPI_MapConfig>& NewValue) { Maps = NewValue;   }
 	/** @brief Sets the value of Maps using move semantics */
-	void SetMaps(TArray<FRHAPI_MapConfig>&& NewValue) { Maps = NewValue;  }
+	void SetMaps(TArray<FRHAPI_MapConfig>&& NewValue) { Maps = NewValue;   }
 };
 
 /** @} */

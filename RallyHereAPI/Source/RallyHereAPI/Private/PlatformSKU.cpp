@@ -58,29 +58,29 @@ bool FRHAPI_PlatformSKU::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	if (JsonCustomDataField.IsValid())
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlatformField = (*Object)->TryGetField(TEXT("platform"));
-	ParseSuccess &= JsonPlatformField.IsValid() && !JsonPlatformField->IsNull() && TryGetJsonValue(JsonPlatformField, Platform);
+	ParseSuccess &= JsonPlatformField.IsValid() && (!JsonPlatformField->IsNull() &&  TryGetJsonValue(JsonPlatformField, Platform));
 	const TSharedPtr<FJsonValue> JsonSkuField = (*Object)->TryGetField(TEXT("sku"));
-	ParseSuccess &= JsonSkuField.IsValid() && !JsonSkuField->IsNull() && TryGetJsonValue(JsonSkuField, Sku);
+	ParseSuccess &= JsonSkuField.IsValid() && (!JsonSkuField->IsNull() &&  TryGetJsonValue(JsonSkuField, Sku));
 	const TSharedPtr<FJsonValue> JsonLootEntitlementField = (*Object)->TryGetField(TEXT("loot_entitlement"));
-	if (JsonLootEntitlementField.IsValid() && !JsonLootEntitlementField->IsNull())
+	if (JsonLootEntitlementField.IsValid())
 	{
 		LootEntitlement_IsSet = TryGetJsonValue(JsonLootEntitlementField, LootEntitlement_Optional);
 		ParseSuccess &= LootEntitlement_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonExternalKeyEntitlementField = (*Object)->TryGetField(TEXT("external_key_entitlement"));
-	if (JsonExternalKeyEntitlementField.IsValid() && !JsonExternalKeyEntitlementField->IsNull())
+	if (JsonExternalKeyEntitlementField.IsValid())
 	{
 		ExternalKeyEntitlement_IsSet = TryGetJsonValue(JsonExternalKeyEntitlementField, ExternalKeyEntitlement_Optional);
 		ParseSuccess &= ExternalKeyEntitlement_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
-	if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
+	if (JsonCacheInfoField.IsValid())
 	{
 		CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
 		ParseSuccess &= CacheInfo_IsSet;

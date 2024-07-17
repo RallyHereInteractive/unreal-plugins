@@ -59,29 +59,29 @@ bool FRHAPI_CalculateRankConfig::FromJson(const TSharedPtr<FJsonValue>& JsonValu
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonMaxMuField = (*Object)->TryGetField(TEXT("max_mu"));
-	ParseSuccess &= JsonMaxMuField.IsValid() && !JsonMaxMuField->IsNull() && TryGetJsonValue(JsonMaxMuField, MaxMu);
+	ParseSuccess &= JsonMaxMuField.IsValid() && (!JsonMaxMuField->IsNull() &&  TryGetJsonValue(JsonMaxMuField, MaxMu));
 	const TSharedPtr<FJsonValue> JsonMinMuField = (*Object)->TryGetField(TEXT("min_mu"));
-	ParseSuccess &= JsonMinMuField.IsValid() && !JsonMinMuField->IsNull() && TryGetJsonValue(JsonMinMuField, MinMu);
+	ParseSuccess &= JsonMinMuField.IsValid() && (!JsonMinMuField->IsNull() &&  TryGetJsonValue(JsonMinMuField, MinMu));
 	const TSharedPtr<FJsonValue> JsonMinSigmaField = (*Object)->TryGetField(TEXT("min_sigma"));
-	ParseSuccess &= JsonMinSigmaField.IsValid() && !JsonMinSigmaField->IsNull() && TryGetJsonValue(JsonMinSigmaField, MinSigma);
+	ParseSuccess &= JsonMinSigmaField.IsValid() && (!JsonMinSigmaField->IsNull() &&  TryGetJsonValue(JsonMinSigmaField, MinSigma));
 	const TSharedPtr<FJsonValue> JsonBetaField = (*Object)->TryGetField(TEXT("beta"));
-	if (JsonBetaField.IsValid() && !JsonBetaField->IsNull())
+	if (JsonBetaField.IsValid())
 	{
 		Beta_IsSet = TryGetJsonValue(JsonBetaField, Beta_Optional);
 		ParseSuccess &= Beta_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonDefaultMuField = (*Object)->TryGetField(TEXT("default_mu"));
-	ParseSuccess &= JsonDefaultMuField.IsValid() && !JsonDefaultMuField->IsNull() && TryGetJsonValue(JsonDefaultMuField, DefaultMu);
+	ParseSuccess &= JsonDefaultMuField.IsValid() && (!JsonDefaultMuField->IsNull() &&  TryGetJsonValue(JsonDefaultMuField, DefaultMu));
 	const TSharedPtr<FJsonValue> JsonDefaultSigmaField = (*Object)->TryGetField(TEXT("default_sigma"));
-	ParseSuccess &= JsonDefaultSigmaField.IsValid() && !JsonDefaultSigmaField->IsNull() && TryGetJsonValue(JsonDefaultSigmaField, DefaultSigma);
+	ParseSuccess &= JsonDefaultSigmaField.IsValid() && (!JsonDefaultSigmaField->IsNull() &&  TryGetJsonValue(JsonDefaultSigmaField, DefaultSigma));
 	const TSharedPtr<FJsonValue> JsonDrawProbabilityField = (*Object)->TryGetField(TEXT("draw_probability"));
-	if (JsonDrawProbabilityField.IsValid() && !JsonDrawProbabilityField->IsNull())
+	if (JsonDrawProbabilityField.IsValid())
 	{
 		DrawProbability_IsSet = TryGetJsonValue(JsonDrawProbabilityField, DrawProbability_Optional);
 		ParseSuccess &= DrawProbability_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonTauField = (*Object)->TryGetField(TEXT("tau"));
-	if (JsonTauField.IsValid() && !JsonTauField->IsNull())
+	if (JsonTauField.IsValid())
 	{
 		Tau_IsSet = TryGetJsonValue(JsonTauField, Tau_Optional);
 		ParseSuccess &= Tau_IsSet;

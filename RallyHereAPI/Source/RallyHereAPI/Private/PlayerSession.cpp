@@ -51,21 +51,21 @@ bool FRHAPI_PlayerSession::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
-	ParseSuccess &= JsonTypeField.IsValid() && !JsonTypeField->IsNull() && TryGetJsonValue(JsonTypeField, Type);
+	ParseSuccess &= JsonTypeField.IsValid() && (!JsonTypeField->IsNull() &&  TryGetJsonValue(JsonTypeField, Type));
 	const TSharedPtr<FJsonValue> JsonSessionIdsField = (*Object)->TryGetField(TEXT("session_ids"));
-	if (JsonSessionIdsField.IsValid() && !JsonSessionIdsField->IsNull())
+	if (JsonSessionIdsField.IsValid())
 	{
 		SessionIds_IsSet = TryGetJsonValue(JsonSessionIdsField, SessionIds_Optional);
 		ParseSuccess &= SessionIds_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPendingInvitesField = (*Object)->TryGetField(TEXT("pending_invites"));
-	if (JsonPendingInvitesField.IsValid() && !JsonPendingInvitesField->IsNull())
+	if (JsonPendingInvitesField.IsValid())
 	{
 		PendingInvites_IsSet = TryGetJsonValue(JsonPendingInvitesField, PendingInvites_Optional);
 		ParseSuccess &= PendingInvites_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonReservedSessionsField = (*Object)->TryGetField(TEXT("reserved_sessions"));
-	if (JsonReservedSessionsField.IsValid() && !JsonReservedSessionsField->IsNull())
+	if (JsonReservedSessionsField.IsValid())
 	{
 		ReservedSessions_IsSet = TryGetJsonValue(JsonReservedSessionsField, ReservedSessions_Optional);
 		ParseSuccess &= ReservedSessions_IsSet;

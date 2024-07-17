@@ -120,103 +120,103 @@ bool FRHAPI_PlayerOrderEntry::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
-	ParseSuccess &= JsonTypeField.IsValid() && !JsonTypeField->IsNull() && TryGetJsonValue(JsonTypeField, Type);
+	ParseSuccess &= JsonTypeField.IsValid() && (!JsonTypeField->IsNull() &&  TryGetJsonValue(JsonTypeField, Type));
 	const TSharedPtr<FJsonValue> JsonLootIdField = (*Object)->TryGetField(TEXT("loot_id"));
-	if (JsonLootIdField.IsValid() && !JsonLootIdField->IsNull())
+	if (JsonLootIdField.IsValid())
 	{
 		LootId_IsSet = TryGetJsonValue(JsonLootIdField, LootId_Optional);
 		ParseSuccess &= LootId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonQuantityField = (*Object)->TryGetField(TEXT("quantity"));
-	ParseSuccess &= JsonQuantityField.IsValid() && !JsonQuantityField->IsNull() && TryGetJsonValue(JsonQuantityField, Quantity);
+	ParseSuccess &= JsonQuantityField.IsValid() && (!JsonQuantityField->IsNull() &&  TryGetJsonValue(JsonQuantityField, Quantity));
 	const TSharedPtr<FJsonValue> JsonVendorVersionField = (*Object)->TryGetField(TEXT("vendor_version"));
-	if (JsonVendorVersionField.IsValid() && !JsonVendorVersionField->IsNull())
+	if (JsonVendorVersionField.IsValid())
 	{
 		VendorVersion_IsSet = TryGetJsonValue(JsonVendorVersionField, VendorVersion_Optional);
 		ParseSuccess &= VendorVersion_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonVendorEtagField = (*Object)->TryGetField(TEXT("vendor_etag"));
-	if (JsonVendorEtagField.IsValid() && !JsonVendorEtagField->IsNull())
+	if (JsonVendorEtagField.IsValid())
 	{
 		VendorEtag_IsSet = TryGetJsonValue(JsonVendorEtagField, VendorEtag_Optional);
 		ParseSuccess &= VendorEtag_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonDynamicBundleLootIdsField = (*Object)->TryGetField(TEXT("dynamic_bundle_loot_ids"));
-	if (JsonDynamicBundleLootIdsField.IsValid() && !JsonDynamicBundleLootIdsField->IsNull())
+	if (JsonDynamicBundleLootIdsField.IsValid())
 	{
 		DynamicBundleLootIds_IsSet = TryGetJsonValue(JsonDynamicBundleLootIdsField, DynamicBundleLootIds_Optional);
 		ParseSuccess &= DynamicBundleLootIds_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPurchasePriceField = (*Object)->TryGetField(TEXT("purchase_price"));
-	if (JsonPurchasePriceField.IsValid() && !JsonPurchasePriceField->IsNull())
+	if (JsonPurchasePriceField.IsValid())
 	{
 		PurchasePrice_IsSet = TryGetJsonValue(JsonPurchasePriceField, PurchasePrice_Optional);
 		ParseSuccess &= PurchasePrice_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonExternalTranIdField = (*Object)->TryGetField(TEXT("external_tran_id"));
-	if (JsonExternalTranIdField.IsValid() && !JsonExternalTranIdField->IsNull())
+	if (JsonExternalTranIdField.IsValid())
 	{
 		ExternalTranId_IsSet = TryGetJsonValue(JsonExternalTranIdField, ExternalTranId_Optional);
 		ParseSuccess &= ExternalTranId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonExternalItemSkuField = (*Object)->TryGetField(TEXT("external_item_sku"));
-	if (JsonExternalItemSkuField.IsValid() && !JsonExternalItemSkuField->IsNull())
+	if (JsonExternalItemSkuField.IsValid())
 	{
 		ExternalItemSku_IsSet = TryGetJsonValue(JsonExternalItemSkuField, ExternalItemSku_Optional);
 		ParseSuccess &= ExternalItemSku_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonUseInventoryBucketField = (*Object)->TryGetField(TEXT("use_inventory_bucket"));
-	if (JsonUseInventoryBucketField.IsValid() && !JsonUseInventoryBucketField->IsNull())
+	if (JsonUseInventoryBucketField.IsValid())
 	{
 		UseInventoryBucket_IsSet = TryGetJsonValue(JsonUseInventoryBucketField, UseInventoryBucket_Optional);
 		ParseSuccess &= UseInventoryBucket_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlayerPortalEventIdField = (*Object)->TryGetField(TEXT("player_portal_event_id"));
-	if (JsonPlayerPortalEventIdField.IsValid() && !JsonPlayerPortalEventIdField->IsNull())
+	if (JsonPlayerPortalEventIdField.IsValid())
 	{
 		PlayerPortalEventId_IsSet = TryGetJsonValue(JsonPlayerPortalEventIdField, PlayerPortalEventId_Optional);
 		ParseSuccess &= PlayerPortalEventId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonInventoryIdField = (*Object)->TryGetField(TEXT("inventory_id"));
-	if (JsonInventoryIdField.IsValid() && !JsonInventoryIdField->IsNull())
+	if (JsonInventoryIdField.IsValid())
 	{
 		InventoryId_IsSet = TryGetJsonValue(JsonInventoryIdField, InventoryId_Optional);
 		ParseSuccess &= InventoryId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonLegacyInventoryIdField = (*Object)->TryGetField(TEXT("legacy_inventory_id"));
-	if (JsonLegacyInventoryIdField.IsValid() && !JsonLegacyInventoryIdField->IsNull())
+	if (JsonLegacyInventoryIdField.IsValid())
 	{
 		LegacyInventoryId_IsSet = TryGetJsonValue(JsonLegacyInventoryIdField, LegacyInventoryId_Optional);
 		ParseSuccess &= LegacyInventoryId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonItemIdField = (*Object)->TryGetField(TEXT("item_id"));
-	if (JsonItemIdField.IsValid() && !JsonItemIdField->IsNull())
+	if (JsonItemIdField.IsValid())
 	{
 		ItemId_IsSet = TryGetJsonValue(JsonItemIdField, ItemId_Optional);
 		ParseSuccess &= ItemId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonExpiresField = (*Object)->TryGetField(TEXT("expires"));
-	if (JsonExpiresField.IsValid() && !JsonExpiresField->IsNull())
+	if (JsonExpiresField.IsValid())
 	{
 		Expires_IsSet = TryGetJsonValue(JsonExpiresField, Expires_Optional);
 		ParseSuccess &= Expires_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	if (JsonCustomDataField.IsValid())
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonEntryIdField = (*Object)->TryGetField(TEXT("entry_id"));
-	ParseSuccess &= JsonEntryIdField.IsValid() && !JsonEntryIdField->IsNull() && TryGetJsonValue(JsonEntryIdField, EntryId);
+	ParseSuccess &= JsonEntryIdField.IsValid() && (!JsonEntryIdField->IsNull() &&  TryGetJsonValue(JsonEntryIdField, EntryId));
 	const TSharedPtr<FJsonValue> JsonResultField = (*Object)->TryGetField(TEXT("result"));
-	if (JsonResultField.IsValid() && !JsonResultField->IsNull())
+	if (JsonResultField.IsValid())
 	{
 		Result_IsSet = TryGetJsonValue(JsonResultField, Result_Optional);
 		ParseSuccess &= Result_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonDetailsField = (*Object)->TryGetField(TEXT("details"));
-	if (JsonDetailsField.IsValid() && !JsonDetailsField->IsNull())
+	if (JsonDetailsField.IsValid())
 	{
 		Details_IsSet = TryGetJsonValue(JsonDetailsField, Details_Optional);
 		ParseSuccess &= Details_IsSet;

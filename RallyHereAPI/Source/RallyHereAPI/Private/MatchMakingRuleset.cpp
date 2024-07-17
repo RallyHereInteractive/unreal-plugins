@@ -44,13 +44,13 @@ bool FRHAPI_MatchMakingRuleset::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonRulesField = (*Object)->TryGetField(TEXT("rules"));
-	if (JsonRulesField.IsValid() && !JsonRulesField->IsNull())
+	if (JsonRulesField.IsValid())
 	{
 		Rules_IsSet = TryGetJsonValue(JsonRulesField, Rules_Optional);
 		ParseSuccess &= Rules_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonDeterminerField = (*Object)->TryGetField(TEXT("determiner"));
-	if (JsonDeterminerField.IsValid() && !JsonDeterminerField->IsNull())
+	if (JsonDeterminerField.IsValid())
 	{
 		Determiner_IsSet = TryGetJsonValue(JsonDeterminerField, Determiner_Optional);
 		ParseSuccess &= Determiner_IsSet;

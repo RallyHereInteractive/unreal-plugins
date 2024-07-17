@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_ExternalKeyEntitlement : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief The External Key Campaign ID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -47,9 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_ExternalKeyEntitlement : public FRHAPI_Model
 	/** @brief Gets the value of ExternalKeyCampaignId */
 	const FGuid& GetExternalKeyCampaignId() const { return ExternalKeyCampaignId; }
 	/** @brief Sets the value of ExternalKeyCampaignId */
-	void SetExternalKeyCampaignId(const FGuid& NewValue) { ExternalKeyCampaignId = NewValue;  }
+	void SetExternalKeyCampaignId(const FGuid& NewValue) { ExternalKeyCampaignId = NewValue;   }
 	/** @brief Sets the value of ExternalKeyCampaignId using move semantics */
-	void SetExternalKeyCampaignId(FGuid&& NewValue) { ExternalKeyCampaignId = NewValue;  }
+	void SetExternalKeyCampaignId(FGuid&& NewValue) { ExternalKeyCampaignId = NewValue;   }
 
 	/** @brief The quantity of the External Key Entitlement */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -59,13 +59,13 @@ struct RALLYHEREAPI_API FRHAPI_ExternalKeyEntitlement : public FRHAPI_Model
 	/** @brief Gets the value of Quantity */
 	const int32& GetQuantity() const { return Quantity; }
 	/** @brief Sets the value of Quantity */
-	void SetQuantity(const int32& NewValue) { Quantity = NewValue;  }
+	void SetQuantity(const int32& NewValue) { Quantity = NewValue;   }
 	/** @brief Sets the value of Quantity using move semantics */
-	void SetQuantity(int32&& NewValue) { Quantity = NewValue;  }
+	void SetQuantity(int32&& NewValue) { Quantity = NewValue;   }
 	/** @brief Returns true if Quantity matches the default value */
 	bool IsQuantityDefaultValue() const { return Quantity == 0; }
 	/** @brief Sets the value of Quantity to its default  */
-	void SetQuantityToDefault() { Quantity = 0;  }
+	void SetQuantityToDefault() { SetQuantity(0); }
 };
 
 /** @} */

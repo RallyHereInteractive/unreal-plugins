@@ -39,7 +39,7 @@ bool FRHAPI_Notes::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonNotesField = (*Object)->TryGetField(TEXT("notes"));
-	if (JsonNotesField.IsValid() && !JsonNotesField->IsNull())
+	if (JsonNotesField.IsValid())
 	{
 		Notes_IsSet = TryGetJsonValue(JsonNotesField, Notes_Optional);
 		ParseSuccess &= Notes_IsSet;

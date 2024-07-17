@@ -32,14 +32,14 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayerUpdateRequest : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Status that the player would like after the request is complete.  Note that some join operations may promote the player from `member` to `leader` */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -56,15 +56,15 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayerUpdateRequest : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Status_Optional and returns true if it has been set, otherwise returns false */
 	bool GetStatus(ERHAPI_SessionPlayerStatus& OutValue) const { if (Status_IsSet) OutValue = Status_Optional; return Status_IsSet; }
 	/** @brief Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr */
-	ERHAPI_SessionPlayerStatus* GetStatusOrNull() { if (Status_IsSet) return &Status_Optional; return nullptr; }
+	ERHAPI_SessionPlayerStatus* GetStatusOrNull() { if (Status_IsSet) return (&Status_Optional); return nullptr; }
 	/** @brief Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr */
-	const ERHAPI_SessionPlayerStatus* GetStatusOrNull() const { if (Status_IsSet) return &Status_Optional; return nullptr; }
+	const ERHAPI_SessionPlayerStatus* GetStatusOrNull() const { if (Status_IsSet) return (&Status_Optional); return nullptr; }
 	/** @brief Sets the value of Status_Optional and also sets Status_IsSet to true */
-	void SetStatus(const ERHAPI_SessionPlayerStatus& NewValue) { Status_Optional = NewValue; Status_IsSet = true; }
+	void SetStatus(const ERHAPI_SessionPlayerStatus& NewValue) { Status_Optional = NewValue; Status_IsSet = true;  }
 	/** @brief Sets the value of Status_Optional and also sets Status_IsSet to true using move semantics */
-	void SetStatus(ERHAPI_SessionPlayerStatus&& NewValue) { Status_Optional = NewValue; Status_IsSet = true; }
+	void SetStatus(ERHAPI_SessionPlayerStatus&& NewValue) { Status_Optional = NewValue; Status_IsSet = true;  }
 	 /** @brief Clears the value of Status_Optional and sets Status_IsSet to false */
-	void ClearStatus() { Status_IsSet = false; }
+	void ClearStatus() { Status_IsSet = false;  }
 
 	/** @brief Which team the player should be on */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -74,13 +74,13 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayerUpdateRequest : public FRHAPI_Model
 	/** @brief Gets the value of TeamId */
 	const int32& GetTeamId() const { return TeamId; }
 	/** @brief Sets the value of TeamId */
-	void SetTeamId(const int32& NewValue) { TeamId = NewValue;  }
+	void SetTeamId(const int32& NewValue) { TeamId = NewValue;   }
 	/** @brief Sets the value of TeamId using move semantics */
-	void SetTeamId(int32&& NewValue) { TeamId = NewValue;  }
+	void SetTeamId(int32&& NewValue) { TeamId = NewValue;   }
 	/** @brief Returns true if TeamId matches the default value */
 	bool IsTeamIdDefaultValue() const { return TeamId == 0; }
 	/** @brief Sets the value of TeamId to its default  */
-	void SetTeamIdToDefault() { TeamId = 0;  }
+	void SetTeamIdToDefault() { SetTeamId(0); }
 
 	/** @brief player-defined custom data */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -97,15 +97,15 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayerUpdateRequest : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
 	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
-	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
-	void ClearCustomData() { CustomData_IsSet = false; }
+	void ClearCustomData() { CustomData_IsSet = false;  }
 
 	/** @brief How we should handle too many players being invited to the chosen team */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -122,15 +122,15 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayerUpdateRequest : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of OverflowAction_Optional and returns true if it has been set, otherwise returns false */
 	bool GetOverflowAction(ERHAPI_TeamOverflowAction& OutValue) const { if (OverflowAction_IsSet) OutValue = OverflowAction_Optional; return OverflowAction_IsSet; }
 	/** @brief Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr */
-	ERHAPI_TeamOverflowAction* GetOverflowActionOrNull() { if (OverflowAction_IsSet) return &OverflowAction_Optional; return nullptr; }
+	ERHAPI_TeamOverflowAction* GetOverflowActionOrNull() { if (OverflowAction_IsSet) return (&OverflowAction_Optional); return nullptr; }
 	/** @brief Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr */
-	const ERHAPI_TeamOverflowAction* GetOverflowActionOrNull() const { if (OverflowAction_IsSet) return &OverflowAction_Optional; return nullptr; }
+	const ERHAPI_TeamOverflowAction* GetOverflowActionOrNull() const { if (OverflowAction_IsSet) return (&OverflowAction_Optional); return nullptr; }
 	/** @brief Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true */
-	void SetOverflowAction(const ERHAPI_TeamOverflowAction& NewValue) { OverflowAction_Optional = NewValue; OverflowAction_IsSet = true; }
+	void SetOverflowAction(const ERHAPI_TeamOverflowAction& NewValue) { OverflowAction_Optional = NewValue; OverflowAction_IsSet = true;  }
 	/** @brief Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true using move semantics */
-	void SetOverflowAction(ERHAPI_TeamOverflowAction&& NewValue) { OverflowAction_Optional = NewValue; OverflowAction_IsSet = true; }
+	void SetOverflowAction(ERHAPI_TeamOverflowAction&& NewValue) { OverflowAction_Optional = NewValue; OverflowAction_IsSet = true;  }
 	 /** @brief Clears the value of OverflowAction_Optional and sets OverflowAction_IsSet to false */
-	void ClearOverflowAction() { OverflowAction_IsSet = false; }
+	void ClearOverflowAction() { OverflowAction_IsSet = false;  }
 };
 
 /** @} */

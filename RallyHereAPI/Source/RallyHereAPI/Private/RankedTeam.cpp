@@ -38,9 +38,9 @@ bool FRHAPI_RankedTeam::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPlayersField = (*Object)->TryGetField(TEXT("players"));
-	ParseSuccess &= JsonPlayersField.IsValid() && !JsonPlayersField->IsNull() && TryGetJsonValue(JsonPlayersField, Players);
+	ParseSuccess &= JsonPlayersField.IsValid() && (!JsonPlayersField->IsNull() &&  TryGetJsonValue(JsonPlayersField, Players));
 	const TSharedPtr<FJsonValue> JsonTeamRankField = (*Object)->TryGetField(TEXT("team_rank"));
-	ParseSuccess &= JsonTeamRankField.IsValid() && !JsonTeamRankField->IsNull() && TryGetJsonValue(JsonTeamRankField, TeamRank);
+	ParseSuccess &= JsonTeamRankField.IsValid() && (!JsonTeamRankField->IsNull() &&  TryGetJsonValue(JsonTeamRankField, TeamRank));
 
 	return ParseSuccess;
 }

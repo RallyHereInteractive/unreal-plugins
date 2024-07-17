@@ -41,9 +41,9 @@ bool FRHAPI_PostGameEventsResponse::FromJson(const TSharedPtr<FJsonValue>& JsonV
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPostedEventsField = (*Object)->TryGetField(TEXT("posted_events"));
-	ParseSuccess &= JsonPostedEventsField.IsValid() && !JsonPostedEventsField->IsNull() && TryGetJsonValue(JsonPostedEventsField, PostedEvents);
+	ParseSuccess &= JsonPostedEventsField.IsValid() && (!JsonPostedEventsField->IsNull() &&  TryGetJsonValue(JsonPostedEventsField, PostedEvents));
 	const TSharedPtr<FJsonValue> JsonErrorsField = (*Object)->TryGetField(TEXT("errors"));
-	if (JsonErrorsField.IsValid() && !JsonErrorsField->IsNull())
+	if (JsonErrorsField.IsValid())
 	{
 		Errors_IsSet = TryGetJsonValue(JsonErrorsField, Errors_Optional);
 		ParseSuccess &= Errors_IsSet;

@@ -41,9 +41,9 @@ bool FRHAPI_EntitlementEventList::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonEventsField = (*Object)->TryGetField(TEXT("events"));
-	ParseSuccess &= JsonEventsField.IsValid() && !JsonEventsField->IsNull() && TryGetJsonValue(JsonEventsField, Events);
+	ParseSuccess &= JsonEventsField.IsValid() && (!JsonEventsField->IsNull() &&  TryGetJsonValue(JsonEventsField, Events));
 	const TSharedPtr<FJsonValue> JsonCursorField = (*Object)->TryGetField(TEXT("cursor"));
-	if (JsonCursorField.IsValid() && !JsonCursorField->IsNull())
+	if (JsonCursorField.IsValid())
 	{
 		Cursor_IsSet = TryGetJsonValue(JsonCursorField, Cursor_Optional);
 		ParseSuccess &= Cursor_IsSet;

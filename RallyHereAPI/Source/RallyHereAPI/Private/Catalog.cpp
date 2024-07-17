@@ -84,61 +84,61 @@ bool FRHAPI_Catalog::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonXpTablesField = (*Object)->TryGetField(TEXT("xp_tables"));
-	if (JsonXpTablesField.IsValid() && !JsonXpTablesField->IsNull())
+	if (JsonXpTablesField.IsValid())
 	{
 		XpTables_IsSet = TryGetJsonValue(JsonXpTablesField, XpTables_Optional);
 		ParseSuccess &= XpTables_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPortalUseRulesetsField = (*Object)->TryGetField(TEXT("portal_use_rulesets"));
-	if (JsonPortalUseRulesetsField.IsValid() && !JsonPortalUseRulesetsField->IsNull())
+	if (JsonPortalUseRulesetsField.IsValid())
 	{
 		PortalUseRulesets_IsSet = TryGetJsonValue(JsonPortalUseRulesetsField, PortalUseRulesets_Optional);
 		ParseSuccess &= PortalUseRulesets_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonInventoryBucketUseRuleSetsField = (*Object)->TryGetField(TEXT("inventory_bucket_use_rule_sets"));
-	if (JsonInventoryBucketUseRuleSetsField.IsValid() && !JsonInventoryBucketUseRuleSetsField->IsNull())
+	if (JsonInventoryBucketUseRuleSetsField.IsValid())
 	{
 		InventoryBucketUseRuleSets_IsSet = TryGetJsonValue(JsonInventoryBucketUseRuleSetsField, InventoryBucketUseRuleSets_Optional);
 		ParseSuccess &= InventoryBucketUseRuleSets_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonVendorsField = (*Object)->TryGetField(TEXT("vendors"));
-	if (JsonVendorsField.IsValid() && !JsonVendorsField->IsNull())
+	if (JsonVendorsField.IsValid())
 	{
 		Vendors_IsSet = TryGetJsonValue(JsonVendorsField, Vendors_Optional);
 		ParseSuccess &= Vendors_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonLootField = (*Object)->TryGetField(TEXT("loot"));
-	if (JsonLootField.IsValid() && !JsonLootField->IsNull())
+	if (JsonLootField.IsValid())
 	{
 		Loot_IsSet = TryGetJsonValue(JsonLootField, Loot_Optional);
 		ParseSuccess &= Loot_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonItemsField = (*Object)->TryGetField(TEXT("items"));
-	if (JsonItemsField.IsValid() && !JsonItemsField->IsNull())
+	if (JsonItemsField.IsValid())
 	{
 		Items_IsSet = TryGetJsonValue(JsonItemsField, Items_Optional);
 		ParseSuccess &= Items_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPricePointsField = (*Object)->TryGetField(TEXT("price_points"));
-	if (JsonPricePointsField.IsValid() && !JsonPricePointsField->IsNull())
+	if (JsonPricePointsField.IsValid())
 	{
 		PricePoints_IsSet = TryGetJsonValue(JsonPricePointsField, PricePoints_Optional);
 		ParseSuccess &= PricePoints_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonTimeFramesField = (*Object)->TryGetField(TEXT("time_frames"));
-	if (JsonTimeFramesField.IsValid() && !JsonTimeFramesField->IsNull())
+	if (JsonTimeFramesField.IsValid())
 	{
 		TimeFrames_IsSet = TryGetJsonValue(JsonTimeFramesField, TimeFrames_Optional);
 		ParseSuccess &= TimeFrames_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonSkusField = (*Object)->TryGetField(TEXT("skus"));
-	if (JsonSkusField.IsValid() && !JsonSkusField->IsNull())
+	if (JsonSkusField.IsValid())
 	{
 		Skus_IsSet = TryGetJsonValue(JsonSkusField, Skus_Optional);
 		ParseSuccess &= Skus_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
-	if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
+	if (JsonCacheInfoField.IsValid())
 	{
 		CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
 		ParseSuccess &= CacheInfo_IsSet;

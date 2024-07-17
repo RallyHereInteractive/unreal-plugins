@@ -61,33 +61,33 @@ bool FRHAPI_SendInBlueContact::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonEmailField = (*Object)->TryGetField(TEXT("email"));
-	ParseSuccess &= JsonEmailField.IsValid() && !JsonEmailField->IsNull() && TryGetJsonValue(JsonEmailField, Email);
+	ParseSuccess &= JsonEmailField.IsValid() && (!JsonEmailField->IsNull() &&  TryGetJsonValue(JsonEmailField, Email));
 	const TSharedPtr<FJsonValue> JsonAttributesField = (*Object)->TryGetField(TEXT("attributes"));
-	if (JsonAttributesField.IsValid() && !JsonAttributesField->IsNull())
+	if (JsonAttributesField.IsValid())
 	{
 		Attributes_IsSet = TryGetJsonValue(JsonAttributesField, Attributes_Optional);
 		ParseSuccess &= Attributes_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonEmailBlacklistedField = (*Object)->TryGetField(TEXT("emailBlacklisted"));
-	if (JsonEmailBlacklistedField.IsValid() && !JsonEmailBlacklistedField->IsNull())
+	if (JsonEmailBlacklistedField.IsValid())
 	{
 		EmailBlacklisted_IsSet = TryGetJsonValue(JsonEmailBlacklistedField, EmailBlacklisted_Optional);
 		ParseSuccess &= EmailBlacklisted_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonListIdsField = (*Object)->TryGetField(TEXT("listIds"));
-	if (JsonListIdsField.IsValid() && !JsonListIdsField->IsNull())
+	if (JsonListIdsField.IsValid())
 	{
 		ListIds_IsSet = TryGetJsonValue(JsonListIdsField, ListIds_Optional);
 		ParseSuccess &= ListIds_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonUnlinkListIdsField = (*Object)->TryGetField(TEXT("unlinkListIds"));
-	if (JsonUnlinkListIdsField.IsValid() && !JsonUnlinkListIdsField->IsNull())
+	if (JsonUnlinkListIdsField.IsValid())
 	{
 		UnlinkListIds_IsSet = TryGetJsonValue(JsonUnlinkListIdsField, UnlinkListIds_Optional);
 		ParseSuccess &= UnlinkListIds_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonUpdateEnabledField = (*Object)->TryGetField(TEXT("updateEnabled"));
-	if (JsonUpdateEnabledField.IsValid() && !JsonUpdateEnabledField->IsNull())
+	if (JsonUpdateEnabledField.IsValid())
 	{
 		UpdateEnabled_IsSet = TryGetJsonValue(JsonUpdateEnabledField, UpdateEnabled_Optional);
 		ParseSuccess &= UpdateEnabled_IsSet;

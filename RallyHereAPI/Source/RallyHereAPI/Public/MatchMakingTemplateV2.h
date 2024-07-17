@@ -33,14 +33,14 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplateV2 : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief ID for this unique MatchMakingTemplate */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -57,15 +57,15 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplateV2 : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of MatchMakingTemplateId_Optional and returns true if it has been set, otherwise returns false */
 	bool GetMatchMakingTemplateId(FGuid& OutValue) const { if (MatchMakingTemplateId_IsSet) OutValue = MatchMakingTemplateId_Optional; return MatchMakingTemplateId_IsSet; }
 	/** @brief Returns a pointer to MatchMakingTemplateId_Optional, if it has been set, otherwise returns nullptr */
-	FGuid* GetMatchMakingTemplateIdOrNull() { if (MatchMakingTemplateId_IsSet) return &MatchMakingTemplateId_Optional; return nullptr; }
+	FGuid* GetMatchMakingTemplateIdOrNull() { if (MatchMakingTemplateId_IsSet) return (&MatchMakingTemplateId_Optional); return nullptr; }
 	/** @brief Returns a pointer to MatchMakingTemplateId_Optional, if it has been set, otherwise returns nullptr */
-	const FGuid* GetMatchMakingTemplateIdOrNull() const { if (MatchMakingTemplateId_IsSet) return &MatchMakingTemplateId_Optional; return nullptr; }
+	const FGuid* GetMatchMakingTemplateIdOrNull() const { if (MatchMakingTemplateId_IsSet) return (&MatchMakingTemplateId_Optional); return nullptr; }
 	/** @brief Sets the value of MatchMakingTemplateId_Optional and also sets MatchMakingTemplateId_IsSet to true */
-	void SetMatchMakingTemplateId(const FGuid& NewValue) { MatchMakingTemplateId_Optional = NewValue; MatchMakingTemplateId_IsSet = true; }
+	void SetMatchMakingTemplateId(const FGuid& NewValue) { MatchMakingTemplateId_Optional = NewValue; MatchMakingTemplateId_IsSet = true;  }
 	/** @brief Sets the value of MatchMakingTemplateId_Optional and also sets MatchMakingTemplateId_IsSet to true using move semantics */
-	void SetMatchMakingTemplateId(FGuid&& NewValue) { MatchMakingTemplateId_Optional = NewValue; MatchMakingTemplateId_IsSet = true; }
+	void SetMatchMakingTemplateId(FGuid&& NewValue) { MatchMakingTemplateId_Optional = NewValue; MatchMakingTemplateId_IsSet = true;  }
 	 /** @brief Clears the value of MatchMakingTemplateId_Optional and sets MatchMakingTemplateId_IsSet to false */
-	void ClearMatchMakingTemplateId() { MatchMakingTemplateId_IsSet = false; }
+	void ClearMatchMakingTemplateId() { MatchMakingTemplateId_IsSet = false;  }
 
 	/** @brief What method should be used to calculate a group's MMR based on the individual player's ranks */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -75,9 +75,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplateV2 : public FRHAPI_Model
 	/** @brief Gets the value of MmrGroupingMethod */
 	const ERHAPI_MMRGroupingMethod& GetMmrGroupingMethod() const { return MmrGroupingMethod; }
 	/** @brief Sets the value of MmrGroupingMethod */
-	void SetMmrGroupingMethod(const ERHAPI_MMRGroupingMethod& NewValue) { MmrGroupingMethod = NewValue;  }
+	void SetMmrGroupingMethod(const ERHAPI_MMRGroupingMethod& NewValue) { MmrGroupingMethod = NewValue;   }
 	/** @brief Sets the value of MmrGroupingMethod using move semantics */
-	void SetMmrGroupingMethod(ERHAPI_MMRGroupingMethod&& NewValue) { MmrGroupingMethod = NewValue;  }
+	void SetMmrGroupingMethod(ERHAPI_MMRGroupingMethod&& NewValue) { MmrGroupingMethod = NewValue;   }
 
 	/** @brief A set of rules that determine whether or not this matchmaking config should be used. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -94,15 +94,15 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplateV2 : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Ruleset_Optional and returns true if it has been set, otherwise returns false */
 	bool GetRuleset(FRHAPI_MatchMakingRuleset& OutValue) const { if (Ruleset_IsSet) OutValue = Ruleset_Optional; return Ruleset_IsSet; }
 	/** @brief Returns a pointer to Ruleset_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_MatchMakingRuleset* GetRulesetOrNull() { if (Ruleset_IsSet) return &Ruleset_Optional; return nullptr; }
+	FRHAPI_MatchMakingRuleset* GetRulesetOrNull() { if (Ruleset_IsSet) return (&Ruleset_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ruleset_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_MatchMakingRuleset* GetRulesetOrNull() const { if (Ruleset_IsSet) return &Ruleset_Optional; return nullptr; }
+	const FRHAPI_MatchMakingRuleset* GetRulesetOrNull() const { if (Ruleset_IsSet) return (&Ruleset_Optional); return nullptr; }
 	/** @brief Sets the value of Ruleset_Optional and also sets Ruleset_IsSet to true */
-	void SetRuleset(const FRHAPI_MatchMakingRuleset& NewValue) { Ruleset_Optional = NewValue; Ruleset_IsSet = true; }
+	void SetRuleset(const FRHAPI_MatchMakingRuleset& NewValue) { Ruleset_Optional = NewValue; Ruleset_IsSet = true;  }
 	/** @brief Sets the value of Ruleset_Optional and also sets Ruleset_IsSet to true using move semantics */
-	void SetRuleset(FRHAPI_MatchMakingRuleset&& NewValue) { Ruleset_Optional = NewValue; Ruleset_IsSet = true; }
+	void SetRuleset(FRHAPI_MatchMakingRuleset&& NewValue) { Ruleset_Optional = NewValue; Ruleset_IsSet = true;  }
 	 /** @brief Clears the value of Ruleset_Optional and sets Ruleset_IsSet to false */
-	void ClearRuleset() { Ruleset_IsSet = false; }
+	void ClearRuleset() { Ruleset_IsSet = false;  }
 
 	/** @brief A list of which match making profiles are going to be created on the ticket */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -112,9 +112,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplateV2 : public FRHAPI_Model
 	/** @brief Gets the value of Profiles */
 	const TArray<FRHAPI_MatchMakingProfileV2>& GetProfiles() const { return Profiles; }
 	/** @brief Sets the value of Profiles */
-	void SetProfiles(const TArray<FRHAPI_MatchMakingProfileV2>& NewValue) { Profiles = NewValue;  }
+	void SetProfiles(const TArray<FRHAPI_MatchMakingProfileV2>& NewValue) { Profiles = NewValue;   }
 	/** @brief Sets the value of Profiles using move semantics */
-	void SetProfiles(TArray<FRHAPI_MatchMakingProfileV2>&& NewValue) { Profiles = NewValue;  }
+	void SetProfiles(TArray<FRHAPI_MatchMakingProfileV2>&& NewValue) { Profiles = NewValue;   }
 };
 
 /** @} */

@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_DeserterConfig : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Unique id for this set of deserter config */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -47,9 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_DeserterConfig : public FRHAPI_Model
 	/** @brief Gets the value of DeserterId */
 	const FGuid& GetDeserterId() const { return DeserterId; }
 	/** @brief Sets the value of DeserterId */
-	void SetDeserterId(const FGuid& NewValue) { DeserterId = NewValue;  }
+	void SetDeserterId(const FGuid& NewValue) { DeserterId = NewValue;   }
 	/** @brief Sets the value of DeserterId using move semantics */
-	void SetDeserterId(FGuid&& NewValue) { DeserterId = NewValue;  }
+	void SetDeserterId(FGuid&& NewValue) { DeserterId = NewValue;   }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -66,15 +66,15 @@ struct RALLYHEREAPI_API FRHAPI_DeserterConfig : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of LastClearedTimestamp_Optional and returns true if it has been set, otherwise returns false */
 	bool GetLastClearedTimestamp(FDateTime& OutValue) const { if (LastClearedTimestamp_IsSet) OutValue = LastClearedTimestamp_Optional; return LastClearedTimestamp_IsSet; }
 	/** @brief Returns a pointer to LastClearedTimestamp_Optional, if it has been set, otherwise returns nullptr */
-	FDateTime* GetLastClearedTimestampOrNull() { if (LastClearedTimestamp_IsSet) return &LastClearedTimestamp_Optional; return nullptr; }
+	FDateTime* GetLastClearedTimestampOrNull() { if (LastClearedTimestamp_IsSet) return (&LastClearedTimestamp_Optional); return nullptr; }
 	/** @brief Returns a pointer to LastClearedTimestamp_Optional, if it has been set, otherwise returns nullptr */
-	const FDateTime* GetLastClearedTimestampOrNull() const { if (LastClearedTimestamp_IsSet) return &LastClearedTimestamp_Optional; return nullptr; }
+	const FDateTime* GetLastClearedTimestampOrNull() const { if (LastClearedTimestamp_IsSet) return (&LastClearedTimestamp_Optional); return nullptr; }
 	/** @brief Sets the value of LastClearedTimestamp_Optional and also sets LastClearedTimestamp_IsSet to true */
-	void SetLastClearedTimestamp(const FDateTime& NewValue) { LastClearedTimestamp_Optional = NewValue; LastClearedTimestamp_IsSet = true; }
+	void SetLastClearedTimestamp(const FDateTime& NewValue) { LastClearedTimestamp_Optional = NewValue; LastClearedTimestamp_IsSet = true;  }
 	/** @brief Sets the value of LastClearedTimestamp_Optional and also sets LastClearedTimestamp_IsSet to true using move semantics */
-	void SetLastClearedTimestamp(FDateTime&& NewValue) { LastClearedTimestamp_Optional = NewValue; LastClearedTimestamp_IsSet = true; }
+	void SetLastClearedTimestamp(FDateTime&& NewValue) { LastClearedTimestamp_Optional = NewValue; LastClearedTimestamp_IsSet = true;  }
 	 /** @brief Clears the value of LastClearedTimestamp_Optional and sets LastClearedTimestamp_IsSet to false */
-	void ClearLastClearedTimestamp() { LastClearedTimestamp_IsSet = false; }
+	void ClearLastClearedTimestamp() { LastClearedTimestamp_IsSet = false;  }
 };
 
 /** @} */

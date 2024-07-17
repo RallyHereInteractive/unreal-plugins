@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_Restriction : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Type of restriction */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -48,9 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_Restriction : public FRHAPI_Model
 	/** @brief Gets the value of Type */
 	const ERHAPI_RestrictionType& GetType() const { return Type; }
 	/** @brief Sets the value of Type */
-	void SetType(const ERHAPI_RestrictionType& NewValue) { Type = NewValue;  }
+	void SetType(const ERHAPI_RestrictionType& NewValue) { Type = NewValue;   }
 	/** @brief Sets the value of Type using move semantics */
-	void SetType(ERHAPI_RestrictionType&& NewValue) { Type = NewValue;  }
+	void SetType(ERHAPI_RestrictionType&& NewValue) { Type = NewValue;   }
 
 	/** @brief Reason the restriction was applied */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -67,15 +67,15 @@ struct RALLYHEREAPI_API FRHAPI_Restriction : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Reason_Optional and returns true if it has been set, otherwise returns false */
 	bool GetReason(FString& OutValue) const { if (Reason_IsSet) OutValue = Reason_Optional; return Reason_IsSet; }
 	/** @brief Returns a pointer to Reason_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetReasonOrNull() { if (Reason_IsSet) return &Reason_Optional; return nullptr; }
+	FString* GetReasonOrNull() { if (Reason_IsSet) return (&Reason_Optional); return nullptr; }
 	/** @brief Returns a pointer to Reason_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetReasonOrNull() const { if (Reason_IsSet) return &Reason_Optional; return nullptr; }
+	const FString* GetReasonOrNull() const { if (Reason_IsSet) return (&Reason_Optional); return nullptr; }
 	/** @brief Sets the value of Reason_Optional and also sets Reason_IsSet to true */
-	void SetReason(const FString& NewValue) { Reason_Optional = NewValue; Reason_IsSet = true; }
+	void SetReason(const FString& NewValue) { Reason_Optional = NewValue; Reason_IsSet = true;  }
 	/** @brief Sets the value of Reason_Optional and also sets Reason_IsSet to true using move semantics */
-	void SetReason(FString&& NewValue) { Reason_Optional = NewValue; Reason_IsSet = true; }
+	void SetReason(FString&& NewValue) { Reason_Optional = NewValue; Reason_IsSet = true;  }
 	 /** @brief Clears the value of Reason_Optional and sets Reason_IsSet to false */
-	void ClearReason() { Reason_IsSet = false; }
+	void ClearReason() { Reason_IsSet = false;  }
 
 	/** @brief Date the restriction expires.  Null means the restriction is permanent */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -92,15 +92,15 @@ struct RALLYHEREAPI_API FRHAPI_Restriction : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Expiration_Optional and returns true if it has been set, otherwise returns false */
 	bool GetExpiration(FDateTime& OutValue) const { if (Expiration_IsSet) OutValue = Expiration_Optional; return Expiration_IsSet; }
 	/** @brief Returns a pointer to Expiration_Optional, if it has been set, otherwise returns nullptr */
-	FDateTime* GetExpirationOrNull() { if (Expiration_IsSet) return &Expiration_Optional; return nullptr; }
+	FDateTime* GetExpirationOrNull() { if (Expiration_IsSet) return (&Expiration_Optional); return nullptr; }
 	/** @brief Returns a pointer to Expiration_Optional, if it has been set, otherwise returns nullptr */
-	const FDateTime* GetExpirationOrNull() const { if (Expiration_IsSet) return &Expiration_Optional; return nullptr; }
+	const FDateTime* GetExpirationOrNull() const { if (Expiration_IsSet) return (&Expiration_Optional); return nullptr; }
 	/** @brief Sets the value of Expiration_Optional and also sets Expiration_IsSet to true */
-	void SetExpiration(const FDateTime& NewValue) { Expiration_Optional = NewValue; Expiration_IsSet = true; }
+	void SetExpiration(const FDateTime& NewValue) { Expiration_Optional = NewValue; Expiration_IsSet = true;  }
 	/** @brief Sets the value of Expiration_Optional and also sets Expiration_IsSet to true using move semantics */
-	void SetExpiration(FDateTime&& NewValue) { Expiration_Optional = NewValue; Expiration_IsSet = true; }
+	void SetExpiration(FDateTime&& NewValue) { Expiration_Optional = NewValue; Expiration_IsSet = true;  }
 	 /** @brief Clears the value of Expiration_Optional and sets Expiration_IsSet to false */
-	void ClearExpiration() { Expiration_IsSet = false; }
+	void ClearExpiration() { Expiration_IsSet = false;  }
 };
 
 /** @} */

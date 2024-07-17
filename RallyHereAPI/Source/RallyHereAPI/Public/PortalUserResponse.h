@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserResponse : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Portal user ID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -55,15 +55,15 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserResponse : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of PortalUserId_Optional and returns true if it has been set, otherwise returns false */
 	bool GetPortalUserId(FString& OutValue) const { if (PortalUserId_IsSet) OutValue = PortalUserId_Optional; return PortalUserId_IsSet; }
 	/** @brief Returns a pointer to PortalUserId_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetPortalUserIdOrNull() { if (PortalUserId_IsSet) return &PortalUserId_Optional; return nullptr; }
+	FString* GetPortalUserIdOrNull() { if (PortalUserId_IsSet) return (&PortalUserId_Optional); return nullptr; }
 	/** @brief Returns a pointer to PortalUserId_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetPortalUserIdOrNull() const { if (PortalUserId_IsSet) return &PortalUserId_Optional; return nullptr; }
+	const FString* GetPortalUserIdOrNull() const { if (PortalUserId_IsSet) return (&PortalUserId_Optional); return nullptr; }
 	/** @brief Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true */
-	void SetPortalUserId(const FString& NewValue) { PortalUserId_Optional = NewValue; PortalUserId_IsSet = true; }
+	void SetPortalUserId(const FString& NewValue) { PortalUserId_Optional = NewValue; PortalUserId_IsSet = true;  }
 	/** @brief Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true using move semantics */
-	void SetPortalUserId(FString&& NewValue) { PortalUserId_Optional = NewValue; PortalUserId_IsSet = true; }
+	void SetPortalUserId(FString&& NewValue) { PortalUserId_Optional = NewValue; PortalUserId_IsSet = true;  }
 	 /** @brief Clears the value of PortalUserId_Optional and sets PortalUserId_IsSet to false */
-	void ClearPortalUserId() { PortalUserId_IsSet = false; }
+	void ClearPortalUserId() { PortalUserId_IsSet = false;  }
 
 	/** @brief Portal ID *DEPRECATED* use `platform` instead */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -73,13 +73,13 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserResponse : public FRHAPI_Model
 	/** @brief Gets the value of PortalId */
 	const int32& GetPortalId() const { return PortalId; }
 	/** @brief Sets the value of PortalId */
-	void SetPortalId(const int32& NewValue) { PortalId = NewValue;  }
+	void SetPortalId(const int32& NewValue) { PortalId = NewValue;   }
 	/** @brief Sets the value of PortalId using move semantics */
-	void SetPortalId(int32&& NewValue) { PortalId = NewValue;  }
+	void SetPortalId(int32&& NewValue) { PortalId = NewValue;   }
 	/** @brief Returns true if PortalId matches the default value */
 	bool IsPortalIdDefaultValue() const { return PortalId == 0; }
 	/** @brief Sets the value of PortalId to its default  */
-	void SetPortalIdToDefault() { PortalId = 0;  }
+	void SetPortalIdToDefault() { SetPortalId(0); }
 
 	/** @brief Platform */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -89,9 +89,9 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserResponse : public FRHAPI_Model
 	/** @brief Gets the value of Platform */
 	const ERHAPI_Platform& GetPlatform() const { return Platform; }
 	/** @brief Sets the value of Platform */
-	void SetPlatform(const ERHAPI_Platform& NewValue) { Platform = NewValue;  }
+	void SetPlatform(const ERHAPI_Platform& NewValue) { Platform = NewValue;   }
 	/** @brief Sets the value of Platform using move semantics */
-	void SetPlatform(ERHAPI_Platform&& NewValue) { Platform = NewValue;  }
+	void SetPlatform(ERHAPI_Platform&& NewValue) { Platform = NewValue;   }
 
 	/** @brief Display name */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -108,15 +108,15 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserResponse : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of DisplayName_Optional and returns true if it has been set, otherwise returns false */
 	bool GetDisplayName(FString& OutValue) const { if (DisplayName_IsSet) OutValue = DisplayName_Optional; return DisplayName_IsSet; }
 	/** @brief Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetDisplayNameOrNull() { if (DisplayName_IsSet) return &DisplayName_Optional; return nullptr; }
+	FString* GetDisplayNameOrNull() { if (DisplayName_IsSet) return (&DisplayName_Optional); return nullptr; }
 	/** @brief Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetDisplayNameOrNull() const { if (DisplayName_IsSet) return &DisplayName_Optional; return nullptr; }
+	const FString* GetDisplayNameOrNull() const { if (DisplayName_IsSet) return (&DisplayName_Optional); return nullptr; }
 	/** @brief Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true */
-	void SetDisplayName(const FString& NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true; }
+	void SetDisplayName(const FString& NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true;  }
 	/** @brief Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true using move semantics */
-	void SetDisplayName(FString&& NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true; }
+	void SetDisplayName(FString&& NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true;  }
 	 /** @brief Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false */
-	void ClearDisplayName() { DisplayName_IsSet = false; }
+	void ClearDisplayName() { DisplayName_IsSet = false;  }
 
 	/** @brief Player ID *DEPRECATED* use `player_uuid` instead */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -126,13 +126,13 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserResponse : public FRHAPI_Model
 	/** @brief Gets the value of PlayerId */
 	const int32& GetPlayerId() const { return PlayerId; }
 	/** @brief Sets the value of PlayerId */
-	void SetPlayerId(const int32& NewValue) { PlayerId = NewValue;  }
+	void SetPlayerId(const int32& NewValue) { PlayerId = NewValue;   }
 	/** @brief Sets the value of PlayerId using move semantics */
-	void SetPlayerId(int32&& NewValue) { PlayerId = NewValue;  }
+	void SetPlayerId(int32&& NewValue) { PlayerId = NewValue;   }
 	/** @brief Returns true if PlayerId matches the default value */
 	bool IsPlayerIdDefaultValue() const { return PlayerId == 0; }
 	/** @brief Sets the value of PlayerId to its default  */
-	void SetPlayerIdToDefault() { PlayerId = 0;  }
+	void SetPlayerIdToDefault() { SetPlayerId(0); }
 
 	/** @brief Player UUID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -142,9 +142,9 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserResponse : public FRHAPI_Model
 	/** @brief Gets the value of PlayerUuid */
 	const FGuid& GetPlayerUuid() const { return PlayerUuid; }
 	/** @brief Sets the value of PlayerUuid */
-	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;  }
+	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;   }
 	/** @brief Sets the value of PlayerUuid using move semantics */
-	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;  }
+	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;   }
 };
 
 /** @} */

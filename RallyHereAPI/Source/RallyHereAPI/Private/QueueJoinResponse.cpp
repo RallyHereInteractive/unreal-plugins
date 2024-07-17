@@ -36,7 +36,7 @@ bool FRHAPI_QueueJoinResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonTicketIdField = (*Object)->TryGetField(TEXT("ticket_id"));
-	ParseSuccess &= JsonTicketIdField.IsValid() && !JsonTicketIdField->IsNull() && TryGetJsonValue(JsonTicketIdField, TicketId);
+	ParseSuccess &= JsonTicketIdField.IsValid() && (!JsonTicketIdField->IsNull() &&  TryGetJsonValue(JsonTicketIdField, TicketId));
 
 	return ParseSuccess;
 }

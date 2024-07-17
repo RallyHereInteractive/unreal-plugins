@@ -53,23 +53,23 @@ bool FRHAPI_BodyFindOpportunities::FromJson(const TSharedPtr<FJsonValue>& JsonVa
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonScreenPixelWidthField = (*Object)->TryGetField(TEXT("screen_pixel_width"));
-	if (JsonScreenPixelWidthField.IsValid() && !JsonScreenPixelWidthField->IsNull())
+	if (JsonScreenPixelWidthField.IsValid())
 	{
 		ScreenPixelWidth_IsSet = TryGetJsonValue(JsonScreenPixelWidthField, ScreenPixelWidth_Optional);
 		ParseSuccess &= ScreenPixelWidth_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonScreenPixelHeightField = (*Object)->TryGetField(TEXT("screen_pixel_height"));
-	if (JsonScreenPixelHeightField.IsValid() && !JsonScreenPixelHeightField->IsNull())
+	if (JsonScreenPixelHeightField.IsValid())
 	{
 		ScreenPixelHeight_IsSet = TryGetJsonValue(JsonScreenPixelHeightField, ScreenPixelHeight_Optional);
 		ParseSuccess &= ScreenPixelHeight_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCountryCodeField = (*Object)->TryGetField(TEXT("country_code"));
-	ParseSuccess &= JsonCountryCodeField.IsValid() && !JsonCountryCodeField->IsNull() && TryGetJsonValue(JsonCountryCodeField, CountryCode);
+	ParseSuccess &= JsonCountryCodeField.IsValid() && (!JsonCountryCodeField->IsNull() &&  TryGetJsonValue(JsonCountryCodeField, CountryCode));
 	const TSharedPtr<FJsonValue> JsonLanguageCodeField = (*Object)->TryGetField(TEXT("language_code"));
-	ParseSuccess &= JsonLanguageCodeField.IsValid() && !JsonLanguageCodeField->IsNull() && TryGetJsonValue(JsonLanguageCodeField, LanguageCode);
+	ParseSuccess &= JsonLanguageCodeField.IsValid() && (!JsonLanguageCodeField->IsNull() &&  TryGetJsonValue(JsonLanguageCodeField, LanguageCode));
 	const TSharedPtr<FJsonValue> JsonDeviceIdField = (*Object)->TryGetField(TEXT("device_id"));
-	if (JsonDeviceIdField.IsValid() && !JsonDeviceIdField->IsNull())
+	if (JsonDeviceIdField.IsValid())
 	{
 		DeviceId_IsSet = TryGetJsonValue(JsonDeviceIdField, DeviceId_Optional);
 		ParseSuccess &= DeviceId_IsSet;

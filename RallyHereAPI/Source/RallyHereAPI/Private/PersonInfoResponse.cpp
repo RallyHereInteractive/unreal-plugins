@@ -49,19 +49,19 @@ bool FRHAPI_PersonInfoResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPersonIdField = (*Object)->TryGetField(TEXT("person_id"));
-	if (JsonPersonIdField.IsValid() && !JsonPersonIdField->IsNull())
+	if (JsonPersonIdField.IsValid())
 	{
 		PersonId_IsSet = TryGetJsonValue(JsonPersonIdField, PersonId_Optional);
 		ParseSuccess &= PersonId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonActivePlayerIdField = (*Object)->TryGetField(TEXT("active_player_id"));
-	if (JsonActivePlayerIdField.IsValid() && !JsonActivePlayerIdField->IsNull())
+	if (JsonActivePlayerIdField.IsValid())
 	{
 		ActivePlayerId_IsSet = TryGetJsonValue(JsonActivePlayerIdField, ActivePlayerId_Optional);
 		ParseSuccess &= ActivePlayerId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonEmailField = (*Object)->TryGetField(TEXT("email"));
-	if (JsonEmailField.IsValid() && !JsonEmailField->IsNull())
+	if (JsonEmailField.IsValid())
 	{
 		Email_IsSet = TryGetJsonValue(JsonEmailField, Email_Optional);
 		ParseSuccess &= Email_IsSet;

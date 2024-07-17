@@ -39,7 +39,7 @@ bool FRHAPI_PlatformIdentityLookupResults::FromJson(const TSharedPtr<FJsonValue>
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonIdentityField = (*Object)->TryGetField(TEXT("identity"));
-	if (JsonIdentityField.IsValid() && !JsonIdentityField->IsNull())
+	if (JsonIdentityField.IsValid())
 	{
 		Identity_IsSet = TryGetJsonValue(JsonIdentityField, Identity_Optional);
 		ParseSuccess &= Identity_IsSet;

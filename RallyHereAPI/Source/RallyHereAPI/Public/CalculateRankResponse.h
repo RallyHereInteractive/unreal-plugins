@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_CalculateRankResponse : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief List of players and their updated ranks */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -48,9 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_CalculateRankResponse : public FRHAPI_Model
 	/** @brief Gets the value of UpdatedPlayers */
 	const TArray<FRHAPI_PlayerRank>& GetUpdatedPlayers() const { return UpdatedPlayers; }
 	/** @brief Sets the value of UpdatedPlayers */
-	void SetUpdatedPlayers(const TArray<FRHAPI_PlayerRank>& NewValue) { UpdatedPlayers = NewValue;  }
+	void SetUpdatedPlayers(const TArray<FRHAPI_PlayerRank>& NewValue) { UpdatedPlayers = NewValue;   }
 	/** @brief Sets the value of UpdatedPlayers using move semantics */
-	void SetUpdatedPlayers(TArray<FRHAPI_PlayerRank>&& NewValue) { UpdatedPlayers = NewValue;  }
+	void SetUpdatedPlayers(TArray<FRHAPI_PlayerRank>&& NewValue) { UpdatedPlayers = NewValue;   }
 };
 
 /** @} */

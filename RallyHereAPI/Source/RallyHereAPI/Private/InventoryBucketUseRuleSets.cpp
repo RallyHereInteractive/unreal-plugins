@@ -44,13 +44,13 @@ bool FRHAPI_InventoryBucketUseRuleSets::FromJson(const TSharedPtr<FJsonValue>& J
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonRuleSetsField = (*Object)->TryGetField(TEXT("rule_sets"));
-	if (JsonRuleSetsField.IsValid() && !JsonRuleSetsField->IsNull())
+	if (JsonRuleSetsField.IsValid())
 	{
 		RuleSets_IsSet = TryGetJsonValue(JsonRuleSetsField, RuleSets_Optional);
 		ParseSuccess &= RuleSets_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
-	if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
+	if (JsonCacheInfoField.IsValid())
 	{
 		CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
 		ParseSuccess &= CacheInfo_IsSet;

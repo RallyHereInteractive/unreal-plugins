@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_BlockedPlayerV1 : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 BlockedPlayerId_Optional{  };
@@ -53,19 +53,19 @@ struct RALLYHEREAPI_API FRHAPI_BlockedPlayerV1 : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of BlockedPlayerId_Optional and returns true if it has been set, otherwise returns false */
 	bool GetBlockedPlayerId(int32& OutValue) const { if (BlockedPlayerId_IsSet) OutValue = BlockedPlayerId_Optional; return BlockedPlayerId_IsSet; }
 	/** @brief Returns a pointer to BlockedPlayerId_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetBlockedPlayerIdOrNull() { if (BlockedPlayerId_IsSet) return &BlockedPlayerId_Optional; return nullptr; }
+	int32* GetBlockedPlayerIdOrNull() { if (BlockedPlayerId_IsSet) return (&BlockedPlayerId_Optional); return nullptr; }
 	/** @brief Returns a pointer to BlockedPlayerId_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetBlockedPlayerIdOrNull() const { if (BlockedPlayerId_IsSet) return &BlockedPlayerId_Optional; return nullptr; }
+	const int32* GetBlockedPlayerIdOrNull() const { if (BlockedPlayerId_IsSet) return (&BlockedPlayerId_Optional); return nullptr; }
 	/** @brief Sets the value of BlockedPlayerId_Optional and also sets BlockedPlayerId_IsSet to true */
-	void SetBlockedPlayerId(const int32& NewValue) { BlockedPlayerId_Optional = NewValue; BlockedPlayerId_IsSet = true; }
+	void SetBlockedPlayerId(const int32& NewValue) { BlockedPlayerId_Optional = NewValue; BlockedPlayerId_IsSet = true;  }
 	/** @brief Sets the value of BlockedPlayerId_Optional and also sets BlockedPlayerId_IsSet to true using move semantics */
-	void SetBlockedPlayerId(int32&& NewValue) { BlockedPlayerId_Optional = NewValue; BlockedPlayerId_IsSet = true; }
+	void SetBlockedPlayerId(int32&& NewValue) { BlockedPlayerId_Optional = NewValue; BlockedPlayerId_IsSet = true;  }
 	 /** @brief Clears the value of BlockedPlayerId_Optional and sets BlockedPlayerId_IsSet to false */
-	void ClearBlockedPlayerId() { BlockedPlayerId_Optional = 0; BlockedPlayerId_IsSet = false; }
+	void ClearBlockedPlayerId() { BlockedPlayerId_Optional = 0; BlockedPlayerId_IsSet = false;  }
 	/** @brief Returns true if BlockedPlayerId_Optional is set and matches the default value */
 	bool IsBlockedPlayerIdDefaultValue() const { return BlockedPlayerId_IsSet && BlockedPlayerId_Optional == 0; }
 	/** @brief Sets the value of BlockedPlayerId_Optional to its default and also sets BlockedPlayerId_IsSet to true */
-	void SetBlockedPlayerIdToDefault() { BlockedPlayerId_Optional = 0; BlockedPlayerId_IsSet = true; }
+	void SetBlockedPlayerIdToDefault() { SetBlockedPlayerId(0); }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid BlockedPlayerUuid{  };
@@ -74,9 +74,9 @@ struct RALLYHEREAPI_API FRHAPI_BlockedPlayerV1 : public FRHAPI_Model
 	/** @brief Gets the value of BlockedPlayerUuid */
 	const FGuid& GetBlockedPlayerUuid() const { return BlockedPlayerUuid; }
 	/** @brief Sets the value of BlockedPlayerUuid */
-	void SetBlockedPlayerUuid(const FGuid& NewValue) { BlockedPlayerUuid = NewValue;  }
+	void SetBlockedPlayerUuid(const FGuid& NewValue) { BlockedPlayerUuid = NewValue;   }
 	/** @brief Sets the value of BlockedPlayerUuid using move semantics */
-	void SetBlockedPlayerUuid(FGuid&& NewValue) { BlockedPlayerUuid = NewValue;  }
+	void SetBlockedPlayerUuid(FGuid&& NewValue) { BlockedPlayerUuid = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FDateTime LastModifiedOn{  };
@@ -85,9 +85,9 @@ struct RALLYHEREAPI_API FRHAPI_BlockedPlayerV1 : public FRHAPI_Model
 	/** @brief Gets the value of LastModifiedOn */
 	const FDateTime& GetLastModifiedOn() const { return LastModifiedOn; }
 	/** @brief Sets the value of LastModifiedOn */
-	void SetLastModifiedOn(const FDateTime& NewValue) { LastModifiedOn = NewValue;  }
+	void SetLastModifiedOn(const FDateTime& NewValue) { LastModifiedOn = NewValue;   }
 	/** @brief Sets the value of LastModifiedOn using move semantics */
-	void SetLastModifiedOn(FDateTime&& NewValue) { LastModifiedOn = NewValue;  }
+	void SetLastModifiedOn(FDateTime&& NewValue) { LastModifiedOn = NewValue;   }
 };
 
 /** @} */

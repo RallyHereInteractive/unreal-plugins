@@ -46,19 +46,19 @@ bool FRHAPI_UpdateInventoryRequests::FromJson(const TSharedPtr<FJsonValue>& Json
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonSourceField = (*Object)->TryGetField(TEXT("source"));
-	if (JsonSourceField.IsValid() && !JsonSourceField->IsNull())
+	if (JsonSourceField.IsValid())
 	{
 		Source_IsSet = TryGetJsonValue(JsonSourceField, Source_Optional);
 		ParseSuccess &= Source_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonClientOrderRefIdField = (*Object)->TryGetField(TEXT("client_order_ref_id"));
-	if (JsonClientOrderRefIdField.IsValid() && !JsonClientOrderRefIdField->IsNull())
+	if (JsonClientOrderRefIdField.IsValid())
 	{
 		ClientOrderRefId_IsSet = TryGetJsonValue(JsonClientOrderRefIdField, ClientOrderRefId_Optional);
 		ParseSuccess &= ClientOrderRefId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonInventoryField = (*Object)->TryGetField(TEXT("inventory"));
-	ParseSuccess &= JsonInventoryField.IsValid() && !JsonInventoryField->IsNull() && TryGetJsonValue(JsonInventoryField, Inventory);
+	ParseSuccess &= JsonInventoryField.IsValid() && (!JsonInventoryField->IsNull() &&  TryGetJsonValue(JsonInventoryField, Inventory));
 
 	return ParseSuccess;
 }

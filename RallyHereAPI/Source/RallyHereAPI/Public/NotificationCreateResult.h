@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_NotificationCreateResult : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Unique Identifier for the last notification created.  You cannot depend on the format of this string, and it must be considered opaque */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -47,9 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_NotificationCreateResult : public FRHAPI_Model
 	/** @brief Gets the value of NotificationId */
 	const FString& GetNotificationId() const { return NotificationId; }
 	/** @brief Sets the value of NotificationId */
-	void SetNotificationId(const FString& NewValue) { NotificationId = NewValue;  }
+	void SetNotificationId(const FString& NewValue) { NotificationId = NewValue;   }
 	/** @brief Sets the value of NotificationId using move semantics */
-	void SetNotificationId(FString&& NewValue) { NotificationId = NewValue;  }
+	void SetNotificationId(FString&& NewValue) { NotificationId = NewValue;   }
 };
 
 /** @} */

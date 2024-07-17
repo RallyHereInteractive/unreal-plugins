@@ -44,15 +44,15 @@ bool FRHAPI_PurgeResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPersonIdField = (*Object)->TryGetField(TEXT("person_id"));
-	ParseSuccess &= JsonPersonIdField.IsValid() && !JsonPersonIdField->IsNull() && TryGetJsonValue(JsonPersonIdField, PersonId);
+	ParseSuccess &= JsonPersonIdField.IsValid() && (!JsonPersonIdField->IsNull() &&  TryGetJsonValue(JsonPersonIdField, PersonId));
 	const TSharedPtr<FJsonValue> JsonPurgeOnField = (*Object)->TryGetField(TEXT("purge_on"));
-	ParseSuccess &= JsonPurgeOnField.IsValid() && !JsonPurgeOnField->IsNull() && TryGetJsonValue(JsonPurgeOnField, PurgeOn);
+	ParseSuccess &= JsonPurgeOnField.IsValid() && (!JsonPurgeOnField->IsNull() &&  TryGetJsonValue(JsonPurgeOnField, PurgeOn));
 	const TSharedPtr<FJsonValue> JsonCreatedOnField = (*Object)->TryGetField(TEXT("created_on"));
-	ParseSuccess &= JsonCreatedOnField.IsValid() && !JsonCreatedOnField->IsNull() && TryGetJsonValue(JsonCreatedOnField, CreatedOn);
+	ParseSuccess &= JsonCreatedOnField.IsValid() && (!JsonCreatedOnField->IsNull() &&  TryGetJsonValue(JsonCreatedOnField, CreatedOn));
 	const TSharedPtr<FJsonValue> JsonLastModifiedOnField = (*Object)->TryGetField(TEXT("last_modified_on"));
-	ParseSuccess &= JsonLastModifiedOnField.IsValid() && !JsonLastModifiedOnField->IsNull() && TryGetJsonValue(JsonLastModifiedOnField, LastModifiedOn);
+	ParseSuccess &= JsonLastModifiedOnField.IsValid() && (!JsonLastModifiedOnField->IsNull() &&  TryGetJsonValue(JsonLastModifiedOnField, LastModifiedOn));
 	const TSharedPtr<FJsonValue> JsonStatusField = (*Object)->TryGetField(TEXT("status"));
-	ParseSuccess &= JsonStatusField.IsValid() && !JsonStatusField->IsNull() && TryGetJsonValue(JsonStatusField, Status);
+	ParseSuccess &= JsonStatusField.IsValid() && (!JsonStatusField->IsNull() &&  TryGetJsonValue(JsonStatusField, Status));
 
 	return ParseSuccess;
 }

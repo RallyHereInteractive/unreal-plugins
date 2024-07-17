@@ -69,43 +69,43 @@ bool FRHAPI_PricePoint::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	if (JsonCustomDataField.IsValid())
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonNameField = (*Object)->TryGetField(TEXT("name"));
-	if (JsonNameField.IsValid() && !JsonNameField->IsNull())
+	if (JsonNameField.IsValid())
 	{
 		Name_IsSet = TryGetJsonValue(JsonNameField, Name_Optional);
 		ParseSuccess &= Name_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonStrictFlagField = (*Object)->TryGetField(TEXT("strict_flag"));
-	if (JsonStrictFlagField.IsValid() && !JsonStrictFlagField->IsNull())
+	if (JsonStrictFlagField.IsValid())
 	{
 		StrictFlag_IsSet = TryGetJsonValue(JsonStrictFlagField, StrictFlag_Optional);
 		ParseSuccess &= StrictFlag_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCapFlagField = (*Object)->TryGetField(TEXT("cap_flag"));
-	if (JsonCapFlagField.IsValid() && !JsonCapFlagField->IsNull())
+	if (JsonCapFlagField.IsValid())
 	{
 		CapFlag_IsSet = TryGetJsonValue(JsonCapFlagField, CapFlag_Optional);
 		ParseSuccess &= CapFlag_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCurrentBreakpointsField = (*Object)->TryGetField(TEXT("current_breakpoints"));
-	if (JsonCurrentBreakpointsField.IsValid() && !JsonCurrentBreakpointsField->IsNull())
+	if (JsonCurrentBreakpointsField.IsValid())
 	{
 		CurrentBreakpoints_IsSet = TryGetJsonValue(JsonCurrentBreakpointsField, CurrentBreakpoints_Optional);
 		ParseSuccess &= CurrentBreakpoints_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPreSaleBreakpointsField = (*Object)->TryGetField(TEXT("pre_sale_breakpoints"));
-	if (JsonPreSaleBreakpointsField.IsValid() && !JsonPreSaleBreakpointsField->IsNull())
+	if (JsonPreSaleBreakpointsField.IsValid())
 	{
 		PreSaleBreakpoints_IsSet = TryGetJsonValue(JsonPreSaleBreakpointsField, PreSaleBreakpoints_Optional);
 		ParseSuccess &= PreSaleBreakpoints_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
-	if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
+	if (JsonCacheInfoField.IsValid())
 	{
 		CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
 		ParseSuccess &= CacheInfo_IsSet;

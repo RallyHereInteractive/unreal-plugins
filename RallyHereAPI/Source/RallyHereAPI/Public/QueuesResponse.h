@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_QueuesResponse : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief List of queues */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -48,9 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_QueuesResponse : public FRHAPI_Model
 	/** @brief Gets the value of Queues */
 	const TArray<FRHAPI_QueueConfig>& GetQueues() const { return Queues; }
 	/** @brief Sets the value of Queues */
-	void SetQueues(const TArray<FRHAPI_QueueConfig>& NewValue) { Queues = NewValue;  }
+	void SetQueues(const TArray<FRHAPI_QueueConfig>& NewValue) { Queues = NewValue;   }
 	/** @brief Sets the value of Queues using move semantics */
-	void SetQueues(TArray<FRHAPI_QueueConfig>&& NewValue) { Queues = NewValue;  }
+	void SetQueues(TArray<FRHAPI_QueueConfig>&& NewValue) { Queues = NewValue;   }
 };
 
 /** @} */

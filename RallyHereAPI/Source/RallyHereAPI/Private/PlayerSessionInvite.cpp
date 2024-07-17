@@ -41,9 +41,9 @@ bool FRHAPI_PlayerSessionInvite::FromJson(const TSharedPtr<FJsonValue>& JsonValu
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonSessionIdField = (*Object)->TryGetField(TEXT("session_id"));
-	ParseSuccess &= JsonSessionIdField.IsValid() && !JsonSessionIdField->IsNull() && TryGetJsonValue(JsonSessionIdField, SessionId);
+	ParseSuccess &= JsonSessionIdField.IsValid() && (!JsonSessionIdField->IsNull() &&  TryGetJsonValue(JsonSessionIdField, SessionId));
 	const TSharedPtr<FJsonValue> JsonInvitingPlayerUuidField = (*Object)->TryGetField(TEXT("inviting_player_uuid"));
-	if (JsonInvitingPlayerUuidField.IsValid() && !JsonInvitingPlayerUuidField->IsNull())
+	if (JsonInvitingPlayerUuidField.IsValid())
 	{
 		InvitingPlayerUuid_IsSet = TryGetJsonValue(JsonInvitingPlayerUuidField, InvitingPlayerUuid_Optional);
 		ParseSuccess &= InvitingPlayerUuid_IsSet;

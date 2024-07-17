@@ -46,19 +46,19 @@ bool FRHAPI_ClientSettings::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPlatformIdField = (*Object)->TryGetField(TEXT("platform_id"));
-	if (JsonPlatformIdField.IsValid() && !JsonPlatformIdField->IsNull())
+	if (JsonPlatformIdField.IsValid())
 	{
 		PlatformId_IsSet = TryGetJsonValue(JsonPlatformIdField, PlatformId_Optional);
 		ParseSuccess &= PlatformId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlatformField = (*Object)->TryGetField(TEXT("platform"));
-	if (JsonPlatformField.IsValid() && !JsonPlatformField->IsNull())
+	if (JsonPlatformField.IsValid())
 	{
 		Platform_IsSet = TryGetJsonValue(JsonPlatformField, Platform_Optional);
 		ParseSuccess &= Platform_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonInputField = (*Object)->TryGetField(TEXT("input"));
-	ParseSuccess &= JsonInputField.IsValid() && !JsonInputField->IsNull() && TryGetJsonValue(JsonInputField, Input);
+	ParseSuccess &= JsonInputField.IsValid() && (!JsonInputField->IsNull() &&  TryGetJsonValue(JsonInputField, Input));
 
 	return ParseSuccess;
 }

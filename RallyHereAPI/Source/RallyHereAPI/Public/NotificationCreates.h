@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_NotificationCreates : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief List of notifications creation requests */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -48,9 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_NotificationCreates : public FRHAPI_Model
 	/** @brief Gets the value of Notifications */
 	const TArray<FRHAPI_NotificationCreate>& GetNotifications() const { return Notifications; }
 	/** @brief Sets the value of Notifications */
-	void SetNotifications(const TArray<FRHAPI_NotificationCreate>& NewValue) { Notifications = NewValue;  }
+	void SetNotifications(const TArray<FRHAPI_NotificationCreate>& NewValue) { Notifications = NewValue;   }
 	/** @brief Sets the value of Notifications using move semantics */
-	void SetNotifications(TArray<FRHAPI_NotificationCreate>&& NewValue) { Notifications = NewValue;  }
+	void SetNotifications(TArray<FRHAPI_NotificationCreate>&& NewValue) { Notifications = NewValue;   }
 };
 
 /** @} */

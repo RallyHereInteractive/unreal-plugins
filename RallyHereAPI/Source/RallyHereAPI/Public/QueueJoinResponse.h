@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_QueueJoinResponse : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief ID for the newly created match making ticket */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -47,9 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_QueueJoinResponse : public FRHAPI_Model
 	/** @brief Gets the value of TicketId */
 	const FString& GetTicketId() const { return TicketId; }
 	/** @brief Sets the value of TicketId */
-	void SetTicketId(const FString& NewValue) { TicketId = NewValue;  }
+	void SetTicketId(const FString& NewValue) { TicketId = NewValue;   }
 	/** @brief Sets the value of TicketId using move semantics */
-	void SetTicketId(FString&& NewValue) { TicketId = NewValue;  }
+	void SetTicketId(FString&& NewValue) { TicketId = NewValue;   }
 };
 
 /** @} */

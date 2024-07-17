@@ -51,21 +51,21 @@ bool FRHAPI_QueueJoinRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonQueueIdField = (*Object)->TryGetField(TEXT("queue_id"));
-	ParseSuccess &= JsonQueueIdField.IsValid() && !JsonQueueIdField->IsNull() && TryGetJsonValue(JsonQueueIdField, QueueId);
+	ParseSuccess &= JsonQueueIdField.IsValid() && (!JsonQueueIdField->IsNull() &&  TryGetJsonValue(JsonQueueIdField, QueueId));
 	const TSharedPtr<FJsonValue> JsonAdditionalJoinParamsField = (*Object)->TryGetField(TEXT("additional_join_params"));
-	if (JsonAdditionalJoinParamsField.IsValid() && !JsonAdditionalJoinParamsField->IsNull())
+	if (JsonAdditionalJoinParamsField.IsValid())
 	{
 		AdditionalJoinParams_IsSet = TryGetJsonValue(JsonAdditionalJoinParamsField, AdditionalJoinParams_Optional);
 		ParseSuccess &= AdditionalJoinParams_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonMapPreferencesField = (*Object)->TryGetField(TEXT("map_preferences"));
-	if (JsonMapPreferencesField.IsValid() && !JsonMapPreferencesField->IsNull())
+	if (JsonMapPreferencesField.IsValid())
 	{
 		MapPreferences_IsSet = TryGetJsonValue(JsonMapPreferencesField, MapPreferences_Optional);
 		ParseSuccess &= MapPreferences_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPassedQueueTimeSecondsField = (*Object)->TryGetField(TEXT("passed_queue_time_seconds"));
-	if (JsonPassedQueueTimeSecondsField.IsValid() && !JsonPassedQueueTimeSecondsField->IsNull())
+	if (JsonPassedQueueTimeSecondsField.IsValid())
 	{
 		PassedQueueTimeSeconds_IsSet = TryGetJsonValue(JsonPassedQueueTimeSecondsField, PassedQueueTimeSeconds_Optional);
 		ParseSuccess &= PassedQueueTimeSeconds_IsSet;

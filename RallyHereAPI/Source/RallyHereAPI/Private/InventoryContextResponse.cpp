@@ -39,7 +39,7 @@ bool FRHAPI_InventoryContextResponse::FromJson(const TSharedPtr<FJsonValue>& Jso
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonInventoryField = (*Object)->TryGetField(TEXT("inventory"));
-	if (JsonInventoryField.IsValid() && !JsonInventoryField->IsNull())
+	if (JsonInventoryField.IsValid())
 	{
 		Inventory_IsSet = TryGetJsonValue(JsonInventoryField, Inventory_Optional);
 		ParseSuccess &= Inventory_IsSet;

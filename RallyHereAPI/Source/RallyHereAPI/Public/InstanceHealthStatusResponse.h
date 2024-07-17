@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_InstanceHealthStatusResponse : public FRHAPI_Mode
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief The new health status of the instance. It may not match the status sent up if too few health checks are being recieved */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -48,9 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_InstanceHealthStatusResponse : public FRHAPI_Mode
 	/** @brief Gets the value of UpdatedInstanceHealth */
 	const ERHAPI_InstanceHealthStatus& GetUpdatedInstanceHealth() const { return UpdatedInstanceHealth; }
 	/** @brief Sets the value of UpdatedInstanceHealth */
-	void SetUpdatedInstanceHealth(const ERHAPI_InstanceHealthStatus& NewValue) { UpdatedInstanceHealth = NewValue;  }
+	void SetUpdatedInstanceHealth(const ERHAPI_InstanceHealthStatus& NewValue) { UpdatedInstanceHealth = NewValue;   }
 	/** @brief Sets the value of UpdatedInstanceHealth using move semantics */
-	void SetUpdatedInstanceHealth(ERHAPI_InstanceHealthStatus&& NewValue) { UpdatedInstanceHealth = NewValue;  }
+	void SetUpdatedInstanceHealth(ERHAPI_InstanceHealthStatus&& NewValue) { UpdatedInstanceHealth = NewValue;   }
 };
 
 /** @} */

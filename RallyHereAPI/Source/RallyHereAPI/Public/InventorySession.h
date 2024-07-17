@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_InventorySession : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Unique ID for this Inventory Session. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -48,9 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_InventorySession : public FRHAPI_Model
 	/** @brief Gets the value of SessionId */
 	const FString& GetSessionId() const { return SessionId; }
 	/** @brief Sets the value of SessionId */
-	void SetSessionId(const FString& NewValue) { SessionId = NewValue;  }
+	void SetSessionId(const FString& NewValue) { SessionId = NewValue;   }
 	/** @brief Sets the value of SessionId using move semantics */
-	void SetSessionId(FString&& NewValue) { SessionId = NewValue;  }
+	void SetSessionId(FString&& NewValue) { SessionId = NewValue;   }
 
 	/** @brief Platform for this Inventory Session. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -67,15 +67,15 @@ struct RALLYHEREAPI_API FRHAPI_InventorySession : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of SessionPlatform_Optional and returns true if it has been set, otherwise returns false */
 	bool GetSessionPlatform(ERHAPI_Platform& OutValue) const { if (SessionPlatform_IsSet) OutValue = SessionPlatform_Optional; return SessionPlatform_IsSet; }
 	/** @brief Returns a pointer to SessionPlatform_Optional, if it has been set, otherwise returns nullptr */
-	ERHAPI_Platform* GetSessionPlatformOrNull() { if (SessionPlatform_IsSet) return &SessionPlatform_Optional; return nullptr; }
+	ERHAPI_Platform* GetSessionPlatformOrNull() { if (SessionPlatform_IsSet) return (&SessionPlatform_Optional); return nullptr; }
 	/** @brief Returns a pointer to SessionPlatform_Optional, if it has been set, otherwise returns nullptr */
-	const ERHAPI_Platform* GetSessionPlatformOrNull() const { if (SessionPlatform_IsSet) return &SessionPlatform_Optional; return nullptr; }
+	const ERHAPI_Platform* GetSessionPlatformOrNull() const { if (SessionPlatform_IsSet) return (&SessionPlatform_Optional); return nullptr; }
 	/** @brief Sets the value of SessionPlatform_Optional and also sets SessionPlatform_IsSet to true */
-	void SetSessionPlatform(const ERHAPI_Platform& NewValue) { SessionPlatform_Optional = NewValue; SessionPlatform_IsSet = true; }
+	void SetSessionPlatform(const ERHAPI_Platform& NewValue) { SessionPlatform_Optional = NewValue; SessionPlatform_IsSet = true;  }
 	/** @brief Sets the value of SessionPlatform_Optional and also sets SessionPlatform_IsSet to true using move semantics */
-	void SetSessionPlatform(ERHAPI_Platform&& NewValue) { SessionPlatform_Optional = NewValue; SessionPlatform_IsSet = true; }
+	void SetSessionPlatform(ERHAPI_Platform&& NewValue) { SessionPlatform_Optional = NewValue; SessionPlatform_IsSet = true;  }
 	 /** @brief Clears the value of SessionPlatform_Optional and sets SessionPlatform_IsSet to false */
-	void ClearSessionPlatform() { SessionPlatform_IsSet = false; }
+	void ClearSessionPlatform() { SessionPlatform_IsSet = false;  }
 
 	/** @brief Durable Loot that has been applied when this Inventory Session was created. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -92,15 +92,15 @@ struct RALLYHEREAPI_API FRHAPI_InventorySession : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of AppliedDurableLoot_Optional and returns true if it has been set, otherwise returns false */
 	bool GetAppliedDurableLoot(TArray<int32>& OutValue) const { if (AppliedDurableLoot_IsSet) OutValue = AppliedDurableLoot_Optional; return AppliedDurableLoot_IsSet; }
 	/** @brief Returns a pointer to AppliedDurableLoot_Optional, if it has been set, otherwise returns nullptr */
-	TArray<int32>* GetAppliedDurableLootOrNull() { if (AppliedDurableLoot_IsSet) return &AppliedDurableLoot_Optional; return nullptr; }
+	TArray<int32>* GetAppliedDurableLootOrNull() { if (AppliedDurableLoot_IsSet) return (&AppliedDurableLoot_Optional); return nullptr; }
 	/** @brief Returns a pointer to AppliedDurableLoot_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<int32>* GetAppliedDurableLootOrNull() const { if (AppliedDurableLoot_IsSet) return &AppliedDurableLoot_Optional; return nullptr; }
+	const TArray<int32>* GetAppliedDurableLootOrNull() const { if (AppliedDurableLoot_IsSet) return (&AppliedDurableLoot_Optional); return nullptr; }
 	/** @brief Sets the value of AppliedDurableLoot_Optional and also sets AppliedDurableLoot_IsSet to true */
-	void SetAppliedDurableLoot(const TArray<int32>& NewValue) { AppliedDurableLoot_Optional = NewValue; AppliedDurableLoot_IsSet = true; }
+	void SetAppliedDurableLoot(const TArray<int32>& NewValue) { AppliedDurableLoot_Optional = NewValue; AppliedDurableLoot_IsSet = true;  }
 	/** @brief Sets the value of AppliedDurableLoot_Optional and also sets AppliedDurableLoot_IsSet to true using move semantics */
-	void SetAppliedDurableLoot(TArray<int32>&& NewValue) { AppliedDurableLoot_Optional = NewValue; AppliedDurableLoot_IsSet = true; }
+	void SetAppliedDurableLoot(TArray<int32>&& NewValue) { AppliedDurableLoot_Optional = NewValue; AppliedDurableLoot_IsSet = true;  }
 	 /** @brief Clears the value of AppliedDurableLoot_Optional and sets AppliedDurableLoot_IsSet to false */
-	void ClearAppliedDurableLoot() { AppliedDurableLoot_IsSet = false; }
+	void ClearAppliedDurableLoot() { AppliedDurableLoot_IsSet = false;  }
 };
 
 /** @} */

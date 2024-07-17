@@ -69,43 +69,43 @@ bool FRHAPI_PlatformUserLinkRequest::FromJson(const TSharedPtr<FJsonValue>& Json
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonLeaderPersonIdField = (*Object)->TryGetField(TEXT("leader_person_id"));
-	if (JsonLeaderPersonIdField.IsValid() && !JsonLeaderPersonIdField->IsNull())
+	if (JsonLeaderPersonIdField.IsValid())
 	{
 		LeaderPersonId_IsSet = TryGetJsonValue(JsonLeaderPersonIdField, LeaderPersonId_Optional);
 		ParseSuccess &= LeaderPersonId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonLeaderPlatformField = (*Object)->TryGetField(TEXT("leader_platform"));
-	if (JsonLeaderPlatformField.IsValid() && !JsonLeaderPlatformField->IsNull())
+	if (JsonLeaderPlatformField.IsValid())
 	{
 		LeaderPlatform_IsSet = TryGetJsonValue(JsonLeaderPlatformField, LeaderPlatform_Optional);
 		ParseSuccess &= LeaderPlatform_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonLeaderPlatformUserIdField = (*Object)->TryGetField(TEXT("leader_platform_user_id"));
-	if (JsonLeaderPlatformUserIdField.IsValid() && !JsonLeaderPlatformUserIdField->IsNull())
+	if (JsonLeaderPlatformUserIdField.IsValid())
 	{
 		LeaderPlatformUserId_IsSet = TryGetJsonValue(JsonLeaderPlatformUserIdField, LeaderPlatformUserId_Optional);
 		ParseSuccess &= LeaderPlatformUserId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonFollowerPlatformField = (*Object)->TryGetField(TEXT("follower_platform"));
-	if (JsonFollowerPlatformField.IsValid() && !JsonFollowerPlatformField->IsNull())
+	if (JsonFollowerPlatformField.IsValid())
 	{
 		FollowerPlatform_IsSet = TryGetJsonValue(JsonFollowerPlatformField, FollowerPlatform_Optional);
 		ParseSuccess &= FollowerPlatform_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonFollowerPlatformUserIdField = (*Object)->TryGetField(TEXT("follower_platform_user_id"));
-	if (JsonFollowerPlatformUserIdField.IsValid() && !JsonFollowerPlatformUserIdField->IsNull())
+	if (JsonFollowerPlatformUserIdField.IsValid())
 	{
 		FollowerPlatformUserId_IsSet = TryGetJsonValue(JsonFollowerPlatformUserIdField, FollowerPlatformUserId_Optional);
 		ParseSuccess &= FollowerPlatformUserId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonSchemeField = (*Object)->TryGetField(TEXT("scheme"));
-	if (JsonSchemeField.IsValid() && !JsonSchemeField->IsNull())
+	if (JsonSchemeField.IsValid())
 	{
 		Scheme_IsSet = TryGetJsonValue(JsonSchemeField, Scheme_Optional);
 		ParseSuccess &= Scheme_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCredentialsField = (*Object)->TryGetField(TEXT("credentials"));
-	if (JsonCredentialsField.IsValid() && !JsonCredentialsField->IsNull())
+	if (JsonCredentialsField.IsValid())
 	{
 		Credentials_IsSet = TryGetJsonValue(JsonCredentialsField, Credentials_Optional);
 		ParseSuccess &= Credentials_IsSet;

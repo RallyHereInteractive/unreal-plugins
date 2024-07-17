@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_EventParamsSchemaResponse : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Dictionary contains event name and Json schema definition for its event_params parameter */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -47,9 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_EventParamsSchemaResponse : public FRHAPI_Model
 	/** @brief Gets the value of EventParamSchemas */
 	const FRHAPI_JsonObject& GetEventParamSchemas() const { return EventParamSchemas; }
 	/** @brief Sets the value of EventParamSchemas */
-	void SetEventParamSchemas(const FRHAPI_JsonObject& NewValue) { EventParamSchemas = NewValue;  }
+	void SetEventParamSchemas(const FRHAPI_JsonObject& NewValue) { EventParamSchemas = NewValue;   }
 	/** @brief Sets the value of EventParamSchemas using move semantics */
-	void SetEventParamSchemas(FRHAPI_JsonObject&& NewValue) { EventParamSchemas = NewValue;  }
+	void SetEventParamSchemas(FRHAPI_JsonObject&& NewValue) { EventParamSchemas = NewValue;   }
 };
 
 /** @} */

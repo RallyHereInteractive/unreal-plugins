@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_PortalTokenDetailsRequest : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_PortalTokenDetailsGrantType GrantType{  };
@@ -47,9 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_PortalTokenDetailsRequest : public FRHAPI_Model
 	/** @brief Gets the value of GrantType */
 	const ERHAPI_PortalTokenDetailsGrantType& GetGrantType() const { return GrantType; }
 	/** @brief Sets the value of GrantType */
-	void SetGrantType(const ERHAPI_PortalTokenDetailsGrantType& NewValue) { GrantType = NewValue;  }
+	void SetGrantType(const ERHAPI_PortalTokenDetailsGrantType& NewValue) { GrantType = NewValue;   }
 	/** @brief Sets the value of GrantType using move semantics */
-	void SetGrantType(ERHAPI_PortalTokenDetailsGrantType&& NewValue) { GrantType = NewValue;  }
+	void SetGrantType(ERHAPI_PortalTokenDetailsGrantType&& NewValue) { GrantType = NewValue;   }
 
 	/** @brief Token or secret used to authenticate the provided grant type */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -59,9 +59,9 @@ struct RALLYHEREAPI_API FRHAPI_PortalTokenDetailsRequest : public FRHAPI_Model
 	/** @brief Gets the value of PortalAccessToken */
 	const FString& GetPortalAccessToken() const { return PortalAccessToken; }
 	/** @brief Sets the value of PortalAccessToken */
-	void SetPortalAccessToken(const FString& NewValue) { PortalAccessToken = NewValue;  }
+	void SetPortalAccessToken(const FString& NewValue) { PortalAccessToken = NewValue;   }
 	/** @brief Sets the value of PortalAccessToken using move semantics */
-	void SetPortalAccessToken(FString&& NewValue) { PortalAccessToken = NewValue;  }
+	void SetPortalAccessToken(FString&& NewValue) { PortalAccessToken = NewValue;   }
 };
 
 /** @} */

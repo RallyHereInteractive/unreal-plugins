@@ -39,7 +39,7 @@ bool FRHAPI_AuditResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonEventsField = (*Object)->TryGetField(TEXT("events"));
-	if (JsonEventsField.IsValid() && !JsonEventsField->IsNull())
+	if (JsonEventsField.IsValid())
 	{
 		Events_IsSet = TryGetJsonValue(JsonEventsField, Events_Optional);
 		ParseSuccess &= Events_IsSet;

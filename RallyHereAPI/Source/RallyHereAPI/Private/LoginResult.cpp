@@ -116,97 +116,97 @@ bool FRHAPI_LoginResult::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPortalParentAuthResultField = (*Object)->TryGetField(TEXT("portal_parent_auth_result"));
-	if (JsonPortalParentAuthResultField.IsValid() && !JsonPortalParentAuthResultField->IsNull())
+	if (JsonPortalParentAuthResultField.IsValid())
 	{
 		PortalParentAuthResult_IsSet = TryGetJsonValue(JsonPortalParentAuthResultField, PortalParentAuthResult_Optional);
 		ParseSuccess &= PortalParentAuthResult_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPermissionsField = (*Object)->TryGetField(TEXT("permissions"));
-	if (JsonPermissionsField.IsValid() && !JsonPermissionsField->IsNull())
+	if (JsonPermissionsField.IsValid())
 	{
 		Permissions_IsSet = TryGetJsonValue(JsonPermissionsField, Permissions_Optional);
 		ParseSuccess &= Permissions_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonRestrictionsField = (*Object)->TryGetField(TEXT("restrictions"));
-	if (JsonRestrictionsField.IsValid() && !JsonRestrictionsField->IsNull())
+	if (JsonRestrictionsField.IsValid())
 	{
 		Restrictions_IsSet = TryGetJsonValue(JsonRestrictionsField, Restrictions_Optional);
 		ParseSuccess &= Restrictions_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonActivePlayerIdField = (*Object)->TryGetField(TEXT("active_player_id"));
-	if (JsonActivePlayerIdField.IsValid() && !JsonActivePlayerIdField->IsNull())
+	if (JsonActivePlayerIdField.IsValid())
 	{
 		ActivePlayerId_IsSet = TryGetJsonValue(JsonActivePlayerIdField, ActivePlayerId_Optional);
 		ParseSuccess &= ActivePlayerId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonActivePlayerUuidField = (*Object)->TryGetField(TEXT("active_player_uuid"));
-	if (JsonActivePlayerUuidField.IsValid() && !JsonActivePlayerUuidField->IsNull())
+	if (JsonActivePlayerUuidField.IsValid())
 	{
 		ActivePlayerUuid_IsSet = TryGetJsonValue(JsonActivePlayerUuidField, ActivePlayerUuid_Optional);
 		ParseSuccess &= ActivePlayerUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlatformField = (*Object)->TryGetField(TEXT("platform"));
-	if (JsonPlatformField.IsValid() && !JsonPlatformField->IsNull())
+	if (JsonPlatformField.IsValid())
 	{
 		Platform_IsSet = TryGetJsonValue(JsonPlatformField, Platform_Optional);
 		ParseSuccess &= Platform_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPortalIdField = (*Object)->TryGetField(TEXT("portal_id"));
-	if (JsonPortalIdField.IsValid() && !JsonPortalIdField->IsNull())
+	if (JsonPortalIdField.IsValid())
 	{
 		PortalId_IsSet = TryGetJsonValue(JsonPortalIdField, PortalId_Optional);
 		ParseSuccess &= PortalId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPortalUserIdField = (*Object)->TryGetField(TEXT("portal_user_id"));
-	if (JsonPortalUserIdField.IsValid() && !JsonPortalUserIdField->IsNull())
+	if (JsonPortalUserIdField.IsValid())
 	{
 		PortalUserId_IsSet = TryGetJsonValue(JsonPortalUserIdField, PortalUserId_Optional);
 		ParseSuccess &= PortalUserId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonDisplayNameField = (*Object)->TryGetField(TEXT("display_name"));
-	if (JsonDisplayNameField.IsValid() && !JsonDisplayNameField->IsNull())
+	if (JsonDisplayNameField.IsValid())
 	{
 		DisplayName_IsSet = TryGetJsonValue(JsonDisplayNameField, DisplayName_Optional);
 		ParseSuccess &= DisplayName_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonRoleIdField = (*Object)->TryGetField(TEXT("role_id"));
-	if (JsonRoleIdField.IsValid() && !JsonRoleIdField->IsNull())
+	if (JsonRoleIdField.IsValid())
 	{
 		RoleId_IsSet = TryGetJsonValue(JsonRoleIdField, RoleId_Optional);
 		ParseSuccess &= RoleId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPersonIdField = (*Object)->TryGetField(TEXT("person_id"));
-	if (JsonPersonIdField.IsValid() && !JsonPersonIdField->IsNull())
+	if (JsonPersonIdField.IsValid())
 	{
 		PersonId_IsSet = TryGetJsonValue(JsonPersonIdField, PersonId_Optional);
 		ParseSuccess &= PersonId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonAccessTokenField = (*Object)->TryGetField(TEXT("access_token"));
-	if (JsonAccessTokenField.IsValid() && !JsonAccessTokenField->IsNull())
+	if (JsonAccessTokenField.IsValid())
 	{
 		AccessToken_IsSet = TryGetJsonValue(JsonAccessTokenField, AccessToken_Optional);
 		ParseSuccess &= AccessToken_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonRefreshTokenField = (*Object)->TryGetField(TEXT("refresh_token"));
-	if (JsonRefreshTokenField.IsValid() && !JsonRefreshTokenField->IsNull())
+	if (JsonRefreshTokenField.IsValid())
 	{
 		RefreshToken_IsSet = TryGetJsonValue(JsonRefreshTokenField, RefreshToken_Optional);
 		ParseSuccess &= RefreshToken_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPublisherUuidField = (*Object)->TryGetField(TEXT("publisher_uuid"));
-	ParseSuccess &= JsonPublisherUuidField.IsValid() && !JsonPublisherUuidField->IsNull() && TryGetJsonValue(JsonPublisherUuidField, PublisherUuid);
+	ParseSuccess &= JsonPublisherUuidField.IsValid() && (!JsonPublisherUuidField->IsNull() &&  TryGetJsonValue(JsonPublisherUuidField, PublisherUuid));
 	const TSharedPtr<FJsonValue> JsonTenantUuidField = (*Object)->TryGetField(TEXT("tenant_uuid"));
-	ParseSuccess &= JsonTenantUuidField.IsValid() && !JsonTenantUuidField->IsNull() && TryGetJsonValue(JsonTenantUuidField, TenantUuid);
+	ParseSuccess &= JsonTenantUuidField.IsValid() && (!JsonTenantUuidField->IsNull() &&  TryGetJsonValue(JsonTenantUuidField, TenantUuid));
 	const TSharedPtr<FJsonValue> JsonConfigElectorUuidField = (*Object)->TryGetField(TEXT("config_elector_uuid"));
-	ParseSuccess &= JsonConfigElectorUuidField.IsValid() && !JsonConfigElectorUuidField->IsNull() && TryGetJsonValue(JsonConfigElectorUuidField, ConfigElectorUuid);
+	ParseSuccess &= JsonConfigElectorUuidField.IsValid() && (!JsonConfigElectorUuidField->IsNull() &&  TryGetJsonValue(JsonConfigElectorUuidField, ConfigElectorUuid));
 	const TSharedPtr<FJsonValue> JsonClientUuidField = (*Object)->TryGetField(TEXT("client_uuid"));
-	ParseSuccess &= JsonClientUuidField.IsValid() && !JsonClientUuidField->IsNull() && TryGetJsonValue(JsonClientUuidField, ClientUuid);
+	ParseSuccess &= JsonClientUuidField.IsValid() && (!JsonClientUuidField->IsNull() &&  TryGetJsonValue(JsonClientUuidField, ClientUuid));
 	const TSharedPtr<FJsonValue> JsonClientIdField = (*Object)->TryGetField(TEXT("client_id"));
-	ParseSuccess &= JsonClientIdField.IsValid() && !JsonClientIdField->IsNull() && TryGetJsonValue(JsonClientIdField, ClientId);
+	ParseSuccess &= JsonClientIdField.IsValid() && (!JsonClientIdField->IsNull() &&  TryGetJsonValue(JsonClientIdField, ClientId));
 	const TSharedPtr<FJsonValue> JsonTokenTypeField = (*Object)->TryGetField(TEXT("token_type"));
-	ParseSuccess &= JsonTokenTypeField.IsValid() && !JsonTokenTypeField->IsNull() && TryGetJsonValue(JsonTokenTypeField, TokenType);
+	ParseSuccess &= JsonTokenTypeField.IsValid() && (!JsonTokenTypeField->IsNull() &&  TryGetJsonValue(JsonTokenTypeField, TokenType));
 	const TSharedPtr<FJsonValue> JsonExpiresInField = (*Object)->TryGetField(TEXT("expires_in"));
-	if (JsonExpiresInField.IsValid() && !JsonExpiresInField->IsNull())
+	if (JsonExpiresInField.IsValid())
 	{
 		ExpiresIn_IsSet = TryGetJsonValue(JsonExpiresInField, ExpiresIn_Optional);
 		ParseSuccess &= ExpiresIn_IsSet;

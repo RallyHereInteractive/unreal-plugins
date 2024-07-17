@@ -50,19 +50,19 @@ bool FRHAPI_PlatformSessionTemplate::FromJson(const TSharedPtr<FJsonValue>& Json
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPlatformIdField = (*Object)->TryGetField(TEXT("platform_id"));
-	ParseSuccess &= JsonPlatformIdField.IsValid() && !JsonPlatformIdField->IsNull() && TryGetJsonValue(JsonPlatformIdField, PlatformId);
+	ParseSuccess &= JsonPlatformIdField.IsValid() && (!JsonPlatformIdField->IsNull() &&  TryGetJsonValue(JsonPlatformIdField, PlatformId));
 	const TSharedPtr<FJsonValue> JsonPlatformField = (*Object)->TryGetField(TEXT("platform"));
-	ParseSuccess &= JsonPlatformField.IsValid() && !JsonPlatformField->IsNull() && TryGetJsonValue(JsonPlatformField, Platform);
+	ParseSuccess &= JsonPlatformField.IsValid() && (!JsonPlatformField->IsNull() &&  TryGetJsonValue(JsonPlatformField, Platform));
 	const TSharedPtr<FJsonValue> JsonPlatformSessionTypeField = (*Object)->TryGetField(TEXT("platform_session_type"));
-	ParseSuccess &= JsonPlatformSessionTypeField.IsValid() && !JsonPlatformSessionTypeField->IsNull() && TryGetJsonValue(JsonPlatformSessionTypeField, PlatformSessionType);
+	ParseSuccess &= JsonPlatformSessionTypeField.IsValid() && (!JsonPlatformSessionTypeField->IsNull() &&  TryGetJsonValue(JsonPlatformSessionTypeField, PlatformSessionType));
 	const TSharedPtr<FJsonValue> JsonMaxPlayersField = (*Object)->TryGetField(TEXT("max_players"));
-	if (JsonMaxPlayersField.IsValid() && !JsonMaxPlayersField->IsNull())
+	if (JsonMaxPlayersField.IsValid())
 	{
 		MaxPlayers_IsSet = TryGetJsonValue(JsonMaxPlayersField, MaxPlayers_Optional);
 		ParseSuccess &= MaxPlayers_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	if (JsonCustomDataField.IsValid())
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;

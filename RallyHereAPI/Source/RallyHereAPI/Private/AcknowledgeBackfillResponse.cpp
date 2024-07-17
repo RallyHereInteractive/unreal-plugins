@@ -39,7 +39,7 @@ bool FRHAPI_AcknowledgeBackfillResponse::FromJson(const TSharedPtr<FJsonValue>& 
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonBackfilledPlayersField = (*Object)->TryGetField(TEXT("backfilled_players"));
-	if (JsonBackfilledPlayersField.IsValid() && !JsonBackfilledPlayersField->IsNull())
+	if (JsonBackfilledPlayersField.IsValid())
 	{
 		BackfilledPlayers_IsSet = TryGetJsonValue(JsonBackfilledPlayersField, BackfilledPlayers_Optional);
 		ParseSuccess &= BackfilledPlayers_IsSet;

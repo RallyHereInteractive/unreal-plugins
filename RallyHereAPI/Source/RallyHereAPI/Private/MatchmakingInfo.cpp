@@ -46,15 +46,15 @@ bool FRHAPI_MatchmakingInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonTicketIdField = (*Object)->TryGetField(TEXT("ticket_id"));
-	ParseSuccess &= JsonTicketIdField.IsValid() && !JsonTicketIdField->IsNull() && TryGetJsonValue(JsonTicketIdField, TicketId);
+	ParseSuccess &= JsonTicketIdField.IsValid() && (!JsonTicketIdField->IsNull() &&  TryGetJsonValue(JsonTicketIdField, TicketId));
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	if (JsonCustomDataField.IsValid())
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonQueueIdField = (*Object)->TryGetField(TEXT("queue_id"));
-	if (JsonQueueIdField.IsValid() && !JsonQueueIdField->IsNull())
+	if (JsonQueueIdField.IsValid())
 	{
 		QueueId_IsSet = TryGetJsonValue(JsonQueueIdField, QueueId_Optional);
 		ParseSuccess &= QueueId_IsSet;

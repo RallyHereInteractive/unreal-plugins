@@ -36,7 +36,7 @@ bool FRHAPI_TokenRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonGrantTypeField = (*Object)->TryGetField(TEXT("grant_type"));
-	ParseSuccess &= JsonGrantTypeField.IsValid() && !JsonGrantTypeField->IsNull() && TryGetJsonValue(JsonGrantTypeField, GrantType);
+	ParseSuccess &= JsonGrantTypeField.IsValid() && (!JsonGrantTypeField->IsNull() &&  TryGetJsonValue(JsonGrantTypeField, GrantType));
 
 	return ParseSuccess;
 }

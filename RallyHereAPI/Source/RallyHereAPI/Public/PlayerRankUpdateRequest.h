@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_PlayerRankUpdateRequest : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief ID for the instance the match took place on */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -55,15 +55,15 @@ struct RALLYHEREAPI_API FRHAPI_PlayerRankUpdateRequest : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of InstanceId_Optional and returns true if it has been set, otherwise returns false */
 	bool GetInstanceId(FString& OutValue) const { if (InstanceId_IsSet) OutValue = InstanceId_Optional; return InstanceId_IsSet; }
 	/** @brief Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetInstanceIdOrNull() { if (InstanceId_IsSet) return &InstanceId_Optional; return nullptr; }
+	FString* GetInstanceIdOrNull() { if (InstanceId_IsSet) return (&InstanceId_Optional); return nullptr; }
 	/** @brief Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetInstanceIdOrNull() const { if (InstanceId_IsSet) return &InstanceId_Optional; return nullptr; }
+	const FString* GetInstanceIdOrNull() const { if (InstanceId_IsSet) return (&InstanceId_Optional); return nullptr; }
 	/** @brief Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true */
-	void SetInstanceId(const FString& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true; }
+	void SetInstanceId(const FString& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true;  }
 	/** @brief Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true using move semantics */
-	void SetInstanceId(FString&& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true; }
+	void SetInstanceId(FString&& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true;  }
 	 /** @brief Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false */
-	void ClearInstanceId() { InstanceId_IsSet = false; }
+	void ClearInstanceId() { InstanceId_IsSet = false;  }
 
 	/** @brief Current rank info about player */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -73,9 +73,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerRankUpdateRequest : public FRHAPI_Model
 	/** @brief Gets the value of Rank */
 	const FRHAPI_RankData& GetRank() const { return Rank; }
 	/** @brief Sets the value of Rank */
-	void SetRank(const FRHAPI_RankData& NewValue) { Rank = NewValue;  }
+	void SetRank(const FRHAPI_RankData& NewValue) { Rank = NewValue;   }
 	/** @brief Sets the value of Rank using move semantics */
-	void SetRank(FRHAPI_RankData&& NewValue) { Rank = NewValue;  }
+	void SetRank(FRHAPI_RankData&& NewValue) { Rank = NewValue;   }
 };
 
 /** @} */

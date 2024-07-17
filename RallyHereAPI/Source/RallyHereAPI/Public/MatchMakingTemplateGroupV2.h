@@ -32,14 +32,14 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplateGroupV2 : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief ID for this set of potential matchmaking templates */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -49,9 +49,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplateGroupV2 : public FRHAPI_Model
 	/** @brief Gets the value of MatchMakingTemplateGroupId */
 	const FGuid& GetMatchMakingTemplateGroupId() const { return MatchMakingTemplateGroupId; }
 	/** @brief Sets the value of MatchMakingTemplateGroupId */
-	void SetMatchMakingTemplateGroupId(const FGuid& NewValue) { MatchMakingTemplateGroupId = NewValue;  }
+	void SetMatchMakingTemplateGroupId(const FGuid& NewValue) { MatchMakingTemplateGroupId = NewValue;   }
 	/** @brief Sets the value of MatchMakingTemplateGroupId using move semantics */
-	void SetMatchMakingTemplateGroupId(FGuid&& NewValue) { MatchMakingTemplateGroupId = NewValue;  }
+	void SetMatchMakingTemplateGroupId(FGuid&& NewValue) { MatchMakingTemplateGroupId = NewValue;   }
 
 	/** @brief List of the different matchmaking templates that could be used. The config is chosen based on a set of rules in each MatchMakingTemplate object. If there are no rules, it's the default template */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -61,9 +61,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplateGroupV2 : public FRHAPI_Model
 	/** @brief Gets the value of TemplateOptions */
 	const TArray<FRHAPI_MatchMakingTemplateV2>& GetTemplateOptions() const { return TemplateOptions; }
 	/** @brief Sets the value of TemplateOptions */
-	void SetTemplateOptions(const TArray<FRHAPI_MatchMakingTemplateV2>& NewValue) { TemplateOptions = NewValue;  }
+	void SetTemplateOptions(const TArray<FRHAPI_MatchMakingTemplateV2>& NewValue) { TemplateOptions = NewValue;   }
 	/** @brief Sets the value of TemplateOptions using move semantics */
-	void SetTemplateOptions(TArray<FRHAPI_MatchMakingTemplateV2>&& NewValue) { TemplateOptions = NewValue;  }
+	void SetTemplateOptions(TArray<FRHAPI_MatchMakingTemplateV2>&& NewValue) { TemplateOptions = NewValue;   }
 
 	/** @brief Set of all the item ids that are required to validate every rule contained in this template group */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -80,15 +80,15 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplateGroupV2 : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of RequiredItemIds_Optional and returns true if it has been set, otherwise returns false */
 	bool GetRequiredItemIds(TSet<int32>& OutValue) const { if (RequiredItemIds_IsSet) OutValue = RequiredItemIds_Optional; return RequiredItemIds_IsSet; }
 	/** @brief Returns a pointer to RequiredItemIds_Optional, if it has been set, otherwise returns nullptr */
-	TSet<int32>* GetRequiredItemIdsOrNull() { if (RequiredItemIds_IsSet) return &RequiredItemIds_Optional; return nullptr; }
+	TSet<int32>* GetRequiredItemIdsOrNull() { if (RequiredItemIds_IsSet) return (&RequiredItemIds_Optional); return nullptr; }
 	/** @brief Returns a pointer to RequiredItemIds_Optional, if it has been set, otherwise returns nullptr */
-	const TSet<int32>* GetRequiredItemIdsOrNull() const { if (RequiredItemIds_IsSet) return &RequiredItemIds_Optional; return nullptr; }
+	const TSet<int32>* GetRequiredItemIdsOrNull() const { if (RequiredItemIds_IsSet) return (&RequiredItemIds_Optional); return nullptr; }
 	/** @brief Sets the value of RequiredItemIds_Optional and also sets RequiredItemIds_IsSet to true */
-	void SetRequiredItemIds(const TSet<int32>& NewValue) { RequiredItemIds_Optional = NewValue; RequiredItemIds_IsSet = true; }
+	void SetRequiredItemIds(const TSet<int32>& NewValue) { RequiredItemIds_Optional = NewValue; RequiredItemIds_IsSet = true;  }
 	/** @brief Sets the value of RequiredItemIds_Optional and also sets RequiredItemIds_IsSet to true using move semantics */
-	void SetRequiredItemIds(TSet<int32>&& NewValue) { RequiredItemIds_Optional = NewValue; RequiredItemIds_IsSet = true; }
+	void SetRequiredItemIds(TSet<int32>&& NewValue) { RequiredItemIds_Optional = NewValue; RequiredItemIds_IsSet = true;  }
 	 /** @brief Clears the value of RequiredItemIds_Optional and sets RequiredItemIds_IsSet to false */
-	void ClearRequiredItemIds() { RequiredItemIds_IsSet = false; }
+	void ClearRequiredItemIds() { RequiredItemIds_IsSet = false;  }
 };
 
 /** @} */

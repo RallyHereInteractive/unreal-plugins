@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_BrowserResponse : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Cursor to continue iterating through browser sessions. 0 means we have returned the last entry */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -48,13 +48,13 @@ struct RALLYHEREAPI_API FRHAPI_BrowserResponse : public FRHAPI_Model
 	/** @brief Gets the value of Cursor */
 	const int32& GetCursor() const { return Cursor; }
 	/** @brief Sets the value of Cursor */
-	void SetCursor(const int32& NewValue) { Cursor = NewValue;  }
+	void SetCursor(const int32& NewValue) { Cursor = NewValue;   }
 	/** @brief Sets the value of Cursor using move semantics */
-	void SetCursor(int32&& NewValue) { Cursor = NewValue;  }
+	void SetCursor(int32&& NewValue) { Cursor = NewValue;   }
 	/** @brief Returns true if Cursor matches the default value */
 	bool IsCursorDefaultValue() const { return Cursor == 0; }
 	/** @brief Sets the value of Cursor to its default  */
-	void SetCursorToDefault() { Cursor = 0;  }
+	void SetCursorToDefault() { SetCursor(0); }
 
 	/** @brief List of sessions in the browser */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -64,9 +64,9 @@ struct RALLYHEREAPI_API FRHAPI_BrowserResponse : public FRHAPI_Model
 	/** @brief Gets the value of BrowserSessions */
 	const TArray<FRHAPI_BrowserSessionInfo>& GetBrowserSessions() const { return BrowserSessions; }
 	/** @brief Sets the value of BrowserSessions */
-	void SetBrowserSessions(const TArray<FRHAPI_BrowserSessionInfo>& NewValue) { BrowserSessions = NewValue;  }
+	void SetBrowserSessions(const TArray<FRHAPI_BrowserSessionInfo>& NewValue) { BrowserSessions = NewValue;   }
 	/** @brief Sets the value of BrowserSessions using move semantics */
-	void SetBrowserSessions(TArray<FRHAPI_BrowserSessionInfo>&& NewValue) { BrowserSessions = NewValue;  }
+	void SetBrowserSessions(TArray<FRHAPI_BrowserSessionInfo>&& NewValue) { BrowserSessions = NewValue;   }
 };
 
 /** @} */

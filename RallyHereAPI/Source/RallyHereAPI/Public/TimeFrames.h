@@ -32,14 +32,14 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrames : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Time Frames mapped by Time Frame ID. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -56,15 +56,15 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrames : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of TimeFrames_Optional and returns true if it has been set, otherwise returns false */
 	bool GetTimeFrames(TMap<FString, FRHAPI_TimeFrame>& OutValue) const { if (TimeFrames_IsSet) OutValue = TimeFrames_Optional; return TimeFrames_IsSet; }
 	/** @brief Returns a pointer to TimeFrames_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FRHAPI_TimeFrame>* GetTimeFramesOrNull() { if (TimeFrames_IsSet) return &TimeFrames_Optional; return nullptr; }
+	TMap<FString, FRHAPI_TimeFrame>* GetTimeFramesOrNull() { if (TimeFrames_IsSet) return (&TimeFrames_Optional); return nullptr; }
 	/** @brief Returns a pointer to TimeFrames_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FRHAPI_TimeFrame>* GetTimeFramesOrNull() const { if (TimeFrames_IsSet) return &TimeFrames_Optional; return nullptr; }
+	const TMap<FString, FRHAPI_TimeFrame>* GetTimeFramesOrNull() const { if (TimeFrames_IsSet) return (&TimeFrames_Optional); return nullptr; }
 	/** @brief Sets the value of TimeFrames_Optional and also sets TimeFrames_IsSet to true */
-	void SetTimeFrames(const TMap<FString, FRHAPI_TimeFrame>& NewValue) { TimeFrames_Optional = NewValue; TimeFrames_IsSet = true; }
+	void SetTimeFrames(const TMap<FString, FRHAPI_TimeFrame>& NewValue) { TimeFrames_Optional = NewValue; TimeFrames_IsSet = true;  }
 	/** @brief Sets the value of TimeFrames_Optional and also sets TimeFrames_IsSet to true using move semantics */
-	void SetTimeFrames(TMap<FString, FRHAPI_TimeFrame>&& NewValue) { TimeFrames_Optional = NewValue; TimeFrames_IsSet = true; }
+	void SetTimeFrames(TMap<FString, FRHAPI_TimeFrame>&& NewValue) { TimeFrames_Optional = NewValue; TimeFrames_IsSet = true;  }
 	 /** @brief Clears the value of TimeFrames_Optional and sets TimeFrames_IsSet to false */
-	void ClearTimeFrames() { TimeFrames_IsSet = false; }
+	void ClearTimeFrames() { TimeFrames_IsSet = false;  }
 
 	/** @brief Cache info for the Time Frames. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -81,15 +81,15 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrames : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false */
 	bool GetCacheInfo(FRHAPI_CacheInfo& OutValue) const { if (CacheInfo_IsSet) OutValue = CacheInfo_Optional; return CacheInfo_IsSet; }
 	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_CacheInfo* GetCacheInfoOrNull() { if (CacheInfo_IsSet) return &CacheInfo_Optional; return nullptr; }
+	FRHAPI_CacheInfo* GetCacheInfoOrNull() { if (CacheInfo_IsSet) return (&CacheInfo_Optional); return nullptr; }
 	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return &CacheInfo_Optional; return nullptr; }
+	const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return (&CacheInfo_Optional); return nullptr; }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true */
-	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
+	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
-	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
+	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
 	 /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
-	void ClearCacheInfo() { CacheInfo_IsSet = false; }
+	void ClearCacheInfo() { CacheInfo_IsSet = false;  }
 };
 
 /** @} */

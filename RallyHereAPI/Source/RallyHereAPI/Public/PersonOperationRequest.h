@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_PersonOperationRequest : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Person ID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -55,15 +55,15 @@ struct RALLYHEREAPI_API FRHAPI_PersonOperationRequest : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of PersonId_Optional and returns true if it has been set, otherwise returns false */
 	bool GetPersonId(FGuid& OutValue) const { if (PersonId_IsSet) OutValue = PersonId_Optional; return PersonId_IsSet; }
 	/** @brief Returns a pointer to PersonId_Optional, if it has been set, otherwise returns nullptr */
-	FGuid* GetPersonIdOrNull() { if (PersonId_IsSet) return &PersonId_Optional; return nullptr; }
+	FGuid* GetPersonIdOrNull() { if (PersonId_IsSet) return (&PersonId_Optional); return nullptr; }
 	/** @brief Returns a pointer to PersonId_Optional, if it has been set, otherwise returns nullptr */
-	const FGuid* GetPersonIdOrNull() const { if (PersonId_IsSet) return &PersonId_Optional; return nullptr; }
+	const FGuid* GetPersonIdOrNull() const { if (PersonId_IsSet) return (&PersonId_Optional); return nullptr; }
 	/** @brief Sets the value of PersonId_Optional and also sets PersonId_IsSet to true */
-	void SetPersonId(const FGuid& NewValue) { PersonId_Optional = NewValue; PersonId_IsSet = true; }
+	void SetPersonId(const FGuid& NewValue) { PersonId_Optional = NewValue; PersonId_IsSet = true;  }
 	/** @brief Sets the value of PersonId_Optional and also sets PersonId_IsSet to true using move semantics */
-	void SetPersonId(FGuid&& NewValue) { PersonId_Optional = NewValue; PersonId_IsSet = true; }
+	void SetPersonId(FGuid&& NewValue) { PersonId_Optional = NewValue; PersonId_IsSet = true;  }
 	 /** @brief Clears the value of PersonId_Optional and sets PersonId_IsSet to false */
-	void ClearPersonId() { PersonId_IsSet = false; }
+	void ClearPersonId() { PersonId_IsSet = false;  }
 
 	/** @brief Platform ID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -80,15 +80,15 @@ struct RALLYHEREAPI_API FRHAPI_PersonOperationRequest : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Platform_Optional and returns true if it has been set, otherwise returns false */
 	bool GetPlatform(ERHAPI_Platform& OutValue) const { if (Platform_IsSet) OutValue = Platform_Optional; return Platform_IsSet; }
 	/** @brief Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr */
-	ERHAPI_Platform* GetPlatformOrNull() { if (Platform_IsSet) return &Platform_Optional; return nullptr; }
+	ERHAPI_Platform* GetPlatformOrNull() { if (Platform_IsSet) return (&Platform_Optional); return nullptr; }
 	/** @brief Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr */
-	const ERHAPI_Platform* GetPlatformOrNull() const { if (Platform_IsSet) return &Platform_Optional; return nullptr; }
+	const ERHAPI_Platform* GetPlatformOrNull() const { if (Platform_IsSet) return (&Platform_Optional); return nullptr; }
 	/** @brief Sets the value of Platform_Optional and also sets Platform_IsSet to true */
-	void SetPlatform(const ERHAPI_Platform& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true; }
+	void SetPlatform(const ERHAPI_Platform& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true;  }
 	/** @brief Sets the value of Platform_Optional and also sets Platform_IsSet to true using move semantics */
-	void SetPlatform(ERHAPI_Platform&& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true; }
+	void SetPlatform(ERHAPI_Platform&& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true;  }
 	 /** @brief Clears the value of Platform_Optional and sets Platform_IsSet to false */
-	void ClearPlatform() { Platform_IsSet = false; }
+	void ClearPlatform() { Platform_IsSet = false;  }
 
 	/** @brief Platform User ID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -105,15 +105,15 @@ struct RALLYHEREAPI_API FRHAPI_PersonOperationRequest : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of PlatformUserId_Optional and returns true if it has been set, otherwise returns false */
 	bool GetPlatformUserId(FString& OutValue) const { if (PlatformUserId_IsSet) OutValue = PlatformUserId_Optional; return PlatformUserId_IsSet; }
 	/** @brief Returns a pointer to PlatformUserId_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetPlatformUserIdOrNull() { if (PlatformUserId_IsSet) return &PlatformUserId_Optional; return nullptr; }
+	FString* GetPlatformUserIdOrNull() { if (PlatformUserId_IsSet) return (&PlatformUserId_Optional); return nullptr; }
 	/** @brief Returns a pointer to PlatformUserId_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetPlatformUserIdOrNull() const { if (PlatformUserId_IsSet) return &PlatformUserId_Optional; return nullptr; }
+	const FString* GetPlatformUserIdOrNull() const { if (PlatformUserId_IsSet) return (&PlatformUserId_Optional); return nullptr; }
 	/** @brief Sets the value of PlatformUserId_Optional and also sets PlatformUserId_IsSet to true */
-	void SetPlatformUserId(const FString& NewValue) { PlatformUserId_Optional = NewValue; PlatformUserId_IsSet = true; }
+	void SetPlatformUserId(const FString& NewValue) { PlatformUserId_Optional = NewValue; PlatformUserId_IsSet = true;  }
 	/** @brief Sets the value of PlatformUserId_Optional and also sets PlatformUserId_IsSet to true using move semantics */
-	void SetPlatformUserId(FString&& NewValue) { PlatformUserId_Optional = NewValue; PlatformUserId_IsSet = true; }
+	void SetPlatformUserId(FString&& NewValue) { PlatformUserId_Optional = NewValue; PlatformUserId_IsSet = true;  }
 	 /** @brief Clears the value of PlatformUserId_Optional and sets PlatformUserId_IsSet to false */
-	void ClearPlatformUserId() { PlatformUserId_IsSet = false; }
+	void ClearPlatformUserId() { PlatformUserId_IsSet = false;  }
 };
 
 /** @} */

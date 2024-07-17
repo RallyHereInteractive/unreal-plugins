@@ -36,7 +36,7 @@ bool FRHAPI_RankConfigRequestResponseV3::FromJson(const TSharedPtr<FJsonValue>& 
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonRankConfigsField = (*Object)->TryGetField(TEXT("rank_configs"));
-	ParseSuccess &= JsonRankConfigsField.IsValid() && !JsonRankConfigsField->IsNull() && TryGetJsonValue(JsonRankConfigsField, RankConfigs);
+	ParseSuccess &= JsonRankConfigsField.IsValid() && (!JsonRankConfigsField->IsNull() &&  TryGetJsonValue(JsonRankConfigsField, RankConfigs));
 
 	return ParseSuccess;
 }

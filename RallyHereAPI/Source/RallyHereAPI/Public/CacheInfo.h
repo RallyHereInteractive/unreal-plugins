@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_CacheInfo : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Etag{  };
@@ -46,9 +46,9 @@ struct RALLYHEREAPI_API FRHAPI_CacheInfo : public FRHAPI_Model
 	/** @brief Gets the value of Etag */
 	const FString& GetEtag() const { return Etag; }
 	/** @brief Sets the value of Etag */
-	void SetEtag(const FString& NewValue) { Etag = NewValue;  }
+	void SetEtag(const FString& NewValue) { Etag = NewValue;   }
 	/** @brief Sets the value of Etag using move semantics */
-	void SetEtag(FString&& NewValue) { Etag = NewValue;  }
+	void SetEtag(FString&& NewValue) { Etag = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString StrRep_Optional{  };
@@ -64,15 +64,15 @@ struct RALLYHEREAPI_API FRHAPI_CacheInfo : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of StrRep_Optional and returns true if it has been set, otherwise returns false */
 	bool GetStrRep(FString& OutValue) const { if (StrRep_IsSet) OutValue = StrRep_Optional; return StrRep_IsSet; }
 	/** @brief Returns a pointer to StrRep_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStrRepOrNull() { if (StrRep_IsSet) return &StrRep_Optional; return nullptr; }
+	FString* GetStrRepOrNull() { if (StrRep_IsSet) return (&StrRep_Optional); return nullptr; }
 	/** @brief Returns a pointer to StrRep_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStrRepOrNull() const { if (StrRep_IsSet) return &StrRep_Optional; return nullptr; }
+	const FString* GetStrRepOrNull() const { if (StrRep_IsSet) return (&StrRep_Optional); return nullptr; }
 	/** @brief Sets the value of StrRep_Optional and also sets StrRep_IsSet to true */
-	void SetStrRep(const FString& NewValue) { StrRep_Optional = NewValue; StrRep_IsSet = true; }
+	void SetStrRep(const FString& NewValue) { StrRep_Optional = NewValue; StrRep_IsSet = true;  }
 	/** @brief Sets the value of StrRep_Optional and also sets StrRep_IsSet to true using move semantics */
-	void SetStrRep(FString&& NewValue) { StrRep_Optional = NewValue; StrRep_IsSet = true; }
+	void SetStrRep(FString&& NewValue) { StrRep_Optional = NewValue; StrRep_IsSet = true;  }
 	 /** @brief Clears the value of StrRep_Optional and sets StrRep_IsSet to false */
-	void ClearStrRep() { StrRep_IsSet = false; }
+	void ClearStrRep() { StrRep_IsSet = false;  }
 };
 
 /** @} */

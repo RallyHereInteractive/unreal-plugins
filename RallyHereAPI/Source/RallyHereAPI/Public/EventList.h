@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_EventList : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief List of events */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -48,9 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_EventList : public FRHAPI_Model
 	/** @brief Gets the value of EventList */
 	const TArray<FRHAPI_RallyHereEvent>& GetEventList() const { return EventList; }
 	/** @brief Sets the value of EventList */
-	void SetEventList(const TArray<FRHAPI_RallyHereEvent>& NewValue) { EventList = NewValue;  }
+	void SetEventList(const TArray<FRHAPI_RallyHereEvent>& NewValue) { EventList = NewValue;   }
 	/** @brief Sets the value of EventList using move semantics */
-	void SetEventList(TArray<FRHAPI_RallyHereEvent>&& NewValue) { EventList = NewValue;  }
+	void SetEventList(TArray<FRHAPI_RallyHereEvent>&& NewValue) { EventList = NewValue;   }
 };
 
 /** @} */

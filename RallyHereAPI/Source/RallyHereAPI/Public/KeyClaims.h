@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaims : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief List of Key Claims available to the Player */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -48,9 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaims : public FRHAPI_Model
 	/** @brief Gets the value of Claims */
 	const TArray<FRHAPI_KeyClaim>& GetClaims() const { return Claims; }
 	/** @brief Sets the value of Claims */
-	void SetClaims(const TArray<FRHAPI_KeyClaim>& NewValue) { Claims = NewValue;  }
+	void SetClaims(const TArray<FRHAPI_KeyClaim>& NewValue) { Claims = NewValue;   }
 	/** @brief Sets the value of Claims using move semantics */
-	void SetClaims(TArray<FRHAPI_KeyClaim>&& NewValue) { Claims = NewValue;  }
+	void SetClaims(TArray<FRHAPI_KeyClaim>&& NewValue) { Claims = NewValue;   }
 };
 
 /** @} */

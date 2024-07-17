@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_PersonEmailListResponse : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief List of all email list ids the user is subscribed to */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -47,9 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_PersonEmailListResponse : public FRHAPI_Model
 	/** @brief Gets the value of EmailListIds */
 	const TArray<int32>& GetEmailListIds() const { return EmailListIds; }
 	/** @brief Sets the value of EmailListIds */
-	void SetEmailListIds(const TArray<int32>& NewValue) { EmailListIds = NewValue;  }
+	void SetEmailListIds(const TArray<int32>& NewValue) { EmailListIds = NewValue;   }
 	/** @brief Sets the value of EmailListIds using move semantics */
-	void SetEmailListIds(TArray<int32>&& NewValue) { EmailListIds = NewValue;  }
+	void SetEmailListIds(TArray<int32>&& NewValue) { EmailListIds = NewValue;   }
 };
 
 /** @} */

@@ -76,51 +76,51 @@ bool FRHAPI_LoginRequestV1::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonGrantTypeField = (*Object)->TryGetField(TEXT("grant_type"));
-	ParseSuccess &= JsonGrantTypeField.IsValid() && !JsonGrantTypeField->IsNull() && TryGetJsonValue(JsonGrantTypeField, GrantType);
+	ParseSuccess &= JsonGrantTypeField.IsValid() && (!JsonGrantTypeField->IsNull() &&  TryGetJsonValue(JsonGrantTypeField, GrantType));
 	const TSharedPtr<FJsonValue> JsonPortalAccessTokenField = (*Object)->TryGetField(TEXT("portal_access_token"));
-	if (JsonPortalAccessTokenField.IsValid() && !JsonPortalAccessTokenField->IsNull())
+	if (JsonPortalAccessTokenField.IsValid())
 	{
 		PortalAccessToken_IsSet = TryGetJsonValue(JsonPortalAccessTokenField, PortalAccessToken_Optional);
 		ParseSuccess &= PortalAccessToken_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPortalDisplayNameField = (*Object)->TryGetField(TEXT("portal_display_name"));
-	if (JsonPortalDisplayNameField.IsValid() && !JsonPortalDisplayNameField->IsNull())
+	if (JsonPortalDisplayNameField.IsValid())
 	{
 		PortalDisplayName_IsSet = TryGetJsonValue(JsonPortalDisplayNameField, PortalDisplayName_Optional);
 		ParseSuccess &= PortalDisplayName_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPortalParentAccessTokenField = (*Object)->TryGetField(TEXT("portal_parent_access_token"));
-	if (JsonPortalParentAccessTokenField.IsValid() && !JsonPortalParentAccessTokenField->IsNull())
+	if (JsonPortalParentAccessTokenField.IsValid())
 	{
 		PortalParentAccessToken_IsSet = TryGetJsonValue(JsonPortalParentAccessTokenField, PortalParentAccessToken_Optional);
 		ParseSuccess &= PortalParentAccessToken_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPortalParentDisplayNameField = (*Object)->TryGetField(TEXT("portal_parent_display_name"));
-	if (JsonPortalParentDisplayNameField.IsValid() && !JsonPortalParentDisplayNameField->IsNull())
+	if (JsonPortalParentDisplayNameField.IsValid())
 	{
 		PortalParentDisplayName_IsSet = TryGetJsonValue(JsonPortalParentDisplayNameField, PortalParentDisplayName_Optional);
 		ParseSuccess &= PortalParentDisplayName_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonIncludeRefreshField = (*Object)->TryGetField(TEXT("include_refresh"));
-	if (JsonIncludeRefreshField.IsValid() && !JsonIncludeRefreshField->IsNull())
+	if (JsonIncludeRefreshField.IsValid())
 	{
 		IncludeRefresh_IsSet = TryGetJsonValue(JsonIncludeRefreshField, IncludeRefresh_Optional);
 		ParseSuccess &= IncludeRefresh_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonAcceptEulaField = (*Object)->TryGetField(TEXT("accept_eula"));
-	if (JsonAcceptEulaField.IsValid() && !JsonAcceptEulaField->IsNull())
+	if (JsonAcceptEulaField.IsValid())
 	{
 		AcceptEula_IsSet = TryGetJsonValue(JsonAcceptEulaField, AcceptEula_Optional);
 		ParseSuccess &= AcceptEula_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonAcceptTosField = (*Object)->TryGetField(TEXT("accept_tos"));
-	if (JsonAcceptTosField.IsValid() && !JsonAcceptTosField->IsNull())
+	if (JsonAcceptTosField.IsValid())
 	{
 		AcceptTos_IsSet = TryGetJsonValue(JsonAcceptTosField, AcceptTos_Optional);
 		ParseSuccess &= AcceptTos_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonAcceptPrivacyPolicyField = (*Object)->TryGetField(TEXT("accept_privacy_policy"));
-	if (JsonAcceptPrivacyPolicyField.IsValid() && !JsonAcceptPrivacyPolicyField->IsNull())
+	if (JsonAcceptPrivacyPolicyField.IsValid())
 	{
 		AcceptPrivacyPolicy_IsSet = TryGetJsonValue(JsonAcceptPrivacyPolicyField, AcceptPrivacyPolicy_Optional);
 		ParseSuccess &= AcceptPrivacyPolicy_IsSet;

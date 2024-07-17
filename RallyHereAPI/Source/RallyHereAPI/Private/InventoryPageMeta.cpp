@@ -54,25 +54,25 @@ bool FRHAPI_InventoryPageMeta::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonStartingPositionField = (*Object)->TryGetField(TEXT("starting_position"));
-	if (JsonStartingPositionField.IsValid() && !JsonStartingPositionField->IsNull())
+	if (JsonStartingPositionField.IsValid())
 	{
 		StartingPosition_IsSet = TryGetJsonValue(JsonStartingPositionField, StartingPosition_Optional);
 		ParseSuccess &= StartingPosition_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCursorField = (*Object)->TryGetField(TEXT("cursor"));
-	if (JsonCursorField.IsValid() && !JsonCursorField->IsNull())
+	if (JsonCursorField.IsValid())
 	{
 		Cursor_IsSet = TryGetJsonValue(JsonCursorField, Cursor_Optional);
 		ParseSuccess &= Cursor_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonSortField = (*Object)->TryGetField(TEXT("sort"));
-	if (JsonSortField.IsValid() && !JsonSortField->IsNull())
+	if (JsonSortField.IsValid())
 	{
 		Sort_IsSet = TryGetJsonValue(JsonSortField, Sort_Optional);
 		ParseSuccess &= Sort_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonLimitField = (*Object)->TryGetField(TEXT("limit"));
-	if (JsonLimitField.IsValid() && !JsonLimitField->IsNull())
+	if (JsonLimitField.IsValid())
 	{
 		Limit_IsSet = TryGetJsonValue(JsonLimitField, Limit_Optional);
 		ParseSuccess &= Limit_IsSet;

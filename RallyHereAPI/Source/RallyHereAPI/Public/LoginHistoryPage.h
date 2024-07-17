@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_LoginHistoryPage : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief The login history entries */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -48,9 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_LoginHistoryPage : public FRHAPI_Model
 	/** @brief Gets the value of Entries */
 	const TArray<FRHAPI_LoginHistoryEntry>& GetEntries() const { return Entries; }
 	/** @brief Sets the value of Entries */
-	void SetEntries(const TArray<FRHAPI_LoginHistoryEntry>& NewValue) { Entries = NewValue;  }
+	void SetEntries(const TArray<FRHAPI_LoginHistoryEntry>& NewValue) { Entries = NewValue;   }
 	/** @brief Sets the value of Entries using move semantics */
-	void SetEntries(TArray<FRHAPI_LoginHistoryEntry>&& NewValue) { Entries = NewValue;  }
+	void SetEntries(TArray<FRHAPI_LoginHistoryEntry>&& NewValue) { Entries = NewValue;   }
 
 	/** @brief Token to retrieve the next page of results */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -67,15 +67,15 @@ struct RALLYHEREAPI_API FRHAPI_LoginHistoryPage : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of ContinuationToken_Optional and returns true if it has been set, otherwise returns false */
 	bool GetContinuationToken(FString& OutValue) const { if (ContinuationToken_IsSet) OutValue = ContinuationToken_Optional; return ContinuationToken_IsSet; }
 	/** @brief Returns a pointer to ContinuationToken_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetContinuationTokenOrNull() { if (ContinuationToken_IsSet) return &ContinuationToken_Optional; return nullptr; }
+	FString* GetContinuationTokenOrNull() { if (ContinuationToken_IsSet) return (&ContinuationToken_Optional); return nullptr; }
 	/** @brief Returns a pointer to ContinuationToken_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetContinuationTokenOrNull() const { if (ContinuationToken_IsSet) return &ContinuationToken_Optional; return nullptr; }
+	const FString* GetContinuationTokenOrNull() const { if (ContinuationToken_IsSet) return (&ContinuationToken_Optional); return nullptr; }
 	/** @brief Sets the value of ContinuationToken_Optional and also sets ContinuationToken_IsSet to true */
-	void SetContinuationToken(const FString& NewValue) { ContinuationToken_Optional = NewValue; ContinuationToken_IsSet = true; }
+	void SetContinuationToken(const FString& NewValue) { ContinuationToken_Optional = NewValue; ContinuationToken_IsSet = true;  }
 	/** @brief Sets the value of ContinuationToken_Optional and also sets ContinuationToken_IsSet to true using move semantics */
-	void SetContinuationToken(FString&& NewValue) { ContinuationToken_Optional = NewValue; ContinuationToken_IsSet = true; }
+	void SetContinuationToken(FString&& NewValue) { ContinuationToken_Optional = NewValue; ContinuationToken_IsSet = true;  }
 	 /** @brief Clears the value of ContinuationToken_Optional and sets ContinuationToken_IsSet to false */
-	void ClearContinuationToken() { ContinuationToken_IsSet = false; }
+	void ClearContinuationToken() { ContinuationToken_IsSet = false;  }
 };
 
 /** @} */

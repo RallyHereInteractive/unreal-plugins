@@ -32,14 +32,14 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserInfo : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Platform for the user */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -49,9 +49,9 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserInfo : public FRHAPI_Model
 	/** @brief Gets the value of Platform */
 	const ERHAPI_Platform& GetPlatform() const { return Platform; }
 	/** @brief Sets the value of Platform */
-	void SetPlatform(const ERHAPI_Platform& NewValue) { Platform = NewValue;  }
+	void SetPlatform(const ERHAPI_Platform& NewValue) { Platform = NewValue;   }
 	/** @brief Sets the value of Platform using move semantics */
-	void SetPlatform(ERHAPI_Platform&& NewValue) { Platform = NewValue;  }
+	void SetPlatform(ERHAPI_Platform&& NewValue) { Platform = NewValue;   }
 
 	/** @brief Portal ID. *DEPRECATED* use `platform` instead */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -61,9 +61,9 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserInfo : public FRHAPI_Model
 	/** @brief Gets the value of PortalId */
 	const ERHAPI_DependenciesSchemasPortal& GetPortalId() const { return PortalId; }
 	/** @brief Sets the value of PortalId */
-	void SetPortalId(const ERHAPI_DependenciesSchemasPortal& NewValue) { PortalId = NewValue;  }
+	void SetPortalId(const ERHAPI_DependenciesSchemasPortal& NewValue) { PortalId = NewValue;   }
 	/** @brief Sets the value of PortalId using move semantics */
-	void SetPortalId(ERHAPI_DependenciesSchemasPortal&& NewValue) { PortalId = NewValue;  }
+	void SetPortalId(ERHAPI_DependenciesSchemasPortal&& NewValue) { PortalId = NewValue;   }
 
 	/** @brief Platform User ID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -73,9 +73,9 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserInfo : public FRHAPI_Model
 	/** @brief Gets the value of PortalUserId */
 	const FString& GetPortalUserId() const { return PortalUserId; }
 	/** @brief Sets the value of PortalUserId */
-	void SetPortalUserId(const FString& NewValue) { PortalUserId = NewValue;  }
+	void SetPortalUserId(const FString& NewValue) { PortalUserId = NewValue;   }
 	/** @brief Sets the value of PortalUserId using move semantics */
-	void SetPortalUserId(FString&& NewValue) { PortalUserId = NewValue;  }
+	void SetPortalUserId(FString&& NewValue) { PortalUserId = NewValue;   }
 
 	/** @brief Display name */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -85,9 +85,9 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserInfo : public FRHAPI_Model
 	/** @brief Gets the value of DisplayName */
 	const FString& GetDisplayName() const { return DisplayName; }
 	/** @brief Sets the value of DisplayName */
-	void SetDisplayName(const FString& NewValue) { DisplayName = NewValue;  }
+	void SetDisplayName(const FString& NewValue) { DisplayName = NewValue;   }
 	/** @brief Sets the value of DisplayName using move semantics */
-	void SetDisplayName(FString&& NewValue) { DisplayName = NewValue;  }
+	void SetDisplayName(FString&& NewValue) { DisplayName = NewValue;   }
 };
 
 /** @} */

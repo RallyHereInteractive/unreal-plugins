@@ -33,14 +33,14 @@ struct RALLYHEREAPI_API FRHAPI_EntitlementEventRequest : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief The type of the event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -50,9 +50,9 @@ struct RALLYHEREAPI_API FRHAPI_EntitlementEventRequest : public FRHAPI_Model
 	/** @brief Gets the value of ActionType */
 	const ERHAPI_EntitlementActionType& GetActionType() const { return ActionType; }
 	/** @brief Sets the value of ActionType */
-	void SetActionType(const ERHAPI_EntitlementActionType& NewValue) { ActionType = NewValue;  }
+	void SetActionType(const ERHAPI_EntitlementActionType& NewValue) { ActionType = NewValue;   }
 	/** @brief Sets the value of ActionType using move semantics */
-	void SetActionType(ERHAPI_EntitlementActionType&& NewValue) { ActionType = NewValue;  }
+	void SetActionType(ERHAPI_EntitlementActionType&& NewValue) { ActionType = NewValue;   }
 
 	/** @brief The status of the event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -69,15 +69,15 @@ struct RALLYHEREAPI_API FRHAPI_EntitlementEventRequest : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Status_Optional and returns true if it has been set, otherwise returns false */
 	bool GetStatus(ERHAPI_EntitlementEventStatus& OutValue) const { if (Status_IsSet) OutValue = Status_Optional; return Status_IsSet; }
 	/** @brief Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr */
-	ERHAPI_EntitlementEventStatus* GetStatusOrNull() { if (Status_IsSet) return &Status_Optional; return nullptr; }
+	ERHAPI_EntitlementEventStatus* GetStatusOrNull() { if (Status_IsSet) return (&Status_Optional); return nullptr; }
 	/** @brief Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr */
-	const ERHAPI_EntitlementEventStatus* GetStatusOrNull() const { if (Status_IsSet) return &Status_Optional; return nullptr; }
+	const ERHAPI_EntitlementEventStatus* GetStatusOrNull() const { if (Status_IsSet) return (&Status_Optional); return nullptr; }
 	/** @brief Sets the value of Status_Optional and also sets Status_IsSet to true */
-	void SetStatus(const ERHAPI_EntitlementEventStatus& NewValue) { Status_Optional = NewValue; Status_IsSet = true; }
+	void SetStatus(const ERHAPI_EntitlementEventStatus& NewValue) { Status_Optional = NewValue; Status_IsSet = true;  }
 	/** @brief Sets the value of Status_Optional and also sets Status_IsSet to true using move semantics */
-	void SetStatus(ERHAPI_EntitlementEventStatus&& NewValue) { Status_Optional = NewValue; Status_IsSet = true; }
+	void SetStatus(ERHAPI_EntitlementEventStatus&& NewValue) { Status_Optional = NewValue; Status_IsSet = true;  }
 	 /** @brief Clears the value of Status_Optional and sets Status_IsSet to false */
-	void ClearStatus() { Status_IsSet = false; }
+	void ClearStatus() { Status_IsSet = false;  }
 
 	/** @brief Override the player UUID for the event.  If not provided, the active player for the platform user will be used */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -94,15 +94,15 @@ struct RALLYHEREAPI_API FRHAPI_EntitlementEventRequest : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of PlayerUuid_Optional and returns true if it has been set, otherwise returns false */
 	bool GetPlayerUuid(FGuid& OutValue) const { if (PlayerUuid_IsSet) OutValue = PlayerUuid_Optional; return PlayerUuid_IsSet; }
 	/** @brief Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr */
-	FGuid* GetPlayerUuidOrNull() { if (PlayerUuid_IsSet) return &PlayerUuid_Optional; return nullptr; }
+	FGuid* GetPlayerUuidOrNull() { if (PlayerUuid_IsSet) return (&PlayerUuid_Optional); return nullptr; }
 	/** @brief Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr */
-	const FGuid* GetPlayerUuidOrNull() const { if (PlayerUuid_IsSet) return &PlayerUuid_Optional; return nullptr; }
+	const FGuid* GetPlayerUuidOrNull() const { if (PlayerUuid_IsSet) return (&PlayerUuid_Optional); return nullptr; }
 	/** @brief Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true */
-	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true; }
+	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true;  }
 	/** @brief Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true using move semantics */
-	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true; }
+	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true;  }
 	 /** @brief Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false */
-	void ClearPlayerUuid() { PlayerUuid_IsSet = false; }
+	void ClearPlayerUuid() { PlayerUuid_IsSet = false;  }
 
 	/** @brief The platform for the event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -112,9 +112,9 @@ struct RALLYHEREAPI_API FRHAPI_EntitlementEventRequest : public FRHAPI_Model
 	/** @brief Gets the value of Platform */
 	const ERHAPI_Platform& GetPlatform() const { return Platform; }
 	/** @brief Sets the value of Platform */
-	void SetPlatform(const ERHAPI_Platform& NewValue) { Platform = NewValue;  }
+	void SetPlatform(const ERHAPI_Platform& NewValue) { Platform = NewValue;   }
 	/** @brief Sets the value of Platform using move semantics */
-	void SetPlatform(ERHAPI_Platform&& NewValue) { Platform = NewValue;  }
+	void SetPlatform(ERHAPI_Platform&& NewValue) { Platform = NewValue;   }
 
 	/** @brief The platform user ID for the event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -124,9 +124,9 @@ struct RALLYHEREAPI_API FRHAPI_EntitlementEventRequest : public FRHAPI_Model
 	/** @brief Gets the value of PlatformUserId */
 	const FString& GetPlatformUserId() const { return PlatformUserId; }
 	/** @brief Sets the value of PlatformUserId */
-	void SetPlatformUserId(const FString& NewValue) { PlatformUserId = NewValue;  }
+	void SetPlatformUserId(const FString& NewValue) { PlatformUserId = NewValue;   }
 	/** @brief Sets the value of PlatformUserId using move semantics */
-	void SetPlatformUserId(FString&& NewValue) { PlatformUserId = NewValue;  }
+	void SetPlatformUserId(FString&& NewValue) { PlatformUserId = NewValue;   }
 
 	/** @brief The SKU for the event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -136,9 +136,9 @@ struct RALLYHEREAPI_API FRHAPI_EntitlementEventRequest : public FRHAPI_Model
 	/** @brief Gets the value of Sku */
 	const FString& GetSku() const { return Sku; }
 	/** @brief Sets the value of Sku */
-	void SetSku(const FString& NewValue) { Sku = NewValue;  }
+	void SetSku(const FString& NewValue) { Sku = NewValue;   }
 	/** @brief Sets the value of Sku using move semantics */
-	void SetSku(FString&& NewValue) { Sku = NewValue;  }
+	void SetSku(FString&& NewValue) { Sku = NewValue;   }
 
 	/** @brief The quantity for the event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -155,19 +155,19 @@ struct RALLYHEREAPI_API FRHAPI_EntitlementEventRequest : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Quantity_Optional and returns true if it has been set, otherwise returns false */
 	bool GetQuantity(int32& OutValue) const { if (Quantity_IsSet) OutValue = Quantity_Optional; return Quantity_IsSet; }
 	/** @brief Returns a pointer to Quantity_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetQuantityOrNull() { if (Quantity_IsSet) return &Quantity_Optional; return nullptr; }
+	int32* GetQuantityOrNull() { if (Quantity_IsSet) return (&Quantity_Optional); return nullptr; }
 	/** @brief Returns a pointer to Quantity_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetQuantityOrNull() const { if (Quantity_IsSet) return &Quantity_Optional; return nullptr; }
+	const int32* GetQuantityOrNull() const { if (Quantity_IsSet) return (&Quantity_Optional); return nullptr; }
 	/** @brief Sets the value of Quantity_Optional and also sets Quantity_IsSet to true */
-	void SetQuantity(const int32& NewValue) { Quantity_Optional = NewValue; Quantity_IsSet = true; }
+	void SetQuantity(const int32& NewValue) { Quantity_Optional = NewValue; Quantity_IsSet = true;  }
 	/** @brief Sets the value of Quantity_Optional and also sets Quantity_IsSet to true using move semantics */
-	void SetQuantity(int32&& NewValue) { Quantity_Optional = NewValue; Quantity_IsSet = true; }
+	void SetQuantity(int32&& NewValue) { Quantity_Optional = NewValue; Quantity_IsSet = true;  }
 	 /** @brief Clears the value of Quantity_Optional and sets Quantity_IsSet to false */
-	void ClearQuantity() { Quantity_Optional = 1; Quantity_IsSet = false; }
+	void ClearQuantity() { Quantity_Optional = 1; Quantity_IsSet = false;  }
 	/** @brief Returns true if Quantity_Optional is set and matches the default value */
 	bool IsQuantityDefaultValue() const { return Quantity_IsSet && Quantity_Optional == 1; }
 	/** @brief Sets the value of Quantity_Optional to its default and also sets Quantity_IsSet to true */
-	void SetQuantityToDefault() { Quantity_Optional = 1; Quantity_IsSet = true; }
+	void SetQuantityToDefault() { SetQuantity(1); }
 
 	/** @brief The external transaction ID for the event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -177,9 +177,9 @@ struct RALLYHEREAPI_API FRHAPI_EntitlementEventRequest : public FRHAPI_Model
 	/** @brief Gets the value of PlatformTransactionId */
 	const FString& GetPlatformTransactionId() const { return PlatformTransactionId; }
 	/** @brief Sets the value of PlatformTransactionId */
-	void SetPlatformTransactionId(const FString& NewValue) { PlatformTransactionId = NewValue;  }
+	void SetPlatformTransactionId(const FString& NewValue) { PlatformTransactionId = NewValue;   }
 	/** @brief Sets the value of PlatformTransactionId using move semantics */
-	void SetPlatformTransactionId(FString&& NewValue) { PlatformTransactionId = NewValue;  }
+	void SetPlatformTransactionId(FString&& NewValue) { PlatformTransactionId = NewValue;   }
 
 	/** @brief The platform specific data for the event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -196,15 +196,15 @@ struct RALLYHEREAPI_API FRHAPI_EntitlementEventRequest : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of PlatformData_Optional and returns true if it has been set, otherwise returns false */
 	bool GetPlatformData(FRHAPI_JsonObject& OutValue) const { if (PlatformData_IsSet) OutValue = PlatformData_Optional; return PlatformData_IsSet; }
 	/** @brief Returns a pointer to PlatformData_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_JsonObject* GetPlatformDataOrNull() { if (PlatformData_IsSet) return &PlatformData_Optional; return nullptr; }
+	FRHAPI_JsonObject* GetPlatformDataOrNull() { if (PlatformData_IsSet) return (&PlatformData_Optional); return nullptr; }
 	/** @brief Returns a pointer to PlatformData_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_JsonObject* GetPlatformDataOrNull() const { if (PlatformData_IsSet) return &PlatformData_Optional; return nullptr; }
+	const FRHAPI_JsonObject* GetPlatformDataOrNull() const { if (PlatformData_IsSet) return (&PlatformData_Optional); return nullptr; }
 	/** @brief Sets the value of PlatformData_Optional and also sets PlatformData_IsSet to true */
-	void SetPlatformData(const FRHAPI_JsonObject& NewValue) { PlatformData_Optional = NewValue; PlatformData_IsSet = true; }
+	void SetPlatformData(const FRHAPI_JsonObject& NewValue) { PlatformData_Optional = NewValue; PlatformData_IsSet = true;  }
 	/** @brief Sets the value of PlatformData_Optional and also sets PlatformData_IsSet to true using move semantics */
-	void SetPlatformData(FRHAPI_JsonObject&& NewValue) { PlatformData_Optional = NewValue; PlatformData_IsSet = true; }
+	void SetPlatformData(FRHAPI_JsonObject&& NewValue) { PlatformData_Optional = NewValue; PlatformData_IsSet = true;  }
 	 /** @brief Clears the value of PlatformData_Optional and sets PlatformData_IsSet to false */
-	void ClearPlatformData() { PlatformData_IsSet = false; }
+	void ClearPlatformData() { PlatformData_IsSet = false;  }
 };
 
 /** @} */

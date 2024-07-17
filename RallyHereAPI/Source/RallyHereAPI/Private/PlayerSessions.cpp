@@ -44,13 +44,13 @@ bool FRHAPI_PlayerSessions::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonSessionsField = (*Object)->TryGetField(TEXT("sessions"));
-	if (JsonSessionsField.IsValid() && !JsonSessionsField->IsNull())
+	if (JsonSessionsField.IsValid())
 	{
 		Sessions_IsSet = TryGetJsonValue(JsonSessionsField, Sessions_Optional);
 		ParseSuccess &= Sessions_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonLastUpdatedTimestampField = (*Object)->TryGetField(TEXT("last_updated_timestamp"));
-	if (JsonLastUpdatedTimestampField.IsValid() && !JsonLastUpdatedTimestampField->IsNull())
+	if (JsonLastUpdatedTimestampField.IsValid())
 	{
 		LastUpdatedTimestamp_IsSet = TryGetJsonValue(JsonLastUpdatedTimestampField, LastUpdatedTimestamp_Optional);
 		ParseSuccess &= LastUpdatedTimestamp_IsSet;

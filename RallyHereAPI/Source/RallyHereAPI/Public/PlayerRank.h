@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_PlayerRank : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief UUID for this specific player */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -48,9 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerRank : public FRHAPI_Model
 	/** @brief Gets the value of PlayerUuid */
 	const FGuid& GetPlayerUuid() const { return PlayerUuid; }
 	/** @brief Sets the value of PlayerUuid */
-	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;  }
+	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;   }
 	/** @brief Sets the value of PlayerUuid using move semantics */
-	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;  }
+	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;   }
 
 	/** @brief Current rank info about player */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -60,9 +60,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerRank : public FRHAPI_Model
 	/** @brief Gets the value of Rank */
 	const FRHAPI_RankData& GetRank() const { return Rank; }
 	/** @brief Sets the value of Rank */
-	void SetRank(const FRHAPI_RankData& NewValue) { Rank = NewValue;  }
+	void SetRank(const FRHAPI_RankData& NewValue) { Rank = NewValue;   }
 	/** @brief Sets the value of Rank using move semantics */
-	void SetRank(FRHAPI_RankData&& NewValue) { Rank = NewValue;  }
+	void SetRank(FRHAPI_RankData&& NewValue) { Rank = NewValue;   }
 };
 
 /** @} */

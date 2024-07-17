@@ -35,14 +35,14 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Allocation ID for instance that's been spun up */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -59,15 +59,15 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of AllocationId_Optional and returns true if it has been set, otherwise returns false */
 	bool GetAllocationId(FString& OutValue) const { if (AllocationId_IsSet) OutValue = AllocationId_Optional; return AllocationId_IsSet; }
 	/** @brief Returns a pointer to AllocationId_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetAllocationIdOrNull() { if (AllocationId_IsSet) return &AllocationId_Optional; return nullptr; }
+	FString* GetAllocationIdOrNull() { if (AllocationId_IsSet) return (&AllocationId_Optional); return nullptr; }
 	/** @brief Returns a pointer to AllocationId_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetAllocationIdOrNull() const { if (AllocationId_IsSet) return &AllocationId_Optional; return nullptr; }
+	const FString* GetAllocationIdOrNull() const { if (AllocationId_IsSet) return (&AllocationId_Optional); return nullptr; }
 	/** @brief Sets the value of AllocationId_Optional and also sets AllocationId_IsSet to true */
-	void SetAllocationId(const FString& NewValue) { AllocationId_Optional = NewValue; AllocationId_IsSet = true; }
+	void SetAllocationId(const FString& NewValue) { AllocationId_Optional = NewValue; AllocationId_IsSet = true;  }
 	/** @brief Sets the value of AllocationId_Optional and also sets AllocationId_IsSet to true using move semantics */
-	void SetAllocationId(FString&& NewValue) { AllocationId_Optional = NewValue; AllocationId_IsSet = true; }
+	void SetAllocationId(FString&& NewValue) { AllocationId_Optional = NewValue; AllocationId_IsSet = true;  }
 	 /** @brief Clears the value of AllocationId_Optional and sets AllocationId_IsSet to false */
-	void ClearAllocationId() { AllocationId_IsSet = false; }
+	void ClearAllocationId() { AllocationId_IsSet = false;  }
 
 	/** @brief Unique ID for the host/session relationship */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -77,9 +77,9 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
 	/** @brief Gets the value of InstanceId */
 	const FString& GetInstanceId() const { return InstanceId; }
 	/** @brief Sets the value of InstanceId */
-	void SetInstanceId(const FString& NewValue) { InstanceId = NewValue;  }
+	void SetInstanceId(const FString& NewValue) { InstanceId = NewValue;   }
 	/** @brief Sets the value of InstanceId using move semantics */
-	void SetInstanceId(FString&& NewValue) { InstanceId = NewValue;  }
+	void SetInstanceId(FString&& NewValue) { InstanceId = NewValue;   }
 
 	/** @brief Type of the host */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -89,9 +89,9 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
 	/** @brief Gets the value of HostType */
 	const ERHAPI_HostType& GetHostType() const { return HostType; }
 	/** @brief Sets the value of HostType */
-	void SetHostType(const ERHAPI_HostType& NewValue) { HostType = NewValue;  }
+	void SetHostType(const ERHAPI_HostType& NewValue) { HostType = NewValue;   }
 	/** @brief Sets the value of HostType using move semantics */
-	void SetHostType(ERHAPI_HostType&& NewValue) { HostType = NewValue;  }
+	void SetHostType(ERHAPI_HostType&& NewValue) { HostType = NewValue;   }
 
 	/** @brief Player ID of the host, if the host type is player */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -108,19 +108,19 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of HostPlayerId_Optional and returns true if it has been set, otherwise returns false */
 	bool GetHostPlayerId(int32& OutValue) const { if (HostPlayerId_IsSet) OutValue = HostPlayerId_Optional; return HostPlayerId_IsSet; }
 	/** @brief Returns a pointer to HostPlayerId_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetHostPlayerIdOrNull() { if (HostPlayerId_IsSet) return &HostPlayerId_Optional; return nullptr; }
+	int32* GetHostPlayerIdOrNull() { if (HostPlayerId_IsSet) return (&HostPlayerId_Optional); return nullptr; }
 	/** @brief Returns a pointer to HostPlayerId_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetHostPlayerIdOrNull() const { if (HostPlayerId_IsSet) return &HostPlayerId_Optional; return nullptr; }
+	const int32* GetHostPlayerIdOrNull() const { if (HostPlayerId_IsSet) return (&HostPlayerId_Optional); return nullptr; }
 	/** @brief Sets the value of HostPlayerId_Optional and also sets HostPlayerId_IsSet to true */
-	void SetHostPlayerId(const int32& NewValue) { HostPlayerId_Optional = NewValue; HostPlayerId_IsSet = true; }
+	void SetHostPlayerId(const int32& NewValue) { HostPlayerId_Optional = NewValue; HostPlayerId_IsSet = true;  }
 	/** @brief Sets the value of HostPlayerId_Optional and also sets HostPlayerId_IsSet to true using move semantics */
-	void SetHostPlayerId(int32&& NewValue) { HostPlayerId_Optional = NewValue; HostPlayerId_IsSet = true; }
+	void SetHostPlayerId(int32&& NewValue) { HostPlayerId_Optional = NewValue; HostPlayerId_IsSet = true;  }
 	 /** @brief Clears the value of HostPlayerId_Optional and sets HostPlayerId_IsSet to false */
-	void ClearHostPlayerId() { HostPlayerId_Optional = 0; HostPlayerId_IsSet = false; }
+	void ClearHostPlayerId() { HostPlayerId_Optional = 0; HostPlayerId_IsSet = false;  }
 	/** @brief Returns true if HostPlayerId_Optional is set and matches the default value */
 	bool IsHostPlayerIdDefaultValue() const { return HostPlayerId_IsSet && HostPlayerId_Optional == 0; }
 	/** @brief Sets the value of HostPlayerId_Optional to its default and also sets HostPlayerId_IsSet to true */
-	void SetHostPlayerIdToDefault() { HostPlayerId_Optional = 0; HostPlayerId_IsSet = true; }
+	void SetHostPlayerIdToDefault() { SetHostPlayerId(0); }
 
 	/** @brief Player UUID of the host, if the host type is player */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -137,15 +137,15 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of HostPlayerUuid_Optional and returns true if it has been set, otherwise returns false */
 	bool GetHostPlayerUuid(FGuid& OutValue) const { if (HostPlayerUuid_IsSet) OutValue = HostPlayerUuid_Optional; return HostPlayerUuid_IsSet; }
 	/** @brief Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr */
-	FGuid* GetHostPlayerUuidOrNull() { if (HostPlayerUuid_IsSet) return &HostPlayerUuid_Optional; return nullptr; }
+	FGuid* GetHostPlayerUuidOrNull() { if (HostPlayerUuid_IsSet) return (&HostPlayerUuid_Optional); return nullptr; }
 	/** @brief Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr */
-	const FGuid* GetHostPlayerUuidOrNull() const { if (HostPlayerUuid_IsSet) return &HostPlayerUuid_Optional; return nullptr; }
+	const FGuid* GetHostPlayerUuidOrNull() const { if (HostPlayerUuid_IsSet) return (&HostPlayerUuid_Optional); return nullptr; }
 	/** @brief Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true */
-	void SetHostPlayerUuid(const FGuid& NewValue) { HostPlayerUuid_Optional = NewValue; HostPlayerUuid_IsSet = true; }
+	void SetHostPlayerUuid(const FGuid& NewValue) { HostPlayerUuid_Optional = NewValue; HostPlayerUuid_IsSet = true;  }
 	/** @brief Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true using move semantics */
-	void SetHostPlayerUuid(FGuid&& NewValue) { HostPlayerUuid_Optional = NewValue; HostPlayerUuid_IsSet = true; }
+	void SetHostPlayerUuid(FGuid&& NewValue) { HostPlayerUuid_Optional = NewValue; HostPlayerUuid_IsSet = true;  }
 	 /** @brief Clears the value of HostPlayerUuid_Optional and sets HostPlayerUuid_IsSet to false */
-	void ClearHostPlayerUuid() { HostPlayerUuid_IsSet = false; }
+	void ClearHostPlayerUuid() { HostPlayerUuid_IsSet = false;  }
 
 	/** @brief Unique ID for the process that is running this instance */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -162,15 +162,15 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of HostDedicatedProcessId_Optional and returns true if it has been set, otherwise returns false */
 	bool GetHostDedicatedProcessId(FString& OutValue) const { if (HostDedicatedProcessId_IsSet) OutValue = HostDedicatedProcessId_Optional; return HostDedicatedProcessId_IsSet; }
 	/** @brief Returns a pointer to HostDedicatedProcessId_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetHostDedicatedProcessIdOrNull() { if (HostDedicatedProcessId_IsSet) return &HostDedicatedProcessId_Optional; return nullptr; }
+	FString* GetHostDedicatedProcessIdOrNull() { if (HostDedicatedProcessId_IsSet) return (&HostDedicatedProcessId_Optional); return nullptr; }
 	/** @brief Returns a pointer to HostDedicatedProcessId_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetHostDedicatedProcessIdOrNull() const { if (HostDedicatedProcessId_IsSet) return &HostDedicatedProcessId_Optional; return nullptr; }
+	const FString* GetHostDedicatedProcessIdOrNull() const { if (HostDedicatedProcessId_IsSet) return (&HostDedicatedProcessId_Optional); return nullptr; }
 	/** @brief Sets the value of HostDedicatedProcessId_Optional and also sets HostDedicatedProcessId_IsSet to true */
-	void SetHostDedicatedProcessId(const FString& NewValue) { HostDedicatedProcessId_Optional = NewValue; HostDedicatedProcessId_IsSet = true; }
+	void SetHostDedicatedProcessId(const FString& NewValue) { HostDedicatedProcessId_Optional = NewValue; HostDedicatedProcessId_IsSet = true;  }
 	/** @brief Sets the value of HostDedicatedProcessId_Optional and also sets HostDedicatedProcessId_IsSet to true using move semantics */
-	void SetHostDedicatedProcessId(FString&& NewValue) { HostDedicatedProcessId_Optional = NewValue; HostDedicatedProcessId_IsSet = true; }
+	void SetHostDedicatedProcessId(FString&& NewValue) { HostDedicatedProcessId_Optional = NewValue; HostDedicatedProcessId_IsSet = true;  }
 	 /** @brief Clears the value of HostDedicatedProcessId_Optional and sets HostDedicatedProcessId_IsSet to false */
-	void ClearHostDedicatedProcessId() { HostDedicatedProcessId_IsSet = false; }
+	void ClearHostDedicatedProcessId() { HostDedicatedProcessId_IsSet = false;  }
 
 	/** @brief Unique ID for the machine running the instance */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -187,15 +187,15 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of HostDedicatedServerId_Optional and returns true if it has been set, otherwise returns false */
 	bool GetHostDedicatedServerId(FString& OutValue) const { if (HostDedicatedServerId_IsSet) OutValue = HostDedicatedServerId_Optional; return HostDedicatedServerId_IsSet; }
 	/** @brief Returns a pointer to HostDedicatedServerId_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetHostDedicatedServerIdOrNull() { if (HostDedicatedServerId_IsSet) return &HostDedicatedServerId_Optional; return nullptr; }
+	FString* GetHostDedicatedServerIdOrNull() { if (HostDedicatedServerId_IsSet) return (&HostDedicatedServerId_Optional); return nullptr; }
 	/** @brief Returns a pointer to HostDedicatedServerId_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetHostDedicatedServerIdOrNull() const { if (HostDedicatedServerId_IsSet) return &HostDedicatedServerId_Optional; return nullptr; }
+	const FString* GetHostDedicatedServerIdOrNull() const { if (HostDedicatedServerId_IsSet) return (&HostDedicatedServerId_Optional); return nullptr; }
 	/** @brief Sets the value of HostDedicatedServerId_Optional and also sets HostDedicatedServerId_IsSet to true */
-	void SetHostDedicatedServerId(const FString& NewValue) { HostDedicatedServerId_Optional = NewValue; HostDedicatedServerId_IsSet = true; }
+	void SetHostDedicatedServerId(const FString& NewValue) { HostDedicatedServerId_Optional = NewValue; HostDedicatedServerId_IsSet = true;  }
 	/** @brief Sets the value of HostDedicatedServerId_Optional and also sets HostDedicatedServerId_IsSet to true using move semantics */
-	void SetHostDedicatedServerId(FString&& NewValue) { HostDedicatedServerId_Optional = NewValue; HostDedicatedServerId_IsSet = true; }
+	void SetHostDedicatedServerId(FString&& NewValue) { HostDedicatedServerId_Optional = NewValue; HostDedicatedServerId_IsSet = true;  }
 	 /** @brief Clears the value of HostDedicatedServerId_Optional and sets HostDedicatedServerId_IsSet to false */
-	void ClearHostDedicatedServerId() { HostDedicatedServerId_IsSet = false; }
+	void ClearHostDedicatedServerId() { HostDedicatedServerId_IsSet = false;  }
 
 	/** @brief Is the instance joinable at this time? */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -205,9 +205,9 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
 	/** @brief Gets the value of JoinStatus */
 	const ERHAPI_InstanceJoinableStatus& GetJoinStatus() const { return JoinStatus; }
 	/** @brief Sets the value of JoinStatus */
-	void SetJoinStatus(const ERHAPI_InstanceJoinableStatus& NewValue) { JoinStatus = NewValue;  }
+	void SetJoinStatus(const ERHAPI_InstanceJoinableStatus& NewValue) { JoinStatus = NewValue;   }
 	/** @brief Sets the value of JoinStatus using move semantics */
-	void SetJoinStatus(ERHAPI_InstanceJoinableStatus&& NewValue) { JoinStatus = NewValue;  }
+	void SetJoinStatus(ERHAPI_InstanceJoinableStatus&& NewValue) { JoinStatus = NewValue;   }
 
 	/** @brief Parameters to join the instance */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -224,15 +224,15 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of JoinParams_Optional and returns true if it has been set, otherwise returns false */
 	bool GetJoinParams(FRHAPI_JoinParams& OutValue) const { if (JoinParams_IsSet) OutValue = JoinParams_Optional; return JoinParams_IsSet; }
 	/** @brief Returns a pointer to JoinParams_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_JoinParams* GetJoinParamsOrNull() { if (JoinParams_IsSet) return &JoinParams_Optional; return nullptr; }
+	FRHAPI_JoinParams* GetJoinParamsOrNull() { if (JoinParams_IsSet) return (&JoinParams_Optional); return nullptr; }
 	/** @brief Returns a pointer to JoinParams_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_JoinParams* GetJoinParamsOrNull() const { if (JoinParams_IsSet) return &JoinParams_Optional; return nullptr; }
+	const FRHAPI_JoinParams* GetJoinParamsOrNull() const { if (JoinParams_IsSet) return (&JoinParams_Optional); return nullptr; }
 	/** @brief Sets the value of JoinParams_Optional and also sets JoinParams_IsSet to true */
-	void SetJoinParams(const FRHAPI_JoinParams& NewValue) { JoinParams_Optional = NewValue; JoinParams_IsSet = true; }
+	void SetJoinParams(const FRHAPI_JoinParams& NewValue) { JoinParams_Optional = NewValue; JoinParams_IsSet = true;  }
 	/** @brief Sets the value of JoinParams_Optional and also sets JoinParams_IsSet to true using move semantics */
-	void SetJoinParams(FRHAPI_JoinParams&& NewValue) { JoinParams_Optional = NewValue; JoinParams_IsSet = true; }
+	void SetJoinParams(FRHAPI_JoinParams&& NewValue) { JoinParams_Optional = NewValue; JoinParams_IsSet = true;  }
 	 /** @brief Clears the value of JoinParams_Optional and sets JoinParams_IsSet to false */
-	void ClearJoinParams() { JoinParams_IsSet = false; }
+	void ClearJoinParams() { JoinParams_IsSet = false;  }
 
 	/** @brief Parameters used by the host to startup. For UE5 this will contain the map and gamemode */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -249,15 +249,15 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of InstanceStartupParams_Optional and returns true if it has been set, otherwise returns false */
 	bool GetInstanceStartupParams(FRHAPI_InstanceStartupParams& OutValue) const { if (InstanceStartupParams_IsSet) OutValue = InstanceStartupParams_Optional; return InstanceStartupParams_IsSet; }
 	/** @brief Returns a pointer to InstanceStartupParams_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_InstanceStartupParams* GetInstanceStartupParamsOrNull() { if (InstanceStartupParams_IsSet) return &InstanceStartupParams_Optional; return nullptr; }
+	FRHAPI_InstanceStartupParams* GetInstanceStartupParamsOrNull() { if (InstanceStartupParams_IsSet) return (&InstanceStartupParams_Optional); return nullptr; }
 	/** @brief Returns a pointer to InstanceStartupParams_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_InstanceStartupParams* GetInstanceStartupParamsOrNull() const { if (InstanceStartupParams_IsSet) return &InstanceStartupParams_Optional; return nullptr; }
+	const FRHAPI_InstanceStartupParams* GetInstanceStartupParamsOrNull() const { if (InstanceStartupParams_IsSet) return (&InstanceStartupParams_Optional); return nullptr; }
 	/** @brief Sets the value of InstanceStartupParams_Optional and also sets InstanceStartupParams_IsSet to true */
-	void SetInstanceStartupParams(const FRHAPI_InstanceStartupParams& NewValue) { InstanceStartupParams_Optional = NewValue; InstanceStartupParams_IsSet = true; }
+	void SetInstanceStartupParams(const FRHAPI_InstanceStartupParams& NewValue) { InstanceStartupParams_Optional = NewValue; InstanceStartupParams_IsSet = true;  }
 	/** @brief Sets the value of InstanceStartupParams_Optional and also sets InstanceStartupParams_IsSet to true using move semantics */
-	void SetInstanceStartupParams(FRHAPI_InstanceStartupParams&& NewValue) { InstanceStartupParams_Optional = NewValue; InstanceStartupParams_IsSet = true; }
+	void SetInstanceStartupParams(FRHAPI_InstanceStartupParams&& NewValue) { InstanceStartupParams_Optional = NewValue; InstanceStartupParams_IsSet = true;  }
 	 /** @brief Clears the value of InstanceStartupParams_Optional and sets InstanceStartupParams_IsSet to false */
-	void ClearInstanceStartupParams() { InstanceStartupParams_IsSet = false; }
+	void ClearInstanceStartupParams() { InstanceStartupParams_IsSet = false;  }
 
 	/** @brief Product Client Version number.  Used for compatibility checking with players */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -274,15 +274,15 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Version_Optional and returns true if it has been set, otherwise returns false */
 	bool GetVersion(FString& OutValue) const { if (Version_IsSet) OutValue = Version_Optional; return Version_IsSet; }
 	/** @brief Returns a pointer to Version_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetVersionOrNull() { if (Version_IsSet) return &Version_Optional; return nullptr; }
+	FString* GetVersionOrNull() { if (Version_IsSet) return (&Version_Optional); return nullptr; }
 	/** @brief Returns a pointer to Version_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetVersionOrNull() const { if (Version_IsSet) return &Version_Optional; return nullptr; }
+	const FString* GetVersionOrNull() const { if (Version_IsSet) return (&Version_Optional); return nullptr; }
 	/** @brief Sets the value of Version_Optional and also sets Version_IsSet to true */
-	void SetVersion(const FString& NewValue) { Version_Optional = NewValue; Version_IsSet = true; }
+	void SetVersion(const FString& NewValue) { Version_Optional = NewValue; Version_IsSet = true;  }
 	/** @brief Sets the value of Version_Optional and also sets Version_IsSet to true using move semantics */
-	void SetVersion(FString&& NewValue) { Version_Optional = NewValue; Version_IsSet = true; }
+	void SetVersion(FString&& NewValue) { Version_Optional = NewValue; Version_IsSet = true;  }
 	 /** @brief Clears the value of Version_Optional and sets Version_IsSet to false */
-	void ClearVersion() { Version_IsSet = false; }
+	void ClearVersion() { Version_IsSet = false;  }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -292,9 +292,9 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
 	/** @brief Gets the value of Created */
 	const FDateTime& GetCreated() const { return Created; }
 	/** @brief Sets the value of Created */
-	void SetCreated(const FDateTime& NewValue) { Created = NewValue;  }
+	void SetCreated(const FDateTime& NewValue) { Created = NewValue;   }
 	/** @brief Sets the value of Created using move semantics */
-	void SetCreated(FDateTime&& NewValue) { Created = NewValue;  }
+	void SetCreated(FDateTime&& NewValue) { Created = NewValue;   }
 
 	/** @brief instance-defined custom data */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -311,15 +311,15 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
 	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
-	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
-	void ClearCustomData() { CustomData_IsSet = false; }
+	void ClearCustomData() { CustomData_IsSet = false;  }
 
 	/** @brief The current status of the instance */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -336,15 +336,15 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of InstanceHealth_Optional and returns true if it has been set, otherwise returns false */
 	bool GetInstanceHealth(ERHAPI_InstanceHealthStatus& OutValue) const { if (InstanceHealth_IsSet) OutValue = InstanceHealth_Optional; return InstanceHealth_IsSet; }
 	/** @brief Returns a pointer to InstanceHealth_Optional, if it has been set, otherwise returns nullptr */
-	ERHAPI_InstanceHealthStatus* GetInstanceHealthOrNull() { if (InstanceHealth_IsSet) return &InstanceHealth_Optional; return nullptr; }
+	ERHAPI_InstanceHealthStatus* GetInstanceHealthOrNull() { if (InstanceHealth_IsSet) return (&InstanceHealth_Optional); return nullptr; }
 	/** @brief Returns a pointer to InstanceHealth_Optional, if it has been set, otherwise returns nullptr */
-	const ERHAPI_InstanceHealthStatus* GetInstanceHealthOrNull() const { if (InstanceHealth_IsSet) return &InstanceHealth_Optional; return nullptr; }
+	const ERHAPI_InstanceHealthStatus* GetInstanceHealthOrNull() const { if (InstanceHealth_IsSet) return (&InstanceHealth_Optional); return nullptr; }
 	/** @brief Sets the value of InstanceHealth_Optional and also sets InstanceHealth_IsSet to true */
-	void SetInstanceHealth(const ERHAPI_InstanceHealthStatus& NewValue) { InstanceHealth_Optional = NewValue; InstanceHealth_IsSet = true; }
+	void SetInstanceHealth(const ERHAPI_InstanceHealthStatus& NewValue) { InstanceHealth_Optional = NewValue; InstanceHealth_IsSet = true;  }
 	/** @brief Sets the value of InstanceHealth_Optional and also sets InstanceHealth_IsSet to true using move semantics */
-	void SetInstanceHealth(ERHAPI_InstanceHealthStatus&& NewValue) { InstanceHealth_Optional = NewValue; InstanceHealth_IsSet = true; }
+	void SetInstanceHealth(ERHAPI_InstanceHealthStatus&& NewValue) { InstanceHealth_Optional = NewValue; InstanceHealth_IsSet = true;  }
 	 /** @brief Clears the value of InstanceHealth_Optional and sets InstanceHealth_IsSet to false */
-	void ClearInstanceHealth() { InstanceHealth_IsSet = false; }
+	void ClearInstanceHealth() { InstanceHealth_IsSet = false;  }
 
 	/** @brief The profile id that this instance was spawned from */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -361,15 +361,15 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of MatchMakingProfileId_Optional and returns true if it has been set, otherwise returns false */
 	bool GetMatchMakingProfileId(FString& OutValue) const { if (MatchMakingProfileId_IsSet) OutValue = MatchMakingProfileId_Optional; return MatchMakingProfileId_IsSet; }
 	/** @brief Returns a pointer to MatchMakingProfileId_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetMatchMakingProfileIdOrNull() { if (MatchMakingProfileId_IsSet) return &MatchMakingProfileId_Optional; return nullptr; }
+	FString* GetMatchMakingProfileIdOrNull() { if (MatchMakingProfileId_IsSet) return (&MatchMakingProfileId_Optional); return nullptr; }
 	/** @brief Returns a pointer to MatchMakingProfileId_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetMatchMakingProfileIdOrNull() const { if (MatchMakingProfileId_IsSet) return &MatchMakingProfileId_Optional; return nullptr; }
+	const FString* GetMatchMakingProfileIdOrNull() const { if (MatchMakingProfileId_IsSet) return (&MatchMakingProfileId_Optional); return nullptr; }
 	/** @brief Sets the value of MatchMakingProfileId_Optional and also sets MatchMakingProfileId_IsSet to true */
-	void SetMatchMakingProfileId(const FString& NewValue) { MatchMakingProfileId_Optional = NewValue; MatchMakingProfileId_IsSet = true; }
+	void SetMatchMakingProfileId(const FString& NewValue) { MatchMakingProfileId_Optional = NewValue; MatchMakingProfileId_IsSet = true;  }
 	/** @brief Sets the value of MatchMakingProfileId_Optional and also sets MatchMakingProfileId_IsSet to true using move semantics */
-	void SetMatchMakingProfileId(FString&& NewValue) { MatchMakingProfileId_Optional = NewValue; MatchMakingProfileId_IsSet = true; }
+	void SetMatchMakingProfileId(FString&& NewValue) { MatchMakingProfileId_Optional = NewValue; MatchMakingProfileId_IsSet = true;  }
 	 /** @brief Clears the value of MatchMakingProfileId_Optional and sets MatchMakingProfileId_IsSet to false */
-	void ClearMatchMakingProfileId() { MatchMakingProfileId_IsSet = false; }
+	void ClearMatchMakingProfileId() { MatchMakingProfileId_IsSet = false;  }
 };
 
 /** @} */

@@ -44,13 +44,13 @@ bool FRHAPI_FriendsApiConfig::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonFriendLimitField = (*Object)->TryGetField(TEXT("friend_limit"));
-	if (JsonFriendLimitField.IsValid() && !JsonFriendLimitField->IsNull())
+	if (JsonFriendLimitField.IsValid())
 	{
 		FriendLimit_IsSet = TryGetJsonValue(JsonFriendLimitField, FriendLimit_Optional);
 		ParseSuccess &= FriendLimit_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonBlockLimitField = (*Object)->TryGetField(TEXT("block_limit"));
-	if (JsonBlockLimitField.IsValid() && !JsonBlockLimitField->IsNull())
+	if (JsonBlockLimitField.IsValid())
 	{
 		BlockLimit_IsSet = TryGetJsonValue(JsonBlockLimitField, BlockLimit_Optional);
 		ParseSuccess &= BlockLimit_IsSet;

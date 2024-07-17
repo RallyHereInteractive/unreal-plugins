@@ -32,14 +32,14 @@ struct RALLYHEREAPI_API FRHAPI_InventoryBucketUseRuleSets : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TMap<FString, FRHAPI_InventoryBucketUseRuleSet> RuleSets_Optional{  };
@@ -55,15 +55,15 @@ struct RALLYHEREAPI_API FRHAPI_InventoryBucketUseRuleSets : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of RuleSets_Optional and returns true if it has been set, otherwise returns false */
 	bool GetRuleSets(TMap<FString, FRHAPI_InventoryBucketUseRuleSet>& OutValue) const { if (RuleSets_IsSet) OutValue = RuleSets_Optional; return RuleSets_IsSet; }
 	/** @brief Returns a pointer to RuleSets_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FRHAPI_InventoryBucketUseRuleSet>* GetRuleSetsOrNull() { if (RuleSets_IsSet) return &RuleSets_Optional; return nullptr; }
+	TMap<FString, FRHAPI_InventoryBucketUseRuleSet>* GetRuleSetsOrNull() { if (RuleSets_IsSet) return (&RuleSets_Optional); return nullptr; }
 	/** @brief Returns a pointer to RuleSets_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FRHAPI_InventoryBucketUseRuleSet>* GetRuleSetsOrNull() const { if (RuleSets_IsSet) return &RuleSets_Optional; return nullptr; }
+	const TMap<FString, FRHAPI_InventoryBucketUseRuleSet>* GetRuleSetsOrNull() const { if (RuleSets_IsSet) return (&RuleSets_Optional); return nullptr; }
 	/** @brief Sets the value of RuleSets_Optional and also sets RuleSets_IsSet to true */
-	void SetRuleSets(const TMap<FString, FRHAPI_InventoryBucketUseRuleSet>& NewValue) { RuleSets_Optional = NewValue; RuleSets_IsSet = true; }
+	void SetRuleSets(const TMap<FString, FRHAPI_InventoryBucketUseRuleSet>& NewValue) { RuleSets_Optional = NewValue; RuleSets_IsSet = true;  }
 	/** @brief Sets the value of RuleSets_Optional and also sets RuleSets_IsSet to true using move semantics */
-	void SetRuleSets(TMap<FString, FRHAPI_InventoryBucketUseRuleSet>&& NewValue) { RuleSets_Optional = NewValue; RuleSets_IsSet = true; }
+	void SetRuleSets(TMap<FString, FRHAPI_InventoryBucketUseRuleSet>&& NewValue) { RuleSets_Optional = NewValue; RuleSets_IsSet = true;  }
 	 /** @brief Clears the value of RuleSets_Optional and sets RuleSets_IsSet to false */
-	void ClearRuleSets() { RuleSets_IsSet = false; }
+	void ClearRuleSets() { RuleSets_IsSet = false;  }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_CacheInfo CacheInfo_Optional{  };
@@ -79,15 +79,15 @@ struct RALLYHEREAPI_API FRHAPI_InventoryBucketUseRuleSets : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false */
 	bool GetCacheInfo(FRHAPI_CacheInfo& OutValue) const { if (CacheInfo_IsSet) OutValue = CacheInfo_Optional; return CacheInfo_IsSet; }
 	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_CacheInfo* GetCacheInfoOrNull() { if (CacheInfo_IsSet) return &CacheInfo_Optional; return nullptr; }
+	FRHAPI_CacheInfo* GetCacheInfoOrNull() { if (CacheInfo_IsSet) return (&CacheInfo_Optional); return nullptr; }
 	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return &CacheInfo_Optional; return nullptr; }
+	const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return (&CacheInfo_Optional); return nullptr; }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true */
-	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
+	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
-	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
+	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
 	 /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
-	void ClearCacheInfo() { CacheInfo_IsSet = false; }
+	void ClearCacheInfo() { CacheInfo_IsSet = false;  }
 };
 
 /** @} */

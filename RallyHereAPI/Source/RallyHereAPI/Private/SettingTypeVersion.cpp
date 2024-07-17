@@ -51,21 +51,21 @@ bool FRHAPI_SettingTypeVersion::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonAllowUpdateField = (*Object)->TryGetField(TEXT("allow_update"));
-	if (JsonAllowUpdateField.IsValid() && !JsonAllowUpdateField->IsNull())
+	if (JsonAllowUpdateField.IsValid())
 	{
 		AllowUpdate_IsSet = TryGetJsonValue(JsonAllowUpdateField, AllowUpdate_Optional);
 		ParseSuccess &= AllowUpdate_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonKeyRegexField = (*Object)->TryGetField(TEXT("key_regex"));
-	if (JsonKeyRegexField.IsValid() && !JsonKeyRegexField->IsNull())
+	if (JsonKeyRegexField.IsValid())
 	{
 		KeyRegex_IsSet = TryGetJsonValue(JsonKeyRegexField, KeyRegex_Optional);
 		ParseSuccess &= KeyRegex_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonValueJsonschemaField = (*Object)->TryGetField(TEXT("value_jsonschema"));
-	ParseSuccess &= JsonValueJsonschemaField.IsValid() && !JsonValueJsonschemaField->IsNull() && TryGetJsonValue(JsonValueJsonschemaField, ValueJsonschema);
+	ParseSuccess &= JsonValueJsonschemaField.IsValid() && (!JsonValueJsonschemaField->IsNull() &&  TryGetJsonValue(JsonValueJsonschemaField, ValueJsonschema));
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	if (JsonCustomDataField.IsValid())
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;

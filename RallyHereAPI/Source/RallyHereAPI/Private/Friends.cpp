@@ -36,7 +36,7 @@ bool FRHAPI_Friends::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonFriendsField = (*Object)->TryGetField(TEXT("friends"));
-	ParseSuccess &= JsonFriendsField.IsValid() && !JsonFriendsField->IsNull() && TryGetJsonValue(JsonFriendsField, Friends);
+	ParseSuccess &= JsonFriendsField.IsValid() && (!JsonFriendsField->IsNull() &&  TryGetJsonValue(JsonFriendsField, Friends));
 
 	return ParseSuccess;
 }

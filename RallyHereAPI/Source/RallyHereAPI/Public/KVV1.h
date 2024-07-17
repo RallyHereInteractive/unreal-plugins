@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_KVV1 : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief The key for the setting */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -47,9 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_KVV1 : public FRHAPI_Model
 	/** @brief Gets the value of Key */
 	const FString& GetKey() const { return Key; }
 	/** @brief Sets the value of Key */
-	void SetKey(const FString& NewValue) { Key = NewValue;  }
+	void SetKey(const FString& NewValue) { Key = NewValue;   }
 	/** @brief Sets the value of Key using move semantics */
-	void SetKey(FString&& NewValue) { Key = NewValue;  }
+	void SetKey(FString&& NewValue) { Key = NewValue;   }
 
 	/** @brief The value for the setting */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -59,15 +59,18 @@ struct RALLYHEREAPI_API FRHAPI_KVV1 : public FRHAPI_Model
 	/** @brief Gets the value of Value */
 	const FString& GetValue() const { return Value; }
 	/** @brief Sets the value of Value */
-	void SetValue(const FString& NewValue) { Value = NewValue;  }
+	void SetValue(const FString& NewValue) { Value = NewValue;   }
 	/** @brief Sets the value of Value using move semantics */
-	void SetValue(FString&& NewValue) { Value = NewValue;  }
+	void SetValue(FString&& NewValue) { Value = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Notes_Optional{  };
 	/** @brief true if Notes_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Notes_IsSet{ false };
+	/** @brief true if Notes_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Notes_IsNull{ false };
 	/** @brief Gets the value of Notes_Optional, regardless of it having been set */
 	FString& GetNotes() { return Notes_Optional; }
 	/** @brief Gets the value of Notes_Optional, regardless of it having been set */
@@ -75,17 +78,20 @@ struct RALLYHEREAPI_API FRHAPI_KVV1 : public FRHAPI_Model
 	/** @brief Gets the value of Notes_Optional, if it has been set, otherwise it returns DefaultValue */
 	const FString& GetNotes(const FString& DefaultValue) const { if (Notes_IsSet) return Notes_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Notes_Optional and returns true if it has been set, otherwise returns false */
-	bool GetNotes(FString& OutValue) const { if (Notes_IsSet) OutValue = Notes_Optional; return Notes_IsSet; }
+	bool GetNotes(FString& OutValue) const { if (Notes_IsSet && !Notes_IsNull) OutValue = Notes_Optional; return Notes_IsSet; }
 	/** @brief Returns a pointer to Notes_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetNotesOrNull() { if (Notes_IsSet) return &Notes_Optional; return nullptr; }
+	FString* GetNotesOrNull() { if (Notes_IsSet) return (Notes_IsNull ? nullptr : &Notes_Optional); return nullptr; }
 	/** @brief Returns a pointer to Notes_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetNotesOrNull() const { if (Notes_IsSet) return &Notes_Optional; return nullptr; }
+	const FString* GetNotesOrNull() const { if (Notes_IsSet) return (Notes_IsNull ? nullptr : &Notes_Optional); return nullptr; }
 	/** @brief Sets the value of Notes_Optional and also sets Notes_IsSet to true */
-	void SetNotes(const FString& NewValue) { Notes_Optional = NewValue; Notes_IsSet = true; }
+	void SetNotes(const FString& NewValue) { Notes_Optional = NewValue; Notes_IsSet = true; Notes_IsNull = false; }
 	/** @brief Sets the value of Notes_Optional and also sets Notes_IsSet to true using move semantics */
-	void SetNotes(FString&& NewValue) { Notes_Optional = NewValue; Notes_IsSet = true; }
+	void SetNotes(FString&& NewValue) { Notes_Optional = NewValue; Notes_IsSet = true; Notes_IsNull = false; }
 	 /** @brief Clears the value of Notes_Optional and sets Notes_IsSet to false */
-	void ClearNotes() { Notes_IsSet = false; }
+	void ClearNotes() { Notes_IsSet = false; Notes_IsNull = false; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetNotesToNull() { Notes_IsSet = true; Notes_IsNull = true; }
+	bool IsNotesNull() const { return Notes_IsSet && Notes_IsNull; }
 };
 
 /** @} */

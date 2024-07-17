@@ -49,19 +49,19 @@ bool FRHAPI_StorageInformation::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonTotalFilesField = (*Object)->TryGetField(TEXT("total_files"));
-	if (JsonTotalFilesField.IsValid() && !JsonTotalFilesField->IsNull())
+	if (JsonTotalFilesField.IsValid())
 	{
 		TotalFiles_IsSet = TryGetJsonValue(JsonTotalFilesField, TotalFiles_Optional);
 		ParseSuccess &= TotalFiles_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonTotalSizeBytesField = (*Object)->TryGetField(TEXT("total_size_bytes"));
-	if (JsonTotalSizeBytesField.IsValid() && !JsonTotalSizeBytesField->IsNull())
+	if (JsonTotalSizeBytesField.IsValid())
 	{
 		TotalSizeBytes_IsSet = TryGetJsonValue(JsonTotalSizeBytesField, TotalSizeBytes_Optional);
 		ParseSuccess &= TotalSizeBytes_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonTotalSizeMbField = (*Object)->TryGetField(TEXT("total_size_mb"));
-	if (JsonTotalSizeMbField.IsValid() && !JsonTotalSizeMbField->IsNull())
+	if (JsonTotalSizeMbField.IsValid())
 	{
 		TotalSizeMb_IsSet = TryGetJsonValue(JsonTotalSizeMbField, TotalSizeMb_Optional);
 		ParseSuccess &= TotalSizeMb_IsSet;

@@ -53,23 +53,23 @@ bool FRHAPI_SessionTeam::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPlayersField = (*Object)->TryGetField(TEXT("players"));
-	ParseSuccess &= JsonPlayersField.IsValid() && !JsonPlayersField->IsNull() && TryGetJsonValue(JsonPlayersField, Players);
+	ParseSuccess &= JsonPlayersField.IsValid() && (!JsonPlayersField->IsNull() &&  TryGetJsonValue(JsonPlayersField, Players));
 	const TSharedPtr<FJsonValue> JsonMaxSizeField = (*Object)->TryGetField(TEXT("max_size"));
-	ParseSuccess &= JsonMaxSizeField.IsValid() && !JsonMaxSizeField->IsNull() && TryGetJsonValue(JsonMaxSizeField, MaxSize);
+	ParseSuccess &= JsonMaxSizeField.IsValid() && (!JsonMaxSizeField->IsNull() &&  TryGetJsonValue(JsonMaxSizeField, MaxSize));
 	const TSharedPtr<FJsonValue> JsonTeamIdField = (*Object)->TryGetField(TEXT("team_id"));
-	if (JsonTeamIdField.IsValid() && !JsonTeamIdField->IsNull())
+	if (JsonTeamIdField.IsValid())
 	{
 		TeamId_IsSet = TryGetJsonValue(JsonTeamIdField, TeamId_Optional);
 		ParseSuccess &= TeamId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonTicketIdsField = (*Object)->TryGetField(TEXT("ticket_ids"));
-	if (JsonTicketIdsField.IsValid() && !JsonTicketIdsField->IsNull())
+	if (JsonTicketIdsField.IsValid())
 	{
 		TicketIds_IsSet = TryGetJsonValue(JsonTicketIdsField, TicketIds_Optional);
 		ParseSuccess &= TicketIds_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	if (JsonCustomDataField.IsValid())
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;

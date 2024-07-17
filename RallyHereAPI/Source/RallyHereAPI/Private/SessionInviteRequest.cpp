@@ -49,19 +49,19 @@ bool FRHAPI_SessionInviteRequest::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonTeamIdField = (*Object)->TryGetField(TEXT("team_id"));
-	if (JsonTeamIdField.IsValid() && !JsonTeamIdField->IsNull())
+	if (JsonTeamIdField.IsValid())
 	{
 		TeamId_IsSet = TryGetJsonValue(JsonTeamIdField, TeamId_Optional);
 		ParseSuccess &= TeamId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonOverflowActionField = (*Object)->TryGetField(TEXT("overflow_action"));
-	if (JsonOverflowActionField.IsValid() && !JsonOverflowActionField->IsNull())
+	if (JsonOverflowActionField.IsValid())
 	{
 		OverflowAction_IsSet = TryGetJsonValue(JsonOverflowActionField, OverflowAction_Optional);
 		ParseSuccess &= OverflowAction_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	if (JsonCustomDataField.IsValid())
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;

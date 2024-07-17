@@ -36,7 +36,7 @@ bool FRHAPI_EventParamsSchemaResponse::FromJson(const TSharedPtr<FJsonValue>& Js
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonEventParamSchemasField = (*Object)->TryGetField(TEXT("event_param_schemas"));
-	ParseSuccess &= JsonEventParamSchemasField.IsValid() && !JsonEventParamSchemasField->IsNull() && TryGetJsonValue(JsonEventParamSchemasField, EventParamSchemas);
+	ParseSuccess &= JsonEventParamSchemasField.IsValid() && (!JsonEventParamSchemasField->IsNull() &&  TryGetJsonValue(JsonEventParamSchemasField, EventParamSchemas));
 
 	return ParseSuccess;
 }

@@ -38,9 +38,9 @@ bool FRHAPI_PortalTokenDetailsRequest::FromJson(const TSharedPtr<FJsonValue>& Js
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonGrantTypeField = (*Object)->TryGetField(TEXT("grant_type"));
-	ParseSuccess &= JsonGrantTypeField.IsValid() && !JsonGrantTypeField->IsNull() && TryGetJsonValue(JsonGrantTypeField, GrantType);
+	ParseSuccess &= JsonGrantTypeField.IsValid() && (!JsonGrantTypeField->IsNull() &&  TryGetJsonValue(JsonGrantTypeField, GrantType));
 	const TSharedPtr<FJsonValue> JsonPortalAccessTokenField = (*Object)->TryGetField(TEXT("portal_access_token"));
-	ParseSuccess &= JsonPortalAccessTokenField.IsValid() && !JsonPortalAccessTokenField->IsNull() && TryGetJsonValue(JsonPortalAccessTokenField, PortalAccessToken);
+	ParseSuccess &= JsonPortalAccessTokenField.IsValid() && (!JsonPortalAccessTokenField->IsNull() &&  TryGetJsonValue(JsonPortalAccessTokenField, PortalAccessToken));
 
 	return ParseSuccess;
 }

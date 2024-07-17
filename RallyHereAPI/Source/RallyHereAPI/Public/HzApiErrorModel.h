@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_HzApiErrorModel : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool AuthSuccess_Optional{  };
@@ -53,19 +53,19 @@ struct RALLYHEREAPI_API FRHAPI_HzApiErrorModel : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of AuthSuccess_Optional and returns true if it has been set, otherwise returns false */
 	bool GetAuthSuccess(bool& OutValue) const { if (AuthSuccess_IsSet) OutValue = AuthSuccess_Optional; return AuthSuccess_IsSet; }
 	/** @brief Returns a pointer to AuthSuccess_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetAuthSuccessOrNull() { if (AuthSuccess_IsSet) return &AuthSuccess_Optional; return nullptr; }
+	bool* GetAuthSuccessOrNull() { if (AuthSuccess_IsSet) return (&AuthSuccess_Optional); return nullptr; }
 	/** @brief Returns a pointer to AuthSuccess_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetAuthSuccessOrNull() const { if (AuthSuccess_IsSet) return &AuthSuccess_Optional; return nullptr; }
+	const bool* GetAuthSuccessOrNull() const { if (AuthSuccess_IsSet) return (&AuthSuccess_Optional); return nullptr; }
 	/** @brief Sets the value of AuthSuccess_Optional and also sets AuthSuccess_IsSet to true */
-	void SetAuthSuccess(const bool& NewValue) { AuthSuccess_Optional = NewValue; AuthSuccess_IsSet = true; }
+	void SetAuthSuccess(const bool& NewValue) { AuthSuccess_Optional = NewValue; AuthSuccess_IsSet = true;  }
 	/** @brief Sets the value of AuthSuccess_Optional and also sets AuthSuccess_IsSet to true using move semantics */
-	void SetAuthSuccess(bool&& NewValue) { AuthSuccess_Optional = NewValue; AuthSuccess_IsSet = true; }
+	void SetAuthSuccess(bool&& NewValue) { AuthSuccess_Optional = NewValue; AuthSuccess_IsSet = true;  }
 	 /** @brief Clears the value of AuthSuccess_Optional and sets AuthSuccess_IsSet to false */
-	void ClearAuthSuccess() { AuthSuccess_Optional = true; AuthSuccess_IsSet = false; }
+	void ClearAuthSuccess() { AuthSuccess_Optional = true; AuthSuccess_IsSet = false;  }
 	/** @brief Returns true if AuthSuccess_Optional is set and matches the default value */
 	bool IsAuthSuccessDefaultValue() const { return AuthSuccess_IsSet && AuthSuccess_Optional == true; }
 	/** @brief Sets the value of AuthSuccess_Optional to its default and also sets AuthSuccess_IsSet to true */
-	void SetAuthSuccessToDefault() { AuthSuccess_Optional = true; AuthSuccess_IsSet = true; }
+	void SetAuthSuccessToDefault() { SetAuthSuccess(true); }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString ErrorCode{  };
@@ -74,9 +74,9 @@ struct RALLYHEREAPI_API FRHAPI_HzApiErrorModel : public FRHAPI_Model
 	/** @brief Gets the value of ErrorCode */
 	const FString& GetErrorCode() const { return ErrorCode; }
 	/** @brief Sets the value of ErrorCode */
-	void SetErrorCode(const FString& NewValue) { ErrorCode = NewValue;  }
+	void SetErrorCode(const FString& NewValue) { ErrorCode = NewValue;   }
 	/** @brief Sets the value of ErrorCode using move semantics */
-	void SetErrorCode(FString&& NewValue) { ErrorCode = NewValue;  }
+	void SetErrorCode(FString&& NewValue) { ErrorCode = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Desc{  };
@@ -85,9 +85,9 @@ struct RALLYHEREAPI_API FRHAPI_HzApiErrorModel : public FRHAPI_Model
 	/** @brief Gets the value of Desc */
 	const FString& GetDesc() const { return Desc; }
 	/** @brief Sets the value of Desc */
-	void SetDesc(const FString& NewValue) { Desc = NewValue;  }
+	void SetDesc(const FString& NewValue) { Desc = NewValue;   }
 	/** @brief Sets the value of Desc using move semantics */
-	void SetDesc(FString&& NewValue) { Desc = NewValue;  }
+	void SetDesc(FString&& NewValue) { Desc = NewValue;   }
 };
 
 /** @} */

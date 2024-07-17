@@ -44,13 +44,13 @@ bool FRHAPI_Inventory::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonItemsField = (*Object)->TryGetField(TEXT("items"));
-	if (JsonItemsField.IsValid() && !JsonItemsField->IsNull())
+	if (JsonItemsField.IsValid())
 	{
 		Items_IsSet = TryGetJsonValue(JsonItemsField, Items_Optional);
 		ParseSuccess &= Items_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
-	if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
+	if (JsonCacheInfoField.IsValid())
 	{
 		CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
 		ParseSuccess &= CacheInfo_IsSet;

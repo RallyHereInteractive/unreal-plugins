@@ -29,6 +29,9 @@ void FRHAPI_KVV1::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (Notes_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("notes"));
+		if (Notes_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, Notes_Optional);
 	}
 	Writer->WriteObjectEnd();
@@ -43,13 +46,14 @@ bool FRHAPI_KVV1::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonKeyField = (*Object)->TryGetField(TEXT("key"));
-	ParseSuccess &= JsonKeyField.IsValid() && !JsonKeyField->IsNull() && TryGetJsonValue(JsonKeyField, Key);
+	ParseSuccess &= JsonKeyField.IsValid() && (!JsonKeyField->IsNull() &&  TryGetJsonValue(JsonKeyField, Key));
 	const TSharedPtr<FJsonValue> JsonValueField = (*Object)->TryGetField(TEXT("value"));
-	ParseSuccess &= JsonValueField.IsValid() && !JsonValueField->IsNull() && TryGetJsonValue(JsonValueField, Value);
+	ParseSuccess &= JsonValueField.IsValid() && (!JsonValueField->IsNull() &&  TryGetJsonValue(JsonValueField, Value));
 	const TSharedPtr<FJsonValue> JsonNotesField = (*Object)->TryGetField(TEXT("notes"));
-	if (JsonNotesField.IsValid() && !JsonNotesField->IsNull())
+	if (JsonNotesField.IsValid())
 	{
-		Notes_IsSet = TryGetJsonValue(JsonNotesField, Notes_Optional);
+		Notes_IsNull = JsonNotesField->IsNull();
+		Notes_IsSet = Notes_IsNull || TryGetJsonValue(JsonNotesField, Notes_Optional);
 		ParseSuccess &= Notes_IsSet;
 	}
 

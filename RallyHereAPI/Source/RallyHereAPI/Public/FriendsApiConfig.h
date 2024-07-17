@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_FriendsApiConfig : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Maximum number of friends a user can have */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -54,19 +54,19 @@ struct RALLYHEREAPI_API FRHAPI_FriendsApiConfig : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of FriendLimit_Optional and returns true if it has been set, otherwise returns false */
 	bool GetFriendLimit(int32& OutValue) const { if (FriendLimit_IsSet) OutValue = FriendLimit_Optional; return FriendLimit_IsSet; }
 	/** @brief Returns a pointer to FriendLimit_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetFriendLimitOrNull() { if (FriendLimit_IsSet) return &FriendLimit_Optional; return nullptr; }
+	int32* GetFriendLimitOrNull() { if (FriendLimit_IsSet) return (&FriendLimit_Optional); return nullptr; }
 	/** @brief Returns a pointer to FriendLimit_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetFriendLimitOrNull() const { if (FriendLimit_IsSet) return &FriendLimit_Optional; return nullptr; }
+	const int32* GetFriendLimitOrNull() const { if (FriendLimit_IsSet) return (&FriendLimit_Optional); return nullptr; }
 	/** @brief Sets the value of FriendLimit_Optional and also sets FriendLimit_IsSet to true */
-	void SetFriendLimit(const int32& NewValue) { FriendLimit_Optional = NewValue; FriendLimit_IsSet = true; }
+	void SetFriendLimit(const int32& NewValue) { FriendLimit_Optional = NewValue; FriendLimit_IsSet = true;  }
 	/** @brief Sets the value of FriendLimit_Optional and also sets FriendLimit_IsSet to true using move semantics */
-	void SetFriendLimit(int32&& NewValue) { FriendLimit_Optional = NewValue; FriendLimit_IsSet = true; }
+	void SetFriendLimit(int32&& NewValue) { FriendLimit_Optional = NewValue; FriendLimit_IsSet = true;  }
 	 /** @brief Clears the value of FriendLimit_Optional and sets FriendLimit_IsSet to false */
-	void ClearFriendLimit() { FriendLimit_Optional = 10000; FriendLimit_IsSet = false; }
+	void ClearFriendLimit() { FriendLimit_Optional = 10000; FriendLimit_IsSet = false;  }
 	/** @brief Returns true if FriendLimit_Optional is set and matches the default value */
 	bool IsFriendLimitDefaultValue() const { return FriendLimit_IsSet && FriendLimit_Optional == 10000; }
 	/** @brief Sets the value of FriendLimit_Optional to its default and also sets FriendLimit_IsSet to true */
-	void SetFriendLimitToDefault() { FriendLimit_Optional = 10000; FriendLimit_IsSet = true; }
+	void SetFriendLimitToDefault() { SetFriendLimit(10000); }
 
 	/** @brief Maximum number of blocked users a user can have */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -83,19 +83,19 @@ struct RALLYHEREAPI_API FRHAPI_FriendsApiConfig : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of BlockLimit_Optional and returns true if it has been set, otherwise returns false */
 	bool GetBlockLimit(int32& OutValue) const { if (BlockLimit_IsSet) OutValue = BlockLimit_Optional; return BlockLimit_IsSet; }
 	/** @brief Returns a pointer to BlockLimit_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetBlockLimitOrNull() { if (BlockLimit_IsSet) return &BlockLimit_Optional; return nullptr; }
+	int32* GetBlockLimitOrNull() { if (BlockLimit_IsSet) return (&BlockLimit_Optional); return nullptr; }
 	/** @brief Returns a pointer to BlockLimit_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetBlockLimitOrNull() const { if (BlockLimit_IsSet) return &BlockLimit_Optional; return nullptr; }
+	const int32* GetBlockLimitOrNull() const { if (BlockLimit_IsSet) return (&BlockLimit_Optional); return nullptr; }
 	/** @brief Sets the value of BlockLimit_Optional and also sets BlockLimit_IsSet to true */
-	void SetBlockLimit(const int32& NewValue) { BlockLimit_Optional = NewValue; BlockLimit_IsSet = true; }
+	void SetBlockLimit(const int32& NewValue) { BlockLimit_Optional = NewValue; BlockLimit_IsSet = true;  }
 	/** @brief Sets the value of BlockLimit_Optional and also sets BlockLimit_IsSet to true using move semantics */
-	void SetBlockLimit(int32&& NewValue) { BlockLimit_Optional = NewValue; BlockLimit_IsSet = true; }
+	void SetBlockLimit(int32&& NewValue) { BlockLimit_Optional = NewValue; BlockLimit_IsSet = true;  }
 	 /** @brief Clears the value of BlockLimit_Optional and sets BlockLimit_IsSet to false */
-	void ClearBlockLimit() { BlockLimit_Optional = 10000; BlockLimit_IsSet = false; }
+	void ClearBlockLimit() { BlockLimit_Optional = 10000; BlockLimit_IsSet = false;  }
 	/** @brief Returns true if BlockLimit_Optional is set and matches the default value */
 	bool IsBlockLimitDefaultValue() const { return BlockLimit_IsSet && BlockLimit_Optional == 10000; }
 	/** @brief Sets the value of BlockLimit_Optional to its default and also sets BlockLimit_IsSet to true */
-	void SetBlockLimitToDefault() { BlockLimit_Optional = 10000; BlockLimit_IsSet = true; }
+	void SetBlockLimitToDefault() { SetBlockLimit(10000); }
 };
 
 /** @} */

@@ -64,35 +64,35 @@ bool FRHAPI_EntitlementEventRequest::FromJson(const TSharedPtr<FJsonValue>& Json
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonActionTypeField = (*Object)->TryGetField(TEXT("action_type"));
-	ParseSuccess &= JsonActionTypeField.IsValid() && !JsonActionTypeField->IsNull() && TryGetJsonValue(JsonActionTypeField, ActionType);
+	ParseSuccess &= JsonActionTypeField.IsValid() && (!JsonActionTypeField->IsNull() &&  TryGetJsonValue(JsonActionTypeField, ActionType));
 	const TSharedPtr<FJsonValue> JsonStatusField = (*Object)->TryGetField(TEXT("status"));
-	if (JsonStatusField.IsValid() && !JsonStatusField->IsNull())
+	if (JsonStatusField.IsValid())
 	{
 		Status_IsSet = TryGetJsonValue(JsonStatusField, Status_Optional);
 		ParseSuccess &= Status_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
-	if (JsonPlayerUuidField.IsValid() && !JsonPlayerUuidField->IsNull())
+	if (JsonPlayerUuidField.IsValid())
 	{
 		PlayerUuid_IsSet = TryGetJsonValue(JsonPlayerUuidField, PlayerUuid_Optional);
 		ParseSuccess &= PlayerUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlatformField = (*Object)->TryGetField(TEXT("platform"));
-	ParseSuccess &= JsonPlatformField.IsValid() && !JsonPlatformField->IsNull() && TryGetJsonValue(JsonPlatformField, Platform);
+	ParseSuccess &= JsonPlatformField.IsValid() && (!JsonPlatformField->IsNull() &&  TryGetJsonValue(JsonPlatformField, Platform));
 	const TSharedPtr<FJsonValue> JsonPlatformUserIdField = (*Object)->TryGetField(TEXT("platform_user_id"));
-	ParseSuccess &= JsonPlatformUserIdField.IsValid() && !JsonPlatformUserIdField->IsNull() && TryGetJsonValue(JsonPlatformUserIdField, PlatformUserId);
+	ParseSuccess &= JsonPlatformUserIdField.IsValid() && (!JsonPlatformUserIdField->IsNull() &&  TryGetJsonValue(JsonPlatformUserIdField, PlatformUserId));
 	const TSharedPtr<FJsonValue> JsonSkuField = (*Object)->TryGetField(TEXT("sku"));
-	ParseSuccess &= JsonSkuField.IsValid() && !JsonSkuField->IsNull() && TryGetJsonValue(JsonSkuField, Sku);
+	ParseSuccess &= JsonSkuField.IsValid() && (!JsonSkuField->IsNull() &&  TryGetJsonValue(JsonSkuField, Sku));
 	const TSharedPtr<FJsonValue> JsonQuantityField = (*Object)->TryGetField(TEXT("quantity"));
-	if (JsonQuantityField.IsValid() && !JsonQuantityField->IsNull())
+	if (JsonQuantityField.IsValid())
 	{
 		Quantity_IsSet = TryGetJsonValue(JsonQuantityField, Quantity_Optional);
 		ParseSuccess &= Quantity_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlatformTransactionIdField = (*Object)->TryGetField(TEXT("platform_transaction_id"));
-	ParseSuccess &= JsonPlatformTransactionIdField.IsValid() && !JsonPlatformTransactionIdField->IsNull() && TryGetJsonValue(JsonPlatformTransactionIdField, PlatformTransactionId);
+	ParseSuccess &= JsonPlatformTransactionIdField.IsValid() && (!JsonPlatformTransactionIdField->IsNull() &&  TryGetJsonValue(JsonPlatformTransactionIdField, PlatformTransactionId));
 	const TSharedPtr<FJsonValue> JsonPlatformDataField = (*Object)->TryGetField(TEXT("platform_data"));
-	if (JsonPlatformDataField.IsValid() && !JsonPlatformDataField->IsNull())
+	if (JsonPlatformDataField.IsValid())
 	{
 		PlatformData_IsSet = TryGetJsonValue(JsonPlatformDataField, PlatformData_Optional);
 		ParseSuccess &= PlatformData_IsSet;

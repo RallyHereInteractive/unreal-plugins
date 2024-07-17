@@ -44,13 +44,13 @@ bool FRHAPI_PricePoints::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPricePointsField = (*Object)->TryGetField(TEXT("price_points"));
-	if (JsonPricePointsField.IsValid() && !JsonPricePointsField->IsNull())
+	if (JsonPricePointsField.IsValid())
 	{
 		PricePoints_IsSet = TryGetJsonValue(JsonPricePointsField, PricePoints_Optional);
 		ParseSuccess &= PricePoints_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
-	if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
+	if (JsonCacheInfoField.IsValid())
 	{
 		CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
 		ParseSuccess &= CacheInfo_IsSet;

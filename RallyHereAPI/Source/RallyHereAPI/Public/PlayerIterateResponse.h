@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_PlayerIterateResponse : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief List of players.  An empty list means iteration is complete */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -55,15 +55,15 @@ struct RALLYHEREAPI_API FRHAPI_PlayerIterateResponse : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Players_Optional and returns true if it has been set, otherwise returns false */
 	bool GetPlayers(TArray<FRHAPI_PlayerResponse>& OutValue) const { if (Players_IsSet) OutValue = Players_Optional; return Players_IsSet; }
 	/** @brief Returns a pointer to Players_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FRHAPI_PlayerResponse>* GetPlayersOrNull() { if (Players_IsSet) return &Players_Optional; return nullptr; }
+	TArray<FRHAPI_PlayerResponse>* GetPlayersOrNull() { if (Players_IsSet) return (&Players_Optional); return nullptr; }
 	/** @brief Returns a pointer to Players_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FRHAPI_PlayerResponse>* GetPlayersOrNull() const { if (Players_IsSet) return &Players_Optional; return nullptr; }
+	const TArray<FRHAPI_PlayerResponse>* GetPlayersOrNull() const { if (Players_IsSet) return (&Players_Optional); return nullptr; }
 	/** @brief Sets the value of Players_Optional and also sets Players_IsSet to true */
-	void SetPlayers(const TArray<FRHAPI_PlayerResponse>& NewValue) { Players_Optional = NewValue; Players_IsSet = true; }
+	void SetPlayers(const TArray<FRHAPI_PlayerResponse>& NewValue) { Players_Optional = NewValue; Players_IsSet = true;  }
 	/** @brief Sets the value of Players_Optional and also sets Players_IsSet to true using move semantics */
-	void SetPlayers(TArray<FRHAPI_PlayerResponse>&& NewValue) { Players_Optional = NewValue; Players_IsSet = true; }
+	void SetPlayers(TArray<FRHAPI_PlayerResponse>&& NewValue) { Players_Optional = NewValue; Players_IsSet = true;  }
 	 /** @brief Clears the value of Players_Optional and sets Players_IsSet to false */
-	void ClearPlayers() { Players_IsSet = false; }
+	void ClearPlayers() { Players_IsSet = false;  }
 
 	/** @brief Cursor to continue iteration */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -80,19 +80,19 @@ struct RALLYHEREAPI_API FRHAPI_PlayerIterateResponse : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Cursor_Optional and returns true if it has been set, otherwise returns false */
 	bool GetCursor(FString& OutValue) const { if (Cursor_IsSet) OutValue = Cursor_Optional; return Cursor_IsSet; }
 	/** @brief Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetCursorOrNull() { if (Cursor_IsSet) return &Cursor_Optional; return nullptr; }
+	FString* GetCursorOrNull() { if (Cursor_IsSet) return (&Cursor_Optional); return nullptr; }
 	/** @brief Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetCursorOrNull() const { if (Cursor_IsSet) return &Cursor_Optional; return nullptr; }
+	const FString* GetCursorOrNull() const { if (Cursor_IsSet) return (&Cursor_Optional); return nullptr; }
 	/** @brief Sets the value of Cursor_Optional and also sets Cursor_IsSet to true */
-	void SetCursor(const FString& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true; }
+	void SetCursor(const FString& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true;  }
 	/** @brief Sets the value of Cursor_Optional and also sets Cursor_IsSet to true using move semantics */
-	void SetCursor(FString&& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true; }
+	void SetCursor(FString&& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true;  }
 	 /** @brief Clears the value of Cursor_Optional and sets Cursor_IsSet to false */
-	void ClearCursor() { Cursor_Optional = TEXT(""); Cursor_IsSet = false; }
+	void ClearCursor() { Cursor_Optional = TEXT(""); Cursor_IsSet = false;  }
 	/** @brief Returns true if Cursor_Optional is set and matches the default value */
 	bool IsCursorDefaultValue() const { return Cursor_IsSet && Cursor_Optional == TEXT(""); }
 	/** @brief Sets the value of Cursor_Optional to its default and also sets Cursor_IsSet to true */
-	void SetCursorToDefault() { Cursor_Optional = TEXT(""); Cursor_IsSet = true; }
+	void SetCursorToDefault() { SetCursor(TEXT("")); }
 };
 
 /** @} */

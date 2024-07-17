@@ -40,11 +40,11 @@ bool FRHAPI_PageMeta::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPageField = (*Object)->TryGetField(TEXT("page"));
-	ParseSuccess &= JsonPageField.IsValid() && !JsonPageField->IsNull() && TryGetJsonValue(JsonPageField, Page);
+	ParseSuccess &= JsonPageField.IsValid() && (!JsonPageField->IsNull() &&  TryGetJsonValue(JsonPageField, Page));
 	const TSharedPtr<FJsonValue> JsonLimitField = (*Object)->TryGetField(TEXT("limit"));
-	ParseSuccess &= JsonLimitField.IsValid() && !JsonLimitField->IsNull() && TryGetJsonValue(JsonLimitField, Limit);
+	ParseSuccess &= JsonLimitField.IsValid() && (!JsonLimitField->IsNull() &&  TryGetJsonValue(JsonLimitField, Limit));
 	const TSharedPtr<FJsonValue> JsonTotalField = (*Object)->TryGetField(TEXT("total"));
-	ParseSuccess &= JsonTotalField.IsValid() && !JsonTotalField->IsNull() && TryGetJsonValue(JsonTotalField, Total);
+	ParseSuccess &= JsonTotalField.IsValid() && (!JsonTotalField->IsNull() &&  TryGetJsonValue(JsonTotalField, Total));
 
 	return ParseSuccess;
 }

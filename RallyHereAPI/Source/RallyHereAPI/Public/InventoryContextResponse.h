@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_InventoryContextResponse : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Inventory Context for a Player. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -55,15 +55,15 @@ struct RALLYHEREAPI_API FRHAPI_InventoryContextResponse : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Inventory_Optional and returns true if it has been set, otherwise returns false */
 	bool GetInventory(FRHAPI_Inventory& OutValue) const { if (Inventory_IsSet) OutValue = Inventory_Optional; return Inventory_IsSet; }
 	/** @brief Returns a pointer to Inventory_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_Inventory* GetInventoryOrNull() { if (Inventory_IsSet) return &Inventory_Optional; return nullptr; }
+	FRHAPI_Inventory* GetInventoryOrNull() { if (Inventory_IsSet) return (&Inventory_Optional); return nullptr; }
 	/** @brief Returns a pointer to Inventory_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_Inventory* GetInventoryOrNull() const { if (Inventory_IsSet) return &Inventory_Optional; return nullptr; }
+	const FRHAPI_Inventory* GetInventoryOrNull() const { if (Inventory_IsSet) return (&Inventory_Optional); return nullptr; }
 	/** @brief Sets the value of Inventory_Optional and also sets Inventory_IsSet to true */
-	void SetInventory(const FRHAPI_Inventory& NewValue) { Inventory_Optional = NewValue; Inventory_IsSet = true; }
+	void SetInventory(const FRHAPI_Inventory& NewValue) { Inventory_Optional = NewValue; Inventory_IsSet = true;  }
 	/** @brief Sets the value of Inventory_Optional and also sets Inventory_IsSet to true using move semantics */
-	void SetInventory(FRHAPI_Inventory&& NewValue) { Inventory_Optional = NewValue; Inventory_IsSet = true; }
+	void SetInventory(FRHAPI_Inventory&& NewValue) { Inventory_Optional = NewValue; Inventory_IsSet = true;  }
 	 /** @brief Clears the value of Inventory_Optional and sets Inventory_IsSet to false */
-	void ClearInventory() { Inventory_IsSet = false; }
+	void ClearInventory() { Inventory_IsSet = false;  }
 };
 
 /** @} */

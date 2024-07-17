@@ -36,7 +36,7 @@ bool FRHAPI_IndividualCCUs::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonCcusField = (*Object)->TryGetField(TEXT("ccus"));
-	ParseSuccess &= JsonCcusField.IsValid() && !JsonCcusField->IsNull() && TryGetJsonValue(JsonCcusField, Ccus);
+	ParseSuccess &= JsonCcusField.IsValid() && (!JsonCcusField->IsNull() &&  TryGetJsonValue(JsonCcusField, Ccus));
 
 	return ParseSuccess;
 }

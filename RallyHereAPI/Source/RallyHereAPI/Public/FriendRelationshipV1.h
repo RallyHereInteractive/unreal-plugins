@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_FriendRelationshipV1 : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid FriendsPlayerUuid{  };
@@ -47,9 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_FriendRelationshipV1 : public FRHAPI_Model
 	/** @brief Gets the value of FriendsPlayerUuid */
 	const FGuid& GetFriendsPlayerUuid() const { return FriendsPlayerUuid; }
 	/** @brief Sets the value of FriendsPlayerUuid */
-	void SetFriendsPlayerUuid(const FGuid& NewValue) { FriendsPlayerUuid = NewValue;  }
+	void SetFriendsPlayerUuid(const FGuid& NewValue) { FriendsPlayerUuid = NewValue;   }
 	/** @brief Sets the value of FriendsPlayerUuid using move semantics */
-	void SetFriendsPlayerUuid(FGuid&& NewValue) { FriendsPlayerUuid = NewValue;  }
+	void SetFriendsPlayerUuid(FGuid&& NewValue) { FriendsPlayerUuid = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 FriendsPlayerId_Optional{  };
@@ -65,19 +65,19 @@ struct RALLYHEREAPI_API FRHAPI_FriendRelationshipV1 : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of FriendsPlayerId_Optional and returns true if it has been set, otherwise returns false */
 	bool GetFriendsPlayerId(int32& OutValue) const { if (FriendsPlayerId_IsSet) OutValue = FriendsPlayerId_Optional; return FriendsPlayerId_IsSet; }
 	/** @brief Returns a pointer to FriendsPlayerId_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetFriendsPlayerIdOrNull() { if (FriendsPlayerId_IsSet) return &FriendsPlayerId_Optional; return nullptr; }
+	int32* GetFriendsPlayerIdOrNull() { if (FriendsPlayerId_IsSet) return (&FriendsPlayerId_Optional); return nullptr; }
 	/** @brief Returns a pointer to FriendsPlayerId_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetFriendsPlayerIdOrNull() const { if (FriendsPlayerId_IsSet) return &FriendsPlayerId_Optional; return nullptr; }
+	const int32* GetFriendsPlayerIdOrNull() const { if (FriendsPlayerId_IsSet) return (&FriendsPlayerId_Optional); return nullptr; }
 	/** @brief Sets the value of FriendsPlayerId_Optional and also sets FriendsPlayerId_IsSet to true */
-	void SetFriendsPlayerId(const int32& NewValue) { FriendsPlayerId_Optional = NewValue; FriendsPlayerId_IsSet = true; }
+	void SetFriendsPlayerId(const int32& NewValue) { FriendsPlayerId_Optional = NewValue; FriendsPlayerId_IsSet = true;  }
 	/** @brief Sets the value of FriendsPlayerId_Optional and also sets FriendsPlayerId_IsSet to true using move semantics */
-	void SetFriendsPlayerId(int32&& NewValue) { FriendsPlayerId_Optional = NewValue; FriendsPlayerId_IsSet = true; }
+	void SetFriendsPlayerId(int32&& NewValue) { FriendsPlayerId_Optional = NewValue; FriendsPlayerId_IsSet = true;  }
 	 /** @brief Clears the value of FriendsPlayerId_Optional and sets FriendsPlayerId_IsSet to false */
-	void ClearFriendsPlayerId() { FriendsPlayerId_Optional = 0; FriendsPlayerId_IsSet = false; }
+	void ClearFriendsPlayerId() { FriendsPlayerId_Optional = 0; FriendsPlayerId_IsSet = false;  }
 	/** @brief Returns true if FriendsPlayerId_Optional is set and matches the default value */
 	bool IsFriendsPlayerIdDefaultValue() const { return FriendsPlayerId_IsSet && FriendsPlayerId_Optional == 0; }
 	/** @brief Sets the value of FriendsPlayerId_Optional to its default and also sets FriendsPlayerId_IsSet to true */
-	void SetFriendsPlayerIdToDefault() { FriendsPlayerId_Optional = 0; FriendsPlayerId_IsSet = true; }
+	void SetFriendsPlayerIdToDefault() { SetFriendsPlayerId(0); }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_FriendshipStatus Status{  };
@@ -86,9 +86,9 @@ struct RALLYHEREAPI_API FRHAPI_FriendRelationshipV1 : public FRHAPI_Model
 	/** @brief Gets the value of Status */
 	const ERHAPI_FriendshipStatus& GetStatus() const { return Status; }
 	/** @brief Sets the value of Status */
-	void SetStatus(const ERHAPI_FriendshipStatus& NewValue) { Status = NewValue;  }
+	void SetStatus(const ERHAPI_FriendshipStatus& NewValue) { Status = NewValue;   }
 	/** @brief Sets the value of Status using move semantics */
-	void SetStatus(ERHAPI_FriendshipStatus&& NewValue) { Status = NewValue;  }
+	void SetStatus(ERHAPI_FriendshipStatus&& NewValue) { Status = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Notes_Optional{  };
@@ -104,15 +104,15 @@ struct RALLYHEREAPI_API FRHAPI_FriendRelationshipV1 : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Notes_Optional and returns true if it has been set, otherwise returns false */
 	bool GetNotes(FString& OutValue) const { if (Notes_IsSet) OutValue = Notes_Optional; return Notes_IsSet; }
 	/** @brief Returns a pointer to Notes_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetNotesOrNull() { if (Notes_IsSet) return &Notes_Optional; return nullptr; }
+	FString* GetNotesOrNull() { if (Notes_IsSet) return (&Notes_Optional); return nullptr; }
 	/** @brief Returns a pointer to Notes_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetNotesOrNull() const { if (Notes_IsSet) return &Notes_Optional; return nullptr; }
+	const FString* GetNotesOrNull() const { if (Notes_IsSet) return (&Notes_Optional); return nullptr; }
 	/** @brief Sets the value of Notes_Optional and also sets Notes_IsSet to true */
-	void SetNotes(const FString& NewValue) { Notes_Optional = NewValue; Notes_IsSet = true; }
+	void SetNotes(const FString& NewValue) { Notes_Optional = NewValue; Notes_IsSet = true;  }
 	/** @brief Sets the value of Notes_Optional and also sets Notes_IsSet to true using move semantics */
-	void SetNotes(FString&& NewValue) { Notes_Optional = NewValue; Notes_IsSet = true; }
+	void SetNotes(FString&& NewValue) { Notes_Optional = NewValue; Notes_IsSet = true;  }
 	 /** @brief Clears the value of Notes_Optional and sets Notes_IsSet to false */
-	void ClearNotes() { Notes_IsSet = false; }
+	void ClearNotes() { Notes_IsSet = false;  }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FDateTime LastModifiedOn{  };
@@ -121,9 +121,9 @@ struct RALLYHEREAPI_API FRHAPI_FriendRelationshipV1 : public FRHAPI_Model
 	/** @brief Gets the value of LastModifiedOn */
 	const FDateTime& GetLastModifiedOn() const { return LastModifiedOn; }
 	/** @brief Sets the value of LastModifiedOn */
-	void SetLastModifiedOn(const FDateTime& NewValue) { LastModifiedOn = NewValue;  }
+	void SetLastModifiedOn(const FDateTime& NewValue) { LastModifiedOn = NewValue;   }
 	/** @brief Sets the value of LastModifiedOn using move semantics */
-	void SetLastModifiedOn(FDateTime&& NewValue) { LastModifiedOn = NewValue;  }
+	void SetLastModifiedOn(FDateTime&& NewValue) { LastModifiedOn = NewValue;   }
 };
 
 /** @} */

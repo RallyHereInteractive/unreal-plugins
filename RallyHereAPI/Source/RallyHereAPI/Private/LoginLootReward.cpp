@@ -41,13 +41,13 @@ bool FRHAPI_LoginLootReward::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonLootIdField = (*Object)->TryGetField(TEXT("loot_id"));
-	if (JsonLootIdField.IsValid() && !JsonLootIdField->IsNull())
+	if (JsonLootIdField.IsValid())
 	{
 		LootId_IsSet = TryGetJsonValue(JsonLootIdField, LootId_Optional);
 		ParseSuccess &= LootId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonLegacyLootIdField = (*Object)->TryGetField(TEXT("legacy_loot_id"));
-	ParseSuccess &= JsonLegacyLootIdField.IsValid() && !JsonLegacyLootIdField->IsNull() && TryGetJsonValue(JsonLegacyLootIdField, LegacyLootId);
+	ParseSuccess &= JsonLegacyLootIdField.IsValid() && (!JsonLegacyLootIdField->IsNull() &&  TryGetJsonValue(JsonLegacyLootIdField, LegacyLootId));
 
 	return ParseSuccess;
 }

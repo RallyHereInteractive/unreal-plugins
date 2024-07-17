@@ -42,13 +42,13 @@ bool FRHAPI_EnvironmentConfig::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonOrgIdField = (*Object)->TryGetField(TEXT("org_id"));
-	ParseSuccess &= JsonOrgIdField.IsValid() && !JsonOrgIdField->IsNull() && TryGetJsonValue(JsonOrgIdField, OrgId);
+	ParseSuccess &= JsonOrgIdField.IsValid() && (!JsonOrgIdField->IsNull() &&  TryGetJsonValue(JsonOrgIdField, OrgId));
 	const TSharedPtr<FJsonValue> JsonProductIdField = (*Object)->TryGetField(TEXT("product_id"));
-	ParseSuccess &= JsonProductIdField.IsValid() && !JsonProductIdField->IsNull() && TryGetJsonValue(JsonProductIdField, ProductId);
+	ParseSuccess &= JsonProductIdField.IsValid() && (!JsonProductIdField->IsNull() &&  TryGetJsonValue(JsonProductIdField, ProductId));
 	const TSharedPtr<FJsonValue> JsonEnvironmentIdField = (*Object)->TryGetField(TEXT("environment_id"));
-	ParseSuccess &= JsonEnvironmentIdField.IsValid() && !JsonEnvironmentIdField->IsNull() && TryGetJsonValue(JsonEnvironmentIdField, EnvironmentId);
+	ParseSuccess &= JsonEnvironmentIdField.IsValid() && (!JsonEnvironmentIdField->IsNull() &&  TryGetJsonValue(JsonEnvironmentIdField, EnvironmentId));
 	const TSharedPtr<FJsonValue> JsonSandboxIdField = (*Object)->TryGetField(TEXT("sandbox_id"));
-	ParseSuccess &= JsonSandboxIdField.IsValid() && !JsonSandboxIdField->IsNull() && TryGetJsonValue(JsonSandboxIdField, SandboxId);
+	ParseSuccess &= JsonSandboxIdField.IsValid() && (!JsonSandboxIdField->IsNull() &&  TryGetJsonValue(JsonSandboxIdField, SandboxId));
 
 	return ParseSuccess;
 }

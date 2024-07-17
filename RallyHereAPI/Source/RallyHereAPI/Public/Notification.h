@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_Notification : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Base Message for the notification */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -47,9 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_Notification : public FRHAPI_Model
 	/** @brief Gets the value of Message */
 	const FString& GetMessage() const { return Message; }
 	/** @brief Sets the value of Message */
-	void SetMessage(const FString& NewValue) { Message = NewValue;  }
+	void SetMessage(const FString& NewValue) { Message = NewValue;   }
 	/** @brief Sets the value of Message using move semantics */
-	void SetMessage(FString&& NewValue) { Message = NewValue;  }
+	void SetMessage(FString&& NewValue) { Message = NewValue;   }
 
 	/** @brief Path to get additional data about this notification */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -66,15 +66,15 @@ struct RALLYHEREAPI_API FRHAPI_Notification : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of RhUrl_Optional and returns true if it has been set, otherwise returns false */
 	bool GetRhUrl(FString& OutValue) const { if (RhUrl_IsSet) OutValue = RhUrl_Optional; return RhUrl_IsSet; }
 	/** @brief Returns a pointer to RhUrl_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRhUrlOrNull() { if (RhUrl_IsSet) return &RhUrl_Optional; return nullptr; }
+	FString* GetRhUrlOrNull() { if (RhUrl_IsSet) return (&RhUrl_Optional); return nullptr; }
 	/** @brief Returns a pointer to RhUrl_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRhUrlOrNull() const { if (RhUrl_IsSet) return &RhUrl_Optional; return nullptr; }
+	const FString* GetRhUrlOrNull() const { if (RhUrl_IsSet) return (&RhUrl_Optional); return nullptr; }
 	/** @brief Sets the value of RhUrl_Optional and also sets RhUrl_IsSet to true */
-	void SetRhUrl(const FString& NewValue) { RhUrl_Optional = NewValue; RhUrl_IsSet = true; }
+	void SetRhUrl(const FString& NewValue) { RhUrl_Optional = NewValue; RhUrl_IsSet = true;  }
 	/** @brief Sets the value of RhUrl_Optional and also sets RhUrl_IsSet to true using move semantics */
-	void SetRhUrl(FString&& NewValue) { RhUrl_Optional = NewValue; RhUrl_IsSet = true; }
+	void SetRhUrl(FString&& NewValue) { RhUrl_Optional = NewValue; RhUrl_IsSet = true;  }
 	 /** @brief Clears the value of RhUrl_Optional and sets RhUrl_IsSet to false */
-	void ClearRhUrl() { RhUrl_IsSet = false; }
+	void ClearRhUrl() { RhUrl_IsSet = false;  }
 
 	/** @brief Custom values for the notification */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -91,15 +91,15 @@ struct RALLYHEREAPI_API FRHAPI_Notification : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
 	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
-	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
-	void ClearCustomData() { CustomData_IsSet = false; }
+	void ClearCustomData() { CustomData_IsSet = false;  }
 
 	/** @brief ETag for the resource at rh_url at the time of this notification */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -116,15 +116,15 @@ struct RALLYHEREAPI_API FRHAPI_Notification : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Etag_Optional and returns true if it has been set, otherwise returns false */
 	bool GetEtag(FString& OutValue) const { if (Etag_IsSet) OutValue = Etag_Optional; return Etag_IsSet; }
 	/** @brief Returns a pointer to Etag_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetEtagOrNull() { if (Etag_IsSet) return &Etag_Optional; return nullptr; }
+	FString* GetEtagOrNull() { if (Etag_IsSet) return (&Etag_Optional); return nullptr; }
 	/** @brief Returns a pointer to Etag_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetEtagOrNull() const { if (Etag_IsSet) return &Etag_Optional; return nullptr; }
+	const FString* GetEtagOrNull() const { if (Etag_IsSet) return (&Etag_Optional); return nullptr; }
 	/** @brief Sets the value of Etag_Optional and also sets Etag_IsSet to true */
-	void SetEtag(const FString& NewValue) { Etag_Optional = NewValue; Etag_IsSet = true; }
+	void SetEtag(const FString& NewValue) { Etag_Optional = NewValue; Etag_IsSet = true;  }
 	/** @brief Sets the value of Etag_Optional and also sets Etag_IsSet to true using move semantics */
-	void SetEtag(FString&& NewValue) { Etag_Optional = NewValue; Etag_IsSet = true; }
+	void SetEtag(FString&& NewValue) { Etag_Optional = NewValue; Etag_IsSet = true;  }
 	 /** @brief Clears the value of Etag_Optional and sets Etag_IsSet to false */
-	void ClearEtag() { Etag_IsSet = false; }
+	void ClearEtag() { Etag_IsSet = false;  }
 
 	/** @brief Unique Identifier for the notification.  You cannot depend on the format of this string, and it must be considered opaque */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -134,9 +134,9 @@ struct RALLYHEREAPI_API FRHAPI_Notification : public FRHAPI_Model
 	/** @brief Gets the value of NotificationId */
 	const FString& GetNotificationId() const { return NotificationId; }
 	/** @brief Sets the value of NotificationId */
-	void SetNotificationId(const FString& NewValue) { NotificationId = NewValue;  }
+	void SetNotificationId(const FString& NewValue) { NotificationId = NewValue;   }
 	/** @brief Sets the value of NotificationId using move semantics */
-	void SetNotificationId(FString&& NewValue) { NotificationId = NewValue;  }
+	void SetNotificationId(FString&& NewValue) { NotificationId = NewValue;   }
 
 	/** @brief When this notification was added */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -146,9 +146,9 @@ struct RALLYHEREAPI_API FRHAPI_Notification : public FRHAPI_Model
 	/** @brief Gets the value of Created */
 	const FDateTime& GetCreated() const { return Created; }
 	/** @brief Sets the value of Created */
-	void SetCreated(const FDateTime& NewValue) { Created = NewValue;  }
+	void SetCreated(const FDateTime& NewValue) { Created = NewValue;   }
 	/** @brief Sets the value of Created using move semantics */
-	void SetCreated(FDateTime&& NewValue) { Created = NewValue;  }
+	void SetCreated(FDateTime&& NewValue) { Created = NewValue;   }
 };
 
 /** @} */

@@ -69,43 +69,43 @@ bool FRHAPI_Vendor::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	if (JsonCustomDataField.IsValid())
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonVendorUuidField = (*Object)->TryGetField(TEXT("vendor_uuid"));
-	if (JsonVendorUuidField.IsValid() && !JsonVendorUuidField->IsNull())
+	if (JsonVendorUuidField.IsValid())
 	{
 		VendorUuid_IsSet = TryGetJsonValue(JsonVendorUuidField, VendorUuid_Optional);
 		ParseSuccess &= VendorUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
-	if (JsonTypeField.IsValid() && !JsonTypeField->IsNull())
+	if (JsonTypeField.IsValid())
 	{
 		Type_IsSet = TryGetJsonValue(JsonTypeField, Type_Optional);
 		ParseSuccess &= Type_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonLegacyTypeField = (*Object)->TryGetField(TEXT("legacy_type"));
-	if (JsonLegacyTypeField.IsValid() && !JsonLegacyTypeField->IsNull())
+	if (JsonLegacyTypeField.IsValid())
 	{
 		LegacyType_IsSet = TryGetJsonValue(JsonLegacyTypeField, LegacyType_Optional);
 		ParseSuccess &= LegacyType_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonLegacyConfigVersionField = (*Object)->TryGetField(TEXT("legacy_config_version"));
-	if (JsonLegacyConfigVersionField.IsValid() && !JsonLegacyConfigVersionField->IsNull())
+	if (JsonLegacyConfigVersionField.IsValid())
 	{
 		LegacyConfigVersion_IsSet = TryGetJsonValue(JsonLegacyConfigVersionField, LegacyConfigVersion_Optional);
 		ParseSuccess &= LegacyConfigVersion_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonLootField = (*Object)->TryGetField(TEXT("loot"));
-	if (JsonLootField.IsValid() && !JsonLootField->IsNull())
+	if (JsonLootField.IsValid())
 	{
 		Loot_IsSet = TryGetJsonValue(JsonLootField, Loot_Optional);
 		ParseSuccess &= Loot_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
-	if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
+	if (JsonCacheInfoField.IsValid())
 	{
 		CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
 		ParseSuccess &= CacheInfo_IsSet;

@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_DeserterUpdateRequest : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -47,9 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_DeserterUpdateRequest : public FRHAPI_Model
 	/** @brief Gets the value of DeserterExpiration */
 	const FDateTime& GetDeserterExpiration() const { return DeserterExpiration; }
 	/** @brief Sets the value of DeserterExpiration */
-	void SetDeserterExpiration(const FDateTime& NewValue) { DeserterExpiration = NewValue;  }
+	void SetDeserterExpiration(const FDateTime& NewValue) { DeserterExpiration = NewValue;   }
 	/** @brief Sets the value of DeserterExpiration using move semantics */
-	void SetDeserterExpiration(FDateTime&& NewValue) { DeserterExpiration = NewValue;  }
+	void SetDeserterExpiration(FDateTime&& NewValue) { DeserterExpiration = NewValue;   }
 
 	/** @brief The number of times a player has deserted before the expiration */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -59,13 +59,13 @@ struct RALLYHEREAPI_API FRHAPI_DeserterUpdateRequest : public FRHAPI_Model
 	/** @brief Gets the value of DeserterCount */
 	const int32& GetDeserterCount() const { return DeserterCount; }
 	/** @brief Sets the value of DeserterCount */
-	void SetDeserterCount(const int32& NewValue) { DeserterCount = NewValue;  }
+	void SetDeserterCount(const int32& NewValue) { DeserterCount = NewValue;   }
 	/** @brief Sets the value of DeserterCount using move semantics */
-	void SetDeserterCount(int32&& NewValue) { DeserterCount = NewValue;  }
+	void SetDeserterCount(int32&& NewValue) { DeserterCount = NewValue;   }
 	/** @brief Returns true if DeserterCount matches the default value */
 	bool IsDeserterCountDefaultValue() const { return DeserterCount == 0; }
 	/** @brief Sets the value of DeserterCount to its default  */
-	void SetDeserterCountToDefault() { DeserterCount = 0;  }
+	void SetDeserterCountToDefault() { SetDeserterCount(0); }
 
 	/** @brief Custom data about a players desertion status */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -82,15 +82,15 @@ struct RALLYHEREAPI_API FRHAPI_DeserterUpdateRequest : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
 	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
-	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
-	void ClearCustomData() { CustomData_IsSet = false; }
+	void ClearCustomData() { CustomData_IsSet = false;  }
 };
 
 /** @} */

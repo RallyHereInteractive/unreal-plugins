@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_MarketingCampaigns : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief List of external Marketing Campaigns */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -48,9 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_MarketingCampaigns : public FRHAPI_Model
 	/** @brief Gets the value of Campaigns */
 	const TArray<FRHAPI_MarketingCampaign>& GetCampaigns() const { return Campaigns; }
 	/** @brief Sets the value of Campaigns */
-	void SetCampaigns(const TArray<FRHAPI_MarketingCampaign>& NewValue) { Campaigns = NewValue;  }
+	void SetCampaigns(const TArray<FRHAPI_MarketingCampaign>& NewValue) { Campaigns = NewValue;   }
 	/** @brief Sets the value of Campaigns using move semantics */
-	void SetCampaigns(TArray<FRHAPI_MarketingCampaign>&& NewValue) { Campaigns = NewValue;  }
+	void SetCampaigns(TArray<FRHAPI_MarketingCampaign>&& NewValue) { Campaigns = NewValue;   }
 };
 
 /** @} */

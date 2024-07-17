@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenExchange : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Grant type for the OAuth exchange. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -48,9 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenExchange : public FRHAPI_Model
 	/** @brief Gets the value of GrantType */
 	const ERHAPI_OAuthTokenEchangeGrantType& GetGrantType() const { return GrantType; }
 	/** @brief Sets the value of GrantType */
-	void SetGrantType(const ERHAPI_OAuthTokenEchangeGrantType& NewValue) { GrantType = NewValue;  }
+	void SetGrantType(const ERHAPI_OAuthTokenEchangeGrantType& NewValue) { GrantType = NewValue;   }
 	/** @brief Sets the value of GrantType using move semantics */
-	void SetGrantType(ERHAPI_OAuthTokenEchangeGrantType&& NewValue) { GrantType = NewValue;  }
+	void SetGrantType(ERHAPI_OAuthTokenEchangeGrantType&& NewValue) { GrantType = NewValue;   }
 
 	/** @brief authorization_code for the OAuth exchange. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -60,9 +60,9 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenExchange : public FRHAPI_Model
 	/** @brief Gets the value of Code */
 	const FString& GetCode() const { return Code; }
 	/** @brief Sets the value of Code */
-	void SetCode(const FString& NewValue) { Code = NewValue;  }
+	void SetCode(const FString& NewValue) { Code = NewValue;   }
 	/** @brief Sets the value of Code using move semantics */
-	void SetCode(FString&& NewValue) { Code = NewValue;  }
+	void SetCode(FString&& NewValue) { Code = NewValue;   }
 
 	/** @brief If true, the user has accepted the EULA. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -79,19 +79,19 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenExchange : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of AcceptedEula_Optional and returns true if it has been set, otherwise returns false */
 	bool GetAcceptedEula(bool& OutValue) const { if (AcceptedEula_IsSet) OutValue = AcceptedEula_Optional; return AcceptedEula_IsSet; }
 	/** @brief Returns a pointer to AcceptedEula_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetAcceptedEulaOrNull() { if (AcceptedEula_IsSet) return &AcceptedEula_Optional; return nullptr; }
+	bool* GetAcceptedEulaOrNull() { if (AcceptedEula_IsSet) return (&AcceptedEula_Optional); return nullptr; }
 	/** @brief Returns a pointer to AcceptedEula_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetAcceptedEulaOrNull() const { if (AcceptedEula_IsSet) return &AcceptedEula_Optional; return nullptr; }
+	const bool* GetAcceptedEulaOrNull() const { if (AcceptedEula_IsSet) return (&AcceptedEula_Optional); return nullptr; }
 	/** @brief Sets the value of AcceptedEula_Optional and also sets AcceptedEula_IsSet to true */
-	void SetAcceptedEula(const bool& NewValue) { AcceptedEula_Optional = NewValue; AcceptedEula_IsSet = true; }
+	void SetAcceptedEula(const bool& NewValue) { AcceptedEula_Optional = NewValue; AcceptedEula_IsSet = true;  }
 	/** @brief Sets the value of AcceptedEula_Optional and also sets AcceptedEula_IsSet to true using move semantics */
-	void SetAcceptedEula(bool&& NewValue) { AcceptedEula_Optional = NewValue; AcceptedEula_IsSet = true; }
+	void SetAcceptedEula(bool&& NewValue) { AcceptedEula_Optional = NewValue; AcceptedEula_IsSet = true;  }
 	 /** @brief Clears the value of AcceptedEula_Optional and sets AcceptedEula_IsSet to false */
-	void ClearAcceptedEula() { AcceptedEula_Optional = false; AcceptedEula_IsSet = false; }
+	void ClearAcceptedEula() { AcceptedEula_Optional = false; AcceptedEula_IsSet = false;  }
 	/** @brief Returns true if AcceptedEula_Optional is set and matches the default value */
 	bool IsAcceptedEulaDefaultValue() const { return AcceptedEula_IsSet && AcceptedEula_Optional == false; }
 	/** @brief Sets the value of AcceptedEula_Optional to its default and also sets AcceptedEula_IsSet to true */
-	void SetAcceptedEulaToDefault() { AcceptedEula_Optional = false; AcceptedEula_IsSet = true; }
+	void SetAcceptedEulaToDefault() { SetAcceptedEula(false); }
 
 	/** @brief If true, the user has accepted the TOS. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -108,19 +108,19 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenExchange : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of AcceptedTos_Optional and returns true if it has been set, otherwise returns false */
 	bool GetAcceptedTos(bool& OutValue) const { if (AcceptedTos_IsSet) OutValue = AcceptedTos_Optional; return AcceptedTos_IsSet; }
 	/** @brief Returns a pointer to AcceptedTos_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetAcceptedTosOrNull() { if (AcceptedTos_IsSet) return &AcceptedTos_Optional; return nullptr; }
+	bool* GetAcceptedTosOrNull() { if (AcceptedTos_IsSet) return (&AcceptedTos_Optional); return nullptr; }
 	/** @brief Returns a pointer to AcceptedTos_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetAcceptedTosOrNull() const { if (AcceptedTos_IsSet) return &AcceptedTos_Optional; return nullptr; }
+	const bool* GetAcceptedTosOrNull() const { if (AcceptedTos_IsSet) return (&AcceptedTos_Optional); return nullptr; }
 	/** @brief Sets the value of AcceptedTos_Optional and also sets AcceptedTos_IsSet to true */
-	void SetAcceptedTos(const bool& NewValue) { AcceptedTos_Optional = NewValue; AcceptedTos_IsSet = true; }
+	void SetAcceptedTos(const bool& NewValue) { AcceptedTos_Optional = NewValue; AcceptedTos_IsSet = true;  }
 	/** @brief Sets the value of AcceptedTos_Optional and also sets AcceptedTos_IsSet to true using move semantics */
-	void SetAcceptedTos(bool&& NewValue) { AcceptedTos_Optional = NewValue; AcceptedTos_IsSet = true; }
+	void SetAcceptedTos(bool&& NewValue) { AcceptedTos_Optional = NewValue; AcceptedTos_IsSet = true;  }
 	 /** @brief Clears the value of AcceptedTos_Optional and sets AcceptedTos_IsSet to false */
-	void ClearAcceptedTos() { AcceptedTos_Optional = false; AcceptedTos_IsSet = false; }
+	void ClearAcceptedTos() { AcceptedTos_Optional = false; AcceptedTos_IsSet = false;  }
 	/** @brief Returns true if AcceptedTos_Optional is set and matches the default value */
 	bool IsAcceptedTosDefaultValue() const { return AcceptedTos_IsSet && AcceptedTos_Optional == false; }
 	/** @brief Sets the value of AcceptedTos_Optional to its default and also sets AcceptedTos_IsSet to true */
-	void SetAcceptedTosToDefault() { AcceptedTos_Optional = false; AcceptedTos_IsSet = true; }
+	void SetAcceptedTosToDefault() { SetAcceptedTos(false); }
 
 	/** @brief If true, the user has accepted the Privacy Policy. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -137,19 +137,19 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenExchange : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of AcceptedPrivacyPolicy_Optional and returns true if it has been set, otherwise returns false */
 	bool GetAcceptedPrivacyPolicy(bool& OutValue) const { if (AcceptedPrivacyPolicy_IsSet) OutValue = AcceptedPrivacyPolicy_Optional; return AcceptedPrivacyPolicy_IsSet; }
 	/** @brief Returns a pointer to AcceptedPrivacyPolicy_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetAcceptedPrivacyPolicyOrNull() { if (AcceptedPrivacyPolicy_IsSet) return &AcceptedPrivacyPolicy_Optional; return nullptr; }
+	bool* GetAcceptedPrivacyPolicyOrNull() { if (AcceptedPrivacyPolicy_IsSet) return (&AcceptedPrivacyPolicy_Optional); return nullptr; }
 	/** @brief Returns a pointer to AcceptedPrivacyPolicy_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetAcceptedPrivacyPolicyOrNull() const { if (AcceptedPrivacyPolicy_IsSet) return &AcceptedPrivacyPolicy_Optional; return nullptr; }
+	const bool* GetAcceptedPrivacyPolicyOrNull() const { if (AcceptedPrivacyPolicy_IsSet) return (&AcceptedPrivacyPolicy_Optional); return nullptr; }
 	/** @brief Sets the value of AcceptedPrivacyPolicy_Optional and also sets AcceptedPrivacyPolicy_IsSet to true */
-	void SetAcceptedPrivacyPolicy(const bool& NewValue) { AcceptedPrivacyPolicy_Optional = NewValue; AcceptedPrivacyPolicy_IsSet = true; }
+	void SetAcceptedPrivacyPolicy(const bool& NewValue) { AcceptedPrivacyPolicy_Optional = NewValue; AcceptedPrivacyPolicy_IsSet = true;  }
 	/** @brief Sets the value of AcceptedPrivacyPolicy_Optional and also sets AcceptedPrivacyPolicy_IsSet to true using move semantics */
-	void SetAcceptedPrivacyPolicy(bool&& NewValue) { AcceptedPrivacyPolicy_Optional = NewValue; AcceptedPrivacyPolicy_IsSet = true; }
+	void SetAcceptedPrivacyPolicy(bool&& NewValue) { AcceptedPrivacyPolicy_Optional = NewValue; AcceptedPrivacyPolicy_IsSet = true;  }
 	 /** @brief Clears the value of AcceptedPrivacyPolicy_Optional and sets AcceptedPrivacyPolicy_IsSet to false */
-	void ClearAcceptedPrivacyPolicy() { AcceptedPrivacyPolicy_Optional = false; AcceptedPrivacyPolicy_IsSet = false; }
+	void ClearAcceptedPrivacyPolicy() { AcceptedPrivacyPolicy_Optional = false; AcceptedPrivacyPolicy_IsSet = false;  }
 	/** @brief Returns true if AcceptedPrivacyPolicy_Optional is set and matches the default value */
 	bool IsAcceptedPrivacyPolicyDefaultValue() const { return AcceptedPrivacyPolicy_IsSet && AcceptedPrivacyPolicy_Optional == false; }
 	/** @brief Sets the value of AcceptedPrivacyPolicy_Optional to its default and also sets AcceptedPrivacyPolicy_IsSet to true */
-	void SetAcceptedPrivacyPolicyToDefault() { AcceptedPrivacyPolicy_Optional = false; AcceptedPrivacyPolicy_IsSet = true; }
+	void SetAcceptedPrivacyPolicyToDefault() { SetAcceptedPrivacyPolicy(false); }
 };
 
 /** @} */

@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_PurchasePrice : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief The Item used as the currency for the purchase. Deprecated. Use currencies instead */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -55,19 +55,19 @@ struct RALLYHEREAPI_API FRHAPI_PurchasePrice : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of PriceItemId_Optional and returns true if it has been set, otherwise returns false */
 	bool GetPriceItemId(int32& OutValue) const { if (PriceItemId_IsSet) OutValue = PriceItemId_Optional; return PriceItemId_IsSet; }
 	/** @brief Returns a pointer to PriceItemId_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetPriceItemIdOrNull() { if (PriceItemId_IsSet) return &PriceItemId_Optional; return nullptr; }
+	int32* GetPriceItemIdOrNull() { if (PriceItemId_IsSet) return (&PriceItemId_Optional); return nullptr; }
 	/** @brief Returns a pointer to PriceItemId_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetPriceItemIdOrNull() const { if (PriceItemId_IsSet) return &PriceItemId_Optional; return nullptr; }
+	const int32* GetPriceItemIdOrNull() const { if (PriceItemId_IsSet) return (&PriceItemId_Optional); return nullptr; }
 	/** @brief Sets the value of PriceItemId_Optional and also sets PriceItemId_IsSet to true */
-	void SetPriceItemId(const int32& NewValue) { PriceItemId_Optional = NewValue; PriceItemId_IsSet = true; }
+	void SetPriceItemId(const int32& NewValue) { PriceItemId_Optional = NewValue; PriceItemId_IsSet = true;  }
 	/** @brief Sets the value of PriceItemId_Optional and also sets PriceItemId_IsSet to true using move semantics */
-	void SetPriceItemId(int32&& NewValue) { PriceItemId_Optional = NewValue; PriceItemId_IsSet = true; }
+	void SetPriceItemId(int32&& NewValue) { PriceItemId_Optional = NewValue; PriceItemId_IsSet = true;  }
 	 /** @brief Clears the value of PriceItemId_Optional and sets PriceItemId_IsSet to false */
-	void ClearPriceItemId() { PriceItemId_Optional = 0; PriceItemId_IsSet = false; }
+	void ClearPriceItemId() { PriceItemId_Optional = 0; PriceItemId_IsSet = false;  }
 	/** @brief Returns true if PriceItemId_Optional is set and matches the default value */
 	bool IsPriceItemIdDefaultValue() const { return PriceItemId_IsSet && PriceItemId_Optional == 0; }
 	/** @brief Sets the value of PriceItemId_Optional to its default and also sets PriceItemId_IsSet to true */
-	void SetPriceItemIdToDefault() { PriceItemId_Optional = 0; PriceItemId_IsSet = true; }
+	void SetPriceItemIdToDefault() { SetPriceItemId(0); }
 
 	/** @brief The price of the Item. Deprecated. Use currencies instead */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -84,19 +84,19 @@ struct RALLYHEREAPI_API FRHAPI_PurchasePrice : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Price_Optional and returns true if it has been set, otherwise returns false */
 	bool GetPrice(int32& OutValue) const { if (Price_IsSet) OutValue = Price_Optional; return Price_IsSet; }
 	/** @brief Returns a pointer to Price_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetPriceOrNull() { if (Price_IsSet) return &Price_Optional; return nullptr; }
+	int32* GetPriceOrNull() { if (Price_IsSet) return (&Price_Optional); return nullptr; }
 	/** @brief Returns a pointer to Price_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetPriceOrNull() const { if (Price_IsSet) return &Price_Optional; return nullptr; }
+	const int32* GetPriceOrNull() const { if (Price_IsSet) return (&Price_Optional); return nullptr; }
 	/** @brief Sets the value of Price_Optional and also sets Price_IsSet to true */
-	void SetPrice(const int32& NewValue) { Price_Optional = NewValue; Price_IsSet = true; }
+	void SetPrice(const int32& NewValue) { Price_Optional = NewValue; Price_IsSet = true;  }
 	/** @brief Sets the value of Price_Optional and also sets Price_IsSet to true using move semantics */
-	void SetPrice(int32&& NewValue) { Price_Optional = NewValue; Price_IsSet = true; }
+	void SetPrice(int32&& NewValue) { Price_Optional = NewValue; Price_IsSet = true;  }
 	 /** @brief Clears the value of Price_Optional and sets Price_IsSet to false */
-	void ClearPrice() { Price_Optional = 0; Price_IsSet = false; }
+	void ClearPrice() { Price_Optional = 0; Price_IsSet = false;  }
 	/** @brief Returns true if Price_Optional is set and matches the default value */
 	bool IsPriceDefaultValue() const { return Price_IsSet && Price_Optional == 0; }
 	/** @brief Sets the value of Price_Optional to its default and also sets Price_IsSet to true */
-	void SetPriceToDefault() { Price_Optional = 0; Price_IsSet = true; }
+	void SetPriceToDefault() { SetPrice(0); }
 
 	/** @brief The Item used as the coupon for the purchase. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -113,19 +113,19 @@ struct RALLYHEREAPI_API FRHAPI_PurchasePrice : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of PriceCouponItemId_Optional and returns true if it has been set, otherwise returns false */
 	bool GetPriceCouponItemId(int32& OutValue) const { if (PriceCouponItemId_IsSet) OutValue = PriceCouponItemId_Optional; return PriceCouponItemId_IsSet; }
 	/** @brief Returns a pointer to PriceCouponItemId_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetPriceCouponItemIdOrNull() { if (PriceCouponItemId_IsSet) return &PriceCouponItemId_Optional; return nullptr; }
+	int32* GetPriceCouponItemIdOrNull() { if (PriceCouponItemId_IsSet) return (&PriceCouponItemId_Optional); return nullptr; }
 	/** @brief Returns a pointer to PriceCouponItemId_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetPriceCouponItemIdOrNull() const { if (PriceCouponItemId_IsSet) return &PriceCouponItemId_Optional; return nullptr; }
+	const int32* GetPriceCouponItemIdOrNull() const { if (PriceCouponItemId_IsSet) return (&PriceCouponItemId_Optional); return nullptr; }
 	/** @brief Sets the value of PriceCouponItemId_Optional and also sets PriceCouponItemId_IsSet to true */
-	void SetPriceCouponItemId(const int32& NewValue) { PriceCouponItemId_Optional = NewValue; PriceCouponItemId_IsSet = true; }
+	void SetPriceCouponItemId(const int32& NewValue) { PriceCouponItemId_Optional = NewValue; PriceCouponItemId_IsSet = true;  }
 	/** @brief Sets the value of PriceCouponItemId_Optional and also sets PriceCouponItemId_IsSet to true using move semantics */
-	void SetPriceCouponItemId(int32&& NewValue) { PriceCouponItemId_Optional = NewValue; PriceCouponItemId_IsSet = true; }
+	void SetPriceCouponItemId(int32&& NewValue) { PriceCouponItemId_Optional = NewValue; PriceCouponItemId_IsSet = true;  }
 	 /** @brief Clears the value of PriceCouponItemId_Optional and sets PriceCouponItemId_IsSet to false */
-	void ClearPriceCouponItemId() { PriceCouponItemId_Optional = 0; PriceCouponItemId_IsSet = false; }
+	void ClearPriceCouponItemId() { PriceCouponItemId_Optional = 0; PriceCouponItemId_IsSet = false;  }
 	/** @brief Returns true if PriceCouponItemId_Optional is set and matches the default value */
 	bool IsPriceCouponItemIdDefaultValue() const { return PriceCouponItemId_IsSet && PriceCouponItemId_Optional == 0; }
 	/** @brief Sets the value of PriceCouponItemId_Optional to its default and also sets PriceCouponItemId_IsSet to true */
-	void SetPriceCouponItemIdToDefault() { PriceCouponItemId_Optional = 0; PriceCouponItemId_IsSet = true; }
+	void SetPriceCouponItemIdToDefault() { SetPriceCouponItemId(0); }
 
 	/** @brief List of currencies for this purchase price */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -142,15 +142,15 @@ struct RALLYHEREAPI_API FRHAPI_PurchasePrice : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Currencies_Optional and returns true if it has been set, otherwise returns false */
 	bool GetCurrencies(TArray<FRHAPI_PurchasePriceCurrency>& OutValue) const { if (Currencies_IsSet) OutValue = Currencies_Optional; return Currencies_IsSet; }
 	/** @brief Returns a pointer to Currencies_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FRHAPI_PurchasePriceCurrency>* GetCurrenciesOrNull() { if (Currencies_IsSet) return &Currencies_Optional; return nullptr; }
+	TArray<FRHAPI_PurchasePriceCurrency>* GetCurrenciesOrNull() { if (Currencies_IsSet) return (&Currencies_Optional); return nullptr; }
 	/** @brief Returns a pointer to Currencies_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FRHAPI_PurchasePriceCurrency>* GetCurrenciesOrNull() const { if (Currencies_IsSet) return &Currencies_Optional; return nullptr; }
+	const TArray<FRHAPI_PurchasePriceCurrency>* GetCurrenciesOrNull() const { if (Currencies_IsSet) return (&Currencies_Optional); return nullptr; }
 	/** @brief Sets the value of Currencies_Optional and also sets Currencies_IsSet to true */
-	void SetCurrencies(const TArray<FRHAPI_PurchasePriceCurrency>& NewValue) { Currencies_Optional = NewValue; Currencies_IsSet = true; }
+	void SetCurrencies(const TArray<FRHAPI_PurchasePriceCurrency>& NewValue) { Currencies_Optional = NewValue; Currencies_IsSet = true;  }
 	/** @brief Sets the value of Currencies_Optional and also sets Currencies_IsSet to true using move semantics */
-	void SetCurrencies(TArray<FRHAPI_PurchasePriceCurrency>&& NewValue) { Currencies_Optional = NewValue; Currencies_IsSet = true; }
+	void SetCurrencies(TArray<FRHAPI_PurchasePriceCurrency>&& NewValue) { Currencies_Optional = NewValue; Currencies_IsSet = true;  }
 	 /** @brief Clears the value of Currencies_Optional and sets Currencies_IsSet to false */
-	void ClearCurrencies() { Currencies_IsSet = false; }
+	void ClearCurrencies() { Currencies_IsSet = false;  }
 };
 
 /** @} */

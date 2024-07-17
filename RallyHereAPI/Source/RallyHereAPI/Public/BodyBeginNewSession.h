@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_BodyBeginNewSession : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code for the user */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -47,9 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_BodyBeginNewSession : public FRHAPI_Model
 	/** @brief Gets the value of CountryCode */
 	const FString& GetCountryCode() const { return CountryCode; }
 	/** @brief Sets the value of CountryCode */
-	void SetCountryCode(const FString& NewValue) { CountryCode = NewValue;  }
+	void SetCountryCode(const FString& NewValue) { CountryCode = NewValue;   }
 	/** @brief Sets the value of CountryCode using move semantics */
-	void SetCountryCode(FString&& NewValue) { CountryCode = NewValue;  }
+	void SetCountryCode(FString&& NewValue) { CountryCode = NewValue;   }
 
 	/** @brief Unique Identifier for the device a session is started on.  E.g should be the same for multiple users on the same device. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -66,15 +66,15 @@ struct RALLYHEREAPI_API FRHAPI_BodyBeginNewSession : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of DeviceId_Optional and returns true if it has been set, otherwise returns false */
 	bool GetDeviceId(FString& OutValue) const { if (DeviceId_IsSet) OutValue = DeviceId_Optional; return DeviceId_IsSet; }
 	/** @brief Returns a pointer to DeviceId_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetDeviceIdOrNull() { if (DeviceId_IsSet) return &DeviceId_Optional; return nullptr; }
+	FString* GetDeviceIdOrNull() { if (DeviceId_IsSet) return (&DeviceId_Optional); return nullptr; }
 	/** @brief Returns a pointer to DeviceId_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetDeviceIdOrNull() const { if (DeviceId_IsSet) return &DeviceId_Optional; return nullptr; }
+	const FString* GetDeviceIdOrNull() const { if (DeviceId_IsSet) return (&DeviceId_Optional); return nullptr; }
 	/** @brief Sets the value of DeviceId_Optional and also sets DeviceId_IsSet to true */
-	void SetDeviceId(const FString& NewValue) { DeviceId_Optional = NewValue; DeviceId_IsSet = true; }
+	void SetDeviceId(const FString& NewValue) { DeviceId_Optional = NewValue; DeviceId_IsSet = true;  }
 	/** @brief Sets the value of DeviceId_Optional and also sets DeviceId_IsSet to true using move semantics */
-	void SetDeviceId(FString&& NewValue) { DeviceId_Optional = NewValue; DeviceId_IsSet = true; }
+	void SetDeviceId(FString&& NewValue) { DeviceId_Optional = NewValue; DeviceId_IsSet = true;  }
 	 /** @brief Clears the value of DeviceId_Optional and sets DeviceId_IsSet to false */
-	void ClearDeviceId() { DeviceId_IsSet = false; }
+	void ClearDeviceId() { DeviceId_IsSet = false;  }
 };
 
 /** @} */

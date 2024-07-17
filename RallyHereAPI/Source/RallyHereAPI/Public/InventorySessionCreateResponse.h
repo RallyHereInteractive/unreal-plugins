@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_InventorySessionCreateResponse : public FRHAPI_Mo
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief The ID of the session. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -48,9 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_InventorySessionCreateResponse : public FRHAPI_Mo
 	/** @brief Gets the value of SessionId */
 	const FString& GetSessionId() const { return SessionId; }
 	/** @brief Sets the value of SessionId */
-	void SetSessionId(const FString& NewValue) { SessionId = NewValue;  }
+	void SetSessionId(const FString& NewValue) { SessionId = NewValue;   }
 	/** @brief Sets the value of SessionId using move semantics */
-	void SetSessionId(FString&& NewValue) { SessionId = NewValue;  }
+	void SetSessionId(FString&& NewValue) { SessionId = NewValue;   }
 
 	/** @brief The platform for the session. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -67,15 +67,15 @@ struct RALLYHEREAPI_API FRHAPI_InventorySessionCreateResponse : public FRHAPI_Mo
 	/** @brief Fills OutValue with the value of SessionPlatform_Optional and returns true if it has been set, otherwise returns false */
 	bool GetSessionPlatform(ERHAPI_Platform& OutValue) const { if (SessionPlatform_IsSet) OutValue = SessionPlatform_Optional; return SessionPlatform_IsSet; }
 	/** @brief Returns a pointer to SessionPlatform_Optional, if it has been set, otherwise returns nullptr */
-	ERHAPI_Platform* GetSessionPlatformOrNull() { if (SessionPlatform_IsSet) return &SessionPlatform_Optional; return nullptr; }
+	ERHAPI_Platform* GetSessionPlatformOrNull() { if (SessionPlatform_IsSet) return (&SessionPlatform_Optional); return nullptr; }
 	/** @brief Returns a pointer to SessionPlatform_Optional, if it has been set, otherwise returns nullptr */
-	const ERHAPI_Platform* GetSessionPlatformOrNull() const { if (SessionPlatform_IsSet) return &SessionPlatform_Optional; return nullptr; }
+	const ERHAPI_Platform* GetSessionPlatformOrNull() const { if (SessionPlatform_IsSet) return (&SessionPlatform_Optional); return nullptr; }
 	/** @brief Sets the value of SessionPlatform_Optional and also sets SessionPlatform_IsSet to true */
-	void SetSessionPlatform(const ERHAPI_Platform& NewValue) { SessionPlatform_Optional = NewValue; SessionPlatform_IsSet = true; }
+	void SetSessionPlatform(const ERHAPI_Platform& NewValue) { SessionPlatform_Optional = NewValue; SessionPlatform_IsSet = true;  }
 	/** @brief Sets the value of SessionPlatform_Optional and also sets SessionPlatform_IsSet to true using move semantics */
-	void SetSessionPlatform(ERHAPI_Platform&& NewValue) { SessionPlatform_Optional = NewValue; SessionPlatform_IsSet = true; }
+	void SetSessionPlatform(ERHAPI_Platform&& NewValue) { SessionPlatform_Optional = NewValue; SessionPlatform_IsSet = true;  }
 	 /** @brief Clears the value of SessionPlatform_Optional and sets SessionPlatform_IsSet to false */
-	void ClearSessionPlatform() { SessionPlatform_IsSet = false; }
+	void ClearSessionPlatform() { SessionPlatform_IsSet = false;  }
 
 	/** @brief The ID of the Order generated for any Loot given during the creation of the Inventory Session. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -92,15 +92,15 @@ struct RALLYHEREAPI_API FRHAPI_InventorySessionCreateResponse : public FRHAPI_Mo
 	/** @brief Fills OutValue with the value of OrderId_Optional and returns true if it has been set, otherwise returns false */
 	bool GetOrderId(FString& OutValue) const { if (OrderId_IsSet) OutValue = OrderId_Optional; return OrderId_IsSet; }
 	/** @brief Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetOrderIdOrNull() { if (OrderId_IsSet) return &OrderId_Optional; return nullptr; }
+	FString* GetOrderIdOrNull() { if (OrderId_IsSet) return (&OrderId_Optional); return nullptr; }
 	/** @brief Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetOrderIdOrNull() const { if (OrderId_IsSet) return &OrderId_Optional; return nullptr; }
+	const FString* GetOrderIdOrNull() const { if (OrderId_IsSet) return (&OrderId_Optional); return nullptr; }
 	/** @brief Sets the value of OrderId_Optional and also sets OrderId_IsSet to true */
-	void SetOrderId(const FString& NewValue) { OrderId_Optional = NewValue; OrderId_IsSet = true; }
+	void SetOrderId(const FString& NewValue) { OrderId_Optional = NewValue; OrderId_IsSet = true;  }
 	/** @brief Sets the value of OrderId_Optional and also sets OrderId_IsSet to true using move semantics */
-	void SetOrderId(FString&& NewValue) { OrderId_Optional = NewValue; OrderId_IsSet = true; }
+	void SetOrderId(FString&& NewValue) { OrderId_Optional = NewValue; OrderId_IsSet = true;  }
 	 /** @brief Clears the value of OrderId_Optional and sets OrderId_IsSet to false */
-	void ClearOrderId() { OrderId_IsSet = false; }
+	void ClearOrderId() { OrderId_IsSet = false;  }
 };
 
 /** @} */

@@ -38,9 +38,9 @@ bool FRHAPI_PurchasePriceCurrency::FromJson(const TSharedPtr<FJsonValue>& JsonVa
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPriceItemIdField = (*Object)->TryGetField(TEXT("price_item_id"));
-	ParseSuccess &= JsonPriceItemIdField.IsValid() && !JsonPriceItemIdField->IsNull() && TryGetJsonValue(JsonPriceItemIdField, PriceItemId);
+	ParseSuccess &= JsonPriceItemIdField.IsValid() && (!JsonPriceItemIdField->IsNull() &&  TryGetJsonValue(JsonPriceItemIdField, PriceItemId));
 	const TSharedPtr<FJsonValue> JsonPriceField = (*Object)->TryGetField(TEXT("price"));
-	ParseSuccess &= JsonPriceField.IsValid() && !JsonPriceField->IsNull() && TryGetJsonValue(JsonPriceField, Price);
+	ParseSuccess &= JsonPriceField.IsValid() && (!JsonPriceField->IsNull() &&  TryGetJsonValue(JsonPriceField, Price));
 
 	return ParseSuccess;
 }

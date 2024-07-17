@@ -27,6 +27,9 @@ void FRHAPI_MatchSession::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (MatchmakingProfileId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("matchmaking_profile_id"));
+		if (MatchmakingProfileId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, MatchmakingProfileId_Optional);
 	}
 	Writer->WriteObjectEnd();
@@ -41,11 +44,12 @@ bool FRHAPI_MatchSession::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonSessionIdField = (*Object)->TryGetField(TEXT("session_id"));
-	ParseSuccess &= JsonSessionIdField.IsValid() && !JsonSessionIdField->IsNull() && TryGetJsonValue(JsonSessionIdField, SessionId);
+	ParseSuccess &= JsonSessionIdField.IsValid() && (!JsonSessionIdField->IsNull() &&  TryGetJsonValue(JsonSessionIdField, SessionId));
 	const TSharedPtr<FJsonValue> JsonMatchmakingProfileIdField = (*Object)->TryGetField(TEXT("matchmaking_profile_id"));
-	if (JsonMatchmakingProfileIdField.IsValid() && !JsonMatchmakingProfileIdField->IsNull())
+	if (JsonMatchmakingProfileIdField.IsValid())
 	{
-		MatchmakingProfileId_IsSet = TryGetJsonValue(JsonMatchmakingProfileIdField, MatchmakingProfileId_Optional);
+		MatchmakingProfileId_IsNull = JsonMatchmakingProfileIdField->IsNull();
+		MatchmakingProfileId_IsSet = MatchmakingProfileId_IsNull || TryGetJsonValue(JsonMatchmakingProfileIdField, MatchmakingProfileId_Optional);
 		ParseSuccess &= MatchmakingProfileId_IsSet;
 	}
 

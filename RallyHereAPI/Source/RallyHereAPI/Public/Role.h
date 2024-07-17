@@ -32,14 +32,14 @@ struct RALLYHEREAPI_API FRHAPI_Role : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Unique Role ID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -49,9 +49,9 @@ struct RALLYHEREAPI_API FRHAPI_Role : public FRHAPI_Model
 	/** @brief Gets the value of RoleId */
 	const FString& GetRoleId() const { return RoleId; }
 	/** @brief Sets the value of RoleId */
-	void SetRoleId(const FString& NewValue) { RoleId = NewValue;  }
+	void SetRoleId(const FString& NewValue) { RoleId = NewValue;   }
 	/** @brief Sets the value of RoleId using move semantics */
-	void SetRoleId(FString&& NewValue) { RoleId = NewValue;  }
+	void SetRoleId(FString&& NewValue) { RoleId = NewValue;   }
 
 	/** @brief Legacy role ID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -68,19 +68,19 @@ struct RALLYHEREAPI_API FRHAPI_Role : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of LegacyRoleId_Optional and returns true if it has been set, otherwise returns false */
 	bool GetLegacyRoleId(int32& OutValue) const { if (LegacyRoleId_IsSet) OutValue = LegacyRoleId_Optional; return LegacyRoleId_IsSet; }
 	/** @brief Returns a pointer to LegacyRoleId_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetLegacyRoleIdOrNull() { if (LegacyRoleId_IsSet) return &LegacyRoleId_Optional; return nullptr; }
+	int32* GetLegacyRoleIdOrNull() { if (LegacyRoleId_IsSet) return (&LegacyRoleId_Optional); return nullptr; }
 	/** @brief Returns a pointer to LegacyRoleId_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetLegacyRoleIdOrNull() const { if (LegacyRoleId_IsSet) return &LegacyRoleId_Optional; return nullptr; }
+	const int32* GetLegacyRoleIdOrNull() const { if (LegacyRoleId_IsSet) return (&LegacyRoleId_Optional); return nullptr; }
 	/** @brief Sets the value of LegacyRoleId_Optional and also sets LegacyRoleId_IsSet to true */
-	void SetLegacyRoleId(const int32& NewValue) { LegacyRoleId_Optional = NewValue; LegacyRoleId_IsSet = true; }
+	void SetLegacyRoleId(const int32& NewValue) { LegacyRoleId_Optional = NewValue; LegacyRoleId_IsSet = true;  }
 	/** @brief Sets the value of LegacyRoleId_Optional and also sets LegacyRoleId_IsSet to true using move semantics */
-	void SetLegacyRoleId(int32&& NewValue) { LegacyRoleId_Optional = NewValue; LegacyRoleId_IsSet = true; }
+	void SetLegacyRoleId(int32&& NewValue) { LegacyRoleId_Optional = NewValue; LegacyRoleId_IsSet = true;  }
 	 /** @brief Clears the value of LegacyRoleId_Optional and sets LegacyRoleId_IsSet to false */
-	void ClearLegacyRoleId() { LegacyRoleId_Optional = 0; LegacyRoleId_IsSet = false; }
+	void ClearLegacyRoleId() { LegacyRoleId_Optional = 0; LegacyRoleId_IsSet = false;  }
 	/** @brief Returns true if LegacyRoleId_Optional is set and matches the default value */
 	bool IsLegacyRoleIdDefaultValue() const { return LegacyRoleId_IsSet && LegacyRoleId_Optional == 0; }
 	/** @brief Sets the value of LegacyRoleId_Optional to its default and also sets LegacyRoleId_IsSet to true */
-	void SetLegacyRoleIdToDefault() { LegacyRoleId_Optional = 0; LegacyRoleId_IsSet = true; }
+	void SetLegacyRoleIdToDefault() { SetLegacyRoleId(0); }
 
 	/** @brief Custom data for the role */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -97,15 +97,15 @@ struct RALLYHEREAPI_API FRHAPI_Role : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
 	bool GetCustomData(FRHAPI_JsonObject& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_JsonObject* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	FRHAPI_JsonObject* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_JsonObject* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	const FRHAPI_JsonObject* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(const FRHAPI_JsonObject& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const FRHAPI_JsonObject& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
-	void SetCustomData(FRHAPI_JsonObject&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(FRHAPI_JsonObject&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
-	void ClearCustomData() { CustomData_IsSet = false; }
+	void ClearCustomData() { CustomData_IsSet = false;  }
 
 	/** @brief Level of auth bypass for limited/locked modes */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -122,15 +122,15 @@ struct RALLYHEREAPI_API FRHAPI_Role : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of AuthBypass_Optional and returns true if it has been set, otherwise returns false */
 	bool GetAuthBypass(ERHAPI_RoleAuthBypass& OutValue) const { if (AuthBypass_IsSet) OutValue = AuthBypass_Optional; return AuthBypass_IsSet; }
 	/** @brief Returns a pointer to AuthBypass_Optional, if it has been set, otherwise returns nullptr */
-	ERHAPI_RoleAuthBypass* GetAuthBypassOrNull() { if (AuthBypass_IsSet) return &AuthBypass_Optional; return nullptr; }
+	ERHAPI_RoleAuthBypass* GetAuthBypassOrNull() { if (AuthBypass_IsSet) return (&AuthBypass_Optional); return nullptr; }
 	/** @brief Returns a pointer to AuthBypass_Optional, if it has been set, otherwise returns nullptr */
-	const ERHAPI_RoleAuthBypass* GetAuthBypassOrNull() const { if (AuthBypass_IsSet) return &AuthBypass_Optional; return nullptr; }
+	const ERHAPI_RoleAuthBypass* GetAuthBypassOrNull() const { if (AuthBypass_IsSet) return (&AuthBypass_Optional); return nullptr; }
 	/** @brief Sets the value of AuthBypass_Optional and also sets AuthBypass_IsSet to true */
-	void SetAuthBypass(const ERHAPI_RoleAuthBypass& NewValue) { AuthBypass_Optional = NewValue; AuthBypass_IsSet = true; }
+	void SetAuthBypass(const ERHAPI_RoleAuthBypass& NewValue) { AuthBypass_Optional = NewValue; AuthBypass_IsSet = true;  }
 	/** @brief Sets the value of AuthBypass_Optional and also sets AuthBypass_IsSet to true using move semantics */
-	void SetAuthBypass(ERHAPI_RoleAuthBypass&& NewValue) { AuthBypass_Optional = NewValue; AuthBypass_IsSet = true; }
+	void SetAuthBypass(ERHAPI_RoleAuthBypass&& NewValue) { AuthBypass_Optional = NewValue; AuthBypass_IsSet = true;  }
 	 /** @brief Clears the value of AuthBypass_Optional and sets AuthBypass_IsSet to false */
-	void ClearAuthBypass() { AuthBypass_IsSet = false; }
+	void ClearAuthBypass() { AuthBypass_IsSet = false;  }
 
 	/** @brief List of loot ids that are fulfilled for the player when they begin a new inventory session */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -147,15 +147,15 @@ struct RALLYHEREAPI_API FRHAPI_Role : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of LoginLootRewards_Optional and returns true if it has been set, otherwise returns false */
 	bool GetLoginLootRewards(TArray<FRHAPI_LoginLootReward>& OutValue) const { if (LoginLootRewards_IsSet) OutValue = LoginLootRewards_Optional; return LoginLootRewards_IsSet; }
 	/** @brief Returns a pointer to LoginLootRewards_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FRHAPI_LoginLootReward>* GetLoginLootRewardsOrNull() { if (LoginLootRewards_IsSet) return &LoginLootRewards_Optional; return nullptr; }
+	TArray<FRHAPI_LoginLootReward>* GetLoginLootRewardsOrNull() { if (LoginLootRewards_IsSet) return (&LoginLootRewards_Optional); return nullptr; }
 	/** @brief Returns a pointer to LoginLootRewards_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FRHAPI_LoginLootReward>* GetLoginLootRewardsOrNull() const { if (LoginLootRewards_IsSet) return &LoginLootRewards_Optional; return nullptr; }
+	const TArray<FRHAPI_LoginLootReward>* GetLoginLootRewardsOrNull() const { if (LoginLootRewards_IsSet) return (&LoginLootRewards_Optional); return nullptr; }
 	/** @brief Sets the value of LoginLootRewards_Optional and also sets LoginLootRewards_IsSet to true */
-	void SetLoginLootRewards(const TArray<FRHAPI_LoginLootReward>& NewValue) { LoginLootRewards_Optional = NewValue; LoginLootRewards_IsSet = true; }
+	void SetLoginLootRewards(const TArray<FRHAPI_LoginLootReward>& NewValue) { LoginLootRewards_Optional = NewValue; LoginLootRewards_IsSet = true;  }
 	/** @brief Sets the value of LoginLootRewards_Optional and also sets LoginLootRewards_IsSet to true using move semantics */
-	void SetLoginLootRewards(TArray<FRHAPI_LoginLootReward>&& NewValue) { LoginLootRewards_Optional = NewValue; LoginLootRewards_IsSet = true; }
+	void SetLoginLootRewards(TArray<FRHAPI_LoginLootReward>&& NewValue) { LoginLootRewards_Optional = NewValue; LoginLootRewards_IsSet = true;  }
 	 /** @brief Clears the value of LoginLootRewards_Optional and sets LoginLootRewards_IsSet to false */
-	void ClearLoginLootRewards() { LoginLootRewards_IsSet = false; }
+	void ClearLoginLootRewards() { LoginLootRewards_IsSet = false;  }
 };
 
 /** @} */

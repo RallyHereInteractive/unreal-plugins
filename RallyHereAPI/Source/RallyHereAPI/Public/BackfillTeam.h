@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_BackfillTeam : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief The number of players we want to backfill */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -47,13 +47,13 @@ struct RALLYHEREAPI_API FRHAPI_BackfillTeam : public FRHAPI_Model
 	/** @brief Gets the value of PlayersRequired */
 	const int32& GetPlayersRequired() const { return PlayersRequired; }
 	/** @brief Sets the value of PlayersRequired */
-	void SetPlayersRequired(const int32& NewValue) { PlayersRequired = NewValue;  }
+	void SetPlayersRequired(const int32& NewValue) { PlayersRequired = NewValue;   }
 	/** @brief Sets the value of PlayersRequired using move semantics */
-	void SetPlayersRequired(int32&& NewValue) { PlayersRequired = NewValue;  }
+	void SetPlayersRequired(int32&& NewValue) { PlayersRequired = NewValue;   }
 	/** @brief Returns true if PlayersRequired matches the default value */
 	bool IsPlayersRequiredDefaultValue() const { return PlayersRequired == 0; }
 	/** @brief Sets the value of PlayersRequired to its default  */
-	void SetPlayersRequiredToDefault() { PlayersRequired = 0;  }
+	void SetPlayersRequiredToDefault() { SetPlayersRequired(0); }
 
 	/** @brief Id for the team that requires backfilled players */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -63,13 +63,13 @@ struct RALLYHEREAPI_API FRHAPI_BackfillTeam : public FRHAPI_Model
 	/** @brief Gets the value of TeamId */
 	const int32& GetTeamId() const { return TeamId; }
 	/** @brief Sets the value of TeamId */
-	void SetTeamId(const int32& NewValue) { TeamId = NewValue;  }
+	void SetTeamId(const int32& NewValue) { TeamId = NewValue;   }
 	/** @brief Sets the value of TeamId using move semantics */
-	void SetTeamId(int32&& NewValue) { TeamId = NewValue;  }
+	void SetTeamId(int32&& NewValue) { TeamId = NewValue;   }
 	/** @brief Returns true if TeamId matches the default value */
 	bool IsTeamIdDefaultValue() const { return TeamId == 0; }
 	/** @brief Sets the value of TeamId to its default  */
-	void SetTeamIdToDefault() { TeamId = 0;  }
+	void SetTeamIdToDefault() { SetTeamId(0); }
 };
 
 /** @} */

@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_PlayerReportList : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief A list of player reports */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -48,15 +48,18 @@ struct RALLYHEREAPI_API FRHAPI_PlayerReportList : public FRHAPI_Model
 	/** @brief Gets the value of Reports */
 	const TArray<FRHAPI_PlayerReport>& GetReports() const { return Reports; }
 	/** @brief Sets the value of Reports */
-	void SetReports(const TArray<FRHAPI_PlayerReport>& NewValue) { Reports = NewValue;  }
+	void SetReports(const TArray<FRHAPI_PlayerReport>& NewValue) { Reports = NewValue;   }
 	/** @brief Sets the value of Reports using move semantics */
-	void SetReports(TArray<FRHAPI_PlayerReport>&& NewValue) { Reports = NewValue;  }
+	void SetReports(TArray<FRHAPI_PlayerReport>&& NewValue) { Reports = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString NextCursor_Optional{  };
 	/** @brief true if NextCursor_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool NextCursor_IsSet{ false };
+	/** @brief true if NextCursor_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool NextCursor_IsNull{ false };
 	/** @brief Gets the value of NextCursor_Optional, regardless of it having been set */
 	FString& GetNextCursor() { return NextCursor_Optional; }
 	/** @brief Gets the value of NextCursor_Optional, regardless of it having been set */
@@ -64,17 +67,20 @@ struct RALLYHEREAPI_API FRHAPI_PlayerReportList : public FRHAPI_Model
 	/** @brief Gets the value of NextCursor_Optional, if it has been set, otherwise it returns DefaultValue */
 	const FString& GetNextCursor(const FString& DefaultValue) const { if (NextCursor_IsSet) return NextCursor_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of NextCursor_Optional and returns true if it has been set, otherwise returns false */
-	bool GetNextCursor(FString& OutValue) const { if (NextCursor_IsSet) OutValue = NextCursor_Optional; return NextCursor_IsSet; }
+	bool GetNextCursor(FString& OutValue) const { if (NextCursor_IsSet && !NextCursor_IsNull) OutValue = NextCursor_Optional; return NextCursor_IsSet; }
 	/** @brief Returns a pointer to NextCursor_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetNextCursorOrNull() { if (NextCursor_IsSet) return &NextCursor_Optional; return nullptr; }
+	FString* GetNextCursorOrNull() { if (NextCursor_IsSet) return (NextCursor_IsNull ? nullptr : &NextCursor_Optional); return nullptr; }
 	/** @brief Returns a pointer to NextCursor_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetNextCursorOrNull() const { if (NextCursor_IsSet) return &NextCursor_Optional; return nullptr; }
+	const FString* GetNextCursorOrNull() const { if (NextCursor_IsSet) return (NextCursor_IsNull ? nullptr : &NextCursor_Optional); return nullptr; }
 	/** @brief Sets the value of NextCursor_Optional and also sets NextCursor_IsSet to true */
-	void SetNextCursor(const FString& NewValue) { NextCursor_Optional = NewValue; NextCursor_IsSet = true; }
+	void SetNextCursor(const FString& NewValue) { NextCursor_Optional = NewValue; NextCursor_IsSet = true; NextCursor_IsNull = false; }
 	/** @brief Sets the value of NextCursor_Optional and also sets NextCursor_IsSet to true using move semantics */
-	void SetNextCursor(FString&& NewValue) { NextCursor_Optional = NewValue; NextCursor_IsSet = true; }
+	void SetNextCursor(FString&& NewValue) { NextCursor_Optional = NewValue; NextCursor_IsSet = true; NextCursor_IsNull = false; }
 	 /** @brief Clears the value of NextCursor_Optional and sets NextCursor_IsSet to false */
-	void ClearNextCursor() { NextCursor_IsSet = false; }
+	void ClearNextCursor() { NextCursor_IsSet = false; NextCursor_IsNull = false; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetNextCursorToNull() { NextCursor_IsSet = true; NextCursor_IsNull = true; }
+	bool IsNextCursorNull() const { return NextCursor_IsSet && NextCursor_IsNull; }
 };
 
 /** @} */

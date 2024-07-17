@@ -38,9 +38,9 @@ bool FRHAPI_RegionsResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonRegionsField = (*Object)->TryGetField(TEXT("regions"));
-	ParseSuccess &= JsonRegionsField.IsValid() && !JsonRegionsField->IsNull() && TryGetJsonValue(JsonRegionsField, Regions);
+	ParseSuccess &= JsonRegionsField.IsValid() && (!JsonRegionsField->IsNull() &&  TryGetJsonValue(JsonRegionsField, Regions));
 	const TSharedPtr<FJsonValue> JsonCursorField = (*Object)->TryGetField(TEXT("cursor"));
-	ParseSuccess &= JsonCursorField.IsValid() && !JsonCursorField->IsNull() && TryGetJsonValue(JsonCursorField, Cursor);
+	ParseSuccess &= JsonCursorField.IsValid() && (!JsonCursorField->IsNull() &&  TryGetJsonValue(JsonCursorField, Cursor));
 
 	return ParseSuccess;
 }

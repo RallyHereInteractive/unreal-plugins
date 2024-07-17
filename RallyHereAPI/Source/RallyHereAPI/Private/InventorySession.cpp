@@ -46,15 +46,15 @@ bool FRHAPI_InventorySession::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonSessionIdField = (*Object)->TryGetField(TEXT("session_id"));
-	ParseSuccess &= JsonSessionIdField.IsValid() && !JsonSessionIdField->IsNull() && TryGetJsonValue(JsonSessionIdField, SessionId);
+	ParseSuccess &= JsonSessionIdField.IsValid() && (!JsonSessionIdField->IsNull() &&  TryGetJsonValue(JsonSessionIdField, SessionId));
 	const TSharedPtr<FJsonValue> JsonSessionPlatformField = (*Object)->TryGetField(TEXT("session_platform"));
-	if (JsonSessionPlatformField.IsValid() && !JsonSessionPlatformField->IsNull())
+	if (JsonSessionPlatformField.IsValid())
 	{
 		SessionPlatform_IsSet = TryGetJsonValue(JsonSessionPlatformField, SessionPlatform_Optional);
 		ParseSuccess &= SessionPlatform_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonAppliedDurableLootField = (*Object)->TryGetField(TEXT("applied_durable_loot"));
-	if (JsonAppliedDurableLootField.IsValid() && !JsonAppliedDurableLootField->IsNull())
+	if (JsonAppliedDurableLootField.IsValid())
 	{
 		AppliedDurableLoot_IsSet = TryGetJsonValue(JsonAppliedDurableLootField, AppliedDurableLoot_Optional);
 		ParseSuccess &= AppliedDurableLoot_IsSet;

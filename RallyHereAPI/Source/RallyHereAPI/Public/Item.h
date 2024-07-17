@@ -32,14 +32,14 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Custom data associated with the resource */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -56,15 +56,15 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
 	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
-	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
-	void ClearCustomData() { CustomData_IsSet = false; }
+	void ClearCustomData() { CustomData_IsSet = false;  }
 
 	/** @brief The Item UUID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -81,15 +81,15 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of ItemUuid_Optional and returns true if it has been set, otherwise returns false */
 	bool GetItemUuid(FGuid& OutValue) const { if (ItemUuid_IsSet) OutValue = ItemUuid_Optional; return ItemUuid_IsSet; }
 	/** @brief Returns a pointer to ItemUuid_Optional, if it has been set, otherwise returns nullptr */
-	FGuid* GetItemUuidOrNull() { if (ItemUuid_IsSet) return &ItemUuid_Optional; return nullptr; }
+	FGuid* GetItemUuidOrNull() { if (ItemUuid_IsSet) return (&ItemUuid_Optional); return nullptr; }
 	/** @brief Returns a pointer to ItemUuid_Optional, if it has been set, otherwise returns nullptr */
-	const FGuid* GetItemUuidOrNull() const { if (ItemUuid_IsSet) return &ItemUuid_Optional; return nullptr; }
+	const FGuid* GetItemUuidOrNull() const { if (ItemUuid_IsSet) return (&ItemUuid_Optional); return nullptr; }
 	/** @brief Sets the value of ItemUuid_Optional and also sets ItemUuid_IsSet to true */
-	void SetItemUuid(const FGuid& NewValue) { ItemUuid_Optional = NewValue; ItemUuid_IsSet = true; }
+	void SetItemUuid(const FGuid& NewValue) { ItemUuid_Optional = NewValue; ItemUuid_IsSet = true;  }
 	/** @brief Sets the value of ItemUuid_Optional and also sets ItemUuid_IsSet to true using move semantics */
-	void SetItemUuid(FGuid&& NewValue) { ItemUuid_Optional = NewValue; ItemUuid_IsSet = true; }
+	void SetItemUuid(FGuid&& NewValue) { ItemUuid_Optional = NewValue; ItemUuid_IsSet = true;  }
 	 /** @brief Clears the value of ItemUuid_Optional and sets ItemUuid_IsSet to false */
-	void ClearItemUuid() { ItemUuid_IsSet = false; }
+	void ClearItemUuid() { ItemUuid_IsSet = false;  }
 
 	/** @brief The type of item. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -106,15 +106,15 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Type_Optional and returns true if it has been set, otherwise returns false */
 	bool GetType(ERHAPI_ItemType& OutValue) const { if (Type_IsSet) OutValue = Type_Optional; return Type_IsSet; }
 	/** @brief Returns a pointer to Type_Optional, if it has been set, otherwise returns nullptr */
-	ERHAPI_ItemType* GetTypeOrNull() { if (Type_IsSet) return &Type_Optional; return nullptr; }
+	ERHAPI_ItemType* GetTypeOrNull() { if (Type_IsSet) return (&Type_Optional); return nullptr; }
 	/** @brief Returns a pointer to Type_Optional, if it has been set, otherwise returns nullptr */
-	const ERHAPI_ItemType* GetTypeOrNull() const { if (Type_IsSet) return &Type_Optional; return nullptr; }
+	const ERHAPI_ItemType* GetTypeOrNull() const { if (Type_IsSet) return (&Type_Optional); return nullptr; }
 	/** @brief Sets the value of Type_Optional and also sets Type_IsSet to true */
-	void SetType(const ERHAPI_ItemType& NewValue) { Type_Optional = NewValue; Type_IsSet = true; }
+	void SetType(const ERHAPI_ItemType& NewValue) { Type_Optional = NewValue; Type_IsSet = true;  }
 	/** @brief Sets the value of Type_Optional and also sets Type_IsSet to true using move semantics */
-	void SetType(ERHAPI_ItemType&& NewValue) { Type_Optional = NewValue; Type_IsSet = true; }
+	void SetType(ERHAPI_ItemType&& NewValue) { Type_Optional = NewValue; Type_IsSet = true;  }
 	 /** @brief Clears the value of Type_Optional and sets Type_IsSet to false */
-	void ClearType() { Type_IsSet = false; }
+	void ClearType() { Type_IsSet = false;  }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 LegacyType_Optional{  };
@@ -130,19 +130,19 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of LegacyType_Optional and returns true if it has been set, otherwise returns false */
 	bool GetLegacyType(int32& OutValue) const { if (LegacyType_IsSet) OutValue = LegacyType_Optional; return LegacyType_IsSet; }
 	/** @brief Returns a pointer to LegacyType_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetLegacyTypeOrNull() { if (LegacyType_IsSet) return &LegacyType_Optional; return nullptr; }
+	int32* GetLegacyTypeOrNull() { if (LegacyType_IsSet) return (&LegacyType_Optional); return nullptr; }
 	/** @brief Returns a pointer to LegacyType_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetLegacyTypeOrNull() const { if (LegacyType_IsSet) return &LegacyType_Optional; return nullptr; }
+	const int32* GetLegacyTypeOrNull() const { if (LegacyType_IsSet) return (&LegacyType_Optional); return nullptr; }
 	/** @brief Sets the value of LegacyType_Optional and also sets LegacyType_IsSet to true */
-	void SetLegacyType(const int32& NewValue) { LegacyType_Optional = NewValue; LegacyType_IsSet = true; }
+	void SetLegacyType(const int32& NewValue) { LegacyType_Optional = NewValue; LegacyType_IsSet = true;  }
 	/** @brief Sets the value of LegacyType_Optional and also sets LegacyType_IsSet to true using move semantics */
-	void SetLegacyType(int32&& NewValue) { LegacyType_Optional = NewValue; LegacyType_IsSet = true; }
+	void SetLegacyType(int32&& NewValue) { LegacyType_Optional = NewValue; LegacyType_IsSet = true;  }
 	 /** @brief Clears the value of LegacyType_Optional and sets LegacyType_IsSet to false */
-	void ClearLegacyType() { LegacyType_Optional = 0; LegacyType_IsSet = false; }
+	void ClearLegacyType() { LegacyType_Optional = 0; LegacyType_IsSet = false;  }
 	/** @brief Returns true if LegacyType_Optional is set and matches the default value */
 	bool IsLegacyTypeDefaultValue() const { return LegacyType_IsSet && LegacyType_Optional == 0; }
 	/** @brief Sets the value of LegacyType_Optional to its default and also sets LegacyType_IsSet to true */
-	void SetLegacyTypeToDefault() { LegacyType_Optional = 0; LegacyType_IsSet = true; }
+	void SetLegacyTypeToDefault() { SetLegacyType(0); }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 LegacySubtype_Optional{  };
@@ -158,19 +158,19 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of LegacySubtype_Optional and returns true if it has been set, otherwise returns false */
 	bool GetLegacySubtype(int32& OutValue) const { if (LegacySubtype_IsSet) OutValue = LegacySubtype_Optional; return LegacySubtype_IsSet; }
 	/** @brief Returns a pointer to LegacySubtype_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetLegacySubtypeOrNull() { if (LegacySubtype_IsSet) return &LegacySubtype_Optional; return nullptr; }
+	int32* GetLegacySubtypeOrNull() { if (LegacySubtype_IsSet) return (&LegacySubtype_Optional); return nullptr; }
 	/** @brief Returns a pointer to LegacySubtype_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetLegacySubtypeOrNull() const { if (LegacySubtype_IsSet) return &LegacySubtype_Optional; return nullptr; }
+	const int32* GetLegacySubtypeOrNull() const { if (LegacySubtype_IsSet) return (&LegacySubtype_Optional); return nullptr; }
 	/** @brief Sets the value of LegacySubtype_Optional and also sets LegacySubtype_IsSet to true */
-	void SetLegacySubtype(const int32& NewValue) { LegacySubtype_Optional = NewValue; LegacySubtype_IsSet = true; }
+	void SetLegacySubtype(const int32& NewValue) { LegacySubtype_Optional = NewValue; LegacySubtype_IsSet = true;  }
 	/** @brief Sets the value of LegacySubtype_Optional and also sets LegacySubtype_IsSet to true using move semantics */
-	void SetLegacySubtype(int32&& NewValue) { LegacySubtype_Optional = NewValue; LegacySubtype_IsSet = true; }
+	void SetLegacySubtype(int32&& NewValue) { LegacySubtype_Optional = NewValue; LegacySubtype_IsSet = true;  }
 	 /** @brief Clears the value of LegacySubtype_Optional and sets LegacySubtype_IsSet to false */
-	void ClearLegacySubtype() { LegacySubtype_Optional = 0; LegacySubtype_IsSet = false; }
+	void ClearLegacySubtype() { LegacySubtype_Optional = 0; LegacySubtype_IsSet = false;  }
 	/** @brief Returns true if LegacySubtype_Optional is set and matches the default value */
 	bool IsLegacySubtypeDefaultValue() const { return LegacySubtype_IsSet && LegacySubtype_Optional == 0; }
 	/** @brief Sets the value of LegacySubtype_Optional to its default and also sets LegacySubtype_IsSet to true */
-	void SetLegacySubtypeToDefault() { LegacySubtype_Optional = 0; LegacySubtype_IsSet = true; }
+	void SetLegacySubtypeToDefault() { SetLegacySubtype(0); }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 RefItemId_Optional{  };
@@ -186,19 +186,19 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of RefItemId_Optional and returns true if it has been set, otherwise returns false */
 	bool GetRefItemId(int32& OutValue) const { if (RefItemId_IsSet) OutValue = RefItemId_Optional; return RefItemId_IsSet; }
 	/** @brief Returns a pointer to RefItemId_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetRefItemIdOrNull() { if (RefItemId_IsSet) return &RefItemId_Optional; return nullptr; }
+	int32* GetRefItemIdOrNull() { if (RefItemId_IsSet) return (&RefItemId_Optional); return nullptr; }
 	/** @brief Returns a pointer to RefItemId_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetRefItemIdOrNull() const { if (RefItemId_IsSet) return &RefItemId_Optional; return nullptr; }
+	const int32* GetRefItemIdOrNull() const { if (RefItemId_IsSet) return (&RefItemId_Optional); return nullptr; }
 	/** @brief Sets the value of RefItemId_Optional and also sets RefItemId_IsSet to true */
-	void SetRefItemId(const int32& NewValue) { RefItemId_Optional = NewValue; RefItemId_IsSet = true; }
+	void SetRefItemId(const int32& NewValue) { RefItemId_Optional = NewValue; RefItemId_IsSet = true;  }
 	/** @brief Sets the value of RefItemId_Optional and also sets RefItemId_IsSet to true using move semantics */
-	void SetRefItemId(int32&& NewValue) { RefItemId_Optional = NewValue; RefItemId_IsSet = true; }
+	void SetRefItemId(int32&& NewValue) { RefItemId_Optional = NewValue; RefItemId_IsSet = true;  }
 	 /** @brief Clears the value of RefItemId_Optional and sets RefItemId_IsSet to false */
-	void ClearRefItemId() { RefItemId_Optional = 0; RefItemId_IsSet = false; }
+	void ClearRefItemId() { RefItemId_Optional = 0; RefItemId_IsSet = false;  }
 	/** @brief Returns true if RefItemId_Optional is set and matches the default value */
 	bool IsRefItemIdDefaultValue() const { return RefItemId_IsSet && RefItemId_Optional == 0; }
 	/** @brief Sets the value of RefItemId_Optional to its default and also sets RefItemId_IsSet to true */
-	void SetRefItemIdToDefault() { RefItemId_Optional = 0; RefItemId_IsSet = true; }
+	void SetRefItemIdToDefault() { SetRefItemId(0); }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 AvailabilityFlags_Optional{  };
@@ -214,19 +214,19 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of AvailabilityFlags_Optional and returns true if it has been set, otherwise returns false */
 	bool GetAvailabilityFlags(int32& OutValue) const { if (AvailabilityFlags_IsSet) OutValue = AvailabilityFlags_Optional; return AvailabilityFlags_IsSet; }
 	/** @brief Returns a pointer to AvailabilityFlags_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetAvailabilityFlagsOrNull() { if (AvailabilityFlags_IsSet) return &AvailabilityFlags_Optional; return nullptr; }
+	int32* GetAvailabilityFlagsOrNull() { if (AvailabilityFlags_IsSet) return (&AvailabilityFlags_Optional); return nullptr; }
 	/** @brief Returns a pointer to AvailabilityFlags_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetAvailabilityFlagsOrNull() const { if (AvailabilityFlags_IsSet) return &AvailabilityFlags_Optional; return nullptr; }
+	const int32* GetAvailabilityFlagsOrNull() const { if (AvailabilityFlags_IsSet) return (&AvailabilityFlags_Optional); return nullptr; }
 	/** @brief Sets the value of AvailabilityFlags_Optional and also sets AvailabilityFlags_IsSet to true */
-	void SetAvailabilityFlags(const int32& NewValue) { AvailabilityFlags_Optional = NewValue; AvailabilityFlags_IsSet = true; }
+	void SetAvailabilityFlags(const int32& NewValue) { AvailabilityFlags_Optional = NewValue; AvailabilityFlags_IsSet = true;  }
 	/** @brief Sets the value of AvailabilityFlags_Optional and also sets AvailabilityFlags_IsSet to true using move semantics */
-	void SetAvailabilityFlags(int32&& NewValue) { AvailabilityFlags_Optional = NewValue; AvailabilityFlags_IsSet = true; }
+	void SetAvailabilityFlags(int32&& NewValue) { AvailabilityFlags_Optional = NewValue; AvailabilityFlags_IsSet = true;  }
 	 /** @brief Clears the value of AvailabilityFlags_Optional and sets AvailabilityFlags_IsSet to false */
-	void ClearAvailabilityFlags() { AvailabilityFlags_Optional = 0; AvailabilityFlags_IsSet = false; }
+	void ClearAvailabilityFlags() { AvailabilityFlags_Optional = 0; AvailabilityFlags_IsSet = false;  }
 	/** @brief Returns true if AvailabilityFlags_Optional is set and matches the default value */
 	bool IsAvailabilityFlagsDefaultValue() const { return AvailabilityFlags_IsSet && AvailabilityFlags_Optional == 0; }
 	/** @brief Sets the value of AvailabilityFlags_Optional to its default and also sets AvailabilityFlags_IsSet to true */
-	void SetAvailabilityFlagsToDefault() { AvailabilityFlags_Optional = 0; AvailabilityFlags_IsSet = true; }
+	void SetAvailabilityFlagsToDefault() { SetAvailabilityFlags(0); }
 
 	/** @brief This is only valid for an entitlement Item. When this item is granted and Inventory Session creation, this is the Loot that will be fulfilled. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -243,15 +243,15 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of EntitledLootUuid_Optional and returns true if it has been set, otherwise returns false */
 	bool GetEntitledLootUuid(FGuid& OutValue) const { if (EntitledLootUuid_IsSet) OutValue = EntitledLootUuid_Optional; return EntitledLootUuid_IsSet; }
 	/** @brief Returns a pointer to EntitledLootUuid_Optional, if it has been set, otherwise returns nullptr */
-	FGuid* GetEntitledLootUuidOrNull() { if (EntitledLootUuid_IsSet) return &EntitledLootUuid_Optional; return nullptr; }
+	FGuid* GetEntitledLootUuidOrNull() { if (EntitledLootUuid_IsSet) return (&EntitledLootUuid_Optional); return nullptr; }
 	/** @brief Returns a pointer to EntitledLootUuid_Optional, if it has been set, otherwise returns nullptr */
-	const FGuid* GetEntitledLootUuidOrNull() const { if (EntitledLootUuid_IsSet) return &EntitledLootUuid_Optional; return nullptr; }
+	const FGuid* GetEntitledLootUuidOrNull() const { if (EntitledLootUuid_IsSet) return (&EntitledLootUuid_Optional); return nullptr; }
 	/** @brief Sets the value of EntitledLootUuid_Optional and also sets EntitledLootUuid_IsSet to true */
-	void SetEntitledLootUuid(const FGuid& NewValue) { EntitledLootUuid_Optional = NewValue; EntitledLootUuid_IsSet = true; }
+	void SetEntitledLootUuid(const FGuid& NewValue) { EntitledLootUuid_Optional = NewValue; EntitledLootUuid_IsSet = true;  }
 	/** @brief Sets the value of EntitledLootUuid_Optional and also sets EntitledLootUuid_IsSet to true using move semantics */
-	void SetEntitledLootUuid(FGuid&& NewValue) { EntitledLootUuid_Optional = NewValue; EntitledLootUuid_IsSet = true; }
+	void SetEntitledLootUuid(FGuid&& NewValue) { EntitledLootUuid_Optional = NewValue; EntitledLootUuid_IsSet = true;  }
 	 /** @brief Clears the value of EntitledLootUuid_Optional and sets EntitledLootUuid_IsSet to false */
-	void ClearEntitledLootUuid() { EntitledLootUuid_IsSet = false; }
+	void ClearEntitledLootUuid() { EntitledLootUuid_IsSet = false;  }
 
 	/** @brief This is only valid for an entitlement Item. When this item is granted and Inventory Session creation, this is the Loot ID that will be fulfilled. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -268,19 +268,19 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of EntitledLootId_Optional and returns true if it has been set, otherwise returns false */
 	bool GetEntitledLootId(int32& OutValue) const { if (EntitledLootId_IsSet) OutValue = EntitledLootId_Optional; return EntitledLootId_IsSet; }
 	/** @brief Returns a pointer to EntitledLootId_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetEntitledLootIdOrNull() { if (EntitledLootId_IsSet) return &EntitledLootId_Optional; return nullptr; }
+	int32* GetEntitledLootIdOrNull() { if (EntitledLootId_IsSet) return (&EntitledLootId_Optional); return nullptr; }
 	/** @brief Returns a pointer to EntitledLootId_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetEntitledLootIdOrNull() const { if (EntitledLootId_IsSet) return &EntitledLootId_Optional; return nullptr; }
+	const int32* GetEntitledLootIdOrNull() const { if (EntitledLootId_IsSet) return (&EntitledLootId_Optional); return nullptr; }
 	/** @brief Sets the value of EntitledLootId_Optional and also sets EntitledLootId_IsSet to true */
-	void SetEntitledLootId(const int32& NewValue) { EntitledLootId_Optional = NewValue; EntitledLootId_IsSet = true; }
+	void SetEntitledLootId(const int32& NewValue) { EntitledLootId_Optional = NewValue; EntitledLootId_IsSet = true;  }
 	/** @brief Sets the value of EntitledLootId_Optional and also sets EntitledLootId_IsSet to true using move semantics */
-	void SetEntitledLootId(int32&& NewValue) { EntitledLootId_Optional = NewValue; EntitledLootId_IsSet = true; }
+	void SetEntitledLootId(int32&& NewValue) { EntitledLootId_Optional = NewValue; EntitledLootId_IsSet = true;  }
 	 /** @brief Clears the value of EntitledLootId_Optional and sets EntitledLootId_IsSet to false */
-	void ClearEntitledLootId() { EntitledLootId_Optional = 0; EntitledLootId_IsSet = false; }
+	void ClearEntitledLootId() { EntitledLootId_Optional = 0; EntitledLootId_IsSet = false;  }
 	/** @brief Returns true if EntitledLootId_Optional is set and matches the default value */
 	bool IsEntitledLootIdDefaultValue() const { return EntitledLootId_IsSet && EntitledLootId_Optional == 0; }
 	/** @brief Sets the value of EntitledLootId_Optional to its default and also sets EntitledLootId_IsSet to true */
-	void SetEntitledLootIdToDefault() { EntitledLootId_Optional = 0; EntitledLootId_IsSet = true; }
+	void SetEntitledLootIdToDefault() { SetEntitledLootId(0); }
 
 	/** @brief The XP Table that is used to determine the Player's level for this XP. The level increase occurs when the quantity of this Item increases above the minimum XP of an XP Level. This is only valid for an unit Item. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -297,15 +297,15 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of LevelXpTableUuid_Optional and returns true if it has been set, otherwise returns false */
 	bool GetLevelXpTableUuid(FGuid& OutValue) const { if (LevelXpTableUuid_IsSet) OutValue = LevelXpTableUuid_Optional; return LevelXpTableUuid_IsSet; }
 	/** @brief Returns a pointer to LevelXpTableUuid_Optional, if it has been set, otherwise returns nullptr */
-	FGuid* GetLevelXpTableUuidOrNull() { if (LevelXpTableUuid_IsSet) return &LevelXpTableUuid_Optional; return nullptr; }
+	FGuid* GetLevelXpTableUuidOrNull() { if (LevelXpTableUuid_IsSet) return (&LevelXpTableUuid_Optional); return nullptr; }
 	/** @brief Returns a pointer to LevelXpTableUuid_Optional, if it has been set, otherwise returns nullptr */
-	const FGuid* GetLevelXpTableUuidOrNull() const { if (LevelXpTableUuid_IsSet) return &LevelXpTableUuid_Optional; return nullptr; }
+	const FGuid* GetLevelXpTableUuidOrNull() const { if (LevelXpTableUuid_IsSet) return (&LevelXpTableUuid_Optional); return nullptr; }
 	/** @brief Sets the value of LevelXpTableUuid_Optional and also sets LevelXpTableUuid_IsSet to true */
-	void SetLevelXpTableUuid(const FGuid& NewValue) { LevelXpTableUuid_Optional = NewValue; LevelXpTableUuid_IsSet = true; }
+	void SetLevelXpTableUuid(const FGuid& NewValue) { LevelXpTableUuid_Optional = NewValue; LevelXpTableUuid_IsSet = true;  }
 	/** @brief Sets the value of LevelXpTableUuid_Optional and also sets LevelXpTableUuid_IsSet to true using move semantics */
-	void SetLevelXpTableUuid(FGuid&& NewValue) { LevelXpTableUuid_Optional = NewValue; LevelXpTableUuid_IsSet = true; }
+	void SetLevelXpTableUuid(FGuid&& NewValue) { LevelXpTableUuid_Optional = NewValue; LevelXpTableUuid_IsSet = true;  }
 	 /** @brief Clears the value of LevelXpTableUuid_Optional and sets LevelXpTableUuid_IsSet to false */
-	void ClearLevelXpTableUuid() { LevelXpTableUuid_IsSet = false; }
+	void ClearLevelXpTableUuid() { LevelXpTableUuid_IsSet = false;  }
 
 	/** @brief The XP Table that is used to determine the Player's level for this XP. The level increase occurs when the quantity of this Item increases above the minimum XP of an XP Level. This is only valid for an unit Item. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -322,19 +322,19 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of LevelXpTableId_Optional and returns true if it has been set, otherwise returns false */
 	bool GetLevelXpTableId(int32& OutValue) const { if (LevelXpTableId_IsSet) OutValue = LevelXpTableId_Optional; return LevelXpTableId_IsSet; }
 	/** @brief Returns a pointer to LevelXpTableId_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetLevelXpTableIdOrNull() { if (LevelXpTableId_IsSet) return &LevelXpTableId_Optional; return nullptr; }
+	int32* GetLevelXpTableIdOrNull() { if (LevelXpTableId_IsSet) return (&LevelXpTableId_Optional); return nullptr; }
 	/** @brief Returns a pointer to LevelXpTableId_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetLevelXpTableIdOrNull() const { if (LevelXpTableId_IsSet) return &LevelXpTableId_Optional; return nullptr; }
+	const int32* GetLevelXpTableIdOrNull() const { if (LevelXpTableId_IsSet) return (&LevelXpTableId_Optional); return nullptr; }
 	/** @brief Sets the value of LevelXpTableId_Optional and also sets LevelXpTableId_IsSet to true */
-	void SetLevelXpTableId(const int32& NewValue) { LevelXpTableId_Optional = NewValue; LevelXpTableId_IsSet = true; }
+	void SetLevelXpTableId(const int32& NewValue) { LevelXpTableId_Optional = NewValue; LevelXpTableId_IsSet = true;  }
 	/** @brief Sets the value of LevelXpTableId_Optional and also sets LevelXpTableId_IsSet to true using move semantics */
-	void SetLevelXpTableId(int32&& NewValue) { LevelXpTableId_Optional = NewValue; LevelXpTableId_IsSet = true; }
+	void SetLevelXpTableId(int32&& NewValue) { LevelXpTableId_Optional = NewValue; LevelXpTableId_IsSet = true;  }
 	 /** @brief Clears the value of LevelXpTableId_Optional and sets LevelXpTableId_IsSet to false */
-	void ClearLevelXpTableId() { LevelXpTableId_Optional = 0; LevelXpTableId_IsSet = false; }
+	void ClearLevelXpTableId() { LevelXpTableId_Optional = 0; LevelXpTableId_IsSet = false;  }
 	/** @brief Returns true if LevelXpTableId_Optional is set and matches the default value */
 	bool IsLevelXpTableIdDefaultValue() const { return LevelXpTableId_IsSet && LevelXpTableId_Optional == 0; }
 	/** @brief Sets the value of LevelXpTableId_Optional to its default and also sets LevelXpTableId_IsSet to true */
-	void SetLevelXpTableIdToDefault() { LevelXpTableId_Optional = 0; LevelXpTableId_IsSet = true; }
+	void SetLevelXpTableIdToDefault() { SetLevelXpTableId(0); }
 
 	/** @brief The Vendor that is used filfill level up rewards for this item. The level of the Player is used as the index into the Vendor's Loot table. This is only valid for an unit Item. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -351,15 +351,15 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of LevelVendorUuid_Optional and returns true if it has been set, otherwise returns false */
 	bool GetLevelVendorUuid(FGuid& OutValue) const { if (LevelVendorUuid_IsSet) OutValue = LevelVendorUuid_Optional; return LevelVendorUuid_IsSet; }
 	/** @brief Returns a pointer to LevelVendorUuid_Optional, if it has been set, otherwise returns nullptr */
-	FGuid* GetLevelVendorUuidOrNull() { if (LevelVendorUuid_IsSet) return &LevelVendorUuid_Optional; return nullptr; }
+	FGuid* GetLevelVendorUuidOrNull() { if (LevelVendorUuid_IsSet) return (&LevelVendorUuid_Optional); return nullptr; }
 	/** @brief Returns a pointer to LevelVendorUuid_Optional, if it has been set, otherwise returns nullptr */
-	const FGuid* GetLevelVendorUuidOrNull() const { if (LevelVendorUuid_IsSet) return &LevelVendorUuid_Optional; return nullptr; }
+	const FGuid* GetLevelVendorUuidOrNull() const { if (LevelVendorUuid_IsSet) return (&LevelVendorUuid_Optional); return nullptr; }
 	/** @brief Sets the value of LevelVendorUuid_Optional and also sets LevelVendorUuid_IsSet to true */
-	void SetLevelVendorUuid(const FGuid& NewValue) { LevelVendorUuid_Optional = NewValue; LevelVendorUuid_IsSet = true; }
+	void SetLevelVendorUuid(const FGuid& NewValue) { LevelVendorUuid_Optional = NewValue; LevelVendorUuid_IsSet = true;  }
 	/** @brief Sets the value of LevelVendorUuid_Optional and also sets LevelVendorUuid_IsSet to true using move semantics */
-	void SetLevelVendorUuid(FGuid&& NewValue) { LevelVendorUuid_Optional = NewValue; LevelVendorUuid_IsSet = true; }
+	void SetLevelVendorUuid(FGuid&& NewValue) { LevelVendorUuid_Optional = NewValue; LevelVendorUuid_IsSet = true;  }
 	 /** @brief Clears the value of LevelVendorUuid_Optional and sets LevelVendorUuid_IsSet to false */
-	void ClearLevelVendorUuid() { LevelVendorUuid_IsSet = false; }
+	void ClearLevelVendorUuid() { LevelVendorUuid_IsSet = false;  }
 
 	/** @brief The Vendor that is used filfill level up rewards for this item. The level of the Player is used as the index into the Vendor's Loot table. This is only valid for an unit Item. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -376,19 +376,19 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of LevelVendorId_Optional and returns true if it has been set, otherwise returns false */
 	bool GetLevelVendorId(int32& OutValue) const { if (LevelVendorId_IsSet) OutValue = LevelVendorId_Optional; return LevelVendorId_IsSet; }
 	/** @brief Returns a pointer to LevelVendorId_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetLevelVendorIdOrNull() { if (LevelVendorId_IsSet) return &LevelVendorId_Optional; return nullptr; }
+	int32* GetLevelVendorIdOrNull() { if (LevelVendorId_IsSet) return (&LevelVendorId_Optional); return nullptr; }
 	/** @brief Returns a pointer to LevelVendorId_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetLevelVendorIdOrNull() const { if (LevelVendorId_IsSet) return &LevelVendorId_Optional; return nullptr; }
+	const int32* GetLevelVendorIdOrNull() const { if (LevelVendorId_IsSet) return (&LevelVendorId_Optional); return nullptr; }
 	/** @brief Sets the value of LevelVendorId_Optional and also sets LevelVendorId_IsSet to true */
-	void SetLevelVendorId(const int32& NewValue) { LevelVendorId_Optional = NewValue; LevelVendorId_IsSet = true; }
+	void SetLevelVendorId(const int32& NewValue) { LevelVendorId_Optional = NewValue; LevelVendorId_IsSet = true;  }
 	/** @brief Sets the value of LevelVendorId_Optional and also sets LevelVendorId_IsSet to true using move semantics */
-	void SetLevelVendorId(int32&& NewValue) { LevelVendorId_Optional = NewValue; LevelVendorId_IsSet = true; }
+	void SetLevelVendorId(int32&& NewValue) { LevelVendorId_Optional = NewValue; LevelVendorId_IsSet = true;  }
 	 /** @brief Clears the value of LevelVendorId_Optional and sets LevelVendorId_IsSet to false */
-	void ClearLevelVendorId() { LevelVendorId_Optional = 0; LevelVendorId_IsSet = false; }
+	void ClearLevelVendorId() { LevelVendorId_Optional = 0; LevelVendorId_IsSet = false;  }
 	/** @brief Returns true if LevelVendorId_Optional is set and matches the default value */
 	bool IsLevelVendorIdDefaultValue() const { return LevelVendorId_IsSet && LevelVendorId_Optional == 0; }
 	/** @brief Sets the value of LevelVendorId_Optional to its default and also sets LevelVendorId_IsSet to true */
-	void SetLevelVendorIdToDefault() { LevelVendorId_Optional = 0; LevelVendorId_IsSet = true; }
+	void SetLevelVendorIdToDefault() { SetLevelVendorId(0); }
 
 	/** @brief The item of the currency used by this coupon. This is only valid for an unit Item. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -405,19 +405,19 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of CouponDiscountCurrencyItemUuid_Optional and returns true if it has been set, otherwise returns false */
 	bool GetCouponDiscountCurrencyItemUuid(int32& OutValue) const { if (CouponDiscountCurrencyItemUuid_IsSet) OutValue = CouponDiscountCurrencyItemUuid_Optional; return CouponDiscountCurrencyItemUuid_IsSet; }
 	/** @brief Returns a pointer to CouponDiscountCurrencyItemUuid_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetCouponDiscountCurrencyItemUuidOrNull() { if (CouponDiscountCurrencyItemUuid_IsSet) return &CouponDiscountCurrencyItemUuid_Optional; return nullptr; }
+	int32* GetCouponDiscountCurrencyItemUuidOrNull() { if (CouponDiscountCurrencyItemUuid_IsSet) return (&CouponDiscountCurrencyItemUuid_Optional); return nullptr; }
 	/** @brief Returns a pointer to CouponDiscountCurrencyItemUuid_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetCouponDiscountCurrencyItemUuidOrNull() const { if (CouponDiscountCurrencyItemUuid_IsSet) return &CouponDiscountCurrencyItemUuid_Optional; return nullptr; }
+	const int32* GetCouponDiscountCurrencyItemUuidOrNull() const { if (CouponDiscountCurrencyItemUuid_IsSet) return (&CouponDiscountCurrencyItemUuid_Optional); return nullptr; }
 	/** @brief Sets the value of CouponDiscountCurrencyItemUuid_Optional and also sets CouponDiscountCurrencyItemUuid_IsSet to true */
-	void SetCouponDiscountCurrencyItemUuid(const int32& NewValue) { CouponDiscountCurrencyItemUuid_Optional = NewValue; CouponDiscountCurrencyItemUuid_IsSet = true; }
+	void SetCouponDiscountCurrencyItemUuid(const int32& NewValue) { CouponDiscountCurrencyItemUuid_Optional = NewValue; CouponDiscountCurrencyItemUuid_IsSet = true;  }
 	/** @brief Sets the value of CouponDiscountCurrencyItemUuid_Optional and also sets CouponDiscountCurrencyItemUuid_IsSet to true using move semantics */
-	void SetCouponDiscountCurrencyItemUuid(int32&& NewValue) { CouponDiscountCurrencyItemUuid_Optional = NewValue; CouponDiscountCurrencyItemUuid_IsSet = true; }
+	void SetCouponDiscountCurrencyItemUuid(int32&& NewValue) { CouponDiscountCurrencyItemUuid_Optional = NewValue; CouponDiscountCurrencyItemUuid_IsSet = true;  }
 	 /** @brief Clears the value of CouponDiscountCurrencyItemUuid_Optional and sets CouponDiscountCurrencyItemUuid_IsSet to false */
-	void ClearCouponDiscountCurrencyItemUuid() { CouponDiscountCurrencyItemUuid_Optional = 0; CouponDiscountCurrencyItemUuid_IsSet = false; }
+	void ClearCouponDiscountCurrencyItemUuid() { CouponDiscountCurrencyItemUuid_Optional = 0; CouponDiscountCurrencyItemUuid_IsSet = false;  }
 	/** @brief Returns true if CouponDiscountCurrencyItemUuid_Optional is set and matches the default value */
 	bool IsCouponDiscountCurrencyItemUuidDefaultValue() const { return CouponDiscountCurrencyItemUuid_IsSet && CouponDiscountCurrencyItemUuid_Optional == 0; }
 	/** @brief Sets the value of CouponDiscountCurrencyItemUuid_Optional to its default and also sets CouponDiscountCurrencyItemUuid_IsSet to true */
-	void SetCouponDiscountCurrencyItemUuidToDefault() { CouponDiscountCurrencyItemUuid_Optional = 0; CouponDiscountCurrencyItemUuid_IsSet = true; }
+	void SetCouponDiscountCurrencyItemUuidToDefault() { SetCouponDiscountCurrencyItemUuid(0); }
 
 	/** @brief The item of the currency used by this coupon. This is only valid for an unit Item. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -434,19 +434,19 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of CouponDiscountCurrencyItemId_Optional and returns true if it has been set, otherwise returns false */
 	bool GetCouponDiscountCurrencyItemId(int32& OutValue) const { if (CouponDiscountCurrencyItemId_IsSet) OutValue = CouponDiscountCurrencyItemId_Optional; return CouponDiscountCurrencyItemId_IsSet; }
 	/** @brief Returns a pointer to CouponDiscountCurrencyItemId_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetCouponDiscountCurrencyItemIdOrNull() { if (CouponDiscountCurrencyItemId_IsSet) return &CouponDiscountCurrencyItemId_Optional; return nullptr; }
+	int32* GetCouponDiscountCurrencyItemIdOrNull() { if (CouponDiscountCurrencyItemId_IsSet) return (&CouponDiscountCurrencyItemId_Optional); return nullptr; }
 	/** @brief Returns a pointer to CouponDiscountCurrencyItemId_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetCouponDiscountCurrencyItemIdOrNull() const { if (CouponDiscountCurrencyItemId_IsSet) return &CouponDiscountCurrencyItemId_Optional; return nullptr; }
+	const int32* GetCouponDiscountCurrencyItemIdOrNull() const { if (CouponDiscountCurrencyItemId_IsSet) return (&CouponDiscountCurrencyItemId_Optional); return nullptr; }
 	/** @brief Sets the value of CouponDiscountCurrencyItemId_Optional and also sets CouponDiscountCurrencyItemId_IsSet to true */
-	void SetCouponDiscountCurrencyItemId(const int32& NewValue) { CouponDiscountCurrencyItemId_Optional = NewValue; CouponDiscountCurrencyItemId_IsSet = true; }
+	void SetCouponDiscountCurrencyItemId(const int32& NewValue) { CouponDiscountCurrencyItemId_Optional = NewValue; CouponDiscountCurrencyItemId_IsSet = true;  }
 	/** @brief Sets the value of CouponDiscountCurrencyItemId_Optional and also sets CouponDiscountCurrencyItemId_IsSet to true using move semantics */
-	void SetCouponDiscountCurrencyItemId(int32&& NewValue) { CouponDiscountCurrencyItemId_Optional = NewValue; CouponDiscountCurrencyItemId_IsSet = true; }
+	void SetCouponDiscountCurrencyItemId(int32&& NewValue) { CouponDiscountCurrencyItemId_Optional = NewValue; CouponDiscountCurrencyItemId_IsSet = true;  }
 	 /** @brief Clears the value of CouponDiscountCurrencyItemId_Optional and sets CouponDiscountCurrencyItemId_IsSet to false */
-	void ClearCouponDiscountCurrencyItemId() { CouponDiscountCurrencyItemId_Optional = 0; CouponDiscountCurrencyItemId_IsSet = false; }
+	void ClearCouponDiscountCurrencyItemId() { CouponDiscountCurrencyItemId_Optional = 0; CouponDiscountCurrencyItemId_IsSet = false;  }
 	/** @brief Returns true if CouponDiscountCurrencyItemId_Optional is set and matches the default value */
 	bool IsCouponDiscountCurrencyItemIdDefaultValue() const { return CouponDiscountCurrencyItemId_IsSet && CouponDiscountCurrencyItemId_Optional == 0; }
 	/** @brief Sets the value of CouponDiscountCurrencyItemId_Optional to its default and also sets CouponDiscountCurrencyItemId_IsSet to true */
-	void SetCouponDiscountCurrencyItemIdToDefault() { CouponDiscountCurrencyItemId_Optional = 0; CouponDiscountCurrencyItemId_IsSet = true; }
+	void SetCouponDiscountCurrencyItemIdToDefault() { SetCouponDiscountCurrencyItemId(0); }
 
 	/** @brief The percentage of the discount. This is only valid for an unit Item. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -463,15 +463,15 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of CouponDiscountPercentage_Optional and returns true if it has been set, otherwise returns false */
 	bool GetCouponDiscountPercentage(float& OutValue) const { if (CouponDiscountPercentage_IsSet) OutValue = CouponDiscountPercentage_Optional; return CouponDiscountPercentage_IsSet; }
 	/** @brief Returns a pointer to CouponDiscountPercentage_Optional, if it has been set, otherwise returns nullptr */
-	float* GetCouponDiscountPercentageOrNull() { if (CouponDiscountPercentage_IsSet) return &CouponDiscountPercentage_Optional; return nullptr; }
+	float* GetCouponDiscountPercentageOrNull() { if (CouponDiscountPercentage_IsSet) return (&CouponDiscountPercentage_Optional); return nullptr; }
 	/** @brief Returns a pointer to CouponDiscountPercentage_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetCouponDiscountPercentageOrNull() const { if (CouponDiscountPercentage_IsSet) return &CouponDiscountPercentage_Optional; return nullptr; }
+	const float* GetCouponDiscountPercentageOrNull() const { if (CouponDiscountPercentage_IsSet) return (&CouponDiscountPercentage_Optional); return nullptr; }
 	/** @brief Sets the value of CouponDiscountPercentage_Optional and also sets CouponDiscountPercentage_IsSet to true */
-	void SetCouponDiscountPercentage(const float& NewValue) { CouponDiscountPercentage_Optional = NewValue; CouponDiscountPercentage_IsSet = true; }
+	void SetCouponDiscountPercentage(const float& NewValue) { CouponDiscountPercentage_Optional = NewValue; CouponDiscountPercentage_IsSet = true;  }
 	/** @brief Sets the value of CouponDiscountPercentage_Optional and also sets CouponDiscountPercentage_IsSet to true using move semantics */
-	void SetCouponDiscountPercentage(float&& NewValue) { CouponDiscountPercentage_Optional = NewValue; CouponDiscountPercentage_IsSet = true; }
+	void SetCouponDiscountPercentage(float&& NewValue) { CouponDiscountPercentage_Optional = NewValue; CouponDiscountPercentage_IsSet = true;  }
 	 /** @brief Clears the value of CouponDiscountPercentage_Optional and sets CouponDiscountPercentage_IsSet to false */
-	void ClearCouponDiscountPercentage() { CouponDiscountPercentage_IsSet = false; }
+	void ClearCouponDiscountPercentage() { CouponDiscountPercentage_IsSet = false;  }
 
 	/** @brief If true, the coupon will be consumed when used; reducing the Player's Inventory quantity by 1. This is only valid for an unit Item. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -488,19 +488,19 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of CouponConsumeOnUse_Optional and returns true if it has been set, otherwise returns false */
 	bool GetCouponConsumeOnUse(bool& OutValue) const { if (CouponConsumeOnUse_IsSet) OutValue = CouponConsumeOnUse_Optional; return CouponConsumeOnUse_IsSet; }
 	/** @brief Returns a pointer to CouponConsumeOnUse_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetCouponConsumeOnUseOrNull() { if (CouponConsumeOnUse_IsSet) return &CouponConsumeOnUse_Optional; return nullptr; }
+	bool* GetCouponConsumeOnUseOrNull() { if (CouponConsumeOnUse_IsSet) return (&CouponConsumeOnUse_Optional); return nullptr; }
 	/** @brief Returns a pointer to CouponConsumeOnUse_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetCouponConsumeOnUseOrNull() const { if (CouponConsumeOnUse_IsSet) return &CouponConsumeOnUse_Optional; return nullptr; }
+	const bool* GetCouponConsumeOnUseOrNull() const { if (CouponConsumeOnUse_IsSet) return (&CouponConsumeOnUse_Optional); return nullptr; }
 	/** @brief Sets the value of CouponConsumeOnUse_Optional and also sets CouponConsumeOnUse_IsSet to true */
-	void SetCouponConsumeOnUse(const bool& NewValue) { CouponConsumeOnUse_Optional = NewValue; CouponConsumeOnUse_IsSet = true; }
+	void SetCouponConsumeOnUse(const bool& NewValue) { CouponConsumeOnUse_Optional = NewValue; CouponConsumeOnUse_IsSet = true;  }
 	/** @brief Sets the value of CouponConsumeOnUse_Optional and also sets CouponConsumeOnUse_IsSet to true using move semantics */
-	void SetCouponConsumeOnUse(bool&& NewValue) { CouponConsumeOnUse_Optional = NewValue; CouponConsumeOnUse_IsSet = true; }
+	void SetCouponConsumeOnUse(bool&& NewValue) { CouponConsumeOnUse_Optional = NewValue; CouponConsumeOnUse_IsSet = true;  }
 	 /** @brief Clears the value of CouponConsumeOnUse_Optional and sets CouponConsumeOnUse_IsSet to false */
-	void ClearCouponConsumeOnUse() { CouponConsumeOnUse_Optional = false; CouponConsumeOnUse_IsSet = false; }
+	void ClearCouponConsumeOnUse() { CouponConsumeOnUse_Optional = false; CouponConsumeOnUse_IsSet = false;  }
 	/** @brief Returns true if CouponConsumeOnUse_Optional is set and matches the default value */
 	bool IsCouponConsumeOnUseDefaultValue() const { return CouponConsumeOnUse_IsSet && CouponConsumeOnUse_Optional == false; }
 	/** @brief Sets the value of CouponConsumeOnUse_Optional to its default and also sets CouponConsumeOnUse_IsSet to true */
-	void SetCouponConsumeOnUseToDefault() { CouponConsumeOnUse_Optional = false; CouponConsumeOnUse_IsSet = true; }
+	void SetCouponConsumeOnUseToDefault() { SetCouponConsumeOnUse(false); }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 ItemPortalUseRulesetId_Optional{  };
@@ -516,19 +516,19 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of ItemPortalUseRulesetId_Optional and returns true if it has been set, otherwise returns false */
 	bool GetItemPortalUseRulesetId(int32& OutValue) const { if (ItemPortalUseRulesetId_IsSet) OutValue = ItemPortalUseRulesetId_Optional; return ItemPortalUseRulesetId_IsSet; }
 	/** @brief Returns a pointer to ItemPortalUseRulesetId_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetItemPortalUseRulesetIdOrNull() { if (ItemPortalUseRulesetId_IsSet) return &ItemPortalUseRulesetId_Optional; return nullptr; }
+	int32* GetItemPortalUseRulesetIdOrNull() { if (ItemPortalUseRulesetId_IsSet) return (&ItemPortalUseRulesetId_Optional); return nullptr; }
 	/** @brief Returns a pointer to ItemPortalUseRulesetId_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetItemPortalUseRulesetIdOrNull() const { if (ItemPortalUseRulesetId_IsSet) return &ItemPortalUseRulesetId_Optional; return nullptr; }
+	const int32* GetItemPortalUseRulesetIdOrNull() const { if (ItemPortalUseRulesetId_IsSet) return (&ItemPortalUseRulesetId_Optional); return nullptr; }
 	/** @brief Sets the value of ItemPortalUseRulesetId_Optional and also sets ItemPortalUseRulesetId_IsSet to true */
-	void SetItemPortalUseRulesetId(const int32& NewValue) { ItemPortalUseRulesetId_Optional = NewValue; ItemPortalUseRulesetId_IsSet = true; }
+	void SetItemPortalUseRulesetId(const int32& NewValue) { ItemPortalUseRulesetId_Optional = NewValue; ItemPortalUseRulesetId_IsSet = true;  }
 	/** @brief Sets the value of ItemPortalUseRulesetId_Optional and also sets ItemPortalUseRulesetId_IsSet to true using move semantics */
-	void SetItemPortalUseRulesetId(int32&& NewValue) { ItemPortalUseRulesetId_Optional = NewValue; ItemPortalUseRulesetId_IsSet = true; }
+	void SetItemPortalUseRulesetId(int32&& NewValue) { ItemPortalUseRulesetId_Optional = NewValue; ItemPortalUseRulesetId_IsSet = true;  }
 	 /** @brief Clears the value of ItemPortalUseRulesetId_Optional and sets ItemPortalUseRulesetId_IsSet to false */
-	void ClearItemPortalUseRulesetId() { ItemPortalUseRulesetId_Optional = 0; ItemPortalUseRulesetId_IsSet = false; }
+	void ClearItemPortalUseRulesetId() { ItemPortalUseRulesetId_Optional = 0; ItemPortalUseRulesetId_IsSet = false;  }
 	/** @brief Returns true if ItemPortalUseRulesetId_Optional is set and matches the default value */
 	bool IsItemPortalUseRulesetIdDefaultValue() const { return ItemPortalUseRulesetId_IsSet && ItemPortalUseRulesetId_Optional == 0; }
 	/** @brief Sets the value of ItemPortalUseRulesetId_Optional to its default and also sets ItemPortalUseRulesetId_IsSet to true */
-	void SetItemPortalUseRulesetIdToDefault() { ItemPortalUseRulesetId_Optional = 0; ItemPortalUseRulesetId_IsSet = true; }
+	void SetItemPortalUseRulesetIdToDefault() { SetItemPortalUseRulesetId(0); }
 
 	/** @brief The Inventory Bucket Use Rule Set ID that determines how this item can be used across buckets. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -545,15 +545,15 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of InventoryBucketUseRuleSetId_Optional and returns true if it has been set, otherwise returns false */
 	bool GetInventoryBucketUseRuleSetId(FString& OutValue) const { if (InventoryBucketUseRuleSetId_IsSet) OutValue = InventoryBucketUseRuleSetId_Optional; return InventoryBucketUseRuleSetId_IsSet; }
 	/** @brief Returns a pointer to InventoryBucketUseRuleSetId_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetInventoryBucketUseRuleSetIdOrNull() { if (InventoryBucketUseRuleSetId_IsSet) return &InventoryBucketUseRuleSetId_Optional; return nullptr; }
+	FString* GetInventoryBucketUseRuleSetIdOrNull() { if (InventoryBucketUseRuleSetId_IsSet) return (&InventoryBucketUseRuleSetId_Optional); return nullptr; }
 	/** @brief Returns a pointer to InventoryBucketUseRuleSetId_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetInventoryBucketUseRuleSetIdOrNull() const { if (InventoryBucketUseRuleSetId_IsSet) return &InventoryBucketUseRuleSetId_Optional; return nullptr; }
+	const FString* GetInventoryBucketUseRuleSetIdOrNull() const { if (InventoryBucketUseRuleSetId_IsSet) return (&InventoryBucketUseRuleSetId_Optional); return nullptr; }
 	/** @brief Sets the value of InventoryBucketUseRuleSetId_Optional and also sets InventoryBucketUseRuleSetId_IsSet to true */
-	void SetInventoryBucketUseRuleSetId(const FString& NewValue) { InventoryBucketUseRuleSetId_Optional = NewValue; InventoryBucketUseRuleSetId_IsSet = true; }
+	void SetInventoryBucketUseRuleSetId(const FString& NewValue) { InventoryBucketUseRuleSetId_Optional = NewValue; InventoryBucketUseRuleSetId_IsSet = true;  }
 	/** @brief Sets the value of InventoryBucketUseRuleSetId_Optional and also sets InventoryBucketUseRuleSetId_IsSet to true using move semantics */
-	void SetInventoryBucketUseRuleSetId(FString&& NewValue) { InventoryBucketUseRuleSetId_Optional = NewValue; InventoryBucketUseRuleSetId_IsSet = true; }
+	void SetInventoryBucketUseRuleSetId(FString&& NewValue) { InventoryBucketUseRuleSetId_Optional = NewValue; InventoryBucketUseRuleSetId_IsSet = true;  }
 	 /** @brief Clears the value of InventoryBucketUseRuleSetId_Optional and sets InventoryBucketUseRuleSetId_IsSet to false */
-	void ClearInventoryBucketUseRuleSetId() { InventoryBucketUseRuleSetId_IsSet = false; }
+	void ClearInventoryBucketUseRuleSetId() { InventoryBucketUseRuleSetId_IsSet = false;  }
 
 	/** @brief List of Loot IDs this item can discount */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -570,15 +570,15 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of CouponDiscountLoot_Optional and returns true if it has been set, otherwise returns false */
 	bool GetCouponDiscountLoot(TArray<int32>& OutValue) const { if (CouponDiscountLoot_IsSet) OutValue = CouponDiscountLoot_Optional; return CouponDiscountLoot_IsSet; }
 	/** @brief Returns a pointer to CouponDiscountLoot_Optional, if it has been set, otherwise returns nullptr */
-	TArray<int32>* GetCouponDiscountLootOrNull() { if (CouponDiscountLoot_IsSet) return &CouponDiscountLoot_Optional; return nullptr; }
+	TArray<int32>* GetCouponDiscountLootOrNull() { if (CouponDiscountLoot_IsSet) return (&CouponDiscountLoot_Optional); return nullptr; }
 	/** @brief Returns a pointer to CouponDiscountLoot_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<int32>* GetCouponDiscountLootOrNull() const { if (CouponDiscountLoot_IsSet) return &CouponDiscountLoot_Optional; return nullptr; }
+	const TArray<int32>* GetCouponDiscountLootOrNull() const { if (CouponDiscountLoot_IsSet) return (&CouponDiscountLoot_Optional); return nullptr; }
 	/** @brief Sets the value of CouponDiscountLoot_Optional and also sets CouponDiscountLoot_IsSet to true */
-	void SetCouponDiscountLoot(const TArray<int32>& NewValue) { CouponDiscountLoot_Optional = NewValue; CouponDiscountLoot_IsSet = true; }
+	void SetCouponDiscountLoot(const TArray<int32>& NewValue) { CouponDiscountLoot_Optional = NewValue; CouponDiscountLoot_IsSet = true;  }
 	/** @brief Sets the value of CouponDiscountLoot_Optional and also sets CouponDiscountLoot_IsSet to true using move semantics */
-	void SetCouponDiscountLoot(TArray<int32>&& NewValue) { CouponDiscountLoot_Optional = NewValue; CouponDiscountLoot_IsSet = true; }
+	void SetCouponDiscountLoot(TArray<int32>&& NewValue) { CouponDiscountLoot_Optional = NewValue; CouponDiscountLoot_IsSet = true;  }
 	 /** @brief Clears the value of CouponDiscountLoot_Optional and sets CouponDiscountLoot_IsSet to false */
-	void ClearCouponDiscountLoot() { CouponDiscountLoot_IsSet = false; }
+	void ClearCouponDiscountLoot() { CouponDiscountLoot_IsSet = false;  }
 
 	/** @brief List of Loot this item can discount */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -595,15 +595,15 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of CouponDiscountLootUuid_Optional and returns true if it has been set, otherwise returns false */
 	bool GetCouponDiscountLootUuid(TArray<FGuid>& OutValue) const { if (CouponDiscountLootUuid_IsSet) OutValue = CouponDiscountLootUuid_Optional; return CouponDiscountLootUuid_IsSet; }
 	/** @brief Returns a pointer to CouponDiscountLootUuid_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FGuid>* GetCouponDiscountLootUuidOrNull() { if (CouponDiscountLootUuid_IsSet) return &CouponDiscountLootUuid_Optional; return nullptr; }
+	TArray<FGuid>* GetCouponDiscountLootUuidOrNull() { if (CouponDiscountLootUuid_IsSet) return (&CouponDiscountLootUuid_Optional); return nullptr; }
 	/** @brief Returns a pointer to CouponDiscountLootUuid_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FGuid>* GetCouponDiscountLootUuidOrNull() const { if (CouponDiscountLootUuid_IsSet) return &CouponDiscountLootUuid_Optional; return nullptr; }
+	const TArray<FGuid>* GetCouponDiscountLootUuidOrNull() const { if (CouponDiscountLootUuid_IsSet) return (&CouponDiscountLootUuid_Optional); return nullptr; }
 	/** @brief Sets the value of CouponDiscountLootUuid_Optional and also sets CouponDiscountLootUuid_IsSet to true */
-	void SetCouponDiscountLootUuid(const TArray<FGuid>& NewValue) { CouponDiscountLootUuid_Optional = NewValue; CouponDiscountLootUuid_IsSet = true; }
+	void SetCouponDiscountLootUuid(const TArray<FGuid>& NewValue) { CouponDiscountLootUuid_Optional = NewValue; CouponDiscountLootUuid_IsSet = true;  }
 	/** @brief Sets the value of CouponDiscountLootUuid_Optional and also sets CouponDiscountLootUuid_IsSet to true using move semantics */
-	void SetCouponDiscountLootUuid(TArray<FGuid>&& NewValue) { CouponDiscountLootUuid_Optional = NewValue; CouponDiscountLootUuid_IsSet = true; }
+	void SetCouponDiscountLootUuid(TArray<FGuid>&& NewValue) { CouponDiscountLootUuid_Optional = NewValue; CouponDiscountLootUuid_IsSet = true;  }
 	 /** @brief Clears the value of CouponDiscountLootUuid_Optional and sets CouponDiscountLootUuid_IsSet to false */
-	void ClearCouponDiscountLootUuid() { CouponDiscountLootUuid_IsSet = false; }
+	void ClearCouponDiscountLootUuid() { CouponDiscountLootUuid_IsSet = false;  }
 
 	/** @brief Cache information for this item. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -620,15 +620,15 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false */
 	bool GetCacheInfo(FRHAPI_CacheInfo& OutValue) const { if (CacheInfo_IsSet) OutValue = CacheInfo_Optional; return CacheInfo_IsSet; }
 	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_CacheInfo* GetCacheInfoOrNull() { if (CacheInfo_IsSet) return &CacheInfo_Optional; return nullptr; }
+	FRHAPI_CacheInfo* GetCacheInfoOrNull() { if (CacheInfo_IsSet) return (&CacheInfo_Optional); return nullptr; }
 	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return &CacheInfo_Optional; return nullptr; }
+	const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return (&CacheInfo_Optional); return nullptr; }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true */
-	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
+	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
-	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
+	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
 	 /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
-	void ClearCacheInfo() { CacheInfo_IsSet = false; }
+	void ClearCacheInfo() { CacheInfo_IsSet = false;  }
 };
 
 /** @} */

@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_BrowserSessionInfo : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief ID for the session */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -47,9 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_BrowserSessionInfo : public FRHAPI_Model
 	/** @brief Gets the value of SessionId */
 	const FString& GetSessionId() const { return SessionId; }
 	/** @brief Sets the value of SessionId */
-	void SetSessionId(const FString& NewValue) { SessionId = NewValue;  }
+	void SetSessionId(const FString& NewValue) { SessionId = NewValue;   }
 	/** @brief Sets the value of SessionId using move semantics */
-	void SetSessionId(FString&& NewValue) { SessionId = NewValue;  }
+	void SetSessionId(FString&& NewValue) { SessionId = NewValue;   }
 
 	/** @brief Number of players actively in this session */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -66,19 +66,19 @@ struct RALLYHEREAPI_API FRHAPI_BrowserSessionInfo : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of PlayerCount_Optional and returns true if it has been set, otherwise returns false */
 	bool GetPlayerCount(int32& OutValue) const { if (PlayerCount_IsSet) OutValue = PlayerCount_Optional; return PlayerCount_IsSet; }
 	/** @brief Returns a pointer to PlayerCount_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetPlayerCountOrNull() { if (PlayerCount_IsSet) return &PlayerCount_Optional; return nullptr; }
+	int32* GetPlayerCountOrNull() { if (PlayerCount_IsSet) return (&PlayerCount_Optional); return nullptr; }
 	/** @brief Returns a pointer to PlayerCount_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetPlayerCountOrNull() const { if (PlayerCount_IsSet) return &PlayerCount_Optional; return nullptr; }
+	const int32* GetPlayerCountOrNull() const { if (PlayerCount_IsSet) return (&PlayerCount_Optional); return nullptr; }
 	/** @brief Sets the value of PlayerCount_Optional and also sets PlayerCount_IsSet to true */
-	void SetPlayerCount(const int32& NewValue) { PlayerCount_Optional = NewValue; PlayerCount_IsSet = true; }
+	void SetPlayerCount(const int32& NewValue) { PlayerCount_Optional = NewValue; PlayerCount_IsSet = true;  }
 	/** @brief Sets the value of PlayerCount_Optional and also sets PlayerCount_IsSet to true using move semantics */
-	void SetPlayerCount(int32&& NewValue) { PlayerCount_Optional = NewValue; PlayerCount_IsSet = true; }
+	void SetPlayerCount(int32&& NewValue) { PlayerCount_Optional = NewValue; PlayerCount_IsSet = true;  }
 	 /** @brief Clears the value of PlayerCount_Optional and sets PlayerCount_IsSet to false */
-	void ClearPlayerCount() { PlayerCount_Optional = 0; PlayerCount_IsSet = false; }
+	void ClearPlayerCount() { PlayerCount_Optional = 0; PlayerCount_IsSet = false;  }
 	/** @brief Returns true if PlayerCount_Optional is set and matches the default value */
 	bool IsPlayerCountDefaultValue() const { return PlayerCount_IsSet && PlayerCount_Optional == 0; }
 	/** @brief Sets the value of PlayerCount_Optional to its default and also sets PlayerCount_IsSet to true */
-	void SetPlayerCountToDefault() { PlayerCount_Optional = 0; PlayerCount_IsSet = true; }
+	void SetPlayerCountToDefault() { SetPlayerCount(0); }
 
 	/** @brief Maximum number of players that can be in this session */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -95,19 +95,19 @@ struct RALLYHEREAPI_API FRHAPI_BrowserSessionInfo : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of MaxPlayerCount_Optional and returns true if it has been set, otherwise returns false */
 	bool GetMaxPlayerCount(int32& OutValue) const { if (MaxPlayerCount_IsSet) OutValue = MaxPlayerCount_Optional; return MaxPlayerCount_IsSet; }
 	/** @brief Returns a pointer to MaxPlayerCount_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetMaxPlayerCountOrNull() { if (MaxPlayerCount_IsSet) return &MaxPlayerCount_Optional; return nullptr; }
+	int32* GetMaxPlayerCountOrNull() { if (MaxPlayerCount_IsSet) return (&MaxPlayerCount_Optional); return nullptr; }
 	/** @brief Returns a pointer to MaxPlayerCount_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetMaxPlayerCountOrNull() const { if (MaxPlayerCount_IsSet) return &MaxPlayerCount_Optional; return nullptr; }
+	const int32* GetMaxPlayerCountOrNull() const { if (MaxPlayerCount_IsSet) return (&MaxPlayerCount_Optional); return nullptr; }
 	/** @brief Sets the value of MaxPlayerCount_Optional and also sets MaxPlayerCount_IsSet to true */
-	void SetMaxPlayerCount(const int32& NewValue) { MaxPlayerCount_Optional = NewValue; MaxPlayerCount_IsSet = true; }
+	void SetMaxPlayerCount(const int32& NewValue) { MaxPlayerCount_Optional = NewValue; MaxPlayerCount_IsSet = true;  }
 	/** @brief Sets the value of MaxPlayerCount_Optional and also sets MaxPlayerCount_IsSet to true using move semantics */
-	void SetMaxPlayerCount(int32&& NewValue) { MaxPlayerCount_Optional = NewValue; MaxPlayerCount_IsSet = true; }
+	void SetMaxPlayerCount(int32&& NewValue) { MaxPlayerCount_Optional = NewValue; MaxPlayerCount_IsSet = true;  }
 	 /** @brief Clears the value of MaxPlayerCount_Optional and sets MaxPlayerCount_IsSet to false */
-	void ClearMaxPlayerCount() { MaxPlayerCount_Optional = 0; MaxPlayerCount_IsSet = false; }
+	void ClearMaxPlayerCount() { MaxPlayerCount_Optional = 0; MaxPlayerCount_IsSet = false;  }
 	/** @brief Returns true if MaxPlayerCount_Optional is set and matches the default value */
 	bool IsMaxPlayerCountDefaultValue() const { return MaxPlayerCount_IsSet && MaxPlayerCount_Optional == 0; }
 	/** @brief Sets the value of MaxPlayerCount_Optional to its default and also sets MaxPlayerCount_IsSet to true */
-	void SetMaxPlayerCountToDefault() { MaxPlayerCount_Optional = 0; MaxPlayerCount_IsSet = true; }
+	void SetMaxPlayerCountToDefault() { SetMaxPlayerCount(0); }
 
 	/** @brief Custom data with the listing of the instance in the Session browser */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -124,15 +124,15 @@ struct RALLYHEREAPI_API FRHAPI_BrowserSessionInfo : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
 	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
-	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
-	void ClearCustomData() { CustomData_IsSet = false; }
+	void ClearCustomData() { CustomData_IsSet = false;  }
 };
 
 /** @} */

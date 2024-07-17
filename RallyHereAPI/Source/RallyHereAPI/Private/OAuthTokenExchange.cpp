@@ -53,23 +53,23 @@ bool FRHAPI_OAuthTokenExchange::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonGrantTypeField = (*Object)->TryGetField(TEXT("grant_type"));
-	ParseSuccess &= JsonGrantTypeField.IsValid() && !JsonGrantTypeField->IsNull() && TryGetJsonValue(JsonGrantTypeField, GrantType);
+	ParseSuccess &= JsonGrantTypeField.IsValid() && (!JsonGrantTypeField->IsNull() &&  TryGetJsonValue(JsonGrantTypeField, GrantType));
 	const TSharedPtr<FJsonValue> JsonCodeField = (*Object)->TryGetField(TEXT("code"));
-	ParseSuccess &= JsonCodeField.IsValid() && !JsonCodeField->IsNull() && TryGetJsonValue(JsonCodeField, Code);
+	ParseSuccess &= JsonCodeField.IsValid() && (!JsonCodeField->IsNull() &&  TryGetJsonValue(JsonCodeField, Code));
 	const TSharedPtr<FJsonValue> JsonAcceptedEulaField = (*Object)->TryGetField(TEXT("accepted_eula"));
-	if (JsonAcceptedEulaField.IsValid() && !JsonAcceptedEulaField->IsNull())
+	if (JsonAcceptedEulaField.IsValid())
 	{
 		AcceptedEula_IsSet = TryGetJsonValue(JsonAcceptedEulaField, AcceptedEula_Optional);
 		ParseSuccess &= AcceptedEula_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonAcceptedTosField = (*Object)->TryGetField(TEXT("accepted_tos"));
-	if (JsonAcceptedTosField.IsValid() && !JsonAcceptedTosField->IsNull())
+	if (JsonAcceptedTosField.IsValid())
 	{
 		AcceptedTos_IsSet = TryGetJsonValue(JsonAcceptedTosField, AcceptedTos_Optional);
 		ParseSuccess &= AcceptedTos_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonAcceptedPrivacyPolicyField = (*Object)->TryGetField(TEXT("accepted_privacy_policy"));
-	if (JsonAcceptedPrivacyPolicyField.IsValid() && !JsonAcceptedPrivacyPolicyField->IsNull())
+	if (JsonAcceptedPrivacyPolicyField.IsValid())
 	{
 		AcceptedPrivacyPolicy_IsSet = TryGetJsonValue(JsonAcceptedPrivacyPolicyField, AcceptedPrivacyPolicy_Optional);
 		ParseSuccess &= AcceptedPrivacyPolicy_IsSet;

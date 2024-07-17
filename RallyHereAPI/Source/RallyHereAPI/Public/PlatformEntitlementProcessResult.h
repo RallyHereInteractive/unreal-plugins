@@ -34,14 +34,14 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief unique id to allow tracking the request */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -51,9 +51,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
 	/** @brief Gets the value of RequestId */
 	const FString& GetRequestId() const { return RequestId; }
 	/** @brief Sets the value of RequestId */
-	void SetRequestId(const FString& NewValue) { RequestId = NewValue;  }
+	void SetRequestId(const FString& NewValue) { RequestId = NewValue;   }
 	/** @brief Sets the value of RequestId using move semantics */
-	void SetRequestId(FString&& NewValue) { RequestId = NewValue;  }
+	void SetRequestId(FString&& NewValue) { RequestId = NewValue;   }
 
 	/** @brief client type this purchase was made on */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -63,9 +63,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
 	/** @brief Gets the value of ClientType */
 	const ERHAPI_ClientType& GetClientType() const { return ClientType; }
 	/** @brief Sets the value of ClientType */
-	void SetClientType(const ERHAPI_ClientType& NewValue) { ClientType = NewValue;  }
+	void SetClientType(const ERHAPI_ClientType& NewValue) { ClientType = NewValue;   }
 	/** @brief Sets the value of ClientType using move semantics */
-	void SetClientType(ERHAPI_ClientType&& NewValue) { ClientType = NewValue;  }
+	void SetClientType(ERHAPI_ClientType&& NewValue) { ClientType = NewValue;   }
 
 	/** @brief unique id for this transaction on the platform */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -75,9 +75,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
 	/** @brief Gets the value of TransactionId */
 	const FString& GetTransactionId() const { return TransactionId; }
 	/** @brief Sets the value of TransactionId */
-	void SetTransactionId(const FString& NewValue) { TransactionId = NewValue;  }
+	void SetTransactionId(const FString& NewValue) { TransactionId = NewValue;   }
 	/** @brief Sets the value of TransactionId using move semantics */
-	void SetTransactionId(FString&& NewValue) { TransactionId = NewValue;  }
+	void SetTransactionId(FString&& NewValue) { TransactionId = NewValue;   }
 
 	/** @brief region this purchase was made in */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -87,9 +87,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
 	/** @brief Gets the value of PlatformRegion */
 	const ERHAPI_PlatformRegion& GetPlatformRegion() const { return PlatformRegion; }
 	/** @brief Sets the value of PlatformRegion */
-	void SetPlatformRegion(const ERHAPI_PlatformRegion& NewValue) { PlatformRegion = NewValue;  }
+	void SetPlatformRegion(const ERHAPI_PlatformRegion& NewValue) { PlatformRegion = NewValue;   }
 	/** @brief Sets the value of PlatformRegion using move semantics */
-	void SetPlatformRegion(ERHAPI_PlatformRegion&& NewValue) { PlatformRegion = NewValue;  }
+	void SetPlatformRegion(ERHAPI_PlatformRegion&& NewValue) { PlatformRegion = NewValue;   }
 
 	/** @brief status of this result */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -106,19 +106,19 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
 	/** @brief Fills OutValue with the value of Status_Optional and returns true if it has been set, otherwise returns false */
 	bool GetStatus(FString& OutValue) const { if (Status_IsSet) OutValue = Status_Optional; return Status_IsSet; }
 	/** @brief Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStatusOrNull() { if (Status_IsSet) return &Status_Optional; return nullptr; }
+	FString* GetStatusOrNull() { if (Status_IsSet) return (&Status_Optional); return nullptr; }
 	/** @brief Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStatusOrNull() const { if (Status_IsSet) return &Status_Optional; return nullptr; }
+	const FString* GetStatusOrNull() const { if (Status_IsSet) return (&Status_Optional); return nullptr; }
 	/** @brief Sets the value of Status_Optional and also sets Status_IsSet to true */
-	void SetStatus(const FString& NewValue) { Status_Optional = NewValue; Status_IsSet = true; }
+	void SetStatus(const FString& NewValue) { Status_Optional = NewValue; Status_IsSet = true;  }
 	/** @brief Sets the value of Status_Optional and also sets Status_IsSet to true using move semantics */
-	void SetStatus(FString&& NewValue) { Status_Optional = NewValue; Status_IsSet = true; }
+	void SetStatus(FString&& NewValue) { Status_Optional = NewValue; Status_IsSet = true;  }
 	 /** @brief Clears the value of Status_Optional and sets Status_IsSet to false */
-	void ClearStatus() { Status_Optional = TEXT("SUBMITTED"); Status_IsSet = false; }
+	void ClearStatus() { Status_Optional = TEXT("SUBMITTED"); Status_IsSet = false;  }
 	/** @brief Returns true if Status_Optional is set and matches the default value */
 	bool IsStatusDefaultValue() const { return Status_IsSet && Status_Optional == TEXT("SUBMITTED"); }
 	/** @brief Sets the value of Status_Optional to its default and also sets Status_IsSet to true */
-	void SetStatusToDefault() { Status_Optional = TEXT("SUBMITTED"); Status_IsSet = true; }
+	void SetStatusToDefault() { SetStatus(TEXT("SUBMITTED")); }
 
 	/** @brief Error code for failures not associated with a specific entitlement */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -135,15 +135,15 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
 	/** @brief Fills OutValue with the value of ErrorCode_Optional and returns true if it has been set, otherwise returns false */
 	bool GetErrorCode(FString& OutValue) const { if (ErrorCode_IsSet) OutValue = ErrorCode_Optional; return ErrorCode_IsSet; }
 	/** @brief Returns a pointer to ErrorCode_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetErrorCodeOrNull() { if (ErrorCode_IsSet) return &ErrorCode_Optional; return nullptr; }
+	FString* GetErrorCodeOrNull() { if (ErrorCode_IsSet) return (&ErrorCode_Optional); return nullptr; }
 	/** @brief Returns a pointer to ErrorCode_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetErrorCodeOrNull() const { if (ErrorCode_IsSet) return &ErrorCode_Optional; return nullptr; }
+	const FString* GetErrorCodeOrNull() const { if (ErrorCode_IsSet) return (&ErrorCode_Optional); return nullptr; }
 	/** @brief Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true */
-	void SetErrorCode(const FString& NewValue) { ErrorCode_Optional = NewValue; ErrorCode_IsSet = true; }
+	void SetErrorCode(const FString& NewValue) { ErrorCode_Optional = NewValue; ErrorCode_IsSet = true;  }
 	/** @brief Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true using move semantics */
-	void SetErrorCode(FString&& NewValue) { ErrorCode_Optional = NewValue; ErrorCode_IsSet = true; }
+	void SetErrorCode(FString&& NewValue) { ErrorCode_Optional = NewValue; ErrorCode_IsSet = true;  }
 	 /** @brief Clears the value of ErrorCode_Optional and sets ErrorCode_IsSet to false */
-	void ClearErrorCode() { ErrorCode_IsSet = false; }
+	void ClearErrorCode() { ErrorCode_IsSet = false;  }
 
 	/** @brief Client entitlements that have been processed */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -160,15 +160,15 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
 	/** @brief Fills OutValue with the value of ClientEntitlements_Optional and returns true if it has been set, otherwise returns false */
 	bool GetClientEntitlements(TArray<FRHAPI_PlatformEntitlement>& OutValue) const { if (ClientEntitlements_IsSet) OutValue = ClientEntitlements_Optional; return ClientEntitlements_IsSet; }
 	/** @brief Returns a pointer to ClientEntitlements_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FRHAPI_PlatformEntitlement>* GetClientEntitlementsOrNull() { if (ClientEntitlements_IsSet) return &ClientEntitlements_Optional; return nullptr; }
+	TArray<FRHAPI_PlatformEntitlement>* GetClientEntitlementsOrNull() { if (ClientEntitlements_IsSet) return (&ClientEntitlements_Optional); return nullptr; }
 	/** @brief Returns a pointer to ClientEntitlements_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FRHAPI_PlatformEntitlement>* GetClientEntitlementsOrNull() const { if (ClientEntitlements_IsSet) return &ClientEntitlements_Optional; return nullptr; }
+	const TArray<FRHAPI_PlatformEntitlement>* GetClientEntitlementsOrNull() const { if (ClientEntitlements_IsSet) return (&ClientEntitlements_Optional); return nullptr; }
 	/** @brief Sets the value of ClientEntitlements_Optional and also sets ClientEntitlements_IsSet to true */
-	void SetClientEntitlements(const TArray<FRHAPI_PlatformEntitlement>& NewValue) { ClientEntitlements_Optional = NewValue; ClientEntitlements_IsSet = true; }
+	void SetClientEntitlements(const TArray<FRHAPI_PlatformEntitlement>& NewValue) { ClientEntitlements_Optional = NewValue; ClientEntitlements_IsSet = true;  }
 	/** @brief Sets the value of ClientEntitlements_Optional and also sets ClientEntitlements_IsSet to true using move semantics */
-	void SetClientEntitlements(TArray<FRHAPI_PlatformEntitlement>&& NewValue) { ClientEntitlements_Optional = NewValue; ClientEntitlements_IsSet = true; }
+	void SetClientEntitlements(TArray<FRHAPI_PlatformEntitlement>&& NewValue) { ClientEntitlements_Optional = NewValue; ClientEntitlements_IsSet = true;  }
 	 /** @brief Clears the value of ClientEntitlements_Optional and sets ClientEntitlements_IsSet to false */
-	void ClearClientEntitlements() { ClientEntitlements_IsSet = false; }
+	void ClearClientEntitlements() { ClientEntitlements_IsSet = false;  }
 
 	/** @brief Server entitlements that have been processed */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -185,15 +185,15 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
 	/** @brief Fills OutValue with the value of ServerEntitlements_Optional and returns true if it has been set, otherwise returns false */
 	bool GetServerEntitlements(TArray<FRHAPI_PlatformEntitlement>& OutValue) const { if (ServerEntitlements_IsSet) OutValue = ServerEntitlements_Optional; return ServerEntitlements_IsSet; }
 	/** @brief Returns a pointer to ServerEntitlements_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FRHAPI_PlatformEntitlement>* GetServerEntitlementsOrNull() { if (ServerEntitlements_IsSet) return &ServerEntitlements_Optional; return nullptr; }
+	TArray<FRHAPI_PlatformEntitlement>* GetServerEntitlementsOrNull() { if (ServerEntitlements_IsSet) return (&ServerEntitlements_Optional); return nullptr; }
 	/** @brief Returns a pointer to ServerEntitlements_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FRHAPI_PlatformEntitlement>* GetServerEntitlementsOrNull() const { if (ServerEntitlements_IsSet) return &ServerEntitlements_Optional; return nullptr; }
+	const TArray<FRHAPI_PlatformEntitlement>* GetServerEntitlementsOrNull() const { if (ServerEntitlements_IsSet) return (&ServerEntitlements_Optional); return nullptr; }
 	/** @brief Sets the value of ServerEntitlements_Optional and also sets ServerEntitlements_IsSet to true */
-	void SetServerEntitlements(const TArray<FRHAPI_PlatformEntitlement>& NewValue) { ServerEntitlements_Optional = NewValue; ServerEntitlements_IsSet = true; }
+	void SetServerEntitlements(const TArray<FRHAPI_PlatformEntitlement>& NewValue) { ServerEntitlements_Optional = NewValue; ServerEntitlements_IsSet = true;  }
 	/** @brief Sets the value of ServerEntitlements_Optional and also sets ServerEntitlements_IsSet to true using move semantics */
-	void SetServerEntitlements(TArray<FRHAPI_PlatformEntitlement>&& NewValue) { ServerEntitlements_Optional = NewValue; ServerEntitlements_IsSet = true; }
+	void SetServerEntitlements(TArray<FRHAPI_PlatformEntitlement>&& NewValue) { ServerEntitlements_Optional = NewValue; ServerEntitlements_IsSet = true;  }
 	 /** @brief Clears the value of ServerEntitlements_Optional and sets ServerEntitlements_IsSet to false */
-	void ClearServerEntitlements() { ServerEntitlements_IsSet = false; }
+	void ClearServerEntitlements() { ServerEntitlements_IsSet = false;  }
 
 	/** @brief Platform these transactions were processed on */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -203,9 +203,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
 	/** @brief Gets the value of PlatformId */
 	const ERHAPI_Platform& GetPlatformId() const { return PlatformId; }
 	/** @brief Sets the value of PlatformId */
-	void SetPlatformId(const ERHAPI_Platform& NewValue) { PlatformId = NewValue;  }
+	void SetPlatformId(const ERHAPI_Platform& NewValue) { PlatformId = NewValue;   }
 	/** @brief Sets the value of PlatformId using move semantics */
-	void SetPlatformId(ERHAPI_Platform&& NewValue) { PlatformId = NewValue;  }
+	void SetPlatformId(ERHAPI_Platform&& NewValue) { PlatformId = NewValue;   }
 
 	/** @brief Unique identifier for the platform user that processed this entitlement */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -215,9 +215,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
 	/** @brief Gets the value of PlatformUserId */
 	const FString& GetPlatformUserId() const { return PlatformUserId; }
 	/** @brief Sets the value of PlatformUserId */
-	void SetPlatformUserId(const FString& NewValue) { PlatformUserId = NewValue;  }
+	void SetPlatformUserId(const FString& NewValue) { PlatformUserId = NewValue;   }
 	/** @brief Sets the value of PlatformUserId using move semantics */
-	void SetPlatformUserId(FString&& NewValue) { PlatformUserId = NewValue;  }
+	void SetPlatformUserId(FString&& NewValue) { PlatformUserId = NewValue;   }
 
 	/** @brief True if the server entitlements were skipped */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -234,19 +234,19 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
 	/** @brief Fills OutValue with the value of SkippedServerEntitlements_Optional and returns true if it has been set, otherwise returns false */
 	bool GetSkippedServerEntitlements(bool& OutValue) const { if (SkippedServerEntitlements_IsSet) OutValue = SkippedServerEntitlements_Optional; return SkippedServerEntitlements_IsSet; }
 	/** @brief Returns a pointer to SkippedServerEntitlements_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetSkippedServerEntitlementsOrNull() { if (SkippedServerEntitlements_IsSet) return &SkippedServerEntitlements_Optional; return nullptr; }
+	bool* GetSkippedServerEntitlementsOrNull() { if (SkippedServerEntitlements_IsSet) return (&SkippedServerEntitlements_Optional); return nullptr; }
 	/** @brief Returns a pointer to SkippedServerEntitlements_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetSkippedServerEntitlementsOrNull() const { if (SkippedServerEntitlements_IsSet) return &SkippedServerEntitlements_Optional; return nullptr; }
+	const bool* GetSkippedServerEntitlementsOrNull() const { if (SkippedServerEntitlements_IsSet) return (&SkippedServerEntitlements_Optional); return nullptr; }
 	/** @brief Sets the value of SkippedServerEntitlements_Optional and also sets SkippedServerEntitlements_IsSet to true */
-	void SetSkippedServerEntitlements(const bool& NewValue) { SkippedServerEntitlements_Optional = NewValue; SkippedServerEntitlements_IsSet = true; }
+	void SetSkippedServerEntitlements(const bool& NewValue) { SkippedServerEntitlements_Optional = NewValue; SkippedServerEntitlements_IsSet = true;  }
 	/** @brief Sets the value of SkippedServerEntitlements_Optional and also sets SkippedServerEntitlements_IsSet to true using move semantics */
-	void SetSkippedServerEntitlements(bool&& NewValue) { SkippedServerEntitlements_Optional = NewValue; SkippedServerEntitlements_IsSet = true; }
+	void SetSkippedServerEntitlements(bool&& NewValue) { SkippedServerEntitlements_Optional = NewValue; SkippedServerEntitlements_IsSet = true;  }
 	 /** @brief Clears the value of SkippedServerEntitlements_Optional and sets SkippedServerEntitlements_IsSet to false */
-	void ClearSkippedServerEntitlements() { SkippedServerEntitlements_Optional = false; SkippedServerEntitlements_IsSet = false; }
+	void ClearSkippedServerEntitlements() { SkippedServerEntitlements_Optional = false; SkippedServerEntitlements_IsSet = false;  }
 	/** @brief Returns true if SkippedServerEntitlements_Optional is set and matches the default value */
 	bool IsSkippedServerEntitlementsDefaultValue() const { return SkippedServerEntitlements_IsSet && SkippedServerEntitlements_Optional == false; }
 	/** @brief Sets the value of SkippedServerEntitlements_Optional to its default and also sets SkippedServerEntitlements_IsSet to true */
-	void SetSkippedServerEntitlementsToDefault() { SkippedServerEntitlements_Optional = false; SkippedServerEntitlements_IsSet = true; }
+	void SetSkippedServerEntitlementsToDefault() { SetSkippedServerEntitlements(false); }
 };
 
 /** @} */

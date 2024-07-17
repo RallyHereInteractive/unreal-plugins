@@ -39,7 +39,7 @@ bool FRHAPI_SessionTemplates::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonTemplatesField = (*Object)->TryGetField(TEXT("templates"));
-	if (JsonTemplatesField.IsValid() && !JsonTemplatesField->IsNull())
+	if (JsonTemplatesField.IsValid())
 	{
 		Templates_IsSet = TryGetJsonValue(JsonTemplatesField, Templates_Optional);
 		ParseSuccess &= Templates_IsSet;

@@ -32,14 +32,14 @@ struct RALLYHEREAPI_API FRHAPI_CrossplayPreferences : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief The platform type that the client is allowed to play with (any, xbox-like only, playstation-like only etc.) */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -49,9 +49,9 @@ struct RALLYHEREAPI_API FRHAPI_CrossplayPreferences : public FRHAPI_Model
 	/** @brief Gets the value of PermittedPlatform */
 	const ERHAPI_CrossplayPlatform& GetPermittedPlatform() const { return PermittedPlatform; }
 	/** @brief Sets the value of PermittedPlatform */
-	void SetPermittedPlatform(const ERHAPI_CrossplayPlatform& NewValue) { PermittedPlatform = NewValue;  }
+	void SetPermittedPlatform(const ERHAPI_CrossplayPlatform& NewValue) { PermittedPlatform = NewValue;   }
 	/** @brief Sets the value of PermittedPlatform using move semantics */
-	void SetPermittedPlatform(ERHAPI_CrossplayPlatform&& NewValue) { PermittedPlatform = NewValue;  }
+	void SetPermittedPlatform(ERHAPI_CrossplayPlatform&& NewValue) { PermittedPlatform = NewValue;   }
 
 	/** @brief The input type that the client is allowed to play with (keyboard and mouse, gamepad, touch input etc.) */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -61,9 +61,9 @@ struct RALLYHEREAPI_API FRHAPI_CrossplayPreferences : public FRHAPI_Model
 	/** @brief Gets the value of PermittedInput */
 	const ERHAPI_CrossplayInput& GetPermittedInput() const { return PermittedInput; }
 	/** @brief Sets the value of PermittedInput */
-	void SetPermittedInput(const ERHAPI_CrossplayInput& NewValue) { PermittedInput = NewValue;  }
+	void SetPermittedInput(const ERHAPI_CrossplayInput& NewValue) { PermittedInput = NewValue;   }
 	/** @brief Sets the value of PermittedInput using move semantics */
-	void SetPermittedInput(ERHAPI_CrossplayInput&& NewValue) { PermittedInput = NewValue;  }
+	void SetPermittedInput(ERHAPI_CrossplayInput&& NewValue) { PermittedInput = NewValue;   }
 };
 
 /** @} */

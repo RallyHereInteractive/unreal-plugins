@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_IndividualCCUs : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TMap<FString, int32> Ccus{  };
@@ -46,9 +46,9 @@ struct RALLYHEREAPI_API FRHAPI_IndividualCCUs : public FRHAPI_Model
 	/** @brief Gets the value of Ccus */
 	const TMap<FString, int32>& GetCcus() const { return Ccus; }
 	/** @brief Sets the value of Ccus */
-	void SetCcus(const TMap<FString, int32>& NewValue) { Ccus = NewValue;  }
+	void SetCcus(const TMap<FString, int32>& NewValue) { Ccus = NewValue;   }
 	/** @brief Sets the value of Ccus using move semantics */
-	void SetCcus(TMap<FString, int32>&& NewValue) { Ccus = NewValue;  }
+	void SetCcus(TMap<FString, int32>&& NewValue) { Ccus = NewValue;   }
 };
 
 /** @} */

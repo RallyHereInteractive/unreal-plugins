@@ -36,7 +36,7 @@ bool FRHAPI_MessageOnly::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonMessageField = (*Object)->TryGetField(TEXT("message"));
-	ParseSuccess &= JsonMessageField.IsValid() && !JsonMessageField->IsNull() && TryGetJsonValue(JsonMessageField, Message);
+	ParseSuccess &= JsonMessageField.IsValid() && (!JsonMessageField->IsNull() &&  TryGetJsonValue(JsonMessageField, Message));
 
 	return ParseSuccess;
 }

@@ -41,13 +41,13 @@ bool FRHAPI_PlayerOrdersResponse::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonDataField = (*Object)->TryGetField(TEXT("data"));
-	if (JsonDataField.IsValid() && !JsonDataField->IsNull())
+	if (JsonDataField.IsValid())
 	{
 		Data_IsSet = TryGetJsonValue(JsonDataField, Data_Optional);
 		ParseSuccess &= Data_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPageField = (*Object)->TryGetField(TEXT("page"));
-	ParseSuccess &= JsonPageField.IsValid() && !JsonPageField->IsNull() && TryGetJsonValue(JsonPageField, Page);
+	ParseSuccess &= JsonPageField.IsValid() && (!JsonPageField->IsNull() &&  TryGetJsonValue(JsonPageField, Page));
 
 	return ParseSuccess;
 }

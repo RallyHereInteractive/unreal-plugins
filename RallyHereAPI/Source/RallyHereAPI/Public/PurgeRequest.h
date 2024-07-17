@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_PurgeRequest : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -54,15 +54,15 @@ struct RALLYHEREAPI_API FRHAPI_PurgeRequest : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of SuggestedPurgeTime_Optional and returns true if it has been set, otherwise returns false */
 	bool GetSuggestedPurgeTime(FDateTime& OutValue) const { if (SuggestedPurgeTime_IsSet) OutValue = SuggestedPurgeTime_Optional; return SuggestedPurgeTime_IsSet; }
 	/** @brief Returns a pointer to SuggestedPurgeTime_Optional, if it has been set, otherwise returns nullptr */
-	FDateTime* GetSuggestedPurgeTimeOrNull() { if (SuggestedPurgeTime_IsSet) return &SuggestedPurgeTime_Optional; return nullptr; }
+	FDateTime* GetSuggestedPurgeTimeOrNull() { if (SuggestedPurgeTime_IsSet) return (&SuggestedPurgeTime_Optional); return nullptr; }
 	/** @brief Returns a pointer to SuggestedPurgeTime_Optional, if it has been set, otherwise returns nullptr */
-	const FDateTime* GetSuggestedPurgeTimeOrNull() const { if (SuggestedPurgeTime_IsSet) return &SuggestedPurgeTime_Optional; return nullptr; }
+	const FDateTime* GetSuggestedPurgeTimeOrNull() const { if (SuggestedPurgeTime_IsSet) return (&SuggestedPurgeTime_Optional); return nullptr; }
 	/** @brief Sets the value of SuggestedPurgeTime_Optional and also sets SuggestedPurgeTime_IsSet to true */
-	void SetSuggestedPurgeTime(const FDateTime& NewValue) { SuggestedPurgeTime_Optional = NewValue; SuggestedPurgeTime_IsSet = true; }
+	void SetSuggestedPurgeTime(const FDateTime& NewValue) { SuggestedPurgeTime_Optional = NewValue; SuggestedPurgeTime_IsSet = true;  }
 	/** @brief Sets the value of SuggestedPurgeTime_Optional and also sets SuggestedPurgeTime_IsSet to true using move semantics */
-	void SetSuggestedPurgeTime(FDateTime&& NewValue) { SuggestedPurgeTime_Optional = NewValue; SuggestedPurgeTime_IsSet = true; }
+	void SetSuggestedPurgeTime(FDateTime&& NewValue) { SuggestedPurgeTime_Optional = NewValue; SuggestedPurgeTime_IsSet = true;  }
 	 /** @brief Clears the value of SuggestedPurgeTime_Optional and sets SuggestedPurgeTime_IsSet to false */
-	void ClearSuggestedPurgeTime() { SuggestedPurgeTime_IsSet = false; }
+	void ClearSuggestedPurgeTime() { SuggestedPurgeTime_IsSet = false;  }
 };
 
 /** @} */

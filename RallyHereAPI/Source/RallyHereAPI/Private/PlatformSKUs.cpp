@@ -44,13 +44,13 @@ bool FRHAPI_PlatformSKUs::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonSkusField = (*Object)->TryGetField(TEXT("skus"));
-	if (JsonSkusField.IsValid() && !JsonSkusField->IsNull())
+	if (JsonSkusField.IsValid())
 	{
 		Skus_IsSet = TryGetJsonValue(JsonSkusField, Skus_Optional);
 		ParseSuccess &= Skus_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
-	if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
+	if (JsonCacheInfoField.IsValid())
 	{
 		CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
 		ParseSuccess &= CacheInfo_IsSet;

@@ -46,15 +46,15 @@ bool FRHAPI_Restriction::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
-	ParseSuccess &= JsonTypeField.IsValid() && !JsonTypeField->IsNull() && TryGetJsonValue(JsonTypeField, Type);
+	ParseSuccess &= JsonTypeField.IsValid() && (!JsonTypeField->IsNull() &&  TryGetJsonValue(JsonTypeField, Type));
 	const TSharedPtr<FJsonValue> JsonReasonField = (*Object)->TryGetField(TEXT("reason"));
-	if (JsonReasonField.IsValid() && !JsonReasonField->IsNull())
+	if (JsonReasonField.IsValid())
 	{
 		Reason_IsSet = TryGetJsonValue(JsonReasonField, Reason_Optional);
 		ParseSuccess &= Reason_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonExpirationField = (*Object)->TryGetField(TEXT("expiration"));
-	if (JsonExpirationField.IsValid() && !JsonExpirationField->IsNull())
+	if (JsonExpirationField.IsValid())
 	{
 		Expiration_IsSet = TryGetJsonValue(JsonExpirationField, Expiration_Optional);
 		ParseSuccess &= Expiration_IsSet;

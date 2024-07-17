@@ -58,29 +58,29 @@ bool FRHAPI_PlayerDeserterStatus::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonDeserterIdField = (*Object)->TryGetField(TEXT("deserter_id"));
-	ParseSuccess &= JsonDeserterIdField.IsValid() && !JsonDeserterIdField->IsNull() && TryGetJsonValue(JsonDeserterIdField, DeserterId);
+	ParseSuccess &= JsonDeserterIdField.IsValid() && (!JsonDeserterIdField->IsNull() &&  TryGetJsonValue(JsonDeserterIdField, DeserterId));
 	const TSharedPtr<FJsonValue> JsonDeserterStatusField = (*Object)->TryGetField(TEXT("deserter_status"));
-	ParseSuccess &= JsonDeserterStatusField.IsValid() && !JsonDeserterStatusField->IsNull() && TryGetJsonValue(JsonDeserterStatusField, DeserterStatus);
+	ParseSuccess &= JsonDeserterStatusField.IsValid() && (!JsonDeserterStatusField->IsNull() &&  TryGetJsonValue(JsonDeserterStatusField, DeserterStatus));
 	const TSharedPtr<FJsonValue> JsonDeserterExpirationField = (*Object)->TryGetField(TEXT("deserter_expiration"));
-	if (JsonDeserterExpirationField.IsValid() && !JsonDeserterExpirationField->IsNull())
+	if (JsonDeserterExpirationField.IsValid())
 	{
 		DeserterExpiration_IsSet = TryGetJsonValue(JsonDeserterExpirationField, DeserterExpiration_Optional);
 		ParseSuccess &= DeserterExpiration_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonDeserterCountField = (*Object)->TryGetField(TEXT("deserter_count"));
-	if (JsonDeserterCountField.IsValid() && !JsonDeserterCountField->IsNull())
+	if (JsonDeserterCountField.IsValid())
 	{
 		DeserterCount_IsSet = TryGetJsonValue(JsonDeserterCountField, DeserterCount_Optional);
 		ParseSuccess &= DeserterCount_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonLastUpdatedField = (*Object)->TryGetField(TEXT("last_updated"));
-	if (JsonLastUpdatedField.IsValid() && !JsonLastUpdatedField->IsNull())
+	if (JsonLastUpdatedField.IsValid())
 	{
 		LastUpdated_IsSet = TryGetJsonValue(JsonLastUpdatedField, LastUpdated_Optional);
 		ParseSuccess &= LastUpdated_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	if (JsonCustomDataField.IsValid())
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;

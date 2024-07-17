@@ -32,14 +32,14 @@ struct RALLYHEREAPI_API FRHAPI_LookupResults : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief List of display names and the players that match that display name */
 	TArray<TMap<FString, TArray<FRHAPI_PlayerResponse>>> DisplayNames_Optional{  };
@@ -55,15 +55,15 @@ struct RALLYHEREAPI_API FRHAPI_LookupResults : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of DisplayNames_Optional and returns true if it has been set, otherwise returns false */
 	bool GetDisplayNames(TArray<TMap<FString, TArray<FRHAPI_PlayerResponse>>>& OutValue) const { if (DisplayNames_IsSet) OutValue = DisplayNames_Optional; return DisplayNames_IsSet; }
 	/** @brief Returns a pointer to DisplayNames_Optional, if it has been set, otherwise returns nullptr */
-	TArray<TMap<FString, TArray<FRHAPI_PlayerResponse>>>* GetDisplayNamesOrNull() { if (DisplayNames_IsSet) return &DisplayNames_Optional; return nullptr; }
+	TArray<TMap<FString, TArray<FRHAPI_PlayerResponse>>>* GetDisplayNamesOrNull() { if (DisplayNames_IsSet) return (&DisplayNames_Optional); return nullptr; }
 	/** @brief Returns a pointer to DisplayNames_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<TMap<FString, TArray<FRHAPI_PlayerResponse>>>* GetDisplayNamesOrNull() const { if (DisplayNames_IsSet) return &DisplayNames_Optional; return nullptr; }
+	const TArray<TMap<FString, TArray<FRHAPI_PlayerResponse>>>* GetDisplayNamesOrNull() const { if (DisplayNames_IsSet) return (&DisplayNames_Optional); return nullptr; }
 	/** @brief Sets the value of DisplayNames_Optional and also sets DisplayNames_IsSet to true */
-	void SetDisplayNames(const TArray<TMap<FString, TArray<FRHAPI_PlayerResponse>>>& NewValue) { DisplayNames_Optional = NewValue; DisplayNames_IsSet = true; }
+	void SetDisplayNames(const TArray<TMap<FString, TArray<FRHAPI_PlayerResponse>>>& NewValue) { DisplayNames_Optional = NewValue; DisplayNames_IsSet = true;  }
 	/** @brief Sets the value of DisplayNames_Optional and also sets DisplayNames_IsSet to true using move semantics */
-	void SetDisplayNames(TArray<TMap<FString, TArray<FRHAPI_PlayerResponse>>>&& NewValue) { DisplayNames_Optional = NewValue; DisplayNames_IsSet = true; }
+	void SetDisplayNames(TArray<TMap<FString, TArray<FRHAPI_PlayerResponse>>>&& NewValue) { DisplayNames_Optional = NewValue; DisplayNames_IsSet = true;  }
 	 /** @brief Clears the value of DisplayNames_Optional and sets DisplayNames_IsSet to false */
-	void ClearDisplayNames() { DisplayNames_IsSet = false; }
+	void ClearDisplayNames() { DisplayNames_IsSet = false;  }
 
 	/** @brief *DEPRECATED* Use `identity_platforms_by_platform` instead. List of platforms and the players that match that platform user id */
 	TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>> IdentityPlatforms_Optional{  };
@@ -79,15 +79,15 @@ struct RALLYHEREAPI_API FRHAPI_LookupResults : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of IdentityPlatforms_Optional and returns true if it has been set, otherwise returns false */
 	bool GetIdentityPlatforms(TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>& OutValue) const { if (IdentityPlatforms_IsSet) OutValue = IdentityPlatforms_Optional; return IdentityPlatforms_IsSet; }
 	/** @brief Returns a pointer to IdentityPlatforms_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>* GetIdentityPlatformsOrNull() { if (IdentityPlatforms_IsSet) return &IdentityPlatforms_Optional; return nullptr; }
+	TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>* GetIdentityPlatformsOrNull() { if (IdentityPlatforms_IsSet) return (&IdentityPlatforms_Optional); return nullptr; }
 	/** @brief Returns a pointer to IdentityPlatforms_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>* GetIdentityPlatformsOrNull() const { if (IdentityPlatforms_IsSet) return &IdentityPlatforms_Optional; return nullptr; }
+	const TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>* GetIdentityPlatformsOrNull() const { if (IdentityPlatforms_IsSet) return (&IdentityPlatforms_Optional); return nullptr; }
 	/** @brief Sets the value of IdentityPlatforms_Optional and also sets IdentityPlatforms_IsSet to true */
-	void SetIdentityPlatforms(const TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>& NewValue) { IdentityPlatforms_Optional = NewValue; IdentityPlatforms_IsSet = true; }
+	void SetIdentityPlatforms(const TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>& NewValue) { IdentityPlatforms_Optional = NewValue; IdentityPlatforms_IsSet = true;  }
 	/** @brief Sets the value of IdentityPlatforms_Optional and also sets IdentityPlatforms_IsSet to true using move semantics */
-	void SetIdentityPlatforms(TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>&& NewValue) { IdentityPlatforms_Optional = NewValue; IdentityPlatforms_IsSet = true; }
+	void SetIdentityPlatforms(TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>&& NewValue) { IdentityPlatforms_Optional = NewValue; IdentityPlatforms_IsSet = true;  }
 	 /** @brief Clears the value of IdentityPlatforms_Optional and sets IdentityPlatforms_IsSet to false */
-	void ClearIdentityPlatforms() { IdentityPlatforms_IsSet = false; }
+	void ClearIdentityPlatforms() { IdentityPlatforms_IsSet = false;  }
 
 	/** @brief List of platforms and the players that match that platform user id */
 	TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>> IdentityPlatformsByPlatform_Optional{  };
@@ -103,15 +103,15 @@ struct RALLYHEREAPI_API FRHAPI_LookupResults : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of IdentityPlatformsByPlatform_Optional and returns true if it has been set, otherwise returns false */
 	bool GetIdentityPlatformsByPlatform(TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>& OutValue) const { if (IdentityPlatformsByPlatform_IsSet) OutValue = IdentityPlatformsByPlatform_Optional; return IdentityPlatformsByPlatform_IsSet; }
 	/** @brief Returns a pointer to IdentityPlatformsByPlatform_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>* GetIdentityPlatformsByPlatformOrNull() { if (IdentityPlatformsByPlatform_IsSet) return &IdentityPlatformsByPlatform_Optional; return nullptr; }
+	TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>* GetIdentityPlatformsByPlatformOrNull() { if (IdentityPlatformsByPlatform_IsSet) return (&IdentityPlatformsByPlatform_Optional); return nullptr; }
 	/** @brief Returns a pointer to IdentityPlatformsByPlatform_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>* GetIdentityPlatformsByPlatformOrNull() const { if (IdentityPlatformsByPlatform_IsSet) return &IdentityPlatformsByPlatform_Optional; return nullptr; }
+	const TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>* GetIdentityPlatformsByPlatformOrNull() const { if (IdentityPlatformsByPlatform_IsSet) return (&IdentityPlatformsByPlatform_Optional); return nullptr; }
 	/** @brief Sets the value of IdentityPlatformsByPlatform_Optional and also sets IdentityPlatformsByPlatform_IsSet to true */
-	void SetIdentityPlatformsByPlatform(const TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>& NewValue) { IdentityPlatformsByPlatform_Optional = NewValue; IdentityPlatformsByPlatform_IsSet = true; }
+	void SetIdentityPlatformsByPlatform(const TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>& NewValue) { IdentityPlatformsByPlatform_Optional = NewValue; IdentityPlatformsByPlatform_IsSet = true;  }
 	/** @brief Sets the value of IdentityPlatformsByPlatform_Optional and also sets IdentityPlatformsByPlatform_IsSet to true using move semantics */
-	void SetIdentityPlatformsByPlatform(TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>&& NewValue) { IdentityPlatformsByPlatform_Optional = NewValue; IdentityPlatformsByPlatform_IsSet = true; }
+	void SetIdentityPlatformsByPlatform(TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>&& NewValue) { IdentityPlatformsByPlatform_Optional = NewValue; IdentityPlatformsByPlatform_IsSet = true;  }
 	 /** @brief Clears the value of IdentityPlatformsByPlatform_Optional and sets IdentityPlatformsByPlatform_IsSet to false */
-	void ClearIdentityPlatformsByPlatform() { IdentityPlatformsByPlatform_IsSet = false; }
+	void ClearIdentityPlatformsByPlatform() { IdentityPlatformsByPlatform_IsSet = false;  }
 };
 
 /** @} */

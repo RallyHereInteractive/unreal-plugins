@@ -55,25 +55,25 @@ bool FRHAPI_MarketingCampaign::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonUuidField = (*Object)->TryGetField(TEXT("uuid"));
-	ParseSuccess &= JsonUuidField.IsValid() && !JsonUuidField->IsNull() && TryGetJsonValue(JsonUuidField, Uuid);
+	ParseSuccess &= JsonUuidField.IsValid() && (!JsonUuidField->IsNull() &&  TryGetJsonValue(JsonUuidField, Uuid));
 	const TSharedPtr<FJsonValue> JsonNameField = (*Object)->TryGetField(TEXT("name"));
-	ParseSuccess &= JsonNameField.IsValid() && !JsonNameField->IsNull() && TryGetJsonValue(JsonNameField, Name);
+	ParseSuccess &= JsonNameField.IsValid() && (!JsonNameField->IsNull() &&  TryGetJsonValue(JsonNameField, Name));
 	const TSharedPtr<FJsonValue> JsonPortalIdField = (*Object)->TryGetField(TEXT("portal_id"));
-	if (JsonPortalIdField.IsValid() && !JsonPortalIdField->IsNull())
+	if (JsonPortalIdField.IsValid())
 	{
 		PortalId_IsSet = TryGetJsonValue(JsonPortalIdField, PortalId_Optional);
 		ParseSuccess &= PortalId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonKeyTypesField = (*Object)->TryGetField(TEXT("key_types"));
-	ParseSuccess &= JsonKeyTypesField.IsValid() && !JsonKeyTypesField->IsNull() && TryGetJsonValue(JsonKeyTypesField, KeyTypes);
+	ParseSuccess &= JsonKeyTypesField.IsValid() && (!JsonKeyTypesField->IsNull() &&  TryGetJsonValue(JsonKeyTypesField, KeyTypes));
 	const TSharedPtr<FJsonValue> JsonCreatedOnField = (*Object)->TryGetField(TEXT("created_on"));
-	if (JsonCreatedOnField.IsValid() && !JsonCreatedOnField->IsNull())
+	if (JsonCreatedOnField.IsValid())
 	{
 		CreatedOn_IsSet = TryGetJsonValue(JsonCreatedOnField, CreatedOn_Optional);
 		ParseSuccess &= CreatedOn_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonLastModifiedOnField = (*Object)->TryGetField(TEXT("last_modified_on"));
-	if (JsonLastModifiedOnField.IsValid() && !JsonLastModifiedOnField->IsNull())
+	if (JsonLastModifiedOnField.IsValid())
 	{
 		LastModifiedOn_IsSet = TryGetJsonValue(JsonLastModifiedOnField, LastModifiedOn_Optional);
 		ParseSuccess &= LastModifiedOn_IsSet;
