@@ -23,26 +23,618 @@ using RallyHereAPI::ToStringFormatArg;
 using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
-struct FRequest_CreateEntityDirectoryFile;
-struct FResponse_CreateEntityDirectoryFile;
-struct FRequest_DeleteEntityDirectory;
-struct FResponse_DeleteEntityDirectory;
-struct FRequest_DeleteEntityDirectoryFile;
-struct FResponse_DeleteEntityDirectoryFile;
-struct FRequest_DownloadEntityDirectoryFile;
-struct FResponse_DownloadEntityDirectoryFile;
-struct FRequest_GetEntityDirectoryInformation;
-struct FResponse_GetEntityDirectoryInformation;
-struct FRequest_ListEntityDirectoryFiles;
-struct FResponse_ListEntityDirectoryFiles;
+// forward declaration
+class FRemoteFileAPI;
 
+/**
+ * @brief Create Entity Directory File
+ * Upload a file to entity storage for provided entity_id
+*/
+struct RALLYHEREAPI_API FRequest_CreateEntityDirectoryFile : public FRequest
+{
+	FRequest_CreateEntityDirectoryFile();
+	virtual ~FRequest_CreateEntityDirectoryFile() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	ERHAPI_FileType FileType;
+	FString FileName;
+	ERHAPI_EntityType EntityType;
+	FString EntityId;
+	FHttpFileInput File;
+};
+
+/** The response type for FRequest_CreateEntityDirectoryFile */
+struct RALLYHEREAPI_API FResponse_CreateEntityDirectoryFile : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_CreateEntityDirectoryFile(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_CreateEntityDirectoryFile() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+
+	// Individual Response Helpers	
+	/* Response 204
+	Successful Response
+	*/
+
+	/* Response 403
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_CreateEntityDirectoryFile */
 DECLARE_DELEGATE_OneParam(FDelegate_CreateEntityDirectoryFile, const FResponse_CreateEntityDirectoryFile&);
+
+/** @brief A helper metadata object for CreateEntityDirectoryFile that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_CreateEntityDirectoryFile
+{
+	/** The request type */
+	typedef FRequest_CreateEntityDirectoryFile Request;
+	/** The response type */
+	typedef FResponse_CreateEntityDirectoryFile Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_CreateEntityDirectoryFile Delegate;
+	/** The API object that supports this API call */
+	typedef FRemoteFileAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Delete Entity Directory
+
+*/
+struct RALLYHEREAPI_API FRequest_DeleteEntityDirectory : public FRequest
+{
+	FRequest_DeleteEntityDirectory();
+	virtual ~FRequest_DeleteEntityDirectory() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	ERHAPI_FileType FileType;
+	ERHAPI_EntityType EntityType;
+};
+
+/** The response type for FRequest_DeleteEntityDirectory */
+struct RALLYHEREAPI_API FResponse_DeleteEntityDirectory : public FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_DeleteEntityDirectory(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_DeleteEntityDirectory() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_JsonValue Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_JsonValue& OutContent) const { return TryGetContent<FRHAPI_JsonValue>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_JsonValue>& OutContent) const { return TryGetContent<FRHAPI_JsonValue>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_JsonValue* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_JsonValue>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_JsonValue> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_JsonValue>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+	/* Response 403
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_DeleteEntityDirectory */
 DECLARE_DELEGATE_OneParam(FDelegate_DeleteEntityDirectory, const FResponse_DeleteEntityDirectory&);
+
+/** @brief A helper metadata object for DeleteEntityDirectory that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_DeleteEntityDirectory
+{
+	/** The request type */
+	typedef FRequest_DeleteEntityDirectory Request;
+	/** The response type */
+	typedef FResponse_DeleteEntityDirectory Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_DeleteEntityDirectory Delegate;
+	/** The API object that supports this API call */
+	typedef FRemoteFileAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Delete Entity Directory File
+
+*/
+struct RALLYHEREAPI_API FRequest_DeleteEntityDirectoryFile : public FRequest
+{
+	FRequest_DeleteEntityDirectoryFile();
+	virtual ~FRequest_DeleteEntityDirectoryFile() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	ERHAPI_EntityType EntityType;
+	FString EntityId;
+	FString FileName;
+	ERHAPI_FileType FileType;
+};
+
+/** The response type for FRequest_DeleteEntityDirectoryFile */
+struct RALLYHEREAPI_API FResponse_DeleteEntityDirectoryFile : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_DeleteEntityDirectoryFile(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_DeleteEntityDirectoryFile() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+
+	// Individual Response Helpers	
+	/* Response 204
+	Successful Response
+	*/
+
+	/* Response 403
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_DeleteEntityDirectoryFile */
 DECLARE_DELEGATE_OneParam(FDelegate_DeleteEntityDirectoryFile, const FResponse_DeleteEntityDirectoryFile&);
+
+/** @brief A helper metadata object for DeleteEntityDirectoryFile that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_DeleteEntityDirectoryFile
+{
+	/** The request type */
+	typedef FRequest_DeleteEntityDirectoryFile Request;
+	/** The response type */
+	typedef FResponse_DeleteEntityDirectoryFile Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_DeleteEntityDirectoryFile Delegate;
+	/** The API object that supports this API call */
+	typedef FRemoteFileAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Download Entity Directory File
+
+*/
+struct RALLYHEREAPI_API FRequest_DownloadEntityDirectoryFile : public FRequest
+{
+	FRequest_DownloadEntityDirectoryFile();
+	virtual ~FRequest_DownloadEntityDirectoryFile() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	ERHAPI_EntityType EntityType;
+	FString EntityId;
+	FString FileName;
+	ERHAPI_FileType FileType;
+};
+
+/** The response type for FRequest_DownloadEntityDirectoryFile */
+struct RALLYHEREAPI_API FResponse_DownloadEntityDirectoryFile : public FResponseAccessorTemplate<FString, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FString, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_DownloadEntityDirectoryFile(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_DownloadEntityDirectoryFile() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FString Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FString& OutContent) const { return TryGetContent<FString>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FString>& OutContent) const { return TryGetContent<FString>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FString* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FString>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FString> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FString>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FString& OutContent) const;
+
+	/* Response 403
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	 Error Codes: - `file_not_found` - File not found. 
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_DownloadEntityDirectoryFile */
 DECLARE_DELEGATE_OneParam(FDelegate_DownloadEntityDirectoryFile, const FResponse_DownloadEntityDirectoryFile&);
+
+/** @brief A helper metadata object for DownloadEntityDirectoryFile that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_DownloadEntityDirectoryFile
+{
+	/** The request type */
+	typedef FRequest_DownloadEntityDirectoryFile Request;
+	/** The response type */
+	typedef FResponse_DownloadEntityDirectoryFile Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_DownloadEntityDirectoryFile Delegate;
+	/** The API object that supports this API call */
+	typedef FRemoteFileAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Entity Directory Information
+ * Get information about a entity types storage container. Very resource intensive, use sparingly.
+*/
+struct RALLYHEREAPI_API FRequest_GetEntityDirectoryInformation : public FRequest
+{
+	FRequest_GetEntityDirectoryInformation();
+	virtual ~FRequest_GetEntityDirectoryInformation() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	ERHAPI_FileType FileType;
+	ERHAPI_EntityType EntityType;
+};
+
+/** The response type for FRequest_GetEntityDirectoryInformation */
+struct RALLYHEREAPI_API FResponse_GetEntityDirectoryInformation : public FResponseAccessorTemplate<FRHAPI_StorageInformation, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_StorageInformation, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_GetEntityDirectoryInformation(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetEntityDirectoryInformation() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_StorageInformation Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_StorageInformation& OutContent) const { return TryGetContent<FRHAPI_StorageInformation>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_StorageInformation>& OutContent) const { return TryGetContent<FRHAPI_StorageInformation>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_StorageInformation* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_StorageInformation>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_StorageInformation> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_StorageInformation>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_StorageInformation& OutContent) const;
+
+	/* Response 403
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetEntityDirectoryInformation */
 DECLARE_DELEGATE_OneParam(FDelegate_GetEntityDirectoryInformation, const FResponse_GetEntityDirectoryInformation&);
+
+/** @brief A helper metadata object for GetEntityDirectoryInformation that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetEntityDirectoryInformation
+{
+	/** The request type */
+	typedef FRequest_GetEntityDirectoryInformation Request;
+	/** The response type */
+	typedef FResponse_GetEntityDirectoryInformation Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetEntityDirectoryInformation Delegate;
+	/** The API object that supports this API call */
+	typedef FRemoteFileAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief List Entity Directory Files
+
+*/
+struct RALLYHEREAPI_API FRequest_ListEntityDirectoryFiles : public FRequest
+{
+	FRequest_ListEntityDirectoryFiles();
+	virtual ~FRequest_ListEntityDirectoryFiles() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	ERHAPI_EntityType EntityType;
+	FString EntityId;
+	ERHAPI_FileType FileType;
+};
+
+/** The response type for FRequest_ListEntityDirectoryFiles */
+struct RALLYHEREAPI_API FResponse_ListEntityDirectoryFiles : public FResponseAccessorTemplate<FRHAPI_FileListResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_FileListResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_ListEntityDirectoryFiles(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_ListEntityDirectoryFiles() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_FileListResponse Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_FileListResponse& OutContent) const { return TryGetContent<FRHAPI_FileListResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_FileListResponse>& OutContent) const { return TryGetContent<FRHAPI_FileListResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_FileListResponse* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_FileListResponse>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_FileListResponse> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_FileListResponse>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_FileListResponse& OutContent) const;
+
+	/* Response 403
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_ListEntityDirectoryFiles */
 DECLARE_DELEGATE_OneParam(FDelegate_ListEntityDirectoryFiles, const FResponse_ListEntityDirectoryFiles&);
 
+/** @brief A helper metadata object for ListEntityDirectoryFiles that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_ListEntityDirectoryFiles
+{
+	/** The request type */
+	typedef FRequest_ListEntityDirectoryFiles Request;
+	/** The response type */
+	typedef FResponse_ListEntityDirectoryFiles Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_ListEntityDirectoryFiles Delegate;
+	/** The API object that supports this API call */
+	typedef FRemoteFileAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+
+/** The API class itself, which will handle calls to */
 class RALLYHEREAPI_API FRemoteFileAPI : public FAPI
 {
 public:
@@ -66,356 +658,6 @@ private:
 
 };
 
-/* Create Entity Directory File
- *
- * Upload a file to entity storage for provided entity_id
-*/
-struct RALLYHEREAPI_API FRequest_CreateEntityDirectoryFile : public FRequest
-{
-	FRequest_CreateEntityDirectoryFile();
-	virtual ~FRequest_CreateEntityDirectoryFile() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	ERHAPI_FileType FileType;
-	FString FileName;
-	ERHAPI_EntityType EntityType;
-	FString EntityId;
-	FHttpFileInput File;
-};
-
-struct RALLYHEREAPI_API FResponse_CreateEntityDirectoryFile : public FResponse
-{
-	FResponse_CreateEntityDirectoryFile(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_CreateEntityDirectoryFile() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-	
-
-
-	// Manual Response Helpers
-	/* Response 204
-	Successful Response
-	*/
-
-	/* Response 403
-	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_CreateEntityDirectoryFile
-{
-	typedef FRequest_CreateEntityDirectoryFile Request;
-	typedef FResponse_CreateEntityDirectoryFile Response;
-	typedef FDelegate_CreateEntityDirectoryFile Delegate;
-	typedef FRemoteFileAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->CreateEntityDirectoryFile(InRequest, InDelegate, Priority); }
-};
-
-/* Delete Entity Directory
-*/
-struct RALLYHEREAPI_API FRequest_DeleteEntityDirectory : public FRequest
-{
-	FRequest_DeleteEntityDirectory();
-	virtual ~FRequest_DeleteEntityDirectory() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	ERHAPI_FileType FileType;
-	ERHAPI_EntityType EntityType;
-};
-
-struct RALLYHEREAPI_API FResponse_DeleteEntityDirectory : public FResponse
-{
-	FResponse_DeleteEntityDirectory(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_DeleteEntityDirectory() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-	FRHAPI_JsonValue Content;
-
-
-	// Manual Response Helpers
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
-
-	/* Response 403
-	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_DeleteEntityDirectory
-{
-	typedef FRequest_DeleteEntityDirectory Request;
-	typedef FResponse_DeleteEntityDirectory Response;
-	typedef FDelegate_DeleteEntityDirectory Delegate;
-	typedef FRemoteFileAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteEntityDirectory(InRequest, InDelegate, Priority); }
-};
-
-/* Delete Entity Directory File
-*/
-struct RALLYHEREAPI_API FRequest_DeleteEntityDirectoryFile : public FRequest
-{
-	FRequest_DeleteEntityDirectoryFile();
-	virtual ~FRequest_DeleteEntityDirectoryFile() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	ERHAPI_EntityType EntityType;
-	FString EntityId;
-	FString FileName;
-	ERHAPI_FileType FileType;
-};
-
-struct RALLYHEREAPI_API FResponse_DeleteEntityDirectoryFile : public FResponse
-{
-	FResponse_DeleteEntityDirectoryFile(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_DeleteEntityDirectoryFile() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-	
-
-
-	// Manual Response Helpers
-	/* Response 204
-	Successful Response
-	*/
-
-	/* Response 403
-	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_DeleteEntityDirectoryFile
-{
-	typedef FRequest_DeleteEntityDirectoryFile Request;
-	typedef FResponse_DeleteEntityDirectoryFile Response;
-	typedef FDelegate_DeleteEntityDirectoryFile Delegate;
-	typedef FRemoteFileAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteEntityDirectoryFile(InRequest, InDelegate, Priority); }
-};
-
-/* Download Entity Directory File
-*/
-struct RALLYHEREAPI_API FRequest_DownloadEntityDirectoryFile : public FRequest
-{
-	FRequest_DownloadEntityDirectoryFile();
-	virtual ~FRequest_DownloadEntityDirectoryFile() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	ERHAPI_EntityType EntityType;
-	FString EntityId;
-	FString FileName;
-	ERHAPI_FileType FileType;
-};
-
-struct RALLYHEREAPI_API FResponse_DownloadEntityDirectoryFile : public FResponse
-{
-	FResponse_DownloadEntityDirectoryFile(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_DownloadEntityDirectoryFile() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-	FString Content;
-
-
-	// Manual Response Helpers
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FString& OutContent) const;
-
-	/* Response 403
-	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	 Error Codes: - `file_not_found` - File not found. 
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_DownloadEntityDirectoryFile
-{
-	typedef FRequest_DownloadEntityDirectoryFile Request;
-	typedef FResponse_DownloadEntityDirectoryFile Response;
-	typedef FDelegate_DownloadEntityDirectoryFile Delegate;
-	typedef FRemoteFileAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DownloadEntityDirectoryFile(InRequest, InDelegate, Priority); }
-};
-
-/* Get Entity Directory Information
- *
- * Get information about a entity types storage container. Very resource intensive, use sparingly.
-*/
-struct RALLYHEREAPI_API FRequest_GetEntityDirectoryInformation : public FRequest
-{
-	FRequest_GetEntityDirectoryInformation();
-	virtual ~FRequest_GetEntityDirectoryInformation() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	ERHAPI_FileType FileType;
-	ERHAPI_EntityType EntityType;
-};
-
-struct RALLYHEREAPI_API FResponse_GetEntityDirectoryInformation : public FResponse
-{
-	FResponse_GetEntityDirectoryInformation(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetEntityDirectoryInformation() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-	FRHAPI_StorageInformation Content;
-
-
-	// Manual Response Helpers
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_StorageInformation& OutContent) const;
-
-	/* Response 403
-	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetEntityDirectoryInformation
-{
-	typedef FRequest_GetEntityDirectoryInformation Request;
-	typedef FResponse_GetEntityDirectoryInformation Response;
-	typedef FDelegate_GetEntityDirectoryInformation Delegate;
-	typedef FRemoteFileAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetEntityDirectoryInformation(InRequest, InDelegate, Priority); }
-};
-
-/* List Entity Directory Files
-*/
-struct RALLYHEREAPI_API FRequest_ListEntityDirectoryFiles : public FRequest
-{
-	FRequest_ListEntityDirectoryFiles();
-	virtual ~FRequest_ListEntityDirectoryFiles() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	ERHAPI_EntityType EntityType;
-	FString EntityId;
-	ERHAPI_FileType FileType;
-};
-
-struct RALLYHEREAPI_API FResponse_ListEntityDirectoryFiles : public FResponse
-{
-	FResponse_ListEntityDirectoryFiles(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_ListEntityDirectoryFiles() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-	FRHAPI_FileListResponse Content;
-
-
-	// Manual Response Helpers
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_FileListResponse& OutContent) const;
-
-	/* Response 403
-	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_ListEntityDirectoryFiles
-{
-	typedef FRequest_ListEntityDirectoryFiles Request;
-	typedef FResponse_ListEntityDirectoryFiles Response;
-	typedef FDelegate_ListEntityDirectoryFiles Delegate;
-	typedef FRemoteFileAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->ListEntityDirectoryFiles(InRequest, InDelegate, Priority); }
-};
 
 
 }

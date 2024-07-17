@@ -1367,20 +1367,20 @@ void URH_OnlineSession::GenerateVoipLoginToken(const FRH_OnSessionGetVoipTokenDe
 	
 	struct FRH_VoipLoginTokenResponseContext
 	{
-		FRHAPI_VoipTokenResponse Resp;
+		TOptional<FRHAPI_VoipTokenResponse> Resp;
 	};
 	auto ResponseContext = MakeShared<FRH_VoipLoginTokenResponseContext>();
 
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateLambda([ResponseContext](const BaseType::Response& Resp)
 		{
-			ResponseContext->Resp = Resp.Content;
+			ResponseContext->Resp = Resp.TryGetDefaultContentAsOptional();
 		}),
 		FRH_GenericSuccessWithErrorDelegate::CreateLambda([ResponseContext, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 		{
-			if (bSuccess)
+			if (bSuccess && ResponseContext->Resp.IsSet())
 			{
-				Delegate.ExecuteIfBound(bSuccess, ResponseContext->Resp, ErrorInfo);
+				Delegate.ExecuteIfBound(bSuccess, ResponseContext->Resp.GetValue(), ErrorInfo);
 			}
 			else
 			{
@@ -1405,20 +1405,20 @@ void URH_OnlineSession::GenerateVoipActionToken(ERHAPI_VivoxSessionActionSingle 
 
 	struct FRH_VoipLoginTokenResponseContext
 	{
-		FRHAPI_VoipTokenResponse Resp;
+		TOptional<FRHAPI_VoipTokenResponse> Resp;
 	};
 	auto ResponseContext = MakeShared<FRH_VoipLoginTokenResponseContext>();
 
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateLambda([ResponseContext](const BaseType::Response& Resp)
 			{
-				ResponseContext->Resp = Resp.Content;
+				ResponseContext->Resp = Resp.TryGetDefaultContentAsOptional();
 			}),
 		FRH_GenericSuccessWithErrorDelegate::CreateLambda([ResponseContext, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 			{
 				if (bSuccess)
 				{
-					Delegate.ExecuteIfBound(bSuccess, ResponseContext->Resp, ErrorInfo);
+					Delegate.ExecuteIfBound(bSuccess, ResponseContext->Resp.GetValue(), ErrorInfo);
 				}
 				else
 				{

@@ -378,9 +378,10 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 						BaseType::Delegate::CreateLambda([PollTimerNameCopy](const BaseType::Response& Resp)
 							{
 								auto* PollControl = FRH_PollControl::Get();
-								if (PollControl && Resp.IsSuccessful())
+								const auto Content = Resp.TryGetDefaultContentAsPointer();
+								if (PollControl && Resp.IsSuccessful() && Content != nullptr)
 								{
-									float NewInterval = Resp.Content.CadenceSeconds;
+									float NewInterval = Content->CadenceSeconds;
 									UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - Updating %s timer to %f interval"), ANSI_TO_TCHAR(__FUNCTION__), *PollTimerNameCopy.ToString(), NewInterval);
 
 									FRH_PollTimerSetting NewSetting = PollControl->GetPollTimerSetting(PollTimerNameCopy);
@@ -420,9 +421,10 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 						BaseType::Delegate::CreateLambda([PollTimerNameCopy](const BaseType::Response& Resp)
 							{
 								auto* PollControl = FRH_PollControl::Get();
-								if (PollControl && Resp.IsSuccessful())
+								const auto Content = Resp.TryGetDefaultContentAsPointer();
+								if (PollControl && Resp.IsSuccessful() && Content != nullptr)
 								{
-									const auto CadenceSeconds = Resp.Content.Timeout;
+									const auto CadenceSeconds = Content->Timeout;
 									UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - Updating %s timer to %f interval"), ANSI_TO_TCHAR(__FUNCTION__), *PollTimerNameCopy.ToString(), CadenceSeconds);
 
 									FRH_PollTimerSetting NewSetting = PollControl->GetPollTimerSetting(PollTimerNameCopy);

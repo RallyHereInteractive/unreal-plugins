@@ -139,7 +139,9 @@ protected:
 
 		if (Resp.IsSuccessful())
 		{
-			SessionCache = FRH_APISessionWithETag(Resp.Content, Resp.ETag);
+			SessionCache = FRH_APISessionWithETag();
+			Resp.TryGetDefaultContent(SessionCache.Data);
+			Resp.TryGetDefaultHeader_ETag(SessionCache.ETag);
 
 			CheckTemplateForSessionCache();
 		}
@@ -212,9 +214,10 @@ protected:
 			return;
 		}
 
-		if (Resp.IsSuccessful())
+		auto Content = Resp.TryGetDefaultContentAsPointer();
+		if (Resp.IsSuccessful() && Content != nullptr)
 		{
-			SessionOwner->ImportAPITemplate(Resp.Content);
+			SessionOwner->ImportAPITemplate(*Content);
 			OnReadyForSessionImport();
 		}
 		else
@@ -283,25 +286,31 @@ public:
 protected:
 
 	// boilerplate to determine if the etag field exists in the response class
-	template <typename, typename = void>
-	struct has_etag : std::false_type {};
-
-
 	template <typename T>
-	struct has_etag<T, std::void_t<decltype(&T::ETag)>> : std::is_same<TOptional<FString>, decltype(std::declval<T>().ETag)>
-	{};
-
-	template <typename T,
-		typename std::enable_if<has_etag<T>::value, T>::type* = nullptr>
-	void SetSessionLookupETag(const T& Resp)
+	class FOptionalGetETag
 	{
-		SessionLookupETag = Resp.ETag;
-	};
+	public:
+		const T* t;
+		FOptionalGetETag(const T& ta) : t{&ta} {};
 
-	template <typename T,
-		typename std::enable_if<!has_etag<T>::value, T>::type* = nullptr>
-	void SetSessionLookupETag(const T& Resp)
-	{
+		TOptional<FString> GetETag() {
+			return GetETag(get_etag_available{});
+		}
+
+	private:
+
+		struct get_etag_unavailable {};
+		struct get_etag_available : get_etag_unavailable {};
+ 
+		template <class U=T, decltype(U{}.TryGetDefaultHeaderAsOptional_ETag()) = true>
+		TOptional<FString> GetETag(get_etag_available) {
+			return t->TryGetDefaultHeaderAsOptional_ETag();
+		};
+
+    
+		TOptional<FString> GetETag(get_etag_unavailable) {
+			return TOptional<FString>();
+		};
 	};
 
 	virtual void OnRequestById(const typename BaseType::Response& Resp)
@@ -311,7 +320,8 @@ protected:
 		if (Resp.IsSuccessful())
 		{
 			bRequestWasSuccessful = true;
-			SetSessionLookupETag(Resp);
+			FOptionalGetETag<typename BaseType::Response> OptionalETag{Resp};
+			SessionLookupETag = OptionalETag.GetETag();
 			DoSessionLookup();	// this will re-read the session, and attempt to import it.  The import will detect that we left the session and adjust accordingly
 		}
 		else
@@ -423,10 +433,11 @@ protected:
 	void OnQueryAllTemplates(const RallyHereAPI::Traits_GetAllSessionTemplates::Response& Resp)
 	{
 		HttpRequest = nullptr;
-		if (Resp.IsSuccessful() && SessionOwner.IsValid())
+		auto Content = Resp.TryGetDefaultContentAsPointer();
+		if (Resp.IsSuccessful() && SessionOwner.IsValid() && Content != nullptr)
 		{
 			TArray<FRHAPI_SessionTemplate> TemplatesArray;
-			if (const auto Templates = Resp.Content.GetTemplatesOrNull())
+			if (const auto Templates = Content->GetTemplatesOrNull())
 			{
 				Templates->GenerateValueArray(TemplatesArray);
 			}
@@ -440,7 +451,7 @@ protected:
 			}
 
 			// reconcile the templates into the owner before querying sessions
-			SessionOwner->ReconcileAPITemplates(TemplateNames, Resp.ETag);
+			SessionOwner->ReconcileAPITemplates(TemplateNames, Resp.TryGetDefaultHeaderAsOptional_ETag());
 
 			if (!bPollMembership)
 			{
@@ -501,11 +512,12 @@ protected:
 			return;
 		}
 
-		if (Resp.IsSuccessful())
+		const auto Content = Resp.TryGetDefaultContentAsPointer();
+		if (Resp.IsSuccessful() && Content != nullptr)
 		{
 			SessionIds.Empty();
 
-			auto* SessionsMap = Resp.Content.GetSessionsOrNull();
+			auto* SessionsMap = Content->GetSessionsOrNull();
 
 			if (SessionsMap == nullptr || SessionsMap->Num() <= 0)
 			{
@@ -540,7 +552,7 @@ protected:
 				}
 			}
 
-			NewAllSessionsETag = Resp.ETag;
+			NewAllSessionsETag = Resp.TryGetDefaultHeaderAsOptional_ETag();
 
 			RemainingSessionIds = SessionIds;
 			QueryNextSession();
@@ -629,7 +641,10 @@ protected:
 		if (Resp.IsSuccessful())
 		{
 			// import the new session
-			SessionOwner->ImportAPISession(FRH_APISessionWithETag(Resp.Content, Resp.ETag));
+			auto Session = FRH_APISessionWithETag();
+			Resp.TryGetDefaultContent(Session.Data);
+			Resp.TryGetDefaultHeader_ETag(Session.ETag);
+			SessionOwner->ImportAPISession(Session);
 		}
 		else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::NotModified)
 		{
@@ -729,10 +744,11 @@ protected:
 	{
 		ErrorInfo = FRH_ErrorInfo(Resp);
 
-		if (Resp.IsSuccessful())
+		auto Content = Resp.TryGetDefaultContentAsPointer();
+		if (Resp.IsSuccessful() && Content != nullptr)
 		{
 			// set our new session id
-			SessionId = Resp.Content.SessionId;
+			SessionId = Content->GetSessionId();
 			DoSessionLookup();	// this will re-read the session, and attempt to import it.  The import will detect that we left the session and adjust accordingly
 		}
 		else
@@ -876,13 +892,14 @@ protected:
 	{
 		ErrorInfo = FRH_ErrorInfo(Resp);
 
-		if (Resp.IsSuccessful())
+		const auto Content = Resp.TryGetDefaultContentAsPointer();
+		if (Resp.IsSuccessful() && Content != nullptr)
 		{
 			// set our new session id
-			SessionId = Resp.Content.SessionId;
+			SessionId = Content->GetSessionId();
 
 			// the response has the full session info, so set the cache and continue on to the template check
-			SessionCache = FRH_APISessionWithETag(Resp.Content, Resp.ETag);
+			SessionCache = FRH_APISessionWithETag(*Content, Resp.TryGetDefaultHeaderAsOptional_ETag());
 
 			CheckTemplateForSessionCache();
 		}

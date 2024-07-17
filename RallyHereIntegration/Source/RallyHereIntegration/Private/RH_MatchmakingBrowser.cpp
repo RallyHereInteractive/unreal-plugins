@@ -20,11 +20,12 @@ void URH_MatchmakingBrowserCache::SearchQueues(const FRH_QueueSearchParams& para
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateWeakLambda(this, [this, Result](const BaseType::Response& Resp)
 			{
-				if (Resp.IsSuccessful())
+				const auto Content = Resp.TryGetDefaultContentAsPointer();
+				if (Resp.IsSuccessful() && Content != nullptr)
 				{
-					for (const auto& Queue : Resp.Content.Queues)
+					for (const auto& Queue : Content->Queues)
 					{
-						ImportAPIQueue(Queue, Resp.ETag.Get(TEXT("")));
+						ImportAPIQueue(Queue, Resp.TryGetDefaultHeaderAsOptional_ETag().Get(TEXT("")));
 
 						// add to the result
 						auto* ImportedQueue = GetQueue(Queue.QueueId);
@@ -74,9 +75,10 @@ void URH_MatchmakingBrowserCache::SearchMatchmakingTemplateGroup(const FGuid& Te
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateWeakLambda(this, [this](const BaseType::Response& Resp)
 			{
-				if (Resp.IsSuccessful())
+				const auto Content = Resp.TryGetDefaultContentAsPointer();
+				if (Resp.IsSuccessful() && Content != nullptr)
 				{
-					ImportAPIMatchmakingTemplateGroup(Resp.Content, Resp.ETag.Get(TEXT("")));
+					ImportAPIMatchmakingTemplateGroup(*Content, Resp.TryGetDefaultHeaderAsOptional_ETag().Get(TEXT("")));
 				}
 			}),
 		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, TemplateId, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
@@ -135,9 +137,10 @@ void URH_MatchmakingBrowserCache::SearchMatchmakingProfile(const FString& Profil
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateWeakLambda(this, [this](const BaseType::Response& Resp)
 			{
-				if (Resp.IsSuccessful())
+				const auto Content = Resp.TryGetDefaultContentAsPointer();
+				if (Resp.IsSuccessful() && Content != nullptr)
 				{
-					ImportAPIMatchmakingProfile(Resp.Content, Resp.ETag.Get(TEXT("")));
+					ImportAPIMatchmakingProfile(*Content, Resp.TryGetDefaultHeaderAsOptional_ETag().Get(TEXT("")));
 				}
 			}),
 		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, ProfileId, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
@@ -187,9 +190,10 @@ void URH_MatchmakingBrowserCache::SearchInstanceRequestTemplate(const FGuid& Tem
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateWeakLambda(this, [this](const BaseType::Response& Resp)
 			{
-				if (Resp.IsSuccessful())
+				const auto Content = Resp.TryGetDefaultContentAsPointer();
+				if (Resp.IsSuccessful() && Content != nullptr)
 				{
-					ImportAPIInstanceRequestTemplate(Resp.Content, Resp.ETag.Get(TEXT("")));
+					ImportAPIInstanceRequestTemplate(*Content, Resp.TryGetDefaultHeaderAsOptional_ETag().Get(TEXT("")));
 				}
 			}),
 		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, TemplateId, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
@@ -249,16 +253,17 @@ void URH_MatchmakingBrowserCache::SearchRegions(int32 Cursor, const FRH_OnRegion
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateWeakLambda(this, [this](const BaseType::Response& Resp)
 			{
-				if (Resp.IsSuccessful())
+				const auto Content = Resp.TryGetDefaultContentAsPointer();
+				if (Resp.IsSuccessful() && Content != nullptr)
 				{
 					// merge the regions in to the cache
-					for (auto Region : Resp.Content.GetRegions())
+					for (auto Region : Content->GetRegions())
 					{
 						ImportAPIRegion(Region);
 					}
 
 					// stash cursor for callback
-					LastRegionCursor = Resp.Content.GetCursor();
+					LastRegionCursor = Content->GetCursor();
 
 					{
 						SCOPED_NAMED_EVENT(RallyHere_BroadcastRegionsUpdated, FColor::Purple);

@@ -289,7 +289,11 @@ void URH_RemoteFileSubsystem::LookupFileList(const FRH_RemoteFileApiDirectory& D
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateWeakLambda(this, [this, Directory](const BaseType::Response& Response)
 			{
-				FileListCache.Add(Directory, Response.Content);
+				const auto Content = Response.TryGetDefaultContentAsPointer();
+				if (Response.IsSuccessful() && Content != nullptr)
+				{
+					FileListCache.Add(Directory, *Content);
+				}
 			}),
 		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Directory, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 			{

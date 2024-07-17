@@ -86,7 +86,7 @@ struct RALLYHEREINTEGRATION_API FRH_ServerTimeCache
 	void ImportAPITime(const RallyHereAPI::FResponse_GetUtcTime& Time)
 	{
 		LastReceivedServerAtTime = GetLocalTime();
-		LastReceivedServerDateTime = Time.Content;
+		Time.TryGetDefaultContent(LastReceivedServerDateTime);
 	}
 };
 

@@ -23,56 +23,11 @@ using RallyHereAPI::ToStringFormatArg;
 using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
-struct FRequest_AddFriendV2;
-struct FResponse_AddFriendV2;
-struct FRequest_AddNotesV2;
-struct FResponse_AddNotesV2;
-struct FRequest_DeleteFriendV2;
-struct FResponse_DeleteFriendV2;
-struct FRequest_DeleteFriendsV2;
-struct FResponse_DeleteFriendsV2;
-struct FRequest_DeleteNotesV2;
-struct FResponse_DeleteNotesV2;
-struct FRequest_GetFriendRelationshipV2;
-struct FResponse_GetFriendRelationshipV2;
-struct FRequest_GetFriendsListForPlayerV2;
-struct FResponse_GetFriendsListForPlayerV2;
+// forward declaration
+class FFriendsV2API;
 
-DECLARE_DELEGATE_OneParam(FDelegate_AddFriendV2, const FResponse_AddFriendV2&);
-DECLARE_DELEGATE_OneParam(FDelegate_AddNotesV2, const FResponse_AddNotesV2&);
-DECLARE_DELEGATE_OneParam(FDelegate_DeleteFriendV2, const FResponse_DeleteFriendV2&);
-DECLARE_DELEGATE_OneParam(FDelegate_DeleteFriendsV2, const FResponse_DeleteFriendsV2&);
-DECLARE_DELEGATE_OneParam(FDelegate_DeleteNotesV2, const FResponse_DeleteNotesV2&);
-DECLARE_DELEGATE_OneParam(FDelegate_GetFriendRelationshipV2, const FResponse_GetFriendRelationshipV2&);
-DECLARE_DELEGATE_OneParam(FDelegate_GetFriendsListForPlayerV2, const FResponse_GetFriendsListForPlayerV2&);
-
-class RALLYHEREAPI_API FFriendsV2API : public FAPI
-{
-public:
-	FFriendsV2API();
-	virtual ~FFriendsV2API();
-
-	FHttpRequestPtr AddFriendV2(const FRequest_AddFriendV2& Request, const FDelegate_AddFriendV2& Delegate = FDelegate_AddFriendV2(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr AddNotesV2(const FRequest_AddNotesV2& Request, const FDelegate_AddNotesV2& Delegate = FDelegate_AddNotesV2(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr DeleteFriendV2(const FRequest_DeleteFriendV2& Request, const FDelegate_DeleteFriendV2& Delegate = FDelegate_DeleteFriendV2(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr DeleteFriendsV2(const FRequest_DeleteFriendsV2& Request, const FDelegate_DeleteFriendsV2& Delegate = FDelegate_DeleteFriendsV2(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr DeleteNotesV2(const FRequest_DeleteNotesV2& Request, const FDelegate_DeleteNotesV2& Delegate = FDelegate_DeleteNotesV2(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetFriendRelationshipV2(const FRequest_GetFriendRelationshipV2& Request, const FDelegate_GetFriendRelationshipV2& Delegate = FDelegate_GetFriendRelationshipV2(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetFriendsListForPlayerV2(const FRequest_GetFriendsListForPlayerV2& Request, const FDelegate_GetFriendsListForPlayerV2& Delegate = FDelegate_GetFriendsListForPlayerV2(), int32 Priority = DefaultRallyHereAPIPriority);
-
-private:
-	void OnAddFriendV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AddFriendV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnAddNotesV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AddNotesV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnDeleteFriendV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteFriendV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnDeleteFriendsV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteFriendsV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnDeleteNotesV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteNotesV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnGetFriendRelationshipV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetFriendRelationshipV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnGetFriendsListForPlayerV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetFriendsListForPlayerV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-
-};
-
-/* Add Friend V2
- *
+/**
+ * @brief Add Friend V2
  * Modify the friend's relationship status with the other Player. There is a max number of friends that can be added for a Player.
  *                     The limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits). This API allows you optionally update 
  *                     the player's notes for the other player. If you do not want to update or set the notes when adding the other player, then do not 
@@ -86,12 +41,19 @@ struct RALLYHEREAPI_API FRequest_AddFriendV2 : public FRequest
 {
 	FRequest_AddFriendV2();
 	virtual ~FRequest_AddFriendV2() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FGuid PlayerUuid;
 	FGuid OtherPlayerUuid;
@@ -100,20 +62,52 @@ struct RALLYHEREAPI_API FRequest_AddFriendV2 : public FRequest
 	TOptional<FRHAPI_Notes> Notes;
 };
 
-struct RALLYHEREAPI_API FResponse_AddFriendV2 : public FResponse
+/** The response type for FRequest_AddFriendV2 */
+struct RALLYHEREAPI_API FResponse_AddFriendV2 : public FResponseAccessorTemplate<FRHAPI_FriendRelationship, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_FriendRelationship, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_AddFriendV2(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_AddFriendV2() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
+	//virtual ~FResponse_AddFriendV2() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_FriendRelationship Content;
-	// Headers
+	
+	/** Default Response Headers */
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
 	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_FriendRelationship& OutContent) const { return TryGetContent<FRHAPI_FriendRelationship>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_FriendRelationship>& OutContent) const { return TryGetContent<FRHAPI_FriendRelationship>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_FriendRelationship* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_FriendRelationship>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_FriendRelationship> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_FriendRelationship>(); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(FString& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_ETag() const { return TryGetHeaderAsPointer(TEXT("ETag")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_ETag() const { return TryGetHeaderAsOptional(TEXT("ETag")); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -147,19 +141,36 @@ struct RALLYHEREAPI_API FResponse_AddFriendV2 : public FResponse
 
 };
 
+/** The delegate class for FRequest_AddFriendV2 */
+DECLARE_DELEGATE_OneParam(FDelegate_AddFriendV2, const FResponse_AddFriendV2&);
+
+/** @brief A helper metadata object for AddFriendV2 that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_AddFriendV2
 {
+	/** The request type */
 	typedef FRequest_AddFriendV2 Request;
+	/** The response type */
 	typedef FResponse_AddFriendV2 Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_AddFriendV2 Delegate;
+	/** The API object that supports this API call */
 	typedef FFriendsV2API API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->AddFriendV2(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Add Notes V2
- *
+/**
+ * @brief Add Notes V2
  * Update Player's notes on the other player. Players can only add notes for players they have relationship's with. 
  *                     The notes will be removed when the relationship is ended.
  *                     <br/><br />Permissions Required: friend:friend_list:write
@@ -168,12 +179,19 @@ struct RALLYHEREAPI_API FRequest_AddNotesV2 : public FRequest
 {
 	FRequest_AddNotesV2();
 	virtual ~FRequest_AddNotesV2() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FGuid PlayerUuid;
 	FGuid OtherPlayerUuid;
@@ -182,20 +200,52 @@ struct RALLYHEREAPI_API FRequest_AddNotesV2 : public FRequest
 	TOptional<FString> IfMatch;
 };
 
-struct RALLYHEREAPI_API FResponse_AddNotesV2 : public FResponse
+/** The response type for FRequest_AddNotesV2 */
+struct RALLYHEREAPI_API FResponse_AddNotesV2 : public FResponseAccessorTemplate<FRHAPI_FriendRelationship, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_FriendRelationship, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_AddNotesV2(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_AddNotesV2() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
+	//virtual ~FResponse_AddNotesV2() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_FriendRelationship Content;
-	// Headers
+	
+	/** Default Response Headers */
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
 	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_FriendRelationship& OutContent) const { return TryGetContent<FRHAPI_FriendRelationship>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_FriendRelationship>& OutContent) const { return TryGetContent<FRHAPI_FriendRelationship>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_FriendRelationship* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_FriendRelationship>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_FriendRelationship> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_FriendRelationship>(); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(FString& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_ETag() const { return TryGetHeaderAsPointer(TEXT("ETag")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_ETag() const { return TryGetHeaderAsOptional(TEXT("ETag")); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -225,19 +275,36 @@ struct RALLYHEREAPI_API FResponse_AddNotesV2 : public FResponse
 
 };
 
+/** The delegate class for FRequest_AddNotesV2 */
+DECLARE_DELEGATE_OneParam(FDelegate_AddNotesV2, const FResponse_AddNotesV2&);
+
+/** @brief A helper metadata object for AddNotesV2 that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_AddNotesV2
 {
+	/** The request type */
 	typedef FRequest_AddNotesV2 Request;
+	/** The response type */
 	typedef FResponse_AddNotesV2 Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_AddNotesV2 Delegate;
+	/** The API object that supports this API call */
 	typedef FFriendsV2API API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->AddNotesV2(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Delete Friend V2
- *
+/**
+ * @brief Delete Friend V2
  * Remove the friend's relationship status with the other Player. 
  *                     This should be used for declining Friend requests, deleting sent Friends Requests, and deleting Friends <br /><br />
  *                     <b>Note:</b> This API supports etags and will return the etag header when with the response and will match the etag value 
@@ -249,12 +316,19 @@ struct RALLYHEREAPI_API FRequest_DeleteFriendV2 : public FRequest
 {
 	FRequest_DeleteFriendV2();
 	virtual ~FRequest_DeleteFriendV2() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FGuid PlayerUuid;
 	FGuid OtherPlayerUuid;
@@ -262,20 +336,41 @@ struct RALLYHEREAPI_API FRequest_DeleteFriendV2 : public FRequest
 	TOptional<FString> IfMatch;
 };
 
-struct RALLYHEREAPI_API FResponse_DeleteFriendV2 : public FResponse
+/** The response type for FRequest_DeleteFriendV2 */
+struct RALLYHEREAPI_API FResponse_DeleteFriendV2 : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_DeleteFriendV2(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_DeleteFriendV2() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
+	//virtual ~FResponse_DeleteFriendV2() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	
-	// Headers
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	TOptional<FString> ETag;
+#if ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(FString& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_ETag() const { return TryGetHeaderAsPointer(TEXT("ETag")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_ETag() const { return TryGetHeaderAsOptional(TEXT("ETag")); }
+
+	// Individual Response Helpers	
 	/* Response 204
 	Successful Response
 	*/
@@ -308,47 +403,81 @@ struct RALLYHEREAPI_API FResponse_DeleteFriendV2 : public FResponse
 
 };
 
+/** The delegate class for FRequest_DeleteFriendV2 */
+DECLARE_DELEGATE_OneParam(FDelegate_DeleteFriendV2, const FResponse_DeleteFriendV2&);
+
+/** @brief A helper metadata object for DeleteFriendV2 that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_DeleteFriendV2
 {
+	/** The request type */
 	typedef FRequest_DeleteFriendV2 Request;
+	/** The response type */
 	typedef FResponse_DeleteFriendV2 Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_DeleteFriendV2 Delegate;
+	/** The API object that supports this API call */
 	typedef FFriendsV2API API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteFriendV2(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Delete Friends V2
- *
+/**
+ * @brief Delete Friends V2
  * Remove the friend's relationship status with the other players
 */
 struct RALLYHEREAPI_API FRequest_DeleteFriendsV2 : public FRequest
 {
 	FRequest_DeleteFriendsV2();
 	virtual ~FRequest_DeleteFriendsV2() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FGuid PlayerUuid;
 	FRHAPI_Friends Friends;
 };
 
-struct RALLYHEREAPI_API FResponse_DeleteFriendsV2 : public FResponse
+/** The response type for FRequest_DeleteFriendsV2 */
+struct RALLYHEREAPI_API FResponse_DeleteFriendsV2 : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_DeleteFriendsV2(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_DeleteFriendsV2() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	//virtual ~FResponse_DeleteFriendsV2() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 
-	// Manual Response Helpers
+	// Individual Response Helpers	
 	/* Response 204
 	Successful Response
 	*/
@@ -375,19 +504,36 @@ struct RALLYHEREAPI_API FResponse_DeleteFriendsV2 : public FResponse
 
 };
 
+/** The delegate class for FRequest_DeleteFriendsV2 */
+DECLARE_DELEGATE_OneParam(FDelegate_DeleteFriendsV2, const FResponse_DeleteFriendsV2&);
+
+/** @brief A helper metadata object for DeleteFriendsV2 that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_DeleteFriendsV2
 {
+	/** The request type */
 	typedef FRequest_DeleteFriendsV2 Request;
+	/** The response type */
 	typedef FResponse_DeleteFriendsV2 Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_DeleteFriendsV2 Delegate;
+	/** The API object that supports this API call */
 	typedef FFriendsV2API API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteFriendsV2(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Delete Notes V2
- *
+/**
+ * @brief Delete Notes V2
  * Remove the Player's notes on the other player. Players can only add notes for players they have relationship's with. 
  *                     The notes will be removed when the relationship is ended.
  *                     <br/><br />Permissions Required: {FriendPermissions.FRIEND_LIST_WRITE}
@@ -396,12 +542,19 @@ struct RALLYHEREAPI_API FRequest_DeleteNotesV2 : public FRequest
 {
 	FRequest_DeleteNotesV2();
 	virtual ~FRequest_DeleteNotesV2() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FGuid PlayerUuid;
 	FGuid OtherPlayerUuid;
@@ -409,17 +562,27 @@ struct RALLYHEREAPI_API FRequest_DeleteNotesV2 : public FRequest
 	TOptional<FString> IfMatch;
 };
 
-struct RALLYHEREAPI_API FResponse_DeleteNotesV2 : public FResponse
+/** The response type for FRequest_DeleteNotesV2 */
+struct RALLYHEREAPI_API FResponse_DeleteNotesV2 : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_DeleteNotesV2(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_DeleteNotesV2() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	//virtual ~FResponse_DeleteNotesV2() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 
-	// Manual Response Helpers
+	// Individual Response Helpers	
 	/* Response 204
 	Successful Response
 	*/
@@ -446,19 +609,36 @@ struct RALLYHEREAPI_API FResponse_DeleteNotesV2 : public FResponse
 
 };
 
+/** The delegate class for FRequest_DeleteNotesV2 */
+DECLARE_DELEGATE_OneParam(FDelegate_DeleteNotesV2, const FResponse_DeleteNotesV2&);
+
+/** @brief A helper metadata object for DeleteNotesV2 that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_DeleteNotesV2
 {
+	/** The request type */
 	typedef FRequest_DeleteNotesV2 Request;
+	/** The response type */
 	typedef FResponse_DeleteNotesV2 Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_DeleteNotesV2 Delegate;
+	/** The API object that supports this API call */
 	typedef FFriendsV2API API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->DeleteNotesV2(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Get Friend Relationship V2
- *
+/**
+ * @brief Get Friend Relationship V2
  * Get the relationship status with the other Player. <br /> <br />
  *                     <b>Note:</b> This API supports etags and will return the etag header when with the response. 
  *                     Clients and then utilize the <i>if-none-match</i> header to avoid having to reload the response if 
@@ -469,12 +649,19 @@ struct RALLYHEREAPI_API FRequest_GetFriendRelationshipV2 : public FRequest
 {
 	FRequest_GetFriendRelationshipV2();
 	virtual ~FRequest_GetFriendRelationshipV2() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FGuid PlayerUuid;
 	FGuid OtherPlayerUuid;
@@ -482,20 +669,52 @@ struct RALLYHEREAPI_API FRequest_GetFriendRelationshipV2 : public FRequest
 	TOptional<FString> IfNoneMatch;
 };
 
-struct RALLYHEREAPI_API FResponse_GetFriendRelationshipV2 : public FResponse
+/** The response type for FRequest_GetFriendRelationshipV2 */
+struct RALLYHEREAPI_API FResponse_GetFriendRelationshipV2 : public FResponseAccessorTemplate<FRHAPI_FriendRelationship, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_FriendRelationship, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_GetFriendRelationshipV2(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetFriendRelationshipV2() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
+	//virtual ~FResponse_GetFriendRelationshipV2() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_FriendRelationship Content;
-	// Headers
+	
+	/** Default Response Headers */
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
 	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_FriendRelationship& OutContent) const { return TryGetContent<FRHAPI_FriendRelationship>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_FriendRelationship>& OutContent) const { return TryGetContent<FRHAPI_FriendRelationship>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_FriendRelationship* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_FriendRelationship>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_FriendRelationship> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_FriendRelationship>(); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(FString& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_ETag() const { return TryGetHeaderAsPointer(TEXT("ETag")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_ETag() const { return TryGetHeaderAsOptional(TEXT("ETag")); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -529,19 +748,36 @@ struct RALLYHEREAPI_API FResponse_GetFriendRelationshipV2 : public FResponse
 
 };
 
+/** The delegate class for FRequest_GetFriendRelationshipV2 */
+DECLARE_DELEGATE_OneParam(FDelegate_GetFriendRelationshipV2, const FResponse_GetFriendRelationshipV2&);
+
+/** @brief A helper metadata object for GetFriendRelationshipV2 that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_GetFriendRelationshipV2
 {
+	/** The request type */
 	typedef FRequest_GetFriendRelationshipV2 Request;
+	/** The response type */
 	typedef FResponse_GetFriendRelationshipV2 Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetFriendRelationshipV2 Delegate;
+	/** The API object that supports this API call */
 	typedef FFriendsV2API API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetFriendRelationshipV2(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Get Friends List For Player V2
- *
+/**
+ * @brief Get Friends List For Player V2
  * Fetch the friend's list for the Player and their relationship status with those friends. <br /><br />
  *                     <b>Note:</b> This API supports etags and will return the etag header when with the response. 
  *                     Clients can utilize the <i>if-none-match</i> header to avoid having to reload the response if it has not changed.
@@ -550,12 +786,19 @@ struct RALLYHEREAPI_API FRequest_GetFriendsListForPlayerV2 : public FRequest
 {
 	FRequest_GetFriendsListForPlayerV2();
 	virtual ~FRequest_GetFriendsListForPlayerV2() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FGuid PlayerUuid;
 	TOptional<int32> Page;
@@ -564,20 +807,52 @@ struct RALLYHEREAPI_API FRequest_GetFriendsListForPlayerV2 : public FRequest
 	TOptional<FString> IfNoneMatch;
 };
 
-struct RALLYHEREAPI_API FResponse_GetFriendsListForPlayerV2 : public FResponse
+/** The response type for FRequest_GetFriendsListForPlayerV2 */
+struct RALLYHEREAPI_API FResponse_GetFriendsListForPlayerV2 : public FResponseAccessorTemplate<FRHAPI_FriendsList, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_FriendsList, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_GetFriendsListForPlayerV2(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetFriendsListForPlayerV2() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
+	//virtual ~FResponse_GetFriendsListForPlayerV2() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_FriendsList Content;
-	// Headers
+	
+	/** Default Response Headers */
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
 	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_FriendsList& OutContent) const { return TryGetContent<FRHAPI_FriendsList>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_FriendsList>& OutContent) const { return TryGetContent<FRHAPI_FriendsList>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_FriendsList* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_FriendsList>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_FriendsList> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_FriendsList>(); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(FString& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_ETag() const { return TryGetHeaderAsPointer(TEXT("ETag")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_ETag() const { return TryGetHeaderAsOptional(TEXT("ETag")); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -611,16 +886,61 @@ struct RALLYHEREAPI_API FResponse_GetFriendsListForPlayerV2 : public FResponse
 
 };
 
+/** The delegate class for FRequest_GetFriendsListForPlayerV2 */
+DECLARE_DELEGATE_OneParam(FDelegate_GetFriendsListForPlayerV2, const FResponse_GetFriendsListForPlayerV2&);
+
+/** @brief A helper metadata object for GetFriendsListForPlayerV2 that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_GetFriendsListForPlayerV2
 {
+	/** The request type */
 	typedef FRequest_GetFriendsListForPlayerV2 Request;
+	/** The response type */
 	typedef FResponse_GetFriendsListForPlayerV2 Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetFriendsListForPlayerV2 Delegate;
+	/** The API object that supports this API call */
 	typedef FFriendsV2API API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetFriendsListForPlayerV2(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
+
+
+/** The API class itself, which will handle calls to */
+class RALLYHEREAPI_API FFriendsV2API : public FAPI
+{
+public:
+	FFriendsV2API();
+	virtual ~FFriendsV2API();
+
+	FHttpRequestPtr AddFriendV2(const FRequest_AddFriendV2& Request, const FDelegate_AddFriendV2& Delegate = FDelegate_AddFriendV2(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr AddNotesV2(const FRequest_AddNotesV2& Request, const FDelegate_AddNotesV2& Delegate = FDelegate_AddNotesV2(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr DeleteFriendV2(const FRequest_DeleteFriendV2& Request, const FDelegate_DeleteFriendV2& Delegate = FDelegate_DeleteFriendV2(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr DeleteFriendsV2(const FRequest_DeleteFriendsV2& Request, const FDelegate_DeleteFriendsV2& Delegate = FDelegate_DeleteFriendsV2(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr DeleteNotesV2(const FRequest_DeleteNotesV2& Request, const FDelegate_DeleteNotesV2& Delegate = FDelegate_DeleteNotesV2(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetFriendRelationshipV2(const FRequest_GetFriendRelationshipV2& Request, const FDelegate_GetFriendRelationshipV2& Delegate = FDelegate_GetFriendRelationshipV2(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetFriendsListForPlayerV2(const FRequest_GetFriendsListForPlayerV2& Request, const FDelegate_GetFriendsListForPlayerV2& Delegate = FDelegate_GetFriendsListForPlayerV2(), int32 Priority = DefaultRallyHereAPIPriority);
+
+private:
+	void OnAddFriendV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AddFriendV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnAddNotesV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AddNotesV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnDeleteFriendV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteFriendV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnDeleteFriendsV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteFriendsV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnDeleteNotesV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteNotesV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetFriendRelationshipV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetFriendRelationshipV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetFriendsListForPlayerV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetFriendsListForPlayerV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+
+};
+
 
 
 }

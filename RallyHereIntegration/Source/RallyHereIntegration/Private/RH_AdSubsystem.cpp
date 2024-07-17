@@ -69,9 +69,14 @@ FHttpRequestPtr URH_AdSubsystem::BeginNewSession(RallyHereAPI::FRequest_BeginNew
 void URH_AdSubsystem::OnBeginNewSession(const RallyHereAPI::FResponse_BeginNewSession& Resp,
                                         const RallyHereAPI::FDelegate_BeginNewSession Delegate)
 {
-    if (Resp.IsSuccessful() && !Resp.XHzAdApiToken.IsSet() && !Resp.XHzAdApiToken->IsEmpty())
+    if (Resp.IsSuccessful())
     {
-        XHzAdApiToken = Resp.XHzAdApiToken.GetValue();
+    	// only recache token if it is present and not empty
+    	const auto Token = Resp.TryGetDefaultHeaderAsPointer_XHzAdApiToken();
+    	if (Token != nullptr && !Token->IsEmpty())
+		{
+			XHzAdApiToken = *Token;
+		}
     }
     Delegate.ExecuteIfBound(Resp);
 }
@@ -109,11 +114,17 @@ void URH_AdSubsystem::OnFindOpportunities(const RallyHereAPI::FResponse_FindOppo
 {
     if (Resp.IsSuccessful())
     {
-        if (Resp.XHzAdApiToken.IsSet() && !Resp.XHzAdApiToken->IsEmpty())
-        {
-            XHzAdApiToken = Resp.XHzAdApiToken.GetValue();
-        }
-        Opportunities = Resp.Content.Opportunities;
+    	// only recache token if it is present and not empty
+    	const auto Token = Resp.TryGetDefaultHeaderAsPointer_XHzAdApiToken();
+    	if (Token != nullptr && !Token->IsEmpty())
+    	{
+    		XHzAdApiToken = *Token;
+    	}
+    	const auto Content = Resp.TryGetDefaultContentAsPointer();
+    	if (Content != nullptr)
+    	{
+    		Opportunities = Content->Opportunities;
+    	}
     }
     Delegate.ExecuteIfBound(Resp);
 }
@@ -139,9 +150,14 @@ FHttpRequestPtr URH_AdSubsystem::UpdateOpportunityById(RallyHereAPI::FRequest_Up
 void URH_AdSubsystem::OnUpdateOpportunityById(const RallyHereAPI::FResponse_UpdateOpportunityById& Resp,
                                               const RallyHereAPI::FDelegate_UpdateOpportunityById Delegate)
 {
-    if (Resp.IsSuccessful() && Resp.XHzAdApiToken.IsSet() && !Resp.XHzAdApiToken->IsEmpty())
+    if (Resp.IsSuccessful())
     {
-        XHzAdApiToken = Resp.XHzAdApiToken.GetValue();
+    	// only recache token if it is present and not empty
+    	const auto Token = Resp.TryGetDefaultHeaderAsPointer_XHzAdApiToken();
+    	if (Token != nullptr && !Token->IsEmpty())
+    	{
+    		XHzAdApiToken = *Token;
+    	}
     }
     Delegate.ExecuteIfBound(Resp);
 }

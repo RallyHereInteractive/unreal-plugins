@@ -952,9 +952,10 @@ void URH_GameInstanceServerBootstrapper::OnReservationComplete(bool bSuccess)
 		auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 			BaseType::Delegate::CreateWeakLambda(this, [this](const BaseType::Response& Resp)
 				{
-					if (Resp.IsSuccessful())
+					const auto Content = Resp.TryGetDefaultContentAsPointer();
+					if (Resp.IsSuccessful() && Content != nullptr)
 					{
-						BootstrappingResult.AllocationInfo.SessionId = Resp.Content.GetSessionId();
+						BootstrappingResult.AllocationInfo.SessionId = Content->GetSessionId();
 					}
 				}),
 			FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this](bool bSuccess, const FRH_ErrorInfo& Error)
@@ -1096,10 +1097,6 @@ void URH_GameInstanceServerBootstrapper::OnSessionInstanceCreationCompleted(bool
 		)
 	{
 		SyncToSession();
-		if (BootstrapMode == ERH_ServerBootstrapMode::AutoCreate)
-		{
-			BeginSelfAllocate();
-		}
 	}
 	else
 	{
@@ -1114,13 +1111,21 @@ void URH_GameInstanceServerBootstrapper::SyncToSession()
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
 	auto* SessionSubsystem = GetGameInstanceSubsystem()->GetSessionSubsystem();
-
+	
 	if (SessionSubsystem != nullptr && RHSession != nullptr)
 	{
+		UpdateBootstrapStep(ERH_ServerBootstrapFlowStep::SyncingToSession);
+		
+		// notify the hosting provider that we are now allocating ourselves
+        if (BootstrapMode == ERH_ServerBootstrapMode::AutoCreate)
+        {
+        	BeginSelfAllocate();
+        }
+		
 		RHSession->StartPolling(); // rather than bootstrapper polling all sessions, tell session to poll internally
 		RHSession->OnSessionUpdatedDelegate.AddUObject(this, &URH_GameInstanceServerBootstrapper::OnSessionUpdated);
 		RHSession->OnSessionNotFoundDelegate.AddUObject(this, &URH_GameInstanceServerBootstrapper::OnSessionNotFound);
-		UpdateBootstrapStep(ERH_ServerBootstrapFlowStep::SyncingToSession);
+		
 		SessionSubsystem->SyncToSession(RHSession, FRH_GameInstanceSessionSyncDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnSyncToSessionComplete));
 	}
 	else if (RHSession == nullptr)

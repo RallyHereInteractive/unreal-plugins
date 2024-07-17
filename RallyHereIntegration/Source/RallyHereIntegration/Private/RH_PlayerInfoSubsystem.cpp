@@ -157,9 +157,10 @@ void URH_PlayerInfoSubsystem::OnLookupPlayerResponse(const TLookupPlayer::Respon
 {
 	TArray<URH_PlayerInfo*> OutInfos;
 
-	if (Response.IsSuccessful())
+	const auto Content = Response.TryGetDefaultContentAsPointer();
+	if (Response.IsSuccessful() && Content != nullptr)
 	{
-		if (const auto DisplayNames = Response.Content.GetDisplayNamesOrNull())
+		if (const auto DisplayNames = Content->GetDisplayNamesOrNull())
 		{
 			for (auto const& DisplayName : *DisplayNames)
 			{
@@ -195,9 +196,10 @@ void URH_PlayerInfoSubsystem::OnLookupPlayerByPlatformUserIdResponse(const TLook
 {
 	TArray<URH_PlayerInfo*> OutInfos;
 
-	if (Response.IsSuccessful())
+	const auto Content = Response.TryGetDefaultContentAsPointer();
+	if (Response.IsSuccessful() && Content != nullptr)
 	{
-		if (const TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>* IdentityPlatforms = Response.Content.GetIdentityPlatformsOrNull())
+		if (const TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>* IdentityPlatforms = Content->GetIdentityPlatformsOrNull())
 		{
 			for (const TPair<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>& IdentityPlatform : *IdentityPlatforms)
 			{
@@ -435,15 +437,17 @@ void URH_PlayerInfo::GetLinkedPlatformInfo(const FTimespan& StaleThreshold /* = 
 void URH_PlayerInfo::OnGetPlayerLinkedPlatformsResponse(const GetPlatforms::Response& Response, const FRH_PlayerInfoGetPlatformsBlock Delegate)
 {
 	TArray<URH_PlayerPlatformInfo*> Infos;
-	if (Response.IsSuccessful())
+
+	const auto Content = Response.TryGetDefaultContentAsPointer();
+	if (Response.IsSuccessful() && Content != nullptr)
 	{
 		if (const auto PSS = GetPlayerInfoSubsystem())
 		{
 			// update our local cache of references
-			LinkedPlayerPlatforms.Reset(Response.Content.LinkedPortals.Num());
-			Infos.Reset(Response.Content.LinkedPortals.Num());
+			LinkedPlayerPlatforms.Reset(Content->LinkedPortals.Num());
+			Infos.Reset(Content->LinkedPortals.Num());
 
-			for (auto const& LinkedPlatform : Response.Content.LinkedPortals)
+			for (auto const& LinkedPlatform : Content->LinkedPortals)
 			{
 				FString PortalUserId;
 				if (LinkedPlatform.GetPortalUserId(PortalUserId))
@@ -567,11 +571,12 @@ void URH_PlayerInfo::OnGetPlayerSettingsResponse(const GetSettings::Response& Re
 {
 	FRH_PlayerSettingsDataWrapper ResponseWrapper;
 
-	if (Response.IsSuccessful())
+	const auto Content = Response.TryGetDefaultContentAsPointer();
+	if (Response.IsSuccessful() && Content != nullptr)
 	{
 		const bool bIsPartial = OptionalKeys.IsSet();
 
-		for (const auto& Pair : Response.Content)
+		for (const auto& Pair : *Content)
 		{
 			ResponseWrapper.Content.Add(Pair);
 		}
@@ -665,7 +670,8 @@ void URH_PlayerInfo::SetPlayerSettings(const FString& SettingTypeId, FRH_PlayerS
 
 void URH_PlayerInfo::OnSetPlayerSettingsResponse(const SetSettings::Response& Response, const FRH_PlayerInfoSetPlayerSettingsBlock Delegate, const FString SettingTypeId, const FString SettingKey, FRH_PlayerSettingsDataWrapper SettingsData)
 {
-	if (Response.IsSuccessful())
+	const auto Content = Response.TryGetDefaultContentAsPointer();
+	if (Response.IsSuccessful() && Content != nullptr)
 	{
 		const auto FoundPendingSettings = PendingSettingRequestsByTypeId.Find(SettingTypeId);
 		if (FoundPendingSettings && FoundPendingSettings->SettingKeySet.Contains(SettingKey))
@@ -680,7 +686,7 @@ void URH_PlayerInfo::OnSetPlayerSettingsResponse(const SetSettings::Response& Re
 
 			if (auto FoundResponses = SetPlayerSettingResponses.Find(SettingKey))
 			{
-				for (const auto& pair : Response.Content)
+				for (const auto& pair : *Content)
 				{
 					FoundResponses->Content.Add(pair);
 				}
@@ -720,14 +726,18 @@ void URH_PlayerInfo::SetPlayerSetting(const FString& SettingTypeId, const FStrin
 	const auto Helper = MakeShared<FRH_SimpleQueryHelper<SetSetting>>(
 		SetSetting::Delegate::CreateWeakLambda(this, [this, UpdatedContent, SettingTypeId](const SetSetting::Response& Resp)
 			{
-				UpdatedContent->Content = Resp.Content;
-
-				// Update the local cache with the new settings (certain legacy setting types can affect multiple keys, so process all entries in the list)
-				auto SettingWrapper = PlayerSettingsByTypeId.FindOrAdd(SettingTypeId);
-
-				for (const auto& Pair : Resp.Content)
+				const auto Content = Resp.TryGetDefaultContentAsPointer();
+				if (Resp.IsSuccessful() && Content != nullptr)
 				{
-					SettingWrapper.Content.Add(Pair);
+					UpdatedContent->Content = *Content;
+
+					// Update the local cache with the new settings (certain legacy setting types can affect multiple keys, so process all entries in the list)
+					auto SettingWrapper = PlayerSettingsByTypeId.FindOrAdd(SettingTypeId);
+
+					for (const auto& Pair : UpdatedContent->Content)
+					{
+						SettingWrapper.Content.Add(Pair);
+					}
 				}
 			}),
 		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, UpdatedContent, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
@@ -795,11 +805,12 @@ void URH_PlayerInfo::GetPlayerRankings(const FTimespan& StaleThreshold /* = FTim
 
 void URH_PlayerInfo::OnGetPlayerRankingsResponse(const GetRankings::Response& Response, const FRH_PlayerInfoGetPlayerRankingsBlock Delegate)
 {
-	if (Response.IsSuccessful())
+	const auto Content = Response.TryGetDefaultContentAsPointer();
+	if (Response.IsSuccessful() && Content != nullptr)
 	{
 		PlayerRankingsByRankingId.Empty();
 
-		for (const auto& PlayerRankResponse : Response.Content.GetPlayerRanks())
+		for (const auto& PlayerRankResponse : Content->GetPlayerRanks())
 		{
 			PlayerRankingsByRankingId.Add(PlayerRankResponse.GetRankId(), PlayerRankResponse);
 		}
@@ -830,9 +841,10 @@ void URH_PlayerInfo::UpdatePlayerRanking(const FString& RankId, const FRHAPI_Pla
 
 void URH_PlayerInfo::OnUpdatePlayerRankingResponse(const UpdateRanking::Response& Response, const FRH_PlayerInfoGetPlayerRankingsBlock Delegate)
 {
-	if (Response.IsSuccessful())
+	const auto Content = Response.TryGetDefaultContentAsPointer();
+	if (Response.IsSuccessful() && Content != nullptr)
 	{
-		for (const auto& Player : Response.Content.UpdatedPlayers)
+		for (const auto& Player : Content->UpdatedPlayers)
 		{
 			if (Player.GetPlayerUuid() == GetRHPlayerUuid())
 			{
@@ -1075,7 +1087,11 @@ void URH_PlayerDeserter::SetDeserterStatus(const FString& DeserterId, const FRHA
 	const auto Helper = MakeShared<FRH_SimpleQueryHelper<SetDeserterType>>(
 		SetDeserterType::Delegate::CreateWeakLambda(this, [this, Delegate](const SetDeserterType::Response& Response)
 			{
-				DeserterStatus.Add(Response.Content.DeserterId, Response.Content);
+				const auto Content = Response.TryGetDefaultContentAsPointer();
+				if (Response.IsSuccessful() && Content != nullptr)
+				{
+					DeserterStatus.Add(Content->GetDeserterId(), *Content);
+				}
 			}),
 		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 			{
@@ -1273,29 +1289,33 @@ void URH_PlayerReports::GetReportsSentAsync(const FString& Cursor, const int32 P
 	const auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateWeakLambda(this, [this, SharedContext](const BaseType::Response& Response)
 			{
-				if (auto* NextCursor = Response.Content.GetNextCursorOrNull())
+				const auto Content = Response.TryGetDefaultContentAsPointer();
+				if (Response.IsSuccessful() && Content != nullptr)
 				{
-					SharedContext->Cursor = *NextCursor;
-				}
-
-				// merge the response into our local cache
-				for (const auto& Report : Response.Content.GetReports())
-				{
-					// try to find the report in our local cache, update it there (in case of any changes)
-					bool bFound = false;
-					for (auto& ExistingReport : ReportsSent)
+					if (auto* NextCursor = Content->GetNextCursorOrNull())
 					{
-						if (ExistingReport.GetReportId() == Report.GetReportId())
-						{
-							bFound = true;
-							ExistingReport = Report;
-							break;
-						}
+						SharedContext->Cursor = *NextCursor;
 					}
-					// if we didn't find it, add it to our local cache
-					if (!bFound)
+
+					// merge the response into our local cache
+					for (const auto& Report : Content->GetReports())
 					{
-						ReportsSent.Add(Report);
+						// try to find the report in our local cache, update it there (in case of any changes)
+						bool bFound = false;
+						for (auto& ExistingReport : ReportsSent)
+						{
+							if (ExistingReport.GetReportId() == Report.GetReportId())
+							{
+								bFound = true;
+								ExistingReport = Report;
+								break;
+							}
+						}
+						// if we didn't find it, add it to our local cache
+						if (!bFound)
+						{
+							ReportsSent.Add(Report);
+						}
 					}
 				}
 			}),
@@ -1334,29 +1354,33 @@ void URH_PlayerReports::GetReportsReceivedAsync(const FString& Cursor, const int
 	const auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateWeakLambda(this, [this, SharedContext](const BaseType::Response& Response)
 			{
-				if (auto* NextCursor = Response.Content.GetNextCursorOrNull())
+				const auto Content = Response.TryGetDefaultContentAsPointer();
+				if (Response.IsSuccessful() && Content != nullptr)
 				{
-					SharedContext->Cursor = *NextCursor;
-				}
-
-				// merge the response into our local cache
-				for (const auto& Report : Response.Content.GetReports())
-				{
-					// try to find the report in our local cache, update it there (in case of any changes)
-					bool bFound = false;
-					for (auto& ExistingReport : ReportsReceived)
+					if (auto* NextCursor = Content->GetNextCursorOrNull())
 					{
-						if (ExistingReport.GetReportId() == Report.GetReportId())
-						{
-							bFound = true;
-							ExistingReport = Report;
-							break;
-						}
+						SharedContext->Cursor = *NextCursor;
 					}
-					// if we didn't find it, add it to our local cache
-					if (!bFound)
+
+					// merge the response into our local cache
+					for (const auto& Report : Content->GetReports())
 					{
-						ReportsReceived.Add(Report);
+						// try to find the report in our local cache, update it there (in case of any changes)
+						bool bFound = false;
+						for (auto& ExistingReport : ReportsReceived)
+						{
+							if (ExistingReport.GetReportId() == Report.GetReportId())
+							{
+								bFound = true;
+								ExistingReport = Report;
+								break;
+							}
+						}
+						// if we didn't find it, add it to our local cache
+						if (!bFound)
+						{
+							ReportsReceived.Add(Report);
+						}
 					}
 				}
 			}),
@@ -1389,9 +1413,13 @@ void URH_PlayerReports::CreateReport(const FRHAPI_PlayerReportCreate& Report, FA
 	const auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateWeakLambda(this, [this, ReportResult](const BaseType::Response& Response)
 			{
-				// merge the response into our local cache
-				*ReportResult = Response.Content;
-				ReportsSent.Add(Response.Content);
+				const auto Content = Response.TryGetDefaultContentAsPointer();
+				if (Response.IsSuccessful() && Content != nullptr)
+				{
+					// merge the response into our local cache
+					*ReportResult = *Content;
+					ReportsSent.Add(*Content);
+				}
 			}),
 		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, ReportResult, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 			{

@@ -79,7 +79,8 @@ bool URH_PurgeSubsystem::QueryMyPurgeStatus(const FRH_OnPurgeStatusUpdatedDelega
 void URH_PurgeSubsystem::OnPurgeMe(const RallyHereAPI::FResponse_QueueMeForPurge& Resp,
                            const FRH_OnPurgeStatusUpdatedDelegateBlock Delegate)
 {
-	if (Resp.IsSuccessful())
+	const auto Content = Resp.TryGetDefaultContentAsPointer();
+	if (Resp.IsSuccessful() && Content != nullptr)
 	{
 		// User's access token should be switched out with access token that includes restriction
 		auto AuthContext = GetAuthContext();
@@ -87,7 +88,7 @@ void URH_PurgeSubsystem::OnPurgeMe(const RallyHereAPI::FResponse_QueueMeForPurge
 		{
 			AuthContext->Refresh();
 		}
-		PurgeStatus = Resp.Content;
+		PurgeStatus = *Content;
 		Delegate.ExecuteIfBound(true, PurgeStatus, FRH_ErrorInfo());
 	}
 	else
@@ -115,9 +116,10 @@ void URH_PurgeSubsystem::OnDequeueMe(const RallyHereAPI::FResponse_DequeueMeForP
 void URH_PurgeSubsystem::OnGetMyPurgeStatus(const RallyHereAPI::FResponse_GetQueuePurgeStatusForMe& Resp,
                            const FRH_OnPurgeStatusUpdatedDelegateBlock Delegate)
 {
-	if (Resp.IsSuccessful())
+	const auto Content = Resp.TryGetDefaultContentAsPointer();
+	if (Resp.IsSuccessful() && Content != nullptr)
 	{
-		PurgeStatus = Resp.Content;
+		PurgeStatus = *Content;
 		Delegate.ExecuteIfBound(true, PurgeStatus, FRH_ErrorInfo());
 	}
 	else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::Type::NotFound)

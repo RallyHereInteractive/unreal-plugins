@@ -96,7 +96,8 @@ void URH_ConfigSubsystem::OnFetchKVs(const GetKVsAPIType::Response& Resp)
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
 	// todo - check for differences / use ETag
-	if (Resp.IsSuccessful())
+	const auto Content = Resp.TryGetDefaultContentAsPointer();
+	if (Resp.IsSuccessful() && Content != nullptr)
 	{
 		// clear out old KVs
 		KVs.Reset();
@@ -107,7 +108,7 @@ void URH_ConfigSubsystem::OnFetchKVs(const GetKVsAPIType::Response& Resp)
 		GConfig->ForEachEntry(Visitor, TEXT("RallyHereFeatures"), GRallyHereIntegrationIni);
 
 		// process KVs
-		const auto ResponseKVs = Resp.Content.GetKvsOrNull();
+		const auto ResponseKVs = Content->GetKvsOrNull();
 		if (ResponseKVs != nullptr)
 		{
 			for (const auto& KV : *ResponseKVs)
@@ -116,16 +117,16 @@ void URH_ConfigSubsystem::OnFetchKVs(const GetKVsAPIType::Response& Resp)
 			}
 		}
 
-		if (auto RespKickBeforeHint = Resp.Content.GetKickBeforeHintOrNull())
+		if (auto RespKickBeforeHint = Content->GetKickBeforeHintOrNull())
 		{
-			KickBeforeHint = Resp.Content.GetKickBeforeHint();	
+			KickBeforeHint = Content->GetKickBeforeHint();	
 		}
 		else
 		{
 			KickBeforeHint = FDateTime::MinValue();
 		}
 		
-		KVsETag = Resp.ETag.Get(TEXT(""));
+		KVsETag = Resp.TryGetDefaultHeaderAsOptional_ETag().Get(TEXT(""));
 
 		{
 			SCOPED_NAMED_EVENT(RallyHere_BroadcastAppSettingsUpdated, FColor::Purple);
