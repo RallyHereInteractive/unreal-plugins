@@ -204,64 +204,28 @@ void URH_FriendSubsystem::OnFetchFriendsListResponse(const GetFriendsListType::R
 		TArray<URH_RHFriendAndPlatformFriend*> UpdatedFriends;
 		for (auto NewFriend : Content->Friends)
 		{
-			const auto ExistingFriend = Friends.FindByPredicate([NewFriend](const URH_RHFriendAndPlatformFriend* cachedFr)
-				{
-					return cachedFr->GetRHPlayerUuid() == NewFriend.FriendsPlayerUuid;
-				});
-
-			if (ExistingFriend)
+			auto UpdatedFriend = GetOrAddFriend(NewFriend.GetFriendsPlayerUuid());
+			
+			if (UpdatedFriend->LastModifiedOn != NewFriend.LastModifiedOn)
 			{
-				if ((*ExistingFriend)->LastModifiedOn != NewFriend.LastModifiedOn)
-				{
-					UpdatedFriends.Emplace(*ExistingFriend);
-				}
-
-				if (URH_PlayerInfo* PlayerInfo = PSS->GetOrCreatePlayerInfo(NewFriend.FriendsPlayerUuid))
-				{
-					PlayerInfo->GetPresence()->OnUpdatedDelegate.AddUObject((*ExistingFriend), &URH_RHFriendAndPlatformFriend::OnPresenceUpdated);
-					PlayerInfo->GetLinkedPlatformInfo(FTimespan(), false, FRH_PlayerInfoGetPlatformsDelegate::CreateLambda([GetLinkedPlatformInfoHandler, WeakFriend = MakeWeakObjectPtr(*ExistingFriend)](bool bSuccess, const TArray<URH_PlayerPlatformInfo*>& Platforms)
-						{
-							if (bSuccess && WeakFriend.IsValid())
-							{
-								GetLinkedPlatformInfoHandler(Platforms, WeakFriend.Get());
-							}
-						}));
-				}
-
-				(*ExistingFriend)->OnPresenceUpdatedDelegate.AddUObject(this, &URH_FriendSubsystem::OnPresenceUpdated);
-				(*ExistingFriend)->PlayerAndPlatformInfo.PlayerUuid = NewFriend.FriendsPlayerUuid;
-				(*ExistingFriend)->RHFriendshipStatus = static_cast<FriendshipStatus>(NewFriend.Status);
-				(*ExistingFriend)->LastModifiedOn = NewFriend.LastModifiedOn;
-				NewFriend.GetNotes((*ExistingFriend)->Notes);
+				UpdatedFriends.Emplace(UpdatedFriend);
 			}
-			else
+
+			if (URH_PlayerInfo* PlayerInfo = PSS->GetOrCreatePlayerInfo(NewFriend.FriendsPlayerUuid))
 			{
-				auto NewEntry = NewObject<URH_RHFriendAndPlatformFriend>(this);
-				if (!FriendsCached)
-				{
-					NewEntry->PreviousRHFriendshipStatus = static_cast<FriendshipStatus>(NewFriend.Status);
-				}
-
-				if (URH_PlayerInfo* PlayerInfo = PSS->GetOrCreatePlayerInfo(NewFriend.FriendsPlayerUuid))
-				{
-					PlayerInfo->GetPresence()->OnUpdatedDelegate.AddUObject(NewEntry, &URH_RHFriendAndPlatformFriend::OnPresenceUpdated);
-					PlayerInfo->GetLinkedPlatformInfo(FTimespan(), false, FRH_PlayerInfoGetPlatformsDelegate::CreateLambda([GetLinkedPlatformInfoHandler, WeakEntry = MakeWeakObjectPtr(NewEntry)](bool bSuccess, const TArray<URH_PlayerPlatformInfo*>& Platforms)
+				PlayerInfo->GetLinkedPlatformInfo(FTimespan(), false, FRH_PlayerInfoGetPlatformsDelegate::CreateLambda([GetLinkedPlatformInfoHandler, WeakFriend = MakeWeakObjectPtr(UpdatedFriend)](bool bSuccess, const TArray<URH_PlayerPlatformInfo*>& Platforms)
+					{
+						if (bSuccess && WeakFriend.IsValid())
 						{
-							if (bSuccess && WeakEntry.IsValid())
-							{
-								GetLinkedPlatformInfoHandler(Platforms, WeakEntry.Get());
-							}
-						}));
-				}
-
-				NewEntry->OnPresenceUpdatedDelegate.AddUObject(this, &URH_FriendSubsystem::OnPresenceUpdated);
-				NewEntry->PlayerAndPlatformInfo.PlayerUuid = NewFriend.FriendsPlayerUuid;
-				NewEntry->RHFriendshipStatus = static_cast<FriendshipStatus>(NewFriend.Status);
-				NewEntry->LastModifiedOn = NewFriend.LastModifiedOn;
-				NewFriend.GetNotes(NewEntry->Notes);
-				Friends.Emplace(NewEntry);
-				UpdatedFriends.Emplace(NewEntry);
+							GetLinkedPlatformInfoHandler(Platforms, WeakFriend.Get());
+						}
+					}));
 			}
+
+			UpdatedFriend->RHFriendshipStatus = static_cast<FriendshipStatus>(NewFriend.Status);
+			UpdatedFriend->LastModifiedOn = NewFriend.LastModifiedOn;
+			NewFriend.GetNotes(UpdatedFriend->Notes);
+			
 		}
 
 		RemoveAllFriendsWithNoRelationships(UpdatedFriends);
@@ -319,45 +283,12 @@ void URH_FriendSubsystem::OnFetchFriendResponse(const GetFriendRelationshipType:
 	const auto NewFriend = Resp.TryGetDefaultContentAsPointer();
 	if (Resp.IsSuccessful() && NewFriend != nullptr)
 	{
-		URH_RHFriendAndPlatformFriend* UpdatedFriend;
-		if (const auto ExistingFriend = GetFriendByUuid(NewFriend->GetFriendsPlayerUuid()))
-		{
-			UpdatedFriend = ExistingFriend;
-			if (URH_PlayerInfoSubsystem* PSS = GetRH_PlayerInfoSubsystem())
-			{
-				ExistingFriend->PlayerAndPlatformInfo.PlayerUuid = NewFriend->GetFriendsPlayerUuid();
-				if (URH_PlayerInfo* PlayerInfo = PSS->GetOrCreatePlayerInfo(NewFriend->GetFriendsPlayerUuid()))
-				{
-					PlayerInfo->GetPresence()->OnUpdatedDelegate.AddUObject(ExistingFriend, &URH_RHFriendAndPlatformFriend::OnPresenceUpdated);
-				}
-
-				ExistingFriend->OnPresenceUpdatedDelegate.AddUObject(this, &URH_FriendSubsystem::OnPresenceUpdated);
-			}
-			ExistingFriend->RHFriendshipStatus = static_cast<FriendshipStatus>(NewFriend->GetStatus());
-			ExistingFriend->LastModifiedOn = NewFriend->GetLastModifiedOn();
-			Resp.TryGetDefaultHeader_ETag(ExistingFriend->Etag);
-			NewFriend->GetNotes(ExistingFriend->Notes);
-		}
-		else
-		{
-			auto newEntry = NewObject<URH_RHFriendAndPlatformFriend>(this);
-			UpdatedFriend = newEntry;
-			if (URH_PlayerInfoSubsystem* PSS = GetRH_PlayerInfoSubsystem())
-			{
-				newEntry->PlayerAndPlatformInfo.PlayerUuid = NewFriend->GetFriendsPlayerUuid();
-				if (URH_PlayerInfo* PlayerInfo = PSS->GetOrCreatePlayerInfo(NewFriend->GetFriendsPlayerUuid()))
-				{
-					PlayerInfo->GetPresence()->OnUpdatedDelegate.AddUObject(newEntry, &URH_RHFriendAndPlatformFriend::OnPresenceUpdated);
-				}
-
-				newEntry->OnPresenceUpdatedDelegate.AddUObject(this, &URH_FriendSubsystem::OnPresenceUpdated);
-			}
-			newEntry->RHFriendshipStatus = static_cast<FriendshipStatus>(NewFriend->GetStatus());
-			newEntry->LastModifiedOn = NewFriend->GetLastModifiedOn();
-			Resp.TryGetDefaultHeader_ETag(ExistingFriend->Etag);
-			NewFriend->GetNotes(ExistingFriend->Notes);
-			Friends.Emplace(newEntry);
-		}
+		URH_RHFriendAndPlatformFriend* UpdatedFriend = GetOrAddFriend(NewFriend->GetFriendsPlayerUuid());
+		
+		UpdatedFriend->RHFriendshipStatus = static_cast<FriendshipStatus>(NewFriend->GetStatus());
+		UpdatedFriend->LastModifiedOn = NewFriend->GetLastModifiedOn();
+		Resp.TryGetDefaultHeader_ETag(UpdatedFriend->Etag);
+		NewFriend->GetNotes(UpdatedFriend->Notes);
 
 		{
 			SCOPED_NAMED_EVENT(RallyHere_BroadcastFriendUpdated, FColor::Purple);
@@ -368,6 +299,33 @@ void URH_FriendSubsystem::OnFetchFriendResponse(const GetFriendRelationshipType:
 
 	Delegate.ExecuteIfBound(Resp.IsSuccessful() || Resp.GetHttpResponseCode() == EHttpResponseCodes::NotModified, NewFriend ? NewFriend->GetFriendsPlayerUuid() : FGuid());
 }
+
+URH_RHFriendAndPlatformFriend* URH_FriendSubsystem::CreateFriendObject(const FGuid& PlayerUuid)
+{
+	auto Friend = NewObject<URH_RHFriendAndPlatformFriend>(this);
+
+	// set the player uuid into the friend object
+	Friend->PlayerAndPlatformInfo.PlayerUuid = PlayerUuid;
+
+	// bind callbacks to the friend object
+	Friend->SetPlayerInfoUpdateBindings();
+	
+	Friends.Add(Friend);
+
+	return Friend;
+}
+
+URH_RHFriendAndPlatformFriend* URH_FriendSubsystem::GetOrAddFriend(const FGuid& PlayerUuid)
+{
+	auto Friend = GetFriendByUuid(PlayerUuid);
+	if (Friend == nullptr)
+	{
+		Friend = CreateFriendObject(PlayerUuid);
+	}
+	
+	return Friend;
+}
+
 
 bool URH_FriendSubsystem::SetDefaultParamsForGetFriendRequest(GetFriendRelationshipType::Request& Request) const
 {
@@ -461,46 +419,13 @@ void URH_FriendSubsystem::OnAddFriendResponse(const AddFriendType::Response& Res
 	const auto NewFriend = Resp.TryGetDefaultContentAsPointer();
 	if (Resp.IsSuccessful() && NewFriend != nullptr)
 	{
-		URH_RHFriendAndPlatformFriend* UpdatedFriend;
-		if (const auto ExistingFriend = GetFriendByUuid(NewFriend->GetFriendsPlayerUuid()))
-		{
-			UpdatedFriend = ExistingFriend;
-			if (URH_PlayerInfoSubsystem* PSS = GetRH_PlayerInfoSubsystem())
-			{
-				ExistingFriend->PlayerAndPlatformInfo.PlayerUuid = NewFriend->GetFriendsPlayerUuid();
-				if (URH_PlayerInfo* PlayerInfo = PSS->GetOrCreatePlayerInfo(NewFriend->GetFriendsPlayerUuid()))
-				{
-					PlayerInfo->GetPresence()->OnUpdatedDelegate.AddUObject(ExistingFriend, &URH_RHFriendAndPlatformFriend::OnPresenceUpdated);
-				}
-
-				ExistingFriend->OnPresenceUpdatedDelegate.AddUObject(this, &URH_FriendSubsystem::OnPresenceUpdated);
-			}
-			ExistingFriend->PreviousRHFriendshipStatus = ExistingFriend->RHFriendshipStatus;
-			ExistingFriend->RHFriendshipStatus = static_cast<FriendshipStatus>(NewFriend->GetStatus());
-			ExistingFriend->LastModifiedOn = NewFriend->GetLastModifiedOn();
-			Resp.TryGetDefaultHeader_ETag(ExistingFriend->Etag);
-			NewFriend->GetNotes(ExistingFriend->Notes);
-		}
-		else
-		{
-			auto newEntry = NewObject<URH_RHFriendAndPlatformFriend>(this);
-			UpdatedFriend = newEntry;
-			if (URH_PlayerInfoSubsystem* PSS = GetRH_PlayerInfoSubsystem())
-			{
-				newEntry->PlayerAndPlatformInfo.PlayerUuid = NewFriend->GetFriendsPlayerUuid();
-				if (URH_PlayerInfo* PlayerInfo = PSS->GetOrCreatePlayerInfo(NewFriend->GetFriendsPlayerUuid()))
-				{
-					PlayerInfo->GetPresence()->OnUpdatedDelegate.AddUObject(newEntry, &URH_RHFriendAndPlatformFriend::OnPresenceUpdated);
-				}
-
-				newEntry->OnPresenceUpdatedDelegate.AddUObject(this, &URH_FriendSubsystem::OnPresenceUpdated);
-			}
-			ExistingFriend->RHFriendshipStatus = static_cast<FriendshipStatus>(NewFriend->GetStatus());
-			ExistingFriend->LastModifiedOn = NewFriend->GetLastModifiedOn();
-			Resp.TryGetDefaultHeader_ETag(ExistingFriend->Etag);
-			NewFriend->GetNotes(ExistingFriend->Notes);
-			Friends.Emplace(newEntry);
-		}
+		URH_RHFriendAndPlatformFriend* UpdatedFriend = GetOrAddFriend(NewFriend->GetFriendsPlayerUuid());
+		
+		UpdatedFriend->PreviousRHFriendshipStatus = UpdatedFriend->RHFriendshipStatus;
+		UpdatedFriend->RHFriendshipStatus = static_cast<FriendshipStatus>(NewFriend->GetStatus());
+		UpdatedFriend->LastModifiedOn = NewFriend->GetLastModifiedOn();
+		Resp.TryGetDefaultHeader_ETag(UpdatedFriend->Etag);
+		NewFriend->GetNotes(UpdatedFriend->Notes);
 
 		{
 			SCOPED_NAMED_EVENT(RallyHere_BroadcastFriendUpdated, FColor::Purple);
@@ -1190,6 +1115,8 @@ void URH_FriendSubsystem::UpdatePlatformFriends(const TArray<URH_PlatformFriend*
 				if (URH_PlayerInfo* PlayerInfo = PSS->FindPlayerInfoByPlatformId(PlatformFriend->GetPlayerPlatformId()))
 				{
 					Friend->PlayerAndPlatformInfo.PlayerUuid = PlayerInfo->GetRHPlayerUuid();
+
+					Friend->SetPlayerInfoUpdateBindings();
 				}
 			}
 
@@ -1246,15 +1173,7 @@ URH_RHFriendAndPlatformFriend* URH_FriendSubsystem::GetOrCreateFriend(URH_Player
 		return nullptr;
 	}
 
-	if (URH_RHFriendAndPlatformFriend* ExistingFriend = GetFriendByPlayerInfo(PlayerInfo))
-	{
-		return ExistingFriend;
-	}
-
-	const auto NewFriend = NewObject<URH_RHFriendAndPlatformFriend>(this);
-	NewFriend->PlayerAndPlatformInfo.PlayerUuid = PlayerInfo->GetRHPlayerUuid();
-	Friends.Add(NewFriend);
-	return NewFriend;
+	return GetOrAddFriend(PlayerInfo->GetRHPlayerUuid());
 }
 
 URH_RHFriendAndPlatformFriend* URH_FriendSubsystem::GetFriendByPlayerInfo(URH_PlayerInfo* PlayerInfo) const
@@ -2178,6 +2097,9 @@ void URH_RHFriendAndPlatformFriend::GetRHPlayerUuidAsync(const FRH_GetRHPlayerUu
 				if (PlayerUuid.IsValid())
 				{
 					PlayerAndPlatformInfo.PlayerUuid = PlayerUuid;
+
+					SetPlayerInfoUpdateBindings();
+					
 					Delegate.ExecuteIfBound(true, PlayerUuid);
 				}
 				else
@@ -2196,3 +2118,32 @@ void URH_RHFriendAndPlatformFriend::GetRHPlayerUuidAsync(const FRH_GetRHPlayerUu
 		Delegate.ExecuteIfBound(false, FGuid());
 	}
 }
+
+void URH_RHFriendAndPlatformFriend::SetPlayerInfoUpdateBindings()
+{
+	if (!GetRHPlayerUuid().IsValid())
+	{
+		return;
+	}
+
+	auto FriendSubsystem = GetFriendSubsystem();
+	
+	auto* PlayerInfoSubsystem = FriendSubsystem->GetRH_PlayerInfoSubsystem();
+	if (PlayerInfoSubsystem != nullptr)
+	{
+		if (URH_PlayerInfo* PlayerInfo = PlayerInfoSubsystem->GetOrCreatePlayerInfo(GetRHPlayerUuid()))
+		{
+			if (!PlayerInfo->GetPresence()->OnUpdatedDelegate.IsBoundToObject(this))
+			{
+				PlayerInfo->GetPresence()->OnUpdatedDelegate.AddUObject(this, &URH_RHFriendAndPlatformFriend::OnPresenceUpdated);
+			}
+		}
+	}
+
+	if (!OnPresenceUpdatedDelegate.IsBoundToObject(FriendSubsystem))
+	{
+		OnPresenceUpdatedDelegate.AddUObject(FriendSubsystem, &URH_FriendSubsystem::OnPresenceUpdated);
+	}
+}
+
+

@@ -613,6 +613,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Get RH Player UUID Name Async", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetRHPlayerUuidAsync(const FRH_GetRHPlayerUuidDynamicDelegate& Delegate) { GetRHPlayerUuidAsync(Delegate); }
 
+	/** @brief Sets bindings for update callbacks from the player info so it can forward them to this object and the friend subsystem. */
+	void SetPlayerInfoUpdateBindings();
+	
 protected:
 	/** @brief Player Info and Platform Info combined. */
 	FRH_PlayerAndPlatformInfo PlayerAndPlatformInfo;
@@ -1038,6 +1041,19 @@ public:
 		return FriendsCached;
 	}
 
+	/**
+	 * @brief Helper function to push out presence updates on delegates on this system.
+	 * @param [in] PlayerPresence The Player Presence updated.
+	 */
+	virtual void OnPresenceUpdated(URH_PlayerInfoSubobject* PlayerPresence)
+	{
+		if (URH_RHFriendAndPlatformFriend* Friend = GetFriendByPlayerInfo(PlayerPresence->GetPlayerInfo()))
+		{
+			SCOPED_NAMED_EVENT(RallyHere_BroadcastFriendUpdated, FColor::Purple);
+			FriendUpdatedDelegate.Broadcast(Friend);
+			BLUEPRINT_FriendUpdatedDelegate.Broadcast(Friend);
+		}
+	}
 protected:
 	/** @brief Cached array of all friends. */
 	UPROPERTY(Transient)
@@ -1078,19 +1094,6 @@ protected:
 	 * @param [in] PropertyThatWasLoaded The property loaded.
 	 */
 	virtual void PostReloadConfig(class FProperty* PropertyThatWasLoaded) override;
-	/**
-	 * @brief Helper function to push out presence updates on delegates on this system.
-	 * @param [in] PlayerPresence The Player Presence updated.
-	 */
-	virtual void OnPresenceUpdated(URH_PlayerInfoSubobject* PlayerPresence)
-	{
-		if (URH_RHFriendAndPlatformFriend* Friend = GetFriendByPlayerInfo(PlayerPresence->GetPlayerInfo()))
-		{
-			SCOPED_NAMED_EVENT(RallyHere_BroadcastFriendUpdated, FColor::Purple);
-			FriendUpdatedDelegate.Broadcast(Friend);
-			BLUEPRINT_FriendUpdatedDelegate.Broadcast(Friend);
-		}
-	}
 
 #pragma region API Request Handlers
 	/**
@@ -1202,6 +1205,16 @@ protected:
 										const FRH_GenericFriendWithUuidBlock Delegate,
 										DeleteFriendType::Request Request, int32 RetryEtagFailureCount);
 #pragma endregion // API Request Handlers
+	/**
+	 * @brief Creates a new friend object and binds callbacks to it.
+	 * @param [in] PlayerUuid The unique player id of the friend to create.
+	 */
+	URH_RHFriendAndPlatformFriend* CreateFriendObject(const FGuid& PlayerUuid);
+	/**
+	 * @brief Gets the friend object for the specified player, or creates one if it doesn't exist.
+	 * @param [in] PlayerUuid The unique player id of the friend to get.
+	 */
+	URH_RHFriendAndPlatformFriend* GetOrAddFriend(const FGuid& PlayerUuid);
 	/**
 	 * @brief Updates the cached Platforms friends with the new set of friends data.
 	 * @param [in] NewFriends New platform friend data.
