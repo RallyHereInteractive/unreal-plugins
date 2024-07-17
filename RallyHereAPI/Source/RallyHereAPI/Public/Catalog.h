@@ -71,8 +71,10 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
 	void SetXpTables(const FRHAPI_XpTables& NewValue) { XpTables_Optional = NewValue; XpTables_IsSet = true;  }
 	/** @brief Sets the value of XpTables_Optional and also sets XpTables_IsSet to true using move semantics */
 	void SetXpTables(FRHAPI_XpTables&& NewValue) { XpTables_Optional = NewValue; XpTables_IsSet = true;  }
-	 /** @brief Clears the value of XpTables_Optional and sets XpTables_IsSet to false */
+	/** @brief Clears the value of XpTables_Optional and sets XpTables_IsSet to false */
 	void ClearXpTables() { XpTables_IsSet = false;  }
+	/** @brief Checks whether XpTables_Optional has been set */
+	bool IsXpTablesSet() const { return XpTables_IsSet; }
 
 	/** @brief The Portal Use Rulesets. Use Inventory Bucket Use Rule Sets instead. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -96,8 +98,10 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
 	void SetPortalUseRulesets(const FRHAPI_PortalUseRulesets& NewValue) { PortalUseRulesets_Optional = NewValue; PortalUseRulesets_IsSet = true;  }
 	/** @brief Sets the value of PortalUseRulesets_Optional and also sets PortalUseRulesets_IsSet to true using move semantics */
 	void SetPortalUseRulesets(FRHAPI_PortalUseRulesets&& NewValue) { PortalUseRulesets_Optional = NewValue; PortalUseRulesets_IsSet = true;  }
-	 /** @brief Clears the value of PortalUseRulesets_Optional and sets PortalUseRulesets_IsSet to false */
+	/** @brief Clears the value of PortalUseRulesets_Optional and sets PortalUseRulesets_IsSet to false */
 	void ClearPortalUseRulesets() { PortalUseRulesets_IsSet = false;  }
+	/** @brief Checks whether PortalUseRulesets_Optional has been set */
+	bool IsPortalUseRulesetsSet() const { return PortalUseRulesets_IsSet; }
 
 	/** @brief The rules on how to use Inventory Buckets. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -121,8 +125,10 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
 	void SetInventoryBucketUseRuleSets(const FRHAPI_InventoryBucketUseRuleSets& NewValue) { InventoryBucketUseRuleSets_Optional = NewValue; InventoryBucketUseRuleSets_IsSet = true;  }
 	/** @brief Sets the value of InventoryBucketUseRuleSets_Optional and also sets InventoryBucketUseRuleSets_IsSet to true using move semantics */
 	void SetInventoryBucketUseRuleSets(FRHAPI_InventoryBucketUseRuleSets&& NewValue) { InventoryBucketUseRuleSets_Optional = NewValue; InventoryBucketUseRuleSets_IsSet = true;  }
-	 /** @brief Clears the value of InventoryBucketUseRuleSets_Optional and sets InventoryBucketUseRuleSets_IsSet to false */
+	/** @brief Clears the value of InventoryBucketUseRuleSets_Optional and sets InventoryBucketUseRuleSets_IsSet to false */
 	void ClearInventoryBucketUseRuleSets() { InventoryBucketUseRuleSets_IsSet = false;  }
+	/** @brief Checks whether InventoryBucketUseRuleSets_Optional has been set */
+	bool IsInventoryBucketUseRuleSetsSet() const { return InventoryBucketUseRuleSets_IsSet; }
 
 	/** @brief The Vendors. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -146,8 +152,10 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
 	void SetVendors(const FRHAPI_Vendors& NewValue) { Vendors_Optional = NewValue; Vendors_IsSet = true;  }
 	/** @brief Sets the value of Vendors_Optional and also sets Vendors_IsSet to true using move semantics */
 	void SetVendors(FRHAPI_Vendors&& NewValue) { Vendors_Optional = NewValue; Vendors_IsSet = true;  }
-	 /** @brief Clears the value of Vendors_Optional and sets Vendors_IsSet to false */
+	/** @brief Clears the value of Vendors_Optional and sets Vendors_IsSet to false */
 	void ClearVendors() { Vendors_IsSet = false;  }
+	/** @brief Checks whether Vendors_Optional has been set */
+	bool IsVendorsSet() const { return Vendors_IsSet; }
 
 	/** @brief The Loots. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -171,8 +179,10 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
 	void SetLoot(const FRHAPI_Loots& NewValue) { Loot_Optional = NewValue; Loot_IsSet = true;  }
 	/** @brief Sets the value of Loot_Optional and also sets Loot_IsSet to true using move semantics */
 	void SetLoot(FRHAPI_Loots&& NewValue) { Loot_Optional = NewValue; Loot_IsSet = true;  }
-	 /** @brief Clears the value of Loot_Optional and sets Loot_IsSet to false */
+	/** @brief Clears the value of Loot_Optional and sets Loot_IsSet to false */
 	void ClearLoot() { Loot_IsSet = false;  }
+	/** @brief Checks whether Loot_Optional has been set */
+	bool IsLootSet() const { return Loot_IsSet; }
 
 	/** @brief The Items. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -196,8 +206,10 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
 	void SetItems(const FRHAPI_Items& NewValue) { Items_Optional = NewValue; Items_IsSet = true;  }
 	/** @brief Sets the value of Items_Optional and also sets Items_IsSet to true using move semantics */
 	void SetItems(FRHAPI_Items&& NewValue) { Items_Optional = NewValue; Items_IsSet = true;  }
-	 /** @brief Clears the value of Items_Optional and sets Items_IsSet to false */
+	/** @brief Clears the value of Items_Optional and sets Items_IsSet to false */
 	void ClearItems() { Items_IsSet = false;  }
+	/** @brief Checks whether Items_Optional has been set */
+	bool IsItemsSet() const { return Items_IsSet; }
 
 	/** @brief The Price Points. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -221,8 +233,10 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
 	void SetPricePoints(const FRHAPI_PricePoints& NewValue) { PricePoints_Optional = NewValue; PricePoints_IsSet = true;  }
 	/** @brief Sets the value of PricePoints_Optional and also sets PricePoints_IsSet to true using move semantics */
 	void SetPricePoints(FRHAPI_PricePoints&& NewValue) { PricePoints_Optional = NewValue; PricePoints_IsSet = true;  }
-	 /** @brief Clears the value of PricePoints_Optional and sets PricePoints_IsSet to false */
+	/** @brief Clears the value of PricePoints_Optional and sets PricePoints_IsSet to false */
 	void ClearPricePoints() { PricePoints_IsSet = false;  }
+	/** @brief Checks whether PricePoints_Optional has been set */
+	bool IsPricePointsSet() const { return PricePoints_IsSet; }
 
 	/** @brief The Time Frames. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -246,8 +260,10 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
 	void SetTimeFrames(const FRHAPI_TimeFrames& NewValue) { TimeFrames_Optional = NewValue; TimeFrames_IsSet = true;  }
 	/** @brief Sets the value of TimeFrames_Optional and also sets TimeFrames_IsSet to true using move semantics */
 	void SetTimeFrames(FRHAPI_TimeFrames&& NewValue) { TimeFrames_Optional = NewValue; TimeFrames_IsSet = true;  }
-	 /** @brief Clears the value of TimeFrames_Optional and sets TimeFrames_IsSet to false */
+	/** @brief Clears the value of TimeFrames_Optional and sets TimeFrames_IsSet to false */
 	void ClearTimeFrames() { TimeFrames_IsSet = false;  }
+	/** @brief Checks whether TimeFrames_Optional has been set */
+	bool IsTimeFramesSet() const { return TimeFrames_IsSet; }
 
 	/** @brief The Platform SKUs. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -271,8 +287,10 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
 	void SetSkus(const FRHAPI_PlatformSKUs& NewValue) { Skus_Optional = NewValue; Skus_IsSet = true;  }
 	/** @brief Sets the value of Skus_Optional and also sets Skus_IsSet to true using move semantics */
 	void SetSkus(FRHAPI_PlatformSKUs&& NewValue) { Skus_Optional = NewValue; Skus_IsSet = true;  }
-	 /** @brief Clears the value of Skus_Optional and sets Skus_IsSet to false */
+	/** @brief Clears the value of Skus_Optional and sets Skus_IsSet to false */
 	void ClearSkus() { Skus_IsSet = false;  }
+	/** @brief Checks whether Skus_Optional has been set */
+	bool IsSkusSet() const { return Skus_IsSet; }
 
 	/** @brief Cache info for the Catalog. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -296,8 +314,10 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
 	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
 	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
-	 /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
+	/** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
 	void ClearCacheInfo() { CacheInfo_IsSet = false;  }
+	/** @brief Checks whether CacheInfo_Optional has been set */
+	bool IsCacheInfoSet() const { return CacheInfo_IsSet; }
 };
 
 /** @} */

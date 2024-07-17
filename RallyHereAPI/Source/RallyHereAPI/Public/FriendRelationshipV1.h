@@ -72,8 +72,10 @@ struct RALLYHEREAPI_API FRHAPI_FriendRelationshipV1 : public FRHAPI_Model
 	void SetFriendsPlayerId(const int32& NewValue) { FriendsPlayerId_Optional = NewValue; FriendsPlayerId_IsSet = true;  }
 	/** @brief Sets the value of FriendsPlayerId_Optional and also sets FriendsPlayerId_IsSet to true using move semantics */
 	void SetFriendsPlayerId(int32&& NewValue) { FriendsPlayerId_Optional = NewValue; FriendsPlayerId_IsSet = true;  }
-	 /** @brief Clears the value of FriendsPlayerId_Optional and sets FriendsPlayerId_IsSet to false */
+	/** @brief Clears the value of FriendsPlayerId_Optional and sets FriendsPlayerId_IsSet to false */
 	void ClearFriendsPlayerId() { FriendsPlayerId_Optional = 0; FriendsPlayerId_IsSet = false;  }
+	/** @brief Checks whether FriendsPlayerId_Optional has been set */
+	bool IsFriendsPlayerIdSet() const { return FriendsPlayerId_IsSet; }
 	/** @brief Returns true if FriendsPlayerId_Optional is set and matches the default value */
 	bool IsFriendsPlayerIdDefaultValue() const { return FriendsPlayerId_IsSet && FriendsPlayerId_Optional == 0; }
 	/** @brief Sets the value of FriendsPlayerId_Optional to its default and also sets FriendsPlayerId_IsSet to true */
@@ -111,8 +113,10 @@ struct RALLYHEREAPI_API FRHAPI_FriendRelationshipV1 : public FRHAPI_Model
 	void SetNotes(const FString& NewValue) { Notes_Optional = NewValue; Notes_IsSet = true;  }
 	/** @brief Sets the value of Notes_Optional and also sets Notes_IsSet to true using move semantics */
 	void SetNotes(FString&& NewValue) { Notes_Optional = NewValue; Notes_IsSet = true;  }
-	 /** @brief Clears the value of Notes_Optional and sets Notes_IsSet to false */
+	/** @brief Clears the value of Notes_Optional and sets Notes_IsSet to false */
 	void ClearNotes() { Notes_IsSet = false;  }
+	/** @brief Checks whether Notes_Optional has been set */
+	bool IsNotesSet() const { return Notes_IsSet; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FDateTime LastModifiedOn{  };

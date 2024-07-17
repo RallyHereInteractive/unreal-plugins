@@ -113,8 +113,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
 	void SetStatus(const FString& NewValue) { Status_Optional = NewValue; Status_IsSet = true;  }
 	/** @brief Sets the value of Status_Optional and also sets Status_IsSet to true using move semantics */
 	void SetStatus(FString&& NewValue) { Status_Optional = NewValue; Status_IsSet = true;  }
-	 /** @brief Clears the value of Status_Optional and sets Status_IsSet to false */
+	/** @brief Clears the value of Status_Optional and sets Status_IsSet to false */
 	void ClearStatus() { Status_Optional = TEXT("SUBMITTED"); Status_IsSet = false;  }
+	/** @brief Checks whether Status_Optional has been set */
+	bool IsStatusSet() const { return Status_IsSet; }
 	/** @brief Returns true if Status_Optional is set and matches the default value */
 	bool IsStatusDefaultValue() const { return Status_IsSet && Status_Optional == TEXT("SUBMITTED"); }
 	/** @brief Sets the value of Status_Optional to its default and also sets Status_IsSet to true */
@@ -142,8 +144,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
 	void SetErrorCode(const FString& NewValue) { ErrorCode_Optional = NewValue; ErrorCode_IsSet = true;  }
 	/** @brief Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true using move semantics */
 	void SetErrorCode(FString&& NewValue) { ErrorCode_Optional = NewValue; ErrorCode_IsSet = true;  }
-	 /** @brief Clears the value of ErrorCode_Optional and sets ErrorCode_IsSet to false */
+	/** @brief Clears the value of ErrorCode_Optional and sets ErrorCode_IsSet to false */
 	void ClearErrorCode() { ErrorCode_IsSet = false;  }
+	/** @brief Checks whether ErrorCode_Optional has been set */
+	bool IsErrorCodeSet() const { return ErrorCode_IsSet; }
 
 	/** @brief Client entitlements that have been processed */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -167,8 +171,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
 	void SetClientEntitlements(const TArray<FRHAPI_PlatformEntitlement>& NewValue) { ClientEntitlements_Optional = NewValue; ClientEntitlements_IsSet = true;  }
 	/** @brief Sets the value of ClientEntitlements_Optional and also sets ClientEntitlements_IsSet to true using move semantics */
 	void SetClientEntitlements(TArray<FRHAPI_PlatformEntitlement>&& NewValue) { ClientEntitlements_Optional = NewValue; ClientEntitlements_IsSet = true;  }
-	 /** @brief Clears the value of ClientEntitlements_Optional and sets ClientEntitlements_IsSet to false */
+	/** @brief Clears the value of ClientEntitlements_Optional and sets ClientEntitlements_IsSet to false */
 	void ClearClientEntitlements() { ClientEntitlements_IsSet = false;  }
+	/** @brief Checks whether ClientEntitlements_Optional has been set */
+	bool IsClientEntitlementsSet() const { return ClientEntitlements_IsSet; }
 
 	/** @brief Server entitlements that have been processed */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -192,8 +198,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
 	void SetServerEntitlements(const TArray<FRHAPI_PlatformEntitlement>& NewValue) { ServerEntitlements_Optional = NewValue; ServerEntitlements_IsSet = true;  }
 	/** @brief Sets the value of ServerEntitlements_Optional and also sets ServerEntitlements_IsSet to true using move semantics */
 	void SetServerEntitlements(TArray<FRHAPI_PlatformEntitlement>&& NewValue) { ServerEntitlements_Optional = NewValue; ServerEntitlements_IsSet = true;  }
-	 /** @brief Clears the value of ServerEntitlements_Optional and sets ServerEntitlements_IsSet to false */
+	/** @brief Clears the value of ServerEntitlements_Optional and sets ServerEntitlements_IsSet to false */
 	void ClearServerEntitlements() { ServerEntitlements_IsSet = false;  }
+	/** @brief Checks whether ServerEntitlements_Optional has been set */
+	bool IsServerEntitlementsSet() const { return ServerEntitlements_IsSet; }
 
 	/** @brief Platform these transactions were processed on */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -241,8 +249,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
 	void SetSkippedServerEntitlements(const bool& NewValue) { SkippedServerEntitlements_Optional = NewValue; SkippedServerEntitlements_IsSet = true;  }
 	/** @brief Sets the value of SkippedServerEntitlements_Optional and also sets SkippedServerEntitlements_IsSet to true using move semantics */
 	void SetSkippedServerEntitlements(bool&& NewValue) { SkippedServerEntitlements_Optional = NewValue; SkippedServerEntitlements_IsSet = true;  }
-	 /** @brief Clears the value of SkippedServerEntitlements_Optional and sets SkippedServerEntitlements_IsSet to false */
+	/** @brief Clears the value of SkippedServerEntitlements_Optional and sets SkippedServerEntitlements_IsSet to false */
 	void ClearSkippedServerEntitlements() { SkippedServerEntitlements_Optional = false; SkippedServerEntitlements_IsSet = false;  }
+	/** @brief Checks whether SkippedServerEntitlements_Optional has been set */
+	bool IsSkippedServerEntitlementsSet() const { return SkippedServerEntitlements_IsSet; }
 	/** @brief Returns true if SkippedServerEntitlements_Optional is set and matches the default value */
 	bool IsSkippedServerEntitlementsDefaultValue() const { return SkippedServerEntitlements_IsSet && SkippedServerEntitlements_Optional == false; }
 	/** @brief Sets the value of SkippedServerEntitlements_Optional to its default and also sets SkippedServerEntitlements_IsSet to true */

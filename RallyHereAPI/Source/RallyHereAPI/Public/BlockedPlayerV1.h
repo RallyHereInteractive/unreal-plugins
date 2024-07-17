@@ -60,8 +60,10 @@ struct RALLYHEREAPI_API FRHAPI_BlockedPlayerV1 : public FRHAPI_Model
 	void SetBlockedPlayerId(const int32& NewValue) { BlockedPlayerId_Optional = NewValue; BlockedPlayerId_IsSet = true;  }
 	/** @brief Sets the value of BlockedPlayerId_Optional and also sets BlockedPlayerId_IsSet to true using move semantics */
 	void SetBlockedPlayerId(int32&& NewValue) { BlockedPlayerId_Optional = NewValue; BlockedPlayerId_IsSet = true;  }
-	 /** @brief Clears the value of BlockedPlayerId_Optional and sets BlockedPlayerId_IsSet to false */
+	/** @brief Clears the value of BlockedPlayerId_Optional and sets BlockedPlayerId_IsSet to false */
 	void ClearBlockedPlayerId() { BlockedPlayerId_Optional = 0; BlockedPlayerId_IsSet = false;  }
+	/** @brief Checks whether BlockedPlayerId_Optional has been set */
+	bool IsBlockedPlayerIdSet() const { return BlockedPlayerId_IsSet; }
 	/** @brief Returns true if BlockedPlayerId_Optional is set and matches the default value */
 	bool IsBlockedPlayerIdDefaultValue() const { return BlockedPlayerId_IsSet && BlockedPlayerId_Optional == 0; }
 	/** @brief Sets the value of BlockedPlayerId_Optional to its default and also sets BlockedPlayerId_IsSet to true */

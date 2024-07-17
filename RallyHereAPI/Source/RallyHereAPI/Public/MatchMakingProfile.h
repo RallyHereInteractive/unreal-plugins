@@ -74,8 +74,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingProfile : public FRHAPI_Model
 	void SetJoinMode(const ERHAPI_ProfileJoinMode& NewValue) { JoinMode_Optional = NewValue; JoinMode_IsSet = true;  }
 	/** @brief Sets the value of JoinMode_Optional and also sets JoinMode_IsSet to true using move semantics */
 	void SetJoinMode(ERHAPI_ProfileJoinMode&& NewValue) { JoinMode_Optional = NewValue; JoinMode_IsSet = true;  }
-	 /** @brief Clears the value of JoinMode_Optional and sets JoinMode_IsSet to false */
+	/** @brief Clears the value of JoinMode_Optional and sets JoinMode_IsSet to false */
 	void ClearJoinMode() { JoinMode_IsSet = false;  }
+	/** @brief Checks whether JoinMode_Optional has been set */
+	bool IsJoinModeSet() const { return JoinMode_IsSet; }
 
 	/** @brief Which instance template to use when launching a match in this profile */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -111,8 +113,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingProfile : public FRHAPI_Model
 	void SetRankId(const FString& NewValue) { RankId_Optional = NewValue; RankId_IsSet = true;  }
 	/** @brief Sets the value of RankId_Optional and also sets RankId_IsSet to true using move semantics */
 	void SetRankId(FString&& NewValue) { RankId_Optional = NewValue; RankId_IsSet = true;  }
-	 /** @brief Clears the value of RankId_Optional and sets RankId_IsSet to false */
+	/** @brief Clears the value of RankId_Optional and sets RankId_IsSet to false */
 	void ClearRankId() { RankId_IsSet = false;  }
+	/** @brief Checks whether RankId_Optional has been set */
+	bool IsRankIdSet() const { return RankId_IsSet; }
 
 	/** @brief The number of sides a game in this profile will have (2 in a 1v1 and 3 in a 1v1v1 for example */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -136,8 +140,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingProfile : public FRHAPI_Model
 	void SetNumSides(const int32& NewValue) { NumSides_Optional = NewValue; NumSides_IsSet = true;  }
 	/** @brief Sets the value of NumSides_Optional and also sets NumSides_IsSet to true using move semantics */
 	void SetNumSides(int32&& NewValue) { NumSides_Optional = NewValue; NumSides_IsSet = true;  }
-	 /** @brief Clears the value of NumSides_Optional and sets NumSides_IsSet to false */
+	/** @brief Clears the value of NumSides_Optional and sets NumSides_IsSet to false */
 	void ClearNumSides() { NumSides_Optional = 0; NumSides_IsSet = false;  }
+	/** @brief Checks whether NumSides_Optional has been set */
+	bool IsNumSidesSet() const { return NumSides_IsSet; }
 	/** @brief Returns true if NumSides_Optional is set and matches the default value */
 	bool IsNumSidesDefaultValue() const { return NumSides_IsSet && NumSides_Optional == 0; }
 	/** @brief Sets the value of NumSides_Optional to its default and also sets NumSides_IsSet to true */
@@ -165,8 +171,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingProfile : public FRHAPI_Model
 	void SetMaxPlayersPerSide(const int32& NewValue) { MaxPlayersPerSide_Optional = NewValue; MaxPlayersPerSide_IsSet = true;  }
 	/** @brief Sets the value of MaxPlayersPerSide_Optional and also sets MaxPlayersPerSide_IsSet to true using move semantics */
 	void SetMaxPlayersPerSide(int32&& NewValue) { MaxPlayersPerSide_Optional = NewValue; MaxPlayersPerSide_IsSet = true;  }
-	 /** @brief Clears the value of MaxPlayersPerSide_Optional and sets MaxPlayersPerSide_IsSet to false */
+	/** @brief Clears the value of MaxPlayersPerSide_Optional and sets MaxPlayersPerSide_IsSet to false */
 	void ClearMaxPlayersPerSide() { MaxPlayersPerSide_Optional = 0; MaxPlayersPerSide_IsSet = false;  }
+	/** @brief Checks whether MaxPlayersPerSide_Optional has been set */
+	bool IsMaxPlayersPerSideSet() const { return MaxPlayersPerSide_IsSet; }
 	/** @brief Returns true if MaxPlayersPerSide_Optional is set and matches the default value */
 	bool IsMaxPlayersPerSideDefaultValue() const { return MaxPlayersPerSide_IsSet && MaxPlayersPerSide_Optional == 0; }
 	/** @brief Sets the value of MaxPlayersPerSide_Optional to its default and also sets MaxPlayersPerSide_IsSet to true */
@@ -194,8 +202,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingProfile : public FRHAPI_Model
 	void SetMinPlayersPerSide(const int32& NewValue) { MinPlayersPerSide_Optional = NewValue; MinPlayersPerSide_IsSet = true;  }
 	/** @brief Sets the value of MinPlayersPerSide_Optional and also sets MinPlayersPerSide_IsSet to true using move semantics */
 	void SetMinPlayersPerSide(int32&& NewValue) { MinPlayersPerSide_Optional = NewValue; MinPlayersPerSide_IsSet = true;  }
-	 /** @brief Clears the value of MinPlayersPerSide_Optional and sets MinPlayersPerSide_IsSet to false */
+	/** @brief Clears the value of MinPlayersPerSide_Optional and sets MinPlayersPerSide_IsSet to false */
 	void ClearMinPlayersPerSide() { MinPlayersPerSide_Optional = 0; MinPlayersPerSide_IsSet = false;  }
+	/** @brief Checks whether MinPlayersPerSide_Optional has been set */
+	bool IsMinPlayersPerSideSet() const { return MinPlayersPerSide_IsSet; }
 	/** @brief Returns true if MinPlayersPerSide_Optional is set and matches the default value */
 	bool IsMinPlayersPerSideDefaultValue() const { return MinPlayersPerSide_IsSet && MinPlayersPerSide_Optional == 0; }
 	/** @brief Sets the value of MinPlayersPerSide_Optional to its default and also sets MinPlayersPerSide_IsSet to true */
@@ -223,8 +233,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingProfile : public FRHAPI_Model
 	void SetDeserterId(const FString& NewValue) { DeserterId_Optional = NewValue; DeserterId_IsSet = true;  }
 	/** @brief Sets the value of DeserterId_Optional and also sets DeserterId_IsSet to true using move semantics */
 	void SetDeserterId(FString&& NewValue) { DeserterId_Optional = NewValue; DeserterId_IsSet = true;  }
-	 /** @brief Clears the value of DeserterId_Optional and sets DeserterId_IsSet to false */
+	/** @brief Clears the value of DeserterId_Optional and sets DeserterId_IsSet to false */
 	void ClearDeserterId() { DeserterId_IsSet = false;  }
+	/** @brief Checks whether DeserterId_Optional has been set */
+	bool IsDeserterIdSet() const { return DeserterId_IsSet; }
 
 	/** @brief Legacy config to help migrate clients */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -248,8 +260,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingProfile : public FRHAPI_Model
 	void SetLegacyConfig(const TMap<FString, FString>& NewValue) { LegacyConfig_Optional = NewValue; LegacyConfig_IsSet = true;  }
 	/** @brief Sets the value of LegacyConfig_Optional and also sets LegacyConfig_IsSet to true using move semantics */
 	void SetLegacyConfig(TMap<FString, FString>&& NewValue) { LegacyConfig_Optional = NewValue; LegacyConfig_IsSet = true;  }
-	 /** @brief Clears the value of LegacyConfig_Optional and sets LegacyConfig_IsSet to false */
+	/** @brief Clears the value of LegacyConfig_Optional and sets LegacyConfig_IsSet to false */
 	void ClearLegacyConfig() { LegacyConfig_IsSet = false;  }
+	/** @brief Checks whether LegacyConfig_Optional has been set */
+	bool IsLegacyConfigSet() const { return LegacyConfig_IsSet; }
 };
 
 /** @} */

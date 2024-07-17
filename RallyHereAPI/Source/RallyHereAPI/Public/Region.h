@@ -105,8 +105,10 @@ struct RALLYHEREAPI_API FRHAPI_Region : public FRHAPI_Model
 	void SetDescription(const FString& NewValue) { Description_Optional = NewValue; Description_IsSet = true;  }
 	/** @brief Sets the value of Description_Optional and also sets Description_IsSet to true using move semantics */
 	void SetDescription(FString&& NewValue) { Description_Optional = NewValue; Description_IsSet = true;  }
-	 /** @brief Clears the value of Description_Optional and sets Description_IsSet to false */
+	/** @brief Clears the value of Description_Optional and sets Description_IsSet to false */
 	void ClearDescription() { Description_IsSet = false;  }
+	/** @brief Checks whether Description_Optional has been set */
+	bool IsDescriptionSet() const { return Description_IsSet; }
 };
 
 /** @} */

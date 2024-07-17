@@ -74,8 +74,10 @@ struct RALLYHEREAPI_API FRHAPI_AcknowledgeBackfillRequest : public FRHAPI_Model
 	void SetExtensions(const TMap<FString, FString>& NewValue) { Extensions_Optional = NewValue; Extensions_IsSet = true;  }
 	/** @brief Sets the value of Extensions_Optional and also sets Extensions_IsSet to true using move semantics */
 	void SetExtensions(TMap<FString, FString>&& NewValue) { Extensions_Optional = NewValue; Extensions_IsSet = true;  }
-	 /** @brief Clears the value of Extensions_Optional and sets Extensions_IsSet to false */
+	/** @brief Clears the value of Extensions_Optional and sets Extensions_IsSet to false */
 	void ClearExtensions() { Extensions_IsSet = false;  }
+	/** @brief Checks whether Extensions_Optional has been set */
+	bool IsExtensionsSet() const { return Extensions_IsSet; }
 
 	/** @brief How to handle backfills that return too many players for a team */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -99,8 +101,10 @@ struct RALLYHEREAPI_API FRHAPI_AcknowledgeBackfillRequest : public FRHAPI_Model
 	void SetOverflowAction(const ERHAPI_TeamOverflowAction& NewValue) { OverflowAction_Optional = NewValue; OverflowAction_IsSet = true;  }
 	/** @brief Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true using move semantics */
 	void SetOverflowAction(ERHAPI_TeamOverflowAction&& NewValue) { OverflowAction_Optional = NewValue; OverflowAction_IsSet = true;  }
-	 /** @brief Clears the value of OverflowAction_Optional and sets OverflowAction_IsSet to false */
+	/** @brief Clears the value of OverflowAction_Optional and sets OverflowAction_IsSet to false */
 	void ClearOverflowAction() { OverflowAction_IsSet = false;  }
+	/** @brief Checks whether OverflowAction_Optional has been set */
+	bool IsOverflowActionSet() const { return OverflowAction_IsSet; }
 };
 
 /** @} */

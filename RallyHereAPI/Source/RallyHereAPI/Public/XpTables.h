@@ -62,8 +62,10 @@ struct RALLYHEREAPI_API FRHAPI_XpTables : public FRHAPI_Model
 	void SetXpTables(const TMap<FString, FRHAPI_XpTable>& NewValue) { XpTables_Optional = NewValue; XpTables_IsSet = true;  }
 	/** @brief Sets the value of XpTables_Optional and also sets XpTables_IsSet to true using move semantics */
 	void SetXpTables(TMap<FString, FRHAPI_XpTable>&& NewValue) { XpTables_Optional = NewValue; XpTables_IsSet = true;  }
-	 /** @brief Clears the value of XpTables_Optional and sets XpTables_IsSet to false */
+	/** @brief Clears the value of XpTables_Optional and sets XpTables_IsSet to false */
 	void ClearXpTables() { XpTables_IsSet = false;  }
+	/** @brief Checks whether XpTables_Optional has been set */
+	bool IsXpTablesSet() const { return XpTables_IsSet; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_CacheInfo CacheInfo_Optional{  };
@@ -86,8 +88,10 @@ struct RALLYHEREAPI_API FRHAPI_XpTables : public FRHAPI_Model
 	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
 	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
-	 /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
+	/** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
 	void ClearCacheInfo() { CacheInfo_IsSet = false;  }
+	/** @brief Checks whether CacheInfo_Optional has been set */
+	bool IsCacheInfoSet() const { return CacheInfo_IsSet; }
 };
 
 /** @} */

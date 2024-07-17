@@ -73,8 +73,10 @@ struct RALLYHEREAPI_API FRHAPI_BrowserSessionInfo : public FRHAPI_Model
 	void SetPlayerCount(const int32& NewValue) { PlayerCount_Optional = NewValue; PlayerCount_IsSet = true;  }
 	/** @brief Sets the value of PlayerCount_Optional and also sets PlayerCount_IsSet to true using move semantics */
 	void SetPlayerCount(int32&& NewValue) { PlayerCount_Optional = NewValue; PlayerCount_IsSet = true;  }
-	 /** @brief Clears the value of PlayerCount_Optional and sets PlayerCount_IsSet to false */
+	/** @brief Clears the value of PlayerCount_Optional and sets PlayerCount_IsSet to false */
 	void ClearPlayerCount() { PlayerCount_Optional = 0; PlayerCount_IsSet = false;  }
+	/** @brief Checks whether PlayerCount_Optional has been set */
+	bool IsPlayerCountSet() const { return PlayerCount_IsSet; }
 	/** @brief Returns true if PlayerCount_Optional is set and matches the default value */
 	bool IsPlayerCountDefaultValue() const { return PlayerCount_IsSet && PlayerCount_Optional == 0; }
 	/** @brief Sets the value of PlayerCount_Optional to its default and also sets PlayerCount_IsSet to true */
@@ -102,8 +104,10 @@ struct RALLYHEREAPI_API FRHAPI_BrowserSessionInfo : public FRHAPI_Model
 	void SetMaxPlayerCount(const int32& NewValue) { MaxPlayerCount_Optional = NewValue; MaxPlayerCount_IsSet = true;  }
 	/** @brief Sets the value of MaxPlayerCount_Optional and also sets MaxPlayerCount_IsSet to true using move semantics */
 	void SetMaxPlayerCount(int32&& NewValue) { MaxPlayerCount_Optional = NewValue; MaxPlayerCount_IsSet = true;  }
-	 /** @brief Clears the value of MaxPlayerCount_Optional and sets MaxPlayerCount_IsSet to false */
+	/** @brief Clears the value of MaxPlayerCount_Optional and sets MaxPlayerCount_IsSet to false */
 	void ClearMaxPlayerCount() { MaxPlayerCount_Optional = 0; MaxPlayerCount_IsSet = false;  }
+	/** @brief Checks whether MaxPlayerCount_Optional has been set */
+	bool IsMaxPlayerCountSet() const { return MaxPlayerCount_IsSet; }
 	/** @brief Returns true if MaxPlayerCount_Optional is set and matches the default value */
 	bool IsMaxPlayerCountDefaultValue() const { return MaxPlayerCount_IsSet && MaxPlayerCount_Optional == 0; }
 	/** @brief Sets the value of MaxPlayerCount_Optional to its default and also sets MaxPlayerCount_IsSet to true */
@@ -131,8 +135,10 @@ struct RALLYHEREAPI_API FRHAPI_BrowserSessionInfo : public FRHAPI_Model
 	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 };
 
 /** @} */

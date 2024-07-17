@@ -60,8 +60,10 @@ struct RALLYHEREAPI_API FRHAPI_HzApiErrorModel : public FRHAPI_Model
 	void SetAuthSuccess(const bool& NewValue) { AuthSuccess_Optional = NewValue; AuthSuccess_IsSet = true;  }
 	/** @brief Sets the value of AuthSuccess_Optional and also sets AuthSuccess_IsSet to true using move semantics */
 	void SetAuthSuccess(bool&& NewValue) { AuthSuccess_Optional = NewValue; AuthSuccess_IsSet = true;  }
-	 /** @brief Clears the value of AuthSuccess_Optional and sets AuthSuccess_IsSet to false */
+	/** @brief Clears the value of AuthSuccess_Optional and sets AuthSuccess_IsSet to false */
 	void ClearAuthSuccess() { AuthSuccess_Optional = true; AuthSuccess_IsSet = false;  }
+	/** @brief Checks whether AuthSuccess_Optional has been set */
+	bool IsAuthSuccessSet() const { return AuthSuccess_IsSet; }
 	/** @brief Returns true if AuthSuccess_Optional is set and matches the default value */
 	bool IsAuthSuccessDefaultValue() const { return AuthSuccess_IsSet && AuthSuccess_Optional == true; }
 	/** @brief Sets the value of AuthSuccess_Optional to its default and also sets AuthSuccess_IsSet to true */

@@ -75,8 +75,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerSession : public FRHAPI_Model
 	void SetSessionIds(const TSet<FString>& NewValue) { SessionIds_Optional = NewValue; SessionIds_IsSet = true;  }
 	/** @brief Sets the value of SessionIds_Optional and also sets SessionIds_IsSet to true using move semantics */
 	void SetSessionIds(TSet<FString>&& NewValue) { SessionIds_Optional = NewValue; SessionIds_IsSet = true;  }
-	 /** @brief Clears the value of SessionIds_Optional and sets SessionIds_IsSet to false */
+	/** @brief Clears the value of SessionIds_Optional and sets SessionIds_IsSet to false */
 	void ClearSessionIds() { SessionIds_IsSet = false;  }
+	/** @brief Checks whether SessionIds_Optional has been set */
+	bool IsSessionIdsSet() const { return SessionIds_IsSet; }
 
 	/** @brief Pending invites, if any, for the current player in this session type */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -100,8 +102,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerSession : public FRHAPI_Model
 	void SetPendingInvites(const TMap<FString, FRHAPI_PlayerSessionInvite>& NewValue) { PendingInvites_Optional = NewValue; PendingInvites_IsSet = true;  }
 	/** @brief Sets the value of PendingInvites_Optional and also sets PendingInvites_IsSet to true using move semantics */
 	void SetPendingInvites(TMap<FString, FRHAPI_PlayerSessionInvite>&& NewValue) { PendingInvites_Optional = NewValue; PendingInvites_IsSet = true;  }
-	 /** @brief Clears the value of PendingInvites_Optional and sets PendingInvites_IsSet to false */
+	/** @brief Clears the value of PendingInvites_Optional and sets PendingInvites_IsSet to false */
 	void ClearPendingInvites() { PendingInvites_IsSet = false;  }
+	/** @brief Checks whether PendingInvites_Optional has been set */
+	bool IsPendingInvitesSet() const { return PendingInvites_IsSet; }
 
 	/** @brief Sessions that the player has a reserved place in, but has not yet been invited */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -125,8 +129,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerSession : public FRHAPI_Model
 	void SetReservedSessions(const TSet<FString>& NewValue) { ReservedSessions_Optional = NewValue; ReservedSessions_IsSet = true;  }
 	/** @brief Sets the value of ReservedSessions_Optional and also sets ReservedSessions_IsSet to true using move semantics */
 	void SetReservedSessions(TSet<FString>&& NewValue) { ReservedSessions_Optional = NewValue; ReservedSessions_IsSet = true;  }
-	 /** @brief Clears the value of ReservedSessions_Optional and sets ReservedSessions_IsSet to false */
+	/** @brief Clears the value of ReservedSessions_Optional and sets ReservedSessions_IsSet to false */
 	void ClearReservedSessions() { ReservedSessions_IsSet = false;  }
+	/** @brief Checks whether ReservedSessions_Optional has been set */
+	bool IsReservedSessionsSet() const { return ReservedSessions_IsSet; }
 };
 
 /** @} */

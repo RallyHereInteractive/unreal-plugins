@@ -62,8 +62,10 @@ struct RALLYHEREAPI_API FRHAPI_RankUpdateRequest : public FRHAPI_Model
 	void SetInstanceId(const FString& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true;  }
 	/** @brief Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true using move semantics */
 	void SetInstanceId(FString&& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true;  }
-	 /** @brief Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false */
+	/** @brief Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false */
 	void ClearInstanceId() { InstanceId_IsSet = false;  }
+	/** @brief Checks whether InstanceId_Optional has been set */
+	bool IsInstanceIdSet() const { return InstanceId_IsSet; }
 
 	/** @brief ID for the rank type used in this match */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

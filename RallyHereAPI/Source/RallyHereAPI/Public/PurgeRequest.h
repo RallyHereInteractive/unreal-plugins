@@ -61,8 +61,10 @@ struct RALLYHEREAPI_API FRHAPI_PurgeRequest : public FRHAPI_Model
 	void SetSuggestedPurgeTime(const FDateTime& NewValue) { SuggestedPurgeTime_Optional = NewValue; SuggestedPurgeTime_IsSet = true;  }
 	/** @brief Sets the value of SuggestedPurgeTime_Optional and also sets SuggestedPurgeTime_IsSet to true using move semantics */
 	void SetSuggestedPurgeTime(FDateTime&& NewValue) { SuggestedPurgeTime_Optional = NewValue; SuggestedPurgeTime_IsSet = true;  }
-	 /** @brief Clears the value of SuggestedPurgeTime_Optional and sets SuggestedPurgeTime_IsSet to false */
+	/** @brief Clears the value of SuggestedPurgeTime_Optional and sets SuggestedPurgeTime_IsSet to false */
 	void ClearSuggestedPurgeTime() { SuggestedPurgeTime_IsSet = false;  }
+	/** @brief Checks whether SuggestedPurgeTime_Optional has been set */
+	bool IsSuggestedPurgeTimeSet() const { return SuggestedPurgeTime_IsSet; }
 };
 
 /** @} */

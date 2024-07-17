@@ -64,8 +64,10 @@ struct RALLYHEREAPI_API FRHAPI_ClientSettings : public FRHAPI_Model
 	void SetPlatformId(const ERHAPI_PlatformID& NewValue) { PlatformId_Optional = NewValue; PlatformId_IsSet = true;  }
 	/** @brief Sets the value of PlatformId_Optional and also sets PlatformId_IsSet to true using move semantics */
 	void SetPlatformId(ERHAPI_PlatformID&& NewValue) { PlatformId_Optional = NewValue; PlatformId_IsSet = true;  }
-	 /** @brief Clears the value of PlatformId_Optional and sets PlatformId_IsSet to false */
+	/** @brief Clears the value of PlatformId_Optional and sets PlatformId_IsSet to false */
 	void ClearPlatformId() { PlatformId_IsSet = false;  }
+	/** @brief Checks whether PlatformId_Optional has been set */
+	bool IsPlatformIdSet() const { return PlatformId_IsSet; }
 
 	/** @brief Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. At least one of the two is required */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -89,8 +91,10 @@ struct RALLYHEREAPI_API FRHAPI_ClientSettings : public FRHAPI_Model
 	void SetPlatform(const ERHAPI_Platform& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true;  }
 	/** @brief Sets the value of Platform_Optional and also sets Platform_IsSet to true using move semantics */
 	void SetPlatform(ERHAPI_Platform&& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true;  }
-	 /** @brief Clears the value of Platform_Optional and sets Platform_IsSet to false */
+	/** @brief Clears the value of Platform_Optional and sets Platform_IsSet to false */
 	void ClearPlatform() { Platform_IsSet = false;  }
+	/** @brief Checks whether Platform_Optional has been set */
+	bool IsPlatformSet() const { return Platform_IsSet; }
 
 	/** @brief Which input type this client is using */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

@@ -63,8 +63,10 @@ struct RALLYHEREAPI_API FRHAPI_CreateInventoryRequests : public FRHAPI_Model
 	void SetSource(const ERHAPI_Source& NewValue) { Source_Optional = NewValue; Source_IsSet = true;  }
 	/** @brief Sets the value of Source_Optional and also sets Source_IsSet to true using move semantics */
 	void SetSource(ERHAPI_Source&& NewValue) { Source_Optional = NewValue; Source_IsSet = true;  }
-	 /** @brief Clears the value of Source_Optional and sets Source_IsSet to false */
+	/** @brief Clears the value of Source_Optional and sets Source_IsSet to false */
 	void ClearSource() { Source_IsSet = false;  }
+	/** @brief Checks whether Source_Optional has been set */
+	bool IsSourceSet() const { return Source_IsSet; }
 
 	/** @brief Arbitrary UUID that can be used by clients to correlate Order requests with Order responses. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -88,8 +90,10 @@ struct RALLYHEREAPI_API FRHAPI_CreateInventoryRequests : public FRHAPI_Model
 	void SetClientOrderRefId(const FGuid& NewValue) { ClientOrderRefId_Optional = NewValue; ClientOrderRefId_IsSet = true;  }
 	/** @brief Sets the value of ClientOrderRefId_Optional and also sets ClientOrderRefId_IsSet to true using move semantics */
 	void SetClientOrderRefId(FGuid&& NewValue) { ClientOrderRefId_Optional = NewValue; ClientOrderRefId_IsSet = true;  }
-	 /** @brief Clears the value of ClientOrderRefId_Optional and sets ClientOrderRefId_IsSet to false */
+	/** @brief Clears the value of ClientOrderRefId_Optional and sets ClientOrderRefId_IsSet to false */
 	void ClearClientOrderRefId() { ClientOrderRefId_IsSet = false;  }
+	/** @brief Checks whether ClientOrderRefId_Optional has been set */
+	bool IsClientOrderRefIdSet() const { return ClientOrderRefId_IsSet; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_CreateInventoryRequest> Inventory{  };

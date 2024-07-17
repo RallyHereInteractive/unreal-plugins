@@ -99,8 +99,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceLaunchTemplate : public FRHAPI_Model
 	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 };
 
 /** @} */

@@ -62,8 +62,10 @@ struct RALLYHEREAPI_API FRHAPI_Vendors : public FRHAPI_Model
 	void SetVendors(const TMap<FString, FRHAPI_Vendor>& NewValue) { Vendors_Optional = NewValue; Vendors_IsSet = true;  }
 	/** @brief Sets the value of Vendors_Optional and also sets Vendors_IsSet to true using move semantics */
 	void SetVendors(TMap<FString, FRHAPI_Vendor>&& NewValue) { Vendors_Optional = NewValue; Vendors_IsSet = true;  }
-	 /** @brief Clears the value of Vendors_Optional and sets Vendors_IsSet to false */
+	/** @brief Clears the value of Vendors_Optional and sets Vendors_IsSet to false */
 	void ClearVendors() { Vendors_IsSet = false;  }
+	/** @brief Checks whether Vendors_Optional has been set */
+	bool IsVendorsSet() const { return Vendors_IsSet; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_CacheInfo CacheInfo_Optional{  };
@@ -86,8 +88,10 @@ struct RALLYHEREAPI_API FRHAPI_Vendors : public FRHAPI_Model
 	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
 	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
-	 /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
+	/** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
 	void ClearCacheInfo() { CacheInfo_IsSet = false;  }
+	/** @brief Checks whether CacheInfo_Optional has been set */
+	bool IsCacheInfoSet() const { return CacheInfo_IsSet; }
 };
 
 /** @} */

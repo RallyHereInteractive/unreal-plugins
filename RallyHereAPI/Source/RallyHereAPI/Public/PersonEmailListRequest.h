@@ -61,8 +61,10 @@ struct RALLYHEREAPI_API FRHAPI_PersonEmailListRequest : public FRHAPI_Model
 	void SetEmailListIds(const TArray<int32>& NewValue) { EmailListIds_Optional = NewValue; EmailListIds_IsSet = true;  }
 	/** @brief Sets the value of EmailListIds_Optional and also sets EmailListIds_IsSet to true using move semantics */
 	void SetEmailListIds(TArray<int32>&& NewValue) { EmailListIds_Optional = NewValue; EmailListIds_IsSet = true;  }
-	 /** @brief Clears the value of EmailListIds_Optional and sets EmailListIds_IsSet to false */
+	/** @brief Clears the value of EmailListIds_Optional and sets EmailListIds_IsSet to false */
 	void ClearEmailListIds() { EmailListIds_IsSet = false;  }
+	/** @brief Checks whether EmailListIds_Optional has been set */
+	bool IsEmailListIdsSet() const { return EmailListIds_IsSet; }
 };
 
 /** @} */

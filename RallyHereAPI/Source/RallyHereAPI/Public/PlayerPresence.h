@@ -62,8 +62,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresence : public FRHAPI_Model
 	void SetStatus(const ERHAPI_OnlineStatus& NewValue) { Status_Optional = NewValue; Status_IsSet = true;  }
 	/** @brief Sets the value of Status_Optional and also sets Status_IsSet to true using move semantics */
 	void SetStatus(ERHAPI_OnlineStatus&& NewValue) { Status_Optional = NewValue; Status_IsSet = true;  }
-	 /** @brief Clears the value of Status_Optional and sets Status_IsSet to false */
+	/** @brief Clears the value of Status_Optional and sets Status_IsSet to false */
 	void ClearStatus() { Status_IsSet = false;  }
+	/** @brief Checks whether Status_Optional has been set */
+	bool IsStatusSet() const { return Status_IsSet; }
 
 	/** @brief Optional custom message to display alongside the user's online status */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -87,8 +89,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresence : public FRHAPI_Model
 	void SetMessage(const FString& NewValue) { Message_Optional = NewValue; Message_IsSet = true;  }
 	/** @brief Sets the value of Message_Optional and also sets Message_IsSet to true using move semantics */
 	void SetMessage(FString&& NewValue) { Message_Optional = NewValue; Message_IsSet = true;  }
-	 /** @brief Clears the value of Message_Optional and sets Message_IsSet to false */
+	/** @brief Clears the value of Message_Optional and sets Message_IsSet to false */
 	void ClearMessage() { Message_Optional = TEXT(""); Message_IsSet = false;  }
+	/** @brief Checks whether Message_Optional has been set */
+	bool IsMessageSet() const { return Message_IsSet; }
 	/** @brief Returns true if Message_Optional is set and matches the default value */
 	bool IsMessageDefaultValue() const { return Message_IsSet && Message_Optional == TEXT(""); }
 	/** @brief Sets the value of Message_Optional to its default and also sets Message_IsSet to true */
@@ -140,8 +144,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresence : public FRHAPI_Model
 	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 
 	/** @brief Player ID for the player if it was provided as part of the request */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -165,8 +171,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresence : public FRHAPI_Model
 	void SetPlayerId(const int32& NewValue) { PlayerId_Optional = NewValue; PlayerId_IsSet = true;  }
 	/** @brief Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true using move semantics */
 	void SetPlayerId(int32&& NewValue) { PlayerId_Optional = NewValue; PlayerId_IsSet = true;  }
-	 /** @brief Clears the value of PlayerId_Optional and sets PlayerId_IsSet to false */
+	/** @brief Clears the value of PlayerId_Optional and sets PlayerId_IsSet to false */
 	void ClearPlayerId() { PlayerId_Optional = 0; PlayerId_IsSet = false;  }
+	/** @brief Checks whether PlayerId_Optional has been set */
+	bool IsPlayerIdSet() const { return PlayerId_IsSet; }
 	/** @brief Returns true if PlayerId_Optional is set and matches the default value */
 	bool IsPlayerIdDefaultValue() const { return PlayerId_IsSet && PlayerId_Optional == 0; }
 	/** @brief Sets the value of PlayerId_Optional to its default and also sets PlayerId_IsSet to true */
@@ -206,8 +214,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresence : public FRHAPI_Model
 	void SetDoNotDisturb(const bool& NewValue) { DoNotDisturb_Optional = NewValue; DoNotDisturb_IsSet = true;  }
 	/** @brief Sets the value of DoNotDisturb_Optional and also sets DoNotDisturb_IsSet to true using move semantics */
 	void SetDoNotDisturb(bool&& NewValue) { DoNotDisturb_Optional = NewValue; DoNotDisturb_IsSet = true;  }
-	 /** @brief Clears the value of DoNotDisturb_Optional and sets DoNotDisturb_IsSet to false */
+	/** @brief Clears the value of DoNotDisturb_Optional and sets DoNotDisturb_IsSet to false */
 	void ClearDoNotDisturb() { DoNotDisturb_Optional = false; DoNotDisturb_IsSet = false;  }
+	/** @brief Checks whether DoNotDisturb_Optional has been set */
+	bool IsDoNotDisturbSet() const { return DoNotDisturb_IsSet; }
 	/** @brief Returns true if DoNotDisturb_Optional is set and matches the default value */
 	bool IsDoNotDisturbDefaultValue() const { return DoNotDisturb_IsSet && DoNotDisturb_Optional == false; }
 	/** @brief Sets the value of DoNotDisturb_Optional to its default and also sets DoNotDisturb_IsSet to true */
@@ -235,8 +245,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresence : public FRHAPI_Model
 	void SetLastSeen(const FDateTime& NewValue) { LastSeen_Optional = NewValue; LastSeen_IsSet = true;  }
 	/** @brief Sets the value of LastSeen_Optional and also sets LastSeen_IsSet to true using move semantics */
 	void SetLastSeen(FDateTime&& NewValue) { LastSeen_Optional = NewValue; LastSeen_IsSet = true;  }
-	 /** @brief Clears the value of LastSeen_Optional and sets LastSeen_IsSet to false */
+	/** @brief Clears the value of LastSeen_Optional and sets LastSeen_IsSet to false */
 	void ClearLastSeen() { LastSeen_IsSet = false;  }
+	/** @brief Checks whether LastSeen_Optional has been set */
+	bool IsLastSeenSet() const { return LastSeen_IsSet; }
 };
 
 /** @} */

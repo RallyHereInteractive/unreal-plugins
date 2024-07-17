@@ -73,8 +73,10 @@ struct RALLYHEREAPI_API FRHAPI_DeserterConfig : public FRHAPI_Model
 	void SetLastClearedTimestamp(const FDateTime& NewValue) { LastClearedTimestamp_Optional = NewValue; LastClearedTimestamp_IsSet = true;  }
 	/** @brief Sets the value of LastClearedTimestamp_Optional and also sets LastClearedTimestamp_IsSet to true using move semantics */
 	void SetLastClearedTimestamp(FDateTime&& NewValue) { LastClearedTimestamp_Optional = NewValue; LastClearedTimestamp_IsSet = true;  }
-	 /** @brief Clears the value of LastClearedTimestamp_Optional and sets LastClearedTimestamp_IsSet to false */
+	/** @brief Clears the value of LastClearedTimestamp_Optional and sets LastClearedTimestamp_IsSet to false */
 	void ClearLastClearedTimestamp() { LastClearedTimestamp_IsSet = false;  }
+	/** @brief Checks whether LastClearedTimestamp_Optional has been set */
+	bool IsLastClearedTimestampSet() const { return LastClearedTimestamp_IsSet; }
 };
 
 /** @} */

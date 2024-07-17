@@ -61,8 +61,10 @@ struct RALLYHEREAPI_API FRHAPI_PersonInfoResponse : public FRHAPI_Model
 	void SetPersonId(const FGuid& NewValue) { PersonId_Optional = NewValue; PersonId_IsSet = true;  }
 	/** @brief Sets the value of PersonId_Optional and also sets PersonId_IsSet to true using move semantics */
 	void SetPersonId(FGuid&& NewValue) { PersonId_Optional = NewValue; PersonId_IsSet = true;  }
-	 /** @brief Clears the value of PersonId_Optional and sets PersonId_IsSet to false */
+	/** @brief Clears the value of PersonId_Optional and sets PersonId_IsSet to false */
 	void ClearPersonId() { PersonId_IsSet = false;  }
+	/** @brief Checks whether PersonId_Optional has been set */
+	bool IsPersonIdSet() const { return PersonId_IsSet; }
 
 	/** @brief Active player ID, if the person has an active player. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -86,8 +88,10 @@ struct RALLYHEREAPI_API FRHAPI_PersonInfoResponse : public FRHAPI_Model
 	void SetActivePlayerId(const int32& NewValue) { ActivePlayerId_Optional = NewValue; ActivePlayerId_IsSet = true;  }
 	/** @brief Sets the value of ActivePlayerId_Optional and also sets ActivePlayerId_IsSet to true using move semantics */
 	void SetActivePlayerId(int32&& NewValue) { ActivePlayerId_Optional = NewValue; ActivePlayerId_IsSet = true;  }
-	 /** @brief Clears the value of ActivePlayerId_Optional and sets ActivePlayerId_IsSet to false */
+	/** @brief Clears the value of ActivePlayerId_Optional and sets ActivePlayerId_IsSet to false */
 	void ClearActivePlayerId() { ActivePlayerId_Optional = 0; ActivePlayerId_IsSet = false;  }
+	/** @brief Checks whether ActivePlayerId_Optional has been set */
+	bool IsActivePlayerIdSet() const { return ActivePlayerId_IsSet; }
 	/** @brief Returns true if ActivePlayerId_Optional is set and matches the default value */
 	bool IsActivePlayerIdDefaultValue() const { return ActivePlayerId_IsSet && ActivePlayerId_Optional == 0; }
 	/** @brief Sets the value of ActivePlayerId_Optional to its default and also sets ActivePlayerId_IsSet to true */
@@ -115,8 +119,10 @@ struct RALLYHEREAPI_API FRHAPI_PersonInfoResponse : public FRHAPI_Model
 	void SetEmail(const FString& NewValue) { Email_Optional = NewValue; Email_IsSet = true;  }
 	/** @brief Sets the value of Email_Optional and also sets Email_IsSet to true using move semantics */
 	void SetEmail(FString&& NewValue) { Email_Optional = NewValue; Email_IsSet = true;  }
-	 /** @brief Clears the value of Email_Optional and sets Email_IsSet to false */
+	/** @brief Clears the value of Email_Optional and sets Email_IsSet to false */
 	void ClearEmail() { Email_IsSet = false;  }
+	/** @brief Checks whether Email_Optional has been set */
+	bool IsEmailSet() const { return Email_IsSet; }
 };
 
 /** @} */

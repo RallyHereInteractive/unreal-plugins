@@ -63,8 +63,10 @@ struct RALLYHEREAPI_API FRHAPI_InventoryBucketUseRuleSet : public FRHAPI_Model
 	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 
 	TMap<FString, TArray<ERHAPI_InventoryBucket>> Rules_Optional{  };
 	/** @brief true if Rules_Optional has been set to a value */
@@ -86,8 +88,10 @@ struct RALLYHEREAPI_API FRHAPI_InventoryBucketUseRuleSet : public FRHAPI_Model
 	void SetRules(const TMap<FString, TArray<ERHAPI_InventoryBucket>>& NewValue) { Rules_Optional = NewValue; Rules_IsSet = true;  }
 	/** @brief Sets the value of Rules_Optional and also sets Rules_IsSet to true using move semantics */
 	void SetRules(TMap<FString, TArray<ERHAPI_InventoryBucket>>&& NewValue) { Rules_Optional = NewValue; Rules_IsSet = true;  }
-	 /** @brief Clears the value of Rules_Optional and sets Rules_IsSet to false */
+	/** @brief Clears the value of Rules_Optional and sets Rules_IsSet to false */
 	void ClearRules() { Rules_IsSet = false;  }
+	/** @brief Checks whether Rules_Optional has been set */
+	bool IsRulesSet() const { return Rules_IsSet; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_CacheInfo CacheInfo_Optional{  };
@@ -110,8 +114,10 @@ struct RALLYHEREAPI_API FRHAPI_InventoryBucketUseRuleSet : public FRHAPI_Model
 	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
 	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
-	 /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
+	/** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
 	void ClearCacheInfo() { CacheInfo_IsSet = false;  }
+	/** @brief Checks whether CacheInfo_Optional has been set */
+	bool IsCacheInfoSet() const { return CacheInfo_IsSet; }
 };
 
 /** @} */

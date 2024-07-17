@@ -75,8 +75,10 @@ struct RALLYHEREAPI_API FRHAPI_UpdateBackfillRequest : public FRHAPI_Model
 	void SetAdditionalJoinParams(const FRHAPI_AdditionalJoinParams& NewValue) { AdditionalJoinParams_Optional = NewValue; AdditionalJoinParams_IsSet = true;  }
 	/** @brief Sets the value of AdditionalJoinParams_Optional and also sets AdditionalJoinParams_IsSet to true using move semantics */
 	void SetAdditionalJoinParams(FRHAPI_AdditionalJoinParams&& NewValue) { AdditionalJoinParams_Optional = NewValue; AdditionalJoinParams_IsSet = true;  }
-	 /** @brief Clears the value of AdditionalJoinParams_Optional and sets AdditionalJoinParams_IsSet to false */
+	/** @brief Clears the value of AdditionalJoinParams_Optional and sets AdditionalJoinParams_IsSet to false */
 	void ClearAdditionalJoinParams() { AdditionalJoinParams_IsSet = false;  }
+	/** @brief Checks whether AdditionalJoinParams_Optional has been set */
+	bool IsAdditionalJoinParamsSet() const { return AdditionalJoinParams_IsSet; }
 
 	/** @brief The teams and number of players that need to be backfilled. Leaving this out (or supplying an empty list) is treated as no players are currently required */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -100,8 +102,10 @@ struct RALLYHEREAPI_API FRHAPI_UpdateBackfillRequest : public FRHAPI_Model
 	void SetTeams(const TArray<FRHAPI_BackfillTeam>& NewValue) { Teams_Optional = NewValue; Teams_IsSet = true;  }
 	/** @brief Sets the value of Teams_Optional and also sets Teams_IsSet to true using move semantics */
 	void SetTeams(TArray<FRHAPI_BackfillTeam>&& NewValue) { Teams_Optional = NewValue; Teams_IsSet = true;  }
-	 /** @brief Clears the value of Teams_Optional and sets Teams_IsSet to false */
+	/** @brief Clears the value of Teams_Optional and sets Teams_IsSet to false */
 	void ClearTeams() { Teams_IsSet = false;  }
+	/** @brief Checks whether Teams_Optional has been set */
+	bool IsTeamsSet() const { return Teams_IsSet; }
 };
 
 /** @} */

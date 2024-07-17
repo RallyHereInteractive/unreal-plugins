@@ -90,8 +90,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionTeam : public FRHAPI_Model
 	void SetTeamId(const int32& NewValue) { TeamId_Optional = NewValue; TeamId_IsSet = true;  }
 	/** @brief Sets the value of TeamId_Optional and also sets TeamId_IsSet to true using move semantics */
 	void SetTeamId(int32&& NewValue) { TeamId_Optional = NewValue; TeamId_IsSet = true;  }
-	 /** @brief Clears the value of TeamId_Optional and sets TeamId_IsSet to false */
+	/** @brief Clears the value of TeamId_Optional and sets TeamId_IsSet to false */
 	void ClearTeamId() { TeamId_Optional = 0; TeamId_IsSet = false;  }
+	/** @brief Checks whether TeamId_Optional has been set */
+	bool IsTeamIdSet() const { return TeamId_IsSet; }
 	/** @brief Returns true if TeamId_Optional is set and matches the default value */
 	bool IsTeamIdDefaultValue() const { return TeamId_IsSet && TeamId_Optional == 0; }
 	/** @brief Sets the value of TeamId_Optional to its default and also sets TeamId_IsSet to true */
@@ -119,8 +121,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionTeam : public FRHAPI_Model
 	void SetTicketIds(const TArray<FString>& NewValue) { TicketIds_Optional = NewValue; TicketIds_IsSet = true;  }
 	/** @brief Sets the value of TicketIds_Optional and also sets TicketIds_IsSet to true using move semantics */
 	void SetTicketIds(TArray<FString>&& NewValue) { TicketIds_Optional = NewValue; TicketIds_IsSet = true;  }
-	 /** @brief Clears the value of TicketIds_Optional and sets TicketIds_IsSet to false */
+	/** @brief Clears the value of TicketIds_Optional and sets TicketIds_IsSet to false */
 	void ClearTicketIds() { TicketIds_IsSet = false;  }
+	/** @brief Checks whether TicketIds_Optional has been set */
+	bool IsTicketIdsSet() const { return TicketIds_IsSet; }
 
 	/** @brief Custom data about this team */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -144,8 +148,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionTeam : public FRHAPI_Model
 	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 };
 
 /** @} */

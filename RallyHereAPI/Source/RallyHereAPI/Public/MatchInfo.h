@@ -85,8 +85,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchInfo : public FRHAPI_Model
 	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 
 	/** @brief List of tickets that were assigned to this match if created by matchmaking */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -110,8 +112,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchInfo : public FRHAPI_Model
 	void SetTicketIds(const TArray<FString>& NewValue) { TicketIds_Optional = NewValue; TicketIds_IsSet = true;  }
 	/** @brief Sets the value of TicketIds_Optional and also sets TicketIds_IsSet to true using move semantics */
 	void SetTicketIds(TArray<FString>&& NewValue) { TicketIds_Optional = NewValue; TicketIds_IsSet = true;  }
-	 /** @brief Clears the value of TicketIds_Optional and sets TicketIds_IsSet to false */
+	/** @brief Clears the value of TicketIds_Optional and sets TicketIds_IsSet to false */
 	void ClearTicketIds() { TicketIds_IsSet = false;  }
+	/** @brief Checks whether TicketIds_Optional has been set */
+	bool IsTicketIdsSet() const { return TicketIds_IsSet; }
 };
 
 /** @} */

@@ -73,8 +73,10 @@ struct RALLYHEREAPI_API FRHAPI_BodyBeginNewSession : public FRHAPI_Model
 	void SetDeviceId(const FString& NewValue) { DeviceId_Optional = NewValue; DeviceId_IsSet = true;  }
 	/** @brief Sets the value of DeviceId_Optional and also sets DeviceId_IsSet to true using move semantics */
 	void SetDeviceId(FString&& NewValue) { DeviceId_Optional = NewValue; DeviceId_IsSet = true;  }
-	 /** @brief Clears the value of DeviceId_Optional and sets DeviceId_IsSet to false */
+	/** @brief Clears the value of DeviceId_Optional and sets DeviceId_IsSet to false */
 	void ClearDeviceId() { DeviceId_IsSet = false;  }
+	/** @brief Checks whether DeviceId_Optional has been set */
+	bool IsDeviceIdSet() const { return DeviceId_IsSet; }
 };
 
 /** @} */

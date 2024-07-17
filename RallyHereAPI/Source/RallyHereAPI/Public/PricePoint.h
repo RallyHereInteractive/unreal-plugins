@@ -63,8 +63,10 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
 	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 
 	/** @brief The name of the Price Point. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -88,8 +90,10 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
 	void SetName(const FString& NewValue) { Name_Optional = NewValue; Name_IsSet = true;  }
 	/** @brief Sets the value of Name_Optional and also sets Name_IsSet to true using move semantics */
 	void SetName(FString&& NewValue) { Name_Optional = NewValue; Name_IsSet = true;  }
-	 /** @brief Clears the value of Name_Optional and sets Name_IsSet to false */
+	/** @brief Clears the value of Name_Optional and sets Name_IsSet to false */
 	void ClearName() { Name_IsSet = false;  }
+	/** @brief Checks whether Name_Optional has been set */
+	bool IsNameSet() const { return Name_IsSet; }
 
 	/** @brief Forces the quantity to be equal to a quantity on a Price Breakpoint. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -113,8 +117,10 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
 	void SetStrictFlag(const bool& NewValue) { StrictFlag_Optional = NewValue; StrictFlag_IsSet = true;  }
 	/** @brief Sets the value of StrictFlag_Optional and also sets StrictFlag_IsSet to true using move semantics */
 	void SetStrictFlag(bool&& NewValue) { StrictFlag_Optional = NewValue; StrictFlag_IsSet = true;  }
-	 /** @brief Clears the value of StrictFlag_Optional and sets StrictFlag_IsSet to false */
+	/** @brief Clears the value of StrictFlag_Optional and sets StrictFlag_IsSet to false */
 	void ClearStrictFlag() { StrictFlag_Optional = false; StrictFlag_IsSet = false;  }
+	/** @brief Checks whether StrictFlag_Optional has been set */
+	bool IsStrictFlagSet() const { return StrictFlag_IsSet; }
 	/** @brief Returns true if StrictFlag_Optional is set and matches the default value */
 	bool IsStrictFlagDefaultValue() const { return StrictFlag_IsSet && StrictFlag_Optional == false; }
 	/** @brief Sets the value of StrictFlag_Optional to its default and also sets StrictFlag_IsSet to true */
@@ -142,8 +148,10 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
 	void SetCapFlag(const bool& NewValue) { CapFlag_Optional = NewValue; CapFlag_IsSet = true;  }
 	/** @brief Sets the value of CapFlag_Optional and also sets CapFlag_IsSet to true using move semantics */
 	void SetCapFlag(bool&& NewValue) { CapFlag_Optional = NewValue; CapFlag_IsSet = true;  }
-	 /** @brief Clears the value of CapFlag_Optional and sets CapFlag_IsSet to false */
+	/** @brief Clears the value of CapFlag_Optional and sets CapFlag_IsSet to false */
 	void ClearCapFlag() { CapFlag_Optional = false; CapFlag_IsSet = false;  }
+	/** @brief Checks whether CapFlag_Optional has been set */
+	bool IsCapFlagSet() const { return CapFlag_IsSet; }
 	/** @brief Returns true if CapFlag_Optional is set and matches the default value */
 	bool IsCapFlagDefaultValue() const { return CapFlag_IsSet && CapFlag_Optional == false; }
 	/** @brief Sets the value of CapFlag_Optional to its default and also sets CapFlag_IsSet to true */
@@ -171,8 +179,10 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
 	void SetCurrentBreakpoints(const TArray<FRHAPI_PriceBreakpoint>& NewValue) { CurrentBreakpoints_Optional = NewValue; CurrentBreakpoints_IsSet = true;  }
 	/** @brief Sets the value of CurrentBreakpoints_Optional and also sets CurrentBreakpoints_IsSet to true using move semantics */
 	void SetCurrentBreakpoints(TArray<FRHAPI_PriceBreakpoint>&& NewValue) { CurrentBreakpoints_Optional = NewValue; CurrentBreakpoints_IsSet = true;  }
-	 /** @brief Clears the value of CurrentBreakpoints_Optional and sets CurrentBreakpoints_IsSet to false */
+	/** @brief Clears the value of CurrentBreakpoints_Optional and sets CurrentBreakpoints_IsSet to false */
 	void ClearCurrentBreakpoints() { CurrentBreakpoints_IsSet = false;  }
+	/** @brief Checks whether CurrentBreakpoints_Optional has been set */
+	bool IsCurrentBreakpointsSet() const { return CurrentBreakpoints_IsSet; }
 
 	/** @brief Previous Price Breakpoints. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -196,8 +206,10 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
 	void SetPreSaleBreakpoints(const TArray<FRHAPI_PriceBreakpoint>& NewValue) { PreSaleBreakpoints_Optional = NewValue; PreSaleBreakpoints_IsSet = true;  }
 	/** @brief Sets the value of PreSaleBreakpoints_Optional and also sets PreSaleBreakpoints_IsSet to true using move semantics */
 	void SetPreSaleBreakpoints(TArray<FRHAPI_PriceBreakpoint>&& NewValue) { PreSaleBreakpoints_Optional = NewValue; PreSaleBreakpoints_IsSet = true;  }
-	 /** @brief Clears the value of PreSaleBreakpoints_Optional and sets PreSaleBreakpoints_IsSet to false */
+	/** @brief Clears the value of PreSaleBreakpoints_Optional and sets PreSaleBreakpoints_IsSet to false */
 	void ClearPreSaleBreakpoints() { PreSaleBreakpoints_IsSet = false;  }
+	/** @brief Checks whether PreSaleBreakpoints_Optional has been set */
+	bool IsPreSaleBreakpointsSet() const { return PreSaleBreakpoints_IsSet; }
 
 	/** @brief Cache info for the Price Point. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -221,8 +233,10 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
 	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
 	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
-	 /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
+	/** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
 	void ClearCacheInfo() { CacheInfo_IsSet = false;  }
+	/** @brief Checks whether CacheInfo_Optional has been set */
+	bool IsCacheInfoSet() const { return CacheInfo_IsSet; }
 };
 
 /** @} */

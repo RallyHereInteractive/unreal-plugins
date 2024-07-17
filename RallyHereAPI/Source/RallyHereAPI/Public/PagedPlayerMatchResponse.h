@@ -62,8 +62,10 @@ struct RALLYHEREAPI_API FRHAPI_PagedPlayerMatchResponse : public FRHAPI_Model
 	void SetPlayerMatches(const TArray<FRHAPI_MatchPlayerWithMatch>& NewValue) { PlayerMatches_Optional = NewValue; PlayerMatches_IsSet = true;  }
 	/** @brief Sets the value of PlayerMatches_Optional and also sets PlayerMatches_IsSet to true using move semantics */
 	void SetPlayerMatches(TArray<FRHAPI_MatchPlayerWithMatch>&& NewValue) { PlayerMatches_Optional = NewValue; PlayerMatches_IsSet = true;  }
-	 /** @brief Clears the value of PlayerMatches_Optional and sets PlayerMatches_IsSet to false */
+	/** @brief Clears the value of PlayerMatches_Optional and sets PlayerMatches_IsSet to false */
 	void ClearPlayerMatches() { PlayerMatches_IsSet = false;  }
+	/** @brief Checks whether PlayerMatches_Optional has been set */
+	bool IsPlayerMatchesSet() const { return PlayerMatches_IsSet; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Cursor_Optional{  };
@@ -89,10 +91,13 @@ struct RALLYHEREAPI_API FRHAPI_PagedPlayerMatchResponse : public FRHAPI_Model
 	void SetCursor(const FString& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true; Cursor_IsNull = false; }
 	/** @brief Sets the value of Cursor_Optional and also sets Cursor_IsSet to true using move semantics */
 	void SetCursor(FString&& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true; Cursor_IsNull = false; }
-	 /** @brief Clears the value of Cursor_Optional and sets Cursor_IsSet to false */
+	/** @brief Clears the value of Cursor_Optional and sets Cursor_IsSet to false */
 	void ClearCursor() { Cursor_IsSet = false; Cursor_IsNull = false; }
+	/** @brief Checks whether Cursor_Optional has been set */
+	bool IsCursorSet() const { return Cursor_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
 	void SetCursorToNull() { Cursor_IsSet = true; Cursor_IsNull = true; }
+	/** @brief Checks whether Cursor_Optional is set to null */
 	bool IsCursorNull() const { return Cursor_IsSet && Cursor_IsNull; }
 };
 

@@ -74,8 +74,10 @@ struct RALLYHEREAPI_API FRHAPI_InventorySessionCreateResponse : public FRHAPI_Mo
 	void SetSessionPlatform(const ERHAPI_Platform& NewValue) { SessionPlatform_Optional = NewValue; SessionPlatform_IsSet = true;  }
 	/** @brief Sets the value of SessionPlatform_Optional and also sets SessionPlatform_IsSet to true using move semantics */
 	void SetSessionPlatform(ERHAPI_Platform&& NewValue) { SessionPlatform_Optional = NewValue; SessionPlatform_IsSet = true;  }
-	 /** @brief Clears the value of SessionPlatform_Optional and sets SessionPlatform_IsSet to false */
+	/** @brief Clears the value of SessionPlatform_Optional and sets SessionPlatform_IsSet to false */
 	void ClearSessionPlatform() { SessionPlatform_IsSet = false;  }
+	/** @brief Checks whether SessionPlatform_Optional has been set */
+	bool IsSessionPlatformSet() const { return SessionPlatform_IsSet; }
 
 	/** @brief The ID of the Order generated for any Loot given during the creation of the Inventory Session. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -99,8 +101,10 @@ struct RALLYHEREAPI_API FRHAPI_InventorySessionCreateResponse : public FRHAPI_Mo
 	void SetOrderId(const FString& NewValue) { OrderId_Optional = NewValue; OrderId_IsSet = true;  }
 	/** @brief Sets the value of OrderId_Optional and also sets OrderId_IsSet to true using move semantics */
 	void SetOrderId(FString&& NewValue) { OrderId_Optional = NewValue; OrderId_IsSet = true;  }
-	 /** @brief Clears the value of OrderId_Optional and sets OrderId_IsSet to false */
+	/** @brief Clears the value of OrderId_Optional and sets OrderId_IsSet to false */
 	void ClearOrderId() { OrderId_IsSet = false;  }
+	/** @brief Checks whether OrderId_Optional has been set */
+	bool IsOrderIdSet() const { return OrderId_IsSet; }
 };
 
 /** @} */

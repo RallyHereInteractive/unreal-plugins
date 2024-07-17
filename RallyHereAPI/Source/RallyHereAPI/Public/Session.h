@@ -93,8 +93,10 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
 	void SetInstance(const FRHAPI_InstanceInfo& NewValue) { Instance_Optional = NewValue; Instance_IsSet = true;  }
 	/** @brief Sets the value of Instance_Optional and also sets Instance_IsSet to true using move semantics */
 	void SetInstance(FRHAPI_InstanceInfo&& NewValue) { Instance_Optional = NewValue; Instance_IsSet = true;  }
-	 /** @brief Clears the value of Instance_Optional and sets Instance_IsSet to false */
+	/** @brief Clears the value of Instance_Optional and sets Instance_IsSet to false */
 	void ClearInstance() { Instance_IsSet = false;  }
+	/** @brief Checks whether Instance_Optional has been set */
+	bool IsInstanceSet() const { return Instance_IsSet; }
 
 	/** @brief DEPRECATED Info about the current match in the instance */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -118,8 +120,10 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
 	void SetMatch(const FRHAPI_MatchInfo& NewValue) { Match_Optional = NewValue; Match_IsSet = true;  }
 	/** @brief Sets the value of Match_Optional and also sets Match_IsSet to true using move semantics */
 	void SetMatch(FRHAPI_MatchInfo&& NewValue) { Match_Optional = NewValue; Match_IsSet = true;  }
-	 /** @brief Clears the value of Match_Optional and sets Match_IsSet to false */
+	/** @brief Clears the value of Match_Optional and sets Match_IsSet to false */
 	void ClearMatch() { Match_IsSet = false;  }
+	/** @brief Checks whether Match_Optional has been set */
+	bool IsMatchSet() const { return Match_IsSet; }
 
 	/** @brief Info about the matchmaking results that resulted in this session */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -143,8 +147,10 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
 	void SetMatchmakingResults(const FRHAPI_MatchmakingResults& NewValue) { MatchmakingResults_Optional = NewValue; MatchmakingResults_IsSet = true;  }
 	/** @brief Sets the value of MatchmakingResults_Optional and also sets MatchmakingResults_IsSet to true using move semantics */
 	void SetMatchmakingResults(FRHAPI_MatchmakingResults&& NewValue) { MatchmakingResults_Optional = NewValue; MatchmakingResults_IsSet = true;  }
-	 /** @brief Clears the value of MatchmakingResults_Optional and sets MatchmakingResults_IsSet to false */
+	/** @brief Clears the value of MatchmakingResults_Optional and sets MatchmakingResults_IsSet to false */
 	void ClearMatchmakingResults() { MatchmakingResults_IsSet = false;  }
+	/** @brief Checks whether MatchmakingResults_Optional has been set */
+	bool IsMatchmakingResultsSet() const { return MatchmakingResults_IsSet; }
 
 	/** @brief Info about the matchmaking state of the session, if it is in the process of matchmaking */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -168,8 +174,10 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
 	void SetMatchmaking(const FRHAPI_MatchmakingInfo& NewValue) { Matchmaking_Optional = NewValue; Matchmaking_IsSet = true;  }
 	/** @brief Sets the value of Matchmaking_Optional and also sets Matchmaking_IsSet to true using move semantics */
 	void SetMatchmaking(FRHAPI_MatchmakingInfo&& NewValue) { Matchmaking_Optional = NewValue; Matchmaking_IsSet = true;  }
-	 /** @brief Clears the value of Matchmaking_Optional and sets Matchmaking_IsSet to false */
+	/** @brief Clears the value of Matchmaking_Optional and sets Matchmaking_IsSet to false */
 	void ClearMatchmaking() { Matchmaking_IsSet = false;  }
+	/** @brief Checks whether Matchmaking_Optional has been set */
+	bool IsMatchmakingSet() const { return Matchmaking_IsSet; }
 
 	/** @brief Info about the open-match backfill object for the session */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -193,8 +201,10 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
 	void SetBackfill(const FRHAPI_BackfillInfo& NewValue) { Backfill_Optional = NewValue; Backfill_IsSet = true;  }
 	/** @brief Sets the value of Backfill_Optional and also sets Backfill_IsSet to true using move semantics */
 	void SetBackfill(FRHAPI_BackfillInfo&& NewValue) { Backfill_Optional = NewValue; Backfill_IsSet = true;  }
-	 /** @brief Clears the value of Backfill_Optional and sets Backfill_IsSet to false */
+	/** @brief Clears the value of Backfill_Optional and sets Backfill_IsSet to false */
 	void ClearBackfill() { Backfill_IsSet = false;  }
+	/** @brief Checks whether Backfill_Optional has been set */
+	bool IsBackfillSet() const { return Backfill_IsSet; }
 
 	/** @brief Info about the browser state of the session */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -218,8 +228,10 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
 	void SetBrowser(const FRHAPI_BrowserInfo& NewValue) { Browser_Optional = NewValue; Browser_IsSet = true;  }
 	/** @brief Sets the value of Browser_Optional and also sets Browser_IsSet to true using move semantics */
 	void SetBrowser(FRHAPI_BrowserInfo&& NewValue) { Browser_Optional = NewValue; Browser_IsSet = true;  }
-	 /** @brief Clears the value of Browser_Optional and sets Browser_IsSet to false */
+	/** @brief Clears the value of Browser_Optional and sets Browser_IsSet to false */
 	void ClearBrowser() { Browser_IsSet = false;  }
+	/** @brief Checks whether Browser_Optional has been set */
+	bool IsBrowserSet() const { return Browser_IsSet; }
 
 	/** @brief Is this session freely joinable by players without an invite? */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -271,8 +283,10 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
 	void SetPlatformSession(const TArray<FRHAPI_PlatformSession>& NewValue) { PlatformSession_Optional = NewValue; PlatformSession_IsSet = true;  }
 	/** @brief Sets the value of PlatformSession_Optional and also sets PlatformSession_IsSet to true using move semantics */
 	void SetPlatformSession(TArray<FRHAPI_PlatformSession>&& NewValue) { PlatformSession_Optional = NewValue; PlatformSession_IsSet = true;  }
-	 /** @brief Clears the value of PlatformSession_Optional and sets PlatformSession_IsSet to false */
+	/** @brief Clears the value of PlatformSession_Optional and sets PlatformSession_IsSet to false */
 	void ClearPlatformSession() { PlatformSession_IsSet = false;  }
+	/** @brief Checks whether PlatformSession_Optional has been set */
+	bool IsPlatformSessionSet() const { return PlatformSession_IsSet; }
 
 	/** @brief Leader Player or instance defined custom data about this session */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -296,8 +310,10 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
 	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -333,8 +349,10 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
 	void SetRegionId(const FString& NewValue) { RegionId_Optional = NewValue; RegionId_IsSet = true;  }
 	/** @brief Sets the value of RegionId_Optional and also sets RegionId_IsSet to true using move semantics */
 	void SetRegionId(FString&& NewValue) { RegionId_Optional = NewValue; RegionId_IsSet = true;  }
-	 /** @brief Clears the value of RegionId_Optional and sets RegionId_IsSet to false */
+	/** @brief Clears the value of RegionId_Optional and sets RegionId_IsSet to false */
 	void ClearRegionId() { RegionId_IsSet = false;  }
+	/** @brief Checks whether RegionId_Optional has been set */
+	bool IsRegionIdSet() const { return RegionId_IsSet; }
 
 	/** @brief Flag of whether or not this session was created by matchmaking or not */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -358,8 +376,10 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
 	void SetCreatedByMatchmaking(const bool& NewValue) { CreatedByMatchmaking_Optional = NewValue; CreatedByMatchmaking_IsSet = true;  }
 	/** @brief Sets the value of CreatedByMatchmaking_Optional and also sets CreatedByMatchmaking_IsSet to true using move semantics */
 	void SetCreatedByMatchmaking(bool&& NewValue) { CreatedByMatchmaking_Optional = NewValue; CreatedByMatchmaking_IsSet = true;  }
-	 /** @brief Clears the value of CreatedByMatchmaking_Optional and sets CreatedByMatchmaking_IsSet to false */
+	/** @brief Clears the value of CreatedByMatchmaking_Optional and sets CreatedByMatchmaking_IsSet to false */
 	void ClearCreatedByMatchmaking() { CreatedByMatchmaking_Optional = false; CreatedByMatchmaking_IsSet = false;  }
+	/** @brief Checks whether CreatedByMatchmaking_Optional has been set */
+	bool IsCreatedByMatchmakingSet() const { return CreatedByMatchmaking_IsSet; }
 	/** @brief Returns true if CreatedByMatchmaking_Optional is set and matches the default value */
 	bool IsCreatedByMatchmakingDefaultValue() const { return CreatedByMatchmaking_IsSet && CreatedByMatchmaking_Optional == false; }
 	/** @brief Sets the value of CreatedByMatchmaking_Optional to its default and also sets CreatedByMatchmaking_IsSet to true */

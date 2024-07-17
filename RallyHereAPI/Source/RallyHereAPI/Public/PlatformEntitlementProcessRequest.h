@@ -124,8 +124,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessRequest : public FRHAPI
 	void SetEntitlements(const TArray<FRHAPI_PlatformEntitlement>& NewValue) { Entitlements_Optional = NewValue; Entitlements_IsSet = true;  }
 	/** @brief Sets the value of Entitlements_Optional and also sets Entitlements_IsSet to true using move semantics */
 	void SetEntitlements(TArray<FRHAPI_PlatformEntitlement>&& NewValue) { Entitlements_Optional = NewValue; Entitlements_IsSet = true;  }
-	 /** @brief Clears the value of Entitlements_Optional and sets Entitlements_IsSet to false */
+	/** @brief Clears the value of Entitlements_Optional and sets Entitlements_IsSet to false */
 	void ClearEntitlements() { Entitlements_IsSet = false;  }
+	/** @brief Checks whether Entitlements_Optional has been set */
+	bool IsEntitlementsSet() const { return Entitlements_IsSet; }
 };
 
 /** @} */

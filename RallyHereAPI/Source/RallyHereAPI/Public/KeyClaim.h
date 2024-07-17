@@ -62,8 +62,10 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
 	void SetPortalId(const ERHAPI_Portal& NewValue) { PortalId_Optional = NewValue; PortalId_IsSet = true;  }
 	/** @brief Sets the value of PortalId_Optional and also sets PortalId_IsSet to true using move semantics */
 	void SetPortalId(ERHAPI_Portal&& NewValue) { PortalId_Optional = NewValue; PortalId_IsSet = true;  }
-	 /** @brief Clears the value of PortalId_Optional and sets PortalId_IsSet to false */
+	/** @brief Clears the value of PortalId_Optional and sets PortalId_IsSet to false */
 	void ClearPortalId() { PortalId_IsSet = false;  }
+	/** @brief Checks whether PortalId_Optional has been set */
+	bool IsPortalIdSet() const { return PortalId_IsSet; }
 
 	/** @brief The Platform's unique identifier for the player */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -87,8 +89,10 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
 	void SetPortalUserId(const FString& NewValue) { PortalUserId_Optional = NewValue; PortalUserId_IsSet = true;  }
 	/** @brief Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true using move semantics */
 	void SetPortalUserId(FString&& NewValue) { PortalUserId_Optional = NewValue; PortalUserId_IsSet = true;  }
-	 /** @brief Clears the value of PortalUserId_Optional and sets PortalUserId_IsSet to false */
+	/** @brief Clears the value of PortalUserId_Optional and sets PortalUserId_IsSet to false */
 	void ClearPortalUserId() { PortalUserId_IsSet = false;  }
+	/** @brief Checks whether PortalUserId_Optional has been set */
+	bool IsPortalUserIdSet() const { return PortalUserId_IsSet; }
 
 	/** @brief The unique identifier for the KeyClaim */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -124,8 +128,10 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
 	void SetClaimed(const bool& NewValue) { Claimed_Optional = NewValue; Claimed_IsSet = true;  }
 	/** @brief Sets the value of Claimed_Optional and also sets Claimed_IsSet to true using move semantics */
 	void SetClaimed(bool&& NewValue) { Claimed_Optional = NewValue; Claimed_IsSet = true;  }
-	 /** @brief Clears the value of Claimed_Optional and sets Claimed_IsSet to false */
+	/** @brief Clears the value of Claimed_Optional and sets Claimed_IsSet to false */
 	void ClearClaimed() { Claimed_Optional = false; Claimed_IsSet = false;  }
+	/** @brief Checks whether Claimed_Optional has been set */
+	bool IsClaimedSet() const { return Claimed_IsSet; }
 	/** @brief Returns true if Claimed_Optional is set and matches the default value */
 	bool IsClaimedDefaultValue() const { return Claimed_IsSet && Claimed_Optional == false; }
 	/** @brief Sets the value of Claimed_Optional to its default and also sets Claimed_IsSet to true */
@@ -153,8 +159,10 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
 	void SetExternalKey(const FString& NewValue) { ExternalKey_Optional = NewValue; ExternalKey_IsSet = true;  }
 	/** @brief Sets the value of ExternalKey_Optional and also sets ExternalKey_IsSet to true using move semantics */
 	void SetExternalKey(FString&& NewValue) { ExternalKey_Optional = NewValue; ExternalKey_IsSet = true;  }
-	 /** @brief Clears the value of ExternalKey_Optional and sets ExternalKey_IsSet to false */
+	/** @brief Clears the value of ExternalKey_Optional and sets ExternalKey_IsSet to false */
 	void ClearExternalKey() { ExternalKey_IsSet = false;  }
+	/** @brief Checks whether ExternalKey_Optional has been set */
+	bool IsExternalKeySet() const { return ExternalKey_IsSet; }
 
 	/** @brief The unique identifier for the MarketingCampaign that the external key was claimed from */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -178,8 +186,10 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
 	void SetExternalKeyCampaignUuid(const FGuid& NewValue) { ExternalKeyCampaignUuid_Optional = NewValue; ExternalKeyCampaignUuid_IsSet = true;  }
 	/** @brief Sets the value of ExternalKeyCampaignUuid_Optional and also sets ExternalKeyCampaignUuid_IsSet to true using move semantics */
 	void SetExternalKeyCampaignUuid(FGuid&& NewValue) { ExternalKeyCampaignUuid_Optional = NewValue; ExternalKeyCampaignUuid_IsSet = true;  }
-	 /** @brief Clears the value of ExternalKeyCampaignUuid_Optional and sets ExternalKeyCampaignUuid_IsSet to false */
+	/** @brief Clears the value of ExternalKeyCampaignUuid_Optional and sets ExternalKeyCampaignUuid_IsSet to false */
 	void ClearExternalKeyCampaignUuid() { ExternalKeyCampaignUuid_IsSet = false;  }
+	/** @brief Checks whether ExternalKeyCampaignUuid_Optional has been set */
+	bool IsExternalKeyCampaignUuidSet() const { return ExternalKeyCampaignUuid_IsSet; }
 
 	/** @brief This can be used to allow the player to claim different types based on their preferrence. While we don't have requirement for what should contain, it must match a key type assigned to the external campaign. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -203,8 +213,10 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
 	void SetExternalKeyType(const FString& NewValue) { ExternalKeyType_Optional = NewValue; ExternalKeyType_IsSet = true;  }
 	/** @brief Sets the value of ExternalKeyType_Optional and also sets ExternalKeyType_IsSet to true using move semantics */
 	void SetExternalKeyType(FString&& NewValue) { ExternalKeyType_Optional = NewValue; ExternalKeyType_IsSet = true;  }
-	 /** @brief Clears the value of ExternalKeyType_Optional and sets ExternalKeyType_IsSet to false */
+	/** @brief Clears the value of ExternalKeyType_Optional and sets ExternalKeyType_IsSet to false */
 	void ClearExternalKeyType() { ExternalKeyType_IsSet = false;  }
+	/** @brief Checks whether ExternalKeyType_Optional has been set */
+	bool IsExternalKeyTypeSet() const { return ExternalKeyType_IsSet; }
 
 	/** @brief The time the KeyClaim was created */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -228,8 +240,10 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
 	void SetCreatedOn(const FString& NewValue) { CreatedOn_Optional = NewValue; CreatedOn_IsSet = true;  }
 	/** @brief Sets the value of CreatedOn_Optional and also sets CreatedOn_IsSet to true using move semantics */
 	void SetCreatedOn(FString&& NewValue) { CreatedOn_Optional = NewValue; CreatedOn_IsSet = true;  }
-	 /** @brief Clears the value of CreatedOn_Optional and sets CreatedOn_IsSet to false */
+	/** @brief Clears the value of CreatedOn_Optional and sets CreatedOn_IsSet to false */
 	void ClearCreatedOn() { CreatedOn_IsSet = false;  }
+	/** @brief Checks whether CreatedOn_Optional has been set */
+	bool IsCreatedOnSet() const { return CreatedOn_IsSet; }
 
 	/** @brief The time the KeyClaim was last modified */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -253,8 +267,10 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
 	void SetLastModifiedOn(const FString& NewValue) { LastModifiedOn_Optional = NewValue; LastModifiedOn_IsSet = true;  }
 	/** @brief Sets the value of LastModifiedOn_Optional and also sets LastModifiedOn_IsSet to true using move semantics */
 	void SetLastModifiedOn(FString&& NewValue) { LastModifiedOn_Optional = NewValue; LastModifiedOn_IsSet = true;  }
-	 /** @brief Clears the value of LastModifiedOn_Optional and sets LastModifiedOn_IsSet to false */
+	/** @brief Clears the value of LastModifiedOn_Optional and sets LastModifiedOn_IsSet to false */
 	void ClearLastModifiedOn() { LastModifiedOn_IsSet = false;  }
+	/** @brief Checks whether LastModifiedOn_Optional has been set */
+	bool IsLastModifiedOnSet() const { return LastModifiedOn_IsSet; }
 };
 
 /** @} */

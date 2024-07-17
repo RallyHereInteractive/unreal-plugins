@@ -64,8 +64,10 @@ struct RALLYHEREAPI_API FRHAPI_Vendor : public FRHAPI_Model
 	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 
 	/** @brief The Vendor UUID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -89,8 +91,10 @@ struct RALLYHEREAPI_API FRHAPI_Vendor : public FRHAPI_Model
 	void SetVendorUuid(const FGuid& NewValue) { VendorUuid_Optional = NewValue; VendorUuid_IsSet = true;  }
 	/** @brief Sets the value of VendorUuid_Optional and also sets VendorUuid_IsSet to true using move semantics */
 	void SetVendorUuid(FGuid&& NewValue) { VendorUuid_Optional = NewValue; VendorUuid_IsSet = true;  }
-	 /** @brief Clears the value of VendorUuid_Optional and sets VendorUuid_IsSet to false */
+	/** @brief Clears the value of VendorUuid_Optional and sets VendorUuid_IsSet to false */
 	void ClearVendorUuid() { VendorUuid_IsSet = false;  }
+	/** @brief Checks whether VendorUuid_Optional has been set */
+	bool IsVendorUuidSet() const { return VendorUuid_IsSet; }
 
 	/** @brief Determines how the Vendor fulfills the loot */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -114,8 +118,10 @@ struct RALLYHEREAPI_API FRHAPI_Vendor : public FRHAPI_Model
 	void SetType(const ERHAPI_VendorType& NewValue) { Type_Optional = NewValue; Type_IsSet = true;  }
 	/** @brief Sets the value of Type_Optional and also sets Type_IsSet to true using move semantics */
 	void SetType(ERHAPI_VendorType&& NewValue) { Type_Optional = NewValue; Type_IsSet = true;  }
-	 /** @brief Clears the value of Type_Optional and sets Type_IsSet to false */
+	/** @brief Clears the value of Type_Optional and sets Type_IsSet to false */
 	void ClearType() { Type_IsSet = false;  }
+	/** @brief Checks whether Type_Optional has been set */
+	bool IsTypeSet() const { return Type_IsSet; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 LegacyType_Optional{  };
@@ -138,8 +144,10 @@ struct RALLYHEREAPI_API FRHAPI_Vendor : public FRHAPI_Model
 	void SetLegacyType(const int32& NewValue) { LegacyType_Optional = NewValue; LegacyType_IsSet = true;  }
 	/** @brief Sets the value of LegacyType_Optional and also sets LegacyType_IsSet to true using move semantics */
 	void SetLegacyType(int32&& NewValue) { LegacyType_Optional = NewValue; LegacyType_IsSet = true;  }
-	 /** @brief Clears the value of LegacyType_Optional and sets LegacyType_IsSet to false */
+	/** @brief Clears the value of LegacyType_Optional and sets LegacyType_IsSet to false */
 	void ClearLegacyType() { LegacyType_Optional = 0; LegacyType_IsSet = false;  }
+	/** @brief Checks whether LegacyType_Optional has been set */
+	bool IsLegacyTypeSet() const { return LegacyType_IsSet; }
 	/** @brief Returns true if LegacyType_Optional is set and matches the default value */
 	bool IsLegacyTypeDefaultValue() const { return LegacyType_IsSet && LegacyType_Optional == 0; }
 	/** @brief Sets the value of LegacyType_Optional to its default and also sets LegacyType_IsSet to true */
@@ -166,8 +174,10 @@ struct RALLYHEREAPI_API FRHAPI_Vendor : public FRHAPI_Model
 	void SetLegacyConfigVersion(const int32& NewValue) { LegacyConfigVersion_Optional = NewValue; LegacyConfigVersion_IsSet = true;  }
 	/** @brief Sets the value of LegacyConfigVersion_Optional and also sets LegacyConfigVersion_IsSet to true using move semantics */
 	void SetLegacyConfigVersion(int32&& NewValue) { LegacyConfigVersion_Optional = NewValue; LegacyConfigVersion_IsSet = true;  }
-	 /** @brief Clears the value of LegacyConfigVersion_Optional and sets LegacyConfigVersion_IsSet to false */
+	/** @brief Clears the value of LegacyConfigVersion_Optional and sets LegacyConfigVersion_IsSet to false */
 	void ClearLegacyConfigVersion() { LegacyConfigVersion_Optional = 0; LegacyConfigVersion_IsSet = false;  }
+	/** @brief Checks whether LegacyConfigVersion_Optional has been set */
+	bool IsLegacyConfigVersionSet() const { return LegacyConfigVersion_IsSet; }
 	/** @brief Returns true if LegacyConfigVersion_Optional is set and matches the default value */
 	bool IsLegacyConfigVersionDefaultValue() const { return LegacyConfigVersion_IsSet && LegacyConfigVersion_Optional == 0; }
 	/** @brief Sets the value of LegacyConfigVersion_Optional to its default and also sets LegacyConfigVersion_IsSet to true */
@@ -195,8 +205,10 @@ struct RALLYHEREAPI_API FRHAPI_Vendor : public FRHAPI_Model
 	void SetLoot(const TMap<FString, FRHAPI_Loot>& NewValue) { Loot_Optional = NewValue; Loot_IsSet = true;  }
 	/** @brief Sets the value of Loot_Optional and also sets Loot_IsSet to true using move semantics */
 	void SetLoot(TMap<FString, FRHAPI_Loot>&& NewValue) { Loot_Optional = NewValue; Loot_IsSet = true;  }
-	 /** @brief Clears the value of Loot_Optional and sets Loot_IsSet to false */
+	/** @brief Clears the value of Loot_Optional and sets Loot_IsSet to false */
 	void ClearLoot() { Loot_IsSet = false;  }
+	/** @brief Checks whether Loot_Optional has been set */
+	bool IsLootSet() const { return Loot_IsSet; }
 
 	/** @brief Cache info for the Vendor. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -220,8 +232,10 @@ struct RALLYHEREAPI_API FRHAPI_Vendor : public FRHAPI_Model
 	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
 	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
-	 /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
+	/** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
 	void ClearCacheInfo() { CacheInfo_IsSet = false;  }
+	/** @brief Checks whether CacheInfo_Optional has been set */
+	bool IsCacheInfoSet() const { return CacheInfo_IsSet; }
 };
 
 /** @} */

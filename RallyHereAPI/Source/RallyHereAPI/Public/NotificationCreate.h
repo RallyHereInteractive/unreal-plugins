@@ -73,8 +73,10 @@ struct RALLYHEREAPI_API FRHAPI_NotificationCreate : public FRHAPI_Model
 	void SetRhUrl(const FString& NewValue) { RhUrl_Optional = NewValue; RhUrl_IsSet = true;  }
 	/** @brief Sets the value of RhUrl_Optional and also sets RhUrl_IsSet to true using move semantics */
 	void SetRhUrl(FString&& NewValue) { RhUrl_Optional = NewValue; RhUrl_IsSet = true;  }
-	 /** @brief Clears the value of RhUrl_Optional and sets RhUrl_IsSet to false */
+	/** @brief Clears the value of RhUrl_Optional and sets RhUrl_IsSet to false */
 	void ClearRhUrl() { RhUrl_IsSet = false;  }
+	/** @brief Checks whether RhUrl_Optional has been set */
+	bool IsRhUrlSet() const { return RhUrl_IsSet; }
 
 	/** @brief Custom values for the notification */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -98,8 +100,10 @@ struct RALLYHEREAPI_API FRHAPI_NotificationCreate : public FRHAPI_Model
 	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 
 	/** @brief ETag for the resource at rh_url at the time of this notification */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -123,8 +127,10 @@ struct RALLYHEREAPI_API FRHAPI_NotificationCreate : public FRHAPI_Model
 	void SetEtag(const FString& NewValue) { Etag_Optional = NewValue; Etag_IsSet = true;  }
 	/** @brief Sets the value of Etag_Optional and also sets Etag_IsSet to true using move semantics */
 	void SetEtag(FString&& NewValue) { Etag_Optional = NewValue; Etag_IsSet = true;  }
-	 /** @brief Clears the value of Etag_Optional and sets Etag_IsSet to false */
+	/** @brief Clears the value of Etag_Optional and sets Etag_IsSet to false */
 	void ClearEtag() { Etag_IsSet = false;  }
+	/** @brief Checks whether Etag_Optional has been set */
+	bool IsEtagSet() const { return Etag_IsSet; }
 };
 
 /** @} */

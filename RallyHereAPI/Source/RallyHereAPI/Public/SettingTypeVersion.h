@@ -61,8 +61,10 @@ struct RALLYHEREAPI_API FRHAPI_SettingTypeVersion : public FRHAPI_Model
 	void SetAllowUpdate(const bool& NewValue) { AllowUpdate_Optional = NewValue; AllowUpdate_IsSet = true;  }
 	/** @brief Sets the value of AllowUpdate_Optional and also sets AllowUpdate_IsSet to true using move semantics */
 	void SetAllowUpdate(bool&& NewValue) { AllowUpdate_Optional = NewValue; AllowUpdate_IsSet = true;  }
-	 /** @brief Clears the value of AllowUpdate_Optional and sets AllowUpdate_IsSet to false */
+	/** @brief Clears the value of AllowUpdate_Optional and sets AllowUpdate_IsSet to false */
 	void ClearAllowUpdate() { AllowUpdate_Optional = true; AllowUpdate_IsSet = false;  }
+	/** @brief Checks whether AllowUpdate_Optional has been set */
+	bool IsAllowUpdateSet() const { return AllowUpdate_IsSet; }
 	/** @brief Returns true if AllowUpdate_Optional is set and matches the default value */
 	bool IsAllowUpdateDefaultValue() const { return AllowUpdate_IsSet && AllowUpdate_Optional == true; }
 	/** @brief Sets the value of AllowUpdate_Optional to its default and also sets AllowUpdate_IsSet to true */
@@ -90,8 +92,10 @@ struct RALLYHEREAPI_API FRHAPI_SettingTypeVersion : public FRHAPI_Model
 	void SetKeyRegex(const FString& NewValue) { KeyRegex_Optional = NewValue; KeyRegex_IsSet = true;  }
 	/** @brief Sets the value of KeyRegex_Optional and also sets KeyRegex_IsSet to true using move semantics */
 	void SetKeyRegex(FString&& NewValue) { KeyRegex_Optional = NewValue; KeyRegex_IsSet = true;  }
-	 /** @brief Clears the value of KeyRegex_Optional and sets KeyRegex_IsSet to false */
+	/** @brief Clears the value of KeyRegex_Optional and sets KeyRegex_IsSet to false */
 	void ClearKeyRegex() { KeyRegex_Optional = TEXT("^.+$"); KeyRegex_IsSet = false;  }
+	/** @brief Checks whether KeyRegex_Optional has been set */
+	bool IsKeyRegexSet() const { return KeyRegex_IsSet; }
 	/** @brief Returns true if KeyRegex_Optional is set and matches the default value */
 	bool IsKeyRegexDefaultValue() const { return KeyRegex_IsSet && KeyRegex_Optional == TEXT("^.+$"); }
 	/** @brief Sets the value of KeyRegex_Optional to its default and also sets KeyRegex_IsSet to true */
@@ -131,8 +135,10 @@ struct RALLYHEREAPI_API FRHAPI_SettingTypeVersion : public FRHAPI_Model
 	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 };
 
 /** @} */

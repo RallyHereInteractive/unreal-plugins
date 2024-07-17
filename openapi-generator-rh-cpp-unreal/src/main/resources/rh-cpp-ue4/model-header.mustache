@@ -140,8 +140,10 @@ struct {{dllapi}} {{classname}} : public {{unrealModelPrefix}}Model
 	void Set{{name}}({{{datatype}}}&& NewValue) { {{name}}{{^required}}_Optional{{/required}} = NewValue; {{^required}}{{name}}_IsSet = true;{{/required}} {{#isNullable}}{{name}}_IsNull = false;{{/isNullable}} }
 	{{/isEnum}}
 	{{^required}}
-	 /** @brief Clears the value of {{name}}_Optional and sets {{name}}_IsSet to false */
+	/** @brief Clears the value of {{name}}_Optional and sets {{name}}_IsSet to false */
 	void Clear{{name}}() { {{#defaultValue}}{{name}}_Optional = {{{.}}}; {{/defaultValue}}{{name}}_IsSet = false; {{#isNullable}}{{name}}_IsNull = false;{{/isNullable}} }
+	/** @brief Checks whether {{name}}_Optional has been set */
+	bool Is{{name}}Set() const { return {{name}}_IsSet; }
 	{{/required}}
 	{{#defaultValue}}
 	/** @brief Returns true if {{name}}{{^required}}_Optional is set and{{/required}} matches the default value */
@@ -152,6 +154,7 @@ struct {{dllapi}} {{classname}} : public {{unrealModelPrefix}}Model
 	{{#isNullable}}
 	/** @brief Sets the value explicitly to be treated as null */
 	void Set{{name}}ToNull() { {{^required}}{{name}}_IsSet = true; {{/required}}{{name}}_IsNull = true; }
+	/** @brief Checks whether {{name}}{{^required}}_Optional{{/required}} is set to null */
 	bool Is{{name}}Null() const { return {{^required}}{{name}}_IsSet &&{{/required}} {{name}}_IsNull; }
 	{{/isNullable}}
 	{{^-last}}

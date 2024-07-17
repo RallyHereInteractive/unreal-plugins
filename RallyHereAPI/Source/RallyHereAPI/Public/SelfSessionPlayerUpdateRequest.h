@@ -64,8 +64,10 @@ struct RALLYHEREAPI_API FRHAPI_SelfSessionPlayerUpdateRequest : public FRHAPI_Mo
 	void SetStatus(const ERHAPI_SessionPlayerStatus& NewValue) { Status_Optional = NewValue; Status_IsSet = true;  }
 	/** @brief Sets the value of Status_Optional and also sets Status_IsSet to true using move semantics */
 	void SetStatus(ERHAPI_SessionPlayerStatus&& NewValue) { Status_Optional = NewValue; Status_IsSet = true;  }
-	 /** @brief Clears the value of Status_Optional and sets Status_IsSet to false */
+	/** @brief Clears the value of Status_Optional and sets Status_IsSet to false */
 	void ClearStatus() { Status_IsSet = false;  }
+	/** @brief Checks whether Status_Optional has been set */
+	bool IsStatusSet() const { return Status_IsSet; }
 
 	/** @brief Semver for updated client */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -129,8 +131,10 @@ struct RALLYHEREAPI_API FRHAPI_SelfSessionPlayerUpdateRequest : public FRHAPI_Mo
 	void SetCrossplayPreferences(const FRHAPI_CrossplayPreferences& NewValue) { CrossplayPreferences_Optional = NewValue; CrossplayPreferences_IsSet = true;  }
 	/** @brief Sets the value of CrossplayPreferences_Optional and also sets CrossplayPreferences_IsSet to true using move semantics */
 	void SetCrossplayPreferences(FRHAPI_CrossplayPreferences&& NewValue) { CrossplayPreferences_Optional = NewValue; CrossplayPreferences_IsSet = true;  }
-	 /** @brief Clears the value of CrossplayPreferences_Optional and sets CrossplayPreferences_IsSet to false */
+	/** @brief Clears the value of CrossplayPreferences_Optional and sets CrossplayPreferences_IsSet to false */
 	void ClearCrossplayPreferences() { CrossplayPreferences_IsSet = false;  }
+	/** @brief Checks whether CrossplayPreferences_Optional has been set */
+	bool IsCrossplayPreferencesSet() const { return CrossplayPreferences_IsSet; }
 
 	/** @brief player-defined custom data */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -154,8 +158,10 @@ struct RALLYHEREAPI_API FRHAPI_SelfSessionPlayerUpdateRequest : public FRHAPI_Mo
 	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 };
 
 /** @} */

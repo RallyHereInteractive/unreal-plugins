@@ -99,8 +99,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSessionTemplate : public FRHAPI_Model
 	void SetMaxPlayers(const int32& NewValue) { MaxPlayers_Optional = NewValue; MaxPlayers_IsSet = true;  }
 	/** @brief Sets the value of MaxPlayers_Optional and also sets MaxPlayers_IsSet to true using move semantics */
 	void SetMaxPlayers(int32&& NewValue) { MaxPlayers_Optional = NewValue; MaxPlayers_IsSet = true;  }
-	 /** @brief Clears the value of MaxPlayers_Optional and sets MaxPlayers_IsSet to false */
+	/** @brief Clears the value of MaxPlayers_Optional and sets MaxPlayers_IsSet to false */
 	void ClearMaxPlayers() { MaxPlayers_Optional = 0; MaxPlayers_IsSet = false;  }
+	/** @brief Checks whether MaxPlayers_Optional has been set */
+	bool IsMaxPlayersSet() const { return MaxPlayers_IsSet; }
 	/** @brief Returns true if MaxPlayers_Optional is set and matches the default value */
 	bool IsMaxPlayersDefaultValue() const { return MaxPlayers_IsSet && MaxPlayers_Optional == 0; }
 	/** @brief Sets the value of MaxPlayers_Optional to its default and also sets MaxPlayers_IsSet to true */
@@ -128,8 +130,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSessionTemplate : public FRHAPI_Model
 	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 };
 
 /** @} */

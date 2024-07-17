@@ -75,8 +75,10 @@ struct RALLYHEREAPI_API FRHAPI_Role : public FRHAPI_Model
 	void SetLegacyRoleId(const int32& NewValue) { LegacyRoleId_Optional = NewValue; LegacyRoleId_IsSet = true;  }
 	/** @brief Sets the value of LegacyRoleId_Optional and also sets LegacyRoleId_IsSet to true using move semantics */
 	void SetLegacyRoleId(int32&& NewValue) { LegacyRoleId_Optional = NewValue; LegacyRoleId_IsSet = true;  }
-	 /** @brief Clears the value of LegacyRoleId_Optional and sets LegacyRoleId_IsSet to false */
+	/** @brief Clears the value of LegacyRoleId_Optional and sets LegacyRoleId_IsSet to false */
 	void ClearLegacyRoleId() { LegacyRoleId_Optional = 0; LegacyRoleId_IsSet = false;  }
+	/** @brief Checks whether LegacyRoleId_Optional has been set */
+	bool IsLegacyRoleIdSet() const { return LegacyRoleId_IsSet; }
 	/** @brief Returns true if LegacyRoleId_Optional is set and matches the default value */
 	bool IsLegacyRoleIdDefaultValue() const { return LegacyRoleId_IsSet && LegacyRoleId_Optional == 0; }
 	/** @brief Sets the value of LegacyRoleId_Optional to its default and also sets LegacyRoleId_IsSet to true */
@@ -104,8 +106,10 @@ struct RALLYHEREAPI_API FRHAPI_Role : public FRHAPI_Model
 	void SetCustomData(const FRHAPI_JsonObject& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(FRHAPI_JsonObject&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 
 	/** @brief Level of auth bypass for limited/locked modes */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -129,8 +133,10 @@ struct RALLYHEREAPI_API FRHAPI_Role : public FRHAPI_Model
 	void SetAuthBypass(const ERHAPI_RoleAuthBypass& NewValue) { AuthBypass_Optional = NewValue; AuthBypass_IsSet = true;  }
 	/** @brief Sets the value of AuthBypass_Optional and also sets AuthBypass_IsSet to true using move semantics */
 	void SetAuthBypass(ERHAPI_RoleAuthBypass&& NewValue) { AuthBypass_Optional = NewValue; AuthBypass_IsSet = true;  }
-	 /** @brief Clears the value of AuthBypass_Optional and sets AuthBypass_IsSet to false */
+	/** @brief Clears the value of AuthBypass_Optional and sets AuthBypass_IsSet to false */
 	void ClearAuthBypass() { AuthBypass_IsSet = false;  }
+	/** @brief Checks whether AuthBypass_Optional has been set */
+	bool IsAuthBypassSet() const { return AuthBypass_IsSet; }
 
 	/** @brief List of loot ids that are fulfilled for the player when they begin a new inventory session */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -154,8 +160,10 @@ struct RALLYHEREAPI_API FRHAPI_Role : public FRHAPI_Model
 	void SetLoginLootRewards(const TArray<FRHAPI_LoginLootReward>& NewValue) { LoginLootRewards_Optional = NewValue; LoginLootRewards_IsSet = true;  }
 	/** @brief Sets the value of LoginLootRewards_Optional and also sets LoginLootRewards_IsSet to true using move semantics */
 	void SetLoginLootRewards(TArray<FRHAPI_LoginLootReward>&& NewValue) { LoginLootRewards_Optional = NewValue; LoginLootRewards_IsSet = true;  }
-	 /** @brief Clears the value of LoginLootRewards_Optional and sets LoginLootRewards_IsSet to false */
+	/** @brief Clears the value of LoginLootRewards_Optional and sets LoginLootRewards_IsSet to false */
 	void ClearLoginLootRewards() { LoginLootRewards_IsSet = false;  }
+	/** @brief Checks whether LoginLootRewards_Optional has been set */
+	bool IsLoginLootRewardsSet() const { return LoginLootRewards_IsSet; }
 };
 
 /** @} */

@@ -62,8 +62,10 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserResponse : public FRHAPI_Model
 	void SetPortalUserId(const FString& NewValue) { PortalUserId_Optional = NewValue; PortalUserId_IsSet = true;  }
 	/** @brief Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true using move semantics */
 	void SetPortalUserId(FString&& NewValue) { PortalUserId_Optional = NewValue; PortalUserId_IsSet = true;  }
-	 /** @brief Clears the value of PortalUserId_Optional and sets PortalUserId_IsSet to false */
+	/** @brief Clears the value of PortalUserId_Optional and sets PortalUserId_IsSet to false */
 	void ClearPortalUserId() { PortalUserId_IsSet = false;  }
+	/** @brief Checks whether PortalUserId_Optional has been set */
+	bool IsPortalUserIdSet() const { return PortalUserId_IsSet; }
 
 	/** @brief Portal ID *DEPRECATED* use `platform` instead */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -115,8 +117,10 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserResponse : public FRHAPI_Model
 	void SetDisplayName(const FString& NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true;  }
 	/** @brief Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true using move semantics */
 	void SetDisplayName(FString&& NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true;  }
-	 /** @brief Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false */
+	/** @brief Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false */
 	void ClearDisplayName() { DisplayName_IsSet = false;  }
+	/** @brief Checks whether DisplayName_Optional has been set */
+	bool IsDisplayNameSet() const { return DisplayName_IsSet; }
 
 	/** @brief Player ID *DEPRECATED* use `player_uuid` instead */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

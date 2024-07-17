@@ -87,8 +87,10 @@ struct RALLYHEREAPI_API FRHAPI_InventoryRecord : public FRHAPI_Model
 	void SetLegacyInventoryId(const int64& NewValue) { LegacyInventoryId_Optional = NewValue; LegacyInventoryId_IsSet = true;  }
 	/** @brief Sets the value of LegacyInventoryId_Optional and also sets LegacyInventoryId_IsSet to true using move semantics */
 	void SetLegacyInventoryId(int64&& NewValue) { LegacyInventoryId_Optional = NewValue; LegacyInventoryId_IsSet = true;  }
-	 /** @brief Clears the value of LegacyInventoryId_Optional and sets LegacyInventoryId_IsSet to false */
+	/** @brief Clears the value of LegacyInventoryId_Optional and sets LegacyInventoryId_IsSet to false */
 	void ClearLegacyInventoryId() { LegacyInventoryId_Optional = 0; LegacyInventoryId_IsSet = false;  }
+	/** @brief Checks whether LegacyInventoryId_Optional has been set */
+	bool IsLegacyInventoryIdSet() const { return LegacyInventoryId_IsSet; }
 	/** @brief Returns true if LegacyInventoryId_Optional is set and matches the default value */
 	bool IsLegacyInventoryIdDefaultValue() const { return LegacyInventoryId_IsSet && LegacyInventoryId_Optional == 0; }
 	/** @brief Sets the value of LegacyInventoryId_Optional to its default and also sets LegacyInventoryId_IsSet to true */
@@ -116,8 +118,10 @@ struct RALLYHEREAPI_API FRHAPI_InventoryRecord : public FRHAPI_Model
 	void SetBucket(const ERHAPI_InventoryBucket& NewValue) { Bucket_Optional = NewValue; Bucket_IsSet = true;  }
 	/** @brief Sets the value of Bucket_Optional and also sets Bucket_IsSet to true using move semantics */
 	void SetBucket(ERHAPI_InventoryBucket&& NewValue) { Bucket_Optional = NewValue; Bucket_IsSet = true;  }
-	 /** @brief Clears the value of Bucket_Optional and sets Bucket_IsSet to false */
+	/** @brief Clears the value of Bucket_Optional and sets Bucket_IsSet to false */
 	void ClearBucket() { Bucket_IsSet = false;  }
+	/** @brief Checks whether Bucket_Optional has been set */
+	bool IsBucketSet() const { return Bucket_IsSet; }
 
 	/** @brief Instance count for this Inventory Record. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -169,8 +173,10 @@ struct RALLYHEREAPI_API FRHAPI_InventoryRecord : public FRHAPI_Model
 	void SetExpires(const FDateTime& NewValue) { Expires_Optional = NewValue; Expires_IsSet = true;  }
 	/** @brief Sets the value of Expires_Optional and also sets Expires_IsSet to true using move semantics */
 	void SetExpires(FDateTime&& NewValue) { Expires_Optional = NewValue; Expires_IsSet = true;  }
-	 /** @brief Clears the value of Expires_Optional and sets Expires_IsSet to false */
+	/** @brief Clears the value of Expires_Optional and sets Expires_IsSet to false */
 	void ClearExpires() { Expires_IsSet = false;  }
+	/** @brief Checks whether Expires_Optional has been set */
+	bool IsExpiresSet() const { return Expires_IsSet; }
 
 	/** @brief Arbitrary map of data for this Inventory Record. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -194,8 +200,10 @@ struct RALLYHEREAPI_API FRHAPI_InventoryRecord : public FRHAPI_Model
 	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 };
 
 /** @} */

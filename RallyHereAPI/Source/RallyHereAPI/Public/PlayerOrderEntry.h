@@ -78,8 +78,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntry : public FRHAPI_Model
 	void SetLootId(const int32& NewValue) { LootId_Optional = NewValue; LootId_IsSet = true;  }
 	/** @brief Sets the value of LootId_Optional and also sets LootId_IsSet to true using move semantics */
 	void SetLootId(int32&& NewValue) { LootId_Optional = NewValue; LootId_IsSet = true;  }
-	 /** @brief Clears the value of LootId_Optional and sets LootId_IsSet to false */
+	/** @brief Clears the value of LootId_Optional and sets LootId_IsSet to false */
 	void ClearLootId() { LootId_Optional = 0; LootId_IsSet = false;  }
+	/** @brief Checks whether LootId_Optional has been set */
+	bool IsLootIdSet() const { return LootId_IsSet; }
 	/** @brief Returns true if LootId_Optional is set and matches the default value */
 	bool IsLootIdDefaultValue() const { return LootId_IsSet && LootId_Optional == 0; }
 	/** @brief Sets the value of LootId_Optional to its default and also sets LootId_IsSet to true */
@@ -123,8 +125,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntry : public FRHAPI_Model
 	void SetVendorVersion(const int64& NewValue) { VendorVersion_Optional = NewValue; VendorVersion_IsSet = true;  }
 	/** @brief Sets the value of VendorVersion_Optional and also sets VendorVersion_IsSet to true using move semantics */
 	void SetVendorVersion(int64&& NewValue) { VendorVersion_Optional = NewValue; VendorVersion_IsSet = true;  }
-	 /** @brief Clears the value of VendorVersion_Optional and sets VendorVersion_IsSet to false */
+	/** @brief Clears the value of VendorVersion_Optional and sets VendorVersion_IsSet to false */
 	void ClearVendorVersion() { VendorVersion_Optional = 0; VendorVersion_IsSet = false;  }
+	/** @brief Checks whether VendorVersion_Optional has been set */
+	bool IsVendorVersionSet() const { return VendorVersion_IsSet; }
 	/** @brief Returns true if VendorVersion_Optional is set and matches the default value */
 	bool IsVendorVersionDefaultValue() const { return VendorVersion_IsSet && VendorVersion_Optional == 0; }
 	/** @brief Sets the value of VendorVersion_Optional to its default and also sets VendorVersion_IsSet to true */
@@ -152,8 +156,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntry : public FRHAPI_Model
 	void SetVendorEtag(const FString& NewValue) { VendorEtag_Optional = NewValue; VendorEtag_IsSet = true;  }
 	/** @brief Sets the value of VendorEtag_Optional and also sets VendorEtag_IsSet to true using move semantics */
 	void SetVendorEtag(FString&& NewValue) { VendorEtag_Optional = NewValue; VendorEtag_IsSet = true;  }
-	 /** @brief Clears the value of VendorEtag_Optional and sets VendorEtag_IsSet to false */
+	/** @brief Clears the value of VendorEtag_Optional and sets VendorEtag_IsSet to false */
 	void ClearVendorEtag() { VendorEtag_IsSet = false;  }
+	/** @brief Checks whether VendorEtag_Optional has been set */
+	bool IsVendorEtagSet() const { return VendorEtag_IsSet; }
 
 	/** @brief List of Loot IDs for the dynamic bundle. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -177,8 +183,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntry : public FRHAPI_Model
 	void SetDynamicBundleLootIds(const TArray<int32>& NewValue) { DynamicBundleLootIds_Optional = NewValue; DynamicBundleLootIds_IsSet = true;  }
 	/** @brief Sets the value of DynamicBundleLootIds_Optional and also sets DynamicBundleLootIds_IsSet to true using move semantics */
 	void SetDynamicBundleLootIds(TArray<int32>&& NewValue) { DynamicBundleLootIds_Optional = NewValue; DynamicBundleLootIds_IsSet = true;  }
-	 /** @brief Clears the value of DynamicBundleLootIds_Optional and sets DynamicBundleLootIds_IsSet to false */
+	/** @brief Clears the value of DynamicBundleLootIds_Optional and sets DynamicBundleLootIds_IsSet to false */
 	void ClearDynamicBundleLootIds() { DynamicBundleLootIds_IsSet = false;  }
+	/** @brief Checks whether DynamicBundleLootIds_Optional has been set */
+	bool IsDynamicBundleLootIdsSet() const { return DynamicBundleLootIds_IsSet; }
 
 	/** @brief The purchase price of the Loot. Deprecated. Use the purchase_prices field instead */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -202,8 +210,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntry : public FRHAPI_Model
 	void SetPurchasePrice(const FRHAPI_PurchasePrice& NewValue) { PurchasePrice_Optional = NewValue; PurchasePrice_IsSet = true;  }
 	/** @brief Sets the value of PurchasePrice_Optional and also sets PurchasePrice_IsSet to true using move semantics */
 	void SetPurchasePrice(FRHAPI_PurchasePrice&& NewValue) { PurchasePrice_Optional = NewValue; PurchasePrice_IsSet = true;  }
-	 /** @brief Clears the value of PurchasePrice_Optional and sets PurchasePrice_IsSet to false */
+	/** @brief Clears the value of PurchasePrice_Optional and sets PurchasePrice_IsSet to false */
 	void ClearPurchasePrice() { PurchasePrice_IsSet = false;  }
+	/** @brief Checks whether PurchasePrice_Optional has been set */
+	bool IsPurchasePriceSet() const { return PurchasePrice_IsSet; }
 
 	/** @brief External Transaction Id for source of the acquisition or a promotion code to claim. Required for [PROMOTION_CODE] types */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -227,8 +237,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntry : public FRHAPI_Model
 	void SetExternalTranId(const FString& NewValue) { ExternalTranId_Optional = NewValue; ExternalTranId_IsSet = true;  }
 	/** @brief Sets the value of ExternalTranId_Optional and also sets ExternalTranId_IsSet to true using move semantics */
 	void SetExternalTranId(FString&& NewValue) { ExternalTranId_Optional = NewValue; ExternalTranId_IsSet = true;  }
-	 /** @brief Clears the value of ExternalTranId_Optional and sets ExternalTranId_IsSet to false */
+	/** @brief Clears the value of ExternalTranId_Optional and sets ExternalTranId_IsSet to false */
 	void ClearExternalTranId() { ExternalTranId_IsSet = false;  }
+	/** @brief Checks whether ExternalTranId_Optional has been set */
+	bool IsExternalTranIdSet() const { return ExternalTranId_IsSet; }
 
 	/** @brief External item SKU for the Order Entry. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -252,8 +264,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntry : public FRHAPI_Model
 	void SetExternalItemSku(const FString& NewValue) { ExternalItemSku_Optional = NewValue; ExternalItemSku_IsSet = true;  }
 	/** @brief Sets the value of ExternalItemSku_Optional and also sets ExternalItemSku_IsSet to true using move semantics */
 	void SetExternalItemSku(FString&& NewValue) { ExternalItemSku_Optional = NewValue; ExternalItemSku_IsSet = true;  }
-	 /** @brief Clears the value of ExternalItemSku_Optional and sets ExternalItemSku_IsSet to false */
+	/** @brief Clears the value of ExternalItemSku_Optional and sets ExternalItemSku_IsSet to false */
 	void ClearExternalItemSku() { ExternalItemSku_IsSet = false;  }
+	/** @brief Checks whether ExternalItemSku_Optional has been set */
+	bool IsExternalItemSkuSet() const { return ExternalItemSku_IsSet; }
 
 	/** @brief Inventory Bucket to use for the Order Entry. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -277,8 +291,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntry : public FRHAPI_Model
 	void SetUseInventoryBucket(const ERHAPI_InventoryBucket& NewValue) { UseInventoryBucket_Optional = NewValue; UseInventoryBucket_IsSet = true;  }
 	/** @brief Sets the value of UseInventoryBucket_Optional and also sets UseInventoryBucket_IsSet to true using move semantics */
 	void SetUseInventoryBucket(ERHAPI_InventoryBucket&& NewValue) { UseInventoryBucket_Optional = NewValue; UseInventoryBucket_IsSet = true;  }
-	 /** @brief Clears the value of UseInventoryBucket_Optional and sets UseInventoryBucket_IsSet to false */
+	/** @brief Clears the value of UseInventoryBucket_Optional and sets UseInventoryBucket_IsSet to false */
 	void ClearUseInventoryBucket() { UseInventoryBucket_IsSet = false;  }
+	/** @brief Checks whether UseInventoryBucket_Optional has been set */
+	bool IsUseInventoryBucketSet() const { return UseInventoryBucket_IsSet; }
 
 	/** @brief Player Portal Event Id for the Order Entry. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -302,8 +318,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntry : public FRHAPI_Model
 	void SetPlayerPortalEventId(const int64& NewValue) { PlayerPortalEventId_Optional = NewValue; PlayerPortalEventId_IsSet = true;  }
 	/** @brief Sets the value of PlayerPortalEventId_Optional and also sets PlayerPortalEventId_IsSet to true using move semantics */
 	void SetPlayerPortalEventId(int64&& NewValue) { PlayerPortalEventId_Optional = NewValue; PlayerPortalEventId_IsSet = true;  }
-	 /** @brief Clears the value of PlayerPortalEventId_Optional and sets PlayerPortalEventId_IsSet to false */
+	/** @brief Clears the value of PlayerPortalEventId_Optional and sets PlayerPortalEventId_IsSet to false */
 	void ClearPlayerPortalEventId() { PlayerPortalEventId_Optional = 0; PlayerPortalEventId_IsSet = false;  }
+	/** @brief Checks whether PlayerPortalEventId_Optional has been set */
+	bool IsPlayerPortalEventIdSet() const { return PlayerPortalEventId_IsSet; }
 	/** @brief Returns true if PlayerPortalEventId_Optional is set and matches the default value */
 	bool IsPlayerPortalEventIdDefaultValue() const { return PlayerPortalEventId_IsSet && PlayerPortalEventId_Optional == 0; }
 	/** @brief Sets the value of PlayerPortalEventId_Optional to its default and also sets PlayerPortalEventId_IsSet to true */
@@ -331,8 +349,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntry : public FRHAPI_Model
 	void SetInventoryId(const FGuid& NewValue) { InventoryId_Optional = NewValue; InventoryId_IsSet = true;  }
 	/** @brief Sets the value of InventoryId_Optional and also sets InventoryId_IsSet to true using move semantics */
 	void SetInventoryId(FGuid&& NewValue) { InventoryId_Optional = NewValue; InventoryId_IsSet = true;  }
-	 /** @brief Clears the value of InventoryId_Optional and sets InventoryId_IsSet to false */
+	/** @brief Clears the value of InventoryId_Optional and sets InventoryId_IsSet to false */
 	void ClearInventoryId() { InventoryId_IsSet = false;  }
+	/** @brief Checks whether InventoryId_Optional has been set */
+	bool IsInventoryIdSet() const { return InventoryId_IsSet; }
 
 	/** @brief Legacy Inventory Id. This is only used when type equals [UPDATE_EXISTING_PERSISTENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY] */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -356,8 +376,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntry : public FRHAPI_Model
 	void SetLegacyInventoryId(const int64& NewValue) { LegacyInventoryId_Optional = NewValue; LegacyInventoryId_IsSet = true;  }
 	/** @brief Sets the value of LegacyInventoryId_Optional and also sets LegacyInventoryId_IsSet to true using move semantics */
 	void SetLegacyInventoryId(int64&& NewValue) { LegacyInventoryId_Optional = NewValue; LegacyInventoryId_IsSet = true;  }
-	 /** @brief Clears the value of LegacyInventoryId_Optional and sets LegacyInventoryId_IsSet to false */
+	/** @brief Clears the value of LegacyInventoryId_Optional and sets LegacyInventoryId_IsSet to false */
 	void ClearLegacyInventoryId() { LegacyInventoryId_Optional = 0; LegacyInventoryId_IsSet = false;  }
+	/** @brief Checks whether LegacyInventoryId_Optional has been set */
+	bool IsLegacyInventoryIdSet() const { return LegacyInventoryId_IsSet; }
 	/** @brief Returns true if LegacyInventoryId_Optional is set and matches the default value */
 	bool IsLegacyInventoryIdDefaultValue() const { return LegacyInventoryId_IsSet && LegacyInventoryId_Optional == 0; }
 	/** @brief Sets the value of LegacyInventoryId_Optional to its default and also sets LegacyInventoryId_IsSet to true */
@@ -385,8 +407,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntry : public FRHAPI_Model
 	void SetItemId(const int32& NewValue) { ItemId_Optional = NewValue; ItemId_IsSet = true;  }
 	/** @brief Sets the value of ItemId_Optional and also sets ItemId_IsSet to true using move semantics */
 	void SetItemId(int32&& NewValue) { ItemId_Optional = NewValue; ItemId_IsSet = true;  }
-	 /** @brief Clears the value of ItemId_Optional and sets ItemId_IsSet to false */
+	/** @brief Clears the value of ItemId_Optional and sets ItemId_IsSet to false */
 	void ClearItemId() { ItemId_Optional = 0; ItemId_IsSet = false;  }
+	/** @brief Checks whether ItemId_Optional has been set */
+	bool IsItemIdSet() const { return ItemId_IsSet; }
 	/** @brief Returns true if ItemId_Optional is set and matches the default value */
 	bool IsItemIdDefaultValue() const { return ItemId_IsSet && ItemId_Optional == 0; }
 	/** @brief Sets the value of ItemId_Optional to its default and also sets ItemId_IsSet to true */
@@ -414,8 +438,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntry : public FRHAPI_Model
 	void SetExpires(const FDateTime& NewValue) { Expires_Optional = NewValue; Expires_IsSet = true;  }
 	/** @brief Sets the value of Expires_Optional and also sets Expires_IsSet to true using move semantics */
 	void SetExpires(FDateTime&& NewValue) { Expires_Optional = NewValue; Expires_IsSet = true;  }
-	 /** @brief Clears the value of Expires_Optional and sets Expires_IsSet to false */
+	/** @brief Clears the value of Expires_Optional and sets Expires_IsSet to false */
 	void ClearExpires() { Expires_IsSet = false;  }
+	/** @brief Checks whether Expires_Optional has been set */
+	bool IsExpiresSet() const { return Expires_IsSet; }
 
 	/** @brief Custom Data Attributes for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY] */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -439,8 +465,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntry : public FRHAPI_Model
 	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 
 	/** @brief Unique Identifier for the Order Entry. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -476,8 +504,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntry : public FRHAPI_Model
 	void SetResult(const ERHAPI_PlayerOrderEntryResult& NewValue) { Result_Optional = NewValue; Result_IsSet = true;  }
 	/** @brief Sets the value of Result_Optional and also sets Result_IsSet to true using move semantics */
 	void SetResult(ERHAPI_PlayerOrderEntryResult&& NewValue) { Result_Optional = NewValue; Result_IsSet = true;  }
-	 /** @brief Clears the value of Result_Optional and sets Result_IsSet to false */
+	/** @brief Clears the value of Result_Optional and sets Result_IsSet to false */
 	void ClearResult() { Result_IsSet = false;  }
+	/** @brief Checks whether Result_Optional has been set */
+	bool IsResultSet() const { return Result_IsSet; }
 
 	/** @brief Details for the Order Entry. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -501,8 +531,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntry : public FRHAPI_Model
 	void SetDetails(const TArray<FRHAPI_PlayerOrderDetail>& NewValue) { Details_Optional = NewValue; Details_IsSet = true;  }
 	/** @brief Sets the value of Details_Optional and also sets Details_IsSet to true using move semantics */
 	void SetDetails(TArray<FRHAPI_PlayerOrderDetail>&& NewValue) { Details_Optional = NewValue; Details_IsSet = true;  }
-	 /** @brief Clears the value of Details_Optional and sets Details_IsSet to false */
+	/** @brief Clears the value of Details_Optional and sets Details_IsSet to false */
 	void ClearDetails() { Details_IsSet = false;  }
+	/** @brief Checks whether Details_Optional has been set */
+	bool IsDetailsSet() const { return Details_IsSet; }
 };
 
 /** @} */

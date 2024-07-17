@@ -90,8 +90,10 @@ struct RALLYHEREAPI_API FRHAPI_LootEntitlement : public FRHAPI_Model
 	void SetRefundLootId(const int32& NewValue) { RefundLootId_Optional = NewValue; RefundLootId_IsSet = true;  }
 	/** @brief Sets the value of RefundLootId_Optional and also sets RefundLootId_IsSet to true using move semantics */
 	void SetRefundLootId(int32&& NewValue) { RefundLootId_Optional = NewValue; RefundLootId_IsSet = true;  }
-	 /** @brief Clears the value of RefundLootId_Optional and sets RefundLootId_IsSet to false */
+	/** @brief Clears the value of RefundLootId_Optional and sets RefundLootId_IsSet to false */
 	void ClearRefundLootId() { RefundLootId_Optional = 0; RefundLootId_IsSet = false;  }
+	/** @brief Checks whether RefundLootId_Optional has been set */
+	bool IsRefundLootIdSet() const { return RefundLootId_IsSet; }
 	/** @brief Returns true if RefundLootId_Optional is set and matches the default value */
 	bool IsRefundLootIdDefaultValue() const { return RefundLootId_IsSet && RefundLootId_Optional == 0; }
 	/** @brief Sets the value of RefundLootId_Optional to its default and also sets RefundLootId_IsSet to true */
@@ -119,8 +121,10 @@ struct RALLYHEREAPI_API FRHAPI_LootEntitlement : public FRHAPI_Model
 	void SetChargebackLootId(const int32& NewValue) { ChargebackLootId_Optional = NewValue; ChargebackLootId_IsSet = true;  }
 	/** @brief Sets the value of ChargebackLootId_Optional and also sets ChargebackLootId_IsSet to true using move semantics */
 	void SetChargebackLootId(int32&& NewValue) { ChargebackLootId_Optional = NewValue; ChargebackLootId_IsSet = true;  }
-	 /** @brief Clears the value of ChargebackLootId_Optional and sets ChargebackLootId_IsSet to false */
+	/** @brief Clears the value of ChargebackLootId_Optional and sets ChargebackLootId_IsSet to false */
 	void ClearChargebackLootId() { ChargebackLootId_Optional = 0; ChargebackLootId_IsSet = false;  }
+	/** @brief Checks whether ChargebackLootId_Optional has been set */
+	bool IsChargebackLootIdSet() const { return ChargebackLootId_IsSet; }
 	/** @brief Returns true if ChargebackLootId_Optional is set and matches the default value */
 	bool IsChargebackLootIdDefaultValue() const { return ChargebackLootId_IsSet && ChargebackLootId_Optional == 0; }
 	/** @brief Sets the value of ChargebackLootId_Optional to its default and also sets ChargebackLootId_IsSet to true */
@@ -148,8 +152,10 @@ struct RALLYHEREAPI_API FRHAPI_LootEntitlement : public FRHAPI_Model
 	void SetChargebackReversalLootId(const int32& NewValue) { ChargebackReversalLootId_Optional = NewValue; ChargebackReversalLootId_IsSet = true;  }
 	/** @brief Sets the value of ChargebackReversalLootId_Optional and also sets ChargebackReversalLootId_IsSet to true using move semantics */
 	void SetChargebackReversalLootId(int32&& NewValue) { ChargebackReversalLootId_Optional = NewValue; ChargebackReversalLootId_IsSet = true;  }
-	 /** @brief Clears the value of ChargebackReversalLootId_Optional and sets ChargebackReversalLootId_IsSet to false */
+	/** @brief Clears the value of ChargebackReversalLootId_Optional and sets ChargebackReversalLootId_IsSet to false */
 	void ClearChargebackReversalLootId() { ChargebackReversalLootId_Optional = 0; ChargebackReversalLootId_IsSet = false;  }
+	/** @brief Checks whether ChargebackReversalLootId_Optional has been set */
+	bool IsChargebackReversalLootIdSet() const { return ChargebackReversalLootId_IsSet; }
 	/** @brief Returns true if ChargebackReversalLootId_Optional is set and matches the default value */
 	bool IsChargebackReversalLootIdDefaultValue() const { return ChargebackReversalLootId_IsSet && ChargebackReversalLootId_Optional == 0; }
 	/** @brief Sets the value of ChargebackReversalLootId_Optional to its default and also sets ChargebackReversalLootId_IsSet to true */

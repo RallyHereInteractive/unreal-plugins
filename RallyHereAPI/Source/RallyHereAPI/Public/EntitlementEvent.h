@@ -89,8 +89,10 @@ struct RALLYHEREAPI_API FRHAPI_EntitlementEvent : public FRHAPI_Model
 	void SetEntitlementType(const ERHAPI_EntitlementType& NewValue) { EntitlementType_Optional = NewValue; EntitlementType_IsSet = true;  }
 	/** @brief Sets the value of EntitlementType_Optional and also sets EntitlementType_IsSet to true using move semantics */
 	void SetEntitlementType(ERHAPI_EntitlementType&& NewValue) { EntitlementType_Optional = NewValue; EntitlementType_IsSet = true;  }
-	 /** @brief Clears the value of EntitlementType_Optional and sets EntitlementType_IsSet to false */
+	/** @brief Clears the value of EntitlementType_Optional and sets EntitlementType_IsSet to false */
 	void ClearEntitlementType() { EntitlementType_IsSet = false;  }
+	/** @brief Checks whether EntitlementType_Optional has been set */
+	bool IsEntitlementTypeSet() const { return EntitlementType_IsSet; }
 
 	/** @brief The status of the event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -138,8 +140,10 @@ struct RALLYHEREAPI_API FRHAPI_EntitlementEvent : public FRHAPI_Model
 	void SetPlayerId(const int32& NewValue) { PlayerId_Optional = NewValue; PlayerId_IsSet = true;  }
 	/** @brief Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true using move semantics */
 	void SetPlayerId(int32&& NewValue) { PlayerId_Optional = NewValue; PlayerId_IsSet = true;  }
-	 /** @brief Clears the value of PlayerId_Optional and sets PlayerId_IsSet to false */
+	/** @brief Clears the value of PlayerId_Optional and sets PlayerId_IsSet to false */
 	void ClearPlayerId() { PlayerId_Optional = 0; PlayerId_IsSet = false;  }
+	/** @brief Checks whether PlayerId_Optional has been set */
+	bool IsPlayerIdSet() const { return PlayerId_IsSet; }
 	/** @brief Returns true if PlayerId_Optional is set and matches the default value */
 	bool IsPlayerIdDefaultValue() const { return PlayerId_IsSet && PlayerId_Optional == 0; }
 	/** @brief Sets the value of PlayerId_Optional to its default and also sets PlayerId_IsSet to true */
@@ -219,8 +223,10 @@ struct RALLYHEREAPI_API FRHAPI_EntitlementEvent : public FRHAPI_Model
 	void SetPlatformTransactionId(const FString& NewValue) { PlatformTransactionId_Optional = NewValue; PlatformTransactionId_IsSet = true;  }
 	/** @brief Sets the value of PlatformTransactionId_Optional and also sets PlatformTransactionId_IsSet to true using move semantics */
 	void SetPlatformTransactionId(FString&& NewValue) { PlatformTransactionId_Optional = NewValue; PlatformTransactionId_IsSet = true;  }
-	 /** @brief Clears the value of PlatformTransactionId_Optional and sets PlatformTransactionId_IsSet to false */
+	/** @brief Clears the value of PlatformTransactionId_Optional and sets PlatformTransactionId_IsSet to false */
 	void ClearPlatformTransactionId() { PlatformTransactionId_IsSet = false;  }
+	/** @brief Checks whether PlatformTransactionId_Optional has been set */
+	bool IsPlatformTransactionIdSet() const { return PlatformTransactionId_IsSet; }
 
 	/** @brief The platform specific data for the event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -244,8 +250,10 @@ struct RALLYHEREAPI_API FRHAPI_EntitlementEvent : public FRHAPI_Model
 	void SetPlatformData(const FRHAPI_JsonObject& NewValue) { PlatformData_Optional = NewValue; PlatformData_IsSet = true;  }
 	/** @brief Sets the value of PlatformData_Optional and also sets PlatformData_IsSet to true using move semantics */
 	void SetPlatformData(FRHAPI_JsonObject&& NewValue) { PlatformData_Optional = NewValue; PlatformData_IsSet = true;  }
-	 /** @brief Clears the value of PlatformData_Optional and sets PlatformData_IsSet to false */
+	/** @brief Clears the value of PlatformData_Optional and sets PlatformData_IsSet to false */
 	void ClearPlatformData() { PlatformData_IsSet = false;  }
+	/** @brief Checks whether PlatformData_Optional has been set */
+	bool IsPlatformDataSet() const { return PlatformData_IsSet; }
 
 	/** @brief The order ID for the event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -269,8 +277,10 @@ struct RALLYHEREAPI_API FRHAPI_EntitlementEvent : public FRHAPI_Model
 	void SetOrderId(const FString& NewValue) { OrderId_Optional = NewValue; OrderId_IsSet = true;  }
 	/** @brief Sets the value of OrderId_Optional and also sets OrderId_IsSet to true using move semantics */
 	void SetOrderId(FString&& NewValue) { OrderId_Optional = NewValue; OrderId_IsSet = true;  }
-	 /** @brief Clears the value of OrderId_Optional and sets OrderId_IsSet to false */
+	/** @brief Clears the value of OrderId_Optional and sets OrderId_IsSet to false */
 	void ClearOrderId() { OrderId_IsSet = false;  }
+	/** @brief Checks whether OrderId_Optional has been set */
+	bool IsOrderIdSet() const { return OrderId_IsSet; }
 
 	/** @brief The loot ID for the event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -294,8 +304,10 @@ struct RALLYHEREAPI_API FRHAPI_EntitlementEvent : public FRHAPI_Model
 	void SetLootId(const int32& NewValue) { LootId_Optional = NewValue; LootId_IsSet = true;  }
 	/** @brief Sets the value of LootId_Optional and also sets LootId_IsSet to true using move semantics */
 	void SetLootId(int32&& NewValue) { LootId_Optional = NewValue; LootId_IsSet = true;  }
-	 /** @brief Clears the value of LootId_Optional and sets LootId_IsSet to false */
+	/** @brief Clears the value of LootId_Optional and sets LootId_IsSet to false */
 	void ClearLootId() { LootId_Optional = 0; LootId_IsSet = false;  }
+	/** @brief Checks whether LootId_Optional has been set */
+	bool IsLootIdSet() const { return LootId_IsSet; }
 	/** @brief Returns true if LootId_Optional is set and matches the default value */
 	bool IsLootIdDefaultValue() const { return LootId_IsSet && LootId_Optional == 0; }
 	/** @brief Sets the value of LootId_Optional to its default and also sets LootId_IsSet to true */
@@ -323,8 +335,10 @@ struct RALLYHEREAPI_API FRHAPI_EntitlementEvent : public FRHAPI_Model
 	void SetKeyClaimUuid(const FGuid& NewValue) { KeyClaimUuid_Optional = NewValue; KeyClaimUuid_IsSet = true;  }
 	/** @brief Sets the value of KeyClaimUuid_Optional and also sets KeyClaimUuid_IsSet to true using move semantics */
 	void SetKeyClaimUuid(FGuid&& NewValue) { KeyClaimUuid_Optional = NewValue; KeyClaimUuid_IsSet = true;  }
-	 /** @brief Clears the value of KeyClaimUuid_Optional and sets KeyClaimUuid_IsSet to false */
+	/** @brief Clears the value of KeyClaimUuid_Optional and sets KeyClaimUuid_IsSet to false */
 	void ClearKeyClaimUuid() { KeyClaimUuid_IsSet = false;  }
+	/** @brief Checks whether KeyClaimUuid_Optional has been set */
+	bool IsKeyClaimUuidSet() const { return KeyClaimUuid_IsSet; }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

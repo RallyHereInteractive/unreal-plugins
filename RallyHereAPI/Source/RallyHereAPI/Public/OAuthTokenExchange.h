@@ -86,8 +86,10 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenExchange : public FRHAPI_Model
 	void SetAcceptedEula(const bool& NewValue) { AcceptedEula_Optional = NewValue; AcceptedEula_IsSet = true;  }
 	/** @brief Sets the value of AcceptedEula_Optional and also sets AcceptedEula_IsSet to true using move semantics */
 	void SetAcceptedEula(bool&& NewValue) { AcceptedEula_Optional = NewValue; AcceptedEula_IsSet = true;  }
-	 /** @brief Clears the value of AcceptedEula_Optional and sets AcceptedEula_IsSet to false */
+	/** @brief Clears the value of AcceptedEula_Optional and sets AcceptedEula_IsSet to false */
 	void ClearAcceptedEula() { AcceptedEula_Optional = false; AcceptedEula_IsSet = false;  }
+	/** @brief Checks whether AcceptedEula_Optional has been set */
+	bool IsAcceptedEulaSet() const { return AcceptedEula_IsSet; }
 	/** @brief Returns true if AcceptedEula_Optional is set and matches the default value */
 	bool IsAcceptedEulaDefaultValue() const { return AcceptedEula_IsSet && AcceptedEula_Optional == false; }
 	/** @brief Sets the value of AcceptedEula_Optional to its default and also sets AcceptedEula_IsSet to true */
@@ -115,8 +117,10 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenExchange : public FRHAPI_Model
 	void SetAcceptedTos(const bool& NewValue) { AcceptedTos_Optional = NewValue; AcceptedTos_IsSet = true;  }
 	/** @brief Sets the value of AcceptedTos_Optional and also sets AcceptedTos_IsSet to true using move semantics */
 	void SetAcceptedTos(bool&& NewValue) { AcceptedTos_Optional = NewValue; AcceptedTos_IsSet = true;  }
-	 /** @brief Clears the value of AcceptedTos_Optional and sets AcceptedTos_IsSet to false */
+	/** @brief Clears the value of AcceptedTos_Optional and sets AcceptedTos_IsSet to false */
 	void ClearAcceptedTos() { AcceptedTos_Optional = false; AcceptedTos_IsSet = false;  }
+	/** @brief Checks whether AcceptedTos_Optional has been set */
+	bool IsAcceptedTosSet() const { return AcceptedTos_IsSet; }
 	/** @brief Returns true if AcceptedTos_Optional is set and matches the default value */
 	bool IsAcceptedTosDefaultValue() const { return AcceptedTos_IsSet && AcceptedTos_Optional == false; }
 	/** @brief Sets the value of AcceptedTos_Optional to its default and also sets AcceptedTos_IsSet to true */
@@ -144,8 +148,10 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenExchange : public FRHAPI_Model
 	void SetAcceptedPrivacyPolicy(const bool& NewValue) { AcceptedPrivacyPolicy_Optional = NewValue; AcceptedPrivacyPolicy_IsSet = true;  }
 	/** @brief Sets the value of AcceptedPrivacyPolicy_Optional and also sets AcceptedPrivacyPolicy_IsSet to true using move semantics */
 	void SetAcceptedPrivacyPolicy(bool&& NewValue) { AcceptedPrivacyPolicy_Optional = NewValue; AcceptedPrivacyPolicy_IsSet = true;  }
-	 /** @brief Clears the value of AcceptedPrivacyPolicy_Optional and sets AcceptedPrivacyPolicy_IsSet to false */
+	/** @brief Clears the value of AcceptedPrivacyPolicy_Optional and sets AcceptedPrivacyPolicy_IsSet to false */
 	void ClearAcceptedPrivacyPolicy() { AcceptedPrivacyPolicy_Optional = false; AcceptedPrivacyPolicy_IsSet = false;  }
+	/** @brief Checks whether AcceptedPrivacyPolicy_Optional has been set */
+	bool IsAcceptedPrivacyPolicySet() const { return AcceptedPrivacyPolicy_IsSet; }
 	/** @brief Returns true if AcceptedPrivacyPolicy_Optional is set and matches the default value */
 	bool IsAcceptedPrivacyPolicyDefaultValue() const { return AcceptedPrivacyPolicy_IsSet && AcceptedPrivacyPolicy_Optional == false; }
 	/** @brief Sets the value of AcceptedPrivacyPolicy_Optional to its default and also sets AcceptedPrivacyPolicy_IsSet to true */

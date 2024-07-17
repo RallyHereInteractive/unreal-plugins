@@ -117,8 +117,10 @@ struct RALLYHEREAPI_API FRHAPI_QueueConfigV2 : public FRHAPI_Model
 	void SetLegacyConfig(const TMap<FString, FString>& NewValue) { LegacyConfig_Optional = NewValue; LegacyConfig_IsSet = true;  }
 	/** @brief Sets the value of LegacyConfig_Optional and also sets LegacyConfig_IsSet to true using move semantics */
 	void SetLegacyConfig(TMap<FString, FString>&& NewValue) { LegacyConfig_Optional = NewValue; LegacyConfig_IsSet = true;  }
-	 /** @brief Clears the value of LegacyConfig_Optional and sets LegacyConfig_IsSet to false */
+	/** @brief Clears the value of LegacyConfig_Optional and sets LegacyConfig_IsSet to false */
 	void ClearLegacyConfig() { LegacyConfig_IsSet = false;  }
+	/** @brief Checks whether LegacyConfig_Optional has been set */
+	bool IsLegacyConfigSet() const { return LegacyConfig_IsSet; }
 };
 
 /** @} */

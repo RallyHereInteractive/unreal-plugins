@@ -62,8 +62,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerInventoryChange : public FRHAPI_Model
 	void SetBeforeItemId(const int32& NewValue) { BeforeItemId_Optional = NewValue; BeforeItemId_IsSet = true;  }
 	/** @brief Sets the value of BeforeItemId_Optional and also sets BeforeItemId_IsSet to true using move semantics */
 	void SetBeforeItemId(int32&& NewValue) { BeforeItemId_Optional = NewValue; BeforeItemId_IsSet = true;  }
-	 /** @brief Clears the value of BeforeItemId_Optional and sets BeforeItemId_IsSet to false */
+	/** @brief Clears the value of BeforeItemId_Optional and sets BeforeItemId_IsSet to false */
 	void ClearBeforeItemId() { BeforeItemId_Optional = 0; BeforeItemId_IsSet = false;  }
+	/** @brief Checks whether BeforeItemId_Optional has been set */
+	bool IsBeforeItemIdSet() const { return BeforeItemId_IsSet; }
 	/** @brief Returns true if BeforeItemId_Optional is set and matches the default value */
 	bool IsBeforeItemIdDefaultValue() const { return BeforeItemId_IsSet && BeforeItemId_Optional == 0; }
 	/** @brief Sets the value of BeforeItemId_Optional to its default and also sets BeforeItemId_IsSet to true */
@@ -91,8 +93,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerInventoryChange : public FRHAPI_Model
 	void SetAfterItemId(const int32& NewValue) { AfterItemId_Optional = NewValue; AfterItemId_IsSet = true;  }
 	/** @brief Sets the value of AfterItemId_Optional and also sets AfterItemId_IsSet to true using move semantics */
 	void SetAfterItemId(int32&& NewValue) { AfterItemId_Optional = NewValue; AfterItemId_IsSet = true;  }
-	 /** @brief Clears the value of AfterItemId_Optional and sets AfterItemId_IsSet to false */
+	/** @brief Clears the value of AfterItemId_Optional and sets AfterItemId_IsSet to false */
 	void ClearAfterItemId() { AfterItemId_Optional = 0; AfterItemId_IsSet = false;  }
+	/** @brief Checks whether AfterItemId_Optional has been set */
+	bool IsAfterItemIdSet() const { return AfterItemId_IsSet; }
 	/** @brief Returns true if AfterItemId_Optional is set and matches the default value */
 	bool IsAfterItemIdDefaultValue() const { return AfterItemId_IsSet && AfterItemId_Optional == 0; }
 	/** @brief Sets the value of AfterItemId_Optional to its default and also sets AfterItemId_IsSet to true */
@@ -120,8 +124,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerInventoryChange : public FRHAPI_Model
 	void SetBefore(const FRHAPI_InventoryRecord& NewValue) { Before_Optional = NewValue; Before_IsSet = true;  }
 	/** @brief Sets the value of Before_Optional and also sets Before_IsSet to true using move semantics */
 	void SetBefore(FRHAPI_InventoryRecord&& NewValue) { Before_Optional = NewValue; Before_IsSet = true;  }
-	 /** @brief Clears the value of Before_Optional and sets Before_IsSet to false */
+	/** @brief Clears the value of Before_Optional and sets Before_IsSet to false */
 	void ClearBefore() { Before_IsSet = false;  }
+	/** @brief Checks whether Before_Optional has been set */
+	bool IsBeforeSet() const { return Before_IsSet; }
 
 	/** @brief The Inventory Record after the change. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -145,8 +151,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerInventoryChange : public FRHAPI_Model
 	void SetAfter(const FRHAPI_InventoryRecord& NewValue) { After_Optional = NewValue; After_IsSet = true;  }
 	/** @brief Sets the value of After_Optional and also sets After_IsSet to true using move semantics */
 	void SetAfter(FRHAPI_InventoryRecord&& NewValue) { After_Optional = NewValue; After_IsSet = true;  }
-	 /** @brief Clears the value of After_Optional and sets After_IsSet to false */
+	/** @brief Clears the value of After_Optional and sets After_IsSet to false */
 	void ClearAfter() { After_IsSet = false;  }
+	/** @brief Checks whether After_Optional has been set */
+	bool IsAfterSet() const { return After_IsSet; }
 };
 
 /** @} */

@@ -61,8 +61,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchPlayerResponse : public FRHAPI_Model
 	void SetLastModifiedTimestamp(const FDateTime& NewValue) { LastModifiedTimestamp_Optional = NewValue; LastModifiedTimestamp_IsSet = true;  }
 	/** @brief Sets the value of LastModifiedTimestamp_Optional and also sets LastModifiedTimestamp_IsSet to true using move semantics */
 	void SetLastModifiedTimestamp(FDateTime&& NewValue) { LastModifiedTimestamp_Optional = NewValue; LastModifiedTimestamp_IsSet = true;  }
-	 /** @brief Clears the value of LastModifiedTimestamp_Optional and sets LastModifiedTimestamp_IsSet to false */
+	/** @brief Clears the value of LastModifiedTimestamp_Optional and sets LastModifiedTimestamp_IsSet to false */
 	void ClearLastModifiedTimestamp() { LastModifiedTimestamp_IsSet = false;  }
+	/** @brief Checks whether LastModifiedTimestamp_Optional has been set */
+	bool IsLastModifiedTimestampSet() const { return LastModifiedTimestamp_IsSet; }
 
 	/** @brief Timestamp of when the resource was created */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -86,8 +88,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchPlayerResponse : public FRHAPI_Model
 	void SetCreatedTimestamp(const FDateTime& NewValue) { CreatedTimestamp_Optional = NewValue; CreatedTimestamp_IsSet = true;  }
 	/** @brief Sets the value of CreatedTimestamp_Optional and also sets CreatedTimestamp_IsSet to true using move semantics */
 	void SetCreatedTimestamp(FDateTime&& NewValue) { CreatedTimestamp_Optional = NewValue; CreatedTimestamp_IsSet = true;  }
-	 /** @brief Clears the value of CreatedTimestamp_Optional and sets CreatedTimestamp_IsSet to false */
+	/** @brief Clears the value of CreatedTimestamp_Optional and sets CreatedTimestamp_IsSet to false */
 	void ClearCreatedTimestamp() { CreatedTimestamp_IsSet = false;  }
+	/** @brief Checks whether CreatedTimestamp_Optional has been set */
+	bool IsCreatedTimestampSet() const { return CreatedTimestamp_IsSet; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid PlayerUuid_Optional{  };
@@ -110,8 +114,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchPlayerResponse : public FRHAPI_Model
 	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true;  }
 	/** @brief Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true using move semantics */
 	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true;  }
-	 /** @brief Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false */
+	/** @brief Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false */
 	void ClearPlayerUuid() { PlayerUuid_IsSet = false;  }
+	/** @brief Checks whether PlayerUuid_Optional has been set */
+	bool IsPlayerUuidSet() const { return PlayerUuid_IsSet; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString TeamId_Optional{  };
@@ -137,10 +143,13 @@ struct RALLYHEREAPI_API FRHAPI_MatchPlayerResponse : public FRHAPI_Model
 	void SetTeamId(const FString& NewValue) { TeamId_Optional = NewValue; TeamId_IsSet = true; TeamId_IsNull = false; }
 	/** @brief Sets the value of TeamId_Optional and also sets TeamId_IsSet to true using move semantics */
 	void SetTeamId(FString&& NewValue) { TeamId_Optional = NewValue; TeamId_IsSet = true; TeamId_IsNull = false; }
-	 /** @brief Clears the value of TeamId_Optional and sets TeamId_IsSet to false */
+	/** @brief Clears the value of TeamId_Optional and sets TeamId_IsSet to false */
 	void ClearTeamId() { TeamId_IsSet = false; TeamId_IsNull = false; }
+	/** @brief Checks whether TeamId_Optional has been set */
+	bool IsTeamIdSet() const { return TeamId_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
 	void SetTeamIdToNull() { TeamId_IsSet = true; TeamId_IsNull = true; }
+	/** @brief Checks whether TeamId_Optional is set to null */
 	bool IsTeamIdNull() const { return TeamId_IsSet && TeamId_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -167,10 +176,13 @@ struct RALLYHEREAPI_API FRHAPI_MatchPlayerResponse : public FRHAPI_Model
 	void SetPartySessionId(const FString& NewValue) { PartySessionId_Optional = NewValue; PartySessionId_IsSet = true; PartySessionId_IsNull = false; }
 	/** @brief Sets the value of PartySessionId_Optional and also sets PartySessionId_IsSet to true using move semantics */
 	void SetPartySessionId(FString&& NewValue) { PartySessionId_Optional = NewValue; PartySessionId_IsSet = true; PartySessionId_IsNull = false; }
-	 /** @brief Clears the value of PartySessionId_Optional and sets PartySessionId_IsSet to false */
+	/** @brief Clears the value of PartySessionId_Optional and sets PartySessionId_IsSet to false */
 	void ClearPartySessionId() { PartySessionId_IsSet = false; PartySessionId_IsNull = false; }
+	/** @brief Checks whether PartySessionId_Optional has been set */
+	bool IsPartySessionIdSet() const { return PartySessionId_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
 	void SetPartySessionIdToNull() { PartySessionId_IsSet = true; PartySessionId_IsNull = true; }
+	/** @brief Checks whether PartySessionId_Optional is set to null */
 	bool IsPartySessionIdNull() const { return PartySessionId_IsSet && PartySessionId_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -197,14 +209,17 @@ struct RALLYHEREAPI_API FRHAPI_MatchPlayerResponse : public FRHAPI_Model
 	void SetPlacement(const int32& NewValue) { Placement_Optional = NewValue; Placement_IsSet = true; Placement_IsNull = false; }
 	/** @brief Sets the value of Placement_Optional and also sets Placement_IsSet to true using move semantics */
 	void SetPlacement(int32&& NewValue) { Placement_Optional = NewValue; Placement_IsSet = true; Placement_IsNull = false; }
-	 /** @brief Clears the value of Placement_Optional and sets Placement_IsSet to false */
+	/** @brief Clears the value of Placement_Optional and sets Placement_IsSet to false */
 	void ClearPlacement() { Placement_Optional = 0; Placement_IsSet = false; Placement_IsNull = false; }
+	/** @brief Checks whether Placement_Optional has been set */
+	bool IsPlacementSet() const { return Placement_IsSet; }
 	/** @brief Returns true if Placement_Optional is set and matches the default value */
 	bool IsPlacementDefaultValue() const { return Placement_IsSet && Placement_Optional == 0; }
 	/** @brief Sets the value of Placement_Optional to its default and also sets Placement_IsSet to true */
 	void SetPlacementToDefault() { SetPlacement(0); }
 	/** @brief Sets the value explicitly to be treated as null */
 	void SetPlacementToNull() { Placement_IsSet = true; Placement_IsNull = true; }
+	/** @brief Checks whether Placement_Optional is set to null */
 	bool IsPlacementNull() const { return Placement_IsSet && Placement_IsNull; }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
@@ -232,10 +247,13 @@ struct RALLYHEREAPI_API FRHAPI_MatchPlayerResponse : public FRHAPI_Model
 	void SetJoinedMatchTimestamp(const FDateTime& NewValue) { JoinedMatchTimestamp_Optional = NewValue; JoinedMatchTimestamp_IsSet = true; JoinedMatchTimestamp_IsNull = false; }
 	/** @brief Sets the value of JoinedMatchTimestamp_Optional and also sets JoinedMatchTimestamp_IsSet to true using move semantics */
 	void SetJoinedMatchTimestamp(FDateTime&& NewValue) { JoinedMatchTimestamp_Optional = NewValue; JoinedMatchTimestamp_IsSet = true; JoinedMatchTimestamp_IsNull = false; }
-	 /** @brief Clears the value of JoinedMatchTimestamp_Optional and sets JoinedMatchTimestamp_IsSet to false */
+	/** @brief Clears the value of JoinedMatchTimestamp_Optional and sets JoinedMatchTimestamp_IsSet to false */
 	void ClearJoinedMatchTimestamp() { JoinedMatchTimestamp_IsSet = false; JoinedMatchTimestamp_IsNull = false; }
+	/** @brief Checks whether JoinedMatchTimestamp_Optional has been set */
+	bool IsJoinedMatchTimestampSet() const { return JoinedMatchTimestamp_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
 	void SetJoinedMatchTimestampToNull() { JoinedMatchTimestamp_IsSet = true; JoinedMatchTimestamp_IsNull = true; }
+	/** @brief Checks whether JoinedMatchTimestamp_Optional is set to null */
 	bool IsJoinedMatchTimestampNull() const { return JoinedMatchTimestamp_IsSet && JoinedMatchTimestamp_IsNull; }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
@@ -263,10 +281,13 @@ struct RALLYHEREAPI_API FRHAPI_MatchPlayerResponse : public FRHAPI_Model
 	void SetLeftMatchTimestamp(const FDateTime& NewValue) { LeftMatchTimestamp_Optional = NewValue; LeftMatchTimestamp_IsSet = true; LeftMatchTimestamp_IsNull = false; }
 	/** @brief Sets the value of LeftMatchTimestamp_Optional and also sets LeftMatchTimestamp_IsSet to true using move semantics */
 	void SetLeftMatchTimestamp(FDateTime&& NewValue) { LeftMatchTimestamp_Optional = NewValue; LeftMatchTimestamp_IsSet = true; LeftMatchTimestamp_IsNull = false; }
-	 /** @brief Clears the value of LeftMatchTimestamp_Optional and sets LeftMatchTimestamp_IsSet to false */
+	/** @brief Clears the value of LeftMatchTimestamp_Optional and sets LeftMatchTimestamp_IsSet to false */
 	void ClearLeftMatchTimestamp() { LeftMatchTimestamp_IsSet = false; LeftMatchTimestamp_IsNull = false; }
+	/** @brief Checks whether LeftMatchTimestamp_Optional has been set */
+	bool IsLeftMatchTimestampSet() const { return LeftMatchTimestamp_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
 	void SetLeftMatchTimestampToNull() { LeftMatchTimestamp_IsSet = true; LeftMatchTimestamp_IsNull = true; }
+	/** @brief Checks whether LeftMatchTimestamp_Optional is set to null */
 	bool IsLeftMatchTimestampNull() const { return LeftMatchTimestamp_IsSet && LeftMatchTimestamp_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -293,14 +314,17 @@ struct RALLYHEREAPI_API FRHAPI_MatchPlayerResponse : public FRHAPI_Model
 	void SetDurationSeconds(const int32& NewValue) { DurationSeconds_Optional = NewValue; DurationSeconds_IsSet = true; DurationSeconds_IsNull = false; }
 	/** @brief Sets the value of DurationSeconds_Optional and also sets DurationSeconds_IsSet to true using move semantics */
 	void SetDurationSeconds(int32&& NewValue) { DurationSeconds_Optional = NewValue; DurationSeconds_IsSet = true; DurationSeconds_IsNull = false; }
-	 /** @brief Clears the value of DurationSeconds_Optional and sets DurationSeconds_IsSet to false */
+	/** @brief Clears the value of DurationSeconds_Optional and sets DurationSeconds_IsSet to false */
 	void ClearDurationSeconds() { DurationSeconds_Optional = 0; DurationSeconds_IsSet = false; DurationSeconds_IsNull = false; }
+	/** @brief Checks whether DurationSeconds_Optional has been set */
+	bool IsDurationSecondsSet() const { return DurationSeconds_IsSet; }
 	/** @brief Returns true if DurationSeconds_Optional is set and matches the default value */
 	bool IsDurationSecondsDefaultValue() const { return DurationSeconds_IsSet && DurationSeconds_Optional == 0; }
 	/** @brief Sets the value of DurationSeconds_Optional to its default and also sets DurationSeconds_IsSet to true */
 	void SetDurationSecondsToDefault() { SetDurationSeconds(0); }
 	/** @brief Sets the value explicitly to be treated as null */
 	void SetDurationSecondsToNull() { DurationSeconds_IsSet = true; DurationSeconds_IsNull = true; }
+	/** @brief Checks whether DurationSeconds_Optional is set to null */
 	bool IsDurationSecondsNull() const { return DurationSeconds_IsSet && DurationSeconds_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -327,10 +351,13 @@ struct RALLYHEREAPI_API FRHAPI_MatchPlayerResponse : public FRHAPI_Model
 	void SetStartingRank(const FString& NewValue) { StartingRank_Optional = NewValue; StartingRank_IsSet = true; StartingRank_IsNull = false; }
 	/** @brief Sets the value of StartingRank_Optional and also sets StartingRank_IsSet to true using move semantics */
 	void SetStartingRank(FString&& NewValue) { StartingRank_Optional = NewValue; StartingRank_IsSet = true; StartingRank_IsNull = false; }
-	 /** @brief Clears the value of StartingRank_Optional and sets StartingRank_IsSet to false */
+	/** @brief Clears the value of StartingRank_Optional and sets StartingRank_IsSet to false */
 	void ClearStartingRank() { StartingRank_IsSet = false; StartingRank_IsNull = false; }
+	/** @brief Checks whether StartingRank_Optional has been set */
+	bool IsStartingRankSet() const { return StartingRank_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
 	void SetStartingRankToNull() { StartingRank_IsSet = true; StartingRank_IsNull = true; }
+	/** @brief Checks whether StartingRank_Optional is set to null */
 	bool IsStartingRankNull() const { return StartingRank_IsSet && StartingRank_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -357,10 +384,13 @@ struct RALLYHEREAPI_API FRHAPI_MatchPlayerResponse : public FRHAPI_Model
 	void SetFinishingRank(const FString& NewValue) { FinishingRank_Optional = NewValue; FinishingRank_IsSet = true; FinishingRank_IsNull = false; }
 	/** @brief Sets the value of FinishingRank_Optional and also sets FinishingRank_IsSet to true using move semantics */
 	void SetFinishingRank(FString&& NewValue) { FinishingRank_Optional = NewValue; FinishingRank_IsSet = true; FinishingRank_IsNull = false; }
-	 /** @brief Clears the value of FinishingRank_Optional and sets FinishingRank_IsSet to false */
+	/** @brief Clears the value of FinishingRank_Optional and sets FinishingRank_IsSet to false */
 	void ClearFinishingRank() { FinishingRank_IsSet = false; FinishingRank_IsNull = false; }
+	/** @brief Checks whether FinishingRank_Optional has been set */
+	bool IsFinishingRankSet() const { return FinishingRank_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
 	void SetFinishingRankToNull() { FinishingRank_IsSet = true; FinishingRank_IsNull = true; }
+	/** @brief Checks whether FinishingRank_Optional is set to null */
 	bool IsFinishingRankNull() const { return FinishingRank_IsSet && FinishingRank_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -387,10 +417,13 @@ struct RALLYHEREAPI_API FRHAPI_MatchPlayerResponse : public FRHAPI_Model
 	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; CustomData_IsNull = false; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; CustomData_IsNull = false; }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false; CustomData_IsNull = false; }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
 	void SetCustomDataToNull() { CustomData_IsSet = true; CustomData_IsNull = true; }
+	/** @brief Checks whether CustomData_Optional is set to null */
 	bool IsCustomDataNull() const { return CustomData_IsSet && CustomData_IsNull; }
 };
 

@@ -62,8 +62,10 @@ struct RALLYHEREAPI_API FRHAPI_KVsResponseV1 : public FRHAPI_Model
 	void SetKvs(const TArray<FRHAPI_KVV1>& NewValue) { Kvs_Optional = NewValue; Kvs_IsSet = true;  }
 	/** @brief Sets the value of Kvs_Optional and also sets Kvs_IsSet to true using move semantics */
 	void SetKvs(TArray<FRHAPI_KVV1>&& NewValue) { Kvs_Optional = NewValue; Kvs_IsSet = true;  }
-	 /** @brief Clears the value of Kvs_Optional and sets Kvs_IsSet to false */
+	/** @brief Clears the value of Kvs_Optional and sets Kvs_IsSet to false */
 	void ClearKvs() { Kvs_IsSet = false;  }
+	/** @brief Checks whether Kvs_Optional has been set */
+	bool IsKvsSet() const { return Kvs_IsSet; }
 
 	/** @brief The list of secret key/value pairs */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -87,8 +89,10 @@ struct RALLYHEREAPI_API FRHAPI_KVsResponseV1 : public FRHAPI_Model
 	void SetSecretKvs(const TArray<FRHAPI_KVV1>& NewValue) { SecretKvs_Optional = NewValue; SecretKvs_IsSet = true;  }
 	/** @brief Sets the value of SecretKvs_Optional and also sets SecretKvs_IsSet to true using move semantics */
 	void SetSecretKvs(TArray<FRHAPI_KVV1>&& NewValue) { SecretKvs_Optional = NewValue; SecretKvs_IsSet = true;  }
-	 /** @brief Clears the value of SecretKvs_Optional and sets SecretKvs_IsSet to false */
+	/** @brief Clears the value of SecretKvs_Optional and sets SecretKvs_IsSet to false */
 	void ClearSecretKvs() { SecretKvs_IsSet = false;  }
+	/** @brief Checks whether SecretKvs_Optional has been set */
+	bool IsSecretKvsSet() const { return SecretKvs_IsSet; }
 };
 
 /** @} */

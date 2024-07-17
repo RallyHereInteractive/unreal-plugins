@@ -63,8 +63,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfoUpdate : public FRHAPI_Model
 	void SetAllocationId(const FString& NewValue) { AllocationId_Optional = NewValue; AllocationId_IsSet = true;  }
 	/** @brief Sets the value of AllocationId_Optional and also sets AllocationId_IsSet to true using move semantics */
 	void SetAllocationId(FString&& NewValue) { AllocationId_Optional = NewValue; AllocationId_IsSet = true;  }
-	 /** @brief Clears the value of AllocationId_Optional and sets AllocationId_IsSet to false */
+	/** @brief Clears the value of AllocationId_Optional and sets AllocationId_IsSet to false */
 	void ClearAllocationId() { AllocationId_IsSet = false;  }
+	/** @brief Checks whether AllocationId_Optional has been set */
+	bool IsAllocationIdSet() const { return AllocationId_IsSet; }
 
 	/** @brief Is the instance joinable at this time? */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -88,8 +90,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfoUpdate : public FRHAPI_Model
 	void SetJoinStatus(const ERHAPI_InstanceJoinableStatus& NewValue) { JoinStatus_Optional = NewValue; JoinStatus_IsSet = true;  }
 	/** @brief Sets the value of JoinStatus_Optional and also sets JoinStatus_IsSet to true using move semantics */
 	void SetJoinStatus(ERHAPI_InstanceJoinableStatus&& NewValue) { JoinStatus_Optional = NewValue; JoinStatus_IsSet = true;  }
-	 /** @brief Clears the value of JoinStatus_Optional and sets JoinStatus_IsSet to false */
+	/** @brief Clears the value of JoinStatus_Optional and sets JoinStatus_IsSet to false */
 	void ClearJoinStatus() { JoinStatus_IsSet = false;  }
+	/** @brief Checks whether JoinStatus_Optional has been set */
+	bool IsJoinStatusSet() const { return JoinStatus_IsSet; }
 
 	/** @brief Parameters to join the instance */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -113,8 +117,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfoUpdate : public FRHAPI_Model
 	void SetJoinParams(const FRHAPI_JoinParams& NewValue) { JoinParams_Optional = NewValue; JoinParams_IsSet = true;  }
 	/** @brief Sets the value of JoinParams_Optional and also sets JoinParams_IsSet to true using move semantics */
 	void SetJoinParams(FRHAPI_JoinParams&& NewValue) { JoinParams_Optional = NewValue; JoinParams_IsSet = true;  }
-	 /** @brief Clears the value of JoinParams_Optional and sets JoinParams_IsSet to false */
+	/** @brief Clears the value of JoinParams_Optional and sets JoinParams_IsSet to false */
 	void ClearJoinParams() { JoinParams_IsSet = false;  }
+	/** @brief Checks whether JoinParams_Optional has been set */
+	bool IsJoinParamsSet() const { return JoinParams_IsSet; }
 
 	/** @brief Product Client Version number.  Used for compatibility checking with players.  Must be compatible with all players to spawn */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -138,8 +144,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfoUpdate : public FRHAPI_Model
 	void SetVersion(const FString& NewValue) { Version_Optional = NewValue; Version_IsSet = true;  }
 	/** @brief Sets the value of Version_Optional and also sets Version_IsSet to true using move semantics */
 	void SetVersion(FString&& NewValue) { Version_Optional = NewValue; Version_IsSet = true;  }
-	 /** @brief Clears the value of Version_Optional and sets Version_IsSet to false */
+	/** @brief Clears the value of Version_Optional and sets Version_IsSet to false */
 	void ClearVersion() { Version_IsSet = false;  }
+	/** @brief Checks whether Version_Optional has been set */
+	bool IsVersionSet() const { return Version_IsSet; }
 
 	/** @brief instance-defined custom data */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -163,8 +171,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfoUpdate : public FRHAPI_Model
 	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 };
 
 /** @} */

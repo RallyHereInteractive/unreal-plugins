@@ -85,8 +85,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchmakingResults : public FRHAPI_Model
 	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 
 	/** @brief List of tickets that were assigned to this match if created by matchmaking */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -110,8 +112,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchmakingResults : public FRHAPI_Model
 	void SetTicketIds(const TArray<FString>& NewValue) { TicketIds_Optional = NewValue; TicketIds_IsSet = true;  }
 	/** @brief Sets the value of TicketIds_Optional and also sets TicketIds_IsSet to true using move semantics */
 	void SetTicketIds(TArray<FString>&& NewValue) { TicketIds_Optional = NewValue; TicketIds_IsSet = true;  }
-	 /** @brief Clears the value of TicketIds_Optional and sets TicketIds_IsSet to false */
+	/** @brief Clears the value of TicketIds_Optional and sets TicketIds_IsSet to false */
 	void ClearTicketIds() { TicketIds_IsSet = false;  }
+	/** @brief Checks whether TicketIds_Optional has been set */
+	bool IsTicketIdsSet() const { return TicketIds_IsSet; }
 
 	/** @brief Whether or not the tickets from these results have been assigned */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -135,8 +139,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchmakingResults : public FRHAPI_Model
 	void SetTicketsAssigned(const bool& NewValue) { TicketsAssigned_Optional = NewValue; TicketsAssigned_IsSet = true;  }
 	/** @brief Sets the value of TicketsAssigned_Optional and also sets TicketsAssigned_IsSet to true using move semantics */
 	void SetTicketsAssigned(bool&& NewValue) { TicketsAssigned_Optional = NewValue; TicketsAssigned_IsSet = true;  }
-	 /** @brief Clears the value of TicketsAssigned_Optional and sets TicketsAssigned_IsSet to false */
+	/** @brief Clears the value of TicketsAssigned_Optional and sets TicketsAssigned_IsSet to false */
 	void ClearTicketsAssigned() { TicketsAssigned_Optional = false; TicketsAssigned_IsSet = false;  }
+	/** @brief Checks whether TicketsAssigned_Optional has been set */
+	bool IsTicketsAssignedSet() const { return TicketsAssigned_IsSet; }
 	/** @brief Returns true if TicketsAssigned_Optional is set and matches the default value */
 	bool IsTicketsAssignedDefaultValue() const { return TicketsAssigned_IsSet && TicketsAssigned_Optional == false; }
 	/** @brief Sets the value of TicketsAssigned_Optional to its default and also sets TicketsAssigned_IsSet to true */

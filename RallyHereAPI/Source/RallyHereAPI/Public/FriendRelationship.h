@@ -83,8 +83,10 @@ struct RALLYHEREAPI_API FRHAPI_FriendRelationship : public FRHAPI_Model
 	void SetNotes(const FString& NewValue) { Notes_Optional = NewValue; Notes_IsSet = true;  }
 	/** @brief Sets the value of Notes_Optional and also sets Notes_IsSet to true using move semantics */
 	void SetNotes(FString&& NewValue) { Notes_Optional = NewValue; Notes_IsSet = true;  }
-	 /** @brief Clears the value of Notes_Optional and sets Notes_IsSet to false */
+	/** @brief Clears the value of Notes_Optional and sets Notes_IsSet to false */
 	void ClearNotes() { Notes_IsSet = false;  }
+	/** @brief Checks whether Notes_Optional has been set */
+	bool IsNotesSet() const { return Notes_IsSet; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FDateTime LastModifiedOn{  };

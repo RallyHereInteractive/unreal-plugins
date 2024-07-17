@@ -62,8 +62,10 @@ struct RALLYHEREAPI_API FRHAPI_LookupResults : public FRHAPI_Model
 	void SetDisplayNames(const TArray<TMap<FString, TArray<FRHAPI_PlayerResponse>>>& NewValue) { DisplayNames_Optional = NewValue; DisplayNames_IsSet = true;  }
 	/** @brief Sets the value of DisplayNames_Optional and also sets DisplayNames_IsSet to true using move semantics */
 	void SetDisplayNames(TArray<TMap<FString, TArray<FRHAPI_PlayerResponse>>>&& NewValue) { DisplayNames_Optional = NewValue; DisplayNames_IsSet = true;  }
-	 /** @brief Clears the value of DisplayNames_Optional and sets DisplayNames_IsSet to false */
+	/** @brief Clears the value of DisplayNames_Optional and sets DisplayNames_IsSet to false */
 	void ClearDisplayNames() { DisplayNames_IsSet = false;  }
+	/** @brief Checks whether DisplayNames_Optional has been set */
+	bool IsDisplayNamesSet() const { return DisplayNames_IsSet; }
 
 	/** @brief *DEPRECATED* Use `identity_platforms_by_platform` instead. List of platforms and the players that match that platform user id */
 	TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>> IdentityPlatforms_Optional{  };
@@ -86,8 +88,10 @@ struct RALLYHEREAPI_API FRHAPI_LookupResults : public FRHAPI_Model
 	void SetIdentityPlatforms(const TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>& NewValue) { IdentityPlatforms_Optional = NewValue; IdentityPlatforms_IsSet = true;  }
 	/** @brief Sets the value of IdentityPlatforms_Optional and also sets IdentityPlatforms_IsSet to true using move semantics */
 	void SetIdentityPlatforms(TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>&& NewValue) { IdentityPlatforms_Optional = NewValue; IdentityPlatforms_IsSet = true;  }
-	 /** @brief Clears the value of IdentityPlatforms_Optional and sets IdentityPlatforms_IsSet to false */
+	/** @brief Clears the value of IdentityPlatforms_Optional and sets IdentityPlatforms_IsSet to false */
 	void ClearIdentityPlatforms() { IdentityPlatforms_IsSet = false;  }
+	/** @brief Checks whether IdentityPlatforms_Optional has been set */
+	bool IsIdentityPlatformsSet() const { return IdentityPlatforms_IsSet; }
 
 	/** @brief List of platforms and the players that match that platform user id */
 	TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>> IdentityPlatformsByPlatform_Optional{  };
@@ -110,8 +114,10 @@ struct RALLYHEREAPI_API FRHAPI_LookupResults : public FRHAPI_Model
 	void SetIdentityPlatformsByPlatform(const TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>& NewValue) { IdentityPlatformsByPlatform_Optional = NewValue; IdentityPlatformsByPlatform_IsSet = true;  }
 	/** @brief Sets the value of IdentityPlatformsByPlatform_Optional and also sets IdentityPlatformsByPlatform_IsSet to true using move semantics */
 	void SetIdentityPlatformsByPlatform(TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>&& NewValue) { IdentityPlatformsByPlatform_Optional = NewValue; IdentityPlatformsByPlatform_IsSet = true;  }
-	 /** @brief Clears the value of IdentityPlatformsByPlatform_Optional and sets IdentityPlatformsByPlatform_IsSet to false */
+	/** @brief Clears the value of IdentityPlatformsByPlatform_Optional and sets IdentityPlatformsByPlatform_IsSet to false */
 	void ClearIdentityPlatformsByPlatform() { IdentityPlatformsByPlatform_IsSet = false;  }
+	/** @brief Checks whether IdentityPlatformsByPlatform_Optional has been set */
+	bool IsIdentityPlatformsByPlatformSet() const { return IdentityPlatformsByPlatform_IsSet; }
 };
 
 /** @} */

@@ -60,8 +60,10 @@ struct RALLYHEREAPI_API FRHAPI_ClaimKeyRequest : public FRHAPI_Model
 	void SetExternalKeyType(const FString& NewValue) { ExternalKeyType_Optional = NewValue; ExternalKeyType_IsSet = true;  }
 	/** @brief Sets the value of ExternalKeyType_Optional and also sets ExternalKeyType_IsSet to true using move semantics */
 	void SetExternalKeyType(FString&& NewValue) { ExternalKeyType_Optional = NewValue; ExternalKeyType_IsSet = true;  }
-	 /** @brief Clears the value of ExternalKeyType_Optional and sets ExternalKeyType_IsSet to false */
+	/** @brief Clears the value of ExternalKeyType_Optional and sets ExternalKeyType_IsSet to false */
 	void ClearExternalKeyType() { ExternalKeyType_Optional = TEXT("Type of the External Key"); ExternalKeyType_IsSet = false;  }
+	/** @brief Checks whether ExternalKeyType_Optional has been set */
+	bool IsExternalKeyTypeSet() const { return ExternalKeyType_IsSet; }
 	/** @brief Returns true if ExternalKeyType_Optional is set and matches the default value */
 	bool IsExternalKeyTypeDefaultValue() const { return ExternalKeyType_IsSet && ExternalKeyType_Optional == TEXT("Type of the External Key"); }
 	/** @brief Sets the value of ExternalKeyType_Optional to its default and also sets ExternalKeyType_IsSet to true */

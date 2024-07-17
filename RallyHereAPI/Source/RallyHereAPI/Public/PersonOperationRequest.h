@@ -62,8 +62,10 @@ struct RALLYHEREAPI_API FRHAPI_PersonOperationRequest : public FRHAPI_Model
 	void SetPersonId(const FGuid& NewValue) { PersonId_Optional = NewValue; PersonId_IsSet = true;  }
 	/** @brief Sets the value of PersonId_Optional and also sets PersonId_IsSet to true using move semantics */
 	void SetPersonId(FGuid&& NewValue) { PersonId_Optional = NewValue; PersonId_IsSet = true;  }
-	 /** @brief Clears the value of PersonId_Optional and sets PersonId_IsSet to false */
+	/** @brief Clears the value of PersonId_Optional and sets PersonId_IsSet to false */
 	void ClearPersonId() { PersonId_IsSet = false;  }
+	/** @brief Checks whether PersonId_Optional has been set */
+	bool IsPersonIdSet() const { return PersonId_IsSet; }
 
 	/** @brief Platform ID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -87,8 +89,10 @@ struct RALLYHEREAPI_API FRHAPI_PersonOperationRequest : public FRHAPI_Model
 	void SetPlatform(const ERHAPI_Platform& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true;  }
 	/** @brief Sets the value of Platform_Optional and also sets Platform_IsSet to true using move semantics */
 	void SetPlatform(ERHAPI_Platform&& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true;  }
-	 /** @brief Clears the value of Platform_Optional and sets Platform_IsSet to false */
+	/** @brief Clears the value of Platform_Optional and sets Platform_IsSet to false */
 	void ClearPlatform() { Platform_IsSet = false;  }
+	/** @brief Checks whether Platform_Optional has been set */
+	bool IsPlatformSet() const { return Platform_IsSet; }
 
 	/** @brief Platform User ID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -112,8 +116,10 @@ struct RALLYHEREAPI_API FRHAPI_PersonOperationRequest : public FRHAPI_Model
 	void SetPlatformUserId(const FString& NewValue) { PlatformUserId_Optional = NewValue; PlatformUserId_IsSet = true;  }
 	/** @brief Sets the value of PlatformUserId_Optional and also sets PlatformUserId_IsSet to true using move semantics */
 	void SetPlatformUserId(FString&& NewValue) { PlatformUserId_Optional = NewValue; PlatformUserId_IsSet = true;  }
-	 /** @brief Clears the value of PlatformUserId_Optional and sets PlatformUserId_IsSet to false */
+	/** @brief Clears the value of PlatformUserId_Optional and sets PlatformUserId_IsSet to false */
 	void ClearPlatformUserId() { PlatformUserId_IsSet = false;  }
+	/** @brief Checks whether PlatformUserId_Optional has been set */
+	bool IsPlatformUserIdSet() const { return PlatformUserId_IsSet; }
 };
 
 /** @} */

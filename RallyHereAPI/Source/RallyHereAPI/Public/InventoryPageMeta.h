@@ -62,8 +62,10 @@ struct RALLYHEREAPI_API FRHAPI_InventoryPageMeta : public FRHAPI_Model
 	void SetStartingPosition(const FDateTime& NewValue) { StartingPosition_Optional = NewValue; StartingPosition_IsSet = true;  }
 	/** @brief Sets the value of StartingPosition_Optional and also sets StartingPosition_IsSet to true using move semantics */
 	void SetStartingPosition(FDateTime&& NewValue) { StartingPosition_Optional = NewValue; StartingPosition_IsSet = true;  }
-	 /** @brief Clears the value of StartingPosition_Optional and sets StartingPosition_IsSet to false */
+	/** @brief Clears the value of StartingPosition_Optional and sets StartingPosition_IsSet to false */
 	void ClearStartingPosition() { StartingPosition_IsSet = false;  }
+	/** @brief Checks whether StartingPosition_Optional has been set */
+	bool IsStartingPositionSet() const { return StartingPosition_IsSet; }
 
 	/** @brief The cursor value pointing to the next page of results. If cursor is provided, starting_position is ignored */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -87,8 +89,10 @@ struct RALLYHEREAPI_API FRHAPI_InventoryPageMeta : public FRHAPI_Model
 	void SetCursor(const FString& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true;  }
 	/** @brief Sets the value of Cursor_Optional and also sets Cursor_IsSet to true using move semantics */
 	void SetCursor(FString&& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true;  }
-	 /** @brief Clears the value of Cursor_Optional and sets Cursor_IsSet to false */
+	/** @brief Clears the value of Cursor_Optional and sets Cursor_IsSet to false */
 	void ClearCursor() { Cursor_IsSet = false;  }
+	/** @brief Checks whether Cursor_Optional has been set */
+	bool IsCursorSet() const { return Cursor_IsSet; }
 
 	/** @brief The direction to search. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -112,8 +116,10 @@ struct RALLYHEREAPI_API FRHAPI_InventoryPageMeta : public FRHAPI_Model
 	void SetSort(const ERHAPI_SortOrder& NewValue) { Sort_Optional = NewValue; Sort_IsSet = true;  }
 	/** @brief Sets the value of Sort_Optional and also sets Sort_IsSet to true using move semantics */
 	void SetSort(ERHAPI_SortOrder&& NewValue) { Sort_Optional = NewValue; Sort_IsSet = true;  }
-	 /** @brief Clears the value of Sort_Optional and sets Sort_IsSet to false */
+	/** @brief Clears the value of Sort_Optional and sets Sort_IsSet to false */
 	void ClearSort() { Sort_IsSet = false;  }
+	/** @brief Checks whether Sort_Optional has been set */
+	bool IsSortSet() const { return Sort_IsSet; }
 
 	/** @brief The number of Orders to return */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -137,8 +143,10 @@ struct RALLYHEREAPI_API FRHAPI_InventoryPageMeta : public FRHAPI_Model
 	void SetLimit(const int32& NewValue) { Limit_Optional = NewValue; Limit_IsSet = true;  }
 	/** @brief Sets the value of Limit_Optional and also sets Limit_IsSet to true using move semantics */
 	void SetLimit(int32&& NewValue) { Limit_Optional = NewValue; Limit_IsSet = true;  }
-	 /** @brief Clears the value of Limit_Optional and sets Limit_IsSet to false */
+	/** @brief Clears the value of Limit_Optional and sets Limit_IsSet to false */
 	void ClearLimit() { Limit_Optional = 10; Limit_IsSet = false;  }
+	/** @brief Checks whether Limit_Optional has been set */
+	bool IsLimitSet() const { return Limit_IsSet; }
 	/** @brief Returns true if Limit_Optional is set and matches the default value */
 	bool IsLimitDefaultValue() const { return Limit_IsSet && Limit_Optional == 10; }
 	/** @brief Sets the value of Limit_Optional to its default and also sets Limit_IsSet to true */

@@ -62,8 +62,10 @@ struct RALLYHEREAPI_API FRHAPI_XpTable : public FRHAPI_Model
 	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 
 	/** @brief The XP Table UUID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -87,8 +89,10 @@ struct RALLYHEREAPI_API FRHAPI_XpTable : public FRHAPI_Model
 	void SetXpUuid(const FGuid& NewValue) { XpUuid_Optional = NewValue; XpUuid_IsSet = true;  }
 	/** @brief Sets the value of XpUuid_Optional and also sets XpUuid_IsSet to true using move semantics */
 	void SetXpUuid(FGuid&& NewValue) { XpUuid_Optional = NewValue; XpUuid_IsSet = true;  }
-	 /** @brief Clears the value of XpUuid_Optional and sets XpUuid_IsSet to false */
+	/** @brief Clears the value of XpUuid_Optional and sets XpUuid_IsSet to false */
 	void ClearXpUuid() { XpUuid_IsSet = false;  }
+	/** @brief Checks whether XpUuid_Optional has been set */
+	bool IsXpUuidSet() const { return XpUuid_IsSet; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TMap<FString, int32> XpEntries_Optional{  };
@@ -111,8 +115,10 @@ struct RALLYHEREAPI_API FRHAPI_XpTable : public FRHAPI_Model
 	void SetXpEntries(const TMap<FString, int32>& NewValue) { XpEntries_Optional = NewValue; XpEntries_IsSet = true;  }
 	/** @brief Sets the value of XpEntries_Optional and also sets XpEntries_IsSet to true using move semantics */
 	void SetXpEntries(TMap<FString, int32>&& NewValue) { XpEntries_Optional = NewValue; XpEntries_IsSet = true;  }
-	 /** @brief Clears the value of XpEntries_Optional and sets XpEntries_IsSet to false */
+	/** @brief Clears the value of XpEntries_Optional and sets XpEntries_IsSet to false */
 	void ClearXpEntries() { XpEntries_IsSet = false;  }
+	/** @brief Checks whether XpEntries_Optional has been set */
+	bool IsXpEntriesSet() const { return XpEntries_IsSet; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_CacheInfo CacheInfo_Optional{  };
@@ -135,8 +141,10 @@ struct RALLYHEREAPI_API FRHAPI_XpTable : public FRHAPI_Model
 	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
 	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
-	 /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
+	/** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
 	void ClearCacheInfo() { CacheInfo_IsSet = false;  }
+	/** @brief Checks whether CacheInfo_Optional has been set */
+	bool IsCacheInfoSet() const { return CacheInfo_IsSet; }
 };
 
 /** @} */

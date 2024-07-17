@@ -88,8 +88,10 @@ struct RALLYHEREAPI_API FRHAPI_CreateOrJoinRequest : public FRHAPI_Model
 	void SetCrossplayPreferences(const FRHAPI_CrossplayPreferences& NewValue) { CrossplayPreferences_Optional = NewValue; CrossplayPreferences_IsSet = true;  }
 	/** @brief Sets the value of CrossplayPreferences_Optional and also sets CrossplayPreferences_IsSet to true using move semantics */
 	void SetCrossplayPreferences(FRHAPI_CrossplayPreferences&& NewValue) { CrossplayPreferences_Optional = NewValue; CrossplayPreferences_IsSet = true;  }
-	 /** @brief Clears the value of CrossplayPreferences_Optional and sets CrossplayPreferences_IsSet to false */
+	/** @brief Clears the value of CrossplayPreferences_Optional and sets CrossplayPreferences_IsSet to false */
 	void ClearCrossplayPreferences() { CrossplayPreferences_IsSet = false;  }
+	/** @brief Checks whether CrossplayPreferences_Optional has been set */
+	bool IsCrossplayPreferencesSet() const { return CrossplayPreferences_IsSet; }
 
 	/** @brief Type of session client is creating or joining */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -125,8 +127,10 @@ struct RALLYHEREAPI_API FRHAPI_CreateOrJoinRequest : public FRHAPI_Model
 	void SetRegionId(const FString& NewValue) { RegionId_Optional = NewValue; RegionId_IsSet = true;  }
 	/** @brief Sets the value of RegionId_Optional and also sets RegionId_IsSet to true using move semantics */
 	void SetRegionId(FString&& NewValue) { RegionId_Optional = NewValue; RegionId_IsSet = true;  }
-	 /** @brief Clears the value of RegionId_Optional and sets RegionId_IsSet to false */
+	/** @brief Clears the value of RegionId_Optional and sets RegionId_IsSet to false */
 	void ClearRegionId() { RegionId_IsSet = false;  }
+	/** @brief Checks whether RegionId_Optional has been set */
+	bool IsRegionIdSet() const { return RegionId_IsSet; }
 
 	/** @brief Optional information about player in order to join the new/existing session. V2 version of CreateOrJoin will require this */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -150,8 +154,10 @@ struct RALLYHEREAPI_API FRHAPI_CreateOrJoinRequest : public FRHAPI_Model
 	void SetPlayer(const FRHAPI_SelfSessionPlayerUpdateRequest& NewValue) { Player_Optional = NewValue; Player_IsSet = true;  }
 	/** @brief Sets the value of Player_Optional and also sets Player_IsSet to true using move semantics */
 	void SetPlayer(FRHAPI_SelfSessionPlayerUpdateRequest&& NewValue) { Player_Optional = NewValue; Player_IsSet = true;  }
-	 /** @brief Clears the value of Player_Optional and sets Player_IsSet to false */
+	/** @brief Clears the value of Player_Optional and sets Player_IsSet to false */
 	void ClearPlayer() { Player_IsSet = false;  }
+	/** @brief Checks whether Player_Optional has been set */
+	bool IsPlayerSet() const { return Player_IsSet; }
 };
 
 /** @} */

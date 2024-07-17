@@ -71,8 +71,10 @@ struct RALLYHEREAPI_API FRHAPI_CacheInfo : public FRHAPI_Model
 	void SetStrRep(const FString& NewValue) { StrRep_Optional = NewValue; StrRep_IsSet = true;  }
 	/** @brief Sets the value of StrRep_Optional and also sets StrRep_IsSet to true using move semantics */
 	void SetStrRep(FString&& NewValue) { StrRep_Optional = NewValue; StrRep_IsSet = true;  }
-	 /** @brief Clears the value of StrRep_Optional and sets StrRep_IsSet to false */
+	/** @brief Clears the value of StrRep_Optional and sets StrRep_IsSet to false */
 	void ClearStrRep() { StrRep_IsSet = false;  }
+	/** @brief Checks whether StrRep_Optional has been set */
+	bool IsStrRepSet() const { return StrRep_IsSet; }
 };
 
 /** @} */

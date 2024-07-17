@@ -73,8 +73,10 @@ struct RALLYHEREAPI_API FRHAPI_SendInBlueContact : public FRHAPI_Model
 	void SetAttributes(const FRHAPI_JsonObject& NewValue) { Attributes_Optional = NewValue; Attributes_IsSet = true;  }
 	/** @brief Sets the value of Attributes_Optional and also sets Attributes_IsSet to true using move semantics */
 	void SetAttributes(FRHAPI_JsonObject&& NewValue) { Attributes_Optional = NewValue; Attributes_IsSet = true;  }
-	 /** @brief Clears the value of Attributes_Optional and sets Attributes_IsSet to false */
+	/** @brief Clears the value of Attributes_Optional and sets Attributes_IsSet to false */
 	void ClearAttributes() { Attributes_IsSet = false;  }
+	/** @brief Checks whether Attributes_Optional has been set */
+	bool IsAttributesSet() const { return Attributes_IsSet; }
 
 	/** @brief Email blacklisted */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -98,8 +100,10 @@ struct RALLYHEREAPI_API FRHAPI_SendInBlueContact : public FRHAPI_Model
 	void SetEmailBlacklisted(const bool& NewValue) { EmailBlacklisted_Optional = NewValue; EmailBlacklisted_IsSet = true;  }
 	/** @brief Sets the value of EmailBlacklisted_Optional and also sets EmailBlacklisted_IsSet to true using move semantics */
 	void SetEmailBlacklisted(bool&& NewValue) { EmailBlacklisted_Optional = NewValue; EmailBlacklisted_IsSet = true;  }
-	 /** @brief Clears the value of EmailBlacklisted_Optional and sets EmailBlacklisted_IsSet to false */
+	/** @brief Clears the value of EmailBlacklisted_Optional and sets EmailBlacklisted_IsSet to false */
 	void ClearEmailBlacklisted() { EmailBlacklisted_Optional = false; EmailBlacklisted_IsSet = false;  }
+	/** @brief Checks whether EmailBlacklisted_Optional has been set */
+	bool IsEmailBlacklistedSet() const { return EmailBlacklisted_IsSet; }
 	/** @brief Returns true if EmailBlacklisted_Optional is set and matches the default value */
 	bool IsEmailBlacklistedDefaultValue() const { return EmailBlacklisted_IsSet && EmailBlacklisted_Optional == false; }
 	/** @brief Sets the value of EmailBlacklisted_Optional to its default and also sets EmailBlacklisted_IsSet to true */
@@ -127,8 +131,10 @@ struct RALLYHEREAPI_API FRHAPI_SendInBlueContact : public FRHAPI_Model
 	void SetListIds(const TArray<int32>& NewValue) { ListIds_Optional = NewValue; ListIds_IsSet = true;  }
 	/** @brief Sets the value of ListIds_Optional and also sets ListIds_IsSet to true using move semantics */
 	void SetListIds(TArray<int32>&& NewValue) { ListIds_Optional = NewValue; ListIds_IsSet = true;  }
-	 /** @brief Clears the value of ListIds_Optional and sets ListIds_IsSet to false */
+	/** @brief Clears the value of ListIds_Optional and sets ListIds_IsSet to false */
 	void ClearListIds() { ListIds_IsSet = false;  }
+	/** @brief Checks whether ListIds_Optional has been set */
+	bool IsListIdsSet() const { return ListIds_IsSet; }
 
 	/** @brief Unlink list IDs */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -152,8 +158,10 @@ struct RALLYHEREAPI_API FRHAPI_SendInBlueContact : public FRHAPI_Model
 	void SetUnlinkListIds(const TArray<int32>& NewValue) { UnlinkListIds_Optional = NewValue; UnlinkListIds_IsSet = true;  }
 	/** @brief Sets the value of UnlinkListIds_Optional and also sets UnlinkListIds_IsSet to true using move semantics */
 	void SetUnlinkListIds(TArray<int32>&& NewValue) { UnlinkListIds_Optional = NewValue; UnlinkListIds_IsSet = true;  }
-	 /** @brief Clears the value of UnlinkListIds_Optional and sets UnlinkListIds_IsSet to false */
+	/** @brief Clears the value of UnlinkListIds_Optional and sets UnlinkListIds_IsSet to false */
 	void ClearUnlinkListIds() { UnlinkListIds_IsSet = false;  }
+	/** @brief Checks whether UnlinkListIds_Optional has been set */
+	bool IsUnlinkListIdsSet() const { return UnlinkListIds_IsSet; }
 
 	/** @brief Update enabled */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -177,8 +185,10 @@ struct RALLYHEREAPI_API FRHAPI_SendInBlueContact : public FRHAPI_Model
 	void SetUpdateEnabled(const bool& NewValue) { UpdateEnabled_Optional = NewValue; UpdateEnabled_IsSet = true;  }
 	/** @brief Sets the value of UpdateEnabled_Optional and also sets UpdateEnabled_IsSet to true using move semantics */
 	void SetUpdateEnabled(bool&& NewValue) { UpdateEnabled_Optional = NewValue; UpdateEnabled_IsSet = true;  }
-	 /** @brief Clears the value of UpdateEnabled_Optional and sets UpdateEnabled_IsSet to false */
+	/** @brief Clears the value of UpdateEnabled_Optional and sets UpdateEnabled_IsSet to false */
 	void ClearUpdateEnabled() { UpdateEnabled_Optional = false; UpdateEnabled_IsSet = false;  }
+	/** @brief Checks whether UpdateEnabled_Optional has been set */
+	bool IsUpdateEnabledSet() const { return UpdateEnabled_IsSet; }
 	/** @brief Returns true if UpdateEnabled_Optional is set and matches the default value */
 	bool IsUpdateEnabledDefaultValue() const { return UpdateEnabled_IsSet && UpdateEnabled_Optional == false; }
 	/** @brief Sets the value of UpdateEnabled_Optional to its default and also sets UpdateEnabled_IsSet to true */

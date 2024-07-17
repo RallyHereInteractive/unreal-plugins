@@ -62,8 +62,10 @@ struct RALLYHEREAPI_API FRHAPI_Notifications : public FRHAPI_Model
 	void SetNotifications(const TArray<FRHAPI_Notification>& NewValue) { Notifications_Optional = NewValue; Notifications_IsSet = true;  }
 	/** @brief Sets the value of Notifications_Optional and also sets Notifications_IsSet to true using move semantics */
 	void SetNotifications(TArray<FRHAPI_Notification>&& NewValue) { Notifications_Optional = NewValue; Notifications_IsSet = true;  }
-	 /** @brief Clears the value of Notifications_Optional and sets Notifications_IsSet to false */
+	/** @brief Clears the value of Notifications_Optional and sets Notifications_IsSet to false */
 	void ClearNotifications() { Notifications_IsSet = false;  }
+	/** @brief Checks whether Notifications_Optional has been set */
+	bool IsNotificationsSet() const { return Notifications_IsSet; }
 
 	/** @brief Cursor to use for the next request */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

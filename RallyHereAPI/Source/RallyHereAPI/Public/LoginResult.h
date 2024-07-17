@@ -64,8 +64,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
 	void SetPortalParentAuthResult(const FRHAPI_PortalUserInfo& NewValue) { PortalParentAuthResult_Optional = NewValue; PortalParentAuthResult_IsSet = true;  }
 	/** @brief Sets the value of PortalParentAuthResult_Optional and also sets PortalParentAuthResult_IsSet to true using move semantics */
 	void SetPortalParentAuthResult(FRHAPI_PortalUserInfo&& NewValue) { PortalParentAuthResult_Optional = NewValue; PortalParentAuthResult_IsSet = true;  }
-	 /** @brief Clears the value of PortalParentAuthResult_Optional and sets PortalParentAuthResult_IsSet to false */
+	/** @brief Clears the value of PortalParentAuthResult_Optional and sets PortalParentAuthResult_IsSet to false */
 	void ClearPortalParentAuthResult() { PortalParentAuthResult_IsSet = false;  }
+	/** @brief Checks whether PortalParentAuthResult_Optional has been set */
+	bool IsPortalParentAuthResultSet() const { return PortalParentAuthResult_IsSet; }
 
 	/** @brief List of permissions for this user. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -89,8 +91,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
 	void SetPermissions(const TArray<FString>& NewValue) { Permissions_Optional = NewValue; Permissions_IsSet = true;  }
 	/** @brief Sets the value of Permissions_Optional and also sets Permissions_IsSet to true using move semantics */
 	void SetPermissions(TArray<FString>&& NewValue) { Permissions_Optional = NewValue; Permissions_IsSet = true;  }
-	 /** @brief Clears the value of Permissions_Optional and sets Permissions_IsSet to false */
+	/** @brief Clears the value of Permissions_Optional and sets Permissions_IsSet to false */
 	void ClearPermissions() { Permissions_IsSet = false;  }
+	/** @brief Checks whether Permissions_Optional has been set */
+	bool IsPermissionsSet() const { return Permissions_IsSet; }
 
 	/** @brief List of restrictions on this player */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -114,8 +118,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
 	void SetRestrictions(const TArray<FRHAPI_Restriction>& NewValue) { Restrictions_Optional = NewValue; Restrictions_IsSet = true;  }
 	/** @brief Sets the value of Restrictions_Optional and also sets Restrictions_IsSet to true using move semantics */
 	void SetRestrictions(TArray<FRHAPI_Restriction>&& NewValue) { Restrictions_Optional = NewValue; Restrictions_IsSet = true;  }
-	 /** @brief Clears the value of Restrictions_Optional and sets Restrictions_IsSet to false */
+	/** @brief Clears the value of Restrictions_Optional and sets Restrictions_IsSet to false */
 	void ClearRestrictions() { Restrictions_IsSet = false;  }
+	/** @brief Checks whether Restrictions_Optional has been set */
+	bool IsRestrictionsSet() const { return Restrictions_IsSet; }
 
 	/** @brief Active player ID. *DEPRECATED* use `active_player_uuid` instead */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -139,8 +145,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
 	void SetActivePlayerId(const int32& NewValue) { ActivePlayerId_Optional = NewValue; ActivePlayerId_IsSet = true;  }
 	/** @brief Sets the value of ActivePlayerId_Optional and also sets ActivePlayerId_IsSet to true using move semantics */
 	void SetActivePlayerId(int32&& NewValue) { ActivePlayerId_Optional = NewValue; ActivePlayerId_IsSet = true;  }
-	 /** @brief Clears the value of ActivePlayerId_Optional and sets ActivePlayerId_IsSet to false */
+	/** @brief Clears the value of ActivePlayerId_Optional and sets ActivePlayerId_IsSet to false */
 	void ClearActivePlayerId() { ActivePlayerId_Optional = 0; ActivePlayerId_IsSet = false;  }
+	/** @brief Checks whether ActivePlayerId_Optional has been set */
+	bool IsActivePlayerIdSet() const { return ActivePlayerId_IsSet; }
 	/** @brief Returns true if ActivePlayerId_Optional is set and matches the default value */
 	bool IsActivePlayerIdDefaultValue() const { return ActivePlayerId_IsSet && ActivePlayerId_Optional == 0; }
 	/** @brief Sets the value of ActivePlayerId_Optional to its default and also sets ActivePlayerId_IsSet to true */
@@ -168,8 +176,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
 	void SetActivePlayerUuid(const FGuid& NewValue) { ActivePlayerUuid_Optional = NewValue; ActivePlayerUuid_IsSet = true;  }
 	/** @brief Sets the value of ActivePlayerUuid_Optional and also sets ActivePlayerUuid_IsSet to true using move semantics */
 	void SetActivePlayerUuid(FGuid&& NewValue) { ActivePlayerUuid_Optional = NewValue; ActivePlayerUuid_IsSet = true;  }
-	 /** @brief Clears the value of ActivePlayerUuid_Optional and sets ActivePlayerUuid_IsSet to false */
+	/** @brief Clears the value of ActivePlayerUuid_Optional and sets ActivePlayerUuid_IsSet to false */
 	void ClearActivePlayerUuid() { ActivePlayerUuid_IsSet = false;  }
+	/** @brief Checks whether ActivePlayerUuid_Optional has been set */
+	bool IsActivePlayerUuidSet() const { return ActivePlayerUuid_IsSet; }
 
 	/** @brief Platform */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -193,8 +203,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
 	void SetPlatform(const ERHAPI_Platform& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true;  }
 	/** @brief Sets the value of Platform_Optional and also sets Platform_IsSet to true using move semantics */
 	void SetPlatform(ERHAPI_Platform&& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true;  }
-	 /** @brief Clears the value of Platform_Optional and sets Platform_IsSet to false */
+	/** @brief Clears the value of Platform_Optional and sets Platform_IsSet to false */
 	void ClearPlatform() { Platform_IsSet = false;  }
+	/** @brief Checks whether Platform_Optional has been set */
+	bool IsPlatformSet() const { return Platform_IsSet; }
 
 	/** @brief Portal ID *DEPRECATED* use `platform` instead */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -218,8 +230,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
 	void SetPortalId(const int32& NewValue) { PortalId_Optional = NewValue; PortalId_IsSet = true;  }
 	/** @brief Sets the value of PortalId_Optional and also sets PortalId_IsSet to true using move semantics */
 	void SetPortalId(int32&& NewValue) { PortalId_Optional = NewValue; PortalId_IsSet = true;  }
-	 /** @brief Clears the value of PortalId_Optional and sets PortalId_IsSet to false */
+	/** @brief Clears the value of PortalId_Optional and sets PortalId_IsSet to false */
 	void ClearPortalId() { PortalId_Optional = 0; PortalId_IsSet = false;  }
+	/** @brief Checks whether PortalId_Optional has been set */
+	bool IsPortalIdSet() const { return PortalId_IsSet; }
 	/** @brief Returns true if PortalId_Optional is set and matches the default value */
 	bool IsPortalIdDefaultValue() const { return PortalId_IsSet && PortalId_Optional == 0; }
 	/** @brief Sets the value of PortalId_Optional to its default and also sets PortalId_IsSet to true */
@@ -247,8 +261,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
 	void SetPortalUserId(const FString& NewValue) { PortalUserId_Optional = NewValue; PortalUserId_IsSet = true;  }
 	/** @brief Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true using move semantics */
 	void SetPortalUserId(FString&& NewValue) { PortalUserId_Optional = NewValue; PortalUserId_IsSet = true;  }
-	 /** @brief Clears the value of PortalUserId_Optional and sets PortalUserId_IsSet to false */
+	/** @brief Clears the value of PortalUserId_Optional and sets PortalUserId_IsSet to false */
 	void ClearPortalUserId() { PortalUserId_IsSet = false;  }
+	/** @brief Checks whether PortalUserId_Optional has been set */
+	bool IsPortalUserIdSet() const { return PortalUserId_IsSet; }
 
 	/** @brief Display name */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -272,8 +288,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
 	void SetDisplayName(const FString& NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true;  }
 	/** @brief Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true using move semantics */
 	void SetDisplayName(FString&& NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true;  }
-	 /** @brief Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false */
+	/** @brief Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false */
 	void ClearDisplayName() { DisplayName_IsSet = false;  }
+	/** @brief Checks whether DisplayName_Optional has been set */
+	bool IsDisplayNameSet() const { return DisplayName_IsSet; }
 
 	/** @brief Role ID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -297,8 +315,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
 	void SetRoleId(const int32& NewValue) { RoleId_Optional = NewValue; RoleId_IsSet = true;  }
 	/** @brief Sets the value of RoleId_Optional and also sets RoleId_IsSet to true using move semantics */
 	void SetRoleId(int32&& NewValue) { RoleId_Optional = NewValue; RoleId_IsSet = true;  }
-	 /** @brief Clears the value of RoleId_Optional and sets RoleId_IsSet to false */
+	/** @brief Clears the value of RoleId_Optional and sets RoleId_IsSet to false */
 	void ClearRoleId() { RoleId_Optional = 0; RoleId_IsSet = false;  }
+	/** @brief Checks whether RoleId_Optional has been set */
+	bool IsRoleIdSet() const { return RoleId_IsSet; }
 	/** @brief Returns true if RoleId_Optional is set and matches the default value */
 	bool IsRoleIdDefaultValue() const { return RoleId_IsSet && RoleId_Optional == 0; }
 	/** @brief Sets the value of RoleId_Optional to its default and also sets RoleId_IsSet to true */
@@ -326,8 +346,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
 	void SetPersonId(const FGuid& NewValue) { PersonId_Optional = NewValue; PersonId_IsSet = true;  }
 	/** @brief Sets the value of PersonId_Optional and also sets PersonId_IsSet to true using move semantics */
 	void SetPersonId(FGuid&& NewValue) { PersonId_Optional = NewValue; PersonId_IsSet = true;  }
-	 /** @brief Clears the value of PersonId_Optional and sets PersonId_IsSet to false */
+	/** @brief Clears the value of PersonId_Optional and sets PersonId_IsSet to false */
 	void ClearPersonId() { PersonId_IsSet = false;  }
+	/** @brief Checks whether PersonId_Optional has been set */
+	bool IsPersonIdSet() const { return PersonId_IsSet; }
 
 	/** @brief Access token that can be used for future requests */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -351,8 +373,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
 	void SetAccessToken(const FString& NewValue) { AccessToken_Optional = NewValue; AccessToken_IsSet = true;  }
 	/** @brief Sets the value of AccessToken_Optional and also sets AccessToken_IsSet to true using move semantics */
 	void SetAccessToken(FString&& NewValue) { AccessToken_Optional = NewValue; AccessToken_IsSet = true;  }
-	 /** @brief Clears the value of AccessToken_Optional and sets AccessToken_IsSet to false */
+	/** @brief Clears the value of AccessToken_Optional and sets AccessToken_IsSet to false */
 	void ClearAccessToken() { AccessToken_Optional = TEXT(""); AccessToken_IsSet = false;  }
+	/** @brief Checks whether AccessToken_Optional has been set */
+	bool IsAccessTokenSet() const { return AccessToken_IsSet; }
 	/** @brief Returns true if AccessToken_Optional is set and matches the default value */
 	bool IsAccessTokenDefaultValue() const { return AccessToken_IsSet && AccessToken_Optional == TEXT(""); }
 	/** @brief Sets the value of AccessToken_Optional to its default and also sets AccessToken_IsSet to true */
@@ -380,8 +404,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
 	void SetRefreshToken(const FString& NewValue) { RefreshToken_Optional = NewValue; RefreshToken_IsSet = true;  }
 	/** @brief Sets the value of RefreshToken_Optional and also sets RefreshToken_IsSet to true using move semantics */
 	void SetRefreshToken(FString&& NewValue) { RefreshToken_Optional = NewValue; RefreshToken_IsSet = true;  }
-	 /** @brief Clears the value of RefreshToken_Optional and sets RefreshToken_IsSet to false */
+	/** @brief Clears the value of RefreshToken_Optional and sets RefreshToken_IsSet to false */
 	void ClearRefreshToken() { RefreshToken_IsSet = false;  }
+	/** @brief Checks whether RefreshToken_Optional has been set */
+	bool IsRefreshTokenSet() const { return RefreshToken_IsSet; }
 
 	/** @brief Publisher UUID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -477,8 +503,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
 	void SetExpiresIn(const int32& NewValue) { ExpiresIn_Optional = NewValue; ExpiresIn_IsSet = true;  }
 	/** @brief Sets the value of ExpiresIn_Optional and also sets ExpiresIn_IsSet to true using move semantics */
 	void SetExpiresIn(int32&& NewValue) { ExpiresIn_Optional = NewValue; ExpiresIn_IsSet = true;  }
-	 /** @brief Clears the value of ExpiresIn_Optional and sets ExpiresIn_IsSet to false */
+	/** @brief Clears the value of ExpiresIn_Optional and sets ExpiresIn_IsSet to false */
 	void ClearExpiresIn() { ExpiresIn_Optional = 0; ExpiresIn_IsSet = false;  }
+	/** @brief Checks whether ExpiresIn_Optional has been set */
+	bool IsExpiresInSet() const { return ExpiresIn_IsSet; }
 	/** @brief Returns true if ExpiresIn_Optional is set and matches the default value */
 	bool IsExpiresInDefaultValue() const { return ExpiresIn_IsSet && ExpiresIn_Optional == 0; }
 	/** @brief Sets the value of ExpiresIn_Optional to its default and also sets ExpiresIn_IsSet to true */

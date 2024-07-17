@@ -77,8 +77,10 @@ struct RALLYHEREAPI_API FRHAPI_PostGameEventsResponse : public FRHAPI_Model
 	void SetErrors(const TArray<FRHAPI_JsonValue>& NewValue) { Errors_Optional = NewValue; Errors_IsSet = true;  }
 	/** @brief Sets the value of Errors_Optional and also sets Errors_IsSet to true using move semantics */
 	void SetErrors(TArray<FRHAPI_JsonValue>&& NewValue) { Errors_Optional = NewValue; Errors_IsSet = true;  }
-	 /** @brief Clears the value of Errors_Optional and sets Errors_IsSet to false */
+	/** @brief Clears the value of Errors_Optional and sets Errors_IsSet to false */
 	void ClearErrors() { Errors_IsSet = false;  }
+	/** @brief Checks whether Errors_Optional has been set */
+	bool IsErrorsSet() const { return Errors_IsSet; }
 };
 
 /** @} */

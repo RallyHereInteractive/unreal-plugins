@@ -61,8 +61,10 @@ struct RALLYHEREAPI_API FRHAPI_TeamUpdate : public FRHAPI_Model
 	void SetMaxSize(const int32& NewValue) { MaxSize_Optional = NewValue; MaxSize_IsSet = true;  }
 	/** @brief Sets the value of MaxSize_Optional and also sets MaxSize_IsSet to true using move semantics */
 	void SetMaxSize(int32&& NewValue) { MaxSize_Optional = NewValue; MaxSize_IsSet = true;  }
-	 /** @brief Clears the value of MaxSize_Optional and sets MaxSize_IsSet to false */
+	/** @brief Clears the value of MaxSize_Optional and sets MaxSize_IsSet to false */
 	void ClearMaxSize() { MaxSize_Optional = 0; MaxSize_IsSet = false;  }
+	/** @brief Checks whether MaxSize_Optional has been set */
+	bool IsMaxSizeSet() const { return MaxSize_IsSet; }
 	/** @brief Returns true if MaxSize_Optional is set and matches the default value */
 	bool IsMaxSizeDefaultValue() const { return MaxSize_IsSet && MaxSize_Optional == 0; }
 	/** @brief Sets the value of MaxSize_Optional to its default and also sets MaxSize_IsSet to true */
@@ -90,8 +92,10 @@ struct RALLYHEREAPI_API FRHAPI_TeamUpdate : public FRHAPI_Model
 	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 };
 
 /** @} */

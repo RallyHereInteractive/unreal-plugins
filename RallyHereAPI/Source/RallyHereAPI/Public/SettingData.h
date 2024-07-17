@@ -80,10 +80,13 @@ struct RALLYHEREAPI_API FRHAPI_SettingData : public FRHAPI_Model
 	void SetValue(const FRHAPI_JsonValue& NewValue) { Value_Optional = NewValue; Value_IsSet = true; Value_IsNull = false; }
 	/** @brief Sets the value of Value_Optional and also sets Value_IsSet to true using move semantics */
 	void SetValue(FRHAPI_JsonValue&& NewValue) { Value_Optional = NewValue; Value_IsSet = true; Value_IsNull = false; }
-	 /** @brief Clears the value of Value_Optional and sets Value_IsSet to false */
+	/** @brief Clears the value of Value_Optional and sets Value_IsSet to false */
 	void ClearValue() { Value_IsSet = false; Value_IsNull = false; }
+	/** @brief Checks whether Value_Optional has been set */
+	bool IsValueSet() const { return Value_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
 	void SetValueToNull() { Value_IsSet = true; Value_IsNull = true; }
+	/** @brief Checks whether Value_Optional is set to null */
 	bool IsValueNull() const { return Value_IsSet && Value_IsNull; }
 };
 

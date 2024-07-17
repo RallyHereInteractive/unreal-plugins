@@ -74,8 +74,10 @@ struct RALLYHEREAPI_API FRHAPI_Restriction : public FRHAPI_Model
 	void SetReason(const FString& NewValue) { Reason_Optional = NewValue; Reason_IsSet = true;  }
 	/** @brief Sets the value of Reason_Optional and also sets Reason_IsSet to true using move semantics */
 	void SetReason(FString&& NewValue) { Reason_Optional = NewValue; Reason_IsSet = true;  }
-	 /** @brief Clears the value of Reason_Optional and sets Reason_IsSet to false */
+	/** @brief Clears the value of Reason_Optional and sets Reason_IsSet to false */
 	void ClearReason() { Reason_IsSet = false;  }
+	/** @brief Checks whether Reason_Optional has been set */
+	bool IsReasonSet() const { return Reason_IsSet; }
 
 	/** @brief Date the restriction expires.  Null means the restriction is permanent */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -99,8 +101,10 @@ struct RALLYHEREAPI_API FRHAPI_Restriction : public FRHAPI_Model
 	void SetExpiration(const FDateTime& NewValue) { Expiration_Optional = NewValue; Expiration_IsSet = true;  }
 	/** @brief Sets the value of Expiration_Optional and also sets Expiration_IsSet to true using move semantics */
 	void SetExpiration(FDateTime&& NewValue) { Expiration_Optional = NewValue; Expiration_IsSet = true;  }
-	 /** @brief Clears the value of Expiration_Optional and sets Expiration_IsSet to false */
+	/** @brief Clears the value of Expiration_Optional and sets Expiration_IsSet to false */
 	void ClearExpiration() { Expiration_IsSet = false;  }
+	/** @brief Checks whether Expiration_Optional has been set */
+	bool IsExpirationSet() const { return Expiration_IsSet; }
 };
 
 /** @} */

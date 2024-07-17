@@ -65,8 +65,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSKU : public FRHAPI_Model
 	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 
 	/** @brief The platform of the SKU */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -114,8 +116,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSKU : public FRHAPI_Model
 	void SetLootEntitlement(const FRHAPI_LootEntitlement& NewValue) { LootEntitlement_Optional = NewValue; LootEntitlement_IsSet = true;  }
 	/** @brief Sets the value of LootEntitlement_Optional and also sets LootEntitlement_IsSet to true using move semantics */
 	void SetLootEntitlement(FRHAPI_LootEntitlement&& NewValue) { LootEntitlement_Optional = NewValue; LootEntitlement_IsSet = true;  }
-	 /** @brief Clears the value of LootEntitlement_Optional and sets LootEntitlement_IsSet to false */
+	/** @brief Clears the value of LootEntitlement_Optional and sets LootEntitlement_IsSet to false */
 	void ClearLootEntitlement() { LootEntitlement_IsSet = false;  }
+	/** @brief Checks whether LootEntitlement_Optional has been set */
+	bool IsLootEntitlementSet() const { return LootEntitlement_IsSet; }
 
 	/** @brief The External Key Entitlement */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -139,8 +143,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSKU : public FRHAPI_Model
 	void SetExternalKeyEntitlement(const FRHAPI_ExternalKeyEntitlement& NewValue) { ExternalKeyEntitlement_Optional = NewValue; ExternalKeyEntitlement_IsSet = true;  }
 	/** @brief Sets the value of ExternalKeyEntitlement_Optional and also sets ExternalKeyEntitlement_IsSet to true using move semantics */
 	void SetExternalKeyEntitlement(FRHAPI_ExternalKeyEntitlement&& NewValue) { ExternalKeyEntitlement_Optional = NewValue; ExternalKeyEntitlement_IsSet = true;  }
-	 /** @brief Clears the value of ExternalKeyEntitlement_Optional and sets ExternalKeyEntitlement_IsSet to false */
+	/** @brief Clears the value of ExternalKeyEntitlement_Optional and sets ExternalKeyEntitlement_IsSet to false */
 	void ClearExternalKeyEntitlement() { ExternalKeyEntitlement_IsSet = false;  }
+	/** @brief Checks whether ExternalKeyEntitlement_Optional has been set */
+	bool IsExternalKeyEntitlementSet() const { return ExternalKeyEntitlement_IsSet; }
 
 	/** @brief Cache info for the Platform SKUs. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -164,8 +170,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSKU : public FRHAPI_Model
 	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
 	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
-	 /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
+	/** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
 	void ClearCacheInfo() { CacheInfo_IsSet = false;  }
+	/** @brief Checks whether CacheInfo_Optional has been set */
+	bool IsCacheInfoSet() const { return CacheInfo_IsSet; }
 };
 
 /** @} */

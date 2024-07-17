@@ -63,8 +63,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrdersResponse : public FRHAPI_Model
 	void SetData(const TArray<FRHAPI_PlayerOrder>& NewValue) { Data_Optional = NewValue; Data_IsSet = true;  }
 	/** @brief Sets the value of Data_Optional and also sets Data_IsSet to true using move semantics */
 	void SetData(TArray<FRHAPI_PlayerOrder>&& NewValue) { Data_Optional = NewValue; Data_IsSet = true;  }
-	 /** @brief Clears the value of Data_Optional and sets Data_IsSet to false */
+	/** @brief Clears the value of Data_Optional and sets Data_IsSet to false */
 	void ClearData() { Data_IsSet = false;  }
+	/** @brief Checks whether Data_Optional has been set */
+	bool IsDataSet() const { return Data_IsSet; }
 
 	/** @brief Page metadata for the Player Orders. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

@@ -97,8 +97,10 @@ struct RALLYHEREAPI_API FRHAPI_VoipTokenResponse : public FRHAPI_Model
 	void SetChannelName(const FString& NewValue) { ChannelName_Optional = NewValue; ChannelName_IsSet = true;  }
 	/** @brief Sets the value of ChannelName_Optional and also sets ChannelName_IsSet to true using move semantics */
 	void SetChannelName(FString&& NewValue) { ChannelName_Optional = NewValue; ChannelName_IsSet = true;  }
-	 /** @brief Clears the value of ChannelName_Optional and sets ChannelName_IsSet to false */
+	/** @brief Clears the value of ChannelName_Optional and sets ChannelName_IsSet to false */
 	void ClearChannelName() { ChannelName_IsSet = false;  }
+	/** @brief Checks whether ChannelName_Optional has been set */
+	bool IsChannelNameSet() const { return ChannelName_IsSet; }
 };
 
 /** @} */

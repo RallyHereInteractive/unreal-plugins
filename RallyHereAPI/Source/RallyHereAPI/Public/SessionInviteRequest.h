@@ -62,8 +62,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionInviteRequest : public FRHAPI_Model
 	void SetTeamId(const int32& NewValue) { TeamId_Optional = NewValue; TeamId_IsSet = true;  }
 	/** @brief Sets the value of TeamId_Optional and also sets TeamId_IsSet to true using move semantics */
 	void SetTeamId(int32&& NewValue) { TeamId_Optional = NewValue; TeamId_IsSet = true;  }
-	 /** @brief Clears the value of TeamId_Optional and sets TeamId_IsSet to false */
+	/** @brief Clears the value of TeamId_Optional and sets TeamId_IsSet to false */
 	void ClearTeamId() { TeamId_Optional = 0; TeamId_IsSet = false;  }
+	/** @brief Checks whether TeamId_Optional has been set */
+	bool IsTeamIdSet() const { return TeamId_IsSet; }
 	/** @brief Returns true if TeamId_Optional is set and matches the default value */
 	bool IsTeamIdDefaultValue() const { return TeamId_IsSet && TeamId_Optional == 0; }
 	/** @brief Sets the value of TeamId_Optional to its default and also sets TeamId_IsSet to true */
@@ -91,8 +93,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionInviteRequest : public FRHAPI_Model
 	void SetOverflowAction(const ERHAPI_TeamOverflowAction& NewValue) { OverflowAction_Optional = NewValue; OverflowAction_IsSet = true;  }
 	/** @brief Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true using move semantics */
 	void SetOverflowAction(ERHAPI_TeamOverflowAction&& NewValue) { OverflowAction_Optional = NewValue; OverflowAction_IsSet = true;  }
-	 /** @brief Clears the value of OverflowAction_Optional and sets OverflowAction_IsSet to false */
+	/** @brief Clears the value of OverflowAction_Optional and sets OverflowAction_IsSet to false */
 	void ClearOverflowAction() { OverflowAction_IsSet = false;  }
+	/** @brief Checks whether OverflowAction_Optional has been set */
+	bool IsOverflowActionSet() const { return OverflowAction_IsSet; }
 
 	/** @brief Custom data for all players being invited */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -116,8 +120,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionInviteRequest : public FRHAPI_Model
 	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 };
 
 /** @} */

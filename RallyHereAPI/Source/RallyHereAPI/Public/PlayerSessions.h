@@ -62,8 +62,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerSessions : public FRHAPI_Model
 	void SetSessions(const TMap<FString, FRHAPI_PlayerSession>& NewValue) { Sessions_Optional = NewValue; Sessions_IsSet = true;  }
 	/** @brief Sets the value of Sessions_Optional and also sets Sessions_IsSet to true using move semantics */
 	void SetSessions(TMap<FString, FRHAPI_PlayerSession>&& NewValue) { Sessions_Optional = NewValue; Sessions_IsSet = true;  }
-	 /** @brief Clears the value of Sessions_Optional and sets Sessions_IsSet to false */
+	/** @brief Clears the value of Sessions_Optional and sets Sessions_IsSet to false */
 	void ClearSessions() { Sessions_IsSet = false;  }
+	/** @brief Checks whether Sessions_Optional has been set */
+	bool IsSessionsSet() const { return Sessions_IsSet; }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -87,8 +89,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerSessions : public FRHAPI_Model
 	void SetLastUpdatedTimestamp(const FDateTime& NewValue) { LastUpdatedTimestamp_Optional = NewValue; LastUpdatedTimestamp_IsSet = true;  }
 	/** @brief Sets the value of LastUpdatedTimestamp_Optional and also sets LastUpdatedTimestamp_IsSet to true using move semantics */
 	void SetLastUpdatedTimestamp(FDateTime&& NewValue) { LastUpdatedTimestamp_Optional = NewValue; LastUpdatedTimestamp_IsSet = true;  }
-	 /** @brief Clears the value of LastUpdatedTimestamp_Optional and sets LastUpdatedTimestamp_IsSet to false */
+	/** @brief Clears the value of LastUpdatedTimestamp_Optional and sets LastUpdatedTimestamp_IsSet to false */
 	void ClearLastUpdatedTimestamp() { LastUpdatedTimestamp_IsSet = false;  }
+	/** @brief Checks whether LastUpdatedTimestamp_Optional has been set */
+	bool IsLastUpdatedTimestampSet() const { return LastUpdatedTimestamp_IsSet; }
 };
 
 /** @} */

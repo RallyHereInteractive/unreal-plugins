@@ -63,8 +63,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingRuleset : public FRHAPI_Model
 	void SetRules(const TArray<FRHAPI_Rule>& NewValue) { Rules_Optional = NewValue; Rules_IsSet = true;  }
 	/** @brief Sets the value of Rules_Optional and also sets Rules_IsSet to true using move semantics */
 	void SetRules(TArray<FRHAPI_Rule>&& NewValue) { Rules_Optional = NewValue; Rules_IsSet = true;  }
-	 /** @brief Clears the value of Rules_Optional and sets Rules_IsSet to false */
+	/** @brief Clears the value of Rules_Optional and sets Rules_IsSet to false */
 	void ClearRules() { Rules_IsSet = false;  }
+	/** @brief Checks whether Rules_Optional has been set */
+	bool IsRulesSet() const { return Rules_IsSet; }
 
 	/** @brief Determiner of how many rules must be satisfied in this rulest (all, any, one, none) */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -88,8 +90,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingRuleset : public FRHAPI_Model
 	void SetDeterminer(const ERHAPI_Determiner& NewValue) { Determiner_Optional = NewValue; Determiner_IsSet = true;  }
 	/** @brief Sets the value of Determiner_Optional and also sets Determiner_IsSet to true using move semantics */
 	void SetDeterminer(ERHAPI_Determiner&& NewValue) { Determiner_Optional = NewValue; Determiner_IsSet = true;  }
-	 /** @brief Clears the value of Determiner_Optional and sets Determiner_IsSet to false */
+	/** @brief Clears the value of Determiner_Optional and sets Determiner_IsSet to false */
 	void ClearDeterminer() { Determiner_IsSet = false;  }
+	/** @brief Checks whether Determiner_Optional has been set */
+	bool IsDeterminerSet() const { return Determiner_IsSet; }
 };
 
 /** @} */

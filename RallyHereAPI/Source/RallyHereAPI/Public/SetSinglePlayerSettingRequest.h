@@ -71,6 +71,7 @@ struct RALLYHEREAPI_API FRHAPI_SetSinglePlayerSettingRequest : public FRHAPI_Mod
 	void SetValue(FRHAPI_JsonValue&& NewValue) { Value = NewValue;  Value_IsNull = false; }
 	/** @brief Sets the value explicitly to be treated as null */
 	void SetValueToNull() { Value_IsNull = true; }
+	/** @brief Checks whether Value is set to null */
 	bool IsValueNull() const { return  Value_IsNull; }
 };
 

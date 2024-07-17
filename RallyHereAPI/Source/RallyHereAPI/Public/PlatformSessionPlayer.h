@@ -61,8 +61,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSessionPlayer : public FRHAPI_Model
 	void SetPlayerId(const int32& NewValue) { PlayerId_Optional = NewValue; PlayerId_IsSet = true;  }
 	/** @brief Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true using move semantics */
 	void SetPlayerId(int32&& NewValue) { PlayerId_Optional = NewValue; PlayerId_IsSet = true;  }
-	 /** @brief Clears the value of PlayerId_Optional and sets PlayerId_IsSet to false */
+	/** @brief Clears the value of PlayerId_Optional and sets PlayerId_IsSet to false */
 	void ClearPlayerId() { PlayerId_Optional = 0; PlayerId_IsSet = false;  }
+	/** @brief Checks whether PlayerId_Optional has been set */
+	bool IsPlayerIdSet() const { return PlayerId_IsSet; }
 	/** @brief Returns true if PlayerId_Optional is set and matches the default value */
 	bool IsPlayerIdDefaultValue() const { return PlayerId_IsSet && PlayerId_Optional == 0; }
 	/** @brief Sets the value of PlayerId_Optional to its default and also sets PlayerId_IsSet to true */
@@ -102,8 +104,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSessionPlayer : public FRHAPI_Model
 	void SetLeader(const bool& NewValue) { Leader_Optional = NewValue; Leader_IsSet = true;  }
 	/** @brief Sets the value of Leader_Optional and also sets Leader_IsSet to true using move semantics */
 	void SetLeader(bool&& NewValue) { Leader_Optional = NewValue; Leader_IsSet = true;  }
-	 /** @brief Clears the value of Leader_Optional and sets Leader_IsSet to false */
+	/** @brief Clears the value of Leader_Optional and sets Leader_IsSet to false */
 	void ClearLeader() { Leader_Optional = false; Leader_IsSet = false;  }
+	/** @brief Checks whether Leader_Optional has been set */
+	bool IsLeaderSet() const { return Leader_IsSet; }
 	/** @brief Returns true if Leader_Optional is set and matches the default value */
 	bool IsLeaderDefaultValue() const { return Leader_IsSet && Leader_Optional == false; }
 	/** @brief Sets the value of Leader_Optional to its default and also sets Leader_IsSet to true */

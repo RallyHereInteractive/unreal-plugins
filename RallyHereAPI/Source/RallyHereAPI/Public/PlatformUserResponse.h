@@ -86,8 +86,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformUserResponse : public FRHAPI_Model
 	void SetDisplayName(const FString& NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true;  }
 	/** @brief Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true using move semantics */
 	void SetDisplayName(FString&& NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true;  }
-	 /** @brief Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false */
+	/** @brief Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false */
 	void ClearDisplayName() { DisplayName_IsSet = false;  }
+	/** @brief Checks whether DisplayName_Optional has been set */
+	bool IsDisplayNameSet() const { return DisplayName_IsSet; }
 
 	/** @brief Player ID *DEPRECATED* use `player_uuid` instead */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -151,8 +153,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformUserResponse : public FRHAPI_Model
 	void SetActivePlayerId(const int32& NewValue) { ActivePlayerId_Optional = NewValue; ActivePlayerId_IsSet = true;  }
 	/** @brief Sets the value of ActivePlayerId_Optional and also sets ActivePlayerId_IsSet to true using move semantics */
 	void SetActivePlayerId(int32&& NewValue) { ActivePlayerId_Optional = NewValue; ActivePlayerId_IsSet = true;  }
-	 /** @brief Clears the value of ActivePlayerId_Optional and sets ActivePlayerId_IsSet to false */
+	/** @brief Clears the value of ActivePlayerId_Optional and sets ActivePlayerId_IsSet to false */
 	void ClearActivePlayerId() { ActivePlayerId_Optional = 0; ActivePlayerId_IsSet = false;  }
+	/** @brief Checks whether ActivePlayerId_Optional has been set */
+	bool IsActivePlayerIdSet() const { return ActivePlayerId_IsSet; }
 	/** @brief Returns true if ActivePlayerId_Optional is set and matches the default value */
 	bool IsActivePlayerIdDefaultValue() const { return ActivePlayerId_IsSet && ActivePlayerId_Optional == 0; }
 	/** @brief Sets the value of ActivePlayerId_Optional to its default and also sets ActivePlayerId_IsSet to true */
@@ -180,8 +184,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformUserResponse : public FRHAPI_Model
 	void SetActivePlayerUuid(const FGuid& NewValue) { ActivePlayerUuid_Optional = NewValue; ActivePlayerUuid_IsSet = true;  }
 	/** @brief Sets the value of ActivePlayerUuid_Optional and also sets ActivePlayerUuid_IsSet to true using move semantics */
 	void SetActivePlayerUuid(FGuid&& NewValue) { ActivePlayerUuid_Optional = NewValue; ActivePlayerUuid_IsSet = true;  }
-	 /** @brief Clears the value of ActivePlayerUuid_Optional and sets ActivePlayerUuid_IsSet to false */
+	/** @brief Clears the value of ActivePlayerUuid_Optional and sets ActivePlayerUuid_IsSet to false */
 	void ClearActivePlayerUuid() { ActivePlayerUuid_IsSet = false;  }
+	/** @brief Checks whether ActivePlayerUuid_Optional has been set */
+	bool IsActivePlayerUuidSet() const { return ActivePlayerUuid_IsSet; }
 };
 
 /** @} */

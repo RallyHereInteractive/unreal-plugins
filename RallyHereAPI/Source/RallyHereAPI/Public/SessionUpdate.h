@@ -62,8 +62,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionUpdate : public FRHAPI_Model
 	void SetRegionId(const FString& NewValue) { RegionId_Optional = NewValue; RegionId_IsSet = true;  }
 	/** @brief Sets the value of RegionId_Optional and also sets RegionId_IsSet to true using move semantics */
 	void SetRegionId(FString&& NewValue) { RegionId_Optional = NewValue; RegionId_IsSet = true;  }
-	 /** @brief Clears the value of RegionId_Optional and sets RegionId_IsSet to false */
+	/** @brief Clears the value of RegionId_Optional and sets RegionId_IsSet to false */
 	void ClearRegionId() { RegionId_IsSet = false;  }
+	/** @brief Checks whether RegionId_Optional has been set */
+	bool IsRegionIdSet() const { return RegionId_IsSet; }
 
 	/** @brief Leader Player or instance defined custom data about this session */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -87,8 +89,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionUpdate : public FRHAPI_Model
 	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 
 	/** @brief Flag for if players can freely join this session without an invite */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -112,8 +116,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionUpdate : public FRHAPI_Model
 	void SetJoinable(const bool& NewValue) { Joinable_Optional = NewValue; Joinable_IsSet = true;  }
 	/** @brief Sets the value of Joinable_Optional and also sets Joinable_IsSet to true using move semantics */
 	void SetJoinable(bool&& NewValue) { Joinable_Optional = NewValue; Joinable_IsSet = true;  }
-	 /** @brief Clears the value of Joinable_Optional and sets Joinable_IsSet to false */
+	/** @brief Clears the value of Joinable_Optional and sets Joinable_IsSet to false */
 	void ClearJoinable() { Joinable_Optional = false; Joinable_IsSet = false;  }
+	/** @brief Checks whether Joinable_Optional has been set */
+	bool IsJoinableSet() const { return Joinable_IsSet; }
 	/** @brief Returns true if Joinable_Optional is set and matches the default value */
 	bool IsJoinableDefaultValue() const { return Joinable_IsSet && Joinable_Optional == false; }
 	/** @brief Sets the value of Joinable_Optional to its default and also sets Joinable_IsSet to true */
@@ -141,8 +147,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionUpdate : public FRHAPI_Model
 	void SetTeams(const TArray<FRHAPI_TeamUpdate>& NewValue) { Teams_Optional = NewValue; Teams_IsSet = true;  }
 	/** @brief Sets the value of Teams_Optional and also sets Teams_IsSet to true using move semantics */
 	void SetTeams(TArray<FRHAPI_TeamUpdate>&& NewValue) { Teams_Optional = NewValue; Teams_IsSet = true;  }
-	 /** @brief Clears the value of Teams_Optional and sets Teams_IsSet to false */
+	/** @brief Clears the value of Teams_Optional and sets Teams_IsSet to false */
 	void ClearTeams() { Teams_IsSet = false;  }
+	/** @brief Checks whether Teams_Optional has been set */
+	bool IsTeamsSet() const { return Teams_IsSet; }
 };
 
 /** @} */

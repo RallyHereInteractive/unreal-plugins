@@ -97,8 +97,10 @@ struct RALLYHEREAPI_API FRHAPI_CalculateRankConfig : public FRHAPI_Model
 	void SetBeta(const float& NewValue) { Beta_Optional = NewValue; Beta_IsSet = true;  }
 	/** @brief Sets the value of Beta_Optional and also sets Beta_IsSet to true using move semantics */
 	void SetBeta(float&& NewValue) { Beta_Optional = NewValue; Beta_IsSet = true;  }
-	 /** @brief Clears the value of Beta_Optional and sets Beta_IsSet to false */
+	/** @brief Clears the value of Beta_Optional and sets Beta_IsSet to false */
 	void ClearBeta() { Beta_IsSet = false;  }
+	/** @brief Checks whether Beta_Optional has been set */
+	bool IsBetaSet() const { return Beta_IsSet; }
 
 	/** @brief The default mu value for this rank id. Will be used when players do not have any rank history */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -146,8 +148,10 @@ struct RALLYHEREAPI_API FRHAPI_CalculateRankConfig : public FRHAPI_Model
 	void SetDrawProbability(const float& NewValue) { DrawProbability_Optional = NewValue; DrawProbability_IsSet = true;  }
 	/** @brief Sets the value of DrawProbability_Optional and also sets DrawProbability_IsSet to true using move semantics */
 	void SetDrawProbability(float&& NewValue) { DrawProbability_Optional = NewValue; DrawProbability_IsSet = true;  }
-	 /** @brief Clears the value of DrawProbability_Optional and sets DrawProbability_IsSet to false */
+	/** @brief Clears the value of DrawProbability_Optional and sets DrawProbability_IsSet to false */
 	void ClearDrawProbability() { DrawProbability_IsSet = false;  }
+	/** @brief Checks whether DrawProbability_Optional has been set */
+	bool IsDrawProbabilitySet() const { return DrawProbability_IsSet; }
 
 	/** @brief Factor that determines how quickly a player's sigma is adjusted. A larger tau will result in more volatile in ranks. Recommended value is is (default_sigma * .01) */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -171,8 +175,10 @@ struct RALLYHEREAPI_API FRHAPI_CalculateRankConfig : public FRHAPI_Model
 	void SetTau(const float& NewValue) { Tau_Optional = NewValue; Tau_IsSet = true;  }
 	/** @brief Sets the value of Tau_Optional and also sets Tau_IsSet to true using move semantics */
 	void SetTau(float&& NewValue) { Tau_Optional = NewValue; Tau_IsSet = true;  }
-	 /** @brief Clears the value of Tau_Optional and sets Tau_IsSet to false */
+	/** @brief Clears the value of Tau_Optional and sets Tau_IsSet to false */
 	void ClearTau() { Tau_IsSet = false;  }
+	/** @brief Checks whether Tau_Optional has been set */
+	bool IsTauSet() const { return Tau_IsSet; }
 };
 
 /** @} */

@@ -61,8 +61,10 @@ struct RALLYHEREAPI_API FRHAPI_FriendsApiConfig : public FRHAPI_Model
 	void SetFriendLimit(const int32& NewValue) { FriendLimit_Optional = NewValue; FriendLimit_IsSet = true;  }
 	/** @brief Sets the value of FriendLimit_Optional and also sets FriendLimit_IsSet to true using move semantics */
 	void SetFriendLimit(int32&& NewValue) { FriendLimit_Optional = NewValue; FriendLimit_IsSet = true;  }
-	 /** @brief Clears the value of FriendLimit_Optional and sets FriendLimit_IsSet to false */
+	/** @brief Clears the value of FriendLimit_Optional and sets FriendLimit_IsSet to false */
 	void ClearFriendLimit() { FriendLimit_Optional = 10000; FriendLimit_IsSet = false;  }
+	/** @brief Checks whether FriendLimit_Optional has been set */
+	bool IsFriendLimitSet() const { return FriendLimit_IsSet; }
 	/** @brief Returns true if FriendLimit_Optional is set and matches the default value */
 	bool IsFriendLimitDefaultValue() const { return FriendLimit_IsSet && FriendLimit_Optional == 10000; }
 	/** @brief Sets the value of FriendLimit_Optional to its default and also sets FriendLimit_IsSet to true */
@@ -90,8 +92,10 @@ struct RALLYHEREAPI_API FRHAPI_FriendsApiConfig : public FRHAPI_Model
 	void SetBlockLimit(const int32& NewValue) { BlockLimit_Optional = NewValue; BlockLimit_IsSet = true;  }
 	/** @brief Sets the value of BlockLimit_Optional and also sets BlockLimit_IsSet to true using move semantics */
 	void SetBlockLimit(int32&& NewValue) { BlockLimit_Optional = NewValue; BlockLimit_IsSet = true;  }
-	 /** @brief Clears the value of BlockLimit_Optional and sets BlockLimit_IsSet to false */
+	/** @brief Clears the value of BlockLimit_Optional and sets BlockLimit_IsSet to false */
 	void ClearBlockLimit() { BlockLimit_Optional = 10000; BlockLimit_IsSet = false;  }
+	/** @brief Checks whether BlockLimit_Optional has been set */
+	bool IsBlockLimitSet() const { return BlockLimit_IsSet; }
 	/** @brief Returns true if BlockLimit_Optional is set and matches the default value */
 	bool IsBlockLimitDefaultValue() const { return BlockLimit_IsSet && BlockLimit_Optional == 10000; }
 	/** @brief Sets the value of BlockLimit_Optional to its default and also sets BlockLimit_IsSet to true */

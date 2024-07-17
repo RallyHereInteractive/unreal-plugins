@@ -76,8 +76,10 @@ struct RALLYHEREAPI_API FRHAPI_EntitlementEventRequest : public FRHAPI_Model
 	void SetStatus(const ERHAPI_EntitlementEventStatus& NewValue) { Status_Optional = NewValue; Status_IsSet = true;  }
 	/** @brief Sets the value of Status_Optional and also sets Status_IsSet to true using move semantics */
 	void SetStatus(ERHAPI_EntitlementEventStatus&& NewValue) { Status_Optional = NewValue; Status_IsSet = true;  }
-	 /** @brief Clears the value of Status_Optional and sets Status_IsSet to false */
+	/** @brief Clears the value of Status_Optional and sets Status_IsSet to false */
 	void ClearStatus() { Status_IsSet = false;  }
+	/** @brief Checks whether Status_Optional has been set */
+	bool IsStatusSet() const { return Status_IsSet; }
 
 	/** @brief Override the player UUID for the event.  If not provided, the active player for the platform user will be used */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -101,8 +103,10 @@ struct RALLYHEREAPI_API FRHAPI_EntitlementEventRequest : public FRHAPI_Model
 	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true;  }
 	/** @brief Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true using move semantics */
 	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true;  }
-	 /** @brief Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false */
+	/** @brief Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false */
 	void ClearPlayerUuid() { PlayerUuid_IsSet = false;  }
+	/** @brief Checks whether PlayerUuid_Optional has been set */
+	bool IsPlayerUuidSet() const { return PlayerUuid_IsSet; }
 
 	/** @brief The platform for the event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -162,8 +166,10 @@ struct RALLYHEREAPI_API FRHAPI_EntitlementEventRequest : public FRHAPI_Model
 	void SetQuantity(const int32& NewValue) { Quantity_Optional = NewValue; Quantity_IsSet = true;  }
 	/** @brief Sets the value of Quantity_Optional and also sets Quantity_IsSet to true using move semantics */
 	void SetQuantity(int32&& NewValue) { Quantity_Optional = NewValue; Quantity_IsSet = true;  }
-	 /** @brief Clears the value of Quantity_Optional and sets Quantity_IsSet to false */
+	/** @brief Clears the value of Quantity_Optional and sets Quantity_IsSet to false */
 	void ClearQuantity() { Quantity_Optional = 1; Quantity_IsSet = false;  }
+	/** @brief Checks whether Quantity_Optional has been set */
+	bool IsQuantitySet() const { return Quantity_IsSet; }
 	/** @brief Returns true if Quantity_Optional is set and matches the default value */
 	bool IsQuantityDefaultValue() const { return Quantity_IsSet && Quantity_Optional == 1; }
 	/** @brief Sets the value of Quantity_Optional to its default and also sets Quantity_IsSet to true */
@@ -203,8 +209,10 @@ struct RALLYHEREAPI_API FRHAPI_EntitlementEventRequest : public FRHAPI_Model
 	void SetPlatformData(const FRHAPI_JsonObject& NewValue) { PlatformData_Optional = NewValue; PlatformData_IsSet = true;  }
 	/** @brief Sets the value of PlatformData_Optional and also sets PlatformData_IsSet to true using move semantics */
 	void SetPlatformData(FRHAPI_JsonObject&& NewValue) { PlatformData_Optional = NewValue; PlatformData_IsSet = true;  }
-	 /** @brief Clears the value of PlatformData_Optional and sets PlatformData_IsSet to false */
+	/** @brief Clears the value of PlatformData_Optional and sets PlatformData_IsSet to false */
 	void ClearPlatformData() { PlatformData_IsSet = false;  }
+	/** @brief Checks whether PlatformData_Optional has been set */
+	bool IsPlatformDataSet() const { return PlatformData_IsSet; }
 };
 
 /** @} */

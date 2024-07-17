@@ -75,8 +75,10 @@ struct RALLYHEREAPI_API FRHAPI_BodyUpdateOpportunityById : public FRHAPI_Model
 	void SetAbortReason(const ERHAPI_OpportunityAbortReason& NewValue) { AbortReason_Optional = NewValue; AbortReason_IsSet = true;  }
 	/** @brief Sets the value of AbortReason_Optional and also sets AbortReason_IsSet to true using move semantics */
 	void SetAbortReason(ERHAPI_OpportunityAbortReason&& NewValue) { AbortReason_Optional = NewValue; AbortReason_IsSet = true;  }
-	 /** @brief Clears the value of AbortReason_Optional and sets AbortReason_IsSet to false */
+	/** @brief Clears the value of AbortReason_Optional and sets AbortReason_IsSet to false */
 	void ClearAbortReason() { AbortReason_IsSet = false;  }
+	/** @brief Checks whether AbortReason_Optional has been set */
+	bool IsAbortReasonSet() const { return AbortReason_IsSet; }
 
 	/** @brief Number of seconds into the video when the abort happened */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -100,8 +102,10 @@ struct RALLYHEREAPI_API FRHAPI_BodyUpdateOpportunityById : public FRHAPI_Model
 	void SetAbortSeconds(const int32& NewValue) { AbortSeconds_Optional = NewValue; AbortSeconds_IsSet = true;  }
 	/** @brief Sets the value of AbortSeconds_Optional and also sets AbortSeconds_IsSet to true using move semantics */
 	void SetAbortSeconds(int32&& NewValue) { AbortSeconds_Optional = NewValue; AbortSeconds_IsSet = true;  }
-	 /** @brief Clears the value of AbortSeconds_Optional and sets AbortSeconds_IsSet to false */
+	/** @brief Clears the value of AbortSeconds_Optional and sets AbortSeconds_IsSet to false */
 	void ClearAbortSeconds() { AbortSeconds_Optional = 0; AbortSeconds_IsSet = false;  }
+	/** @brief Checks whether AbortSeconds_Optional has been set */
+	bool IsAbortSecondsSet() const { return AbortSeconds_IsSet; }
 	/** @brief Returns true if AbortSeconds_Optional is set and matches the default value */
 	bool IsAbortSecondsDefaultValue() const { return AbortSeconds_IsSet && AbortSeconds_Optional == 0; }
 	/** @brief Sets the value of AbortSeconds_Optional to its default and also sets AbortSeconds_IsSet to true */

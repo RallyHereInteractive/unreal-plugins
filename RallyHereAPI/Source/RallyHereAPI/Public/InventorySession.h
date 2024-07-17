@@ -74,8 +74,10 @@ struct RALLYHEREAPI_API FRHAPI_InventorySession : public FRHAPI_Model
 	void SetSessionPlatform(const ERHAPI_Platform& NewValue) { SessionPlatform_Optional = NewValue; SessionPlatform_IsSet = true;  }
 	/** @brief Sets the value of SessionPlatform_Optional and also sets SessionPlatform_IsSet to true using move semantics */
 	void SetSessionPlatform(ERHAPI_Platform&& NewValue) { SessionPlatform_Optional = NewValue; SessionPlatform_IsSet = true;  }
-	 /** @brief Clears the value of SessionPlatform_Optional and sets SessionPlatform_IsSet to false */
+	/** @brief Clears the value of SessionPlatform_Optional and sets SessionPlatform_IsSet to false */
 	void ClearSessionPlatform() { SessionPlatform_IsSet = false;  }
+	/** @brief Checks whether SessionPlatform_Optional has been set */
+	bool IsSessionPlatformSet() const { return SessionPlatform_IsSet; }
 
 	/** @brief Durable Loot that has been applied when this Inventory Session was created. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -99,8 +101,10 @@ struct RALLYHEREAPI_API FRHAPI_InventorySession : public FRHAPI_Model
 	void SetAppliedDurableLoot(const TArray<int32>& NewValue) { AppliedDurableLoot_Optional = NewValue; AppliedDurableLoot_IsSet = true;  }
 	/** @brief Sets the value of AppliedDurableLoot_Optional and also sets AppliedDurableLoot_IsSet to true using move semantics */
 	void SetAppliedDurableLoot(TArray<int32>&& NewValue) { AppliedDurableLoot_Optional = NewValue; AppliedDurableLoot_IsSet = true;  }
-	 /** @brief Clears the value of AppliedDurableLoot_Optional and sets AppliedDurableLoot_IsSet to false */
+	/** @brief Clears the value of AppliedDurableLoot_Optional and sets AppliedDurableLoot_IsSet to false */
 	void ClearAppliedDurableLoot() { AppliedDurableLoot_IsSet = false;  }
+	/** @brief Checks whether AppliedDurableLoot_Optional has been set */
+	bool IsAppliedDurableLootSet() const { return AppliedDurableLoot_IsSet; }
 };
 
 /** @} */

@@ -74,8 +74,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginHistoryPage : public FRHAPI_Model
 	void SetContinuationToken(const FString& NewValue) { ContinuationToken_Optional = NewValue; ContinuationToken_IsSet = true;  }
 	/** @brief Sets the value of ContinuationToken_Optional and also sets ContinuationToken_IsSet to true using move semantics */
 	void SetContinuationToken(FString&& NewValue) { ContinuationToken_Optional = NewValue; ContinuationToken_IsSet = true;  }
-	 /** @brief Clears the value of ContinuationToken_Optional and sets ContinuationToken_IsSet to false */
+	/** @brief Clears the value of ContinuationToken_Optional and sets ContinuationToken_IsSet to false */
 	void ClearContinuationToken() { ContinuationToken_IsSet = false;  }
+	/** @brief Checks whether ContinuationToken_Optional has been set */
+	bool IsContinuationTokenSet() const { return ContinuationToken_IsSet; }
 };
 
 /** @} */

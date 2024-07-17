@@ -62,8 +62,10 @@ struct RALLYHEREAPI_API FRHAPI_Loots : public FRHAPI_Model
 	void SetLoot(const TMap<FString, FRHAPI_Loot>& NewValue) { Loot_Optional = NewValue; Loot_IsSet = true;  }
 	/** @brief Sets the value of Loot_Optional and also sets Loot_IsSet to true using move semantics */
 	void SetLoot(TMap<FString, FRHAPI_Loot>&& NewValue) { Loot_Optional = NewValue; Loot_IsSet = true;  }
-	 /** @brief Clears the value of Loot_Optional and sets Loot_IsSet to false */
+	/** @brief Clears the value of Loot_Optional and sets Loot_IsSet to false */
 	void ClearLoot() { Loot_IsSet = false;  }
+	/** @brief Checks whether Loot_Optional has been set */
+	bool IsLootSet() const { return Loot_IsSet; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_CacheInfo CacheInfo_Optional{  };
@@ -86,8 +88,10 @@ struct RALLYHEREAPI_API FRHAPI_Loots : public FRHAPI_Model
 	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
 	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
-	 /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
+	/** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
 	void ClearCacheInfo() { CacheInfo_IsSet = false;  }
+	/** @brief Checks whether CacheInfo_Optional has been set */
+	bool IsCacheInfoSet() const { return CacheInfo_IsSet; }
 };
 
 /** @} */

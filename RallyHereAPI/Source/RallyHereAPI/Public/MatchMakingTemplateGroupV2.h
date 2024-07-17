@@ -87,8 +87,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplateGroupV2 : public FRHAPI_Model
 	void SetRequiredItemIds(const TSet<int32>& NewValue) { RequiredItemIds_Optional = NewValue; RequiredItemIds_IsSet = true;  }
 	/** @brief Sets the value of RequiredItemIds_Optional and also sets RequiredItemIds_IsSet to true using move semantics */
 	void SetRequiredItemIds(TSet<int32>&& NewValue) { RequiredItemIds_Optional = NewValue; RequiredItemIds_IsSet = true;  }
-	 /** @brief Clears the value of RequiredItemIds_Optional and sets RequiredItemIds_IsSet to false */
+	/** @brief Clears the value of RequiredItemIds_Optional and sets RequiredItemIds_IsSet to false */
 	void ClearRequiredItemIds() { RequiredItemIds_IsSet = false;  }
+	/** @brief Checks whether RequiredItemIds_Optional has been set */
+	bool IsRequiredItemIdsSet() const { return RequiredItemIds_IsSet; }
 };
 
 /** @} */

@@ -86,8 +86,10 @@ struct RALLYHEREAPI_API FRHAPI_CreatePlatformUserRequest : public FRHAPI_Model
 	void SetDisplayName(const FString& NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true;  }
 	/** @brief Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true using move semantics */
 	void SetDisplayName(FString&& NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true;  }
-	 /** @brief Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false */
+	/** @brief Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false */
 	void ClearDisplayName() { DisplayName_IsSet = false;  }
+	/** @brief Checks whether DisplayName_Optional has been set */
+	bool IsDisplayNameSet() const { return DisplayName_IsSet; }
 };
 
 /** @} */

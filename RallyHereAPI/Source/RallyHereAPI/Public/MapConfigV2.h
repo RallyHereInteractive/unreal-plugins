@@ -85,8 +85,10 @@ struct RALLYHEREAPI_API FRHAPI_MapConfigV2 : public FRHAPI_Model
 	void SetMode(const FString& NewValue) { Mode_Optional = NewValue; Mode_IsSet = true;  }
 	/** @brief Sets the value of Mode_Optional and also sets Mode_IsSet to true using move semantics */
 	void SetMode(FString&& NewValue) { Mode_Optional = NewValue; Mode_IsSet = true;  }
-	 /** @brief Clears the value of Mode_Optional and sets Mode_IsSet to false */
+	/** @brief Clears the value of Mode_Optional and sets Mode_IsSet to false */
 	void ClearMode() { Mode_IsSet = false;  }
+	/** @brief Checks whether Mode_Optional has been set */
+	bool IsModeSet() const { return Mode_IsSet; }
 
 	/** @brief Chance that this map will get selected in a rotation list */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -122,8 +124,10 @@ struct RALLYHEREAPI_API FRHAPI_MapConfigV2 : public FRHAPI_Model
 	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 
 	/** @brief Human readable name for this map */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -147,8 +151,10 @@ struct RALLYHEREAPI_API FRHAPI_MapConfigV2 : public FRHAPI_Model
 	void SetName(const FString& NewValue) { Name_Optional = NewValue; Name_IsSet = true;  }
 	/** @brief Sets the value of Name_Optional and also sets Name_IsSet to true using move semantics */
 	void SetName(FString&& NewValue) { Name_Optional = NewValue; Name_IsSet = true;  }
-	 /** @brief Clears the value of Name_Optional and sets Name_IsSet to false */
+	/** @brief Clears the value of Name_Optional and sets Name_IsSet to false */
 	void ClearName() { Name_IsSet = false;  }
+	/** @brief Checks whether Name_Optional has been set */
+	bool IsNameSet() const { return Name_IsSet; }
 
 	/** @brief Description of the map */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -172,8 +178,10 @@ struct RALLYHEREAPI_API FRHAPI_MapConfigV2 : public FRHAPI_Model
 	void SetDescription(const FString& NewValue) { Description_Optional = NewValue; Description_IsSet = true;  }
 	/** @brief Sets the value of Description_Optional and also sets Description_IsSet to true using move semantics */
 	void SetDescription(FString&& NewValue) { Description_Optional = NewValue; Description_IsSet = true;  }
-	 /** @brief Clears the value of Description_Optional and sets Description_IsSet to false */
+	/** @brief Clears the value of Description_Optional and sets Description_IsSet to false */
 	void ClearDescription() { Description_IsSet = false;  }
+	/** @brief Checks whether Description_Optional has been set */
+	bool IsDescriptionSet() const { return Description_IsSet; }
 };
 
 /** @} */

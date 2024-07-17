@@ -74,8 +74,10 @@ struct RALLYHEREAPI_API FRHAPI_EntitlementEventList : public FRHAPI_Model
 	void SetCursor(const FString& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true;  }
 	/** @brief Sets the value of Cursor_Optional and also sets Cursor_IsSet to true using move semantics */
 	void SetCursor(FString&& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true;  }
-	 /** @brief Clears the value of Cursor_Optional and sets Cursor_IsSet to false */
+	/** @brief Clears the value of Cursor_Optional and sets Cursor_IsSet to false */
 	void ClearCursor() { Cursor_IsSet = false;  }
+	/** @brief Checks whether Cursor_Optional has been set */
+	bool IsCursorSet() const { return Cursor_IsSet; }
 };
 
 /** @} */

@@ -62,8 +62,10 @@ struct RALLYHEREAPI_API FRHAPI_InventorySessionCreateRequest : public FRHAPI_Mod
 	void SetSessionPlatform(const ERHAPI_Platform& NewValue) { SessionPlatform_Optional = NewValue; SessionPlatform_IsSet = true;  }
 	/** @brief Sets the value of SessionPlatform_Optional and also sets SessionPlatform_IsSet to true using move semantics */
 	void SetSessionPlatform(ERHAPI_Platform&& NewValue) { SessionPlatform_Optional = NewValue; SessionPlatform_IsSet = true;  }
-	 /** @brief Clears the value of SessionPlatform_Optional and sets SessionPlatform_IsSet to false */
+	/** @brief Clears the value of SessionPlatform_Optional and sets SessionPlatform_IsSet to false */
 	void ClearSessionPlatform() { SessionPlatform_IsSet = false;  }
+	/** @brief Checks whether SessionPlatform_Optional has been set */
+	bool IsSessionPlatformSet() const { return SessionPlatform_IsSet; }
 };
 
 /** @} */

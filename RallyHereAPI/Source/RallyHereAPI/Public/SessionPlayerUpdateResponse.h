@@ -62,8 +62,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayerUpdateResponse : public FRHAPI_Model
 	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true;  }
 	/** @brief Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true using move semantics */
 	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true;  }
-	 /** @brief Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false */
+	/** @brief Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false */
 	void ClearPlayerUuid() { PlayerUuid_IsSet = false;  }
+	/** @brief Checks whether PlayerUuid_Optional has been set */
+	bool IsPlayerUuidSet() const { return PlayerUuid_IsSet; }
 
 	/** @brief Status of the player after the request is completed */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -115,8 +117,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayerUpdateResponse : public FRHAPI_Model
 	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 };
 
 /** @} */

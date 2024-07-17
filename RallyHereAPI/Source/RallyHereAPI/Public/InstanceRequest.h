@@ -63,8 +63,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceRequest : public FRHAPI_Model
 	void SetInstanceId(const FString& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true;  }
 	/** @brief Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true using move semantics */
 	void SetInstanceId(FString&& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true;  }
-	 /** @brief Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false */
+	/** @brief Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false */
 	void ClearInstanceId() { InstanceId_IsSet = false;  }
+	/** @brief Checks whether InstanceId_Optional has been set */
+	bool IsInstanceIdSet() const { return InstanceId_IsSet; }
 
 	/** @brief Parameters used by the host to startup. For UE5 this will contain the map and gamemode */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -88,8 +90,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceRequest : public FRHAPI_Model
 	void SetInstanceStartupParams(const FRHAPI_InstanceStartupParams& NewValue) { InstanceStartupParams_Optional = NewValue; InstanceStartupParams_IsSet = true;  }
 	/** @brief Sets the value of InstanceStartupParams_Optional and also sets InstanceStartupParams_IsSet to true using move semantics */
 	void SetInstanceStartupParams(FRHAPI_InstanceStartupParams&& NewValue) { InstanceStartupParams_Optional = NewValue; InstanceStartupParams_IsSet = true;  }
-	 /** @brief Clears the value of InstanceStartupParams_Optional and sets InstanceStartupParams_IsSet to false */
+	/** @brief Clears the value of InstanceStartupParams_Optional and sets InstanceStartupParams_IsSet to false */
 	void ClearInstanceStartupParams() { InstanceStartupParams_IsSet = false;  }
+	/** @brief Checks whether InstanceStartupParams_Optional has been set */
+	bool IsInstanceStartupParamsSet() const { return InstanceStartupParams_IsSet; }
 
 	/** @brief Type of the host */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -113,8 +117,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceRequest : public FRHAPI_Model
 	void SetHostType(const ERHAPI_HostType& NewValue) { HostType_Optional = NewValue; HostType_IsSet = true;  }
 	/** @brief Sets the value of HostType_Optional and also sets HostType_IsSet to true using move semantics */
 	void SetHostType(ERHAPI_HostType&& NewValue) { HostType_Optional = NewValue; HostType_IsSet = true;  }
-	 /** @brief Clears the value of HostType_Optional and sets HostType_IsSet to false */
+	/** @brief Clears the value of HostType_Optional and sets HostType_IsSet to false */
 	void ClearHostType() { HostType_IsSet = false;  }
+	/** @brief Checks whether HostType_Optional has been set */
+	bool IsHostTypeSet() const { return HostType_IsSet; }
 
 	/** @brief Which instance request template should be used to request this instance. Takes priority over instance_startup_params and host_type */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -138,8 +144,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceRequest : public FRHAPI_Model
 	void SetInstanceRequestTemplateId(const FGuid& NewValue) { InstanceRequestTemplateId_Optional = NewValue; InstanceRequestTemplateId_IsSet = true;  }
 	/** @brief Sets the value of InstanceRequestTemplateId_Optional and also sets InstanceRequestTemplateId_IsSet to true using move semantics */
 	void SetInstanceRequestTemplateId(FGuid&& NewValue) { InstanceRequestTemplateId_Optional = NewValue; InstanceRequestTemplateId_IsSet = true;  }
-	 /** @brief Clears the value of InstanceRequestTemplateId_Optional and sets InstanceRequestTemplateId_IsSet to false */
+	/** @brief Clears the value of InstanceRequestTemplateId_Optional and sets InstanceRequestTemplateId_IsSet to false */
 	void ClearInstanceRequestTemplateId() { InstanceRequestTemplateId_IsSet = false;  }
+	/** @brief Checks whether InstanceRequestTemplateId_Optional has been set */
+	bool IsInstanceRequestTemplateIdSet() const { return InstanceRequestTemplateId_IsSet; }
 
 	/** @brief Player UUID of the host, if the host type is player */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -163,8 +171,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceRequest : public FRHAPI_Model
 	void SetHostPlayerUuid(const FGuid& NewValue) { HostPlayerUuid_Optional = NewValue; HostPlayerUuid_IsSet = true;  }
 	/** @brief Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true using move semantics */
 	void SetHostPlayerUuid(FGuid&& NewValue) { HostPlayerUuid_Optional = NewValue; HostPlayerUuid_IsSet = true;  }
-	 /** @brief Clears the value of HostPlayerUuid_Optional and sets HostPlayerUuid_IsSet to false */
+	/** @brief Clears the value of HostPlayerUuid_Optional and sets HostPlayerUuid_IsSet to false */
 	void ClearHostPlayerUuid() { HostPlayerUuid_IsSet = false;  }
+	/** @brief Checks whether HostPlayerUuid_Optional has been set */
+	bool IsHostPlayerUuidSet() const { return HostPlayerUuid_IsSet; }
 
 	/** @brief instance-defined custom data */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -188,8 +198,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceRequest : public FRHAPI_Model
 	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 };
 
 /** @} */

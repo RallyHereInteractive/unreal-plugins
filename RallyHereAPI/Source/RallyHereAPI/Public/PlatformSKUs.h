@@ -63,8 +63,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSKUs : public FRHAPI_Model
 	void SetSkus(const TArray<FRHAPI_PlatformSKU>& NewValue) { Skus_Optional = NewValue; Skus_IsSet = true;  }
 	/** @brief Sets the value of Skus_Optional and also sets Skus_IsSet to true using move semantics */
 	void SetSkus(TArray<FRHAPI_PlatformSKU>&& NewValue) { Skus_Optional = NewValue; Skus_IsSet = true;  }
-	 /** @brief Clears the value of Skus_Optional and sets Skus_IsSet to false */
+	/** @brief Clears the value of Skus_Optional and sets Skus_IsSet to false */
 	void ClearSkus() { Skus_IsSet = false;  }
+	/** @brief Checks whether Skus_Optional has been set */
+	bool IsSkusSet() const { return Skus_IsSet; }
 
 	/** @brief Cache info for the Platform SKUs. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -88,8 +90,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSKUs : public FRHAPI_Model
 	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
 	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
-	 /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
+	/** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
 	void ClearCacheInfo() { CacheInfo_IsSet = false;  }
+	/** @brief Checks whether CacheInfo_Optional has been set */
+	bool IsCacheInfoSet() const { return CacheInfo_IsSet; }
 };
 
 /** @} */

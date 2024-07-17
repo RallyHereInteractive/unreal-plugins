@@ -64,10 +64,13 @@ struct RALLYHEREAPI_API FRHAPI_MatchInstance : public FRHAPI_Model
 	void SetInstanceId(const FString& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true; InstanceId_IsNull = false; }
 	/** @brief Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true using move semantics */
 	void SetInstanceId(FString&& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true; InstanceId_IsNull = false; }
-	 /** @brief Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false */
+	/** @brief Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false */
 	void ClearInstanceId() { InstanceId_IsSet = false; InstanceId_IsNull = false; }
+	/** @brief Checks whether InstanceId_Optional has been set */
+	bool IsInstanceIdSet() const { return InstanceId_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
 	void SetInstanceIdToNull() { InstanceId_IsSet = true; InstanceId_IsNull = true; }
+	/** @brief Checks whether InstanceId_Optional is set to null */
 	bool IsInstanceIdNull() const { return InstanceId_IsSet && InstanceId_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -94,10 +97,13 @@ struct RALLYHEREAPI_API FRHAPI_MatchInstance : public FRHAPI_Model
 	void SetHostPlayerUuid(const FGuid& NewValue) { HostPlayerUuid_Optional = NewValue; HostPlayerUuid_IsSet = true; HostPlayerUuid_IsNull = false; }
 	/** @brief Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true using move semantics */
 	void SetHostPlayerUuid(FGuid&& NewValue) { HostPlayerUuid_Optional = NewValue; HostPlayerUuid_IsSet = true; HostPlayerUuid_IsNull = false; }
-	 /** @brief Clears the value of HostPlayerUuid_Optional and sets HostPlayerUuid_IsSet to false */
+	/** @brief Clears the value of HostPlayerUuid_Optional and sets HostPlayerUuid_IsSet to false */
 	void ClearHostPlayerUuid() { HostPlayerUuid_IsSet = false; HostPlayerUuid_IsNull = false; }
+	/** @brief Checks whether HostPlayerUuid_Optional has been set */
+	bool IsHostPlayerUuidSet() const { return HostPlayerUuid_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
 	void SetHostPlayerUuidToNull() { HostPlayerUuid_IsSet = true; HostPlayerUuid_IsNull = true; }
+	/** @brief Checks whether HostPlayerUuid_Optional is set to null */
 	bool IsHostPlayerUuidNull() const { return HostPlayerUuid_IsSet && HostPlayerUuid_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -124,10 +130,13 @@ struct RALLYHEREAPI_API FRHAPI_MatchInstance : public FRHAPI_Model
 	void SetRegionId(const FString& NewValue) { RegionId_Optional = NewValue; RegionId_IsSet = true; RegionId_IsNull = false; }
 	/** @brief Sets the value of RegionId_Optional and also sets RegionId_IsSet to true using move semantics */
 	void SetRegionId(FString&& NewValue) { RegionId_Optional = NewValue; RegionId_IsSet = true; RegionId_IsNull = false; }
-	 /** @brief Clears the value of RegionId_Optional and sets RegionId_IsSet to false */
+	/** @brief Clears the value of RegionId_Optional and sets RegionId_IsSet to false */
 	void ClearRegionId() { RegionId_IsSet = false; RegionId_IsNull = false; }
+	/** @brief Checks whether RegionId_Optional has been set */
+	bool IsRegionIdSet() const { return RegionId_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
 	void SetRegionIdToNull() { RegionId_IsSet = true; RegionId_IsNull = true; }
+	/** @brief Checks whether RegionId_Optional is set to null */
 	bool IsRegionIdNull() const { return RegionId_IsSet && RegionId_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -154,10 +163,13 @@ struct RALLYHEREAPI_API FRHAPI_MatchInstance : public FRHAPI_Model
 	void SetInstanceRequestTemplateId(const FString& NewValue) { InstanceRequestTemplateId_Optional = NewValue; InstanceRequestTemplateId_IsSet = true; InstanceRequestTemplateId_IsNull = false; }
 	/** @brief Sets the value of InstanceRequestTemplateId_Optional and also sets InstanceRequestTemplateId_IsSet to true using move semantics */
 	void SetInstanceRequestTemplateId(FString&& NewValue) { InstanceRequestTemplateId_Optional = NewValue; InstanceRequestTemplateId_IsSet = true; InstanceRequestTemplateId_IsNull = false; }
-	 /** @brief Clears the value of InstanceRequestTemplateId_Optional and sets InstanceRequestTemplateId_IsSet to false */
+	/** @brief Clears the value of InstanceRequestTemplateId_Optional and sets InstanceRequestTemplateId_IsSet to false */
 	void ClearInstanceRequestTemplateId() { InstanceRequestTemplateId_IsSet = false; InstanceRequestTemplateId_IsNull = false; }
+	/** @brief Checks whether InstanceRequestTemplateId_Optional has been set */
+	bool IsInstanceRequestTemplateIdSet() const { return InstanceRequestTemplateId_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
 	void SetInstanceRequestTemplateIdToNull() { InstanceRequestTemplateId_IsSet = true; InstanceRequestTemplateId_IsNull = true; }
+	/** @brief Checks whether InstanceRequestTemplateId_Optional is set to null */
 	bool IsInstanceRequestTemplateIdNull() const { return InstanceRequestTemplateId_IsSet && InstanceRequestTemplateId_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -184,10 +196,13 @@ struct RALLYHEREAPI_API FRHAPI_MatchInstance : public FRHAPI_Model
 	void SetMap(const FString& NewValue) { Map_Optional = NewValue; Map_IsSet = true; Map_IsNull = false; }
 	/** @brief Sets the value of Map_Optional and also sets Map_IsSet to true using move semantics */
 	void SetMap(FString&& NewValue) { Map_Optional = NewValue; Map_IsSet = true; Map_IsNull = false; }
-	 /** @brief Clears the value of Map_Optional and sets Map_IsSet to false */
+	/** @brief Clears the value of Map_Optional and sets Map_IsSet to false */
 	void ClearMap() { Map_IsSet = false; Map_IsNull = false; }
+	/** @brief Checks whether Map_Optional has been set */
+	bool IsMapSet() const { return Map_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
 	void SetMapToNull() { Map_IsSet = true; Map_IsNull = true; }
+	/** @brief Checks whether Map_Optional is set to null */
 	bool IsMapNull() const { return Map_IsSet && Map_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -214,10 +229,13 @@ struct RALLYHEREAPI_API FRHAPI_MatchInstance : public FRHAPI_Model
 	void SetGameMode(const FString& NewValue) { GameMode_Optional = NewValue; GameMode_IsSet = true; GameMode_IsNull = false; }
 	/** @brief Sets the value of GameMode_Optional and also sets GameMode_IsSet to true using move semantics */
 	void SetGameMode(FString&& NewValue) { GameMode_Optional = NewValue; GameMode_IsSet = true; GameMode_IsNull = false; }
-	 /** @brief Clears the value of GameMode_Optional and sets GameMode_IsSet to false */
+	/** @brief Clears the value of GameMode_Optional and sets GameMode_IsSet to false */
 	void ClearGameMode() { GameMode_IsSet = false; GameMode_IsNull = false; }
+	/** @brief Checks whether GameMode_Optional has been set */
+	bool IsGameModeSet() const { return GameMode_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
 	void SetGameModeToNull() { GameMode_IsSet = true; GameMode_IsNull = true; }
+	/** @brief Checks whether GameMode_Optional is set to null */
 	bool IsGameModeNull() const { return GameMode_IsSet && GameMode_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -244,10 +262,13 @@ struct RALLYHEREAPI_API FRHAPI_MatchInstance : public FRHAPI_Model
 	void SetHostType(const ERHAPI_MatchHostType& NewValue) { HostType_Optional = NewValue; HostType_IsSet = true; HostType_IsNull = false; }
 	/** @brief Sets the value of HostType_Optional and also sets HostType_IsSet to true using move semantics */
 	void SetHostType(ERHAPI_MatchHostType&& NewValue) { HostType_Optional = NewValue; HostType_IsSet = true; HostType_IsNull = false; }
-	 /** @brief Clears the value of HostType_Optional and sets HostType_IsSet to false */
+	/** @brief Clears the value of HostType_Optional and sets HostType_IsSet to false */
 	void ClearHostType() { HostType_IsSet = false; HostType_IsNull = false; }
+	/** @brief Checks whether HostType_Optional has been set */
+	bool IsHostTypeSet() const { return HostType_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
 	void SetHostTypeToNull() { HostType_IsSet = true; HostType_IsNull = true; }
+	/** @brief Checks whether HostType_Optional is set to null */
 	bool IsHostTypeNull() const { return HostType_IsSet && HostType_IsNull; }
 };
 

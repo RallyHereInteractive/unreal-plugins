@@ -61,8 +61,10 @@ struct RALLYHEREAPI_API FRHAPI_AdditionalJoinParams : public FRHAPI_Model
 	void SetDoubleArgs(const TMap<FString, float>& NewValue) { DoubleArgs_Optional = NewValue; DoubleArgs_IsSet = true;  }
 	/** @brief Sets the value of DoubleArgs_Optional and also sets DoubleArgs_IsSet to true using move semantics */
 	void SetDoubleArgs(TMap<FString, float>&& NewValue) { DoubleArgs_Optional = NewValue; DoubleArgs_IsSet = true;  }
-	 /** @brief Clears the value of DoubleArgs_Optional and sets DoubleArgs_IsSet to false */
+	/** @brief Clears the value of DoubleArgs_Optional and sets DoubleArgs_IsSet to false */
 	void ClearDoubleArgs() { DoubleArgs_IsSet = false;  }
+	/** @brief Checks whether DoubleArgs_Optional has been set */
+	bool IsDoubleArgsSet() const { return DoubleArgs_IsSet; }
 
 	/** @brief Additional string arguments to add to the matchmaking ticket */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -86,8 +88,10 @@ struct RALLYHEREAPI_API FRHAPI_AdditionalJoinParams : public FRHAPI_Model
 	void SetStringArgs(const TMap<FString, FString>& NewValue) { StringArgs_Optional = NewValue; StringArgs_IsSet = true;  }
 	/** @brief Sets the value of StringArgs_Optional and also sets StringArgs_IsSet to true using move semantics */
 	void SetStringArgs(TMap<FString, FString>&& NewValue) { StringArgs_Optional = NewValue; StringArgs_IsSet = true;  }
-	 /** @brief Clears the value of StringArgs_Optional and sets StringArgs_IsSet to false */
+	/** @brief Clears the value of StringArgs_Optional and sets StringArgs_IsSet to false */
 	void ClearStringArgs() { StringArgs_IsSet = false;  }
+	/** @brief Checks whether StringArgs_Optional has been set */
+	bool IsStringArgsSet() const { return StringArgs_IsSet; }
 
 	/** @brief Additional tags to add to the matchmaking ticket */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -111,8 +115,10 @@ struct RALLYHEREAPI_API FRHAPI_AdditionalJoinParams : public FRHAPI_Model
 	void SetTags(const TArray<FString>& NewValue) { Tags_Optional = NewValue; Tags_IsSet = true;  }
 	/** @brief Sets the value of Tags_Optional and also sets Tags_IsSet to true using move semantics */
 	void SetTags(TArray<FString>&& NewValue) { Tags_Optional = NewValue; Tags_IsSet = true;  }
-	 /** @brief Clears the value of Tags_Optional and sets Tags_IsSet to false */
+	/** @brief Clears the value of Tags_Optional and sets Tags_IsSet to false */
 	void ClearTags() { Tags_IsSet = false;  }
+	/** @brief Checks whether Tags_Optional has been set */
+	bool IsTagsSet() const { return Tags_IsSet; }
 
 	/** @brief Additional extensions to add to the matchmaking ticket. Value is a base64 string representation of the protobuf binary data. The data will be converted back to binary before being put on the ticket */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -136,8 +142,10 @@ struct RALLYHEREAPI_API FRHAPI_AdditionalJoinParams : public FRHAPI_Model
 	void SetExtensions(const TMap<FString, FString>& NewValue) { Extensions_Optional = NewValue; Extensions_IsSet = true;  }
 	/** @brief Sets the value of Extensions_Optional and also sets Extensions_IsSet to true using move semantics */
 	void SetExtensions(TMap<FString, FString>&& NewValue) { Extensions_Optional = NewValue; Extensions_IsSet = true;  }
-	 /** @brief Clears the value of Extensions_Optional and sets Extensions_IsSet to false */
+	/** @brief Clears the value of Extensions_Optional and sets Extensions_IsSet to false */
 	void ClearExtensions() { Extensions_IsSet = false;  }
+	/** @brief Checks whether Extensions_Optional has been set */
+	bool IsExtensionsSet() const { return Extensions_IsSet; }
 };
 
 /** @} */

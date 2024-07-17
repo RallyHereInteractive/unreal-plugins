@@ -62,8 +62,10 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrame : public FRHAPI_Model
 	void SetName(const FString& NewValue) { Name_Optional = NewValue; Name_IsSet = true;  }
 	/** @brief Sets the value of Name_Optional and also sets Name_IsSet to true using move semantics */
 	void SetName(FString&& NewValue) { Name_Optional = NewValue; Name_IsSet = true;  }
-	 /** @brief Clears the value of Name_Optional and sets Name_IsSet to false */
+	/** @brief Clears the value of Name_Optional and sets Name_IsSet to false */
 	void ClearName() { Name_IsSet = false;  }
+	/** @brief Checks whether Name_Optional has been set */
+	bool IsNameSet() const { return Name_IsSet; }
 
 	/** @brief Whether or not the Time Frame is active. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -87,8 +89,10 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrame : public FRHAPI_Model
 	void SetActive(const bool& NewValue) { Active_Optional = NewValue; Active_IsSet = true;  }
 	/** @brief Sets the value of Active_Optional and also sets Active_IsSet to true using move semantics */
 	void SetActive(bool&& NewValue) { Active_Optional = NewValue; Active_IsSet = true;  }
-	 /** @brief Clears the value of Active_Optional and sets Active_IsSet to false */
+	/** @brief Clears the value of Active_Optional and sets Active_IsSet to false */
 	void ClearActive() { Active_Optional = false; Active_IsSet = false;  }
+	/** @brief Checks whether Active_Optional has been set */
+	bool IsActiveSet() const { return Active_IsSet; }
 	/** @brief Returns true if Active_Optional is set and matches the default value */
 	bool IsActiveDefaultValue() const { return Active_IsSet && Active_Optional == false; }
 	/** @brief Sets the value of Active_Optional to its default and also sets Active_IsSet to true */
@@ -115,8 +119,10 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrame : public FRHAPI_Model
 	void SetEpisode(const int32& NewValue) { Episode_Optional = NewValue; Episode_IsSet = true;  }
 	/** @brief Sets the value of Episode_Optional and also sets Episode_IsSet to true using move semantics */
 	void SetEpisode(int32&& NewValue) { Episode_Optional = NewValue; Episode_IsSet = true;  }
-	 /** @brief Clears the value of Episode_Optional and sets Episode_IsSet to false */
+	/** @brief Clears the value of Episode_Optional and sets Episode_IsSet to false */
 	void ClearEpisode() { Episode_Optional = 0; Episode_IsSet = false;  }
+	/** @brief Checks whether Episode_Optional has been set */
+	bool IsEpisodeSet() const { return Episode_IsSet; }
 	/** @brief Returns true if Episode_Optional is set and matches the default value */
 	bool IsEpisodeDefaultValue() const { return Episode_IsSet && Episode_Optional == 0; }
 	/** @brief Sets the value of Episode_Optional to its default and also sets Episode_IsSet to true */
@@ -143,8 +149,10 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrame : public FRHAPI_Model
 	void SetEpisodeType(const int32& NewValue) { EpisodeType_Optional = NewValue; EpisodeType_IsSet = true;  }
 	/** @brief Sets the value of EpisodeType_Optional and also sets EpisodeType_IsSet to true using move semantics */
 	void SetEpisodeType(int32&& NewValue) { EpisodeType_Optional = NewValue; EpisodeType_IsSet = true;  }
-	 /** @brief Clears the value of EpisodeType_Optional and sets EpisodeType_IsSet to false */
+	/** @brief Clears the value of EpisodeType_Optional and sets EpisodeType_IsSet to false */
 	void ClearEpisodeType() { EpisodeType_Optional = 0; EpisodeType_IsSet = false;  }
+	/** @brief Checks whether EpisodeType_Optional has been set */
+	bool IsEpisodeTypeSet() const { return EpisodeType_IsSet; }
 	/** @brief Returns true if EpisodeType_Optional is set and matches the default value */
 	bool IsEpisodeTypeDefaultValue() const { return EpisodeType_IsSet && EpisodeType_Optional == 0; }
 	/** @brief Sets the value of EpisodeType_Optional to its default and also sets EpisodeType_IsSet to true */
@@ -172,8 +180,10 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrame : public FRHAPI_Model
 	void SetHourInterval(const int32& NewValue) { HourInterval_Optional = NewValue; HourInterval_IsSet = true;  }
 	/** @brief Sets the value of HourInterval_Optional and also sets HourInterval_IsSet to true using move semantics */
 	void SetHourInterval(int32&& NewValue) { HourInterval_Optional = NewValue; HourInterval_IsSet = true;  }
-	 /** @brief Clears the value of HourInterval_Optional and sets HourInterval_IsSet to false */
+	/** @brief Clears the value of HourInterval_Optional and sets HourInterval_IsSet to false */
 	void ClearHourInterval() { HourInterval_Optional = 0; HourInterval_IsSet = false;  }
+	/** @brief Checks whether HourInterval_Optional has been set */
+	bool IsHourIntervalSet() const { return HourInterval_IsSet; }
 	/** @brief Returns true if HourInterval_Optional is set and matches the default value */
 	bool IsHourIntervalDefaultValue() const { return HourInterval_IsSet && HourInterval_Optional == 0; }
 	/** @brief Sets the value of HourInterval_Optional to its default and also sets HourInterval_IsSet to true */
@@ -225,8 +235,10 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrame : public FRHAPI_Model
 	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
 	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
-	 /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
+	/** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
 	void ClearCacheInfo() { CacheInfo_IsSet = false;  }
+	/** @brief Checks whether CacheInfo_Optional has been set */
+	bool IsCacheInfoSet() const { return CacheInfo_IsSet; }
 };
 
 /** @} */

@@ -61,8 +61,10 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigV3 : public FRHAPI_Model
 	void SetName(const FString& NewValue) { Name_Optional = NewValue; Name_IsSet = true;  }
 	/** @brief Sets the value of Name_Optional and also sets Name_IsSet to true using move semantics */
 	void SetName(FString&& NewValue) { Name_Optional = NewValue; Name_IsSet = true;  }
-	 /** @brief Clears the value of Name_Optional and sets Name_IsSet to false */
+	/** @brief Clears the value of Name_Optional and sets Name_IsSet to false */
 	void ClearName() { Name_IsSet = false;  }
+	/** @brief Checks whether Name_Optional has been set */
+	bool IsNameSet() const { return Name_IsSet; }
 
 	/** @brief Description of this rank */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -86,8 +88,10 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigV3 : public FRHAPI_Model
 	void SetDescription(const FString& NewValue) { Description_Optional = NewValue; Description_IsSet = true;  }
 	/** @brief Sets the value of Description_Optional and also sets Description_IsSet to true using move semantics */
 	void SetDescription(FString&& NewValue) { Description_Optional = NewValue; Description_IsSet = true;  }
-	 /** @brief Clears the value of Description_Optional and sets Description_IsSet to false */
+	/** @brief Clears the value of Description_Optional and sets Description_IsSet to false */
 	void ClearDescription() { Description_IsSet = false;  }
+	/** @brief Checks whether Description_Optional has been set */
+	bool IsDescriptionSet() const { return Description_IsSet; }
 
 	/** @brief Custom data about this rank */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -111,8 +115,10 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigV3 : public FRHAPI_Model
 	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 
 	/** @brief The maximum mu value achievable. Any attempts to update a rank value to be higher than this get clamped to the maximum */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -172,8 +178,10 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigV3 : public FRHAPI_Model
 	void SetBeta(const float& NewValue) { Beta_Optional = NewValue; Beta_IsSet = true;  }
 	/** @brief Sets the value of Beta_Optional and also sets Beta_IsSet to true using move semantics */
 	void SetBeta(float&& NewValue) { Beta_Optional = NewValue; Beta_IsSet = true;  }
-	 /** @brief Clears the value of Beta_Optional and sets Beta_IsSet to false */
+	/** @brief Clears the value of Beta_Optional and sets Beta_IsSet to false */
 	void ClearBeta() { Beta_IsSet = false;  }
+	/** @brief Checks whether Beta_Optional has been set */
+	bool IsBetaSet() const { return Beta_IsSet; }
 
 	/** @brief The default mu value for this rank id. Will be used when players do not have any rank history */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -221,8 +229,10 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigV3 : public FRHAPI_Model
 	void SetDrawProbability(const float& NewValue) { DrawProbability_Optional = NewValue; DrawProbability_IsSet = true;  }
 	/** @brief Sets the value of DrawProbability_Optional and also sets DrawProbability_IsSet to true using move semantics */
 	void SetDrawProbability(float&& NewValue) { DrawProbability_Optional = NewValue; DrawProbability_IsSet = true;  }
-	 /** @brief Clears the value of DrawProbability_Optional and sets DrawProbability_IsSet to false */
+	/** @brief Clears the value of DrawProbability_Optional and sets DrawProbability_IsSet to false */
 	void ClearDrawProbability() { DrawProbability_IsSet = false;  }
+	/** @brief Checks whether DrawProbability_Optional has been set */
+	bool IsDrawProbabilitySet() const { return DrawProbability_IsSet; }
 
 	/** @brief Factor that determines how quickly a player's sigma is adjusted. A larger tau will result in more volatile in ranks. Recommended value is is (default_sigma * .01) */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -246,8 +256,10 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigV3 : public FRHAPI_Model
 	void SetTau(const float& NewValue) { Tau_Optional = NewValue; Tau_IsSet = true;  }
 	/** @brief Sets the value of Tau_Optional and also sets Tau_IsSet to true using move semantics */
 	void SetTau(float&& NewValue) { Tau_Optional = NewValue; Tau_IsSet = true;  }
-	 /** @brief Clears the value of Tau_Optional and sets Tau_IsSet to false */
+	/** @brief Clears the value of Tau_Optional and sets Tau_IsSet to false */
 	void ClearTau() { Tau_IsSet = false;  }
+	/** @brief Checks whether Tau_Optional has been set */
+	bool IsTauSet() const { return Tau_IsSet; }
 
 	/** @brief ID for this rank type */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

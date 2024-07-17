@@ -61,8 +61,10 @@ struct RALLYHEREAPI_API FRHAPI_MapConfig : public FRHAPI_Model
 	void SetMapGameId(const int32& NewValue) { MapGameId_Optional = NewValue; MapGameId_IsSet = true;  }
 	/** @brief Sets the value of MapGameId_Optional and also sets MapGameId_IsSet to true using move semantics */
 	void SetMapGameId(int32&& NewValue) { MapGameId_Optional = NewValue; MapGameId_IsSet = true;  }
-	 /** @brief Clears the value of MapGameId_Optional and sets MapGameId_IsSet to false */
+	/** @brief Clears the value of MapGameId_Optional and sets MapGameId_IsSet to false */
 	void ClearMapGameId() { MapGameId_Optional = 0; MapGameId_IsSet = false;  }
+	/** @brief Checks whether MapGameId_Optional has been set */
+	bool IsMapGameIdSet() const { return MapGameId_IsSet; }
 	/** @brief Returns true if MapGameId_Optional is set and matches the default value */
 	bool IsMapGameIdDefaultValue() const { return MapGameId_IsSet && MapGameId_Optional == 0; }
 	/** @brief Sets the value of MapGameId_Optional to its default and also sets MapGameId_IsSet to true */
@@ -102,8 +104,10 @@ struct RALLYHEREAPI_API FRHAPI_MapConfig : public FRHAPI_Model
 	void SetMode(const FString& NewValue) { Mode_Optional = NewValue; Mode_IsSet = true;  }
 	/** @brief Sets the value of Mode_Optional and also sets Mode_IsSet to true using move semantics */
 	void SetMode(FString&& NewValue) { Mode_Optional = NewValue; Mode_IsSet = true;  }
-	 /** @brief Clears the value of Mode_Optional and sets Mode_IsSet to false */
+	/** @brief Clears the value of Mode_Optional and sets Mode_IsSet to false */
 	void ClearMode() { Mode_IsSet = false;  }
+	/** @brief Checks whether Mode_Optional has been set */
+	bool IsModeSet() const { return Mode_IsSet; }
 
 	/** @brief Chance that this map will get selected in a rotation list */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -127,8 +131,10 @@ struct RALLYHEREAPI_API FRHAPI_MapConfig : public FRHAPI_Model
 	void SetSelectionChance(const float& NewValue) { SelectionChance_Optional = NewValue; SelectionChance_IsSet = true;  }
 	/** @brief Sets the value of SelectionChance_Optional and also sets SelectionChance_IsSet to true using move semantics */
 	void SetSelectionChance(float&& NewValue) { SelectionChance_Optional = NewValue; SelectionChance_IsSet = true;  }
-	 /** @brief Clears the value of SelectionChance_Optional and sets SelectionChance_IsSet to false */
+	/** @brief Clears the value of SelectionChance_Optional and sets SelectionChance_IsSet to false */
 	void ClearSelectionChance() { SelectionChance_IsSet = false;  }
+	/** @brief Checks whether SelectionChance_Optional has been set */
+	bool IsSelectionChanceSet() const { return SelectionChance_IsSet; }
 
 	/** @brief Custom data to pass through to the instance */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -152,8 +158,10 @@ struct RALLYHEREAPI_API FRHAPI_MapConfig : public FRHAPI_Model
 	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 };
 
 /** @} */

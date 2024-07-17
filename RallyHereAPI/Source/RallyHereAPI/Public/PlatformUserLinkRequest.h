@@ -62,8 +62,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformUserLinkRequest : public FRHAPI_Model
 	void SetLeaderPersonId(const FGuid& NewValue) { LeaderPersonId_Optional = NewValue; LeaderPersonId_IsSet = true;  }
 	/** @brief Sets the value of LeaderPersonId_Optional and also sets LeaderPersonId_IsSet to true using move semantics */
 	void SetLeaderPersonId(FGuid&& NewValue) { LeaderPersonId_Optional = NewValue; LeaderPersonId_IsSet = true;  }
-	 /** @brief Clears the value of LeaderPersonId_Optional and sets LeaderPersonId_IsSet to false */
+	/** @brief Clears the value of LeaderPersonId_Optional and sets LeaderPersonId_IsSet to false */
 	void ClearLeaderPersonId() { LeaderPersonId_IsSet = false;  }
+	/** @brief Checks whether LeaderPersonId_Optional has been set */
+	bool IsLeaderPersonIdSet() const { return LeaderPersonId_IsSet; }
 
 	/** @brief Platform of the leader to link to.  If not provided, the leader will be found from the `scheme` and `credentials` */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -87,8 +89,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformUserLinkRequest : public FRHAPI_Model
 	void SetLeaderPlatform(const ERHAPI_Platform& NewValue) { LeaderPlatform_Optional = NewValue; LeaderPlatform_IsSet = true;  }
 	/** @brief Sets the value of LeaderPlatform_Optional and also sets LeaderPlatform_IsSet to true using move semantics */
 	void SetLeaderPlatform(ERHAPI_Platform&& NewValue) { LeaderPlatform_Optional = NewValue; LeaderPlatform_IsSet = true;  }
-	 /** @brief Clears the value of LeaderPlatform_Optional and sets LeaderPlatform_IsSet to false */
+	/** @brief Clears the value of LeaderPlatform_Optional and sets LeaderPlatform_IsSet to false */
 	void ClearLeaderPlatform() { LeaderPlatform_IsSet = false;  }
+	/** @brief Checks whether LeaderPlatform_Optional has been set */
+	bool IsLeaderPlatformSet() const { return LeaderPlatform_IsSet; }
 
 	/** @brief Platform user ID of the leader to link to.  If not provided, the leader will be found from the `scheme` and `credentials` */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -112,8 +116,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformUserLinkRequest : public FRHAPI_Model
 	void SetLeaderPlatformUserId(const FString& NewValue) { LeaderPlatformUserId_Optional = NewValue; LeaderPlatformUserId_IsSet = true;  }
 	/** @brief Sets the value of LeaderPlatformUserId_Optional and also sets LeaderPlatformUserId_IsSet to true using move semantics */
 	void SetLeaderPlatformUserId(FString&& NewValue) { LeaderPlatformUserId_Optional = NewValue; LeaderPlatformUserId_IsSet = true;  }
-	 /** @brief Clears the value of LeaderPlatformUserId_Optional and sets LeaderPlatformUserId_IsSet to false */
+	/** @brief Clears the value of LeaderPlatformUserId_Optional and sets LeaderPlatformUserId_IsSet to false */
 	void ClearLeaderPlatformUserId() { LeaderPlatformUserId_IsSet = false;  }
+	/** @brief Checks whether LeaderPlatformUserId_Optional has been set */
+	bool IsLeaderPlatformUserIdSet() const { return LeaderPlatformUserId_IsSet; }
 
 	/** @brief Platform of the follower to link.  If not provided, the follower will be found from the Authorization header's token */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -137,8 +143,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformUserLinkRequest : public FRHAPI_Model
 	void SetFollowerPlatform(const ERHAPI_Platform& NewValue) { FollowerPlatform_Optional = NewValue; FollowerPlatform_IsSet = true;  }
 	/** @brief Sets the value of FollowerPlatform_Optional and also sets FollowerPlatform_IsSet to true using move semantics */
 	void SetFollowerPlatform(ERHAPI_Platform&& NewValue) { FollowerPlatform_Optional = NewValue; FollowerPlatform_IsSet = true;  }
-	 /** @brief Clears the value of FollowerPlatform_Optional and sets FollowerPlatform_IsSet to false */
+	/** @brief Clears the value of FollowerPlatform_Optional and sets FollowerPlatform_IsSet to false */
 	void ClearFollowerPlatform() { FollowerPlatform_IsSet = false;  }
+	/** @brief Checks whether FollowerPlatform_Optional has been set */
+	bool IsFollowerPlatformSet() const { return FollowerPlatform_IsSet; }
 
 	/** @brief Platform user ID of the follower to link.  If not provided, the follower will be found from the Authorization header's token */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -162,8 +170,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformUserLinkRequest : public FRHAPI_Model
 	void SetFollowerPlatformUserId(const FString& NewValue) { FollowerPlatformUserId_Optional = NewValue; FollowerPlatformUserId_IsSet = true;  }
 	/** @brief Sets the value of FollowerPlatformUserId_Optional and also sets FollowerPlatformUserId_IsSet to true using move semantics */
 	void SetFollowerPlatformUserId(FString&& NewValue) { FollowerPlatformUserId_Optional = NewValue; FollowerPlatformUserId_IsSet = true;  }
-	 /** @brief Clears the value of FollowerPlatformUserId_Optional and sets FollowerPlatformUserId_IsSet to false */
+	/** @brief Clears the value of FollowerPlatformUserId_Optional and sets FollowerPlatformUserId_IsSet to false */
 	void ClearFollowerPlatformUserId() { FollowerPlatformUserId_IsSet = false;  }
+	/** @brief Checks whether FollowerPlatformUserId_Optional has been set */
+	bool IsFollowerPlatformUserIdSet() const { return FollowerPlatformUserId_IsSet; }
 
 	/** @brief Scheme to use for the leader.  For most tokens, this will be `Bearer` */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -187,8 +197,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformUserLinkRequest : public FRHAPI_Model
 	void SetScheme(const FString& NewValue) { Scheme_Optional = NewValue; Scheme_IsSet = true;  }
 	/** @brief Sets the value of Scheme_Optional and also sets Scheme_IsSet to true using move semantics */
 	void SetScheme(FString&& NewValue) { Scheme_Optional = NewValue; Scheme_IsSet = true;  }
-	 /** @brief Clears the value of Scheme_Optional and sets Scheme_IsSet to false */
+	/** @brief Clears the value of Scheme_Optional and sets Scheme_IsSet to false */
 	void ClearScheme() { Scheme_IsSet = false;  }
+	/** @brief Checks whether Scheme_Optional has been set */
+	bool IsSchemeSet() const { return Scheme_IsSet; }
 
 	/** @brief Credentials to use for the leader.  For most tokens, this will be the token itself. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -212,8 +224,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformUserLinkRequest : public FRHAPI_Model
 	void SetCredentials(const FString& NewValue) { Credentials_Optional = NewValue; Credentials_IsSet = true;  }
 	/** @brief Sets the value of Credentials_Optional and also sets Credentials_IsSet to true using move semantics */
 	void SetCredentials(FString&& NewValue) { Credentials_Optional = NewValue; Credentials_IsSet = true;  }
-	 /** @brief Clears the value of Credentials_Optional and sets Credentials_IsSet to false */
+	/** @brief Clears the value of Credentials_Optional and sets Credentials_IsSet to false */
 	void ClearCredentials() { Credentials_IsSet = false;  }
+	/** @brief Checks whether Credentials_Optional has been set */
+	bool IsCredentialsSet() const { return Credentials_IsSet; }
 };
 
 /** @} */

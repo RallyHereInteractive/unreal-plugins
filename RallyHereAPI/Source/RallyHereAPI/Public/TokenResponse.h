@@ -85,8 +85,10 @@ struct RALLYHEREAPI_API FRHAPI_TokenResponse : public FRHAPI_Model
 	void SetRefreshToken(const FString& NewValue) { RefreshToken_Optional = NewValue; RefreshToken_IsSet = true;  }
 	/** @brief Sets the value of RefreshToken_Optional and also sets RefreshToken_IsSet to true using move semantics */
 	void SetRefreshToken(FString&& NewValue) { RefreshToken_Optional = NewValue; RefreshToken_IsSet = true;  }
-	 /** @brief Clears the value of RefreshToken_Optional and sets RefreshToken_IsSet to false */
+	/** @brief Clears the value of RefreshToken_Optional and sets RefreshToken_IsSet to false */
 	void ClearRefreshToken() { RefreshToken_IsSet = false;  }
+	/** @brief Checks whether RefreshToken_Optional has been set */
+	bool IsRefreshTokenSet() const { return RefreshToken_IsSet; }
 
 	/** @brief Result access token expiration time in seconds */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

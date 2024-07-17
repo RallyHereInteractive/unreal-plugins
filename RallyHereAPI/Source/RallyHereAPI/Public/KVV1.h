@@ -87,10 +87,13 @@ struct RALLYHEREAPI_API FRHAPI_KVV1 : public FRHAPI_Model
 	void SetNotes(const FString& NewValue) { Notes_Optional = NewValue; Notes_IsSet = true; Notes_IsNull = false; }
 	/** @brief Sets the value of Notes_Optional and also sets Notes_IsSet to true using move semantics */
 	void SetNotes(FString&& NewValue) { Notes_Optional = NewValue; Notes_IsSet = true; Notes_IsNull = false; }
-	 /** @brief Clears the value of Notes_Optional and sets Notes_IsSet to false */
+	/** @brief Clears the value of Notes_Optional and sets Notes_IsSet to false */
 	void ClearNotes() { Notes_IsSet = false; Notes_IsNull = false; }
+	/** @brief Checks whether Notes_Optional has been set */
+	bool IsNotesSet() const { return Notes_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
 	void SetNotesToNull() { Notes_IsSet = true; Notes_IsNull = true; }
+	/** @brief Checks whether Notes_Optional is set to null */
 	bool IsNotesNull() const { return Notes_IsSet && Notes_IsNull; }
 };
 

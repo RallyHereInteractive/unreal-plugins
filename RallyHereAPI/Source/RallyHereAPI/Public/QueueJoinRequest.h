@@ -74,8 +74,10 @@ struct RALLYHEREAPI_API FRHAPI_QueueJoinRequest : public FRHAPI_Model
 	void SetAdditionalJoinParams(const FRHAPI_AdditionalJoinParams& NewValue) { AdditionalJoinParams_Optional = NewValue; AdditionalJoinParams_IsSet = true;  }
 	/** @brief Sets the value of AdditionalJoinParams_Optional and also sets AdditionalJoinParams_IsSet to true using move semantics */
 	void SetAdditionalJoinParams(FRHAPI_AdditionalJoinParams&& NewValue) { AdditionalJoinParams_Optional = NewValue; AdditionalJoinParams_IsSet = true;  }
-	 /** @brief Clears the value of AdditionalJoinParams_Optional and sets AdditionalJoinParams_IsSet to false */
+	/** @brief Clears the value of AdditionalJoinParams_Optional and sets AdditionalJoinParams_IsSet to false */
 	void ClearAdditionalJoinParams() { AdditionalJoinParams_IsSet = false;  }
+	/** @brief Checks whether AdditionalJoinParams_Optional has been set */
+	bool IsAdditionalJoinParamsSet() const { return AdditionalJoinParams_IsSet; }
 
 	/** @brief List of map preferences in order from most desired, to least desired */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -99,8 +101,10 @@ struct RALLYHEREAPI_API FRHAPI_QueueJoinRequest : public FRHAPI_Model
 	void SetMapPreferences(const TArray<FString>& NewValue) { MapPreferences_Optional = NewValue; MapPreferences_IsSet = true;  }
 	/** @brief Sets the value of MapPreferences_Optional and also sets MapPreferences_IsSet to true using move semantics */
 	void SetMapPreferences(TArray<FString>&& NewValue) { MapPreferences_Optional = NewValue; MapPreferences_IsSet = true;  }
-	 /** @brief Clears the value of MapPreferences_Optional and sets MapPreferences_IsSet to false */
+	/** @brief Clears the value of MapPreferences_Optional and sets MapPreferences_IsSet to false */
 	void ClearMapPreferences() { MapPreferences_IsSet = false;  }
+	/** @brief Checks whether MapPreferences_Optional has been set */
+	bool IsMapPreferencesSet() const { return MapPreferences_IsSet; }
 
 	/** @brief Argument to artifcially add queue time to a ticket. Older tickets are considered for lower quaulity matches. This can be used to get faster matches at the expense of quality, or to restore a session's place in queue after a failure */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -124,8 +128,10 @@ struct RALLYHEREAPI_API FRHAPI_QueueJoinRequest : public FRHAPI_Model
 	void SetPassedQueueTimeSeconds(const int32& NewValue) { PassedQueueTimeSeconds_Optional = NewValue; PassedQueueTimeSeconds_IsSet = true;  }
 	/** @brief Sets the value of PassedQueueTimeSeconds_Optional and also sets PassedQueueTimeSeconds_IsSet to true using move semantics */
 	void SetPassedQueueTimeSeconds(int32&& NewValue) { PassedQueueTimeSeconds_Optional = NewValue; PassedQueueTimeSeconds_IsSet = true;  }
-	 /** @brief Clears the value of PassedQueueTimeSeconds_Optional and sets PassedQueueTimeSeconds_IsSet to false */
+	/** @brief Clears the value of PassedQueueTimeSeconds_Optional and sets PassedQueueTimeSeconds_IsSet to false */
 	void ClearPassedQueueTimeSeconds() { PassedQueueTimeSeconds_Optional = 0; PassedQueueTimeSeconds_IsSet = false;  }
+	/** @brief Checks whether PassedQueueTimeSeconds_Optional has been set */
+	bool IsPassedQueueTimeSecondsSet() const { return PassedQueueTimeSeconds_IsSet; }
 	/** @brief Returns true if PassedQueueTimeSeconds_Optional is set and matches the default value */
 	bool IsPassedQueueTimeSecondsDefaultValue() const { return PassedQueueTimeSeconds_IsSet && PassedQueueTimeSeconds_Optional == 0; }
 	/** @brief Sets the value of PassedQueueTimeSeconds_Optional to its default and also sets PassedQueueTimeSeconds_IsSet to true */

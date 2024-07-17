@@ -61,8 +61,10 @@ struct RALLYHEREAPI_API FRHAPI_HTTPValidationError : public FRHAPI_Model
 	void SetDetail(const TArray<FRHAPI_ValidationError>& NewValue) { Detail_Optional = NewValue; Detail_IsSet = true;  }
 	/** @brief Sets the value of Detail_Optional and also sets Detail_IsSet to true using move semantics */
 	void SetDetail(TArray<FRHAPI_ValidationError>&& NewValue) { Detail_Optional = NewValue; Detail_IsSet = true;  }
-	 /** @brief Clears the value of Detail_Optional and sets Detail_IsSet to false */
+	/** @brief Clears the value of Detail_Optional and sets Detail_IsSet to false */
 	void ClearDetail() { Detail_IsSet = false;  }
+	/** @brief Checks whether Detail_Optional has been set */
+	bool IsDetailSet() const { return Detail_IsSet; }
 };
 
 /** @} */

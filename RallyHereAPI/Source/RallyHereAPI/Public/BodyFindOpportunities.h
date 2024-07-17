@@ -61,8 +61,10 @@ struct RALLYHEREAPI_API FRHAPI_BodyFindOpportunities : public FRHAPI_Model
 	void SetScreenPixelWidth(const int32& NewValue) { ScreenPixelWidth_Optional = NewValue; ScreenPixelWidth_IsSet = true;  }
 	/** @brief Sets the value of ScreenPixelWidth_Optional and also sets ScreenPixelWidth_IsSet to true using move semantics */
 	void SetScreenPixelWidth(int32&& NewValue) { ScreenPixelWidth_Optional = NewValue; ScreenPixelWidth_IsSet = true;  }
-	 /** @brief Clears the value of ScreenPixelWidth_Optional and sets ScreenPixelWidth_IsSet to false */
+	/** @brief Clears the value of ScreenPixelWidth_Optional and sets ScreenPixelWidth_IsSet to false */
 	void ClearScreenPixelWidth() { ScreenPixelWidth_Optional = 0; ScreenPixelWidth_IsSet = false;  }
+	/** @brief Checks whether ScreenPixelWidth_Optional has been set */
+	bool IsScreenPixelWidthSet() const { return ScreenPixelWidth_IsSet; }
 	/** @brief Returns true if ScreenPixelWidth_Optional is set and matches the default value */
 	bool IsScreenPixelWidthDefaultValue() const { return ScreenPixelWidth_IsSet && ScreenPixelWidth_Optional == 0; }
 	/** @brief Sets the value of ScreenPixelWidth_Optional to its default and also sets ScreenPixelWidth_IsSet to true */
@@ -90,8 +92,10 @@ struct RALLYHEREAPI_API FRHAPI_BodyFindOpportunities : public FRHAPI_Model
 	void SetScreenPixelHeight(const int32& NewValue) { ScreenPixelHeight_Optional = NewValue; ScreenPixelHeight_IsSet = true;  }
 	/** @brief Sets the value of ScreenPixelHeight_Optional and also sets ScreenPixelHeight_IsSet to true using move semantics */
 	void SetScreenPixelHeight(int32&& NewValue) { ScreenPixelHeight_Optional = NewValue; ScreenPixelHeight_IsSet = true;  }
-	 /** @brief Clears the value of ScreenPixelHeight_Optional and sets ScreenPixelHeight_IsSet to false */
+	/** @brief Clears the value of ScreenPixelHeight_Optional and sets ScreenPixelHeight_IsSet to false */
 	void ClearScreenPixelHeight() { ScreenPixelHeight_Optional = 0; ScreenPixelHeight_IsSet = false;  }
+	/** @brief Checks whether ScreenPixelHeight_Optional has been set */
+	bool IsScreenPixelHeightSet() const { return ScreenPixelHeight_IsSet; }
 	/** @brief Returns true if ScreenPixelHeight_Optional is set and matches the default value */
 	bool IsScreenPixelHeightDefaultValue() const { return ScreenPixelHeight_IsSet && ScreenPixelHeight_Optional == 0; }
 	/** @brief Sets the value of ScreenPixelHeight_Optional to its default and also sets ScreenPixelHeight_IsSet to true */
@@ -143,8 +147,10 @@ struct RALLYHEREAPI_API FRHAPI_BodyFindOpportunities : public FRHAPI_Model
 	void SetDeviceId(const FString& NewValue) { DeviceId_Optional = NewValue; DeviceId_IsSet = true;  }
 	/** @brief Sets the value of DeviceId_Optional and also sets DeviceId_IsSet to true using move semantics */
 	void SetDeviceId(FString&& NewValue) { DeviceId_Optional = NewValue; DeviceId_IsSet = true;  }
-	 /** @brief Clears the value of DeviceId_Optional and sets DeviceId_IsSet to false */
+	/** @brief Clears the value of DeviceId_Optional and sets DeviceId_IsSet to false */
 	void ClearDeviceId() { DeviceId_IsSet = false;  }
+	/** @brief Checks whether DeviceId_Optional has been set */
+	bool IsDeviceIdSet() const { return DeviceId_IsSet; }
 };
 
 /** @} */

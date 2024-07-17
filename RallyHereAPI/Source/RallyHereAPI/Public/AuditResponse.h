@@ -62,8 +62,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditResponse : public FRHAPI_Model
 	void SetEvents(const TArray<FRHAPI_AuditEvent>& NewValue) { Events_Optional = NewValue; Events_IsSet = true;  }
 	/** @brief Sets the value of Events_Optional and also sets Events_IsSet to true using move semantics */
 	void SetEvents(TArray<FRHAPI_AuditEvent>&& NewValue) { Events_Optional = NewValue; Events_IsSet = true;  }
-	 /** @brief Clears the value of Events_Optional and sets Events_IsSet to false */
+	/** @brief Clears the value of Events_Optional and sets Events_IsSet to false */
 	void ClearEvents() { Events_IsSet = false;  }
+	/** @brief Checks whether Events_Optional has been set */
+	bool IsEventsSet() const { return Events_IsSet; }
 };
 
 /** @} */

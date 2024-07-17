@@ -63,8 +63,10 @@ struct RALLYHEREAPI_API FRHAPI_CreateInventoryRequest : public FRHAPI_Model
 	void SetBucket(const ERHAPI_InventoryBucket& NewValue) { Bucket_Optional = NewValue; Bucket_IsSet = true;  }
 	/** @brief Sets the value of Bucket_Optional and also sets Bucket_IsSet to true using move semantics */
 	void SetBucket(ERHAPI_InventoryBucket&& NewValue) { Bucket_Optional = NewValue; Bucket_IsSet = true;  }
-	 /** @brief Clears the value of Bucket_Optional and sets Bucket_IsSet to false */
+	/** @brief Clears the value of Bucket_Optional and sets Bucket_IsSet to false */
 	void ClearBucket() { Bucket_IsSet = false;  }
+	/** @brief Checks whether Bucket_Optional has been set */
+	bool IsBucketSet() const { return Bucket_IsSet; }
 
 	/** @brief Count for this Inventory Operation. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -88,8 +90,10 @@ struct RALLYHEREAPI_API FRHAPI_CreateInventoryRequest : public FRHAPI_Model
 	void SetCount(const int32& NewValue) { Count_Optional = NewValue; Count_IsSet = true;  }
 	/** @brief Sets the value of Count_Optional and also sets Count_IsSet to true using move semantics */
 	void SetCount(int32&& NewValue) { Count_Optional = NewValue; Count_IsSet = true;  }
-	 /** @brief Clears the value of Count_Optional and sets Count_IsSet to false */
+	/** @brief Clears the value of Count_Optional and sets Count_IsSet to false */
 	void ClearCount() { Count_Optional = 1; Count_IsSet = false;  }
+	/** @brief Checks whether Count_Optional has been set */
+	bool IsCountSet() const { return Count_IsSet; }
 	/** @brief Returns true if Count_Optional is set and matches the default value */
 	bool IsCountDefaultValue() const { return Count_IsSet && Count_Optional == 1; }
 	/** @brief Sets the value of Count_Optional to its default and also sets Count_IsSet to true */
@@ -117,8 +121,10 @@ struct RALLYHEREAPI_API FRHAPI_CreateInventoryRequest : public FRHAPI_Model
 	void SetExpires(const FDateTime& NewValue) { Expires_Optional = NewValue; Expires_IsSet = true;  }
 	/** @brief Sets the value of Expires_Optional and also sets Expires_IsSet to true using move semantics */
 	void SetExpires(FDateTime&& NewValue) { Expires_Optional = NewValue; Expires_IsSet = true;  }
-	 /** @brief Clears the value of Expires_Optional and sets Expires_IsSet to false */
+	/** @brief Clears the value of Expires_Optional and sets Expires_IsSet to false */
 	void ClearExpires() { Expires_IsSet = false;  }
+	/** @brief Checks whether Expires_Optional has been set */
+	bool IsExpiresSet() const { return Expires_IsSet; }
 
 	/** @brief Arbitrary data map that can be set to add additional data to Inventory. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -142,8 +148,10 @@ struct RALLYHEREAPI_API FRHAPI_CreateInventoryRequest : public FRHAPI_Model
 	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 ItemId{ 0 };
@@ -181,8 +189,10 @@ struct RALLYHEREAPI_API FRHAPI_CreateInventoryRequest : public FRHAPI_Model
 	void SetType(const ERHAPI_CreateInventoryType& NewValue) { Type_Optional = NewValue; Type_IsSet = true;  }
 	/** @brief Sets the value of Type_Optional and also sets Type_IsSet to true using move semantics */
 	void SetType(ERHAPI_CreateInventoryType&& NewValue) { Type_Optional = NewValue; Type_IsSet = true;  }
-	 /** @brief Clears the value of Type_Optional and sets Type_IsSet to false */
+	/** @brief Clears the value of Type_Optional and sets Type_IsSet to false */
 	void ClearType() { Type_IsSet = false;  }
+	/** @brief Checks whether Type_Optional has been set */
+	bool IsTypeSet() const { return Type_IsSet; }
 };
 
 /** @} */

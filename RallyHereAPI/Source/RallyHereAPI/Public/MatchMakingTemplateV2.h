@@ -64,8 +64,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplateV2 : public FRHAPI_Model
 	void SetMatchMakingTemplateId(const FGuid& NewValue) { MatchMakingTemplateId_Optional = NewValue; MatchMakingTemplateId_IsSet = true;  }
 	/** @brief Sets the value of MatchMakingTemplateId_Optional and also sets MatchMakingTemplateId_IsSet to true using move semantics */
 	void SetMatchMakingTemplateId(FGuid&& NewValue) { MatchMakingTemplateId_Optional = NewValue; MatchMakingTemplateId_IsSet = true;  }
-	 /** @brief Clears the value of MatchMakingTemplateId_Optional and sets MatchMakingTemplateId_IsSet to false */
+	/** @brief Clears the value of MatchMakingTemplateId_Optional and sets MatchMakingTemplateId_IsSet to false */
 	void ClearMatchMakingTemplateId() { MatchMakingTemplateId_IsSet = false;  }
+	/** @brief Checks whether MatchMakingTemplateId_Optional has been set */
+	bool IsMatchMakingTemplateIdSet() const { return MatchMakingTemplateId_IsSet; }
 
 	/** @brief What method should be used to calculate a group's MMR based on the individual player's ranks */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -101,8 +103,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplateV2 : public FRHAPI_Model
 	void SetRuleset(const FRHAPI_MatchMakingRuleset& NewValue) { Ruleset_Optional = NewValue; Ruleset_IsSet = true;  }
 	/** @brief Sets the value of Ruleset_Optional and also sets Ruleset_IsSet to true using move semantics */
 	void SetRuleset(FRHAPI_MatchMakingRuleset&& NewValue) { Ruleset_Optional = NewValue; Ruleset_IsSet = true;  }
-	 /** @brief Clears the value of Ruleset_Optional and sets Ruleset_IsSet to false */
+	/** @brief Clears the value of Ruleset_Optional and sets Ruleset_IsSet to false */
 	void ClearRuleset() { Ruleset_IsSet = false;  }
+	/** @brief Checks whether Ruleset_Optional has been set */
+	bool IsRulesetSet() const { return Ruleset_IsSet; }
 
 	/** @brief A list of which match making profiles are going to be created on the ticket */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

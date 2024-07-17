@@ -64,8 +64,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrder : public FRHAPI_Model
 	void SetSource(const ERHAPI_Source& NewValue) { Source_Optional = NewValue; Source_IsSet = true;  }
 	/** @brief Sets the value of Source_Optional and also sets Source_IsSet to true using move semantics */
 	void SetSource(ERHAPI_Source&& NewValue) { Source_Optional = NewValue; Source_IsSet = true;  }
-	 /** @brief Clears the value of Source_Optional and sets Source_IsSet to false */
+	/** @brief Clears the value of Source_Optional and sets Source_IsSet to false */
 	void ClearSource() { Source_IsSet = false;  }
+	/** @brief Checks whether Source_Optional has been set */
+	bool IsSourceSet() const { return Source_IsSet; }
 
 	/** @brief Arbitrary UUID clients can use to track Orders between request to response. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -89,8 +91,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrder : public FRHAPI_Model
 	void SetClientOrderRefId(const FGuid& NewValue) { ClientOrderRefId_Optional = NewValue; ClientOrderRefId_IsSet = true;  }
 	/** @brief Sets the value of ClientOrderRefId_Optional and also sets ClientOrderRefId_IsSet to true using move semantics */
 	void SetClientOrderRefId(FGuid&& NewValue) { ClientOrderRefId_Optional = NewValue; ClientOrderRefId_IsSet = true;  }
-	 /** @brief Clears the value of ClientOrderRefId_Optional and sets ClientOrderRefId_IsSet to false */
+	/** @brief Clears the value of ClientOrderRefId_Optional and sets ClientOrderRefId_IsSet to false */
 	void ClearClientOrderRefId() { ClientOrderRefId_IsSet = false;  }
+	/** @brief Checks whether ClientOrderRefId_Optional has been set */
+	bool IsClientOrderRefIdSet() const { return ClientOrderRefId_IsSet; }
 
 	/** @brief Portal of the Portal User the Player Order belongs to. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -114,8 +118,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrder : public FRHAPI_Model
 	void SetPortalId(const ERHAPI_Portal& NewValue) { PortalId_Optional = NewValue; PortalId_IsSet = true;  }
 	/** @brief Sets the value of PortalId_Optional and also sets PortalId_IsSet to true using move semantics */
 	void SetPortalId(ERHAPI_Portal&& NewValue) { PortalId_Optional = NewValue; PortalId_IsSet = true;  }
-	 /** @brief Clears the value of PortalId_Optional and sets PortalId_IsSet to false */
+	/** @brief Clears the value of PortalId_Optional and sets PortalId_IsSet to false */
 	void ClearPortalId() { PortalId_IsSet = false;  }
+	/** @brief Checks whether PortalId_Optional has been set */
+	bool IsPortalIdSet() const { return PortalId_IsSet; }
 
 	/** @brief Portal User Id for the Player this Player Order belongs to. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -139,8 +145,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrder : public FRHAPI_Model
 	void SetPortalUserId(const FString& NewValue) { PortalUserId_Optional = NewValue; PortalUserId_IsSet = true;  }
 	/** @brief Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true using move semantics */
 	void SetPortalUserId(FString&& NewValue) { PortalUserId_Optional = NewValue; PortalUserId_IsSet = true;  }
-	 /** @brief Clears the value of PortalUserId_Optional and sets PortalUserId_IsSet to false */
+	/** @brief Clears the value of PortalUserId_Optional and sets PortalUserId_IsSet to false */
 	void ClearPortalUserId() { PortalUserId_IsSet = false;  }
+	/** @brief Checks whether PortalUserId_Optional has been set */
+	bool IsPortalUserIdSet() const { return PortalUserId_IsSet; }
 
 	/** @brief Instance Id for the Instance who submits the Player Order. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -164,8 +172,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrder : public FRHAPI_Model
 	void SetInstanceId(const FString& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true;  }
 	/** @brief Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true using move semantics */
 	void SetInstanceId(FString&& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true;  }
-	 /** @brief Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false */
+	/** @brief Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false */
 	void ClearInstanceId() { InstanceId_IsSet = false;  }
+	/** @brief Checks whether InstanceId_Optional has been set */
+	bool IsInstanceIdSet() const { return InstanceId_IsSet; }
 
 	/** @brief Match Id for the Match that generated the Player Order. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -189,8 +199,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrder : public FRHAPI_Model
 	void SetMatchId(const FString& NewValue) { MatchId_Optional = NewValue; MatchId_IsSet = true;  }
 	/** @brief Sets the value of MatchId_Optional and also sets MatchId_IsSet to true using move semantics */
 	void SetMatchId(FString&& NewValue) { MatchId_Optional = NewValue; MatchId_IsSet = true;  }
-	 /** @brief Clears the value of MatchId_Optional and sets MatchId_IsSet to false */
+	/** @brief Clears the value of MatchId_Optional and sets MatchId_IsSet to false */
 	void ClearMatchId() { MatchId_IsSet = false;  }
+	/** @brief Checks whether MatchId_Optional has been set */
+	bool IsMatchIdSet() const { return MatchId_IsSet; }
 
 	/** @brief If an order is a transaction, any failed entries will roll back changes from all other entries. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -214,8 +226,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrder : public FRHAPI_Model
 	void SetIsTransaction(const bool& NewValue) { IsTransaction_Optional = NewValue; IsTransaction_IsSet = true;  }
 	/** @brief Sets the value of IsTransaction_Optional and also sets IsTransaction_IsSet to true using move semantics */
 	void SetIsTransaction(bool&& NewValue) { IsTransaction_Optional = NewValue; IsTransaction_IsSet = true;  }
-	 /** @brief Clears the value of IsTransaction_Optional and sets IsTransaction_IsSet to false */
+	/** @brief Clears the value of IsTransaction_Optional and sets IsTransaction_IsSet to false */
 	void ClearIsTransaction() { IsTransaction_Optional = false; IsTransaction_IsSet = false;  }
+	/** @brief Checks whether IsTransaction_Optional has been set */
+	bool IsIsTransactionSet() const { return IsTransaction_IsSet; }
 	/** @brief Returns true if IsTransaction_Optional is set and matches the default value */
 	bool IsIsTransactionDefaultValue() const { return IsTransaction_IsSet && IsTransaction_Optional == false; }
 	/** @brief Sets the value of IsTransaction_Optional to its default and also sets IsTransaction_IsSet to true */

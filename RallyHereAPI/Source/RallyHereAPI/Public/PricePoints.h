@@ -63,8 +63,10 @@ struct RALLYHEREAPI_API FRHAPI_PricePoints : public FRHAPI_Model
 	void SetPricePoints(const TMap<FString, FRHAPI_PricePoint>& NewValue) { PricePoints_Optional = NewValue; PricePoints_IsSet = true;  }
 	/** @brief Sets the value of PricePoints_Optional and also sets PricePoints_IsSet to true using move semantics */
 	void SetPricePoints(TMap<FString, FRHAPI_PricePoint>&& NewValue) { PricePoints_Optional = NewValue; PricePoints_IsSet = true;  }
-	 /** @brief Clears the value of PricePoints_Optional and sets PricePoints_IsSet to false */
+	/** @brief Clears the value of PricePoints_Optional and sets PricePoints_IsSet to false */
 	void ClearPricePoints() { PricePoints_IsSet = false;  }
+	/** @brief Checks whether PricePoints_Optional has been set */
+	bool IsPricePointsSet() const { return PricePoints_IsSet; }
 
 	/** @brief Cache info for the Price Points. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -88,8 +90,10 @@ struct RALLYHEREAPI_API FRHAPI_PricePoints : public FRHAPI_Model
 	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
 	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
-	 /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
+	/** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
 	void ClearCacheInfo() { CacheInfo_IsSet = false;  }
+	/** @brief Checks whether CacheInfo_Optional has been set */
+	bool IsCacheInfoSet() const { return CacheInfo_IsSet; }
 };
 
 /** @} */

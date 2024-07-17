@@ -89,8 +89,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerDeserterStatus : public FRHAPI_Model
 	void SetDeserterExpiration(const FDateTime& NewValue) { DeserterExpiration_Optional = NewValue; DeserterExpiration_IsSet = true;  }
 	/** @brief Sets the value of DeserterExpiration_Optional and also sets DeserterExpiration_IsSet to true using move semantics */
 	void SetDeserterExpiration(FDateTime&& NewValue) { DeserterExpiration_Optional = NewValue; DeserterExpiration_IsSet = true;  }
-	 /** @brief Clears the value of DeserterExpiration_Optional and sets DeserterExpiration_IsSet to false */
+	/** @brief Clears the value of DeserterExpiration_Optional and sets DeserterExpiration_IsSet to false */
 	void ClearDeserterExpiration() { DeserterExpiration_IsSet = false;  }
+	/** @brief Checks whether DeserterExpiration_Optional has been set */
+	bool IsDeserterExpirationSet() const { return DeserterExpiration_IsSet; }
 
 	/** @brief The number of times a player has deserted before the expiration */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -114,8 +116,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerDeserterStatus : public FRHAPI_Model
 	void SetDeserterCount(const int32& NewValue) { DeserterCount_Optional = NewValue; DeserterCount_IsSet = true;  }
 	/** @brief Sets the value of DeserterCount_Optional and also sets DeserterCount_IsSet to true using move semantics */
 	void SetDeserterCount(int32&& NewValue) { DeserterCount_Optional = NewValue; DeserterCount_IsSet = true;  }
-	 /** @brief Clears the value of DeserterCount_Optional and sets DeserterCount_IsSet to false */
+	/** @brief Clears the value of DeserterCount_Optional and sets DeserterCount_IsSet to false */
 	void ClearDeserterCount() { DeserterCount_Optional = 0; DeserterCount_IsSet = false;  }
+	/** @brief Checks whether DeserterCount_Optional has been set */
+	bool IsDeserterCountSet() const { return DeserterCount_IsSet; }
 	/** @brief Returns true if DeserterCount_Optional is set and matches the default value */
 	bool IsDeserterCountDefaultValue() const { return DeserterCount_IsSet && DeserterCount_Optional == 0; }
 	/** @brief Sets the value of DeserterCount_Optional to its default and also sets DeserterCount_IsSet to true */
@@ -143,8 +147,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerDeserterStatus : public FRHAPI_Model
 	void SetLastUpdated(const FDateTime& NewValue) { LastUpdated_Optional = NewValue; LastUpdated_IsSet = true;  }
 	/** @brief Sets the value of LastUpdated_Optional and also sets LastUpdated_IsSet to true using move semantics */
 	void SetLastUpdated(FDateTime&& NewValue) { LastUpdated_Optional = NewValue; LastUpdated_IsSet = true;  }
-	 /** @brief Clears the value of LastUpdated_Optional and sets LastUpdated_IsSet to false */
+	/** @brief Clears the value of LastUpdated_Optional and sets LastUpdated_IsSet to false */
 	void ClearLastUpdated() { LastUpdated_IsSet = false;  }
+	/** @brief Checks whether LastUpdated_Optional has been set */
+	bool IsLastUpdatedSet() const { return LastUpdated_IsSet; }
 
 	/** @brief Custom data about a players desertion status */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -168,8 +174,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerDeserterStatus : public FRHAPI_Model
 	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 };
 
 /** @} */

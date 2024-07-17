@@ -63,8 +63,10 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrames : public FRHAPI_Model
 	void SetTimeFrames(const TMap<FString, FRHAPI_TimeFrame>& NewValue) { TimeFrames_Optional = NewValue; TimeFrames_IsSet = true;  }
 	/** @brief Sets the value of TimeFrames_Optional and also sets TimeFrames_IsSet to true using move semantics */
 	void SetTimeFrames(TMap<FString, FRHAPI_TimeFrame>&& NewValue) { TimeFrames_Optional = NewValue; TimeFrames_IsSet = true;  }
-	 /** @brief Clears the value of TimeFrames_Optional and sets TimeFrames_IsSet to false */
+	/** @brief Clears the value of TimeFrames_Optional and sets TimeFrames_IsSet to false */
 	void ClearTimeFrames() { TimeFrames_IsSet = false;  }
+	/** @brief Checks whether TimeFrames_Optional has been set */
+	bool IsTimeFramesSet() const { return TimeFrames_IsSet; }
 
 	/** @brief Cache info for the Time Frames. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -88,8 +90,10 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrames : public FRHAPI_Model
 	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
 	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
-	 /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
+	/** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
 	void ClearCacheInfo() { CacheInfo_IsSet = false;  }
+	/** @brief Checks whether CacheInfo_Optional has been set */
+	bool IsCacheInfoSet() const { return CacheInfo_IsSet; }
 };
 
 /** @} */

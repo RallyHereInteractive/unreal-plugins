@@ -73,8 +73,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceStartupParams : public FRHAPI_Model
 	void SetMode(const FString& NewValue) { Mode_Optional = NewValue; Mode_IsSet = true;  }
 	/** @brief Sets the value of Mode_Optional and also sets Mode_IsSet to true using move semantics */
 	void SetMode(FString&& NewValue) { Mode_Optional = NewValue; Mode_IsSet = true;  }
-	 /** @brief Clears the value of Mode_Optional and sets Mode_IsSet to false */
+	/** @brief Clears the value of Mode_Optional and sets Mode_IsSet to false */
 	void ClearMode() { Mode_IsSet = false;  }
+	/** @brief Checks whether Mode_Optional has been set */
+	bool IsModeSet() const { return Mode_IsSet; }
 
 	/** @brief Additional commandline parameters for the instance */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -110,8 +112,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceStartupParams : public FRHAPI_Model
 	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 };
 
 /** @} */

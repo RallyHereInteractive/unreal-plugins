@@ -87,8 +87,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlement : public FRHAPI_Model
 	void SetQuantity(const int32& NewValue) { Quantity_Optional = NewValue; Quantity_IsSet = true;  }
 	/** @brief Sets the value of Quantity_Optional and also sets Quantity_IsSet to true using move semantics */
 	void SetQuantity(int32&& NewValue) { Quantity_Optional = NewValue; Quantity_IsSet = true;  }
-	 /** @brief Clears the value of Quantity_Optional and sets Quantity_IsSet to false */
+	/** @brief Clears the value of Quantity_Optional and sets Quantity_IsSet to false */
 	void ClearQuantity() { Quantity_Optional = 1; Quantity_IsSet = false;  }
+	/** @brief Checks whether Quantity_Optional has been set */
+	bool IsQuantitySet() const { return Quantity_IsSet; }
 	/** @brief Returns true if Quantity_Optional is set and matches the default value */
 	bool IsQuantityDefaultValue() const { return Quantity_IsSet && Quantity_Optional == 1; }
 	/** @brief Sets the value of Quantity_Optional to its default and also sets Quantity_IsSet to true */
@@ -116,8 +118,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlement : public FRHAPI_Model
 	void SetStatus(const ERHAPI_EntitlementStatus& NewValue) { Status_Optional = NewValue; Status_IsSet = true;  }
 	/** @brief Sets the value of Status_Optional and also sets Status_IsSet to true using move semantics */
 	void SetStatus(ERHAPI_EntitlementStatus&& NewValue) { Status_Optional = NewValue; Status_IsSet = true;  }
-	 /** @brief Clears the value of Status_Optional and sets Status_IsSet to false */
+	/** @brief Clears the value of Status_Optional and sets Status_IsSet to false */
 	void ClearStatus() { Status_IsSet = false;  }
+	/** @brief Checks whether Status_Optional has been set */
+	bool IsStatusSet() const { return Status_IsSet; }
 
 	/** @brief Error code for this entitlement */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -141,8 +145,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlement : public FRHAPI_Model
 	void SetErrorCode(const ERHAPI_EntitlementErrorCode& NewValue) { ErrorCode_Optional = NewValue; ErrorCode_IsSet = true;  }
 	/** @brief Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true using move semantics */
 	void SetErrorCode(ERHAPI_EntitlementErrorCode&& NewValue) { ErrorCode_Optional = NewValue; ErrorCode_IsSet = true;  }
-	 /** @brief Clears the value of ErrorCode_Optional and sets ErrorCode_IsSet to false */
+	/** @brief Clears the value of ErrorCode_Optional and sets ErrorCode_IsSet to false */
 	void ClearErrorCode() { ErrorCode_IsSet = false;  }
+	/** @brief Checks whether ErrorCode_Optional has been set */
+	bool IsErrorCodeSet() const { return ErrorCode_IsSet; }
 
 	/** @brief Order ID for this entitlement */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -166,8 +172,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlement : public FRHAPI_Model
 	void SetOrderId(const FString& NewValue) { OrderId_Optional = NewValue; OrderId_IsSet = true;  }
 	/** @brief Sets the value of OrderId_Optional and also sets OrderId_IsSet to true using move semantics */
 	void SetOrderId(FString&& NewValue) { OrderId_Optional = NewValue; OrderId_IsSet = true;  }
-	 /** @brief Clears the value of OrderId_Optional and sets OrderId_IsSet to false */
+	/** @brief Clears the value of OrderId_Optional and sets OrderId_IsSet to false */
 	void ClearOrderId() { OrderId_IsSet = false;  }
+	/** @brief Checks whether OrderId_Optional has been set */
+	bool IsOrderIdSet() const { return OrderId_IsSet; }
 };
 
 /** @} */

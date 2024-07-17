@@ -96,8 +96,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 
 	/** @brief Type of the session this event occurred in */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -121,8 +123,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 	void SetSessionType(const FString& NewValue) { SessionType_Optional = NewValue; SessionType_IsSet = true;  }
 	/** @brief Sets the value of SessionType_Optional and also sets SessionType_IsSet to true using move semantics */
 	void SetSessionType(FString&& NewValue) { SessionType_Optional = NewValue; SessionType_IsSet = true;  }
-	 /** @brief Clears the value of SessionType_Optional and sets SessionType_IsSet to false */
+	/** @brief Clears the value of SessionType_Optional and sets SessionType_IsSet to false */
 	void ClearSessionType() { SessionType_IsSet = false;  }
+	/** @brief Checks whether SessionType_Optional has been set */
+	bool IsSessionTypeSet() const { return SessionType_IsSet; }
 
 	/** @brief Region ID for this event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -146,8 +150,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 	void SetRegionId(const FString& NewValue) { RegionId_Optional = NewValue; RegionId_IsSet = true;  }
 	/** @brief Sets the value of RegionId_Optional and also sets RegionId_IsSet to true using move semantics */
 	void SetRegionId(FString&& NewValue) { RegionId_Optional = NewValue; RegionId_IsSet = true;  }
-	 /** @brief Clears the value of RegionId_Optional and sets RegionId_IsSet to false */
+	/** @brief Clears the value of RegionId_Optional and sets RegionId_IsSet to false */
 	void ClearRegionId() { RegionId_IsSet = false;  }
+	/** @brief Checks whether RegionId_Optional has been set */
+	bool IsRegionIdSet() const { return RegionId_IsSet; }
 
 	/** @brief Whether or not the session is publicly joinable */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -171,8 +177,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 	void SetJoinable(const bool& NewValue) { Joinable_Optional = NewValue; Joinable_IsSet = true;  }
 	/** @brief Sets the value of Joinable_Optional and also sets Joinable_IsSet to true using move semantics */
 	void SetJoinable(bool&& NewValue) { Joinable_Optional = NewValue; Joinable_IsSet = true;  }
-	 /** @brief Clears the value of Joinable_Optional and sets Joinable_IsSet to false */
+	/** @brief Clears the value of Joinable_Optional and sets Joinable_IsSet to false */
 	void ClearJoinable() { Joinable_Optional = false; Joinable_IsSet = false;  }
+	/** @brief Checks whether Joinable_Optional has been set */
+	bool IsJoinableSet() const { return Joinable_IsSet; }
 	/** @brief Returns true if Joinable_Optional is set and matches the default value */
 	bool IsJoinableDefaultValue() const { return Joinable_IsSet && Joinable_Optional == false; }
 	/** @brief Sets the value of Joinable_Optional to its default and also sets Joinable_IsSet to true */
@@ -200,8 +208,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 	void SetUpdatedTeams(const TArray<FRHAPI_TeamUpdate>& NewValue) { UpdatedTeams_Optional = NewValue; UpdatedTeams_IsSet = true;  }
 	/** @brief Sets the value of UpdatedTeams_Optional and also sets UpdatedTeams_IsSet to true using move semantics */
 	void SetUpdatedTeams(TArray<FRHAPI_TeamUpdate>&& NewValue) { UpdatedTeams_Optional = NewValue; UpdatedTeams_IsSet = true;  }
-	 /** @brief Clears the value of UpdatedTeams_Optional and sets UpdatedTeams_IsSet to false */
+	/** @brief Clears the value of UpdatedTeams_Optional and sets UpdatedTeams_IsSet to false */
 	void ClearUpdatedTeams() { UpdatedTeams_IsSet = false;  }
+	/** @brief Checks whether UpdatedTeams_Optional has been set */
+	bool IsUpdatedTeamsSet() const { return UpdatedTeams_IsSet; }
 
 	/** @brief The source of an invite */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -225,8 +235,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 	void SetSource(const ERHAPI_InviteSource& NewValue) { Source_Optional = NewValue; Source_IsSet = true;  }
 	/** @brief Sets the value of Source_Optional and also sets Source_IsSet to true using move semantics */
 	void SetSource(ERHAPI_InviteSource&& NewValue) { Source_Optional = NewValue; Source_IsSet = true;  }
-	 /** @brief Clears the value of Source_Optional and sets Source_IsSet to false */
+	/** @brief Clears the value of Source_Optional and sets Source_IsSet to false */
 	void ClearSource() { Source_IsSet = false;  }
+	/** @brief Checks whether Source_Optional has been set */
+	bool IsSourceSet() const { return Source_IsSet; }
 
 	/** @brief UUID of a specific player being effected in this event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -250,8 +262,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true;  }
 	/** @brief Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true using move semantics */
 	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true;  }
-	 /** @brief Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false */
+	/** @brief Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false */
 	void ClearPlayerUuid() { PlayerUuid_IsSet = false;  }
+	/** @brief Checks whether PlayerUuid_Optional has been set */
+	bool IsPlayerUuidSet() const { return PlayerUuid_IsSet; }
 
 	/** @brief ID of the team being effected in this event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -275,8 +289,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 	void SetTeamId(const int32& NewValue) { TeamId_Optional = NewValue; TeamId_IsSet = true;  }
 	/** @brief Sets the value of TeamId_Optional and also sets TeamId_IsSet to true using move semantics */
 	void SetTeamId(int32&& NewValue) { TeamId_Optional = NewValue; TeamId_IsSet = true;  }
-	 /** @brief Clears the value of TeamId_Optional and sets TeamId_IsSet to false */
+	/** @brief Clears the value of TeamId_Optional and sets TeamId_IsSet to false */
 	void ClearTeamId() { TeamId_Optional = 0; TeamId_IsSet = false;  }
+	/** @brief Checks whether TeamId_Optional has been set */
+	bool IsTeamIdSet() const { return TeamId_IsSet; }
 	/** @brief Returns true if TeamId_Optional is set and matches the default value */
 	bool IsTeamIdDefaultValue() const { return TeamId_IsSet && TeamId_Optional == 0; }
 	/** @brief Sets the value of TeamId_Optional to its default and also sets TeamId_IsSet to true */
@@ -304,8 +320,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 	void SetInvitedSessionId(const FString& NewValue) { InvitedSessionId_Optional = NewValue; InvitedSessionId_IsSet = true;  }
 	/** @brief Sets the value of InvitedSessionId_Optional and also sets InvitedSessionId_IsSet to true using move semantics */
 	void SetInvitedSessionId(FString&& NewValue) { InvitedSessionId_Optional = NewValue; InvitedSessionId_IsSet = true;  }
-	 /** @brief Clears the value of InvitedSessionId_Optional and sets InvitedSessionId_IsSet to false */
+	/** @brief Clears the value of InvitedSessionId_Optional and sets InvitedSessionId_IsSet to false */
 	void ClearInvitedSessionId() { InvitedSessionId_IsSet = false;  }
+	/** @brief Checks whether InvitedSessionId_Optional has been set */
+	bool IsInvitedSessionIdSet() const { return InvitedSessionId_IsSet; }
 
 	/** @brief ID of the session being removed in this event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -329,8 +347,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 	void SetRemovedSessionId(const FString& NewValue) { RemovedSessionId_Optional = NewValue; RemovedSessionId_IsSet = true;  }
 	/** @brief Sets the value of RemovedSessionId_Optional and also sets RemovedSessionId_IsSet to true using move semantics */
 	void SetRemovedSessionId(FString&& NewValue) { RemovedSessionId_Optional = NewValue; RemovedSessionId_IsSet = true;  }
-	 /** @brief Clears the value of RemovedSessionId_Optional and sets RemovedSessionId_IsSet to false */
+	/** @brief Clears the value of RemovedSessionId_Optional and sets RemovedSessionId_IsSet to false */
 	void ClearRemovedSessionId() { RemovedSessionId_IsSet = false;  }
+	/** @brief Checks whether RemovedSessionId_Optional has been set */
+	bool IsRemovedSessionIdSet() const { return RemovedSessionId_IsSet; }
 
 	/** @brief Version updated in this event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -354,8 +374,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 	void SetVersion(const FString& NewValue) { Version_Optional = NewValue; Version_IsSet = true;  }
 	/** @brief Sets the value of Version_Optional and also sets Version_IsSet to true using move semantics */
 	void SetVersion(FString&& NewValue) { Version_Optional = NewValue; Version_IsSet = true;  }
-	 /** @brief Clears the value of Version_Optional and sets Version_IsSet to false */
+	/** @brief Clears the value of Version_Optional and sets Version_IsSet to false */
 	void ClearVersion() { Version_IsSet = false;  }
+	/** @brief Checks whether Version_Optional has been set */
+	bool IsVersionSet() const { return Version_IsSet; }
 
 	/** @brief Client settings updated as part of this event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -379,8 +401,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 	void SetClientSettings(const FRHAPI_ClientSettings& NewValue) { ClientSettings_Optional = NewValue; ClientSettings_IsSet = true;  }
 	/** @brief Sets the value of ClientSettings_Optional and also sets ClientSettings_IsSet to true using move semantics */
 	void SetClientSettings(FRHAPI_ClientSettings&& NewValue) { ClientSettings_Optional = NewValue; ClientSettings_IsSet = true;  }
-	 /** @brief Clears the value of ClientSettings_Optional and sets ClientSettings_IsSet to false */
+	/** @brief Clears the value of ClientSettings_Optional and sets ClientSettings_IsSet to false */
 	void ClearClientSettings() { ClientSettings_IsSet = false;  }
+	/** @brief Checks whether ClientSettings_Optional has been set */
+	bool IsClientSettingsSet() const { return ClientSettings_IsSet; }
 
 	/** @brief Crossplay preferences updated as part of this event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -404,8 +428,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 	void SetCrossplayPreferences(const FRHAPI_CrossplayPreferences& NewValue) { CrossplayPreferences_Optional = NewValue; CrossplayPreferences_IsSet = true;  }
 	/** @brief Sets the value of CrossplayPreferences_Optional and also sets CrossplayPreferences_IsSet to true using move semantics */
 	void SetCrossplayPreferences(FRHAPI_CrossplayPreferences&& NewValue) { CrossplayPreferences_Optional = NewValue; CrossplayPreferences_IsSet = true;  }
-	 /** @brief Clears the value of CrossplayPreferences_Optional and sets CrossplayPreferences_IsSet to false */
+	/** @brief Clears the value of CrossplayPreferences_Optional and sets CrossplayPreferences_IsSet to false */
 	void ClearCrossplayPreferences() { CrossplayPreferences_IsSet = false;  }
+	/** @brief Checks whether CrossplayPreferences_Optional has been set */
+	bool IsCrossplayPreferencesSet() const { return CrossplayPreferences_IsSet; }
 
 	/** @brief Player's status updated as part of this event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -429,8 +455,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 	void SetPlayerStatus(const ERHAPI_SessionPlayerStatus& NewValue) { PlayerStatus_Optional = NewValue; PlayerStatus_IsSet = true;  }
 	/** @brief Sets the value of PlayerStatus_Optional and also sets PlayerStatus_IsSet to true using move semantics */
 	void SetPlayerStatus(ERHAPI_SessionPlayerStatus&& NewValue) { PlayerStatus_Optional = NewValue; PlayerStatus_IsSet = true;  }
-	 /** @brief Clears the value of PlayerStatus_Optional and sets PlayerStatus_IsSet to false */
+	/** @brief Clears the value of PlayerStatus_Optional and sets PlayerStatus_IsSet to false */
 	void ClearPlayerStatus() { PlayerStatus_IsSet = false;  }
+	/** @brief Checks whether PlayerStatus_Optional has been set */
+	bool IsPlayerStatusSet() const { return PlayerStatus_IsSet; }
 
 	/** @brief Platform updated as part of this event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -454,8 +482,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 	void SetPlatform(const ERHAPI_Platform& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true;  }
 	/** @brief Sets the value of Platform_Optional and also sets Platform_IsSet to true using move semantics */
 	void SetPlatform(ERHAPI_Platform&& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true;  }
-	 /** @brief Clears the value of Platform_Optional and sets Platform_IsSet to false */
+	/** @brief Clears the value of Platform_Optional and sets Platform_IsSet to false */
 	void ClearPlatform() { Platform_IsSet = false;  }
+	/** @brief Checks whether Platform_Optional has been set */
+	bool IsPlatformSet() const { return Platform_IsSet; }
 
 	/** @brief ID of the platform session being effected in this event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -479,8 +509,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 	void SetPlatformSessionId(const FString& NewValue) { PlatformSessionId_Optional = NewValue; PlatformSessionId_IsSet = true;  }
 	/** @brief Sets the value of PlatformSessionId_Optional and also sets PlatformSessionId_IsSet to true using move semantics */
 	void SetPlatformSessionId(FString&& NewValue) { PlatformSessionId_Optional = NewValue; PlatformSessionId_IsSet = true;  }
-	 /** @brief Clears the value of PlatformSessionId_Optional and sets PlatformSessionId_IsSet to false */
+	/** @brief Clears the value of PlatformSessionId_Optional and sets PlatformSessionId_IsSet to false */
 	void ClearPlatformSessionId() { PlatformSessionId_IsSet = false;  }
+	/** @brief Checks whether PlatformSessionId_Optional has been set */
+	bool IsPlatformSessionIdSet() const { return PlatformSessionId_IsSet; }
 
 	/** @brief ID of the instance being effected in this event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -504,8 +536,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 	void SetInstanceId(const FString& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true;  }
 	/** @brief Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true using move semantics */
 	void SetInstanceId(FString&& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true;  }
-	 /** @brief Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false */
+	/** @brief Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false */
 	void ClearInstanceId() { InstanceId_IsSet = false;  }
+	/** @brief Checks whether InstanceId_Optional has been set */
+	bool IsInstanceIdSet() const { return InstanceId_IsSet; }
 
 	/** @brief Type of the host being effected in this event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -529,8 +563,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 	void SetHostType(const ERHAPI_HostType& NewValue) { HostType_Optional = NewValue; HostType_IsSet = true;  }
 	/** @brief Sets the value of HostType_Optional and also sets HostType_IsSet to true using move semantics */
 	void SetHostType(ERHAPI_HostType&& NewValue) { HostType_Optional = NewValue; HostType_IsSet = true;  }
-	 /** @brief Clears the value of HostType_Optional and sets HostType_IsSet to false */
+	/** @brief Clears the value of HostType_Optional and sets HostType_IsSet to false */
 	void ClearHostType() { HostType_IsSet = false;  }
+	/** @brief Checks whether HostType_Optional has been set */
+	bool IsHostTypeSet() const { return HostType_IsSet; }
 
 	/** @brief UUID of the player hosting during this event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -554,8 +590,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 	void SetHostPlayerUuid(const FGuid& NewValue) { HostPlayerUuid_Optional = NewValue; HostPlayerUuid_IsSet = true;  }
 	/** @brief Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true using move semantics */
 	void SetHostPlayerUuid(FGuid&& NewValue) { HostPlayerUuid_Optional = NewValue; HostPlayerUuid_IsSet = true;  }
-	 /** @brief Clears the value of HostPlayerUuid_Optional and sets HostPlayerUuid_IsSet to false */
+	/** @brief Clears the value of HostPlayerUuid_Optional and sets HostPlayerUuid_IsSet to false */
 	void ClearHostPlayerUuid() { HostPlayerUuid_IsSet = false;  }
+	/** @brief Checks whether HostPlayerUuid_Optional has been set */
+	bool IsHostPlayerUuidSet() const { return HostPlayerUuid_IsSet; }
 
 	/** @brief ID of the instance request template being used in this event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -579,8 +617,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 	void SetInstanceRequestTemplate(const FGuid& NewValue) { InstanceRequestTemplate_Optional = NewValue; InstanceRequestTemplate_IsSet = true;  }
 	/** @brief Sets the value of InstanceRequestTemplate_Optional and also sets InstanceRequestTemplate_IsSet to true using move semantics */
 	void SetInstanceRequestTemplate(FGuid&& NewValue) { InstanceRequestTemplate_Optional = NewValue; InstanceRequestTemplate_IsSet = true;  }
-	 /** @brief Clears the value of InstanceRequestTemplate_Optional and sets InstanceRequestTemplate_IsSet to false */
+	/** @brief Clears the value of InstanceRequestTemplate_Optional and sets InstanceRequestTemplate_IsSet to false */
 	void ClearInstanceRequestTemplate() { InstanceRequestTemplate_IsSet = false;  }
+	/** @brief Checks whether InstanceRequestTemplate_Optional has been set */
+	bool IsInstanceRequestTemplateSet() const { return InstanceRequestTemplate_IsSet; }
 
 	/** @brief Map being used in this event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -604,8 +644,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 	void SetMap(const FString& NewValue) { Map_Optional = NewValue; Map_IsSet = true;  }
 	/** @brief Sets the value of Map_Optional and also sets Map_IsSet to true using move semantics */
 	void SetMap(FString&& NewValue) { Map_Optional = NewValue; Map_IsSet = true;  }
-	 /** @brief Clears the value of Map_Optional and sets Map_IsSet to false */
+	/** @brief Clears the value of Map_Optional and sets Map_IsSet to false */
 	void ClearMap() { Map_IsSet = false;  }
+	/** @brief Checks whether Map_Optional has been set */
+	bool IsMapSet() const { return Map_IsSet; }
 
 	/** @brief Mode being used in this event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -629,8 +671,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 	void SetMode(const FString& NewValue) { Mode_Optional = NewValue; Mode_IsSet = true;  }
 	/** @brief Sets the value of Mode_Optional and also sets Mode_IsSet to true using move semantics */
 	void SetMode(FString&& NewValue) { Mode_Optional = NewValue; Mode_IsSet = true;  }
-	 /** @brief Clears the value of Mode_Optional and sets Mode_IsSet to false */
+	/** @brief Clears the value of Mode_Optional and sets Mode_IsSet to false */
 	void ClearMode() { Mode_IsSet = false;  }
+	/** @brief Checks whether Mode_Optional has been set */
+	bool IsModeSet() const { return Mode_IsSet; }
 
 	/** @brief Allocation ID of instance in this event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -654,8 +698,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 	void SetAllocationId(const FString& NewValue) { AllocationId_Optional = NewValue; AllocationId_IsSet = true;  }
 	/** @brief Sets the value of AllocationId_Optional and also sets AllocationId_IsSet to true using move semantics */
 	void SetAllocationId(FString&& NewValue) { AllocationId_Optional = NewValue; AllocationId_IsSet = true;  }
-	 /** @brief Clears the value of AllocationId_Optional and sets AllocationId_IsSet to false */
+	/** @brief Clears the value of AllocationId_Optional and sets AllocationId_IsSet to false */
 	void ClearAllocationId() { AllocationId_IsSet = false;  }
+	/** @brief Checks whether AllocationId_Optional has been set */
+	bool IsAllocationIdSet() const { return AllocationId_IsSet; }
 
 	/** @brief Instance's joinability status */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -679,8 +725,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 	void SetJoinStatus(const ERHAPI_InstanceJoinableStatus& NewValue) { JoinStatus_Optional = NewValue; JoinStatus_IsSet = true;  }
 	/** @brief Sets the value of JoinStatus_Optional and also sets JoinStatus_IsSet to true using move semantics */
 	void SetJoinStatus(ERHAPI_InstanceJoinableStatus&& NewValue) { JoinStatus_Optional = NewValue; JoinStatus_IsSet = true;  }
-	 /** @brief Clears the value of JoinStatus_Optional and sets JoinStatus_IsSet to false */
+	/** @brief Clears the value of JoinStatus_Optional and sets JoinStatus_IsSet to false */
 	void ClearJoinStatus() { JoinStatus_IsSet = false;  }
+	/** @brief Checks whether JoinStatus_Optional has been set */
+	bool IsJoinStatusSet() const { return JoinStatus_IsSet; }
 
 	/** @brief Instance's join parameters for this event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -704,8 +752,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 	void SetJoinParams(const FRHAPI_JoinParams& NewValue) { JoinParams_Optional = NewValue; JoinParams_IsSet = true;  }
 	/** @brief Sets the value of JoinParams_Optional and also sets JoinParams_IsSet to true using move semantics */
 	void SetJoinParams(FRHAPI_JoinParams&& NewValue) { JoinParams_Optional = NewValue; JoinParams_IsSet = true;  }
-	 /** @brief Clears the value of JoinParams_Optional and sets JoinParams_IsSet to false */
+	/** @brief Clears the value of JoinParams_Optional and sets JoinParams_IsSet to false */
 	void ClearJoinParams() { JoinParams_IsSet = false;  }
+	/** @brief Checks whether JoinParams_Optional has been set */
+	bool IsJoinParamsSet() const { return JoinParams_IsSet; }
 
 	/** @brief Instance's health status for this event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -729,8 +779,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 	void SetInstanceHealth(const ERHAPI_InstanceHealthStatus& NewValue) { InstanceHealth_Optional = NewValue; InstanceHealth_IsSet = true;  }
 	/** @brief Sets the value of InstanceHealth_Optional and also sets InstanceHealth_IsSet to true using move semantics */
 	void SetInstanceHealth(ERHAPI_InstanceHealthStatus&& NewValue) { InstanceHealth_Optional = NewValue; InstanceHealth_IsSet = true;  }
-	 /** @brief Clears the value of InstanceHealth_Optional and sets InstanceHealth_IsSet to false */
+	/** @brief Clears the value of InstanceHealth_Optional and sets InstanceHealth_IsSet to false */
 	void ClearInstanceHealth() { InstanceHealth_IsSet = false;  }
+	/** @brief Checks whether InstanceHealth_Optional has been set */
+	bool IsInstanceHealthSet() const { return InstanceHealth_IsSet; }
 
 	/** @brief ID for the queue in this event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -754,8 +806,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 	void SetQueueId(const FString& NewValue) { QueueId_Optional = NewValue; QueueId_IsSet = true;  }
 	/** @brief Sets the value of QueueId_Optional and also sets QueueId_IsSet to true using move semantics */
 	void SetQueueId(FString&& NewValue) { QueueId_Optional = NewValue; QueueId_IsSet = true;  }
-	 /** @brief Clears the value of QueueId_Optional and sets QueueId_IsSet to false */
+	/** @brief Clears the value of QueueId_Optional and sets QueueId_IsSet to false */
 	void ClearQueueId() { QueueId_IsSet = false;  }
+	/** @brief Checks whether QueueId_Optional has been set */
+	bool IsQueueIdSet() const { return QueueId_IsSet; }
 
 	/** @brief Matchmaking ticket id in this event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -779,8 +833,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 	void SetTicketId(const FString& NewValue) { TicketId_Optional = NewValue; TicketId_IsSet = true;  }
 	/** @brief Sets the value of TicketId_Optional and also sets TicketId_IsSet to true using move semantics */
 	void SetTicketId(FString&& NewValue) { TicketId_Optional = NewValue; TicketId_IsSet = true;  }
-	 /** @brief Clears the value of TicketId_Optional and sets TicketId_IsSet to false */
+	/** @brief Clears the value of TicketId_Optional and sets TicketId_IsSet to false */
 	void ClearTicketId() { TicketId_IsSet = false;  }
+	/** @brief Checks whether TicketId_Optional has been set */
+	bool IsTicketIdSet() const { return TicketId_IsSet; }
 
 	/** @brief Additional matchmaking parameters in this event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -804,8 +860,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 	void SetAdditionalParams(const FRHAPI_AdditionalJoinParams& NewValue) { AdditionalParams_Optional = NewValue; AdditionalParams_IsSet = true;  }
 	/** @brief Sets the value of AdditionalParams_Optional and also sets AdditionalParams_IsSet to true using move semantics */
 	void SetAdditionalParams(FRHAPI_AdditionalJoinParams&& NewValue) { AdditionalParams_Optional = NewValue; AdditionalParams_IsSet = true;  }
-	 /** @brief Clears the value of AdditionalParams_Optional and sets AdditionalParams_IsSet to false */
+	/** @brief Clears the value of AdditionalParams_Optional and sets AdditionalParams_IsSet to false */
 	void ClearAdditionalParams() { AdditionalParams_IsSet = false;  }
+	/** @brief Checks whether AdditionalParams_Optional has been set */
+	bool IsAdditionalParamsSet() const { return AdditionalParams_IsSet; }
 
 	/** @brief Map preferences in this event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -829,8 +887,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 	void SetMapPreferences(const TArray<FString>& NewValue) { MapPreferences_Optional = NewValue; MapPreferences_IsSet = true;  }
 	/** @brief Sets the value of MapPreferences_Optional and also sets MapPreferences_IsSet to true using move semantics */
 	void SetMapPreferences(TArray<FString>&& NewValue) { MapPreferences_Optional = NewValue; MapPreferences_IsSet = true;  }
-	 /** @brief Clears the value of MapPreferences_Optional and sets MapPreferences_IsSet to false */
+	/** @brief Clears the value of MapPreferences_Optional and sets MapPreferences_IsSet to false */
 	void ClearMapPreferences() { MapPreferences_IsSet = false;  }
+	/** @brief Checks whether MapPreferences_Optional has been set */
+	bool IsMapPreferencesSet() const { return MapPreferences_IsSet; }
 
 	/** @brief ID of the session that was/is in a matchmaking queue for this event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -854,8 +914,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 	void SetQueuedSessionId(const FString& NewValue) { QueuedSessionId_Optional = NewValue; QueuedSessionId_IsSet = true;  }
 	/** @brief Sets the value of QueuedSessionId_Optional and also sets QueuedSessionId_IsSet to true using move semantics */
 	void SetQueuedSessionId(FString&& NewValue) { QueuedSessionId_Optional = NewValue; QueuedSessionId_IsSet = true;  }
-	 /** @brief Clears the value of QueuedSessionId_Optional and sets QueuedSessionId_IsSet to false */
+	/** @brief Clears the value of QueuedSessionId_Optional and sets QueuedSessionId_IsSet to false */
 	void ClearQueuedSessionId() { QueuedSessionId_IsSet = false;  }
+	/** @brief Checks whether QueuedSessionId_Optional has been set */
+	bool IsQueuedSessionIdSet() const { return QueuedSessionId_IsSet; }
 
 	/** @brief ID of a match that was associated with this session */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -879,8 +941,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 	void SetMatchId(const FString& NewValue) { MatchId_Optional = NewValue; MatchId_IsSet = true;  }
 	/** @brief Sets the value of MatchId_Optional and also sets MatchId_IsSet to true using move semantics */
 	void SetMatchId(FString&& NewValue) { MatchId_Optional = NewValue; MatchId_IsSet = true;  }
-	 /** @brief Clears the value of MatchId_Optional and sets MatchId_IsSet to false */
+	/** @brief Clears the value of MatchId_Optional and sets MatchId_IsSet to false */
 	void ClearMatchId() { MatchId_IsSet = false;  }
+	/** @brief Checks whether MatchId_Optional has been set */
+	bool IsMatchIdSet() const { return MatchId_IsSet; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid RequestingUserUuid_Optional{  };
@@ -903,8 +967,10 @@ struct RALLYHEREAPI_API FRHAPI_AuditEvent : public FRHAPI_Model
 	void SetRequestingUserUuid(const FGuid& NewValue) { RequestingUserUuid_Optional = NewValue; RequestingUserUuid_IsSet = true;  }
 	/** @brief Sets the value of RequestingUserUuid_Optional and also sets RequestingUserUuid_IsSet to true using move semantics */
 	void SetRequestingUserUuid(FGuid&& NewValue) { RequestingUserUuid_Optional = NewValue; RequestingUserUuid_IsSet = true;  }
-	 /** @brief Clears the value of RequestingUserUuid_Optional and sets RequestingUserUuid_IsSet to false */
+	/** @brief Clears the value of RequestingUserUuid_Optional and sets RequestingUserUuid_IsSet to false */
 	void ClearRequestingUserUuid() { RequestingUserUuid_IsSet = false;  }
+	/** @brief Checks whether RequestingUserUuid_Optional has been set */
+	bool IsRequestingUserUuidSet() const { return RequestingUserUuid_IsSet; }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

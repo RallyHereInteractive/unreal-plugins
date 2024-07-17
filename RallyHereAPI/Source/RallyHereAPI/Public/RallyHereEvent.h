@@ -109,8 +109,10 @@ struct RALLYHEREAPI_API FRHAPI_RallyHereEvent : public FRHAPI_Model
 	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
 	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString UserId_Optional{  };
@@ -136,10 +138,13 @@ struct RALLYHEREAPI_API FRHAPI_RallyHereEvent : public FRHAPI_Model
 	void SetUserId(const FString& NewValue) { UserId_Optional = NewValue; UserId_IsSet = true; UserId_IsNull = false; }
 	/** @brief Sets the value of UserId_Optional and also sets UserId_IsSet to true using move semantics */
 	void SetUserId(FString&& NewValue) { UserId_Optional = NewValue; UserId_IsSet = true; UserId_IsNull = false; }
-	 /** @brief Clears the value of UserId_Optional and sets UserId_IsSet to false */
+	/** @brief Clears the value of UserId_Optional and sets UserId_IsSet to false */
 	void ClearUserId() { UserId_IsSet = false; UserId_IsNull = false; }
+	/** @brief Checks whether UserId_Optional has been set */
+	bool IsUserIdSet() const { return UserId_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
 	void SetUserIdToNull() { UserId_IsSet = true; UserId_IsNull = true; }
+	/** @brief Checks whether UserId_Optional is set to null */
 	bool IsUserIdNull() const { return UserId_IsSet && UserId_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -166,10 +171,13 @@ struct RALLYHEREAPI_API FRHAPI_RallyHereEvent : public FRHAPI_Model
 	void SetSessionId(const FString& NewValue) { SessionId_Optional = NewValue; SessionId_IsSet = true; SessionId_IsNull = false; }
 	/** @brief Sets the value of SessionId_Optional and also sets SessionId_IsSet to true using move semantics */
 	void SetSessionId(FString&& NewValue) { SessionId_Optional = NewValue; SessionId_IsSet = true; SessionId_IsNull = false; }
-	 /** @brief Clears the value of SessionId_Optional and sets SessionId_IsSet to false */
+	/** @brief Clears the value of SessionId_Optional and sets SessionId_IsSet to false */
 	void ClearSessionId() { SessionId_IsSet = false; SessionId_IsNull = false; }
+	/** @brief Checks whether SessionId_Optional has been set */
+	bool IsSessionIdSet() const { return SessionId_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
 	void SetSessionIdToNull() { SessionId_IsSet = true; SessionId_IsNull = true; }
+	/** @brief Checks whether SessionId_Optional is set to null */
 	bool IsSessionIdNull() const { return SessionId_IsSet && SessionId_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -196,10 +204,13 @@ struct RALLYHEREAPI_API FRHAPI_RallyHereEvent : public FRHAPI_Model
 	void SetCorrelationId(const FString& NewValue) { CorrelationId_Optional = NewValue; CorrelationId_IsSet = true; CorrelationId_IsNull = false; }
 	/** @brief Sets the value of CorrelationId_Optional and also sets CorrelationId_IsSet to true using move semantics */
 	void SetCorrelationId(FString&& NewValue) { CorrelationId_Optional = NewValue; CorrelationId_IsSet = true; CorrelationId_IsNull = false; }
-	 /** @brief Clears the value of CorrelationId_Optional and sets CorrelationId_IsSet to false */
+	/** @brief Clears the value of CorrelationId_Optional and sets CorrelationId_IsSet to false */
 	void ClearCorrelationId() { CorrelationId_IsSet = false; CorrelationId_IsNull = false; }
+	/** @brief Checks whether CorrelationId_Optional has been set */
+	bool IsCorrelationIdSet() const { return CorrelationId_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
 	void SetCorrelationIdToNull() { CorrelationId_IsSet = true; CorrelationId_IsNull = true; }
+	/** @brief Checks whether CorrelationId_Optional is set to null */
 	bool IsCorrelationIdNull() const { return CorrelationId_IsSet && CorrelationId_IsNull; }
 };
 

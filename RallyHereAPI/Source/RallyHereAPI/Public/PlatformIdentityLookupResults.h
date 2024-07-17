@@ -62,8 +62,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformIdentityLookupResults : public FRHAPI_Mod
 	void SetIdentity(const TMap<FString, FRHAPI_PlayerResponse>& NewValue) { Identity_Optional = NewValue; Identity_IsSet = true;  }
 	/** @brief Sets the value of Identity_Optional and also sets Identity_IsSet to true using move semantics */
 	void SetIdentity(TMap<FString, FRHAPI_PlayerResponse>&& NewValue) { Identity_Optional = NewValue; Identity_IsSet = true;  }
-	 /** @brief Clears the value of Identity_Optional and sets Identity_IsSet to false */
+	/** @brief Clears the value of Identity_Optional and sets Identity_IsSet to false */
 	void ClearIdentity() { Identity_IsSet = false;  }
+	/** @brief Checks whether Identity_Optional has been set */
+	bool IsIdentitySet() const { return Identity_IsSet; }
 };
 
 /** @} */

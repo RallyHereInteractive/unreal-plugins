@@ -62,8 +62,10 @@ struct RALLYHEREAPI_API FRHAPI_InventoryContextResponse : public FRHAPI_Model
 	void SetInventory(const FRHAPI_Inventory& NewValue) { Inventory_Optional = NewValue; Inventory_IsSet = true;  }
 	/** @brief Sets the value of Inventory_Optional and also sets Inventory_IsSet to true using move semantics */
 	void SetInventory(FRHAPI_Inventory&& NewValue) { Inventory_Optional = NewValue; Inventory_IsSet = true;  }
-	 /** @brief Clears the value of Inventory_Optional and sets Inventory_IsSet to false */
+	/** @brief Clears the value of Inventory_Optional and sets Inventory_IsSet to false */
 	void ClearInventory() { Inventory_IsSet = false;  }
+	/** @brief Checks whether Inventory_Optional has been set */
+	bool IsInventorySet() const { return Inventory_IsSet; }
 };
 
 /** @} */

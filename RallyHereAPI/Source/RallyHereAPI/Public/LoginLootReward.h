@@ -61,8 +61,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginLootReward : public FRHAPI_Model
 	void SetLootId(const FString& NewValue) { LootId_Optional = NewValue; LootId_IsSet = true;  }
 	/** @brief Sets the value of LootId_Optional and also sets LootId_IsSet to true using move semantics */
 	void SetLootId(FString&& NewValue) { LootId_Optional = NewValue; LootId_IsSet = true;  }
-	 /** @brief Clears the value of LootId_Optional and sets LootId_IsSet to false */
+	/** @brief Clears the value of LootId_Optional and sets LootId_IsSet to false */
 	void ClearLootId() { LootId_IsSet = false;  }
+	/** @brief Checks whether LootId_Optional has been set */
+	bool IsLootIdSet() const { return LootId_IsSet; }
 
 	/** @brief Legacy Loot ID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

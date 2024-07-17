@@ -76,10 +76,13 @@ struct RALLYHEREAPI_API FRHAPI_PlayerReportList : public FRHAPI_Model
 	void SetNextCursor(const FString& NewValue) { NextCursor_Optional = NewValue; NextCursor_IsSet = true; NextCursor_IsNull = false; }
 	/** @brief Sets the value of NextCursor_Optional and also sets NextCursor_IsSet to true using move semantics */
 	void SetNextCursor(FString&& NewValue) { NextCursor_Optional = NewValue; NextCursor_IsSet = true; NextCursor_IsNull = false; }
-	 /** @brief Clears the value of NextCursor_Optional and sets NextCursor_IsSet to false */
+	/** @brief Clears the value of NextCursor_Optional and sets NextCursor_IsSet to false */
 	void ClearNextCursor() { NextCursor_IsSet = false; NextCursor_IsNull = false; }
+	/** @brief Checks whether NextCursor_Optional has been set */
+	bool IsNextCursorSet() const { return NextCursor_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
 	void SetNextCursorToNull() { NextCursor_IsSet = true; NextCursor_IsNull = true; }
+	/** @brief Checks whether NextCursor_Optional is set to null */
 	bool IsNextCursorNull() const { return NextCursor_IsSet && NextCursor_IsNull; }
 };
 

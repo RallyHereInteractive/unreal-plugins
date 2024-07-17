@@ -76,8 +76,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderDetail : public FRHAPI_Model
 	void SetLootId(const int32& NewValue) { LootId_Optional = NewValue; LootId_IsSet = true;  }
 	/** @brief Sets the value of LootId_Optional and also sets LootId_IsSet to true using move semantics */
 	void SetLootId(int32&& NewValue) { LootId_Optional = NewValue; LootId_IsSet = true;  }
-	 /** @brief Clears the value of LootId_Optional and sets LootId_IsSet to false */
+	/** @brief Clears the value of LootId_Optional and sets LootId_IsSet to false */
 	void ClearLootId() { LootId_Optional = 0; LootId_IsSet = false;  }
+	/** @brief Checks whether LootId_Optional has been set */
+	bool IsLootIdSet() const { return LootId_IsSet; }
 	/** @brief Returns true if LootId_Optional is set and matches the default value */
 	bool IsLootIdDefaultValue() const { return LootId_IsSet && LootId_Optional == 0; }
 	/** @brief Sets the value of LootId_Optional to its default and also sets LootId_IsSet to true */
@@ -105,8 +107,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderDetail : public FRHAPI_Model
 	void SetInvChange(const FRHAPI_PlayerInventoryChange& NewValue) { InvChange_Optional = NewValue; InvChange_IsSet = true;  }
 	/** @brief Sets the value of InvChange_Optional and also sets InvChange_IsSet to true using move semantics */
 	void SetInvChange(FRHAPI_PlayerInventoryChange&& NewValue) { InvChange_Optional = NewValue; InvChange_IsSet = true;  }
-	 /** @brief Clears the value of InvChange_Optional and sets InvChange_IsSet to false */
+	/** @brief Clears the value of InvChange_Optional and sets InvChange_IsSet to false */
 	void ClearInvChange() { InvChange_IsSet = false;  }
+	/** @brief Checks whether InvChange_Optional has been set */
+	bool IsInvChangeSet() const { return InvChange_IsSet; }
 
 	/** @brief Reference to the Player Order that this detail belongs to. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -130,8 +134,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderDetail : public FRHAPI_Model
 	void SetOrder(const FRHAPI_PlayerOrderCreate& NewValue) { Order_Optional = NewValue; Order_IsSet = true;  }
 	/** @brief Sets the value of Order_Optional and also sets Order_IsSet to true using move semantics */
 	void SetOrder(FRHAPI_PlayerOrderCreate&& NewValue) { Order_Optional = NewValue; Order_IsSet = true;  }
-	 /** @brief Clears the value of Order_Optional and sets Order_IsSet to false */
+	/** @brief Clears the value of Order_Optional and sets Order_IsSet to false */
 	void ClearOrder() { Order_IsSet = false;  }
+	/** @brief Checks whether Order_Optional has been set */
+	bool IsOrderSet() const { return Order_IsSet; }
 };
 
 /** @} */

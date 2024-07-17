@@ -75,10 +75,13 @@ struct RALLYHEREAPI_API FRHAPI_MatchSession : public FRHAPI_Model
 	void SetMatchmakingProfileId(const FString& NewValue) { MatchmakingProfileId_Optional = NewValue; MatchmakingProfileId_IsSet = true; MatchmakingProfileId_IsNull = false; }
 	/** @brief Sets the value of MatchmakingProfileId_Optional and also sets MatchmakingProfileId_IsSet to true using move semantics */
 	void SetMatchmakingProfileId(FString&& NewValue) { MatchmakingProfileId_Optional = NewValue; MatchmakingProfileId_IsSet = true; MatchmakingProfileId_IsNull = false; }
-	 /** @brief Clears the value of MatchmakingProfileId_Optional and sets MatchmakingProfileId_IsSet to false */
+	/** @brief Clears the value of MatchmakingProfileId_Optional and sets MatchmakingProfileId_IsSet to false */
 	void ClearMatchmakingProfileId() { MatchmakingProfileId_IsSet = false; MatchmakingProfileId_IsNull = false; }
+	/** @brief Checks whether MatchmakingProfileId_Optional has been set */
+	bool IsMatchmakingProfileIdSet() const { return MatchmakingProfileId_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
 	void SetMatchmakingProfileIdToNull() { MatchmakingProfileId_IsSet = true; MatchmakingProfileId_IsNull = true; }
+	/** @brief Checks whether MatchmakingProfileId_Optional is set to null */
 	bool IsMatchmakingProfileIdNull() const { return MatchmakingProfileId_IsSet && MatchmakingProfileId_IsNull; }
 };
 

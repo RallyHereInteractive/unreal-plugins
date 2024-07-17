@@ -87,8 +87,10 @@ struct RALLYHEREAPI_API FRHAPI_MarketingCampaign : public FRHAPI_Model
 	void SetPortalId(const ERHAPI_Portal& NewValue) { PortalId_Optional = NewValue; PortalId_IsSet = true;  }
 	/** @brief Sets the value of PortalId_Optional and also sets PortalId_IsSet to true using move semantics */
 	void SetPortalId(ERHAPI_Portal&& NewValue) { PortalId_Optional = NewValue; PortalId_IsSet = true;  }
-	 /** @brief Clears the value of PortalId_Optional and sets PortalId_IsSet to false */
+	/** @brief Clears the value of PortalId_Optional and sets PortalId_IsSet to false */
 	void ClearPortalId() { PortalId_IsSet = false;  }
+	/** @brief Checks whether PortalId_Optional has been set */
+	bool IsPortalIdSet() const { return PortalId_IsSet; }
 
 	/** @brief The types of keys that can be claimed from this campaign */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -124,8 +126,10 @@ struct RALLYHEREAPI_API FRHAPI_MarketingCampaign : public FRHAPI_Model
 	void SetCreatedOn(const FString& NewValue) { CreatedOn_Optional = NewValue; CreatedOn_IsSet = true;  }
 	/** @brief Sets the value of CreatedOn_Optional and also sets CreatedOn_IsSet to true using move semantics */
 	void SetCreatedOn(FString&& NewValue) { CreatedOn_Optional = NewValue; CreatedOn_IsSet = true;  }
-	 /** @brief Clears the value of CreatedOn_Optional and sets CreatedOn_IsSet to false */
+	/** @brief Clears the value of CreatedOn_Optional and sets CreatedOn_IsSet to false */
 	void ClearCreatedOn() { CreatedOn_IsSet = false;  }
+	/** @brief Checks whether CreatedOn_Optional has been set */
+	bool IsCreatedOnSet() const { return CreatedOn_IsSet; }
 
 	/** @brief The time the MarketingCampaign was last modified */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -149,8 +153,10 @@ struct RALLYHEREAPI_API FRHAPI_MarketingCampaign : public FRHAPI_Model
 	void SetLastModifiedOn(const FString& NewValue) { LastModifiedOn_Optional = NewValue; LastModifiedOn_IsSet = true;  }
 	/** @brief Sets the value of LastModifiedOn_Optional and also sets LastModifiedOn_IsSet to true using move semantics */
 	void SetLastModifiedOn(FString&& NewValue) { LastModifiedOn_Optional = NewValue; LastModifiedOn_IsSet = true;  }
-	 /** @brief Clears the value of LastModifiedOn_Optional and sets LastModifiedOn_IsSet to false */
+	/** @brief Clears the value of LastModifiedOn_Optional and sets LastModifiedOn_IsSet to false */
 	void ClearLastModifiedOn() { LastModifiedOn_IsSet = false;  }
+	/** @brief Checks whether LastModifiedOn_Optional has been set */
+	bool IsLastModifiedOnSet() const { return LastModifiedOn_IsSet; }
 };
 
 /** @} */

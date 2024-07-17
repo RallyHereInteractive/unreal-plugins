@@ -73,8 +73,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerSessionInvite : public FRHAPI_Model
 	void SetInvitingPlayerUuid(const FGuid& NewValue) { InvitingPlayerUuid_Optional = NewValue; InvitingPlayerUuid_IsSet = true;  }
 	/** @brief Sets the value of InvitingPlayerUuid_Optional and also sets InvitingPlayerUuid_IsSet to true using move semantics */
 	void SetInvitingPlayerUuid(FGuid&& NewValue) { InvitingPlayerUuid_Optional = NewValue; InvitingPlayerUuid_IsSet = true;  }
-	 /** @brief Clears the value of InvitingPlayerUuid_Optional and sets InvitingPlayerUuid_IsSet to false */
+	/** @brief Clears the value of InvitingPlayerUuid_Optional and sets InvitingPlayerUuid_IsSet to false */
 	void ClearInvitingPlayerUuid() { InvitingPlayerUuid_IsSet = false;  }
+	/** @brief Checks whether InvitingPlayerUuid_Optional has been set */
+	bool IsInvitingPlayerUuidSet() const { return InvitingPlayerUuid_IsSet; }
 };
 
 /** @} */
