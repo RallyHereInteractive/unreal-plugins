@@ -31,6 +31,11 @@ void FRHAPI_MatchMakingTemplateGroupV2::WriteJson(TSharedRef<TJsonWriter<>>& Wri
 		Writer->WriteIdentifierPrefix(TEXT("required_item_ids"));
 		RallyHereAPI::WriteJsonValue(Writer, RequiredItemIds_Optional);
 	}
+	if (RequiresAllPlayersItems_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("requires_all_players_items"));
+		RallyHereAPI::WriteJsonValue(Writer, RequiresAllPlayersItems_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -51,6 +56,12 @@ bool FRHAPI_MatchMakingTemplateGroupV2::FromJson(const TSharedPtr<FJsonValue>& J
 	{
 		RequiredItemIds_IsSet = TryGetJsonValue(JsonRequiredItemIdsField, RequiredItemIds_Optional);
 		ParseSuccess &= RequiredItemIds_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonRequiresAllPlayersItemsField = (*Object)->TryGetField(TEXT("requires_all_players_items"));
+	if (JsonRequiresAllPlayersItemsField.IsValid() && !JsonRequiresAllPlayersItemsField->IsNull())
+	{
+		RequiresAllPlayersItems_IsSet = TryGetJsonValue(JsonRequiresAllPlayersItemsField, RequiresAllPlayersItems_Optional);
+		ParseSuccess &= RequiresAllPlayersItems_IsSet;
 	}
 
 	return ParseSuccess;

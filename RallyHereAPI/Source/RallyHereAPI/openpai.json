@@ -9213,7 +9213,7 @@
           "Sessions"
         ],
         "summary": "Get Player Sessions Self",
-        "description": "Get Sessions associated the current player\n\nRequired Auth Permissions: `session:read-player:self`\n            \nRequired Session Permissions: None",
+        "description": "Get all session IDs associated with the token's player.  NOTE This list is eventually consistent with the data from the session by ID endpoints.\n\nRequired Auth Permissions: `session:read-player:self`\n            \nRequired Session Permissions: None",
         "operationId": "get_player_sessions_self",
         "parameters": [
           {
@@ -9281,7 +9281,7 @@
           "Sessions"
         ],
         "summary": "Get Player Sessions By Uuid V2",
-        "description": "Get Sessions associated with a player by uuid\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:read-player:any`\n\n- For the player themselves : `session:read-player:self`\n\nRequired Session Permissions: None",
+        "description": "Get all session IDs associated with a player.  NOTE This list is eventually consistent with the data from the session by ID endpoints.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:read-player:any`\n\n- For the player themselves : `session:read-player:self`\n\nRequired Session Permissions: None",
         "operationId": "get_player_sessions_by_uuid_v2",
         "parameters": [
           {
@@ -9359,7 +9359,7 @@
           "Sessions"
         ],
         "summary": "Get Player Sessions By Uuid",
-        "description": "Get Sessions associated with a player by uuid\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:read-player:any`\n\n- For the player themselves : `session:read-player:self`\n\nRequired Session Permissions: None\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
+        "description": "Get all session IDs associated with a player.  NOTE This list is eventually consistent with the data from the session by ID endpoints.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:read-player:any`\n\n- For the player themselves : `session:read-player:self`\n\nRequired Session Permissions: None\n**DEPRECATED** - Use /v1/player/{player_uuid}/session endpoint instead",
         "operationId": "get_player_sessions_by_uuid",
         "parameters": [
           {
@@ -9438,7 +9438,7 @@
           "Sessions"
         ],
         "summary": "Get Player Sessions",
-        "description": "Get Sessions associated with a player by id\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:read-player:any`\n\n- For the player themselves : `session:read-player:self`\n\nRequired Session Permissions: None\n\n**DEPRECATED** - Use player endpoint instead",
+        "description": "Get all session IDs associated with a player.  NOTE This list is eventually consistent with the data from the session by ID endpoints.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:read-player:any`\n\n- For the player themselves : `session:read-player:self`\n\nRequired Session Permissions: None\n\n**DEPRECATED** - Use player endpoint instead",
         "operationId": "get_player_sessions",
         "parameters": [
           {
@@ -9665,6 +9665,71 @@
         "responses": {
           "204": {
             "description": "Successful Response"
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Session doesn't exist or Player is not a member of the session.  See error code for more info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/session/v1/match-made-session": {
+      "post": {
+        "tags": [
+          "Sessions"
+        ],
+        "summary": "Create Matchmade Session",
+        "description": "Create a match session based on matchmaking results.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:create:matchmade`\n\n\n\nRequired Session Permissions: None",
+        "operationId": "create_matchmade_session",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MatchMakingSessionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
           },
           "403": {
             "description": "Forbidden",
@@ -30622,6 +30687,7 @@
         "type": "string",
         "enum": [
           "assigned",
+          "backfilled",
           "left_queue",
           "timeout",
           "party_changed"
@@ -30632,10 +30698,12 @@
           "An enumeration.",
           "An enumeration.",
           "An enumeration.",
+          "An enumeration.",
           "An enumeration."
         ],
         "x-enum-varnames": [
           "assigned",
+          "backfilled",
           "left_queue",
           "timeout",
           "party_changed"
@@ -30738,17 +30806,20 @@
         "type": "string",
         "enum": [
           "dedicated",
-          "player"
+          "player",
+          "preallocated"
         ],
         "title": "HostType",
         "description": "Whether the host is another player, or a dedicated instance",
         "x-enum-descriptions": [
           "A dedicated, standalone instance",
-          "A player hosted instance"
+          "A player hosted instance",
+          "A preallocated instance that isn't player owned"
         ],
         "x-enum-varnames": [
           "dedicated",
-          "player"
+          "player",
+          "preallocated"
         ]
       },
       "Input": {
@@ -31418,6 +31489,11 @@
             "type": "string",
             "title": "Description",
             "description": "Description of the map"
+          },
+          "misc_params": {
+            "type": "string",
+            "title": "Misc Params",
+            "description": "Misc params to be passed to the instance when using this map"
           }
         },
         "type": "object",
@@ -31675,11 +31751,130 @@
             ],
             "description": "Determiner of how many rules must be satisfied in this rulest (all, any, one, none)",
             "default": "allOf"
+          },
+          "players_to_validate": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlayersToValidate"
+              }
+            ],
+            "description": "Which members of a session must be validated to satisfy this ruleset",
+            "default": "leader"
           }
         },
         "type": "object",
         "title": "MatchMakingRuleset",
         "description": "A collection of rules that are used to determine whether a MatchMakingTemplate should be used"
+      },
+      "MatchMakingSessionRequest": {
+        "properties": {
+          "teams": {
+            "items": {
+              "$ref": "#/components/schemas/SessionTeam"
+            },
+            "type": "array",
+            "title": "Teams",
+            "description": "List of teams that are to be invited to session"
+          },
+          "session_tickets": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Session Tickets",
+            "description": "List of sessions and tickets the match was made with. Used to verify this match should still be created. Takes priority over the session list. One of the two is required"
+          },
+          "sessions": {
+            "items": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1
+            },
+            "type": "array",
+            "title": "Sessions",
+            "description": "List of sessions that should be a part of this matchmade session. Used if session_tickets is empty. One of the two is required"
+          },
+          "instance_launch_template_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Instance Launch Template Id",
+            "description": "DEPRECATED. Which launch template should be used to request an instance"
+          },
+          "instance_request_template_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Instance Request Template Id",
+            "description": "DEPRECATED. Which launch template should be used to request an instance"
+          },
+          "region_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Region Id",
+            "description": "Region to start the instance in"
+          },
+          "match_id": {
+            "type": "string",
+            "title": "Match Id",
+            "description": "Unique ID for this generated match"
+          },
+          "custom_data": {
+            "additionalProperties": {
+              "type": "string",
+              "maxLength": 4096,
+              "minLength": 1
+            },
+            "type": "object",
+            "title": "Custom Data",
+            "description": "Custom data about the match",
+            "default": {}
+          },
+          "host_player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Host Player Uuid",
+            "description": "Player UUID of the host, if the host type is player"
+          },
+          "backfill_id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Backfill Id",
+            "description": "ID for the open-match backfill object"
+          },
+          "match_create_request_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone"
+          },
+          "evaluation_score": {
+            "type": "number",
+            "title": "Evaluation Score",
+            "description": "The evaluation score sent to the open-match evaluator"
+          },
+          "rank_quality": {
+            "type": "number",
+            "title": "Rank Quality",
+            "description": "The calculated rank quality of the match. Often matches the evaluation score"
+          },
+          "match_making_profile_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Match Making Profile Id",
+            "description": "The MatchMakingProfileID that was ultimately used to create this match"
+          }
+        },
+        "type": "object",
+        "required": [
+          "teams",
+          "region_id",
+          "match_id",
+          "match_create_request_time",
+          "match_making_profile_id"
+        ],
+        "title": "MatchMakingSessionRequest",
+        "description": "A request body for a new matchmade session to be created"
       },
       "MatchMakingTemplate": {
         "properties": {
@@ -31783,6 +31978,12 @@
             "title": "Required Item Ids",
             "description": "Set of all the item ids that are required to validate every rule contained in this template group",
             "default": []
+          },
+          "requires_all_players_items": {
+            "type": "boolean",
+            "title": "Requires All Players Items",
+            "description": "Whether or not the rulesets under this group will require us to query all players inventory, or just the leader's",
+            "default": false
           }
         },
         "type": "object",
@@ -32266,6 +32467,26 @@
         "type": "object",
         "title": "PlayerSessions",
         "description": "Information about all sessions that a player is currently a member of, or invited to"
+      },
+      "PlayersToValidate": {
+        "type": "string",
+        "enum": [
+          "leader",
+          "all_members",
+          "any_member"
+        ],
+        "title": "PlayersToValidate",
+        "description": "Which subset of players in a session need to satisfy a ruleset for it to be considered valid",
+        "x-enum-descriptions": [
+          "Only the leader must be validated",
+          "All members of a session must be validated",
+          "Any single member must be validated"
+        ],
+        "x-enum-varnames": [
+          "LEADER",
+          "ALL_MEMBERS",
+          "ANY_MEMBER"
+        ]
       },
       "ProfileJoinMode": {
         "type": "string",

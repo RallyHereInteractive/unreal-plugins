@@ -89,6 +89,35 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplateGroupV2 : public FRHAPI_Model
 	void SetRequiredItemIds(TSet<int32>&& NewValue) { RequiredItemIds_Optional = NewValue; RequiredItemIds_IsSet = true; }
 	 /** @brief Clears the value of RequiredItemIds_Optional and sets RequiredItemIds_IsSet to false */
 	void ClearRequiredItemIds() { RequiredItemIds_IsSet = false; }
+
+	/** @brief Whether or not the rulesets under this group will require us to query all players inventory, or just the leader's */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool RequiresAllPlayersItems_Optional{  };
+	/** @brief true if RequiresAllPlayersItems_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool RequiresAllPlayersItems_IsSet{ false };
+	/** @brief Gets the value of RequiresAllPlayersItems_Optional, regardless of it having been set */
+	bool& GetRequiresAllPlayersItems() { return RequiresAllPlayersItems_Optional; }
+	/** @brief Gets the value of RequiresAllPlayersItems_Optional, regardless of it having been set */
+	const bool& GetRequiresAllPlayersItems() const { return RequiresAllPlayersItems_Optional; }
+	/** @brief Gets the value of RequiresAllPlayersItems_Optional, if it has been set, otherwise it returns DefaultValue */
+	const bool& GetRequiresAllPlayersItems(const bool& DefaultValue) const { if (RequiresAllPlayersItems_IsSet) return RequiresAllPlayersItems_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of RequiresAllPlayersItems_Optional and returns true if it has been set, otherwise returns false */
+	bool GetRequiresAllPlayersItems(bool& OutValue) const { if (RequiresAllPlayersItems_IsSet) OutValue = RequiresAllPlayersItems_Optional; return RequiresAllPlayersItems_IsSet; }
+	/** @brief Returns a pointer to RequiresAllPlayersItems_Optional, if it has been set, otherwise returns nullptr */
+	bool* GetRequiresAllPlayersItemsOrNull() { if (RequiresAllPlayersItems_IsSet) return &RequiresAllPlayersItems_Optional; return nullptr; }
+	/** @brief Returns a pointer to RequiresAllPlayersItems_Optional, if it has been set, otherwise returns nullptr */
+	const bool* GetRequiresAllPlayersItemsOrNull() const { if (RequiresAllPlayersItems_IsSet) return &RequiresAllPlayersItems_Optional; return nullptr; }
+	/** @brief Sets the value of RequiresAllPlayersItems_Optional and also sets RequiresAllPlayersItems_IsSet to true */
+	void SetRequiresAllPlayersItems(const bool& NewValue) { RequiresAllPlayersItems_Optional = NewValue; RequiresAllPlayersItems_IsSet = true; }
+	/** @brief Sets the value of RequiresAllPlayersItems_Optional and also sets RequiresAllPlayersItems_IsSet to true using move semantics */
+	void SetRequiresAllPlayersItems(bool&& NewValue) { RequiresAllPlayersItems_Optional = NewValue; RequiresAllPlayersItems_IsSet = true; }
+	 /** @brief Clears the value of RequiresAllPlayersItems_Optional and sets RequiresAllPlayersItems_IsSet to false */
+	void ClearRequiresAllPlayersItems() { RequiresAllPlayersItems_Optional = false; RequiresAllPlayersItems_IsSet = false; }
+	/** @brief Returns true if RequiresAllPlayersItems_Optional is set and matches the default value */
+	bool IsRequiresAllPlayersItemsDefaultValue() const { return RequiresAllPlayersItems_IsSet && RequiresAllPlayersItems_Optional == false; }
+	/** @brief Sets the value of RequiresAllPlayersItems_Optional to its default and also sets RequiresAllPlayersItems_IsSet to true */
+	void SetRequiresAllPlayersItemsToDefault() { RequiresAllPlayersItems_Optional = false; RequiresAllPlayersItems_IsSet = true; }
 };
 
 /** @} */

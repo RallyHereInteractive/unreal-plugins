@@ -28,6 +28,7 @@
 #include "InstanceInfo.h"
 #include "InstanceInfoUpdate.h"
 #include "InstanceRequest.h"
+#include "MatchMakingSessionRequest.h"
 #include "PlatformSession.h"
 #include "PlayerSessions.h"
 #include "QueueJoinRequest.h"
@@ -500,6 +501,121 @@ struct RALLYHEREAPI_API Traits_CreateInstanceRequest
 	typedef FResponse_CreateInstanceRequest Response;
 	/** The delegate type, triggered by the response */
 	typedef FDelegate_CreateInstanceRequest Delegate;
+	/** The API object that supports this API call */
+	typedef FSessionsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Create Matchmade Session
+ * Create a match session based on matchmaking results.
+ * 
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `session:*`, `session:create:matchmade`
+ * 
+ * 
+ * 
+ * Required Session Permissions: None
+*/
+struct RALLYHEREAPI_API FRequest_CreateMatchmadeSession : public FRequest
+{
+	FRequest_CreateMatchmadeSession();
+	virtual ~FRequest_CreateMatchmadeSession() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FRHAPI_MatchMakingSessionRequest MatchMakingSessionRequest;
+};
+
+/** The response type for FRequest_CreateMatchmadeSession */
+struct RALLYHEREAPI_API FResponse_CreateMatchmadeSession : public FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_CreateMatchmadeSession(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_CreateMatchmadeSession() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_JsonValue Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_JsonValue& OutContent) const { return TryGetContent<FRHAPI_JsonValue>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_JsonValue>& OutContent) const { return TryGetContent<FRHAPI_JsonValue>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_JsonValue* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_JsonValue>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_JsonValue> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_JsonValue>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Session doesn't exist or Player is not a member of the session.  See error code for more info
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_CreateMatchmadeSession */
+DECLARE_DELEGATE_OneParam(FDelegate_CreateMatchmadeSession, const FResponse_CreateMatchmadeSession&);
+
+/** @brief A helper metadata object for CreateMatchmadeSession that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_CreateMatchmadeSession
+{
+	/** The request type */
+	typedef FRequest_CreateMatchmadeSession Request;
+	/** The response type */
+	typedef FResponse_CreateMatchmadeSession Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_CreateMatchmadeSession Delegate;
 	/** The API object that supports this API call */
 	typedef FSessionsAPI API;
 	/** A human readable name for this API call */
@@ -1556,7 +1672,7 @@ struct RALLYHEREAPI_API Traits_GetPlatformSessionInfo
 
 /**
  * @brief Get Player Sessions
- * Get Sessions associated with a player by id
+ * Get all session IDs associated with a player.  NOTE This list is eventually consistent with the data from the session by ID endpoints.
  * 
  * Required Permissions:
  * 
@@ -1668,7 +1784,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerSessions
 
 /**
  * @brief Get Player Sessions By Uuid
- * Get Sessions associated with a player by uuid
+ * Get all session IDs associated with a player.  NOTE This list is eventually consistent with the data from the session by ID endpoints.
  * 
  * Required Permissions:
  * 
@@ -1677,7 +1793,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerSessions
  * - For the player themselves : `session:read-player:self`
  * 
  * Required Session Permissions: None
- * **DEPRECATED** - Use player/{player_uuid} endpoint instead
+ * **DEPRECATED** - Use /v1/player/{player_uuid}/session endpoint instead
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerSessionsByUuid : public FRequest
 {
@@ -1797,7 +1913,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerSessionsByUuid
 
 /**
  * @brief Get Player Sessions By Uuid V2
- * Get Sessions associated with a player by uuid
+ * Get all session IDs associated with a player.  NOTE This list is eventually consistent with the data from the session by ID endpoints.
  * 
  * Required Permissions:
  * 
@@ -1925,7 +2041,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerSessionsByUuidV2
 
 /**
  * @brief Get Player Sessions Self
- * Get Sessions associated the current player
+ * Get all session IDs associated with the token's player.  NOTE This list is eventually consistent with the data from the session by ID endpoints.
  * 
  * Required Auth Permissions: `session:read-player:self`
  *             
@@ -5295,6 +5411,7 @@ public:
 	FHttpRequestPtr AddPlatformSessionToRallyHereSession(const FRequest_AddPlatformSessionToRallyHereSession& Request, const FDelegate_AddPlatformSessionToRallyHereSession& Delegate = FDelegate_AddPlatformSessionToRallyHereSession(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr BackfillConfig(const FRequest_BackfillConfig& Request, const FDelegate_BackfillConfig& Delegate = FDelegate_BackfillConfig(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr CreateInstanceRequest(const FRequest_CreateInstanceRequest& Request, const FDelegate_CreateInstanceRequest& Delegate = FDelegate_CreateInstanceRequest(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr CreateMatchmadeSession(const FRequest_CreateMatchmadeSession& Request, const FDelegate_CreateMatchmadeSession& Delegate = FDelegate_CreateMatchmadeSession(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr CreateOrJoinSession(const FRequest_CreateOrJoinSession& Request, const FDelegate_CreateOrJoinSession& Delegate = FDelegate_CreateOrJoinSession(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr DeleteBackfillRequest(const FRequest_DeleteBackfillRequest& Request, const FDelegate_DeleteBackfillRequest& Delegate = FDelegate_DeleteBackfillRequest(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr DeleteBrowserInfo(const FRequest_DeleteBrowserInfo& Request, const FDelegate_DeleteBrowserInfo& Delegate = FDelegate_DeleteBrowserInfo(), int32 Priority = DefaultRallyHereAPIPriority);
@@ -5341,6 +5458,7 @@ private:
 	void OnAddPlatformSessionToRallyHereSessionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AddPlatformSessionToRallyHereSession Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnBackfillConfigResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_BackfillConfig Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnCreateInstanceRequestResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateInstanceRequest Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnCreateMatchmadeSessionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateMatchmadeSession Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnCreateOrJoinSessionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateOrJoinSession Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnDeleteBackfillRequestResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteBackfillRequest Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnDeleteBrowserInfoResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteBrowserInfo Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
