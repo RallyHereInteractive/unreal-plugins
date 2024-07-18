@@ -389,20 +389,20 @@ public:
 	 * @return Whether or not the response was of the given type
 	 */
 	template<typename T>
-	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
+	bool TryGetContent(T& OutContent)const { const T* OutContentPtr = ParsedContent.template TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; return OutContentPtr != nullptr; }
 	/**
 	 * @brief Attempt to get the response content in a specific type
 	 * @param [out] OutContent A copy of the response data, if the type matched
 	 * @return Whether or not the response was of the given type
 	 */
 	template<typename T>
-	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
+	bool TryGetContent(TOptional<T>& OutContent)const { const T* OutContentPtr = ParsedContent.template TryGet<T>(); if (OutContentPtr != nullptr) OutContent = *OutContentPtr; else OutContent.Reset(); return OutContentPtr != nullptr; }
 	/**
 	 * @brief Attempt to get the response content in a specific type
 	 * @return A pointer to the content, if it was the specified type.  The memory is owned by the response object!
 	 */
 	template<typename T>
-	const T* TryGetContentAsPointer() const { return ParsedContent.TryGet<T>(); }
+	const T* TryGetContentAsPointer() const { return ParsedContent.template TryGet<T>(); }
 	/**
 	 * @brief Attempt to get the response content in a specific type
 	 * @return A optional object to the content, if it was the specified type.  The memory is owned by the returned optional object, which contains a copy of the value, if valid.
