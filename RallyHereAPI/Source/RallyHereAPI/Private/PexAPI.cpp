@@ -607,6 +607,10 @@ FString FRequest_GetAllPexClientRawByFilter::ComputePath() const
 	{
 		QueryParams.Add(FString(TEXT("datacenter_location=")) + ToUrlString(DatacenterLocation.GetValue()));
 	}
+	if(MachineClass.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("machine_class=")) + ToUrlString(MachineClass.GetValue()));
+	}
 	if(AddressIp.IsSet())
 	{
 		QueryParams.Add(FString(TEXT("address_ip=")) + ToUrlString(AddressIp.GetValue()));
@@ -991,6 +995,10 @@ FString FRequest_GetAllPexClientScoresByFilter::ComputePath() const
 	{
 		QueryParams.Add(FString(TEXT("datacenter_location=")) + ToUrlString(DatacenterLocation.GetValue()));
 	}
+	if(MachineClass.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("machine_class=")) + ToUrlString(MachineClass.GetValue()));
+	}
 	if(AddressIp.IsSet())
 	{
 		QueryParams.Add(FString(TEXT("address_ip=")) + ToUrlString(AddressIp.GetValue()));
@@ -1348,6 +1356,10 @@ FString FRequest_GetAllPexHostRawByFilter::ComputePath() const
 	if(DatacenterLocation.IsSet())
 	{
 		QueryParams.Add(FString(TEXT("datacenter_location=")) + ToUrlString(DatacenterLocation.GetValue()));
+	}
+	if(MachineClass.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("machine_class=")) + ToUrlString(MachineClass.GetValue()));
 	}
 	if(AddressIp.IsSet())
 	{
@@ -1724,6 +1736,10 @@ FString FRequest_GetAllPexHostScoresByFilter::ComputePath() const
 	if(DatacenterLocation.IsSet())
 	{
 		QueryParams.Add(FString(TEXT("datacenter_location=")) + ToUrlString(DatacenterLocation.GetValue()));
+	}
+	if(MachineClass.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("machine_class=")) + ToUrlString(MachineClass.GetValue()));
 	}
 	if(AddressIp.IsSet())
 	{

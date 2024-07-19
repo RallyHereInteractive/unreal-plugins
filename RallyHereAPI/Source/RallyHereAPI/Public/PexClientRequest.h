@@ -854,50 +854,50 @@ struct RALLYHEREAPI_API FRHAPI_PexClientRequest : public FRHAPI_Model
 	void SetExpectedPlayerCountToDefault() { ExpectedPlayerCount_Optional = 0; ExpectedPlayerCount_IsSet = true; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FString HostPlayerUuid_Optional{  };
+	FGuid HostPlayerUuid_Optional{  };
 	/** @brief true if HostPlayerUuid_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool HostPlayerUuid_IsSet{ false };
 	/** @brief Gets the value of HostPlayerUuid_Optional, regardless of it having been set */
-	FString& GetHostPlayerUuid() { return HostPlayerUuid_Optional; }
+	FGuid& GetHostPlayerUuid() { return HostPlayerUuid_Optional; }
 	/** @brief Gets the value of HostPlayerUuid_Optional, regardless of it having been set */
-	const FString& GetHostPlayerUuid() const { return HostPlayerUuid_Optional; }
+	const FGuid& GetHostPlayerUuid() const { return HostPlayerUuid_Optional; }
 	/** @brief Gets the value of HostPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetHostPlayerUuid(const FString& DefaultValue) const { if (HostPlayerUuid_IsSet) return HostPlayerUuid_Optional; return DefaultValue; }
+	const FGuid& GetHostPlayerUuid(const FGuid& DefaultValue) const { if (HostPlayerUuid_IsSet) return HostPlayerUuid_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of HostPlayerUuid_Optional and returns true if it has been set, otherwise returns false */
-	bool GetHostPlayerUuid(FString& OutValue) const { if (HostPlayerUuid_IsSet) OutValue = HostPlayerUuid_Optional; return HostPlayerUuid_IsSet; }
+	bool GetHostPlayerUuid(FGuid& OutValue) const { if (HostPlayerUuid_IsSet) OutValue = HostPlayerUuid_Optional; return HostPlayerUuid_IsSet; }
 	/** @brief Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetHostPlayerUuidOrNull() { if (HostPlayerUuid_IsSet) return &HostPlayerUuid_Optional; return nullptr; }
+	FGuid* GetHostPlayerUuidOrNull() { if (HostPlayerUuid_IsSet) return &HostPlayerUuid_Optional; return nullptr; }
 	/** @brief Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetHostPlayerUuidOrNull() const { if (HostPlayerUuid_IsSet) return &HostPlayerUuid_Optional; return nullptr; }
+	const FGuid* GetHostPlayerUuidOrNull() const { if (HostPlayerUuid_IsSet) return &HostPlayerUuid_Optional; return nullptr; }
 	/** @brief Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true */
-	void SetHostPlayerUuid(const FString& NewValue) { HostPlayerUuid_Optional = NewValue; HostPlayerUuid_IsSet = true; }
+	void SetHostPlayerUuid(const FGuid& NewValue) { HostPlayerUuid_Optional = NewValue; HostPlayerUuid_IsSet = true; }
 	/** @brief Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true using move semantics */
-	void SetHostPlayerUuid(FString&& NewValue) { HostPlayerUuid_Optional = NewValue; HostPlayerUuid_IsSet = true; }
+	void SetHostPlayerUuid(FGuid&& NewValue) { HostPlayerUuid_Optional = NewValue; HostPlayerUuid_IsSet = true; }
 	 /** @brief Clears the value of HostPlayerUuid_Optional and sets HostPlayerUuid_IsSet to false */
 	void ClearHostPlayerUuid() { HostPlayerUuid_IsSet = false; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FString OwningPlayerUuid_Optional{  };
+	FGuid OwningPlayerUuid_Optional{  };
 	/** @brief true if OwningPlayerUuid_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool OwningPlayerUuid_IsSet{ false };
 	/** @brief Gets the value of OwningPlayerUuid_Optional, regardless of it having been set */
-	FString& GetOwningPlayerUuid() { return OwningPlayerUuid_Optional; }
+	FGuid& GetOwningPlayerUuid() { return OwningPlayerUuid_Optional; }
 	/** @brief Gets the value of OwningPlayerUuid_Optional, regardless of it having been set */
-	const FString& GetOwningPlayerUuid() const { return OwningPlayerUuid_Optional; }
+	const FGuid& GetOwningPlayerUuid() const { return OwningPlayerUuid_Optional; }
 	/** @brief Gets the value of OwningPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetOwningPlayerUuid(const FString& DefaultValue) const { if (OwningPlayerUuid_IsSet) return OwningPlayerUuid_Optional; return DefaultValue; }
+	const FGuid& GetOwningPlayerUuid(const FGuid& DefaultValue) const { if (OwningPlayerUuid_IsSet) return OwningPlayerUuid_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of OwningPlayerUuid_Optional and returns true if it has been set, otherwise returns false */
-	bool GetOwningPlayerUuid(FString& OutValue) const { if (OwningPlayerUuid_IsSet) OutValue = OwningPlayerUuid_Optional; return OwningPlayerUuid_IsSet; }
+	bool GetOwningPlayerUuid(FGuid& OutValue) const { if (OwningPlayerUuid_IsSet) OutValue = OwningPlayerUuid_Optional; return OwningPlayerUuid_IsSet; }
 	/** @brief Returns a pointer to OwningPlayerUuid_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetOwningPlayerUuidOrNull() { if (OwningPlayerUuid_IsSet) return &OwningPlayerUuid_Optional; return nullptr; }
+	FGuid* GetOwningPlayerUuidOrNull() { if (OwningPlayerUuid_IsSet) return &OwningPlayerUuid_Optional; return nullptr; }
 	/** @brief Returns a pointer to OwningPlayerUuid_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetOwningPlayerUuidOrNull() const { if (OwningPlayerUuid_IsSet) return &OwningPlayerUuid_Optional; return nullptr; }
+	const FGuid* GetOwningPlayerUuidOrNull() const { if (OwningPlayerUuid_IsSet) return &OwningPlayerUuid_Optional; return nullptr; }
 	/** @brief Sets the value of OwningPlayerUuid_Optional and also sets OwningPlayerUuid_IsSet to true */
-	void SetOwningPlayerUuid(const FString& NewValue) { OwningPlayerUuid_Optional = NewValue; OwningPlayerUuid_IsSet = true; }
+	void SetOwningPlayerUuid(const FGuid& NewValue) { OwningPlayerUuid_Optional = NewValue; OwningPlayerUuid_IsSet = true; }
 	/** @brief Sets the value of OwningPlayerUuid_Optional and also sets OwningPlayerUuid_IsSet to true using move semantics */
-	void SetOwningPlayerUuid(FString&& NewValue) { OwningPlayerUuid_Optional = NewValue; OwningPlayerUuid_IsSet = true; }
+	void SetOwningPlayerUuid(FGuid&& NewValue) { OwningPlayerUuid_Optional = NewValue; OwningPlayerUuid_IsSet = true; }
 	 /** @brief Clears the value of OwningPlayerUuid_Optional and sets OwningPlayerUuid_IsSet to false */
 	void ClearOwningPlayerUuid() { OwningPlayerUuid_IsSet = false; }
 
@@ -927,15 +927,15 @@ struct RALLYHEREAPI_API FRHAPI_PexClientRequest : public FRHAPI_Model
 
 	/** @brief Player UUID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FString PlayerUuid{  };
+	FGuid PlayerUuid{  };
 	/** @brief Gets the value of PlayerUuid */
-	FString& GetPlayerUuid() { return PlayerUuid; }
+	FGuid& GetPlayerUuid() { return PlayerUuid; }
 	/** @brief Gets the value of PlayerUuid */
-	const FString& GetPlayerUuid() const { return PlayerUuid; }
+	const FGuid& GetPlayerUuid() const { return PlayerUuid; }
 	/** @brief Sets the value of PlayerUuid */
-	void SetPlayerUuid(const FString& NewValue) { PlayerUuid = NewValue;  }
+	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;  }
 	/** @brief Sets the value of PlayerUuid using move semantics */
-	void SetPlayerUuid(FString&& NewValue) { PlayerUuid = NewValue;  }
+	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;  }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString DeviceInfo_Optional{  };

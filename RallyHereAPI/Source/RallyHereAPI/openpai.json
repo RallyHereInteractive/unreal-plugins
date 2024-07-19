@@ -26659,7 +26659,6 @@
                   "type": "null"
                 }
               ],
-              "default": "2024-07-19T19:18:38.201090Z",
               "title": "To Datetime"
             }
           },
@@ -26680,7 +26679,6 @@
                   "type": "null"
                 }
               ],
-              "default": "2024-07-18T18:18:38.201138Z",
               "title": "From Datetime"
             }
           },
@@ -26778,6 +26776,22 @@
                 }
               ],
               "title": "Datacenter Location"
+            }
+          },
+          {
+            "name": "machine_class",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Machine Class"
             }
           },
           {
@@ -27037,7 +27051,6 @@
                   "type": "null"
                 }
               ],
-              "default": "2024-07-19T19:18:38.201090Z",
               "title": "To Datetime"
             }
           },
@@ -27058,7 +27071,6 @@
                   "type": "null"
                 }
               ],
-              "default": "2024-07-18T18:18:38.201138Z",
               "title": "From Datetime"
             }
           },
@@ -27156,6 +27168,22 @@
                 }
               ],
               "title": "Datacenter Location"
+            }
+          },
+          {
+            "name": "machine_class",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Machine Class"
             }
           },
           {
@@ -27405,7 +27433,6 @@
                   "type": "null"
                 }
               ],
-              "default": "2024-07-19T19:18:38.201090Z",
               "title": "To Datetime"
             }
           },
@@ -27426,7 +27453,6 @@
                   "type": "null"
                 }
               ],
-              "default": "2024-07-18T18:18:38.201138Z",
               "title": "From Datetime"
             }
           },
@@ -27524,6 +27550,22 @@
                 }
               ],
               "title": "Datacenter Location"
+            }
+          },
+          {
+            "name": "machine_class",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Machine Class"
             }
           },
           {
@@ -27815,7 +27857,6 @@
                   "type": "null"
                 }
               ],
-              "default": "2024-07-19T19:18:38.201090Z",
               "title": "To Datetime"
             }
           },
@@ -27836,7 +27877,6 @@
                   "type": "null"
                 }
               ],
-              "default": "2024-07-18T18:18:38.201138Z",
               "title": "From Datetime"
             }
           },
@@ -27934,6 +27974,22 @@
                 }
               ],
               "title": "Datacenter Location"
+            }
+          },
+          {
+            "name": "machine_class",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Machine Class"
             }
           },
           {
@@ -28153,7 +28209,7 @@
           "pex"
         ],
         "summary": "Create Pex Host",
-        "description": "Create PEX Host\n\n            Required Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:pex:instance:write`",
+        "description": "Create PEX Host\n\n            Required Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:pex:host:write`",
         "operationId": "create_pex_host",
         "requestBody": {
           "content": {
@@ -28203,7 +28259,7 @@
           "pex"
         ],
         "summary": "Create Pex Player",
-        "description": "Create PEX Client\n\n           Required Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:pex:player:write`",
+        "description": "Create PEX Client\n\n           Required Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:pex:client:write`",
         "operationId": "create_pex_player",
         "requestBody": {
           "content": {
@@ -42342,8 +42398,7 @@
               }
             ],
             "title": "To Datetime",
-            "description": "To datetime",
-            "default": "2024-07-19T19:18:38.201090Z"
+            "description": "To datetime"
           },
           "from_datetime": {
             "anyOf": [
@@ -42359,8 +42414,7 @@
               }
             ],
             "title": "From Datetime",
-            "description": "From datetime",
-            "default": "2024-07-18T18:18:38.201138Z"
+            "description": "From datetime"
           },
           "match_id": {
             "anyOf": [
@@ -42433,6 +42487,18 @@
             ],
             "title": "Datacenter Location",
             "description": "Datacenter location"
+          },
+          "machine_class": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Machine Class",
+            "description": "Machine class"
           },
           "address_ip": {
             "anyOf": [
@@ -42952,7 +43018,8 @@
           "host_player_uuid": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "format": "uuid"
               },
               {
                 "type": "null"
@@ -42964,7 +43031,8 @@
           "owning_player_uuid": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "format": "uuid"
               },
               {
                 "type": "null"
@@ -42987,6 +43055,7 @@
           },
           "player_uuid": {
             "type": "string",
+            "format": "uuid",
             "title": "Player Uuid",
             "description": "Player UUID"
           },
@@ -43419,7 +43488,8 @@
           "host_player_uuid": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "format": "uuid"
               },
               {
                 "type": "null"
@@ -43431,7 +43501,8 @@
           "owning_player_uuid": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "format": "uuid"
               },
               {
                 "type": "null"
@@ -43454,6 +43525,7 @@
           },
           "player_uuid": {
             "type": "string",
+            "format": "uuid",
             "title": "Player Uuid",
             "description": "Player UUID"
           },
@@ -43743,8 +43815,7 @@
               }
             ],
             "title": "To Datetime",
-            "description": "To datetime",
-            "default": "2024-07-19T19:18:38.201090Z"
+            "description": "To datetime"
           },
           "from_datetime": {
             "anyOf": [
@@ -43760,8 +43831,7 @@
               }
             ],
             "title": "From Datetime",
-            "description": "From datetime",
-            "default": "2024-07-18T18:18:38.201138Z"
+            "description": "From datetime"
           },
           "match_id": {
             "anyOf": [
@@ -43834,6 +43904,18 @@
             ],
             "title": "Datacenter Location",
             "description": "Datacenter location"
+          },
+          "machine_class": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Machine Class",
+            "description": "Machine class"
           },
           "address_ip": {
             "anyOf": [
@@ -44320,7 +44402,8 @@
           "host_player_uuid": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "format": "uuid"
               },
               {
                 "type": "null"
@@ -44332,7 +44415,8 @@
           "owning_player_uuid": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "format": "uuid"
               },
               {
                 "type": "null"
@@ -44352,6 +44436,18 @@
             ],
             "title": "Version",
             "description": "Version"
+          },
+          "machine_class": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Machine Class",
+            "description": "Machine class"
           }
         },
         "type": "object",
@@ -44758,7 +44854,8 @@
           "host_player_uuid": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "format": "uuid"
               },
               {
                 "type": "null"
@@ -44770,7 +44867,8 @@
           "owning_player_uuid": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "format": "uuid"
               },
               {
                 "type": "null"
@@ -44790,6 +44888,18 @@
             ],
             "title": "Version",
             "description": "Version"
+          },
+          "machine_class": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Machine Class",
+            "description": "Machine class"
           }
         },
         "type": "object",

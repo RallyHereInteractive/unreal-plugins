@@ -62,6 +62,11 @@ void FRHAPI_PexHostQueryParams::WriteJson(TSharedRef<TJsonWriter<>>& Writer) con
 		Writer->WriteIdentifierPrefix(TEXT("datacenter_location"));
 		RallyHereAPI::WriteJsonValue(Writer, DatacenterLocation_Optional);
 	}
+	if (MachineClass_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("machine_class"));
+		RallyHereAPI::WriteJsonValue(Writer, MachineClass_Optional);
+	}
 	if (AddressIp_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("address_ip"));
@@ -165,6 +170,12 @@ bool FRHAPI_PexHostQueryParams::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 	{
 		DatacenterLocation_IsSet = TryGetJsonValue(JsonDatacenterLocationField, DatacenterLocation_Optional);
 		ParseSuccess &= DatacenterLocation_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonMachineClassField = (*Object)->TryGetField(TEXT("machine_class"));
+	if (JsonMachineClassField.IsValid() && !JsonMachineClassField->IsNull())
+	{
+		MachineClass_IsSet = TryGetJsonValue(JsonMachineClassField, MachineClass_Optional);
+		ParseSuccess &= MachineClass_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonAddressIpField = (*Object)->TryGetField(TEXT("address_ip"));
 	if (JsonAddressIpField.IsValid() && !JsonAddressIpField->IsNull())

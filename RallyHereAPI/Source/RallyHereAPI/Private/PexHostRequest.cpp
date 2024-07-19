@@ -199,6 +199,11 @@ void FRHAPI_PexHostRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		Writer->WriteIdentifierPrefix(TEXT("version"));
 		RallyHereAPI::WriteJsonValue(Writer, Version_Optional);
 	}
+	if (MachineClass_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("machine_class"));
+		RallyHereAPI::WriteJsonValue(Writer, MachineClass_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -421,6 +426,12 @@ bool FRHAPI_PexHostRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	{
 		Version_IsSet = TryGetJsonValue(JsonVersionField, Version_Optional);
 		ParseSuccess &= Version_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonMachineClassField = (*Object)->TryGetField(TEXT("machine_class"));
+	if (JsonMachineClassField.IsValid() && !JsonMachineClassField->IsNull())
+	{
+		MachineClass_IsSet = TryGetJsonValue(JsonMachineClassField, MachineClass_Optional);
+		ParseSuccess &= MachineClass_IsSet;
 	}
 
 	return ParseSuccess;

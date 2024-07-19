@@ -32,7 +32,7 @@ class FPexAPI;
  * 
  *             Required Permissions:
  * 
- * - For any player (including themselves) any of: `match:*`, `match:pex:instance:write`
+ * - For any player (including themselves) any of: `match:*`, `match:pex:host:write`
 */
 struct RALLYHEREAPI_API FRequest_CreatePexHost : public FRequest
 {
@@ -126,7 +126,7 @@ struct RALLYHEREAPI_API Traits_CreatePexHost
  * 
  *            Required Permissions:
  * 
- * - For any player (including themselves) any of: `match:*`, `match:pex:player:write`
+ * - For any player (including themselves) any of: `match:*`, `match:pex:client:write`
 */
 struct RALLYHEREAPI_API FRequest_CreatePexPlayer : public FRequest
 {
@@ -251,6 +251,7 @@ struct RALLYHEREAPI_API FRequest_GetAllPexClientRawByFilter : public FRequest
 	TOptional<FString> AllocationId;
 	TOptional<FString> DatacenterProvider;
 	TOptional<FString> DatacenterLocation;
+	TOptional<FString> MachineClass;
 	TOptional<FString> AddressIp;
 	TOptional<FString> MapName;
 	TOptional<FString> GameMode;
@@ -383,6 +384,7 @@ struct RALLYHEREAPI_API FRequest_GetAllPexClientScoresByFilter : public FRequest
 	TOptional<FString> AllocationId;
 	TOptional<FString> DatacenterProvider;
 	TOptional<FString> DatacenterLocation;
+	TOptional<FString> MachineClass;
 	TOptional<FString> AddressIp;
 	TOptional<FString> MapName;
 	TOptional<FString> GameMode;
@@ -510,6 +512,7 @@ struct RALLYHEREAPI_API FRequest_GetAllPexHostRawByFilter : public FRequest
 	TOptional<FString> AllocationId;
 	TOptional<FString> DatacenterProvider;
 	TOptional<FString> DatacenterLocation;
+	TOptional<FString> MachineClass;
 	TOptional<FString> AddressIp;
 	TOptional<FString> MapName;
 	TOptional<FString> GameMode;
@@ -640,6 +643,7 @@ struct RALLYHEREAPI_API FRequest_GetAllPexHostScoresByFilter : public FRequest
 	TOptional<FString> AllocationId;
 	TOptional<FString> DatacenterProvider;
 	TOptional<FString> DatacenterLocation;
+	TOptional<FString> MachineClass;
 	TOptional<FString> AddressIp;
 	TOptional<FString> MapName;
 	TOptional<FString> GameMode;

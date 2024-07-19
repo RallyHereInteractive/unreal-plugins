@@ -234,6 +234,30 @@ struct RALLYHEREAPI_API FRHAPI_PexClientQueryParams : public FRHAPI_Model
 	void ClearDatacenterLocation() { DatacenterLocation_IsSet = false; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString MachineClass_Optional{  };
+	/** @brief true if MachineClass_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool MachineClass_IsSet{ false };
+	/** @brief Gets the value of MachineClass_Optional, regardless of it having been set */
+	FString& GetMachineClass() { return MachineClass_Optional; }
+	/** @brief Gets the value of MachineClass_Optional, regardless of it having been set */
+	const FString& GetMachineClass() const { return MachineClass_Optional; }
+	/** @brief Gets the value of MachineClass_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetMachineClass(const FString& DefaultValue) const { if (MachineClass_IsSet) return MachineClass_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of MachineClass_Optional and returns true if it has been set, otherwise returns false */
+	bool GetMachineClass(FString& OutValue) const { if (MachineClass_IsSet) OutValue = MachineClass_Optional; return MachineClass_IsSet; }
+	/** @brief Returns a pointer to MachineClass_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetMachineClassOrNull() { if (MachineClass_IsSet) return &MachineClass_Optional; return nullptr; }
+	/** @brief Returns a pointer to MachineClass_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetMachineClassOrNull() const { if (MachineClass_IsSet) return &MachineClass_Optional; return nullptr; }
+	/** @brief Sets the value of MachineClass_Optional and also sets MachineClass_IsSet to true */
+	void SetMachineClass(const FString& NewValue) { MachineClass_Optional = NewValue; MachineClass_IsSet = true; }
+	/** @brief Sets the value of MachineClass_Optional and also sets MachineClass_IsSet to true using move semantics */
+	void SetMachineClass(FString&& NewValue) { MachineClass_Optional = NewValue; MachineClass_IsSet = true; }
+	 /** @brief Clears the value of MachineClass_Optional and sets MachineClass_IsSet to false */
+	void ClearMachineClass() { MachineClass_IsSet = false; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString AddressIp_Optional{  };
 	/** @brief true if AddressIp_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
