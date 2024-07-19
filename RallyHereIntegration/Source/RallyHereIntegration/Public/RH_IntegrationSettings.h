@@ -183,6 +183,14 @@ public:
 	UPROPERTY(EditAnywhere, Config, Category = "Inventory")
 	bool bAutoProcessPlatformEntitlementsOnLogin;
 
+	/** @brief Whether to automatically process platform entitlements on engine Reactivate callback */
+	UPROPERTY(EditAnywhere, Config, Category = "Inventory")
+	bool bAutoProcessPlatformEntitlementsOnReactivate;
+
+	/** @brief Whether to automatically process platform entitlements on engine Resume callback */
+	UPROPERTY(EditAnywhere, Config, Category = "Inventory")
+	bool bAutoProcessPlatformEntitlementsOnResume;
+
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Web Requests
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -295,6 +303,9 @@ public:
 	/** @brief Whether to automatically upload files to the RallyHere API from Dedicated Servers */
 	UPROPERTY(EditAnywhere, Config, Category = "File Uploads")
 	bool bAutoUploadServerFiles;
+	/** @brief Percentage value for whether to automatically upload files to the RallyHere API from Dedicated Servers */
+	UPROPERTY(EditAnywhere, Config, Category = "File Uploads", meta=(EditCondition= bAutoUploadServerFiles))
+	float AutoUploadServerFilesChance;
 	/** @brief Whether to automatically upload files to the RallyHere API.  Requires bAutoUploadServerFiles to have an effect */
 	UPROPERTY(EditAnywhere, Config, Category = "File Uploads", meta=(EditCondition= bAutoUploadServerFiles))
 	bool bAutoUploadLogFiles;

@@ -39,16 +39,17 @@ void URH_MatchSubsystem::SearchMatches(const FRH_MatchSearchParams& params, cons
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateWeakLambda(this, [this, bUpdateCache, Result](const BaseType::Response& Resp)
 			{
-				if (Resp.IsSuccessful())
+				const auto Content = Resp.TryGetDefaultContentAsPointer();
+				if (Resp.IsSuccessful() && Content != nullptr)
 				{
 					// store results in result object
-					Result->Matches = Resp.Content.GetMatches();
-					Result->NextPageCursor = Resp.Content.GetCursor(FString());
+					Result->Matches = Content->GetMatches();
+					Result->NextPageCursor = Content->GetCursor(FString());
 
 					// merge into the cache if allowed
 					if (bUpdateCache)
 					{
-						for (const auto& Match : Resp.Content.GetMatches())
+						for (const auto& Match : Result->Matches)
 						{
 							MatchesCache.Add(Match.GetMatchId(), Match);
 						}
@@ -88,9 +89,10 @@ void URH_MatchSubsystem::GetMatchAsync(const FString& MatchId, bool bIgnoreCache
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateWeakLambda(this, [this](const BaseType::Response& Resp)
 			{
-				if (Resp.IsSuccessful())
+				const auto Content = Resp.TryGetDefaultContentAsPointer();
+				if (Resp.IsSuccessful() && Content != nullptr)
 				{
-					MatchesCache.Add(Resp.Content.GetMatchId(), Resp.Content);
+					MatchesCache.Add(Content->GetMatchId(), *Content);
 				}
 			}),
 		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, MatchId, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
@@ -120,14 +122,15 @@ void URH_MatchSubsystem::CreateMatch(const FRHAPI_MatchRequest& Match, const FRH
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateWeakLambda(this, [this, Context](const BaseType::Response& Resp)
 			{
-				if (Resp.IsSuccessful())
+				const auto Content = Resp.TryGetDefaultContentAsPointer();
+				if (Resp.IsSuccessful() && Content != nullptr)
 				{
 					// update the context
-					Context->MatchId = Resp.Content.GetMatchId();
-					Context->Match = Resp.Content;
+					Context->MatchId = Content->GetMatchId();
+					Context->Match = *Content;
 
 					// store the match in the cache
-					MatchesCache.Add(Resp.Content.GetMatchId(), Resp.Content);
+					MatchesCache.Add(Context->MatchId, Context->Match.GetValue());
 				}
 			}),
 		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Context, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
@@ -158,11 +161,15 @@ void URH_MatchSubsystem::UpdateMatch(const FString& MatchId, const FRHAPI_MatchR
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateWeakLambda(this, [this, Context](const BaseType::Response& Resp)
 			{
-				// update the context
-				Context->Match = Resp.Content;
+				const auto Content = Resp.TryGetDefaultContentAsPointer();
+				if (Resp.IsSuccessful() && Content != nullptr)
+				{
+					// update the context
+					Context->Match = *Content;
 
-				// store the match in the cache
-				MatchesCache.Add(Resp.Content.GetMatchId(), Resp.Content);
+					// store the match in the cache
+					MatchesCache.Add(Context->Match->GetMatchId(), Context->Match.GetValue());
+				}
 			}),
 		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Context, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 			{
@@ -217,35 +224,40 @@ void URH_MatchSubsystem::UpdateMatchPlayer(const FString& MatchId, const FGuid& 
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateWeakLambda(this, [this, Context](const BaseType::Response& Resp)
 			{
-				Context->MatchPlayer = Resp.Content;
-
-				// generate a new match player response from the update
-				FRHAPI_MatchPlayerResponse UpdatedPlayer = Convert_MatchPlayerWithMatch_to_MatchPlayerResponse(Resp.Content);
-
-				// attempt to splice into cache
-				FRHAPI_MatchWithPlayers* Match = MatchesCache.Find(Context->MatchId);
-				if (Match != nullptr)
+				const auto Content = Resp.TryGetDefaultContentAsPointer();
+				if (Resp.IsSuccessful() && Content != nullptr)
 				{
-					bool bFoundPlayer = false;
+					// update the context
+					Context->MatchPlayer = *Content;;
 
-					// set the players object as being present, if it wasn't already
-					Match->Players_IsSet = true;
-					auto Players = Match->GetPlayersOrNull();
+					// generate a new match player response from the update
+					FRHAPI_MatchPlayerResponse UpdatedPlayer = Convert_MatchPlayerWithMatch_to_MatchPlayerResponse(Context->MatchPlayer.GetValue());
 
-					if (Players != nullptr)
+					// attempt to splice into cache
+					FRHAPI_MatchWithPlayers* Match = MatchesCache.Find(Context->MatchId);
+					if (Match != nullptr)
 					{
-						for (auto& Player : *Players)
+						// set the players object as being present, if it wasn't already
+						Match->Players_IsSet = true;
+						auto Players = Match->GetPlayersOrNull();
+
+						if (Players != nullptr)
 						{
-							if (Player.GetPlayerUuid() == Context->PlayerId)
+							bool bFoundPlayer = false;
+							
+							for (auto& Player : *Players)
 							{
-								Player = UpdatedPlayer;
-								bFoundPlayer = true;
-								break;
+								if (Player.GetPlayerUuid() == Context->PlayerId)
+								{
+									Player = UpdatedPlayer;
+									bFoundPlayer = true;
+									break;
+								}
 							}
-						}
-						if (!bFoundPlayer)
-						{
-							Players->Add(UpdatedPlayer);
+							if (!bFoundPlayer)
+							{
+								Players->Add(UpdatedPlayer);
+							}
 						}
 					}
 				}

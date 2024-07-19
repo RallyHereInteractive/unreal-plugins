@@ -404,7 +404,6 @@ bool FRequest_{{operationIdCamelCase}}::SetupHttpRequest(const FHttpRequestRef& 
 	return true;
 }
 
-{{#responses.0}}
 FString FResponse_{{operationIdCamelCase}}::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
 	switch ((int)InHttpResponseCode)
@@ -421,48 +420,57 @@ FString FResponse_{{operationIdCamelCase}}::GetHttpResponseCodeDescription(EHttp
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
-{{#headers.0}}
 bool FResponse_{{operationIdCamelCase}}::ParseHeaders()
 {
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
-	bool bParsedAllRequiredHeaders = true;
+
+{{#responses.0}}{{#headers.0}}
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+	// parse into default header storage
 	{{#headers}}
 	if (const FString* Val = HeadersMap.Find(TEXT("{{baseName}}")))
 	{
 		{{name}} = *Val;
-	}
-	{{#required}}
-	else
+	}{{/headers}}
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+#endif
+{{/headers.0}}{{/responses.0}}
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
 	{
-		bParsedAllRequiredHeaders = false;
-	}
+	{{#responses}}
+	case {{code}}:
+	{{#headers}}
+	{{#required}}
+		bParsedAllRequiredHeaders = HeadersMap.Contains({{baseName}}) && bParsedAllRequiredHeaders;
 	{{/required}}
 	{{/headers}}
+		break;
+	{{/responses}}
+	default:
+		break;
+	}
+	
 	return bParsedAllRequiredHeaders;
 }
 
-{{/headers.0}}
-{{/responses.0}}
 {{#responses}}
 {{#dataType}}
 bool FResponse_{{operationIdCamelCase}}::TryGetContentFor{{{code}}}({{{.}}}& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != {{{code}}})
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 {{/dataType}}
@@ -495,20 +503,52 @@ bool FResponse_{{operationIdCamelCase}}::TryGetContentFor{{{code}}}({{{.}}}& Out
 {{/responses}}
 bool FResponse_{{operationIdCamelCase}}::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
+	bool bParsed = false;
 	{{#returnType}}
-	return TryGetJsonValue(JsonValue, Content);
+	{{#responses.0}}
+	// for non default responses, parse into a temporary object to validate the response can be parsed properly
+	switch ((int)GetHttpResponseCode())
+	{ {{#responses}} {{#dataType}}
+		case {{code}}:
+			{
+				{{{.}}} Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<{{{.}}}>(Object);
+					bParsed = true;
+				}
+				break;
+			}{{/dataType}}{{/responses}}
+		default:
+			break;
+	}
+
+	{{/responses.0}}
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// if using legacy content object, attempt to parse any response into the main content object.  For some legacy reasons around multiple success variants, this needs to ignore the intended type and always parse into the default type
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS;
+	TryGetJsonValue(JsonValue, Content);
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS;
+#endif
+
+	return bParsed;
 	{{/returnType}}
 	{{^returnType}}
 	return true;
 	{{/returnType}}
 }
 
-FResponse_{{operationIdCamelCase}}::FResponse_{{operationIdCamelCase}}(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
+FResponse_{{operationIdCamelCase}}::FResponse_{{operationIdCamelCase}}(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
 FString Traits_{{operationIdCamelCase}}::Name = TEXT("{{operationIdCamelCase}}");
+
+FHttpRequestPtr Traits_{{operationIdCamelCase}}::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->{{operationIdCamelCase}}(InRequest, InDelegate, InPriority);
+}
 
 {{/operation}}{{/operations}}
 {{#cppNamespaceDeclarations}}

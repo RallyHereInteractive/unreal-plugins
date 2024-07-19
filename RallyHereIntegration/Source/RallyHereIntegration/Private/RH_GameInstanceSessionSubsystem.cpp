@@ -439,9 +439,10 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 						BaseType::Delegate::CreateLambda([PollTimerNameCopy](const BaseType::Response& Resp)
 							{
 								auto* PollControl = FRH_PollControl::Get();
-								if (PollControl && Resp.IsSuccessful())
+								const auto Content = Resp.TryGetDefaultContentAsPointer();
+								if (PollControl && Resp.IsSuccessful() && Content != nullptr)
 								{
-									float NewInterval = Resp.Content.CadenceSeconds;
+									float NewInterval = Content->CadenceSeconds;
 									UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - Updating %s timer to %f interval"), ANSI_TO_TCHAR(__FUNCTION__), *PollTimerNameCopy.ToString(), NewInterval);
 
 									FRH_PollTimerSetting NewSetting = PollControl->GetPollTimerSetting(PollTimerNameCopy);
@@ -481,9 +482,10 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 						BaseType::Delegate::CreateLambda([PollTimerNameCopy](const BaseType::Response& Resp)
 							{
 								auto* PollControl = FRH_PollControl::Get();
-								if (PollControl && Resp.IsSuccessful())
+								const auto Content = Resp.TryGetDefaultContentAsPointer();
+								if (PollControl && Resp.IsSuccessful() && Content != nullptr)
 								{
-									const auto CadenceSeconds = Resp.Content.Timeout;
+									const auto CadenceSeconds = Content->Timeout;
 									UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - Updating %s timer to %f interval"), ANSI_TO_TCHAR(__FUNCTION__), *PollTimerNameCopy.ToString(), CadenceSeconds);
 
 									FRH_PollTimerSetting NewSetting = PollControl->GetPollTimerSetting(PollTimerNameCopy);
@@ -765,9 +767,11 @@ void URH_GameInstanceSessionSubsystem::GameModePreloginEvent(class AGameModeBase
 	FString RequestURL;
 	if (pWorld->NetDriver != nullptr && pWorld->NetDriver->ClientConnections.Num() > 0)
 	{
-		for (auto Client : pWorld->NetDriver->ClientConnections)
+		const auto NetDriver = pWorld->NetDriver;
+		for (int i = NetDriver->ClientConnections.Num() - 1; i >= 0; --i)
 		{
-			if (Client->PlayerId == NewPlayer)
+			auto Client = NetDriver->ClientConnections[i];
+			if (Client->PlayerId == NewPlayer && Client->ClientLoginState == EClientLoginState::LoggingIn)
 			{
 				ValidateIncomingConnection(Client, ErrorMessage);
 				break;
@@ -941,20 +945,6 @@ void URH_GameInstanceSessionSubsystem::CreateMatchForSession(const URH_JoinedSes
 		UpdateRequest.SetStartTimestamp(FDateTime::UtcNow());
 		UpdateRequest.SetState(ERHAPI_MatchState::Pending);
 
-		// set the allocation id
-		{
-			if (InstanceData != nullptr)
-			{
-				TArray<FRHAPI_MatchAllocation> Allocations;
-				{
-					FRHAPI_MatchAllocation NewAllocation;
-					NewAllocation.SetAllocationId(InstanceData->GetAllocationId());
-					Allocations.Add(NewAllocation);
-				}
-				UpdateRequest.SetAllocations(Allocations);
-			}
-		}
-
 		// set the session id
 		const FString SessionId = Session->GetSessionId();
 		{
@@ -1016,6 +1006,22 @@ void URH_GameInstanceSessionSubsystem::CreateMatchForSession(const URH_JoinedSes
 			UpdateRequest.SetInstances(Instances);
 		}
 
+		// set the allocation id
+		if (InstanceData != nullptr)
+		{
+			const auto AllocationId = InstanceData->GetAllocationIdOrNull();
+			if (AllocationId != nullptr)
+			{
+				TArray<FRHAPI_MatchAllocation> Allocations;
+				{
+					FRHAPI_MatchAllocation NewAllocation;
+					NewAllocation.SetAllocationId(InstanceData->GetAllocationId());
+					Allocations.Add(NewAllocation);
+				}
+				UpdateRequest.SetAllocations(Allocations);
+			}
+		}
+		
 		// scan through all known local and remote players for connected players, and add them.  We do not set much state since we cannot determine much here
 		auto* pWorld = GetGameInstanceSubsystem()->GetGameInstance()->GetWorld();
 		if (Settings->bAutoAddConnectedPlayersToMatches && pWorld != nullptr)

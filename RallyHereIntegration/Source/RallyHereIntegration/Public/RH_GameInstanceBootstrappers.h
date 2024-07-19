@@ -155,6 +155,12 @@ namespace RallyHere
 	{
 		/** @brief Whether or not a soft stop has been requested */
 		extern RALLYHEREINTEGRATION_API bool IsSoftStopRequested();
+		
+		/** @brief Delegate fired when soft stop is requested, can be triggered on any thread */
+		extern FTSSimpleMulticastDelegate OnSoftStopRequstedAnyThread;
+		
+		/** @brief Game thread delegate (deferred to game thread if not sourced from it) fired when soft stop is requested */
+		extern FTSSimpleMulticastDelegate OnSoftStopRequstedGameThread;
 	}
 }
 
@@ -248,6 +254,10 @@ protected:
 	*/
 	virtual void UpdateBootstrapStep(ERH_ServerBootstrapFlowStep NewStep);
 
+	/**
+	* @brief Bootstrapping Flow [Failed] - trigger a deferred bootstrapping failure to be processed a later time (generally next tick).  Useful for handling failures that occur during a callback or in a different thread
+	*/
+	virtual void DeferBootstrappingFailed(const FString& FailureReason);
 	/**
 	* @brief Bootstrapping Flow [Failed] - trigger bootstrapping failure and handles failure logic
 	*/

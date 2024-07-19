@@ -72,11 +72,12 @@ FString FAuthContext::GetRefreshToken() const
 	return FString();
 }
 
-void FAuthContext::ProcessLogin(const FResponse_Login& LoginResponse_)
+void FAuthContext::ProcessLogin(const FResponse_Login& LoginResponse)
 {
 	bIsRefreshing = false;
-	const bool bSuccess = LoginResponse_.IsSuccessful() && LoginResponse_.GetHttpResponseCode() == EHttpResponseCodes::Type::Ok;
-	if (!bSuccess)
+	const bool bSuccess = LoginResponse.IsSuccessful() && LoginResponse.GetHttpResponseCode() == EHttpResponseCodes::Type::Ok;
+	const auto Content = LoginResponse.TryGetDefaultContentAsPointer();
+	if (!bSuccess || !Content)
 	{
 		SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginFailed, FColor::Purple);
 		LoginComplete.Broadcast(false);
@@ -84,7 +85,7 @@ void FAuthContext::ProcessLogin(const FResponse_Login& LoginResponse_)
 	}
 
 	const auto PreviousLoginResult = LoginResult;
-	LoginResult = LoginResponse_.Content;
+	LoginResult = *Content;
 
 	// clear out any token response
 	TokenResponse.Reset();
@@ -101,18 +102,19 @@ void FAuthContext::ProcessLogin(const FResponse_Login& LoginResponse_)
 	}
 }
 
-void FAuthContext::ProcessLoginToken(const FResponse_Token& LoginResponse_)
+void FAuthContext::ProcessLoginToken(const FResponse_Token& LoginResponse)
 {
 	bIsRefreshing = false;
-	const bool bSuccess = LoginResponse_.IsSuccessful() && LoginResponse_.GetHttpResponseCode() == EHttpResponseCodes::Type::Ok;
-	if (!bSuccess)
+	const bool bSuccess = LoginResponse.IsSuccessful() && LoginResponse.GetHttpResponseCode() == EHttpResponseCodes::Type::Ok;
+	const auto Content = LoginResponse.TryGetDefaultContentAsPointer();
+	if (!bSuccess || !Content)
 	{
 		SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginFailed, FColor::Purple);
 		LoginComplete.Broadcast(false);
 		return;
 	}
 
-	TokenResponse = LoginResponse_.Content;
+	TokenResponse = *Content;
 
 	// clear out any login result
 	LoginResult.Reset();
@@ -124,14 +126,14 @@ void FAuthContext::ProcessLoginToken(const FResponse_Token& LoginResponse_)
 }
 
 
-void FAuthContext::ProcessLoginRefresh(const FResponse_Login& LoginResponse_)
+void FAuthContext::ProcessLoginRefresh(const FResponse_Login& LoginResponse)
 {
-	const bool bSuccess = LoginResponse_.IsSuccessful() && LoginResponse_.GetHttpResponseCode() == EHttpResponseCodes::Type::Ok;
+	const bool bSuccess = LoginResponse.IsSuccessful() && LoginResponse.GetHttpResponseCode() == EHttpResponseCodes::Type::Ok;
 
 	// if refresh was successful, use normal login handler
 	if (bSuccess)
 	{
-		ProcessLogin(LoginResponse_);
+		ProcessLogin(LoginResponse);
 		return;
 	}
 

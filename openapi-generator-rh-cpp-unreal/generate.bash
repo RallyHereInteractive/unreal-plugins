@@ -64,19 +64,21 @@ fi
 jq '.openapi = "3.0.3"' openapi.json > openapi_converted.json
 OPENAPI_SPEC_LOCATION="openapi_converted.json"
 
-# Generate the RH-UE4 Client
+# Clean the output directory
 rm -rf "$OUTPUT_DIR"
+
+# Generate the RH-UE4 Client
 java -cp \
     "target/rh-cpp-ue4-openapi-generator-1.0.0.jar:bin/openapi-generator-cli.jar" \
     org.openapitools.codegen.OpenAPIGenerator \
     generate \
-    -i "openapi_converted.json" \
+    -i "$OPENAPI_SPEC_LOCATION" \
     --generator-name="rh-cpp-ue4" \
     --output="$OUTPUT_DIR" \
     --additional-properties="$ADDITIONAL_PROPERTIES"
 
-# Cleanup
-rm -f openapi_converted.json
-rm -f openapi.json
+# Move the reference spec files to the output directory
+mv openapi_converted.json "$OUTPUT_DIR/openpai_converted.json"
+mv openapi.json "$OUTPUT_DIR/openpai.json"
 
 popd

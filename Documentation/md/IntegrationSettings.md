@@ -51,6 +51,8 @@ Main settings for the Integration.
 `public bool `[`bAutoCloseMatchOnSessionInactive`](#classURH__IntegrationSettings_1a089e31e1c743c7933b237fb62b4a5d8c) | Whether to automatically close a match when a session becomes inactive if the host.
 `public bool `[`bAutoCreateInventorySessionOnLogin`](#classURH__IntegrationSettings_1a140069cc5be0f8410447d4d2caf68c1e) | Whether to automatically create an inventory session when a player logs in.
 `public bool `[`bAutoProcessPlatformEntitlementsOnLogin`](#classURH__IntegrationSettings_1a5f78f6a76f285af5862bcc93d612da3e) | Whether to automatically process platform entitlements on login (will wait for inventory session creation if using bAutoCreateInventorySessionOnLogin)
+`public bool `[`bAutoProcessPlatformEntitlementsOnReactivate`](#classURH__IntegrationSettings_1a1207706bba48d33a504cd072b0608b59) | Whether to automatically process platform entitlements on engine Reactivate callback.
+`public bool `[`bAutoProcessPlatformEntitlementsOnResume`](#classURH__IntegrationSettings_1adfb23e8bdc32de0f5d2118236fd80538) | Whether to automatically process platform entitlements on engine Resume callback.
 `public int32 `[`WebRequestsMaxSimultaneousRequests`](#classURH__IntegrationSettings_1a86e14803734cde1b954191b437ceaafe) | Sets the maximum number of Http Requests that can be made simultaneously. 0 = No Limit.
 `public int32 `[`WebRequestsDefaultRetryCount`](#classURH__IntegrationSettings_1a0e7e2f5a2a2cb2981aafe6dee03c7ac4) | Sets the number of retries that the retry manager uses. 0 = Do not set a limit.
 `public int32 `[`WebRequestsDefaultRetryTimeout`](#classURH__IntegrationSettings_1a15ad237756a0d356ec11f82be51f6190) | Sets the maximum number of Http Requests that can be made simultaneously. 0 = Do not set a limit.
@@ -81,6 +83,7 @@ Main settings for the Integration.
 `public FSoftClassPath `[`RemoteFileSubsystemClass`](#classURH__IntegrationSettings_1a0388ca75a831a5c4873fe07dd8b638dc) | Extensible RemoteFileSubsystem class path.
 `public bool `[`bLocalPlayerSubsystemSandboxing`](#classURH__IntegrationSettings_1a5826903f6e88cefabe7d9c2ede15e9af) | Flag to determine if the local player subsystem should use its own subsystems instead of relying on GameInstanceSubsystem shared caches.
 `public bool `[`bAutoUploadServerFiles`](#classURH__IntegrationSettings_1aad9767260d4d60a8f378c4543c03f92a) | Whether to automatically upload files to the RallyHere API from Dedicated Servers.
+`public float `[`AutoUploadServerFilesChance`](#classURH__IntegrationSettings_1adb4cd4438cff4d9754ae7cb6285eaf25) | Percentage value for whether to automatically upload files to the RallyHere API from Dedicated Servers.
 `public bool `[`bAutoUploadLogFiles`](#classURH__IntegrationSettings_1a8adfac6c3249bca907a1fa051db8d0b5) | Whether to automatically upload files to the RallyHere API. Requires bAutoUploadServerFiles to have an effect.
 `public bool `[`bAutoUploadTraceFiles`](#classURH__IntegrationSettings_1ad678c18fb9996d66111ff4003326a656) | Whether to automatically upload files to the RallyHere API. Requires bAutoUploadServerFiles to have an effect.
 `public int32 `[`BeginNewAdSessionPriority`](#classURH__IntegrationSettings_1afc878742df435a86affa3c28c65da19a) | Sets the request priority of Begin New Session calls, lower number is higher priority.
@@ -305,6 +308,14 @@ Whether to automatically create an inventory session when a player logs in.
 
 Whether to automatically process platform entitlements on login (will wait for inventory session creation if using bAutoCreateInventorySessionOnLogin)
 
+#### `public bool `[`bAutoProcessPlatformEntitlementsOnReactivate`](#classURH__IntegrationSettings_1a1207706bba48d33a504cd072b0608b59) <a id="classURH__IntegrationSettings_1a1207706bba48d33a504cd072b0608b59"></a>
+
+Whether to automatically process platform entitlements on engine Reactivate callback.
+
+#### `public bool `[`bAutoProcessPlatformEntitlementsOnResume`](#classURH__IntegrationSettings_1adfb23e8bdc32de0f5d2118236fd80538) <a id="classURH__IntegrationSettings_1adfb23e8bdc32de0f5d2118236fd80538"></a>
+
+Whether to automatically process platform entitlements on engine Resume callback.
+
 #### `public int32 `[`WebRequestsMaxSimultaneousRequests`](#classURH__IntegrationSettings_1a86e14803734cde1b954191b437ceaafe) <a id="classURH__IntegrationSettings_1a86e14803734cde1b954191b437ceaafe"></a>
 
 Sets the maximum number of Http Requests that can be made simultaneously. 0 = No Limit.
@@ -424,6 +435,10 @@ Flag to determine if the local player subsystem should use its own subsystems in
 #### `public bool `[`bAutoUploadServerFiles`](#classURH__IntegrationSettings_1aad9767260d4d60a8f378c4543c03f92a) <a id="classURH__IntegrationSettings_1aad9767260d4d60a8f378c4543c03f92a"></a>
 
 Whether to automatically upload files to the RallyHere API from Dedicated Servers.
+
+#### `public float `[`AutoUploadServerFilesChance`](#classURH__IntegrationSettings_1adb4cd4438cff4d9754ae7cb6285eaf25) <a id="classURH__IntegrationSettings_1adb4cd4438cff4d9754ae7cb6285eaf25"></a>
+
+Percentage value for whether to automatically upload files to the RallyHere API from Dedicated Servers.
 
 #### `public bool `[`bAutoUploadLogFiles`](#classURH__IntegrationSettings_1a8adfac6c3249bca907a1fa051db8d0b5) <a id="classURH__IntegrationSettings_1a8adfac6c3249bca907a1fa051db8d0b5"></a>
 

@@ -22,46 +22,11 @@ using RallyHereAPI::ToStringFormatArg;
 using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
-struct FRequest_CreateReportForTargetPlayerUuid;
-struct FResponse_CreateReportForTargetPlayerUuid;
-struct FRequest_GetReportsForTargetPlayerUuid;
-struct FResponse_GetReportsForTargetPlayerUuid;
-struct FRequest_GetReportsForTargetPlayerUuidSelf;
-struct FResponse_GetReportsForTargetPlayerUuidSelf;
-struct FRequest_GetReportsFromSourcePlayerUuid;
-struct FResponse_GetReportsFromSourcePlayerUuid;
-struct FRequest_GetReportsFromSourcePlayerUuidSelf;
-struct FResponse_GetReportsFromSourcePlayerUuidSelf;
+// forward declaration
+class FReportsAPI;
 
-DECLARE_DELEGATE_OneParam(FDelegate_CreateReportForTargetPlayerUuid, const FResponse_CreateReportForTargetPlayerUuid&);
-DECLARE_DELEGATE_OneParam(FDelegate_GetReportsForTargetPlayerUuid, const FResponse_GetReportsForTargetPlayerUuid&);
-DECLARE_DELEGATE_OneParam(FDelegate_GetReportsForTargetPlayerUuidSelf, const FResponse_GetReportsForTargetPlayerUuidSelf&);
-DECLARE_DELEGATE_OneParam(FDelegate_GetReportsFromSourcePlayerUuid, const FResponse_GetReportsFromSourcePlayerUuid&);
-DECLARE_DELEGATE_OneParam(FDelegate_GetReportsFromSourcePlayerUuidSelf, const FResponse_GetReportsFromSourcePlayerUuidSelf&);
-
-class RALLYHEREAPI_API FReportsAPI : public FAPI
-{
-public:
-	FReportsAPI();
-	virtual ~FReportsAPI();
-
-	FHttpRequestPtr CreateReportForTargetPlayerUuid(const FRequest_CreateReportForTargetPlayerUuid& Request, const FDelegate_CreateReportForTargetPlayerUuid& Delegate = FDelegate_CreateReportForTargetPlayerUuid(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetReportsForTargetPlayerUuid(const FRequest_GetReportsForTargetPlayerUuid& Request, const FDelegate_GetReportsForTargetPlayerUuid& Delegate = FDelegate_GetReportsForTargetPlayerUuid(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetReportsForTargetPlayerUuidSelf(const FRequest_GetReportsForTargetPlayerUuidSelf& Request, const FDelegate_GetReportsForTargetPlayerUuidSelf& Delegate = FDelegate_GetReportsForTargetPlayerUuidSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetReportsFromSourcePlayerUuid(const FRequest_GetReportsFromSourcePlayerUuid& Request, const FDelegate_GetReportsFromSourcePlayerUuid& Delegate = FDelegate_GetReportsFromSourcePlayerUuid(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetReportsFromSourcePlayerUuidSelf(const FRequest_GetReportsFromSourcePlayerUuidSelf& Request, const FDelegate_GetReportsFromSourcePlayerUuidSelf& Delegate = FDelegate_GetReportsFromSourcePlayerUuidSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-
-private:
-	void OnCreateReportForTargetPlayerUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateReportForTargetPlayerUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnGetReportsForTargetPlayerUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetReportsForTargetPlayerUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnGetReportsForTargetPlayerUuidSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetReportsForTargetPlayerUuidSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnGetReportsFromSourcePlayerUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetReportsFromSourcePlayerUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnGetReportsFromSourcePlayerUuidSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetReportsFromSourcePlayerUuidSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-
-};
-
-/* Create Report For Target Player Uuid
- *
+/**
+ * @brief Create Report For Target Player Uuid
  * Create a new report for a target player
  * Required Permissions:
  * If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:self`, `sanction:report:create:any`, `sanction:*`
@@ -71,28 +36,56 @@ struct RALLYHEREAPI_API FRequest_CreateReportForTargetPlayerUuid : public FReque
 {
 	FRequest_CreateReportForTargetPlayerUuid();
 	virtual ~FRequest_CreateReportForTargetPlayerUuid() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FGuid PlayerUuid;
 	FRHAPI_PlayerReportCreate PlayerReportCreate;
 };
 
-struct RALLYHEREAPI_API FResponse_CreateReportForTargetPlayerUuid : public FResponse
+/** The response type for FRequest_CreateReportForTargetPlayerUuid */
+struct RALLYHEREAPI_API FResponse_CreateReportForTargetPlayerUuid : public FResponseAccessorTemplate<FRHAPI_PlayerReport, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerReport, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_CreateReportForTargetPlayerUuid(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_CreateReportForTargetPlayerUuid() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	//virtual ~FResponse_CreateReportForTargetPlayerUuid() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlayerReport Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_PlayerReport& OutContent) const { return TryGetContent<FRHAPI_PlayerReport>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_PlayerReport>& OutContent) const { return TryGetContent<FRHAPI_PlayerReport>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_PlayerReport* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlayerReport>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_PlayerReport> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlayerReport>(); }
 
-	// Manual Response Helpers
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -120,19 +113,36 @@ struct RALLYHEREAPI_API FResponse_CreateReportForTargetPlayerUuid : public FResp
 
 };
 
+/** The delegate class for FRequest_CreateReportForTargetPlayerUuid */
+DECLARE_DELEGATE_OneParam(FDelegate_CreateReportForTargetPlayerUuid, const FResponse_CreateReportForTargetPlayerUuid&);
+
+/** @brief A helper metadata object for CreateReportForTargetPlayerUuid that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_CreateReportForTargetPlayerUuid
 {
+	/** The request type */
 	typedef FRequest_CreateReportForTargetPlayerUuid Request;
+	/** The response type */
 	typedef FResponse_CreateReportForTargetPlayerUuid Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_CreateReportForTargetPlayerUuid Delegate;
+	/** The API object that supports this API call */
 	typedef FReportsAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->CreateReportForTargetPlayerUuid(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Get Reports For Target Player Uuid
- *
+/**
+ * @brief Get Reports For Target Player Uuid
  * Get reports for a target player
  * Required Permissions:
  * 
@@ -150,12 +160,19 @@ struct RALLYHEREAPI_API FRequest_GetReportsForTargetPlayerUuid : public FRequest
 {
 	FRequest_GetReportsForTargetPlayerUuid();
 	virtual ~FRequest_GetReportsForTargetPlayerUuid() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FGuid PlayerUuid;
 	/* Pass this on subsequent calls to iterate forwards.  Null/missing value indicates the first page */
@@ -163,17 +180,38 @@ struct RALLYHEREAPI_API FRequest_GetReportsForTargetPlayerUuid : public FRequest
 	TOptional<int32> PageSize;
 };
 
-struct RALLYHEREAPI_API FResponse_GetReportsForTargetPlayerUuid : public FResponse
+/** The response type for FRequest_GetReportsForTargetPlayerUuid */
+struct RALLYHEREAPI_API FResponse_GetReportsForTargetPlayerUuid : public FResponseAccessorTemplate<FRHAPI_PlayerReportList, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerReportList, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_GetReportsForTargetPlayerUuid(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetReportsForTargetPlayerUuid() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	//virtual ~FResponse_GetReportsForTargetPlayerUuid() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlayerReportList Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_PlayerReportList& OutContent) const { return TryGetContent<FRHAPI_PlayerReportList>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_PlayerReportList>& OutContent) const { return TryGetContent<FRHAPI_PlayerReportList>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_PlayerReportList* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlayerReportList>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_PlayerReportList> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlayerReportList>(); }
 
-	// Manual Response Helpers
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -196,19 +234,36 @@ struct RALLYHEREAPI_API FResponse_GetReportsForTargetPlayerUuid : public FRespon
 
 };
 
+/** The delegate class for FRequest_GetReportsForTargetPlayerUuid */
+DECLARE_DELEGATE_OneParam(FDelegate_GetReportsForTargetPlayerUuid, const FResponse_GetReportsForTargetPlayerUuid&);
+
+/** @brief A helper metadata object for GetReportsForTargetPlayerUuid that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_GetReportsForTargetPlayerUuid
 {
+	/** The request type */
 	typedef FRequest_GetReportsForTargetPlayerUuid Request;
+	/** The response type */
 	typedef FResponse_GetReportsForTargetPlayerUuid Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetReportsForTargetPlayerUuid Delegate;
+	/** The API object that supports this API call */
 	typedef FReportsAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetReportsForTargetPlayerUuid(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Get Reports For Target Player Uuid Self
- *
+/**
+ * @brief Get Reports For Target Player Uuid Self
  * Get reports for a target player
  * Required Permissions:
  * 
@@ -226,29 +281,57 @@ struct RALLYHEREAPI_API FRequest_GetReportsForTargetPlayerUuidSelf : public FReq
 {
 	FRequest_GetReportsForTargetPlayerUuidSelf();
 	virtual ~FRequest_GetReportsForTargetPlayerUuidSelf() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	/* Pass this on subsequent calls to iterate forwards.  Null/missing value indicates the first page */
 	TOptional<FString> Cursor;
 	TOptional<int32> PageSize;
 };
 
-struct RALLYHEREAPI_API FResponse_GetReportsForTargetPlayerUuidSelf : public FResponse
+/** The response type for FRequest_GetReportsForTargetPlayerUuidSelf */
+struct RALLYHEREAPI_API FResponse_GetReportsForTargetPlayerUuidSelf : public FResponseAccessorTemplate<FRHAPI_PlayerReportList, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerReportList, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_GetReportsForTargetPlayerUuidSelf(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetReportsForTargetPlayerUuidSelf() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	//virtual ~FResponse_GetReportsForTargetPlayerUuidSelf() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlayerReportList Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_PlayerReportList& OutContent) const { return TryGetContent<FRHAPI_PlayerReportList>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_PlayerReportList>& OutContent) const { return TryGetContent<FRHAPI_PlayerReportList>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_PlayerReportList* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlayerReportList>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_PlayerReportList> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlayerReportList>(); }
 
-	// Manual Response Helpers
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -271,19 +354,36 @@ struct RALLYHEREAPI_API FResponse_GetReportsForTargetPlayerUuidSelf : public FRe
 
 };
 
+/** The delegate class for FRequest_GetReportsForTargetPlayerUuidSelf */
+DECLARE_DELEGATE_OneParam(FDelegate_GetReportsForTargetPlayerUuidSelf, const FResponse_GetReportsForTargetPlayerUuidSelf&);
+
+/** @brief A helper metadata object for GetReportsForTargetPlayerUuidSelf that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_GetReportsForTargetPlayerUuidSelf
 {
+	/** The request type */
 	typedef FRequest_GetReportsForTargetPlayerUuidSelf Request;
+	/** The response type */
 	typedef FResponse_GetReportsForTargetPlayerUuidSelf Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetReportsForTargetPlayerUuidSelf Delegate;
+	/** The API object that supports this API call */
 	typedef FReportsAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetReportsForTargetPlayerUuidSelf(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Get Reports From Source Player Uuid
- *
+/**
+ * @brief Get Reports From Source Player Uuid
  * Get reports from a source player
  * Required Permissions:
  * 
@@ -295,12 +395,19 @@ struct RALLYHEREAPI_API FRequest_GetReportsFromSourcePlayerUuid : public FReques
 {
 	FRequest_GetReportsFromSourcePlayerUuid();
 	virtual ~FRequest_GetReportsFromSourcePlayerUuid() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FGuid PlayerUuid;
 	/* Pass this on subsequent calls to iterate forwards.  Null/missing value indicates the first page */
@@ -308,17 +415,38 @@ struct RALLYHEREAPI_API FRequest_GetReportsFromSourcePlayerUuid : public FReques
 	TOptional<int32> PageSize;
 };
 
-struct RALLYHEREAPI_API FResponse_GetReportsFromSourcePlayerUuid : public FResponse
+/** The response type for FRequest_GetReportsFromSourcePlayerUuid */
+struct RALLYHEREAPI_API FResponse_GetReportsFromSourcePlayerUuid : public FResponseAccessorTemplate<FRHAPI_PlayerReportList, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerReportList, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_GetReportsFromSourcePlayerUuid(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetReportsFromSourcePlayerUuid() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	//virtual ~FResponse_GetReportsFromSourcePlayerUuid() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlayerReportList Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_PlayerReportList& OutContent) const { return TryGetContent<FRHAPI_PlayerReportList>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_PlayerReportList>& OutContent) const { return TryGetContent<FRHAPI_PlayerReportList>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_PlayerReportList* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlayerReportList>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_PlayerReportList> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlayerReportList>(); }
 
-	// Manual Response Helpers
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -341,19 +469,36 @@ struct RALLYHEREAPI_API FResponse_GetReportsFromSourcePlayerUuid : public FRespo
 
 };
 
+/** The delegate class for FRequest_GetReportsFromSourcePlayerUuid */
+DECLARE_DELEGATE_OneParam(FDelegate_GetReportsFromSourcePlayerUuid, const FResponse_GetReportsFromSourcePlayerUuid&);
+
+/** @brief A helper metadata object for GetReportsFromSourcePlayerUuid that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_GetReportsFromSourcePlayerUuid
 {
+	/** The request type */
 	typedef FRequest_GetReportsFromSourcePlayerUuid Request;
+	/** The response type */
 	typedef FResponse_GetReportsFromSourcePlayerUuid Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetReportsFromSourcePlayerUuid Delegate;
+	/** The API object that supports this API call */
 	typedef FReportsAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetReportsFromSourcePlayerUuid(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Get Reports From Source Player Uuid Self
- *
+/**
+ * @brief Get Reports From Source Player Uuid Self
  * Get reports from a source player
  * Required Permissions:
  * 
@@ -365,29 +510,57 @@ struct RALLYHEREAPI_API FRequest_GetReportsFromSourcePlayerUuidSelf : public FRe
 {
 	FRequest_GetReportsFromSourcePlayerUuidSelf();
 	virtual ~FRequest_GetReportsFromSourcePlayerUuidSelf() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	/* Pass this on subsequent calls to iterate forwards.  Null/missing value indicates the first page */
 	TOptional<FString> Cursor;
 	TOptional<int32> PageSize;
 };
 
-struct RALLYHEREAPI_API FResponse_GetReportsFromSourcePlayerUuidSelf : public FResponse
+/** The response type for FRequest_GetReportsFromSourcePlayerUuidSelf */
+struct RALLYHEREAPI_API FResponse_GetReportsFromSourcePlayerUuidSelf : public FResponseAccessorTemplate<FRHAPI_PlayerReportList, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerReportList, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_GetReportsFromSourcePlayerUuidSelf(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetReportsFromSourcePlayerUuidSelf() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	//virtual ~FResponse_GetReportsFromSourcePlayerUuidSelf() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlayerReportList Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_PlayerReportList& OutContent) const { return TryGetContent<FRHAPI_PlayerReportList>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_PlayerReportList>& OutContent) const { return TryGetContent<FRHAPI_PlayerReportList>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_PlayerReportList* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlayerReportList>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_PlayerReportList> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlayerReportList>(); }
 
-	// Manual Response Helpers
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -410,16 +583,57 @@ struct RALLYHEREAPI_API FResponse_GetReportsFromSourcePlayerUuidSelf : public FR
 
 };
 
+/** The delegate class for FRequest_GetReportsFromSourcePlayerUuidSelf */
+DECLARE_DELEGATE_OneParam(FDelegate_GetReportsFromSourcePlayerUuidSelf, const FResponse_GetReportsFromSourcePlayerUuidSelf&);
+
+/** @brief A helper metadata object for GetReportsFromSourcePlayerUuidSelf that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_GetReportsFromSourcePlayerUuidSelf
 {
+	/** The request type */
 	typedef FRequest_GetReportsFromSourcePlayerUuidSelf Request;
+	/** The response type */
 	typedef FResponse_GetReportsFromSourcePlayerUuidSelf Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetReportsFromSourcePlayerUuidSelf Delegate;
+	/** The API object that supports this API call */
 	typedef FReportsAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetReportsFromSourcePlayerUuidSelf(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
+
+
+/** The API class itself, which will handle calls to */
+class RALLYHEREAPI_API FReportsAPI : public FAPI
+{
+public:
+	FReportsAPI();
+	virtual ~FReportsAPI();
+
+	FHttpRequestPtr CreateReportForTargetPlayerUuid(const FRequest_CreateReportForTargetPlayerUuid& Request, const FDelegate_CreateReportForTargetPlayerUuid& Delegate = FDelegate_CreateReportForTargetPlayerUuid(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetReportsForTargetPlayerUuid(const FRequest_GetReportsForTargetPlayerUuid& Request, const FDelegate_GetReportsForTargetPlayerUuid& Delegate = FDelegate_GetReportsForTargetPlayerUuid(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetReportsForTargetPlayerUuidSelf(const FRequest_GetReportsForTargetPlayerUuidSelf& Request, const FDelegate_GetReportsForTargetPlayerUuidSelf& Delegate = FDelegate_GetReportsForTargetPlayerUuidSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetReportsFromSourcePlayerUuid(const FRequest_GetReportsFromSourcePlayerUuid& Request, const FDelegate_GetReportsFromSourcePlayerUuid& Delegate = FDelegate_GetReportsFromSourcePlayerUuid(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetReportsFromSourcePlayerUuidSelf(const FRequest_GetReportsFromSourcePlayerUuidSelf& Request, const FDelegate_GetReportsFromSourcePlayerUuidSelf& Delegate = FDelegate_GetReportsFromSourcePlayerUuidSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+
+private:
+	void OnCreateReportForTargetPlayerUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateReportForTargetPlayerUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetReportsForTargetPlayerUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetReportsForTargetPlayerUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetReportsForTargetPlayerUuidSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetReportsForTargetPlayerUuidSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetReportsFromSourcePlayerUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetReportsFromSourcePlayerUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetReportsFromSourcePlayerUuidSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetReportsFromSourcePlayerUuidSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+
+};
+
 
 
 }

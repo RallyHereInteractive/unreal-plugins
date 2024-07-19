@@ -22,46 +22,11 @@ using RallyHereAPI::ToStringFormatArg;
 using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
-struct FRequest_GetPlayerPresencePublicById;
-struct FResponse_GetPlayerPresencePublicById;
-struct FRequest_GetPlayerPresencePublicByUuid;
-struct FResponse_GetPlayerPresencePublicByUuid;
-struct FRequest_GetPlayerPresenceSelf;
-struct FResponse_GetPlayerPresenceSelf;
-struct FRequest_GetPresenceSettings;
-struct FResponse_GetPresenceSettings;
-struct FRequest_UpdatePlayerPresenceSelf;
-struct FResponse_UpdatePlayerPresenceSelf;
+// forward declaration
+class FPresenceAPI;
 
-DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerPresencePublicById, const FResponse_GetPlayerPresencePublicById&);
-DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerPresencePublicByUuid, const FResponse_GetPlayerPresencePublicByUuid&);
-DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerPresenceSelf, const FResponse_GetPlayerPresenceSelf&);
-DECLARE_DELEGATE_OneParam(FDelegate_GetPresenceSettings, const FResponse_GetPresenceSettings&);
-DECLARE_DELEGATE_OneParam(FDelegate_UpdatePlayerPresenceSelf, const FResponse_UpdatePlayerPresenceSelf&);
-
-class RALLYHEREAPI_API FPresenceAPI : public FAPI
-{
-public:
-	FPresenceAPI();
-	virtual ~FPresenceAPI();
-
-	FHttpRequestPtr GetPlayerPresencePublicById(const FRequest_GetPlayerPresencePublicById& Request, const FDelegate_GetPlayerPresencePublicById& Delegate = FDelegate_GetPlayerPresencePublicById(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetPlayerPresencePublicByUuid(const FRequest_GetPlayerPresencePublicByUuid& Request, const FDelegate_GetPlayerPresencePublicByUuid& Delegate = FDelegate_GetPlayerPresencePublicByUuid(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetPlayerPresenceSelf(const FRequest_GetPlayerPresenceSelf& Request, const FDelegate_GetPlayerPresenceSelf& Delegate = FDelegate_GetPlayerPresenceSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetPresenceSettings(const FRequest_GetPresenceSettings& Request, const FDelegate_GetPresenceSettings& Delegate = FDelegate_GetPresenceSettings(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr UpdatePlayerPresenceSelf(const FRequest_UpdatePlayerPresenceSelf& Request, const FDelegate_UpdatePlayerPresenceSelf& Delegate = FDelegate_UpdatePlayerPresenceSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-
-private:
-	void OnGetPlayerPresencePublicByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerPresencePublicById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnGetPlayerPresencePublicByUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerPresencePublicByUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnGetPlayerPresenceSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerPresenceSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnGetPresenceSettingsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPresenceSettings Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnUpdatePlayerPresenceSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdatePlayerPresenceSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-
-};
-
-/* Get Player Presence Public By Id
- *
+/**
+ * @brief Get Player Presence Public By Id
  * Get the player's presence information. The status will be modified based on the following rules:
  * - A status of invisible will be reported as offline
  * - The status will become offline if older than the configured age
@@ -70,12 +35,19 @@ struct RALLYHEREAPI_API FRequest_GetPlayerPresencePublicById : public FRequest
 {
 	FRequest_GetPlayerPresencePublicById();
 	virtual ~FRequest_GetPlayerPresencePublicById() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	/* A valid integer identifying a player. Rejects UUID player identification. */
 	int32 PlayerId = 0;
@@ -84,20 +56,52 @@ struct RALLYHEREAPI_API FRequest_GetPlayerPresencePublicById : public FRequest
 	TOptional<FString> IfNoneMatch;
 };
 
-struct RALLYHEREAPI_API FResponse_GetPlayerPresencePublicById : public FResponse
+/** The response type for FRequest_GetPlayerPresencePublicById */
+struct RALLYHEREAPI_API FResponse_GetPlayerPresencePublicById : public FResponseAccessorTemplate<FRHAPI_PlayerPresence, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerPresence, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_GetPlayerPresencePublicById(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetPlayerPresencePublicById() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
+	//virtual ~FResponse_GetPlayerPresencePublicById() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlayerPresence Content;
-	// Headers
+	
+	/** Default Response Headers */
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
 	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_PlayerPresence& OutContent) const { return TryGetContent<FRHAPI_PlayerPresence>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_PlayerPresence>& OutContent) const { return TryGetContent<FRHAPI_PlayerPresence>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_PlayerPresence* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlayerPresence>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_PlayerPresence> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlayerPresence>(); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(FString& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_ETag() const { return TryGetHeaderAsPointer(TEXT("ETag")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_ETag() const { return TryGetHeaderAsOptional(TEXT("ETag")); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -122,19 +126,36 @@ struct RALLYHEREAPI_API FResponse_GetPlayerPresencePublicById : public FResponse
 
 };
 
+/** The delegate class for FRequest_GetPlayerPresencePublicById */
+DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerPresencePublicById, const FResponse_GetPlayerPresencePublicById&);
+
+/** @brief A helper metadata object for GetPlayerPresencePublicById that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_GetPlayerPresencePublicById
 {
+	/** The request type */
 	typedef FRequest_GetPlayerPresencePublicById Request;
+	/** The response type */
 	typedef FResponse_GetPlayerPresencePublicById Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetPlayerPresencePublicById Delegate;
+	/** The API object that supports this API call */
 	typedef FPresenceAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerPresencePublicById(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Get Player Presence Public By Uuid
- *
+/**
+ * @brief Get Player Presence Public By Uuid
  * Get the player's presence information. The status will be modified based on the following rules:
  * - A status of invisible will be reported as offline
  * - The status will become offline if older than the configured age
@@ -143,12 +164,19 @@ struct RALLYHEREAPI_API FRequest_GetPlayerPresencePublicByUuid : public FRequest
 {
 	FRequest_GetPlayerPresencePublicByUuid();
 	virtual ~FRequest_GetPlayerPresencePublicByUuid() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	/* A valid UUID identifying a player. Rejects integer player identification. */
 	FGuid PlayerUuid;
@@ -157,20 +185,52 @@ struct RALLYHEREAPI_API FRequest_GetPlayerPresencePublicByUuid : public FRequest
 	TOptional<FString> IfNoneMatch;
 };
 
-struct RALLYHEREAPI_API FResponse_GetPlayerPresencePublicByUuid : public FResponse
+/** The response type for FRequest_GetPlayerPresencePublicByUuid */
+struct RALLYHEREAPI_API FResponse_GetPlayerPresencePublicByUuid : public FResponseAccessorTemplate<FRHAPI_PlayerPresence, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerPresence, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_GetPlayerPresencePublicByUuid(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetPlayerPresencePublicByUuid() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
+	//virtual ~FResponse_GetPlayerPresencePublicByUuid() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlayerPresence Content;
-	// Headers
+	
+	/** Default Response Headers */
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
 	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_PlayerPresence& OutContent) const { return TryGetContent<FRHAPI_PlayerPresence>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_PlayerPresence>& OutContent) const { return TryGetContent<FRHAPI_PlayerPresence>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_PlayerPresence* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlayerPresence>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_PlayerPresence> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlayerPresence>(); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(FString& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_ETag() const { return TryGetHeaderAsPointer(TEXT("ETag")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_ETag() const { return TryGetHeaderAsOptional(TEXT("ETag")); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -195,19 +255,36 @@ struct RALLYHEREAPI_API FResponse_GetPlayerPresencePublicByUuid : public FRespon
 
 };
 
+/** The delegate class for FRequest_GetPlayerPresencePublicByUuid */
+DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerPresencePublicByUuid, const FResponse_GetPlayerPresencePublicByUuid&);
+
+/** @brief A helper metadata object for GetPlayerPresencePublicByUuid that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_GetPlayerPresencePublicByUuid
 {
+	/** The request type */
 	typedef FRequest_GetPlayerPresencePublicByUuid Request;
+	/** The response type */
 	typedef FResponse_GetPlayerPresencePublicByUuid Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetPlayerPresencePublicByUuid Delegate;
+	/** The API object that supports this API call */
 	typedef FPresenceAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerPresencePublicByUuid(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Get Player Presence Self
- *
+/**
+ * @brief Get Player Presence Self
  * Get the player's presence information. The status reflects the true value and is not modified before it
  * is returned.
 */
@@ -215,30 +292,69 @@ struct RALLYHEREAPI_API FRequest_GetPlayerPresenceSelf : public FRequest
 {
 	FRequest_GetPlayerPresenceSelf();
 	virtual ~FRequest_GetPlayerPresenceSelf() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	TOptional<bool> UseCache;
 };
 
-struct RALLYHEREAPI_API FResponse_GetPlayerPresenceSelf : public FResponse
+/** The response type for FRequest_GetPlayerPresenceSelf */
+struct RALLYHEREAPI_API FResponse_GetPlayerPresenceSelf : public FResponseAccessorTemplate<FRHAPI_PlayerPresence, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerPresence, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_GetPlayerPresenceSelf(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetPlayerPresenceSelf() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
+	//virtual ~FResponse_GetPlayerPresenceSelf() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_PlayerPresence Content;
-	// Headers
+	
+	/** Default Response Headers */
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
 	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_PlayerPresence& OutContent) const { return TryGetContent<FRHAPI_PlayerPresence>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_PlayerPresence>& OutContent) const { return TryGetContent<FRHAPI_PlayerPresence>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_PlayerPresence* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlayerPresence>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_PlayerPresence> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlayerPresence>(); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(FString& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_ETag() const { return TryGetHeaderAsPointer(TEXT("ETag")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_ETag() const { return TryGetHeaderAsOptional(TEXT("ETag")); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -258,43 +374,86 @@ struct RALLYHEREAPI_API FResponse_GetPlayerPresenceSelf : public FResponse
 
 };
 
+/** The delegate class for FRequest_GetPlayerPresenceSelf */
+DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerPresenceSelf, const FResponse_GetPlayerPresenceSelf&);
+
+/** @brief A helper metadata object for GetPlayerPresenceSelf that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_GetPlayerPresenceSelf
 {
+	/** The request type */
 	typedef FRequest_GetPlayerPresenceSelf Request;
+	/** The response type */
 	typedef FResponse_GetPlayerPresenceSelf Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetPlayerPresenceSelf Delegate;
+	/** The API object that supports this API call */
 	typedef FPresenceAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerPresenceSelf(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Get Presence Settings
- *
+/**
+ * @brief Get Presence Settings
  * Settings which help tell the client how it should interact with this service.
 */
 struct RALLYHEREAPI_API FRequest_GetPresenceSettings : public FRequest
 {
 	FRequest_GetPresenceSettings();
 	virtual ~FRequest_GetPresenceSettings() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
 
 };
 
-struct RALLYHEREAPI_API FResponse_GetPresenceSettings : public FResponse
+/** The response type for FRequest_GetPresenceSettings */
+struct RALLYHEREAPI_API FResponse_GetPresenceSettings : public FResponseAccessorTemplate<FRHAPI_ClientVisibleSettings>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_ClientVisibleSettings> Super;
+
 	FResponse_GetPresenceSettings(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetPresenceSettings() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	//virtual ~FResponse_GetPresenceSettings() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_ClientVisibleSettings Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_ClientVisibleSettings& OutContent) const { return TryGetContent<FRHAPI_ClientVisibleSettings>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_ClientVisibleSettings>& OutContent) const { return TryGetContent<FRHAPI_ClientVisibleSettings>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_ClientVisibleSettings* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_ClientVisibleSettings>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_ClientVisibleSettings> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_ClientVisibleSettings>(); }
 
-	// Manual Response Helpers
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -302,19 +461,36 @@ struct RALLYHEREAPI_API FResponse_GetPresenceSettings : public FResponse
 
 };
 
+/** The delegate class for FRequest_GetPresenceSettings */
+DECLARE_DELEGATE_OneParam(FDelegate_GetPresenceSettings, const FResponse_GetPresenceSettings&);
+
+/** @brief A helper metadata object for GetPresenceSettings that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_GetPresenceSettings
 {
+	/** The request type */
 	typedef FRequest_GetPresenceSettings Request;
+	/** The response type */
 	typedef FResponse_GetPresenceSettings Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetPresenceSettings Delegate;
+	/** The API object that supports this API call */
 	typedef FPresenceAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPresenceSettings(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Update Player Presence Self
- *
+/**
+ * @brief Update Player Presence Self
  * Update the player's online status and other presence data.
  * If the player reports their online status as online or away, their "last_seen" presence info is updated.
  * Player clients are expected to send requests to this endpoint on an interval of self_ping_interval_seconds.
@@ -324,31 +500,59 @@ struct RALLYHEREAPI_API FRequest_UpdatePlayerPresenceSelf : public FRequest
 {
 	FRequest_UpdatePlayerPresenceSelf();
 	virtual ~FRequest_UpdatePlayerPresenceSelf() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FRHAPI_PlayerPresenceUpdateSelf PlayerPresenceUpdateSelf;
 	TOptional<bool> UseCache;
 };
 
-struct RALLYHEREAPI_API FResponse_UpdatePlayerPresenceSelf : public FResponse
+/** The response type for FRequest_UpdatePlayerPresenceSelf */
+struct RALLYHEREAPI_API FResponse_UpdatePlayerPresenceSelf : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_UpdatePlayerPresenceSelf(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_UpdatePlayerPresenceSelf() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
+	//virtual ~FResponse_UpdatePlayerPresenceSelf() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	
-	// Headers
-	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
-	TOptional<FString> ETag;
+#if ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(FString& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_ETag() const { return TryGetHeaderAsPointer(TEXT("ETag")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_ETag() const { return TryGetHeaderAsOptional(TEXT("ETag")); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -372,16 +576,57 @@ struct RALLYHEREAPI_API FResponse_UpdatePlayerPresenceSelf : public FResponse
 
 };
 
+/** The delegate class for FRequest_UpdatePlayerPresenceSelf */
+DECLARE_DELEGATE_OneParam(FDelegate_UpdatePlayerPresenceSelf, const FResponse_UpdatePlayerPresenceSelf&);
+
+/** @brief A helper metadata object for UpdatePlayerPresenceSelf that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_UpdatePlayerPresenceSelf
 {
+	/** The request type */
 	typedef FRequest_UpdatePlayerPresenceSelf Request;
+	/** The response type */
 	typedef FResponse_UpdatePlayerPresenceSelf Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_UpdatePlayerPresenceSelf Delegate;
+	/** The API object that supports this API call */
 	typedef FPresenceAPI API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->UpdatePlayerPresenceSelf(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
+
+
+/** The API class itself, which will handle calls to */
+class RALLYHEREAPI_API FPresenceAPI : public FAPI
+{
+public:
+	FPresenceAPI();
+	virtual ~FPresenceAPI();
+
+	FHttpRequestPtr GetPlayerPresencePublicById(const FRequest_GetPlayerPresencePublicById& Request, const FDelegate_GetPlayerPresencePublicById& Delegate = FDelegate_GetPlayerPresencePublicById(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetPlayerPresencePublicByUuid(const FRequest_GetPlayerPresencePublicByUuid& Request, const FDelegate_GetPlayerPresencePublicByUuid& Delegate = FDelegate_GetPlayerPresencePublicByUuid(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetPlayerPresenceSelf(const FRequest_GetPlayerPresenceSelf& Request, const FDelegate_GetPlayerPresenceSelf& Delegate = FDelegate_GetPlayerPresenceSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetPresenceSettings(const FRequest_GetPresenceSettings& Request, const FDelegate_GetPresenceSettings& Delegate = FDelegate_GetPresenceSettings(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr UpdatePlayerPresenceSelf(const FRequest_UpdatePlayerPresenceSelf& Request, const FDelegate_UpdatePlayerPresenceSelf& Delegate = FDelegate_UpdatePlayerPresenceSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+
+private:
+	void OnGetPlayerPresencePublicByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerPresencePublicById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetPlayerPresencePublicByUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerPresencePublicByUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetPlayerPresenceSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerPresenceSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetPresenceSettingsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPresenceSettings Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnUpdatePlayerPresenceSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdatePlayerPresenceSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+
+};
+
 
 
 }
