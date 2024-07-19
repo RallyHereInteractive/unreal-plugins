@@ -4,6 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
+`define `[`PEX_ADD_INDEXED_STAT_TO_REPORT`](#group__PlayerExperience_1gaa850fc9aac069e2fa6756c926e1e7e3a)            | 
 `enum `[`ERH_PEXValueType`](#group__PlayerExperience_1ga4aa4d68c147f6cf7a965526bf6942234)            | Enum representing what value should be recorded when only a single value is requested for display or logging.
 `class `[`URH_PEXCollectorConfig`](#classURH__PEXCollectorConfig) | 
 `class `[`URH_PEXCollectorConfig_Client`](#classURH__PEXCollectorConfig__Client) | 
@@ -24,6 +25,8 @@
 `struct `[`FRH_StatAccumulator`](#structFRH__StatAccumulator) | Simple accumulator that represents a captured statistic. Tracks min, max, average, and other values internally without having to store all values.
 
 ## Members
+
+#### `define `[`PEX_ADD_INDEXED_STAT_TO_REPORT`](#group__PlayerExperience_1gaa850fc9aac069e2fa6756c926e1e7e3a) <a id="group__PlayerExperience_1gaa850fc9aac069e2fa6756c926e1e7e3a"></a>
 
 #### `enum `[`ERH_PEXValueType`](#group__PlayerExperience_1ga4aa4d68c147f6cf7a965526bf6942234) <a id="group__PlayerExperience_1ga4aa4d68c147f6cf7a965526bf6942234"></a>
 
@@ -218,6 +221,8 @@ Base class for a group of stats.
 `public inline virtual TSharedPtr< FJsonObject > `[`GetSummary`](#classURH__PEXStatGroup_1a97f8da2b17e67549687dd95e0ed20c1d)`() const` | Write the summary data to a JSON object.
 `public inline virtual FString `[`GetTimelineCSVHeader`](#classURH__PEXStatGroup_1a42e88b291697e54f60ab5456c32c6495)`() const` | Write the timeline data header to a CSV file for all stats.
 `public inline virtual FString `[`GetTimelineCSVValues`](#classURH__PEXStatGroup_1ac01e22d6cfb9def52b82ba36365d6589)`() const` | Write the timeline data values to a CSV file for all stats.
+`public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXStatGroup_1a5f4775578ec0a4871098c5b0cfe295e1)`(`[`FRHAPI_PexHostRequest`](models/RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` | Fill in a API PEX host summary report with the summary data.
+`public inline virtual void `[`GetPEXClientSummary`](#classURH__PEXStatGroup_1a310a8d8a8afffb1eb5c3cdef87c7fe31)`(`[`FRHAPI_PexClientRequest`](models/RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` & Report) const` | Fill in a API PEX client summary report with the summary data.
 
 ### Members
 
@@ -272,6 +277,14 @@ Write the timeline data header to a CSV file for all stats.
 
 Write the timeline data values to a CSV file for all stats.
 
+#### `public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXStatGroup_1a5f4775578ec0a4871098c5b0cfe295e1)`(`[`FRHAPI_PexHostRequest`](models/RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` <a id="classURH__PEXStatGroup_1a5f4775578ec0a4871098c5b0cfe295e1"></a>
+
+Fill in a API PEX host summary report with the summary data.
+
+#### `public inline virtual void `[`GetPEXClientSummary`](#classURH__PEXStatGroup_1a310a8d8a8afffb1eb5c3cdef87c7fe31)`(`[`FRHAPI_PexClientRequest`](models/RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` & Report) const` <a id="classURH__PEXStatGroup_1a310a8d8a8afffb1eb5c3cdef87c7fe31"></a>
+
+Fill in a API PEX client summary report with the summary data.
+
 ## class `URH_PEXCollector` <a id="classURH__PEXCollector"></a>
 
 ```
@@ -290,6 +303,7 @@ PlayerExperience Collector class, responsible for collecting and tracking PEX da
 `public virtual bool `[`Init`](#classURH__PEXCollector_1a5976807cc07bb1aba1719f8949df42a2)`(`[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` * InOwner)` | Initialize the collector. Can only be done once.
 `public virtual void `[`OnEndFrame`](#classURH__PEXCollector_1a4aef02ed0ddba34d7b2f970537071d01)`()` | Tick the collector, updating per frame stats and potentially per second stats.
 `public inline const `[`URH_PEXCollectorConfig`](PlayerExperience.md#classURH__PEXCollectorConfig)` * `[`GetConfig`](#classURH__PEXCollector_1a71bd22ee8057031fe4adbfb7c06bc48e)`() const` | Retrieve the config to use for this collector instance.
+`public inline void `[`ResetSummary`](#classURH__PEXCollector_1a73fa2f29acff15a77101afdf3ca6214a)`()` | Reset the summary state, which is useful if wanting to trim the front of the summary to when gameplay starts.
 `public void `[`Close`](#classURH__PEXCollector_1a29b53ef9f1777a3bb14cda202bc9e8a9)`()` | Closes state, writes summary if needed, and uploads data if needed. Can only be done once.
 `public void `[`WriteSummary`](#classURH__PEXCollector_1ad508ef615e45584a827b3aeb7bac96b6)`()` | Writes summary data to file and/or API, and uploads any data requested, can only be called once
 `protected TWeakInterfacePtr< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > `[`Owner`](#classURH__PEXCollector_1ae8ba839b956c23850efc1549e9d542d4) | Cached owner of the collector
@@ -302,6 +316,7 @@ PlayerExperience Collector class, responsible for collecting and tracking PEX da
 `protected bool `[`bHasBeenClosed`](#classURH__PEXCollector_1af11d6bd32f2abb6a738136cf6270ca93) | Whether the collector has been closed, to guard against it being closed multiple times.
 `protected bool `[`bHasWrittenSummary`](#classURH__PEXCollector_1abce5549764d70cb3b377353cdac3c74f) | Whether the summary data has been written, to guard against it being written multiple times.
 `protected double `[`TimeTracker`](#classURH__PEXCollector_1a351f5e98ee2ecdda2445f86ccf6b841f) | Time accumulator so that time is always monotonic
+`protected bool `[`bFirstInterval`](#classURH__PEXCollector_1a9bd4147663fa52e563cc468f2835ab6c) | Whether this is the first interval being captured (will be ignored for summary as it is partial)
 `protected TSet< TSubclassOf< `[`URH_PEXStatGroup`](PlayerExperience.md#classURH__PEXStatGroup)` > > `[`StatGroupsToCapture`](#classURH__PEXCollector_1ac7d98a2968afa62c76d13442d2babd33) | Array of StatGroups to capture
 `protected TArray< `[`URH_PEXStatGroup`](PlayerExperience.md#classURH__PEXStatGroup)` * > `[`StatGroups`](#classURH__PEXCollector_1a7fa3e9f107045ba95e975f6216d99d75) | 
 `protected class FArchive * `[`TimelineFileCSV`](#classURH__PEXCollector_1a82fd95d78b4ec189504331f0e8c0ab9d) | Local file archive to write timeline data to
@@ -325,6 +340,10 @@ Tick the collector, updating per frame stats and potentially per second stats.
 #### `public inline const `[`URH_PEXCollectorConfig`](PlayerExperience.md#classURH__PEXCollectorConfig)` * `[`GetConfig`](#classURH__PEXCollector_1a71bd22ee8057031fe4adbfb7c06bc48e)`() const` <a id="classURH__PEXCollector_1a71bd22ee8057031fe4adbfb7c06bc48e"></a>
 
 Retrieve the config to use for this collector instance.
+
+#### `public inline void `[`ResetSummary`](#classURH__PEXCollector_1a73fa2f29acff15a77101afdf3ca6214a)`()` <a id="classURH__PEXCollector_1a73fa2f29acff15a77101afdf3ca6214a"></a>
+
+Reset the summary state, which is useful if wanting to trim the front of the summary to when gameplay starts.
 
 #### `public void `[`Close`](#classURH__PEXCollector_1a29b53ef9f1777a3bb14cda202bc9e8a9)`()` <a id="classURH__PEXCollector_1a29b53ef9f1777a3bb14cda202bc9e8a9"></a>
 
@@ -374,6 +393,10 @@ Whether the summary data has been written, to guard against it being written mul
 
 Time accumulator so that time is always monotonic
 
+#### `protected bool `[`bFirstInterval`](#classURH__PEXCollector_1a9bd4147663fa52e563cc468f2835ab6c) <a id="classURH__PEXCollector_1a9bd4147663fa52e563cc468f2835ab6c"></a>
+
+Whether this is the first interval being captured (will be ignored for summary as it is partial)
+
 #### `protected TSet< TSubclassOf< `[`URH_PEXStatGroup`](PlayerExperience.md#classURH__PEXStatGroup)` > > `[`StatGroupsToCapture`](#classURH__PEXCollector_1ac7d98a2968afa62c76d13442d2babd33) <a id="classURH__PEXCollector_1ac7d98a2968afa62c76d13442d2babd33"></a>
 
 Array of StatGroups to capture
@@ -412,6 +435,8 @@ Stat group for capturing primary stats.
 `public inline virtual void `[`ResetCapture`](#classURH__PEXPrimaryStats_1aba0a2de6d3584d07173b9be4997a8d3d)`()` | Reset the capture state of all stats.
 `public inline virtual FString `[`GetTimelineCSVHeader`](#classURH__PEXPrimaryStats_1a1c524a3efc9475502ea7990dc4f0199f)`() const` | Write the timeline data header to a CSV file for all stats.
 `public inline virtual FString `[`GetTimelineCSVValues`](#classURH__PEXPrimaryStats_1a95c1bee020304e95ef71956f0dd243c4)`() const` | Write the timeline data values to a CSV file for all stats.
+`public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXPrimaryStats_1aef86c588fefc43c341cf91531ea53b21)`(`[`FRHAPI_PexHostRequest`](models/RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` | Fill in a API PEX host summary report with the summary data.
+`public inline virtual void `[`GetPEXClientSummary`](#classURH__PEXPrimaryStats_1a56041f0246ba4a1dca4dc304caea7a42)`(`[`FRHAPI_PexClientRequest`](models/RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` & Report) const` | Fill in a API PEX client summary report with the summary data.
 `enum `[`ECaptureStat`](#classURH__PEXPrimaryStats_1aecdee206733b40ae82e847268875722a) | 
 
 ### Members
@@ -441,6 +466,14 @@ Write the timeline data header to a CSV file for all stats.
 #### `public inline virtual FString `[`GetTimelineCSVValues`](#classURH__PEXPrimaryStats_1a95c1bee020304e95ef71956f0dd243c4)`() const` <a id="classURH__PEXPrimaryStats_1a95c1bee020304e95ef71956f0dd243c4"></a>
 
 Write the timeline data values to a CSV file for all stats.
+
+#### `public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXPrimaryStats_1aef86c588fefc43c341cf91531ea53b21)`(`[`FRHAPI_PexHostRequest`](models/RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` <a id="classURH__PEXPrimaryStats_1aef86c588fefc43c341cf91531ea53b21"></a>
+
+Fill in a API PEX host summary report with the summary data.
+
+#### `public inline virtual void `[`GetPEXClientSummary`](#classURH__PEXPrimaryStats_1a56041f0246ba4a1dca4dc304caea7a42)`(`[`FRHAPI_PexClientRequest`](models/RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` & Report) const` <a id="classURH__PEXPrimaryStats_1a56041f0246ba4a1dca4dc304caea7a42"></a>
+
+Fill in a API PEX client summary report with the summary data.
 
 #### `enum `[`ECaptureStat`](#classURH__PEXPrimaryStats_1aecdee206733b40ae82e847268875722a) <a id="classURH__PEXPrimaryStats_1aecdee206733b40ae82e847268875722a"></a>
 
@@ -476,25 +509,37 @@ Stat group for capturing whole-state network stats.
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public  `[`URH_PEXNetworkStats_Base`](#classURH__PEXNetworkStats__Base_1af3a02b991ff93ef56148932b5c4cee60)`()` | 
+`public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXNetworkStats__Base_1a955776d5d441399b8efc0e5ae8703a0e)`(`[`FRHAPI_PexHostRequest`](models/RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` | Fill in a API PEX host summary report with the summary data.
+`public inline virtual void `[`GetPEXClientSummary`](#classURH__PEXNetworkStats__Base_1a056e52f6d8e9f191af2ce3f4416c4158)`(`[`FRHAPI_PexClientRequest`](models/RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` & Report) const` | Fill in a API PEX client summary report with the summary data.
 `enum `[`ECaptureStat`](#classURH__PEXNetworkStats__Base_1ab8bc9fbd98d6629a8fe3a39cdf3acdf5) | 
 
 ### Members
 
 #### `public  `[`URH_PEXNetworkStats_Base`](#classURH__PEXNetworkStats__Base_1af3a02b991ff93ef56148932b5c4cee60)`()` <a id="classURH__PEXNetworkStats__Base_1af3a02b991ff93ef56148932b5c4cee60"></a>
 
+#### `public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXNetworkStats__Base_1a955776d5d441399b8efc0e5ae8703a0e)`(`[`FRHAPI_PexHostRequest`](models/RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` <a id="classURH__PEXNetworkStats__Base_1a955776d5d441399b8efc0e5ae8703a0e"></a>
+
+Fill in a API PEX host summary report with the summary data.
+
+#### `public inline virtual void `[`GetPEXClientSummary`](#classURH__PEXNetworkStats__Base_1a056e52f6d8e9f191af2ce3f4416c4158)`(`[`FRHAPI_PexClientRequest`](models/RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` & Report) const` <a id="classURH__PEXNetworkStats__Base_1a056e52f6d8e9f191af2ce3f4416c4158"></a>
+
+Fill in a API PEX client summary report with the summary data.
+
 #### `enum `[`ECaptureStat`](#classURH__PEXNetworkStats__Base_1ab8bc9fbd98d6629a8fe3a39cdf3acdf5) <a id="classURH__PEXNetworkStats__Base_1ab8bc9fbd98d6629a8fe3a39cdf3acdf5"></a>
 
  Values                         | Descriptions                                
 --------------------------------|---------------------------------------------
 ConnectionCount            | 
-AvgPing            | 
+Ping            | 
 InPackets            | 
 OutPackets            | 
 TotalPackets            | 
 InPacketsLost            | 
 OutPacketsLost            | 
 TotalPacketsLost            | 
-PacketLoss            | 
+InPacketLossPct            | 
+OutPacketLossPct            | 
+TotalPacketLossPct            | 
 Max            | 
 
 ## class `URH_PEXNetworkStats_Global` <a id="classURH__PEXNetworkStats__Global"></a>
@@ -584,6 +629,8 @@ Stat group for capturing local whole-state network stats, plus per-player stats.
 `public inline virtual FString `[`GetTimelineCSVValues`](#classURH__PEXNetworkStats_1acc2a3707daf8c7089461ed3f087b65e7)`() const` | Write the timeline data values to a CSV file for all stats.
 `public inline virtual void `[`UpdateSummary`](#classURH__PEXNetworkStats_1acf9e8fe32ce4c2386ce84b2f59988df6)`()` | Update the summary state of all stats.
 `public inline virtual TSharedPtr< FJsonObject > `[`GetSummary`](#classURH__PEXNetworkStats_1a284f7730950b476eaf9d15ff724f2883)`() const` | Write the summary data to a JSON object.
+`public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXNetworkStats_1a18a03108cbe2dcb94d6dc97dd4f1a229)`(`[`FRHAPI_PexHostRequest`](models/RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` | Fill in a API PEX host summary report with the summary data.
+`public inline virtual void `[`GetPEXClientSummary`](#classURH__PEXNetworkStats_1aa53c887acc51913905a8081079263e88)`(`[`FRHAPI_PexClientRequest`](models/RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` & Report) const` | Fill in a API PEX client summary report with the summary data.
 `public virtual void `[`GetOrCreatePlayerNetworkStats`](#classURH__PEXNetworkStats_1afa1b79df29714e9f57582740684453e8)`(const class UNetConnection * Connection,`[`URH_PEXNetworkStats_Connection`](PlayerExperience.md#classURH__PEXNetworkStats__Connection)` *& OutPlayerNetworkStats)` | 
 `public virtual void `[`CapturePerFrameStats`](#classURH__PEXNetworkStats_1a76cf3d3b1f2739a851e695fc4e0bb760)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` | Capture once-per-frame stats.
 `public virtual void `[`CapturePerSecondStats`](#classURH__PEXNetworkStats_1a73ebe5e78ef7f9c9a8013905eee42ef3)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` | Capture once-per-second stats.
@@ -628,6 +675,14 @@ Update the summary state of all stats.
 #### `public inline virtual TSharedPtr< FJsonObject > `[`GetSummary`](#classURH__PEXNetworkStats_1a284f7730950b476eaf9d15ff724f2883)`() const` <a id="classURH__PEXNetworkStats_1a284f7730950b476eaf9d15ff724f2883"></a>
 
 Write the summary data to a JSON object.
+
+#### `public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXNetworkStats_1a18a03108cbe2dcb94d6dc97dd4f1a229)`(`[`FRHAPI_PexHostRequest`](models/RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` <a id="classURH__PEXNetworkStats_1a18a03108cbe2dcb94d6dc97dd4f1a229"></a>
+
+Fill in a API PEX host summary report with the summary data.
+
+#### `public inline virtual void `[`GetPEXClientSummary`](#classURH__PEXNetworkStats_1aa53c887acc51913905a8081079263e88)`(`[`FRHAPI_PexClientRequest`](models/RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` & Report) const` <a id="classURH__PEXNetworkStats_1aa53c887acc51913905a8081079263e88"></a>
+
+Fill in a API PEX client summary report with the summary data.
 
 #### `public virtual void `[`GetOrCreatePlayerNetworkStats`](#classURH__PEXNetworkStats_1afa1b79df29714e9f57582740684453e8)`(const class UNetConnection * Connection,`[`URH_PEXNetworkStats_Connection`](PlayerExperience.md#classURH__PEXNetworkStats__Connection)` *& OutPlayerNetworkStats)` <a id="classURH__PEXNetworkStats_1afa1b79df29714e9f57582740684453e8"></a>
 
@@ -811,6 +866,7 @@ Simple accumulator that represents a captured statistic. Tracks min, max, averag
 `public inline FName `[`GetName`](#structFRH__StatAccumulator_1a1a88cbe4e0cf605a8d764dffc7e73d60)`() const` | Get the name of the stat.
 `public inline float `[`GetTimelineValue`](#structFRH__StatAccumulator_1afb8eda2508255bd08ce9d110cbb08460)`() const` | Get the value of the stat to be recorded in the timeline.
 `public inline TSharedPtr< FJsonObject > `[`GetSummaryJson`](#structFRH__StatAccumulator_1aab14419061a5d9aabfe17e3b5c057389)`(bool bIncludeName) const` | Get a JSON object representing the summary data.
+`public inline bool `[`GetPexStat`](#structFRH__StatAccumulator_1a586d65db4e4dff6be2e48ac3de148796)`(`[`FRHAPI_PexStat`](models/RHAPI_PexStat.md#structFRHAPI__PexStat)` & PexStat) const` | Get a PexStat object representing the summary data.
 
 ### Members
 
@@ -872,4 +928,8 @@ Get the value of the stat to be recorded in the timeline.
 #### `public inline TSharedPtr< FJsonObject > `[`GetSummaryJson`](#structFRH__StatAccumulator_1aab14419061a5d9aabfe17e3b5c057389)`(bool bIncludeName) const` <a id="structFRH__StatAccumulator_1aab14419061a5d9aabfe17e3b5c057389"></a>
 
 Get a JSON object representing the summary data.
+
+#### `public inline bool `[`GetPexStat`](#structFRH__StatAccumulator_1a586d65db4e4dff6be2e48ac3de148796)`(`[`FRHAPI_PexStat`](models/RHAPI_PexStat.md#structFRHAPI__PexStat)` & PexStat) const` <a id="structFRH__StatAccumulator_1a586d65db4e4dff6be2e48ac3de148796"></a>
+
+Get a PexStat object representing the summary data.
 

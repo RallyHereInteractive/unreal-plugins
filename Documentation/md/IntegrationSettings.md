@@ -172,7 +172,8 @@ Main settings for the Integration.
 `public int32 `[`MatchesSearchPriority`](#classURH__IntegrationSettings_1a63a7d8e525b0db6042f399d61094761a) | Sets the request priority of Get Player Matches calls, lower number is higher priority.
 `public int32 `[`MatchesLookupPriority`](#classURH__IntegrationSettings_1a8c79269125b15b8e0edf76a04b5993d5) | Sets the request priority of Get Player Matches calls, lower number is higher priority.
 `public int32 `[`MatchesUpdatePriority`](#classURH__IntegrationSettings_1a2ca3d1abb532f983a051b1cd7b5ce1d1) | Sets the request priority of Create and Update Match calls, lower number is higher priority.
-`public int32 `[`MatchesUpdatePlayerPriority`](#classURH__IntegrationSettings_1aa6524d86c96ab7bb34fc238a6fe50585) | Sets the request priority of Create Match calls, lower number is higher priority.
+`public int32 `[`MatchesUpdatePlayerPriority`](#classURH__IntegrationSettings_1aa6524d86c96ab7bb34fc238a6fe50585) | Sets the request priority of Match Update Player calls, lower number is higher priority.
+`public int32 `[`PexReportPriority`](#classURH__IntegrationSettings_1a527ee5dad5b5fbfaff4b740dd9777aec) | Sets the request priority of Player Experience Report calls, lower number is higher priority.
 `public int32 `[`GetPlayerReportsSentPriority`](#classURH__IntegrationSettings_1a4ec711cf17691d176ef8b0e3b72b13c7) | Sets the request priority of Player Report calls, lower number is higher priority.
 `public int32 `[`GetPlayerReportsReceivedPriority`](#classURH__IntegrationSettings_1a2b63863ac05ffb58b7aac81941a37be2) | Sets the request priority of Player Report calls, lower number is higher priority.
 `public int32 `[`CreatePlayerReportPriority`](#classURH__IntegrationSettings_1aa434f7c18b7fbef17e6a94d98724cc72) | Sets the request priority of Player Report calls, lower number is higher priority.
@@ -794,7 +795,11 @@ Sets the request priority of Create and Update Match calls, lower number is high
 
 #### `public int32 `[`MatchesUpdatePlayerPriority`](#classURH__IntegrationSettings_1aa6524d86c96ab7bb34fc238a6fe50585) <a id="classURH__IntegrationSettings_1aa6524d86c96ab7bb34fc238a6fe50585"></a>
 
-Sets the request priority of Create Match calls, lower number is higher priority.
+Sets the request priority of Match Update Player calls, lower number is higher priority.
+
+#### `public int32 `[`PexReportPriority`](#classURH__IntegrationSettings_1a527ee5dad5b5fbfaff4b740dd9777aec) <a id="classURH__IntegrationSettings_1a527ee5dad5b5fbfaff4b740dd9777aec"></a>
+
+Sets the request priority of Player Experience Report calls, lower number is higher priority.
 
 #### `public int32 `[`GetPlayerReportsSentPriority`](#classURH__IntegrationSettings_1a4ec711cf17691d176ef8b0e3b72b13c7) <a id="classURH__IntegrationSettings_1a4ec711cf17691d176ef8b0e3b72b13c7"></a>
 
