@@ -340,7 +340,7 @@ void URH_GameInstanceSessionSubsystem::SubmitPEXHostSummary(FRHAPI_PexHostReques
 			const auto HostUuid = SessionOwner->GetPlayerUuid();
 			if (HostUuid.IsValid())
 			{
-				Report.SetHostPlayerUuid(HostUuid.ToString(EGuidFormats::DigitsWithHyphens));
+				Report.SetHostPlayerUuid(HostUuid);
 			}
 			
 			const auto AllocationId = SessionOwner->GetBoundAllocationId();
@@ -433,7 +433,7 @@ void URH_GameInstanceSessionSubsystem::SubmitPEXClientSummary(FRHAPI_PexClientRe
 			}
 			if (auto HostPlayerUuid = InstanceData->GetHostPlayerUuidOrNull())
 			{
-				Report.SetHostPlayerUuid(HostPlayerUuid->ToString(EGuidFormats::DigitsWithHyphens));
+				Report.SetHostPlayerUuid(*HostPlayerUuid);
 			}
 			if (auto ProfileId = InstanceData->GetMatchMakingProfileIdOrNull())
 			{

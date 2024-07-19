@@ -359,7 +359,7 @@ void URH_PEXCollector::WriteSummary()
 				// fill in basic data
 				FRHAPI_PexClientRequest ClientRequest;
 				ClientRequest.SetMatchId(CachedMatchId);
-				ClientRequest.SetPlayerUuid(CachedPlayerId.ToString(EGuidFormats::DigitsWithHyphens));
+				ClientRequest.SetPlayerUuid(CachedPlayerId);
 
 				// add stats
 				for (const auto StatGroup : StatGroups)
