@@ -15,6 +15,9 @@
 #include "MatchPlayerRequest.h"
 #include "MatchPlayerWithMatch.h"
 #include "MatchRequest.h"
+#include "MatchSegmentPatchRequest.h"
+#include "MatchSegmentRequest.h"
+#include "MatchSegmentWithPlayers.h"
 #include "MatchWithPlayers.h"
 #include "PagedMatchResponse.h"
 #include "PagedPlayerMatchResponse.h"
@@ -31,6 +34,10 @@ class FMatchAPI;
 /**
  * @brief Create Match
  * Create match by match_id
+ *     
+ *     Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+ *     
+ *     Or you have match:match:edit:authority and are the host of the match.
 */
 struct RALLYHEREAPI_API FRequest_CreateMatch : public FRequest
 {
@@ -133,6 +140,10 @@ struct RALLYHEREAPI_API Traits_CreateMatch
 /**
  * @brief Create Match Player
  * Create player match record for the provided player_uuid and match_id
+ *     
+ *     Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+ *     
+ *     Or you have match:match:edit:authority and are the host of the match.
 */
 struct RALLYHEREAPI_API FRequest_CreateMatchPlayer : public FRequest
 {
@@ -235,8 +246,113 @@ struct RALLYHEREAPI_API Traits_CreateMatchPlayer
 };
 
 /**
+ * @brief Create Match Segment
+ * Create match segment by match_id
+*/
+struct RALLYHEREAPI_API FRequest_CreateMatchSegment : public FRequest
+{
+	FRequest_CreateMatchSegment();
+	virtual ~FRequest_CreateMatchSegment() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FString MatchId;
+	FRHAPI_MatchSegmentRequest MatchSegmentRequest;
+};
+
+/** The response type for FRequest_CreateMatchSegment */
+struct RALLYHEREAPI_API FResponse_CreateMatchSegment : public FResponseAccessorTemplate<FRHAPI_MatchSegmentWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_MatchSegmentWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_CreateMatchSegment(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_CreateMatchSegment() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_MatchSegmentWithPlayers Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_MatchSegmentWithPlayers& OutContent) const { return TryGetContent<FRHAPI_MatchSegmentWithPlayers>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_MatchSegmentWithPlayers>& OutContent) const { return TryGetContent<FRHAPI_MatchSegmentWithPlayers>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_MatchSegmentWithPlayers* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_MatchSegmentWithPlayers>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_MatchSegmentWithPlayers> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_MatchSegmentWithPlayers>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_MatchSegmentWithPlayers& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_CreateMatchSegment */
+DECLARE_DELEGATE_OneParam(FDelegate_CreateMatchSegment, const FResponse_CreateMatchSegment&);
+
+/** @brief A helper metadata object for CreateMatchSegment that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_CreateMatchSegment
+{
+	/** The request type */
+	typedef FRequest_CreateMatchSegment Request;
+	/** The response type */
+	typedef FResponse_CreateMatchSegment Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_CreateMatchSegment Delegate;
+	/** The API object that supports this API call */
+	typedef FMatchAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
  * @brief Delete Match
  * Delete match by match_id
+ *     
+ *     Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
 */
 struct RALLYHEREAPI_API FRequest_DeleteMatch : public FRequest
 {
@@ -327,6 +443,8 @@ struct RALLYHEREAPI_API Traits_DeleteMatch
 /**
  * @brief Delete Match Player
  * Delete player by player_uuid and match_id
+ *     
+ *     Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
 */
 struct RALLYHEREAPI_API FRequest_DeleteMatchPlayer : public FRequest
 {
@@ -416,8 +534,102 @@ struct RALLYHEREAPI_API Traits_DeleteMatchPlayer
 };
 
 /**
+ * @brief Delete Match Segment
+ * Delete match segment by match_id and segment_id
+*/
+struct RALLYHEREAPI_API FRequest_DeleteMatchSegment : public FRequest
+{
+	FRequest_DeleteMatchSegment();
+	virtual ~FRequest_DeleteMatchSegment() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FString MatchId;
+	FString SegmentId;
+};
+
+/** The response type for FRequest_DeleteMatchSegment */
+struct RALLYHEREAPI_API FResponse_DeleteMatchSegment : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_DeleteMatchSegment(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_DeleteMatchSegment() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_DeleteMatchSegment */
+DECLARE_DELEGATE_OneParam(FDelegate_DeleteMatchSegment, const FResponse_DeleteMatchSegment&);
+
+/** @brief A helper metadata object for DeleteMatchSegment that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_DeleteMatchSegment
+{
+	/** The request type */
+	typedef FRequest_DeleteMatchSegment Request;
+	/** The response type */
+	typedef FResponse_DeleteMatchSegment Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_DeleteMatchSegment Delegate;
+	/** The API object that supports this API call */
+	typedef FMatchAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
  * @brief Get Match
  * Get match by match_id
+ *     
+ *     Must be part of the match or have the following permissions: 
+ *     any of: `match:*`, `match:match:any:read` match:match:player:read
 */
 struct RALLYHEREAPI_API FRequest_GetMatch : public FRequest
 {
@@ -525,6 +737,9 @@ struct RALLYHEREAPI_API Traits_GetMatch
 /**
  * @brief Get Match Player
  * Get a player match record for the provided player_uuid and match_id
+ *     
+ *     Must be on your own behalf or have the following permissions: 
+ *     any of: `match:*`, `match:match:player:read`, `match:player:any:read` : `match:player:self:read`
 */
 struct RALLYHEREAPI_API FRequest_GetMatchPlayer : public FRequest
 {
@@ -609,6 +824,114 @@ struct RALLYHEREAPI_API Traits_GetMatchPlayer
 	typedef FResponse_GetMatchPlayer Response;
 	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetMatchPlayer Delegate;
+	/** The API object that supports this API call */
+	typedef FMatchAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Match Segment
+ * Get match segment by match_id and segment_id
+*/
+struct RALLYHEREAPI_API FRequest_GetMatchSegment : public FRequest
+{
+	FRequest_GetMatchSegment();
+	virtual ~FRequest_GetMatchSegment() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FString MatchId;
+	FString SegmentId;
+};
+
+/** The response type for FRequest_GetMatchSegment */
+struct RALLYHEREAPI_API FResponse_GetMatchSegment : public FResponseAccessorTemplate<FRHAPI_MatchSegmentWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_MatchSegmentWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_GetMatchSegment(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetMatchSegment() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_MatchSegmentWithPlayers Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_MatchSegmentWithPlayers& OutContent) const { return TryGetContent<FRHAPI_MatchSegmentWithPlayers>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_MatchSegmentWithPlayers>& OutContent) const { return TryGetContent<FRHAPI_MatchSegmentWithPlayers>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_MatchSegmentWithPlayers* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_MatchSegmentWithPlayers>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_MatchSegmentWithPlayers> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_MatchSegmentWithPlayers>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_MatchSegmentWithPlayers& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetMatchSegment */
+DECLARE_DELEGATE_OneParam(FDelegate_GetMatchSegment, const FResponse_GetMatchSegment&);
+
+/** @brief A helper metadata object for GetMatchSegment that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetMatchSegment
+{
+	/** The request type */
+	typedef FRequest_GetMatchSegment Request;
+	/** The response type */
+	typedef FResponse_GetMatchSegment Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetMatchSegment Delegate;
 	/** The API object that supports this API call */
 	typedef FMatchAPI API;
 	/** A human readable name for this API call */
@@ -739,7 +1062,10 @@ struct RALLYHEREAPI_API Traits_GetMatches
 
 /**
  * @brief Get Player Matches Self
- * Get all matches for self
+ * Get all matches for self. Only provides matches for the player_uuid in the provided token.
+ *     
+ *     Must be on your own behalf or have the following permissions: 
+ *     any of: `match:*`, `match:match:player:read`, `match:player:any:read` : `match:player:self:read`
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerMatchesSelf : public FRequest
 {
@@ -843,7 +1169,10 @@ struct RALLYHEREAPI_API Traits_GetPlayerMatchesSelf
 
 /**
  * @brief Get Players Matches
- * Get All matches for a provided player_uuid
+ * Get All matches for a provided player_uuid.
+ *     
+ *     Must be on your own behalf or have the following permissions: 
+ *     any of: `match:*`, `match:match:player:read`, `match:player:any:read` : `match:player:self:read`
 */
 struct RALLYHEREAPI_API FRequest_GetPlayersMatches : public FRequest
 {
@@ -949,6 +1278,12 @@ struct RALLYHEREAPI_API Traits_GetPlayersMatches
 /**
  * @brief Patch Match
  * Update match by match_id only with provided fields
+ *     
+ *     Match must still be in a pending state.
+ *     
+ *     Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+ *     
+ *     Or you have match:match:edit:authority and are the host of the match.
 */
 struct RALLYHEREAPI_API FRequest_PatchMatch : public FRequest
 {
@@ -1051,7 +1386,13 @@ struct RALLYHEREAPI_API Traits_PatchMatch
 
 /**
  * @brief Patch Match Player
- * Update player match record for the provided player_uuid and match_id only with provided fields
+ * Update player match record for the provided player_uuid " "and match_id only with provided fields.
+ *     
+ *     Match must still be in a pending state.
+ *     
+ *     Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+ *     
+ *     Or you have match:match:edit:authority and are the host of the match.
 */
 struct RALLYHEREAPI_API FRequest_PatchMatchPlayer : public FRequest
 {
@@ -1154,8 +1495,118 @@ struct RALLYHEREAPI_API Traits_PatchMatchPlayer
 };
 
 /**
+ * @brief Patch Match Segment
+ * Update match segment by match_id and segment_id only with provided fields
+*/
+struct RALLYHEREAPI_API FRequest_PatchMatchSegment : public FRequest
+{
+	FRequest_PatchMatchSegment();
+	virtual ~FRequest_PatchMatchSegment() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FString MatchId;
+	FString SegmentId;
+	FRHAPI_MatchSegmentPatchRequest MatchSegmentPatchRequest;
+};
+
+/** The response type for FRequest_PatchMatchSegment */
+struct RALLYHEREAPI_API FResponse_PatchMatchSegment : public FResponseAccessorTemplate<FRHAPI_MatchSegmentWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_MatchSegmentWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_PatchMatchSegment(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_PatchMatchSegment() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_MatchSegmentWithPlayers Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_MatchSegmentWithPlayers& OutContent) const { return TryGetContent<FRHAPI_MatchSegmentWithPlayers>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_MatchSegmentWithPlayers>& OutContent) const { return TryGetContent<FRHAPI_MatchSegmentWithPlayers>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_MatchSegmentWithPlayers* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_MatchSegmentWithPlayers>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_MatchSegmentWithPlayers> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_MatchSegmentWithPlayers>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_MatchSegmentWithPlayers& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_PatchMatchSegment */
+DECLARE_DELEGATE_OneParam(FDelegate_PatchMatchSegment, const FResponse_PatchMatchSegment&);
+
+/** @brief A helper metadata object for PatchMatchSegment that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_PatchMatchSegment
+{
+	/** The request type */
+	typedef FRequest_PatchMatchSegment Request;
+	/** The response type */
+	typedef FResponse_PatchMatchSegment Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_PatchMatchSegment Delegate;
+	/** The API object that supports this API call */
+	typedef FMatchAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
  * @brief Update Match
  * Update match by match_id
+ *     
+ *     Match must still be in a pending state.
+ *     
+ *     Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+ *     
+ *     Or you have match:match:edit:authority and are the host of the match.
 */
 struct RALLYHEREAPI_API FRequest_UpdateMatch : public FRequest
 {
@@ -1259,6 +1710,12 @@ struct RALLYHEREAPI_API Traits_UpdateMatch
 /**
  * @brief Update Match Player
  * Update player match record for the provided player_uuid and match_id
+ *     
+ *     Match must still be in a pending state.
+ *     
+ *     Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+ *     
+ *     Or you have match:match:edit:authority and are the host of the match.
 */
 struct RALLYHEREAPI_API FRequest_UpdateMatchPlayer : public FRequest
 {
@@ -1360,6 +1817,110 @@ struct RALLYHEREAPI_API Traits_UpdateMatchPlayer
 	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
+/**
+ * @brief Update Match Segment
+ * Update match segment by match_id and segment_id
+*/
+struct RALLYHEREAPI_API FRequest_UpdateMatchSegment : public FRequest
+{
+	FRequest_UpdateMatchSegment();
+	virtual ~FRequest_UpdateMatchSegment() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FString MatchId;
+	FString SegmentId;
+	FRHAPI_MatchSegmentRequest MatchSegmentRequest;
+};
+
+/** The response type for FRequest_UpdateMatchSegment */
+struct RALLYHEREAPI_API FResponse_UpdateMatchSegment : public FResponseAccessorTemplate<FRHAPI_MatchSegmentWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_MatchSegmentWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_UpdateMatchSegment(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_UpdateMatchSegment() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_MatchSegmentWithPlayers Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_MatchSegmentWithPlayers& OutContent) const { return TryGetContent<FRHAPI_MatchSegmentWithPlayers>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_MatchSegmentWithPlayers>& OutContent) const { return TryGetContent<FRHAPI_MatchSegmentWithPlayers>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_MatchSegmentWithPlayers* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_MatchSegmentWithPlayers>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_MatchSegmentWithPlayers> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_MatchSegmentWithPlayers>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_MatchSegmentWithPlayers& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_UpdateMatchSegment */
+DECLARE_DELEGATE_OneParam(FDelegate_UpdateMatchSegment, const FResponse_UpdateMatchSegment&);
+
+/** @brief A helper metadata object for UpdateMatchSegment that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_UpdateMatchSegment
+{
+	/** The request type */
+	typedef FRequest_UpdateMatchSegment Request;
+	/** The response type */
+	typedef FResponse_UpdateMatchSegment Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_UpdateMatchSegment Delegate;
+	/** The API object that supports this API call */
+	typedef FMatchAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
 
 /** The API class itself, which will handle calls to */
 class RALLYHEREAPI_API FMatchAPI : public FAPI
@@ -1370,32 +1931,42 @@ public:
 
 	FHttpRequestPtr CreateMatch(const FRequest_CreateMatch& Request, const FDelegate_CreateMatch& Delegate = FDelegate_CreateMatch(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr CreateMatchPlayer(const FRequest_CreateMatchPlayer& Request, const FDelegate_CreateMatchPlayer& Delegate = FDelegate_CreateMatchPlayer(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr CreateMatchSegment(const FRequest_CreateMatchSegment& Request, const FDelegate_CreateMatchSegment& Delegate = FDelegate_CreateMatchSegment(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr DeleteMatch(const FRequest_DeleteMatch& Request, const FDelegate_DeleteMatch& Delegate = FDelegate_DeleteMatch(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr DeleteMatchPlayer(const FRequest_DeleteMatchPlayer& Request, const FDelegate_DeleteMatchPlayer& Delegate = FDelegate_DeleteMatchPlayer(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr DeleteMatchSegment(const FRequest_DeleteMatchSegment& Request, const FDelegate_DeleteMatchSegment& Delegate = FDelegate_DeleteMatchSegment(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr GetMatch(const FRequest_GetMatch& Request, const FDelegate_GetMatch& Delegate = FDelegate_GetMatch(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr GetMatchPlayer(const FRequest_GetMatchPlayer& Request, const FDelegate_GetMatchPlayer& Delegate = FDelegate_GetMatchPlayer(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetMatchSegment(const FRequest_GetMatchSegment& Request, const FDelegate_GetMatchSegment& Delegate = FDelegate_GetMatchSegment(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr GetMatches(const FRequest_GetMatches& Request, const FDelegate_GetMatches& Delegate = FDelegate_GetMatches(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr GetPlayerMatchesSelf(const FRequest_GetPlayerMatchesSelf& Request, const FDelegate_GetPlayerMatchesSelf& Delegate = FDelegate_GetPlayerMatchesSelf(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr GetPlayersMatches(const FRequest_GetPlayersMatches& Request, const FDelegate_GetPlayersMatches& Delegate = FDelegate_GetPlayersMatches(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr PatchMatch(const FRequest_PatchMatch& Request, const FDelegate_PatchMatch& Delegate = FDelegate_PatchMatch(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr PatchMatchPlayer(const FRequest_PatchMatchPlayer& Request, const FDelegate_PatchMatchPlayer& Delegate = FDelegate_PatchMatchPlayer(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr PatchMatchSegment(const FRequest_PatchMatchSegment& Request, const FDelegate_PatchMatchSegment& Delegate = FDelegate_PatchMatchSegment(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr UpdateMatch(const FRequest_UpdateMatch& Request, const FDelegate_UpdateMatch& Delegate = FDelegate_UpdateMatch(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr UpdateMatchPlayer(const FRequest_UpdateMatchPlayer& Request, const FDelegate_UpdateMatchPlayer& Delegate = FDelegate_UpdateMatchPlayer(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr UpdateMatchSegment(const FRequest_UpdateMatchSegment& Request, const FDelegate_UpdateMatchSegment& Delegate = FDelegate_UpdateMatchSegment(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
 	void OnCreateMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateMatch Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnCreateMatchPlayerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateMatchPlayer Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnCreateMatchSegmentResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateMatchSegment Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnDeleteMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteMatch Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnDeleteMatchPlayerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteMatchPlayer Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnDeleteMatchSegmentResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteMatchSegment Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnGetMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatch Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnGetMatchPlayerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatchPlayer Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetMatchSegmentResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatchSegment Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnGetMatchesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatches Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnGetPlayerMatchesSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerMatchesSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnGetPlayersMatchesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayersMatches Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnPatchMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PatchMatch Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnPatchMatchPlayerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PatchMatchPlayer Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnPatchMatchSegmentResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PatchMatchSegment Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnUpdateMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateMatch Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnUpdateMatchPlayerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateMatchPlayer Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnUpdateMatchSegmentResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateMatchSegment Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
