@@ -513,7 +513,7 @@ void URH_GameInstanceServerBootstrapper::OnBootstrappingFailed(const FString& Fa
 		}
 
 #if RH_FROM_ENGINE_VERSION(5,0)
-		FHttpModule::Get().GetHttpManager().Flush(EHttpFlushReason::FullFlush);
+		FHttpModule::Get().GetHttpManager().Flush(EHttpFlushReason::Default);
 #else
 		FHttpModule::Get().GetHttpManager().Flush(false);
 #endif
@@ -1369,7 +1369,7 @@ void URH_GameInstanceServerBootstrapper::ConditionalRecycle()
 
 			// flush the HTTP manager
 #if RH_FROM_ENGINE_VERSION(5,0)
-			FHttpModule::Get().GetHttpManager().Flush(EHttpFlushReason::FullFlush);
+			FHttpModule::Get().GetHttpManager().Flush(EHttpFlushReason::Default);
 #else
 			FHttpModule::Get().GetHttpManager().Flush(false);
 #endif
