@@ -7,6 +7,7 @@
 #include "Misc/Guid.h"
 #include "Templates/SharedPointer.h"
 #include "SessionsAPI.h"
+#include "PexAPI.h"
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "RH_SubsystemPluginBase.h"
 #include "RH_PlayerExperienceCollector.h"
@@ -112,10 +113,20 @@ public:
 	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
 	URH_PEXCollector* PlayerExperienceCollector;
 
+	/** @brief Time the session was made active */
+	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
+	FDateTime ActivationTime;
+
+	/** @brief Time the session was made active */
+	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
+	bool bIsHost;
+
 	FRH_ActiveSessionState()
 		: Session(nullptr)
 		, bIsBackfillTerminated(false)
 		, PlayerExperienceCollector(nullptr)
+		, ActivationTime()
+		, bIsHost(false)
 	{
 	}
 
@@ -132,7 +143,8 @@ public:
 			PlayerExperienceCollector->Close();
 			PlayerExperienceCollector = nullptr;
 		}
-		
+		ActivationTime = FDateTime();
+		bIsHost = false;
 	}
 };
 
@@ -181,7 +193,7 @@ public:
 	* @return If true, the session is hosted locally.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Session|Instance")
-	virtual bool IsLocallyHostedSession(const URH_JoinedSession* Session) const { return Session->GetInstanceData() ? IsLocallyHostedInstance(*Session->GetInstanceData()) : false; }
+	virtual bool IsLocallyHostedSession(const URH_JoinedSession* Session) const { return Session != nullptr && Session->GetInstanceData() ? IsLocallyHostedInstance(*Session->GetInstanceData()) : false; }
 	/**
 	* @brief Checks if a given player in a session is local to the client.
 	* @param [in] Player The player being checked.
@@ -328,6 +340,12 @@ public:
 	virtual FRH_RemoteFileApiDirectory GetPEXRemoteFileDirectory() const override;
 	/** @brief Whether or not this owner represents the host of the match */
 	virtual bool GetPEXIsHost() const override;
+
+	// SUBMIT REPORTS - called during summary write
+	/** @brief Submit a PEX Host Summary report */
+	virtual void SubmitPEXHostSummary(FRHAPI_PexHostRequest&& Report) const override;
+	/** @brief Submit a PEX Client Summary report */
+	virtual void SubmitPEXClientSummary(FRHAPI_PexClientRequest&& Report) const override;
 	
 protected:
 	/** @brief Session we want to sync to. */

@@ -25,6 +25,8 @@
 // used to look up local IP as a temporary method for determining join IP
 #include <SocketSubsystem.h>
 #include <IPAddress.h>
+
+#include "GameFramework/GameStateBase.h"
 #include "Interfaces/IPv4/IPv4Address.h"
 
 
@@ -291,7 +293,205 @@ FRH_RemoteFileApiDirectory URH_GameInstanceSessionSubsystem::GetPEXRemoteFileDir
 }
 bool URH_GameInstanceSessionSubsystem::GetPEXIsHost() const
 {
-	return IsLocallyHostedSession(GetActiveSession());
+	return ActiveSessionState.bIsHost;
+}
+
+void URH_GameInstanceSessionSubsystem::SubmitPEXHostSummary(FRHAPI_PexHostRequest&& Report) const
+{
+	// match id should have been set before calling this function!
+	check (Report.MatchId.Len() > 0);
+
+	Report.SetServerId(FPlatformProcess::ComputerName());
+	if (ActiveSessionState.ActivationTime.GetTicks() > 0)
+	{
+		const auto Duration = FDateTime::UtcNow() - ActiveSessionState.ActivationTime;
+		FRHAPI_PexCount Count;
+		Count.SetCount(Duration.GetTotalSeconds());
+		Report.SetMatchDuration(Count);
+	}
+	
+	const auto Session = GetActiveSession();
+	if (Session != nullptr)
+	{
+		const auto SessionOwner = Session->GetSessionOwner();
+		const auto BoundInstanceId = SessionOwner->GetBoundInstanceId();
+		
+		const auto& SessionData = Session->GetSessionData(); 
+		if (auto RegionId = SessionData.GetRegionIdOrNull())
+		{
+			Report.SetRegionId(*RegionId);
+		}
+
+		// do not use instance data if the instance on the session does not match our bound id (something updated it out of band)
+		const bool bCanUseInstanceData = Session->GetInstanceData() != nullptr
+			&& (!BoundInstanceId.IsSet() || Session->GetInstanceData()->GetInstanceId() == BoundInstanceId);
+		
+		const auto InstanceData = Session->GetInstanceData();
+		if (bCanUseInstanceData)
+		{
+			if (auto ProfileId = InstanceData->GetMatchMakingProfileIdOrNull())
+			{
+				Report.SetMatchmakingProfileId(*ProfileId);
+			}
+		}
+
+		// while this data can be retrieved from the instance object, use local data to be more accurate in case instance data was updated out of band
+		{
+			const auto HostUuid = SessionOwner->GetPlayerUuid();
+			if (HostUuid.IsValid())
+			{
+				Report.SetHostPlayerUuid(HostUuid.ToString(EGuidFormats::DigitsWithHyphens));
+			}
+			
+			const auto AllocationId = SessionOwner->GetBoundAllocationId();
+			if (AllocationId.IsSet())
+			{
+				Report.SetAllocationId(AllocationId.GetValue());
+			}
+			Report.SetVersion(URH_JoinedSession::GetClientVersionForSession());
+
+			auto World = GetWorld();
+			if (World != nullptr)
+			{
+				Report.SetMapName(World->GetMapName());
+				auto GameMode = World->GetAuthGameMode();
+				if (GameMode != nullptr)
+				{
+					Report.SetGameMode(GameMode->GetClass()->GetPathName());
+				}
+			}
+		}
+	}
+
+	{
+		typedef RallyHereAPI::Traits_CreatePexHost BaseType;
+		BaseType::Request Request;
+		Request.AuthContext = GetAuthContext();
+		Request.PexHostRequest = Report;
+
+		auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+			BaseType::Delegate(),
+			FRH_GenericSuccessWithErrorDelegate::CreateLambda([](bool bSucess, const FRH_ErrorInfo& ErrorInfo)
+				{
+					if (!bSucess)
+					{
+						if (ErrorInfo.bIsRHCommonError)
+						{
+							UE_LOG(LogRallyHereIntegration, Error, TEXT("Failed to submit PEX host summary.  Error Code: %s"), *ErrorInfo.RHCommonError.ErrorCode);
+						}
+						else
+						{
+							UE_LOG(LogRallyHereIntegration, Error, TEXT("Failed to submit PEX host summary: %s"), *ErrorInfo.ResponseContent);
+						}
+					}
+					else
+					{
+						UE_LOG(LogRallyHereIntegration, Error, TEXT("Submitted PEX host summary successfully"));
+					}
+				}),
+			GetDefault<URH_IntegrationSettings>()->PexReportPriority
+		);
+		
+		Helper->Start(RH_APIs::GetAPIs().GetPex(), Request);
+	}
+}
+void URH_GameInstanceSessionSubsystem::SubmitPEXClientSummary(FRHAPI_PexClientRequest&& Report) const
+{
+	// match id should have been set before calling this function!
+	check (Report.MatchId.Len() > 0);
+
+	if (ActiveSessionState.ActivationTime.GetTicks() > 0)
+    {
+    	const auto Duration = FDateTime::UtcNow() - ActiveSessionState.ActivationTime;
+    	FRHAPI_PexCount Count;
+    	Count.SetCount(Duration.GetTotalSeconds());
+    	Report.SetMatchDuration(Count);
+    }
+	
+	const auto Session = GetActiveSession();
+	if (Session != nullptr)
+	{
+		const auto SessionOwner = Session->GetSessionOwner();
+		const auto BoundInstanceId = SessionOwner->GetBoundInstanceId();
+		
+		const auto& SessionData = Session->GetSessionData(); 
+		if (auto RegionId = SessionData.GetRegionIdOrNull())
+		{
+			Report.SetRegionId(*RegionId);
+		}
+
+		// do not use instance data if the instance on the session does not match our bound id (something updated it out of band)
+		const bool bCanUseInstanceData = Session->GetInstanceData() != nullptr
+			&& (!BoundInstanceId.IsSet() || Session->GetInstanceData()->GetInstanceId() == BoundInstanceId);
+		
+		const auto InstanceData = Session->GetInstanceData();
+		if (bCanUseInstanceData)
+		{
+			if (auto AllocationId = InstanceData->GetAllocationIdOrNull())
+			{
+				Report.SetAllocationId(*AllocationId);
+			}
+			if (auto HostPlayerUuid = InstanceData->GetHostPlayerUuidOrNull())
+			{
+				Report.SetHostPlayerUuid(HostPlayerUuid->ToString(EGuidFormats::DigitsWithHyphens));
+			}
+			if (auto ProfileId = InstanceData->GetMatchMakingProfileIdOrNull())
+			{
+				Report.SetMatchmakingProfileId(*ProfileId);
+			}
+		}
+
+		// while this data can be retrieved from the instance object, use local data to be more accurate in case instance data was updated out of band
+		{
+			Report.SetVersion(URH_JoinedSession::GetClientVersionForSession());
+
+			auto World = GetWorld();
+			if (World != nullptr)
+			{
+				Report.SetMapName(World->GetMapName());
+				auto GameState = World->GetGameState();
+				if (GameState != nullptr)
+				{
+					if (GameState->GameModeClass != nullptr)
+					{
+						Report.SetGameMode(GameState->GameModeClass->GetPathName());
+					}
+				}
+			}
+		}
+	}
+	
+	{
+		typedef RallyHereAPI::Traits_CreatePexPlayer BaseType;
+		BaseType::Request Request;
+		Request.AuthContext = GetAuthContext();
+		Request.PexClientRequest = Report;
+
+		auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+			BaseType::Delegate(),
+			FRH_GenericSuccessWithErrorDelegate::CreateLambda([](bool bSucess, const FRH_ErrorInfo& ErrorInfo)
+				{
+					if (!bSucess)
+					{
+						if (ErrorInfo.bIsRHCommonError)
+						{
+							UE_LOG(LogRallyHereIntegration, Error, TEXT("Failed to submit PEX player summary.  Error Code: %s"), *ErrorInfo.RHCommonError.ErrorCode);
+						}
+						else
+						{
+							UE_LOG(LogRallyHereIntegration, Error, TEXT("Failed to submit PEX player summary: %s"), *ErrorInfo.ResponseContent);
+						}
+					}
+					else
+					{
+						UE_LOG(LogRallyHereIntegration, Error, TEXT("Submitted PEX player summary successfully"));
+					}
+				}),
+			GetDefault<URH_IntegrationSettings>()->PexReportPriority
+		);
+		
+		Helper->Start(RH_APIs::GetAPIs().GetPex(), Request);
+	}
 }
 
 void URH_GameInstanceSessionSubsystem::OnNetworkFailure(UWorld* World, UNetDriver* NetDriver, ENetworkFailure::Type FailureType, const FString& ErrorString)
@@ -353,7 +553,7 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 			PollControl->ClearPollingIntervalOverride(HealthPollTimerName);
 		}
 
-		if (Settings->bAutoCloseMatchOnSessionInactive)
+		if (Settings->bAutoCloseMatchOnSessionInactive && ActiveSessionState.bIsHost)
 		{
 			// Send a match update that the match is now in the closed state
 			if (MatchSubsystem != nullptr && !ActiveSessionState.MatchId.IsEmpty())
@@ -364,18 +564,13 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 				UpdateRequest.SetEndTimestamp(FDateTime::UtcNow());
 				UpdateRequest.SetState(ERHAPI_MatchState::Closed);
 
-				// if we can calculate a duration, do so.  Grab the cached match data since it should have been cached at least once on creation
-				FRHAPI_MatchWithPlayers OldMatch;
-				if (MatchSubsystem->GetMatch(MatchId, OldMatch))
+				// if we can calculate a duration, do so
+				if (ActiveSessionState.ActivationTime.GetTicks() > 0)
 				{
-					const auto StartTime = OldMatch.GetStartTimestampOrNull();
-					if (StartTime != nullptr)
-					{
-						const auto Duration = FDateTime::UtcNow() - *StartTime;
-						UpdateRequest.SetDurationSeconds(Duration.GetTotalSeconds());
-					}
+					const auto Duration = FDateTime::UtcNow() - ActiveSessionState.ActivationTime;
+					UpdateRequest.SetDurationSeconds(Duration.GetTotalSeconds());
 				}
-
+				
 				MatchSubsystem->UpdateMatch(MatchId, UpdateRequest);
 
 				// Trigger the bootstrapper log file upload if configured
@@ -383,11 +578,14 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 				{
 					GetGameInstanceSubsystem()->GetServerBootstrapper()->ConditionalAutoUploadLogFile();
 				}
-
-				// clear out the active match id
-				ActiveSessionState.MatchId.Empty();
 			}
 		}
+	}
+
+	// write PEX Summary
+	if (ActiveSessionState.PlayerExperienceCollector != nullptr)
+	{
+		ActiveSessionState.PlayerExperienceCollector->WriteSummary();
 	}
 
 	// clear transient flags for new tracking
@@ -398,6 +596,7 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 		// set the new active session
 		check(!JoinedSession->IsActive());
 		ActiveSessionState.Session = JoinedSession;
+		ActiveSessionState.ActivationTime = FDateTime::UtcNow();
 
 		auto*& ActiveSession = ActiveSessionState.Session;
 
@@ -410,6 +609,8 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 		// if this instance is locally hosted, set up host specific logic
 		if (ActiveSession->GetInstanceData() != nullptr && IsLocallyHostedInstance(*ActiveSession->GetInstanceData()))
 		{
+			ActiveSessionState.bIsHost = true;
+			
 			// if automatic matches are enabled, create one now
 			if (Settings->bAutoCreateMatches)
 			{
@@ -506,6 +707,8 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 		{
 			check (!IsLocallyHostedInstance(*ActiveSession->GetInstanceData()));
 
+			ActiveSessionState.bIsHost = false;
+			
 			// if this is not a locally hosted match and a match id is present in the session at this time, cache it to mirror server caching time
 			const auto& JoinParams = ActiveSession->GetInstanceData()->GetJoinParams();
 			const auto CustomData = JoinParams.GetCustomDataOrNull();
@@ -515,7 +718,6 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 				ActiveSessionState.MatchId = *MatchIdPtr;
 			}
 		}
-
 		
 		// initialize a PEX collector if able
 		ActiveSessionState.PlayerExperienceCollector = CreatePEXCollector();

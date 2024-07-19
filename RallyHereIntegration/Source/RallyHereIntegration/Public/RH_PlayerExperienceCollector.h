@@ -8,6 +8,7 @@
 #include "Engine/GameEngine.h"
 #include "UObject/WeakInterfacePtr.h"
 #include "RH_Common.h"
+#include "PexAPI.h"
 
 #include "RH_PlayerExperienceCollector.generated.h"
 
@@ -170,6 +171,12 @@ public:
 	virtual FRH_RemoteFileApiDirectory GetPEXRemoteFileDirectory() const PURE_VIRTUAL(IRH_PEXOwnerInterface::GetPEXRemoteFileDirectory, return FRH_RemoteFileApiDirectory();)
 	/** @brief Whether or not this owner represents the host of the match */
 	virtual bool GetPEXIsHost() const PURE_VIRTUAL(IRH_PEXOwnerInterface::GetPEXIsHost, return false;)
+
+	// SUBMIT REPORTS - called during summary write
+	/** @brief Submit a PEX Host Summary report */
+	virtual void SubmitPEXHostSummary(FRHAPI_PexHostRequest&& Report) const PURE_VIRTUAL(IRH_PEXOwnerInterface::SubmitPEXHostSummary, )
+	/** @brief Submit a PEX Client Summary report */
+	virtual void SubmitPEXClientSummary(FRHAPI_PexClientRequest&& Report) const PURE_VIRTUAL(IRH_PEXOwnerInterface::SubmitPEXClientSummary, )
 };
 
 
@@ -390,6 +397,22 @@ public:
 		SummaryJson->SetNumberField(TEXT("Count"), SummaryState.Count);
 		return SummaryJson;
 	}
+
+	/** @brief Get a PexStat object representing the summary data */
+	bool GetPexStat(FRHAPI_PexStat& PexStat) const
+	{
+		if (SummaryState.Count == 0)
+		{
+			return false;
+		}
+		
+		PexStat.SetAvg(SummaryState.Avg);
+		PexStat.SetMin(SummaryState.Min);
+		PexStat.SetMax(SummaryState.Max);
+		PexStat.SetStddev(FMath::Sqrt(SummaryState.Variance));
+
+		return true;
+	}
 };
 
 /** @brief Base class for a group of stats */
@@ -514,7 +537,24 @@ public:
 		
 		return ValueString;
 	}
+	
+	/** @brief Fill in a API PEX host summary report with the summary data */
+	virtual void GetPEXHostSummary(FRHAPI_PexHostRequest& Report) const
+	{}
+
+	/** @brief Fill in a API PEX client summary report with the summary data */
+	virtual void GetPEXClientSummary(FRHAPI_PexClientRequest& Report) const
+	{}
 };
+
+#define PEX_ADD_INDEXED_STAT_TO_REPORT(StatName, PexStatName) \
+{ \
+	FRHAPI_PexStat PexStat; \
+	if (Stats[StatName].GetPexStat(PexStat)) \
+	{ \
+		Report.Set##PexStatName(PexStat); \
+	} \
+}
 
 /**
  * @brief PlayerExperience Collector class, responsible for collecting and tracking PEX data via PEX Stat Groups.
@@ -537,6 +577,15 @@ public:
     {
 		return CachedConfig;
     }
+
+	/** @brief Reset the summary state, which is useful if wanting to trim the front of the summary to when gameplay starts. */
+	void ResetSummary()
+	{
+		for (URH_PEXStatGroup* StatGroup : StatGroups)
+		{
+			StatGroup->ResetSummary();
+		}
+	}
 
 	/** Closes state, writes summary if needed, and uploads data if needed.  Can only be done once. */
 	void Close();
@@ -580,6 +629,10 @@ protected:
 	/** Time accumulator so that time is always monotonic */
 	UPROPERTY(BlueprintReadOnly, Category="PlayerExperience")
 	double TimeTracker;
+
+	/** Whether this is the first interval being captured (will be ignored for summary as it is partial) */
+	UPROPERTY(BlueprintReadOnly, Category="PlayerExperience")
+	bool bFirstInterval;
 
 	/** Array of StatGroups to capture */
 	UPROPERTY(BlueprintReadWrite, Config, EditDefaultsOnly, Category="PlayerExperience")
@@ -663,6 +716,34 @@ public:
 		
 		return ValueString;
 	}
+
+	/** @brief Fill in a API PEX host summary report with the summary data */
+	virtual void GetPEXHostSummary(FRHAPI_PexHostRequest& Report) const
+	{
+		PEX_ADD_INDEXED_STAT_TO_REPORT(FrameTime, FrameTime);
+		PEX_ADD_INDEXED_STAT_TO_REPORT(DeltaTime, DeltaTime);
+		PEX_ADD_INDEXED_STAT_TO_REPORT(TickCount, TickCount);
+		PEX_ADD_INDEXED_STAT_TO_REPORT(DelayedTickCount, DelayedTickCount);
+		PEX_ADD_INDEXED_STAT_TO_REPORT(MemoryWS, MemoryWs);
+		PEX_ADD_INDEXED_STAT_TO_REPORT(MemoryVB, MemoryVb);
+		PEX_ADD_INDEXED_STAT_TO_REPORT(CPUProcess, CpuProcess);
+	}
+
+	/** @brief Fill in a API PEX client summary report with the summary data */
+	virtual void GetPEXClientSummary(FRHAPI_PexClientRequest& Report) const
+	{
+		PEX_ADD_INDEXED_STAT_TO_REPORT(FrameTime, FrameTime);
+		PEX_ADD_INDEXED_STAT_TO_REPORT(DeltaTime, DeltaTime);
+		PEX_ADD_INDEXED_STAT_TO_REPORT(TickCount, TickCount);
+		PEX_ADD_INDEXED_STAT_TO_REPORT(DelayedTickCount, DelayedTickCount);
+		PEX_ADD_INDEXED_STAT_TO_REPORT(MemoryWS, MemoryWs);
+		PEX_ADD_INDEXED_STAT_TO_REPORT(MemoryVB, MemoryVb);
+		PEX_ADD_INDEXED_STAT_TO_REPORT(CPUProcess, CpuProcess);
+
+		PEX_ADD_INDEXED_STAT_TO_REPORT(GameThreadTime, GameThreadTime);
+		PEX_ADD_INDEXED_STAT_TO_REPORT(RenderThreadTime, RenderThreadTime);
+		PEX_ADD_INDEXED_STAT_TO_REPORT(RHIThreadTime, GpuTime);
+	}
 };
 
 /** @brief Stat group for capturing whole-state network stats */
@@ -675,19 +756,53 @@ public:
 	enum ECaptureStat
 	{
 		ConnectionCount,
-		AvgPing,
+		Ping,
 		InPackets,
 		OutPackets,
 		TotalPackets,
 		InPacketsLost,
 		OutPacketsLost,
 		TotalPacketsLost,
-		PacketLoss,
+		InPacketLossPct,
+		OutPacketLossPct,
+		TotalPacketLossPct,
 
 		Max
 	};
 
 	URH_PEXNetworkStats_Base();
+
+	
+	/** @brief Fill in a API PEX host summary report with the summary data */
+	virtual void GetPEXHostSummary(FRHAPI_PexHostRequest& Report) const
+	{
+		PEX_ADD_INDEXED_STAT_TO_REPORT(ConnectionCount, ConnectionCount);
+		PEX_ADD_INDEXED_STAT_TO_REPORT(Ping, Ping);
+		PEX_ADD_INDEXED_STAT_TO_REPORT(InPackets, InPackets);
+		PEX_ADD_INDEXED_STAT_TO_REPORT(OutPackets, OutPackets);
+		PEX_ADD_INDEXED_STAT_TO_REPORT(TotalPackets, TotalPackets);
+		PEX_ADD_INDEXED_STAT_TO_REPORT(InPacketsLost, InPacketLoss);
+		PEX_ADD_INDEXED_STAT_TO_REPORT(OutPacketsLost, OutPacketLoss);
+		PEX_ADD_INDEXED_STAT_TO_REPORT(TotalPacketsLost, TotalPacketLoss);
+		PEX_ADD_INDEXED_STAT_TO_REPORT(InPacketLossPct, InPacketLossPct);
+		PEX_ADD_INDEXED_STAT_TO_REPORT(OutPacketLossPct, OutPacketLossPct);
+		PEX_ADD_INDEXED_STAT_TO_REPORT(TotalPacketLossPct, TotalPacketLossPct);
+	}
+
+	/** @brief Fill in a API PEX client summary report with the summary data */
+	virtual void GetPEXClientSummary(FRHAPI_PexClientRequest& Report) const
+	{
+		PEX_ADD_INDEXED_STAT_TO_REPORT(Ping, Ping);
+		PEX_ADD_INDEXED_STAT_TO_REPORT(InPackets, InPackets);
+		PEX_ADD_INDEXED_STAT_TO_REPORT(OutPackets, OutPackets);
+		PEX_ADD_INDEXED_STAT_TO_REPORT(TotalPackets, TotalPackets);
+		PEX_ADD_INDEXED_STAT_TO_REPORT(InPacketsLost, InPacketLoss);
+		PEX_ADD_INDEXED_STAT_TO_REPORT(OutPacketsLost, OutPacketLoss);
+		PEX_ADD_INDEXED_STAT_TO_REPORT(TotalPacketsLost, TotalPacketLoss);
+		PEX_ADD_INDEXED_STAT_TO_REPORT(InPacketLossPct, InPacketLossPct);
+		PEX_ADD_INDEXED_STAT_TO_REPORT(OutPacketLossPct, OutPacketLossPct);
+		PEX_ADD_INDEXED_STAT_TO_REPORT(TotalPacketLossPct, TotalPacketLossPct);
+	}
 };
 
 
@@ -902,6 +1017,33 @@ public:
 		return nullptr;
 	}
 
+	
+	/** @brief Fill in a API PEX host summary report with the summary data */
+	virtual void GetPEXHostSummary(FRHAPI_PexHostRequest& Report) const
+	{
+		// use global stats for now for simplicity, but as that may be less reliable potentially convert to using player stats array
+		if (GlobalNetworkStats != nullptr)
+		{
+			GlobalNetworkStats->GetPEXHostSummary(Report);			
+		}
+
+		{
+			FRHAPI_PexCount PexCount;
+			PexCount.SetCount(PlayerNetworkStats.Num());
+			Report.SetTotalUniquePlayers(PexCount);
+		}
+	}
+
+	/** @brief Fill in a API PEX client summary report with the summary data */
+	virtual void GetPEXClientSummary(FRHAPI_PexClientRequest& Report) const
+	{
+		// clients report on their server connection
+		if (ServerNetworkStats != nullptr)
+		{
+			ServerNetworkStats->GetPEXClientSummary(Report);
+		}
+	}
+	
 	virtual void GetOrCreatePlayerNetworkStats(const class UNetConnection* Connection, URH_PEXNetworkStats_Connection*& OutPlayerNetworkStats);
 	
 	virtual void CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;

@@ -17,6 +17,7 @@ URH_PEXCollector::URH_PEXCollector()
 	, bHasBeenClosed(false)
 	, bHasWrittenSummary(false)
 	, TimeTracker(0.0f)
+	, bFirstInterval(false)
 	, TimelineFileCSV(nullptr)
 {
 	StatGroupsToCapture.Add(URH_PEXPrimaryStats::StaticClass());
@@ -154,7 +155,6 @@ bool URH_PEXCollector::Init(IRH_PEXOwnerInterface* InOwner)
     	if (TimelineFileCSV != nullptr)
     	{
     		FString CSVHeaderString;
-    		bool bIsFirst = true;
     		for(const auto StatGroup : StatGroups)
 			{
     			const FString CSVStats = StatGroup->GetTimelineCSVHeader();
@@ -235,45 +235,46 @@ void URH_PEXCollector::OnEndFrame()
 	
     if (bIsInterval)
     {
+    	// check if this was a partial interval
+    	bool bPartialInterval = bFirstInterval;
+    	bFirstInterval = false;
+    	
     	for (const auto StatGroup : StatGroups)
     	{
     		// collect any stats that need to be tracked once per second (ex: pawn count)
     		StatGroup->CapturePerIntervalStats(OwnerInterface);
     	}
-
-		if (NewSeconds % GetConfig()->StatInterval == 0)
+    	
+		if (GetConfig()->bWriteTimelineFile && TimelineFileCSV != nullptr)
 		{
-			if (GetConfig()->bWriteTimelineFile && TimelineFileCSV != nullptr)
+			FString CSVStatsString;
+			bool bIsFirst = true;
+
+			for(const auto StatGroup : StatGroups)
 			{
-				FString CSVStatsString;
-				bool bIsFirst = true;
-
-				for(const auto StatGroup : StatGroups)
+				FString CSVStats = StatGroup->GetTimelineCSVValues();
+				if (CSVStats.Len() > 0)
 				{
-					FString CSVStats = StatGroup->GetTimelineCSVValues();
-					if (CSVStats.Len() > 0)
+					if (CSVStatsString.Len() > 0)
 					{
-						if (CSVStatsString.Len() > 0)
-						{
-							CSVStatsString += TEXT(",");
-						}
-						CSVStatsString += CSVStats;
+						CSVStatsString += TEXT(",");
 					}
+					CSVStatsString += CSVStats;
 				}
+			}
 
-				if (CSVStatsString.Len() > 0)
-				{
-					TimelineFileCSV->Logf(TEXT("%s"), *CSVStatsString);
-				}
+			if (CSVStatsString.Len() > 0)
+			{
+				TimelineFileCSV->Logf(TEXT("%s"), *CSVStatsString);
 			}
 		}
 
     	// update the summary and reset the capture state so we can start accumulating a new interval of data
     	for (const auto StatGroup : StatGroups)
     	{
-    		if (GetConfig()->WantsSummary())
+    		// update the summary with the data from the interval, but only if we are not in a partial interval which could affect min, max, etc
+    		if (GetConfig()->WantsSummary() && !bPartialInterval)
     		{
-    			// update the summary with the data from the last second (both per second capture and per frame capture)
     			StatGroup->UpdateSummary();
     		}
     		
@@ -284,7 +285,12 @@ void URH_PEXCollector::OnEndFrame()
 
 void URH_PEXCollector::WriteSummary()
 {
-	if (bHasWrittenSummary)
+	// if summary data is not configured, do not write it
+	if (!GetConfig()->WantsSummary())
+	{
+		return;
+	}
+	else if (bHasWrittenSummary)
 	{
 		UE_LOG(LogRallyHereIntegration, Warning, TEXT("Summary already written"));
 		return;
@@ -331,7 +337,40 @@ void URH_PEXCollector::WriteSummary()
 	
 	if (GetConfig()->bUploadSummaryToPEXAPI)
 	{
-		
+		if (Owner.IsValid())
+		{
+			if (bCachedIsHost)
+			{
+				// fill in basic data
+				FRHAPI_PexHostRequest HostRequest;
+				HostRequest.SetMatchId(CachedMatchId);
+
+				// add stats
+				for (const auto StatGroup : StatGroups)
+				{
+					StatGroup->GetPEXHostSummary(HostRequest);
+				}
+
+				// let owner do actual submit, so they can fill in facet data
+				Owner->SubmitPEXHostSummary(MoveTemp(HostRequest));
+			}
+			if (!IsRunningDedicatedServer())
+			{
+				// fill in basic data
+				FRHAPI_PexClientRequest ClientRequest;
+				ClientRequest.SetMatchId(CachedMatchId);
+				ClientRequest.SetPlayerUuid(CachedPlayerId.ToString(EGuidFormats::DigitsWithHyphens));
+
+				// add stats
+				for (const auto StatGroup : StatGroups)
+				{
+					StatGroup->GetPEXClientSummary(ClientRequest);
+				}
+
+				// let owner do actual submit, so they can fill in facet data
+				Owner->SubmitPEXClientSummary(MoveTemp(ClientRequest));
+			}
+		}
 	}
 }
 
@@ -478,8 +517,8 @@ URH_PEXNetworkStats_Base::URH_PEXNetworkStats_Base()
 	int32 Check = 0;
 	Check = Stats.Emplace(TEXT("ConnectionCount"), ERH_PEXValueType::Max);
 	check(Check == ConnectionCount);
-	Check = Stats.Emplace(TEXT("AvgPing"), ERH_PEXValueType::Max);
-	check(Check == AvgPing);
+	Check = Stats.Emplace(TEXT("Ping"), ERH_PEXValueType::Max);
+	check(Check == Ping);
 	Check = Stats.Emplace(TEXT("InPackets"), ERH_PEXValueType::Max);
 	check(Check == InPackets);
 	Check = Stats.Emplace(TEXT("OutPackets"), ERH_PEXValueType::Max);
@@ -492,8 +531,12 @@ URH_PEXNetworkStats_Base::URH_PEXNetworkStats_Base()
 	check(Check == OutPacketsLost);
 	Check = Stats.Emplace(TEXT("TotalPacketsLost"), ERH_PEXValueType::Max);
 	check(Check == TotalPacketsLost);
-	Check = Stats.Emplace(TEXT("PacketLoss"), ERH_PEXValueType::Max);
-	check(Check == PacketLoss);
+	Check = Stats.Emplace(TEXT("InPacketLossPct"), ERH_PEXValueType::Max);
+	check(Check == InPacketLossPct);
+	Check = Stats.Emplace(TEXT("OutPacketLossPct"), ERH_PEXValueType::Max);
+	check(Check == OutPacketLossPct);
+	Check = Stats.Emplace(TEXT("TotalPacketLossPct"), ERH_PEXValueType::Max);
+	check(Check == TotalPacketLossPct);
 }
 
 
@@ -514,14 +557,18 @@ void URH_PEXNetworkStats_Global::CapturePerSecondStats(const TScriptInterface<IR
 	// this assumes that the stat interval for the network system is 1.0 seconds, which is the default
 		
 	Stats[ConnectionCount].CaptureValue(ValueNumConnections);
-	Stats[AvgPing].CaptureValue(ValueAvgPing);
+	Stats[Ping].CaptureValue(ValueAvgPing);
 	Stats[InPackets].CaptureValue(ValueInPackets);
 	Stats[OutPackets].CaptureValue(ValueOutPackets);
 	Stats[TotalPackets].CaptureValue(ValueInPackets + ValueOutPackets);
+	
 	Stats[InPacketsLost].CaptureValue(ValueInPacketsLost);
 	Stats[OutPacketsLost].CaptureValue(ValueOutPacketsLost);
 	Stats[TotalPacketsLost].CaptureValue(ValueInPacketsLost + ValueOutPacketsLost);
-	Stats[PacketLoss].CaptureValue(((float)(ValueInPacketsLost + ValueOutPacketsLost)) / FMath::Max<float>(1.0f, (float)(ValueInPackets + ValueOutPackets)));
+
+	Stats[InPacketLossPct].CaptureValue(((float)(ValueInPacketsLost)) / FMath::Max<float>(1.0f, (float)(ValueInPackets + ValueInPacketsLost)));
+	Stats[OutPacketLossPct].CaptureValue(((float)(ValueOutPacketsLost)) / FMath::Max<float>(1.0f, (float)(ValueOutPackets + ValueOutPacketsLost)));
+	Stats[TotalPacketLossPct].CaptureValue(((float)(ValueInPacketsLost + ValueOutPacketsLost)) / FMath::Max<float>(1.0f, (float)(ValueInPackets + ValueInPacketsLost + ValueOutPackets + ValueOutPacketsLost)));
 }
 
 void URH_PEXNetworkStats_Connection::InitForConnection(const class UNetConnection* InConnection)
@@ -544,7 +591,7 @@ void URH_PEXNetworkStats_Connection::CapturePerSecondStats(const TScriptInterfac
 		if (Connection->PlayerController != nullptr && Connection->PlayerController->PlayerState != nullptr)
 		{
 			float ConnPing = Connection->PlayerController->PlayerState->ExactPing;
-			Stats[AvgPing].CaptureValue(ConnPing);
+			Stats[Ping].CaptureValue(ConnPing);
 		}
 
 		// this assumes that the stat interval for the network system is 1.0 seconds, which is the default
@@ -554,10 +601,14 @@ void URH_PEXNetworkStats_Connection::CapturePerSecondStats(const TScriptInterfac
 		Stats[InPackets].CaptureValue(Connection->InPackets);
 		Stats[OutPackets].CaptureValue(Connection->OutPackets);
 		Stats[TotalPackets].CaptureValue(Connection->InPackets + Connection->OutPackets);
+		
 		Stats[InPacketsLost].CaptureValue(Connection->InPacketsLost);
 		Stats[OutPacketsLost].CaptureValue(Connection->OutPacketsLost);
 		Stats[TotalPacketsLost].CaptureValue(Connection->InPacketsLost + Connection->OutPacketsLost);
-		Stats[PacketLoss].CaptureValue(((float)(Connection->InPacketsLost + Connection->OutPacketsLost)) / FMath::Max<float>(1.0f, (float)(Connection->InPackets + Connection->OutPackets)));
+
+		Stats[InPacketLossPct].CaptureValue(((float)(Connection->InPacketsLost)) / FMath::Max<float>(1.0f, (float)(Connection->InPackets + Connection->InPacketsLost)));
+		Stats[OutPacketLossPct].CaptureValue(((float)(Connection->OutPacketsLost)) / FMath::Max<float>(1.0f, (float)(Connection->OutPackets + Connection->OutPacketsLost)));
+		Stats[TotalPacketLossPct].CaptureValue(((float)(Connection->InPacketsLost + Connection->OutPacketsLost)) / FMath::Max<float>(1.0f, (float)(Connection->InPackets + Connection->InPacketsLost + Connection->OutPackets + Connection->OutPacketsLost)));
 	}
 }
 
