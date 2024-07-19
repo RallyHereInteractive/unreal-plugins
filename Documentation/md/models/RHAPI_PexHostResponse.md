@@ -88,12 +88,14 @@ struct FRHAPI_PexHostResponse
 `public bool `[`ExpectedTeamSize_IsSet`](#structFRHAPI__PexHostResponse_1a1768bf4e24a3262c85939c69f0dc706c) | true if ExpectedTeamSize_Optional has been set to a value
 `public int32 `[`ExpectedPlayerCount_Optional`](#structFRHAPI__PexHostResponse_1a41ea78351490b6723341caecfd30203e) | 
 `public bool `[`ExpectedPlayerCount_IsSet`](#structFRHAPI__PexHostResponse_1a5c8c43db4ec2cea6a7c90e7e5f07062f) | true if ExpectedPlayerCount_Optional has been set to a value
-`public FString `[`HostPlayerUuid_Optional`](#structFRHAPI__PexHostResponse_1a965531d09465643775dae84657447343) | 
+`public FGuid `[`HostPlayerUuid_Optional`](#structFRHAPI__PexHostResponse_1a72c886393cf30c3ea4e8e33ccba272b6) | 
 `public bool `[`HostPlayerUuid_IsSet`](#structFRHAPI__PexHostResponse_1aa0ab16d235237ccb27e99cab7faf6896) | true if HostPlayerUuid_Optional has been set to a value
-`public FString `[`OwningPlayerUuid_Optional`](#structFRHAPI__PexHostResponse_1a4206ba2a8ef71ba9c4ccc8901ec27479) | 
+`public FGuid `[`OwningPlayerUuid_Optional`](#structFRHAPI__PexHostResponse_1ad6e37c9b5ddad4f7101906bb1fdddb24) | 
 `public bool `[`OwningPlayerUuid_IsSet`](#structFRHAPI__PexHostResponse_1a7af6ba88fa86a24634fab9aff4433d2b) | true if OwningPlayerUuid_Optional has been set to a value
 `public FString `[`Version_Optional`](#structFRHAPI__PexHostResponse_1abae828eb8e4dda59ba926996b4ad29ad) | 
 `public bool `[`Version_IsSet`](#structFRHAPI__PexHostResponse_1ad8bd17478d9fb2799ae7b39140af665e) | true if Version_Optional has been set to a value
+`public FString `[`MachineClass_Optional`](#structFRHAPI__PexHostResponse_1abae9b427ab0dac05330a56e1e2338a50) | 
+`public bool `[`MachineClass_IsSet`](#structFRHAPI__PexHostResponse_1a8a545e5c833a5ba2b8194f7b41228fb0) | true if MachineClass_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__PexHostResponse_1a58b42f0149d400c57e2c7dbe64e32215)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PexHostResponse_1aa6cef6b4c1db7de81b9e1d5a1e540a3c)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FDateTime & `[`GetLastModifiedTimestamp`](#structFRHAPI__PexHostResponse_1a678c913961890b87009183a044168fb5)`()` | Gets the value of LastModifiedTimestamp_Optional, regardless of it having been set.
@@ -419,23 +421,23 @@ struct FRHAPI_PexHostResponse
 `public inline void `[`ClearExpectedPlayerCount`](#structFRHAPI__PexHostResponse_1a50fe51777a1ecfd53c640e8e6458f80c)`()` | Clears the value of ExpectedPlayerCount_Optional and sets ExpectedPlayerCount_IsSet to false.
 `public inline bool `[`IsExpectedPlayerCountDefaultValue`](#structFRHAPI__PexHostResponse_1a59d0de96ac39a6809d3a2d103695ef3b)`() const` | Returns true if ExpectedPlayerCount_Optional is set and matches the default value.
 `public inline void `[`SetExpectedPlayerCountToDefault`](#structFRHAPI__PexHostResponse_1a628a8acc33ea1d23cfdbcb477d6b8e14)`()` | Sets the value of ExpectedPlayerCount_Optional to its default and also sets ExpectedPlayerCount_IsSet to true.
-`public inline FString & `[`GetHostPlayerUuid`](#structFRHAPI__PexHostResponse_1a20c931fe5a86910adc1e36108bec4687)`()` | Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
-`public inline const FString & `[`GetHostPlayerUuid`](#structFRHAPI__PexHostResponse_1af83269635e7766bb5e38273679b9c98b)`() const` | Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
-`public inline const FString & `[`GetHostPlayerUuid`](#structFRHAPI__PexHostResponse_1ab3deea53706df2df9da433d8c594fdf1)`(const FString & DefaultValue) const` | Gets the value of HostPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetHostPlayerUuid`](#structFRHAPI__PexHostResponse_1afdf4792f8b12b178beee208f36829a04)`(FString & OutValue) const` | Fills OutValue with the value of HostPlayerUuid_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__PexHostResponse_1a90be91b92a6b76eca9a95cf651230b9c)`()` | Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__PexHostResponse_1aa4b3301d98d766fb2718d169b2cf1d8d)`() const` | Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetHostPlayerUuid`](#structFRHAPI__PexHostResponse_1a27ce35799f83684b1733a22d47585662)`(const FString & NewValue)` | Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true.
-`public inline void `[`SetHostPlayerUuid`](#structFRHAPI__PexHostResponse_1a88b358fce8fc6d56f8e0de567ead1274)`(FString && NewValue)` | Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true using move semantics.
+`public inline FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__PexHostResponse_1ab24bfce066024901960a0c00426c5f9a)`()` | Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
+`public inline const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__PexHostResponse_1abda9a79212a0c1c0a02cf0724e7f758c)`() const` | Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
+`public inline const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__PexHostResponse_1a5b5431c6e9fda9e836854e999d60c50a)`(const FGuid & DefaultValue) const` | Gets the value of HostPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetHostPlayerUuid`](#structFRHAPI__PexHostResponse_1a7520cbd0963b441fa2dcfaf89a89ebb9)`(FGuid & OutValue) const` | Fills OutValue with the value of HostPlayerUuid_Optional and returns true if it has been set, otherwise returns false.
+`public inline FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__PexHostResponse_1a8bb9a197b77162a9226a5a759eb1c624)`()` | Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__PexHostResponse_1aa79a7a763b861ee050697f1080d3443c)`() const` | Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetHostPlayerUuid`](#structFRHAPI__PexHostResponse_1a4d29e203bcddff7c1b7e2ffce85281e9)`(const FGuid & NewValue)` | Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true.
+`public inline void `[`SetHostPlayerUuid`](#structFRHAPI__PexHostResponse_1a84f688fee5dffbad707324d8b520bebd)`(FGuid && NewValue)` | Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true using move semantics.
 `public inline void `[`ClearHostPlayerUuid`](#structFRHAPI__PexHostResponse_1ab3e8f2fce854f45c4f21b3407544479e)`()` | Clears the value of HostPlayerUuid_Optional and sets HostPlayerUuid_IsSet to false.
-`public inline FString & `[`GetOwningPlayerUuid`](#structFRHAPI__PexHostResponse_1a79df87fffbeb916cb1c674f6f41a8586)`()` | Gets the value of OwningPlayerUuid_Optional, regardless of it having been set.
-`public inline const FString & `[`GetOwningPlayerUuid`](#structFRHAPI__PexHostResponse_1af4d04313fb5d98e547fa25dd4ad16959)`() const` | Gets the value of OwningPlayerUuid_Optional, regardless of it having been set.
-`public inline const FString & `[`GetOwningPlayerUuid`](#structFRHAPI__PexHostResponse_1acc768069ebbeafc78a95f654f1c93245)`(const FString & DefaultValue) const` | Gets the value of OwningPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetOwningPlayerUuid`](#structFRHAPI__PexHostResponse_1aeb6f9fc8e601e7bc3977788a992eafab)`(FString & OutValue) const` | Fills OutValue with the value of OwningPlayerUuid_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetOwningPlayerUuidOrNull`](#structFRHAPI__PexHostResponse_1a34e056d12de43926f14f79c81bf60fe3)`()` | Returns a pointer to OwningPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetOwningPlayerUuidOrNull`](#structFRHAPI__PexHostResponse_1a412aeb976e0ce31198a33d10bfbdff58)`() const` | Returns a pointer to OwningPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetOwningPlayerUuid`](#structFRHAPI__PexHostResponse_1a4a5028640f5e6f9169bb271a6c020b30)`(const FString & NewValue)` | Sets the value of OwningPlayerUuid_Optional and also sets OwningPlayerUuid_IsSet to true.
-`public inline void `[`SetOwningPlayerUuid`](#structFRHAPI__PexHostResponse_1a783a32c62b15a9b8c3adc6abb6371272)`(FString && NewValue)` | Sets the value of OwningPlayerUuid_Optional and also sets OwningPlayerUuid_IsSet to true using move semantics.
+`public inline FGuid & `[`GetOwningPlayerUuid`](#structFRHAPI__PexHostResponse_1a2b9c6298eb650d78a65233734fe080eb)`()` | Gets the value of OwningPlayerUuid_Optional, regardless of it having been set.
+`public inline const FGuid & `[`GetOwningPlayerUuid`](#structFRHAPI__PexHostResponse_1ae628188fbf802f08e4c320fd08dd8ebd)`() const` | Gets the value of OwningPlayerUuid_Optional, regardless of it having been set.
+`public inline const FGuid & `[`GetOwningPlayerUuid`](#structFRHAPI__PexHostResponse_1afd9801eee24066b5216079cefa71be66)`(const FGuid & DefaultValue) const` | Gets the value of OwningPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetOwningPlayerUuid`](#structFRHAPI__PexHostResponse_1afd1e3d363d29fbd4a86012ee6415baa3)`(FGuid & OutValue) const` | Fills OutValue with the value of OwningPlayerUuid_Optional and returns true if it has been set, otherwise returns false.
+`public inline FGuid * `[`GetOwningPlayerUuidOrNull`](#structFRHAPI__PexHostResponse_1af0381c1eb3e5e507e258797eea988003)`()` | Returns a pointer to OwningPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FGuid * `[`GetOwningPlayerUuidOrNull`](#structFRHAPI__PexHostResponse_1a847104371c4bdb678bb2625fcafa6c68)`() const` | Returns a pointer to OwningPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetOwningPlayerUuid`](#structFRHAPI__PexHostResponse_1ae535ef1a28ac3066c7638bcb87096ba1)`(const FGuid & NewValue)` | Sets the value of OwningPlayerUuid_Optional and also sets OwningPlayerUuid_IsSet to true.
+`public inline void `[`SetOwningPlayerUuid`](#structFRHAPI__PexHostResponse_1acd4b15222ae20b9af9138ca389a3836f)`(FGuid && NewValue)` | Sets the value of OwningPlayerUuid_Optional and also sets OwningPlayerUuid_IsSet to true using move semantics.
 `public inline void `[`ClearOwningPlayerUuid`](#structFRHAPI__PexHostResponse_1ab6b1069c174c97e32d6471b23da8e0c3)`()` | Clears the value of OwningPlayerUuid_Optional and sets OwningPlayerUuid_IsSet to false.
 `public inline FString & `[`GetVersion`](#structFRHAPI__PexHostResponse_1a012464239d3b574dee887e680a54a4bb)`()` | Gets the value of Version_Optional, regardless of it having been set.
 `public inline const FString & `[`GetVersion`](#structFRHAPI__PexHostResponse_1a8f714b01f9791077c9049105629be4df)`() const` | Gets the value of Version_Optional, regardless of it having been set.
@@ -446,6 +448,15 @@ struct FRHAPI_PexHostResponse
 `public inline void `[`SetVersion`](#structFRHAPI__PexHostResponse_1ae53c937b082b16f7decfe25c44784967)`(const FString & NewValue)` | Sets the value of Version_Optional and also sets Version_IsSet to true.
 `public inline void `[`SetVersion`](#structFRHAPI__PexHostResponse_1ad906df9c76a6af4a2454898eabc45647)`(FString && NewValue)` | Sets the value of Version_Optional and also sets Version_IsSet to true using move semantics.
 `public inline void `[`ClearVersion`](#structFRHAPI__PexHostResponse_1a4a9978e852f5246fc73b185259502bc9)`()` | Clears the value of Version_Optional and sets Version_IsSet to false.
+`public inline FString & `[`GetMachineClass`](#structFRHAPI__PexHostResponse_1a1035bb7fe84231316ee91846774ae975)`()` | Gets the value of MachineClass_Optional, regardless of it having been set.
+`public inline const FString & `[`GetMachineClass`](#structFRHAPI__PexHostResponse_1a17f09bf5d057a82be5e5b93e727701aa)`() const` | Gets the value of MachineClass_Optional, regardless of it having been set.
+`public inline const FString & `[`GetMachineClass`](#structFRHAPI__PexHostResponse_1af368ed695ed2a3e09018ab5810403a56)`(const FString & DefaultValue) const` | Gets the value of MachineClass_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetMachineClass`](#structFRHAPI__PexHostResponse_1a305d9e7a532b52b7b1ceb782e03eea6a)`(FString & OutValue) const` | Fills OutValue with the value of MachineClass_Optional and returns true if it has been set, otherwise returns false.
+`public inline FString * `[`GetMachineClassOrNull`](#structFRHAPI__PexHostResponse_1a6dbd804c34cd688c1d1092ba6f0e2525)`()` | Returns a pointer to MachineClass_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetMachineClassOrNull`](#structFRHAPI__PexHostResponse_1ad0af0d0278040a9202744b3325edc354)`() const` | Returns a pointer to MachineClass_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetMachineClass`](#structFRHAPI__PexHostResponse_1a17600dca0a5a80965f8b00e79a7cedb2)`(const FString & NewValue)` | Sets the value of MachineClass_Optional and also sets MachineClass_IsSet to true.
+`public inline void `[`SetMachineClass`](#structFRHAPI__PexHostResponse_1ad2a94c8f40d266ed25d7350100319999)`(FString && NewValue)` | Sets the value of MachineClass_Optional and also sets MachineClass_IsSet to true using move semantics.
+`public inline void `[`ClearMachineClass`](#structFRHAPI__PexHostResponse_1ad3712f38340f2efbac5cbb7985b92ce0)`()` | Clears the value of MachineClass_Optional and sets MachineClass_IsSet to false.
 
 ### Members
 
@@ -667,13 +678,13 @@ true if ExpectedTeamSize_Optional has been set to a value
 
 true if ExpectedPlayerCount_Optional has been set to a value
 
-#### `public FString `[`HostPlayerUuid_Optional`](#structFRHAPI__PexHostResponse_1a965531d09465643775dae84657447343) <a id="structFRHAPI__PexHostResponse_1a965531d09465643775dae84657447343"></a>
+#### `public FGuid `[`HostPlayerUuid_Optional`](#structFRHAPI__PexHostResponse_1a72c886393cf30c3ea4e8e33ccba272b6) <a id="structFRHAPI__PexHostResponse_1a72c886393cf30c3ea4e8e33ccba272b6"></a>
 
 #### `public bool `[`HostPlayerUuid_IsSet`](#structFRHAPI__PexHostResponse_1aa0ab16d235237ccb27e99cab7faf6896) <a id="structFRHAPI__PexHostResponse_1aa0ab16d235237ccb27e99cab7faf6896"></a>
 
 true if HostPlayerUuid_Optional has been set to a value
 
-#### `public FString `[`OwningPlayerUuid_Optional`](#structFRHAPI__PexHostResponse_1a4206ba2a8ef71ba9c4ccc8901ec27479) <a id="structFRHAPI__PexHostResponse_1a4206ba2a8ef71ba9c4ccc8901ec27479"></a>
+#### `public FGuid `[`OwningPlayerUuid_Optional`](#structFRHAPI__PexHostResponse_1ad6e37c9b5ddad4f7101906bb1fdddb24) <a id="structFRHAPI__PexHostResponse_1ad6e37c9b5ddad4f7101906bb1fdddb24"></a>
 
 #### `public bool `[`OwningPlayerUuid_IsSet`](#structFRHAPI__PexHostResponse_1a7af6ba88fa86a24634fab9aff4433d2b) <a id="structFRHAPI__PexHostResponse_1a7af6ba88fa86a24634fab9aff4433d2b"></a>
 
@@ -684,6 +695,12 @@ true if OwningPlayerUuid_Optional has been set to a value
 #### `public bool `[`Version_IsSet`](#structFRHAPI__PexHostResponse_1ad8bd17478d9fb2799ae7b39140af665e) <a id="structFRHAPI__PexHostResponse_1ad8bd17478d9fb2799ae7b39140af665e"></a>
 
 true if Version_Optional has been set to a value
+
+#### `public FString `[`MachineClass_Optional`](#structFRHAPI__PexHostResponse_1abae9b427ab0dac05330a56e1e2338a50) <a id="structFRHAPI__PexHostResponse_1abae9b427ab0dac05330a56e1e2338a50"></a>
+
+#### `public bool `[`MachineClass_IsSet`](#structFRHAPI__PexHostResponse_1a8a545e5c833a5ba2b8194f7b41228fb0) <a id="structFRHAPI__PexHostResponse_1a8a545e5c833a5ba2b8194f7b41228fb0"></a>
+
+true if MachineClass_Optional has been set to a value
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__PexHostResponse_1a58b42f0149d400c57e2c7dbe64e32215)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PexHostResponse_1a58b42f0149d400c57e2c7dbe64e32215"></a>
 
@@ -1994,35 +2011,35 @@ Returns true if ExpectedPlayerCount_Optional is set and matches the default valu
 
 Sets the value of ExpectedPlayerCount_Optional to its default and also sets ExpectedPlayerCount_IsSet to true.
 
-#### `public inline FString & `[`GetHostPlayerUuid`](#structFRHAPI__PexHostResponse_1a20c931fe5a86910adc1e36108bec4687)`()` <a id="structFRHAPI__PexHostResponse_1a20c931fe5a86910adc1e36108bec4687"></a>
+#### `public inline FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__PexHostResponse_1ab24bfce066024901960a0c00426c5f9a)`()` <a id="structFRHAPI__PexHostResponse_1ab24bfce066024901960a0c00426c5f9a"></a>
 
 Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetHostPlayerUuid`](#structFRHAPI__PexHostResponse_1af83269635e7766bb5e38273679b9c98b)`() const` <a id="structFRHAPI__PexHostResponse_1af83269635e7766bb5e38273679b9c98b"></a>
+#### `public inline const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__PexHostResponse_1abda9a79212a0c1c0a02cf0724e7f758c)`() const` <a id="structFRHAPI__PexHostResponse_1abda9a79212a0c1c0a02cf0724e7f758c"></a>
 
 Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetHostPlayerUuid`](#structFRHAPI__PexHostResponse_1ab3deea53706df2df9da433d8c594fdf1)`(const FString & DefaultValue) const` <a id="structFRHAPI__PexHostResponse_1ab3deea53706df2df9da433d8c594fdf1"></a>
+#### `public inline const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__PexHostResponse_1a5b5431c6e9fda9e836854e999d60c50a)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__PexHostResponse_1a5b5431c6e9fda9e836854e999d60c50a"></a>
 
 Gets the value of HostPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetHostPlayerUuid`](#structFRHAPI__PexHostResponse_1afdf4792f8b12b178beee208f36829a04)`(FString & OutValue) const` <a id="structFRHAPI__PexHostResponse_1afdf4792f8b12b178beee208f36829a04"></a>
+#### `public inline bool `[`GetHostPlayerUuid`](#structFRHAPI__PexHostResponse_1a7520cbd0963b441fa2dcfaf89a89ebb9)`(FGuid & OutValue) const` <a id="structFRHAPI__PexHostResponse_1a7520cbd0963b441fa2dcfaf89a89ebb9"></a>
 
 Fills OutValue with the value of HostPlayerUuid_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__PexHostResponse_1a90be91b92a6b76eca9a95cf651230b9c)`()` <a id="structFRHAPI__PexHostResponse_1a90be91b92a6b76eca9a95cf651230b9c"></a>
+#### `public inline FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__PexHostResponse_1a8bb9a197b77162a9226a5a759eb1c624)`()` <a id="structFRHAPI__PexHostResponse_1a8bb9a197b77162a9226a5a759eb1c624"></a>
 
 Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__PexHostResponse_1aa4b3301d98d766fb2718d169b2cf1d8d)`() const` <a id="structFRHAPI__PexHostResponse_1aa4b3301d98d766fb2718d169b2cf1d8d"></a>
+#### `public inline const FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__PexHostResponse_1aa79a7a763b861ee050697f1080d3443c)`() const` <a id="structFRHAPI__PexHostResponse_1aa79a7a763b861ee050697f1080d3443c"></a>
 
 Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetHostPlayerUuid`](#structFRHAPI__PexHostResponse_1a27ce35799f83684b1733a22d47585662)`(const FString & NewValue)` <a id="structFRHAPI__PexHostResponse_1a27ce35799f83684b1733a22d47585662"></a>
+#### `public inline void `[`SetHostPlayerUuid`](#structFRHAPI__PexHostResponse_1a4d29e203bcddff7c1b7e2ffce85281e9)`(const FGuid & NewValue)` <a id="structFRHAPI__PexHostResponse_1a4d29e203bcddff7c1b7e2ffce85281e9"></a>
 
 Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true.
 
-#### `public inline void `[`SetHostPlayerUuid`](#structFRHAPI__PexHostResponse_1a88b358fce8fc6d56f8e0de567ead1274)`(FString && NewValue)` <a id="structFRHAPI__PexHostResponse_1a88b358fce8fc6d56f8e0de567ead1274"></a>
+#### `public inline void `[`SetHostPlayerUuid`](#structFRHAPI__PexHostResponse_1a84f688fee5dffbad707324d8b520bebd)`(FGuid && NewValue)` <a id="structFRHAPI__PexHostResponse_1a84f688fee5dffbad707324d8b520bebd"></a>
 
 Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true using move semantics.
 
@@ -2030,35 +2047,35 @@ Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to 
 
 Clears the value of HostPlayerUuid_Optional and sets HostPlayerUuid_IsSet to false.
 
-#### `public inline FString & `[`GetOwningPlayerUuid`](#structFRHAPI__PexHostResponse_1a79df87fffbeb916cb1c674f6f41a8586)`()` <a id="structFRHAPI__PexHostResponse_1a79df87fffbeb916cb1c674f6f41a8586"></a>
+#### `public inline FGuid & `[`GetOwningPlayerUuid`](#structFRHAPI__PexHostResponse_1a2b9c6298eb650d78a65233734fe080eb)`()` <a id="structFRHAPI__PexHostResponse_1a2b9c6298eb650d78a65233734fe080eb"></a>
 
 Gets the value of OwningPlayerUuid_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetOwningPlayerUuid`](#structFRHAPI__PexHostResponse_1af4d04313fb5d98e547fa25dd4ad16959)`() const` <a id="structFRHAPI__PexHostResponse_1af4d04313fb5d98e547fa25dd4ad16959"></a>
+#### `public inline const FGuid & `[`GetOwningPlayerUuid`](#structFRHAPI__PexHostResponse_1ae628188fbf802f08e4c320fd08dd8ebd)`() const` <a id="structFRHAPI__PexHostResponse_1ae628188fbf802f08e4c320fd08dd8ebd"></a>
 
 Gets the value of OwningPlayerUuid_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetOwningPlayerUuid`](#structFRHAPI__PexHostResponse_1acc768069ebbeafc78a95f654f1c93245)`(const FString & DefaultValue) const` <a id="structFRHAPI__PexHostResponse_1acc768069ebbeafc78a95f654f1c93245"></a>
+#### `public inline const FGuid & `[`GetOwningPlayerUuid`](#structFRHAPI__PexHostResponse_1afd9801eee24066b5216079cefa71be66)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__PexHostResponse_1afd9801eee24066b5216079cefa71be66"></a>
 
 Gets the value of OwningPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetOwningPlayerUuid`](#structFRHAPI__PexHostResponse_1aeb6f9fc8e601e7bc3977788a992eafab)`(FString & OutValue) const` <a id="structFRHAPI__PexHostResponse_1aeb6f9fc8e601e7bc3977788a992eafab"></a>
+#### `public inline bool `[`GetOwningPlayerUuid`](#structFRHAPI__PexHostResponse_1afd1e3d363d29fbd4a86012ee6415baa3)`(FGuid & OutValue) const` <a id="structFRHAPI__PexHostResponse_1afd1e3d363d29fbd4a86012ee6415baa3"></a>
 
 Fills OutValue with the value of OwningPlayerUuid_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetOwningPlayerUuidOrNull`](#structFRHAPI__PexHostResponse_1a34e056d12de43926f14f79c81bf60fe3)`()` <a id="structFRHAPI__PexHostResponse_1a34e056d12de43926f14f79c81bf60fe3"></a>
+#### `public inline FGuid * `[`GetOwningPlayerUuidOrNull`](#structFRHAPI__PexHostResponse_1af0381c1eb3e5e507e258797eea988003)`()` <a id="structFRHAPI__PexHostResponse_1af0381c1eb3e5e507e258797eea988003"></a>
 
 Returns a pointer to OwningPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetOwningPlayerUuidOrNull`](#structFRHAPI__PexHostResponse_1a412aeb976e0ce31198a33d10bfbdff58)`() const` <a id="structFRHAPI__PexHostResponse_1a412aeb976e0ce31198a33d10bfbdff58"></a>
+#### `public inline const FGuid * `[`GetOwningPlayerUuidOrNull`](#structFRHAPI__PexHostResponse_1a847104371c4bdb678bb2625fcafa6c68)`() const` <a id="structFRHAPI__PexHostResponse_1a847104371c4bdb678bb2625fcafa6c68"></a>
 
 Returns a pointer to OwningPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetOwningPlayerUuid`](#structFRHAPI__PexHostResponse_1a4a5028640f5e6f9169bb271a6c020b30)`(const FString & NewValue)` <a id="structFRHAPI__PexHostResponse_1a4a5028640f5e6f9169bb271a6c020b30"></a>
+#### `public inline void `[`SetOwningPlayerUuid`](#structFRHAPI__PexHostResponse_1ae535ef1a28ac3066c7638bcb87096ba1)`(const FGuid & NewValue)` <a id="structFRHAPI__PexHostResponse_1ae535ef1a28ac3066c7638bcb87096ba1"></a>
 
 Sets the value of OwningPlayerUuid_Optional and also sets OwningPlayerUuid_IsSet to true.
 
-#### `public inline void `[`SetOwningPlayerUuid`](#structFRHAPI__PexHostResponse_1a783a32c62b15a9b8c3adc6abb6371272)`(FString && NewValue)` <a id="structFRHAPI__PexHostResponse_1a783a32c62b15a9b8c3adc6abb6371272"></a>
+#### `public inline void `[`SetOwningPlayerUuid`](#structFRHAPI__PexHostResponse_1acd4b15222ae20b9af9138ca389a3836f)`(FGuid && NewValue)` <a id="structFRHAPI__PexHostResponse_1acd4b15222ae20b9af9138ca389a3836f"></a>
 
 Sets the value of OwningPlayerUuid_Optional and also sets OwningPlayerUuid_IsSet to true using move semantics.
 
@@ -2101,4 +2118,40 @@ Sets the value of Version_Optional and also sets Version_IsSet to true using mov
 #### `public inline void `[`ClearVersion`](#structFRHAPI__PexHostResponse_1a4a9978e852f5246fc73b185259502bc9)`()` <a id="structFRHAPI__PexHostResponse_1a4a9978e852f5246fc73b185259502bc9"></a>
 
 Clears the value of Version_Optional and sets Version_IsSet to false.
+
+#### `public inline FString & `[`GetMachineClass`](#structFRHAPI__PexHostResponse_1a1035bb7fe84231316ee91846774ae975)`()` <a id="structFRHAPI__PexHostResponse_1a1035bb7fe84231316ee91846774ae975"></a>
+
+Gets the value of MachineClass_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetMachineClass`](#structFRHAPI__PexHostResponse_1a17f09bf5d057a82be5e5b93e727701aa)`() const` <a id="structFRHAPI__PexHostResponse_1a17f09bf5d057a82be5e5b93e727701aa"></a>
+
+Gets the value of MachineClass_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetMachineClass`](#structFRHAPI__PexHostResponse_1af368ed695ed2a3e09018ab5810403a56)`(const FString & DefaultValue) const` <a id="structFRHAPI__PexHostResponse_1af368ed695ed2a3e09018ab5810403a56"></a>
+
+Gets the value of MachineClass_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetMachineClass`](#structFRHAPI__PexHostResponse_1a305d9e7a532b52b7b1ceb782e03eea6a)`(FString & OutValue) const` <a id="structFRHAPI__PexHostResponse_1a305d9e7a532b52b7b1ceb782e03eea6a"></a>
+
+Fills OutValue with the value of MachineClass_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline FString * `[`GetMachineClassOrNull`](#structFRHAPI__PexHostResponse_1a6dbd804c34cd688c1d1092ba6f0e2525)`()` <a id="structFRHAPI__PexHostResponse_1a6dbd804c34cd688c1d1092ba6f0e2525"></a>
+
+Returns a pointer to MachineClass_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const FString * `[`GetMachineClassOrNull`](#structFRHAPI__PexHostResponse_1ad0af0d0278040a9202744b3325edc354)`() const` <a id="structFRHAPI__PexHostResponse_1ad0af0d0278040a9202744b3325edc354"></a>
+
+Returns a pointer to MachineClass_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetMachineClass`](#structFRHAPI__PexHostResponse_1a17600dca0a5a80965f8b00e79a7cedb2)`(const FString & NewValue)` <a id="structFRHAPI__PexHostResponse_1a17600dca0a5a80965f8b00e79a7cedb2"></a>
+
+Sets the value of MachineClass_Optional and also sets MachineClass_IsSet to true.
+
+#### `public inline void `[`SetMachineClass`](#structFRHAPI__PexHostResponse_1ad2a94c8f40d266ed25d7350100319999)`(FString && NewValue)` <a id="structFRHAPI__PexHostResponse_1ad2a94c8f40d266ed25d7350100319999"></a>
+
+Sets the value of MachineClass_Optional and also sets MachineClass_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearMachineClass`](#structFRHAPI__PexHostResponse_1ad3712f38340f2efbac5cbb7985b92ce0)`()` <a id="structFRHAPI__PexHostResponse_1ad3712f38340f2efbac5cbb7985b92ce0"></a>
+
+Clears the value of MachineClass_Optional and sets MachineClass_IsSet to false.
 

@@ -33,6 +33,8 @@ struct FRHAPI_PexHostQueryParams
 `public bool `[`DatacenterProvider_IsSet`](#structFRHAPI__PexHostQueryParams_1a10eff0681ad32262c12cf790a0161c30) | true if DatacenterProvider_Optional has been set to a value
 `public FString `[`DatacenterLocation_Optional`](#structFRHAPI__PexHostQueryParams_1a2090339b552d69891ccfead62cad8bdb) | 
 `public bool `[`DatacenterLocation_IsSet`](#structFRHAPI__PexHostQueryParams_1adadc77880eb8b0d057fbdf8957901284) | true if DatacenterLocation_Optional has been set to a value
+`public FString `[`MachineClass_Optional`](#structFRHAPI__PexHostQueryParams_1a4f410bbb0c03078c19dc7e0513caab2c) | 
+`public bool `[`MachineClass_IsSet`](#structFRHAPI__PexHostQueryParams_1a218e181d4f90410aa27160a7606fd6d9) | true if MachineClass_Optional has been set to a value
 `public FString `[`AddressIp_Optional`](#structFRHAPI__PexHostQueryParams_1a6c3a087c161574693cb1d68aeb1680f7) | 
 `public bool `[`AddressIp_IsSet`](#structFRHAPI__PexHostQueryParams_1ab83313fc80b021262a9b4fc4245ab21f) | true if AddressIp_Optional has been set to a value
 `public FString `[`MapName_Optional`](#structFRHAPI__PexHostQueryParams_1ada9dfa34c5909184a703acc2040440f4) | 
@@ -125,6 +127,15 @@ struct FRHAPI_PexHostQueryParams
 `public inline void `[`SetDatacenterLocation`](#structFRHAPI__PexHostQueryParams_1a548a14c6bef1681d8e3fd04fc864a7a4)`(const FString & NewValue)` | Sets the value of DatacenterLocation_Optional and also sets DatacenterLocation_IsSet to true.
 `public inline void `[`SetDatacenterLocation`](#structFRHAPI__PexHostQueryParams_1a4a663e9113a22e59fd238f7f2cd13870)`(FString && NewValue)` | Sets the value of DatacenterLocation_Optional and also sets DatacenterLocation_IsSet to true using move semantics.
 `public inline void `[`ClearDatacenterLocation`](#structFRHAPI__PexHostQueryParams_1a3eadd63549baf4bad717e3dfda9329d1)`()` | Clears the value of DatacenterLocation_Optional and sets DatacenterLocation_IsSet to false.
+`public inline FString & `[`GetMachineClass`](#structFRHAPI__PexHostQueryParams_1a5d7c6f506055b1c3742f4db46ee2f1d3)`()` | Gets the value of MachineClass_Optional, regardless of it having been set.
+`public inline const FString & `[`GetMachineClass`](#structFRHAPI__PexHostQueryParams_1aac0a7d4d9703f40b999fbe91a47aeb62)`() const` | Gets the value of MachineClass_Optional, regardless of it having been set.
+`public inline const FString & `[`GetMachineClass`](#structFRHAPI__PexHostQueryParams_1ae360c834e413e5f45b72638ac808f219)`(const FString & DefaultValue) const` | Gets the value of MachineClass_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetMachineClass`](#structFRHAPI__PexHostQueryParams_1a9e231625636067a14b63ba7cc286f4f4)`(FString & OutValue) const` | Fills OutValue with the value of MachineClass_Optional and returns true if it has been set, otherwise returns false.
+`public inline FString * `[`GetMachineClassOrNull`](#structFRHAPI__PexHostQueryParams_1acffbd2261cda00ba3a730e5ca9680c3b)`()` | Returns a pointer to MachineClass_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetMachineClassOrNull`](#structFRHAPI__PexHostQueryParams_1a41ad9f6dc9fde59ce01db51ffd15c09a)`() const` | Returns a pointer to MachineClass_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetMachineClass`](#structFRHAPI__PexHostQueryParams_1a95c3d38b2f79224786e4f3dee922def2)`(const FString & NewValue)` | Sets the value of MachineClass_Optional and also sets MachineClass_IsSet to true.
+`public inline void `[`SetMachineClass`](#structFRHAPI__PexHostQueryParams_1a3062b747e72d0c3d75d1a309477bb1f8)`(FString && NewValue)` | Sets the value of MachineClass_Optional and also sets MachineClass_IsSet to true using move semantics.
+`public inline void `[`ClearMachineClass`](#structFRHAPI__PexHostQueryParams_1a6a5bc5638b3bff91a03a08f7c1d732fb)`()` | Clears the value of MachineClass_Optional and sets MachineClass_IsSet to false.
 `public inline FString & `[`GetAddressIp`](#structFRHAPI__PexHostQueryParams_1ae686d37563d67eccfe9cb59d3f8185fd)`()` | Gets the value of AddressIp_Optional, regardless of it having been set.
 `public inline const FString & `[`GetAddressIp`](#structFRHAPI__PexHostQueryParams_1a85c1333f681bd2d5c176ddd53fdd4174)`() const` | Gets the value of AddressIp_Optional, regardless of it having been set.
 `public inline const FString & `[`GetAddressIp`](#structFRHAPI__PexHostQueryParams_1a79407c1b8d92dec47c875d61053e6136)`(const FString & DefaultValue) const` | Gets the value of AddressIp_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -264,6 +275,12 @@ true if DatacenterProvider_Optional has been set to a value
 #### `public bool `[`DatacenterLocation_IsSet`](#structFRHAPI__PexHostQueryParams_1adadc77880eb8b0d057fbdf8957901284) <a id="structFRHAPI__PexHostQueryParams_1adadc77880eb8b0d057fbdf8957901284"></a>
 
 true if DatacenterLocation_Optional has been set to a value
+
+#### `public FString `[`MachineClass_Optional`](#structFRHAPI__PexHostQueryParams_1a4f410bbb0c03078c19dc7e0513caab2c) <a id="structFRHAPI__PexHostQueryParams_1a4f410bbb0c03078c19dc7e0513caab2c"></a>
+
+#### `public bool `[`MachineClass_IsSet`](#structFRHAPI__PexHostQueryParams_1a218e181d4f90410aa27160a7606fd6d9) <a id="structFRHAPI__PexHostQueryParams_1a218e181d4f90410aa27160a7606fd6d9"></a>
+
+true if MachineClass_Optional has been set to a value
 
 #### `public FString `[`AddressIp_Optional`](#structFRHAPI__PexHostQueryParams_1a6c3a087c161574693cb1d68aeb1680f7) <a id="structFRHAPI__PexHostQueryParams_1a6c3a087c161574693cb1d68aeb1680f7"></a>
 
@@ -623,6 +640,42 @@ Sets the value of DatacenterLocation_Optional and also sets DatacenterLocation_I
 #### `public inline void `[`ClearDatacenterLocation`](#structFRHAPI__PexHostQueryParams_1a3eadd63549baf4bad717e3dfda9329d1)`()` <a id="structFRHAPI__PexHostQueryParams_1a3eadd63549baf4bad717e3dfda9329d1"></a>
 
 Clears the value of DatacenterLocation_Optional and sets DatacenterLocation_IsSet to false.
+
+#### `public inline FString & `[`GetMachineClass`](#structFRHAPI__PexHostQueryParams_1a5d7c6f506055b1c3742f4db46ee2f1d3)`()` <a id="structFRHAPI__PexHostQueryParams_1a5d7c6f506055b1c3742f4db46ee2f1d3"></a>
+
+Gets the value of MachineClass_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetMachineClass`](#structFRHAPI__PexHostQueryParams_1aac0a7d4d9703f40b999fbe91a47aeb62)`() const` <a id="structFRHAPI__PexHostQueryParams_1aac0a7d4d9703f40b999fbe91a47aeb62"></a>
+
+Gets the value of MachineClass_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetMachineClass`](#structFRHAPI__PexHostQueryParams_1ae360c834e413e5f45b72638ac808f219)`(const FString & DefaultValue) const` <a id="structFRHAPI__PexHostQueryParams_1ae360c834e413e5f45b72638ac808f219"></a>
+
+Gets the value of MachineClass_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetMachineClass`](#structFRHAPI__PexHostQueryParams_1a9e231625636067a14b63ba7cc286f4f4)`(FString & OutValue) const` <a id="structFRHAPI__PexHostQueryParams_1a9e231625636067a14b63ba7cc286f4f4"></a>
+
+Fills OutValue with the value of MachineClass_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline FString * `[`GetMachineClassOrNull`](#structFRHAPI__PexHostQueryParams_1acffbd2261cda00ba3a730e5ca9680c3b)`()` <a id="structFRHAPI__PexHostQueryParams_1acffbd2261cda00ba3a730e5ca9680c3b"></a>
+
+Returns a pointer to MachineClass_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const FString * `[`GetMachineClassOrNull`](#structFRHAPI__PexHostQueryParams_1a41ad9f6dc9fde59ce01db51ffd15c09a)`() const` <a id="structFRHAPI__PexHostQueryParams_1a41ad9f6dc9fde59ce01db51ffd15c09a"></a>
+
+Returns a pointer to MachineClass_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetMachineClass`](#structFRHAPI__PexHostQueryParams_1a95c3d38b2f79224786e4f3dee922def2)`(const FString & NewValue)` <a id="structFRHAPI__PexHostQueryParams_1a95c3d38b2f79224786e4f3dee922def2"></a>
+
+Sets the value of MachineClass_Optional and also sets MachineClass_IsSet to true.
+
+#### `public inline void `[`SetMachineClass`](#structFRHAPI__PexHostQueryParams_1a3062b747e72d0c3d75d1a309477bb1f8)`(FString && NewValue)` <a id="structFRHAPI__PexHostQueryParams_1a3062b747e72d0c3d75d1a309477bb1f8"></a>
+
+Sets the value of MachineClass_Optional and also sets MachineClass_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearMachineClass`](#structFRHAPI__PexHostQueryParams_1a6a5bc5638b3bff91a03a08f7c1d732fb)`()` <a id="structFRHAPI__PexHostQueryParams_1a6a5bc5638b3bff91a03a08f7c1d732fb"></a>
+
+Clears the value of MachineClass_Optional and sets MachineClass_IsSet to false.
 
 #### `public inline FString & `[`GetAddressIp`](#structFRHAPI__PexHostQueryParams_1ae686d37563d67eccfe9cb59d3f8185fd)`()` <a id="structFRHAPI__PexHostQueryParams_1ae686d37563d67eccfe9cb59d3f8185fd"></a>
 
