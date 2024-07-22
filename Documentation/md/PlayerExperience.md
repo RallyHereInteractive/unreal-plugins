@@ -13,11 +13,14 @@
 `class `[`URH_PEXOwnerInterface`](#classURH__PEXOwnerInterface) | PlayerExperience Owner Interface class.
 `class `[`IRH_PEXOwnerInterface`](#classIRH__PEXOwnerInterface) | PlayerExperience Owner Interface.
 `class `[`URH_PEXStatGroup`](#classURH__PEXStatGroup) | Base class for a group of stats.
+`class `[`URH_PEXStatGroupsTopLevel`](#classURH__PEXStatGroupsTopLevel) | Stat group that contains all other stat groups, configurable via INI.
 `class `[`URH_PEXCollector`](#classURH__PEXCollector) | PlayerExperience Collector class, responsible for collecting and tracking PEX data via PEX Stat Groups.
 `class `[`URH_PEXPrimaryStats`](#classURH__PEXPrimaryStats) | Stat group for capturing primary stats.
 `class `[`URH_PEXNetworkStats_Base`](#classURH__PEXNetworkStats__Base) | Stat group for capturing whole-state network stats.
 `class `[`URH_PEXNetworkStats_Global`](#classURH__PEXNetworkStats__Global) | Stat group for capturing global network stats.
 `class `[`URH_PEXNetworkStats_Connection`](#classURH__PEXNetworkStats__Connection) | Stat group for capturing per-player network stats.
+`class `[`URH_PEXNetworkStats_Host`](#classURH__PEXNetworkStats__Host) | Stat group for capturing a group of player network stats.
+`class `[`URH_PEXNetworkStats_Client`](#classURH__PEXNetworkStats__Client) | Stat group for capturing a group of client's connection to server's network stats.
 `class `[`URH_PEXNetworkStats`](#classURH__PEXNetworkStats) | Stat group for capturing local whole-state network stats, plus per-player stats.
 `class `[`URH_PEXGameStats`](#classURH__PEXGameStats) | Stat group for capturing game stats.
 `class `[`URH_PEXBlueprintableStats`](#classURH__PEXBlueprintableStats) | Blueprintable stat group for capturing stats.
@@ -61,7 +64,8 @@ class URH_PEXCollectorConfig
 `public int32 `[`StatInterval`](#classURH__PEXCollectorConfig_1a432154cb90daa7882de271e53bc816ff) | Interval of updating summary and writing timeline, in seconds
 `public FString `[`TimelineFilePrefix`](#classURH__PEXCollectorConfig_1a85e4c4eb8c381adbf8e02b2f00911a1d) | Prefix for timeline file name
 `public FString `[`SummaryFilePrefix`](#classURH__PEXCollectorConfig_1aa5ad5eaa1723126934fb7335f20890bb) | Prefix for summary file name
-`public inline  `[`URH_PEXCollectorConfig`](#classURH__PEXCollectorConfig_1a6b5675c95f49d2fc131b6405d545202c)`()` | 
+`public TSet< TSubclassOf< `[`URH_PEXStatGroup`](PlayerExperience.md#classURH__PEXStatGroup)` > > `[`StatGroupsToCapture`](#classURH__PEXCollectorConfig_1a15bb5fe15307798368d32729ef73bfb1) | Array of StatGroups to capture
+`public  `[`URH_PEXCollectorConfig`](#classURH__PEXCollectorConfig_1a6b5675c95f49d2fc131b6405d545202c)`()` | 
 `public inline bool `[`WantsEnabled`](#classURH__PEXCollectorConfig_1a2657e9f57c51db32120cf7f752e240aa)`() const` | Helper function for whether tracking should be enabled
 `public inline bool `[`WantsSummary`](#classURH__PEXCollectorConfig_1a2c3b5e0fac4ecd2155d0df9b9023c45c)`() const` | Helper function for whether summary data should be tracked
 `public inline bool `[`WantsTimeline`](#classURH__PEXCollectorConfig_1afcb2743c4816b00129754a9bc9c33b24)`() const` | Helper function for whether timeline data should be tracked
@@ -104,7 +108,11 @@ Prefix for timeline file name
 
 Prefix for summary file name
 
-#### `public inline  `[`URH_PEXCollectorConfig`](#classURH__PEXCollectorConfig_1a6b5675c95f49d2fc131b6405d545202c)`()` <a id="classURH__PEXCollectorConfig_1a6b5675c95f49d2fc131b6405d545202c"></a>
+#### `public TSet< TSubclassOf< `[`URH_PEXStatGroup`](PlayerExperience.md#classURH__PEXStatGroup)` > > `[`StatGroupsToCapture`](#classURH__PEXCollectorConfig_1a15bb5fe15307798368d32729ef73bfb1) <a id="classURH__PEXCollectorConfig_1a15bb5fe15307798368d32729ef73bfb1"></a>
+
+Array of StatGroups to capture
+
+#### `public  `[`URH_PEXCollectorConfig`](#classURH__PEXCollectorConfig_1a6b5675c95f49d2fc131b6405d545202c)`()` <a id="classURH__PEXCollectorConfig_1a6b5675c95f49d2fc131b6405d545202c"></a>
 
 #### `public inline bool `[`WantsEnabled`](#classURH__PEXCollectorConfig_1a2657e9f57c51db32120cf7f752e240aa)`() const` <a id="classURH__PEXCollectorConfig_1a2657e9f57c51db32120cf7f752e240aa"></a>
 
@@ -211,6 +219,11 @@ Base class for a group of stats.
 --------------------------------|---------------------------------------------
 `public FName `[`GroupName`](#classURH__PEXStatGroup_1a28b3a8f1e44476338694da43b94f238f) | Name of the stat group.
 `public TArray< `[`FRH_StatAccumulator`](PlayerExperience.md#structFRH__StatAccumulator)` > `[`Stats`](#classURH__PEXStatGroup_1a4a8c32a928070ec22a33dbc32731e04a) | Array of stats to track.
+`public TArray< `[`URH_PEXStatGroup`](#classURH__PEXStatGroup)` * > `[`Children`](#classURH__PEXStatGroup_1a73c6872977b277664724c21de7fd4d4c) | Array of children stat groups to track.
+`public bool `[`bDynamic`](#classURH__PEXStatGroup_1ae66434300cfd58af7ca5edb58ea97307) | Whether this group was dynamically created. Dynamic groups do not get written to the timeline since it has a rigid structure.
+`public bool `[`bNotForTimeline`](#classURH__PEXStatGroup_1aac0480f1cecd38d69130dc4841430972) | Whether this group should be excluded from the timline. Some groups do not get written to the timeline since it has a rigid structure.
+`public inline  `[`URH_PEXStatGroup`](#classURH__PEXStatGroup_1a5935a0459d67462bc3707f216fe92dce)`()` | 
+`public inline virtual void `[`Init`](#classURH__PEXStatGroup_1afd73766e9b87abda650e1cd96a3ed48d)`(const `[`URH_PEXCollectorConfig`](PlayerExperience.md#classURH__PEXCollectorConfig)` * InConfig)` | Initialize the stat group and any children. May add non-dynamic groups and init them as well.
 `public inline virtual void `[`CapturePerFrameStats`](#classURH__PEXStatGroup_1a145b13d64996000080270ce925e4add8)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` | Capture once-per-frame stats.
 `public inline virtual void `[`CapturePerSecondStats`](#classURH__PEXStatGroup_1a0bff8db8481845141a4ec1468e06aab4)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` | Capture once-per-second stats.
 `public inline virtual void `[`CapturePerIntervalStats`](#classURH__PEXStatGroup_1af7f087010ec44a299a743c1cdf61898e)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` | Capture once-per-interval stats.
@@ -218,7 +231,7 @@ Base class for a group of stats.
 `public inline virtual void `[`ResetSummary`](#classURH__PEXStatGroup_1ae199225c1db4048af75dd484422a6e43)`()` | Reset the summary state of all stats.
 `public inline virtual void `[`ResetStats`](#classURH__PEXStatGroup_1ae11affb79d4639e291882f456a6c9240)`()` | Reset both the capture and summary states of all stats.
 `public inline virtual void `[`UpdateSummary`](#classURH__PEXStatGroup_1aa07350eed1abc2a96b6f06dfbabffec8)`()` | Update the summary state of all stats.
-`public inline virtual TSharedPtr< FJsonObject > `[`GetSummary`](#classURH__PEXStatGroup_1a97f8da2b17e67549687dd95e0ed20c1d)`() const` | Write the summary data to a JSON object.
+`public inline virtual TSharedRef< FJsonObject > `[`GetSummary`](#classURH__PEXStatGroup_1a8ae61abd63243754f7c40827fa51bc2f)`() const` | Write the summary data to a JSON object.
 `public inline virtual FString `[`GetTimelineCSVHeader`](#classURH__PEXStatGroup_1a42e88b291697e54f60ab5456c32c6495)`() const` | Write the timeline data header to a CSV file for all stats.
 `public inline virtual FString `[`GetTimelineCSVValues`](#classURH__PEXStatGroup_1ac01e22d6cfb9def52b82ba36365d6589)`() const` | Write the timeline data values to a CSV file for all stats.
 `public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXStatGroup_1a5f4775578ec0a4871098c5b0cfe295e1)`(`[`FRHAPI_PexHostRequest`](models/RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` | Fill in a API PEX host summary report with the summary data.
@@ -233,6 +246,24 @@ Name of the stat group.
 #### `public TArray< `[`FRH_StatAccumulator`](PlayerExperience.md#structFRH__StatAccumulator)` > `[`Stats`](#classURH__PEXStatGroup_1a4a8c32a928070ec22a33dbc32731e04a) <a id="classURH__PEXStatGroup_1a4a8c32a928070ec22a33dbc32731e04a"></a>
 
 Array of stats to track.
+
+#### `public TArray< `[`URH_PEXStatGroup`](#classURH__PEXStatGroup)` * > `[`Children`](#classURH__PEXStatGroup_1a73c6872977b277664724c21de7fd4d4c) <a id="classURH__PEXStatGroup_1a73c6872977b277664724c21de7fd4d4c"></a>
+
+Array of children stat groups to track.
+
+#### `public bool `[`bDynamic`](#classURH__PEXStatGroup_1ae66434300cfd58af7ca5edb58ea97307) <a id="classURH__PEXStatGroup_1ae66434300cfd58af7ca5edb58ea97307"></a>
+
+Whether this group was dynamically created. Dynamic groups do not get written to the timeline since it has a rigid structure.
+
+#### `public bool `[`bNotForTimeline`](#classURH__PEXStatGroup_1aac0480f1cecd38d69130dc4841430972) <a id="classURH__PEXStatGroup_1aac0480f1cecd38d69130dc4841430972"></a>
+
+Whether this group should be excluded from the timline. Some groups do not get written to the timeline since it has a rigid structure.
+
+#### `public inline  `[`URH_PEXStatGroup`](#classURH__PEXStatGroup_1a5935a0459d67462bc3707f216fe92dce)`()` <a id="classURH__PEXStatGroup_1a5935a0459d67462bc3707f216fe92dce"></a>
+
+#### `public inline virtual void `[`Init`](#classURH__PEXStatGroup_1afd73766e9b87abda650e1cd96a3ed48d)`(const `[`URH_PEXCollectorConfig`](PlayerExperience.md#classURH__PEXCollectorConfig)` * InConfig)` <a id="classURH__PEXStatGroup_1afd73766e9b87abda650e1cd96a3ed48d"></a>
+
+Initialize the stat group and any children. May add non-dynamic groups and init them as well.
 
 #### `public inline virtual void `[`CapturePerFrameStats`](#classURH__PEXStatGroup_1a145b13d64996000080270ce925e4add8)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` <a id="classURH__PEXStatGroup_1a145b13d64996000080270ce925e4add8"></a>
 
@@ -262,7 +293,7 @@ Reset both the capture and summary states of all stats.
 
 Update the summary state of all stats.
 
-#### `public inline virtual TSharedPtr< FJsonObject > `[`GetSummary`](#classURH__PEXStatGroup_1a97f8da2b17e67549687dd95e0ed20c1d)`() const` <a id="classURH__PEXStatGroup_1a97f8da2b17e67549687dd95e0ed20c1d"></a>
+#### `public inline virtual TSharedRef< FJsonObject > `[`GetSummary`](#classURH__PEXStatGroup_1a8ae61abd63243754f7c40827fa51bc2f)`() const` <a id="classURH__PEXStatGroup_1a8ae61abd63243754f7c40827fa51bc2f"></a>
 
 Write the summary data to a JSON object.
 
@@ -285,6 +316,30 @@ Fill in a API PEX host summary report with the summary data.
 
 Fill in a API PEX client summary report with the summary data.
 
+## class `URH_PEXStatGroupsTopLevel` <a id="classURH__PEXStatGroupsTopLevel"></a>
+
+```
+class URH_PEXStatGroupsTopLevel
+  : public URH_PEXStatGroup
+```
+
+Stat group that contains all other stat groups, configurable via INI.
+
+### Summary
+
+ Members                        | Descriptions                                
+--------------------------------|---------------------------------------------
+`public  `[`URH_PEXStatGroupsTopLevel`](#classURH__PEXStatGroupsTopLevel_1aa7d896aa9729e8a1713e3b6ddea727a9)`()` | 
+`public virtual void `[`Init`](#classURH__PEXStatGroupsTopLevel_1a8410d403e4ff8e166001c195edd23faf)`(const `[`URH_PEXCollectorConfig`](PlayerExperience.md#classURH__PEXCollectorConfig)` * InConfig)` | Initialize the stat group and any children. May add non-dynamic groups and init them as well.
+
+### Members
+
+#### `public  `[`URH_PEXStatGroupsTopLevel`](#classURH__PEXStatGroupsTopLevel_1aa7d896aa9729e8a1713e3b6ddea727a9)`()` <a id="classURH__PEXStatGroupsTopLevel_1aa7d896aa9729e8a1713e3b6ddea727a9"></a>
+
+#### `public virtual void `[`Init`](#classURH__PEXStatGroupsTopLevel_1a8410d403e4ff8e166001c195edd23faf)`(const `[`URH_PEXCollectorConfig`](PlayerExperience.md#classURH__PEXCollectorConfig)` * InConfig)` <a id="classURH__PEXStatGroupsTopLevel_1a8410d403e4ff8e166001c195edd23faf"></a>
+
+Initialize the stat group and any children. May add non-dynamic groups and init them as well.
+
 ## class `URH_PEXCollector` <a id="classURH__PEXCollector"></a>
 
 ```
@@ -305,7 +360,8 @@ PlayerExperience Collector class, responsible for collecting and tracking PEX da
 `public inline const `[`URH_PEXCollectorConfig`](PlayerExperience.md#classURH__PEXCollectorConfig)` * `[`GetConfig`](#classURH__PEXCollector_1a71bd22ee8057031fe4adbfb7c06bc48e)`() const` | Retrieve the config to use for this collector instance.
 `public inline void `[`ResetSummary`](#classURH__PEXCollector_1a73fa2f29acff15a77101afdf3ca6214a)`()` | Reset the summary state, which is useful if wanting to trim the front of the summary to when gameplay starts.
 `public void `[`Close`](#classURH__PEXCollector_1a29b53ef9f1777a3bb14cda202bc9e8a9)`()` | Closes state, writes summary if needed, and uploads data if needed. Can only be done once.
-`public void `[`WriteSummary`](#classURH__PEXCollector_1ad508ef615e45584a827b3aeb7bac96b6)`()` | Writes summary data to file and/or API, and uploads any data requested, can only be called once
+`public void `[`WriteSummary`](#classURH__PEXCollector_1ad508ef615e45584a827b3aeb7bac96b6)`()` | Writes summary data to file and/or API, and uploads any data requested, can only be called once.
+`public TSharedRef< FJsonObject > `[`GetSummaryJson`](#classURH__PEXCollector_1ae056ff5a734c2de99ffec883886ecbbf)`() const` | Retrieves the summary data in Json format.
 `protected TWeakInterfacePtr< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > `[`Owner`](#classURH__PEXCollector_1ae8ba839b956c23850efc1549e9d542d4) | Cached owner of the collector
 `protected const `[`URH_PEXCollectorConfig`](PlayerExperience.md#classURH__PEXCollectorConfig)` * `[`CachedConfig`](#classURH__PEXCollector_1a9cf7c881dd3f599b9815556751677d87) | Cached file path for timeline file
 `protected FString `[`CachedMatchId`](#classURH__PEXCollector_1ab69102a0609e5af5bebc4df22b4c16f6) | Cached match id to use for routing the captured data to storage. Cached so it does not change mid-capture
@@ -317,8 +373,7 @@ PlayerExperience Collector class, responsible for collecting and tracking PEX da
 `protected bool `[`bHasWrittenSummary`](#classURH__PEXCollector_1abce5549764d70cb3b377353cdac3c74f) | Whether the summary data has been written, to guard against it being written multiple times.
 `protected double `[`TimeTracker`](#classURH__PEXCollector_1a351f5e98ee2ecdda2445f86ccf6b841f) | Time accumulator so that time is always monotonic
 `protected bool `[`bFirstInterval`](#classURH__PEXCollector_1a9bd4147663fa52e563cc468f2835ab6c) | Whether this is the first interval being captured (will be ignored for summary as it is partial)
-`protected TSet< TSubclassOf< `[`URH_PEXStatGroup`](PlayerExperience.md#classURH__PEXStatGroup)` > > `[`StatGroupsToCapture`](#classURH__PEXCollector_1ac7d98a2968afa62c76d13442d2babd33) | Array of StatGroups to capture
-`protected TArray< `[`URH_PEXStatGroup`](PlayerExperience.md#classURH__PEXStatGroup)` * > `[`StatGroups`](#classURH__PEXCollector_1a7fa3e9f107045ba95e975f6216d99d75) | 
+`protected `[`URH_PEXStatGroupsTopLevel`](PlayerExperience.md#classURH__PEXStatGroupsTopLevel)` * `[`TopLevelStatGroup`](#classURH__PEXCollector_1a19bd2bcb0f8f408f9690f7161265ed93) | 
 `protected class FArchive * `[`TimelineFileCSV`](#classURH__PEXCollector_1a82fd95d78b4ec189504331f0e8c0ab9d) | Local file archive to write timeline data to
 `protected FString `[`TimelineFilePath`](#classURH__PEXCollector_1a1f032b2d4926fd92ab96ce7f68018fa5) | Cached file path for timeline file
 `protected void `[`UploadFile`](#classURH__PEXCollector_1a3093ebae2fc7eecb2b495c4b8215b0fe)`(const FString & FilePath,const FString & RemoteFileName) const` | Internal helper to upload a file to remote file storage
@@ -351,7 +406,11 @@ Closes state, writes summary if needed, and uploads data if needed. Can only be 
 
 #### `public void `[`WriteSummary`](#classURH__PEXCollector_1ad508ef615e45584a827b3aeb7bac96b6)`()` <a id="classURH__PEXCollector_1ad508ef615e45584a827b3aeb7bac96b6"></a>
 
-Writes summary data to file and/or API, and uploads any data requested, can only be called once
+Writes summary data to file and/or API, and uploads any data requested, can only be called once.
+
+#### `public TSharedRef< FJsonObject > `[`GetSummaryJson`](#classURH__PEXCollector_1ae056ff5a734c2de99ffec883886ecbbf)`() const` <a id="classURH__PEXCollector_1ae056ff5a734c2de99ffec883886ecbbf"></a>
+
+Retrieves the summary data in Json format.
 
 #### `protected TWeakInterfacePtr< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > `[`Owner`](#classURH__PEXCollector_1ae8ba839b956c23850efc1549e9d542d4) <a id="classURH__PEXCollector_1ae8ba839b956c23850efc1549e9d542d4"></a>
 
@@ -397,11 +456,7 @@ Time accumulator so that time is always monotonic
 
 Whether this is the first interval being captured (will be ignored for summary as it is partial)
 
-#### `protected TSet< TSubclassOf< `[`URH_PEXStatGroup`](PlayerExperience.md#classURH__PEXStatGroup)` > > `[`StatGroupsToCapture`](#classURH__PEXCollector_1ac7d98a2968afa62c76d13442d2babd33) <a id="classURH__PEXCollector_1ac7d98a2968afa62c76d13442d2babd33"></a>
-
-Array of StatGroups to capture
-
-#### `protected TArray< `[`URH_PEXStatGroup`](PlayerExperience.md#classURH__PEXStatGroup)` * > `[`StatGroups`](#classURH__PEXCollector_1a7fa3e9f107045ba95e975f6216d99d75) <a id="classURH__PEXCollector_1a7fa3e9f107045ba95e975f6216d99d75"></a>
+#### `protected `[`URH_PEXStatGroupsTopLevel`](PlayerExperience.md#classURH__PEXStatGroupsTopLevel)` * `[`TopLevelStatGroup`](#classURH__PEXCollector_1a19bd2bcb0f8f408f9690f7161265ed93) <a id="classURH__PEXCollector_1a19bd2bcb0f8f408f9690f7161265ed93"></a>
 
 #### `protected class FArchive * `[`TimelineFileCSV`](#classURH__PEXCollector_1a82fd95d78b4ec189504331f0e8c0ab9d) <a id="classURH__PEXCollector_1a82fd95d78b4ec189504331f0e8c0ab9d"></a>
 
@@ -556,16 +611,11 @@ Stat group for capturing global network stats.
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public inline  `[`URH_PEXNetworkStats_Global`](#classURH__PEXNetworkStats__Global_1add53421f643f0958549c59778533966a)`()` | 
-`public virtual void `[`CapturePerFrameStats`](#classURH__PEXNetworkStats__Global_1ac19223247836c023eea5ab9b6364fdf5)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` | Capture once-per-frame stats.
 `public virtual void `[`CapturePerSecondStats`](#classURH__PEXNetworkStats__Global_1a3a2339cb7f0276d5f0f36ebca501359d)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` | Capture once-per-second stats.
 
 ### Members
 
 #### `public inline  `[`URH_PEXNetworkStats_Global`](#classURH__PEXNetworkStats__Global_1add53421f643f0958549c59778533966a)`()` <a id="classURH__PEXNetworkStats__Global_1add53421f643f0958549c59778533966a"></a>
-
-#### `public virtual void `[`CapturePerFrameStats`](#classURH__PEXNetworkStats__Global_1ac19223247836c023eea5ab9b6364fdf5)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` <a id="classURH__PEXNetworkStats__Global_1ac19223247836c023eea5ab9b6364fdf5"></a>
-
-Capture once-per-frame stats.
 
 #### `public virtual void `[`CapturePerSecondStats`](#classURH__PEXNetworkStats__Global_1a3a2339cb7f0276d5f0f36ebca501359d)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` <a id="classURH__PEXNetworkStats__Global_1a3a2339cb7f0276d5f0f36ebca501359d"></a>
 
@@ -587,7 +637,6 @@ Stat group for capturing per-player network stats.
 `public TWeakObjectPtr< const UNetConnection > `[`Connection`](#classURH__PEXNetworkStats__Connection_1acb8e75647ec0062018d67ce83c50fe5e) | 
 `public inline  `[`URH_PEXNetworkStats_Connection`](#classURH__PEXNetworkStats__Connection_1a4e0e02f9ab7dba0e8e7f2ab051992cb8)`()` | 
 `public void `[`InitForConnection`](#classURH__PEXNetworkStats__Connection_1a6b05837479183d9014a8cd0ebab04f0d)`(const UNetConnection * InConnection)` | 
-`public virtual void `[`CapturePerFrameStats`](#classURH__PEXNetworkStats__Connection_1a10e837eccb605f37cb95e93ccba3fcfc)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` | Capture once-per-frame stats.
 `public virtual void `[`CapturePerSecondStats`](#classURH__PEXNetworkStats__Connection_1a35d8b1685fee8553f48139cd867a5e94)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` | Capture once-per-second stats.
 
 ### Members
@@ -598,13 +647,103 @@ Stat group for capturing per-player network stats.
 
 #### `public void `[`InitForConnection`](#classURH__PEXNetworkStats__Connection_1a6b05837479183d9014a8cd0ebab04f0d)`(const UNetConnection * InConnection)` <a id="classURH__PEXNetworkStats__Connection_1a6b05837479183d9014a8cd0ebab04f0d"></a>
 
-#### `public virtual void `[`CapturePerFrameStats`](#classURH__PEXNetworkStats__Connection_1a10e837eccb605f37cb95e93ccba3fcfc)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` <a id="classURH__PEXNetworkStats__Connection_1a10e837eccb605f37cb95e93ccba3fcfc"></a>
-
-Capture once-per-frame stats.
-
 #### `public virtual void `[`CapturePerSecondStats`](#classURH__PEXNetworkStats__Connection_1a35d8b1685fee8553f48139cd867a5e94)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` <a id="classURH__PEXNetworkStats__Connection_1a35d8b1685fee8553f48139cd867a5e94"></a>
 
 Capture once-per-second stats.
+
+## class `URH_PEXNetworkStats_Host` <a id="classURH__PEXNetworkStats__Host"></a>
+
+```
+class URH_PEXNetworkStats_Host
+  : public URH_PEXNetworkStats_Base
+```
+
+Stat group for capturing a group of player network stats.
+
+### Summary
+
+ Members                        | Descriptions                                
+--------------------------------|---------------------------------------------
+`public TMap< FGuid, `[`URH_PEXNetworkStats_Connection`](PlayerExperience.md#classURH__PEXNetworkStats__Connection)` * > `[`PlayerNetworkStats`](#classURH__PEXNetworkStats__Host_1a2a188dda4bc46e14802aa2c43a78653f) | Per-player network stats, only used by summary
+`public inline  `[`URH_PEXNetworkStats_Host`](#classURH__PEXNetworkStats__Host_1a4b679c43c823bbcf78d1c6d853e09e04)`()` | 
+`public virtual void `[`GetOrCreatePlayerNetworkStats`](#classURH__PEXNetworkStats__Host_1a0499371af05de74f3e8785f1150d0c78)`(const class UNetConnection * Connection,`[`URH_PEXNetworkStats_Connection`](PlayerExperience.md#classURH__PEXNetworkStats__Connection)` *& OutPlayerNetworkStats)` | Get or create a player's network stats.
+`public inline virtual void `[`ResetSummary`](#classURH__PEXNetworkStats__Host_1a9d2b323c8976b30a4e1736c5785ec60e)`()` | Reset the summary state of all stats.
+`public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXNetworkStats__Host_1a4c65911c24e4727cce22420a940683c2)`(`[`FRHAPI_PexHostRequest`](models/RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` | Fill in a API PEX host summary report with the summary data.
+`public virtual void `[`EnsureConnectionTrackersExist`](#classURH__PEXNetworkStats__Host_1a6c20265da5e08351301b5544bd366f88)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` | 
+`public virtual void `[`CapturePerFrameStats`](#classURH__PEXNetworkStats__Host_1a8a577d11ba1d408c9abfdd22d1b2f6da)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` | Capture once-per-frame stats.
+`public virtual void `[`CapturePerSecondStats`](#classURH__PEXNetworkStats__Host_1a4386ba497c2e2a871b51334b786291fc)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` | Capture once-per-second stats.
+`public virtual void `[`CapturePerIntervalStats`](#classURH__PEXNetworkStats__Host_1a011f73713fca75190fd0e3659d4e7f37)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` | Capture once-per-interval stats.
+
+### Members
+
+#### `public TMap< FGuid, `[`URH_PEXNetworkStats_Connection`](PlayerExperience.md#classURH__PEXNetworkStats__Connection)` * > `[`PlayerNetworkStats`](#classURH__PEXNetworkStats__Host_1a2a188dda4bc46e14802aa2c43a78653f) <a id="classURH__PEXNetworkStats__Host_1a2a188dda4bc46e14802aa2c43a78653f"></a>
+
+Per-player network stats, only used by summary
+
+#### `public inline  `[`URH_PEXNetworkStats_Host`](#classURH__PEXNetworkStats__Host_1a4b679c43c823bbcf78d1c6d853e09e04)`()` <a id="classURH__PEXNetworkStats__Host_1a4b679c43c823bbcf78d1c6d853e09e04"></a>
+
+#### `public virtual void `[`GetOrCreatePlayerNetworkStats`](#classURH__PEXNetworkStats__Host_1a0499371af05de74f3e8785f1150d0c78)`(const class UNetConnection * Connection,`[`URH_PEXNetworkStats_Connection`](PlayerExperience.md#classURH__PEXNetworkStats__Connection)` *& OutPlayerNetworkStats)` <a id="classURH__PEXNetworkStats__Host_1a0499371af05de74f3e8785f1150d0c78"></a>
+
+Get or create a player's network stats.
+
+#### `public inline virtual void `[`ResetSummary`](#classURH__PEXNetworkStats__Host_1a9d2b323c8976b30a4e1736c5785ec60e)`()` <a id="classURH__PEXNetworkStats__Host_1a9d2b323c8976b30a4e1736c5785ec60e"></a>
+
+Reset the summary state of all stats.
+
+#### `public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXNetworkStats__Host_1a4c65911c24e4727cce22420a940683c2)`(`[`FRHAPI_PexHostRequest`](models/RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` <a id="classURH__PEXNetworkStats__Host_1a4c65911c24e4727cce22420a940683c2"></a>
+
+Fill in a API PEX host summary report with the summary data.
+
+#### `public virtual void `[`EnsureConnectionTrackersExist`](#classURH__PEXNetworkStats__Host_1a6c20265da5e08351301b5544bd366f88)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` <a id="classURH__PEXNetworkStats__Host_1a6c20265da5e08351301b5544bd366f88"></a>
+
+#### `public virtual void `[`CapturePerFrameStats`](#classURH__PEXNetworkStats__Host_1a8a577d11ba1d408c9abfdd22d1b2f6da)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` <a id="classURH__PEXNetworkStats__Host_1a8a577d11ba1d408c9abfdd22d1b2f6da"></a>
+
+Capture once-per-frame stats.
+
+#### `public virtual void `[`CapturePerSecondStats`](#classURH__PEXNetworkStats__Host_1a4386ba497c2e2a871b51334b786291fc)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` <a id="classURH__PEXNetworkStats__Host_1a4386ba497c2e2a871b51334b786291fc"></a>
+
+Capture once-per-second stats.
+
+#### `public virtual void `[`CapturePerIntervalStats`](#classURH__PEXNetworkStats__Host_1a011f73713fca75190fd0e3659d4e7f37)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` <a id="classURH__PEXNetworkStats__Host_1a011f73713fca75190fd0e3659d4e7f37"></a>
+
+Capture once-per-interval stats.
+
+## class `URH_PEXNetworkStats_Client` <a id="classURH__PEXNetworkStats__Client"></a>
+
+```
+class URH_PEXNetworkStats_Client
+  : public URH_PEXNetworkStats_Connection
+```
+
+Stat group for capturing a group of client's connection to server's network stats.
+
+### Summary
+
+ Members                        | Descriptions                                
+--------------------------------|---------------------------------------------
+`public inline  `[`URH_PEXNetworkStats_Client`](#classURH__PEXNetworkStats__Client_1a8571a54ddb046dc70d0d7f0eac9146a9)`()` | 
+`public virtual void `[`EnsureConnectionTrackersExist`](#classURH__PEXNetworkStats__Client_1aa65d8f0dc761701d61e60cc664709a64)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` | 
+`public virtual void `[`CapturePerFrameStats`](#classURH__PEXNetworkStats__Client_1a43a9a248743ac78178220b6affc84634)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` | Capture once-per-frame stats.
+`public virtual void `[`CapturePerSecondStats`](#classURH__PEXNetworkStats__Client_1a50b8880d99b872fd6397a6de46703fea)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` | Capture once-per-second stats.
+`public virtual void `[`CapturePerIntervalStats`](#classURH__PEXNetworkStats__Client_1a062e89b49a6be0d6fbe66e7686779b9f)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` | Capture once-per-interval stats.
+
+### Members
+
+#### `public inline  `[`URH_PEXNetworkStats_Client`](#classURH__PEXNetworkStats__Client_1a8571a54ddb046dc70d0d7f0eac9146a9)`()` <a id="classURH__PEXNetworkStats__Client_1a8571a54ddb046dc70d0d7f0eac9146a9"></a>
+
+#### `public virtual void `[`EnsureConnectionTrackersExist`](#classURH__PEXNetworkStats__Client_1aa65d8f0dc761701d61e60cc664709a64)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` <a id="classURH__PEXNetworkStats__Client_1aa65d8f0dc761701d61e60cc664709a64"></a>
+
+#### `public virtual void `[`CapturePerFrameStats`](#classURH__PEXNetworkStats__Client_1a43a9a248743ac78178220b6affc84634)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` <a id="classURH__PEXNetworkStats__Client_1a43a9a248743ac78178220b6affc84634"></a>
+
+Capture once-per-frame stats.
+
+#### `public virtual void `[`CapturePerSecondStats`](#classURH__PEXNetworkStats__Client_1a50b8880d99b872fd6397a6de46703fea)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` <a id="classURH__PEXNetworkStats__Client_1a50b8880d99b872fd6397a6de46703fea"></a>
+
+Capture once-per-second stats.
+
+#### `public virtual void `[`CapturePerIntervalStats`](#classURH__PEXNetworkStats__Client_1a062e89b49a6be0d6fbe66e7686779b9f)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` <a id="classURH__PEXNetworkStats__Client_1a062e89b49a6be0d6fbe66e7686779b9f"></a>
+
+Capture once-per-interval stats.
 
 ## class `URH_PEXNetworkStats` <a id="classURH__PEXNetworkStats"></a>
 
@@ -620,21 +759,9 @@ Stat group for capturing local whole-state network stats, plus per-player stats.
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public `[`URH_PEXNetworkStats_Global`](PlayerExperience.md#classURH__PEXNetworkStats__Global)` * `[`GlobalNetworkStats`](#classURH__PEXNetworkStats_1ac57913ba5907a47c4dfdd8bc55627d50) | Global network stats, used by summary and timeline
-`public TMap< FGuid, `[`URH_PEXNetworkStats_Connection`](PlayerExperience.md#classURH__PEXNetworkStats__Connection)` * > `[`PlayerNetworkStats`](#classURH__PEXNetworkStats_1adb5f9c4876f43e4e590c1b7b7409f949) | Per-player network stats, only used by summary
-`public `[`URH_PEXNetworkStats_Connection`](PlayerExperience.md#classURH__PEXNetworkStats__Connection)` * `[`ServerNetworkStats`](#classURH__PEXNetworkStats_1aab5ec2a724f8786cba04444b4be737aa) | Client's server connection, only used by summary
+`public `[`URH_PEXNetworkStats_Client`](PlayerExperience.md#classURH__PEXNetworkStats__Client)` * `[`ClientNetworkStats`](#classURH__PEXNetworkStats_1a212cb988d8d7039c901932789fe54318) | Client's connection to host, only used by summary
+`public `[`URH_PEXNetworkStats_Host`](PlayerExperience.md#classURH__PEXNetworkStats__Host)` * `[`HostNetworkStats`](#classURH__PEXNetworkStats_1a0b98f24749d884e7ee921ef93b213c97) | Host's connection to clients, only used by summary
 `public  `[`URH_PEXNetworkStats`](#classURH__PEXNetworkStats_1a3354185befc3c15728f1362cc34f95e2)`()` | 
-`public inline virtual void `[`ResetCapture`](#classURH__PEXNetworkStats_1ab9cd7f11fa5e7a095ee7c27031f254f1)`()` | Reset the capture state of all stats.
-`public inline virtual void `[`ResetSummary`](#classURH__PEXNetworkStats_1a55aa00d8afa79469eca59705a4b39734)`()` | Reset the summary state of all stats.
-`public inline virtual FString `[`GetTimelineCSVHeader`](#classURH__PEXNetworkStats_1ab70ac2ec100231c7994f89791143cd6b)`() const` | Write the timeline data header to a CSV file for all stats.
-`public inline virtual FString `[`GetTimelineCSVValues`](#classURH__PEXNetworkStats_1acc2a3707daf8c7089461ed3f087b65e7)`() const` | Write the timeline data values to a CSV file for all stats.
-`public inline virtual void `[`UpdateSummary`](#classURH__PEXNetworkStats_1acf9e8fe32ce4c2386ce84b2f59988df6)`()` | Update the summary state of all stats.
-`public inline virtual TSharedPtr< FJsonObject > `[`GetSummary`](#classURH__PEXNetworkStats_1a284f7730950b476eaf9d15ff724f2883)`() const` | Write the summary data to a JSON object.
-`public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXNetworkStats_1a18a03108cbe2dcb94d6dc97dd4f1a229)`(`[`FRHAPI_PexHostRequest`](models/RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` | Fill in a API PEX host summary report with the summary data.
-`public inline virtual void `[`GetPEXClientSummary`](#classURH__PEXNetworkStats_1aa53c887acc51913905a8081079263e88)`(`[`FRHAPI_PexClientRequest`](models/RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` & Report) const` | Fill in a API PEX client summary report with the summary data.
-`public virtual void `[`GetOrCreatePlayerNetworkStats`](#classURH__PEXNetworkStats_1afa1b79df29714e9f57582740684453e8)`(const class UNetConnection * Connection,`[`URH_PEXNetworkStats_Connection`](PlayerExperience.md#classURH__PEXNetworkStats__Connection)` *& OutPlayerNetworkStats)` | 
-`public virtual void `[`CapturePerFrameStats`](#classURH__PEXNetworkStats_1a76cf3d3b1f2739a851e695fc4e0bb760)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` | Capture once-per-frame stats.
-`public virtual void `[`CapturePerSecondStats`](#classURH__PEXNetworkStats_1a73ebe5e78ef7f9c9a8013905eee42ef3)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` | Capture once-per-second stats.
-`public virtual void `[`CapturePerIntervalStats`](#classURH__PEXNetworkStats_1ae6101b0cadcf8836680598fdbbe8d927)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` | Capture once-per-interval stats.
 
 ### Members
 
@@ -642,61 +769,15 @@ Stat group for capturing local whole-state network stats, plus per-player stats.
 
 Global network stats, used by summary and timeline
 
-#### `public TMap< FGuid, `[`URH_PEXNetworkStats_Connection`](PlayerExperience.md#classURH__PEXNetworkStats__Connection)` * > `[`PlayerNetworkStats`](#classURH__PEXNetworkStats_1adb5f9c4876f43e4e590c1b7b7409f949) <a id="classURH__PEXNetworkStats_1adb5f9c4876f43e4e590c1b7b7409f949"></a>
+#### `public `[`URH_PEXNetworkStats_Client`](PlayerExperience.md#classURH__PEXNetworkStats__Client)` * `[`ClientNetworkStats`](#classURH__PEXNetworkStats_1a212cb988d8d7039c901932789fe54318) <a id="classURH__PEXNetworkStats_1a212cb988d8d7039c901932789fe54318"></a>
 
-Per-player network stats, only used by summary
+Client's connection to host, only used by summary
 
-#### `public `[`URH_PEXNetworkStats_Connection`](PlayerExperience.md#classURH__PEXNetworkStats__Connection)` * `[`ServerNetworkStats`](#classURH__PEXNetworkStats_1aab5ec2a724f8786cba04444b4be737aa) <a id="classURH__PEXNetworkStats_1aab5ec2a724f8786cba04444b4be737aa"></a>
+#### `public `[`URH_PEXNetworkStats_Host`](PlayerExperience.md#classURH__PEXNetworkStats__Host)` * `[`HostNetworkStats`](#classURH__PEXNetworkStats_1a0b98f24749d884e7ee921ef93b213c97) <a id="classURH__PEXNetworkStats_1a0b98f24749d884e7ee921ef93b213c97"></a>
 
-Client's server connection, only used by summary
+Host's connection to clients, only used by summary
 
 #### `public  `[`URH_PEXNetworkStats`](#classURH__PEXNetworkStats_1a3354185befc3c15728f1362cc34f95e2)`()` <a id="classURH__PEXNetworkStats_1a3354185befc3c15728f1362cc34f95e2"></a>
-
-#### `public inline virtual void `[`ResetCapture`](#classURH__PEXNetworkStats_1ab9cd7f11fa5e7a095ee7c27031f254f1)`()` <a id="classURH__PEXNetworkStats_1ab9cd7f11fa5e7a095ee7c27031f254f1"></a>
-
-Reset the capture state of all stats.
-
-#### `public inline virtual void `[`ResetSummary`](#classURH__PEXNetworkStats_1a55aa00d8afa79469eca59705a4b39734)`()` <a id="classURH__PEXNetworkStats_1a55aa00d8afa79469eca59705a4b39734"></a>
-
-Reset the summary state of all stats.
-
-#### `public inline virtual FString `[`GetTimelineCSVHeader`](#classURH__PEXNetworkStats_1ab70ac2ec100231c7994f89791143cd6b)`() const` <a id="classURH__PEXNetworkStats_1ab70ac2ec100231c7994f89791143cd6b"></a>
-
-Write the timeline data header to a CSV file for all stats.
-
-#### `public inline virtual FString `[`GetTimelineCSVValues`](#classURH__PEXNetworkStats_1acc2a3707daf8c7089461ed3f087b65e7)`() const` <a id="classURH__PEXNetworkStats_1acc2a3707daf8c7089461ed3f087b65e7"></a>
-
-Write the timeline data values to a CSV file for all stats.
-
-#### `public inline virtual void `[`UpdateSummary`](#classURH__PEXNetworkStats_1acf9e8fe32ce4c2386ce84b2f59988df6)`()` <a id="classURH__PEXNetworkStats_1acf9e8fe32ce4c2386ce84b2f59988df6"></a>
-
-Update the summary state of all stats.
-
-#### `public inline virtual TSharedPtr< FJsonObject > `[`GetSummary`](#classURH__PEXNetworkStats_1a284f7730950b476eaf9d15ff724f2883)`() const` <a id="classURH__PEXNetworkStats_1a284f7730950b476eaf9d15ff724f2883"></a>
-
-Write the summary data to a JSON object.
-
-#### `public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXNetworkStats_1a18a03108cbe2dcb94d6dc97dd4f1a229)`(`[`FRHAPI_PexHostRequest`](models/RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` <a id="classURH__PEXNetworkStats_1a18a03108cbe2dcb94d6dc97dd4f1a229"></a>
-
-Fill in a API PEX host summary report with the summary data.
-
-#### `public inline virtual void `[`GetPEXClientSummary`](#classURH__PEXNetworkStats_1aa53c887acc51913905a8081079263e88)`(`[`FRHAPI_PexClientRequest`](models/RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` & Report) const` <a id="classURH__PEXNetworkStats_1aa53c887acc51913905a8081079263e88"></a>
-
-Fill in a API PEX client summary report with the summary data.
-
-#### `public virtual void `[`GetOrCreatePlayerNetworkStats`](#classURH__PEXNetworkStats_1afa1b79df29714e9f57582740684453e8)`(const class UNetConnection * Connection,`[`URH_PEXNetworkStats_Connection`](PlayerExperience.md#classURH__PEXNetworkStats__Connection)` *& OutPlayerNetworkStats)` <a id="classURH__PEXNetworkStats_1afa1b79df29714e9f57582740684453e8"></a>
-
-#### `public virtual void `[`CapturePerFrameStats`](#classURH__PEXNetworkStats_1a76cf3d3b1f2739a851e695fc4e0bb760)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` <a id="classURH__PEXNetworkStats_1a76cf3d3b1f2739a851e695fc4e0bb760"></a>
-
-Capture once-per-frame stats.
-
-#### `public virtual void `[`CapturePerSecondStats`](#classURH__PEXNetworkStats_1a73ebe5e78ef7f9c9a8013905eee42ef3)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` <a id="classURH__PEXNetworkStats_1a73ebe5e78ef7f9c9a8013905eee42ef3"></a>
-
-Capture once-per-second stats.
-
-#### `public virtual void `[`CapturePerIntervalStats`](#classURH__PEXNetworkStats_1ae6101b0cadcf8836680598fdbbe8d927)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` <a id="classURH__PEXNetworkStats_1ae6101b0cadcf8836680598fdbbe8d927"></a>
-
-Capture once-per-interval stats.
 
 ## class `URH_PEXGameStats` <a id="classURH__PEXGameStats"></a>
 
@@ -712,17 +793,12 @@ Stat group for capturing game stats.
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public  `[`URH_PEXGameStats`](#classURH__PEXGameStats_1a8c5f7d865482740f9741ecaa4c937e20)`()` | 
-`public virtual void `[`CapturePerFrameStats`](#classURH__PEXGameStats_1afba898ac1c57452493a363d35ac8c69a)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` | Capture once-per-frame stats.
 `public virtual void `[`CapturePerIntervalStats`](#classURH__PEXGameStats_1a5496f3c239a4817ab1a14fa9b0d08cb6)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` | Capture once-per-interval stats.
 `enum `[`ECaptureStat`](#classURH__PEXGameStats_1aa3778ac42579e048d965b6811c91871b) | 
 
 ### Members
 
 #### `public  `[`URH_PEXGameStats`](#classURH__PEXGameStats_1a8c5f7d865482740f9741ecaa4c937e20)`()` <a id="classURH__PEXGameStats_1a8c5f7d865482740f9741ecaa4c937e20"></a>
-
-#### `public virtual void `[`CapturePerFrameStats`](#classURH__PEXGameStats_1afba898ac1c57452493a363d35ac8c69a)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` <a id="classURH__PEXGameStats_1afba898ac1c57452493a363d35ac8c69a"></a>
-
-Capture once-per-frame stats.
 
 #### `public virtual void `[`CapturePerIntervalStats`](#classURH__PEXGameStats_1a5496f3c239a4817ab1a14fa9b0d08cb6)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` <a id="classURH__PEXGameStats_1a5496f3c239a4817ab1a14fa9b0d08cb6"></a>
 
