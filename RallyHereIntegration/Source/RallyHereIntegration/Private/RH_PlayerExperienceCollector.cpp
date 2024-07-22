@@ -12,17 +12,72 @@
 #include "RenderTimer.h"
 #include "Serialization/AsyncPackageLoader.h"
 
+FString FRH_StatAccumulator::SummaryFields::Name = TEXT("Name");
+FString FRH_StatAccumulator::SummaryFields::Last = TEXT("Last");
+FString FRH_StatAccumulator::SummaryFields::Min = TEXT("Min");
+FString FRH_StatAccumulator::SummaryFields::Max = TEXT("Max");
+FString FRH_StatAccumulator::SummaryFields::Avg = TEXT("Avg");
+FString FRH_StatAccumulator::SummaryFields::Sum = TEXT("Sum");
+FString FRH_StatAccumulator::SummaryFields::StdDev = TEXT("Standard Deviation");
+FString FRH_StatAccumulator::SummaryFields::Count = TEXT("Count");
+
+FString URH_PEXStatGroup::SummaryFields::Name = TEXT("Name");
+FString URH_PEXStatGroup::SummaryFields::Stats = TEXT("Stats");
+FString URH_PEXStatGroup::SummaryFields::Counters = TEXT("Counters");
+FString URH_PEXStatGroup::SummaryFields::Children = TEXT("Children");
+
+URH_PEXCollectorConfig::URH_PEXCollectorConfig()
+{
+	bEnabled = true;
+		
+	bWriteSummaryFile = false;
+	bUploadSummaryToPEXAPI = true;
+	bUploadSummaryToFileAPI = false;
+
+	bWriteTimelineFile = false;
+	bUploadTimelineToFileAPI = false;
+		
+	StatInterval = 1;
+	TimelineFilePrefix = TEXT("PEX_Timeline");
+	SummaryFilePrefix = TEXT("PEX_Summary");
+
+	StatGroupsToCapture.Add(URH_PEXPrimaryStats::StaticClass());
+	StatGroupsToCapture.Add(URH_PEXNetworkStats::StaticClass());
+	StatGroupsToCapture.Add(URH_PEXGameStats::StaticClass());
+}
+
+URH_PEXStatGroupsTopLevel::URH_PEXStatGroupsTopLevel()
+{
+	GroupName = TEXT("TopLevel");
+}
+
+void URH_PEXStatGroupsTopLevel::Init(const URH_PEXCollectorConfig* InConfig)
+{
+	// instantiate the list of stat groups to capture from the configured list
+	for (auto StatGroupClass : InConfig->StatGroupsToCapture)
+	{
+		auto StatGroup = NewObject<URH_PEXStatGroup>(this, StatGroupClass);
+		if (StatGroup != nullptr)
+		{
+			Children.Add(StatGroup);
+		}
+	}
+
+	// super will initialize the children
+	Super::Init(InConfig);
+}
+
 URH_PEXCollector::URH_PEXCollector()
-    : bHasBeenInitialized(false)
+	: CachedConfig(nullptr)
+	, bCachedIsHost(false)
+	, bHasBeenInitialized(false)
 	, bHasBeenClosed(false)
 	, bHasWrittenSummary(false)
 	, TimeTracker(0.0f)
 	, bFirstInterval(false)
 	, TimelineFileCSV(nullptr)
 {
-	StatGroupsToCapture.Add(URH_PEXPrimaryStats::StaticClass());
-	StatGroupsToCapture.Add(URH_PEXNetworkStats::StaticClass());
-	StatGroupsToCapture.Add(URH_PEXGameStats::StaticClass());
+	TopLevelStatGroup = CreateDefaultSubobject<URH_PEXStatGroupsTopLevel>(TEXT("TopLevelStats"));
 }
 
 URH_PEXCollector::~URH_PEXCollector()
@@ -76,11 +131,6 @@ bool URH_PEXCollector::Init(IRH_PEXOwnerInterface* InOwner)
 		UE_LOG(LogRallyHereIntegration, Warning, TEXT("Player Experience Collector has already been initialized"));
 		return false;
 	}
-	else if (StatGroupsToCapture.IsEmpty())
-	{
-		UE_LOG(LogRallyHereIntegration, Warning, TEXT("Player Experience Collector has no stat groups to capture"));
-		return false;
-	}
 	
 	// cache off values from the owner
 	CachedMatchId = Owner->GetPEXMatchId();
@@ -121,20 +171,12 @@ bool URH_PEXCollector::Init(IRH_PEXOwnerInterface* InOwner)
 
 	// flag as initialized, at this point we are committed to running
 	bHasBeenInitialized = true;
-	
-	// instantiate the list of stat groups to capture
-	StatGroups.Empty(StatGroupsToCapture.Num());
-	for (auto StatGroupClass : StatGroupsToCapture)
-	{
-		auto StatGroup = NewObject<URH_PEXStatGroup>(this, StatGroupClass);
-		if (StatGroup != nullptr)
-		{
-			StatGroups.Add(StatGroup);
-		}
-	}
 
 	// register for end frame delegate so we can record per frame values
 	FCoreDelegates::OnEndFrame.AddUObject(this, &URH_PEXCollector::OnEndFrame);
+
+	// initialize the top level stat group
+	TopLevelStatGroup->Init(GetConfig());
 	
     // create timeline file if configured
     if (GetConfig()->bWriteTimelineFile)
@@ -154,20 +196,8 @@ bool URH_PEXCollector::Init(IRH_PEXOwnerInterface* InOwner)
     	// write the CSV header
     	if (TimelineFileCSV != nullptr)
     	{
-    		FString CSVHeaderString;
-    		for(const auto StatGroup : StatGroups)
-			{
-    			const FString CSVStats = StatGroup->GetTimelineCSVHeader();
-    			if (CSVStats.Len() > 0)
-				{
-    				if (CSVHeaderString.Len() > 0)
-    				{
-    					CSVHeaderString += TEXT(",");
-    				}
-					CSVHeaderString += CSVStats;
-				}
-			}
-
+    		FString CSVHeaderString = TopLevelStatGroup->GetTimelineCSVHeader();
+    		
     		if (CSVHeaderString.Len() > 0)
 			{
 				TimelineFileCSV->Logf(TEXT("%s"), *CSVHeaderString);
@@ -205,6 +235,10 @@ void URH_PEXCollector::OnEndFrame()
 	{
 		return;
 	}
+	else if (TopLevelStatGroup == nullptr)
+	{
+		return;
+	}
 
 	auto OwnerInterface = Owner.ToScriptInterface();
 	
@@ -219,68 +253,49 @@ void URH_PEXCollector::OnEndFrame()
 	check (!bIsInterval || (bIsInterval && bIsSecond));
 
     // collect any stats that need to be tracked per frame (ex: longest frametime)
-	for (const auto StatGroup : StatGroups)
-	{
-		StatGroup->CapturePerFrameStats(OwnerInterface);
-	}
+	TopLevelStatGroup->CapturePerFrameStats(OwnerInterface);
 
 	if (bIsSecond)
 	{
 		// collect any stats that need to be tracked per second (ex: longest frametime)
-		for (const auto StatGroup : StatGroups)
-		{
-			StatGroup->CapturePerSecondStats(OwnerInterface);
-		}	
+		TopLevelStatGroup->CapturePerSecondStats(OwnerInterface);
 	}
 	
     if (bIsInterval)
     {
     	// check if this was a partial interval
-    	bool bPartialInterval = bFirstInterval;
+    	const bool bPartialInterval = bFirstInterval;
     	bFirstInterval = false;
     	
-    	for (const auto StatGroup : StatGroups)
-    	{
-    		// collect any stats that need to be tracked once per second (ex: pawn count)
-    		StatGroup->CapturePerIntervalStats(OwnerInterface);
-    	}
+    	// collect any stats that need to be tracked once per second (ex: pawn count)
+    	TopLevelStatGroup->CapturePerIntervalStats(OwnerInterface);
     	
 		if (GetConfig()->bWriteTimelineFile && TimelineFileCSV != nullptr)
 		{
-			FString CSVStatsString;
-			bool bIsFirst = true;
-
-			for(const auto StatGroup : StatGroups)
-			{
-				FString CSVStats = StatGroup->GetTimelineCSVValues();
-				if (CSVStats.Len() > 0)
-				{
-					if (CSVStatsString.Len() > 0)
-					{
-						CSVStatsString += TEXT(",");
-					}
-					CSVStatsString += CSVStats;
-				}
-			}
-
+			FString CSVStatsString = TopLevelStatGroup->GetTimelineCSVValues();
+			
 			if (CSVStatsString.Len() > 0)
 			{
 				TimelineFileCSV->Logf(TEXT("%s"), *CSVStatsString);
 			}
 		}
-
-    	// update the summary and reset the capture state so we can start accumulating a new interval of data
-    	for (const auto StatGroup : StatGroups)
+    	
+    	// update the summary with the data from the interval, but only if we are not in a partial interval which could affect min, max, etc
+    	if (GetConfig()->WantsSummary() && !bPartialInterval)
     	{
-    		// update the summary with the data from the interval, but only if we are not in a partial interval which could affect min, max, etc
-    		if (GetConfig()->WantsSummary() && !bPartialInterval)
-    		{
-    			StatGroup->UpdateSummary();
-    		}
-    		
-    		StatGroup->ResetCapture();
+    		TopLevelStatGroup->UpdateSummary();
     	}
+
+    	// reset the capture state so we can start accumulating a new interval of data
+    	TopLevelStatGroup->ResetCapture();
     }
+}
+
+TSharedRef<FJsonObject> URH_PEXCollector::GetSummaryJson() const
+{
+	auto Document = TopLevelStatGroup->GetSummary();
+
+	return Document;
 }
 
 void URH_PEXCollector::WriteSummary()
@@ -307,17 +322,7 @@ void URH_PEXCollector::WriteSummary()
 		}
 		FString FilePath = FPaths::ProjectLogDir() / FileName;
 
-		auto Document = MakeShared<FJsonObject>();
-		
-		for (const auto StatGroup : StatGroups)
-		{
-			auto SummaryData = StatGroup->GetSummary();
-
-			if (SummaryData.IsValid())
-			{
-				Document->SetObjectField(StatGroup->GroupName.ToString(), SummaryData);
-			}
-		}
+		auto Document = GetSummaryJson();
 
 		// serialize to string
 		FString DocumentString;
@@ -346,10 +351,7 @@ void URH_PEXCollector::WriteSummary()
 				HostRequest.SetMatchId(CachedMatchId);
 
 				// add stats
-				for (const auto StatGroup : StatGroups)
-				{
-					StatGroup->GetPEXHostSummary(HostRequest);
-				}
+				TopLevelStatGroup->GetPEXHostSummary(HostRequest);
 
 				// let owner do actual submit, so they can fill in facet data
 				Owner->SubmitPEXHostSummary(MoveTemp(HostRequest));
@@ -362,10 +364,7 @@ void URH_PEXCollector::WriteSummary()
 				ClientRequest.SetPlayerUuid(CachedPlayerId);
 
 				// add stats
-				for (const auto StatGroup : StatGroups)
-				{
-					StatGroup->GetPEXClientSummary(ClientRequest);
-				}
+				TopLevelStatGroup->GetPEXClientSummary(ClientRequest);
 
 				// let owner do actual submit, so they can fill in facet data
 				Owner->SubmitPEXClientSummary(MoveTemp(ClientRequest));
@@ -438,10 +437,13 @@ URH_PEXPrimaryStats::URH_PEXPrimaryStats()
 
 void URH_PEXPrimaryStats::CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
 {
+	Super::CapturePerFrameStats(Owner);
+	
 	if (Owner == nullptr)
 	{
 		return;
 	}
+	
 	auto ParentWorld = Owner->GetPEXWorld();
 	
 	Stats[GameThreadTime].CaptureValue(CYCLES_TO_MILLISECONDS(GGameThreadTime));
@@ -500,6 +502,8 @@ void URH_PEXPrimaryStats::CapturePerFrameStats(const TScriptInterface<IRH_PEXOwn
 
 void URH_PEXPrimaryStats::CapturePerIntervalStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
 {
+	Super::CapturePerIntervalStats(Owner);
+	
 	const auto MemoryStats = FPlatformMemory::GetStats();
 	Stats[MemoryWS].CaptureValue(MemoryStats.UsedPhysical >> 20);
 	Stats[MemoryVB].CaptureValue(MemoryStats.UsedVirtual >> 20);
@@ -539,13 +543,10 @@ URH_PEXNetworkStats_Base::URH_PEXNetworkStats_Base()
 	check(Check == TotalPacketLossPct);
 }
 
-
-void URH_PEXNetworkStats_Global::CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
-{
-}
-
 void URH_PEXNetworkStats_Global::CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
 {
+	Super::CapturePerSecondStats(Owner);
+	
 	// network
 	const auto ValueNumConnections  = PerfCountersGet(TEXT("NumConnections"), 0);
 	const auto ValueAvgPing = PerfCountersGet(TEXT("AvgPing"), 0.f);
@@ -576,14 +577,11 @@ void URH_PEXNetworkStats_Connection::InitForConnection(const class UNetConnectio
 	Connection = InConnection;
 }
 
-
-void URH_PEXNetworkStats_Connection::CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
-{
-
-}
 void URH_PEXNetworkStats_Connection::CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
 {
-	if (ensure(Connection.IsValid()))
+	Super::CapturePerSecondStats(Owner);
+	
+	if (Connection.IsValid())
 	{
 		Stats[ConnectionCount].CaptureValue(1.0 + Connection->Children.Num());
 
@@ -612,14 +610,46 @@ void URH_PEXNetworkStats_Connection::CapturePerSecondStats(const TScriptInterfac
 	}
 }
 
-URH_PEXNetworkStats::URH_PEXNetworkStats()
+void URH_PEXNetworkStats_Host::EnsureConnectionTrackersExist(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
 {
-	GroupName = TEXT("NetworkStats");
-	GlobalNetworkStats = CreateDefaultSubobject<URH_PEXNetworkStats_Global>(TEXT("GlobalNetworkStats"));
-	ServerNetworkStats = CreateDefaultSubobject<URH_PEXNetworkStats_Connection>(TEXT("ServerNetworkStats"));
+	const auto World = Owner->GetPEXWorld();
+	if (World != nullptr && World->GetNetDriver() != nullptr)
+	{
+		const auto NetDriver = World->GetNetDriver();
+		
+		// trace connection to all clients
+		for (auto Connection : NetDriver->ClientConnections)
+		{
+			URH_PEXNetworkStats_Connection* PlayerTracker = nullptr;
+			GetOrCreatePlayerNetworkStats(Connection, PlayerTracker);
+			if (PlayerTracker != nullptr)
+			{
+				// make sure the tracker is initialized for this connection
+				PlayerTracker->InitForConnection(Connection);
+			}
+		}
+	}
 }
 
-void URH_PEXNetworkStats::GetOrCreatePlayerNetworkStats(const UNetConnection* Connection, URH_PEXNetworkStats_Connection*& OutPlayerNetworkStats)
+void URH_PEXNetworkStats_Host::CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
+{
+	EnsureConnectionTrackersExist(Owner);
+	Super::CapturePerFrameStats(Owner);
+}
+
+void URH_PEXNetworkStats_Host::CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
+{
+	EnsureConnectionTrackersExist(Owner);
+	Super::CapturePerSecondStats(Owner);
+}
+
+void URH_PEXNetworkStats_Host::CapturePerIntervalStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
+{
+	EnsureConnectionTrackersExist(Owner);
+	Super::CapturePerIntervalStats(Owner);
+}
+
+void URH_PEXNetworkStats_Host::GetOrCreatePlayerNetworkStats(const UNetConnection* Connection, URH_PEXNetworkStats_Connection*& OutPlayerNetworkStats)
 {
 	OutPlayerNetworkStats = nullptr;
 	
@@ -634,125 +664,63 @@ void URH_PEXNetworkStats::GetOrCreatePlayerNetworkStats(const UNetConnection* Co
 		else
 		{
 			OutPlayerNetworkStats = NewObject<URH_PEXNetworkStats_Connection>(this);
+			OutPlayerNetworkStats->bDynamic = true;
+			OutPlayerNetworkStats->GroupName = FName(FString::Printf(TEXT("Player_%s"), *RHIpConnection->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphens)));
 			PlayerNetworkStats.Add(RHIpConnection->GetRHPlayerUuid(), OutPlayerNetworkStats);
+			Children.Add(OutPlayerNetworkStats);
 		}
 	}
 }
-	
-void URH_PEXNetworkStats::CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
+
+
+void URH_PEXNetworkStats_Client::EnsureConnectionTrackersExist(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
 {
+	const auto World = Owner->GetPEXWorld();
+	if (World != nullptr && World->GetNetDriver() != nullptr)
+	{
+		const auto NetDriver = World->GetNetDriver();
+
+		// trace client connection to host
+		if (NetDriver->ServerConnection != nullptr)
+		{
+			// make sure the tracker is initialized for this connection
+			InitForConnection(NetDriver->ServerConnection);
+		}
+	}
+}
+
+void URH_PEXNetworkStats_Client::CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
+{
+	EnsureConnectionTrackersExist(Owner);
 	Super::CapturePerFrameStats(Owner);
-
-	if (GlobalNetworkStats)
-	{
-		GlobalNetworkStats->CapturePerFrameStats(Owner);
-	}
-	
-	const auto World = Owner->GetPEXWorld();
-	if (World != nullptr && World->GetNetDriver() != nullptr)
-	{
-		const auto NetDriver = World->GetNetDriver();
-		
-		// trace server connection to all clients
-		for (auto Connection : NetDriver->ClientConnections)
-		{
-			URH_PEXNetworkStats_Connection* PlayerTracker = nullptr;
-			GetOrCreatePlayerNetworkStats(Connection, PlayerTracker);
-			if (PlayerTracker != nullptr)
-			{
-				// make sure the tracker is initialized for this connection
-				PlayerTracker->InitForConnection(Connection);
-				
-				PlayerTracker->CapturePerFrameStats(Owner);
-			}
-		}
-
-		// trace client connection to server
-		if (NetDriver->ServerConnection != nullptr)
-		{
-			// make sure the tracker is initialized for this connection
-			ServerNetworkStats->InitForConnection(NetDriver->ServerConnection);
-			
-			ServerNetworkStats->CapturePerFrameStats(Owner);
-		}
-	}
 }
-void URH_PEXNetworkStats::CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
+
+void URH_PEXNetworkStats_Client::CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
 {
+	EnsureConnectionTrackersExist(Owner);
 	Super::CapturePerSecondStats(Owner);
-
-	if (GlobalNetworkStats)
-	{
-		GlobalNetworkStats->CapturePerSecondStats(Owner);
-	}
-	
-	const auto World = Owner->GetPEXWorld();
-	if (World != nullptr && World->GetNetDriver() != nullptr)
-	{
-		const auto NetDriver = World->GetNetDriver();
-
-		// trace server connection to all clients
-		for (auto Connection : NetDriver->ClientConnections)
-		{
-			URH_PEXNetworkStats_Connection* PlayerTracker = nullptr;
-			GetOrCreatePlayerNetworkStats(Connection, PlayerTracker);
-			if (PlayerTracker != nullptr)
-			{
-				// make sure the tracker is initialized for this connection
-				PlayerTracker->InitForConnection(Connection);
-				
-				PlayerTracker->CapturePerSecondStats(Owner);
-			}
-		}
-
-		// trace client connection to server
-		if (NetDriver->ServerConnection != nullptr)
-		{
-			// make sure the tracker is initialized for this connection
-			ServerNetworkStats->InitForConnection(NetDriver->ServerConnection);
-			
-			ServerNetworkStats->CapturePerSecondStats(Owner);
-		}
-	}
 }
 
-void URH_PEXNetworkStats::CapturePerIntervalStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
+void URH_PEXNetworkStats_Client::CapturePerIntervalStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
 {
+	EnsureConnectionTrackersExist(Owner);
 	Super::CapturePerIntervalStats(Owner);
+}
 
-	if (GlobalNetworkStats)
-	{
-		GlobalNetworkStats->CapturePerIntervalStats(Owner);
-	}
+URH_PEXNetworkStats::URH_PEXNetworkStats()
+{
+	GroupName = TEXT("NetworkStats");
+
+	GlobalNetworkStats = CreateDefaultSubobject<URH_PEXNetworkStats_Global>(TEXT("GlobalNetworkStats"));
+	Children.Add(GlobalNetworkStats);
+
+	ClientNetworkStats = CreateDefaultSubobject<URH_PEXNetworkStats_Client>(TEXT("ClientNetworkStats"));
+	ClientNetworkStats->bNotForTimeline = true; // exclude from timeline to prevent collisions
+	Children.Add(ClientNetworkStats);
 	
-	const auto World = Owner->GetPEXWorld();
-	if (World != nullptr && World->GetNetDriver() != nullptr)
-	{
-		const auto NetDriver = World->GetNetDriver();
-
-		// trace server connection to all clients
-		for (auto Connection : NetDriver->ClientConnections)
-		{
-			URH_PEXNetworkStats_Connection* PlayerTracker = nullptr;
-			GetOrCreatePlayerNetworkStats(Connection, PlayerTracker);
-			if (PlayerTracker != nullptr)
-			{
-				// make sure the tracker is initialized for this connection
-				PlayerTracker->InitForConnection(Connection);
-				
-				PlayerTracker->CapturePerIntervalStats(Owner);
-			}
-		}
-
-		// trace client connection to server
-		if (NetDriver->ServerConnection != nullptr)
-		{
-			// make sure the tracker is initialized for this connection
-			ServerNetworkStats->InitForConnection(NetDriver->ServerConnection);
-			
-			ServerNetworkStats->CapturePerIntervalStats(Owner);
-		}
-	}
+	HostNetworkStats = CreateDefaultSubobject<URH_PEXNetworkStats_Host>(TEXT("HostNetworkStats"));
+	HostNetworkStats->bNotForTimeline = true; // exclude from timeline to prevent collisions
+	Children.Add(HostNetworkStats);
 }
 
 URH_PEXGameStats::URH_PEXGameStats()
@@ -770,12 +738,10 @@ URH_PEXGameStats::URH_PEXGameStats()
 	check(Check == PawnCount);
 }
 
-void URH_PEXGameStats::CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
-{
-}
-
 void URH_PEXGameStats::CapturePerIntervalStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
 {
+	Super::CapturePerIntervalStats(Owner);
+	
 	if (Owner == nullptr)
 	{
 		return;

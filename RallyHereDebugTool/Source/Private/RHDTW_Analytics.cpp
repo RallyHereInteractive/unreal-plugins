@@ -6,6 +6,9 @@
 #include "imgui.h"
 #include "RH_WebRequests.h"
 #include "RH_ImGuiUtilities.h"
+#include "RH_GameInstanceSubsystem.h"
+#include "RH_GameInstanceSessionSubsystem.h"
+#include "RH_PlayerExperienceCollector.h"
 #include <string>
 
 #ifdef WITH_IMGUI_IMPLOT
@@ -29,13 +32,27 @@ FRHDTW_Analytics::~FRHDTW_Analytics()
 
 void FRHDTW_Analytics::Do()
 {
+	if (ImGui::BeginTabBar("Analytics"))
+	{
+		DoAPIChartTabs();
+
+		DoAsyncTasksTab();
+
+		DoPlayerExperienceTab();
+
+		ImGui::EndTabBar();
+	}
+}
+
+void FRHDTW_Analytics::DoAPIChartTabs()
+{
 	FRH_WebRequests* WebRequestsTracker = FRallyHereIntegrationModule::Get().GetWebRequestTracker();
 	if (WebRequestsTracker == nullptr)
 	{
-		ImGui::Text("RH_WebRequests unavailable.");
+		//ImGui::Text("RH_WebRequests unavailable.");
 		return;
 	}
-
+	
 	// call count all time
 	const TMap<FName, int32> APINameCountAllTime = WebRequestsTracker->GetAPINameToCallCountMap();
 	const TMap<FName, int32> URLCountAllTime = WebRequestsTracker->GetSimplifiedPathToCallCountMap();
@@ -49,90 +66,283 @@ void FRHDTW_Analytics::Do()
 	TMap<FName, TTuple<int32, int32>> APINameBursts; // API name -> <num bursts, largest burst>
 	TMap<FName, TTuple<int32, int32>> URLBursts; // Simplified Path -> <num bursts, largest burst>
 	WebRequestsTracker->DetectRecentBursts(&APINameBursts, &URLBursts);
-
-	if (ImGui::BeginTabBar("Analytics"))
+	
+	if (ImGui::BeginTabItem("Web Calls By API Names"))
 	{
-		if (ImGui::BeginTabItem("Web Calls By API Names"))
+		ImGui::SetNextItemWidth(300.f);
+		ImGui::InputText("Filter by API Name", APINameFilterInput.GetData(), APINameFilterInput.Num());
+		const FString FilterString = UTF8_TO_TCHAR(APINameFilterInput.GetData());
+
+		if (ImGui::BeginTable("APIPlotsTable", 2))
 		{
-			ImGui::SetNextItemWidth(300.f);
-			ImGui::InputText("Filter by API Name", APINameFilterInput.GetData(), APINameFilterInput.Num());
-			const FString FilterString = UTF8_TO_TCHAR(APINameFilterInput.GetData());
-
-			if (ImGui::BeginTable("APIPlotsTable", 2))
-			{
-				ImGui::TableNextRow();
-				ImGui::TableNextColumn();
-				ImGui::RadioButton("Last 60s", &APINameCountPlotToggle, 0);
-				ImGui::SameLine();
-				ImGui::RadioButton("All Time", &APINameCountPlotToggle, 1);
-				ImGui::TableNextRow();
-				ImGui::TableNextColumn();
-				DoCallCountPlot(APINameCountAllTime, APINameCountRecent, APINameCountPlotToggle == 1, FString(TEXT("Calls Per API")), FString(TEXT("API")), FilterString);
-				ImGui::TableNextColumn();
-				DoTimelinePlot(WebRequestsTracker, FilterString, [](FRH_WebRequest* Request) -> FName
-					{
-						return Request->APIName;
-					});
-				ImGui::EndTable();
-			}
-			DoTable(APINameCountAllTime, APINameCountRecent, APINameBursts, FString(TEXT("APIName-CallCountsTable")), FString(TEXT("API Name")), FilterString);
-
-			ImGui::EndTabItem();
-		}
-
-		if (ImGui::BeginTabItem("Web Calls By Simplified Paths"))
-		{
-			ImGui::SetNextItemWidth(300.f);
-			ImGui::InputText("Filter by Simplified Path", URLFilterInput.GetData(), URLFilterInput.Num());
-			const FString FilterString = UTF8_TO_TCHAR(URLFilterInput.GetData());
-
-			if (ImGui::BeginTable("URLPlotsTable", 2))
-			{
-				ImGui::TableNextRow();
-				ImGui::TableNextColumn();
-				ImGui::RadioButton("Last 60s", &URLCountPlotToggle, 0);
-				ImGui::SameLine();
-				ImGui::RadioButton("All Time", &URLCountPlotToggle, 1);
-				ImGui::TableNextRow();
-				ImGui::TableNextColumn();
-				DoCallCountPlot(URLCountAllTime, URLCountRecent, URLCountPlotToggle == 1, FString(TEXT("Calls Per Simplified Path")), FString(TEXT("Simplified Path")), FilterString);
-				ImGui::TableNextColumn();
-				DoTimelinePlot(WebRequestsTracker, FilterString, [](FRH_WebRequest* Request) -> FName
-					{
-						return Request->Metadata.SimplifiedPath;
-					});
-				ImGui::EndTable();
-			}
-			DoTable(URLCountAllTime, URLCountRecent, URLBursts, FString(TEXT("SimplifiedPath-CallCountsTable")), FString(TEXT("Simplified Path")), FilterString);
-
-			ImGui::EndTabItem();
-		}
-
-		if (ImGui::BeginTabItem("Async Tasks"))
-		{
-			const TArray<TSharedRef<FRH_AsyncTaskHelper>>& OngoingRequests = FRH_AsyncTaskHelper::GetOngoingRequests();
-
-			if (ImGui::BeginTable("Ongoing Requests", 3))
-			{
-				ImGui::TableSetupColumn("Task Name");
-				ImGui::TableSetupColumn("Duration");
-				ImGui::TableSetupColumn("Priority");
-				ImGui::TableHeadersRow();
-				for (auto& Task : OngoingRequests)
+			ImGui::TableNextRow();
+			ImGui::TableNextColumn();
+			ImGui::RadioButton("Last 60s", &APINameCountPlotToggle, 0);
+			ImGui::SameLine();
+			ImGui::RadioButton("All Time", &APINameCountPlotToggle, 1);
+			ImGui::TableNextRow();
+			ImGui::TableNextColumn();
+			DoCallCountPlot(APINameCountAllTime, APINameCountRecent, APINameCountPlotToggle == 1, FString(TEXT("Calls Per API")), FString(TEXT("API")), FilterString);
+			ImGui::TableNextColumn();
+			DoTimelinePlot(WebRequestsTracker, FilterString, [](FRH_WebRequest* Request) -> FName
 				{
-					ImGui::TableNextRow();
-					ImGui::TableNextColumn();
-					ImGuiDisplayCopyableValue(Task->GetName(), Task->GetName(), ECopyMode::Value);
-					ImGui::TableNextColumn();
-					ImGui::Text("%.2f", Task->GetDuration().GetTotalSeconds());
-					ImGui::TableNextColumn();
-					ImGui::Text("%d", Task->GetTaskPriority());
+					return Request->APIName;
+				});
+			ImGui::EndTable();
+		}
+		DoTable(APINameCountAllTime, APINameCountRecent, APINameBursts, FString(TEXT("APIName-CallCountsTable")), FString(TEXT("API Name")), FilterString);
+
+		ImGui::EndTabItem();
+	}
+
+	if (ImGui::BeginTabItem("Web Calls By Simplified Paths"))
+	{
+		ImGui::SetNextItemWidth(300.f);
+		ImGui::InputText("Filter by Simplified Path", URLFilterInput.GetData(), URLFilterInput.Num());
+		const FString FilterString = UTF8_TO_TCHAR(URLFilterInput.GetData());
+
+		if (ImGui::BeginTable("URLPlotsTable", 2))
+		{
+			ImGui::TableNextRow();
+			ImGui::TableNextColumn();
+			ImGui::RadioButton("Last 60s", &URLCountPlotToggle, 0);
+			ImGui::SameLine();
+			ImGui::RadioButton("All Time", &URLCountPlotToggle, 1);
+			ImGui::TableNextRow();
+			ImGui::TableNextColumn();
+			DoCallCountPlot(URLCountAllTime, URLCountRecent, URLCountPlotToggle == 1, FString(TEXT("Calls Per Simplified Path")), FString(TEXT("Simplified Path")), FilterString);
+			ImGui::TableNextColumn();
+			DoTimelinePlot(WebRequestsTracker, FilterString, [](FRH_WebRequest* Request) -> FName
+				{
+					return Request->Metadata.SimplifiedPath;
+				});
+			ImGui::EndTable();
+		}
+		DoTable(URLCountAllTime, URLCountRecent, URLBursts, FString(TEXT("SimplifiedPath-CallCountsTable")), FString(TEXT("Simplified Path")), FilterString);
+
+		ImGui::EndTabItem();
+	}
+}
+
+void FRHDTW_Analytics::DoAsyncTasksTab()
+{
+	if (ImGui::BeginTabItem("Async Tasks"))
+	{
+		const TArray<TSharedRef<FRH_AsyncTaskHelper>>& OngoingRequests = FRH_AsyncTaskHelper::GetOngoingRequests();
+
+		if (ImGui::BeginTable("Ongoing Requests", 3))
+		{
+			ImGui::TableSetupColumn("Task Name");
+			ImGui::TableSetupColumn("Duration");
+			ImGui::TableSetupColumn("Priority");
+			ImGui::TableHeadersRow();
+			for (auto& Task : OngoingRequests)
+			{
+				ImGui::TableNextRow();
+				ImGui::TableNextColumn();
+				ImGuiDisplayCopyableValue(Task->GetName(), Task->GetName(), ECopyMode::Value);
+				ImGui::TableNextColumn();
+				ImGui::Text("%.2f", Task->GetDuration().GetTotalSeconds());
+				ImGui::TableNextColumn();
+				ImGui::Text("%d", Task->GetTaskPriority());
+			}
+			ImGui::EndTable();
+		}
+
+		ImGui::EndTabItem();
+	}
+}
+
+void FRHDTW_Analytics::DoPlayerExperienceTab()
+{
+	if (ImGui::BeginTabItem("Player Experience"))
+	{
+		const auto pGameInstance = GetGameInstance();
+		if (pGameInstance == nullptr)
+		{
+			ImGui::Text("GameInstance not available.");
+			ImGui::EndTabItem();
+			return;
+		}
+		const auto pGISS = pGameInstance->GetSubsystem<URH_GameInstanceSubsystem>();
+		if (pGISS == nullptr)
+		{
+			ImGui::Text("GameInstanceSubsystem not available.");
+			ImGui::EndTabItem();
+			return;
+		}
+		const auto pGISessionSubsystem = pGISS->GetSessionSubsystem();
+		if (pGISessionSubsystem == nullptr)
+		{
+			ImGui::Text("SessionSubsystem not available.");
+			ImGui::EndTabItem();
+			return;
+		}
+		const auto pPEX = pGISessionSubsystem->GetActiveSessionState().PlayerExperienceCollector;
+		if (pPEX == nullptr)
+		{
+			ImGui::Text("PlayerExperienceCollector not available.");
+			ImGui::EndTabItem();
+			return;
+		}
+
+		
+		if (ImGui::Button("Reset Summary"))
+		{
+			pPEX->ResetSummary();
+		}
+		if (ImGui::IsItemHovered())
+		{
+			ImGui::SetTooltip("Reset the summary data.  This will reset all summary data, including what is reported at the end of the session.");
+		}
+
+		const auto Summary = pPEX->GetSummaryJson();
+
+		// display a table of all contained stats
+		auto DisplayStatsTable = [](const TSharedRef<FJsonObject>& JsonObject)
+		{
+			const TSharedPtr<FJsonObject>* StatsObject = nullptr;
+			if (JsonObject->TryGetObjectField(URH_PEXStatGroup::SummaryFields::Stats, StatsObject)
+				&& StatsObject
+				&& ImGui::BeginTable("Stats", 8, RH_TableFlagsPropSizing))
+			{
+				ImGui::TableSetupColumn(TCHAR_TO_UTF8(*FRH_StatAccumulator::SummaryFields::Name));
+				ImGui::TableSetupColumn(TCHAR_TO_UTF8(*FRH_StatAccumulator::SummaryFields::Last));
+				ImGui::TableSetupColumn(TCHAR_TO_UTF8(*FRH_StatAccumulator::SummaryFields::Min));
+				ImGui::TableSetupColumn(TCHAR_TO_UTF8(*FRH_StatAccumulator::SummaryFields::Max));
+				ImGui::TableSetupColumn(TCHAR_TO_UTF8(*FRH_StatAccumulator::SummaryFields::Avg));
+				ImGui::TableSetupColumn(TCHAR_TO_UTF8(*FRH_StatAccumulator::SummaryFields::StdDev));
+				ImGui::TableSetupColumn(TCHAR_TO_UTF8(*FRH_StatAccumulator::SummaryFields::Count));
+				ImGui::TableSetupColumn(TCHAR_TO_UTF8(*FRH_StatAccumulator::SummaryFields::Sum));
+				ImGui::TableHeadersRow();
+				
+				for (auto& InnerValue : (*StatsObject)->Values)
+				{
+					auto InnerObject = InnerValue.Value->AsObject();
+					if (InnerObject.IsValid())
+					{
+						FString NameValue;
+						float StatValue = 0;
+						ImGui::TableNextRow();
+						ImGui::TableNextColumn();
+						if (InnerObject->TryGetStringField(FRH_StatAccumulator::SummaryFields::Name, NameValue))
+						{
+							ImGui::Text("%s", TCHAR_TO_UTF8(*NameValue));
+						}
+						ImGui::TableNextColumn();
+						if (InnerObject->TryGetNumberField(FRH_StatAccumulator::SummaryFields::Last, StatValue))
+						{
+							ImGui::Text("%.2f", StatValue);
+						}
+						ImGui::TableNextColumn();
+						if (InnerObject->TryGetNumberField(FRH_StatAccumulator::SummaryFields::Min, StatValue))
+						{
+							ImGui::Text("%.2f", StatValue);
+						}
+						ImGui::TableNextColumn();
+						if (InnerObject->TryGetNumberField(FRH_StatAccumulator::SummaryFields::Max, StatValue))
+						{
+							ImGui::Text("%.2f", StatValue);
+						}
+						ImGui::TableNextColumn();
+						if (InnerObject->TryGetNumberField(FRH_StatAccumulator::SummaryFields::Avg, StatValue))
+						{
+							ImGui::Text("%.2f", StatValue);
+						}
+						ImGui::TableNextColumn();
+						if (InnerObject->TryGetNumberField(FRH_StatAccumulator::SummaryFields::StdDev, StatValue))
+						{
+							ImGui::Text("%.2f", StatValue);
+						}
+						ImGui::TableNextColumn();
+						if (InnerObject->TryGetNumberField(FRH_StatAccumulator::SummaryFields::Count, StatValue))
+						{
+							ImGui::Text("%.2f", StatValue);
+						}
+						ImGui::TableNextColumn();
+						if (InnerObject->TryGetNumberField(FRH_StatAccumulator::SummaryFields::Sum, StatValue))
+						{
+							ImGui::Text("%.2f", StatValue);
+						}
+					}
 				}
 				ImGui::EndTable();
 			}
-		}
+		};
 
-		ImGui::EndTabBar();
+		// display a table of all contained counts
+		auto DisplayCountsTable = [](const TSharedRef<FJsonObject>& JsonObject)
+		{
+			const TSharedPtr<FJsonObject>* CountersObject = nullptr;
+			if (JsonObject->TryGetObjectField(URH_PEXStatGroup::SummaryFields::Counters, CountersObject)
+				&& CountersObject
+				&& ImGui::BeginTable("Counters", 2, RH_TableFlagsPropSizing))
+			{
+				ImGui::TableSetupColumn(TCHAR_TO_UTF8(*FRH_StatAccumulator::SummaryFields::Name));
+				ImGui::TableSetupColumn(TCHAR_TO_UTF8(*FRH_StatAccumulator::SummaryFields::Count));
+				ImGui::TableHeadersRow();
+				
+				for (auto& InnerValue : (*CountersObject)->Values)
+				{
+					auto InnerObject = InnerValue.Value->AsObject();
+					if (InnerObject.IsValid())
+					{
+						FString NameValue;
+						float CounterValue = 0;
+						ImGui::TableNextRow();
+						ImGui::TableNextColumn();
+						if (InnerObject->TryGetStringField(FRH_StatAccumulator::SummaryFields::Name, NameValue))
+						{
+							ImGui::Text("%s", TCHAR_TO_UTF8(*NameValue));
+						}
+						ImGui::TableNextColumn();
+						if (InnerObject->TryGetNumberField(FRH_StatAccumulator::SummaryFields::Min, CounterValue))
+						{
+							ImGui::Text("%.2f", CounterValue);
+						}
+					}
+				}
+				ImGui::EndTable();
+			}
+		};
+
+		// forward declare sub-object handler, as it depends on main object handler
+		TFunction<void(const TSharedRef<FJsonObject>& JsonObject)> DisplaySubObjects;
+
+		// display an object, which may contain stats, counts, or other subojbects
+		auto DisplayObject = [DisplayStatsTable, DisplayCountsTable, &DisplaySubObjects](const TSharedRef<FJsonObject>& JsonObject, const FString& ObjectName)
+		{
+			if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*ObjectName), RH_DefaultTreeFlagsDefaultOpen))
+			{
+				DisplayStatsTable(JsonObject);
+				DisplayCountsTable(JsonObject);
+				DisplaySubObjects(JsonObject);
+				ImGui::TreePop();
+			}
+		};
+
+		// display a nested object of all contained subobjects which are not stats or counts
+		DisplaySubObjects = [DisplayObject](const TSharedRef<FJsonObject>& JsonObject)
+		{
+			const TSharedPtr<FJsonObject>* ChildrenObject = nullptr;
+			if (JsonObject->TryGetObjectField(URH_PEXStatGroup::SummaryFields::Children, ChildrenObject)
+				&& ChildrenObject)
+			{				
+				for (auto& InnerValue : (*ChildrenObject)->Values)
+				{
+					const TSharedPtr<FJsonObject>* InnerObject;
+					if (InnerValue.Value->TryGetObject(InnerObject)
+						&& InnerObject && InnerObject->IsValid())
+					{
+						DisplayObject(InnerObject->ToSharedRef(), InnerValue.Key);
+					}
+				}
+			}
+		};
+		
+		DisplayObject(Summary, TEXT("Summary"));
+
+		ImGui::EndTabItem();
 	}
 }
 

@@ -21,21 +21,7 @@ class RALLYHEREINTEGRATION_API URH_PEXCollectorConfig : public UObject
 {
 	GENERATED_BODY()
 public:
-	URH_PEXCollectorConfig()
-	{
-		bEnabled = true;
-		
-		bWriteSummaryFile = false;
-		bUploadSummaryToPEXAPI = true;
-		bUploadSummaryToFileAPI = false;
-
-		bWriteTimelineFile = false;
-		bUploadTimelineToFileAPI = false;
-		
-		StatInterval = 1;
-		TimelineFilePrefix = TEXT("PEX_Timeline");
-		SummaryFilePrefix = TEXT("PEX_Summary");
-	}
+	URH_PEXCollectorConfig();
 
 	/** Enable tracking of PEX data */
 	UPROPERTY(Config)
@@ -72,6 +58,10 @@ public:
 	/** Prefix for summary file name */
 	UPROPERTY(Config)
 	FString SummaryFilePrefix;
+	
+	/** Array of StatGroups to capture */
+	UPROPERTY(BlueprintReadWrite, Config, EditDefaultsOnly, Category="PlayerExperience")
+	TSet<TSubclassOf<URH_PEXStatGroup>> StatGroupsToCapture;
 
 	/** Helper function for whether tracking should be enabled */
 	bool WantsEnabled() const
@@ -194,7 +184,7 @@ enum class ERH_PEXValueType : uint8
 
 /** @brief State of the accumulated stat */
 USTRUCT(BlueprintType)
-struct FRH_PEXStatState
+struct RALLYHEREINTEGRATION_API FRH_PEXStatState
 {
 	GENERATED_BODY()
 	
@@ -256,28 +246,45 @@ struct FRH_PEXStatState
 		Sum += Value;
 		SumOfSquares += Value * Value;
 		Count++;
-		
-		Avg = Sum / Count;
-		Variance = (SumOfSquares / Count) - (Avg * Avg);
+
+		if (Count > 0)
+		{
+			Avg = Sum / Count;
+			Variance = (SumOfSquares / Count) - (Avg * Avg);
+		}
+		else
+		{
+			Avg = 0.0f;
+			Variance = 0.0f;
+		}
 	}
 
 	/** @brief Update the summary state with the current state */
 	void UpdateSummary(const FRH_PEXStatState& CurrentState)
 	{
+		Current = CurrentState.Current;
 		Min = FMath::Min(Min, CurrentState.Min);
 		Max = FMath::Max(Max, CurrentState.Max);
 		Sum += CurrentState.Sum;
 		SumOfSquares += CurrentState.SumOfSquares;
 		Count += CurrentState.Count;
 
-		Avg = Sum / Count;
-		Variance = (SumOfSquares / Count) - (Avg * Avg);
+		if (Count > 0)
+		{
+			Avg = Sum / Count;
+			Variance = (SumOfSquares / Count) - (Avg * Avg);
+		}
+		else
+		{
+			Avg = 0.0f;
+			Variance = 0.0f;
+		}
 	}
 };
 
 /** @brief Simple accumulator that represents a captured statistic. Tracks min, max, average, and other values internally without having to store all values. */
 USTRUCT(BlueprintType)
-struct FRH_StatAccumulator
+struct RALLYHEREINTEGRATION_API FRH_StatAccumulator
 {
 	GENERATED_BODY()
 	
@@ -335,12 +342,6 @@ public:
 	/** @brief Capture the current value into the summary state */
 	void CaptureSummaryValue()
 	{
-		// if we failed to capture any values, don't add anything to the summary as we could potentially add default values (like TNumericLimits<float>::Max())
-		if (CaptureState.Count == 0)
-		{
-			return;
-		}
-
 		SummaryState.UpdateSummary(CaptureState);
 	}
 
@@ -376,6 +377,19 @@ public:
 		}
 	}
 
+	// summary object field names
+	struct RALLYHEREINTEGRATION_API SummaryFields
+	{
+		static FString Name;
+		static FString Last;
+		static FString Min;
+		static FString Max;
+		static FString Avg;
+		static FString Sum;
+		static FString StdDev;
+		static FString Count;
+	};
+
 	/** @brief Get a JSON object representing the summary data */
 	TSharedPtr<FJsonObject> GetSummaryJson(bool bIncludeName) const
 	{
@@ -387,14 +401,15 @@ public:
 		TSharedPtr<FJsonObject> SummaryJson = MakeShared<FJsonObject>();
 		if (bIncludeName)
 		{
-			SummaryJson->SetStringField(TEXT("Name"), Name.ToString());
+			SummaryJson->SetStringField(SummaryFields::Name, Name.ToString());
 		}
-		SummaryJson->SetNumberField(TEXT("Min"), SummaryState.Min);
-		SummaryJson->SetNumberField(TEXT("Max"), SummaryState.Max);
-		SummaryJson->SetNumberField(TEXT("Avg"), SummaryState.Avg);
-		SummaryJson->SetNumberField(TEXT("Sum"), SummaryState.Sum);
-		SummaryJson->SetNumberField(TEXT("Standard Deviation"), FMath::Sqrt(SummaryState.Variance));
-		SummaryJson->SetNumberField(TEXT("Count"), SummaryState.Count);
+		SummaryJson->SetNumberField(SummaryFields::Last, SummaryState.Current);
+		SummaryJson->SetNumberField(SummaryFields::Min, SummaryState.Min);
+		SummaryJson->SetNumberField(SummaryFields::Max, SummaryState.Max);
+		SummaryJson->SetNumberField(SummaryFields::Avg, SummaryState.Avg);
+		SummaryJson->SetNumberField(SummaryFields::StdDev, FMath::Sqrt(FMath::Max(0.0f, SummaryState.Variance)));
+		SummaryJson->SetNumberField(SummaryFields::Sum, SummaryState.Sum);
+		SummaryJson->SetNumberField(SummaryFields::Count, SummaryState.Count);
 		return SummaryJson;
 	}
 
@@ -409,7 +424,7 @@ public:
 		PexStat.SetAvg(SummaryState.Avg);
 		PexStat.SetMin(SummaryState.Min);
 		PexStat.SetMax(SummaryState.Max);
-		PexStat.SetStddev(FMath::Sqrt(SummaryState.Variance));
+		PexStat.SetStddev(FMath::Sqrt(FMath::Max(0.0f, SummaryState.Variance)));
 
 		return true;
 	}
@@ -417,10 +432,27 @@ public:
 
 /** @brief Base class for a group of stats */
 UCLASS(BlueprintType)
-class URH_PEXStatGroup : public UObject
+class RALLYHEREINTEGRATION_API URH_PEXStatGroup : public UObject
 {
 	GENERATED_BODY()
 public:
+
+	URH_PEXStatGroup()
+		: GroupName(NAME_None)
+		, bDynamic(false)
+		, bNotForTimeline(false)
+	{
+	}
+
+	/** @brief Initialize the stat group and any children.  May add non-dynamic groups and init them as well */
+	virtual void Init(const URH_PEXCollectorConfig* InConfig)
+	{
+		// init any existing children
+		for (auto Child : Children)
+		{
+			Child->Init(InConfig);
+		}
+	}
 
 	/** @brief Name of the stat group */
 	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="PlayerExperience")
@@ -428,28 +460,75 @@ public:
 	/** @brief Array of stats to track */
 	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="PlayerExperience")
 	TArray<FRH_StatAccumulator> Stats;
+	/** @brief Array of children stat groups to track */
+	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="PlayerExperience")
+	TArray<URH_PEXStatGroup*> Children;
+	/** @brief Whether this group was dynamically created.  Dynamic groups do not get written to the timeline since it has a rigid structure */
+	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="PlayerExperience")
+	bool bDynamic;
+	/** @brief Whether this group should be excluded from the timline.  Some groups do not get written to the timeline since it has a rigid structure */
+	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="PlayerExperience")
+	bool bNotForTimeline;
 
 	/** @brief Capture once-per-frame stats */
-	virtual void CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) {}
+	virtual void CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
+	{
+		for (auto Child : Children)
+		{
+			Child->CapturePerFrameStats(Owner);
+		}
+	}
 	/** @brief Capture once-per-second stats */
-	virtual void CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) {}
+	virtual void CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
+	{
+		for (auto Child : Children)
+		{
+			Child->CapturePerSecondStats(Owner);
+		}
+	}
 	/** @brief Capture once-per-interval stats */
-	virtual void CapturePerIntervalStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) {}
+	virtual void CapturePerIntervalStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
+	{
+		for (auto Child : Children)
+		{
+			Child->CapturePerIntervalStats(Owner);
+		}
+	}
 	
 	/** @brief Reset the capture state of all stats */
 	virtual void ResetCapture()
 	{
-		for (int i = 0; i < Stats.Num(); ++i)
+		// reset summary on all stats
+		for (auto& Stat : Stats)
 		{
-			Stats[i].ResetCapture();
+			Stat.ResetCapture();
+		}
+
+		// reset summary on all children
+		for (auto& Child : Children)
+		{
+			Child->ResetCapture();
 		}
 	}
 	/** @brief Reset the summary state of all stats */
 	virtual void ResetSummary()
 	{
-		for (int i = 0; i < Stats.Num(); ++i)
+		// reset summary on all stats
+		for (auto& Stat : Stats)
 		{
-			Stats[i].ResetSummary();
+			Stat.ResetSummary();
+		}
+
+		// remove all null or dynamic children
+		Children.RemoveAll([this](const URH_PEXStatGroup* Child)
+		{
+			return Child == nullptr || Child->bDynamic;
+		});
+
+		// reset summary on all children
+		for (auto& Child : Children)
+		{
+			Child->ResetSummary();
 		}
 	}
 	/** @brief Reset both the capture and summary states of all stats */
@@ -462,60 +541,120 @@ public:
 	/** @brief Update the summary state of all stats */
 	virtual void UpdateSummary()
 	{
-		for (int i = 0; i < Stats.Num(); ++i)
+		// reset summary on all stats
+		for (auto& Stat : Stats)
 		{
-			Stats[i].CaptureSummaryValue();
+			Stat.CaptureSummaryValue();
+		}
+
+		// reset summary on all children
+		for (auto& Child : Children)
+		{
+			Child->UpdateSummary();
 		}
 	}
 
+	struct RALLYHEREINTEGRATION_API SummaryFields
+	{
+		static FString Name;
+		static FString Stats;
+		static FString Counters;
+		static FString Children;
+	};
+	
 	/**
 	 * @brief Write the summary data to a JSON object
 	 * @return The JSON object containing the summary data
 	 */
-	virtual TSharedPtr<FJsonObject> GetSummary() const
+	virtual TSharedRef<FJsonObject> GetSummary() const
 	{
 		auto StatGroupJsonData = MakeShared<FJsonObject>();
-		for (int i = 0; i < Stats.Num(); ++i)
 		{
-			const auto& Stat = Stats[i];
-			const auto& StatName = Stat.GetName();
-			
-			// if we have any summary data, add it to the stat group
-			auto SummaryData = Stat.GetSummaryJson(true);
-			if (SummaryData.IsValid() && SummaryData->Values.Num() > 0)
+			auto StatsJsonData = MakeShared<FJsonObject>();
+			for (const auto& Stat : Stats)
 			{
-				StatGroupJsonData->SetObjectField(StatName.ToString(), SummaryData);
+				const auto& StatName = Stat.GetName();
+			
+				// if we have any summary data, add it to the stat group
+				auto SummaryData = Stat.GetSummaryJson(true);
+				if (SummaryData.IsValid() && SummaryData->Values.Num() > 0)
+				{
+					StatsJsonData->SetObjectField(StatName.ToString(), SummaryData);
+				}
+			}
+
+			// if we have any stats, add the stats object to the document
+			if (StatsJsonData->Values.Num() > 0)
+			{
+				StatGroupJsonData->SetObjectField(SummaryFields::Stats, StatsJsonData);
 			}
 		}
 
-		// if we have any stats, add the stat group to the document
-		if (StatGroupJsonData->Values.Num() > 0)
 		{
-			return StatGroupJsonData.ToSharedPtr();
+			auto ChildrenJsonData = MakeShared<FJsonObject>();
+			for (const auto& Child : Children)
+			{
+				const auto& ChildName = Child->GroupName;
+			
+				// if we have any summary data, add it to the stat group
+				auto SummaryData = Child->GetSummary();
+				if (SummaryData->Values.Num() > 0)
+				{
+					ChildrenJsonData->SetObjectField(ChildName.ToString(), SummaryData);
+				}
+			}
+
+			if (ChildrenJsonData->Values.Num() > 0)
+			{
+				StatGroupJsonData->SetObjectField(SummaryFields::Children, ChildrenJsonData);
+			}
 		}
-		return nullptr;
+		
+		return StatGroupJsonData;
 	}
 
 	/** @brief Write the timeline data header to a CSV file for all stats */
 	virtual FString GetTimelineCSVHeader() const
 	{
+		// dynamic groups cannot be written to the timeline
+		if (bNotForTimeline || bDynamic)
+		{
+			return FString();
+		}
+		
 		FString HeaderString;
-		for (int i = 0; i < Stats.Num(); ++i)
+		for (const auto& Stat : Stats)
 		{
 			if (!HeaderString.IsEmpty())
 			{
 				HeaderString += TEXT(",");
 			}
-			HeaderString += Stats[i].GetName().ToString();
+			HeaderString += Stat.GetName().ToString();
 		}
 
+		for (const auto& Child : Children)
+		{
+			const auto ChildString = Child->GetTimelineCSVHeader();
+			if (!HeaderString.IsEmpty() && !ChildString.IsEmpty())
+			{
+				HeaderString += TEXT(",");
+			}
+			HeaderString += ChildString;
+		}
+		
 		return HeaderString;
 	}
 	/** @brief Write the timeline data values to a CSV file for all stats */
 	virtual FString GetTimelineCSVValues() const
 	{
+		// dynamic groups cannot be written to the timeline
+		if (bNotForTimeline || bDynamic)
+		{
+			return FString();
+		}
+		
 		FString ValueString;
-		for (int i = 0; i < Stats.Num(); ++i)
+		for (const auto& Stat : Stats)
 		{
 			if (!ValueString.IsEmpty())
 			{
@@ -523,7 +662,7 @@ public:
 			}
 
 			// if the value is close to an integer, round it
-			float Value = Stats[i].GetTimelineValue();
+			float Value = Stat.GetTimelineValue();
 			int Rounded = FMath::RoundToInt(Value);
 			if (FMath::IsNearlyZero(Value - Rounded))
 			{
@@ -535,16 +674,48 @@ public:
 			}
 		}
 		
+		for (const auto& Child : Children)
+		{
+			const auto ChildString = Child->GetTimelineCSVValues();
+			if (!ValueString.IsEmpty() && !ChildString.IsEmpty())
+			{
+				ValueString += TEXT(",");
+			}
+			ValueString += ChildString;
+		}
+		
 		return ValueString;
 	}
 	
 	/** @brief Fill in a API PEX host summary report with the summary data */
 	virtual void GetPEXHostSummary(FRHAPI_PexHostRequest& Report) const
-	{}
+	{
+		for (const auto Child : Children)
+		{
+			Child->GetPEXHostSummary(Report);
+		}
+	}
 
 	/** @brief Fill in a API PEX client summary report with the summary data */
 	virtual void GetPEXClientSummary(FRHAPI_PexClientRequest& Report) const
-	{}
+	{
+		for (const auto Child : Children)
+		{
+			Child->GetPEXClientSummary(Report);
+		}
+	}
+};
+
+/** @brief Stat group that contains all other stat groups, configurable via INI */
+UCLASS()
+class RALLYHEREINTEGRATION_API URH_PEXStatGroupsTopLevel : public URH_PEXStatGroup
+{
+	GENERATED_BODY()
+
+public:
+	URH_PEXStatGroupsTopLevel();
+	
+	virtual void Init(const URH_PEXCollectorConfig* InConfig) override;
 };
 
 #define PEX_ADD_INDEXED_STAT_TO_REPORT(StatName, PexStatName) \
@@ -560,7 +731,7 @@ public:
  * @brief PlayerExperience Collector class, responsible for collecting and tracking PEX data via PEX Stat Groups.
  */
 UCLASS(Config=RallyHereIntegration)
-class URH_PEXCollector : public UObject
+class RALLYHEREINTEGRATION_API URH_PEXCollector : public UObject
 {
 	GENERATED_BODY()
 public:
@@ -581,17 +752,20 @@ public:
 	/** @brief Reset the summary state, which is useful if wanting to trim the front of the summary to when gameplay starts. */
 	void ResetSummary()
 	{
-		for (URH_PEXStatGroup* StatGroup : StatGroups)
+		if (TopLevelStatGroup)
 		{
-			StatGroup->ResetSummary();
+			TopLevelStatGroup->ResetSummary();
 		}
 	}
 
-	/** Closes state, writes summary if needed, and uploads data if needed.  Can only be done once. */
+	/** @brief Closes state, writes summary if needed, and uploads data if needed.  Can only be done once. */
 	void Close();
 	
-	/** Writes summary data to file and/or API, and uploads any data requested, can only be called once */
+	/** @brief Writes summary data to file and/or API, and uploads any data requested, can only be called once */
 	void WriteSummary();
+
+	/** @brief Retrieves the summary data in Json format */
+	TSharedRef<FJsonObject> GetSummaryJson() const;
 	
 protected:
 	/** Cached owner of the collector */
@@ -634,12 +808,8 @@ protected:
 	UPROPERTY(BlueprintReadOnly, Category="PlayerExperience")
 	bool bFirstInterval;
 
-	/** Array of StatGroups to capture */
-	UPROPERTY(BlueprintReadWrite, Config, EditDefaultsOnly, Category="PlayerExperience")
-	TSet<TSubclassOf<URH_PEXStatGroup>> StatGroupsToCapture;
-	
 	UPROPERTY(BlueprintReadOnly, Transient, Category="PlayerExperience")
-	TArray<URH_PEXStatGroup*> StatGroups;
+	URH_PEXStatGroupsTopLevel* TopLevelStatGroup;
 
 	/** Internal helper to upload a file to remote file storage */
 	void UploadFile(const FString& FilePath, const FString& RemoteFileName) const;
@@ -655,7 +825,7 @@ protected:
 //////////////////////////////////////////////////////////////////////////////////////
 
 /** @brief Stat group for capturing primary stats */
-UCLASS()
+UCLASS(MinimalAPI)
 class URH_PEXPrimaryStats : public URH_PEXStatGroup
 {
 	GENERATED_BODY()
@@ -720,6 +890,8 @@ public:
 	/** @brief Fill in a API PEX host summary report with the summary data */
 	virtual void GetPEXHostSummary(FRHAPI_PexHostRequest& Report) const
 	{
+		Super::GetPEXHostSummary(Report);
+		
 		PEX_ADD_INDEXED_STAT_TO_REPORT(FrameTime, FrameTime);
 		PEX_ADD_INDEXED_STAT_TO_REPORT(DeltaTime, DeltaTime);
 		PEX_ADD_INDEXED_STAT_TO_REPORT(TickCount, TickCount);
@@ -732,6 +904,8 @@ public:
 	/** @brief Fill in a API PEX client summary report with the summary data */
 	virtual void GetPEXClientSummary(FRHAPI_PexClientRequest& Report) const
 	{
+		Super::GetPEXClientSummary(Report);
+		
 		PEX_ADD_INDEXED_STAT_TO_REPORT(FrameTime, FrameTime);
 		PEX_ADD_INDEXED_STAT_TO_REPORT(DeltaTime, DeltaTime);
 		PEX_ADD_INDEXED_STAT_TO_REPORT(TickCount, TickCount);
@@ -747,7 +921,7 @@ public:
 };
 
 /** @brief Stat group for capturing whole-state network stats */
-UCLASS()
+UCLASS(MinimalAPI)
 class URH_PEXNetworkStats_Base : public URH_PEXStatGroup
 {
 	GENERATED_BODY()
@@ -776,6 +950,8 @@ public:
 	/** @brief Fill in a API PEX host summary report with the summary data */
 	virtual void GetPEXHostSummary(FRHAPI_PexHostRequest& Report) const
 	{
+		Super::GetPEXHostSummary(Report);
+		
 		PEX_ADD_INDEXED_STAT_TO_REPORT(ConnectionCount, ConnectionCount);
 		PEX_ADD_INDEXED_STAT_TO_REPORT(Ping, Ping);
 		PEX_ADD_INDEXED_STAT_TO_REPORT(InPackets, InPackets);
@@ -792,6 +968,8 @@ public:
 	/** @brief Fill in a API PEX client summary report with the summary data */
 	virtual void GetPEXClientSummary(FRHAPI_PexClientRequest& Report) const
 	{
+		Super::GetPEXClientSummary(Report);
+		
 		PEX_ADD_INDEXED_STAT_TO_REPORT(Ping, Ping);
 		PEX_ADD_INDEXED_STAT_TO_REPORT(InPackets, InPackets);
 		PEX_ADD_INDEXED_STAT_TO_REPORT(OutPackets, OutPackets);
@@ -807,7 +985,7 @@ public:
 
 
 /** @brief Stat group for capturing global network stats */
-UCLASS()
+UCLASS(MinimalAPI)
 class URH_PEXNetworkStats_Global : public URH_PEXNetworkStats_Base
 {
 	GENERATED_BODY()
@@ -818,7 +996,6 @@ public:
 		GroupName = TEXT("GlobalNetworkStats");
 	}
 	
-	virtual void CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
 	virtual void CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;	
 };
 
@@ -826,7 +1003,7 @@ class UNetConnection;
 
 
 /** @brief Stat group for capturing per-player network stats */
-UCLASS()
+UCLASS(MinimalAPI)
 class URH_PEXNetworkStats_Connection : public URH_PEXNetworkStats_Base
 {
 	GENERATED_BODY()
@@ -834,19 +1011,84 @@ public:
 
 	URH_PEXNetworkStats_Connection()
 	{
-		GroupName = TEXT("ConnetionNetworkStats");
+		GroupName = TEXT("ConnectionNetworkStats");
 	}
 
 	void InitForConnection(const UNetConnection* InConnection);
 
 	TWeakObjectPtr<const UNetConnection> Connection;
 	
-	virtual void CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
 	virtual void CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;	
 };
 
+/** @brief Stat group for capturing a group of player network stats */
+UCLASS(MinimalAPI)
+class URH_PEXNetworkStats_Host : public URH_PEXNetworkStats_Base
+{
+	GENERATED_BODY()
+public:
+
+	URH_PEXNetworkStats_Host()
+	{
+		GroupName = TEXT("HostNetworkStats");
+	}
+
+	/** @brief Get or create a player's network stats */
+	virtual void GetOrCreatePlayerNetworkStats(const class UNetConnection* Connection, URH_PEXNetworkStats_Connection*& OutPlayerNetworkStats);
+	
+	/** Per-player network stats, only used by summary */
+	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="PlayerExperience")
+	TMap<FGuid, URH_PEXNetworkStats_Connection*> PlayerNetworkStats;
+
+	/** @brief Reset the summary state of all stats */
+	virtual void ResetSummary() override
+	{
+		Super::ResetSummary();
+
+		// when resetting the summary state, clear out all player network stats
+		PlayerNetworkStats.Reset();
+	}
+	
+	/** @brief Fill in a API PEX host summary report with the summary data */
+	virtual void GetPEXHostSummary(FRHAPI_PexHostRequest& Report) const
+	{
+		Super::GetPEXHostSummary(Report);
+		
+		{
+			FRHAPI_PexCount PexCount;
+			PexCount.SetCount(PlayerNetworkStats.Num());
+			Report.SetTotalUniquePlayers(PexCount);
+		}
+	}
+
+	virtual void EnsureConnectionTrackersExist(const TScriptInterface<IRH_PEXOwnerInterface>& Owner);
+	virtual void CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
+	virtual void CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
+	virtual void CapturePerIntervalStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
+};
+
+
+/** @brief Stat group for capturing a group of client's connection to server's network stats */
+UCLASS(MinimalAPI)
+class URH_PEXNetworkStats_Client : public URH_PEXNetworkStats_Connection
+{
+	GENERATED_BODY()
+public:
+
+	URH_PEXNetworkStats_Client()
+	{
+		GroupName = TEXT("ClientNetworkStats");
+	}
+	
+	virtual void EnsureConnectionTrackersExist(const TScriptInterface<IRH_PEXOwnerInterface>& Owner);
+	virtual void CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
+	virtual void CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
+	virtual void CapturePerIntervalStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
+};
+
+
 /** @brief Stat group for capturing local whole-state network stats, plus per-player stats */
-UCLASS()
+UCLASS(MinimalAPI)
 class URH_PEXNetworkStats : public URH_PEXStatGroup
 {
 	GENERATED_BODY()
@@ -857,202 +1099,18 @@ public:
 	/** Global network stats, used by summary and timeline */
 	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="PlayerExperience")
 	URH_PEXNetworkStats_Global* GlobalNetworkStats;
-	
-	/** Per-player network stats, only used by summary */
+
+	/** Client's connection to host, only used by summary */
 	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="PlayerExperience")
-	TMap<FGuid, URH_PEXNetworkStats_Connection*> PlayerNetworkStats;
+	URH_PEXNetworkStats_Client* ClientNetworkStats;
 
-	/** Client's server connection, only used by summary */
+	/** Host's connection to clients, only used by summary */
 	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="PlayerExperience")
-	URH_PEXNetworkStats_Connection* ServerNetworkStats;
-	
-	/** @brief Reset the capture state of all stats */
-	virtual void ResetCapture() override
-	{
-		Super::ResetCapture();
-
-		if (GlobalNetworkStats != nullptr)
-		{
-			GlobalNetworkStats->ResetCapture();
-		}
-		for (auto PlayerNetworkStatsPair : PlayerNetworkStats)
-		{
-			PlayerNetworkStatsPair.Value->ResetCapture();
-		}
-	}
-	/** @brief Reset the summary state of all stats */
-	virtual void ResetSummary() override
-	{
-		Super::ResetSummary();
-
-		if (GlobalNetworkStats != nullptr)
-		{
-			GlobalNetworkStats->ResetSummary();
-		}
-
-		// network stats are only used by the summary and are dynamic, so just clear the entire map
-		PlayerNetworkStats.Reset();
-	}
-	
-	/** @brief Write the timeline data header to a CSV file for all stats */
-	virtual FString GetTimelineCSVHeader() const override
-	{
-		FString HeaderString = Super::GetTimelineCSVHeader();
-
-		if (GlobalNetworkStats != nullptr)
-		{
-			FString GlobalHeader = GlobalNetworkStats->GetTimelineCSVHeader();
-			if (!GlobalHeader.IsEmpty())
-			{
-				if (!HeaderString.IsEmpty())
-				{
-					HeaderString += TEXT(",");
-				}
-				HeaderString += GlobalHeader;
-			}
-		}
-
-		return HeaderString;
-	}
-	/** @brief Write the timeline data values to a CSV file for all stats */
-	virtual FString GetTimelineCSVValues() const override
-	{
-		FString ValueString = Super::GetTimelineCSVValues();
-
-		if (GlobalNetworkStats != nullptr)
-		{
-			FString GlobalValues = GlobalNetworkStats->GetTimelineCSVValues();
-			if (!GlobalValues.IsEmpty())
-			{
-				if (!ValueString.IsEmpty())
-				{
-					ValueString += TEXT(",");
-				}
-				ValueString += GlobalValues;
-			}
-		}
-
-		return ValueString;
-	}
-
-	/** @brief Update the summary state of all stats */
-	virtual void UpdateSummary() override
-	{
-		Super::UpdateSummary();
-
-		if (GlobalNetworkStats != nullptr)
-		{
-			GlobalNetworkStats->UpdateSummary();
-		}
-		if (ServerNetworkStats != nullptr)
-		{
-			ServerNetworkStats->UpdateSummary();
-		}
-		for (auto PlayerNetworkStatsPair : PlayerNetworkStats)
-		{
-			PlayerNetworkStatsPair.Value->UpdateSummary();
-		}
-	}
-	
-	/** @brief Write the summary data to a JSON object */
-	virtual TSharedPtr<FJsonObject> GetSummary() const override
-	{
-		auto SummaryData = Super::GetSummary();
-
-		if (!SummaryData.IsValid())
-		{
-			SummaryData = MakeShared<FJsonObject>();
-		}
-
-		// write global network stats to the summary data
-		if (GlobalNetworkStats != nullptr)
-		{
-			auto GlobalSummary = GlobalNetworkStats->GetSummary();
-			if (GlobalSummary.IsValid() && GlobalSummary->Values.Num() > 0)
-			{
-				SummaryData->SetObjectField(TEXT("Global"), GlobalSummary);
-			}
-		}
-		
-		// write server network stats to the summary data
-		if (ServerNetworkStats != nullptr)
-		{
-			auto ServerSummary = ServerNetworkStats->GetSummary();
-			if (ServerSummary.IsValid() && ServerSummary->Values.Num() > 0)
-			{
-				SummaryData->SetObjectField(TEXT("Server"), ServerSummary);
-			}
-		}
-
-		// write per-player network stats to the summary data
-		if (!PlayerNetworkStats.IsEmpty())
-		{
-			// create a container for all the per player data
-			auto PlayerNetworkStatsJsonData = MakeShared<FJsonObject>();
-
-			// loop over all player network stats and add them to the summary data
-			for (auto PlayerNetworkStatsPair : PlayerNetworkStats)
-			{
-				auto PlayerNetworkStatsJson = PlayerNetworkStatsPair.Value->GetSummary();
-				if (PlayerNetworkStatsJson.IsValid() && PlayerNetworkStatsJson->Values.Num() > 0)
-				{
-					// inject player id into the player network stats
-					const auto PlayerId = PlayerNetworkStatsPair.Key.ToString(EGuidFormats::DigitsWithHyphens);
-					PlayerNetworkStatsJson->SetStringField(TEXT("PlayerId"), PlayerId);
-					PlayerNetworkStatsJsonData->SetObjectField(PlayerId, PlayerNetworkStatsJson);
-				}
-			}
-
-			// if we have any stats, add them to the summary data
-			if (PlayerNetworkStatsJsonData->Values.Num() > 0)
-			{
-				SummaryData->SetObjectField(TEXT("Players"), PlayerNetworkStatsJsonData);
-			}
-		}
-
-		if (SummaryData->Values.Num() > 0)
-		{
-			return SummaryData;
-		}
-		return nullptr;
-	}
-
-	
-	/** @brief Fill in a API PEX host summary report with the summary data */
-	virtual void GetPEXHostSummary(FRHAPI_PexHostRequest& Report) const
-	{
-		// use global stats for now for simplicity, but as that may be less reliable potentially convert to using player stats array
-		if (GlobalNetworkStats != nullptr)
-		{
-			GlobalNetworkStats->GetPEXHostSummary(Report);			
-		}
-
-		{
-			FRHAPI_PexCount PexCount;
-			PexCount.SetCount(PlayerNetworkStats.Num());
-			Report.SetTotalUniquePlayers(PexCount);
-		}
-	}
-
-	/** @brief Fill in a API PEX client summary report with the summary data */
-	virtual void GetPEXClientSummary(FRHAPI_PexClientRequest& Report) const
-	{
-		// clients report on their server connection
-		if (ServerNetworkStats != nullptr)
-		{
-			ServerNetworkStats->GetPEXClientSummary(Report);
-		}
-	}
-	
-	virtual void GetOrCreatePlayerNetworkStats(const class UNetConnection* Connection, URH_PEXNetworkStats_Connection*& OutPlayerNetworkStats);
-	
-	virtual void CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
-	virtual void CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
-	virtual void CapturePerIntervalStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
+	URH_PEXNetworkStats_Host* HostNetworkStats;
 };
 
 /** @brief Stat group for capturing game stats */
-UCLASS()
+UCLASS(MinimalAPI)
 class URH_PEXGameStats : public URH_PEXStatGroup
 {
 	GENERATED_BODY()
@@ -1069,14 +1127,13 @@ public:
 
 	URH_PEXGameStats();
 	
-	virtual void CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
 	virtual void CapturePerIntervalStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
 };
 
 
 /** @brief Blueprintable stat group for capturing stats */
 UCLASS(BlueprintType, Blueprintable)
-class URH_PEXBlueprintableStats : public URH_PEXStatGroup
+class RALLYHEREINTEGRATION_API URH_PEXBlueprintableStats : public URH_PEXStatGroup
 {
 	GENERATED_BODY()
 
