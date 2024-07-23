@@ -38,10 +38,14 @@ void FRHDTW_Automation::Init(URallyHereDebugTool* InOwner, const FString& InName
 	AutomationController = AutomationControllerModule->GetAutomationController();
 
 	AutomationController->Init();
-	AutomationController->OnTestsRefreshed().AddSPLambda(this, [this]()
+	AutomationController->OnTestsRefreshed().AddLambda([WeakThis=SharedThis(this).ToWeakPtr()]()
 		{
-			// Reset the filter string when the tests are refreshed
-			bHasInitializedFilter = false;
+			auto StrongThis = WeakThis.Pin();
+			if (StrongThis.IsValid())
+			{
+				// Reset the filter string when the tests are refreshed
+				StrongThis->bHasInitializedFilter = false;
+			}
 		});
 }
 
