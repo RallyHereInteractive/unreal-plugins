@@ -154,7 +154,10 @@ void FRH_DebugToolWindow::RenderWindow()
 
 	ImGuiWindowFlags windowFlags = bShowMenuBar ? ImGuiWindowFlags_MenuBar : ImGuiWindowFlags_None;
 	windowFlags |= AdditionalWindowFlags;
-	ImGui::Begin(TCHAR_TO_ANSI(*Name) , nullptr, windowFlags);
-	Do();
+	if (ImGui::Begin(TCHAR_TO_ANSI(*Name) , nullptr, windowFlags))
+	{
+		Do();
+	}
+	// per docs, ImGui::End() must be called even if Begin() returns false
 	ImGui::End();
 }
