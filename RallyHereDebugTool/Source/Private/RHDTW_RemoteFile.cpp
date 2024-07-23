@@ -112,13 +112,17 @@ void FRHDTW_RemoteFile::DoListFiles(URH_RemoteFileSubsystem* pRemoteFileSubsyste
 							TWeakObjectPtr<URH_RemoteFileSubsystem> pRemoteFileSubsystemWeak = pRemoteFileSubsystem;
 							const auto RemoteDirectoryRef = RemoteDirectory;
 
-							auto OnComplete = FRH_GenericSuccessWithErrorDelegate::CreateSPLambda(this, [this, pRemoteFileSubsystemWeak, RemoteDirectoryRef](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+							auto OnComplete = FRH_GenericSuccessWithErrorDelegate::CreateLambda([WeakThis=SharedThis(this).ToWeakPtr(), pRemoteFileSubsystemWeak, RemoteDirectoryRef](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 								{
-									// if we successfully deleted file the, refresh the list view to reflect it
-									PendingDeleteResult = bSuccess ? TEXT("Success") : ErrorInfo.ResponseContent;
-									if (bSuccess && pRemoteFileSubsystemWeak.IsValid())
+									auto StrongThis = WeakThis.Pin();
+									if (StrongThis.IsValid())
 									{
-										pRemoteFileSubsystemWeak->LookupFileList(RemoteDirectoryRef);
+										// if we successfully deleted file the, refresh the list view to reflect it
+										StrongThis->PendingDeleteResult = bSuccess ? TEXT("Success") : ErrorInfo.ResponseContent;
+										if (bSuccess && pRemoteFileSubsystemWeak.IsValid())
+										{
+											pRemoteFileSubsystemWeak->LookupFileList(RemoteDirectoryRef);
+										}
 									}
 								});
 
@@ -192,6 +196,7 @@ void FRHDTW_RemoteFile::DoListFiles(URH_RemoteFileSubsystem* pRemoteFileSubsyste
 		ImGui::Text("RemoteDirectory not found in cache.");
 	}
 }
+
 void FRHDTW_RemoteFile::DoDownloadFile(URH_RemoteFileSubsystem* pRemoteFileSubsystem)
 {
 	ImGui::InputText("(FROM) Remote File Name", &DownloadRemoteFileName);
@@ -200,9 +205,13 @@ void FRHDTW_RemoteFile::DoDownloadFile(URH_RemoteFileSubsystem* pRemoteFileSubsy
 	ImGui::BeginDisabled(!RemoteDirectory.IsValid() || DownloadRemoteFileName.IsEmpty() || DownloadLocalFilePath.IsEmpty());
 	if (ImGui::Button("Download"))
 	{
-		pRemoteFileSubsystem->DownloadFile(RemoteDirectory, DownloadRemoteFileName, DownloadLocalFilePath, FRH_GenericSuccessWithErrorDelegate::CreateSPLambda(this, [this](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+		pRemoteFileSubsystem->DownloadFile(RemoteDirectory, DownloadRemoteFileName, DownloadLocalFilePath, FRH_GenericSuccessWithErrorDelegate::CreateLambda([WeakThis=SharedThis(this).ToWeakPtr()](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 			{
-				DownloadResult = bSuccess ? TEXT("Success") : ErrorInfo.ResponseContent;
+				auto StrongThis = WeakThis.Pin();
+				if (StrongThis.IsValid())
+				{
+					StrongThis->DownloadResult = bSuccess ? TEXT("Success") : ErrorInfo.ResponseContent;
+				}
 			})
 		);
 	}
@@ -210,6 +219,7 @@ void FRHDTW_RemoteFile::DoDownloadFile(URH_RemoteFileSubsystem* pRemoteFileSubsy
 
 	ImGui::Text("Result: %s", TCHAR_TO_UTF8(*DownloadResult));
 }
+
 void FRHDTW_RemoteFile::DoUploadFile(URH_RemoteFileSubsystem* pRemoteFileSubsystem)
 {
 	ImGui::InputText("(FROM) Local File Path", &UploadLocalFilePath);
@@ -218,9 +228,13 @@ void FRHDTW_RemoteFile::DoUploadFile(URH_RemoteFileSubsystem* pRemoteFileSubsyst
 	ImGui::BeginDisabled(!RemoteDirectory.IsValid() || UploadLocalFilePath.IsEmpty() || UploadRemoteFileName.IsEmpty());
 	if (ImGui::Button("Upload"))
 	{
-		pRemoteFileSubsystem->UploadFile(RemoteDirectory, UploadRemoteFileName, UploadLocalFilePath, FRH_GenericSuccessWithErrorDelegate::CreateSPLambda(this, [this](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+		pRemoteFileSubsystem->UploadFile(RemoteDirectory, UploadRemoteFileName, UploadLocalFilePath, FRH_GenericSuccessWithErrorDelegate::CreateLambda([WeakThis=SharedThis(this).ToWeakPtr()](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 			{
-				UploadResult = bSuccess ? TEXT("Success") : ErrorInfo.ResponseContent;
+				auto StrongThis = WeakThis.Pin();
+				if (StrongThis.IsValid())
+				{
+					StrongThis->UploadResult = bSuccess ? TEXT("Success") : ErrorInfo.ResponseContent;
+				}
 			})
 		);
 	}
