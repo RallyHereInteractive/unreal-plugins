@@ -4,24 +4,9 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`enum `[`FriendshipStatus`](#group__Friends_1gaa62b73aa8acc62ee0551d83f8da13244)            | Status of players' friend relationship.
 `class `[`URH_PlatformFriend`](#classURH__PlatformFriend) | Platform Friend class tracks all the information for a user you have a relationship with on your platform.
 `class `[`URH_RHFriendAndPlatformFriend`](#classURH__RHFriendAndPlatformFriend) | RH Friend and Platform Friend class that wraps a Rally Here Friend and Platform Friend together.
 `class `[`URH_FriendSubsystem`](#classURH__FriendSubsystem) | Friends Subsystem for handling a users relationships with other players.
-
-## Members
-
-#### `enum `[`FriendshipStatus`](#group__Friends_1gaa62b73aa8acc62ee0551d83f8da13244) <a id="group__Friends_1gaa62b73aa8acc62ee0551d83f8da13244"></a>
-
- Values                         | Descriptions                                
---------------------------------|---------------------------------------------
-RH_None            | Not friends
-RH_Friends            | Mutual friends
-RH_FriendRequestSent            | Friend request has been sent to other player
-RH_FriendRequestPending            | Friend request has been sent by other player
-RH_FriendRequestDeclinedByOther            | Friend request declined by other player
-
-Status of players' friend relationship.
 
 ## class `URH_PlatformFriend` <a id="classURH__PlatformFriend"></a>
 
@@ -249,8 +234,8 @@ RH Friend and Platform Friend class that wraps a Rally Here Friend and Platform 
 `public inline bool `[`AwaitingFriendshipResponse`](#classURH__RHFriendAndPlatformFriend_1a32a0502bbb92dd01ae3ca862c3e81bd5)`() const` | Gets if the player has an outstanding Rally Here friend request by you.
 `public inline bool `[`OtherIsAwaitingFriendshipResponse`](#classURH__RHFriendAndPlatformFriend_1a23f36830cbe8e74cf296cf14894113e2)`() const` | Gets if the player has sent you a Rally Here friend request.
 `public inline const FGuid & `[`GetRHPlayerUuid`](#classURH__RHFriendAndPlatformFriend_1ab1154a1e521acfa23059fc0951e383f1)`() const` | Gets the players unique player id.
-`public inline `[`FriendshipStatus`](undefined.md#group__Friends_1gaa62b73aa8acc62ee0551d83f8da13244)` `[`GetStatus`](#classURH__RHFriendAndPlatformFriend_1acda68106fa1cc559ea680e947c7736a9)`() const` | Gets the current Rally Here relationship status with the player.
-`public inline `[`FriendshipStatus`](undefined.md#group__Friends_1gaa62b73aa8acc62ee0551d83f8da13244)` `[`GetPreviousStatus`](#classURH__RHFriendAndPlatformFriend_1a962b43450e40b0482021894c55e09c3a)`() const` | Gets the previous Rally Here relationship status with the player prior to the most recent update.
+`public inline ERHAPI_FriendshipStatus `[`GetStatus`](#classURH__RHFriendAndPlatformFriend_1a9f098bd3f2beb76a64551117373c4af6)`() const` | Gets the current Rally Here relationship status with the player.
+`public inline ERHAPI_FriendshipStatus `[`GetPreviousStatus`](#classURH__RHFriendAndPlatformFriend_1af363144ceb815efa0e46fe949de7aaf2)`() const` | Gets the previous Rally Here relationship status with the player prior to the most recent update.
 `public inline void `[`AcknowledgeFriendUpdate`](#classURH__RHFriendAndPlatformFriend_1ad1c88009e392036b8864a68673cd570f)`()` | Updates the Previous friendship status to the current friendship status for this friend.
 `public inline const FDateTime & `[`GetLastModifiedOn`](#classURH__RHFriendAndPlatformFriend_1a58a687696ffbd4c36e0e1cca516afa87)`() const` | Gets the last time the players friend data was modified.
 `public inline const FString & `[`GetNotes`](#classURH__RHFriendAndPlatformFriend_1a8b8d26c7b6e55b23969aaff582890668)`() const` | Gets any notes the player has set for this player.
@@ -267,8 +252,8 @@ RH Friend and Platform Friend class that wraps a Rally Here Friend and Platform 
 `public void `[`GetRHPlayerUuidAsync`](#classURH__RHFriendAndPlatformFriend_1a26d3a5a15aaf4b8787910b1a83927a82)`(const FRH_GetRHPlayerUuidBlock & Delegate)` | Gets the RH Player UUID for the player, will request from API as needed. As a side effect, it will update the RH Player Uuid on PlayerAndPlatformInfo.
 `public void `[`SetPlayerInfoUpdateBindings`](#classURH__RHFriendAndPlatformFriend_1a48c59900e8e56f6ab1a37e47af013eb7)`()` | Sets bindings for update callbacks from the player info so it can forward them to this object and the friend subsystem.
 `protected `[`FRH_PlayerAndPlatformInfo`](PlayerInfo.md#structFRH__PlayerAndPlatformInfo)` `[`PlayerAndPlatformInfo`](#classURH__RHFriendAndPlatformFriend_1a85603f6ad7e4c8402012642ba70df5d3) | Player Info and Platform Info combined.
-`protected `[`FriendshipStatus`](undefined.md#group__Friends_1gaa62b73aa8acc62ee0551d83f8da13244)` `[`RHFriendshipStatus`](#classURH__RHFriendAndPlatformFriend_1a048470b3c114f6379667149ea0a1328b) | Core friendship status.
-`protected `[`FriendshipStatus`](undefined.md#group__Friends_1gaa62b73aa8acc62ee0551d83f8da13244)` `[`PreviousRHFriendshipStatus`](#classURH__RHFriendAndPlatformFriend_1aa86a3555aa8881bcf2a4d6af5a8dffc4) | cached previous core friendship status.
+`protected ERHAPI_FriendshipStatus `[`RHFriendshipStatus`](#classURH__RHFriendAndPlatformFriend_1a136ab1b34c8b46c64fc86541925ecce0) | Core friendship status.
+`protected ERHAPI_FriendshipStatus `[`PreviousRHFriendshipStatus`](#classURH__RHFriendAndPlatformFriend_1aaf0f45aa90c4f9f3947f4b4d7a023dfe) | cached previous core friendship status.
 `protected FDateTime `[`LastModifiedOn`](#classURH__RHFriendAndPlatformFriend_1a5dc5734dfba3cba698486e514727c79a) | Last update of the current friend information.
 `protected FString `[`Notes`](#classURH__RHFriendAndPlatformFriend_1a66cefbb47f0cad7d59bd18df980022c5) | Notes set for the friend.
 `protected TArray< `[`URH_PlatformFriend`](Friends.md#classURH__PlatformFriend)` * > `[`PlatformFriends`](#classURH__RHFriendAndPlatformFriend_1a2a7cea15c536d6f1dc0e372bd75a7dc3) | Array of platforms the player has linked to their account.
@@ -353,11 +338,11 @@ Gets if the player has sent you a Rally Here friend request.
 
 Gets the players unique player id.
 
-#### `public inline `[`FriendshipStatus`](undefined.md#group__Friends_1gaa62b73aa8acc62ee0551d83f8da13244)` `[`GetStatus`](#classURH__RHFriendAndPlatformFriend_1acda68106fa1cc559ea680e947c7736a9)`() const` <a id="classURH__RHFriendAndPlatformFriend_1acda68106fa1cc559ea680e947c7736a9"></a>
+#### `public inline ERHAPI_FriendshipStatus `[`GetStatus`](#classURH__RHFriendAndPlatformFriend_1a9f098bd3f2beb76a64551117373c4af6)`() const` <a id="classURH__RHFriendAndPlatformFriend_1a9f098bd3f2beb76a64551117373c4af6"></a>
 
 Gets the current Rally Here relationship status with the player.
 
-#### `public inline `[`FriendshipStatus`](undefined.md#group__Friends_1gaa62b73aa8acc62ee0551d83f8da13244)` `[`GetPreviousStatus`](#classURH__RHFriendAndPlatformFriend_1a962b43450e40b0482021894c55e09c3a)`() const` <a id="classURH__RHFriendAndPlatformFriend_1a962b43450e40b0482021894c55e09c3a"></a>
+#### `public inline ERHAPI_FriendshipStatus `[`GetPreviousStatus`](#classURH__RHFriendAndPlatformFriend_1af363144ceb815efa0e46fe949de7aaf2)`() const` <a id="classURH__RHFriendAndPlatformFriend_1af363144ceb815efa0e46fe949de7aaf2"></a>
 
 Gets the previous Rally Here relationship status with the player prior to the most recent update.
 
@@ -448,11 +433,11 @@ Sets bindings for update callbacks from the player info so it can forward them t
 
 Player Info and Platform Info combined.
 
-#### `protected `[`FriendshipStatus`](undefined.md#group__Friends_1gaa62b73aa8acc62ee0551d83f8da13244)` `[`RHFriendshipStatus`](#classURH__RHFriendAndPlatformFriend_1a048470b3c114f6379667149ea0a1328b) <a id="classURH__RHFriendAndPlatformFriend_1a048470b3c114f6379667149ea0a1328b"></a>
+#### `protected ERHAPI_FriendshipStatus `[`RHFriendshipStatus`](#classURH__RHFriendAndPlatformFriend_1a136ab1b34c8b46c64fc86541925ecce0) <a id="classURH__RHFriendAndPlatformFriend_1a136ab1b34c8b46c64fc86541925ecce0"></a>
 
 Core friendship status.
 
-#### `protected `[`FriendshipStatus`](undefined.md#group__Friends_1gaa62b73aa8acc62ee0551d83f8da13244)` `[`PreviousRHFriendshipStatus`](#classURH__RHFriendAndPlatformFriend_1aa86a3555aa8881bcf2a4d6af5a8dffc4) <a id="classURH__RHFriendAndPlatformFriend_1aa86a3555aa8881bcf2a4d6af5a8dffc4"></a>
+#### `protected ERHAPI_FriendshipStatus `[`PreviousRHFriendshipStatus`](#classURH__RHFriendAndPlatformFriend_1aaf0f45aa90c4f9f3947f4b4d7a023dfe) <a id="classURH__RHFriendAndPlatformFriend_1aaf0f45aa90c4f9f3947f4b4d7a023dfe"></a>
 
 cached previous core friendship status.
 
