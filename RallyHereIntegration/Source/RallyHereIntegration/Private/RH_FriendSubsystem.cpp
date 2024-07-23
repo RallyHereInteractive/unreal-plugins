@@ -222,7 +222,7 @@ void URH_FriendSubsystem::OnFetchFriendsListResponse(const GetFriendsListType::R
 					}));
 			}
 
-			UpdatedFriend->RHFriendshipStatus = static_cast<FriendshipStatus>(NewFriend.Status);
+			UpdatedFriend->RHFriendshipStatus = NewFriend.Status;
 			UpdatedFriend->LastModifiedOn = NewFriend.LastModifiedOn;
 			NewFriend.GetNotes(UpdatedFriend->Notes);
 			
@@ -285,7 +285,7 @@ void URH_FriendSubsystem::OnFetchFriendResponse(const GetFriendRelationshipType:
 	{
 		URH_RHFriendAndPlatformFriend* UpdatedFriend = GetOrAddFriend(NewFriend->GetFriendsPlayerUuid());
 		
-		UpdatedFriend->RHFriendshipStatus = static_cast<FriendshipStatus>(NewFriend->GetStatus());
+		UpdatedFriend->RHFriendshipStatus = NewFriend->GetStatus();
 		UpdatedFriend->LastModifiedOn = NewFriend->GetLastModifiedOn();
 		Resp.TryGetDefaultHeader_ETag(UpdatedFriend->Etag);
 		NewFriend->GetNotes(UpdatedFriend->Notes);
@@ -408,7 +408,7 @@ bool URH_FriendSubsystem::AddFriend(const FGuid& PlayerUuid, const FRH_AddFriend
 	if (!AddFriendType::DoCall(RH_APIs::GetFriendsV2API(), Request, AddFriendType::Delegate::CreateUObject(this, &URH_FriendSubsystem::OnAddFriendResponse,
 		Delegate, Request, 1), GetDefault<URH_IntegrationSettings>()->AddFriendPriority))
 	{
-		Delegate.ExecuteIfBound(false, FGuid(), FriendshipStatus::RH_None);
+		Delegate.ExecuteIfBound(false, FGuid(), ERHAPI_FriendshipStatus::None);
 		return false;
 	}
 	return true;
@@ -422,7 +422,7 @@ void URH_FriendSubsystem::OnAddFriendResponse(const AddFriendType::Response& Res
 		URH_RHFriendAndPlatformFriend* UpdatedFriend = GetOrAddFriend(NewFriend->GetFriendsPlayerUuid());
 		
 		UpdatedFriend->PreviousRHFriendshipStatus = UpdatedFriend->RHFriendshipStatus;
-		UpdatedFriend->RHFriendshipStatus = static_cast<FriendshipStatus>(NewFriend->GetStatus());
+		UpdatedFriend->RHFriendshipStatus = NewFriend->GetStatus();
 		UpdatedFriend->LastModifiedOn = NewFriend->GetLastModifiedOn();
 		Resp.TryGetDefaultHeader_ETag(UpdatedFriend->Etag);
 		NewFriend->GetNotes(UpdatedFriend->Notes);
@@ -456,7 +456,7 @@ void URH_FriendSubsystem::OnAddFriendResponse(const AddFriendType::Response& Res
 	auto FriendsPlayerUuid = NewFriend ? NewFriend->GetFriendsPlayerUuid() : FGuid();
 	auto Status = NewFriend ? NewFriend->GetStatus() : ERHAPI_FriendshipStatus::None;
 	
-	Delegate.ExecuteIfBound(Resp.IsSuccessful(), FriendsPlayerUuid, static_cast<FriendshipStatus>(Status));
+	Delegate.ExecuteIfBound(Resp.IsSuccessful(), FriendsPlayerUuid, Status);
 }
 
 bool URH_FriendSubsystem::RemoveFriend(const FGuid& PlayerUuid, const FRH_GenericFriendWithUuidBlock& Delegate /*= FRH_GenericFriendWithUuidBlock()*/)
@@ -527,7 +527,7 @@ void URH_FriendSubsystem::OnRemoveFriendResponse(const DeleteFriendType::Respons
 
 			UpdatedFriend = Friend;
 			Friend->PreviousRHFriendshipStatus = Friend->RHFriendshipStatus;
-			Friend->RHFriendshipStatus = FriendshipStatus::RH_None;
+			Friend->RHFriendshipStatus = ERHAPI_FriendshipStatus::None;
 			Friend->LastModifiedOn = FDateTime();
 			if (Friend->HavePlatformRelationship())
 			{
@@ -637,7 +637,7 @@ void URH_FriendSubsystem::OnAddNotesResponse(const AddNotesType::Response& Resp,
 				Friend->Notes.Empty();
 			}
 			Friend->PreviousRHFriendshipStatus = Friend->RHFriendshipStatus;
-			Friend->RHFriendshipStatus = static_cast<FriendshipStatus>(UpdatedFriend->GetStatus());
+			Friend->RHFriendshipStatus = UpdatedFriend->GetStatus();
 			Friend->LastModifiedOn = UpdatedFriend->GetLastModifiedOn();
 			Resp.TryGetDefaultHeader_ETag(Friend->Etag);
 

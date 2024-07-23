@@ -19,24 +19,6 @@ class URH_FriendSubsystem;
 class URH_PlatformFriend;
 class URH_RHFriendAndPlatformFriend;
 
-/** @ingroup Friends
- * @brief Status of players' friend relationship
- */
-UENUM(BlueprintType)
-enum class FriendshipStatus : uint8
-{
-	/** Not friends */
-	RH_None,
-	/** Mutual friends */
-	RH_Friends,
-	/** Friend request has been sent to other player */
-	RH_FriendRequestSent,
-	/** Friend request has been sent by other player */
-	RH_FriendRequestPending,
-	/** Friend request declined by other player */
-	RH_FriendRequestDeclinedByOther,
-};
-
 DECLARE_MULTICAST_DELEGATE_OneParam(FRH_FriendListUpdatedDelegate, const TArray<URH_RHFriendAndPlatformFriend*>&);
 DECLARE_MULTICAST_DELEGATE_OneParam(FRH_FriendUpdatedDelegate, URH_RHFriendAndPlatformFriend*);
 DECLARE_MULTICAST_DELEGATE_TwoParams(FRH_FriendUpdateErrorDelegate, const FGuid&, const FName&);
@@ -62,9 +44,9 @@ DECLARE_DELEGATE_TwoParams(FRH_GenericFriendWithUuidDelegate, bool, const FGuid&
 DECLARE_RH_DELEGATE_BLOCK(FRH_GenericFriendWithUuidBlock, FRH_GenericFriendWithUuidDelegate, FRH_GenericFriendWithUuidDynamicDelegate, bool, const FGuid&);
 
 UDELEGATE()
-DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_AddFriendDynamicDelegate, bool, bSuccess, const FGuid&, FriendsPlayerUuid, FriendshipStatus, FriendStatus);
-DECLARE_DELEGATE_ThreeParams(FRH_AddFriendDelegate, bool, const FGuid&, FriendshipStatus);
-DECLARE_RH_DELEGATE_BLOCK(FRH_AddFriendBlock, FRH_AddFriendDelegate, FRH_AddFriendDynamicDelegate, bool, const FGuid&, FriendshipStatus);
+DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_AddFriendDynamicDelegate, bool, bSuccess, const FGuid&, FriendsPlayerUuid, ERHAPI_FriendshipStatus, FriendStatus);
+DECLARE_DELEGATE_ThreeParams(FRH_AddFriendDelegate, bool, const FGuid&, ERHAPI_FriendshipStatus);
+DECLARE_RH_DELEGATE_BLOCK(FRH_AddFriendBlock, FRH_AddFriendDelegate, FRH_AddFriendDynamicDelegate, bool, const FGuid&, ERHAPI_FriendshipStatus);
 
 UDELEGATE()
 DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_AddNotesDynamicDelegate, bool, bSuccess, const FGuid&, FriendsPlayerUuid, const FString&, NewNote);
@@ -343,7 +325,7 @@ public:
 	UFUNCTION(BlueprintPure, Category = "RH And Platform Friend", meta = (DisplayName = "Are RH Friends"))
 	bool AreRHFriends() const
 	{
-		return RHFriendshipStatus == FriendshipStatus::RH_Friends;
+		return RHFriendshipStatus == ERHAPI_FriendshipStatus::Friends;
 	}
 	/**
 	 * @brief Gets if the player is a friend through their platform.
@@ -373,7 +355,7 @@ public:
 	UFUNCTION(BlueprintPure, Category = "RH And Platform Friend", meta = (DisplayName = "RH Friend Request Sent"))
 	bool RHFriendRequestSent() const
 	{
-		return RHFriendshipStatus == FriendshipStatus::RH_FriendRequestSent;
+		return RHFriendshipStatus == ERHAPI_FriendshipStatus::FriendRequestSent;
 	}
 	/**
 	 * @brief Gets if the player has sent you a friend through Rally Here or their platform.
@@ -392,7 +374,7 @@ public:
 	UFUNCTION(BlueprintPure, Category = "RH And Platform Friend", meta = (DisplayName = "RH Pending Friend Request"))
 	bool RhPendingFriendRequest() const
 	{
-		return RHFriendshipStatus == FriendshipStatus::RH_FriendRequestPending;
+		return RHFriendshipStatus == ERHAPI_FriendshipStatus::FriendRequestPending;
 	}
 	/**
 	 * @brief Gets if the player has any sort of relationship with you through Rally Here.
@@ -400,7 +382,7 @@ public:
 	UFUNCTION(BlueprintPure, Category = "RH And Platform Friend", meta = (DisplayName = "Have RH Relationship"))
 	bool HaveRhRelationship() const
 	{
-		return RHFriendshipStatus != FriendshipStatus::RH_None;
+		return RHFriendshipStatus != ERHAPI_FriendshipStatus::None;
 	}
 	/**
 	 * @brief Gets if the player has any sort of relationship with you through Rally Here or their platform.
@@ -460,7 +442,7 @@ public:
 	UFUNCTION(BlueprintPure, Category = "RH And Platform Friend")
 	bool OtherDeclinedFriendship() const
 	{
-		return RHFriendshipStatus == FriendshipStatus::RH_FriendRequestDeclinedByOther;
+		return RHFriendshipStatus == ERHAPI_FriendshipStatus::FriendRequestDeclinedByOther;
 	}
 	/**
 	* @brief Gets if the player has an outstanding Rally Here friend request by you.
@@ -468,7 +450,7 @@ public:
 	UFUNCTION(BlueprintPure, Category = "RH And Platform Friend")
 	bool AwaitingFriendshipResponse() const
 	{
-		return RHFriendshipStatus == FriendshipStatus::RH_FriendRequestSent;
+		return RHFriendshipStatus == ERHAPI_FriendshipStatus::FriendRequestSent;
 	}
 	/**
 	* @brief Gets if the player has sent you a Rally Here friend request.
@@ -476,7 +458,7 @@ public:
 	UFUNCTION(BlueprintPure, Category = "RH And Platform Friend")
 	bool OtherIsAwaitingFriendshipResponse() const
 	{
-		return RHFriendshipStatus == FriendshipStatus::RH_FriendRequestPending;
+		return RHFriendshipStatus == ERHAPI_FriendshipStatus::FriendRequestPending;
 	}
 	/**
 	* @brief Gets the players unique player id.
@@ -490,7 +472,7 @@ public:
 	* @brief Gets the current Rally Here relationship status with the player.
 	*/
 	UFUNCTION(BlueprintPure, Category = "RH And Platform Friend")
-	FriendshipStatus GetStatus() const
+	ERHAPI_FriendshipStatus GetStatus() const
 	{
 		return RHFriendshipStatus;
 	}
@@ -498,7 +480,7 @@ public:
 	* @brief Gets the previous Rally Here relationship status with the player prior to the most recent update.
 	*/
 	UFUNCTION(BlueprintPure, Category = "RH And Platform Friend")
-	FriendshipStatus GetPreviousStatus() const
+	ERHAPI_FriendshipStatus GetPreviousStatus() const
 	{
 		return PreviousRHFriendshipStatus;
 	}
@@ -620,9 +602,9 @@ protected:
 	/** @brief Player Info and Platform Info combined. */
 	FRH_PlayerAndPlatformInfo PlayerAndPlatformInfo;
 	/** @brief Core friendship status. */
-	FriendshipStatus RHFriendshipStatus;
+	ERHAPI_FriendshipStatus RHFriendshipStatus;
 	/** @brief cached previous core friendship status. */
-	FriendshipStatus PreviousRHFriendshipStatus;
+	ERHAPI_FriendshipStatus PreviousRHFriendshipStatus;
 	/** @brief Last update of the current friend information. */
 	FDateTime LastModifiedOn;
 	/** @brief Notes set for the friend. */
@@ -648,7 +630,7 @@ protected:
 	virtual void ClearRHFriendStatus()
 	{
 		PreviousRHFriendshipStatus = RHFriendshipStatus;
-		RHFriendshipStatus = FriendshipStatus::RH_None;
+		RHFriendshipStatus = ERHAPI_FriendshipStatus::None;
 		Etag.Empty();
 	}
 	/**

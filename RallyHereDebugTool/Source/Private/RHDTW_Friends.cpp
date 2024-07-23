@@ -216,7 +216,7 @@ void FRHDTW_Friends::DoRHFriendTab(URH_FriendSubsystem* pRH_FriendSubsystem)
 		// Content
 		for (auto fr : pRH_FriendSubsystem->GetFriends())
 		{
-			if (!fr->GetRHPlayerUuid().IsValid() || fr->GetStatus() == FriendshipStatus::RH_None)
+			if (!fr->GetRHPlayerUuid().IsValid() || !fr->HaveRhRelationship())
 			{
 				continue;
 			}
@@ -241,10 +241,10 @@ void FRHDTW_Friends::DoRHFriendTab(URH_FriendSubsystem* pRH_FriendSubsystem)
 			ImGuiDisplayShortenedCopyableUuid(fr->GetRHPlayerUuid());
 
 			ImGui::TableNextColumn();
-			FString enumValue = RH_GETENUMSTRING("/Script/RallyHereIntegration", "FriendshipStatus", fr->GetStatus());
+			FString enumValue = UEnum::GetDisplayValueAsText(fr->GetStatus()).ToString();
 			ImGui::Text("%s", TCHAR_TO_UTF8(*enumValue));
 
-			if (fr->GetStatus() == FriendshipStatus::RH_FriendRequestPending)
+			if (fr->RhPendingFriendRequest())
 			{
 				ImGui::SameLine();
 				if (ImGui::SmallButton("Accept"))
@@ -265,10 +265,10 @@ void FRHDTW_Friends::DoRHFriendTab(URH_FriendSubsystem* pRH_FriendSubsystem)
 					}
 				}
 			}
-			else if (fr->GetStatus() == FriendshipStatus::RH_Friends || fr->GetStatus() == FriendshipStatus::RH_FriendRequestSent)
+			else if (fr->AreRHFriends() || fr->RHFriendRequestSent())
 			{
 				ImGui::SameLine();
-				if (ImGui::SmallButton(fr->GetStatus() == FriendshipStatus::RH_Friends ? "Remove" : "Cancel"))
+				if (ImGui::SmallButton(fr->AreRHFriends() ? "Remove" : "Cancel"))
 				{
 					FriendActionResult.Empty();
 					if (!pRH_FriendSubsystem->RemoveFriend(fr->GetRHPlayerUuid(), FRH_GenericFriendWithUuidDelegate::CreateSP(SharedThis(this), &FRHDTW_Friends::HandleRemoveFriend, LocalPlayerUuid, fr->GetRHPlayerUuid())))
@@ -538,7 +538,7 @@ void FRHDTW_Friends::DoPlatformFriendTab(URH_FriendSubsystem* pRH_FriendSubsyste
 							{
 								if (bSuccess && PlayerInfos.IsValidIndex(0) && PlayerInfos[0] != nullptr)
 								{
-									pRH_FriendSubsystem->AddFriend(PlayerInfos[0]->GetRHPlayerUuid(), FRH_AddFriendDelegate::CreateLambda([pRH_FriendSubsystem](bool bSuccess, const FGuid& FriendsPlayerUuid, FriendshipStatus FriendStatus)
+									pRH_FriendSubsystem->AddFriend(PlayerInfos[0]->GetRHPlayerUuid(), FRH_AddFriendDelegate::CreateLambda([pRH_FriendSubsystem](bool bSuccess, const FGuid& FriendsPlayerUuid, ERHAPI_FriendshipStatus FriendStatus)
 										{
 											if (bSuccess)
 											{
@@ -653,11 +653,11 @@ void FRHDTW_Friends::HandleFetchFriendsList(bool bSuccessful, const FGuid Instig
 	FriendActionResult += LINE_TERMINATOR;
 }
 
-void FRHDTW_Friends::HandleAddFriend(bool bSuccessful, const FGuid& FriendsPlayerUuid, FriendshipStatus FriendsStatus, const FGuid InstigatorUuid, const FGuid TargetUuid)
+void FRHDTW_Friends::HandleAddFriend(bool bSuccessful, const FGuid& FriendsPlayerUuid, ERHAPI_FriendshipStatus FriendsStatus, const FGuid InstigatorUuid, const FGuid TargetUuid)
 {
 	if (bSuccessful)
 	{
-		const auto NewStatus = RH_GETENUMSTRING("/Script/RallyHereIntegration", "FriendshipStatus", FriendsStatus);
+		const auto NewStatus = UEnum::GetDisplayValueAsText(FriendsStatus).ToString();
 		FriendActionResult += FString::Printf(TEXT("[%s] Add Friend %s succeeded. New status is %s"), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphens), *NewStatus);
 	}
 	else
