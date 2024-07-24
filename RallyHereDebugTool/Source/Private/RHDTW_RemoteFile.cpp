@@ -112,13 +112,13 @@ void FRHDTW_RemoteFile::DoListFiles(URH_RemoteFileSubsystem* pRemoteFileSubsyste
 							TWeakObjectPtr<URH_RemoteFileSubsystem> pRemoteFileSubsystemWeak = pRemoteFileSubsystem;
 							const auto RemoteDirectoryRef = RemoteDirectory;
 
-							auto OnComplete = FRH_GenericSuccessWithErrorDelegate::CreateLambda([WeakThis=SharedThis(this).ToWeakPtr(), pRemoteFileSubsystemWeak, RemoteDirectoryRef](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+							auto OnComplete = FRH_GenericSuccessWithErrorDelegate::CreateLambda([this, WeakThis=AsWeak(), pRemoteFileSubsystemWeak, RemoteDirectoryRef](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 								{
-									auto StrongThis = WeakThis.Pin();
-									if (StrongThis.IsValid())
+									// use weak pointer to validate this pointer is still valid (this is a workaround for some engine versions not having CreateLambdaSP())
+									if (WeakThis.IsValid())
 									{
 										// if we successfully deleted file the, refresh the list view to reflect it
-										StrongThis->PendingDeleteResult = bSuccess ? TEXT("Success") : ErrorInfo.ResponseContent;
+										PendingDeleteResult = bSuccess ? TEXT("Success") : ErrorInfo.ResponseContent;
 										if (bSuccess && pRemoteFileSubsystemWeak.IsValid())
 										{
 											pRemoteFileSubsystemWeak->LookupFileList(RemoteDirectoryRef);
@@ -205,12 +205,12 @@ void FRHDTW_RemoteFile::DoDownloadFile(URH_RemoteFileSubsystem* pRemoteFileSubsy
 	ImGui::BeginDisabled(!RemoteDirectory.IsValid() || DownloadRemoteFileName.IsEmpty() || DownloadLocalFilePath.IsEmpty());
 	if (ImGui::Button("Download"))
 	{
-		pRemoteFileSubsystem->DownloadFile(RemoteDirectory, DownloadRemoteFileName, DownloadLocalFilePath, FRH_GenericSuccessWithErrorDelegate::CreateLambda([WeakThis=SharedThis(this).ToWeakPtr()](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+		pRemoteFileSubsystem->DownloadFile(RemoteDirectory, DownloadRemoteFileName, DownloadLocalFilePath, FRH_GenericSuccessWithErrorDelegate::CreateLambda([this, WeakThis=AsWeak()](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 			{
-				auto StrongThis = WeakThis.Pin();
-				if (StrongThis.IsValid())
+				// use weak pointer to validate this pointer is still valid (this is a workaround for some engine versions not having CreateLambdaSP())
+				if (WeakThis.IsValid())
 				{
-					StrongThis->DownloadResult = bSuccess ? TEXT("Success") : ErrorInfo.ResponseContent;
+					DownloadResult = bSuccess ? TEXT("Success") : ErrorInfo.ResponseContent;
 				}
 			})
 		);
@@ -228,12 +228,12 @@ void FRHDTW_RemoteFile::DoUploadFile(URH_RemoteFileSubsystem* pRemoteFileSubsyst
 	ImGui::BeginDisabled(!RemoteDirectory.IsValid() || UploadLocalFilePath.IsEmpty() || UploadRemoteFileName.IsEmpty());
 	if (ImGui::Button("Upload"))
 	{
-		pRemoteFileSubsystem->UploadFile(RemoteDirectory, UploadRemoteFileName, UploadLocalFilePath, FRH_GenericSuccessWithErrorDelegate::CreateLambda([WeakThis=SharedThis(this).ToWeakPtr()](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+		pRemoteFileSubsystem->UploadFile(RemoteDirectory, UploadRemoteFileName, UploadLocalFilePath, FRH_GenericSuccessWithErrorDelegate::CreateLambda([this, WeakThis=AsWeak()](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 			{
-				auto StrongThis = WeakThis.Pin();
-				if (StrongThis.IsValid())
+				// use weak pointer to validate this pointer is still valid (this is a workaround for some engine versions not having CreateLambdaSP())
+				if (WeakThis.IsValid())
 				{
-					StrongThis->UploadResult = bSuccess ? TEXT("Success") : ErrorInfo.ResponseContent;
+					UploadResult = bSuccess ? TEXT("Success") : ErrorInfo.ResponseContent;
 				}
 			})
 		);
