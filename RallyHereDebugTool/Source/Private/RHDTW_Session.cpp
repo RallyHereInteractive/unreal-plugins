@@ -1485,18 +1485,18 @@ void FRHDTW_Session::ImGuiDisplayPlayerDeserter(URH_GameInstanceSubsystem* pGISu
 								const auto PlayerUuid = PlayerInfo->GetRHPlayerUuid();
 								if (auto pp = PlayerInfo->GetDeserter())
 								{
-									pp->ClearAllDeserterStatus(FRH_GenericSuccessWithErrorDelegate::CreateLambda([WeakThis=SharedThis(this).ToWeakPtr(), PlayerUuid](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+									pp->ClearAllDeserterStatus(FRH_GenericSuccessWithErrorDelegate::CreateLambda([this, WeakThis=AsWeak(), PlayerUuid](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 									{
-										auto StrongThis = WeakThis.Pin();
-										if (StrongThis.IsValid())
+										// use weak pointer to validate this pointer is still valid (this is a workaround for some engine versions not having CreateLambdaSP())
+										if (WeakThis.IsValid())
 										{
 											if (bSuccess)
 											{
-												StrongThis->GetPlayerDeserterResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Clear All Player Deserter succeeded.") LINE_TERMINATOR;
+												GetPlayerDeserterResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Clear All Player Deserter succeeded.") LINE_TERMINATOR;
 											}
 											else
 											{
-												StrongThis->GetPlayerDeserterResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Clear All Player Deserter failed.") LINE_TERMINATOR;
+												GetPlayerDeserterResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Clear All Player Deserter failed.") LINE_TERMINATOR;
 											}
 										}
 									}));
@@ -1524,18 +1524,18 @@ void FRHDTW_Session::ImGuiDisplayPlayerDeserter(URH_GameInstanceSubsystem* pGISu
 									const auto PlayerUuid = PlayerInfo->GetRHPlayerUuid();
 									if (auto pp = PlayerInfo->GetDeserter())
 									{
-										pp->ClearDeserterStatus(DeserterId, FRH_GenericSuccessWithErrorDelegate::CreateLambda([WeakThis=SharedThis(this).ToWeakPtr(), DeserterId, PlayerUuid](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+										pp->ClearDeserterStatus(DeserterId, FRH_GenericSuccessWithErrorDelegate::CreateLambda([this, WeakThis=AsWeak(), DeserterId, PlayerUuid](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 										{
-											auto StrongThis = WeakThis.Pin();
-											if (StrongThis.IsValid())
+											// use weak pointer to validate this pointer is still valid (this is a workaround for some engine versions not having CreateLambdaSP())
+											if (WeakThis.IsValid())
 											{
 												if (bSuccess)
 												{
-													StrongThis->GetPlayerDeserterResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Clear Player Deserter succeeded.") LINE_TERMINATOR;
+													GetPlayerDeserterResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Clear Player Deserter succeeded.") LINE_TERMINATOR;
 												}
 												else
 												{
-													StrongThis->GetPlayerDeserterResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Clear Player Deserter failed.") LINE_TERMINATOR;
+													GetPlayerDeserterResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Clear Player Deserter failed.") LINE_TERMINATOR;
 												}
 											}
 										}));
