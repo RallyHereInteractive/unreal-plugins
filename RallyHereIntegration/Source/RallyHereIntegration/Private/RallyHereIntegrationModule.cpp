@@ -26,8 +26,10 @@ void FRallyHereIntegrationModule::StartupModule()
 
     UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] - Plugin Version %s"), ANSI_TO_TCHAR(__FUNCTION__), *PluginVersion);
 
+#if RH_FROM_ENGINE_VERSION(5,3)
 	FString UserAgentComment = FString::Printf(TEXT("rh-sdk %s"), *PluginVersion);
 	FPlatformHttp::AddDefaultUserAgentProjectComment(UserAgentComment);
+#endif
 
     FConfigCacheIni::LoadGlobalIniFile(GRallyHereIntegrationIni, TEXT("RallyHereIntegration"));
 
