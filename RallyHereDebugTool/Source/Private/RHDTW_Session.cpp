@@ -1488,7 +1488,8 @@ void FRHDTW_Session::ImGuiDisplayPlayerDeserter(URH_GameInstanceSubsystem* pGISu
 									pp->ClearAllDeserterStatus(FRH_GenericSuccessWithErrorDelegate::CreateLambda([this, WeakThis=AsWeak(), PlayerUuid](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 									{
 										// use weak pointer to validate this pointer is still valid (this is a workaround for some engine versions not having CreateLambdaSP())
-										if (WeakThis.IsValid())
+										auto StrongThis = WeakThis.Pin();
+										if (StrongThis.IsValid())
 										{
 											if (bSuccess)
 											{
@@ -1527,7 +1528,8 @@ void FRHDTW_Session::ImGuiDisplayPlayerDeserter(URH_GameInstanceSubsystem* pGISu
 										pp->ClearDeserterStatus(DeserterId, FRH_GenericSuccessWithErrorDelegate::CreateLambda([this, WeakThis=AsWeak(), DeserterId, PlayerUuid](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 										{
 											// use weak pointer to validate this pointer is still valid (this is a workaround for some engine versions not having CreateLambdaSP())
-											if (WeakThis.IsValid())
+											auto StrongThis = WeakThis.Pin();
+											if (StrongThis.IsValid())
 											{
 												if (bSuccess)
 												{
