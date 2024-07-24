@@ -325,7 +325,11 @@ void FRHDTW_Automation::DoRunTab()
 
 void FRHDTW_Automation::DoResultsTab()
 {
+#if RH_FROM_ENGINE_VERSION(5,3)
 	auto EnabledReports = AutomationController->GetEnabledReports();
+#else
+	auto EnabledReports = AutomationController->GetReports();
+#endif
 
 	EnabledReports.Sort([](const TSharedPtr<IAutomationReport>& A, const TSharedPtr<IAutomationReport>& B)
 		{
