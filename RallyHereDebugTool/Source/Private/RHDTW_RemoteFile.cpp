@@ -115,7 +115,8 @@ void FRHDTW_RemoteFile::DoListFiles(URH_RemoteFileSubsystem* pRemoteFileSubsyste
 							auto OnComplete = FRH_GenericSuccessWithErrorDelegate::CreateLambda([this, WeakThis=AsWeak(), pRemoteFileSubsystemWeak, RemoteDirectoryRef](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 								{
 									// use weak pointer to validate this pointer is still valid (this is a workaround for some engine versions not having CreateLambdaSP())
-									if (WeakThis.IsValid())
+									auto StrongThis = WeakThis.Pin();
+									if (StrongThis.IsValid())
 									{
 										// if we successfully deleted file the, refresh the list view to reflect it
 										PendingDeleteResult = bSuccess ? TEXT("Success") : ErrorInfo.ResponseContent;
@@ -208,7 +209,8 @@ void FRHDTW_RemoteFile::DoDownloadFile(URH_RemoteFileSubsystem* pRemoteFileSubsy
 		pRemoteFileSubsystem->DownloadFile(RemoteDirectory, DownloadRemoteFileName, DownloadLocalFilePath, FRH_GenericSuccessWithErrorDelegate::CreateLambda([this, WeakThis=AsWeak()](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 			{
 				// use weak pointer to validate this pointer is still valid (this is a workaround for some engine versions not having CreateLambdaSP())
-				if (WeakThis.IsValid())
+				auto StrongThis = WeakThis.Pin();
+				if (StrongThis.IsValid())
 				{
 					DownloadResult = bSuccess ? TEXT("Success") : ErrorInfo.ResponseContent;
 				}
@@ -231,7 +233,8 @@ void FRHDTW_RemoteFile::DoUploadFile(URH_RemoteFileSubsystem* pRemoteFileSubsyst
 		pRemoteFileSubsystem->UploadFile(RemoteDirectory, UploadRemoteFileName, UploadLocalFilePath, FRH_GenericSuccessWithErrorDelegate::CreateLambda([this, WeakThis=AsWeak()](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 			{
 				// use weak pointer to validate this pointer is still valid (this is a workaround for some engine versions not having CreateLambdaSP())
-				if (WeakThis.IsValid())
+				auto StrongThis = WeakThis.Pin();
+				if (StrongThis.IsValid())
 				{
 					UploadResult = bSuccess ? TEXT("Success") : ErrorInfo.ResponseContent;
 				}
