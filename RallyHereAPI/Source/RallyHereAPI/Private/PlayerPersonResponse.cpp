@@ -38,6 +38,11 @@ void FRHAPI_PlayerPersonResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) c
 	}
 	Writer->WriteIdentifierPrefix(TEXT("person_id"));
 	RallyHereAPI::WriteJsonValue(Writer, PersonId);
+	if (RoleId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("role_id"));
+		RallyHereAPI::WriteJsonValue(Writer, RoleId_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -67,6 +72,12 @@ bool FRHAPI_PlayerPersonResponse::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 	}
 	const TSharedPtr<FJsonValue> JsonPersonIdField = (*Object)->TryGetField(TEXT("person_id"));
 	ParseSuccess &= JsonPersonIdField.IsValid() && (!JsonPersonIdField->IsNull() &&  TryGetJsonValue(JsonPersonIdField, PersonId));
+	const TSharedPtr<FJsonValue> JsonRoleIdField = (*Object)->TryGetField(TEXT("role_id"));
+	if (JsonRoleIdField.IsValid())
+	{
+		RoleId_IsSet = TryGetJsonValue(JsonRoleIdField, RoleId_Optional);
+		ParseSuccess &= RoleId_IsSet;
+	}
 
 	return ParseSuccess;
 }

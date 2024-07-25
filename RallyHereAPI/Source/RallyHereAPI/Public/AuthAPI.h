@@ -35,99 +35,8 @@ using RallyHereAPI::TryGetJsonValue;
 class FAuthAPI;
 
 /**
- * @brief Generate Key
- * Generate and return a new key that matches the configuration required for private keys.
- * 
- * This does NOT add the key to any internal list, and is purely for convenience for maintainers
-*/
-struct RALLYHEREAPI_API FRequest_GenerateKey : public FRequest
-{
-	FRequest_GenerateKey();
-	virtual ~FRequest_GenerateKey() = default;
-	
-	/** @brief Given a http request, apply data and settings from this request object to it */
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	/** @brief Compute the URL path for this request instance */
-	FString ComputePath() const override;
-	/** @brief Get the simplified URL path for this request, not including the verb */
-	FName GetSimplifiedPath() const override;
-	/** @brief Get the simplified URL path for this request, including the verb */
-	FName GetSimplifiedPathWithVerb() const override;
-
-};
-
-/** The response type for FRequest_GenerateKey */
-struct RALLYHEREAPI_API FResponse_GenerateKey : public FResponseAccessorTemplate<FRHAPI_JsonValue>
-{
-	typedef FResponseAccessorTemplate<FRHAPI_JsonValue> Super;
-
-	FResponse_GenerateKey(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GenerateKey() = default;
-	
-	/** @brief Parse out response content into local storage from a given JsonValue */
-	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	/** @brief Parse out header information for later usage */
-	virtual bool ParseHeaders() override;
-	/** @brief Gets the description of the response code */
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	/** Default Response Content */
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_JsonValue Content;
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	/** @brief Attempt to retrieve the content in the default response */
-	bool TryGetDefaultContent(FRHAPI_JsonValue& OutContent) const { return TryGetContent<FRHAPI_JsonValue>(OutContent); }
-	/** @brief Attempt to retrieve the content in the default response */
-	bool TryGetDefaultContent(TOptional<FRHAPI_JsonValue>& OutContent) const { return TryGetContent<FRHAPI_JsonValue>(OutContent); }
-	/** @brief Attempt to retrieve the content in the default response */
-	const FRHAPI_JsonValue* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_JsonValue>(); }
-	/** @brief Attempt to retrieve the content in the default response */
-	TOptional<FRHAPI_JsonValue> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_JsonValue>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
-
-};
-
-/** The delegate class for FRequest_GenerateKey */
-DECLARE_DELEGATE_OneParam(FDelegate_GenerateKey, const FResponse_GenerateKey&);
-
-/** @brief A helper metadata object for GenerateKey that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
-struct RALLYHEREAPI_API Traits_GenerateKey
-{
-	/** The request type */
-	typedef FRequest_GenerateKey Request;
-	/** The response type */
-	typedef FResponse_GenerateKey Response;
-	/** The delegate type, triggered by the response */
-	typedef FDelegate_GenerateKey Delegate;
-	/** The API object that supports this API call */
-	typedef FAuthAPI API;
-	/** A human readable name for this API call */
-	static FString Name;
-
-	/**
-	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
-	 * @param [in] InAPI The API object the call will be made with
-	 * @param [in] InRequest The request to submit to the API call
-	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
-	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
-	 * @return A http request object, if the call was successfully queued.
-	 */
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
-};
-
-/**
  * @brief Get All Public Keys
- * Get all the current public keys.
- * 
- * It is encouraged to get keys by id, rather than all at once (to more easily allow new keys to cycle though)
+ * Get all current public keys for this auth provider
 */
 struct RALLYHEREAPI_API FRequest_GetAllPublicKeys : public FRequest
 {
@@ -214,7 +123,7 @@ struct RALLYHEREAPI_API Traits_GetAllPublicKeys
 
 /**
  * @brief Get Portal Token Details
-
+ * Platform-specific token details.  Return data that the platform allows for their tokens.
 */
 struct RALLYHEREAPI_API FRequest_GetPortalTokenDetails : public FRequest
 {
@@ -312,7 +221,7 @@ struct RALLYHEREAPI_API Traits_GetPortalTokenDetails
 
 /**
  * @brief Get Public Key By Id
-
+ * Get a current public key by `key_id` for this auth provider.
 */
 struct RALLYHEREAPI_API FRequest_GetPublicKeyById : public FRequest
 {
@@ -522,7 +431,7 @@ struct RALLYHEREAPI_API Traits_Login
 
 /**
  * @brief Logout
-
+ * Log out a refresh token
 */
 struct RALLYHEREAPI_API FRequest_Logout : public FRequest
 {
@@ -1031,7 +940,7 @@ struct RALLYHEREAPI_API Traits_Token
 
 /**
  * @brief Verify
-
+ * Verify if an access token is still valid
 */
 struct RALLYHEREAPI_API FRequest_Verify : public FRequest
 {
@@ -1091,7 +1000,7 @@ struct RALLYHEREAPI_API FResponse_Verify : public FResponseAccessorTemplate<FRHA
 	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -1133,7 +1042,6 @@ public:
 	FAuthAPI();
 	virtual ~FAuthAPI();
 
-	FHttpRequestPtr GenerateKey(const FRequest_GenerateKey& Request, const FDelegate_GenerateKey& Delegate = FDelegate_GenerateKey(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr GetAllPublicKeys(const FRequest_GetAllPublicKeys& Request, const FDelegate_GetAllPublicKeys& Delegate = FDelegate_GetAllPublicKeys(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr GetPortalTokenDetails(const FRequest_GetPortalTokenDetails& Request, const FDelegate_GetPortalTokenDetails& Delegate = FDelegate_GetPortalTokenDetails(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr GetPublicKeyById(const FRequest_GetPublicKeyById& Request, const FDelegate_GetPublicKeyById& Delegate = FDelegate_GetPublicKeyById(), int32 Priority = DefaultRallyHereAPIPriority);
@@ -1146,7 +1054,6 @@ public:
 	FHttpRequestPtr Verify(const FRequest_Verify& Request, const FDelegate_Verify& Delegate = FDelegate_Verify(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-	void OnGenerateKeyResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GenerateKey Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnGetAllPublicKeysResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPublicKeys Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnGetPortalTokenDetailsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPortalTokenDetails Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnGetPublicKeyByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPublicKeyById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);

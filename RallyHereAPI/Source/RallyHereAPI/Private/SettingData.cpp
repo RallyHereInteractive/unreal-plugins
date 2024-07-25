@@ -24,14 +24,11 @@ void FRHAPI_SettingData::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	Writer->WriteObjectStart();
 	Writer->WriteIdentifierPrefix(TEXT("v"));
 	RallyHereAPI::WriteJsonValue(Writer, V);
-	if (Value_IsSet)
-	{
-		Writer->WriteIdentifierPrefix(TEXT("value"));
-		if (Value_IsNull)
-			WriteJsonValue(Writer, nullptr);
-		else
-		RallyHereAPI::WriteJsonValue(Writer, Value_Optional);
-	}
+	Writer->WriteIdentifierPrefix(TEXT("value"));
+	if (Value_IsNull)
+		WriteJsonValue(Writer, nullptr);
+	else
+	RallyHereAPI::WriteJsonValue(Writer, Value);
 	Writer->WriteObjectEnd();
 }
 
@@ -46,12 +43,8 @@ bool FRHAPI_SettingData::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonVField = (*Object)->TryGetField(TEXT("v"));
 	ParseSuccess &= JsonVField.IsValid() && (!JsonVField->IsNull() &&  TryGetJsonValue(JsonVField, V));
 	const TSharedPtr<FJsonValue> JsonValueField = (*Object)->TryGetField(TEXT("value"));
-	if (JsonValueField.IsValid())
-	{
-		Value_IsNull = JsonValueField->IsNull();
-		Value_IsSet = Value_IsNull || TryGetJsonValue(JsonValueField, Value_Optional);
-		ParseSuccess &= Value_IsSet;
-	}
+	Value_IsNull = JsonValueField->IsNull();
+	ParseSuccess &= JsonValueField.IsValid() && (Value_IsNull || TryGetJsonValue(JsonValueField, Value));
 
 	return ParseSuccess;
 }

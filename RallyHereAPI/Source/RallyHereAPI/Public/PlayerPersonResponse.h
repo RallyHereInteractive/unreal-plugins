@@ -136,6 +136,33 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPersonResponse : public FRHAPI_Model
 	void SetPersonId(const FGuid& NewValue) { PersonId = NewValue;   }
 	/** @brief Sets the value of PersonId using move semantics */
 	void SetPersonId(FGuid&& NewValue) { PersonId = NewValue;   }
+
+	/** @brief Role ID of the person, if available */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString RoleId_Optional{  };
+	/** @brief true if RoleId_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool RoleId_IsSet{ false };
+	/** @brief Gets the value of RoleId_Optional, regardless of it having been set */
+	FString& GetRoleId() { return RoleId_Optional; }
+	/** @brief Gets the value of RoleId_Optional, regardless of it having been set */
+	const FString& GetRoleId() const { return RoleId_Optional; }
+	/** @brief Gets the value of RoleId_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetRoleId(const FString& DefaultValue) const { if (RoleId_IsSet) return RoleId_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of RoleId_Optional and returns true if it has been set, otherwise returns false */
+	bool GetRoleId(FString& OutValue) const { if (RoleId_IsSet) OutValue = RoleId_Optional; return RoleId_IsSet; }
+	/** @brief Returns a pointer to RoleId_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetRoleIdOrNull() { if (RoleId_IsSet) return (&RoleId_Optional); return nullptr; }
+	/** @brief Returns a pointer to RoleId_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetRoleIdOrNull() const { if (RoleId_IsSet) return (&RoleId_Optional); return nullptr; }
+	/** @brief Sets the value of RoleId_Optional and also sets RoleId_IsSet to true */
+	void SetRoleId(const FString& NewValue) { RoleId_Optional = NewValue; RoleId_IsSet = true;  }
+	/** @brief Sets the value of RoleId_Optional and also sets RoleId_IsSet to true using move semantics */
+	void SetRoleId(FString&& NewValue) { RoleId_Optional = NewValue; RoleId_IsSet = true;  }
+	/** @brief Clears the value of RoleId_Optional and sets RoleId_IsSet to false */
+	void ClearRoleId() { RoleId_IsSet = false;  }
+	/** @brief Checks whether RoleId_Optional has been set */
+	bool IsRoleIdSet() const { return RoleId_IsSet; }
 };
 
 /** @} */

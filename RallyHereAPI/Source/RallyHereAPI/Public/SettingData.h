@@ -57,37 +57,22 @@ struct RALLYHEREAPI_API FRHAPI_SettingData : public FRHAPI_Model
 
 	/** @brief Setting Value document */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FRHAPI_JsonValue Value_Optional{  };
-	/** @brief true if Value_Optional has been set to a value */
-	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool Value_IsSet{ false };
-	/** @brief true if Value_Optional has been explicitly set to null */
+	FRHAPI_JsonValue Value{  };
+	/** @brief true if Value has been explicitly set to null */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Value_IsNull{ false };
-	/** @brief Gets the value of Value_Optional, regardless of it having been set */
-	FRHAPI_JsonValue& GetValue() { return Value_Optional; }
-	/** @brief Gets the value of Value_Optional, regardless of it having been set */
-	const FRHAPI_JsonValue& GetValue() const { return Value_Optional; }
-	/** @brief Gets the value of Value_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_JsonValue& GetValue(const FRHAPI_JsonValue& DefaultValue) const { if (Value_IsSet) return Value_Optional; return DefaultValue; }
-	/** @brief Fills OutValue with the value of Value_Optional and returns true if it has been set, otherwise returns false */
-	bool GetValue(FRHAPI_JsonValue& OutValue) const { if (Value_IsSet && !Value_IsNull) OutValue = Value_Optional; return Value_IsSet; }
-	/** @brief Returns a pointer to Value_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_JsonValue* GetValueOrNull() { if (Value_IsSet) return (Value_IsNull ? nullptr : &Value_Optional); return nullptr; }
-	/** @brief Returns a pointer to Value_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_JsonValue* GetValueOrNull() const { if (Value_IsSet) return (Value_IsNull ? nullptr : &Value_Optional); return nullptr; }
-	/** @brief Sets the value of Value_Optional and also sets Value_IsSet to true */
-	void SetValue(const FRHAPI_JsonValue& NewValue) { Value_Optional = NewValue; Value_IsSet = true; Value_IsNull = false; }
-	/** @brief Sets the value of Value_Optional and also sets Value_IsSet to true using move semantics */
-	void SetValue(FRHAPI_JsonValue&& NewValue) { Value_Optional = NewValue; Value_IsSet = true; Value_IsNull = false; }
-	/** @brief Clears the value of Value_Optional and sets Value_IsSet to false */
-	void ClearValue() { Value_IsSet = false; Value_IsNull = false; }
-	/** @brief Checks whether Value_Optional has been set */
-	bool IsValueSet() const { return Value_IsSet; }
+	/** @brief Gets the value of Value */
+	FRHAPI_JsonValue& GetValue() { return Value; }
+	/** @brief Gets the value of Value */
+	const FRHAPI_JsonValue& GetValue() const { return Value; }
+	/** @brief Sets the value of Value */
+	void SetValue(const FRHAPI_JsonValue& NewValue) { Value = NewValue;  Value_IsNull = false; }
+	/** @brief Sets the value of Value using move semantics */
+	void SetValue(FRHAPI_JsonValue&& NewValue) { Value = NewValue;  Value_IsNull = false; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetValueToNull() { Value_IsSet = true; Value_IsNull = true; }
-	/** @brief Checks whether Value_Optional is set to null */
-	bool IsValueNull() const { return Value_IsSet && Value_IsNull; }
+	void SetValueToNull() { Value_IsNull = true; }
+	/** @brief Checks whether Value is set to null */
+	bool IsValueNull() const { return  Value_IsNull; }
 };
 
 /** @} */

@@ -29,8 +29,8 @@ class FReportsAPI;
  * @brief Create Report For Target Player Uuid
  * Create a new report for a target player
  * Required Permissions:
- * If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:self`, `sanction:report:create:any`, `sanction:*`
- * Otherwise: any of: `sanction:report:create:any`, `sanction:*`
+ * If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:self`, `sanction:*`, `sanction:report:create:any`
+ * Otherwise: any of: `sanction:*`, `sanction:report:create:any`
 */
 struct RALLYHEREAPI_API FRequest_CreateReportForTargetPlayerUuid : public FRequest
 {
@@ -92,17 +92,17 @@ struct RALLYHEREAPI_API FResponse_CreateReportForTargetPlayerUuid : public FResp
 	bool TryGetContentFor200(FRHAPI_PlayerReport& OutContent) const;
 
 	/* Response 400
-	 Error Codes: - source_player_required - Source Player must be provided in request or with a user token 
+	 Error Codes: - `source_player_required` - Source Player must be provided in request or with a user token 
 	*/
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - insufficient_permissions - Insufficient Permissions - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} 
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 404
-	 Error Codes: - player_not_found - Player {id} not found 
+	 Error Codes: - `player_not_found` - Player {id} not found 
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -146,13 +146,13 @@ struct RALLYHEREAPI_API Traits_CreateReportForTargetPlayerUuid
  * Get reports for a target player
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `sanction:report:read:target-any`, `sanction:*`
+ * - For any player (including themselves) any of: `sanction:*`, `sanction:report:read:target-any`
  * 
  * - For the player themselves : `sanction:report:read:target-self`
  * 
  * Source players will be empty without the Required Permissions:
  * 
- * - For any player (including themselves) any of: `sanction:report:read:source-any`, `sanction:*`
+ * - For any player (including themselves) any of: `sanction:*`, `sanction:report:read:source-any`
  * 
  * - For the player themselves : `sanction:report:read:source-self`
 */
@@ -218,12 +218,12 @@ struct RALLYHEREAPI_API FResponse_GetReportsForTargetPlayerUuid : public FRespon
 	bool TryGetContentFor200(FRHAPI_PlayerReportList& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - insufficient_permissions - Insufficient Permissions - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} 
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 404
-	 Error Codes: - player_not_found - Player {id} not found 
+	 Error Codes: - `player_not_found` - Player {id} not found 
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -267,13 +267,13 @@ struct RALLYHEREAPI_API Traits_GetReportsForTargetPlayerUuid
  * Get reports for a target player
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `sanction:report:read:target-any`, `sanction:*`
+ * - For any player (including themselves) any of: `sanction:*`, `sanction:report:read:target-any`
  * 
  * - For the player themselves : `sanction:report:read:target-self`
  * 
  * Source players will be empty without the Required Permissions:
  * 
- * - For any player (including themselves) any of: `sanction:report:read:source-any`, `sanction:*`
+ * - For any player (including themselves) any of: `sanction:*`, `sanction:report:read:source-any`
  * 
  * - For the player themselves : `sanction:report:read:source-self`
 */
@@ -338,12 +338,12 @@ struct RALLYHEREAPI_API FResponse_GetReportsForTargetPlayerUuidSelf : public FRe
 	bool TryGetContentFor200(FRHAPI_PlayerReportList& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - insufficient_permissions - Insufficient Permissions - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} 
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 404
-	 Error Codes: - player_not_found - Player {id} not found 
+	 Error Codes: - `player_not_found` - Player {id} not found 
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -387,7 +387,7 @@ struct RALLYHEREAPI_API Traits_GetReportsForTargetPlayerUuidSelf
  * Get reports from a source player
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `sanction:report:read:source-any`, `sanction:*`
+ * - For any player (including themselves) any of: `sanction:*`, `sanction:report:read:source-any`
  * 
  * - For the player themselves : `sanction:report:read:source-self`
 */
@@ -453,12 +453,12 @@ struct RALLYHEREAPI_API FResponse_GetReportsFromSourcePlayerUuid : public FRespo
 	bool TryGetContentFor200(FRHAPI_PlayerReportList& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - insufficient_permissions - Insufficient Permissions - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} 
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 404
-	 Error Codes: - player_not_found - Player {id} not found 
+	 Error Codes: - `player_not_found` - Player {id} not found 
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -502,7 +502,7 @@ struct RALLYHEREAPI_API Traits_GetReportsFromSourcePlayerUuid
  * Get reports from a source player
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `sanction:report:read:source-any`, `sanction:*`
+ * - For any player (including themselves) any of: `sanction:*`, `sanction:report:read:source-any`
  * 
  * - For the player themselves : `sanction:report:read:source-self`
 */
@@ -567,12 +567,12 @@ struct RALLYHEREAPI_API FResponse_GetReportsFromSourcePlayerUuidSelf : public FR
 	bool TryGetContentFor200(FRHAPI_PlayerReportList& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - insufficient_permissions - Insufficient Permissions - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} 
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 404
-	 Error Codes: - player_not_found - Player {id} not found 
+	 Error Codes: - `player_not_found` - Player {id} not found 
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 

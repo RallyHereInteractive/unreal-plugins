@@ -179,7 +179,6 @@ Private/MatchValuesOnly.cpp
 Private/MatchWithPlayers.cpp
 Private/MatchmakingInfo.cpp
 Private/MatchmakingResults.cpp
-Private/MessageOnly.cpp
 Private/Notes.cpp
 Private/Notification.cpp
 Private/NotificationCreate.cpp
@@ -327,7 +326,6 @@ Private/RoleAuthBypass.cpp
 Private/Rule.cpp
 Private/RuleType.cpp
 Private/SelfSessionPlayerUpdateRequest.cpp
-Private/SendInBlueContact.cpp
 Private/Session.cpp
 Private/SessionAuditAPI.cpp
 Private/SessionInviteRequest.cpp
@@ -557,7 +555,6 @@ Public/MatchValuesOnly.h
 Public/MatchWithPlayers.h
 Public/MatchmakingInfo.h
 Public/MatchmakingResults.h
-Public/MessageOnly.h
 Public/Notes.h
 Public/Notification.h
 Public/NotificationCreate.h
@@ -705,7 +702,6 @@ Public/RoleAuthBypass.h
 Public/Rule.h
 Public/RuleType.h
 Public/SelfSessionPlayerUpdateRequest.h
-Public/SendInBlueContact.h
 Public/Session.h
 Public/SessionAuditAPI.h
 Public/SessionInviteRequest.h

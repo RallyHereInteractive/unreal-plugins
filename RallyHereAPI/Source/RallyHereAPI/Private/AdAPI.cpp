@@ -179,7 +179,7 @@ FString FResponse_BeginNewSession::GetHttpResponseCodeDescription(EHttpResponseC
 	case 200:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 422:
 		return TEXT("Validation Error");
 	case 500:
@@ -508,7 +508,7 @@ FString FResponse_FindOpportunities::GetHttpResponseCodeDescription(EHttpRespons
 	case 200:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 422:
 		return TEXT("Validation Error");
 	case 500:
@@ -1325,7 +1325,7 @@ FString FResponse_UpdateOpportunityById::GetHttpResponseCodeDescription(EHttpRes
 	case 200:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 422:
 		return TEXT("Validation Error");
 	case 500:
