@@ -132,25 +132,16 @@ bool FResponse::ParseStringTypeContent()
 	{
 		SetPayload<JsonPayloadType>(JsonValue);
 
-		if (EHttpResponseCodes::IsOk(ResponseCode))
+		// attempt to parse the json with the response object (for successful responses, this will fill in the Content subobject)
+		if (FromJson(JsonValue))
 		{
-			// for successfull responses, attempt to parse the json into local structures
-			if (FromJson(JsonValue))
-			{
-				// Successfully parsed default value
-				return true;
-			}
-			else
-			{
-				// Report the parse error but do not mark the request as unsuccessful. Data could be partial or malformed, but the request succeeded.
-				UE_LOG(LogRallyHereAPI, Warning, TEXT("Parsed JSON successfully, but failed to ingest into API structures (note: failure may be partial):\n%s"), *ContentAsString);
-				return true;
-			}
+			// Successfully parsed into response
+			return true;
 		}
 		else
 		{
-			// for error responses, do not parse into local structures, but we did parse the json successfully, so return success
-			UE_LOG(LogRallyHereAPI, Warning, TEXT("Parsed JSON successfully, but failed to ingest into API Error structures:\n%s"), *ContentAsString);
+			// Report the parse error but do not mark the request as unsuccessful. Data could be partial or malformed, but the request succeeded.
+			UE_LOG(LogRallyHereAPI, Warning, TEXT("Parsed JSON successfully, but failed to ingest into API structures (note: failure may be partial):\n%s"), *ContentAsString);
 			return true;
 		}
 	}

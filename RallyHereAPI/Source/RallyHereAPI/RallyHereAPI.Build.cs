@@ -23,6 +23,7 @@ public class RallyHereAPI : ModuleRules
 				"Engine",
 			}
 		);
-		PCHUsage = PCHUsageMode.NoPCHs;
+		
+		PublicDefinitions.Add("ALLOW_LEGACY_RESPONSE_CONTENT=1");
 	}
 }

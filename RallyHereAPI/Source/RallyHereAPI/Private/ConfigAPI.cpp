@@ -192,33 +192,51 @@ FString FResponse_GetAppSettingsAll::GetHttpResponseCodeDescription(EHttpRespons
 
 bool FResponse_GetAppSettingsAll::ParseHeaders()
 {
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
-	bool bParsedAllRequiredHeaders = true;
+
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+	// parse into default header storage
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
 		ETag = *Val;
 	}
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+#endif
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 304:
+		break;
+	case 412:
+		break;
+	case 422:
+		break;
+	default:
+		break;
+	}
+	
 	return bParsedAllRequiredHeaders;
 }
 
 bool FResponse_GetAppSettingsAll::TryGetContentFor200(FRHAPI_KVsResponseV1& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 200)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -237,25 +255,67 @@ TOptional<FString> FResponse_GetAppSettingsAll::GetHeader200_ETag() const
 
 bool FResponse_GetAppSettingsAll::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 422)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_GetAppSettingsAll::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-	return TryGetJsonValue(JsonValue, Content);
+	bool bParsed = false;
+	// for non default responses, parse into a temporary object to validate the response can be parsed properly
+	switch ((int)GetHttpResponseCode())
+	{  
+		case 200:
+			{
+				FRHAPI_KVsResponseV1 Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_KVsResponseV1>(Object);
+					bParsed = true;
+				}
+				break;
+			}   
+		case 422:
+			{
+				FRHAPI_HTTPValidationError Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+					bParsed = true;
+				}
+				break;
+			}
+		default:
+			break;
+	}
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// if using legacy content object, attempt to parse any response into the main content object.  For some legacy reasons around multiple success variants, this needs to ignore the intended type and always parse into the default type
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS;
+	TryGetJsonValue(JsonValue, Content);
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS;
+#endif
+
+	return bParsed;
 }
 
-FResponse_GetAppSettingsAll::FResponse_GetAppSettingsAll(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
+FResponse_GetAppSettingsAll::FResponse_GetAppSettingsAll(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
 FString Traits_GetAppSettingsAll::Name = TEXT("GetAppSettingsAll");
+
+FHttpRequestPtr Traits_GetAppSettingsAll::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetAppSettingsAll(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FConfigAPI::GetAppSettingsClient(const FRequest_GetAppSettingsClient& Request, const FDelegate_GetAppSettingsClient& Delegate /*= FDelegate_GetAppSettingsClient()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -407,33 +467,51 @@ FString FResponse_GetAppSettingsClient::GetHttpResponseCodeDescription(EHttpResp
 
 bool FResponse_GetAppSettingsClient::ParseHeaders()
 {
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
-	bool bParsedAllRequiredHeaders = true;
+
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+	// parse into default header storage
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
 		ETag = *Val;
 	}
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+#endif
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 304:
+		break;
+	case 412:
+		break;
+	case 422:
+		break;
+	default:
+		break;
+	}
+	
 	return bParsedAllRequiredHeaders;
 }
 
 bool FResponse_GetAppSettingsClient::TryGetContentFor200(TArray<FRHAPI_KVV1>& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 200)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -452,25 +530,67 @@ TOptional<FString> FResponse_GetAppSettingsClient::GetHeader200_ETag() const
 
 bool FResponse_GetAppSettingsClient::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 422)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_GetAppSettingsClient::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-	return TryGetJsonValue(JsonValue, Content);
+	bool bParsed = false;
+	// for non default responses, parse into a temporary object to validate the response can be parsed properly
+	switch ((int)GetHttpResponseCode())
+	{  
+		case 200:
+			{
+				TArray<FRHAPI_KVV1> Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<TArray<FRHAPI_KVV1>>(Object);
+					bParsed = true;
+				}
+				break;
+			}   
+		case 422:
+			{
+				FRHAPI_HTTPValidationError Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+					bParsed = true;
+				}
+				break;
+			}
+		default:
+			break;
+	}
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// if using legacy content object, attempt to parse any response into the main content object.  For some legacy reasons around multiple success variants, this needs to ignore the intended type and always parse into the default type
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS;
+	TryGetJsonValue(JsonValue, Content);
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS;
+#endif
+
+	return bParsed;
 }
 
-FResponse_GetAppSettingsClient::FResponse_GetAppSettingsClient(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
+FResponse_GetAppSettingsClient::FResponse_GetAppSettingsClient(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
 FString Traits_GetAppSettingsClient::Name = TEXT("GetAppSettingsClient");
+
+FHttpRequestPtr Traits_GetAppSettingsClient::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetAppSettingsClient(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FConfigAPI::GetAppSettingsServer(const FRequest_GetAppSettingsServer& Request, const FDelegate_GetAppSettingsServer& Delegate /*= FDelegate_GetAppSettingsServer()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -635,33 +755,53 @@ FString FResponse_GetAppSettingsServer::GetHttpResponseCodeDescription(EHttpResp
 
 bool FResponse_GetAppSettingsServer::ParseHeaders()
 {
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
-	bool bParsedAllRequiredHeaders = true;
+
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+	// parse into default header storage
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
 		ETag = *Val;
 	}
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+#endif
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 304:
+		break;
+	case 403:
+		break;
+	case 412:
+		break;
+	case 422:
+		break;
+	default:
+		break;
+	}
+	
 	return bParsedAllRequiredHeaders;
 }
 
 bool FResponse_GetAppSettingsServer::TryGetContentFor200(TArray<FRHAPI_KVV1>& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 200)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -680,35 +820,89 @@ TOptional<FString> FResponse_GetAppSettingsServer::GetHeader200_ETag() const
 
 bool FResponse_GetAppSettingsServer::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 403)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_GetAppSettingsServer::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 422)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_GetAppSettingsServer::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-	return TryGetJsonValue(JsonValue, Content);
+	bool bParsed = false;
+	// for non default responses, parse into a temporary object to validate the response can be parsed properly
+	switch ((int)GetHttpResponseCode())
+	{  
+		case 200:
+			{
+				TArray<FRHAPI_KVV1> Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<TArray<FRHAPI_KVV1>>(Object);
+					bParsed = true;
+				}
+				break;
+			}  
+		case 403:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			}  
+		case 422:
+			{
+				FRHAPI_HTTPValidationError Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+					bParsed = true;
+				}
+				break;
+			}
+		default:
+			break;
+	}
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// if using legacy content object, attempt to parse any response into the main content object.  For some legacy reasons around multiple success variants, this needs to ignore the intended type and always parse into the default type
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS;
+	TryGetJsonValue(JsonValue, Content);
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS;
+#endif
+
+	return bParsed;
 }
 
-FResponse_GetAppSettingsServer::FResponse_GetAppSettingsServer(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
+FResponse_GetAppSettingsServer::FResponse_GetAppSettingsServer(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
 FString Traits_GetAppSettingsServer::Name = TEXT("GetAppSettingsServer");
+
+FHttpRequestPtr Traits_GetAppSettingsServer::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetAppSettingsServer(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FConfigAPI::GetKvsV2(const FRequest_GetKvsV2& Request, const FDelegate_GetKvsV2& Delegate /*= FDelegate_GetKvsV2()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -879,33 +1073,51 @@ FString FResponse_GetKvsV2::GetHttpResponseCodeDescription(EHttpResponseCodes::T
 
 bool FResponse_GetKvsV2::ParseHeaders()
 {
-	// The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
-	TMap<FString, FString> HeadersMap;
-	for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+	if (!Super::ParseHeaders())
 	{
-		int32 index;
-		if (HeaderStr.FindChar(TEXT(':'), index))
-		{
-			// if there is a space after the colon, skip it
-			HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
-		}
+		return false;
 	}
-	bool bParsedAllRequiredHeaders = true;
+
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+	// parse into default header storage
 	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
 	{
 		ETag = *Val;
 	}
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+#endif
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 304:
+		break;
+	case 412:
+		break;
+	case 422:
+		break;
+	default:
+		break;
+	}
+	
 	return bParsedAllRequiredHeaders;
 }
 
 bool FResponse_GetKvsV2::TryGetContentFor200(FRHAPI_KVsResponseV2& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 200)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
@@ -924,25 +1136,67 @@ TOptional<FString> FResponse_GetKvsV2::GetHeader200_ETag() const
 
 bool FResponse_GetKvsV2::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 422)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_GetKvsV2::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-	return TryGetJsonValue(JsonValue, Content);
+	bool bParsed = false;
+	// for non default responses, parse into a temporary object to validate the response can be parsed properly
+	switch ((int)GetHttpResponseCode())
+	{  
+		case 200:
+			{
+				FRHAPI_KVsResponseV2 Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_KVsResponseV2>(Object);
+					bParsed = true;
+				}
+				break;
+			}   
+		case 422:
+			{
+				FRHAPI_HTTPValidationError Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+					bParsed = true;
+				}
+				break;
+			}
+		default:
+			break;
+	}
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// if using legacy content object, attempt to parse any response into the main content object.  For some legacy reasons around multiple success variants, this needs to ignore the intended type and always parse into the default type
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS;
+	TryGetJsonValue(JsonValue, Content);
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS;
+#endif
+
+	return bParsed;
 }
 
-FResponse_GetKvsV2::FResponse_GetKvsV2(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
+FResponse_GetKvsV2::FResponse_GetKvsV2(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
 FString Traits_GetKvsV2::Name = TEXT("GetKvsV2");
+
+FHttpRequestPtr Traits_GetKvsV2::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetKvsV2(InRequest, InDelegate, InPriority);
+}
 
 
 }

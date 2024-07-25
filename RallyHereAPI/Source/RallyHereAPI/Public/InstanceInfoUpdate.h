@@ -175,6 +175,33 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfoUpdate : public FRHAPI_Model
 	void ClearCustomData() { CustomData_IsSet = false;  }
 	/** @brief Checks whether CustomData_Optional has been set */
 	bool IsCustomDataSet() const { return CustomData_IsSet; }
+
+	/** @brief The match ID associated with this instance */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString MatchId_Optional{  };
+	/** @brief true if MatchId_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool MatchId_IsSet{ false };
+	/** @brief Gets the value of MatchId_Optional, regardless of it having been set */
+	FString& GetMatchId() { return MatchId_Optional; }
+	/** @brief Gets the value of MatchId_Optional, regardless of it having been set */
+	const FString& GetMatchId() const { return MatchId_Optional; }
+	/** @brief Gets the value of MatchId_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetMatchId(const FString& DefaultValue) const { if (MatchId_IsSet) return MatchId_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of MatchId_Optional and returns true if it has been set, otherwise returns false */
+	bool GetMatchId(FString& OutValue) const { if (MatchId_IsSet) OutValue = MatchId_Optional; return MatchId_IsSet; }
+	/** @brief Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetMatchIdOrNull() { if (MatchId_IsSet) return (&MatchId_Optional); return nullptr; }
+	/** @brief Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetMatchIdOrNull() const { if (MatchId_IsSet) return (&MatchId_Optional); return nullptr; }
+	/** @brief Sets the value of MatchId_Optional and also sets MatchId_IsSet to true */
+	void SetMatchId(const FString& NewValue) { MatchId_Optional = NewValue; MatchId_IsSet = true;  }
+	/** @brief Sets the value of MatchId_Optional and also sets MatchId_IsSet to true using move semantics */
+	void SetMatchId(FString&& NewValue) { MatchId_Optional = NewValue; MatchId_IsSet = true;  }
+	/** @brief Clears the value of MatchId_Optional and sets MatchId_IsSet to false */
+	void ClearMatchId() { MatchId_IsSet = false;  }
+	/** @brief Checks whether MatchId_Optional has been set */
+	bool IsMatchIdSet() const { return MatchId_IsSet; }
 };
 
 /** @} */

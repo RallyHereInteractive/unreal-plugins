@@ -45,6 +45,8 @@ Information about the instance resource in a session.
 `public bool `[`InstanceHealth_IsSet`](#structFRHAPI__InstanceInfo_1a03be84bada6a81a63991b0f4513dd2b2) | true if InstanceHealth_Optional has been set to a value
 `public FString `[`MatchMakingProfileId_Optional`](#structFRHAPI__InstanceInfo_1a05b49888b26a3e1d4806f7a803912694) | The profile id that this instance was spawned from.
 `public bool `[`MatchMakingProfileId_IsSet`](#structFRHAPI__InstanceInfo_1a7ceba240433b15224dd6784b4f0b4b93) | true if MatchMakingProfileId_Optional has been set to a value
+`public FString `[`MatchId_Optional`](#structFRHAPI__InstanceInfo_1a9aa0fdfb3745c97dde5d4aa565c10bc3) | The match ID associated with this instance.
+`public bool `[`MatchId_IsSet`](#structFRHAPI__InstanceInfo_1aa350da165ae952b6fd3983c18eab0581) | true if MatchId_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__InstanceInfo_1a6534ad7c92643f1e74f384ecea120524)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__InstanceInfo_1ad647ee64ac9cdb174f6780b91bceda2e)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetAllocationId`](#structFRHAPI__InstanceInfo_1af406c06b9e864153010e790b5104f51b)`()` | Gets the value of AllocationId_Optional, regardless of it having been set.
@@ -164,6 +166,15 @@ Information about the instance resource in a session.
 `public inline void `[`SetMatchMakingProfileId`](#structFRHAPI__InstanceInfo_1af73401a870ffb1be53ef897b4211a4b2)`(const FString & NewValue)` | Sets the value of MatchMakingProfileId_Optional and also sets MatchMakingProfileId_IsSet to true.
 `public inline void `[`SetMatchMakingProfileId`](#structFRHAPI__InstanceInfo_1aa21aff8a94c7a3954574d35a8a26d71e)`(FString && NewValue)` | Sets the value of MatchMakingProfileId_Optional and also sets MatchMakingProfileId_IsSet to true using move semantics.
 `public inline void `[`ClearMatchMakingProfileId`](#structFRHAPI__InstanceInfo_1ae29004885f4edeb474dbee20fd20eaba)`()` | Clears the value of MatchMakingProfileId_Optional and sets MatchMakingProfileId_IsSet to false.
+`public inline FString & `[`GetMatchId`](#structFRHAPI__InstanceInfo_1a3d9fbb3203ecaa2e53192a5570ee0a89)`()` | Gets the value of MatchId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetMatchId`](#structFRHAPI__InstanceInfo_1a67dc8d73a61009c09df8f158e0a80262)`() const` | Gets the value of MatchId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetMatchId`](#structFRHAPI__InstanceInfo_1ad486198709b533313b7029cc7c7607ea)`(const FString & DefaultValue) const` | Gets the value of MatchId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetMatchId`](#structFRHAPI__InstanceInfo_1a19fd1b25246342616c77faba5b3b8b3a)`(FString & OutValue) const` | Fills OutValue with the value of MatchId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FString * `[`GetMatchIdOrNull`](#structFRHAPI__InstanceInfo_1ac417cd007d13b8b59c472b4dfe00e9c3)`()` | Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetMatchIdOrNull`](#structFRHAPI__InstanceInfo_1ae5f4835ef5f88e67fc8d639b2963a268)`() const` | Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetMatchId`](#structFRHAPI__InstanceInfo_1a2abcf2628fa1ebc225e2f213aaf8943d)`(const FString & NewValue)` | Sets the value of MatchId_Optional and also sets MatchId_IsSet to true.
+`public inline void `[`SetMatchId`](#structFRHAPI__InstanceInfo_1ad19957067cd2a6126e847fbd46b4e383)`(FString && NewValue)` | Sets the value of MatchId_Optional and also sets MatchId_IsSet to true using move semantics.
+`public inline void `[`ClearMatchId`](#structFRHAPI__InstanceInfo_1a24595e50bdcf1728aa8b6558058c388a)`()` | Clears the value of MatchId_Optional and sets MatchId_IsSet to false.
 
 ### Members
 
@@ -270,6 +281,14 @@ The profile id that this instance was spawned from.
 #### `public bool `[`MatchMakingProfileId_IsSet`](#structFRHAPI__InstanceInfo_1a7ceba240433b15224dd6784b4f0b4b93) <a id="structFRHAPI__InstanceInfo_1a7ceba240433b15224dd6784b4f0b4b93"></a>
 
 true if MatchMakingProfileId_Optional has been set to a value
+
+#### `public FString `[`MatchId_Optional`](#structFRHAPI__InstanceInfo_1a9aa0fdfb3745c97dde5d4aa565c10bc3) <a id="structFRHAPI__InstanceInfo_1a9aa0fdfb3745c97dde5d4aa565c10bc3"></a>
+
+The match ID associated with this instance.
+
+#### `public bool `[`MatchId_IsSet`](#structFRHAPI__InstanceInfo_1aa350da165ae952b6fd3983c18eab0581) <a id="structFRHAPI__InstanceInfo_1aa350da165ae952b6fd3983c18eab0581"></a>
+
+true if MatchId_Optional has been set to a value
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__InstanceInfo_1a6534ad7c92643f1e74f384ecea120524)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__InstanceInfo_1a6534ad7c92643f1e74f384ecea120524"></a>
 
@@ -755,4 +774,40 @@ Sets the value of MatchMakingProfileId_Optional and also sets MatchMakingProfile
 #### `public inline void `[`ClearMatchMakingProfileId`](#structFRHAPI__InstanceInfo_1ae29004885f4edeb474dbee20fd20eaba)`()` <a id="structFRHAPI__InstanceInfo_1ae29004885f4edeb474dbee20fd20eaba"></a>
 
 Clears the value of MatchMakingProfileId_Optional and sets MatchMakingProfileId_IsSet to false.
+
+#### `public inline FString & `[`GetMatchId`](#structFRHAPI__InstanceInfo_1a3d9fbb3203ecaa2e53192a5570ee0a89)`()` <a id="structFRHAPI__InstanceInfo_1a3d9fbb3203ecaa2e53192a5570ee0a89"></a>
+
+Gets the value of MatchId_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetMatchId`](#structFRHAPI__InstanceInfo_1a67dc8d73a61009c09df8f158e0a80262)`() const` <a id="structFRHAPI__InstanceInfo_1a67dc8d73a61009c09df8f158e0a80262"></a>
+
+Gets the value of MatchId_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetMatchId`](#structFRHAPI__InstanceInfo_1ad486198709b533313b7029cc7c7607ea)`(const FString & DefaultValue) const` <a id="structFRHAPI__InstanceInfo_1ad486198709b533313b7029cc7c7607ea"></a>
+
+Gets the value of MatchId_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetMatchId`](#structFRHAPI__InstanceInfo_1a19fd1b25246342616c77faba5b3b8b3a)`(FString & OutValue) const` <a id="structFRHAPI__InstanceInfo_1a19fd1b25246342616c77faba5b3b8b3a"></a>
+
+Fills OutValue with the value of MatchId_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline FString * `[`GetMatchIdOrNull`](#structFRHAPI__InstanceInfo_1ac417cd007d13b8b59c472b4dfe00e9c3)`()` <a id="structFRHAPI__InstanceInfo_1ac417cd007d13b8b59c472b4dfe00e9c3"></a>
+
+Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const FString * `[`GetMatchIdOrNull`](#structFRHAPI__InstanceInfo_1ae5f4835ef5f88e67fc8d639b2963a268)`() const` <a id="structFRHAPI__InstanceInfo_1ae5f4835ef5f88e67fc8d639b2963a268"></a>
+
+Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetMatchId`](#structFRHAPI__InstanceInfo_1a2abcf2628fa1ebc225e2f213aaf8943d)`(const FString & NewValue)` <a id="structFRHAPI__InstanceInfo_1a2abcf2628fa1ebc225e2f213aaf8943d"></a>
+
+Sets the value of MatchId_Optional and also sets MatchId_IsSet to true.
+
+#### `public inline void `[`SetMatchId`](#structFRHAPI__InstanceInfo_1ad19957067cd2a6126e847fbd46b4e383)`(FString && NewValue)` <a id="structFRHAPI__InstanceInfo_1ad19957067cd2a6126e847fbd46b4e383"></a>
+
+Sets the value of MatchId_Optional and also sets MatchId_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearMatchId`](#structFRHAPI__InstanceInfo_1a24595e50bdcf1728aa8b6558058c388a)`()` <a id="structFRHAPI__InstanceInfo_1a24595e50bdcf1728aa8b6558058c388a"></a>
+
+Clears the value of MatchId_Optional and sets MatchId_IsSet to false.
 

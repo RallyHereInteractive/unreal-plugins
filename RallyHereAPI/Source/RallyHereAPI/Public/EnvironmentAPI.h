@@ -18,11 +18,98 @@ using RallyHereAPI::ToStringFormatArg;
 using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
-struct FRequest_GetEnvironmentId;
-struct FResponse_GetEnvironmentId;
+// forward declaration
+class FEnvironmentAPI;
 
+/**
+ * @brief Get Environment Id
+ * Returns the Environment configuration.
+*/
+struct RALLYHEREAPI_API FRequest_GetEnvironmentId : public FRequest
+{
+	FRequest_GetEnvironmentId();
+	virtual ~FRequest_GetEnvironmentId() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+
+};
+
+/** The response type for FRequest_GetEnvironmentId */
+struct RALLYHEREAPI_API FResponse_GetEnvironmentId : public FResponseAccessorTemplate<FRHAPI_EnvironmentConfig>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_EnvironmentConfig> Super;
+
+	FResponse_GetEnvironmentId(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetEnvironmentId() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_EnvironmentConfig Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_EnvironmentConfig& OutContent) const { return TryGetContent<FRHAPI_EnvironmentConfig>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_EnvironmentConfig>& OutContent) const { return TryGetContent<FRHAPI_EnvironmentConfig>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_EnvironmentConfig* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_EnvironmentConfig>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_EnvironmentConfig> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_EnvironmentConfig>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_EnvironmentConfig& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetEnvironmentId */
 DECLARE_DELEGATE_OneParam(FDelegate_GetEnvironmentId, const FResponse_GetEnvironmentId&);
 
+/** @brief A helper metadata object for GetEnvironmentId that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetEnvironmentId
+{
+	/** The request type */
+	typedef FRequest_GetEnvironmentId Request;
+	/** The response type */
+	typedef FResponse_GetEnvironmentId Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetEnvironmentId Delegate;
+	/** The API object that supports this API call */
+	typedef FEnvironmentAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+
+/** The API class itself, which will handle calls to */
 class RALLYHEREAPI_API FEnvironmentAPI : public FAPI
 {
 public:
@@ -36,49 +123,6 @@ private:
 
 };
 
-/* Get Environment Id
- *
- * Returns the Environment configuration.
-*/
-struct RALLYHEREAPI_API FRequest_GetEnvironmentId : public FRequest
-{
-	FRequest_GetEnvironmentId();
-	virtual ~FRequest_GetEnvironmentId() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-
-};
-
-struct RALLYHEREAPI_API FResponse_GetEnvironmentId : public FResponse
-{
-	FResponse_GetEnvironmentId(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetEnvironmentId() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-	FRHAPI_EnvironmentConfig Content;
-
-
-	// Manual Response Helpers
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_EnvironmentConfig& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetEnvironmentId
-{
-	typedef FRequest_GetEnvironmentId Request;
-	typedef FResponse_GetEnvironmentId Response;
-	typedef FDelegate_GetEnvironmentId Delegate;
-	typedef FEnvironmentAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetEnvironmentId(InRequest, InDelegate, Priority); }
-};
 
 
 }

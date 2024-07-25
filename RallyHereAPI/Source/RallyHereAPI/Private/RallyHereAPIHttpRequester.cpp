@@ -1,4 +1,3 @@
-#include "CoreMinimal.h"
 #include "RallyHereAPIHttpRequester.h"
 
 namespace RallyHereAPI

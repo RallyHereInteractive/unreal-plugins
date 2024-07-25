@@ -10,6 +10,7 @@
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
 #include "Determiner.h"
+#include "PlayersToValidate.h"
 #include "Rule.h"
 #include "MatchMakingRuleset.generated.h"
 
@@ -94,6 +95,33 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingRuleset : public FRHAPI_Model
 	void ClearDeterminer() { Determiner_IsSet = false;  }
 	/** @brief Checks whether Determiner_Optional has been set */
 	bool IsDeterminerSet() const { return Determiner_IsSet; }
+
+	/** @brief Which members of a session must be validated to satisfy this ruleset */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	ERHAPI_PlayersToValidate PlayersToValidate_Optional{  };
+	/** @brief true if PlayersToValidate_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool PlayersToValidate_IsSet{ false };
+	/** @brief Gets the value of PlayersToValidate_Optional, regardless of it having been set */
+	ERHAPI_PlayersToValidate& GetPlayersToValidate() { return PlayersToValidate_Optional; }
+	/** @brief Gets the value of PlayersToValidate_Optional, regardless of it having been set */
+	const ERHAPI_PlayersToValidate& GetPlayersToValidate() const { return PlayersToValidate_Optional; }
+	/** @brief Gets the value of PlayersToValidate_Optional, if it has been set, otherwise it returns DefaultValue */
+	const ERHAPI_PlayersToValidate& GetPlayersToValidate(const ERHAPI_PlayersToValidate& DefaultValue) const { if (PlayersToValidate_IsSet) return PlayersToValidate_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of PlayersToValidate_Optional and returns true if it has been set, otherwise returns false */
+	bool GetPlayersToValidate(ERHAPI_PlayersToValidate& OutValue) const { if (PlayersToValidate_IsSet) OutValue = PlayersToValidate_Optional; return PlayersToValidate_IsSet; }
+	/** @brief Returns a pointer to PlayersToValidate_Optional, if it has been set, otherwise returns nullptr */
+	ERHAPI_PlayersToValidate* GetPlayersToValidateOrNull() { if (PlayersToValidate_IsSet) return (&PlayersToValidate_Optional); return nullptr; }
+	/** @brief Returns a pointer to PlayersToValidate_Optional, if it has been set, otherwise returns nullptr */
+	const ERHAPI_PlayersToValidate* GetPlayersToValidateOrNull() const { if (PlayersToValidate_IsSet) return (&PlayersToValidate_Optional); return nullptr; }
+	/** @brief Sets the value of PlayersToValidate_Optional and also sets PlayersToValidate_IsSet to true */
+	void SetPlayersToValidate(const ERHAPI_PlayersToValidate& NewValue) { PlayersToValidate_Optional = NewValue; PlayersToValidate_IsSet = true;  }
+	/** @brief Sets the value of PlayersToValidate_Optional and also sets PlayersToValidate_IsSet to true using move semantics */
+	void SetPlayersToValidate(ERHAPI_PlayersToValidate&& NewValue) { PlayersToValidate_Optional = NewValue; PlayersToValidate_IsSet = true;  }
+	/** @brief Clears the value of PlayersToValidate_Optional and sets PlayersToValidate_IsSet to false */
+	void ClearPlayersToValidate() { PlayersToValidate_IsSet = false;  }
+	/** @brief Checks whether PlayersToValidate_Optional has been set */
+	bool IsPlayersToValidateSet() const { return PlayersToValidate_IsSet; }
 };
 
 /** @} */

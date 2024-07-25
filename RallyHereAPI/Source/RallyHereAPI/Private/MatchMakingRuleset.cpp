@@ -32,6 +32,11 @@ void FRHAPI_MatchMakingRuleset::WriteJson(TSharedRef<TJsonWriter<>>& Writer) con
 		Writer->WriteIdentifierPrefix(TEXT("determiner"));
 		RallyHereAPI::WriteJsonValue(Writer, EnumToString(Determiner_Optional));
 	}
+	if (PlayersToValidate_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("players_to_validate"));
+		RallyHereAPI::WriteJsonValue(Writer, EnumToString(PlayersToValidate_Optional));
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -54,6 +59,12 @@ bool FRHAPI_MatchMakingRuleset::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 	{
 		Determiner_IsSet = TryGetJsonValue(JsonDeterminerField, Determiner_Optional);
 		ParseSuccess &= Determiner_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonPlayersToValidateField = (*Object)->TryGetField(TEXT("players_to_validate"));
+	if (JsonPlayersToValidateField.IsValid())
+	{
+		PlayersToValidate_IsSet = TryGetJsonValue(JsonPlayersToValidateField, PlayersToValidate_Optional);
+		ParseSuccess &= PlayersToValidate_IsSet;
 	}
 
 	return ParseSuccess;

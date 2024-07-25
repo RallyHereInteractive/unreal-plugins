@@ -21,41 +21,11 @@ using RallyHereAPI::ToStringFormatArg;
 using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
-struct FRequest_BlockV2;
-struct FResponse_BlockV2;
-struct FRequest_GetBlockedListForPlayerV2;
-struct FResponse_GetBlockedListForPlayerV2;
-struct FRequest_GetBlockedV2;
-struct FResponse_GetBlockedV2;
-struct FRequest_UnblockV2;
-struct FResponse_UnblockV2;
+// forward declaration
+class FBlockedV2API;
 
-DECLARE_DELEGATE_OneParam(FDelegate_BlockV2, const FResponse_BlockV2&);
-DECLARE_DELEGATE_OneParam(FDelegate_GetBlockedListForPlayerV2, const FResponse_GetBlockedListForPlayerV2&);
-DECLARE_DELEGATE_OneParam(FDelegate_GetBlockedV2, const FResponse_GetBlockedV2&);
-DECLARE_DELEGATE_OneParam(FDelegate_UnblockV2, const FResponse_UnblockV2&);
-
-class RALLYHEREAPI_API FBlockedV2API : public FAPI
-{
-public:
-	FBlockedV2API();
-	virtual ~FBlockedV2API();
-
-	FHttpRequestPtr BlockV2(const FRequest_BlockV2& Request, const FDelegate_BlockV2& Delegate = FDelegate_BlockV2(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetBlockedListForPlayerV2(const FRequest_GetBlockedListForPlayerV2& Request, const FDelegate_GetBlockedListForPlayerV2& Delegate = FDelegate_GetBlockedListForPlayerV2(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetBlockedV2(const FRequest_GetBlockedV2& Request, const FDelegate_GetBlockedV2& Delegate = FDelegate_GetBlockedV2(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr UnblockV2(const FRequest_UnblockV2& Request, const FDelegate_UnblockV2& Delegate = FDelegate_UnblockV2(), int32 Priority = DefaultRallyHereAPIPriority);
-
-private:
-	void OnBlockV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_BlockV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnGetBlockedListForPlayerV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetBlockedListForPlayerV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnGetBlockedV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetBlockedV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnUnblockV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UnblockV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-
-};
-
-/* Block V2
- *
+/**
+ * @brief Block V2
  * Block the other Player. There is a max number of Players that can be blocked per Player.
  *                     The limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits).
  *                     <br/><br />Permissions Required: friend:block_list:write
@@ -64,28 +34,56 @@ struct RALLYHEREAPI_API FRequest_BlockV2 : public FRequest
 {
 	FRequest_BlockV2();
 	virtual ~FRequest_BlockV2() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FGuid PlayerUuid;
 	FGuid OtherPlayerUuid;
 };
 
-struct RALLYHEREAPI_API FResponse_BlockV2 : public FResponse
+/** The response type for FRequest_BlockV2 */
+struct RALLYHEREAPI_API FResponse_BlockV2 : public FResponseAccessorTemplate<FRHAPI_BlockedPlayer, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_BlockedPlayer, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_BlockV2(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_BlockV2() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	//virtual ~FResponse_BlockV2() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_BlockedPlayer Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_BlockedPlayer& OutContent) const { return TryGetContent<FRHAPI_BlockedPlayer>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_BlockedPlayer>& OutContent) const { return TryGetContent<FRHAPI_BlockedPlayer>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_BlockedPlayer* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_BlockedPlayer>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_BlockedPlayer> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_BlockedPlayer>(); }
 
-	// Manual Response Helpers
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -113,19 +111,36 @@ struct RALLYHEREAPI_API FResponse_BlockV2 : public FResponse
 
 };
 
+/** The delegate class for FRequest_BlockV2 */
+DECLARE_DELEGATE_OneParam(FDelegate_BlockV2, const FResponse_BlockV2&);
+
+/** @brief A helper metadata object for BlockV2 that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_BlockV2
 {
+	/** The request type */
 	typedef FRequest_BlockV2 Request;
+	/** The response type */
 	typedef FResponse_BlockV2 Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_BlockV2 Delegate;
+	/** The API object that supports this API call */
 	typedef FBlockedV2API API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->BlockV2(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Get Blocked List For Player V2
- *
+/**
+ * @brief Get Blocked List For Player V2
  * Fetch the blocked list for the Player. <br /><br />
  *                         <b>Note:</b> This API supports etags and will return the etag header when with the response. 
  *                         Clients can utilize the <i>if-none-match</i> header to avoid having to reload the response if it has not changed.
@@ -135,12 +150,19 @@ struct RALLYHEREAPI_API FRequest_GetBlockedListForPlayerV2 : public FRequest
 {
 	FRequest_GetBlockedListForPlayerV2();
 	virtual ~FRequest_GetBlockedListForPlayerV2() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FGuid PlayerUuid;
 	TOptional<int32> Page;
@@ -149,20 +171,52 @@ struct RALLYHEREAPI_API FRequest_GetBlockedListForPlayerV2 : public FRequest
 	TOptional<FString> IfNoneMatch;
 };
 
-struct RALLYHEREAPI_API FResponse_GetBlockedListForPlayerV2 : public FResponse
+/** The response type for FRequest_GetBlockedListForPlayerV2 */
+struct RALLYHEREAPI_API FResponse_GetBlockedListForPlayerV2 : public FResponseAccessorTemplate<FRHAPI_BlockedList, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_BlockedList, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_GetBlockedListForPlayerV2(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetBlockedListForPlayerV2() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	bool ParseHeaders() override;
+	//virtual ~FResponse_GetBlockedListForPlayerV2() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_BlockedList Content;
-	// Headers
+	
+	/** Default Response Headers */
 	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
 	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
-	// Manual Response Helpers
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_BlockedList& OutContent) const { return TryGetContent<FRHAPI_BlockedList>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_BlockedList>& OutContent) const { return TryGetContent<FRHAPI_BlockedList>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_BlockedList* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_BlockedList>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_BlockedList> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_BlockedList>(); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(FString& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_ETag() const { return TryGetHeaderAsPointer(TEXT("ETag")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_ETag() const { return TryGetHeaderAsOptional(TEXT("ETag")); }
+
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -196,47 +250,92 @@ struct RALLYHEREAPI_API FResponse_GetBlockedListForPlayerV2 : public FResponse
 
 };
 
+/** The delegate class for FRequest_GetBlockedListForPlayerV2 */
+DECLARE_DELEGATE_OneParam(FDelegate_GetBlockedListForPlayerV2, const FResponse_GetBlockedListForPlayerV2&);
+
+/** @brief A helper metadata object for GetBlockedListForPlayerV2 that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_GetBlockedListForPlayerV2
 {
+	/** The request type */
 	typedef FRequest_GetBlockedListForPlayerV2 Request;
+	/** The response type */
 	typedef FResponse_GetBlockedListForPlayerV2 Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetBlockedListForPlayerV2 Delegate;
+	/** The API object that supports this API call */
 	typedef FBlockedV2API API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetBlockedListForPlayerV2(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Get Blocked V2
- *
+/**
+ * @brief Get Blocked V2
  * Get the Blocked Player <br/><br />Permissions Required: friend:block_list:read
 */
 struct RALLYHEREAPI_API FRequest_GetBlockedV2 : public FRequest
 {
 	FRequest_GetBlockedV2();
 	virtual ~FRequest_GetBlockedV2() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FGuid PlayerUuid;
 	FGuid OtherPlayerUuid;
 };
 
-struct RALLYHEREAPI_API FResponse_GetBlockedV2 : public FResponse
+/** The response type for FRequest_GetBlockedV2 */
+struct RALLYHEREAPI_API FResponse_GetBlockedV2 : public FResponseAccessorTemplate<FRHAPI_BlockedPlayer, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate<FRHAPI_BlockedPlayer, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_GetBlockedV2(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetBlockedV2() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	//virtual ~FResponse_GetBlockedV2() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_BlockedPlayer Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_BlockedPlayer& OutContent) const { return TryGetContent<FRHAPI_BlockedPlayer>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_BlockedPlayer>& OutContent) const { return TryGetContent<FRHAPI_BlockedPlayer>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_BlockedPlayer* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_BlockedPlayer>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_BlockedPlayer> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_BlockedPlayer>(); }
 
-	// Manual Response Helpers
+	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
@@ -264,47 +363,81 @@ struct RALLYHEREAPI_API FResponse_GetBlockedV2 : public FResponse
 
 };
 
+/** The delegate class for FRequest_GetBlockedV2 */
+DECLARE_DELEGATE_OneParam(FDelegate_GetBlockedV2, const FResponse_GetBlockedV2&);
+
+/** @brief A helper metadata object for GetBlockedV2 that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_GetBlockedV2
 {
+	/** The request type */
 	typedef FRequest_GetBlockedV2 Request;
+	/** The response type */
 	typedef FResponse_GetBlockedV2 Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetBlockedV2 Delegate;
+	/** The API object that supports this API call */
 	typedef FBlockedV2API API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetBlockedV2(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
-/* Unblock V2
- *
+/**
+ * @brief Unblock V2
  * Unblock the other Player <br/><br />Permissions Required: friend:block_list:write
 */
 struct RALLYHEREAPI_API FRequest_UnblockV2 : public FRequest
 {
 	FRequest_UnblockV2();
 	virtual ~FRequest_UnblockV2() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
 	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
 	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
 	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
 	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FGuid PlayerUuid;
 	FGuid OtherPlayerUuid;
 };
 
-struct RALLYHEREAPI_API FResponse_UnblockV2 : public FResponse
+/** The response type for FRequest_UnblockV2 */
+struct RALLYHEREAPI_API FResponse_UnblockV2 : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
+	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
 	FResponse_UnblockV2(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_UnblockV2() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	//virtual ~FResponse_UnblockV2() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
 	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
 
-	
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 
-	// Manual Response Helpers
+	// Individual Response Helpers	
 	/* Response 204
 	Successful Response
 	*/
@@ -331,16 +464,55 @@ struct RALLYHEREAPI_API FResponse_UnblockV2 : public FResponse
 
 };
 
+/** The delegate class for FRequest_UnblockV2 */
+DECLARE_DELEGATE_OneParam(FDelegate_UnblockV2, const FResponse_UnblockV2&);
+
+/** @brief A helper metadata object for UnblockV2 that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
 struct RALLYHEREAPI_API Traits_UnblockV2
 {
+	/** The request type */
 	typedef FRequest_UnblockV2 Request;
+	/** The response type */
 	typedef FResponse_UnblockV2 Response;
+	/** The delegate type, triggered by the response */
 	typedef FDelegate_UnblockV2 Delegate;
+	/** The API object that supports this API call */
 	typedef FBlockedV2API API;
+	/** A human readable name for this API call */
 	static FString Name;
 
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->UnblockV2(InRequest, InDelegate, Priority); }
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
+
+
+/** The API class itself, which will handle calls to */
+class RALLYHEREAPI_API FBlockedV2API : public FAPI
+{
+public:
+	FBlockedV2API();
+	virtual ~FBlockedV2API();
+
+	FHttpRequestPtr BlockV2(const FRequest_BlockV2& Request, const FDelegate_BlockV2& Delegate = FDelegate_BlockV2(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetBlockedListForPlayerV2(const FRequest_GetBlockedListForPlayerV2& Request, const FDelegate_GetBlockedListForPlayerV2& Delegate = FDelegate_GetBlockedListForPlayerV2(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetBlockedV2(const FRequest_GetBlockedV2& Request, const FDelegate_GetBlockedV2& Delegate = FDelegate_GetBlockedV2(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr UnblockV2(const FRequest_UnblockV2& Request, const FDelegate_UnblockV2& Delegate = FDelegate_UnblockV2(), int32 Priority = DefaultRallyHereAPIPriority);
+
+private:
+	void OnBlockV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_BlockV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetBlockedListForPlayerV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetBlockedListForPlayerV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetBlockedV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetBlockedV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnUnblockV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UnblockV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+
+};
+
 
 
 }

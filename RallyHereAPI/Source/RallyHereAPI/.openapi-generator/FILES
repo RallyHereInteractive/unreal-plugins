@@ -161,6 +161,7 @@ Private/MatchInstance.cpp
 Private/MatchMakingProfile.cpp
 Private/MatchMakingProfileV2.cpp
 Private/MatchMakingRuleset.cpp
+Private/MatchMakingSessionRequest.cpp
 Private/MatchMakingTemplate.cpp
 Private/MatchMakingTemplateGroup.cpp
 Private/MatchMakingTemplateGroupV2.cpp
@@ -169,6 +170,7 @@ Private/MatchPlayerRequest.cpp
 Private/MatchPlayerResponse.cpp
 Private/MatchPlayerWithMatch.cpp
 Private/MatchRequest.cpp
+Private/MatchSegmentPatchRequest.cpp
 Private/MatchSegmentRequest.cpp
 Private/MatchSegmentWithPlayers.cpp
 Private/MatchSession.cpp
@@ -201,6 +203,19 @@ Private/PersonEmailListRequest.cpp
 Private/PersonEmailListResponse.cpp
 Private/PersonInfoResponse.cpp
 Private/PersonOperationRequest.cpp
+Private/PexAPI.cpp
+Private/PexClientPagedResponse.cpp
+Private/PexClientQueryParams.cpp
+Private/PexClientRequest.cpp
+Private/PexClientResponse.cpp
+Private/PexClientScores.cpp
+Private/PexCount.cpp
+Private/PexHostPagedResponse.cpp
+Private/PexHostQueryParams.cpp
+Private/PexHostRequest.cpp
+Private/PexHostResponse.cpp
+Private/PexHostScores.cpp
+Private/PexStat.cpp
 Private/Platform.cpp
 Private/PlatformEntitlement.cpp
 Private/PlatformEntitlementProcessRequest.cpp
@@ -255,6 +270,7 @@ Private/PlayerSession.cpp
 Private/PlayerSessionInvite.cpp
 Private/PlayerSessions.cpp
 Private/PlayerUuidFromId.cpp
+Private/PlayersToValidate.cpp
 Private/Portal.cpp
 Private/PortalTokenDetailsGrantType.cpp
 Private/PortalTokenDetailsRequest.cpp
@@ -523,6 +539,7 @@ Public/MatchInstance.h
 Public/MatchMakingProfile.h
 Public/MatchMakingProfileV2.h
 Public/MatchMakingRuleset.h
+Public/MatchMakingSessionRequest.h
 Public/MatchMakingTemplate.h
 Public/MatchMakingTemplateGroup.h
 Public/MatchMakingTemplateGroupV2.h
@@ -531,6 +548,7 @@ Public/MatchPlayerRequest.h
 Public/MatchPlayerResponse.h
 Public/MatchPlayerWithMatch.h
 Public/MatchRequest.h
+Public/MatchSegmentPatchRequest.h
 Public/MatchSegmentRequest.h
 Public/MatchSegmentWithPlayers.h
 Public/MatchSession.h
@@ -563,6 +581,19 @@ Public/PersonEmailListRequest.h
 Public/PersonEmailListResponse.h
 Public/PersonInfoResponse.h
 Public/PersonOperationRequest.h
+Public/PexAPI.h
+Public/PexClientPagedResponse.h
+Public/PexClientQueryParams.h
+Public/PexClientRequest.h
+Public/PexClientResponse.h
+Public/PexClientScores.h
+Public/PexCount.h
+Public/PexHostPagedResponse.h
+Public/PexHostQueryParams.h
+Public/PexHostRequest.h
+Public/PexHostResponse.h
+Public/PexHostScores.h
+Public/PexStat.h
 Public/Platform.h
 Public/PlatformEntitlement.h
 Public/PlatformEntitlementProcessRequest.h
@@ -617,6 +648,7 @@ Public/PlayerSession.h
 Public/PlayerSessionInvite.h
 Public/PlayerSessions.h
 Public/PlayerUuidFromId.h
+Public/PlayersToValidate.h
 Public/Portal.h
 Public/PortalTokenDetailsGrantType.h
 Public/PortalTokenDetailsRequest.h

@@ -185,67 +185,176 @@ FString FResponse_GenerateEntitlementEvent::GetHttpResponseCodeDescription(EHttp
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
+bool FResponse_GenerateEntitlementEvent::ParseHeaders()
+{
+	if (!Super::ParseHeaders())
+	{
+		return false;
+	}
+
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 403:
+		break;
+	case 404:
+		break;
+	case 409:
+		break;
+	case 422:
+		break;
+	default:
+		break;
+	}
+	
+	return bParsedAllRequiredHeaders;
+}
+
 bool FResponse_GenerateEntitlementEvent::TryGetContentFor200(FRHAPI_EntitlementEvent& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 200)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_GenerateEntitlementEvent::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 403)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_GenerateEntitlementEvent::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 404)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_GenerateEntitlementEvent::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 409)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_GenerateEntitlementEvent::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 422)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_GenerateEntitlementEvent::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-	return TryGetJsonValue(JsonValue, Content);
+	bool bParsed = false;
+	// for non default responses, parse into a temporary object to validate the response can be parsed properly
+	switch ((int)GetHttpResponseCode())
+	{  
+		case 200:
+			{
+				FRHAPI_EntitlementEvent Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_EntitlementEvent>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 403:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 404:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 409:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 422:
+			{
+				FRHAPI_HTTPValidationError Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+					bParsed = true;
+				}
+				break;
+			}
+		default:
+			break;
+	}
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// if using legacy content object, attempt to parse any response into the main content object.  For some legacy reasons around multiple success variants, this needs to ignore the intended type and always parse into the default type
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS;
+	TryGetJsonValue(JsonValue, Content);
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS;
+#endif
+
+	return bParsed;
 }
 
-FResponse_GenerateEntitlementEvent::FResponse_GenerateEntitlementEvent(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
+FResponse_GenerateEntitlementEvent::FResponse_GenerateEntitlementEvent(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
 FString Traits_GenerateEntitlementEvent::Name = TEXT("GenerateEntitlementEvent");
+
+FHttpRequestPtr Traits_GenerateEntitlementEvent::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GenerateEntitlementEvent(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FEntitlementsAPI::GetEntitlementEvents(const FRequest_GetEntitlementEvents& Request, const FDelegate_GetEntitlementEvents& Delegate /*= FDelegate_GetEntitlementEvents()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -410,47 +519,128 @@ FString FResponse_GetEntitlementEvents::GetHttpResponseCodeDescription(EHttpResp
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
+bool FResponse_GetEntitlementEvents::ParseHeaders()
+{
+	if (!Super::ParseHeaders())
+	{
+		return false;
+	}
+
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 403:
+		break;
+	case 422:
+		break;
+	default:
+		break;
+	}
+	
+	return bParsedAllRequiredHeaders;
+}
+
 bool FResponse_GetEntitlementEvents::TryGetContentFor200(FRHAPI_EntitlementEventList& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 200)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_GetEntitlementEvents::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 403)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_GetEntitlementEvents::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 422)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_GetEntitlementEvents::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-	return TryGetJsonValue(JsonValue, Content);
+	bool bParsed = false;
+	// for non default responses, parse into a temporary object to validate the response can be parsed properly
+	switch ((int)GetHttpResponseCode())
+	{  
+		case 200:
+			{
+				FRHAPI_EntitlementEventList Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_EntitlementEventList>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 403:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 422:
+			{
+				FRHAPI_HTTPValidationError Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+					bParsed = true;
+				}
+				break;
+			}
+		default:
+			break;
+	}
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// if using legacy content object, attempt to parse any response into the main content object.  For some legacy reasons around multiple success variants, this needs to ignore the intended type and always parse into the default type
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS;
+	TryGetJsonValue(JsonValue, Content);
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS;
+#endif
+
+	return bParsed;
 }
 
-FResponse_GetEntitlementEvents::FResponse_GetEntitlementEvents(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
+FResponse_GetEntitlementEvents::FResponse_GetEntitlementEvents(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
 FString Traits_GetEntitlementEvents::Name = TEXT("GetEntitlementEvents");
+
+FHttpRequestPtr Traits_GetEntitlementEvents::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetEntitlementEvents(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FEntitlementsAPI::ProcessPlatformEntitlementForMe(const FRequest_ProcessPlatformEntitlementForMe& Request, const FDelegate_ProcessPlatformEntitlementForMe& Delegate /*= FDelegate_ProcessPlatformEntitlementForMe()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -610,47 +800,128 @@ FString FResponse_ProcessPlatformEntitlementForMe::GetHttpResponseCodeDescriptio
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
+bool FResponse_ProcessPlatformEntitlementForMe::ParseHeaders()
+{
+	if (!Super::ParseHeaders())
+	{
+		return false;
+	}
+
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 403:
+		break;
+	case 422:
+		break;
+	default:
+		break;
+	}
+	
+	return bParsedAllRequiredHeaders;
+}
+
 bool FResponse_ProcessPlatformEntitlementForMe::TryGetContentFor200(FRHAPI_PlatformEntitlementProcessResult& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 200)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_ProcessPlatformEntitlementForMe::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 403)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_ProcessPlatformEntitlementForMe::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 422)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_ProcessPlatformEntitlementForMe::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-	return TryGetJsonValue(JsonValue, Content);
+	bool bParsed = false;
+	// for non default responses, parse into a temporary object to validate the response can be parsed properly
+	switch ((int)GetHttpResponseCode())
+	{  
+		case 200:
+			{
+				FRHAPI_PlatformEntitlementProcessResult Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_PlatformEntitlementProcessResult>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 403:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 422:
+			{
+				FRHAPI_HTTPValidationError Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+					bParsed = true;
+				}
+				break;
+			}
+		default:
+			break;
+	}
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// if using legacy content object, attempt to parse any response into the main content object.  For some legacy reasons around multiple success variants, this needs to ignore the intended type and always parse into the default type
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS;
+	TryGetJsonValue(JsonValue, Content);
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS;
+#endif
+
+	return bParsed;
 }
 
-FResponse_ProcessPlatformEntitlementForMe::FResponse_ProcessPlatformEntitlementForMe(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
+FResponse_ProcessPlatformEntitlementForMe::FResponse_ProcessPlatformEntitlementForMe(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
 FString Traits_ProcessPlatformEntitlementForMe::Name = TEXT("ProcessPlatformEntitlementForMe");
+
+FHttpRequestPtr Traits_ProcessPlatformEntitlementForMe::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->ProcessPlatformEntitlementForMe(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FEntitlementsAPI::ProcessPlatformEntitlementsByPlayerUuid(const FRequest_ProcessPlatformEntitlementsByPlayerUuid& Request, const FDelegate_ProcessPlatformEntitlementsByPlayerUuid& Delegate /*= FDelegate_ProcessPlatformEntitlementsByPlayerUuid()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -815,47 +1086,128 @@ FString FResponse_ProcessPlatformEntitlementsByPlayerUuid::GetHttpResponseCodeDe
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
+bool FResponse_ProcessPlatformEntitlementsByPlayerUuid::ParseHeaders()
+{
+	if (!Super::ParseHeaders())
+	{
+		return false;
+	}
+
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 403:
+		break;
+	case 422:
+		break;
+	default:
+		break;
+	}
+	
+	return bParsedAllRequiredHeaders;
+}
+
 bool FResponse_ProcessPlatformEntitlementsByPlayerUuid::TryGetContentFor200(FRHAPI_PlatformEntitlementProcessResult& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 200)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_ProcessPlatformEntitlementsByPlayerUuid::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 403)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_ProcessPlatformEntitlementsByPlayerUuid::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 422)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_ProcessPlatformEntitlementsByPlayerUuid::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-	return TryGetJsonValue(JsonValue, Content);
+	bool bParsed = false;
+	// for non default responses, parse into a temporary object to validate the response can be parsed properly
+	switch ((int)GetHttpResponseCode())
+	{  
+		case 200:
+			{
+				FRHAPI_PlatformEntitlementProcessResult Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_PlatformEntitlementProcessResult>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 403:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 422:
+			{
+				FRHAPI_HTTPValidationError Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+					bParsed = true;
+				}
+				break;
+			}
+		default:
+			break;
+	}
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// if using legacy content object, attempt to parse any response into the main content object.  For some legacy reasons around multiple success variants, this needs to ignore the intended type and always parse into the default type
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS;
+	TryGetJsonValue(JsonValue, Content);
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS;
+#endif
+
+	return bParsed;
 }
 
-FResponse_ProcessPlatformEntitlementsByPlayerUuid::FResponse_ProcessPlatformEntitlementsByPlayerUuid(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
+FResponse_ProcessPlatformEntitlementsByPlayerUuid::FResponse_ProcessPlatformEntitlementsByPlayerUuid(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
 FString Traits_ProcessPlatformEntitlementsByPlayerUuid::Name = TEXT("ProcessPlatformEntitlementsByPlayerUuid");
+
+FHttpRequestPtr Traits_ProcessPlatformEntitlementsByPlayerUuid::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->ProcessPlatformEntitlementsByPlayerUuid(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FEntitlementsAPI::RetrieveEntitlementRequestByPlayerUuid(const FRequest_RetrieveEntitlementRequestByPlayerUuid& Request, const FDelegate_RetrieveEntitlementRequestByPlayerUuid& Delegate /*= FDelegate_RetrieveEntitlementRequestByPlayerUuid()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -1010,47 +1362,128 @@ FString FResponse_RetrieveEntitlementRequestByPlayerUuid::GetHttpResponseCodeDes
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
+bool FResponse_RetrieveEntitlementRequestByPlayerUuid::ParseHeaders()
+{
+	if (!Super::ParseHeaders())
+	{
+		return false;
+	}
+
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 403:
+		break;
+	case 422:
+		break;
+	default:
+		break;
+	}
+	
+	return bParsedAllRequiredHeaders;
+}
+
 bool FResponse_RetrieveEntitlementRequestByPlayerUuid::TryGetContentFor200(FRHAPI_PlatformEntitlementProcessResult& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 200)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_RetrieveEntitlementRequestByPlayerUuid::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 403)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_RetrieveEntitlementRequestByPlayerUuid::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 422)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_RetrieveEntitlementRequestByPlayerUuid::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-	return TryGetJsonValue(JsonValue, Content);
+	bool bParsed = false;
+	// for non default responses, parse into a temporary object to validate the response can be parsed properly
+	switch ((int)GetHttpResponseCode())
+	{  
+		case 200:
+			{
+				FRHAPI_PlatformEntitlementProcessResult Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_PlatformEntitlementProcessResult>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 403:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 422:
+			{
+				FRHAPI_HTTPValidationError Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+					bParsed = true;
+				}
+				break;
+			}
+		default:
+			break;
+	}
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// if using legacy content object, attempt to parse any response into the main content object.  For some legacy reasons around multiple success variants, this needs to ignore the intended type and always parse into the default type
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS;
+	TryGetJsonValue(JsonValue, Content);
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS;
+#endif
+
+	return bParsed;
 }
 
-FResponse_RetrieveEntitlementRequestByPlayerUuid::FResponse_RetrieveEntitlementRequestByPlayerUuid(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
+FResponse_RetrieveEntitlementRequestByPlayerUuid::FResponse_RetrieveEntitlementRequestByPlayerUuid(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
 FString Traits_RetrieveEntitlementRequestByPlayerUuid::Name = TEXT("RetrieveEntitlementRequestByPlayerUuid");
+
+FHttpRequestPtr Traits_RetrieveEntitlementRequestByPlayerUuid::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->RetrieveEntitlementRequestByPlayerUuid(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FEntitlementsAPI::RetrieveEntitlementRequestForMe(const FRequest_RetrieveEntitlementRequestForMe& Request, const FDelegate_RetrieveEntitlementRequestForMe& Delegate /*= FDelegate_RetrieveEntitlementRequestForMe()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -1204,47 +1637,128 @@ FString FResponse_RetrieveEntitlementRequestForMe::GetHttpResponseCodeDescriptio
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
+bool FResponse_RetrieveEntitlementRequestForMe::ParseHeaders()
+{
+	if (!Super::ParseHeaders())
+	{
+		return false;
+	}
+
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 403:
+		break;
+	case 422:
+		break;
+	default:
+		break;
+	}
+	
+	return bParsedAllRequiredHeaders;
+}
+
 bool FResponse_RetrieveEntitlementRequestForMe::TryGetContentFor200(FRHAPI_PlatformEntitlementProcessResult& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 200)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_RetrieveEntitlementRequestForMe::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 403)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_RetrieveEntitlementRequestForMe::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 422)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_RetrieveEntitlementRequestForMe::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-	return TryGetJsonValue(JsonValue, Content);
+	bool bParsed = false;
+	// for non default responses, parse into a temporary object to validate the response can be parsed properly
+	switch ((int)GetHttpResponseCode())
+	{  
+		case 200:
+			{
+				FRHAPI_PlatformEntitlementProcessResult Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_PlatformEntitlementProcessResult>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 403:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 422:
+			{
+				FRHAPI_HTTPValidationError Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+					bParsed = true;
+				}
+				break;
+			}
+		default:
+			break;
+	}
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// if using legacy content object, attempt to parse any response into the main content object.  For some legacy reasons around multiple success variants, this needs to ignore the intended type and always parse into the default type
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS;
+	TryGetJsonValue(JsonValue, Content);
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS;
+#endif
+
+	return bParsed;
 }
 
-FResponse_RetrieveEntitlementRequestForMe::FResponse_RetrieveEntitlementRequestForMe(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
+FResponse_RetrieveEntitlementRequestForMe::FResponse_RetrieveEntitlementRequestForMe(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
 FString Traits_RetrieveEntitlementRequestForMe::Name = TEXT("RetrieveEntitlementRequestForMe");
+
+FHttpRequestPtr Traits_RetrieveEntitlementRequestForMe::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->RetrieveEntitlementRequestForMe(InRequest, InDelegate, InPriority);
+}
 
 
 }

@@ -30,6 +30,8 @@ Configuration about a specific map for an instance to load into.
 `public bool `[`Name_IsSet`](#structFRHAPI__MapConfigV2_1ab7f0473ee626ee99752d7c54a444a274) | true if Name_Optional has been set to a value
 `public FString `[`Description_Optional`](#structFRHAPI__MapConfigV2_1a6179723e642c23a19733354d2a01979c) | Description of the map.
 `public bool `[`Description_IsSet`](#structFRHAPI__MapConfigV2_1ae98bc8edd823f8531c7881acdf57aba5) | true if Description_Optional has been set to a value
+`public FString `[`MiscParams_Optional`](#structFRHAPI__MapConfigV2_1ae2d540e4731432cf6fb3f2fc49064a18) | Misc params to be passed to the instance when using this map.
+`public bool `[`MiscParams_IsSet`](#structFRHAPI__MapConfigV2_1aa8ec9eb44ef7861e4a103346a0210fb6) | true if MiscParams_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__MapConfigV2_1a949a198ddd86e878003045d5b425d322)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__MapConfigV2_1ae53f488100b29693510a7b85914d07fd)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetMapId`](#structFRHAPI__MapConfigV2_1aa60296fd483bfcaca29d9cf95445ada3)`()` | Gets the value of MapId.
@@ -80,6 +82,15 @@ Configuration about a specific map for an instance to load into.
 `public inline void `[`SetDescription`](#structFRHAPI__MapConfigV2_1ad557c8d0cf2f83e4c8ff2631b753e6c5)`(const FString & NewValue)` | Sets the value of Description_Optional and also sets Description_IsSet to true.
 `public inline void `[`SetDescription`](#structFRHAPI__MapConfigV2_1a88eb99e17d8ac3317a657cb4412c8984)`(FString && NewValue)` | Sets the value of Description_Optional and also sets Description_IsSet to true using move semantics.
 `public inline void `[`ClearDescription`](#structFRHAPI__MapConfigV2_1a6887c09f5c3b4a23def578232720aede)`()` | Clears the value of Description_Optional and sets Description_IsSet to false.
+`public inline FString & `[`GetMiscParams`](#structFRHAPI__MapConfigV2_1a36d8539c00b87423d346ab40b5b245d6)`()` | Gets the value of MiscParams_Optional, regardless of it having been set.
+`public inline const FString & `[`GetMiscParams`](#structFRHAPI__MapConfigV2_1ab14ea08b808b4b44dc3cb3363c53dac5)`() const` | Gets the value of MiscParams_Optional, regardless of it having been set.
+`public inline const FString & `[`GetMiscParams`](#structFRHAPI__MapConfigV2_1a9bb71768a329856c9da91e1ad2e01153)`(const FString & DefaultValue) const` | Gets the value of MiscParams_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetMiscParams`](#structFRHAPI__MapConfigV2_1abb75a20952ca6bef6471d98ede2583b0)`(FString & OutValue) const` | Fills OutValue with the value of MiscParams_Optional and returns true if it has been set, otherwise returns false.
+`public inline FString * `[`GetMiscParamsOrNull`](#structFRHAPI__MapConfigV2_1a08d9ef801b25f51d09a6fddafccadf79)`()` | Returns a pointer to MiscParams_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetMiscParamsOrNull`](#structFRHAPI__MapConfigV2_1ac434e12ff7a35e004eeecbfe9ad70795)`() const` | Returns a pointer to MiscParams_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetMiscParams`](#structFRHAPI__MapConfigV2_1af95464e7160ab423ecb915e4144fbe9c)`(const FString & NewValue)` | Sets the value of MiscParams_Optional and also sets MiscParams_IsSet to true.
+`public inline void `[`SetMiscParams`](#structFRHAPI__MapConfigV2_1a18068cca0821d7e525417e1983b8368f)`(FString && NewValue)` | Sets the value of MiscParams_Optional and also sets MiscParams_IsSet to true using move semantics.
+`public inline void `[`ClearMiscParams`](#structFRHAPI__MapConfigV2_1a1ecaf6a0ee4229478591db99046b90f4)`()` | Clears the value of MiscParams_Optional and sets MiscParams_IsSet to false.
 
 ### Members
 
@@ -126,6 +137,14 @@ Description of the map.
 #### `public bool `[`Description_IsSet`](#structFRHAPI__MapConfigV2_1ae98bc8edd823f8531c7881acdf57aba5) <a id="structFRHAPI__MapConfigV2_1ae98bc8edd823f8531c7881acdf57aba5"></a>
 
 true if Description_Optional has been set to a value
+
+#### `public FString `[`MiscParams_Optional`](#structFRHAPI__MapConfigV2_1ae2d540e4731432cf6fb3f2fc49064a18) <a id="structFRHAPI__MapConfigV2_1ae2d540e4731432cf6fb3f2fc49064a18"></a>
+
+Misc params to be passed to the instance when using this map.
+
+#### `public bool `[`MiscParams_IsSet`](#structFRHAPI__MapConfigV2_1aa8ec9eb44ef7861e4a103346a0210fb6) <a id="structFRHAPI__MapConfigV2_1aa8ec9eb44ef7861e4a103346a0210fb6"></a>
+
+true if MiscParams_Optional has been set to a value
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__MapConfigV2_1a949a198ddd86e878003045d5b425d322)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__MapConfigV2_1a949a198ddd86e878003045d5b425d322"></a>
 
@@ -335,4 +354,40 @@ Sets the value of Description_Optional and also sets Description_IsSet to true u
 #### `public inline void `[`ClearDescription`](#structFRHAPI__MapConfigV2_1a6887c09f5c3b4a23def578232720aede)`()` <a id="structFRHAPI__MapConfigV2_1a6887c09f5c3b4a23def578232720aede"></a>
 
 Clears the value of Description_Optional and sets Description_IsSet to false.
+
+#### `public inline FString & `[`GetMiscParams`](#structFRHAPI__MapConfigV2_1a36d8539c00b87423d346ab40b5b245d6)`()` <a id="structFRHAPI__MapConfigV2_1a36d8539c00b87423d346ab40b5b245d6"></a>
+
+Gets the value of MiscParams_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetMiscParams`](#structFRHAPI__MapConfigV2_1ab14ea08b808b4b44dc3cb3363c53dac5)`() const` <a id="structFRHAPI__MapConfigV2_1ab14ea08b808b4b44dc3cb3363c53dac5"></a>
+
+Gets the value of MiscParams_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetMiscParams`](#structFRHAPI__MapConfigV2_1a9bb71768a329856c9da91e1ad2e01153)`(const FString & DefaultValue) const` <a id="structFRHAPI__MapConfigV2_1a9bb71768a329856c9da91e1ad2e01153"></a>
+
+Gets the value of MiscParams_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetMiscParams`](#structFRHAPI__MapConfigV2_1abb75a20952ca6bef6471d98ede2583b0)`(FString & OutValue) const` <a id="structFRHAPI__MapConfigV2_1abb75a20952ca6bef6471d98ede2583b0"></a>
+
+Fills OutValue with the value of MiscParams_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline FString * `[`GetMiscParamsOrNull`](#structFRHAPI__MapConfigV2_1a08d9ef801b25f51d09a6fddafccadf79)`()` <a id="structFRHAPI__MapConfigV2_1a08d9ef801b25f51d09a6fddafccadf79"></a>
+
+Returns a pointer to MiscParams_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const FString * `[`GetMiscParamsOrNull`](#structFRHAPI__MapConfigV2_1ac434e12ff7a35e004eeecbfe9ad70795)`() const` <a id="structFRHAPI__MapConfigV2_1ac434e12ff7a35e004eeecbfe9ad70795"></a>
+
+Returns a pointer to MiscParams_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetMiscParams`](#structFRHAPI__MapConfigV2_1af95464e7160ab423ecb915e4144fbe9c)`(const FString & NewValue)` <a id="structFRHAPI__MapConfigV2_1af95464e7160ab423ecb915e4144fbe9c"></a>
+
+Sets the value of MiscParams_Optional and also sets MiscParams_IsSet to true.
+
+#### `public inline void `[`SetMiscParams`](#structFRHAPI__MapConfigV2_1a18068cca0821d7e525417e1983b8368f)`(FString && NewValue)` <a id="structFRHAPI__MapConfigV2_1a18068cca0821d7e525417e1983b8368f"></a>
+
+Sets the value of MiscParams_Optional and also sets MiscParams_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearMiscParams`](#structFRHAPI__MapConfigV2_1a1ecaf6a0ee4229478591db99046b90f4)`()` <a id="structFRHAPI__MapConfigV2_1a1ecaf6a0ee4229478591db99046b90f4"></a>
+
+Clears the value of MiscParams_Optional and sets MiscParams_IsSet to false.
 

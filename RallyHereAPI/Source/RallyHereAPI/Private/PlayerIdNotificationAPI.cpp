@@ -192,77 +192,200 @@ FString FResponse_PlayeridCreateNotification::GetHttpResponseCodeDescription(EHt
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
+bool FResponse_PlayeridCreateNotification::ParseHeaders()
+{
+	if (!Super::ParseHeaders())
+	{
+		return false;
+	}
+
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 400:
+		break;
+	case 403:
+		break;
+	case 409:
+		break;
+	case 422:
+		break;
+	case 503:
+		break;
+	default:
+		break;
+	}
+	
+	return bParsedAllRequiredHeaders;
+}
+
 bool FResponse_PlayeridCreateNotification::TryGetContentFor200(FRHAPI_NotificationCreateResult& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 200)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridCreateNotification::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 400)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridCreateNotification::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 403)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridCreateNotification::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 409)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridCreateNotification::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 422)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridCreateNotification::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 503)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridCreateNotification::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-	return TryGetJsonValue(JsonValue, Content);
+	bool bParsed = false;
+	// for non default responses, parse into a temporary object to validate the response can be parsed properly
+	switch ((int)GetHttpResponseCode())
+	{  
+		case 200:
+			{
+				FRHAPI_NotificationCreateResult Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_NotificationCreateResult>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 400:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 403:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 409:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 422:
+			{
+				FRHAPI_HTTPValidationError Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 503:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			}
+		default:
+			break;
+	}
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// if using legacy content object, attempt to parse any response into the main content object.  For some legacy reasons around multiple success variants, this needs to ignore the intended type and always parse into the default type
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS;
+	TryGetJsonValue(JsonValue, Content);
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS;
+#endif
+
+	return bParsed;
 }
 
-FResponse_PlayeridCreateNotification::FResponse_PlayeridCreateNotification(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
+FResponse_PlayeridCreateNotification::FResponse_PlayeridCreateNotification(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
 FString Traits_PlayeridCreateNotification::Name = TEXT("PlayeridCreateNotification");
+
+FHttpRequestPtr Traits_PlayeridCreateNotification::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->PlayeridCreateNotification(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridCreateNotificationSelf(const FRequest_PlayeridCreateNotificationSelf& Request, const FDelegate_PlayeridCreateNotificationSelf& Delegate /*= FDelegate_PlayeridCreateNotificationSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -428,77 +551,200 @@ FString FResponse_PlayeridCreateNotificationSelf::GetHttpResponseCodeDescription
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
+bool FResponse_PlayeridCreateNotificationSelf::ParseHeaders()
+{
+	if (!Super::ParseHeaders())
+	{
+		return false;
+	}
+
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 400:
+		break;
+	case 403:
+		break;
+	case 409:
+		break;
+	case 422:
+		break;
+	case 503:
+		break;
+	default:
+		break;
+	}
+	
+	return bParsedAllRequiredHeaders;
+}
+
 bool FResponse_PlayeridCreateNotificationSelf::TryGetContentFor200(FRHAPI_NotificationCreateResult& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 200)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridCreateNotificationSelf::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 400)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridCreateNotificationSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 403)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridCreateNotificationSelf::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 409)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridCreateNotificationSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 422)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridCreateNotificationSelf::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 503)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridCreateNotificationSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-	return TryGetJsonValue(JsonValue, Content);
+	bool bParsed = false;
+	// for non default responses, parse into a temporary object to validate the response can be parsed properly
+	switch ((int)GetHttpResponseCode())
+	{  
+		case 200:
+			{
+				FRHAPI_NotificationCreateResult Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_NotificationCreateResult>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 400:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 403:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 409:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 422:
+			{
+				FRHAPI_HTTPValidationError Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 503:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			}
+		default:
+			break;
+	}
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// if using legacy content object, attempt to parse any response into the main content object.  For some legacy reasons around multiple success variants, this needs to ignore the intended type and always parse into the default type
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS;
+	TryGetJsonValue(JsonValue, Content);
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS;
+#endif
+
+	return bParsed;
 }
 
-FResponse_PlayeridCreateNotificationSelf::FResponse_PlayeridCreateNotificationSelf(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
+FResponse_PlayeridCreateNotificationSelf::FResponse_PlayeridCreateNotificationSelf(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
 FString Traits_PlayeridCreateNotificationSelf::Name = TEXT("PlayeridCreateNotificationSelf");
+
+FHttpRequestPtr Traits_PlayeridCreateNotificationSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->PlayeridCreateNotificationSelf(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridGetNotificationById(const FRequest_PlayeridGetNotificationById& Request, const FDelegate_PlayeridGetNotificationById& Delegate /*= FDelegate_PlayeridGetNotificationById()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -661,87 +907,224 @@ FString FResponse_PlayeridGetNotificationById::GetHttpResponseCodeDescription(EH
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
+bool FResponse_PlayeridGetNotificationById::ParseHeaders()
+{
+	if (!Super::ParseHeaders())
+	{
+		return false;
+	}
+
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 400:
+		break;
+	case 403:
+		break;
+	case 404:
+		break;
+	case 409:
+		break;
+	case 422:
+		break;
+	case 503:
+		break;
+	default:
+		break;
+	}
+	
+	return bParsedAllRequiredHeaders;
+}
+
 bool FResponse_PlayeridGetNotificationById::TryGetContentFor200(FRHAPI_Notification& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 200)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridGetNotificationById::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 400)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridGetNotificationById::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 403)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridGetNotificationById::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 404)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridGetNotificationById::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 409)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridGetNotificationById::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 422)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridGetNotificationById::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 503)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridGetNotificationById::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-	return TryGetJsonValue(JsonValue, Content);
+	bool bParsed = false;
+	// for non default responses, parse into a temporary object to validate the response can be parsed properly
+	switch ((int)GetHttpResponseCode())
+	{  
+		case 200:
+			{
+				FRHAPI_Notification Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_Notification>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 400:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 403:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 404:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 409:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 422:
+			{
+				FRHAPI_HTTPValidationError Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 503:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			}
+		default:
+			break;
+	}
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// if using legacy content object, attempt to parse any response into the main content object.  For some legacy reasons around multiple success variants, this needs to ignore the intended type and always parse into the default type
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS;
+	TryGetJsonValue(JsonValue, Content);
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS;
+#endif
+
+	return bParsed;
 }
 
-FResponse_PlayeridGetNotificationById::FResponse_PlayeridGetNotificationById(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
+FResponse_PlayeridGetNotificationById::FResponse_PlayeridGetNotificationById(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
 FString Traits_PlayeridGetNotificationById::Name = TEXT("PlayeridGetNotificationById");
+
+FHttpRequestPtr Traits_PlayeridGetNotificationById::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->PlayeridGetNotificationById(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridGetNotificationByIdSelf(const FRequest_PlayeridGetNotificationByIdSelf& Request, const FDelegate_PlayeridGetNotificationByIdSelf& Delegate /*= FDelegate_PlayeridGetNotificationByIdSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -903,87 +1286,224 @@ FString FResponse_PlayeridGetNotificationByIdSelf::GetHttpResponseCodeDescriptio
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
+bool FResponse_PlayeridGetNotificationByIdSelf::ParseHeaders()
+{
+	if (!Super::ParseHeaders())
+	{
+		return false;
+	}
+
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 400:
+		break;
+	case 403:
+		break;
+	case 404:
+		break;
+	case 409:
+		break;
+	case 422:
+		break;
+	case 503:
+		break;
+	default:
+		break;
+	}
+	
+	return bParsedAllRequiredHeaders;
+}
+
 bool FResponse_PlayeridGetNotificationByIdSelf::TryGetContentFor200(FRHAPI_Notification& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 200)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridGetNotificationByIdSelf::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 400)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridGetNotificationByIdSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 403)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridGetNotificationByIdSelf::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 404)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridGetNotificationByIdSelf::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 409)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridGetNotificationByIdSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 422)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridGetNotificationByIdSelf::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 503)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridGetNotificationByIdSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-	return TryGetJsonValue(JsonValue, Content);
+	bool bParsed = false;
+	// for non default responses, parse into a temporary object to validate the response can be parsed properly
+	switch ((int)GetHttpResponseCode())
+	{  
+		case 200:
+			{
+				FRHAPI_Notification Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_Notification>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 400:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 403:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 404:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 409:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 422:
+			{
+				FRHAPI_HTTPValidationError Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 503:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			}
+		default:
+			break;
+	}
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// if using legacy content object, attempt to parse any response into the main content object.  For some legacy reasons around multiple success variants, this needs to ignore the intended type and always parse into the default type
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS;
+	TryGetJsonValue(JsonValue, Content);
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS;
+#endif
+
+	return bParsed;
 }
 
-FResponse_PlayeridGetNotificationByIdSelf::FResponse_PlayeridGetNotificationByIdSelf(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
+FResponse_PlayeridGetNotificationByIdSelf::FResponse_PlayeridGetNotificationByIdSelf(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
 FString Traits_PlayeridGetNotificationByIdSelf::Name = TEXT("PlayeridGetNotificationByIdSelf");
+
+FHttpRequestPtr Traits_PlayeridGetNotificationByIdSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->PlayeridGetNotificationByIdSelf(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridGetNotificationsPage(const FRequest_PlayeridGetNotificationsPage& Request, const FDelegate_PlayeridGetNotificationsPage& Delegate /*= FDelegate_PlayeridGetNotificationsPage()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -1167,77 +1687,202 @@ FString FResponse_PlayeridGetNotificationsPage::GetHttpResponseCodeDescription(E
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
+bool FResponse_PlayeridGetNotificationsPage::ParseHeaders()
+{
+	if (!Super::ParseHeaders())
+	{
+		return false;
+	}
+
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 304:
+		break;
+	case 400:
+		break;
+	case 403:
+		break;
+	case 409:
+		break;
+	case 422:
+		break;
+	case 503:
+		break;
+	default:
+		break;
+	}
+	
+	return bParsedAllRequiredHeaders;
+}
+
 bool FResponse_PlayeridGetNotificationsPage::TryGetContentFor200(FRHAPI_Notifications& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 200)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridGetNotificationsPage::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 400)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridGetNotificationsPage::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 403)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridGetNotificationsPage::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 409)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridGetNotificationsPage::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 422)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridGetNotificationsPage::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 503)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridGetNotificationsPage::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-	return TryGetJsonValue(JsonValue, Content);
+	bool bParsed = false;
+	// for non default responses, parse into a temporary object to validate the response can be parsed properly
+	switch ((int)GetHttpResponseCode())
+	{  
+		case 200:
+			{
+				FRHAPI_Notifications Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_Notifications>(Object);
+					bParsed = true;
+				}
+				break;
+			}  
+		case 400:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 403:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 409:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 422:
+			{
+				FRHAPI_HTTPValidationError Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 503:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			}
+		default:
+			break;
+	}
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// if using legacy content object, attempt to parse any response into the main content object.  For some legacy reasons around multiple success variants, this needs to ignore the intended type and always parse into the default type
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS;
+	TryGetJsonValue(JsonValue, Content);
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS;
+#endif
+
+	return bParsed;
 }
 
-FResponse_PlayeridGetNotificationsPage::FResponse_PlayeridGetNotificationsPage(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
+FResponse_PlayeridGetNotificationsPage::FResponse_PlayeridGetNotificationsPage(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
 FString Traits_PlayeridGetNotificationsPage::Name = TEXT("PlayeridGetNotificationsPage");
+
+FHttpRequestPtr Traits_PlayeridGetNotificationsPage::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->PlayeridGetNotificationsPage(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridGetNotificationsPageSelf(const FRequest_PlayeridGetNotificationsPageSelf& Request, const FDelegate_PlayeridGetNotificationsPageSelf& Delegate /*= FDelegate_PlayeridGetNotificationsPageSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -1416,77 +2061,202 @@ FString FResponse_PlayeridGetNotificationsPageSelf::GetHttpResponseCodeDescripti
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
+bool FResponse_PlayeridGetNotificationsPageSelf::ParseHeaders()
+{
+	if (!Super::ParseHeaders())
+	{
+		return false;
+	}
+
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 304:
+		break;
+	case 400:
+		break;
+	case 403:
+		break;
+	case 409:
+		break;
+	case 422:
+		break;
+	case 503:
+		break;
+	default:
+		break;
+	}
+	
+	return bParsedAllRequiredHeaders;
+}
+
 bool FResponse_PlayeridGetNotificationsPageSelf::TryGetContentFor200(FRHAPI_Notifications& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 200)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridGetNotificationsPageSelf::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 400)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridGetNotificationsPageSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 403)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridGetNotificationsPageSelf::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 409)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridGetNotificationsPageSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 422)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridGetNotificationsPageSelf::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 503)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridGetNotificationsPageSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-	return TryGetJsonValue(JsonValue, Content);
+	bool bParsed = false;
+	// for non default responses, parse into a temporary object to validate the response can be parsed properly
+	switch ((int)GetHttpResponseCode())
+	{  
+		case 200:
+			{
+				FRHAPI_Notifications Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_Notifications>(Object);
+					bParsed = true;
+				}
+				break;
+			}  
+		case 400:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 403:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 409:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 422:
+			{
+				FRHAPI_HTTPValidationError Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 503:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			}
+		default:
+			break;
+	}
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// if using legacy content object, attempt to parse any response into the main content object.  For some legacy reasons around multiple success variants, this needs to ignore the intended type and always parse into the default type
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS;
+	TryGetJsonValue(JsonValue, Content);
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS;
+#endif
+
+	return bParsed;
 }
 
-FResponse_PlayeridGetNotificationsPageSelf::FResponse_PlayeridGetNotificationsPageSelf(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
+FResponse_PlayeridGetNotificationsPageSelf::FResponse_PlayeridGetNotificationsPageSelf(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
 FString Traits_PlayeridGetNotificationsPageSelf::Name = TEXT("PlayeridGetNotificationsPageSelf");
+
+FHttpRequestPtr Traits_PlayeridGetNotificationsPageSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->PlayeridGetNotificationsPageSelf(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridLongPollForNotifications(const FRequest_PlayeridLongPollForNotifications& Request, const FDelegate_PlayeridLongPollForNotifications& Delegate /*= FDelegate_PlayeridLongPollForNotifications()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -1666,77 +2436,200 @@ FString FResponse_PlayeridLongPollForNotifications::GetHttpResponseCodeDescripti
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
+bool FResponse_PlayeridLongPollForNotifications::ParseHeaders()
+{
+	if (!Super::ParseHeaders())
+	{
+		return false;
+	}
+
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 400:
+		break;
+	case 403:
+		break;
+	case 409:
+		break;
+	case 422:
+		break;
+	case 503:
+		break;
+	default:
+		break;
+	}
+	
+	return bParsedAllRequiredHeaders;
+}
+
 bool FResponse_PlayeridLongPollForNotifications::TryGetContentFor200(FRHAPI_Notifications& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 200)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridLongPollForNotifications::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 400)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridLongPollForNotifications::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 403)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridLongPollForNotifications::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 409)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridLongPollForNotifications::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 422)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridLongPollForNotifications::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 503)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridLongPollForNotifications::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-	return TryGetJsonValue(JsonValue, Content);
+	bool bParsed = false;
+	// for non default responses, parse into a temporary object to validate the response can be parsed properly
+	switch ((int)GetHttpResponseCode())
+	{  
+		case 200:
+			{
+				FRHAPI_Notifications Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_Notifications>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 400:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 403:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 409:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 422:
+			{
+				FRHAPI_HTTPValidationError Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 503:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			}
+		default:
+			break;
+	}
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// if using legacy content object, attempt to parse any response into the main content object.  For some legacy reasons around multiple success variants, this needs to ignore the intended type and always parse into the default type
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS;
+	TryGetJsonValue(JsonValue, Content);
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS;
+#endif
+
+	return bParsed;
 }
 
-FResponse_PlayeridLongPollForNotifications::FResponse_PlayeridLongPollForNotifications(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
+FResponse_PlayeridLongPollForNotifications::FResponse_PlayeridLongPollForNotifications(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
 FString Traits_PlayeridLongPollForNotifications::Name = TEXT("PlayeridLongPollForNotifications");
+
+FHttpRequestPtr Traits_PlayeridLongPollForNotifications::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->PlayeridLongPollForNotifications(InRequest, InDelegate, InPriority);
+}
 
 FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridLongPollForNotificationsSelf(const FRequest_PlayeridLongPollForNotificationsSelf& Request, const FDelegate_PlayeridLongPollForNotificationsSelf& Delegate /*= FDelegate_PlayeridLongPollForNotificationsSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -1911,77 +2804,200 @@ FString FResponse_PlayeridLongPollForNotificationsSelf::GetHttpResponseCodeDescr
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
+bool FResponse_PlayeridLongPollForNotificationsSelf::ParseHeaders()
+{
+	if (!Super::ParseHeaders())
+	{
+		return false;
+	}
+
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 400:
+		break;
+	case 403:
+		break;
+	case 409:
+		break;
+	case 422:
+		break;
+	case 503:
+		break;
+	default:
+		break;
+	}
+	
+	return bParsedAllRequiredHeaders;
+}
+
 bool FResponse_PlayeridLongPollForNotificationsSelf::TryGetContentFor200(FRHAPI_Notifications& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 200)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridLongPollForNotificationsSelf::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 400)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridLongPollForNotificationsSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 403)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridLongPollForNotificationsSelf::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 409)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridLongPollForNotificationsSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 422)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridLongPollForNotificationsSelf::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
 {
-	const auto* JsonResponse = TryGetPayload<JsonPayloadType>();
-	if (JsonResponse != nullptr)
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 503)
 	{
-		return TryGetJsonValue(*JsonResponse, OutContent);
+		return false;
 	}
-	return false;
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
 }
 
 bool FResponse_PlayeridLongPollForNotificationsSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-	return TryGetJsonValue(JsonValue, Content);
+	bool bParsed = false;
+	// for non default responses, parse into a temporary object to validate the response can be parsed properly
+	switch ((int)GetHttpResponseCode())
+	{  
+		case 200:
+			{
+				FRHAPI_Notifications Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_Notifications>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 400:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 403:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 409:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 422:
+			{
+				FRHAPI_HTTPValidationError Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 503:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+					bParsed = true;
+				}
+				break;
+			}
+		default:
+			break;
+	}
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// if using legacy content object, attempt to parse any response into the main content object.  For some legacy reasons around multiple success variants, this needs to ignore the intended type and always parse into the default type
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS;
+	TryGetJsonValue(JsonValue, Content);
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS;
+#endif
+
+	return bParsed;
 }
 
-FResponse_PlayeridLongPollForNotificationsSelf::FResponse_PlayeridLongPollForNotificationsSelf(FRequestMetadata InRequestMetadata) :
-	FResponse(MoveTemp(InRequestMetadata))
+FResponse_PlayeridLongPollForNotificationsSelf::FResponse_PlayeridLongPollForNotificationsSelf(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
 FString Traits_PlayeridLongPollForNotificationsSelf::Name = TEXT("PlayeridLongPollForNotificationsSelf");
+
+FHttpRequestPtr Traits_PlayeridLongPollForNotificationsSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->PlayeridLongPollForNotificationsSelf(InRequest, InDelegate, InPriority);
+}
 
 
 }

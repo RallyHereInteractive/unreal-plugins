@@ -1,4 +1,3 @@
-#include "CoreMinimal.h"
 #include "RallyHereAPIAll.h"
 
 namespace RallyHereAPI
@@ -27,6 +26,7 @@ FRallyHereAPIAll::FRallyHereAPIAll()
 	, KeyEntitlements(MakeShareable(new FKeyEntitlementsAPI()))
 	, Marketing(MakeShareable(new FMarketingAPI()))
 	, Match(MakeShareable(new FMatchAPI()))
+	, Pex(MakeShareable(new FPexAPI()))
 	, PlayerIdNotification(MakeShareable(new FPlayerIdNotificationAPI()))
 	, PlayerNotification(MakeShareable(new FPlayerNotificationAPI()))
 	, Presence(MakeShareable(new FPresenceAPI()))
@@ -64,6 +64,7 @@ FRallyHereAPIAll::FRallyHereAPIAll()
 	AllAPIs.Add(KeyEntitlements);
 	AllAPIs.Add(Marketing);
 	AllAPIs.Add(Match);
+	AllAPIs.Add(Pex);
 	AllAPIs.Add(PlayerIdNotification);
 	AllAPIs.Add(PlayerNotification);
 	AllAPIs.Add(Presence);
@@ -293,6 +294,16 @@ TSharedRef<FMatchAPI> FRallyHereAPIAll::GetMatch()
 const TSharedRef<FMatchAPI> FRallyHereAPIAll::GetMatch() const
 {
 	return Match;
+}
+
+TSharedRef<FPexAPI> FRallyHereAPIAll::GetPex()
+{
+	return Pex;
+}
+
+const TSharedRef<FPexAPI> FRallyHereAPIAll::GetPex() const
+{
+	return Pex;
 }
 
 TSharedRef<FPlayerIdNotificationAPI> FRallyHereAPIAll::GetPlayerIdNotification()

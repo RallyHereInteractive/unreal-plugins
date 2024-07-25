@@ -24,6 +24,8 @@ FString EnumToString(const ERHAPI_DeleteTicketReason& Value)
 	{
 	case ERHAPI_DeleteTicketReason::Assigned:
 		return TEXT("assigned");
+	case ERHAPI_DeleteTicketReason::Backfilled:
+		return TEXT("backfilled");
 	case ERHAPI_DeleteTicketReason::LeftQueue:
 		return TEXT("left_queue");
 	case ERHAPI_DeleteTicketReason::Timeout:
@@ -40,6 +42,7 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_DeleteTicketReason& Valu
 {
 	static TMap<FString, ERHAPI_DeleteTicketReason> StringToEnum = { 
 		{ TEXT("assigned"), ERHAPI_DeleteTicketReason::Assigned },
+		{ TEXT("backfilled"), ERHAPI_DeleteTicketReason::Backfilled },
 		{ TEXT("left_queue"), ERHAPI_DeleteTicketReason::LeftQueue },
 		{ TEXT("timeout"), ERHAPI_DeleteTicketReason::Timeout },
 		{ TEXT("party_changed"), ERHAPI_DeleteTicketReason::PartyChanged },	};

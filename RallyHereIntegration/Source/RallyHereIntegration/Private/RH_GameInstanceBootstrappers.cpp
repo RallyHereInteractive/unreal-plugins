@@ -540,7 +540,7 @@ void URH_GameInstanceServerBootstrapper::OnBootstrappingFailed(const FString& Fa
 		}
 
 #if RH_FROM_ENGINE_VERSION(5,0)
-		FHttpModule::Get().GetHttpManager().Flush(EHttpFlushReason::FullFlush);
+		FHttpModule::Get().GetHttpManager().Flush(EHttpFlushReason::Default);
 #else
 		FHttpModule::Get().GetHttpManager().Flush(false);
 #endif
@@ -694,14 +694,7 @@ void URH_GameInstanceServerBootstrapper::Recycle()
 
 	// dispose of the previous game host adapter
 	GameHostProvider.Reset();
-
-	// if a match is marked as active in the match subsystem, clear it out so that we do not write any data to it on initialization
-	auto MatchSubsystem = GetGameInstanceSubsystem()->GetMatchSubsystem();
-	if (MatchSubsystem != nullptr && MatchSubsystem->HasActiveMatchId())
-	{
-		MatchSubsystem->SetActiveMatchId(TEXT(""));
-	}
-
+	
 	// we have already logged in, restart registration
 	BeginRegistration();
 }
@@ -952,9 +945,10 @@ void URH_GameInstanceServerBootstrapper::OnReservationComplete(bool bSuccess)
 		auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 			BaseType::Delegate::CreateWeakLambda(this, [this](const BaseType::Response& Resp)
 				{
-					if (Resp.IsSuccessful())
+					const auto Content = Resp.TryGetDefaultContentAsPointer();
+					if (Resp.IsSuccessful() && Content != nullptr)
 					{
-						BootstrappingResult.AllocationInfo.SessionId = Resp.Content.GetSessionId();
+						BootstrappingResult.AllocationInfo.SessionId = Content->GetSessionId();
 					}
 				}),
 			FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this](bool bSuccess, const FRH_ErrorInfo& Error)
@@ -1065,7 +1059,7 @@ void URH_GameInstanceServerBootstrapper::OnRegistrationFinalizerComplete(bool bS
 				}
 
 				InstanceRequest.SetInstanceStartupParams(InstanceStartupParams);
-				InstanceRequest.SetHostType(ERHAPI_HostType::Player); // TODO - make dedicated instance type
+				InstanceRequest.SetHostType(ERHAPI_HostType::Preallocated);
 
 				RHSession->RequestInstance(InstanceRequest, FRH_OnSessionUpdatedDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnSessionInstanceCreationCompleted));
 			}
@@ -1096,10 +1090,6 @@ void URH_GameInstanceServerBootstrapper::OnSessionInstanceCreationCompleted(bool
 		)
 	{
 		SyncToSession();
-		if (BootstrapMode == ERH_ServerBootstrapMode::AutoCreate)
-		{
-			BeginSelfAllocate();
-		}
 	}
 	else
 	{
@@ -1114,13 +1104,21 @@ void URH_GameInstanceServerBootstrapper::SyncToSession()
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
 	auto* SessionSubsystem = GetGameInstanceSubsystem()->GetSessionSubsystem();
-
+	
 	if (SessionSubsystem != nullptr && RHSession != nullptr)
 	{
+		UpdateBootstrapStep(ERH_ServerBootstrapFlowStep::SyncingToSession);
+		
+		// notify the hosting provider that we are now allocating ourselves
+        if (BootstrapMode == ERH_ServerBootstrapMode::AutoCreate)
+        {
+        	BeginSelfAllocate();
+        }
+		
 		RHSession->StartPolling(); // rather than bootstrapper polling all sessions, tell session to poll internally
 		RHSession->OnSessionUpdatedDelegate.AddUObject(this, &URH_GameInstanceServerBootstrapper::OnSessionUpdated);
 		RHSession->OnSessionNotFoundDelegate.AddUObject(this, &URH_GameInstanceServerBootstrapper::OnSessionNotFound);
-		UpdateBootstrapStep(ERH_ServerBootstrapFlowStep::SyncingToSession);
+		
 		SessionSubsystem->SyncToSession(RHSession, FRH_GameInstanceSessionSyncDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnSyncToSessionComplete));
 	}
 	else if (RHSession == nullptr)
@@ -1396,7 +1394,7 @@ void URH_GameInstanceServerBootstrapper::ConditionalRecycle()
 
 			// flush the HTTP manager
 #if RH_FROM_ENGINE_VERSION(5,0)
-			FHttpModule::Get().GetHttpManager().Flush(EHttpFlushReason::FullFlush);
+			FHttpModule::Get().GetHttpManager().Flush(EHttpFlushReason::Default);
 #else
 			FHttpModule::Get().GetHttpManager().Flush(false);
 #endif
@@ -1741,13 +1739,17 @@ bool URH_GameInstanceServerBootstrapper::CanAutoUploadServerFiles() const
 FRH_RemoteFileApiDirectory URH_GameInstanceServerBootstrapper::GetAutoUploadDirectory(bool bDeveloperFile) const
 {
 	auto GISS = GetGameInstanceSubsystem();
-	if (GISS != nullptr && GISS->GetMatchSubsystem() != nullptr)
+	if (GISS != nullptr && GISS->GetSessionSubsystem() != nullptr)
 	{
-		if (bDeveloperFile)
+		const auto MatchId = GISS->GetSessionSubsystem()->GetActiveMatchId();
+		if (!MatchId.IsEmpty())
 		{
-			return GISS->GetMatchSubsystem()->GetMatchDeveloperFileDirectory(GISS->GetMatchSubsystem()->GetActiveMatchId());
+			if (bDeveloperFile)
+			{
+				return URH_MatchSubsystem::GetMatchDeveloperFileDirectory(MatchId);
+			}
+			return URH_MatchSubsystem::GetMatchFileDirectory(MatchId);
 		}
-		return GISS->GetMatchSubsystem()->GetMatchFileDirectory(GISS->GetMatchSubsystem()->GetActiveMatchId());
 	}
 	return FRH_RemoteFileApiDirectory();
 }

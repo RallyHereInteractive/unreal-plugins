@@ -38,10 +38,15 @@ void FRHDTW_Automation::Init(URallyHereDebugTool* InOwner, const FString& InName
 	AutomationController = AutomationControllerModule->GetAutomationController();
 
 	AutomationController->Init();
-	AutomationController->OnTestsRefreshed().AddSPLambda(this, [this]()
+	AutomationController->OnTestsRefreshed().AddLambda([this, WeakThis=AsWeak()]()
 		{
-			// Reset the filter string when the tests are refreshed
-			bHasInitializedFilter = false;
+			// use weak pointer to validate this pointer is still valid (this is a workaround for some engine versions not having CreateLambdaSP())
+			auto StrongThis = WeakThis.Pin();
+			if (StrongThis.IsValid())
+			{
+				// Reset the filter string when the tests are refreshed
+				bHasInitializedFilter = false;
+			}
 		});
 }
 
@@ -321,7 +326,11 @@ void FRHDTW_Automation::DoRunTab()
 
 void FRHDTW_Automation::DoResultsTab()
 {
+#if RH_FROM_ENGINE_VERSION(5,3)
 	auto EnabledReports = AutomationController->GetEnabledReports();
+#else
+	auto EnabledReports = AutomationController->GetReports();
+#endif
 
 	EnabledReports.Sort([](const TSharedPtr<IAutomationReport>& A, const TSharedPtr<IAutomationReport>& B)
 		{

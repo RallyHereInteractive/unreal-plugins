@@ -29,59 +29,1787 @@ using RallyHereAPI::ToStringFormatArg;
 using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
-struct FRequest_CalculateV2Ranks;
-struct FResponse_CalculateV2Ranks;
-struct FRequest_CalculateV3Ranks;
-struct FResponse_CalculateV3Ranks;
-struct FRequest_GetAllPlayerUuidRanks;
-struct FResponse_GetAllPlayerUuidRanks;
-struct FRequest_GetAllPlayerUuidRanksSelf;
-struct FResponse_GetAllPlayerUuidRanksSelf;
-struct FRequest_GetAllPlayerUuidRanksSelfV2;
-struct FResponse_GetAllPlayerUuidRanksSelfV2;
-struct FRequest_GetAllPlayerUuidRanksV2;
-struct FResponse_GetAllPlayerUuidRanksV2;
-struct FRequest_GetAllRankConfigV3;
-struct FResponse_GetAllRankConfigV3;
-struct FRequest_GetPlayerUuidRank;
-struct FResponse_GetPlayerUuidRank;
-struct FRequest_GetPlayerUuidRankSelf;
-struct FResponse_GetPlayerUuidRankSelf;
-struct FRequest_GetPlayerUuidRankSelfV2;
-struct FResponse_GetPlayerUuidRankSelfV2;
-struct FRequest_GetPlayerUuidRankV2;
-struct FResponse_GetPlayerUuidRankV2;
-struct FRequest_GetRankConfigV3;
-struct FResponse_GetRankConfigV3;
-struct FRequest_UpdatePlayerUuidRank;
-struct FResponse_UpdatePlayerUuidRank;
-struct FRequest_UpdatePlayerUuidRankSelf;
-struct FResponse_UpdatePlayerUuidRankSelf;
-struct FRequest_UpdatePlayerUuidRankSelfV2;
-struct FResponse_UpdatePlayerUuidRankSelfV2;
-struct FRequest_UpdatePlayerUuidRankV2;
-struct FResponse_UpdatePlayerUuidRankV2;
-struct FRequest_UpdateRankingsV1;
-struct FResponse_UpdateRankingsV1;
+// forward declaration
+class FRankAPI;
 
+/**
+ * @brief Calculate V2 Ranks
+ * Calculate a rank update on players and persist their new ranks
+ * Requires at least two teams, and the players' ranks before the last match was played
+ * 
+ * Required Permissions: `rank:update:any`
+*/
+struct RALLYHEREAPI_API FRequest_CalculateV2Ranks : public FRequest
+{
+	FRequest_CalculateV2Ranks();
+	virtual ~FRequest_CalculateV2Ranks() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FRHAPI_RankUpdateRequestV2 RankUpdateRequestV2;
+};
+
+/** The response type for FRequest_CalculateV2Ranks */
+struct RALLYHEREAPI_API FResponse_CalculateV2Ranks : public FResponseAccessorTemplate<FRHAPI_PlayerRankUpdateResponseV2, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerRankUpdateResponseV2, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_CalculateV2Ranks(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_CalculateV2Ranks() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_PlayerRankUpdateResponseV2 Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_PlayerRankUpdateResponseV2& OutContent) const { return TryGetContent<FRHAPI_PlayerRankUpdateResponseV2>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_PlayerRankUpdateResponseV2>& OutContent) const { return TryGetContent<FRHAPI_PlayerRankUpdateResponseV2>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_PlayerRankUpdateResponseV2* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlayerRankUpdateResponseV2>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_PlayerRankUpdateResponseV2> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlayerRankUpdateResponseV2>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerRankUpdateResponseV2& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_CalculateV2Ranks */
 DECLARE_DELEGATE_OneParam(FDelegate_CalculateV2Ranks, const FResponse_CalculateV2Ranks&);
+
+/** @brief A helper metadata object for CalculateV2Ranks that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_CalculateV2Ranks
+{
+	/** The request type */
+	typedef FRequest_CalculateV2Ranks Request;
+	/** The response type */
+	typedef FResponse_CalculateV2Ranks Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_CalculateV2Ranks Delegate;
+	/** The API object that supports this API call */
+	typedef FRankAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Calculate V3 Ranks
+ * Calculate a rank update on players and return the results without persisting them
+ * Requires at least two teams, the players' ranks before the last match was played, and parameters on how to calculate the rank changes
+ * 
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `rank:*`, `rank:calculate`
+*/
+struct RALLYHEREAPI_API FRequest_CalculateV3Ranks : public FRequest
+{
+	FRequest_CalculateV3Ranks();
+	virtual ~FRequest_CalculateV3Ranks() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FRHAPI_CalculateRankRequest CalculateRankRequest;
+};
+
+/** The response type for FRequest_CalculateV3Ranks */
+struct RALLYHEREAPI_API FResponse_CalculateV3Ranks : public FResponseAccessorTemplate<FRHAPI_CalculateRankResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_CalculateRankResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_CalculateV3Ranks(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_CalculateV3Ranks() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_CalculateRankResponse Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_CalculateRankResponse& OutContent) const { return TryGetContent<FRHAPI_CalculateRankResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_CalculateRankResponse>& OutContent) const { return TryGetContent<FRHAPI_CalculateRankResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_CalculateRankResponse* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_CalculateRankResponse>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_CalculateRankResponse> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_CalculateRankResponse>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_CalculateRankResponse& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_CalculateV3Ranks */
 DECLARE_DELEGATE_OneParam(FDelegate_CalculateV3Ranks, const FResponse_CalculateV3Ranks&);
+
+/** @brief A helper metadata object for CalculateV3Ranks that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_CalculateV3Ranks
+{
+	/** The request type */
+	typedef FRequest_CalculateV3Ranks Request;
+	/** The response type */
+	typedef FResponse_CalculateV3Ranks Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_CalculateV3Ranks Delegate;
+	/** The API object that supports this API call */
+	typedef FRankAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get All Player Uuid Ranks
+ * Get all of a specific player's ranks
+ * 
+ * Required Permissions: `rank:read:self` for players acting on themselves,
+ * otherwise `rank:read:any`
+ * **DEPRECATED** Use the V2 endpoint
+*/
+struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidRanks : public FRequest
+{
+	FRequest_GetAllPlayerUuidRanks();
+	virtual ~FRequest_GetAllPlayerUuidRanks() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PlayerUuid;
+};
+
+/** The response type for FRequest_GetAllPlayerUuidRanks */
+struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidRanks : public FResponseAccessorTemplate<FRHAPI_PlayerRankRequestResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerRankRequestResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_GetAllPlayerUuidRanks(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetAllPlayerUuidRanks() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_PlayerRankRequestResponse Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_PlayerRankRequestResponse& OutContent) const { return TryGetContent<FRHAPI_PlayerRankRequestResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_PlayerRankRequestResponse>& OutContent) const { return TryGetContent<FRHAPI_PlayerRankRequestResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_PlayerRankRequestResponse* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlayerRankRequestResponse>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_PlayerRankRequestResponse> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlayerRankRequestResponse>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerRankRequestResponse& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetAllPlayerUuidRanks */
 DECLARE_DELEGATE_OneParam(FDelegate_GetAllPlayerUuidRanks, const FResponse_GetAllPlayerUuidRanks&);
+
+/** @brief A helper metadata object for GetAllPlayerUuidRanks that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetAllPlayerUuidRanks
+{
+	/** The request type */
+	typedef FRequest_GetAllPlayerUuidRanks Request;
+	/** The response type */
+	typedef FResponse_GetAllPlayerUuidRanks Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetAllPlayerUuidRanks Delegate;
+	/** The API object that supports this API call */
+	typedef FRankAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get All Player Uuid Ranks Self
+ * Get all of current player's ranks
+ * 
+ * Required Permissions: `rank:read:self`
+ * **DEPRECATED** Use the V2 endpoints
+*/
+struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidRanksSelf : public FRequest
+{
+	FRequest_GetAllPlayerUuidRanksSelf();
+	virtual ~FRequest_GetAllPlayerUuidRanksSelf() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+};
+
+/** The response type for FRequest_GetAllPlayerUuidRanksSelf */
+struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidRanksSelf : public FResponseAccessorTemplate<FRHAPI_PlayerRankRequestResponse, FRHAPI_HzApiErrorModel>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerRankRequestResponse, FRHAPI_HzApiErrorModel> Super;
+
+	FResponse_GetAllPlayerUuidRanksSelf(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetAllPlayerUuidRanksSelf() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_PlayerRankRequestResponse Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_PlayerRankRequestResponse& OutContent) const { return TryGetContent<FRHAPI_PlayerRankRequestResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_PlayerRankRequestResponse>& OutContent) const { return TryGetContent<FRHAPI_PlayerRankRequestResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_PlayerRankRequestResponse* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlayerRankRequestResponse>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_PlayerRankRequestResponse> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlayerRankRequestResponse>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerRankRequestResponse& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetAllPlayerUuidRanksSelf */
 DECLARE_DELEGATE_OneParam(FDelegate_GetAllPlayerUuidRanksSelf, const FResponse_GetAllPlayerUuidRanksSelf&);
+
+/** @brief A helper metadata object for GetAllPlayerUuidRanksSelf that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetAllPlayerUuidRanksSelf
+{
+	/** The request type */
+	typedef FRequest_GetAllPlayerUuidRanksSelf Request;
+	/** The response type */
+	typedef FResponse_GetAllPlayerUuidRanksSelf Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetAllPlayerUuidRanksSelf Delegate;
+	/** The API object that supports this API call */
+	typedef FRankAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get All Player Uuid Ranks Self V2
+ * Get all of current player's ranks
+ * 
+ * Required Permissions: `rank:read:self`
+*/
+struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidRanksSelfV2 : public FRequest
+{
+	FRequest_GetAllPlayerUuidRanksSelfV2();
+	virtual ~FRequest_GetAllPlayerUuidRanksSelfV2() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+};
+
+/** The response type for FRequest_GetAllPlayerUuidRanksSelfV2 */
+struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidRanksSelfV2 : public FResponseAccessorTemplate<FRHAPI_PlayerRankRequestResponseV2, FRHAPI_HzApiErrorModel>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerRankRequestResponseV2, FRHAPI_HzApiErrorModel> Super;
+
+	FResponse_GetAllPlayerUuidRanksSelfV2(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetAllPlayerUuidRanksSelfV2() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_PlayerRankRequestResponseV2 Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_PlayerRankRequestResponseV2& OutContent) const { return TryGetContent<FRHAPI_PlayerRankRequestResponseV2>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_PlayerRankRequestResponseV2>& OutContent) const { return TryGetContent<FRHAPI_PlayerRankRequestResponseV2>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_PlayerRankRequestResponseV2* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlayerRankRequestResponseV2>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_PlayerRankRequestResponseV2> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlayerRankRequestResponseV2>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerRankRequestResponseV2& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetAllPlayerUuidRanksSelfV2 */
 DECLARE_DELEGATE_OneParam(FDelegate_GetAllPlayerUuidRanksSelfV2, const FResponse_GetAllPlayerUuidRanksSelfV2&);
+
+/** @brief A helper metadata object for GetAllPlayerUuidRanksSelfV2 that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetAllPlayerUuidRanksSelfV2
+{
+	/** The request type */
+	typedef FRequest_GetAllPlayerUuidRanksSelfV2 Request;
+	/** The response type */
+	typedef FResponse_GetAllPlayerUuidRanksSelfV2 Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetAllPlayerUuidRanksSelfV2 Delegate;
+	/** The API object that supports this API call */
+	typedef FRankAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get All Player Uuid Ranks V2
+ * Get all of a specific player's ranks
+ * 
+ * Required Permissions: `rank:read:self` for players acting on themselves,
+ * otherwise `rank:read:any`
+*/
+struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidRanksV2 : public FRequest
+{
+	FRequest_GetAllPlayerUuidRanksV2();
+	virtual ~FRequest_GetAllPlayerUuidRanksV2() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PlayerUuid;
+};
+
+/** The response type for FRequest_GetAllPlayerUuidRanksV2 */
+struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidRanksV2 : public FResponseAccessorTemplate<FRHAPI_PlayerRankRequestResponseV2, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerRankRequestResponseV2, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_GetAllPlayerUuidRanksV2(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetAllPlayerUuidRanksV2() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_PlayerRankRequestResponseV2 Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_PlayerRankRequestResponseV2& OutContent) const { return TryGetContent<FRHAPI_PlayerRankRequestResponseV2>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_PlayerRankRequestResponseV2>& OutContent) const { return TryGetContent<FRHAPI_PlayerRankRequestResponseV2>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_PlayerRankRequestResponseV2* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlayerRankRequestResponseV2>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_PlayerRankRequestResponseV2> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlayerRankRequestResponseV2>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerRankRequestResponseV2& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetAllPlayerUuidRanksV2 */
 DECLARE_DELEGATE_OneParam(FDelegate_GetAllPlayerUuidRanksV2, const FResponse_GetAllPlayerUuidRanksV2&);
+
+/** @brief A helper metadata object for GetAllPlayerUuidRanksV2 that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetAllPlayerUuidRanksV2
+{
+	/** The request type */
+	typedef FRequest_GetAllPlayerUuidRanksV2 Request;
+	/** The response type */
+	typedef FResponse_GetAllPlayerUuidRanksV2 Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetAllPlayerUuidRanksV2 Delegate;
+	/** The API object that supports this API call */
+	typedef FRankAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get All Rank Config V3
+ * Get all rank configuration
+ * 
+ * Required Permissions: `rank:read:config`
+*/
+struct RALLYHEREAPI_API FRequest_GetAllRankConfigV3 : public FRequest
+{
+	FRequest_GetAllRankConfigV3();
+	virtual ~FRequest_GetAllRankConfigV3() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+};
+
+/** The response type for FRequest_GetAllRankConfigV3 */
+struct RALLYHEREAPI_API FResponse_GetAllRankConfigV3 : public FResponseAccessorTemplate<FRHAPI_RankConfigRequestResponseV3, FRHAPI_HzApiErrorModel>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_RankConfigRequestResponseV3, FRHAPI_HzApiErrorModel> Super;
+
+	FResponse_GetAllRankConfigV3(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetAllRankConfigV3() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_RankConfigRequestResponseV3 Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_RankConfigRequestResponseV3& OutContent) const { return TryGetContent<FRHAPI_RankConfigRequestResponseV3>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_RankConfigRequestResponseV3>& OutContent) const { return TryGetContent<FRHAPI_RankConfigRequestResponseV3>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_RankConfigRequestResponseV3* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_RankConfigRequestResponseV3>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_RankConfigRequestResponseV3> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_RankConfigRequestResponseV3>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_RankConfigRequestResponseV3& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetAllRankConfigV3 */
 DECLARE_DELEGATE_OneParam(FDelegate_GetAllRankConfigV3, const FResponse_GetAllRankConfigV3&);
+
+/** @brief A helper metadata object for GetAllRankConfigV3 that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetAllRankConfigV3
+{
+	/** The request type */
+	typedef FRequest_GetAllRankConfigV3 Request;
+	/** The response type */
+	typedef FResponse_GetAllRankConfigV3 Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetAllRankConfigV3 Delegate;
+	/** The API object that supports this API call */
+	typedef FRankAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Player Uuid Rank
+ * Get a specific player's rank for a specific rank id
+ *             
+ * Required Permissions: `rank:read:self` for players acting on themselves, 
+ * otherwise `rank:read:any`
+ * **DEPRECATED** Use the V2 endpoint
+*/
+struct RALLYHEREAPI_API FRequest_GetPlayerUuidRank : public FRequest
+{
+	FRequest_GetPlayerUuidRank();
+	virtual ~FRequest_GetPlayerUuidRank() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PlayerUuid;
+	int32 RankId = 0;
+};
+
+/** The response type for FRequest_GetPlayerUuidRank */
+struct RALLYHEREAPI_API FResponse_GetPlayerUuidRank : public FResponseAccessorTemplate<FRHAPI_PlayerRankRequestResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerRankRequestResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_GetPlayerUuidRank(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetPlayerUuidRank() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_PlayerRankRequestResponse Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_PlayerRankRequestResponse& OutContent) const { return TryGetContent<FRHAPI_PlayerRankRequestResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_PlayerRankRequestResponse>& OutContent) const { return TryGetContent<FRHAPI_PlayerRankRequestResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_PlayerRankRequestResponse* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlayerRankRequestResponse>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_PlayerRankRequestResponse> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlayerRankRequestResponse>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerRankRequestResponse& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetPlayerUuidRank */
 DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerUuidRank, const FResponse_GetPlayerUuidRank&);
+
+/** @brief A helper metadata object for GetPlayerUuidRank that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetPlayerUuidRank
+{
+	/** The request type */
+	typedef FRequest_GetPlayerUuidRank Request;
+	/** The response type */
+	typedef FResponse_GetPlayerUuidRank Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetPlayerUuidRank Delegate;
+	/** The API object that supports this API call */
+	typedef FRankAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Player Uuid Rank Self
+ * Get current player's rank for a specific rank id
+ *             
+ * Required Permissions: `rank:read:self`
+ * **DEPRECATED** Use the V2 endpoint
+*/
+struct RALLYHEREAPI_API FRequest_GetPlayerUuidRankSelf : public FRequest
+{
+	FRequest_GetPlayerUuidRankSelf();
+	virtual ~FRequest_GetPlayerUuidRankSelf() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	int32 RankId = 0;
+};
+
+/** The response type for FRequest_GetPlayerUuidRankSelf */
+struct RALLYHEREAPI_API FResponse_GetPlayerUuidRankSelf : public FResponseAccessorTemplate<FRHAPI_PlayerRankRequestResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerRankRequestResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_GetPlayerUuidRankSelf(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetPlayerUuidRankSelf() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_PlayerRankRequestResponse Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_PlayerRankRequestResponse& OutContent) const { return TryGetContent<FRHAPI_PlayerRankRequestResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_PlayerRankRequestResponse>& OutContent) const { return TryGetContent<FRHAPI_PlayerRankRequestResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_PlayerRankRequestResponse* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlayerRankRequestResponse>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_PlayerRankRequestResponse> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlayerRankRequestResponse>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerRankRequestResponse& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetPlayerUuidRankSelf */
 DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerUuidRankSelf, const FResponse_GetPlayerUuidRankSelf&);
+
+/** @brief A helper metadata object for GetPlayerUuidRankSelf that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetPlayerUuidRankSelf
+{
+	/** The request type */
+	typedef FRequest_GetPlayerUuidRankSelf Request;
+	/** The response type */
+	typedef FResponse_GetPlayerUuidRankSelf Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetPlayerUuidRankSelf Delegate;
+	/** The API object that supports this API call */
+	typedef FRankAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Player Uuid Rank Self V2
+ * Get current player's rank for a specific rank id
+ * 
+ * Required Permissions: `rank:read:self`
+*/
+struct RALLYHEREAPI_API FRequest_GetPlayerUuidRankSelfV2 : public FRequest
+{
+	FRequest_GetPlayerUuidRankSelfV2();
+	virtual ~FRequest_GetPlayerUuidRankSelfV2() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FString RankId;
+};
+
+/** The response type for FRequest_GetPlayerUuidRankSelfV2 */
+struct RALLYHEREAPI_API FResponse_GetPlayerUuidRankSelfV2 : public FResponseAccessorTemplate<FRHAPI_PlayerRankRequestResponseV2, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerRankRequestResponseV2, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_GetPlayerUuidRankSelfV2(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetPlayerUuidRankSelfV2() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_PlayerRankRequestResponseV2 Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_PlayerRankRequestResponseV2& OutContent) const { return TryGetContent<FRHAPI_PlayerRankRequestResponseV2>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_PlayerRankRequestResponseV2>& OutContent) const { return TryGetContent<FRHAPI_PlayerRankRequestResponseV2>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_PlayerRankRequestResponseV2* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlayerRankRequestResponseV2>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_PlayerRankRequestResponseV2> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlayerRankRequestResponseV2>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerRankRequestResponseV2& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetPlayerUuidRankSelfV2 */
 DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerUuidRankSelfV2, const FResponse_GetPlayerUuidRankSelfV2&);
+
+/** @brief A helper metadata object for GetPlayerUuidRankSelfV2 that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetPlayerUuidRankSelfV2
+{
+	/** The request type */
+	typedef FRequest_GetPlayerUuidRankSelfV2 Request;
+	/** The response type */
+	typedef FResponse_GetPlayerUuidRankSelfV2 Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetPlayerUuidRankSelfV2 Delegate;
+	/** The API object that supports this API call */
+	typedef FRankAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Player Uuid Rank V2
+ * Get a specific player's rank for a specific rank id
+ * 
+ * Required Permissions: `rank:read:self` for players acting on themselves, 
+ * otherwise `rank:read:any`
+*/
+struct RALLYHEREAPI_API FRequest_GetPlayerUuidRankV2 : public FRequest
+{
+	FRequest_GetPlayerUuidRankV2();
+	virtual ~FRequest_GetPlayerUuidRankV2() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PlayerUuid;
+	FString RankId;
+};
+
+/** The response type for FRequest_GetPlayerUuidRankV2 */
+struct RALLYHEREAPI_API FResponse_GetPlayerUuidRankV2 : public FResponseAccessorTemplate<FRHAPI_PlayerRankRequestResponseV2, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerRankRequestResponseV2, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_GetPlayerUuidRankV2(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetPlayerUuidRankV2() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_PlayerRankRequestResponseV2 Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_PlayerRankRequestResponseV2& OutContent) const { return TryGetContent<FRHAPI_PlayerRankRequestResponseV2>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_PlayerRankRequestResponseV2>& OutContent) const { return TryGetContent<FRHAPI_PlayerRankRequestResponseV2>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_PlayerRankRequestResponseV2* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlayerRankRequestResponseV2>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_PlayerRankRequestResponseV2> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlayerRankRequestResponseV2>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerRankRequestResponseV2& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetPlayerUuidRankV2 */
 DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerUuidRankV2, const FResponse_GetPlayerUuidRankV2&);
+
+/** @brief A helper metadata object for GetPlayerUuidRankV2 that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetPlayerUuidRankV2
+{
+	/** The request type */
+	typedef FRequest_GetPlayerUuidRankV2 Request;
+	/** The response type */
+	typedef FResponse_GetPlayerUuidRankV2 Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetPlayerUuidRankV2 Delegate;
+	/** The API object that supports this API call */
+	typedef FRankAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Rank Config V3
+ * Get rank configuration for specific rank id
+ * 
+ * Required Permissions: `rank:read:config`
+*/
+struct RALLYHEREAPI_API FRequest_GetRankConfigV3 : public FRequest
+{
+	FRequest_GetRankConfigV3();
+	virtual ~FRequest_GetRankConfigV3() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FString RankId;
+};
+
+/** The response type for FRequest_GetRankConfigV3 */
+struct RALLYHEREAPI_API FResponse_GetRankConfigV3 : public FResponseAccessorTemplate<FRHAPI_RankConfigRequestResponseV3, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_RankConfigRequestResponseV3, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_GetRankConfigV3(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetRankConfigV3() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_RankConfigRequestResponseV3 Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_RankConfigRequestResponseV3& OutContent) const { return TryGetContent<FRHAPI_RankConfigRequestResponseV3>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_RankConfigRequestResponseV3>& OutContent) const { return TryGetContent<FRHAPI_RankConfigRequestResponseV3>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_RankConfigRequestResponseV3* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_RankConfigRequestResponseV3>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_RankConfigRequestResponseV3> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_RankConfigRequestResponseV3>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_RankConfigRequestResponseV3& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetRankConfigV3 */
 DECLARE_DELEGATE_OneParam(FDelegate_GetRankConfigV3, const FResponse_GetRankConfigV3&);
+
+/** @brief A helper metadata object for GetRankConfigV3 that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetRankConfigV3
+{
+	/** The request type */
+	typedef FRequest_GetRankConfigV3 Request;
+	/** The response type */
+	typedef FResponse_GetRankConfigV3 Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetRankConfigV3 Delegate;
+	/** The API object that supports this API call */
+	typedef FRankAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Update Player Uuid Rank
+ * Update a specific player's ranks to those that are provided. Ranks are taken as is
+ * 
+ * Required Permissions: `rank:update:self` for players acting on themselves, 
+ * otherwise `rank:update:any`
+ * **DEPRECATED** Use V2 endpoints
+*/
+struct RALLYHEREAPI_API FRequest_UpdatePlayerUuidRank : public FRequest
+{
+	FRequest_UpdatePlayerUuidRank();
+	virtual ~FRequest_UpdatePlayerUuidRank() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PlayerUuid;
+	int32 RankId = 0;
+	FRHAPI_PlayerRankUpdateRequest PlayerRankUpdateRequest;
+};
+
+/** The response type for FRequest_UpdatePlayerUuidRank */
+struct RALLYHEREAPI_API FResponse_UpdatePlayerUuidRank : public FResponseAccessorTemplate<FRHAPI_PlayerRankUpdateResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerRankUpdateResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_UpdatePlayerUuidRank(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_UpdatePlayerUuidRank() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_PlayerRankUpdateResponse Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_PlayerRankUpdateResponse& OutContent) const { return TryGetContent<FRHAPI_PlayerRankUpdateResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_PlayerRankUpdateResponse>& OutContent) const { return TryGetContent<FRHAPI_PlayerRankUpdateResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_PlayerRankUpdateResponse* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlayerRankUpdateResponse>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_PlayerRankUpdateResponse> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlayerRankUpdateResponse>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerRankUpdateResponse& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_UpdatePlayerUuidRank */
 DECLARE_DELEGATE_OneParam(FDelegate_UpdatePlayerUuidRank, const FResponse_UpdatePlayerUuidRank&);
+
+/** @brief A helper metadata object for UpdatePlayerUuidRank that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_UpdatePlayerUuidRank
+{
+	/** The request type */
+	typedef FRequest_UpdatePlayerUuidRank Request;
+	/** The response type */
+	typedef FResponse_UpdatePlayerUuidRank Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_UpdatePlayerUuidRank Delegate;
+	/** The API object that supports this API call */
+	typedef FRankAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Update Player Uuid Rank Self
+ * Update current player's ranks to those that are provided. Ranks are taken as is 
+ * 
+ * Required Permissions: `rank:update:self`
+ * **DEPRECATED** Use the V2 endpoint
+*/
+struct RALLYHEREAPI_API FRequest_UpdatePlayerUuidRankSelf : public FRequest
+{
+	FRequest_UpdatePlayerUuidRankSelf();
+	virtual ~FRequest_UpdatePlayerUuidRankSelf() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	int32 RankId = 0;
+	FRHAPI_PlayerRankUpdateRequest PlayerRankUpdateRequest;
+};
+
+/** The response type for FRequest_UpdatePlayerUuidRankSelf */
+struct RALLYHEREAPI_API FResponse_UpdatePlayerUuidRankSelf : public FResponseAccessorTemplate<FRHAPI_PlayerRankUpdateResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerRankUpdateResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_UpdatePlayerUuidRankSelf(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_UpdatePlayerUuidRankSelf() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_PlayerRankUpdateResponse Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_PlayerRankUpdateResponse& OutContent) const { return TryGetContent<FRHAPI_PlayerRankUpdateResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_PlayerRankUpdateResponse>& OutContent) const { return TryGetContent<FRHAPI_PlayerRankUpdateResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_PlayerRankUpdateResponse* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlayerRankUpdateResponse>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_PlayerRankUpdateResponse> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlayerRankUpdateResponse>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerRankUpdateResponse& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_UpdatePlayerUuidRankSelf */
 DECLARE_DELEGATE_OneParam(FDelegate_UpdatePlayerUuidRankSelf, const FResponse_UpdatePlayerUuidRankSelf&);
+
+/** @brief A helper metadata object for UpdatePlayerUuidRankSelf that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_UpdatePlayerUuidRankSelf
+{
+	/** The request type */
+	typedef FRequest_UpdatePlayerUuidRankSelf Request;
+	/** The response type */
+	typedef FResponse_UpdatePlayerUuidRankSelf Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_UpdatePlayerUuidRankSelf Delegate;
+	/** The API object that supports this API call */
+	typedef FRankAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Update Player Uuid Rank Self V2
+ * Update current player's ranks to those that are provided. Ranks are taken as is 
+ * 
+ * Required Permissions: `rank:update:self`
+*/
+struct RALLYHEREAPI_API FRequest_UpdatePlayerUuidRankSelfV2 : public FRequest
+{
+	FRequest_UpdatePlayerUuidRankSelfV2();
+	virtual ~FRequest_UpdatePlayerUuidRankSelfV2() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FString RankId;
+	FRHAPI_PlayerRankUpdateRequest PlayerRankUpdateRequest;
+};
+
+/** The response type for FRequest_UpdatePlayerUuidRankSelfV2 */
+struct RALLYHEREAPI_API FResponse_UpdatePlayerUuidRankSelfV2 : public FResponseAccessorTemplate<FRHAPI_PlayerRankUpdateResponseV2, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerRankUpdateResponseV2, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_UpdatePlayerUuidRankSelfV2(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_UpdatePlayerUuidRankSelfV2() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_PlayerRankUpdateResponseV2 Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_PlayerRankUpdateResponseV2& OutContent) const { return TryGetContent<FRHAPI_PlayerRankUpdateResponseV2>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_PlayerRankUpdateResponseV2>& OutContent) const { return TryGetContent<FRHAPI_PlayerRankUpdateResponseV2>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_PlayerRankUpdateResponseV2* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlayerRankUpdateResponseV2>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_PlayerRankUpdateResponseV2> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlayerRankUpdateResponseV2>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerRankUpdateResponseV2& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_UpdatePlayerUuidRankSelfV2 */
 DECLARE_DELEGATE_OneParam(FDelegate_UpdatePlayerUuidRankSelfV2, const FResponse_UpdatePlayerUuidRankSelfV2&);
+
+/** @brief A helper metadata object for UpdatePlayerUuidRankSelfV2 that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_UpdatePlayerUuidRankSelfV2
+{
+	/** The request type */
+	typedef FRequest_UpdatePlayerUuidRankSelfV2 Request;
+	/** The response type */
+	typedef FResponse_UpdatePlayerUuidRankSelfV2 Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_UpdatePlayerUuidRankSelfV2 Delegate;
+	/** The API object that supports this API call */
+	typedef FRankAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Update Player Uuid Rank V2
+ * Update a specific player's ranks to those that are provided. Ranks are taken as is
+ * 
+ * Required Permissions: `rank:update:self` for players acting on themselves, 
+ * otherwise `rank:update:any`
+*/
+struct RALLYHEREAPI_API FRequest_UpdatePlayerUuidRankV2 : public FRequest
+{
+	FRequest_UpdatePlayerUuidRankV2();
+	virtual ~FRequest_UpdatePlayerUuidRankV2() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PlayerUuid;
+	FString RankId;
+	FRHAPI_PlayerRankUpdateRequest PlayerRankUpdateRequest;
+};
+
+/** The response type for FRequest_UpdatePlayerUuidRankV2 */
+struct RALLYHEREAPI_API FResponse_UpdatePlayerUuidRankV2 : public FResponseAccessorTemplate<FRHAPI_PlayerRankUpdateResponseV2, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerRankUpdateResponseV2, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_UpdatePlayerUuidRankV2(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_UpdatePlayerUuidRankV2() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_PlayerRankUpdateResponseV2 Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_PlayerRankUpdateResponseV2& OutContent) const { return TryGetContent<FRHAPI_PlayerRankUpdateResponseV2>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_PlayerRankUpdateResponseV2>& OutContent) const { return TryGetContent<FRHAPI_PlayerRankUpdateResponseV2>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_PlayerRankUpdateResponseV2* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlayerRankUpdateResponseV2>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_PlayerRankUpdateResponseV2> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlayerRankUpdateResponseV2>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerRankUpdateResponseV2& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_UpdatePlayerUuidRankV2 */
 DECLARE_DELEGATE_OneParam(FDelegate_UpdatePlayerUuidRankV2, const FResponse_UpdatePlayerUuidRankV2&);
+
+/** @brief A helper metadata object for UpdatePlayerUuidRankV2 that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_UpdatePlayerUuidRankV2
+{
+	/** The request type */
+	typedef FRequest_UpdatePlayerUuidRankV2 Request;
+	/** The response type */
+	typedef FResponse_UpdatePlayerUuidRankV2 Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_UpdatePlayerUuidRankV2 Delegate;
+	/** The API object that supports this API call */
+	typedef FRankAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Update Rankings V1
+ * Calculate and update on players and persist their new ranks
+ * Requires at least two teams, and the player's ranks before the last match was played
+ * 
+ * Required Permissions: `rank:update:any`
+ * **DEPRECATED** Use the v2 endpoint instead
+*/
+struct RALLYHEREAPI_API FRequest_UpdateRankingsV1 : public FRequest
+{
+	FRequest_UpdateRankingsV1();
+	virtual ~FRequest_UpdateRankingsV1() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FRHAPI_RankUpdateRequest RankUpdateRequest;
+};
+
+/** The response type for FRequest_UpdateRankingsV1 */
+struct RALLYHEREAPI_API FResponse_UpdateRankingsV1 : public FResponseAccessorTemplate<FRHAPI_PlayerRankUpdateResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerRankUpdateResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_UpdateRankingsV1(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_UpdateRankingsV1() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_PlayerRankUpdateResponse Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_PlayerRankUpdateResponse& OutContent) const { return TryGetContent<FRHAPI_PlayerRankUpdateResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_PlayerRankUpdateResponse>& OutContent) const { return TryGetContent<FRHAPI_PlayerRankUpdateResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_PlayerRankUpdateResponse* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlayerRankUpdateResponse>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_PlayerRankUpdateResponse> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlayerRankUpdateResponse>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerRankUpdateResponse& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_UpdateRankingsV1 */
 DECLARE_DELEGATE_OneParam(FDelegate_UpdateRankingsV1, const FResponse_UpdateRankingsV1&);
 
+/** @brief A helper metadata object for UpdateRankingsV1 that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_UpdateRankingsV1
+{
+	/** The request type */
+	typedef FRequest_UpdateRankingsV1 Request;
+	/** The response type */
+	typedef FResponse_UpdateRankingsV1 Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_UpdateRankingsV1 Delegate;
+	/** The API object that supports this API call */
+	typedef FRankAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+
+/** The API class itself, which will handle calls to */
 class RALLYHEREAPI_API FRankAPI : public FAPI
 {
 public:
@@ -127,1016 +1855,6 @@ private:
 
 };
 
-/* Calculate V2 Ranks
- *
- * Calculate a rank update on players and persist their new ranks
- * Requires at least two teams, and the players' ranks before the last match was played
- * 
- * Required Permissions: `rank:update:any`
-*/
-struct RALLYHEREAPI_API FRequest_CalculateV2Ranks : public FRequest
-{
-	FRequest_CalculateV2Ranks();
-	virtual ~FRequest_CalculateV2Ranks() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_RankUpdateRequestV2 RankUpdateRequestV2;
-};
-
-struct RALLYHEREAPI_API FResponse_CalculateV2Ranks : public FResponse
-{
-	FResponse_CalculateV2Ranks(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_CalculateV2Ranks() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-	FRHAPI_PlayerRankUpdateResponseV2 Content;
-
-
-	// Manual Response Helpers
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_PlayerRankUpdateResponseV2& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_CalculateV2Ranks
-{
-	typedef FRequest_CalculateV2Ranks Request;
-	typedef FResponse_CalculateV2Ranks Response;
-	typedef FDelegate_CalculateV2Ranks Delegate;
-	typedef FRankAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->CalculateV2Ranks(InRequest, InDelegate, Priority); }
-};
-
-/* Calculate V3 Ranks
- *
- * Calculate a rank update on players and return the results without persisting them
- * Requires at least two teams, the players' ranks before the last match was played, and parameters on how to calculate the rank changes
- * 
- * Required Permissions:
- * 
- * - For any player (including themselves) any of: `rank:*`, `rank:calculate`
-*/
-struct RALLYHEREAPI_API FRequest_CalculateV3Ranks : public FRequest
-{
-	FRequest_CalculateV3Ranks();
-	virtual ~FRequest_CalculateV3Ranks() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_CalculateRankRequest CalculateRankRequest;
-};
-
-struct RALLYHEREAPI_API FResponse_CalculateV3Ranks : public FResponse
-{
-	FResponse_CalculateV3Ranks(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_CalculateV3Ranks() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-	FRHAPI_CalculateRankResponse Content;
-
-
-	// Manual Response Helpers
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_CalculateRankResponse& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_CalculateV3Ranks
-{
-	typedef FRequest_CalculateV3Ranks Request;
-	typedef FResponse_CalculateV3Ranks Response;
-	typedef FDelegate_CalculateV3Ranks Delegate;
-	typedef FRankAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->CalculateV3Ranks(InRequest, InDelegate, Priority); }
-};
-
-/* Get All Player Uuid Ranks
- *
- * Get all of a specific player's ranks
- * 
- * Required Permissions: `rank:read:self` for players acting on themselves,
- * otherwise `rank:read:any`
- * **DEPRECATED** Use the V2 endpoint
-*/
-struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidRanks : public FRequest
-{
-	FRequest_GetAllPlayerUuidRanks();
-	virtual ~FRequest_GetAllPlayerUuidRanks() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	FGuid PlayerUuid;
-};
-
-struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidRanks : public FResponse
-{
-	FResponse_GetAllPlayerUuidRanks(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetAllPlayerUuidRanks() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-	FRHAPI_PlayerRankRequestResponse Content;
-
-
-	// Manual Response Helpers
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_PlayerRankRequestResponse& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetAllPlayerUuidRanks
-{
-	typedef FRequest_GetAllPlayerUuidRanks Request;
-	typedef FResponse_GetAllPlayerUuidRanks Response;
-	typedef FDelegate_GetAllPlayerUuidRanks Delegate;
-	typedef FRankAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAllPlayerUuidRanks(InRequest, InDelegate, Priority); }
-};
-
-/* Get All Player Uuid Ranks Self
- *
- * Get all of current player's ranks
- * 
- * Required Permissions: `rank:read:self`
- * **DEPRECATED** Use the V2 endpoints
-*/
-struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidRanksSelf : public FRequest
-{
-	FRequest_GetAllPlayerUuidRanksSelf();
-	virtual ~FRequest_GetAllPlayerUuidRanksSelf() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-};
-
-struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidRanksSelf : public FResponse
-{
-	FResponse_GetAllPlayerUuidRanksSelf(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetAllPlayerUuidRanksSelf() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-	FRHAPI_PlayerRankRequestResponse Content;
-
-
-	// Manual Response Helpers
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_PlayerRankRequestResponse& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetAllPlayerUuidRanksSelf
-{
-	typedef FRequest_GetAllPlayerUuidRanksSelf Request;
-	typedef FResponse_GetAllPlayerUuidRanksSelf Response;
-	typedef FDelegate_GetAllPlayerUuidRanksSelf Delegate;
-	typedef FRankAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAllPlayerUuidRanksSelf(InRequest, InDelegate, Priority); }
-};
-
-/* Get All Player Uuid Ranks Self V2
- *
- * Get all of current player's ranks
- * 
- * Required Permissions: `rank:read:self`
-*/
-struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidRanksSelfV2 : public FRequest
-{
-	FRequest_GetAllPlayerUuidRanksSelfV2();
-	virtual ~FRequest_GetAllPlayerUuidRanksSelfV2() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-};
-
-struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidRanksSelfV2 : public FResponse
-{
-	FResponse_GetAllPlayerUuidRanksSelfV2(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetAllPlayerUuidRanksSelfV2() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-	FRHAPI_PlayerRankRequestResponseV2 Content;
-
-
-	// Manual Response Helpers
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_PlayerRankRequestResponseV2& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetAllPlayerUuidRanksSelfV2
-{
-	typedef FRequest_GetAllPlayerUuidRanksSelfV2 Request;
-	typedef FResponse_GetAllPlayerUuidRanksSelfV2 Response;
-	typedef FDelegate_GetAllPlayerUuidRanksSelfV2 Delegate;
-	typedef FRankAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAllPlayerUuidRanksSelfV2(InRequest, InDelegate, Priority); }
-};
-
-/* Get All Player Uuid Ranks V2
- *
- * Get all of a specific player's ranks
- * 
- * Required Permissions: `rank:read:self` for players acting on themselves,
- * otherwise `rank:read:any`
-*/
-struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidRanksV2 : public FRequest
-{
-	FRequest_GetAllPlayerUuidRanksV2();
-	virtual ~FRequest_GetAllPlayerUuidRanksV2() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	FGuid PlayerUuid;
-};
-
-struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidRanksV2 : public FResponse
-{
-	FResponse_GetAllPlayerUuidRanksV2(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetAllPlayerUuidRanksV2() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-	FRHAPI_PlayerRankRequestResponseV2 Content;
-
-
-	// Manual Response Helpers
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_PlayerRankRequestResponseV2& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetAllPlayerUuidRanksV2
-{
-	typedef FRequest_GetAllPlayerUuidRanksV2 Request;
-	typedef FResponse_GetAllPlayerUuidRanksV2 Response;
-	typedef FDelegate_GetAllPlayerUuidRanksV2 Delegate;
-	typedef FRankAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAllPlayerUuidRanksV2(InRequest, InDelegate, Priority); }
-};
-
-/* Get All Rank Config V3
- *
- * Get all rank configuration
- * 
- * Required Permissions: `rank:read:config`
-*/
-struct RALLYHEREAPI_API FRequest_GetAllRankConfigV3 : public FRequest
-{
-	FRequest_GetAllRankConfigV3();
-	virtual ~FRequest_GetAllRankConfigV3() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-};
-
-struct RALLYHEREAPI_API FResponse_GetAllRankConfigV3 : public FResponse
-{
-	FResponse_GetAllRankConfigV3(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetAllRankConfigV3() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-	FRHAPI_RankConfigRequestResponseV3 Content;
-
-
-	// Manual Response Helpers
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_RankConfigRequestResponseV3& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetAllRankConfigV3
-{
-	typedef FRequest_GetAllRankConfigV3 Request;
-	typedef FResponse_GetAllRankConfigV3 Response;
-	typedef FDelegate_GetAllRankConfigV3 Delegate;
-	typedef FRankAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetAllRankConfigV3(InRequest, InDelegate, Priority); }
-};
-
-/* Get Player Uuid Rank
- *
- * Get a specific player's rank for a specific rank id
- *             
- * Required Permissions: `rank:read:self` for players acting on themselves, 
- * otherwise `rank:read:any`
- * **DEPRECATED** Use the V2 endpoint
-*/
-struct RALLYHEREAPI_API FRequest_GetPlayerUuidRank : public FRequest
-{
-	FRequest_GetPlayerUuidRank();
-	virtual ~FRequest_GetPlayerUuidRank() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	FGuid PlayerUuid;
-	int32 RankId = 0;
-};
-
-struct RALLYHEREAPI_API FResponse_GetPlayerUuidRank : public FResponse
-{
-	FResponse_GetPlayerUuidRank(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetPlayerUuidRank() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-	FRHAPI_PlayerRankRequestResponse Content;
-
-
-	// Manual Response Helpers
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_PlayerRankRequestResponse& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetPlayerUuidRank
-{
-	typedef FRequest_GetPlayerUuidRank Request;
-	typedef FResponse_GetPlayerUuidRank Response;
-	typedef FDelegate_GetPlayerUuidRank Delegate;
-	typedef FRankAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerUuidRank(InRequest, InDelegate, Priority); }
-};
-
-/* Get Player Uuid Rank Self
- *
- * Get current player's rank for a specific rank id
- *             
- * Required Permissions: `rank:read:self`
- * **DEPRECATED** Use the V2 endpoint
-*/
-struct RALLYHEREAPI_API FRequest_GetPlayerUuidRankSelf : public FRequest
-{
-	FRequest_GetPlayerUuidRankSelf();
-	virtual ~FRequest_GetPlayerUuidRankSelf() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	int32 RankId = 0;
-};
-
-struct RALLYHEREAPI_API FResponse_GetPlayerUuidRankSelf : public FResponse
-{
-	FResponse_GetPlayerUuidRankSelf(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetPlayerUuidRankSelf() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-	FRHAPI_PlayerRankRequestResponse Content;
-
-
-	// Manual Response Helpers
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_PlayerRankRequestResponse& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetPlayerUuidRankSelf
-{
-	typedef FRequest_GetPlayerUuidRankSelf Request;
-	typedef FResponse_GetPlayerUuidRankSelf Response;
-	typedef FDelegate_GetPlayerUuidRankSelf Delegate;
-	typedef FRankAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerUuidRankSelf(InRequest, InDelegate, Priority); }
-};
-
-/* Get Player Uuid Rank Self V2
- *
- * Get current player's rank for a specific rank id
- * 
- * Required Permissions: `rank:read:self`
-*/
-struct RALLYHEREAPI_API FRequest_GetPlayerUuidRankSelfV2 : public FRequest
-{
-	FRequest_GetPlayerUuidRankSelfV2();
-	virtual ~FRequest_GetPlayerUuidRankSelfV2() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	FString RankId;
-};
-
-struct RALLYHEREAPI_API FResponse_GetPlayerUuidRankSelfV2 : public FResponse
-{
-	FResponse_GetPlayerUuidRankSelfV2(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetPlayerUuidRankSelfV2() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-	FRHAPI_PlayerRankRequestResponseV2 Content;
-
-
-	// Manual Response Helpers
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_PlayerRankRequestResponseV2& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetPlayerUuidRankSelfV2
-{
-	typedef FRequest_GetPlayerUuidRankSelfV2 Request;
-	typedef FResponse_GetPlayerUuidRankSelfV2 Response;
-	typedef FDelegate_GetPlayerUuidRankSelfV2 Delegate;
-	typedef FRankAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerUuidRankSelfV2(InRequest, InDelegate, Priority); }
-};
-
-/* Get Player Uuid Rank V2
- *
- * Get a specific player's rank for a specific rank id
- * 
- * Required Permissions: `rank:read:self` for players acting on themselves, 
- * otherwise `rank:read:any`
-*/
-struct RALLYHEREAPI_API FRequest_GetPlayerUuidRankV2 : public FRequest
-{
-	FRequest_GetPlayerUuidRankV2();
-	virtual ~FRequest_GetPlayerUuidRankV2() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	FGuid PlayerUuid;
-	FString RankId;
-};
-
-struct RALLYHEREAPI_API FResponse_GetPlayerUuidRankV2 : public FResponse
-{
-	FResponse_GetPlayerUuidRankV2(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetPlayerUuidRankV2() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-	FRHAPI_PlayerRankRequestResponseV2 Content;
-
-
-	// Manual Response Helpers
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_PlayerRankRequestResponseV2& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetPlayerUuidRankV2
-{
-	typedef FRequest_GetPlayerUuidRankV2 Request;
-	typedef FResponse_GetPlayerUuidRankV2 Response;
-	typedef FDelegate_GetPlayerUuidRankV2 Delegate;
-	typedef FRankAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetPlayerUuidRankV2(InRequest, InDelegate, Priority); }
-};
-
-/* Get Rank Config V3
- *
- * Get rank configuration for specific rank id
- * 
- * Required Permissions: `rank:read:config`
-*/
-struct RALLYHEREAPI_API FRequest_GetRankConfigV3 : public FRequest
-{
-	FRequest_GetRankConfigV3();
-	virtual ~FRequest_GetRankConfigV3() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	FString RankId;
-};
-
-struct RALLYHEREAPI_API FResponse_GetRankConfigV3 : public FResponse
-{
-	FResponse_GetRankConfigV3(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_GetRankConfigV3() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-	FRHAPI_RankConfigRequestResponseV3 Content;
-
-
-	// Manual Response Helpers
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_RankConfigRequestResponseV3& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetRankConfigV3
-{
-	typedef FRequest_GetRankConfigV3 Request;
-	typedef FResponse_GetRankConfigV3 Response;
-	typedef FDelegate_GetRankConfigV3 Delegate;
-	typedef FRankAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->GetRankConfigV3(InRequest, InDelegate, Priority); }
-};
-
-/* Update Player Uuid Rank
- *
- * Update a specific player's ranks to those that are provided. Ranks are taken as is
- * 
- * Required Permissions: `rank:update:self` for players acting on themselves, 
- * otherwise `rank:update:any`
- * **DEPRECATED** Use V2 endpoints
-*/
-struct RALLYHEREAPI_API FRequest_UpdatePlayerUuidRank : public FRequest
-{
-	FRequest_UpdatePlayerUuidRank();
-	virtual ~FRequest_UpdatePlayerUuidRank() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	FGuid PlayerUuid;
-	int32 RankId = 0;
-	FRHAPI_PlayerRankUpdateRequest PlayerRankUpdateRequest;
-};
-
-struct RALLYHEREAPI_API FResponse_UpdatePlayerUuidRank : public FResponse
-{
-	FResponse_UpdatePlayerUuidRank(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_UpdatePlayerUuidRank() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-	FRHAPI_PlayerRankUpdateResponse Content;
-
-
-	// Manual Response Helpers
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_PlayerRankUpdateResponse& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_UpdatePlayerUuidRank
-{
-	typedef FRequest_UpdatePlayerUuidRank Request;
-	typedef FResponse_UpdatePlayerUuidRank Response;
-	typedef FDelegate_UpdatePlayerUuidRank Delegate;
-	typedef FRankAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->UpdatePlayerUuidRank(InRequest, InDelegate, Priority); }
-};
-
-/* Update Player Uuid Rank Self
- *
- * Update current player's ranks to those that are provided. Ranks are taken as is 
- * 
- * Required Permissions: `rank:update:self`
- * **DEPRECATED** Use the V2 endpoint
-*/
-struct RALLYHEREAPI_API FRequest_UpdatePlayerUuidRankSelf : public FRequest
-{
-	FRequest_UpdatePlayerUuidRankSelf();
-	virtual ~FRequest_UpdatePlayerUuidRankSelf() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	int32 RankId = 0;
-	FRHAPI_PlayerRankUpdateRequest PlayerRankUpdateRequest;
-};
-
-struct RALLYHEREAPI_API FResponse_UpdatePlayerUuidRankSelf : public FResponse
-{
-	FResponse_UpdatePlayerUuidRankSelf(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_UpdatePlayerUuidRankSelf() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-	FRHAPI_PlayerRankUpdateResponse Content;
-
-
-	// Manual Response Helpers
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_PlayerRankUpdateResponse& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_UpdatePlayerUuidRankSelf
-{
-	typedef FRequest_UpdatePlayerUuidRankSelf Request;
-	typedef FResponse_UpdatePlayerUuidRankSelf Response;
-	typedef FDelegate_UpdatePlayerUuidRankSelf Delegate;
-	typedef FRankAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->UpdatePlayerUuidRankSelf(InRequest, InDelegate, Priority); }
-};
-
-/* Update Player Uuid Rank Self V2
- *
- * Update current player's ranks to those that are provided. Ranks are taken as is 
- * 
- * Required Permissions: `rank:update:self`
-*/
-struct RALLYHEREAPI_API FRequest_UpdatePlayerUuidRankSelfV2 : public FRequest
-{
-	FRequest_UpdatePlayerUuidRankSelfV2();
-	virtual ~FRequest_UpdatePlayerUuidRankSelfV2() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	FString RankId;
-	FRHAPI_PlayerRankUpdateRequest PlayerRankUpdateRequest;
-};
-
-struct RALLYHEREAPI_API FResponse_UpdatePlayerUuidRankSelfV2 : public FResponse
-{
-	FResponse_UpdatePlayerUuidRankSelfV2(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_UpdatePlayerUuidRankSelfV2() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-	FRHAPI_PlayerRankUpdateResponseV2 Content;
-
-
-	// Manual Response Helpers
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_PlayerRankUpdateResponseV2& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_UpdatePlayerUuidRankSelfV2
-{
-	typedef FRequest_UpdatePlayerUuidRankSelfV2 Request;
-	typedef FResponse_UpdatePlayerUuidRankSelfV2 Response;
-	typedef FDelegate_UpdatePlayerUuidRankSelfV2 Delegate;
-	typedef FRankAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->UpdatePlayerUuidRankSelfV2(InRequest, InDelegate, Priority); }
-};
-
-/* Update Player Uuid Rank V2
- *
- * Update a specific player's ranks to those that are provided. Ranks are taken as is
- * 
- * Required Permissions: `rank:update:self` for players acting on themselves, 
- * otherwise `rank:update:any`
-*/
-struct RALLYHEREAPI_API FRequest_UpdatePlayerUuidRankV2 : public FRequest
-{
-	FRequest_UpdatePlayerUuidRankV2();
-	virtual ~FRequest_UpdatePlayerUuidRankV2() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	FGuid PlayerUuid;
-	FString RankId;
-	FRHAPI_PlayerRankUpdateRequest PlayerRankUpdateRequest;
-};
-
-struct RALLYHEREAPI_API FResponse_UpdatePlayerUuidRankV2 : public FResponse
-{
-	FResponse_UpdatePlayerUuidRankV2(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_UpdatePlayerUuidRankV2() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-	FRHAPI_PlayerRankUpdateResponseV2 Content;
-
-
-	// Manual Response Helpers
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_PlayerRankUpdateResponseV2& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_UpdatePlayerUuidRankV2
-{
-	typedef FRequest_UpdatePlayerUuidRankV2 Request;
-	typedef FResponse_UpdatePlayerUuidRankV2 Response;
-	typedef FDelegate_UpdatePlayerUuidRankV2 Delegate;
-	typedef FRankAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->UpdatePlayerUuidRankV2(InRequest, InDelegate, Priority); }
-};
-
-/* Update Rankings V1
- *
- * Calculate and update on players and persist their new ranks
- * Requires at least two teams, and the player's ranks before the last match was played
- * 
- * Required Permissions: `rank:update:any`
- * **DEPRECATED** Use the v2 endpoint instead
-*/
-struct RALLYHEREAPI_API FRequest_UpdateRankingsV1 : public FRequest
-{
-	FRequest_UpdateRankingsV1();
-	virtual ~FRequest_UpdateRankingsV1() = default;
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	FString ComputePath() const override;
-	FName GetSimplifiedPath() const override;
-	FName GetSimplifiedPathWithVerb() const override;
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_RankUpdateRequest RankUpdateRequest;
-};
-
-struct RALLYHEREAPI_API FResponse_UpdateRankingsV1 : public FResponse
-{
-	FResponse_UpdateRankingsV1(FRequestMetadata InRequestMetadata);
-	virtual ~FResponse_UpdateRankingsV1() = default;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-	FRHAPI_PlayerRankUpdateResponse Content;
-
-
-	// Manual Response Helpers
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_PlayerRankUpdateResponse& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_UpdateRankingsV1
-{
-	typedef FRequest_UpdateRankingsV1 Request;
-	typedef FResponse_UpdateRankingsV1 Response;
-	typedef FDelegate_UpdateRankingsV1 Delegate;
-	typedef FRankAPI API;
-	static FString Name;
-
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI->UpdateRankingsV1(InRequest, InDelegate, Priority); }
-};
 
 
 }

@@ -62,21 +62,21 @@ void URH_CatalogSubsystem::InitPropertiesWithDefaultValues()
 	CatalogItems.Empty();
 	CatalogLootItems.Empty();
 	CatalogPricePoints.Empty();
-	GetCatalogAllETag = {};
-	GetCatalogXpAllETag = {};
-	GetCatalogPricePointsAllETag = {};
-	GetCatalogInventoryBucketUseRuleSetsAllETag = {};
+	TimeFrames.Empty();
+	
+	GetCatalogAllETag.Reset();
+	GetCatalogXpAllETag.Reset();
+	GetCatalogPricePointsAllETag.Reset();
+	GetCatalogVendorsAllETag.Reset();
+	GetCatalogTimeFramesAllETag.Reset();
+	GetCatalogInventoryBucketUseRuleSetsAllETag.Reset();
 }
 
 void URH_CatalogSubsystem::GetCatalogAll(const FRH_CatalogCallBlock& Delegate)
 {
 	auto Request = TGetCatalogAll::Request();
 
-	if (!Request.IfNoneMatch.IsSet() && !GetCatalogAllETag.IsEmpty())
-	{
-		Request.IfNoneMatch.Emplace(GetCatalogAllETag);
-	}
-
+	Request.IfNoneMatch = GetCatalogAllETag;
 	Request.AuthContext = GetAuthContext();
 
 	if (!TGetCatalogAll::DoCall(RH_APIs::GetCatalogAPI(), Request, TGetCatalogAll::Delegate::CreateUObject(this, &URH_CatalogSubsystem::OnGetCatalogAllResponse, Delegate), GetDefault<URH_IntegrationSettings>()->GetCatalogAllPriority))
@@ -87,25 +87,23 @@ void URH_CatalogSubsystem::GetCatalogAll(const FRH_CatalogCallBlock& Delegate)
 
 void URH_CatalogSubsystem::OnGetCatalogAllResponse(const TGetCatalogAll::Response& Resp, const FRH_CatalogCallBlock Delegate)
 {
-	if (Resp.IsSuccessful())
+	const auto Content = Resp.TryGetDefaultContentAsPointer();
+	if (Resp.IsSuccessful() && Content != nullptr)
 	{
-		if (Resp.ETag.IsSet())
-		{
-			GetCatalogAllETag = Resp.ETag.GetValue();
-		}
+		Resp.TryGetDefaultHeader_ETag(GetCatalogAllETag);
 
-		if (const auto& Data = Resp.Content.GetXpTablesOrNull())
+		if (const auto& Data = Content->GetXpTablesOrNull())
 		{
 			ParseAllXpTables(*Data);
 		}
 
-		if (const auto& Data = Resp.Content.GetInventoryBucketUseRuleSetsOrNull())
+		if (const auto& Data = Content->GetInventoryBucketUseRuleSetsOrNull())
 		{
 			ParseAllInventoryBucketUseRuleSets(*Data);
 		}
 
 		CatalogVendors.Empty();
-		if (const auto& Data = Resp.Content.GetVendorsOrNull())
+		if (const auto& Data = Content->GetVendorsOrNull())
 		{
 			if (const auto& Vendors = (*Data).GetVendorsOrNull())
 			{
@@ -117,7 +115,7 @@ void URH_CatalogSubsystem::OnGetCatalogAllResponse(const TGetCatalogAll::Respons
 		}
 
 		CatalogLootItems.Empty();
-		if (const auto& Data = Resp.Content.GetLootOrNull())
+		if (const auto& Data = Content->GetLootOrNull())
 		{
 			if (const auto& Loot = (*Data).GetLootOrNull())
 			{
@@ -129,7 +127,7 @@ void URH_CatalogSubsystem::OnGetCatalogAllResponse(const TGetCatalogAll::Respons
 		}
 
 		CatalogItems.Empty();
-		if (const auto& Data = Resp.Content.GetItemsOrNull())
+		if (const auto& Data = Content->GetItemsOrNull())
 		{
 			if (const auto& Items = (*Data).GetItemsOrNull())
 			{
@@ -141,7 +139,7 @@ void URH_CatalogSubsystem::OnGetCatalogAllResponse(const TGetCatalogAll::Respons
 		}
 
 		CatalogPricePoints.Empty();
-		if (const auto Data = Resp.Content.GetPricePointsOrNull())
+		if (const auto Data = Content->GetPricePointsOrNull())
 		{
 			if (auto PricePoints = (*Data).GetPricePointsOrNull())
 			{
@@ -153,7 +151,7 @@ void URH_CatalogSubsystem::OnGetCatalogAllResponse(const TGetCatalogAll::Respons
 		}
 
 		TimeFrames.Empty();
-		if (const auto& Data = Resp.Content.GetTimeFramesOrNull())
+		if (const auto& Data = Content->GetTimeFramesOrNull())
 		{
 			if (const auto& TimeframeData = (*Data).GetTimeFramesOrNull())
 			{
@@ -171,13 +169,9 @@ void URH_CatalogSubsystem::OnGetCatalogAllResponse(const TGetCatalogAll::Respons
 void URH_CatalogSubsystem::GetCatalogXpAll(const FRH_CatalogCallBlock& Delegate)
 {
 	auto Request = TGetCatalogXpAll::Request();
-
-	if (!Request.IfNoneMatch.IsSet() && !GetCatalogXpAllETag.IsEmpty())
-	{
-		Request.IfNoneMatch.Emplace(GetCatalogXpAllETag);
-	}
-
+	
 	Request.AuthContext = GetAuthContext();
+	Request.IfNoneMatch = GetCatalogXpAllETag;
 
 	if (!TGetCatalogXpAll::DoCall(RH_APIs::GetCatalogAPI(), Request, TGetCatalogXpAll::Delegate::CreateUObject(this, &URH_CatalogSubsystem::OnGetCatalogXpAllResponse, Delegate), GetDefault<URH_IntegrationSettings>()->GetCatalogXpAllPriority))
 	{
@@ -187,14 +181,12 @@ void URH_CatalogSubsystem::GetCatalogXpAll(const FRH_CatalogCallBlock& Delegate)
 
 void URH_CatalogSubsystem::OnGetCatalogXpAllResponse(const TGetCatalogXpAll::Response& Resp, const FRH_CatalogCallBlock Delegate)
 {
-	if (Resp.IsSuccessful())
+	const auto Content = Resp.TryGetDefaultContentAsPointer();
+	if (Resp.IsSuccessful() && Content != nullptr)
 	{
-		if (Resp.ETag.IsSet())
-		{
-			GetCatalogXpAllETag = Resp.ETag.GetValue();
-		}
+		Resp.TryGetDefaultHeader_ETag(GetCatalogXpAllETag);
 
-		ParseAllXpTables(Resp.Content);
+		ParseAllXpTables(*Content);
 	}
 
 	Delegate.ExecuteIfBound(Resp.IsSuccessful());
@@ -231,9 +223,10 @@ void URH_CatalogSubsystem::GetCatalogItem(int32 ItemId, const FRH_CatalogCallBlo
 
 void URH_CatalogSubsystem::OnGetCatalogItemResponse(const TGetCatalogItem::Response& Resp, int32 ItemId)
 {
-	if (Resp.IsSuccessful())
+	const auto Content = Resp.TryGetDefaultContentAsPointer();
+	if (Resp.IsSuccessful() && Content != nullptr)
 	{
-		ParseCatalogItem(Resp.Content, ItemId);
+		ParseCatalogItem(*Content, ItemId);
 	}
 
 	if (const auto& findItem = SubmittedGetCatalogItemCalls.Find(ItemId))
@@ -265,12 +258,8 @@ void URH_CatalogSubsystem::GetCatalogInventoryBucketUseRuleSetsAll(const FRH_Cat
 {
 	auto Request = TGetCatalogInventoryBucketUseRuleSetsAll::Request();
 
-	if (!Request.IfNoneMatch.IsSet() && !GetCatalogInventoryBucketUseRuleSetsAllETag.IsEmpty())
-	{
-		Request.IfNoneMatch.Emplace(GetCatalogInventoryBucketUseRuleSetsAllETag);
-	}
-
 	Request.AuthContext = GetAuthContext();
+	Request.IfNoneMatch = GetCatalogInventoryBucketUseRuleSetsAllETag;
 
 	if (!TGetCatalogInventoryBucketUseRuleSetsAll::DoCall(RH_APIs::GetCatalogAPI(), Request, TGetCatalogInventoryBucketUseRuleSetsAll::Delegate::CreateUObject(this, &URH_CatalogSubsystem::OnGetCatalogInventoryBucketUseRuleSetsAllResponse, Delegate), GetDefault<URH_IntegrationSettings>()->GetCatalogInventoryBucketUseRuleSetsAllPriority))
 	{
@@ -280,14 +269,12 @@ void URH_CatalogSubsystem::GetCatalogInventoryBucketUseRuleSetsAll(const FRH_Cat
 
 void URH_CatalogSubsystem::OnGetCatalogInventoryBucketUseRuleSetsAllResponse(const TGetCatalogInventoryBucketUseRuleSetsAll::Response& Resp, const FRH_CatalogCallBlock Delegate)
 {
-	if (Resp.IsSuccessful())
+	const auto Content = Resp.TryGetDefaultContentAsPointer();
+	if (Resp.IsSuccessful() && Content != nullptr)
 	{
-		if (Resp.ETag.IsSet())
-		{
-			GetCatalogInventoryBucketUseRuleSetsAllETag = Resp.ETag.GetValue();
-		}
+		Resp.TryGetDefaultHeader_ETag(GetCatalogInventoryBucketUseRuleSetsAllETag);
 
-		ParseAllInventoryBucketUseRuleSets(Resp.Content);
+		ParseAllInventoryBucketUseRuleSets(*Content);
 	}
 
 	Delegate.ExecuteIfBound(Resp.IsSuccessful());
@@ -402,18 +389,19 @@ void URH_CatalogSubsystem::GetCatalogVendorSingle(int32 VendorId)
 void URH_CatalogSubsystem::OnGetCatalogVendorResponse(const TGetCatalogVendor::Response& Resp, int32 VendorId)
 {
 	FRHAPI_Vendor Vendor;
-
-	if (Resp.IsSuccessful())
+	
+	const auto Content = Resp.TryGetDefaultContentAsPointer();
+	if (Resp.IsSuccessful() && Content != nullptr)
 	{
 		// Find or create the Vendor we are updating
 		if (const auto& FindItem = CatalogVendors.Find(VendorId))
 		{
-			*FindItem = Resp.Content;
+			*FindItem = *Content;
 			Vendor = *FindItem;
 		}
 		else
 		{
-			Vendor = CatalogVendors.Add(VendorId, Resp.Content);
+			Vendor = CatalogVendors.Add(VendorId, *Content);
 		}
 	}
 	else if (Resp.GetHttpResponseCode() ==  EHttpResponseCodes::NotModified)
@@ -529,12 +517,8 @@ void URH_CatalogSubsystem::GetCatalogVendorsAll(const FRH_CatalogCallBlock& Dele
 {
 	auto Request = TGetCatalogVendorsAll::Request();
 
-	if (!Request.IfNoneMatch.IsSet() && !GetCatalogVendorsAllETag.IsEmpty())
-	{
-		Request.IfNoneMatch.Emplace(GetCatalogVendorsAllETag);
-	}
-
 	Request.AuthContext = GetAuthContext();
+	Request.IfNoneMatch = GetCatalogVendorsAllETag;
 
 	if (!TGetCatalogVendorsAll::DoCall(RH_APIs::GetCatalogAPI(), Request, TGetCatalogVendorsAll::Delegate::CreateUObject(this, &URH_CatalogSubsystem::OnGetCatalogVendorsAllResponse, Delegate), GetDefault<URH_IntegrationSettings>()->GetCatalogVendorsAllPriority))
 	{
@@ -544,17 +528,15 @@ void URH_CatalogSubsystem::GetCatalogVendorsAll(const FRH_CatalogCallBlock& Dele
 
 void URH_CatalogSubsystem::OnGetCatalogVendorsAllResponse(const TGetCatalogVendorsAll::Response& Resp, const FRH_CatalogCallBlock Delegate)
 {
-	if (Resp.IsSuccessful())
+	const auto Content = Resp.TryGetDefaultContentAsPointer();
+	if (Resp.IsSuccessful() && Content != nullptr)
 	{
-		if (Resp.ETag.IsSet())
-		{
-			GetCatalogVendorsAllETag = Resp.ETag.GetValue();
-		}
+		Resp.TryGetDefaultHeader_ETag(GetCatalogVendorsAllETag);
 
 		CatalogVendors.Empty();
 		CatalogLootItems.Empty();
 
-		if (const auto& Data = Resp.Content.GetVendorsOrNull())
+		if (const auto& Data = Content->GetVendorsOrNull())
 		{
 			for (const auto& VendorPair : (*Data))
 			{
@@ -587,13 +569,9 @@ void URH_CatalogSubsystem::OnGetCatalogVendorsAllResponse(const TGetCatalogVendo
 void URH_CatalogSubsystem::GetCatalogPricePointsAll(const FRH_CatalogCallBlock& Delegate)
 {
 	auto Request = TGetCatalogPricePointsAll::Request();
-
-	if (!Request.IfNoneMatch.IsSet() && !GetCatalogPricePointsAllETag.IsEmpty())
-	{
-		Request.IfNoneMatch.Emplace(GetCatalogPricePointsAllETag);
-	}
-
+	
 	Request.AuthContext = GetAuthContext();
+	Request.IfNoneMatch = GetCatalogPricePointsAllETag;
 
 	if (!TGetCatalogPricePointsAll::DoCall(RH_APIs::GetCatalogAPI(), Request, TGetCatalogPricePointsAll::Delegate::CreateUObject(this, &URH_CatalogSubsystem::OnGetCatalogPricePointsAllResponse, Delegate), GetDefault<URH_IntegrationSettings>()->GetCatalogPricePointsAllPriority))
 	{
@@ -603,16 +581,14 @@ void URH_CatalogSubsystem::GetCatalogPricePointsAll(const FRH_CatalogCallBlock& 
 
 void URH_CatalogSubsystem::OnGetCatalogPricePointsAllResponse(const TGetCatalogPricePointsAll::Response& Resp, const FRH_CatalogCallBlock Delegate)
 {
-	if (Resp.IsSuccessful())
+	const auto Content = Resp.TryGetDefaultContentAsPointer();
+	if (Resp.IsSuccessful() && Content != nullptr)
 	{
-		if (Resp.ETag.IsSet())
-		{
-			GetCatalogPricePointsAllETag = Resp.ETag.GetValue();
-		}
+		Resp.TryGetDefaultHeader_ETag(GetCatalogPricePointsAllETag);
 
 		CatalogPricePoints.Empty();
 
-		if (const auto PricePoints = Resp.Content.GetPricePointsOrNull())
+		if (const auto PricePoints = Content->GetPricePointsOrNull())
 		{
 			for (const auto& PricePointPair : *PricePoints)
 			{
@@ -628,12 +604,8 @@ void URH_CatalogSubsystem::GetCatalogTimeFramesAll(const FRH_CatalogCallBlock& D
 {
 	auto Request = TGetCatalogTimeFramesAll::Request();
 
-	if (!Request.IfNoneMatch.IsSet() && !GetCatalogTimeFramesAllETag.IsEmpty())
-	{
-		Request.IfNoneMatch.Emplace(GetCatalogTimeFramesAllETag);
-	}
-
 	Request.AuthContext = GetAuthContext();
+	Request.IfNoneMatch = GetCatalogTimeFramesAllETag;
 
 	if (!TGetCatalogTimeFramesAll::DoCall(RH_APIs::GetCatalogAPI(), Request, TGetCatalogTimeFramesAll::Delegate::CreateUObject(this, &URH_CatalogSubsystem::OnGetCatalogTimeFramesAllResponse, Delegate), GetDefault<URH_IntegrationSettings>()->GetCatalogTimeFramesAllPriority))
 	{
@@ -643,16 +615,14 @@ void URH_CatalogSubsystem::GetCatalogTimeFramesAll(const FRH_CatalogCallBlock& D
 
 void URH_CatalogSubsystem::OnGetCatalogTimeFramesAllResponse(const TGetCatalogTimeFramesAll::Response& Resp, const FRH_CatalogCallBlock Delegate)
 {
-	if (Resp.IsSuccessful())
+	const auto Content = Resp.TryGetDefaultContentAsPointer();
+	if (Resp.IsSuccessful() && Content != nullptr)
 	{
-		if (Resp.ETag.IsSet())
-		{
-			GetCatalogTimeFramesAllETag = Resp.ETag.GetValue();
-		}
+		Resp.TryGetDefaultHeader_ETag(GetCatalogTimeFramesAllETag);
 
 		TimeFrames.Empty();
 
-		if (const auto& Data = Resp.Content.GetTimeFramesOrNull())
+		if (const auto& Data = Content->GetTimeFramesOrNull())
 		{
 			for (const auto& TimeFramePair : (*Data))
 			{

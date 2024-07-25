@@ -22,8 +22,12 @@ void URH_SettingsSubsystem::GetSettingTypes(const FRH_GenericSuccessWithErrorBlo
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<TGetConfigSettings>>(
 		TGetConfigSettings::Delegate::CreateLambda([this](const TGetConfigSettings::Response& Resp)
 			{
-				CachedSettingsTypes.Empty();
-				CachedSettingsTypes.Append(Resp.Content);
+				const auto Content = Resp.TryGetDefaultContentAsPointer();
+				if (Content != nullptr)
+				{
+					CachedSettingsTypes.Empty();
+					CachedSettingsTypes.Append(*Content);
+				}
 			}),
 		Delegate,
 		GetDefault<URH_IntegrationSettings>()->SettingsGetTypesPriority
