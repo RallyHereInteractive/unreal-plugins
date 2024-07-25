@@ -193,7 +193,6 @@ namespace RH_SessionCustomDataKeys
 
 	// instance data keys
 	static constexpr auto SessionSecurityTokenName = TEXT("rh.SessionSecurityToken");
-	static constexpr auto MatchId = TEXT("rh.MatchId");
 	static constexpr auto BeaconFlag = TEXT("rh.IsBeacon");
 }
 

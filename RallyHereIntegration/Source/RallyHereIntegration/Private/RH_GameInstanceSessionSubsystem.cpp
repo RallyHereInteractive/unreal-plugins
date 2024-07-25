@@ -194,7 +194,7 @@ bool URH_GameInstanceSessionSubsystem::MakeActiveSessionJoinable(UWorld* pWorld)
 	// if match id is set, push it into the join params
 	if (GetActiveMatchId().Len())
 	{
-		InstanceInfo.GetJoinParams().GetCustomData().Add(RH_SessionCustomDataKeys::MatchId, GetActiveMatchId());
+		InstanceInfo.SetMatchId(GetActiveMatchId());
 		InstanceInfo.GetJoinParams().CustomData_IsSet = true;
 		InstanceInfo.JoinParams_IsSet = true;
 	}
@@ -712,7 +712,7 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 			// if this is not a locally hosted match and a match id is present in the session at this time, cache it to mirror server caching time
 			const auto& JoinParams = ActiveSession->GetInstanceData()->GetJoinParams();
 			const auto CustomData = JoinParams.GetCustomDataOrNull();
-			const auto MatchIdPtr = CustomData ? CustomData->Find(RH_SessionCustomDataKeys::MatchId) : nullptr;
+			const auto MatchIdPtr = ActiveSession->GetInstanceData()->GetMatchIdOrNull();
 			if (MatchIdPtr != nullptr)
 			{
 				ActiveSessionState.MatchId = *MatchIdPtr;
