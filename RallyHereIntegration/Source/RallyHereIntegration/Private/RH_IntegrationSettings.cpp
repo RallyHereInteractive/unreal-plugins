@@ -55,7 +55,7 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	WebRequestsBurstTimeThresholdInSeconds = 5;
 	WebRequestsDefaultRetryCount = 6;
 	WebRequestsDefaultRetryTimeout = 60;
-	WebRequestMaxSanitizedContentLength = 2048;
+	WebRequestMaxSanitizedContentLength = 4096;
 
 	bAutoMakeSessionsJoinableOnHostMapLoadComplete = true;
 	bUseSecurityTokenForJoining = true;
@@ -162,6 +162,7 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	MatchesLookupPriority = 1000000;
 	MatchesUpdatePriority = 900000;
 	MatchesUpdatePlayerPriority = 900000;
+	PexReportPriority = 500000;
 	GetPlayerReportsSentPriority = 1000000;
 	GetPlayerReportsReceivedPriority = 1000000;
 	CreatePlayerReportPriority = 800000;

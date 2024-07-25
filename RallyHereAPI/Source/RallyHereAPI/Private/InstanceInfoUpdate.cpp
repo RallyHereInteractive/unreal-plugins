@@ -47,6 +47,11 @@ void FRHAPI_InstanceInfoUpdate::WriteJson(TSharedRef<TJsonWriter<>>& Writer) con
 		Writer->WriteIdentifierPrefix(TEXT("custom_data"));
 		RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
 	}
+	if (MatchId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("match_id"));
+		RallyHereAPI::WriteJsonValue(Writer, MatchId_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -87,6 +92,12 @@ bool FRHAPI_InstanceInfoUpdate::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonMatchIdField = (*Object)->TryGetField(TEXT("match_id"));
+	if (JsonMatchIdField.IsValid() && !JsonMatchIdField->IsNull())
+	{
+		MatchId_IsSet = TryGetJsonValue(JsonMatchIdField, MatchId_Optional);
+		ParseSuccess &= MatchId_IsSet;
 	}
 
 	return ParseSuccess;

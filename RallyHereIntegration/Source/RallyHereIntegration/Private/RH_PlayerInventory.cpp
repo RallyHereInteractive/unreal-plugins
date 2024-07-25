@@ -1066,12 +1066,11 @@ void URH_PlayerInventory::PopulateInstanceData(FRHAPI_PlayerOrderCreate& PlayerO
 			{
 				PlayerOrderCreate.SetInstanceId(*InstanceInfo->GetInstanceId());
 			}
-		}
-		if (const auto RHMSS = RHGI->GetMatchSubsystem())
-		{
-			if (RHMSS->HasActiveMatchId())
+
+			const auto MatchId = RHGISS->GetActiveMatchId();
+			if (!MatchId.IsEmpty())
 			{
-				PlayerOrderCreate.SetMatchId(RHMSS->GetActiveMatchId());
+				PlayerOrderCreate.SetMatchId(MatchId);
 			}
 		}
 	}

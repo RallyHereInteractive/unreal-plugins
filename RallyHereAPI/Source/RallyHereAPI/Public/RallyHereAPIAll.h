@@ -30,6 +30,7 @@
 #include "KeyEntitlementsAPI.h"
 #include "MarketingAPI.h"
 #include "MatchAPI.h"
+#include "PexAPI.h"
 #include "PlayerIdNotificationAPI.h"
 #include "PlayerNotificationAPI.h"
 #include "PresenceAPI.h"
@@ -121,6 +122,9 @@ public:
 	TSharedRef<FMatchAPI> GetMatch();
 	const TSharedRef<FMatchAPI> GetMatch() const;
 
+	TSharedRef<FPexAPI> GetPex();
+	const TSharedRef<FPexAPI> GetPex() const;
+
 	TSharedRef<FPlayerIdNotificationAPI> GetPlayerIdNotification();
 	const TSharedRef<FPlayerIdNotificationAPI> GetPlayerIdNotification() const;
 
@@ -186,6 +190,7 @@ private:
 	TSharedRef<FKeyEntitlementsAPI> KeyEntitlements;
 	TSharedRef<FMarketingAPI> Marketing;
 	TSharedRef<FMatchAPI> Match;
+	TSharedRef<FPexAPI> Pex;
 	TSharedRef<FPlayerIdNotificationAPI> PlayerIdNotification;
 	TSharedRef<FPlayerNotificationAPI> PlayerNotification;
 	TSharedRef<FPresenceAPI> Presence;

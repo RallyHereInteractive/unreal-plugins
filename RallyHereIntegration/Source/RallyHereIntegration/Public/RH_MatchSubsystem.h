@@ -260,39 +260,7 @@ protected:
 
 
 	// ACTIVE MATCH AND MATCH CREATION/UPDATING
-public:
-	/**
-	 * @brief Get the active match ID
-	 */
-	UFUNCTION(BlueprintCallable, Category = "Matches")
-	virtual const FString GetActiveMatchId() const { return ActiveMatchId.Get(FString()); }
-	/**
-	 * @brief Set the active match
-	 */
-	UFUNCTION(BlueprintCallable, Category = "Matches")
-	virtual void SetActiveMatchId(const FString& MatchId)
-	{
-		if (MatchId.IsEmpty())
-		{
-			ActiveMatchId.Reset();
-		}
-		else
-		{
-			ActiveMatchId = MatchId;
-		}
-	}
-	/**
-	 * @brief Gets whether the active match exists
-	 */
-	UFUNCTION(BlueprintCallable, Category = "Matches")
-	virtual bool HasActiveMatchId() const { return ActiveMatchId.IsSet(); }
-
-	/**
-	 * @brief Clears the active match
-	 */
-	UFUNCTION(BlueprintCallable, Category = "Matches")
-	virtual void ClearActiveMatchId() { ActiveMatchId.Reset(); }
-	
+public:	
 	/**
 	 * @brief Create a match (POST)
 	 * @param [in] Match The match to create
@@ -300,10 +268,10 @@ public:
 	 * @param [in] bSetActiveMatchId Whether to set the match as the active match
 	 * @param [in] Delegate Callback with the results of the match creation
 	 */
-	virtual void CreateMatch(const FRHAPI_MatchRequest& Match, bool bSetActive = true, const FRH_OnMatchUpdateCompleteDelegateBlock& Delegate = FRH_OnMatchUpdateCompleteDelegateBlock());
+	virtual void CreateMatch(const FRHAPI_MatchRequest& Match, const FRH_OnMatchUpdateCompleteDelegateBlock& Delegate = FRH_OnMatchUpdateCompleteDelegateBlock());
 	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Matches", meta = (DisplayName = "Create Match", AutoCreateRefTerm = "Match,Delegate"))
-	void BLUEPRINT_CreateMatch(const FRHAPI_MatchRequest& Match, bool bSetActive, const FRH_OnMatchUpdateCompleteDynamicDelegate& Delegate) { CreateMatch(Match, bSetActive, Delegate); }
+	void BLUEPRINT_CreateMatch(const FRHAPI_MatchRequest& Match, const FRH_OnMatchUpdateCompleteDynamicDelegate& Delegate) { CreateMatch(Match, Delegate); }
 
 	/**
 	 * @brief Update a match (PATCH)
@@ -347,15 +315,12 @@ protected:
 	{
 		FString MatchId;
 		TOptional<FRHAPI_MatchWithPlayers> Match;
-		bool bUpdateActive;
 
 		FMatchUpdateCallContext()
-			: bUpdateActive(false)
 		{}
 
 		FMatchUpdateCallContext(const FString& InMatchId)
 			: MatchId(InMatchId)
-			, bUpdateActive(false)
 		{}
 	};
 

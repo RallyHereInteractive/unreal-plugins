@@ -102,15 +102,16 @@ void FRHDTW_Match::DoViewActiveMatch()
 	}
 
 
-	auto MatchId = pGIMatchSubsystem->GetActiveMatchId();
-	if (MatchId.IsEmpty())
+	const auto pGISessionSubsystem = pGISubsystem->GetSessionSubsystem();
+	const auto ActiveMatchId = pGISessionSubsystem != nullptr ? pGISessionSubsystem->GetActiveMatchId() : FString();
+	if (ActiveMatchId.IsEmpty())
 	{
 		ImGui::Text("No active match.");
 		return;
 	}
 
 	FRHAPI_MatchWithPlayers Match;
-	bool bInCache = pGIMatchSubsystem->GetMatch(MatchId, Match);
+	bool bInCache = pGIMatchSubsystem->GetMatch(ActiveMatchId, Match);
 
 	if (bInCache)
 	{
@@ -131,12 +132,12 @@ void FRHDTW_Match::DoViewActiveMatch()
 
 	if (bInCache)
 	{
-		const FString MatchHeader = FString::Printf(TEXT("Match [%s]"), *MatchId);
+		const FString MatchHeader = FString::Printf(TEXT("Match [%s]"), *ActiveMatchId);
 		if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*MatchHeader), RH_DefaultTreeFlagsDefaultOpen))
 		{
 			ImGuiDisplayModelData(Match);
 
-			DoFilesBlock(MatchId, true, true);
+			DoFilesBlock(ActiveMatchId, true, true);
 
 			ImGui::TreePop();
 		}
@@ -336,10 +337,13 @@ void FRHDTW_Match::DoSearchMatches()
 		pGIMatchSubsystem->ClearMatchesCache();
 	}
 
+	const auto pGISessionSubsystem = pGISubsystem->GetSessionSubsystem();
+	const auto ActiveMatchId = pGISubsystem != nullptr ? pGISessionSubsystem->GetActiveMatchId() : FString();
+	
 	for (const auto& MatchPair : pGIMatchSubsystem->GetAllMatches())
 	{
 		static const FString ActiveFlag = TEXT(" - <ACTIVE>");
-		bool bIsActive = pGIMatchSubsystem->GetActiveMatchId() == MatchPair.Key;
+		const bool bIsActive = ActiveMatchId == MatchPair.Key;
 		const FString MatchHeader = FString::Printf(TEXT("Match [%s]%s"), *MatchPair.Key, bIsActive ? *ActiveFlag : TEXT(""));
 		if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*MatchHeader), RH_DefaultTreeFlags))
 		{

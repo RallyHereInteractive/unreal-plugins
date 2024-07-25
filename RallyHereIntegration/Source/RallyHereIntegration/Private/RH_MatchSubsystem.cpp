@@ -107,7 +107,7 @@ void URH_MatchSubsystem::GetMatchAsync(const FString& MatchId, bool bIgnoreCache
 
 //////////////////////////////////////////////////////////////////////////////
 
-void URH_MatchSubsystem::CreateMatch(const FRHAPI_MatchRequest& Match, bool bSetActive, const FRH_OnMatchUpdateCompleteDelegateBlock& Delegate)
+void URH_MatchSubsystem::CreateMatch(const FRHAPI_MatchRequest& Match, const FRH_OnMatchUpdateCompleteDelegateBlock& Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
@@ -118,13 +118,6 @@ void URH_MatchSubsystem::CreateMatch(const FRHAPI_MatchRequest& Match, bool bSet
 	Request.MatchRequest = Match;
 
 	auto Context = MakeShared<FMatchUpdateCallContext>();
-	Context->bUpdateActive = bSetActive;
-
-	// on a create call, always clear out the old active match
-	if (bSetActive)
-	{
-		ActiveMatchId.Reset();
-	}
 
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateWeakLambda(this, [this, Context](const BaseType::Response& Resp)
@@ -138,12 +131,6 @@ void URH_MatchSubsystem::CreateMatch(const FRHAPI_MatchRequest& Match, bool bSet
 
 					// store the match in the cache
 					MatchesCache.Add(Context->MatchId, Context->Match.GetValue());
-
-					// if requested, set thea active match id
-					if (Context->bUpdateActive)
-					{
-						SetActiveMatchId(Context->MatchId);
-					}
 				}
 			}),
 		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Context, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
@@ -393,6 +380,7 @@ T GenerateTestMatchEntry()
 BEGIN_DEFINE_SPEC(FRH_MatchCreateSimple, "RHAutomation.Match.Spec", EAutomationTestFlags::ClientContext | EAutomationTestFlags::RequiresUser | EAutomationTestFlags::ProductFilter | EAutomationTestFlags::MediumPriority)
 	FRHAPI_MatchRequest MatchRequest;
 	TWeakObjectPtr<URH_MatchSubsystem> Subsystem;
+	TOptional<FString> MatchId;
 
 	bool MatchTestBoilerplate()
 	{
@@ -408,7 +396,7 @@ BEGIN_DEFINE_SPEC(FRH_MatchCreateSimple, "RHAutomation.Match.Spec", EAutomationT
 
 		// clear the cache
 		Subsystem->ClearMatchesCache();
-		Subsystem->ClearActiveMatchId();
+		MatchId.Reset();
 
 		return true;
 	};
@@ -422,7 +410,7 @@ BEGIN_DEFINE_SPEC(FRH_MatchCreateSimple, "RHAutomation.Match.Spec", EAutomationT
 			return;
 		}
 
-		if (!TestTrue(TEXT("Validate ActiveMatchId"), !Subsystem->GetActiveMatchId().IsEmpty()))
+		if (!TestTrue(TEXT("Validate ActiveMatchId"), MatchId.IsSet() && !MatchId->IsEmpty()))
 		{
 			Done.Execute();
 			return;
@@ -442,7 +430,7 @@ BEGIN_DEFINE_SPEC(FRH_MatchCreateSimple, "RHAutomation.Match.Spec", EAutomationT
 			return;
 		}
 
-		Subsystem->GetMatchAsync(Subsystem->GetActiveMatchId(), true, FRH_OnMatchLookupCompleteDelegate::CreateLambda([this, LocalJsonBody, LocalJsonValue, Done](bool bSuccess, const FRHAPI_MatchWithPlayers& Match, const FRH_ErrorInfo& ErrorInfo)
+		Subsystem->GetMatchAsync(MatchId.GetValue(), true, FRH_OnMatchLookupCompleteDelegate::CreateLambda([this, LocalJsonBody, LocalJsonValue, Done](bool bSuccess, const FRHAPI_MatchWithPlayers& Match, const FRH_ErrorInfo& ErrorInfo)
 			{
 				if (!TestTrue(TEXT("Validate Success"), bSuccess))
 				{
@@ -512,7 +500,7 @@ void FRH_MatchCreateSimple::Define()
 					MatchSegments.Add(MatchSegment);
 					MatchRequest.SetSegments(MatchSegments);
 
-					Subsystem->CreateMatch(MatchRequest, true, FRH_OnMatchUpdateCompleteDelegate::CreateLambda([this, Done](bool bSuccess, const FRHAPI_MatchWithPlayers& Match, const FRH_ErrorInfo& ErrorInfo)
+					Subsystem->CreateMatch(MatchRequest, FRH_OnMatchUpdateCompleteDelegate::CreateLambda([this, Done](bool bSuccess, const FRHAPI_MatchWithPlayers& Match, const FRH_ErrorInfo& ErrorInfo)
 						{
 							if (!TestTrue(TEXT("Success"), bSuccess))
 							{
@@ -520,6 +508,8 @@ void FRH_MatchCreateSimple::Define()
 								return;
 							}
 
+							MatchId = Match.GetMatchId();
+						
 							GetAndValidateMatchRequest(Done);
 						}));
 				});
@@ -535,7 +525,7 @@ void FRH_MatchCreateSimple::Define()
 					// generate a match request
 					MatchRequest = GenerateTestMatchEntry<FRHAPI_MatchRequest>();
 
-					Subsystem->CreateMatch(MatchRequest, true, FRH_OnMatchUpdateCompleteDelegate::CreateLambda([this, Done](bool bSuccess, const FRHAPI_MatchWithPlayers& Match, const FRH_ErrorInfo& ErrorInfo)
+					Subsystem->CreateMatch(MatchRequest, FRH_OnMatchUpdateCompleteDelegate::CreateLambda([this, Done](bool bSuccess, const FRHAPI_MatchWithPlayers& Match, const FRH_ErrorInfo& ErrorInfo)
 						{
 							if (!TestTrue(TEXT("Success"), bSuccess))
 							{
@@ -549,6 +539,8 @@ void FRH_MatchCreateSimple::Define()
 								return;
 							}
 
+							MatchId = Match.GetMatchId();
+
 							// generate a patch request to close the match
 							FRHAPI_MatchRequest PatchRequest;
 							PatchRequest.SetState(ERHAPI_MatchState::Closed);
@@ -556,7 +548,7 @@ void FRH_MatchCreateSimple::Define()
 							// update the local match request object to match, for validation
 							MatchRequest.SetState(ERHAPI_MatchState::Closed);
 
-							Subsystem->UpdateMatch(Subsystem->GetActiveMatchId(), PatchRequest, FRH_OnMatchUpdateCompleteDelegate::CreateLambda([this, Done](bool bSuccess, const FRHAPI_MatchWithPlayers& Match, const FRH_ErrorInfo& ErrorInfo)
+							Subsystem->UpdateMatch(MatchId.GetValue(), PatchRequest, FRH_OnMatchUpdateCompleteDelegate::CreateLambda([this, Done](bool bSuccess, const FRHAPI_MatchWithPlayers& Match, const FRH_ErrorInfo& ErrorInfo)
 								{
 									if (!TestTrue(TEXT("Success"), bSuccess))
 									{
@@ -580,7 +572,7 @@ void FRH_MatchCreateSimple::Define()
 					// generate a match request
 					MatchRequest = GenerateTestMatchEntry<FRHAPI_MatchRequest>();
 
-					Subsystem->CreateMatch(MatchRequest, true, FRH_OnMatchUpdateCompleteDelegate::CreateLambda([this, Done](bool bSuccess, const FRHAPI_MatchWithPlayers& Match, const FRH_ErrorInfo& ErrorInfo)
+					Subsystem->CreateMatch(MatchRequest, FRH_OnMatchUpdateCompleteDelegate::CreateLambda([this, Done](bool bSuccess, const FRHAPI_MatchWithPlayers& Match, const FRH_ErrorInfo& ErrorInfo)
 						{
 							if (!TestTrue(TEXT("Success"), bSuccess))
 							{
@@ -594,6 +586,8 @@ void FRH_MatchCreateSimple::Define()
 								return;
 							}
 
+							MatchId = Match.GetMatchId();
+
 							// generate a player request
 							FRHAPI_MatchPlayerRequest PlayerRequest = GenerateTestMatchPlayer();
 
@@ -601,7 +595,7 @@ void FRH_MatchCreateSimple::Define()
 							MatchRequest.Players_IsSet = true;
 							MatchRequest.Players_Optional.Add(PlayerRequest);
 
-							Subsystem->UpdateMatchPlayer(Subsystem->GetActiveMatchId(), PlayerRequest.GetPlayerUuid(), PlayerRequest, FRH_OnMatchPlayerUpdateCompleteDelegate::CreateLambda([this, Done](bool bSuccess, const FRHAPI_MatchPlayerWithMatch& Player, const FRH_ErrorInfo& ErrorInfo)
+							Subsystem->UpdateMatchPlayer(MatchId.GetValue(), PlayerRequest.GetPlayerUuid(), PlayerRequest, FRH_OnMatchPlayerUpdateCompleteDelegate::CreateLambda([this, Done](bool bSuccess, const FRHAPI_MatchPlayerWithMatch& Player, const FRH_ErrorInfo& ErrorInfo)
 								{
 									if (!TestTrue(TEXT("Success"), bSuccess))
 									{
@@ -622,7 +616,7 @@ void FRH_MatchCreateSimple::Define()
 									// update the local match request object to match, for validation
 									MatchRequest.SetState(ERHAPI_MatchState::Closed);
 
-									Subsystem->UpdateMatch(Subsystem->GetActiveMatchId(), PatchRequest, FRH_OnMatchUpdateCompleteDelegate::CreateLambda([this, Done](bool bSuccess, const FRHAPI_MatchWithPlayers& Match, const FRH_ErrorInfo& ErrorInfo)
+									Subsystem->UpdateMatch(MatchId.GetValue(), PatchRequest, FRH_OnMatchUpdateCompleteDelegate::CreateLambda([this, Done](bool bSuccess, const FRHAPI_MatchWithPlayers& Match, const FRH_ErrorInfo& ErrorInfo)
 										{
 											if (!TestTrue(TEXT("Success"), bSuccess))
 											{
@@ -650,7 +644,7 @@ void FRH_MatchCreateSimple::Define()
 					MatchRequest = GenerateTestMatchEntry<FRHAPI_MatchRequest>();
 					MatchRequest.SetState(ERHAPI_MatchState::Closed);
 
-					Subsystem->CreateMatch(MatchRequest, true, FRH_OnMatchUpdateCompleteDelegate::CreateLambda([this, Done](bool bSuccess, const FRHAPI_MatchWithPlayers& Match, const FRH_ErrorInfo& ErrorInfo)
+					Subsystem->CreateMatch(MatchRequest, FRH_OnMatchUpdateCompleteDelegate::CreateLambda([this, Done](bool bSuccess, const FRHAPI_MatchWithPlayers& Match, const FRH_ErrorInfo& ErrorInfo)
 						{
 							if (!TestTrue(TEXT("Success"), bSuccess))
 							{
@@ -678,19 +672,20 @@ void FRH_MatchCreateSimple::Define()
 								return;
 							}
 
+							MatchId = Match.GetMatchId();
+						
 							// generate a temporary file
-							const auto MatchId = Match.GetMatchId();
 							const FString UploadMatchDir = FPaths::ProjectSavedDir() / TEXT("Temp");
 							
-							FString TempFile = UploadMatchDir / FString::Printf(TEXT("Match_%s.tmp"), *MatchId);
-							FString TempFileContents = FString::Printf(TEXT("MatchId: %s"), *MatchId);
+							FString TempFile = UploadMatchDir / FString::Printf(TEXT("Match_%s.tmp"), *MatchId.GetValue());
+							FString TempFileContents = FString::Printf(TEXT("MatchId: %s"), *MatchId.GetValue());
 							FFileHelper::SaveStringToFile(TempFileContents, *TempFile);
 
 							// upload the file
-							const auto RemoteFileDirectory = URH_MatchSubsystem::GetMatchFileDirectory(MatchId);
+							const auto RemoteFileDirectory = URH_MatchSubsystem::GetMatchFileDirectory(MatchId.GetValue());
 							const auto RemoteFileName = TEXT("TestFile.txt");
 							RemoteFileSubsystem->UploadFile(RemoteFileDirectory, RemoteFileName, TempFile,
-								FRH_GenericSuccessWithErrorDelegate::CreateLambda([this, RemoteFileDirectory, RemoteFileName, TempFileContents, MatchId, Done](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+								FRH_GenericSuccessWithErrorDelegate::CreateLambda([this, RemoteFileDirectory, RemoteFileName, TempFileContents, Done](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 								{
 									if (!TestTrue(TEXT("Success"), bSuccess))
 									{
@@ -719,7 +714,7 @@ void FRH_MatchCreateSimple::Define()
 									}
 
 									const FString DownloadMatchDir = FPaths::ProjectPersistentDownloadDir();
-									FString DestFile = DownloadMatchDir / FString::Printf(TEXT("Match_%s.txt"), *MatchId);
+									FString DestFile = DownloadMatchDir / FString::Printf(TEXT("Match_%s.txt"), *MatchId.GetValue());
 
 									RemoteFileSubsystem->DownloadFile(RemoteFileDirectory, RemoteFileName, DestFile, FRH_GenericSuccessWithErrorDelegate::CreateLambda([this, DestFile, TempFileContents, Done](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 										{

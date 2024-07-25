@@ -11,6 +11,9 @@ struct FRHDTW_Analytics : public FRH_DebugToolWindow
 	virtual ~FRHDTW_Analytics();
 
 	void Do() override;
+	void DoAPIChartTabs();
+	void DoAsyncTasksTab();
+	void DoPlayerExperienceTab();
 
 protected:
 	TArray<ANSICHAR> APINameFilterInput;

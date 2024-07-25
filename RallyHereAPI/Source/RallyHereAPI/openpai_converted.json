@@ -25419,7 +25419,7 @@
           "match"
         ],
         "summary": "Create Match",
-        "description": "Create match by match_id",
+        "description": "Create match by match_id\n    \n    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`\n    \n    Or you have match:match:edit:authority and are the host of the match.",
         "operationId": "create_match",
         "security": [
           {
@@ -25476,7 +25476,7 @@
           "match"
         ],
         "summary": "Get Match",
-        "description": "Get match by match_id",
+        "description": "Get match by match_id\n    \n    Must be part of the match or have the following permissions: \n    any of: `match:*`, `match:match:any:read` match:match:player:read",
         "operationId": "get_match",
         "security": [
           {
@@ -25542,7 +25542,7 @@
           "match"
         ],
         "summary": "Update Match",
-        "description": "Update match by match_id",
+        "description": "Update match by match_id\n    \n    Match must still be in a pending state.\n    \n    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`\n    \n    Or you have match:match:edit:authority and are the host of the match.",
         "operationId": "update_match",
         "security": [
           {
@@ -25608,7 +25608,7 @@
           "match"
         ],
         "summary": "Patch Match",
-        "description": "Update match by match_id only with provided fields",
+        "description": "Update match by match_id only with provided fields\n    \n    Match must still be in a pending state.\n    \n    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`\n    \n    Or you have match:match:edit:authority and are the host of the match.",
         "operationId": "patch_match",
         "security": [
           {
@@ -25674,7 +25674,7 @@
           "match"
         ],
         "summary": "Delete Match",
-        "description": "Delete match by match_id",
+        "description": "Delete match by match_id\n    \n    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`",
         "operationId": "delete_match",
         "security": [
           {
@@ -25725,7 +25725,7 @@
           "match"
         ],
         "summary": "Get Player Matches Self",
-        "description": "Get all matches for self",
+        "description": "Get all matches for self. Only provides matches for the player_uuid in the provided token.\n    \n    Must be on your own behalf or have the following permissions: \n    any of: `match:*`, `match:match:player:read`, `match:player:any:read` : `match:player:self:read`",
         "operationId": "get_player_matches_self",
         "security": [
           {
@@ -25802,7 +25802,7 @@
           "match"
         ],
         "summary": "Get Players Matches",
-        "description": "Get All matches for a provided player_uuid",
+        "description": "Get All matches for a provided player_uuid.\n    \n    Must be on your own behalf or have the following permissions: \n    any of: `match:*`, `match:match:player:read`, `match:player:any:read` : `match:player:self:read`",
         "operationId": "get_players_matches",
         "security": [
           {
@@ -25889,7 +25889,7 @@
           "match"
         ],
         "summary": "Get Match Player",
-        "description": "Get a player match record for the provided player_uuid and match_id",
+        "description": "Get a player match record for the provided player_uuid and match_id\n    \n    Must be on your own behalf or have the following permissions: \n    any of: `match:*`, `match:match:player:read`, `match:player:any:read` : `match:player:self:read`",
         "operationId": "get_match_player",
         "security": [
           {
@@ -25955,7 +25955,7 @@
           "match"
         ],
         "summary": "Create Match Player",
-        "description": "Create player match record for the provided player_uuid and match_id",
+        "description": "Create player match record for the provided player_uuid and match_id\n    \n    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`\n    \n    Or you have match:match:edit:authority and are the host of the match.",
         "operationId": "create_match_player",
         "security": [
           {
@@ -26031,7 +26031,7 @@
           "match"
         ],
         "summary": "Update Match Player",
-        "description": "Update player match record for the provided player_uuid and match_id",
+        "description": "Update player match record for the provided player_uuid and match_id\n    \n    Match must still be in a pending state.\n    \n    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`\n    \n    Or you have match:match:edit:authority and are the host of the match.",
         "operationId": "update_match_player",
         "security": [
           {
@@ -26107,7 +26107,7 @@
           "match"
         ],
         "summary": "Patch Match Player",
-        "description": "Update player match record for the provided player_uuid and match_id only with provided fields",
+        "description": "Update player match record for the provided player_uuid \" \"and match_id only with provided fields.\n    \n    Match must still be in a pending state.\n    \n    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`\n    \n    Or you have match:match:edit:authority and are the host of the match.",
         "operationId": "patch_match_player",
         "security": [
           {
@@ -26183,7 +26183,7 @@
           "match"
         ],
         "summary": "Delete Match Player",
-        "description": "Delete player by player_uuid and match_id",
+        "description": "Delete player by player_uuid and match_id\n    \n    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`",
         "operationId": "delete_match_player",
         "security": [
           {
@@ -26236,6 +26236,2071 @@
             }
           }
         }
+      }
+    },
+    "/match/v1/match/{match_id}/segment/{segment_id}": {
+      "get": {
+        "tags": [
+          "match"
+        ],
+        "summary": "Get Match Segment",
+        "description": "Get match segment by match_id and segment_id",
+        "operationId": "get_match_segment",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "match_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Match Id"
+            }
+          },
+          {
+            "name": "segment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Segment Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MatchSegmentWithPlayers"
+                }
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "match"
+        ],
+        "summary": "Update Match Segment",
+        "description": "Update match segment by match_id and segment_id",
+        "operationId": "update_match_segment",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "match_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Match Id"
+            }
+          },
+          {
+            "name": "segment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Segment Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MatchSegmentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MatchSegmentWithPlayers"
+                }
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "match"
+        ],
+        "summary": "Patch Match Segment",
+        "description": "Update match segment by match_id and segment_id only with provided fields",
+        "operationId": "patch_match_segment",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "match_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Match Id"
+            }
+          },
+          {
+            "name": "segment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Segment Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MatchSegmentPatchRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MatchSegmentWithPlayers"
+                }
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "match"
+        ],
+        "summary": "Delete Match Segment",
+        "description": "Delete match segment by match_id and segment_id",
+        "operationId": "delete_match_segment",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "match_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Match Id"
+            }
+          },
+          {
+            "name": "segment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Segment Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/match/v1/match/{match_id}/segment": {
+      "post": {
+        "tags": [
+          "match"
+        ],
+        "summary": "Create Match Segment",
+        "description": "Create match segment by match_id",
+        "operationId": "create_match_segment",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "match_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Match Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MatchSegmentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MatchSegmentWithPlayers"
+                }
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/match/v1/pex/host/raw": {
+      "get": {
+        "tags": [
+          "pex"
+        ],
+        "summary": "Get All Pex Host Raw By Filter",
+        "description": "Get pages of PEX host raw data based on provided filters\n            \n            Required Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:pex:read`",
+        "operationId": "get_all_pex_host_raw_by_filter",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "maximum": 100,
+                  "minimum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "The maximum number of elements to be returned per call",
+              "default": 50,
+              "title": "Page Size"
+            },
+            "description": "The maximum number of elements to be returned per call"
+          },
+          {
+            "name": "to_datetime",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "title": "Time Zone Aware Datetime",
+                  "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2023-01-23T21:07:02.000000+00:00"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "To Datetime"
+            }
+          },
+          {
+            "name": "from_datetime",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "title": "Time Zone Aware Datetime",
+                  "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2023-01-23T21:07:02.000000+00:00"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "From Datetime"
+            }
+          },
+          {
+            "name": "match_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Match Id"
+            }
+          },
+          {
+            "name": "region_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Region Id"
+            }
+          },
+          {
+            "name": "server_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Server Id"
+            }
+          },
+          {
+            "name": "allocation_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Allocation Id"
+            }
+          },
+          {
+            "name": "datacenter_provider",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Datacenter Provider"
+            }
+          },
+          {
+            "name": "datacenter_location",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Datacenter Location"
+            }
+          },
+          {
+            "name": "machine_class",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Machine Class"
+            }
+          },
+          {
+            "name": "address_ip",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Address Ip"
+            }
+          },
+          {
+            "name": "map_name",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Map Name"
+            }
+          },
+          {
+            "name": "game_mode",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Game Mode"
+            }
+          },
+          {
+            "name": "matchmaking_profile_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Matchmaking Profile Id"
+            }
+          },
+          {
+            "name": "expected_team_size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Expected Team Size"
+            }
+          },
+          {
+            "name": "expected_player_count",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Expected Player Count"
+            }
+          },
+          {
+            "name": "host_player_uuid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Host Player Uuid"
+            }
+          },
+          {
+            "name": "owning_player_uuid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Owning Player Uuid"
+            }
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Version"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PexHostPagedResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/match/v1/pex/host/score": {
+      "get": {
+        "tags": [
+          "pex"
+        ],
+        "summary": "Get All Pex Host Scores By Filter",
+        "description": "Get pages of PEX host scores based on provided filters\n            \n            Required Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:pex:read`",
+        "operationId": "get_all_pex_host_scores_by_filter",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "maximum": 100,
+                  "minimum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "The maximum number of elements to be returned per call",
+              "default": 50,
+              "title": "Page Size"
+            },
+            "description": "The maximum number of elements to be returned per call"
+          },
+          {
+            "name": "to_datetime",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "title": "Time Zone Aware Datetime",
+                  "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2023-01-23T21:07:02.000000+00:00"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "To Datetime"
+            }
+          },
+          {
+            "name": "from_datetime",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "title": "Time Zone Aware Datetime",
+                  "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2023-01-23T21:07:02.000000+00:00"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "From Datetime"
+            }
+          },
+          {
+            "name": "match_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Match Id"
+            }
+          },
+          {
+            "name": "region_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Region Id"
+            }
+          },
+          {
+            "name": "server_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Server Id"
+            }
+          },
+          {
+            "name": "allocation_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Allocation Id"
+            }
+          },
+          {
+            "name": "datacenter_provider",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Datacenter Provider"
+            }
+          },
+          {
+            "name": "datacenter_location",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Datacenter Location"
+            }
+          },
+          {
+            "name": "machine_class",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Machine Class"
+            }
+          },
+          {
+            "name": "address_ip",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Address Ip"
+            }
+          },
+          {
+            "name": "map_name",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Map Name"
+            }
+          },
+          {
+            "name": "game_mode",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Game Mode"
+            }
+          },
+          {
+            "name": "matchmaking_profile_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Matchmaking Profile Id"
+            }
+          },
+          {
+            "name": "expected_team_size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Expected Team Size"
+            }
+          },
+          {
+            "name": "expected_player_count",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Expected Player Count"
+            }
+          },
+          {
+            "name": "host_player_uuid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Host Player Uuid"
+            }
+          },
+          {
+            "name": "owning_player_uuid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Owning Player Uuid"
+            }
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Version"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PexHostPagedResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/match/v1/pex/client/raw": {
+      "get": {
+        "tags": [
+          "pex"
+        ],
+        "summary": "Get All Pex Client Raw By Filter",
+        "description": "Get pages of PEX client raw data based on provided filters\n\n            Required Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:pex:read`",
+        "operationId": "get_all_pex_client_raw_by_filter",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "maximum": 100,
+                  "minimum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "The maximum number of elements to be returned per call",
+              "default": 50,
+              "title": "Page Size"
+            },
+            "description": "The maximum number of elements to be returned per call"
+          },
+          {
+            "name": "to_datetime",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "title": "Time Zone Aware Datetime",
+                  "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2023-01-23T21:07:02.000000+00:00"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "To Datetime"
+            }
+          },
+          {
+            "name": "from_datetime",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "title": "Time Zone Aware Datetime",
+                  "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2023-01-23T21:07:02.000000+00:00"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "From Datetime"
+            }
+          },
+          {
+            "name": "match_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Match Id"
+            }
+          },
+          {
+            "name": "region_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Region Id"
+            }
+          },
+          {
+            "name": "server_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Server Id"
+            }
+          },
+          {
+            "name": "allocation_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Allocation Id"
+            }
+          },
+          {
+            "name": "datacenter_provider",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Datacenter Provider"
+            }
+          },
+          {
+            "name": "datacenter_location",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Datacenter Location"
+            }
+          },
+          {
+            "name": "machine_class",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Machine Class"
+            }
+          },
+          {
+            "name": "address_ip",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Address Ip"
+            }
+          },
+          {
+            "name": "map_name",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Map Name"
+            }
+          },
+          {
+            "name": "game_mode",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Game Mode"
+            }
+          },
+          {
+            "name": "matchmaking_profile_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Matchmaking Profile Id"
+            }
+          },
+          {
+            "name": "expected_team_size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Expected Team Size"
+            }
+          },
+          {
+            "name": "expected_player_count",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Expected Player Count"
+            }
+          },
+          {
+            "name": "host_player_uuid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Host Player Uuid"
+            }
+          },
+          {
+            "name": "owning_player_uuid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Owning Player Uuid"
+            }
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Version"
+            }
+          },
+          {
+            "name": "player_uuid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Player Uuid"
+            }
+          },
+          {
+            "name": "device_info",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Device Info"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PexClientPagedResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/match/v1/pex/client/score": {
+      "get": {
+        "tags": [
+          "pex"
+        ],
+        "summary": "Get All Pex Client Scores By Filter",
+        "description": "Get pages of PEX client score data based on provided filters\n\n            Required Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:pex:read`",
+        "operationId": "get_all_pex_client_scores_by_filter",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "maximum": 100,
+                  "minimum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "The maximum number of elements to be returned per call",
+              "default": 50,
+              "title": "Page Size"
+            },
+            "description": "The maximum number of elements to be returned per call"
+          },
+          {
+            "name": "to_datetime",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "title": "Time Zone Aware Datetime",
+                  "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2023-01-23T21:07:02.000000+00:00"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "To Datetime"
+            }
+          },
+          {
+            "name": "from_datetime",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "title": "Time Zone Aware Datetime",
+                  "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2023-01-23T21:07:02.000000+00:00"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "From Datetime"
+            }
+          },
+          {
+            "name": "match_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Match Id"
+            }
+          },
+          {
+            "name": "region_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Region Id"
+            }
+          },
+          {
+            "name": "server_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Server Id"
+            }
+          },
+          {
+            "name": "allocation_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Allocation Id"
+            }
+          },
+          {
+            "name": "datacenter_provider",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Datacenter Provider"
+            }
+          },
+          {
+            "name": "datacenter_location",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Datacenter Location"
+            }
+          },
+          {
+            "name": "machine_class",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Machine Class"
+            }
+          },
+          {
+            "name": "address_ip",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Address Ip"
+            }
+          },
+          {
+            "name": "map_name",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Map Name"
+            }
+          },
+          {
+            "name": "game_mode",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Game Mode"
+            }
+          },
+          {
+            "name": "matchmaking_profile_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Matchmaking Profile Id"
+            }
+          },
+          {
+            "name": "expected_team_size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Expected Team Size"
+            }
+          },
+          {
+            "name": "expected_player_count",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Expected Player Count"
+            }
+          },
+          {
+            "name": "host_player_uuid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Host Player Uuid"
+            }
+          },
+          {
+            "name": "owning_player_uuid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Owning Player Uuid"
+            }
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Version"
+            }
+          },
+          {
+            "name": "player_uuid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Player Uuid"
+            }
+          },
+          {
+            "name": "device_info",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Device Info"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PexClientPagedResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/match/v1/pex/host": {
+      "post": {
+        "tags": [
+          "pex"
+        ],
+        "summary": "Create Pex Host",
+        "description": "Create PEX Host\n\n            Required Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:pex:host:write`",
+        "operationId": "create_pex_host",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PexHostRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/match/v1/pex/client": {
+      "post": {
+        "tags": [
+          "pex"
+        ],
+        "summary": "Create Pex Player",
+        "description": "Create PEX Client\n\n           Required Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:pex:client:write`",
+        "operationId": "create_pex_player",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PexClientRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
       }
     },
     "/sanctions/v2/player/{player_uuid}/reports": {
@@ -30623,17 +32688,17 @@
         ],
         "title": "CrossplayInput",
         "description": "Crossplay input preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches",
-        "x-enum-varnames": [
-          "ANY",
-          "KBM",
-          "GAMEPAD",
-          "TOUCH"
-        ],
         "x-enum-descriptions": [
           "No crossplay input preferences. Can play with players using any input",
           "Can only play with players using a keyboard and mouse",
           "Can only player with players using a gamepad/controller",
           "Can only player with players using a touch screen"
+        ],
+        "x-enum-varnames": [
+          "ANY",
+          "KBM",
+          "GAMEPAD",
+          "TOUCH"
         ]
       },
       "CrossplayPlatform": {
@@ -30645,15 +32710,15 @@
         ],
         "title": "CrossplayPlatform",
         "description": "Crossplay platform preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches",
-        "x-enum-varnames": [
-          "ANY",
-          "XBOX",
-          "PLAYSTATION"
-        ],
         "x-enum-descriptions": [
           "No crossplay platform preferences. Can play with players any platforms",
           "Can only play with players on xbox-like platforms (xbox-one, xsx etc.)",
           "Can only play with players on playstation-like platform (ps4, ps5 etc.)"
+        ],
+        "x-enum-varnames": [
+          "ANY",
+          "XBOX",
+          "PLAYSTATION"
         ]
       },
       "CrossplayPreferences": {
@@ -30694,19 +32759,19 @@
         ],
         "title": "DeleteTicketReason",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "assigned",
-          "backfilled",
-          "left_queue",
-          "timeout",
-          "party_changed"
-        ],
         "x-enum-descriptions": [
           "An enumeration.",
           "An enumeration.",
           "An enumeration.",
           "An enumeration.",
           "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "assigned",
+          "backfilled",
+          "left_queue",
+          "timeout",
+          "party_changed"
         ]
       },
       "DeserterConfig": {
@@ -30789,17 +32854,17 @@
         ],
         "title": "Determiner",
         "description": "Determiner for how many rules must be satisfied in order to satisfy the ruleset",
-        "x-enum-varnames": [
-          "ALL",
-          "ANY",
-          "ONE",
-          "NONE"
-        ],
         "x-enum-descriptions": [
           "All rules must be satisfied",
           "At least one rule must be satisfied",
           "Exactly one rule must be satisfied",
           "All rules must not be satisfied"
+        ],
+        "x-enum-varnames": [
+          "ALL",
+          "ANY",
+          "ONE",
+          "NONE"
         ]
       },
       "HostType": {
@@ -30811,15 +32876,15 @@
         ],
         "title": "HostType",
         "description": "Whether the host is another player, or a dedicated instance",
-        "x-enum-varnames": [
-          "dedicated",
-          "player",
-          "preallocated"
-        ],
         "x-enum-descriptions": [
           "A dedicated, standalone instance",
           "A player hosted instance",
           "A preallocated instance that isn't player owned"
+        ],
+        "x-enum-varnames": [
+          "dedicated",
+          "player",
+          "preallocated"
         ]
       },
       "Input": {
@@ -30831,15 +32896,15 @@
         ],
         "title": "Input",
         "description": "The different input types that players can use",
-        "x-enum-varnames": [
-          "KBM",
-          "GAMEPAD",
-          "TOUCH"
-        ],
         "x-enum-descriptions": [
           "Input for players using a keyboard and mouse",
           "Input for players using a gamepad/controller",
           "Input for players using a touch screen"
+        ],
+        "x-enum-varnames": [
+          "KBM",
+          "GAMEPAD",
+          "TOUCH"
         ]
       },
       "InstanceHealthSettingsResponse": {
@@ -30884,17 +32949,17 @@
         ],
         "title": "InstanceHealthStatus",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "HEALTHY",
-          "UNHEALTHY",
-          "DEGRADED",
-          "UNKNOWN"
-        ],
         "x-enum-descriptions": [
           "Instance is in a healthy state",
           "Instance is in an unhealthy state and cannot handle connections",
           "Instance performance is degraded, and may be unable to handle new or existing connections",
           "Instance health checks have stopped, and instance status is unknown"
+        ],
+        "x-enum-varnames": [
+          "HEALTHY",
+          "UNHEALTHY",
+          "DEGRADED",
+          "UNKNOWN"
         ]
       },
       "InstanceHealthStatusResponse": {
@@ -31050,6 +33115,11 @@
             "minLength": 1,
             "title": "Match Making Profile Id",
             "description": "The profile id that this instance was spawned from"
+          },
+          "match_id": {
+            "type": "string",
+            "title": "Match Id",
+            "description": "The match ID associated with this instance"
           }
         },
         "type": "object",
@@ -31105,6 +33175,11 @@
             "title": "Custom Data",
             "description": "instance-defined custom data",
             "default": {}
+          },
+          "match_id": {
+            "type": "string",
+            "title": "Match Id",
+            "description": "The match ID associated with this instance"
           }
         },
         "type": "object",
@@ -31123,14 +33198,6 @@
         ],
         "title": "InstanceJoinableStatus",
         "description": "What state the instance is currently in",
-        "x-enum-varnames": [
-          "requested",
-          "allocated",
-          "pending",
-          "joinable",
-          "unjoinable",
-          "closed"
-        ],
         "x-enum-descriptions": [
           "Searching for a host",
           "Host has been found, and is loading its session information",
@@ -31138,6 +33205,14 @@
           "Host is ready to accept players",
           "Host has marked itself as no longer ready to accept players, but may transition back to joinable",
           "Host has left, been timed out, or could not be found"
+        ],
+        "x-enum-varnames": [
+          "requested",
+          "allocated",
+          "pending",
+          "joinable",
+          "unjoinable",
+          "closed"
         ]
       },
       "InstanceLaunchTemplate": {
@@ -31333,15 +33408,15 @@
         ],
         "title": "InviteSource",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "BACKFILL",
-          "MATCHMAKING",
-          "PLAYER"
-        ],
         "x-enum-descriptions": [
           "An enumeration.",
           "An enumeration.",
           "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "BACKFILL",
+          "MATCHMAKING",
+          "PLAYER"
         ]
       },
       "JoinParams": {
@@ -31386,17 +33461,17 @@
         ],
         "title": "MMRGroupingMethod",
         "description": "What method should be used to determine a linking's group MMR based on the individuals",
-        "x-enum-varnames": [
-          "WORST",
-          "BEST",
-          "AVERAGE_BY_VARIANCE",
-          "AVERAGE"
-        ],
         "x-enum-descriptions": [
           "Use the lowest MMR of any player in the linking",
           "Use the highest MMR of any player in the linking",
           "Use the arithmetic mean of the players' skill multiplied by their variance. This is the sum of each player's skill times variance divided by the number of players",
           "Use the arithmetic mean of the players' skill. This is the sum of each player's skill divided by the number of players"
+        ],
+        "x-enum-varnames": [
+          "WORST",
+          "BEST",
+          "AVERAGE_BY_VARIANCE",
+          "AVERAGE"
         ]
       },
       "MapConfig": {
@@ -32128,14 +34203,6 @@
         ],
         "title": "Operation",
         "description": "What comparison operation should be used when evaluating a rule",
-        "x-enum-varnames": [
-          "EQUAL",
-          "NOT_EQUAL",
-          "LESS_THAN",
-          "LESS_THAN_EQUAL",
-          "GREATER_THAN",
-          "GREATER_THAN_EQUAL"
-        ],
         "x-enum-descriptions": [
           "The two values must be equal",
           "The two values must not be equal",
@@ -32143,6 +34210,14 @@
           "Value A must be less than or equal to value B",
           "Value A must be greater than value B",
           "Value A must be greater than or equal to value B"
+        ],
+        "x-enum-varnames": [
+          "EQUAL",
+          "NOT_EQUAL",
+          "LESS_THAN",
+          "LESS_THAN_EQUAL",
+          "GREATER_THAN",
+          "GREATER_THAN_EQUAL"
         ]
       },
       "PlatformID": {
@@ -32163,20 +34238,6 @@
         ],
         "title": "PlatformID",
         "description": "DEPRECATED. Use Platform instead. Unique ids for different client platforms",
-        "x-enum-varnames": [
-          "ANON",
-          "AMAZON",
-          "STEAM",
-          "PSN",
-          "XBOX_LIVE",
-          "BASIC",
-          "GOOGLE",
-          "TWITCH",
-          "NINTENDO_SWITCH",
-          "APPLE",
-          "NINTENDO",
-          "EPIC"
-        ],
         "x-enum-descriptions": [
           "DEPRECATED. Use platform instead. ID for the platform Anon",
           "DEPRECATED. Use platform instead. ID for the platform Amazon",
@@ -32190,6 +34251,20 @@
           "DEPRECATED. Use platform instead. ID for the platform Apple",
           "DEPRECATED. Use platform instead. ID for the platform NintendoNAID",
           "DEPRECATED. Use platform instead. ID for the platform Epic"
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "AMAZON",
+          "STEAM",
+          "PSN",
+          "XBOX_LIVE",
+          "BASIC",
+          "GOOGLE",
+          "TWITCH",
+          "NINTENDO_SWITCH",
+          "APPLE",
+          "NINTENDO",
+          "EPIC"
         ]
       },
       "PlatformSession": {
@@ -32477,15 +34552,15 @@
         ],
         "title": "PlayersToValidate",
         "description": "Which subset of players in a session need to satisfy a ruleset for it to be considered valid",
-        "x-enum-varnames": [
-          "LEADER",
-          "ALL_MEMBERS",
-          "ANY_MEMBER"
-        ],
         "x-enum-descriptions": [
           "Only the leader must be validated",
           "All members of a session must be validated",
           "Any single member must be validated"
+        ],
+        "x-enum-varnames": [
+          "LEADER",
+          "ALL_MEMBERS",
+          "ANY_MEMBER"
         ]
       },
       "ProfileJoinMode": {
@@ -32497,15 +34572,15 @@
         ],
         "title": "ProfileJoinMode",
         "description": "Mode that determines what types of match requests the ticket will appear in",
-        "x-enum-varnames": [
-          "NORMAL",
-          "BACKFILL",
-          "CREATED_BEFORE"
-        ],
         "x-enum-descriptions": [
           "Ticket will be used to fulfill normal requests (players joining queue regularly to find games)",
           "Ticket will be used to fulfill backfill requests",
           "Ticket will be used in normal requests only after a specified amount of time. This makes tickets wait before having their linkings considered"
+        ],
+        "x-enum-varnames": [
+          "NORMAL",
+          "BACKFILL",
+          "CREATED_BEFORE"
         ]
       },
       "QueueConfig": {
@@ -32817,15 +34892,15 @@
         ],
         "title": "RuleType",
         "description": "What type of rule is being evaluated",
-        "x-enum-varnames": [
-          "INVENTORY",
-          "LINKING_SIZE",
-          "JOINING_SESSION_SIZE"
-        ],
         "x-enum-descriptions": [
           "Comparing the count of a specific item that a player owns",
           "Comparing the size of the linking (the number of players) in the session to be queued",
           "Comparing the size of the linking (the number of players) in the session to be queued"
+        ],
+        "x-enum-varnames": [
+          "INVENTORY",
+          "LINKING_SIZE",
+          "JOINING_SESSION_SIZE"
         ]
       },
       "SelfSessionPlayerUpdateRequest": {
@@ -33190,17 +35265,17 @@
         ],
         "title": "SessionPlayerStatus",
         "description": "What membership state players have in a session",
-        "x-enum-varnames": [
-          "leader",
-          "member",
-          "invited",
-          "reserved"
-        ],
         "x-enum-descriptions": [
           "Player is the leader of the session. Is allowed to perform admin actions on the session",
           "Player is an active member of the session. Is allowed basic actions on the session",
           "Player has been invited to the session, but has not accepted or declined",
           "Player's spot has been reserved on the session, but the player has not yet been notified"
+        ],
+        "x-enum-varnames": [
+          "leader",
+          "member",
+          "invited",
+          "reserved"
         ]
       },
       "SessionPlayerUpdateRequest": {
@@ -33552,19 +35627,19 @@
         ],
         "title": "TeamOverflowAction",
         "description": "How too many players being invited to a single team should be handled",
-        "x-enum-varnames": [
-          "fail",
-          "allow_overflow",
-          "partial_with_overflow",
-          "partial_without_overflow",
-          "overfill"
-        ],
         "x-enum-descriptions": [
           "Raise an error when too many players are invited to the same team",
           "Attempt to fill other teams when too many players are invited to one team. Will return an error if there is not enough room for all players",
           "Invite as many players as possible, and allow them to overflow onto other teams if necessary. Some players may not get invited. Will return an error if no players are invited",
           "Invite as many players as possible to the chosen team, and do not allow them to overflow. Some players may not get invited. Will return an error if no players are invited",
           "Overfill the specific team (ex. allow 6 players on a team that normally only allows 5)"
+        ],
+        "x-enum-varnames": [
+          "fail",
+          "allow_overflow",
+          "partial_with_overflow",
+          "partial_without_overflow",
+          "overfill"
         ]
       },
       "TeamUpdate": {
@@ -33636,19 +35711,19 @@
         ],
         "title": "VivoxSessionActionSingle",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "JOIN",
-          "JOIN_MUTED",
-          "KICK",
-          "MUTE",
-          "TRANSCRIBE"
-        ],
         "x-enum-descriptions": [
           "An enumeration.",
           "An enumeration.",
           "An enumeration.",
           "An enumeration.",
           "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "JOIN",
+          "JOIN_MUTED",
+          "KICK",
+          "MUTE",
+          "TRANSCRIBE"
         ]
       },
       "VoipSessionType": {
@@ -33659,13 +35734,13 @@
         ],
         "title": "VoipSessionType",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "SESSION",
-          "TEAM"
-        ],
         "x-enum-descriptions": [
           "An enumeration.",
           "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "SESSION",
+          "TEAM"
         ]
       },
       "VoipTokenResponse": {
@@ -39440,6 +41515,142 @@
         "type": "object",
         "title": "MatchRequest"
       },
+      "MatchSegmentPatchRequest": {
+        "properties": {
+          "type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type",
+            "description": "Type of match"
+          },
+          "state": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MatchState"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "State of the match"
+          },
+          "start_timestamp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Start Timestamp",
+            "description": "Start time of the match"
+          },
+          "end_timestamp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End Timestamp",
+            "description": "End time of the match"
+          },
+          "duration_seconds": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration Seconds",
+            "description": "Duration in seconds of the match"
+          },
+          "custom_data": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Custom Data",
+            "description": "Custom data for the match"
+          },
+          "correlation_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Correlation Id",
+            "description": "Correlation ID for the match"
+          },
+          "sessions": {
+            "items": {
+              "$ref": "#/components/schemas/MatchSession"
+            },
+            "type": "array",
+            "title": "Sessions",
+            "description": "List of session IDs for the match",
+            "default": []
+          },
+          "instances": {
+            "items": {
+              "$ref": "#/components/schemas/MatchInstance"
+            },
+            "type": "array",
+            "title": "Instances",
+            "description": "List of MatchInstances for the match",
+            "default": []
+          },
+          "allocations": {
+            "items": {
+              "$ref": "#/components/schemas/MatchAllocation"
+            },
+            "type": "array",
+            "title": "Allocations",
+            "description": "List of allocation IDs for the match",
+            "default": []
+          },
+          "players": {
+            "items": {
+              "$ref": "#/components/schemas/MatchPlayerRequest"
+            },
+            "type": "array",
+            "title": "Players",
+            "description": "List of players in the match",
+            "default": []
+          }
+        },
+        "type": "object",
+        "title": "MatchSegmentPatchRequest"
+      },
       "MatchSegmentRequest": {
         "properties": {
           "match_segment": {
@@ -40146,6 +42357,2830 @@
         },
         "type": "object",
         "title": "PagedPlayerMatchResponse"
+      },
+      "PexClientPagedResponse": {
+        "properties": {
+          "results": {
+            "items": {
+              "$ref": "#/components/schemas/PexClientResponse"
+            },
+            "type": "array",
+            "title": "Results",
+            "description": "List of PEX reports for this match",
+            "default": []
+          },
+          "cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cursor",
+            "description": "Base64 encoded json that contains the filters and cursor position"
+          },
+          "filters": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PexClientQueryParams"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "title": "PexClientPagedResponse"
+      },
+      "PexClientQueryParams": {
+        "properties": {
+          "to_datetime": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "To Datetime",
+            "description": "To datetime"
+          },
+          "from_datetime": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "From Datetime",
+            "description": "From datetime"
+          },
+          "match_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Match Id",
+            "description": "Match ID"
+          },
+          "region_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Region Id",
+            "description": "Region ID"
+          },
+          "server_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Server Id",
+            "description": "Server ID"
+          },
+          "allocation_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Allocation Id",
+            "description": "Allocation ID"
+          },
+          "datacenter_provider": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Datacenter Provider",
+            "description": "Datacenter provider"
+          },
+          "datacenter_location": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Datacenter Location",
+            "description": "Datacenter location"
+          },
+          "machine_class": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Machine Class",
+            "description": "Machine class"
+          },
+          "address_ip": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Address Ip",
+            "description": "IP address"
+          },
+          "map_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Map Name",
+            "description": "Map name"
+          },
+          "game_mode": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Game Mode",
+            "description": "Game mode"
+          },
+          "matchmaking_profile_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Matchmaking Profile Id",
+            "description": "Matchmaking profile ID"
+          },
+          "expected_team_size": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Team Size",
+            "description": "Expected team size"
+          },
+          "expected_player_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Player Count",
+            "description": "Expected player count"
+          },
+          "host_player_uuid": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Host Player Uuid",
+            "description": "Player UUID of the host"
+          },
+          "owning_player_uuid": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Owning Player Uuid",
+            "description": "Player UUID of the owner"
+          },
+          "version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Version",
+            "description": "Version"
+          },
+          "player_uuid": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Player Uuid"
+          },
+          "device_info": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Device Info"
+          }
+        },
+        "type": "object",
+        "title": "PexClientQueryParams"
+      },
+      "PexClientRequest": {
+        "properties": {
+          "frame_time": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Frametime"
+          },
+          "delta_time": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Delta time"
+          },
+          "tick_count": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Server tick rate"
+          },
+          "delayed_tick_count": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Delayed tick count"
+          },
+          "memory_ws": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Memory working set"
+          },
+          "memory_vb": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Memory video buffer"
+          },
+          "cpu_process": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "CPU process"
+          },
+          "ping": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Average ping across players"
+          },
+          "in_packets": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "In packets metrics"
+          },
+          "out_packets": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Out packets metrics"
+          },
+          "total_packets": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Total packets metrics"
+          },
+          "in_packet_loss": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "In packets lost metrics"
+          },
+          "out_packet_loss": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Out packets lost metrics"
+          },
+          "total_packet_loss": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Total packets lost metrics"
+          },
+          "in_packet_loss_pct": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Packets lost percentage in"
+          },
+          "out_packet_loss_pct": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Packets lost percentage out"
+          },
+          "total_packet_loss_pct": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Total packet lost percentage"
+          },
+          "total_disconnects": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexCount"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Total disconnects"
+          },
+          "match_duration": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexCount"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Match duration"
+          },
+          "game_thread_time": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Game thread time"
+          },
+          "render_thread_time": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Render thread time"
+          },
+          "gpu_time": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "GPU time"
+          },
+          "match_id": {
+            "type": "string",
+            "title": "Match Id",
+            "description": "Match ID"
+          },
+          "region_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Region Id",
+            "description": "Region ID"
+          },
+          "server_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Server Id",
+            "description": "Server ID"
+          },
+          "allocation_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Allocation Id",
+            "description": "Allocation ID"
+          },
+          "datacenter_provider": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Datacenter Provider",
+            "description": "Datacenter provider"
+          },
+          "datacenter_location": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Datacenter Location",
+            "description": "Datacenter location"
+          },
+          "address_ip": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Address Ip",
+            "description": "IP address"
+          },
+          "map_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Map Name",
+            "description": "Map name"
+          },
+          "game_mode": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Game Mode",
+            "description": "Game mode"
+          },
+          "matchmaking_profile_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Matchmaking Profile Id",
+            "description": "Matchmaking profile ID"
+          },
+          "expected_team_size": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Team Size",
+            "description": "Expected team size"
+          },
+          "expected_player_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Player Count",
+            "description": "Expected player count"
+          },
+          "host_player_uuid": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Host Player Uuid",
+            "description": "Player UUID of the host"
+          },
+          "owning_player_uuid": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Owning Player Uuid",
+            "description": "Player UUID of the owner"
+          },
+          "version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Version",
+            "description": "Version"
+          },
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "Player UUID"
+          },
+          "device_info": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Device Info",
+            "description": "Device information"
+          }
+        },
+        "type": "object",
+        "required": [
+          "match_id",
+          "player_uuid"
+        ],
+        "title": "PexClientRequest"
+      },
+      "PexClientResponse": {
+        "properties": {
+          "last_modified_timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Timestamp of when the resource was last modified",
+            "example": "2023-01-23T21:07:02.000000+00:00"
+          },
+          "created_timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Timestamp of when the resource was created",
+            "example": "2023-01-23T21:07:02.000000+00:00"
+          },
+          "frame_time": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Frametime"
+          },
+          "delta_time": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Delta time"
+          },
+          "tick_count": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Server tick rate"
+          },
+          "delayed_tick_count": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Delayed tick count"
+          },
+          "memory_ws": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Memory working set"
+          },
+          "memory_vb": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Memory video buffer"
+          },
+          "cpu_process": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "CPU process"
+          },
+          "ping": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Average ping across players"
+          },
+          "in_packets": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "In packets metrics"
+          },
+          "out_packets": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Out packets metrics"
+          },
+          "total_packets": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Total packets metrics"
+          },
+          "in_packet_loss": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "In packets lost metrics"
+          },
+          "out_packet_loss": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Out packets lost metrics"
+          },
+          "total_packet_loss": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Total packets lost metrics"
+          },
+          "in_packet_loss_pct": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Packets lost percentage in"
+          },
+          "out_packet_loss_pct": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Packets lost percentage out"
+          },
+          "total_packet_loss_pct": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Total packet lost percentage"
+          },
+          "total_disconnects": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexCount"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Total disconnects"
+          },
+          "match_duration": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexCount"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Match duration"
+          },
+          "game_thread_time": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Game thread time"
+          },
+          "render_thread_time": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Render thread time"
+          },
+          "gpu_time": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "GPU time"
+          },
+          "scores": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexClientScores"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Scores"
+          },
+          "match_id": {
+            "type": "string",
+            "title": "Match Id",
+            "description": "Match ID"
+          },
+          "region_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Region Id",
+            "description": "Region ID"
+          },
+          "server_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Server Id",
+            "description": "Server ID"
+          },
+          "allocation_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Allocation Id",
+            "description": "Allocation ID"
+          },
+          "datacenter_provider": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Datacenter Provider",
+            "description": "Datacenter provider"
+          },
+          "datacenter_location": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Datacenter Location",
+            "description": "Datacenter location"
+          },
+          "address_ip": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Address Ip",
+            "description": "IP address"
+          },
+          "map_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Map Name",
+            "description": "Map name"
+          },
+          "game_mode": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Game Mode",
+            "description": "Game mode"
+          },
+          "matchmaking_profile_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Matchmaking Profile Id",
+            "description": "Matchmaking profile ID"
+          },
+          "expected_team_size": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Team Size",
+            "description": "Expected team size"
+          },
+          "expected_player_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Player Count",
+            "description": "Expected player count"
+          },
+          "host_player_uuid": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Host Player Uuid",
+            "description": "Player UUID of the host"
+          },
+          "owning_player_uuid": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Owning Player Uuid",
+            "description": "Player UUID of the owner"
+          },
+          "version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Version",
+            "description": "Version"
+          },
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "Player UUID"
+          },
+          "device_info": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Device Info",
+            "description": "Device information"
+          }
+        },
+        "type": "object",
+        "required": [
+          "match_id",
+          "player_uuid"
+        ],
+        "title": "PexClientResponse"
+      },
+      "PexClientScores": {
+        "properties": {
+          "overall_match_score": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Overall Match Score",
+            "description": "Overall match score"
+          },
+          "app_score": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "App Score",
+            "description": "App game score"
+          },
+          "gameplay_score": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Gameplay Score",
+            "description": "Gameplay score"
+          },
+          "network_score": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Network Score",
+            "description": "Network score"
+          },
+          "connection_count_score": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Connection Count Score",
+            "description": "Connection count score"
+          },
+          "frame_time_score": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Frame Time Score",
+            "description": "Frame time score"
+          },
+          "delta_time_score": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Delta Time Score",
+            "description": "Delta time score"
+          },
+          "tick_count_score": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tick Count Score",
+            "description": "Tick count score"
+          },
+          "delayed_tick_count_score": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Delayed Tick Count Score",
+            "description": "Delayed tick count score"
+          },
+          "memory_ws_score": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Memory Ws Score",
+            "description": "Memory working set score"
+          },
+          "memory_vb_score": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Memory Vb Score",
+            "description": "Memory video buffer score"
+          },
+          "cpu_process_score": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cpu Process Score",
+            "description": "CPU process score"
+          },
+          "ping_score": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ping Score",
+            "description": "Ping score"
+          },
+          "in_packet_loss_score": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "In Packet Loss Score",
+            "description": "In packet loss score"
+          },
+          "out_packet_loss_score": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Out Packet Loss Score",
+            "description": "Out packet loss score"
+          },
+          "total_disconnects_score": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total Disconnects Score",
+            "description": "Total disconnects score"
+          }
+        },
+        "type": "object",
+        "title": "PexClientScores"
+      },
+      "PexCount": {
+        "properties": {
+          "count": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Count",
+            "description": "Count of values"
+          }
+        },
+        "type": "object",
+        "title": "PexCount"
+      },
+      "PexHostPagedResponse": {
+        "properties": {
+          "results": {
+            "items": {
+              "$ref": "#/components/schemas/PexHostResponse"
+            },
+            "type": "array",
+            "title": "Results",
+            "description": "List of PEX reports for this match",
+            "default": []
+          },
+          "cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cursor",
+            "description": "Base64 encoded json that contains the filters and cursor position"
+          },
+          "filters": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PexHostQueryParams"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "title": "PexHostPagedResponse"
+      },
+      "PexHostQueryParams": {
+        "properties": {
+          "to_datetime": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "To Datetime",
+            "description": "To datetime"
+          },
+          "from_datetime": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "Time Zone Aware Datetime",
+                "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                "example": "2023-01-23T21:07:02.000000+00:00"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "From Datetime",
+            "description": "From datetime"
+          },
+          "match_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Match Id",
+            "description": "Match ID"
+          },
+          "region_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Region Id",
+            "description": "Region ID"
+          },
+          "server_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Server Id",
+            "description": "Server ID"
+          },
+          "allocation_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Allocation Id",
+            "description": "Allocation ID"
+          },
+          "datacenter_provider": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Datacenter Provider",
+            "description": "Datacenter provider"
+          },
+          "datacenter_location": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Datacenter Location",
+            "description": "Datacenter location"
+          },
+          "machine_class": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Machine Class",
+            "description": "Machine class"
+          },
+          "address_ip": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Address Ip",
+            "description": "IP address"
+          },
+          "map_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Map Name",
+            "description": "Map name"
+          },
+          "game_mode": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Game Mode",
+            "description": "Game mode"
+          },
+          "matchmaking_profile_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Matchmaking Profile Id",
+            "description": "Matchmaking profile ID"
+          },
+          "expected_team_size": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Team Size",
+            "description": "Expected team size"
+          },
+          "expected_player_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Player Count",
+            "description": "Expected player count"
+          },
+          "host_player_uuid": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Host Player Uuid",
+            "description": "Player UUID of the host"
+          },
+          "owning_player_uuid": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Owning Player Uuid",
+            "description": "Player UUID of the owner"
+          },
+          "version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Version",
+            "description": "Version"
+          }
+        },
+        "type": "object",
+        "title": "PexHostQueryParams"
+      },
+      "PexHostRequest": {
+        "properties": {
+          "frame_time": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Frametime"
+          },
+          "delta_time": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Delta time"
+          },
+          "tick_count": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Server tick rate"
+          },
+          "delayed_tick_count": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Delayed tick count"
+          },
+          "memory_ws": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Memory working set"
+          },
+          "memory_vb": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Memory video buffer"
+          },
+          "cpu_process": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "CPU process"
+          },
+          "ping": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Average ping across players"
+          },
+          "in_packets": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "In packets metrics"
+          },
+          "out_packets": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Out packets metrics"
+          },
+          "total_packets": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Total packets metrics"
+          },
+          "in_packet_loss": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "In packets lost metrics"
+          },
+          "out_packet_loss": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Out packets lost metrics"
+          },
+          "total_packet_loss": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Total packets lost metrics"
+          },
+          "in_packet_loss_pct": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Packets lost percentage in"
+          },
+          "out_packet_loss_pct": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Packets lost percentage out"
+          },
+          "total_packet_loss_pct": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Total packet lost percentage"
+          },
+          "total_disconnects": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexCount"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Total disconnects"
+          },
+          "match_duration": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexCount"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Match duration"
+          },
+          "connection_count": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Connection count"
+          },
+          "total_unique_players": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexCount"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Total players"
+          },
+          "match_id": {
+            "type": "string",
+            "title": "Match Id",
+            "description": "Match ID"
+          },
+          "region_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Region Id",
+            "description": "Region ID"
+          },
+          "server_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Server Id",
+            "description": "Server ID"
+          },
+          "allocation_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Allocation Id",
+            "description": "Allocation ID"
+          },
+          "datacenter_provider": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Datacenter Provider",
+            "description": "Datacenter provider"
+          },
+          "datacenter_location": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Datacenter Location",
+            "description": "Datacenter location"
+          },
+          "address_ip": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Address Ip",
+            "description": "IP address"
+          },
+          "map_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Map Name",
+            "description": "Map name"
+          },
+          "game_mode": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Game Mode",
+            "description": "Game mode"
+          },
+          "matchmaking_profile_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Matchmaking Profile Id",
+            "description": "Matchmaking profile ID"
+          },
+          "expected_team_size": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Team Size",
+            "description": "Expected team size"
+          },
+          "expected_player_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Player Count",
+            "description": "Expected player count"
+          },
+          "host_player_uuid": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Host Player Uuid",
+            "description": "Player UUID of the host"
+          },
+          "owning_player_uuid": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Owning Player Uuid",
+            "description": "Player UUID of the owner"
+          },
+          "version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Version",
+            "description": "Version"
+          },
+          "machine_class": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Machine Class",
+            "description": "Machine class"
+          }
+        },
+        "type": "object",
+        "required": [
+          "match_id"
+        ],
+        "title": "PexHostRequest"
+      },
+      "PexHostResponse": {
+        "properties": {
+          "last_modified_timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Timestamp of when the resource was last modified",
+            "example": "2023-01-23T21:07:02.000000+00:00"
+          },
+          "created_timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Timestamp of when the resource was created",
+            "example": "2023-01-23T21:07:02.000000+00:00"
+          },
+          "frame_time": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Frametime"
+          },
+          "delta_time": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Delta time"
+          },
+          "tick_count": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Server tick rate"
+          },
+          "delayed_tick_count": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Delayed tick count"
+          },
+          "memory_ws": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Memory working set"
+          },
+          "memory_vb": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Memory video buffer"
+          },
+          "cpu_process": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "CPU process"
+          },
+          "ping": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Average ping across players"
+          },
+          "in_packets": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "In packets metrics"
+          },
+          "out_packets": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Out packets metrics"
+          },
+          "total_packets": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Total packets metrics"
+          },
+          "in_packet_loss": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "In packets lost metrics"
+          },
+          "out_packet_loss": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Out packets lost metrics"
+          },
+          "total_packet_loss": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Total packets lost metrics"
+          },
+          "in_packet_loss_pct": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Packets lost percentage in"
+          },
+          "out_packet_loss_pct": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Packets lost percentage out"
+          },
+          "total_packet_loss_pct": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Total packet lost percentage"
+          },
+          "total_disconnects": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexCount"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Total disconnects"
+          },
+          "match_duration": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexCount"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Match duration"
+          },
+          "connection_count": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Connection count"
+          },
+          "total_unique_players": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexCount"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Total players"
+          },
+          "scores": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexHostScores"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Scores"
+          },
+          "match_id": {
+            "type": "string",
+            "title": "Match Id",
+            "description": "Match ID"
+          },
+          "region_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Region Id",
+            "description": "Region ID"
+          },
+          "server_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Server Id",
+            "description": "Server ID"
+          },
+          "allocation_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Allocation Id",
+            "description": "Allocation ID"
+          },
+          "datacenter_provider": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Datacenter Provider",
+            "description": "Datacenter provider"
+          },
+          "datacenter_location": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Datacenter Location",
+            "description": "Datacenter location"
+          },
+          "address_ip": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Address Ip",
+            "description": "IP address"
+          },
+          "map_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Map Name",
+            "description": "Map name"
+          },
+          "game_mode": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Game Mode",
+            "description": "Game mode"
+          },
+          "matchmaking_profile_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Matchmaking Profile Id",
+            "description": "Matchmaking profile ID"
+          },
+          "expected_team_size": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Team Size",
+            "description": "Expected team size"
+          },
+          "expected_player_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Player Count",
+            "description": "Expected player count"
+          },
+          "host_player_uuid": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Host Player Uuid",
+            "description": "Player UUID of the host"
+          },
+          "owning_player_uuid": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Owning Player Uuid",
+            "description": "Player UUID of the owner"
+          },
+          "version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Version",
+            "description": "Version"
+          },
+          "machine_class": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Machine Class",
+            "description": "Machine class"
+          }
+        },
+        "type": "object",
+        "required": [
+          "match_id"
+        ],
+        "title": "PexHostResponse"
+      },
+      "PexHostScores": {
+        "properties": {
+          "overall_match_score": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Overall Match Score",
+            "description": "Overall match score"
+          },
+          "app_score": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "App Score",
+            "description": "App game score"
+          },
+          "gameplay_score": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Gameplay Score",
+            "description": "Gameplay score"
+          },
+          "network_score": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Network Score",
+            "description": "Network score"
+          },
+          "connection_count_score": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Connection Count Score",
+            "description": "Connection count score"
+          },
+          "frame_time_score": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Frame Time Score",
+            "description": "Frame time score"
+          },
+          "delta_time_score": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Delta Time Score",
+            "description": "Delta time score"
+          },
+          "tick_count_score": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tick Count Score",
+            "description": "Tick count score"
+          },
+          "delayed_tick_count_score": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Delayed Tick Count Score",
+            "description": "Delayed tick count score"
+          },
+          "memory_ws_score": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Memory Ws Score",
+            "description": "Memory working set score"
+          },
+          "memory_vb_score": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Memory Vb Score",
+            "description": "Memory video buffer score"
+          },
+          "cpu_process_score": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cpu Process Score",
+            "description": "CPU process score"
+          },
+          "ping_score": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ping Score",
+            "description": "Ping score"
+          },
+          "in_packet_loss_score": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "In Packet Loss Score",
+            "description": "In packet loss score"
+          },
+          "out_packet_loss_score": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Out Packet Loss Score",
+            "description": "Out packet loss score"
+          },
+          "total_disconnects_score": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total Disconnects Score",
+            "description": "Total disconnects score"
+          },
+          "total_unique_players_score": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total Unique Players Score",
+            "description": "Total players score"
+          }
+        },
+        "type": "object",
+        "title": "PexHostScores"
+      },
+      "PexStat": {
+        "properties": {
+          "min": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Min",
+            "description": "Minimum value"
+          },
+          "max": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max",
+            "description": "Maximum value"
+          },
+          "avg": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Avg",
+            "description": "Average value"
+          },
+          "stddev": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stddev",
+            "description": "Standard deviation"
+          }
+        },
+        "type": "object",
+        "title": "PexStat"
       },
       "PlayerReport": {
         "properties": {

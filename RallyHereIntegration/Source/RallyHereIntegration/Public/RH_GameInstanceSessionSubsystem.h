@@ -7,8 +7,10 @@
 #include "Misc/Guid.h"
 #include "Templates/SharedPointer.h"
 #include "SessionsAPI.h"
+#include "PexAPI.h"
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "RH_SubsystemPluginBase.h"
+#include "RH_PlayerExperienceCollector.h"
 
 #include "RH_SessionData.h"
 #include "RH_Polling.h"
@@ -103,9 +105,28 @@ public:
 	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
 	TArray<FRH_ActiveSessionStatePlayerContext> PlayerContexts;
 
+	/** @brief MatchId for the active session */
+	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
+	FString MatchId;
+	
+	/** @brief Player Experience Collector for the active session */
+	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
+	URH_PEXCollector* PlayerExperienceCollector;
+
+	/** @brief Time the session was made active */
+	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
+	FDateTime ActivationTime;
+
+	/** @brief Time the session was made active */
+	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
+	bool bIsHost;
+
 	FRH_ActiveSessionState()
 		: Session(nullptr)
 		, bIsBackfillTerminated(false)
+		, PlayerExperienceCollector(nullptr)
+		, ActivationTime()
+		, bIsHost(false)
 	{
 	}
 
@@ -116,6 +137,14 @@ public:
 		FallbackSecurityToken.Reset();
 		bIsBackfillTerminated = false;
 		PlayerContexts.Reset();
+		MatchId.Empty();
+		if (PlayerExperienceCollector != nullptr)
+		{
+			PlayerExperienceCollector->Close();
+			PlayerExperienceCollector = nullptr;
+		}
+		ActivationTime = FDateTime();
+		bIsHost = false;
 	}
 };
 
@@ -123,7 +152,7 @@ public:
   * @brief Subsystem for handling sessions within a game instance.
   */
 UCLASS(Config=RallyHereIntegration, DefaultConfig, Within = RH_GameInstanceSubsystem)
-class RALLYHEREINTEGRATION_API URH_GameInstanceSessionSubsystem : public URH_GameInstanceSubsystemPlugin
+class RALLYHEREINTEGRATION_API URH_GameInstanceSessionSubsystem : public URH_GameInstanceSubsystemPlugin, public IRH_PEXOwnerInterface
 {
 	GENERATED_BODY()
 public:
@@ -164,7 +193,7 @@ public:
 	* @return If true, the session is hosted locally.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Session|Instance")
-	virtual bool IsLocallyHostedSession(const URH_JoinedSession* Session) const { return Session->GetInstanceData() ? IsLocallyHostedInstance(*Session->GetInstanceData()) : false; }
+	virtual bool IsLocallyHostedSession(const URH_JoinedSession* Session) const { return Session != nullptr && Session->GetInstanceData() ? IsLocallyHostedInstance(*Session->GetInstanceData()) : false; }
 	/**
 	* @brief Checks if a given player in a session is local to the client.
 	* @param [in] Player The player being checked.
@@ -284,6 +313,40 @@ public:
 	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Session|Instance", meta = (DisplayName = "On Active Session Changed"))
 	FRH_OnActiveSessionChangedDynamicDelegate BLUEPRINT_OnActiveSessionChanged;
 
+	/**
+	 * @brief Get the active session state object
+	 */
+	UFUNCTION(BlueprintPure, Category = "Session|Instance")
+	const FRH_ActiveSessionState& GetActiveSessionState() const { return ActiveSessionState; }
+	/**
+	 * @brief Get the active session state object
+	 */
+	UFUNCTION(BlueprintPure, Category = "Session|Instance")
+	const FString& GetActiveMatchId() const { return ActiveSessionState.MatchId; }
+	
+	// IRH_PEXOwnerInterface
+	// RUNTIME VALUES - called during collection
+	/** @brief Get the engine to use for PEX calls */
+	virtual UEngine* GetPEXEngine() const override;
+	/** @brief Get the world to use for PEX calls */
+	virtual UWorld* GetPEXWorld() const override;
+
+	// CACHED VALUES - called during init
+	/** @brief Get the match id to use for PEX calls */
+	virtual FString GetPEXMatchId() const override;
+	/** @brief Get the player id to use for PEX calls */
+	virtual FGuid GetPEXPlayerId() const override;
+	/** @brief Get the remote file directory to use for PEX calls */
+	virtual FRH_RemoteFileApiDirectory GetPEXRemoteFileDirectory() const override;
+	/** @brief Whether or not this owner represents the host of the match */
+	virtual bool GetPEXIsHost() const override;
+
+	// SUBMIT REPORTS - called during summary write
+	/** @brief Submit a PEX Host Summary report */
+	virtual void SubmitPEXHostSummary(FRHAPI_PexHostRequest&& Report) const override;
+	/** @brief Submit a PEX Client Summary report */
+	virtual void SubmitPEXClientSummary(FRHAPI_PexClientRequest&& Report) const override;
+	
 protected:
 	/** @brief Session we want to sync to. */
 	UPROPERTY(BlueprintGetter = GetDesiredSession, Transient, Category = "Session|Instance")
@@ -353,7 +416,11 @@ protected:
 	/**
 	 * @brief Creates a match for a given session using the match subsystem
 	 */
-	virtual void CreateMatchForSession(const URH_JoinedSession* Session) const;
+	virtual void CreateMatchForSession(const URH_JoinedSession* Session);
+	/**
+	 * @brief Creates a PlayerExperience (PEX) collector for the active session and match
+	 */
+	virtual class URH_PEXCollector* CreatePEXCollector();
 	/**
 	 * @brief Called when the map completes loading.
 	 * @param [in] pWorld The world that was being traveled to.
