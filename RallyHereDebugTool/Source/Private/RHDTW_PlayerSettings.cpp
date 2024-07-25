@@ -79,14 +79,12 @@ void FRHDTW_PlayerSettings::DoViewSettings()
 			{
 				if (ImGui::CollapsingHeader(TCHAR_TO_UTF8(*(Pair.Key + " - " + contentPair.Key))))
 				{
-					if (const FRHAPI_JsonValue* FRHAPIJsonValue = contentPair.Value.GetValueOrNull())
-					{
-						FString PrettyJson;
+					const FRHAPI_JsonValue& FRHAPIJsonValue = contentPair.Value.GetValue();
+					FString PrettyJson;
 
-						if (FJsonSerializer::Serialize(FRHAPIJsonValue->GetValue(), TEXT(""), TJsonWriterFactory<>::Create(&PrettyJson)))
-						{
-							ImGui::Text("%s", TCHAR_TO_UTF8(*PrettyJson));
-						}
+					if (FJsonSerializer::Serialize(FRHAPIJsonValue.GetValue(), TEXT(""), TJsonWriterFactory<>::Create(&PrettyJson)))
+					{
+						ImGui::Text("%s", TCHAR_TO_UTF8(*PrettyJson));
 					}
 				}
 			}
