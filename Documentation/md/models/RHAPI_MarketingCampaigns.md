@@ -20,8 +20,8 @@ List of external Marketing Campaigns.
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public TArray< `[`FRHAPI_MarketingCampaign`](RHAPI_MarketingCampaign.md#structFRHAPI__MarketingCampaign)` > `[`Campaigns`](#structFRHAPI__MarketingCampaigns_1a88d6c9da15ac877b420b90278678d505) | List of external Marketing Campaigns.
-`public virtual bool `[`FromJson`](#structFRHAPI__MarketingCampaigns_1a8f3ae77637be44c02ad9eb5bef1dda31)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__MarketingCampaigns_1a7f41cb97dd5ba99cad6ffb5a53ab00b0)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__MarketingCampaigns_1adf5e03cc408468f73950966d8df368fd)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__MarketingCampaigns_1abebd4aa90c46e7a373f7f5a963e44d6b)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< `[`FRHAPI_MarketingCampaign`](RHAPI_MarketingCampaign.md#structFRHAPI__MarketingCampaign)` > & `[`GetCampaigns`](#structFRHAPI__MarketingCampaigns_1aa95cc3a073517448aa5d6561e3e702d0)`()` | Gets the value of Campaigns.
 `public inline const TArray< `[`FRHAPI_MarketingCampaign`](RHAPI_MarketingCampaign.md#structFRHAPI__MarketingCampaign)` > & `[`GetCampaigns`](#structFRHAPI__MarketingCampaigns_1a6b519767e3a90b23702d0ee5a31f2199)`() const` | Gets the value of Campaigns.
 `public inline void `[`SetCampaigns`](#structFRHAPI__MarketingCampaigns_1a2d930bf11e195ab35e13e504dbc59e7d)`(const TArray< `[`FRHAPI_MarketingCampaign`](RHAPI_MarketingCampaign.md#structFRHAPI__MarketingCampaign)` > & NewValue)` | Sets the value of Campaigns.
@@ -33,7 +33,7 @@ List of external Marketing Campaigns.
 
 List of external Marketing Campaigns.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__MarketingCampaigns_1a8f3ae77637be44c02ad9eb5bef1dda31)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__MarketingCampaigns_1a8f3ae77637be44c02ad9eb5bef1dda31"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__MarketingCampaigns_1adf5e03cc408468f73950966d8df368fd)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__MarketingCampaigns_1adf5e03cc408468f73950966d8df368fd"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -43,7 +43,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__MarketingCampaigns_1a7f41cb97dd5ba99cad6ffb5a53ab00b0)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__MarketingCampaigns_1a7f41cb97dd5ba99cad6ffb5a53ab00b0"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__MarketingCampaigns_1abebd4aa90c46e7a373f7f5a963e44d6b)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__MarketingCampaigns_1abebd4aa90c46e7a373f7f5a963e44d6b"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 

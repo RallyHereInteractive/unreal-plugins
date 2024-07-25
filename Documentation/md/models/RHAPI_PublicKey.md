@@ -23,8 +23,8 @@ Public key for verifying Access Token JWTs This is in the JWK format as defined 
 `public FString `[`Kty`](#structFRHAPI__PublicKey_1a5e3b2f22a39f6191ffeef87b61815224) | Key Type - see [https://datatracker.ietf.org/doc/html/rfc7517#section-4.1](https://datatracker.ietf.org/doc/html/rfc7517#section-4.1).
 `public FString `[`N`](#structFRHAPI__PublicKey_1a1544c7fa9e970f9cdea72dca9f7278af) | Modulus - see [https://www.rfc-editor.org/rfc/rfc7518.html#section-6.3.1](https://www.rfc-editor.org/rfc/rfc7518.html#section-6.3.1).
 `public FString `[`E`](#structFRHAPI__PublicKey_1ab0b9192d5c959bfef2be40a31dd112d3) | Exponent - see [https://www.rfc-editor.org/rfc/rfc7518.html#section-6.3.1](https://www.rfc-editor.org/rfc/rfc7518.html#section-6.3.1).
-`public virtual bool `[`FromJson`](#structFRHAPI__PublicKey_1a7d39c5fc6b26257bf14265b4299d28ef)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PublicKey_1af2b3c8f6bd481c19e8d850e009b6cc17)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__PublicKey_1a74bd676552685bda8614b22ecd20c718)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__PublicKey_1ae8974f18e6d1ab41af0bf3ff53772026)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetKid`](#structFRHAPI__PublicKey_1a60335aab0338252e58f6c5685ef338f0)`()` | Gets the value of Kid.
 `public inline const FString & `[`GetKid`](#structFRHAPI__PublicKey_1a6c78913f542bed2ac985f8a4c42860f7)`() const` | Gets the value of Kid.
 `public inline void `[`SetKid`](#structFRHAPI__PublicKey_1ae7421daf261659b770dc322143a06ea0)`(const FString & NewValue)` | Sets the value of Kid.
@@ -60,7 +60,7 @@ Modulus - see [https://www.rfc-editor.org/rfc/rfc7518.html#section-6.3.1](https:
 
 Exponent - see [https://www.rfc-editor.org/rfc/rfc7518.html#section-6.3.1](https://www.rfc-editor.org/rfc/rfc7518.html#section-6.3.1).
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__PublicKey_1a7d39c5fc6b26257bf14265b4299d28ef)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PublicKey_1a7d39c5fc6b26257bf14265b4299d28ef"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__PublicKey_1a74bd676552685bda8614b22ecd20c718)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PublicKey_1a74bd676552685bda8614b22ecd20c718"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -70,7 +70,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PublicKey_1af2b3c8f6bd481c19e8d850e009b6cc17)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PublicKey_1af2b3c8f6bd481c19e8d850e009b6cc17"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PublicKey_1ae8974f18e6d1ab41af0bf3ff53772026)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PublicKey_1ae8974f18e6d1ab41af0bf3ff53772026"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 

@@ -21,10 +21,11 @@ struct FRHAPI_PexClientPagedResponse
 `public bool `[`Results_IsSet`](#structFRHAPI__PexClientPagedResponse_1ad2860220052c79c8bd663d2552c5356a) | true if Results_Optional has been set to a value
 `public FString `[`Cursor_Optional`](#structFRHAPI__PexClientPagedResponse_1ae98a62c93ed61bea927f23ed7b3267ac) | 
 `public bool `[`Cursor_IsSet`](#structFRHAPI__PexClientPagedResponse_1a520b3c1c0b03311b5c74e09a5fdde2d9) | true if Cursor_Optional has been set to a value
+`public bool `[`Cursor_IsNull`](#structFRHAPI__PexClientPagedResponse_1abb88fc05ab34683e4122f862682700b9) | true if Cursor_Optional has been explicitly set to null
 `public `[`FRHAPI_PexClientQueryParams`](RHAPI_PexClientQueryParams.md#structFRHAPI__PexClientQueryParams)` `[`Filters_Optional`](#structFRHAPI__PexClientPagedResponse_1a70a2f02deee5d82ec2a902eb9f9edcbd) | 
 `public bool `[`Filters_IsSet`](#structFRHAPI__PexClientPagedResponse_1ab94b2e8681290b3a40ed40d6f201fc56) | true if Filters_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__PexClientPagedResponse_1a5d5906137e2e4a4422a9c18138e8858e)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PexClientPagedResponse_1ad8d73c28e4404ff4a7c14650cb18bca0)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__PexClientPagedResponse_1a241138d9dd5b7bb529760e66a1289729)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__PexClientPagedResponse_1a1b3521a2f8c752d1ec345f78949fca2f)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< `[`FRHAPI_PexClientResponse`](RHAPI_PexClientResponse.md#structFRHAPI__PexClientResponse)` > & `[`GetResults`](#structFRHAPI__PexClientPagedResponse_1ad8aaabacd07483df148d998accf0f779)`()` | Gets the value of Results_Optional, regardless of it having been set.
 `public inline const TArray< `[`FRHAPI_PexClientResponse`](RHAPI_PexClientResponse.md#structFRHAPI__PexClientResponse)` > & `[`GetResults`](#structFRHAPI__PexClientPagedResponse_1a542aaf979c96922f03eca3229da71133)`() const` | Gets the value of Results_Optional, regardless of it having been set.
 `public inline const TArray< `[`FRHAPI_PexClientResponse`](RHAPI_PexClientResponse.md#structFRHAPI__PexClientResponse)` > & `[`GetResults`](#structFRHAPI__PexClientPagedResponse_1acd6f16acbd443bb85d859137529aa490)`(const TArray< `[`FRHAPI_PexClientResponse`](RHAPI_PexClientResponse.md#structFRHAPI__PexClientResponse)` > & DefaultValue) const` | Gets the value of Results_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -34,6 +35,7 @@ struct FRHAPI_PexClientPagedResponse
 `public inline void `[`SetResults`](#structFRHAPI__PexClientPagedResponse_1af3d013fb87efe5811040cc9460549444)`(const TArray< `[`FRHAPI_PexClientResponse`](RHAPI_PexClientResponse.md#structFRHAPI__PexClientResponse)` > & NewValue)` | Sets the value of Results_Optional and also sets Results_IsSet to true.
 `public inline void `[`SetResults`](#structFRHAPI__PexClientPagedResponse_1aace99e0eb6bf3f394c4477b1fd525b58)`(TArray< `[`FRHAPI_PexClientResponse`](RHAPI_PexClientResponse.md#structFRHAPI__PexClientResponse)` > && NewValue)` | Sets the value of Results_Optional and also sets Results_IsSet to true using move semantics.
 `public inline void `[`ClearResults`](#structFRHAPI__PexClientPagedResponse_1afef41ea10dc074cd8227daaf1679a28c)`()` | Clears the value of Results_Optional and sets Results_IsSet to false.
+`public inline bool `[`IsResultsSet`](#structFRHAPI__PexClientPagedResponse_1a64c4772c56cf39a414097279bcfb5d05)`() const` | Checks whether Results_Optional has been set.
 `public inline FString & `[`GetCursor`](#structFRHAPI__PexClientPagedResponse_1ad1ad3776bec5c850dfd1b868d1288d30)`()` | Gets the value of Cursor_Optional, regardless of it having been set.
 `public inline const FString & `[`GetCursor`](#structFRHAPI__PexClientPagedResponse_1af5c6a8d21d859fea3a20993982a11e9f)`() const` | Gets the value of Cursor_Optional, regardless of it having been set.
 `public inline const FString & `[`GetCursor`](#structFRHAPI__PexClientPagedResponse_1a75f2a179b3fafe32e35ea23e90304d95)`(const FString & DefaultValue) const` | Gets the value of Cursor_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -43,6 +45,9 @@ struct FRHAPI_PexClientPagedResponse
 `public inline void `[`SetCursor`](#structFRHAPI__PexClientPagedResponse_1a52af8696d39be3e0977a914801e48d33)`(const FString & NewValue)` | Sets the value of Cursor_Optional and also sets Cursor_IsSet to true.
 `public inline void `[`SetCursor`](#structFRHAPI__PexClientPagedResponse_1a604eef08a8e7c935a599fd56354f22b5)`(FString && NewValue)` | Sets the value of Cursor_Optional and also sets Cursor_IsSet to true using move semantics.
 `public inline void `[`ClearCursor`](#structFRHAPI__PexClientPagedResponse_1a8f801d75747c90bdea767648f86446d9)`()` | Clears the value of Cursor_Optional and sets Cursor_IsSet to false.
+`public inline bool `[`IsCursorSet`](#structFRHAPI__PexClientPagedResponse_1a2c577ceafa9ea76f7c047653474f01b1)`() const` | Checks whether Cursor_Optional has been set.
+`public inline void `[`SetCursorToNull`](#structFRHAPI__PexClientPagedResponse_1a372d4da391d965b88ef89b3ff63bc888)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsCursorNull`](#structFRHAPI__PexClientPagedResponse_1a5cd2fd392020fd0018385409a4a60e84)`() const` | Checks whether Cursor_Optional is set to null.
 `public inline `[`FRHAPI_PexClientQueryParams`](RHAPI_PexClientQueryParams.md#structFRHAPI__PexClientQueryParams)` & `[`GetFilters`](#structFRHAPI__PexClientPagedResponse_1ae32448cfd772759b03467a12d63b2a73)`()` | Gets the value of Filters_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_PexClientQueryParams`](RHAPI_PexClientQueryParams.md#structFRHAPI__PexClientQueryParams)` & `[`GetFilters`](#structFRHAPI__PexClientPagedResponse_1a18e0db2ce4afe39130bdadcbf1d01d30)`() const` | Gets the value of Filters_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_PexClientQueryParams`](RHAPI_PexClientQueryParams.md#structFRHAPI__PexClientQueryParams)` & `[`GetFilters`](#structFRHAPI__PexClientPagedResponse_1a5d62b4796c36415fdef8de2d4c6f68ae)`(const `[`FRHAPI_PexClientQueryParams`](RHAPI_PexClientQueryParams.md#structFRHAPI__PexClientQueryParams)` & DefaultValue) const` | Gets the value of Filters_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -52,6 +57,7 @@ struct FRHAPI_PexClientPagedResponse
 `public inline void `[`SetFilters`](#structFRHAPI__PexClientPagedResponse_1a5886836d894686c43b891b04130d6ff8)`(const `[`FRHAPI_PexClientQueryParams`](RHAPI_PexClientQueryParams.md#structFRHAPI__PexClientQueryParams)` & NewValue)` | Sets the value of Filters_Optional and also sets Filters_IsSet to true.
 `public inline void `[`SetFilters`](#structFRHAPI__PexClientPagedResponse_1a52b87f48f84d711085c7599d3b8ff485)`(`[`FRHAPI_PexClientQueryParams`](RHAPI_PexClientQueryParams.md#structFRHAPI__PexClientQueryParams)` && NewValue)` | Sets the value of Filters_Optional and also sets Filters_IsSet to true using move semantics.
 `public inline void `[`ClearFilters`](#structFRHAPI__PexClientPagedResponse_1a4b428256793bec82e14173ad92e0e483)`()` | Clears the value of Filters_Optional and sets Filters_IsSet to false.
+`public inline bool `[`IsFiltersSet`](#structFRHAPI__PexClientPagedResponse_1ad74d506eb03802f49a6426bbbd5cf143)`() const` | Checks whether Filters_Optional has been set.
 
 ### Members
 
@@ -69,13 +75,17 @@ true if Results_Optional has been set to a value
 
 true if Cursor_Optional has been set to a value
 
+#### `public bool `[`Cursor_IsNull`](#structFRHAPI__PexClientPagedResponse_1abb88fc05ab34683e4122f862682700b9) <a id="structFRHAPI__PexClientPagedResponse_1abb88fc05ab34683e4122f862682700b9"></a>
+
+true if Cursor_Optional has been explicitly set to null
+
 #### `public `[`FRHAPI_PexClientQueryParams`](RHAPI_PexClientQueryParams.md#structFRHAPI__PexClientQueryParams)` `[`Filters_Optional`](#structFRHAPI__PexClientPagedResponse_1a70a2f02deee5d82ec2a902eb9f9edcbd) <a id="structFRHAPI__PexClientPagedResponse_1a70a2f02deee5d82ec2a902eb9f9edcbd"></a>
 
 #### `public bool `[`Filters_IsSet`](#structFRHAPI__PexClientPagedResponse_1ab94b2e8681290b3a40ed40d6f201fc56) <a id="structFRHAPI__PexClientPagedResponse_1ab94b2e8681290b3a40ed40d6f201fc56"></a>
 
 true if Filters_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__PexClientPagedResponse_1a5d5906137e2e4a4422a9c18138e8858e)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PexClientPagedResponse_1a5d5906137e2e4a4422a9c18138e8858e"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__PexClientPagedResponse_1a241138d9dd5b7bb529760e66a1289729)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PexClientPagedResponse_1a241138d9dd5b7bb529760e66a1289729"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -85,7 +95,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PexClientPagedResponse_1ad8d73c28e4404ff4a7c14650cb18bca0)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PexClientPagedResponse_1ad8d73c28e4404ff4a7c14650cb18bca0"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PexClientPagedResponse_1a1b3521a2f8c752d1ec345f78949fca2f)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PexClientPagedResponse_1a1b3521a2f8c752d1ec345f78949fca2f"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -128,6 +138,10 @@ Sets the value of Results_Optional and also sets Results_IsSet to true using mov
 
 Clears the value of Results_Optional and sets Results_IsSet to false.
 
+#### `public inline bool `[`IsResultsSet`](#structFRHAPI__PexClientPagedResponse_1a64c4772c56cf39a414097279bcfb5d05)`() const` <a id="structFRHAPI__PexClientPagedResponse_1a64c4772c56cf39a414097279bcfb5d05"></a>
+
+Checks whether Results_Optional has been set.
+
 #### `public inline FString & `[`GetCursor`](#structFRHAPI__PexClientPagedResponse_1ad1ad3776bec5c850dfd1b868d1288d30)`()` <a id="structFRHAPI__PexClientPagedResponse_1ad1ad3776bec5c850dfd1b868d1288d30"></a>
 
 Gets the value of Cursor_Optional, regardless of it having been set.
@@ -164,6 +178,18 @@ Sets the value of Cursor_Optional and also sets Cursor_IsSet to true using move 
 
 Clears the value of Cursor_Optional and sets Cursor_IsSet to false.
 
+#### `public inline bool `[`IsCursorSet`](#structFRHAPI__PexClientPagedResponse_1a2c577ceafa9ea76f7c047653474f01b1)`() const` <a id="structFRHAPI__PexClientPagedResponse_1a2c577ceafa9ea76f7c047653474f01b1"></a>
+
+Checks whether Cursor_Optional has been set.
+
+#### `public inline void `[`SetCursorToNull`](#structFRHAPI__PexClientPagedResponse_1a372d4da391d965b88ef89b3ff63bc888)`()` <a id="structFRHAPI__PexClientPagedResponse_1a372d4da391d965b88ef89b3ff63bc888"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsCursorNull`](#structFRHAPI__PexClientPagedResponse_1a5cd2fd392020fd0018385409a4a60e84)`() const` <a id="structFRHAPI__PexClientPagedResponse_1a5cd2fd392020fd0018385409a4a60e84"></a>
+
+Checks whether Cursor_Optional is set to null.
+
 #### `public inline `[`FRHAPI_PexClientQueryParams`](RHAPI_PexClientQueryParams.md#structFRHAPI__PexClientQueryParams)` & `[`GetFilters`](#structFRHAPI__PexClientPagedResponse_1ae32448cfd772759b03467a12d63b2a73)`()` <a id="structFRHAPI__PexClientPagedResponse_1ae32448cfd772759b03467a12d63b2a73"></a>
 
 Gets the value of Filters_Optional, regardless of it having been set.
@@ -199,4 +225,8 @@ Sets the value of Filters_Optional and also sets Filters_IsSet to true using mov
 #### `public inline void `[`ClearFilters`](#structFRHAPI__PexClientPagedResponse_1a4b428256793bec82e14173ad92e0e483)`()` <a id="structFRHAPI__PexClientPagedResponse_1a4b428256793bec82e14173ad92e0e483"></a>
 
 Clears the value of Filters_Optional and sets Filters_IsSet to false.
+
+#### `public inline bool `[`IsFiltersSet`](#structFRHAPI__PexClientPagedResponse_1ad74d506eb03802f49a6426bbbd5cf143)`() const` <a id="structFRHAPI__PexClientPagedResponse_1ad74d506eb03802f49a6426bbbd5cf143"></a>
+
+Checks whether Filters_Optional has been set.
 

@@ -25,8 +25,8 @@ A collection of rules that are used to determine whether a MatchMakingTemplate s
 `public bool `[`Determiner_IsSet`](#structFRHAPI__MatchMakingRuleset_1ab27952b6758121d98c6c193f996fae6e) | true if Determiner_Optional has been set to a value
 `public ERHAPI_PlayersToValidate `[`PlayersToValidate_Optional`](#structFRHAPI__MatchMakingRuleset_1a9db76d41578657d24931f256156a45dd) | Which members of a session must be validated to satisfy this ruleset.
 `public bool `[`PlayersToValidate_IsSet`](#structFRHAPI__MatchMakingRuleset_1a1053ee76fe29e4c034cab3cdb72fac5d) | true if PlayersToValidate_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__MatchMakingRuleset_1a0f28034647f6b5adafd82a3549489c70)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__MatchMakingRuleset_1acb32bcfdfac306d329be3cdd71e40e4e)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__MatchMakingRuleset_1a80c858c052b7546f24642994b2faaa1e)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__MatchMakingRuleset_1a53da81936136623e069fdab4c1635ea5)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > & `[`GetRules`](#structFRHAPI__MatchMakingRuleset_1a02f9dfc75b2ceedb77dc171f93f29683)`()` | Gets the value of Rules_Optional, regardless of it having been set.
 `public inline const TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > & `[`GetRules`](#structFRHAPI__MatchMakingRuleset_1a30d5a11c789d4ca8a141fad42a84bcce)`() const` | Gets the value of Rules_Optional, regardless of it having been set.
 `public inline const TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > & `[`GetRules`](#structFRHAPI__MatchMakingRuleset_1a1c10b0c80b86e97a991c13c41ac74963)`(const TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > & DefaultValue) const` | Gets the value of Rules_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -36,6 +36,7 @@ A collection of rules that are used to determine whether a MatchMakingTemplate s
 `public inline void `[`SetRules`](#structFRHAPI__MatchMakingRuleset_1a95dd984ce4623055d498de65234758f6)`(const TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > & NewValue)` | Sets the value of Rules_Optional and also sets Rules_IsSet to true.
 `public inline void `[`SetRules`](#structFRHAPI__MatchMakingRuleset_1a6deb26d921c7b27c4f10e0934a8f4c79)`(TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > && NewValue)` | Sets the value of Rules_Optional and also sets Rules_IsSet to true using move semantics.
 `public inline void `[`ClearRules`](#structFRHAPI__MatchMakingRuleset_1ac5e27b95f504890017e37f935c478838)`()` | Clears the value of Rules_Optional and sets Rules_IsSet to false.
+`public inline bool `[`IsRulesSet`](#structFRHAPI__MatchMakingRuleset_1a9d65d46ab0baaaab3135042d64b8e8f3)`() const` | Checks whether Rules_Optional has been set.
 `public inline ERHAPI_Determiner & `[`GetDeterminer`](#structFRHAPI__MatchMakingRuleset_1a52023e14aad3971fb54eb804c09d5666)`()` | Gets the value of Determiner_Optional, regardless of it having been set.
 `public inline const ERHAPI_Determiner & `[`GetDeterminer`](#structFRHAPI__MatchMakingRuleset_1acf42a5782b5100020c053a91300768f6)`() const` | Gets the value of Determiner_Optional, regardless of it having been set.
 `public inline const ERHAPI_Determiner & `[`GetDeterminer`](#structFRHAPI__MatchMakingRuleset_1a5538ca24eb8a3a5f688f737fb8abce7b)`(const ERHAPI_Determiner & DefaultValue) const` | Gets the value of Determiner_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -45,6 +46,7 @@ A collection of rules that are used to determine whether a MatchMakingTemplate s
 `public inline void `[`SetDeterminer`](#structFRHAPI__MatchMakingRuleset_1a8e545ca2611db722685e0b16abf014f3)`(const ERHAPI_Determiner & NewValue)` | Sets the value of Determiner_Optional and also sets Determiner_IsSet to true.
 `public inline void `[`SetDeterminer`](#structFRHAPI__MatchMakingRuleset_1acb0772787c71128b04e7e3ed9ce5000e)`(ERHAPI_Determiner && NewValue)` | Sets the value of Determiner_Optional and also sets Determiner_IsSet to true using move semantics.
 `public inline void `[`ClearDeterminer`](#structFRHAPI__MatchMakingRuleset_1a48e9ee08c491fb294cc3167b406e7e41)`()` | Clears the value of Determiner_Optional and sets Determiner_IsSet to false.
+`public inline bool `[`IsDeterminerSet`](#structFRHAPI__MatchMakingRuleset_1a0b587aaf95d39915d0cc5904a363d7b1)`() const` | Checks whether Determiner_Optional has been set.
 `public inline ERHAPI_PlayersToValidate & `[`GetPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1a3c4548b4b9f9a0fd61b750a9ac081b11)`()` | Gets the value of PlayersToValidate_Optional, regardless of it having been set.
 `public inline const ERHAPI_PlayersToValidate & `[`GetPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1a1de48ee46e4219129db1719bc306d4ff)`() const` | Gets the value of PlayersToValidate_Optional, regardless of it having been set.
 `public inline const ERHAPI_PlayersToValidate & `[`GetPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1af3433c5cf3160c025a02739aa779250d)`(const ERHAPI_PlayersToValidate & DefaultValue) const` | Gets the value of PlayersToValidate_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -54,6 +56,7 @@ A collection of rules that are used to determine whether a MatchMakingTemplate s
 `public inline void `[`SetPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1a26ba7671713585ceac3513a4d1e31a74)`(const ERHAPI_PlayersToValidate & NewValue)` | Sets the value of PlayersToValidate_Optional and also sets PlayersToValidate_IsSet to true.
 `public inline void `[`SetPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1a434c2821b9d39572c45f0d78ee36ea20)`(ERHAPI_PlayersToValidate && NewValue)` | Sets the value of PlayersToValidate_Optional and also sets PlayersToValidate_IsSet to true using move semantics.
 `public inline void `[`ClearPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1ad5cffee37be4af621d5ed9ad4a9dea43)`()` | Clears the value of PlayersToValidate_Optional and sets PlayersToValidate_IsSet to false.
+`public inline bool `[`IsPlayersToValidateSet`](#structFRHAPI__MatchMakingRuleset_1a860db2163fa0feb40a636444c355558a)`() const` | Checks whether PlayersToValidate_Optional has been set.
 
 ### Members
 
@@ -81,7 +84,7 @@ Which members of a session must be validated to satisfy this ruleset.
 
 true if PlayersToValidate_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__MatchMakingRuleset_1a0f28034647f6b5adafd82a3549489c70)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__MatchMakingRuleset_1a0f28034647f6b5adafd82a3549489c70"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__MatchMakingRuleset_1a80c858c052b7546f24642994b2faaa1e)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__MatchMakingRuleset_1a80c858c052b7546f24642994b2faaa1e"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -91,7 +94,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__MatchMakingRuleset_1acb32bcfdfac306d329be3cdd71e40e4e)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__MatchMakingRuleset_1acb32bcfdfac306d329be3cdd71e40e4e"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__MatchMakingRuleset_1a53da81936136623e069fdab4c1635ea5)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__MatchMakingRuleset_1a53da81936136623e069fdab4c1635ea5"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -134,6 +137,10 @@ Sets the value of Rules_Optional and also sets Rules_IsSet to true using move se
 
 Clears the value of Rules_Optional and sets Rules_IsSet to false.
 
+#### `public inline bool `[`IsRulesSet`](#structFRHAPI__MatchMakingRuleset_1a9d65d46ab0baaaab3135042d64b8e8f3)`() const` <a id="structFRHAPI__MatchMakingRuleset_1a9d65d46ab0baaaab3135042d64b8e8f3"></a>
+
+Checks whether Rules_Optional has been set.
+
 #### `public inline ERHAPI_Determiner & `[`GetDeterminer`](#structFRHAPI__MatchMakingRuleset_1a52023e14aad3971fb54eb804c09d5666)`()` <a id="structFRHAPI__MatchMakingRuleset_1a52023e14aad3971fb54eb804c09d5666"></a>
 
 Gets the value of Determiner_Optional, regardless of it having been set.
@@ -170,6 +177,10 @@ Sets the value of Determiner_Optional and also sets Determiner_IsSet to true usi
 
 Clears the value of Determiner_Optional and sets Determiner_IsSet to false.
 
+#### `public inline bool `[`IsDeterminerSet`](#structFRHAPI__MatchMakingRuleset_1a0b587aaf95d39915d0cc5904a363d7b1)`() const` <a id="structFRHAPI__MatchMakingRuleset_1a0b587aaf95d39915d0cc5904a363d7b1"></a>
+
+Checks whether Determiner_Optional has been set.
+
 #### `public inline ERHAPI_PlayersToValidate & `[`GetPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1a3c4548b4b9f9a0fd61b750a9ac081b11)`()` <a id="structFRHAPI__MatchMakingRuleset_1a3c4548b4b9f9a0fd61b750a9ac081b11"></a>
 
 Gets the value of PlayersToValidate_Optional, regardless of it having been set.
@@ -205,4 +216,8 @@ Sets the value of PlayersToValidate_Optional and also sets PlayersToValidate_IsS
 #### `public inline void `[`ClearPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1ad5cffee37be4af621d5ed9ad4a9dea43)`()` <a id="structFRHAPI__MatchMakingRuleset_1ad5cffee37be4af621d5ed9ad4a9dea43"></a>
 
 Clears the value of PlayersToValidate_Optional and sets PlayersToValidate_IsSet to false.
+
+#### `public inline bool `[`IsPlayersToValidateSet`](#structFRHAPI__MatchMakingRuleset_1a860db2163fa0feb40a636444c355558a)`() const` <a id="structFRHAPI__MatchMakingRuleset_1a860db2163fa0feb40a636444c355558a"></a>
+
+Checks whether PlayersToValidate_Optional has been set.
 

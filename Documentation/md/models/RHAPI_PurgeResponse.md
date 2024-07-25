@@ -24,8 +24,8 @@ Purge response from a purge request.
 `public FDateTime `[`CreatedOn`](#structFRHAPI__PurgeResponse_1a6215470fcde60f39e993f606ba4e2922) | Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone.
 `public FDateTime `[`LastModifiedOn`](#structFRHAPI__PurgeResponse_1aa86e276e2423d1f196fa4ee24d390d12) | Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone.
 `public FString `[`Status`](#structFRHAPI__PurgeResponse_1ab7e558d3cf6553cb712431e7aa5792e9) | Status of the purge request.
-`public virtual bool `[`FromJson`](#structFRHAPI__PurgeResponse_1a88e0dc69546b865f618871dd78006032)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PurgeResponse_1a4dba4031f20426243fd8f51e0f1ba211)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__PurgeResponse_1abe0fe09f2a2b15c52d504a6878e4f708)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__PurgeResponse_1a5619405d24033e75ba4e3bc80e492e44)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FGuid & `[`GetPersonId`](#structFRHAPI__PurgeResponse_1a31b719c156406a34cef0a6ca8452cb81)`()` | Gets the value of PersonId.
 `public inline const FGuid & `[`GetPersonId`](#structFRHAPI__PurgeResponse_1a59a525d3e22adeb4c59ccdeca4ca35d8)`() const` | Gets the value of PersonId.
 `public inline void `[`SetPersonId`](#structFRHAPI__PurgeResponse_1ae2b18b987142364ab6aed9292ffb2d81)`(const FGuid & NewValue)` | Sets the value of PersonId.
@@ -69,7 +69,7 @@ Datetime that enforces that a timezone is given. Unix timestamps are allowed and
 
 Status of the purge request.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__PurgeResponse_1a88e0dc69546b865f618871dd78006032)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PurgeResponse_1a88e0dc69546b865f618871dd78006032"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__PurgeResponse_1abe0fe09f2a2b15c52d504a6878e4f708)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PurgeResponse_1abe0fe09f2a2b15c52d504a6878e4f708"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -79,7 +79,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PurgeResponse_1a4dba4031f20426243fd8f51e0f1ba211)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PurgeResponse_1a4dba4031f20426243fd8f51e0f1ba211"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PurgeResponse_1a5619405d24033e75ba4e3bc80e492e44)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PurgeResponse_1a5619405d24033e75ba4e3bc80e492e44"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 

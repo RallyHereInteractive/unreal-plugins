@@ -24,8 +24,8 @@ struct FRHAPI_SettingTypeVersion
 `public `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` `[`ValueJsonschema`](#structFRHAPI__SettingTypeVersion_1adc61f49842f20cd4f9f9c37907bccbb8) | [jsonschema](https://json-schema.org/understanding-json-schema/index.html) that is used to verify values at assignment time
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__SettingTypeVersion_1a7cbfb62ce0108a560c234e8eb60399f0) | Custom data that was provided when the setting type was created.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__SettingTypeVersion_1a417b1215b3b7522fe6f0d2c11a96bcda) | true if CustomData_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__SettingTypeVersion_1aa4e70ba4519b150f2e99c4a90bc8fbbf)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__SettingTypeVersion_1ae3daee712cb6f91e68d51b5fe1b2ce98)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__SettingTypeVersion_1a847b27bcd2352e9669ec8e1ee7fc4725)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__SettingTypeVersion_1a11d1d5e60dae1f56c68035e98272fdb2)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline bool & `[`GetAllowUpdate`](#structFRHAPI__SettingTypeVersion_1afcaaef3adca90f4fd1358d088320bbb1)`()` | Gets the value of AllowUpdate_Optional, regardless of it having been set.
 `public inline const bool & `[`GetAllowUpdate`](#structFRHAPI__SettingTypeVersion_1a485cfe9aa04a52fa93b602ffc907eff3)`() const` | Gets the value of AllowUpdate_Optional, regardless of it having been set.
 `public inline const bool & `[`GetAllowUpdate`](#structFRHAPI__SettingTypeVersion_1af8560e913b8d8204e582c2b6cf20b210)`(const bool & DefaultValue) const` | Gets the value of AllowUpdate_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -35,6 +35,7 @@ struct FRHAPI_SettingTypeVersion
 `public inline void `[`SetAllowUpdate`](#structFRHAPI__SettingTypeVersion_1aa2ad062a6c4d47acd02c64d33d70d210)`(const bool & NewValue)` | Sets the value of AllowUpdate_Optional and also sets AllowUpdate_IsSet to true.
 `public inline void `[`SetAllowUpdate`](#structFRHAPI__SettingTypeVersion_1a67df6be7fc3e7aa6a79eb0360237a305)`(bool && NewValue)` | Sets the value of AllowUpdate_Optional and also sets AllowUpdate_IsSet to true using move semantics.
 `public inline void `[`ClearAllowUpdate`](#structFRHAPI__SettingTypeVersion_1a98769cdb1c9d46e61140d4629267ea9a)`()` | Clears the value of AllowUpdate_Optional and sets AllowUpdate_IsSet to false.
+`public inline bool `[`IsAllowUpdateSet`](#structFRHAPI__SettingTypeVersion_1a81013f385f660bb26a466bf7cfa93d9b)`() const` | Checks whether AllowUpdate_Optional has been set.
 `public inline bool `[`IsAllowUpdateDefaultValue`](#structFRHAPI__SettingTypeVersion_1ac836a8cfed8cd7dae4a460fab86ab2e3)`() const` | Returns true if AllowUpdate_Optional is set and matches the default value.
 `public inline void `[`SetAllowUpdateToDefault`](#structFRHAPI__SettingTypeVersion_1a391bf3452ed0068b495d2a3754156586)`()` | Sets the value of AllowUpdate_Optional to its default and also sets AllowUpdate_IsSet to true.
 `public inline FString & `[`GetKeyRegex`](#structFRHAPI__SettingTypeVersion_1a9d935fb43394e65e044cf3065f73af0d)`()` | Gets the value of KeyRegex_Optional, regardless of it having been set.
@@ -46,6 +47,7 @@ struct FRHAPI_SettingTypeVersion
 `public inline void `[`SetKeyRegex`](#structFRHAPI__SettingTypeVersion_1af6d12b1ce3b50b113d893d39d2e084b7)`(const FString & NewValue)` | Sets the value of KeyRegex_Optional and also sets KeyRegex_IsSet to true.
 `public inline void `[`SetKeyRegex`](#structFRHAPI__SettingTypeVersion_1a6764762de099aea070c02fc68db3c0c6)`(FString && NewValue)` | Sets the value of KeyRegex_Optional and also sets KeyRegex_IsSet to true using move semantics.
 `public inline void `[`ClearKeyRegex`](#structFRHAPI__SettingTypeVersion_1a128d3490d334f968e82b0ab89318c5b3)`()` | Clears the value of KeyRegex_Optional and sets KeyRegex_IsSet to false.
+`public inline bool `[`IsKeyRegexSet`](#structFRHAPI__SettingTypeVersion_1ac51e05129f1d60643b36bb5d78d97d84)`() const` | Checks whether KeyRegex_Optional has been set.
 `public inline bool `[`IsKeyRegexDefaultValue`](#structFRHAPI__SettingTypeVersion_1a5936bb1b4543b1a515ff9b69d296bc76)`() const` | Returns true if KeyRegex_Optional is set and matches the default value.
 `public inline void `[`SetKeyRegexToDefault`](#structFRHAPI__SettingTypeVersion_1a22341ac9a7abce8cbb643ac7cf1089d2)`()` | Sets the value of KeyRegex_Optional to its default and also sets KeyRegex_IsSet to true.
 `public inline `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetValueJsonschema`](#structFRHAPI__SettingTypeVersion_1ab213f4d77b44b6d6386a5408ca76021b)`()` | Gets the value of ValueJsonschema.
@@ -61,6 +63,7 @@ struct FRHAPI_SettingTypeVersion
 `public inline void `[`SetCustomData`](#structFRHAPI__SettingTypeVersion_1a7ed286238c590cb17baa353e2efee115)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`SetCustomData`](#structFRHAPI__SettingTypeVersion_1ac44584ad713fb7900e15f1a74579832d)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__SettingTypeVersion_1a87ffa31269dfdc6b9737d3f8653735bc)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+`public inline bool `[`IsCustomDataSet`](#structFRHAPI__SettingTypeVersion_1a8fad33c74164a01e246f742ea92b88e5)`() const` | Checks whether CustomData_Optional has been set.
 
 ### Members
 
@@ -92,7 +95,7 @@ Custom data that was provided when the setting type was created.
 
 true if CustomData_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__SettingTypeVersion_1aa4e70ba4519b150f2e99c4a90bc8fbbf)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__SettingTypeVersion_1aa4e70ba4519b150f2e99c4a90bc8fbbf"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__SettingTypeVersion_1a847b27bcd2352e9669ec8e1ee7fc4725)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__SettingTypeVersion_1a847b27bcd2352e9669ec8e1ee7fc4725"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -102,7 +105,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__SettingTypeVersion_1ae3daee712cb6f91e68d51b5fe1b2ce98)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__SettingTypeVersion_1ae3daee712cb6f91e68d51b5fe1b2ce98"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__SettingTypeVersion_1a11d1d5e60dae1f56c68035e98272fdb2)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__SettingTypeVersion_1a11d1d5e60dae1f56c68035e98272fdb2"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -144,6 +147,10 @@ Sets the value of AllowUpdate_Optional and also sets AllowUpdate_IsSet to true u
 #### `public inline void `[`ClearAllowUpdate`](#structFRHAPI__SettingTypeVersion_1a98769cdb1c9d46e61140d4629267ea9a)`()` <a id="structFRHAPI__SettingTypeVersion_1a98769cdb1c9d46e61140d4629267ea9a"></a>
 
 Clears the value of AllowUpdate_Optional and sets AllowUpdate_IsSet to false.
+
+#### `public inline bool `[`IsAllowUpdateSet`](#structFRHAPI__SettingTypeVersion_1a81013f385f660bb26a466bf7cfa93d9b)`() const` <a id="structFRHAPI__SettingTypeVersion_1a81013f385f660bb26a466bf7cfa93d9b"></a>
+
+Checks whether AllowUpdate_Optional has been set.
 
 #### `public inline bool `[`IsAllowUpdateDefaultValue`](#structFRHAPI__SettingTypeVersion_1ac836a8cfed8cd7dae4a460fab86ab2e3)`() const` <a id="structFRHAPI__SettingTypeVersion_1ac836a8cfed8cd7dae4a460fab86ab2e3"></a>
 
@@ -188,6 +195,10 @@ Sets the value of KeyRegex_Optional and also sets KeyRegex_IsSet to true using m
 #### `public inline void `[`ClearKeyRegex`](#structFRHAPI__SettingTypeVersion_1a128d3490d334f968e82b0ab89318c5b3)`()` <a id="structFRHAPI__SettingTypeVersion_1a128d3490d334f968e82b0ab89318c5b3"></a>
 
 Clears the value of KeyRegex_Optional and sets KeyRegex_IsSet to false.
+
+#### `public inline bool `[`IsKeyRegexSet`](#structFRHAPI__SettingTypeVersion_1ac51e05129f1d60643b36bb5d78d97d84)`() const` <a id="structFRHAPI__SettingTypeVersion_1ac51e05129f1d60643b36bb5d78d97d84"></a>
+
+Checks whether KeyRegex_Optional has been set.
 
 #### `public inline bool `[`IsKeyRegexDefaultValue`](#structFRHAPI__SettingTypeVersion_1a5936bb1b4543b1a515ff9b69d296bc76)`() const` <a id="structFRHAPI__SettingTypeVersion_1a5936bb1b4543b1a515ff9b69d296bc76"></a>
 
@@ -248,4 +259,8 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true usi
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__SettingTypeVersion_1a87ffa31269dfdc6b9737d3f8653735bc)`()` <a id="structFRHAPI__SettingTypeVersion_1a87ffa31269dfdc6b9737d3f8653735bc"></a>
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+
+#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__SettingTypeVersion_1a8fad33c74164a01e246f742ea92b88e5)`() const` <a id="structFRHAPI__SettingTypeVersion_1a8fad33c74164a01e246f742ea92b88e5"></a>
+
+Checks whether CustomData_Optional has been set.
 

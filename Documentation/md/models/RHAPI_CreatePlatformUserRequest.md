@@ -23,8 +23,8 @@ Request parameters to create a user exists.
 `public FString `[`PlatformUserId`](#structFRHAPI__CreatePlatformUserRequest_1a587e36370f0cc58af050da8bed32e05f) | Platform user ID to create with.
 `public FString `[`DisplayName_Optional`](#structFRHAPI__CreatePlatformUserRequest_1a2e3f3d7ea15d34d542c8110a19d0a3e3) | Display name used when creating a new player.
 `public bool `[`DisplayName_IsSet`](#structFRHAPI__CreatePlatformUserRequest_1a7a0f7f33a973df6fb788118229369731) | true if DisplayName_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__CreatePlatformUserRequest_1aceead5d2b0bb8534ac9c09f8f5fff1bf)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__CreatePlatformUserRequest_1a922a03a0d1d3d27b31af42288e713ab8)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__CreatePlatformUserRequest_1a43546c9efb5116b3d17be7ca1d72d8f5)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__CreatePlatformUserRequest_1a03a2c62a188a608e60a2807a032a4b7a)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__CreatePlatformUserRequest_1abe0ddacb7c3cd1b903f426306e81ab20)`()` | Gets the value of Platform.
 `public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__CreatePlatformUserRequest_1a532a49e83fc22a3827d4d2f9dac83ff9)`() const` | Gets the value of Platform.
 `public inline void `[`SetPlatform`](#structFRHAPI__CreatePlatformUserRequest_1ac5e8919daaa182d7a79053d768fea731)`(const ERHAPI_Platform & NewValue)` | Sets the value of Platform.
@@ -42,6 +42,7 @@ Request parameters to create a user exists.
 `public inline void `[`SetDisplayName`](#structFRHAPI__CreatePlatformUserRequest_1aa58fd4fdd6802b095f6e750c9693f928)`(const FString & NewValue)` | Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true.
 `public inline void `[`SetDisplayName`](#structFRHAPI__CreatePlatformUserRequest_1ac39c49b4ae1b9538292b1bfd0b806418)`(FString && NewValue)` | Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true using move semantics.
 `public inline void `[`ClearDisplayName`](#structFRHAPI__CreatePlatformUserRequest_1a83baecca1ac4b53502cb573269d0aae2)`()` | Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false.
+`public inline bool `[`IsDisplayNameSet`](#structFRHAPI__CreatePlatformUserRequest_1aef466ca31855d29fddaa12cb1c8e9652)`() const` | Checks whether DisplayName_Optional has been set.
 
 ### Members
 
@@ -61,7 +62,7 @@ Display name used when creating a new player.
 
 true if DisplayName_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__CreatePlatformUserRequest_1aceead5d2b0bb8534ac9c09f8f5fff1bf)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__CreatePlatformUserRequest_1aceead5d2b0bb8534ac9c09f8f5fff1bf"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__CreatePlatformUserRequest_1a43546c9efb5116b3d17be7ca1d72d8f5)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__CreatePlatformUserRequest_1a43546c9efb5116b3d17be7ca1d72d8f5"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -71,7 +72,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__CreatePlatformUserRequest_1a922a03a0d1d3d27b31af42288e713ab8)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__CreatePlatformUserRequest_1a922a03a0d1d3d27b31af42288e713ab8"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__CreatePlatformUserRequest_1a03a2c62a188a608e60a2807a032a4b7a)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__CreatePlatformUserRequest_1a03a2c62a188a608e60a2807a032a4b7a"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -145,4 +146,8 @@ Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true u
 #### `public inline void `[`ClearDisplayName`](#structFRHAPI__CreatePlatformUserRequest_1a83baecca1ac4b53502cb573269d0aae2)`()` <a id="structFRHAPI__CreatePlatformUserRequest_1a83baecca1ac4b53502cb573269d0aae2"></a>
 
 Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false.
+
+#### `public inline bool `[`IsDisplayNameSet`](#structFRHAPI__CreatePlatformUserRequest_1aef466ca31855d29fddaa12cb1c8e9652)`() const` <a id="structFRHAPI__CreatePlatformUserRequest_1aef466ca31855d29fddaa12cb1c8e9652"></a>
+
+Checks whether DisplayName_Optional has been set.
 

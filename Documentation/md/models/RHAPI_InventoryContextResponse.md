@@ -21,8 +21,8 @@ Inventory Context for a Player.
 --------------------------------|---------------------------------------------
 `public `[`FRHAPI_Inventory`](RHAPI_Inventory.md#structFRHAPI__Inventory)` `[`Inventory_Optional`](#structFRHAPI__InventoryContextResponse_1adf1766726cd900f692cdab6e1816713c) | Inventory Context for a Player.
 `public bool `[`Inventory_IsSet`](#structFRHAPI__InventoryContextResponse_1a78e0c2b4d95885d45a22e322049fc23a) | true if Inventory_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__InventoryContextResponse_1ae834b0342287ef7e2daf8fb9ed47f70d)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__InventoryContextResponse_1a66b6953f96b5caba364122a3328ee0db)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__InventoryContextResponse_1a4537312bdb09846842039fd6d2b5db00)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__InventoryContextResponse_1a130485eb3ae56d2959fde904162a000f)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline `[`FRHAPI_Inventory`](RHAPI_Inventory.md#structFRHAPI__Inventory)` & `[`GetInventory`](#structFRHAPI__InventoryContextResponse_1af5475321db2829b4bad00d99efb69a4b)`()` | Gets the value of Inventory_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_Inventory`](RHAPI_Inventory.md#structFRHAPI__Inventory)` & `[`GetInventory`](#structFRHAPI__InventoryContextResponse_1a973fbb972b1333e42340f83ef003defd)`() const` | Gets the value of Inventory_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_Inventory`](RHAPI_Inventory.md#structFRHAPI__Inventory)` & `[`GetInventory`](#structFRHAPI__InventoryContextResponse_1a05a932a30a4523e5d12bf7a199103542)`(const `[`FRHAPI_Inventory`](RHAPI_Inventory.md#structFRHAPI__Inventory)` & DefaultValue) const` | Gets the value of Inventory_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -32,6 +32,7 @@ Inventory Context for a Player.
 `public inline void `[`SetInventory`](#structFRHAPI__InventoryContextResponse_1af6025ac2e9e41aa65beb4bd20f8acf4d)`(const `[`FRHAPI_Inventory`](RHAPI_Inventory.md#structFRHAPI__Inventory)` & NewValue)` | Sets the value of Inventory_Optional and also sets Inventory_IsSet to true.
 `public inline void `[`SetInventory`](#structFRHAPI__InventoryContextResponse_1a5cbd5da73e757edd0dbe316079059272)`(`[`FRHAPI_Inventory`](RHAPI_Inventory.md#structFRHAPI__Inventory)` && NewValue)` | Sets the value of Inventory_Optional and also sets Inventory_IsSet to true using move semantics.
 `public inline void `[`ClearInventory`](#structFRHAPI__InventoryContextResponse_1a41cea14fe48b16820fe86c112069ede4)`()` | Clears the value of Inventory_Optional and sets Inventory_IsSet to false.
+`public inline bool `[`IsInventorySet`](#structFRHAPI__InventoryContextResponse_1a827d8322538de97ebfc7d863859aaedb)`() const` | Checks whether Inventory_Optional has been set.
 
 ### Members
 
@@ -43,7 +44,7 @@ Inventory Context for a Player.
 
 true if Inventory_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__InventoryContextResponse_1ae834b0342287ef7e2daf8fb9ed47f70d)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__InventoryContextResponse_1ae834b0342287ef7e2daf8fb9ed47f70d"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__InventoryContextResponse_1a4537312bdb09846842039fd6d2b5db00)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__InventoryContextResponse_1a4537312bdb09846842039fd6d2b5db00"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -53,7 +54,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__InventoryContextResponse_1a66b6953f96b5caba364122a3328ee0db)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__InventoryContextResponse_1a66b6953f96b5caba364122a3328ee0db"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__InventoryContextResponse_1a130485eb3ae56d2959fde904162a000f)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__InventoryContextResponse_1a130485eb3ae56d2959fde904162a000f"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -95,4 +96,8 @@ Sets the value of Inventory_Optional and also sets Inventory_IsSet to true using
 #### `public inline void `[`ClearInventory`](#structFRHAPI__InventoryContextResponse_1a41cea14fe48b16820fe86c112069ede4)`()` <a id="structFRHAPI__InventoryContextResponse_1a41cea14fe48b16820fe86c112069ede4"></a>
 
 Clears the value of Inventory_Optional and sets Inventory_IsSet to false.
+
+#### `public inline bool `[`IsInventorySet`](#structFRHAPI__InventoryContextResponse_1a827d8322538de97ebfc7d863859aaedb)`() const` <a id="structFRHAPI__InventoryContextResponse_1a827d8322538de97ebfc7d863859aaedb"></a>
+
+Checks whether Inventory_Optional has been set.
 

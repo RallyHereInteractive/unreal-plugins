@@ -25,8 +25,8 @@ struct FRHAPI_BodyFindOpportunities
 `public FString `[`LanguageCode`](#structFRHAPI__BodyFindOpportunities_1acda52cb7b0b82e80fa9f7726eb4923f0) | [ISO 639-2](https://www.loc.gov/standards/iso639-2/php/code_list.php) language code
 `public FString `[`DeviceId_Optional`](#structFRHAPI__BodyFindOpportunities_1aecddbe9ef61c93765612120f22d809cb) | Unique Identifier for the device a session is started on. E.g should be the same for multiple users on the same device.
 `public bool `[`DeviceId_IsSet`](#structFRHAPI__BodyFindOpportunities_1a62d71d9c70891074895910f1cdbea6d2) | true if DeviceId_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__BodyFindOpportunities_1aeb49f34b2783c3d98f64a6f29765bced)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__BodyFindOpportunities_1ad9495a9e4dd6eb290b4497476cd27983)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__BodyFindOpportunities_1af93b0749dd02a53a6290535c5a990286)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__BodyFindOpportunities_1a86fdb8ab4c53c577289528be898c725b)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline int32 & `[`GetScreenPixelWidth`](#structFRHAPI__BodyFindOpportunities_1a8800010d4d58b46142fc581eecc44452)`()` | Gets the value of ScreenPixelWidth_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetScreenPixelWidth`](#structFRHAPI__BodyFindOpportunities_1aefefa4eb30b57b14b9c33da8559aa7bf)`() const` | Gets the value of ScreenPixelWidth_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetScreenPixelWidth`](#structFRHAPI__BodyFindOpportunities_1a5746301bb09b65f849326fbd2e3121b4)`(const int32 & DefaultValue) const` | Gets the value of ScreenPixelWidth_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -36,6 +36,7 @@ struct FRHAPI_BodyFindOpportunities
 `public inline void `[`SetScreenPixelWidth`](#structFRHAPI__BodyFindOpportunities_1a4a473293db607d5367fda9debbbddb40)`(const int32 & NewValue)` | Sets the value of ScreenPixelWidth_Optional and also sets ScreenPixelWidth_IsSet to true.
 `public inline void `[`SetScreenPixelWidth`](#structFRHAPI__BodyFindOpportunities_1a4fe4e4d36d6912b2dc52aaa44b6bd233)`(int32 && NewValue)` | Sets the value of ScreenPixelWidth_Optional and also sets ScreenPixelWidth_IsSet to true using move semantics.
 `public inline void `[`ClearScreenPixelWidth`](#structFRHAPI__BodyFindOpportunities_1ae6663d32a01ee5dffa9d75a6132f95f2)`()` | Clears the value of ScreenPixelWidth_Optional and sets ScreenPixelWidth_IsSet to false.
+`public inline bool `[`IsScreenPixelWidthSet`](#structFRHAPI__BodyFindOpportunities_1a26c4b3bdac2a5f5d3ef0df1fde439c8f)`() const` | Checks whether ScreenPixelWidth_Optional has been set.
 `public inline bool `[`IsScreenPixelWidthDefaultValue`](#structFRHAPI__BodyFindOpportunities_1a2455bb9010c3861a19d196be1e8e764a)`() const` | Returns true if ScreenPixelWidth_Optional is set and matches the default value.
 `public inline void `[`SetScreenPixelWidthToDefault`](#structFRHAPI__BodyFindOpportunities_1a77699235df89da355f3f899790addb3c)`()` | Sets the value of ScreenPixelWidth_Optional to its default and also sets ScreenPixelWidth_IsSet to true.
 `public inline int32 & `[`GetScreenPixelHeight`](#structFRHAPI__BodyFindOpportunities_1a42bc8a43f564f849371215ae65ac87f4)`()` | Gets the value of ScreenPixelHeight_Optional, regardless of it having been set.
@@ -47,6 +48,7 @@ struct FRHAPI_BodyFindOpportunities
 `public inline void `[`SetScreenPixelHeight`](#structFRHAPI__BodyFindOpportunities_1a5c4817f4d0d8a8261b52f50be1da556a)`(const int32 & NewValue)` | Sets the value of ScreenPixelHeight_Optional and also sets ScreenPixelHeight_IsSet to true.
 `public inline void `[`SetScreenPixelHeight`](#structFRHAPI__BodyFindOpportunities_1a63cd7bc32854976762cbb1015dfbf140)`(int32 && NewValue)` | Sets the value of ScreenPixelHeight_Optional and also sets ScreenPixelHeight_IsSet to true using move semantics.
 `public inline void `[`ClearScreenPixelHeight`](#structFRHAPI__BodyFindOpportunities_1a048b38678d62f4814c85642a737c6509)`()` | Clears the value of ScreenPixelHeight_Optional and sets ScreenPixelHeight_IsSet to false.
+`public inline bool `[`IsScreenPixelHeightSet`](#structFRHAPI__BodyFindOpportunities_1aacdbdc8aa8da16666cfb2ff21174b775)`() const` | Checks whether ScreenPixelHeight_Optional has been set.
 `public inline bool `[`IsScreenPixelHeightDefaultValue`](#structFRHAPI__BodyFindOpportunities_1af1ff5fc6e6bd2f3fc32267299a693f1c)`() const` | Returns true if ScreenPixelHeight_Optional is set and matches the default value.
 `public inline void `[`SetScreenPixelHeightToDefault`](#structFRHAPI__BodyFindOpportunities_1a0d93830a1d72571e005154ed1a7d3dfc)`()` | Sets the value of ScreenPixelHeight_Optional to its default and also sets ScreenPixelHeight_IsSet to true.
 `public inline FString & `[`GetCountryCode`](#structFRHAPI__BodyFindOpportunities_1a1ecbe536baf4fd61c4828d6ba39b65f1)`()` | Gets the value of CountryCode.
@@ -66,6 +68,7 @@ struct FRHAPI_BodyFindOpportunities
 `public inline void `[`SetDeviceId`](#structFRHAPI__BodyFindOpportunities_1adba3a2227fef489360c52b50eb9fc9ea)`(const FString & NewValue)` | Sets the value of DeviceId_Optional and also sets DeviceId_IsSet to true.
 `public inline void `[`SetDeviceId`](#structFRHAPI__BodyFindOpportunities_1af995107060547cef908951c8b551c147)`(FString && NewValue)` | Sets the value of DeviceId_Optional and also sets DeviceId_IsSet to true using move semantics.
 `public inline void `[`ClearDeviceId`](#structFRHAPI__BodyFindOpportunities_1a7188bb5fbcdd19a876c7928d7989d186)`()` | Clears the value of DeviceId_Optional and sets DeviceId_IsSet to false.
+`public inline bool `[`IsDeviceIdSet`](#structFRHAPI__BodyFindOpportunities_1aeb8fb5a3195baf5b54f36c5fff927e2d)`() const` | Checks whether DeviceId_Optional has been set.
 
 ### Members
 
@@ -101,7 +104,7 @@ Unique Identifier for the device a session is started on. E.g should be the same
 
 true if DeviceId_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__BodyFindOpportunities_1aeb49f34b2783c3d98f64a6f29765bced)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__BodyFindOpportunities_1aeb49f34b2783c3d98f64a6f29765bced"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__BodyFindOpportunities_1af93b0749dd02a53a6290535c5a990286)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__BodyFindOpportunities_1af93b0749dd02a53a6290535c5a990286"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -111,7 +114,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__BodyFindOpportunities_1ad9495a9e4dd6eb290b4497476cd27983)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__BodyFindOpportunities_1ad9495a9e4dd6eb290b4497476cd27983"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__BodyFindOpportunities_1a86fdb8ab4c53c577289528be898c725b)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__BodyFindOpportunities_1a86fdb8ab4c53c577289528be898c725b"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -153,6 +156,10 @@ Sets the value of ScreenPixelWidth_Optional and also sets ScreenPixelWidth_IsSet
 #### `public inline void `[`ClearScreenPixelWidth`](#structFRHAPI__BodyFindOpportunities_1ae6663d32a01ee5dffa9d75a6132f95f2)`()` <a id="structFRHAPI__BodyFindOpportunities_1ae6663d32a01ee5dffa9d75a6132f95f2"></a>
 
 Clears the value of ScreenPixelWidth_Optional and sets ScreenPixelWidth_IsSet to false.
+
+#### `public inline bool `[`IsScreenPixelWidthSet`](#structFRHAPI__BodyFindOpportunities_1a26c4b3bdac2a5f5d3ef0df1fde439c8f)`() const` <a id="structFRHAPI__BodyFindOpportunities_1a26c4b3bdac2a5f5d3ef0df1fde439c8f"></a>
+
+Checks whether ScreenPixelWidth_Optional has been set.
 
 #### `public inline bool `[`IsScreenPixelWidthDefaultValue`](#structFRHAPI__BodyFindOpportunities_1a2455bb9010c3861a19d196be1e8e764a)`() const` <a id="structFRHAPI__BodyFindOpportunities_1a2455bb9010c3861a19d196be1e8e764a"></a>
 
@@ -197,6 +204,10 @@ Sets the value of ScreenPixelHeight_Optional and also sets ScreenPixelHeight_IsS
 #### `public inline void `[`ClearScreenPixelHeight`](#structFRHAPI__BodyFindOpportunities_1a048b38678d62f4814c85642a737c6509)`()` <a id="structFRHAPI__BodyFindOpportunities_1a048b38678d62f4814c85642a737c6509"></a>
 
 Clears the value of ScreenPixelHeight_Optional and sets ScreenPixelHeight_IsSet to false.
+
+#### `public inline bool `[`IsScreenPixelHeightSet`](#structFRHAPI__BodyFindOpportunities_1aacdbdc8aa8da16666cfb2ff21174b775)`() const` <a id="structFRHAPI__BodyFindOpportunities_1aacdbdc8aa8da16666cfb2ff21174b775"></a>
+
+Checks whether ScreenPixelHeight_Optional has been set.
 
 #### `public inline bool `[`IsScreenPixelHeightDefaultValue`](#structFRHAPI__BodyFindOpportunities_1af1ff5fc6e6bd2f3fc32267299a693f1c)`() const` <a id="structFRHAPI__BodyFindOpportunities_1af1ff5fc6e6bd2f3fc32267299a693f1c"></a>
 
@@ -273,4 +284,8 @@ Sets the value of DeviceId_Optional and also sets DeviceId_IsSet to true using m
 #### `public inline void `[`ClearDeviceId`](#structFRHAPI__BodyFindOpportunities_1a7188bb5fbcdd19a876c7928d7989d186)`()` <a id="structFRHAPI__BodyFindOpportunities_1a7188bb5fbcdd19a876c7928d7989d186"></a>
 
 Clears the value of DeviceId_Optional and sets DeviceId_IsSet to false.
+
+#### `public inline bool `[`IsDeviceIdSet`](#structFRHAPI__BodyFindOpportunities_1aeb8fb5a3195baf5b54f36c5fff927e2d)`() const` <a id="structFRHAPI__BodyFindOpportunities_1aeb8fb5a3195baf5b54f36c5fff927e2d"></a>
+
+Checks whether DeviceId_Optional has been set.
 

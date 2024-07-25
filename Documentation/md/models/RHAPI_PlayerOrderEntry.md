@@ -54,8 +54,8 @@ Represents a line item in the Player Order and the results of the line item.
 `public bool `[`Result_IsSet`](#structFRHAPI__PlayerOrderEntry_1a51f1b8ab3ddfe711d3b5ce3baba4f11a) | true if Result_Optional has been set to a value
 `public TArray< `[`FRHAPI_PlayerOrderDetail`](RHAPI_PlayerOrderDetail.md#structFRHAPI__PlayerOrderDetail)` > `[`Details_Optional`](#structFRHAPI__PlayerOrderEntry_1ad0d38a797491aefcf72ebc1f69fd527d) | Details for the Order Entry.
 `public bool `[`Details_IsSet`](#structFRHAPI__PlayerOrderEntry_1ab3ea719e706961aee4c9f2f4ecffb99b) | true if Details_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__PlayerOrderEntry_1a1303a54655d608f3d47b801afdad25bc)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PlayerOrderEntry_1ad7a63eb6e8abee5dafa2b840637ab086)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__PlayerOrderEntry_1a116103f1a97d7348fb509658f41bbfe4)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__PlayerOrderEntry_1a94f465866e82cb7e026c64385dd643be)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_PlayerOrderEntryType & `[`GetType`](#structFRHAPI__PlayerOrderEntry_1af93fb1ff20bb47be74253f884c60c177)`()` | Gets the value of Type.
 `public inline const ERHAPI_PlayerOrderEntryType & `[`GetType`](#structFRHAPI__PlayerOrderEntry_1a4ef7488da616dda67cd85e0f90dfa2c0)`() const` | Gets the value of Type.
 `public inline void `[`SetType`](#structFRHAPI__PlayerOrderEntry_1a47c9903ef38409e1e1b345d73d86babc)`(const ERHAPI_PlayerOrderEntryType & NewValue)` | Sets the value of Type.
@@ -69,6 +69,7 @@ Represents a line item in the Player Order and the results of the line item.
 `public inline void `[`SetLootId`](#structFRHAPI__PlayerOrderEntry_1acf706a344641f4777b052951ef6e3919)`(const int32 & NewValue)` | Sets the value of LootId_Optional and also sets LootId_IsSet to true.
 `public inline void `[`SetLootId`](#structFRHAPI__PlayerOrderEntry_1a3c4777caf03d81ec32fa6e0a9bd8fc93)`(int32 && NewValue)` | Sets the value of LootId_Optional and also sets LootId_IsSet to true using move semantics.
 `public inline void `[`ClearLootId`](#structFRHAPI__PlayerOrderEntry_1a43edd609c6f076ad538d4ed80c70eced)`()` | Clears the value of LootId_Optional and sets LootId_IsSet to false.
+`public inline bool `[`IsLootIdSet`](#structFRHAPI__PlayerOrderEntry_1a117edf4021c7e4f02144ce70bc752f54)`() const` | Checks whether LootId_Optional has been set.
 `public inline bool `[`IsLootIdDefaultValue`](#structFRHAPI__PlayerOrderEntry_1a1b3f431ef690f0d4399199f5966af906)`() const` | Returns true if LootId_Optional is set and matches the default value.
 `public inline void `[`SetLootIdToDefault`](#structFRHAPI__PlayerOrderEntry_1a0af86c8bd92731bdf04328285d1c3ef9)`()` | Sets the value of LootId_Optional to its default and also sets LootId_IsSet to true.
 `public inline int32 & `[`GetQuantity`](#structFRHAPI__PlayerOrderEntry_1a93067ef95ed24540c2afe3cc55daa402)`()` | Gets the value of Quantity.
@@ -86,6 +87,7 @@ Represents a line item in the Player Order and the results of the line item.
 `public inline void `[`SetVendorVersion`](#structFRHAPI__PlayerOrderEntry_1a2b1c6ab24667348336adff873becccbe)`(const int64 & NewValue)` | Sets the value of VendorVersion_Optional and also sets VendorVersion_IsSet to true.
 `public inline void `[`SetVendorVersion`](#structFRHAPI__PlayerOrderEntry_1aa229d091d47dad429338ee475e2a54f7)`(int64 && NewValue)` | Sets the value of VendorVersion_Optional and also sets VendorVersion_IsSet to true using move semantics.
 `public inline void `[`ClearVendorVersion`](#structFRHAPI__PlayerOrderEntry_1a403a9b0a05a1e5cbec419058b0384f0a)`()` | Clears the value of VendorVersion_Optional and sets VendorVersion_IsSet to false.
+`public inline bool `[`IsVendorVersionSet`](#structFRHAPI__PlayerOrderEntry_1a686f158ba0966791da7e7ebe0573e604)`() const` | Checks whether VendorVersion_Optional has been set.
 `public inline bool `[`IsVendorVersionDefaultValue`](#structFRHAPI__PlayerOrderEntry_1ab9b080bbb6201eeab73e64ca219c825e)`() const` | Returns true if VendorVersion_Optional is set and matches the default value.
 `public inline void `[`SetVendorVersionToDefault`](#structFRHAPI__PlayerOrderEntry_1af18c13a79f10c83cf8cf909037a40d13)`()` | Sets the value of VendorVersion_Optional to its default and also sets VendorVersion_IsSet to true.
 `public inline FString & `[`GetVendorEtag`](#structFRHAPI__PlayerOrderEntry_1a74caeac6aba2b540c0ca70e06e2f41cb)`()` | Gets the value of VendorEtag_Optional, regardless of it having been set.
@@ -97,6 +99,7 @@ Represents a line item in the Player Order and the results of the line item.
 `public inline void `[`SetVendorEtag`](#structFRHAPI__PlayerOrderEntry_1a5e3405cbb97be6d385acea9e5107fa51)`(const FString & NewValue)` | Sets the value of VendorEtag_Optional and also sets VendorEtag_IsSet to true.
 `public inline void `[`SetVendorEtag`](#structFRHAPI__PlayerOrderEntry_1a7eb80b05630d6f9aabea66df0fe84ceb)`(FString && NewValue)` | Sets the value of VendorEtag_Optional and also sets VendorEtag_IsSet to true using move semantics.
 `public inline void `[`ClearVendorEtag`](#structFRHAPI__PlayerOrderEntry_1a9d316d2e4dd22118de25e4a3f05028fc)`()` | Clears the value of VendorEtag_Optional and sets VendorEtag_IsSet to false.
+`public inline bool `[`IsVendorEtagSet`](#structFRHAPI__PlayerOrderEntry_1a132055ea3df7088ca4dc34cfae604831)`() const` | Checks whether VendorEtag_Optional has been set.
 `public inline TArray< int32 > & `[`GetDynamicBundleLootIds`](#structFRHAPI__PlayerOrderEntry_1a4dded4ff994c11e1c799c4b5ad140401)`()` | Gets the value of DynamicBundleLootIds_Optional, regardless of it having been set.
 `public inline const TArray< int32 > & `[`GetDynamicBundleLootIds`](#structFRHAPI__PlayerOrderEntry_1a9a0420165577c7b906e37b951bef7f22)`() const` | Gets the value of DynamicBundleLootIds_Optional, regardless of it having been set.
 `public inline const TArray< int32 > & `[`GetDynamicBundleLootIds`](#structFRHAPI__PlayerOrderEntry_1ae9dda53c4610b08fddb34f2cfe0de879)`(const TArray< int32 > & DefaultValue) const` | Gets the value of DynamicBundleLootIds_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -106,6 +109,7 @@ Represents a line item in the Player Order and the results of the line item.
 `public inline void `[`SetDynamicBundleLootIds`](#structFRHAPI__PlayerOrderEntry_1a3614d6e0d677c9b71f39e95e81625199)`(const TArray< int32 > & NewValue)` | Sets the value of DynamicBundleLootIds_Optional and also sets DynamicBundleLootIds_IsSet to true.
 `public inline void `[`SetDynamicBundleLootIds`](#structFRHAPI__PlayerOrderEntry_1ab88ef1c129858e9d4c2bf45aa61116e8)`(TArray< int32 > && NewValue)` | Sets the value of DynamicBundleLootIds_Optional and also sets DynamicBundleLootIds_IsSet to true using move semantics.
 `public inline void `[`ClearDynamicBundleLootIds`](#structFRHAPI__PlayerOrderEntry_1a2efa892a1b02431414bfb5346897b27d)`()` | Clears the value of DynamicBundleLootIds_Optional and sets DynamicBundleLootIds_IsSet to false.
+`public inline bool `[`IsDynamicBundleLootIdsSet`](#structFRHAPI__PlayerOrderEntry_1a36b6134d7a4c423c3ab1ccfaca3a678e)`() const` | Checks whether DynamicBundleLootIds_Optional has been set.
 `public inline `[`FRHAPI_PurchasePrice`](RHAPI_PurchasePrice.md#structFRHAPI__PurchasePrice)` & `[`GetPurchasePrice`](#structFRHAPI__PlayerOrderEntry_1afe68f43c0ae9d31426e5236b2e3b73d6)`()` | Gets the value of PurchasePrice_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_PurchasePrice`](RHAPI_PurchasePrice.md#structFRHAPI__PurchasePrice)` & `[`GetPurchasePrice`](#structFRHAPI__PlayerOrderEntry_1afeb4efbbfaa9980618d303662803e325)`() const` | Gets the value of PurchasePrice_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_PurchasePrice`](RHAPI_PurchasePrice.md#structFRHAPI__PurchasePrice)` & `[`GetPurchasePrice`](#structFRHAPI__PlayerOrderEntry_1a58048a1b3e8e720e36e3dea5fd0bad67)`(const `[`FRHAPI_PurchasePrice`](RHAPI_PurchasePrice.md#structFRHAPI__PurchasePrice)` & DefaultValue) const` | Gets the value of PurchasePrice_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -115,6 +119,7 @@ Represents a line item in the Player Order and the results of the line item.
 `public inline void `[`SetPurchasePrice`](#structFRHAPI__PlayerOrderEntry_1a610cb5bd67a8937e545799d5af186f1f)`(const `[`FRHAPI_PurchasePrice`](RHAPI_PurchasePrice.md#structFRHAPI__PurchasePrice)` & NewValue)` | Sets the value of PurchasePrice_Optional and also sets PurchasePrice_IsSet to true.
 `public inline void `[`SetPurchasePrice`](#structFRHAPI__PlayerOrderEntry_1a315656795176c9032fc2e89218050106)`(`[`FRHAPI_PurchasePrice`](RHAPI_PurchasePrice.md#structFRHAPI__PurchasePrice)` && NewValue)` | Sets the value of PurchasePrice_Optional and also sets PurchasePrice_IsSet to true using move semantics.
 `public inline void `[`ClearPurchasePrice`](#structFRHAPI__PlayerOrderEntry_1a7bd6bcfd1273f7144bf1f6a4a2caea7c)`()` | Clears the value of PurchasePrice_Optional and sets PurchasePrice_IsSet to false.
+`public inline bool `[`IsPurchasePriceSet`](#structFRHAPI__PlayerOrderEntry_1a3bb2173ae43283abf288a45bd35a6b2f)`() const` | Checks whether PurchasePrice_Optional has been set.
 `public inline FString & `[`GetExternalTranId`](#structFRHAPI__PlayerOrderEntry_1aed1c98477a72f70e6b39b0aea0d76483)`()` | Gets the value of ExternalTranId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetExternalTranId`](#structFRHAPI__PlayerOrderEntry_1ae4602d52d53cf34168a8bc61ff5d9361)`() const` | Gets the value of ExternalTranId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetExternalTranId`](#structFRHAPI__PlayerOrderEntry_1ad710b8b43e64e563828949c46fd4b9ed)`(const FString & DefaultValue) const` | Gets the value of ExternalTranId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -124,6 +129,7 @@ Represents a line item in the Player Order and the results of the line item.
 `public inline void `[`SetExternalTranId`](#structFRHAPI__PlayerOrderEntry_1a8b7385f81264b5e882780527dabee03c)`(const FString & NewValue)` | Sets the value of ExternalTranId_Optional and also sets ExternalTranId_IsSet to true.
 `public inline void `[`SetExternalTranId`](#structFRHAPI__PlayerOrderEntry_1aaa2213677fe7a197edbe646d81629fa0)`(FString && NewValue)` | Sets the value of ExternalTranId_Optional and also sets ExternalTranId_IsSet to true using move semantics.
 `public inline void `[`ClearExternalTranId`](#structFRHAPI__PlayerOrderEntry_1a2d7305a8d95bafe240ccdd2e5c2e2a2a)`()` | Clears the value of ExternalTranId_Optional and sets ExternalTranId_IsSet to false.
+`public inline bool `[`IsExternalTranIdSet`](#structFRHAPI__PlayerOrderEntry_1ab583e7265a32b194ff1f150556a17d27)`() const` | Checks whether ExternalTranId_Optional has been set.
 `public inline FString & `[`GetExternalItemSku`](#structFRHAPI__PlayerOrderEntry_1a86c989a7caf74d70ecadbea64975954a)`()` | Gets the value of ExternalItemSku_Optional, regardless of it having been set.
 `public inline const FString & `[`GetExternalItemSku`](#structFRHAPI__PlayerOrderEntry_1aac98283b14454dd958d9e00853f27fa0)`() const` | Gets the value of ExternalItemSku_Optional, regardless of it having been set.
 `public inline const FString & `[`GetExternalItemSku`](#structFRHAPI__PlayerOrderEntry_1a5caebf593033675ce76421114ebc7249)`(const FString & DefaultValue) const` | Gets the value of ExternalItemSku_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -133,6 +139,7 @@ Represents a line item in the Player Order and the results of the line item.
 `public inline void `[`SetExternalItemSku`](#structFRHAPI__PlayerOrderEntry_1ac5259d6a126f001a30d79a326e23c52f)`(const FString & NewValue)` | Sets the value of ExternalItemSku_Optional and also sets ExternalItemSku_IsSet to true.
 `public inline void `[`SetExternalItemSku`](#structFRHAPI__PlayerOrderEntry_1a073f157e38422f06c3e6ff3e4a27e3ec)`(FString && NewValue)` | Sets the value of ExternalItemSku_Optional and also sets ExternalItemSku_IsSet to true using move semantics.
 `public inline void `[`ClearExternalItemSku`](#structFRHAPI__PlayerOrderEntry_1abbf77d83ae575ac42a59fd3d0047c255)`()` | Clears the value of ExternalItemSku_Optional and sets ExternalItemSku_IsSet to false.
+`public inline bool `[`IsExternalItemSkuSet`](#structFRHAPI__PlayerOrderEntry_1a36b0375093d864e192c85b629e71e148)`() const` | Checks whether ExternalItemSku_Optional has been set.
 `public inline ERHAPI_InventoryBucket & `[`GetUseInventoryBucket`](#structFRHAPI__PlayerOrderEntry_1af2d9b276c5cd45d45dfabf0ba3d3f52c)`()` | Gets the value of UseInventoryBucket_Optional, regardless of it having been set.
 `public inline const ERHAPI_InventoryBucket & `[`GetUseInventoryBucket`](#structFRHAPI__PlayerOrderEntry_1a204feaa82bdd6c2b8dabc618da1b9a42)`() const` | Gets the value of UseInventoryBucket_Optional, regardless of it having been set.
 `public inline const ERHAPI_InventoryBucket & `[`GetUseInventoryBucket`](#structFRHAPI__PlayerOrderEntry_1a0f734beaf5c365e15a14b74ec82a0d88)`(const ERHAPI_InventoryBucket & DefaultValue) const` | Gets the value of UseInventoryBucket_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -142,6 +149,7 @@ Represents a line item in the Player Order and the results of the line item.
 `public inline void `[`SetUseInventoryBucket`](#structFRHAPI__PlayerOrderEntry_1a1d042f196406331b6adb48519801e9ee)`(const ERHAPI_InventoryBucket & NewValue)` | Sets the value of UseInventoryBucket_Optional and also sets UseInventoryBucket_IsSet to true.
 `public inline void `[`SetUseInventoryBucket`](#structFRHAPI__PlayerOrderEntry_1a8ac7d9a23b65c8fe97f570823c0b4535)`(ERHAPI_InventoryBucket && NewValue)` | Sets the value of UseInventoryBucket_Optional and also sets UseInventoryBucket_IsSet to true using move semantics.
 `public inline void `[`ClearUseInventoryBucket`](#structFRHAPI__PlayerOrderEntry_1a29cba9f2e028270fa539a776a3102c2c)`()` | Clears the value of UseInventoryBucket_Optional and sets UseInventoryBucket_IsSet to false.
+`public inline bool `[`IsUseInventoryBucketSet`](#structFRHAPI__PlayerOrderEntry_1a84101d9aee4d121b4fe319b958fff0f5)`() const` | Checks whether UseInventoryBucket_Optional has been set.
 `public inline int64 & `[`GetPlayerPortalEventId`](#structFRHAPI__PlayerOrderEntry_1aeffd6ea8125edecbb6a98c078bd00826)`()` | Gets the value of PlayerPortalEventId_Optional, regardless of it having been set.
 `public inline const int64 & `[`GetPlayerPortalEventId`](#structFRHAPI__PlayerOrderEntry_1a414d764ae734d8538e8cf6301174bd9a)`() const` | Gets the value of PlayerPortalEventId_Optional, regardless of it having been set.
 `public inline const int64 & `[`GetPlayerPortalEventId`](#structFRHAPI__PlayerOrderEntry_1a70ffa756ae9e80287c00589c33ad60e1)`(const int64 & DefaultValue) const` | Gets the value of PlayerPortalEventId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -151,6 +159,7 @@ Represents a line item in the Player Order and the results of the line item.
 `public inline void `[`SetPlayerPortalEventId`](#structFRHAPI__PlayerOrderEntry_1a2e64be7fe6e3fd56d4ad478e108b5d19)`(const int64 & NewValue)` | Sets the value of PlayerPortalEventId_Optional and also sets PlayerPortalEventId_IsSet to true.
 `public inline void `[`SetPlayerPortalEventId`](#structFRHAPI__PlayerOrderEntry_1a4d89b54b5c77b05b175ad11cbe9457cf)`(int64 && NewValue)` | Sets the value of PlayerPortalEventId_Optional and also sets PlayerPortalEventId_IsSet to true using move semantics.
 `public inline void `[`ClearPlayerPortalEventId`](#structFRHAPI__PlayerOrderEntry_1aace3daeb6505ee7fc2a1a356a2cf8e20)`()` | Clears the value of PlayerPortalEventId_Optional and sets PlayerPortalEventId_IsSet to false.
+`public inline bool `[`IsPlayerPortalEventIdSet`](#structFRHAPI__PlayerOrderEntry_1ae509fcc39ccbffd0dc8144208cfb6505)`() const` | Checks whether PlayerPortalEventId_Optional has been set.
 `public inline bool `[`IsPlayerPortalEventIdDefaultValue`](#structFRHAPI__PlayerOrderEntry_1a0ef83ed4fb13f902e26bb4efce9c4303)`() const` | Returns true if PlayerPortalEventId_Optional is set and matches the default value.
 `public inline void `[`SetPlayerPortalEventIdToDefault`](#structFRHAPI__PlayerOrderEntry_1a47c41382298220a7528123b8fc6742b9)`()` | Sets the value of PlayerPortalEventId_Optional to its default and also sets PlayerPortalEventId_IsSet to true.
 `public inline FGuid & `[`GetInventoryId`](#structFRHAPI__PlayerOrderEntry_1ac9fede46fdd9035921d5d70ca310bbf7)`()` | Gets the value of InventoryId_Optional, regardless of it having been set.
@@ -162,6 +171,7 @@ Represents a line item in the Player Order and the results of the line item.
 `public inline void `[`SetInventoryId`](#structFRHAPI__PlayerOrderEntry_1a1e1b5643bf447d5b6dd811b3ba6abf1f)`(const FGuid & NewValue)` | Sets the value of InventoryId_Optional and also sets InventoryId_IsSet to true.
 `public inline void `[`SetInventoryId`](#structFRHAPI__PlayerOrderEntry_1ad1e1fc2194398a2e253a6097138c6113)`(FGuid && NewValue)` | Sets the value of InventoryId_Optional and also sets InventoryId_IsSet to true using move semantics.
 `public inline void `[`ClearInventoryId`](#structFRHAPI__PlayerOrderEntry_1a3cf4daf625be6a978edf658722e6c199)`()` | Clears the value of InventoryId_Optional and sets InventoryId_IsSet to false.
+`public inline bool `[`IsInventoryIdSet`](#structFRHAPI__PlayerOrderEntry_1ae9bcf79c909bd337a92a52d7b116e594)`() const` | Checks whether InventoryId_Optional has been set.
 `public inline int64 & `[`GetLegacyInventoryId`](#structFRHAPI__PlayerOrderEntry_1ab3b686fdc394ac7c6d3a7fe9b69872b8)`()` | Gets the value of LegacyInventoryId_Optional, regardless of it having been set.
 `public inline const int64 & `[`GetLegacyInventoryId`](#structFRHAPI__PlayerOrderEntry_1a6ccbba32959900780ffa18fa3d808433)`() const` | Gets the value of LegacyInventoryId_Optional, regardless of it having been set.
 `public inline const int64 & `[`GetLegacyInventoryId`](#structFRHAPI__PlayerOrderEntry_1a57163093778dda9fb49743362746d032)`(const int64 & DefaultValue) const` | Gets the value of LegacyInventoryId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -171,6 +181,7 @@ Represents a line item in the Player Order and the results of the line item.
 `public inline void `[`SetLegacyInventoryId`](#structFRHAPI__PlayerOrderEntry_1a6cab25881ccf439b7effc336e5b9e948)`(const int64 & NewValue)` | Sets the value of LegacyInventoryId_Optional and also sets LegacyInventoryId_IsSet to true.
 `public inline void `[`SetLegacyInventoryId`](#structFRHAPI__PlayerOrderEntry_1ac9071083933819026d1e5ecd668148dc)`(int64 && NewValue)` | Sets the value of LegacyInventoryId_Optional and also sets LegacyInventoryId_IsSet to true using move semantics.
 `public inline void `[`ClearLegacyInventoryId`](#structFRHAPI__PlayerOrderEntry_1a61f90b3486b4505540b87f0083dc453b)`()` | Clears the value of LegacyInventoryId_Optional and sets LegacyInventoryId_IsSet to false.
+`public inline bool `[`IsLegacyInventoryIdSet`](#structFRHAPI__PlayerOrderEntry_1a5830ea3ebd612fcf65c0ac2df6c7fb3c)`() const` | Checks whether LegacyInventoryId_Optional has been set.
 `public inline bool `[`IsLegacyInventoryIdDefaultValue`](#structFRHAPI__PlayerOrderEntry_1ac808088c9eeeee7894c5c0cade3c9ff6)`() const` | Returns true if LegacyInventoryId_Optional is set and matches the default value.
 `public inline void `[`SetLegacyInventoryIdToDefault`](#structFRHAPI__PlayerOrderEntry_1a80846e6e79fb29128c25cd5b62713a8d)`()` | Sets the value of LegacyInventoryId_Optional to its default and also sets LegacyInventoryId_IsSet to true.
 `public inline int32 & `[`GetItemId`](#structFRHAPI__PlayerOrderEntry_1a3bdf3ebe220fefbd05b806520a788f05)`()` | Gets the value of ItemId_Optional, regardless of it having been set.
@@ -182,6 +193,7 @@ Represents a line item in the Player Order and the results of the line item.
 `public inline void `[`SetItemId`](#structFRHAPI__PlayerOrderEntry_1aad255d356685fadaccca6828bed855cf)`(const int32 & NewValue)` | Sets the value of ItemId_Optional and also sets ItemId_IsSet to true.
 `public inline void `[`SetItemId`](#structFRHAPI__PlayerOrderEntry_1aede1dcbb51f07f8d8962b22e491d3190)`(int32 && NewValue)` | Sets the value of ItemId_Optional and also sets ItemId_IsSet to true using move semantics.
 `public inline void `[`ClearItemId`](#structFRHAPI__PlayerOrderEntry_1a14b63d7e0213d12108a714450a0c48bb)`()` | Clears the value of ItemId_Optional and sets ItemId_IsSet to false.
+`public inline bool `[`IsItemIdSet`](#structFRHAPI__PlayerOrderEntry_1a8ad46fefd5ae607d3730e74f9629677c)`() const` | Checks whether ItemId_Optional has been set.
 `public inline bool `[`IsItemIdDefaultValue`](#structFRHAPI__PlayerOrderEntry_1afafe7941ee4f8c1ba75913e7bccacd90)`() const` | Returns true if ItemId_Optional is set and matches the default value.
 `public inline void `[`SetItemIdToDefault`](#structFRHAPI__PlayerOrderEntry_1ad5816fde2e23de11f7264dcfe1d6316e)`()` | Sets the value of ItemId_Optional to its default and also sets ItemId_IsSet to true.
 `public inline FDateTime & `[`GetExpires`](#structFRHAPI__PlayerOrderEntry_1aa9e19607e3e73d44d8cb86d9334f7eac)`()` | Gets the value of Expires_Optional, regardless of it having been set.
@@ -193,6 +205,7 @@ Represents a line item in the Player Order and the results of the line item.
 `public inline void `[`SetExpires`](#structFRHAPI__PlayerOrderEntry_1add413b325d1d89aabdb8a630daf2a7a5)`(const FDateTime & NewValue)` | Sets the value of Expires_Optional and also sets Expires_IsSet to true.
 `public inline void `[`SetExpires`](#structFRHAPI__PlayerOrderEntry_1a7c2cec28f2e81186a0d9dcdfbe1bcd18)`(FDateTime && NewValue)` | Sets the value of Expires_Optional and also sets Expires_IsSet to true using move semantics.
 `public inline void `[`ClearExpires`](#structFRHAPI__PlayerOrderEntry_1a5c4f2f4ec8b12c2aa8d4fa8a2f241498)`()` | Clears the value of Expires_Optional and sets Expires_IsSet to false.
+`public inline bool `[`IsExpiresSet`](#structFRHAPI__PlayerOrderEntry_1aa3eda82349b4c470e49de59d3f91aeee)`() const` | Checks whether Expires_Optional has been set.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerOrderEntry_1a1de473bae6f8bd843b5ef1ad1d5ccd3b)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerOrderEntry_1a90ff4c7a9857e5805e7ac38fa206ede6)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerOrderEntry_1a5bdf95e196bda80ec273eb5f2c9d499e)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -202,6 +215,7 @@ Represents a line item in the Player Order and the results of the line item.
 `public inline void `[`SetCustomData`](#structFRHAPI__PlayerOrderEntry_1a17b9d6e1387c856ed31882d7bc61880c)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`SetCustomData`](#structFRHAPI__PlayerOrderEntry_1ac11f0a79327d6362220f8ab3f4d0393b)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__PlayerOrderEntry_1a101f851c2d33e1c2ea7bf66e9776456b)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+`public inline bool `[`IsCustomDataSet`](#structFRHAPI__PlayerOrderEntry_1a6d5c99d527de7d9c1dfd0bb777d81a34)`() const` | Checks whether CustomData_Optional has been set.
 `public inline FString & `[`GetEntryId`](#structFRHAPI__PlayerOrderEntry_1a1e5d5e7b825570afb662ee33ddaf8e9d)`()` | Gets the value of EntryId.
 `public inline const FString & `[`GetEntryId`](#structFRHAPI__PlayerOrderEntry_1ad7439831e786838910a9c10002897969)`() const` | Gets the value of EntryId.
 `public inline void `[`SetEntryId`](#structFRHAPI__PlayerOrderEntry_1ae55affd8c250183e4596e3cce0284a2b)`(const FString & NewValue)` | Sets the value of EntryId.
@@ -215,6 +229,7 @@ Represents a line item in the Player Order and the results of the line item.
 `public inline void `[`SetResult`](#structFRHAPI__PlayerOrderEntry_1a8a12a6dbe37b3b584ee95b21f8f67eef)`(const ERHAPI_PlayerOrderEntryResult & NewValue)` | Sets the value of Result_Optional and also sets Result_IsSet to true.
 `public inline void `[`SetResult`](#structFRHAPI__PlayerOrderEntry_1a222c90006bfff2cc834ceb3e4fcc0b36)`(ERHAPI_PlayerOrderEntryResult && NewValue)` | Sets the value of Result_Optional and also sets Result_IsSet to true using move semantics.
 `public inline void `[`ClearResult`](#structFRHAPI__PlayerOrderEntry_1a2cabb8a7bbcbf0b7d3a29e78778ca63f)`()` | Clears the value of Result_Optional and sets Result_IsSet to false.
+`public inline bool `[`IsResultSet`](#structFRHAPI__PlayerOrderEntry_1aa4c21e507277ff92ba824cfce7f61014)`() const` | Checks whether Result_Optional has been set.
 `public inline TArray< `[`FRHAPI_PlayerOrderDetail`](RHAPI_PlayerOrderDetail.md#structFRHAPI__PlayerOrderDetail)` > & `[`GetDetails`](#structFRHAPI__PlayerOrderEntry_1a2c66f35c3ed2c558cc4d2e5394a8a793)`()` | Gets the value of Details_Optional, regardless of it having been set.
 `public inline const TArray< `[`FRHAPI_PlayerOrderDetail`](RHAPI_PlayerOrderDetail.md#structFRHAPI__PlayerOrderDetail)` > & `[`GetDetails`](#structFRHAPI__PlayerOrderEntry_1ac29d10780822dd2bab54b12716061f32)`() const` | Gets the value of Details_Optional, regardless of it having been set.
 `public inline const TArray< `[`FRHAPI_PlayerOrderDetail`](RHAPI_PlayerOrderDetail.md#structFRHAPI__PlayerOrderDetail)` > & `[`GetDetails`](#structFRHAPI__PlayerOrderEntry_1af726e71b7ad48ad94dc6ce16b2e398af)`(const TArray< `[`FRHAPI_PlayerOrderDetail`](RHAPI_PlayerOrderDetail.md#structFRHAPI__PlayerOrderDetail)` > & DefaultValue) const` | Gets the value of Details_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -224,6 +239,7 @@ Represents a line item in the Player Order and the results of the line item.
 `public inline void `[`SetDetails`](#structFRHAPI__PlayerOrderEntry_1a3cf7913984469918bdc4791bfacf0cae)`(const TArray< `[`FRHAPI_PlayerOrderDetail`](RHAPI_PlayerOrderDetail.md#structFRHAPI__PlayerOrderDetail)` > & NewValue)` | Sets the value of Details_Optional and also sets Details_IsSet to true.
 `public inline void `[`SetDetails`](#structFRHAPI__PlayerOrderEntry_1a5aab1a08f98143caa5bd53fb0be6614e)`(TArray< `[`FRHAPI_PlayerOrderDetail`](RHAPI_PlayerOrderDetail.md#structFRHAPI__PlayerOrderDetail)` > && NewValue)` | Sets the value of Details_Optional and also sets Details_IsSet to true using move semantics.
 `public inline void `[`ClearDetails`](#structFRHAPI__PlayerOrderEntry_1a8a6459beef5e0f7622a768e8a880ee38)`()` | Clears the value of Details_Optional and sets Details_IsSet to false.
+`public inline bool `[`IsDetailsSet`](#structFRHAPI__PlayerOrderEntry_1a4cdeb12c2bcec60d7fbe24fbe99d8664)`() const` | Checks whether Details_Optional has been set.
 
 ### Members
 
@@ -367,7 +383,7 @@ Details for the Order Entry.
 
 true if Details_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__PlayerOrderEntry_1a1303a54655d608f3d47b801afdad25bc)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlayerOrderEntry_1a1303a54655d608f3d47b801afdad25bc"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__PlayerOrderEntry_1a116103f1a97d7348fb509658f41bbfe4)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlayerOrderEntry_1a116103f1a97d7348fb509658f41bbfe4"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -377,7 +393,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PlayerOrderEntry_1ad7a63eb6e8abee5dafa2b840637ab086)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlayerOrderEntry_1ad7a63eb6e8abee5dafa2b840637ab086"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PlayerOrderEntry_1a94f465866e82cb7e026c64385dd643be)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlayerOrderEntry_1a94f465866e82cb7e026c64385dd643be"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -435,6 +451,10 @@ Sets the value of LootId_Optional and also sets LootId_IsSet to true using move 
 #### `public inline void `[`ClearLootId`](#structFRHAPI__PlayerOrderEntry_1a43edd609c6f076ad538d4ed80c70eced)`()` <a id="structFRHAPI__PlayerOrderEntry_1a43edd609c6f076ad538d4ed80c70eced"></a>
 
 Clears the value of LootId_Optional and sets LootId_IsSet to false.
+
+#### `public inline bool `[`IsLootIdSet`](#structFRHAPI__PlayerOrderEntry_1a117edf4021c7e4f02144ce70bc752f54)`() const` <a id="structFRHAPI__PlayerOrderEntry_1a117edf4021c7e4f02144ce70bc752f54"></a>
+
+Checks whether LootId_Optional has been set.
 
 #### `public inline bool `[`IsLootIdDefaultValue`](#structFRHAPI__PlayerOrderEntry_1a1b3f431ef690f0d4399199f5966af906)`() const` <a id="structFRHAPI__PlayerOrderEntry_1a1b3f431ef690f0d4399199f5966af906"></a>
 
@@ -504,6 +524,10 @@ Sets the value of VendorVersion_Optional and also sets VendorVersion_IsSet to tr
 
 Clears the value of VendorVersion_Optional and sets VendorVersion_IsSet to false.
 
+#### `public inline bool `[`IsVendorVersionSet`](#structFRHAPI__PlayerOrderEntry_1a686f158ba0966791da7e7ebe0573e604)`() const` <a id="structFRHAPI__PlayerOrderEntry_1a686f158ba0966791da7e7ebe0573e604"></a>
+
+Checks whether VendorVersion_Optional has been set.
+
 #### `public inline bool `[`IsVendorVersionDefaultValue`](#structFRHAPI__PlayerOrderEntry_1ab9b080bbb6201eeab73e64ca219c825e)`() const` <a id="structFRHAPI__PlayerOrderEntry_1ab9b080bbb6201eeab73e64ca219c825e"></a>
 
 Returns true if VendorVersion_Optional is set and matches the default value.
@@ -548,6 +572,10 @@ Sets the value of VendorEtag_Optional and also sets VendorEtag_IsSet to true usi
 
 Clears the value of VendorEtag_Optional and sets VendorEtag_IsSet to false.
 
+#### `public inline bool `[`IsVendorEtagSet`](#structFRHAPI__PlayerOrderEntry_1a132055ea3df7088ca4dc34cfae604831)`() const` <a id="structFRHAPI__PlayerOrderEntry_1a132055ea3df7088ca4dc34cfae604831"></a>
+
+Checks whether VendorEtag_Optional has been set.
+
 #### `public inline TArray< int32 > & `[`GetDynamicBundleLootIds`](#structFRHAPI__PlayerOrderEntry_1a4dded4ff994c11e1c799c4b5ad140401)`()` <a id="structFRHAPI__PlayerOrderEntry_1a4dded4ff994c11e1c799c4b5ad140401"></a>
 
 Gets the value of DynamicBundleLootIds_Optional, regardless of it having been set.
@@ -583,6 +611,10 @@ Sets the value of DynamicBundleLootIds_Optional and also sets DynamicBundleLootI
 #### `public inline void `[`ClearDynamicBundleLootIds`](#structFRHAPI__PlayerOrderEntry_1a2efa892a1b02431414bfb5346897b27d)`()` <a id="structFRHAPI__PlayerOrderEntry_1a2efa892a1b02431414bfb5346897b27d"></a>
 
 Clears the value of DynamicBundleLootIds_Optional and sets DynamicBundleLootIds_IsSet to false.
+
+#### `public inline bool `[`IsDynamicBundleLootIdsSet`](#structFRHAPI__PlayerOrderEntry_1a36b6134d7a4c423c3ab1ccfaca3a678e)`() const` <a id="structFRHAPI__PlayerOrderEntry_1a36b6134d7a4c423c3ab1ccfaca3a678e"></a>
+
+Checks whether DynamicBundleLootIds_Optional has been set.
 
 #### `public inline `[`FRHAPI_PurchasePrice`](RHAPI_PurchasePrice.md#structFRHAPI__PurchasePrice)` & `[`GetPurchasePrice`](#structFRHAPI__PlayerOrderEntry_1afe68f43c0ae9d31426e5236b2e3b73d6)`()` <a id="structFRHAPI__PlayerOrderEntry_1afe68f43c0ae9d31426e5236b2e3b73d6"></a>
 
@@ -620,6 +652,10 @@ Sets the value of PurchasePrice_Optional and also sets PurchasePrice_IsSet to tr
 
 Clears the value of PurchasePrice_Optional and sets PurchasePrice_IsSet to false.
 
+#### `public inline bool `[`IsPurchasePriceSet`](#structFRHAPI__PlayerOrderEntry_1a3bb2173ae43283abf288a45bd35a6b2f)`() const` <a id="structFRHAPI__PlayerOrderEntry_1a3bb2173ae43283abf288a45bd35a6b2f"></a>
+
+Checks whether PurchasePrice_Optional has been set.
+
 #### `public inline FString & `[`GetExternalTranId`](#structFRHAPI__PlayerOrderEntry_1aed1c98477a72f70e6b39b0aea0d76483)`()` <a id="structFRHAPI__PlayerOrderEntry_1aed1c98477a72f70e6b39b0aea0d76483"></a>
 
 Gets the value of ExternalTranId_Optional, regardless of it having been set.
@@ -655,6 +691,10 @@ Sets the value of ExternalTranId_Optional and also sets ExternalTranId_IsSet to 
 #### `public inline void `[`ClearExternalTranId`](#structFRHAPI__PlayerOrderEntry_1a2d7305a8d95bafe240ccdd2e5c2e2a2a)`()` <a id="structFRHAPI__PlayerOrderEntry_1a2d7305a8d95bafe240ccdd2e5c2e2a2a"></a>
 
 Clears the value of ExternalTranId_Optional and sets ExternalTranId_IsSet to false.
+
+#### `public inline bool `[`IsExternalTranIdSet`](#structFRHAPI__PlayerOrderEntry_1ab583e7265a32b194ff1f150556a17d27)`() const` <a id="structFRHAPI__PlayerOrderEntry_1ab583e7265a32b194ff1f150556a17d27"></a>
+
+Checks whether ExternalTranId_Optional has been set.
 
 #### `public inline FString & `[`GetExternalItemSku`](#structFRHAPI__PlayerOrderEntry_1a86c989a7caf74d70ecadbea64975954a)`()` <a id="structFRHAPI__PlayerOrderEntry_1a86c989a7caf74d70ecadbea64975954a"></a>
 
@@ -692,6 +732,10 @@ Sets the value of ExternalItemSku_Optional and also sets ExternalItemSku_IsSet t
 
 Clears the value of ExternalItemSku_Optional and sets ExternalItemSku_IsSet to false.
 
+#### `public inline bool `[`IsExternalItemSkuSet`](#structFRHAPI__PlayerOrderEntry_1a36b0375093d864e192c85b629e71e148)`() const` <a id="structFRHAPI__PlayerOrderEntry_1a36b0375093d864e192c85b629e71e148"></a>
+
+Checks whether ExternalItemSku_Optional has been set.
+
 #### `public inline ERHAPI_InventoryBucket & `[`GetUseInventoryBucket`](#structFRHAPI__PlayerOrderEntry_1af2d9b276c5cd45d45dfabf0ba3d3f52c)`()` <a id="structFRHAPI__PlayerOrderEntry_1af2d9b276c5cd45d45dfabf0ba3d3f52c"></a>
 
 Gets the value of UseInventoryBucket_Optional, regardless of it having been set.
@@ -728,6 +772,10 @@ Sets the value of UseInventoryBucket_Optional and also sets UseInventoryBucket_I
 
 Clears the value of UseInventoryBucket_Optional and sets UseInventoryBucket_IsSet to false.
 
+#### `public inline bool `[`IsUseInventoryBucketSet`](#structFRHAPI__PlayerOrderEntry_1a84101d9aee4d121b4fe319b958fff0f5)`() const` <a id="structFRHAPI__PlayerOrderEntry_1a84101d9aee4d121b4fe319b958fff0f5"></a>
+
+Checks whether UseInventoryBucket_Optional has been set.
+
 #### `public inline int64 & `[`GetPlayerPortalEventId`](#structFRHAPI__PlayerOrderEntry_1aeffd6ea8125edecbb6a98c078bd00826)`()` <a id="structFRHAPI__PlayerOrderEntry_1aeffd6ea8125edecbb6a98c078bd00826"></a>
 
 Gets the value of PlayerPortalEventId_Optional, regardless of it having been set.
@@ -763,6 +811,10 @@ Sets the value of PlayerPortalEventId_Optional and also sets PlayerPortalEventId
 #### `public inline void `[`ClearPlayerPortalEventId`](#structFRHAPI__PlayerOrderEntry_1aace3daeb6505ee7fc2a1a356a2cf8e20)`()` <a id="structFRHAPI__PlayerOrderEntry_1aace3daeb6505ee7fc2a1a356a2cf8e20"></a>
 
 Clears the value of PlayerPortalEventId_Optional and sets PlayerPortalEventId_IsSet to false.
+
+#### `public inline bool `[`IsPlayerPortalEventIdSet`](#structFRHAPI__PlayerOrderEntry_1ae509fcc39ccbffd0dc8144208cfb6505)`() const` <a id="structFRHAPI__PlayerOrderEntry_1ae509fcc39ccbffd0dc8144208cfb6505"></a>
+
+Checks whether PlayerPortalEventId_Optional has been set.
 
 #### `public inline bool `[`IsPlayerPortalEventIdDefaultValue`](#structFRHAPI__PlayerOrderEntry_1a0ef83ed4fb13f902e26bb4efce9c4303)`() const` <a id="structFRHAPI__PlayerOrderEntry_1a0ef83ed4fb13f902e26bb4efce9c4303"></a>
 
@@ -808,6 +860,10 @@ Sets the value of InventoryId_Optional and also sets InventoryId_IsSet to true u
 
 Clears the value of InventoryId_Optional and sets InventoryId_IsSet to false.
 
+#### `public inline bool `[`IsInventoryIdSet`](#structFRHAPI__PlayerOrderEntry_1ae9bcf79c909bd337a92a52d7b116e594)`() const` <a id="structFRHAPI__PlayerOrderEntry_1ae9bcf79c909bd337a92a52d7b116e594"></a>
+
+Checks whether InventoryId_Optional has been set.
+
 #### `public inline int64 & `[`GetLegacyInventoryId`](#structFRHAPI__PlayerOrderEntry_1ab3b686fdc394ac7c6d3a7fe9b69872b8)`()` <a id="structFRHAPI__PlayerOrderEntry_1ab3b686fdc394ac7c6d3a7fe9b69872b8"></a>
 
 Gets the value of LegacyInventoryId_Optional, regardless of it having been set.
@@ -843,6 +899,10 @@ Sets the value of LegacyInventoryId_Optional and also sets LegacyInventoryId_IsS
 #### `public inline void `[`ClearLegacyInventoryId`](#structFRHAPI__PlayerOrderEntry_1a61f90b3486b4505540b87f0083dc453b)`()` <a id="structFRHAPI__PlayerOrderEntry_1a61f90b3486b4505540b87f0083dc453b"></a>
 
 Clears the value of LegacyInventoryId_Optional and sets LegacyInventoryId_IsSet to false.
+
+#### `public inline bool `[`IsLegacyInventoryIdSet`](#structFRHAPI__PlayerOrderEntry_1a5830ea3ebd612fcf65c0ac2df6c7fb3c)`() const` <a id="structFRHAPI__PlayerOrderEntry_1a5830ea3ebd612fcf65c0ac2df6c7fb3c"></a>
+
+Checks whether LegacyInventoryId_Optional has been set.
 
 #### `public inline bool `[`IsLegacyInventoryIdDefaultValue`](#structFRHAPI__PlayerOrderEntry_1ac808088c9eeeee7894c5c0cade3c9ff6)`() const` <a id="structFRHAPI__PlayerOrderEntry_1ac808088c9eeeee7894c5c0cade3c9ff6"></a>
 
@@ -888,6 +948,10 @@ Sets the value of ItemId_Optional and also sets ItemId_IsSet to true using move 
 
 Clears the value of ItemId_Optional and sets ItemId_IsSet to false.
 
+#### `public inline bool `[`IsItemIdSet`](#structFRHAPI__PlayerOrderEntry_1a8ad46fefd5ae607d3730e74f9629677c)`() const` <a id="structFRHAPI__PlayerOrderEntry_1a8ad46fefd5ae607d3730e74f9629677c"></a>
+
+Checks whether ItemId_Optional has been set.
+
 #### `public inline bool `[`IsItemIdDefaultValue`](#structFRHAPI__PlayerOrderEntry_1afafe7941ee4f8c1ba75913e7bccacd90)`() const` <a id="structFRHAPI__PlayerOrderEntry_1afafe7941ee4f8c1ba75913e7bccacd90"></a>
 
 Returns true if ItemId_Optional is set and matches the default value.
@@ -932,6 +996,10 @@ Sets the value of Expires_Optional and also sets Expires_IsSet to true using mov
 
 Clears the value of Expires_Optional and sets Expires_IsSet to false.
 
+#### `public inline bool `[`IsExpiresSet`](#structFRHAPI__PlayerOrderEntry_1aa3eda82349b4c470e49de59d3f91aeee)`() const` <a id="structFRHAPI__PlayerOrderEntry_1aa3eda82349b4c470e49de59d3f91aeee"></a>
+
+Checks whether Expires_Optional has been set.
+
 #### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerOrderEntry_1a1de473bae6f8bd843b5ef1ad1d5ccd3b)`()` <a id="structFRHAPI__PlayerOrderEntry_1a1de473bae6f8bd843b5ef1ad1d5ccd3b"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
@@ -967,6 +1035,10 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true usi
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__PlayerOrderEntry_1a101f851c2d33e1c2ea7bf66e9776456b)`()` <a id="structFRHAPI__PlayerOrderEntry_1a101f851c2d33e1c2ea7bf66e9776456b"></a>
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+
+#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__PlayerOrderEntry_1a6d5c99d527de7d9c1dfd0bb777d81a34)`() const` <a id="structFRHAPI__PlayerOrderEntry_1a6d5c99d527de7d9c1dfd0bb777d81a34"></a>
+
+Checks whether CustomData_Optional has been set.
 
 #### `public inline FString & `[`GetEntryId`](#structFRHAPI__PlayerOrderEntry_1a1e5d5e7b825570afb662ee33ddaf8e9d)`()` <a id="structFRHAPI__PlayerOrderEntry_1a1e5d5e7b825570afb662ee33ddaf8e9d"></a>
 
@@ -1020,6 +1092,10 @@ Sets the value of Result_Optional and also sets Result_IsSet to true using move 
 
 Clears the value of Result_Optional and sets Result_IsSet to false.
 
+#### `public inline bool `[`IsResultSet`](#structFRHAPI__PlayerOrderEntry_1aa4c21e507277ff92ba824cfce7f61014)`() const` <a id="structFRHAPI__PlayerOrderEntry_1aa4c21e507277ff92ba824cfce7f61014"></a>
+
+Checks whether Result_Optional has been set.
+
 #### `public inline TArray< `[`FRHAPI_PlayerOrderDetail`](RHAPI_PlayerOrderDetail.md#structFRHAPI__PlayerOrderDetail)` > & `[`GetDetails`](#structFRHAPI__PlayerOrderEntry_1a2c66f35c3ed2c558cc4d2e5394a8a793)`()` <a id="structFRHAPI__PlayerOrderEntry_1a2c66f35c3ed2c558cc4d2e5394a8a793"></a>
 
 Gets the value of Details_Optional, regardless of it having been set.
@@ -1055,4 +1131,8 @@ Sets the value of Details_Optional and also sets Details_IsSet to true using mov
 #### `public inline void `[`ClearDetails`](#structFRHAPI__PlayerOrderEntry_1a8a6459beef5e0f7622a768e8a880ee38)`()` <a id="structFRHAPI__PlayerOrderEntry_1a8a6459beef5e0f7622a768e8a880ee38"></a>
 
 Clears the value of Details_Optional and sets Details_IsSet to false.
+
+#### `public inline bool `[`IsDetailsSet`](#structFRHAPI__PlayerOrderEntry_1a4cdeb12c2bcec60d7fbe24fbe99d8664)`() const` <a id="structFRHAPI__PlayerOrderEntry_1a4cdeb12c2bcec60d7fbe24fbe99d8664"></a>
+
+Checks whether Details_Optional has been set.
 

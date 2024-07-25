@@ -24,8 +24,8 @@ Restriction applied to a player.
 `public bool `[`Reason_IsSet`](#structFRHAPI__Restriction_1a33efc2fe715a3c3ee06ec148ab82a239) | true if Reason_Optional has been set to a value
 `public FDateTime `[`Expiration_Optional`](#structFRHAPI__Restriction_1aa9e2bfa5e8c955b12b209034e64c5e57) | Date the restriction expires. Null means the restriction is permanent.
 `public bool `[`Expiration_IsSet`](#structFRHAPI__Restriction_1ae0bb6d1bcce99870a53bd773b2740cf2) | true if Expiration_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__Restriction_1a5a03667bdf37bfdf85209ed872024579)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__Restriction_1ad9b9b26c7c642e5d5c0d08fb4625a43f)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__Restriction_1a6bb3492732b881d3c6474f29890aa367)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__Restriction_1a90bc5fca835a86191b4d6b171d6290bf)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_RestrictionType & `[`GetType`](#structFRHAPI__Restriction_1a3b9f455e0c867bfd7754103ecc9e7ba7)`()` | Gets the value of Type.
 `public inline const ERHAPI_RestrictionType & `[`GetType`](#structFRHAPI__Restriction_1a591e500a3661de66229c5f1ba7724435)`() const` | Gets the value of Type.
 `public inline void `[`SetType`](#structFRHAPI__Restriction_1aa95290fbf9706c49ec1b49f5fb3cdcc3)`(const ERHAPI_RestrictionType & NewValue)` | Sets the value of Type.
@@ -39,6 +39,7 @@ Restriction applied to a player.
 `public inline void `[`SetReason`](#structFRHAPI__Restriction_1a750c617f4c01db3f77218a8c0f370c70)`(const FString & NewValue)` | Sets the value of Reason_Optional and also sets Reason_IsSet to true.
 `public inline void `[`SetReason`](#structFRHAPI__Restriction_1a58c2a0b0546fb3a7444350a000ba45d1)`(FString && NewValue)` | Sets the value of Reason_Optional and also sets Reason_IsSet to true using move semantics.
 `public inline void `[`ClearReason`](#structFRHAPI__Restriction_1a7d50b5b72086bb552c7a73c2acd0dd2c)`()` | Clears the value of Reason_Optional and sets Reason_IsSet to false.
+`public inline bool `[`IsReasonSet`](#structFRHAPI__Restriction_1a9146cac6536c766279fc4a9a7af831a9)`() const` | Checks whether Reason_Optional has been set.
 `public inline FDateTime & `[`GetExpiration`](#structFRHAPI__Restriction_1a9de96ed60891e7a52aff0cb19582fe96)`()` | Gets the value of Expiration_Optional, regardless of it having been set.
 `public inline const FDateTime & `[`GetExpiration`](#structFRHAPI__Restriction_1a41500509f91eaaa0659b1d40c038eb0b)`() const` | Gets the value of Expiration_Optional, regardless of it having been set.
 `public inline const FDateTime & `[`GetExpiration`](#structFRHAPI__Restriction_1aadf3d0a157498122a8794f504bbcf770)`(const FDateTime & DefaultValue) const` | Gets the value of Expiration_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -48,6 +49,7 @@ Restriction applied to a player.
 `public inline void `[`SetExpiration`](#structFRHAPI__Restriction_1a8d502f1b2b2760e6a9bff0dc99a41f9d)`(const FDateTime & NewValue)` | Sets the value of Expiration_Optional and also sets Expiration_IsSet to true.
 `public inline void `[`SetExpiration`](#structFRHAPI__Restriction_1aaaf7fae17caf907eeb52bc054b467f3c)`(FDateTime && NewValue)` | Sets the value of Expiration_Optional and also sets Expiration_IsSet to true using move semantics.
 `public inline void `[`ClearExpiration`](#structFRHAPI__Restriction_1a0d5fdc4f552874f065336b803cef5eb3)`()` | Clears the value of Expiration_Optional and sets Expiration_IsSet to false.
+`public inline bool `[`IsExpirationSet`](#structFRHAPI__Restriction_1ab73ea34e33da42da7ae56ade3c1b01be)`() const` | Checks whether Expiration_Optional has been set.
 
 ### Members
 
@@ -71,7 +73,7 @@ Date the restriction expires. Null means the restriction is permanent.
 
 true if Expiration_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__Restriction_1a5a03667bdf37bfdf85209ed872024579)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__Restriction_1a5a03667bdf37bfdf85209ed872024579"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__Restriction_1a6bb3492732b881d3c6474f29890aa367)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__Restriction_1a6bb3492732b881d3c6474f29890aa367"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -81,7 +83,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__Restriction_1ad9b9b26c7c642e5d5c0d08fb4625a43f)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__Restriction_1ad9b9b26c7c642e5d5c0d08fb4625a43f"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__Restriction_1a90bc5fca835a86191b4d6b171d6290bf)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__Restriction_1a90bc5fca835a86191b4d6b171d6290bf"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -140,6 +142,10 @@ Sets the value of Reason_Optional and also sets Reason_IsSet to true using move 
 
 Clears the value of Reason_Optional and sets Reason_IsSet to false.
 
+#### `public inline bool `[`IsReasonSet`](#structFRHAPI__Restriction_1a9146cac6536c766279fc4a9a7af831a9)`() const` <a id="structFRHAPI__Restriction_1a9146cac6536c766279fc4a9a7af831a9"></a>
+
+Checks whether Reason_Optional has been set.
+
 #### `public inline FDateTime & `[`GetExpiration`](#structFRHAPI__Restriction_1a9de96ed60891e7a52aff0cb19582fe96)`()` <a id="structFRHAPI__Restriction_1a9de96ed60891e7a52aff0cb19582fe96"></a>
 
 Gets the value of Expiration_Optional, regardless of it having been set.
@@ -175,4 +181,8 @@ Sets the value of Expiration_Optional and also sets Expiration_IsSet to true usi
 #### `public inline void `[`ClearExpiration`](#structFRHAPI__Restriction_1a0d5fdc4f552874f065336b803cef5eb3)`()` <a id="structFRHAPI__Restriction_1a0d5fdc4f552874f065336b803cef5eb3"></a>
 
 Clears the value of Expiration_Optional and sets Expiration_IsSet to false.
+
+#### `public inline bool `[`IsExpirationSet`](#structFRHAPI__Restriction_1ab73ea34e33da42da7ae56ade3c1b01be)`() const` <a id="structFRHAPI__Restriction_1ab73ea34e33da42da7ae56ade3c1b01be"></a>
+
+Checks whether Expiration_Optional has been set.
 

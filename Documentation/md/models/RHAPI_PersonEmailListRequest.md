@@ -21,8 +21,8 @@ Request to update a person&#39;s email list subscriptions.
 --------------------------------|---------------------------------------------
 `public TArray< int32 > `[`EmailListIds_Optional`](#structFRHAPI__PersonEmailListRequest_1a40e9b3ec056a3c2567d794c697c7082d) | List of all email list ids the user is subscribed to, even if already subscribed before request.
 `public bool `[`EmailListIds_IsSet`](#structFRHAPI__PersonEmailListRequest_1a3da41bb7b8e4e445cbe45a9d9090f3d5) | true if EmailListIds_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__PersonEmailListRequest_1a6f8e407240eb7ef9d57c32cf1bfee7ab)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PersonEmailListRequest_1a5f71385e182f178080469e5ff0a11ad5)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__PersonEmailListRequest_1a8d3c8acbd4077722e6a7c1e5d6829f93)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__PersonEmailListRequest_1a6e64b5f654abb6a50f336c8515a1c6ba)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< int32 > & `[`GetEmailListIds`](#structFRHAPI__PersonEmailListRequest_1a109787b76426c3c653bf980d332a95ca)`()` | Gets the value of EmailListIds_Optional, regardless of it having been set.
 `public inline const TArray< int32 > & `[`GetEmailListIds`](#structFRHAPI__PersonEmailListRequest_1a2b4eaf81b5f7b38902547281003afecd)`() const` | Gets the value of EmailListIds_Optional, regardless of it having been set.
 `public inline const TArray< int32 > & `[`GetEmailListIds`](#structFRHAPI__PersonEmailListRequest_1a3fadd6d2f2e530dc12a3a7a6d14186fd)`(const TArray< int32 > & DefaultValue) const` | Gets the value of EmailListIds_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -32,6 +32,7 @@ Request to update a person&#39;s email list subscriptions.
 `public inline void `[`SetEmailListIds`](#structFRHAPI__PersonEmailListRequest_1ac143d7575eda1eb5ef2dd264927843b5)`(const TArray< int32 > & NewValue)` | Sets the value of EmailListIds_Optional and also sets EmailListIds_IsSet to true.
 `public inline void `[`SetEmailListIds`](#structFRHAPI__PersonEmailListRequest_1a1672a398555a3cd201cd60a7fcc787e0)`(TArray< int32 > && NewValue)` | Sets the value of EmailListIds_Optional and also sets EmailListIds_IsSet to true using move semantics.
 `public inline void `[`ClearEmailListIds`](#structFRHAPI__PersonEmailListRequest_1accf496a99915c0447482fb8e77b1dfb2)`()` | Clears the value of EmailListIds_Optional and sets EmailListIds_IsSet to false.
+`public inline bool `[`IsEmailListIdsSet`](#structFRHAPI__PersonEmailListRequest_1a0beddffc36f9dcc93bd3014e8b5d6fb0)`() const` | Checks whether EmailListIds_Optional has been set.
 
 ### Members
 
@@ -43,7 +44,7 @@ List of all email list ids the user is subscribed to, even if already subscribed
 
 true if EmailListIds_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__PersonEmailListRequest_1a6f8e407240eb7ef9d57c32cf1bfee7ab)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PersonEmailListRequest_1a6f8e407240eb7ef9d57c32cf1bfee7ab"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__PersonEmailListRequest_1a8d3c8acbd4077722e6a7c1e5d6829f93)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PersonEmailListRequest_1a8d3c8acbd4077722e6a7c1e5d6829f93"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -53,7 +54,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PersonEmailListRequest_1a5f71385e182f178080469e5ff0a11ad5)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PersonEmailListRequest_1a5f71385e182f178080469e5ff0a11ad5"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PersonEmailListRequest_1a6e64b5f654abb6a50f336c8515a1c6ba)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PersonEmailListRequest_1a6e64b5f654abb6a50f336c8515a1c6ba"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -95,4 +96,8 @@ Sets the value of EmailListIds_Optional and also sets EmailListIds_IsSet to true
 #### `public inline void `[`ClearEmailListIds`](#structFRHAPI__PersonEmailListRequest_1accf496a99915c0447482fb8e77b1dfb2)`()` <a id="structFRHAPI__PersonEmailListRequest_1accf496a99915c0447482fb8e77b1dfb2"></a>
 
 Clears the value of EmailListIds_Optional and sets EmailListIds_IsSet to false.
+
+#### `public inline bool `[`IsEmailListIdsSet`](#structFRHAPI__PersonEmailListRequest_1a0beddffc36f9dcc93bd3014e8b5d6fb0)`() const` <a id="structFRHAPI__PersonEmailListRequest_1a0beddffc36f9dcc93bd3014e8b5d6fb0"></a>
+
+Checks whether EmailListIds_Optional has been set.
 

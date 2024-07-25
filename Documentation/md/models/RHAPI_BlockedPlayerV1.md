@@ -23,8 +23,8 @@ The player that is being blocked. V1 includes player_id and player_uuid.
 `public bool `[`BlockedPlayerId_IsSet`](#structFRHAPI__BlockedPlayerV1_1a54dbc01c6c7e00ac91846fece6f7d104) | true if BlockedPlayerId_Optional has been set to a value
 `public FGuid `[`BlockedPlayerUuid`](#structFRHAPI__BlockedPlayerV1_1a5d4cb32109c33c54a9f78b78051d1f7b) | 
 `public FDateTime `[`LastModifiedOn`](#structFRHAPI__BlockedPlayerV1_1a0dd41d0ff26e497bc7c0296d8427b77f) | 
-`public virtual bool `[`FromJson`](#structFRHAPI__BlockedPlayerV1_1a6f64351fbbc1c96c9826085b98d384a9)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__BlockedPlayerV1_1a840a2d478851d5cac96982d47636466e)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__BlockedPlayerV1_1a5bf0e08a2d093a87dc9a76c681f8506c)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__BlockedPlayerV1_1ab4021c677265386c6c80d3aed696a63d)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline int32 & `[`GetBlockedPlayerId`](#structFRHAPI__BlockedPlayerV1_1a14e1175346fa416207d7c93dc9ea9edd)`()` | Gets the value of BlockedPlayerId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetBlockedPlayerId`](#structFRHAPI__BlockedPlayerV1_1a43af2c3ac8226d61e7b499088f254a0d)`() const` | Gets the value of BlockedPlayerId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetBlockedPlayerId`](#structFRHAPI__BlockedPlayerV1_1a24ddb71f53adc353474ff6d4386971f2)`(const int32 & DefaultValue) const` | Gets the value of BlockedPlayerId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -34,6 +34,7 @@ The player that is being blocked. V1 includes player_id and player_uuid.
 `public inline void `[`SetBlockedPlayerId`](#structFRHAPI__BlockedPlayerV1_1af93e2e5d6d7ce2dad8fca4cc3400ec82)`(const int32 & NewValue)` | Sets the value of BlockedPlayerId_Optional and also sets BlockedPlayerId_IsSet to true.
 `public inline void `[`SetBlockedPlayerId`](#structFRHAPI__BlockedPlayerV1_1aa53c2a548cdc28f3792a4c77a7e50baa)`(int32 && NewValue)` | Sets the value of BlockedPlayerId_Optional and also sets BlockedPlayerId_IsSet to true using move semantics.
 `public inline void `[`ClearBlockedPlayerId`](#structFRHAPI__BlockedPlayerV1_1a2e7d44afaa128e42642207f7ca8942d0)`()` | Clears the value of BlockedPlayerId_Optional and sets BlockedPlayerId_IsSet to false.
+`public inline bool `[`IsBlockedPlayerIdSet`](#structFRHAPI__BlockedPlayerV1_1a375533a32d3b22a2fdd4061452cdc5ad)`() const` | Checks whether BlockedPlayerId_Optional has been set.
 `public inline bool `[`IsBlockedPlayerIdDefaultValue`](#structFRHAPI__BlockedPlayerV1_1a569e9403d985c563dc2520420d7d0678)`() const` | Returns true if BlockedPlayerId_Optional is set and matches the default value.
 `public inline void `[`SetBlockedPlayerIdToDefault`](#structFRHAPI__BlockedPlayerV1_1ae7d25bb29a63de671f8b98d10dcd1f21)`()` | Sets the value of BlockedPlayerId_Optional to its default and also sets BlockedPlayerId_IsSet to true.
 `public inline FGuid & `[`GetBlockedPlayerUuid`](#structFRHAPI__BlockedPlayerV1_1ac42f806a7777f546ffd6ab133c6a2e5c)`()` | Gets the value of BlockedPlayerUuid.
@@ -57,7 +58,7 @@ true if BlockedPlayerId_Optional has been set to a value
 
 #### `public FDateTime `[`LastModifiedOn`](#structFRHAPI__BlockedPlayerV1_1a0dd41d0ff26e497bc7c0296d8427b77f) <a id="structFRHAPI__BlockedPlayerV1_1a0dd41d0ff26e497bc7c0296d8427b77f"></a>
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__BlockedPlayerV1_1a6f64351fbbc1c96c9826085b98d384a9)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__BlockedPlayerV1_1a6f64351fbbc1c96c9826085b98d384a9"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__BlockedPlayerV1_1a5bf0e08a2d093a87dc9a76c681f8506c)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__BlockedPlayerV1_1a5bf0e08a2d093a87dc9a76c681f8506c"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -67,7 +68,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__BlockedPlayerV1_1a840a2d478851d5cac96982d47636466e)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__BlockedPlayerV1_1a840a2d478851d5cac96982d47636466e"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__BlockedPlayerV1_1ab4021c677265386c6c80d3aed696a63d)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__BlockedPlayerV1_1ab4021c677265386c6c80d3aed696a63d"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -109,6 +110,10 @@ Sets the value of BlockedPlayerId_Optional and also sets BlockedPlayerId_IsSet t
 #### `public inline void `[`ClearBlockedPlayerId`](#structFRHAPI__BlockedPlayerV1_1a2e7d44afaa128e42642207f7ca8942d0)`()` <a id="structFRHAPI__BlockedPlayerV1_1a2e7d44afaa128e42642207f7ca8942d0"></a>
 
 Clears the value of BlockedPlayerId_Optional and sets BlockedPlayerId_IsSet to false.
+
+#### `public inline bool `[`IsBlockedPlayerIdSet`](#structFRHAPI__BlockedPlayerV1_1a375533a32d3b22a2fdd4061452cdc5ad)`() const` <a id="structFRHAPI__BlockedPlayerV1_1a375533a32d3b22a2fdd4061452cdc5ad"></a>
+
+Checks whether BlockedPlayerId_Optional has been set.
 
 #### `public inline bool `[`IsBlockedPlayerIdDefaultValue`](#structFRHAPI__BlockedPlayerV1_1a569e9403d985c563dc2520420d7d0678)`() const` <a id="structFRHAPI__BlockedPlayerV1_1a569e9403d985c563dc2520420d7d0678"></a>
 

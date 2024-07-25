@@ -21,8 +21,8 @@ A mapping of RallyHere session template types to the templates.
 --------------------------------|---------------------------------------------
 `public TMap< FString, `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > `[`Templates_Optional`](#structFRHAPI__SessionTemplates_1ab83f2a56e2b367da2d7abfbfc5ab6f43) | Dictionary of SessionTemplates keyed on their template type.
 `public bool `[`Templates_IsSet`](#structFRHAPI__SessionTemplates_1a96b1b77d9c3dfcd644a9dfa3805dd612) | true if Templates_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__SessionTemplates_1a15bd57d291d2da5b4373ac69bb6f770d)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__SessionTemplates_1a542b7e96b03d933536ef6eb92d7be6c8)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__SessionTemplates_1a0b78d2a3b75a712561155925ba4078e4)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__SessionTemplates_1a92372d60d6e329f0f612afc645a0cc13)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TMap< FString, `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > & `[`GetTemplates`](#structFRHAPI__SessionTemplates_1a5cd0569f7dd491416871e8009eba1fff)`()` | Gets the value of Templates_Optional, regardless of it having been set.
 `public inline const TMap< FString, `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > & `[`GetTemplates`](#structFRHAPI__SessionTemplates_1a8558e2ca9f7baec69252f884af1e4f7a)`() const` | Gets the value of Templates_Optional, regardless of it having been set.
 `public inline const TMap< FString, `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > & `[`GetTemplates`](#structFRHAPI__SessionTemplates_1a74e666c7009e061e05011937cace2c55)`(const TMap< FString, `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > & DefaultValue) const` | Gets the value of Templates_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -32,6 +32,7 @@ A mapping of RallyHere session template types to the templates.
 `public inline void `[`SetTemplates`](#structFRHAPI__SessionTemplates_1a8967462116a8cb26a7f8a0e5b0cdde52)`(const TMap< FString, `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > & NewValue)` | Sets the value of Templates_Optional and also sets Templates_IsSet to true.
 `public inline void `[`SetTemplates`](#structFRHAPI__SessionTemplates_1abe86dc9344d01c518d3f2ff0959aa74f)`(TMap< FString, `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > && NewValue)` | Sets the value of Templates_Optional and also sets Templates_IsSet to true using move semantics.
 `public inline void `[`ClearTemplates`](#structFRHAPI__SessionTemplates_1a131f21d340cfc955ef693695785df14a)`()` | Clears the value of Templates_Optional and sets Templates_IsSet to false.
+`public inline bool `[`IsTemplatesSet`](#structFRHAPI__SessionTemplates_1a3c9582594c095f21067ed44691c95a12)`() const` | Checks whether Templates_Optional has been set.
 
 ### Members
 
@@ -43,7 +44,7 @@ Dictionary of SessionTemplates keyed on their template type.
 
 true if Templates_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__SessionTemplates_1a15bd57d291d2da5b4373ac69bb6f770d)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__SessionTemplates_1a15bd57d291d2da5b4373ac69bb6f770d"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__SessionTemplates_1a0b78d2a3b75a712561155925ba4078e4)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__SessionTemplates_1a0b78d2a3b75a712561155925ba4078e4"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -53,7 +54,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__SessionTemplates_1a542b7e96b03d933536ef6eb92d7be6c8)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__SessionTemplates_1a542b7e96b03d933536ef6eb92d7be6c8"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__SessionTemplates_1a92372d60d6e329f0f612afc645a0cc13)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__SessionTemplates_1a92372d60d6e329f0f612afc645a0cc13"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -95,4 +96,8 @@ Sets the value of Templates_Optional and also sets Templates_IsSet to true using
 #### `public inline void `[`ClearTemplates`](#structFRHAPI__SessionTemplates_1a131f21d340cfc955ef693695785df14a)`()` <a id="structFRHAPI__SessionTemplates_1a131f21d340cfc955ef693695785df14a"></a>
 
 Clears the value of Templates_Optional and sets Templates_IsSet to false.
+
+#### `public inline bool `[`IsTemplatesSet`](#structFRHAPI__SessionTemplates_1a3c9582594c095f21067ed44691c95a12)`() const` <a id="structFRHAPI__SessionTemplates_1a3c9582594c095f21067ed44691c95a12"></a>
+
+Checks whether Templates_Optional has been set.
 

@@ -21,8 +21,8 @@ A response with a list of browsers, and a cursor to continue iterating through t
 --------------------------------|---------------------------------------------
 `public int32 `[`Cursor`](#structFRHAPI__BrowserResponse_1a55cb074f32c3933d116ba9d8314aa968) | Cursor to continue iterating through browser sessions. 0 means we have returned the last entry.
 `public TArray< `[`FRHAPI_BrowserSessionInfo`](RHAPI_BrowserSessionInfo.md#structFRHAPI__BrowserSessionInfo)` > `[`BrowserSessions`](#structFRHAPI__BrowserResponse_1aafc07faff636c79639a50b2ce433df50) | List of sessions in the browser.
-`public virtual bool `[`FromJson`](#structFRHAPI__BrowserResponse_1a5a7d148abc6f5aca654cb7f919593b9d)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__BrowserResponse_1a1578a60cc2cd3e1582c740c12637d7de)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__BrowserResponse_1aca10a85fae0b44b1f8d21a5b8be5fac3)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__BrowserResponse_1a1b3ec8b1e6d6ce54abedb3dbd6fbd0d6)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline int32 & `[`GetCursor`](#structFRHAPI__BrowserResponse_1a8ad3e83c0a8c660df736de1159e87f6e)`()` | Gets the value of Cursor.
 `public inline const int32 & `[`GetCursor`](#structFRHAPI__BrowserResponse_1aa403e7276640e8bbf9f422b0732a7a09)`() const` | Gets the value of Cursor.
 `public inline void `[`SetCursor`](#structFRHAPI__BrowserResponse_1adb8dd77d5fdcf18d702e3b35bf5efb87)`(const int32 & NewValue)` | Sets the value of Cursor.
@@ -44,7 +44,7 @@ Cursor to continue iterating through browser sessions. 0 means we have returned 
 
 List of sessions in the browser.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__BrowserResponse_1a5a7d148abc6f5aca654cb7f919593b9d)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__BrowserResponse_1a5a7d148abc6f5aca654cb7f919593b9d"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__BrowserResponse_1aca10a85fae0b44b1f8d21a5b8be5fac3)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__BrowserResponse_1aca10a85fae0b44b1f8d21a5b8be5fac3"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -54,7 +54,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__BrowserResponse_1a1578a60cc2cd3e1582c740c12637d7de)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__BrowserResponse_1a1578a60cc2cd3e1582c740c12637d7de"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__BrowserResponse_1a1b3ec8b1e6d6ce54abedb3dbd6fbd0d6)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__BrowserResponse_1a1b3ec8b1e6d6ce54abedb3dbd6fbd0d6"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 

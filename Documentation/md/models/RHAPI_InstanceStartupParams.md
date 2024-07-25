@@ -25,8 +25,8 @@ Parameters given to an instance to change what map and mode it loads, and other 
 `public FString `[`MiscParams`](#structFRHAPI__InstanceStartupParams_1acb74f767d6ab701ca1bd6be307963742) | Additional commandline parameters for the instance.
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__InstanceStartupParams_1a1c84d36d36367c97c4eb24fe13b2ff43) | Custom data to pass through to the instance.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__InstanceStartupParams_1ab2cb38f8bdeb7e51625f1b7dc763b647) | true if CustomData_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__InstanceStartupParams_1a77009b7faffe77948aa3e953ee6499e2)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__InstanceStartupParams_1abb4b33169895704a428935fc1923957a)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__InstanceStartupParams_1aefcb5aa9e768ad5496c8b794d4e48b52)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__InstanceStartupParams_1a1114e0e5ead3a9b93fa6d7e6730c448e)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetMap`](#structFRHAPI__InstanceStartupParams_1aaa0604a2745b9f55c1b3dc19fe7a465e)`()` | Gets the value of Map.
 `public inline const FString & `[`GetMap`](#structFRHAPI__InstanceStartupParams_1a20558bc02f4ca43e75d901e1f0c30e3f)`() const` | Gets the value of Map.
 `public inline void `[`SetMap`](#structFRHAPI__InstanceStartupParams_1af25270d20b41b7f0bf000a4cb30b616a)`(const FString & NewValue)` | Sets the value of Map.
@@ -40,6 +40,7 @@ Parameters given to an instance to change what map and mode it loads, and other 
 `public inline void `[`SetMode`](#structFRHAPI__InstanceStartupParams_1adbbba9c8fa0f52c3f9087db7281c1cb9)`(const FString & NewValue)` | Sets the value of Mode_Optional and also sets Mode_IsSet to true.
 `public inline void `[`SetMode`](#structFRHAPI__InstanceStartupParams_1a1f72bd3587417064ea052a3f777c6b52)`(FString && NewValue)` | Sets the value of Mode_Optional and also sets Mode_IsSet to true using move semantics.
 `public inline void `[`ClearMode`](#structFRHAPI__InstanceStartupParams_1a1dde35553e47c5d1aad61150101c1989)`()` | Clears the value of Mode_Optional and sets Mode_IsSet to false.
+`public inline bool `[`IsModeSet`](#structFRHAPI__InstanceStartupParams_1a8a00a4d28af12a52159224764dbfa54a)`() const` | Checks whether Mode_Optional has been set.
 `public inline FString & `[`GetMiscParams`](#structFRHAPI__InstanceStartupParams_1a79d9fa928c511b3e4f32aec23405fbeb)`()` | Gets the value of MiscParams.
 `public inline const FString & `[`GetMiscParams`](#structFRHAPI__InstanceStartupParams_1ad392457d6aea277259c05b936e092052)`() const` | Gets the value of MiscParams.
 `public inline void `[`SetMiscParams`](#structFRHAPI__InstanceStartupParams_1abd4d28aed10d8672f10a549f8fdaf62f)`(const FString & NewValue)` | Sets the value of MiscParams.
@@ -53,6 +54,7 @@ Parameters given to an instance to change what map and mode it loads, and other 
 `public inline void `[`SetCustomData`](#structFRHAPI__InstanceStartupParams_1a25ae7fb8ef9402df5d2f8396cce8e901)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`SetCustomData`](#structFRHAPI__InstanceStartupParams_1aea4d012cc00bb42e7206d8fbc75dfddc)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__InstanceStartupParams_1ad5cd20ad691851348dd54afdf981b84b)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+`public inline bool `[`IsCustomDataSet`](#structFRHAPI__InstanceStartupParams_1a2f9ca0540116b7f1ed1d9e94c1202e5b)`() const` | Checks whether CustomData_Optional has been set.
 
 ### Members
 
@@ -80,7 +82,7 @@ Custom data to pass through to the instance.
 
 true if CustomData_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__InstanceStartupParams_1a77009b7faffe77948aa3e953ee6499e2)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__InstanceStartupParams_1a77009b7faffe77948aa3e953ee6499e2"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__InstanceStartupParams_1aefcb5aa9e768ad5496c8b794d4e48b52)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__InstanceStartupParams_1aefcb5aa9e768ad5496c8b794d4e48b52"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -90,7 +92,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__InstanceStartupParams_1abb4b33169895704a428935fc1923957a)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__InstanceStartupParams_1abb4b33169895704a428935fc1923957a"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__InstanceStartupParams_1a1114e0e5ead3a9b93fa6d7e6730c448e)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__InstanceStartupParams_1a1114e0e5ead3a9b93fa6d7e6730c448e"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -149,6 +151,10 @@ Sets the value of Mode_Optional and also sets Mode_IsSet to true using move sema
 
 Clears the value of Mode_Optional and sets Mode_IsSet to false.
 
+#### `public inline bool `[`IsModeSet`](#structFRHAPI__InstanceStartupParams_1a8a00a4d28af12a52159224764dbfa54a)`() const` <a id="structFRHAPI__InstanceStartupParams_1a8a00a4d28af12a52159224764dbfa54a"></a>
+
+Checks whether Mode_Optional has been set.
+
 #### `public inline FString & `[`GetMiscParams`](#structFRHAPI__InstanceStartupParams_1a79d9fa928c511b3e4f32aec23405fbeb)`()` <a id="structFRHAPI__InstanceStartupParams_1a79d9fa928c511b3e4f32aec23405fbeb"></a>
 
 Gets the value of MiscParams.
@@ -200,4 +206,8 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true usi
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__InstanceStartupParams_1ad5cd20ad691851348dd54afdf981b84b)`()` <a id="structFRHAPI__InstanceStartupParams_1ad5cd20ad691851348dd54afdf981b84b"></a>
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+
+#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__InstanceStartupParams_1a2f9ca0540116b7f1ed1d9e94c1202e5b)`() const` <a id="structFRHAPI__InstanceStartupParams_1a2f9ca0540116b7f1ed1d9e94c1202e5b"></a>
+
+Checks whether CustomData_Optional has been set.
 

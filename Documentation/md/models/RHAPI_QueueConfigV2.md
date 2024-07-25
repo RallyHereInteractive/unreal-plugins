@@ -25,8 +25,8 @@ V2 Configuration about a specific queue.
 `public FGuid `[`MatchMakingTemplateGroupId`](#structFRHAPI__QueueConfigV2_1a0be73f8340379fb7cad237a4cf682a2b) | ID for which group of matchmaking templates/rules will be used when joining this queue.
 `public TMap< FString, FString > `[`LegacyConfig_Optional`](#structFRHAPI__QueueConfigV2_1a68defea48ff0db94ca1a0d1c28250829) | Legacy config to help migrate clients.
 `public bool `[`LegacyConfig_IsSet`](#structFRHAPI__QueueConfigV2_1aac347be9c34c03117f2c1344f07ca866) | true if LegacyConfig_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__QueueConfigV2_1a90b446ffa432578bc73a8248875e6010)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__QueueConfigV2_1a34acb7a643e2e343eacf912ea28cc299)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__QueueConfigV2_1a5420042c67c41721cc92042d7f677b04)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__QueueConfigV2_1a265b7e4da114702a487f492c6eb5e581)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetQueueId`](#structFRHAPI__QueueConfigV2_1a66ed08c8e5871935d948f10cacd0e092)`()` | Gets the value of QueueId.
 `public inline const FString & `[`GetQueueId`](#structFRHAPI__QueueConfigV2_1afc533f57a12dc6a1cdfd1076c0ca1552)`() const` | Gets the value of QueueId.
 `public inline void `[`SetQueueId`](#structFRHAPI__QueueConfigV2_1ae97179fc618c3476d0d5346e36e3258f)`(const FString & NewValue)` | Sets the value of QueueId.
@@ -56,6 +56,7 @@ V2 Configuration about a specific queue.
 `public inline void `[`SetLegacyConfig`](#structFRHAPI__QueueConfigV2_1ab60ea5313b3877ca0a9b067a617f45dd)`(const TMap< FString, FString > & NewValue)` | Sets the value of LegacyConfig_Optional and also sets LegacyConfig_IsSet to true.
 `public inline void `[`SetLegacyConfig`](#structFRHAPI__QueueConfigV2_1a8ff81e03ee4a70c10509402364678d46)`(TMap< FString, FString > && NewValue)` | Sets the value of LegacyConfig_Optional and also sets LegacyConfig_IsSet to true using move semantics.
 `public inline void `[`ClearLegacyConfig`](#structFRHAPI__QueueConfigV2_1a704de45777e119ee8c297892b3bfdc32)`()` | Clears the value of LegacyConfig_Optional and sets LegacyConfig_IsSet to false.
+`public inline bool `[`IsLegacyConfigSet`](#structFRHAPI__QueueConfigV2_1aed383114ec58ea75db7648a9d68e0e57)`() const` | Checks whether LegacyConfig_Optional has been set.
 
 ### Members
 
@@ -83,7 +84,7 @@ Legacy config to help migrate clients.
 
 true if LegacyConfig_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__QueueConfigV2_1a90b446ffa432578bc73a8248875e6010)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__QueueConfigV2_1a90b446ffa432578bc73a8248875e6010"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__QueueConfigV2_1a5420042c67c41721cc92042d7f677b04)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__QueueConfigV2_1a5420042c67c41721cc92042d7f677b04"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -93,7 +94,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__QueueConfigV2_1a34acb7a643e2e343eacf912ea28cc299)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__QueueConfigV2_1a34acb7a643e2e343eacf912ea28cc299"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__QueueConfigV2_1a265b7e4da114702a487f492c6eb5e581)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__QueueConfigV2_1a265b7e4da114702a487f492c6eb5e581"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -215,4 +216,8 @@ Sets the value of LegacyConfig_Optional and also sets LegacyConfig_IsSet to true
 #### `public inline void `[`ClearLegacyConfig`](#structFRHAPI__QueueConfigV2_1a704de45777e119ee8c297892b3bfdc32)`()` <a id="structFRHAPI__QueueConfigV2_1a704de45777e119ee8c297892b3bfdc32"></a>
 
 Clears the value of LegacyConfig_Optional and sets LegacyConfig_IsSet to false.
+
+#### `public inline bool `[`IsLegacyConfigSet`](#structFRHAPI__QueueConfigV2_1aed383114ec58ea75db7648a9d68e0e57)`() const` <a id="structFRHAPI__QueueConfigV2_1aed383114ec58ea75db7648a9d68e0e57"></a>
+
+Checks whether LegacyConfig_Optional has been set.
 

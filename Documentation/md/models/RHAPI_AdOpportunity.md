@@ -20,8 +20,8 @@ struct FRHAPI_AdOpportunity
 `public FString `[`AdUrl`](#structFRHAPI__AdOpportunity_1ab2196c8bbb55e7f99dcbdbefbe159761) | The URL to the ad.
 `public int32 `[`Seconds`](#structFRHAPI__AdOpportunity_1ad3fcac6b407583b0eff0b79eca7062f2) | The number of seconds the ad is.
 `public FString `[`OpportunityId`](#structFRHAPI__AdOpportunity_1a08262c81d1b61b8000582e45c4b54049) | The ID of the ad opportunity.
-`public virtual bool `[`FromJson`](#structFRHAPI__AdOpportunity_1a021b3507f5edc302686d770788269419)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__AdOpportunity_1a4a1100d7ce89db79898d59dc8017effd)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__AdOpportunity_1a3ad321b7b639f2f168664c3c9e1232d9)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__AdOpportunity_1ab4825857d61d6c174326eae3833bc330)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetAdUrl`](#structFRHAPI__AdOpportunity_1a8dcf652a8c0b7ab48dd3c39f80628aab)`()` | Gets the value of AdUrl.
 `public inline const FString & `[`GetAdUrl`](#structFRHAPI__AdOpportunity_1a5e81eba4f2fc85ab5c798c0d0e4b0b25)`() const` | Gets the value of AdUrl.
 `public inline void `[`SetAdUrl`](#structFRHAPI__AdOpportunity_1a24737eca64f56436fb3aeaf4b918a4cf)`(const FString & NewValue)` | Sets the value of AdUrl.
@@ -51,7 +51,7 @@ The number of seconds the ad is.
 
 The ID of the ad opportunity.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__AdOpportunity_1a021b3507f5edc302686d770788269419)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__AdOpportunity_1a021b3507f5edc302686d770788269419"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__AdOpportunity_1a3ad321b7b639f2f168664c3c9e1232d9)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__AdOpportunity_1a3ad321b7b639f2f168664c3c9e1232d9"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -61,7 +61,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__AdOpportunity_1a4a1100d7ce89db79898d59dc8017effd)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__AdOpportunity_1a4a1100d7ce89db79898d59dc8017effd"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__AdOpportunity_1ab4825857d61d6c174326eae3833bc330)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__AdOpportunity_1ab4825857d61d6c174326eae3833bc330"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 

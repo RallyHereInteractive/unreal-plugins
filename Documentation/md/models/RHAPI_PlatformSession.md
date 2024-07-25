@@ -25,8 +25,8 @@ A platform session resource in a RallyHere session.
 `public TArray< `[`FRHAPI_PlatformSessionPlayer`](RHAPI_PlatformSessionPlayer.md#structFRHAPI__PlatformSessionPlayer)` > `[`Players`](#structFRHAPI__PlatformSession_1a457c7e431c6f6dc18bd781d09ba5d5fb) | DEPRECATED. PlatformSessions no longer keep tracking of players. Players in the platform session.
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__PlatformSession_1a9892c6b70fc4a33cb19ec43e5ea10d0a) | Product defined custom data fields about the platform session.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__PlatformSession_1a1868b2138d2cf1feca6c1f300a104cea) | true if CustomData_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__PlatformSession_1a6ad407802c93e51ba4ad6b2ea8b90f26)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PlatformSession_1a0d7974aeb8156db09f05ca16c7f0a217)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__PlatformSession_1ac38d76af37830fe89415db449ec3addd)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__PlatformSession_1ae66a71facd7c6d7685a00acdb1fe1e3b)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PlatformSession_1a4bb18b46b2c2687ce80b63ea0357d210)`()` | Gets the value of Platform.
 `public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PlatformSession_1a26fb79f79f15f9f77811e2ae696ac511)`() const` | Gets the value of Platform.
 `public inline void `[`SetPlatform`](#structFRHAPI__PlatformSession_1a5550cb055b2e15cd5bbeb88a7c105034)`(const ERHAPI_Platform & NewValue)` | Sets the value of Platform.
@@ -52,6 +52,7 @@ A platform session resource in a RallyHere session.
 `public inline void `[`SetCustomData`](#structFRHAPI__PlatformSession_1abac22e80c8b5803f71f4a879029a469f)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`SetCustomData`](#structFRHAPI__PlatformSession_1afdc31ca1908f5f2cfb77bb384521bec4)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__PlatformSession_1a27df4527314de6e07dd805631af23b14)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+`public inline bool `[`IsCustomDataSet`](#structFRHAPI__PlatformSession_1a514a69b000c9439a015f8afcd5883ab5)`() const` | Checks whether CustomData_Optional has been set.
 
 ### Members
 
@@ -79,7 +80,7 @@ Product defined custom data fields about the platform session.
 
 true if CustomData_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__PlatformSession_1a6ad407802c93e51ba4ad6b2ea8b90f26)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlatformSession_1a6ad407802c93e51ba4ad6b2ea8b90f26"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__PlatformSession_1ac38d76af37830fe89415db449ec3addd)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlatformSession_1ac38d76af37830fe89415db449ec3addd"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -89,7 +90,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PlatformSession_1a0d7974aeb8156db09f05ca16c7f0a217)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlatformSession_1a0d7974aeb8156db09f05ca16c7f0a217"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PlatformSession_1ae66a71facd7c6d7685a00acdb1fe1e3b)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlatformSession_1ae66a71facd7c6d7685a00acdb1fe1e3b"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -195,4 +196,8 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true usi
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__PlatformSession_1a27df4527314de6e07dd805631af23b14)`()` <a id="structFRHAPI__PlatformSession_1a27df4527314de6e07dd805631af23b14"></a>
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+
+#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__PlatformSession_1a514a69b000c9439a015f8afcd5883ab5)`() const` <a id="structFRHAPI__PlatformSession_1a514a69b000c9439a015f8afcd5883ab5"></a>
+
+Checks whether CustomData_Optional has been set.
 

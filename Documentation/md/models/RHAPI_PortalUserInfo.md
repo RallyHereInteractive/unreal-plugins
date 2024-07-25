@@ -23,8 +23,8 @@ Portal user info.
 `public ERHAPI_DependenciesSchemasPortal `[`PortalId`](#structFRHAPI__PortalUserInfo_1af0233dbd7f509062dcf36313611ea286) | Portal ID. *DEPRECATED* use `platform` instead.
 `public FString `[`PortalUserId`](#structFRHAPI__PortalUserInfo_1a6733dd0ddc41200cf750f32de0b83dab) | Platform User ID.
 `public FString `[`DisplayName`](#structFRHAPI__PortalUserInfo_1a0ba620f7ad0e76fa03651b52221672d0) | Display name.
-`public virtual bool `[`FromJson`](#structFRHAPI__PortalUserInfo_1a157222df92a9e58a8a7f4e86a8451e6e)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PortalUserInfo_1a2344390b2002ec9ee2cfcb5fc80d346d)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__PortalUserInfo_1a0ca5098c9ceb1d32639907161ac5dc8c)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__PortalUserInfo_1aa48113211a257428d7a48cdcd56424eb)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PortalUserInfo_1a3f453744df9708c61b8d4cbc145eb71a)`()` | Gets the value of Platform.
 `public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PortalUserInfo_1a40e45a21d723e554b55aa7a41b4af6d1)`() const` | Gets the value of Platform.
 `public inline void `[`SetPlatform`](#structFRHAPI__PortalUserInfo_1a44074732910033daa094db3801af9844)`(const ERHAPI_Platform & NewValue)` | Sets the value of Platform.
@@ -60,7 +60,7 @@ Platform User ID.
 
 Display name.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__PortalUserInfo_1a157222df92a9e58a8a7f4e86a8451e6e)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PortalUserInfo_1a157222df92a9e58a8a7f4e86a8451e6e"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__PortalUserInfo_1a0ca5098c9ceb1d32639907161ac5dc8c)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PortalUserInfo_1a0ca5098c9ceb1d32639907161ac5dc8c"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -70,7 +70,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PortalUserInfo_1a2344390b2002ec9ee2cfcb5fc80d346d)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PortalUserInfo_1a2344390b2002ec9ee2cfcb5fc80d346d"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PortalUserInfo_1aa48113211a257428d7a48cdcd56424eb)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PortalUserInfo_1aa48113211a257428d7a48cdcd56424eb"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 

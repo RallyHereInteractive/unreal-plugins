@@ -21,8 +21,8 @@ struct FRHAPI_HzApiErrorModel
 `public bool `[`AuthSuccess_IsSet`](#structFRHAPI__HzApiErrorModel_1a8743e89eaeebc32c0e0a3c15286e4bd9) | true if AuthSuccess_Optional has been set to a value
 `public FString `[`ErrorCode`](#structFRHAPI__HzApiErrorModel_1a3e69f02ecb9d38383cb749fa5b23ff87) | 
 `public FString `[`Desc`](#structFRHAPI__HzApiErrorModel_1a9c18c43b5bafba6c2ac066314de64c6e) | 
-`public virtual bool `[`FromJson`](#structFRHAPI__HzApiErrorModel_1a44bc1857b178377cbb1d2c33a628e0d8)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__HzApiErrorModel_1ae3ff4b3417bad010cd00b4723df2b990)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__HzApiErrorModel_1ac4ca27dad7eb8d62b67f79890072580e)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__HzApiErrorModel_1adbb55cd65f6151c576f419735816b2a1)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline bool & `[`GetAuthSuccess`](#structFRHAPI__HzApiErrorModel_1a0d4c66b9ee3833401f1dfa7d182d6321)`()` | Gets the value of AuthSuccess_Optional, regardless of it having been set.
 `public inline const bool & `[`GetAuthSuccess`](#structFRHAPI__HzApiErrorModel_1a2e10bfd42982da16deac8330f73923c3)`() const` | Gets the value of AuthSuccess_Optional, regardless of it having been set.
 `public inline const bool & `[`GetAuthSuccess`](#structFRHAPI__HzApiErrorModel_1af5a3889d452ff7ac240a1be4d5671853)`(const bool & DefaultValue) const` | Gets the value of AuthSuccess_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -32,6 +32,7 @@ struct FRHAPI_HzApiErrorModel
 `public inline void `[`SetAuthSuccess`](#structFRHAPI__HzApiErrorModel_1aeb10d045ab0483d2c861ce8c004da323)`(const bool & NewValue)` | Sets the value of AuthSuccess_Optional and also sets AuthSuccess_IsSet to true.
 `public inline void `[`SetAuthSuccess`](#structFRHAPI__HzApiErrorModel_1a62c8d08698ebae0949ca8de3fa3d0ed9)`(bool && NewValue)` | Sets the value of AuthSuccess_Optional and also sets AuthSuccess_IsSet to true using move semantics.
 `public inline void `[`ClearAuthSuccess`](#structFRHAPI__HzApiErrorModel_1a02132e1b9773e2f1ad0177f1f9bec798)`()` | Clears the value of AuthSuccess_Optional and sets AuthSuccess_IsSet to false.
+`public inline bool `[`IsAuthSuccessSet`](#structFRHAPI__HzApiErrorModel_1aa4ec41b0761d17a76b17263c54828a14)`() const` | Checks whether AuthSuccess_Optional has been set.
 `public inline bool `[`IsAuthSuccessDefaultValue`](#structFRHAPI__HzApiErrorModel_1a9dba3f3ce37138195c71b0569de4cfd6)`() const` | Returns true if AuthSuccess_Optional is set and matches the default value.
 `public inline void `[`SetAuthSuccessToDefault`](#structFRHAPI__HzApiErrorModel_1a46994e9d2e4a2f35c4663a06b6c3ba35)`()` | Sets the value of AuthSuccess_Optional to its default and also sets AuthSuccess_IsSet to true.
 `public inline FString & `[`GetErrorCode`](#structFRHAPI__HzApiErrorModel_1ad0a304e4b2f1f60f2f62319237856ac8)`()` | Gets the value of ErrorCode.
@@ -55,7 +56,7 @@ true if AuthSuccess_Optional has been set to a value
 
 #### `public FString `[`Desc`](#structFRHAPI__HzApiErrorModel_1a9c18c43b5bafba6c2ac066314de64c6e) <a id="structFRHAPI__HzApiErrorModel_1a9c18c43b5bafba6c2ac066314de64c6e"></a>
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__HzApiErrorModel_1a44bc1857b178377cbb1d2c33a628e0d8)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__HzApiErrorModel_1a44bc1857b178377cbb1d2c33a628e0d8"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__HzApiErrorModel_1ac4ca27dad7eb8d62b67f79890072580e)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__HzApiErrorModel_1ac4ca27dad7eb8d62b67f79890072580e"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -65,7 +66,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__HzApiErrorModel_1ae3ff4b3417bad010cd00b4723df2b990)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__HzApiErrorModel_1ae3ff4b3417bad010cd00b4723df2b990"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__HzApiErrorModel_1adbb55cd65f6151c576f419735816b2a1)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__HzApiErrorModel_1adbb55cd65f6151c576f419735816b2a1"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -107,6 +108,10 @@ Sets the value of AuthSuccess_Optional and also sets AuthSuccess_IsSet to true u
 #### `public inline void `[`ClearAuthSuccess`](#structFRHAPI__HzApiErrorModel_1a02132e1b9773e2f1ad0177f1f9bec798)`()` <a id="structFRHAPI__HzApiErrorModel_1a02132e1b9773e2f1ad0177f1f9bec798"></a>
 
 Clears the value of AuthSuccess_Optional and sets AuthSuccess_IsSet to false.
+
+#### `public inline bool `[`IsAuthSuccessSet`](#structFRHAPI__HzApiErrorModel_1aa4ec41b0761d17a76b17263c54828a14)`() const` <a id="structFRHAPI__HzApiErrorModel_1aa4ec41b0761d17a76b17263c54828a14"></a>
+
+Checks whether AuthSuccess_Optional has been set.
 
 #### `public inline bool `[`IsAuthSuccessDefaultValue`](#structFRHAPI__HzApiErrorModel_1a9dba3f3ce37138195c71b0569de4cfd6)`() const` <a id="structFRHAPI__HzApiErrorModel_1a9dba3f3ce37138195c71b0569de4cfd6"></a>
 

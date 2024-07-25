@@ -23,8 +23,8 @@ Information about all sessions that a player is currently a member of, or invite
 `public bool `[`Sessions_IsSet`](#structFRHAPI__PlayerSessions_1a65be3a391fe50890ec37f01d3ac18e0d) | true if Sessions_Optional has been set to a value
 `public FDateTime `[`LastUpdatedTimestamp_Optional`](#structFRHAPI__PlayerSessions_1a1421f6c78dbccd3f16e0d373eb93a8c0) | Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone.
 `public bool `[`LastUpdatedTimestamp_IsSet`](#structFRHAPI__PlayerSessions_1acb79f047f9fe82dffe5290d34aa4a750) | true if LastUpdatedTimestamp_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__PlayerSessions_1a1cbd1f3f619a56d77b46507a8038e523)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PlayerSessions_1a05d62fde50431853d32a40cf9a32ac0a)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__PlayerSessions_1a27d07993c833ae5d62c6279a843d1578)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__PlayerSessions_1ac245b2eb980c9159fcc742a70720bfde)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > & `[`GetSessions`](#structFRHAPI__PlayerSessions_1aa6986ffaa36620a5719a17f589d79f4b)`()` | Gets the value of Sessions_Optional, regardless of it having been set.
 `public inline const TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > & `[`GetSessions`](#structFRHAPI__PlayerSessions_1a10dd3287bdd0c41e99f7ced2b7dc7507)`() const` | Gets the value of Sessions_Optional, regardless of it having been set.
 `public inline const TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > & `[`GetSessions`](#structFRHAPI__PlayerSessions_1a208cd475cdba50f450d9f233ca3d919c)`(const TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > & DefaultValue) const` | Gets the value of Sessions_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -34,6 +34,7 @@ Information about all sessions that a player is currently a member of, or invite
 `public inline void `[`SetSessions`](#structFRHAPI__PlayerSessions_1a2d7278304d58641f5a3319db000c8167)`(const TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > & NewValue)` | Sets the value of Sessions_Optional and also sets Sessions_IsSet to true.
 `public inline void `[`SetSessions`](#structFRHAPI__PlayerSessions_1a11667546d3715b4e5228ab018cdc00e2)`(TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > && NewValue)` | Sets the value of Sessions_Optional and also sets Sessions_IsSet to true using move semantics.
 `public inline void `[`ClearSessions`](#structFRHAPI__PlayerSessions_1a11f4d310ceb782cf2b7912bb7d853910)`()` | Clears the value of Sessions_Optional and sets Sessions_IsSet to false.
+`public inline bool `[`IsSessionsSet`](#structFRHAPI__PlayerSessions_1ae5c31c6ac88da074d0300dabb7bb7add)`() const` | Checks whether Sessions_Optional has been set.
 `public inline FDateTime & `[`GetLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1a721f38d6641e78b9930b400bf9112ee3)`()` | Gets the value of LastUpdatedTimestamp_Optional, regardless of it having been set.
 `public inline const FDateTime & `[`GetLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1a3cd547cd72593da70e58358cce255a72)`() const` | Gets the value of LastUpdatedTimestamp_Optional, regardless of it having been set.
 `public inline const FDateTime & `[`GetLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1a261728fd87870f4f529146642b413fe7)`(const FDateTime & DefaultValue) const` | Gets the value of LastUpdatedTimestamp_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -43,6 +44,7 @@ Information about all sessions that a player is currently a member of, or invite
 `public inline void `[`SetLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1a09e232169df2f6c1e5af94f516c54642)`(const FDateTime & NewValue)` | Sets the value of LastUpdatedTimestamp_Optional and also sets LastUpdatedTimestamp_IsSet to true.
 `public inline void `[`SetLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1afc0df868eb60e73c679e2e5468b5c39b)`(FDateTime && NewValue)` | Sets the value of LastUpdatedTimestamp_Optional and also sets LastUpdatedTimestamp_IsSet to true using move semantics.
 `public inline void `[`ClearLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1a158685391d310a57b456883520d177d0)`()` | Clears the value of LastUpdatedTimestamp_Optional and sets LastUpdatedTimestamp_IsSet to false.
+`public inline bool `[`IsLastUpdatedTimestampSet`](#structFRHAPI__PlayerSessions_1aed1bda3a496e8de0bb6ed4151949fa38)`() const` | Checks whether LastUpdatedTimestamp_Optional has been set.
 
 ### Members
 
@@ -62,7 +64,7 @@ Datetime that enforces that a timezone is given. Unix timestamps are allowed and
 
 true if LastUpdatedTimestamp_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__PlayerSessions_1a1cbd1f3f619a56d77b46507a8038e523)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlayerSessions_1a1cbd1f3f619a56d77b46507a8038e523"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__PlayerSessions_1a27d07993c833ae5d62c6279a843d1578)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlayerSessions_1a27d07993c833ae5d62c6279a843d1578"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -72,7 +74,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PlayerSessions_1a05d62fde50431853d32a40cf9a32ac0a)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlayerSessions_1a05d62fde50431853d32a40cf9a32ac0a"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PlayerSessions_1ac245b2eb980c9159fcc742a70720bfde)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlayerSessions_1ac245b2eb980c9159fcc742a70720bfde"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -115,6 +117,10 @@ Sets the value of Sessions_Optional and also sets Sessions_IsSet to true using m
 
 Clears the value of Sessions_Optional and sets Sessions_IsSet to false.
 
+#### `public inline bool `[`IsSessionsSet`](#structFRHAPI__PlayerSessions_1ae5c31c6ac88da074d0300dabb7bb7add)`() const` <a id="structFRHAPI__PlayerSessions_1ae5c31c6ac88da074d0300dabb7bb7add"></a>
+
+Checks whether Sessions_Optional has been set.
+
 #### `public inline FDateTime & `[`GetLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1a721f38d6641e78b9930b400bf9112ee3)`()` <a id="structFRHAPI__PlayerSessions_1a721f38d6641e78b9930b400bf9112ee3"></a>
 
 Gets the value of LastUpdatedTimestamp_Optional, regardless of it having been set.
@@ -150,4 +156,8 @@ Sets the value of LastUpdatedTimestamp_Optional and also sets LastUpdatedTimesta
 #### `public inline void `[`ClearLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1a158685391d310a57b456883520d177d0)`()` <a id="structFRHAPI__PlayerSessions_1a158685391d310a57b456883520d177d0"></a>
 
 Clears the value of LastUpdatedTimestamp_Optional and sets LastUpdatedTimestamp_IsSet to false.
+
+#### `public inline bool `[`IsLastUpdatedTimestampSet`](#structFRHAPI__PlayerSessions_1aed1bda3a496e8de0bb6ed4151949fa38)`() const` <a id="structFRHAPI__PlayerSessions_1aed1bda3a496e8de0bb6ed4151949fa38"></a>
+
+Checks whether LastUpdatedTimestamp_Optional has been set.
 

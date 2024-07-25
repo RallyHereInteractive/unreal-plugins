@@ -25,12 +25,15 @@ struct FRHAPI_RallyHereEvent
 `public bool `[`CustomData_IsSet`](#structFRHAPI__RallyHereEvent_1a75c2cf8558bf9cb079cda2338ff78ec8) | true if CustomData_Optional has been set to a value
 `public FString `[`UserId_Optional`](#structFRHAPI__RallyHereEvent_1adf25f2d9ce1ff401d1e4a295fcfa9926) | 
 `public bool `[`UserId_IsSet`](#structFRHAPI__RallyHereEvent_1adb88b950d0f6e108ebfc5b457dba79d4) | true if UserId_Optional has been set to a value
+`public bool `[`UserId_IsNull`](#structFRHAPI__RallyHereEvent_1a3a3651ea86051a7d2ddebab302c26cfe) | true if UserId_Optional has been explicitly set to null
 `public FString `[`SessionId_Optional`](#structFRHAPI__RallyHereEvent_1a3fbc2d2ff96628339eef3b7bc09f06ab) | 
 `public bool `[`SessionId_IsSet`](#structFRHAPI__RallyHereEvent_1a9e4c120b0e2e38bf8c2bb90f496d448a) | true if SessionId_Optional has been set to a value
+`public bool `[`SessionId_IsNull`](#structFRHAPI__RallyHereEvent_1af917a9d1d9e15edeac9d88c50d1e8491) | true if SessionId_Optional has been explicitly set to null
 `public FString `[`CorrelationId_Optional`](#structFRHAPI__RallyHereEvent_1aa6fc132726228aa208b2cf3758dbcce3) | 
 `public bool `[`CorrelationId_IsSet`](#structFRHAPI__RallyHereEvent_1adbc7c013cc9349f1695bc00ecc4eeea4) | true if CorrelationId_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__RallyHereEvent_1a274e63cdf9ce91a751d12e9d5b0072d1)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__RallyHereEvent_1a78aca75728bbab8942e70e3320d26f66)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public bool `[`CorrelationId_IsNull`](#structFRHAPI__RallyHereEvent_1a0871d9dce43255044ff55f9e5ed05b75) | true if CorrelationId_Optional has been explicitly set to null
+`public virtual bool `[`FromJson`](#structFRHAPI__RallyHereEvent_1a765da0cc13e868c1d18fabf26f80a2e6)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__RallyHereEvent_1a9c95a2faa708fbe1466a82082c00622f)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FGuid & `[`GetEventUuid`](#structFRHAPI__RallyHereEvent_1a5aed540af10d37a0ca89ffbb27772a6a)`()` | Gets the value of EventUuid.
 `public inline const FGuid & `[`GetEventUuid`](#structFRHAPI__RallyHereEvent_1ae1ddab7e54e8cf26e0e6e933b099cf43)`() const` | Gets the value of EventUuid.
 `public inline void `[`SetEventUuid`](#structFRHAPI__RallyHereEvent_1a396709bc32cbc1a0f23456d84954c9c1)`(const FGuid & NewValue)` | Sets the value of EventUuid.
@@ -56,6 +59,7 @@ struct FRHAPI_RallyHereEvent
 `public inline void `[`SetCustomData`](#structFRHAPI__RallyHereEvent_1a99199458b10bc3a7eaa380b475342ff4)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`SetCustomData`](#structFRHAPI__RallyHereEvent_1a44e51f9e055801f9e88b85274241026c)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__RallyHereEvent_1a25599661d7605c4bc5f94814ecdf0702)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+`public inline bool `[`IsCustomDataSet`](#structFRHAPI__RallyHereEvent_1ab67fdcd8b3b7f8ebf6e15a1eef16da80)`() const` | Checks whether CustomData_Optional has been set.
 `public inline FString & `[`GetUserId`](#structFRHAPI__RallyHereEvent_1adb44239472afd8b2a8039441094c05c1)`()` | Gets the value of UserId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetUserId`](#structFRHAPI__RallyHereEvent_1a1a27346dff8fd0948ebf422c50997026)`() const` | Gets the value of UserId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetUserId`](#structFRHAPI__RallyHereEvent_1a853454a8a4704e5de57d0a9e2da8c7ad)`(const FString & DefaultValue) const` | Gets the value of UserId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -65,6 +69,9 @@ struct FRHAPI_RallyHereEvent
 `public inline void `[`SetUserId`](#structFRHAPI__RallyHereEvent_1a2a9690b52b2b771917191ba9724c21e3)`(const FString & NewValue)` | Sets the value of UserId_Optional and also sets UserId_IsSet to true.
 `public inline void `[`SetUserId`](#structFRHAPI__RallyHereEvent_1abcb7d4fcfd6f2f3361d88d7271e67953)`(FString && NewValue)` | Sets the value of UserId_Optional and also sets UserId_IsSet to true using move semantics.
 `public inline void `[`ClearUserId`](#structFRHAPI__RallyHereEvent_1ab495ffdc4fcda047ecbd42e18bcfe97b)`()` | Clears the value of UserId_Optional and sets UserId_IsSet to false.
+`public inline bool `[`IsUserIdSet`](#structFRHAPI__RallyHereEvent_1a5078b43a1d557a02e15c9a282858d138)`() const` | Checks whether UserId_Optional has been set.
+`public inline void `[`SetUserIdToNull`](#structFRHAPI__RallyHereEvent_1a0fa91033d6e78837546bdcf5438478f2)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsUserIdNull`](#structFRHAPI__RallyHereEvent_1afbf7780f3139aa0ff54f7ac711d37624)`() const` | Checks whether UserId_Optional is set to null.
 `public inline FString & `[`GetSessionId`](#structFRHAPI__RallyHereEvent_1a203ffee4e765ade4f9a527bec51de331)`()` | Gets the value of SessionId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetSessionId`](#structFRHAPI__RallyHereEvent_1a1166b7897b1c281177efded34e2d1b78)`() const` | Gets the value of SessionId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetSessionId`](#structFRHAPI__RallyHereEvent_1aac2ff071abc4ac7bc0ee7ece61fdcba4)`(const FString & DefaultValue) const` | Gets the value of SessionId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -74,6 +81,9 @@ struct FRHAPI_RallyHereEvent
 `public inline void `[`SetSessionId`](#structFRHAPI__RallyHereEvent_1aa4b53c7b39e6fc9a94ae684dbaef5ebd)`(const FString & NewValue)` | Sets the value of SessionId_Optional and also sets SessionId_IsSet to true.
 `public inline void `[`SetSessionId`](#structFRHAPI__RallyHereEvent_1ae51534e7cb56f9c2942cfa6f25c6f2d2)`(FString && NewValue)` | Sets the value of SessionId_Optional and also sets SessionId_IsSet to true using move semantics.
 `public inline void `[`ClearSessionId`](#structFRHAPI__RallyHereEvent_1a2fad37a84ed8eb2cbaac71c605d07e0d)`()` | Clears the value of SessionId_Optional and sets SessionId_IsSet to false.
+`public inline bool `[`IsSessionIdSet`](#structFRHAPI__RallyHereEvent_1ae9396c65b53db36abae0027cc0653f51)`() const` | Checks whether SessionId_Optional has been set.
+`public inline void `[`SetSessionIdToNull`](#structFRHAPI__RallyHereEvent_1aaab49b1030221accac1e68312467adb0)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsSessionIdNull`](#structFRHAPI__RallyHereEvent_1a307c70003b519d8ce29ac8fd10e8b5c3)`() const` | Checks whether SessionId_Optional is set to null.
 `public inline FString & `[`GetCorrelationId`](#structFRHAPI__RallyHereEvent_1ad3f3f6286d2b7e66942cccac82eab104)`()` | Gets the value of CorrelationId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetCorrelationId`](#structFRHAPI__RallyHereEvent_1ad9ebd7493ac5b15a6f4a9da7f540b5f5)`() const` | Gets the value of CorrelationId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetCorrelationId`](#structFRHAPI__RallyHereEvent_1ad4cd64dc3c86723e95621a5ea120c2f2)`(const FString & DefaultValue) const` | Gets the value of CorrelationId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -83,6 +93,9 @@ struct FRHAPI_RallyHereEvent
 `public inline void `[`SetCorrelationId`](#structFRHAPI__RallyHereEvent_1a1d2243b20fb342fbe0f5b26d3ab40480)`(const FString & NewValue)` | Sets the value of CorrelationId_Optional and also sets CorrelationId_IsSet to true.
 `public inline void `[`SetCorrelationId`](#structFRHAPI__RallyHereEvent_1a13688d257b71b89dd1307a3e01ed6855)`(FString && NewValue)` | Sets the value of CorrelationId_Optional and also sets CorrelationId_IsSet to true using move semantics.
 `public inline void `[`ClearCorrelationId`](#structFRHAPI__RallyHereEvent_1a68b08b6136ad6f5fd85300d15478de1a)`()` | Clears the value of CorrelationId_Optional and sets CorrelationId_IsSet to false.
+`public inline bool `[`IsCorrelationIdSet`](#structFRHAPI__RallyHereEvent_1a175d498d357284e7e2cb3c83c842c564)`() const` | Checks whether CorrelationId_Optional has been set.
+`public inline void `[`SetCorrelationIdToNull`](#structFRHAPI__RallyHereEvent_1a9dae87001a2578ddf64e05b6954a17ed)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsCorrelationIdNull`](#structFRHAPI__RallyHereEvent_1a006272d7943c80e0cf9a0cb01c0e165d)`() const` | Checks whether CorrelationId_Optional is set to null.
 
 ### Members
 
@@ -116,11 +129,19 @@ true if CustomData_Optional has been set to a value
 
 true if UserId_Optional has been set to a value
 
+#### `public bool `[`UserId_IsNull`](#structFRHAPI__RallyHereEvent_1a3a3651ea86051a7d2ddebab302c26cfe) <a id="structFRHAPI__RallyHereEvent_1a3a3651ea86051a7d2ddebab302c26cfe"></a>
+
+true if UserId_Optional has been explicitly set to null
+
 #### `public FString `[`SessionId_Optional`](#structFRHAPI__RallyHereEvent_1a3fbc2d2ff96628339eef3b7bc09f06ab) <a id="structFRHAPI__RallyHereEvent_1a3fbc2d2ff96628339eef3b7bc09f06ab"></a>
 
 #### `public bool `[`SessionId_IsSet`](#structFRHAPI__RallyHereEvent_1a9e4c120b0e2e38bf8c2bb90f496d448a) <a id="structFRHAPI__RallyHereEvent_1a9e4c120b0e2e38bf8c2bb90f496d448a"></a>
 
 true if SessionId_Optional has been set to a value
+
+#### `public bool `[`SessionId_IsNull`](#structFRHAPI__RallyHereEvent_1af917a9d1d9e15edeac9d88c50d1e8491) <a id="structFRHAPI__RallyHereEvent_1af917a9d1d9e15edeac9d88c50d1e8491"></a>
+
+true if SessionId_Optional has been explicitly set to null
 
 #### `public FString `[`CorrelationId_Optional`](#structFRHAPI__RallyHereEvent_1aa6fc132726228aa208b2cf3758dbcce3) <a id="structFRHAPI__RallyHereEvent_1aa6fc132726228aa208b2cf3758dbcce3"></a>
 
@@ -128,7 +149,11 @@ true if SessionId_Optional has been set to a value
 
 true if CorrelationId_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__RallyHereEvent_1a274e63cdf9ce91a751d12e9d5b0072d1)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__RallyHereEvent_1a274e63cdf9ce91a751d12e9d5b0072d1"></a>
+#### `public bool `[`CorrelationId_IsNull`](#structFRHAPI__RallyHereEvent_1a0871d9dce43255044ff55f9e5ed05b75) <a id="structFRHAPI__RallyHereEvent_1a0871d9dce43255044ff55f9e5ed05b75"></a>
+
+true if CorrelationId_Optional has been explicitly set to null
+
+#### `public virtual bool `[`FromJson`](#structFRHAPI__RallyHereEvent_1a765da0cc13e868c1d18fabf26f80a2e6)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__RallyHereEvent_1a765da0cc13e868c1d18fabf26f80a2e6"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -138,7 +163,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__RallyHereEvent_1a78aca75728bbab8942e70e3320d26f66)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__RallyHereEvent_1a78aca75728bbab8942e70e3320d26f66"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__RallyHereEvent_1a9c95a2faa708fbe1466a82082c00622f)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__RallyHereEvent_1a9c95a2faa708fbe1466a82082c00622f"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -245,6 +270,10 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true usi
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
+#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__RallyHereEvent_1ab67fdcd8b3b7f8ebf6e15a1eef16da80)`() const` <a id="structFRHAPI__RallyHereEvent_1ab67fdcd8b3b7f8ebf6e15a1eef16da80"></a>
+
+Checks whether CustomData_Optional has been set.
+
 #### `public inline FString & `[`GetUserId`](#structFRHAPI__RallyHereEvent_1adb44239472afd8b2a8039441094c05c1)`()` <a id="structFRHAPI__RallyHereEvent_1adb44239472afd8b2a8039441094c05c1"></a>
 
 Gets the value of UserId_Optional, regardless of it having been set.
@@ -280,6 +309,18 @@ Sets the value of UserId_Optional and also sets UserId_IsSet to true using move 
 #### `public inline void `[`ClearUserId`](#structFRHAPI__RallyHereEvent_1ab495ffdc4fcda047ecbd42e18bcfe97b)`()` <a id="structFRHAPI__RallyHereEvent_1ab495ffdc4fcda047ecbd42e18bcfe97b"></a>
 
 Clears the value of UserId_Optional and sets UserId_IsSet to false.
+
+#### `public inline bool `[`IsUserIdSet`](#structFRHAPI__RallyHereEvent_1a5078b43a1d557a02e15c9a282858d138)`() const` <a id="structFRHAPI__RallyHereEvent_1a5078b43a1d557a02e15c9a282858d138"></a>
+
+Checks whether UserId_Optional has been set.
+
+#### `public inline void `[`SetUserIdToNull`](#structFRHAPI__RallyHereEvent_1a0fa91033d6e78837546bdcf5438478f2)`()` <a id="structFRHAPI__RallyHereEvent_1a0fa91033d6e78837546bdcf5438478f2"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsUserIdNull`](#structFRHAPI__RallyHereEvent_1afbf7780f3139aa0ff54f7ac711d37624)`() const` <a id="structFRHAPI__RallyHereEvent_1afbf7780f3139aa0ff54f7ac711d37624"></a>
+
+Checks whether UserId_Optional is set to null.
 
 #### `public inline FString & `[`GetSessionId`](#structFRHAPI__RallyHereEvent_1a203ffee4e765ade4f9a527bec51de331)`()` <a id="structFRHAPI__RallyHereEvent_1a203ffee4e765ade4f9a527bec51de331"></a>
 
@@ -317,6 +358,18 @@ Sets the value of SessionId_Optional and also sets SessionId_IsSet to true using
 
 Clears the value of SessionId_Optional and sets SessionId_IsSet to false.
 
+#### `public inline bool `[`IsSessionIdSet`](#structFRHAPI__RallyHereEvent_1ae9396c65b53db36abae0027cc0653f51)`() const` <a id="structFRHAPI__RallyHereEvent_1ae9396c65b53db36abae0027cc0653f51"></a>
+
+Checks whether SessionId_Optional has been set.
+
+#### `public inline void `[`SetSessionIdToNull`](#structFRHAPI__RallyHereEvent_1aaab49b1030221accac1e68312467adb0)`()` <a id="structFRHAPI__RallyHereEvent_1aaab49b1030221accac1e68312467adb0"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsSessionIdNull`](#structFRHAPI__RallyHereEvent_1a307c70003b519d8ce29ac8fd10e8b5c3)`() const` <a id="structFRHAPI__RallyHereEvent_1a307c70003b519d8ce29ac8fd10e8b5c3"></a>
+
+Checks whether SessionId_Optional is set to null.
+
 #### `public inline FString & `[`GetCorrelationId`](#structFRHAPI__RallyHereEvent_1ad3f3f6286d2b7e66942cccac82eab104)`()` <a id="structFRHAPI__RallyHereEvent_1ad3f3f6286d2b7e66942cccac82eab104"></a>
 
 Gets the value of CorrelationId_Optional, regardless of it having been set.
@@ -352,4 +405,16 @@ Sets the value of CorrelationId_Optional and also sets CorrelationId_IsSet to tr
 #### `public inline void `[`ClearCorrelationId`](#structFRHAPI__RallyHereEvent_1a68b08b6136ad6f5fd85300d15478de1a)`()` <a id="structFRHAPI__RallyHereEvent_1a68b08b6136ad6f5fd85300d15478de1a"></a>
 
 Clears the value of CorrelationId_Optional and sets CorrelationId_IsSet to false.
+
+#### `public inline bool `[`IsCorrelationIdSet`](#structFRHAPI__RallyHereEvent_1a175d498d357284e7e2cb3c83c842c564)`() const` <a id="structFRHAPI__RallyHereEvent_1a175d498d357284e7e2cb3c83c842c564"></a>
+
+Checks whether CorrelationId_Optional has been set.
+
+#### `public inline void `[`SetCorrelationIdToNull`](#structFRHAPI__RallyHereEvent_1a9dae87001a2578ddf64e05b6954a17ed)`()` <a id="structFRHAPI__RallyHereEvent_1a9dae87001a2578ddf64e05b6954a17ed"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsCorrelationIdNull`](#structFRHAPI__RallyHereEvent_1a006272d7943c80e0cf9a0cb01c0e165d)`() const` <a id="structFRHAPI__RallyHereEvent_1a006272d7943c80e0cf9a0cb01c0e165d"></a>
+
+Checks whether CorrelationId_Optional is set to null.
 

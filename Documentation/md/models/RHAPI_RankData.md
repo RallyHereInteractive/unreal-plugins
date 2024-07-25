@@ -23,8 +23,8 @@ Ranked data about a player&#39;s skill and confidence levels.
 `public float `[`Sigma`](#structFRHAPI__RankData_1a45a6360cbb9002f253ce3481b84b2260) | A measure of how confident we are in the perceived skill (high sigma means low confidence)
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__RankData_1a6cc90e4d02ac3c6eb18ac7bbed74c9e6) | Custom key-value player rank data.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__RankData_1a1d6a997932948120bf350d5fd2b61ed1) | true if CustomData_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__RankData_1a7626e3e65856e26d5d6fe6cd74c95457)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__RankData_1ae6535dda682e34f419505864f6451557)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__RankData_1a288a24945bcfc53d5478789ffce8ed6e)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__RankData_1ae59e34fa7c58841ee86e2bdedbccc52e)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline float & `[`GetMu`](#structFRHAPI__RankData_1a0a2c501c8a8d440f060ca600124efa7a)`()` | Gets the value of Mu.
 `public inline const float & `[`GetMu`](#structFRHAPI__RankData_1a65ca5c4664b5ef60345439156aee02b9)`() const` | Gets the value of Mu.
 `public inline void `[`SetMu`](#structFRHAPI__RankData_1a3a7a74b4c3ac6797e704a655e709fee9)`(const float & NewValue)` | Sets the value of Mu.
@@ -42,6 +42,7 @@ Ranked data about a player&#39;s skill and confidence levels.
 `public inline void `[`SetCustomData`](#structFRHAPI__RankData_1a8b5a4b31e177d0994d16991bbfc540ba)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`SetCustomData`](#structFRHAPI__RankData_1a2ad592ac3fee26b810cf6d4768f427f9)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__RankData_1ae6fdd574b4aa03a955e0d73368021c63)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+`public inline bool `[`IsCustomDataSet`](#structFRHAPI__RankData_1a90cbd2f415394a90f64ea69dd9ed8599)`() const` | Checks whether CustomData_Optional has been set.
 
 ### Members
 
@@ -61,7 +62,7 @@ Custom key-value player rank data.
 
 true if CustomData_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__RankData_1a7626e3e65856e26d5d6fe6cd74c95457)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__RankData_1a7626e3e65856e26d5d6fe6cd74c95457"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__RankData_1a288a24945bcfc53d5478789ffce8ed6e)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__RankData_1a288a24945bcfc53d5478789ffce8ed6e"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -71,7 +72,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__RankData_1ae6535dda682e34f419505864f6451557)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__RankData_1ae6535dda682e34f419505864f6451557"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__RankData_1ae59e34fa7c58841ee86e2bdedbccc52e)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__RankData_1ae59e34fa7c58841ee86e2bdedbccc52e"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -145,4 +146,8 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true usi
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__RankData_1ae6fdd574b4aa03a955e0d73368021c63)`()` <a id="structFRHAPI__RankData_1ae6fdd574b4aa03a955e0d73368021c63"></a>
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+
+#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__RankData_1a90cbd2f415394a90f64ea69dd9ed8599)`() const` <a id="structFRHAPI__RankData_1a90cbd2f415394a90f64ea69dd9ed8599"></a>
+
+Checks whether CustomData_Optional has been set.
 

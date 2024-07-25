@@ -19,8 +19,8 @@ struct FRHAPI_AcknowledgeBackfillResponse
 --------------------------------|---------------------------------------------
 `public TArray< `[`FRHAPI_SessionPlayer`](RHAPI_SessionPlayer.md#structFRHAPI__SessionPlayer)` > `[`BackfilledPlayers_Optional`](#structFRHAPI__AcknowledgeBackfillResponse_1a23be359898015fb69c972452087869b7) | List of players that were backfilled. If empty, no players were backfilled.
 `public bool `[`BackfilledPlayers_IsSet`](#structFRHAPI__AcknowledgeBackfillResponse_1a9bafa2d898b7b9779b294aeb85e815d1) | true if BackfilledPlayers_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__AcknowledgeBackfillResponse_1afecaf989cca1b02319263b1a0538cd53)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__AcknowledgeBackfillResponse_1aec0e768cfb08cea91ddd4162d018fa7a)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__AcknowledgeBackfillResponse_1ae0934cdd892f856686c4df58d5812d3b)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__AcknowledgeBackfillResponse_1a3baa99ba1b8858c976929307275e5ca7)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< `[`FRHAPI_SessionPlayer`](RHAPI_SessionPlayer.md#structFRHAPI__SessionPlayer)` > & `[`GetBackfilledPlayers`](#structFRHAPI__AcknowledgeBackfillResponse_1a9c9517bdabdc791d35bb91afc1da3fc6)`()` | Gets the value of BackfilledPlayers_Optional, regardless of it having been set.
 `public inline const TArray< `[`FRHAPI_SessionPlayer`](RHAPI_SessionPlayer.md#structFRHAPI__SessionPlayer)` > & `[`GetBackfilledPlayers`](#structFRHAPI__AcknowledgeBackfillResponse_1a366ff2235ab432d7d291406e842e9d1e)`() const` | Gets the value of BackfilledPlayers_Optional, regardless of it having been set.
 `public inline const TArray< `[`FRHAPI_SessionPlayer`](RHAPI_SessionPlayer.md#structFRHAPI__SessionPlayer)` > & `[`GetBackfilledPlayers`](#structFRHAPI__AcknowledgeBackfillResponse_1aafdfe19dfb6a04ee2ac27b2e6628aa6c)`(const TArray< `[`FRHAPI_SessionPlayer`](RHAPI_SessionPlayer.md#structFRHAPI__SessionPlayer)` > & DefaultValue) const` | Gets the value of BackfilledPlayers_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -30,6 +30,7 @@ struct FRHAPI_AcknowledgeBackfillResponse
 `public inline void `[`SetBackfilledPlayers`](#structFRHAPI__AcknowledgeBackfillResponse_1a74a0b13b8e8d8e5380d4a57a272270a4)`(const TArray< `[`FRHAPI_SessionPlayer`](RHAPI_SessionPlayer.md#structFRHAPI__SessionPlayer)` > & NewValue)` | Sets the value of BackfilledPlayers_Optional and also sets BackfilledPlayers_IsSet to true.
 `public inline void `[`SetBackfilledPlayers`](#structFRHAPI__AcknowledgeBackfillResponse_1af194803db96207bafe13f14feeea0526)`(TArray< `[`FRHAPI_SessionPlayer`](RHAPI_SessionPlayer.md#structFRHAPI__SessionPlayer)` > && NewValue)` | Sets the value of BackfilledPlayers_Optional and also sets BackfilledPlayers_IsSet to true using move semantics.
 `public inline void `[`ClearBackfilledPlayers`](#structFRHAPI__AcknowledgeBackfillResponse_1a5df126a7e77babbaedc697a42980a889)`()` | Clears the value of BackfilledPlayers_Optional and sets BackfilledPlayers_IsSet to false.
+`public inline bool `[`IsBackfilledPlayersSet`](#structFRHAPI__AcknowledgeBackfillResponse_1a7a58bc88e55d1153a3cac4ed6a172e01)`() const` | Checks whether BackfilledPlayers_Optional has been set.
 
 ### Members
 
@@ -41,7 +42,7 @@ List of players that were backfilled. If empty, no players were backfilled.
 
 true if BackfilledPlayers_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__AcknowledgeBackfillResponse_1afecaf989cca1b02319263b1a0538cd53)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__AcknowledgeBackfillResponse_1afecaf989cca1b02319263b1a0538cd53"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__AcknowledgeBackfillResponse_1ae0934cdd892f856686c4df58d5812d3b)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__AcknowledgeBackfillResponse_1ae0934cdd892f856686c4df58d5812d3b"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -51,7 +52,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__AcknowledgeBackfillResponse_1aec0e768cfb08cea91ddd4162d018fa7a)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__AcknowledgeBackfillResponse_1aec0e768cfb08cea91ddd4162d018fa7a"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__AcknowledgeBackfillResponse_1a3baa99ba1b8858c976929307275e5ca7)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__AcknowledgeBackfillResponse_1a3baa99ba1b8858c976929307275e5ca7"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -93,4 +94,8 @@ Sets the value of BackfilledPlayers_Optional and also sets BackfilledPlayers_IsS
 #### `public inline void `[`ClearBackfilledPlayers`](#structFRHAPI__AcknowledgeBackfillResponse_1a5df126a7e77babbaedc697a42980a889)`()` <a id="structFRHAPI__AcknowledgeBackfillResponse_1a5df126a7e77babbaedc697a42980a889"></a>
 
 Clears the value of BackfilledPlayers_Optional and sets BackfilledPlayers_IsSet to false.
+
+#### `public inline bool `[`IsBackfilledPlayersSet`](#structFRHAPI__AcknowledgeBackfillResponse_1a7a58bc88e55d1153a3cac4ed6a172e01)`() const` <a id="structFRHAPI__AcknowledgeBackfillResponse_1a7a58bc88e55d1153a3cac4ed6a172e01"></a>
+
+Checks whether BackfilledPlayers_Optional has been set.
 

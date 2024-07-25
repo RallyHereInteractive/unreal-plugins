@@ -27,8 +27,8 @@ DEPRECATED - V1 Configuration about a specific queue.
 `public int32 `[`MinPlayersPerSide`](#structFRHAPI__QueueConfig_1a14bbcf2815246b9cdd65bca56301fb86) | The minimum number of players that can be on each team.
 `public int32 `[`MaxQueueGroupSize`](#structFRHAPI__QueueConfig_1aaa59215391fb9cc4e64f60de6a63bfe4) | The maximum size of a group that can join this queue.
 `public FGuid `[`MatchMakingTemplateGroupId`](#structFRHAPI__QueueConfig_1accaccf9098ad83a60810fd4579e6c9ad) | ID for which group of matchmaking templates/rules will be used when joining this queue.
-`public virtual bool `[`FromJson`](#structFRHAPI__QueueConfig_1afa46d1b47a820d16fb78e603f8e97056)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__QueueConfig_1a6bfcc693d3b707e273c68ffced461c9f)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__QueueConfig_1a1754821bb89c570ece1ca50c70a65ce5)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__QueueConfig_1a2d5682e22374d0a916cb9bb863ade5ef)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetQueueId`](#structFRHAPI__QueueConfig_1afbb7596094bb006f2709ede4d235583a)`()` | Gets the value of QueueId.
 `public inline const FString & `[`GetQueueId`](#structFRHAPI__QueueConfig_1a7531a7aa89e0f4f15bab9d171395b721)`() const` | Gets the value of QueueId.
 `public inline void `[`SetQueueId`](#structFRHAPI__QueueConfig_1ad7653c035d7fb59ea0c279b8672ec190)`(const FString & NewValue)` | Sets the value of QueueId.
@@ -108,7 +108,7 @@ The maximum size of a group that can join this queue.
 
 ID for which group of matchmaking templates/rules will be used when joining this queue.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__QueueConfig_1afa46d1b47a820d16fb78e603f8e97056)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__QueueConfig_1afa46d1b47a820d16fb78e603f8e97056"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__QueueConfig_1a1754821bb89c570ece1ca50c70a65ce5)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__QueueConfig_1a1754821bb89c570ece1ca50c70a65ce5"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -118,7 +118,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__QueueConfig_1a6bfcc693d3b707e273c68ffced461c9f)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__QueueConfig_1a6bfcc693d3b707e273c68ffced461c9f"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__QueueConfig_1a2d5682e22374d0a916cb9bb863ade5ef)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__QueueConfig_1a2d5682e22374d0a916cb9bb863ade5ef"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 

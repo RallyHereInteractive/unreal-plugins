@@ -24,8 +24,8 @@ Response body for creating a new Inventory Session.
 `public bool `[`SessionPlatform_IsSet`](#structFRHAPI__InventorySessionCreateResponse_1ae496f3fc0e9dacad0167098af825417f) | true if SessionPlatform_Optional has been set to a value
 `public FString `[`OrderId_Optional`](#structFRHAPI__InventorySessionCreateResponse_1a7e3679e3a4e2ebec87d611b697f81b81) | The ID of the Order generated for any Loot given during the creation of the Inventory Session.
 `public bool `[`OrderId_IsSet`](#structFRHAPI__InventorySessionCreateResponse_1a3925816cbf9fda72b6893fb3380a3f88) | true if OrderId_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__InventorySessionCreateResponse_1ae9b690d82bf214d168849030a14cf65f)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__InventorySessionCreateResponse_1a37c0a3f8b429ba26ed669bf454d5db21)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__InventorySessionCreateResponse_1a24c463406ed41d4b1e97ba729e14d788)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__InventorySessionCreateResponse_1a0f684c58af0946176090a1d12509e21c)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetSessionId`](#structFRHAPI__InventorySessionCreateResponse_1a77aeee0f1ae5d7a103ff24d386ddcd55)`()` | Gets the value of SessionId.
 `public inline const FString & `[`GetSessionId`](#structFRHAPI__InventorySessionCreateResponse_1a19c5a7257ae09c490d41069927aa775b)`() const` | Gets the value of SessionId.
 `public inline void `[`SetSessionId`](#structFRHAPI__InventorySessionCreateResponse_1acfb8332ea9950663a8446e9faed936a7)`(const FString & NewValue)` | Sets the value of SessionId.
@@ -39,6 +39,7 @@ Response body for creating a new Inventory Session.
 `public inline void `[`SetSessionPlatform`](#structFRHAPI__InventorySessionCreateResponse_1ae0d730f76b1427ff006277173b7141e7)`(const ERHAPI_Platform & NewValue)` | Sets the value of SessionPlatform_Optional and also sets SessionPlatform_IsSet to true.
 `public inline void `[`SetSessionPlatform`](#structFRHAPI__InventorySessionCreateResponse_1afe5cdccfc999eb6b3d37c7ba1cc70d74)`(ERHAPI_Platform && NewValue)` | Sets the value of SessionPlatform_Optional and also sets SessionPlatform_IsSet to true using move semantics.
 `public inline void `[`ClearSessionPlatform`](#structFRHAPI__InventorySessionCreateResponse_1adbc958d59e8c8c174c36ed12ce9fd852)`()` | Clears the value of SessionPlatform_Optional and sets SessionPlatform_IsSet to false.
+`public inline bool `[`IsSessionPlatformSet`](#structFRHAPI__InventorySessionCreateResponse_1a63af6ded70a0355b28416b1e1ac9a241)`() const` | Checks whether SessionPlatform_Optional has been set.
 `public inline FString & `[`GetOrderId`](#structFRHAPI__InventorySessionCreateResponse_1a5908f55863626ef4fcfd5306f593ec1f)`()` | Gets the value of OrderId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetOrderId`](#structFRHAPI__InventorySessionCreateResponse_1ae428b644cc5cb9674d1396df83521554)`() const` | Gets the value of OrderId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetOrderId`](#structFRHAPI__InventorySessionCreateResponse_1a20c290568e3235d485fff45c02995eb5)`(const FString & DefaultValue) const` | Gets the value of OrderId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -48,6 +49,7 @@ Response body for creating a new Inventory Session.
 `public inline void `[`SetOrderId`](#structFRHAPI__InventorySessionCreateResponse_1a05aa80d05259c503e1a87ae1ff5f0d15)`(const FString & NewValue)` | Sets the value of OrderId_Optional and also sets OrderId_IsSet to true.
 `public inline void `[`SetOrderId`](#structFRHAPI__InventorySessionCreateResponse_1a2c4be0f3e86c23fa07ec9dc29254ec3e)`(FString && NewValue)` | Sets the value of OrderId_Optional and also sets OrderId_IsSet to true using move semantics.
 `public inline void `[`ClearOrderId`](#structFRHAPI__InventorySessionCreateResponse_1a4153c08a7d83d6edff4c3368e7685910)`()` | Clears the value of OrderId_Optional and sets OrderId_IsSet to false.
+`public inline bool `[`IsOrderIdSet`](#structFRHAPI__InventorySessionCreateResponse_1a3820310ce7a086fb45fab4638b0322d8)`() const` | Checks whether OrderId_Optional has been set.
 
 ### Members
 
@@ -71,7 +73,7 @@ The ID of the Order generated for any Loot given during the creation of the Inve
 
 true if OrderId_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__InventorySessionCreateResponse_1ae9b690d82bf214d168849030a14cf65f)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__InventorySessionCreateResponse_1ae9b690d82bf214d168849030a14cf65f"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__InventorySessionCreateResponse_1a24c463406ed41d4b1e97ba729e14d788)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__InventorySessionCreateResponse_1a24c463406ed41d4b1e97ba729e14d788"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -81,7 +83,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__InventorySessionCreateResponse_1a37c0a3f8b429ba26ed669bf454d5db21)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__InventorySessionCreateResponse_1a37c0a3f8b429ba26ed669bf454d5db21"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__InventorySessionCreateResponse_1a0f684c58af0946176090a1d12509e21c)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__InventorySessionCreateResponse_1a0f684c58af0946176090a1d12509e21c"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -140,6 +142,10 @@ Sets the value of SessionPlatform_Optional and also sets SessionPlatform_IsSet t
 
 Clears the value of SessionPlatform_Optional and sets SessionPlatform_IsSet to false.
 
+#### `public inline bool `[`IsSessionPlatformSet`](#structFRHAPI__InventorySessionCreateResponse_1a63af6ded70a0355b28416b1e1ac9a241)`() const` <a id="structFRHAPI__InventorySessionCreateResponse_1a63af6ded70a0355b28416b1e1ac9a241"></a>
+
+Checks whether SessionPlatform_Optional has been set.
+
 #### `public inline FString & `[`GetOrderId`](#structFRHAPI__InventorySessionCreateResponse_1a5908f55863626ef4fcfd5306f593ec1f)`()` <a id="structFRHAPI__InventorySessionCreateResponse_1a5908f55863626ef4fcfd5306f593ec1f"></a>
 
 Gets the value of OrderId_Optional, regardless of it having been set.
@@ -175,4 +181,8 @@ Sets the value of OrderId_Optional and also sets OrderId_IsSet to true using mov
 #### `public inline void `[`ClearOrderId`](#structFRHAPI__InventorySessionCreateResponse_1a4153c08a7d83d6edff4c3368e7685910)`()` <a id="structFRHAPI__InventorySessionCreateResponse_1a4153c08a7d83d6edff4c3368e7685910"></a>
 
 Clears the value of OrderId_Optional and sets OrderId_IsSet to false.
+
+#### `public inline bool `[`IsOrderIdSet`](#structFRHAPI__InventorySessionCreateResponse_1a3820310ce7a086fb45fab4638b0322d8)`() const` <a id="structFRHAPI__InventorySessionCreateResponse_1a3820310ce7a086fb45fab4638b0322d8"></a>
+
+Checks whether OrderId_Optional has been set.
 

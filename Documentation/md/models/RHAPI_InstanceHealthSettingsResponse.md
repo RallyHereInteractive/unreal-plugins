@@ -20,8 +20,8 @@ struct FRHAPI_InstanceHealthSettingsResponse
 `public int32 `[`CadenceSeconds`](#structFRHAPI__InstanceHealthSettingsResponse_1a331b8938443e0f395989821e67608268) | How often we expect instance health checks to occur.
 `public float `[`UnhealthyHealthCheckPercentage`](#structFRHAPI__InstanceHealthSettingsResponse_1a5d21d8d8ab047995a10b8bc9991bc598) | What percentage of health checks must be missing before an instance's status becomes unhealthy.
 `public int32 `[`MissedChecksBeforeUnknown`](#structFRHAPI__InstanceHealthSettingsResponse_1a1d881188714ca34fcc840c46738fa9d7) | How many health checks we must miss in a row before an instance's status becomes unknown.
-`public virtual bool `[`FromJson`](#structFRHAPI__InstanceHealthSettingsResponse_1ad1514bfa2ff104ffeee56d72fe830275)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__InstanceHealthSettingsResponse_1ac2b7bb8984eb933795253d167b9ef335)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__InstanceHealthSettingsResponse_1a5548c4636a771fa158b544190e11486f)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__InstanceHealthSettingsResponse_1a7c735631968500e9f5e15ed55d9e8f9f)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline int32 & `[`GetCadenceSeconds`](#structFRHAPI__InstanceHealthSettingsResponse_1aa2176c0e6d984485a69b90b574216e5e)`()` | Gets the value of CadenceSeconds.
 `public inline const int32 & `[`GetCadenceSeconds`](#structFRHAPI__InstanceHealthSettingsResponse_1aeb95560afa937f11bfda49412f6fc386)`() const` | Gets the value of CadenceSeconds.
 `public inline void `[`SetCadenceSeconds`](#structFRHAPI__InstanceHealthSettingsResponse_1ad309c1a1ebd7872ac5242a2b708ebd65)`(const int32 & NewValue)` | Sets the value of CadenceSeconds.
@@ -53,7 +53,7 @@ What percentage of health checks must be missing before an instance's status bec
 
 How many health checks we must miss in a row before an instance's status becomes unknown.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__InstanceHealthSettingsResponse_1ad1514bfa2ff104ffeee56d72fe830275)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__InstanceHealthSettingsResponse_1ad1514bfa2ff104ffeee56d72fe830275"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__InstanceHealthSettingsResponse_1a5548c4636a771fa158b544190e11486f)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__InstanceHealthSettingsResponse_1a5548c4636a771fa158b544190e11486f"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -63,7 +63,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__InstanceHealthSettingsResponse_1ac2b7bb8984eb933795253d167b9ef335)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__InstanceHealthSettingsResponse_1ac2b7bb8984eb933795253d167b9ef335"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__InstanceHealthSettingsResponse_1a7c735631968500e9f5e15ed55d9e8f9f)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__InstanceHealthSettingsResponse_1a7c735631968500e9f5e15ed55d9e8f9f"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 

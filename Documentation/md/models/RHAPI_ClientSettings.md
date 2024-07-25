@@ -24,8 +24,8 @@ A player&#39;s platform and input settings.
 `public ERHAPI_Platform `[`Platform_Optional`](#structFRHAPI__ClientSettings_1a3cda3757a464c85429c807e30aafb5c9) | Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. At least one of the two is required.
 `public bool `[`Platform_IsSet`](#structFRHAPI__ClientSettings_1a431c764ade30fe22fdaed9059dffbfa4) | true if Platform_Optional has been set to a value
 `public ERHAPI_Input `[`Input`](#structFRHAPI__ClientSettings_1a7bcfb29cf8b0184e366256a614f39278) | Which input type this client is using.
-`public virtual bool `[`FromJson`](#structFRHAPI__ClientSettings_1a977191512b6cdb35ac99d27caced9a04)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__ClientSettings_1a449d091dfaae56c597c68b4913674984)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__ClientSettings_1a5022e2daded462f99927edbd94981a43)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__ClientSettings_1aa686bf40f9a3c9f9046f2dc50ef5b161)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_PlatformID & `[`GetPlatformId`](#structFRHAPI__ClientSettings_1ababdad725c89a53c60af202e4390d584)`()` | Gets the value of PlatformId_Optional, regardless of it having been set.
 `public inline const ERHAPI_PlatformID & `[`GetPlatformId`](#structFRHAPI__ClientSettings_1ae7eed8a38479ae108c355641582b0a55)`() const` | Gets the value of PlatformId_Optional, regardless of it having been set.
 `public inline const ERHAPI_PlatformID & `[`GetPlatformId`](#structFRHAPI__ClientSettings_1acdebe91f0e01ccac31a4eb29e67ac278)`(const ERHAPI_PlatformID & DefaultValue) const` | Gets the value of PlatformId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -35,6 +35,7 @@ A player&#39;s platform and input settings.
 `public inline void `[`SetPlatformId`](#structFRHAPI__ClientSettings_1a2e349e7e7a7e64f9240bbdc26e5f2d45)`(const ERHAPI_PlatformID & NewValue)` | Sets the value of PlatformId_Optional and also sets PlatformId_IsSet to true.
 `public inline void `[`SetPlatformId`](#structFRHAPI__ClientSettings_1a0fcd9aa6004e107ff3c88932f80b3d4a)`(ERHAPI_PlatformID && NewValue)` | Sets the value of PlatformId_Optional and also sets PlatformId_IsSet to true using move semantics.
 `public inline void `[`ClearPlatformId`](#structFRHAPI__ClientSettings_1a664e3f1014412b0595ccc0af264539d8)`()` | Clears the value of PlatformId_Optional and sets PlatformId_IsSet to false.
+`public inline bool `[`IsPlatformIdSet`](#structFRHAPI__ClientSettings_1af3a9f8f60641a95599d643fd987fd004)`() const` | Checks whether PlatformId_Optional has been set.
 `public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__ClientSettings_1aae02bf1e6b936d62341704c89dc12234)`()` | Gets the value of Platform_Optional, regardless of it having been set.
 `public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__ClientSettings_1aada5b2c1fd356a1896e31a81dfbf86cb)`() const` | Gets the value of Platform_Optional, regardless of it having been set.
 `public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__ClientSettings_1a87db38bba214f5f0bfd4cebdb5399de3)`(const ERHAPI_Platform & DefaultValue) const` | Gets the value of Platform_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -44,6 +45,7 @@ A player&#39;s platform and input settings.
 `public inline void `[`SetPlatform`](#structFRHAPI__ClientSettings_1a1be22efee7d1c5cbb10adc67cd6d281f)`(const ERHAPI_Platform & NewValue)` | Sets the value of Platform_Optional and also sets Platform_IsSet to true.
 `public inline void `[`SetPlatform`](#structFRHAPI__ClientSettings_1adb02a093433bb593f4677d37de4da4f4)`(ERHAPI_Platform && NewValue)` | Sets the value of Platform_Optional and also sets Platform_IsSet to true using move semantics.
 `public inline void `[`ClearPlatform`](#structFRHAPI__ClientSettings_1ac631d7b1d552180893eee6278baca67d)`()` | Clears the value of Platform_Optional and sets Platform_IsSet to false.
+`public inline bool `[`IsPlatformSet`](#structFRHAPI__ClientSettings_1a7f3c89d65f94a238cc25603631c750c3)`() const` | Checks whether Platform_Optional has been set.
 `public inline ERHAPI_Input & `[`GetInput`](#structFRHAPI__ClientSettings_1a93d46c212f51efcac6bc6a56655367ce)`()` | Gets the value of Input.
 `public inline const ERHAPI_Input & `[`GetInput`](#structFRHAPI__ClientSettings_1a987756f572f84cc101ec31fef828a1b9)`() const` | Gets the value of Input.
 `public inline void `[`SetInput`](#structFRHAPI__ClientSettings_1a76aa599df8c174ff30b606a756bd93eb)`(const ERHAPI_Input & NewValue)` | Sets the value of Input.
@@ -71,7 +73,7 @@ true if Platform_Optional has been set to a value
 
 Which input type this client is using.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__ClientSettings_1a977191512b6cdb35ac99d27caced9a04)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__ClientSettings_1a977191512b6cdb35ac99d27caced9a04"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__ClientSettings_1a5022e2daded462f99927edbd94981a43)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__ClientSettings_1a5022e2daded462f99927edbd94981a43"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -81,7 +83,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__ClientSettings_1a449d091dfaae56c597c68b4913674984)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__ClientSettings_1a449d091dfaae56c597c68b4913674984"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__ClientSettings_1aa686bf40f9a3c9f9046f2dc50ef5b161)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__ClientSettings_1aa686bf40f9a3c9f9046f2dc50ef5b161"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -124,6 +126,10 @@ Sets the value of PlatformId_Optional and also sets PlatformId_IsSet to true usi
 
 Clears the value of PlatformId_Optional and sets PlatformId_IsSet to false.
 
+#### `public inline bool `[`IsPlatformIdSet`](#structFRHAPI__ClientSettings_1af3a9f8f60641a95599d643fd987fd004)`() const` <a id="structFRHAPI__ClientSettings_1af3a9f8f60641a95599d643fd987fd004"></a>
+
+Checks whether PlatformId_Optional has been set.
+
 #### `public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__ClientSettings_1aae02bf1e6b936d62341704c89dc12234)`()` <a id="structFRHAPI__ClientSettings_1aae02bf1e6b936d62341704c89dc12234"></a>
 
 Gets the value of Platform_Optional, regardless of it having been set.
@@ -159,6 +165,10 @@ Sets the value of Platform_Optional and also sets Platform_IsSet to true using m
 #### `public inline void `[`ClearPlatform`](#structFRHAPI__ClientSettings_1ac631d7b1d552180893eee6278baca67d)`()` <a id="structFRHAPI__ClientSettings_1ac631d7b1d552180893eee6278baca67d"></a>
 
 Clears the value of Platform_Optional and sets Platform_IsSet to false.
+
+#### `public inline bool `[`IsPlatformSet`](#structFRHAPI__ClientSettings_1a7f3c89d65f94a238cc25603631c750c3)`() const` <a id="structFRHAPI__ClientSettings_1a7f3c89d65f94a238cc25603631c750c3"></a>
+
+Checks whether Platform_Optional has been set.
 
 #### `public inline ERHAPI_Input & `[`GetInput`](#structFRHAPI__ClientSettings_1a93d46c212f51efcac6bc6a56655367ce)`()` <a id="structFRHAPI__ClientSettings_1a93d46c212f51efcac6bc6a56655367ce"></a>
 

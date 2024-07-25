@@ -27,8 +27,8 @@ OAuth token exchange request.
 `public bool `[`AcceptedTos_IsSet`](#structFRHAPI__OAuthTokenExchange_1aae1fe88f23dccedfab5821827648f8d5) | true if AcceptedTos_Optional has been set to a value
 `public bool `[`AcceptedPrivacyPolicy_Optional`](#structFRHAPI__OAuthTokenExchange_1aae6ed503678834c1860823dd81e1443b) | If true, the user has accepted the Privacy Policy.
 `public bool `[`AcceptedPrivacyPolicy_IsSet`](#structFRHAPI__OAuthTokenExchange_1a17e4775567e864d1707a3fd165f27f18) | true if AcceptedPrivacyPolicy_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__OAuthTokenExchange_1ab682bf4d98710840e7a23f2ab2688818)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__OAuthTokenExchange_1a3ca80a156dc9963e6ae8a2bae70404fa)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__OAuthTokenExchange_1afe430415050eb47e3c782e9c12260995)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__OAuthTokenExchange_1a8da27e302bc6b29df2bddd9995545ddf)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_OAuthTokenEchangeGrantType & `[`GetGrantType`](#structFRHAPI__OAuthTokenExchange_1a6ee282c5eb8adbcf0eb170ea3e22f0ba)`()` | Gets the value of GrantType.
 `public inline const ERHAPI_OAuthTokenEchangeGrantType & `[`GetGrantType`](#structFRHAPI__OAuthTokenExchange_1a7ab8a47a8a149e23f9ae553e431dc30c)`() const` | Gets the value of GrantType.
 `public inline void `[`SetGrantType`](#structFRHAPI__OAuthTokenExchange_1a36b23851bb1928b74e9b068ad53d1eb6)`(const ERHAPI_OAuthTokenEchangeGrantType & NewValue)` | Sets the value of GrantType.
@@ -46,6 +46,7 @@ OAuth token exchange request.
 `public inline void `[`SetAcceptedEula`](#structFRHAPI__OAuthTokenExchange_1a179fd71ff9b581d3804f232dc5a2c7cf)`(const bool & NewValue)` | Sets the value of AcceptedEula_Optional and also sets AcceptedEula_IsSet to true.
 `public inline void `[`SetAcceptedEula`](#structFRHAPI__OAuthTokenExchange_1af7feca6bf184b6bfcdd7264af0b36b8c)`(bool && NewValue)` | Sets the value of AcceptedEula_Optional and also sets AcceptedEula_IsSet to true using move semantics.
 `public inline void `[`ClearAcceptedEula`](#structFRHAPI__OAuthTokenExchange_1a0dfd9d4f91feb3ee973bf6cf38171fba)`()` | Clears the value of AcceptedEula_Optional and sets AcceptedEula_IsSet to false.
+`public inline bool `[`IsAcceptedEulaSet`](#structFRHAPI__OAuthTokenExchange_1a1175ffb181bd3d493fac9de194cd20bc)`() const` | Checks whether AcceptedEula_Optional has been set.
 `public inline bool `[`IsAcceptedEulaDefaultValue`](#structFRHAPI__OAuthTokenExchange_1a528451ab043b5a886b59f59ca182ca11)`() const` | Returns true if AcceptedEula_Optional is set and matches the default value.
 `public inline void `[`SetAcceptedEulaToDefault`](#structFRHAPI__OAuthTokenExchange_1a2a068a9b1646965e8fa03cc111077f24)`()` | Sets the value of AcceptedEula_Optional to its default and also sets AcceptedEula_IsSet to true.
 `public inline bool & `[`GetAcceptedTos`](#structFRHAPI__OAuthTokenExchange_1af219f6740a560a7800f340287beee74e)`()` | Gets the value of AcceptedTos_Optional, regardless of it having been set.
@@ -57,6 +58,7 @@ OAuth token exchange request.
 `public inline void `[`SetAcceptedTos`](#structFRHAPI__OAuthTokenExchange_1a3c509a4b8ad3112b57e56f39bb77b1fd)`(const bool & NewValue)` | Sets the value of AcceptedTos_Optional and also sets AcceptedTos_IsSet to true.
 `public inline void `[`SetAcceptedTos`](#structFRHAPI__OAuthTokenExchange_1ae3230daeb9781a70ad35740e21b8fffd)`(bool && NewValue)` | Sets the value of AcceptedTos_Optional and also sets AcceptedTos_IsSet to true using move semantics.
 `public inline void `[`ClearAcceptedTos`](#structFRHAPI__OAuthTokenExchange_1abb37f9c9c203a7419b816d7590ad6536)`()` | Clears the value of AcceptedTos_Optional and sets AcceptedTos_IsSet to false.
+`public inline bool `[`IsAcceptedTosSet`](#structFRHAPI__OAuthTokenExchange_1abab9a827d05ea22dc581a26322187d5e)`() const` | Checks whether AcceptedTos_Optional has been set.
 `public inline bool `[`IsAcceptedTosDefaultValue`](#structFRHAPI__OAuthTokenExchange_1a54fb5e2dda724b25ab73be0c252e90d1)`() const` | Returns true if AcceptedTos_Optional is set and matches the default value.
 `public inline void `[`SetAcceptedTosToDefault`](#structFRHAPI__OAuthTokenExchange_1a5c57ff1fe72114cf8238824dfee5077c)`()` | Sets the value of AcceptedTos_Optional to its default and also sets AcceptedTos_IsSet to true.
 `public inline bool & `[`GetAcceptedPrivacyPolicy`](#structFRHAPI__OAuthTokenExchange_1afe6a55ea73d5c8c3d965dabb878b52b1)`()` | Gets the value of AcceptedPrivacyPolicy_Optional, regardless of it having been set.
@@ -68,6 +70,7 @@ OAuth token exchange request.
 `public inline void `[`SetAcceptedPrivacyPolicy`](#structFRHAPI__OAuthTokenExchange_1afc6d343bfc865c4079b288621307cbc2)`(const bool & NewValue)` | Sets the value of AcceptedPrivacyPolicy_Optional and also sets AcceptedPrivacyPolicy_IsSet to true.
 `public inline void `[`SetAcceptedPrivacyPolicy`](#structFRHAPI__OAuthTokenExchange_1a9a3e12eac78b8295b4da499e8154f42c)`(bool && NewValue)` | Sets the value of AcceptedPrivacyPolicy_Optional and also sets AcceptedPrivacyPolicy_IsSet to true using move semantics.
 `public inline void `[`ClearAcceptedPrivacyPolicy`](#structFRHAPI__OAuthTokenExchange_1addf1109e7e4b70e5492411ec62c83fb1)`()` | Clears the value of AcceptedPrivacyPolicy_Optional and sets AcceptedPrivacyPolicy_IsSet to false.
+`public inline bool `[`IsAcceptedPrivacyPolicySet`](#structFRHAPI__OAuthTokenExchange_1ae888673d027ce6a836b183049fd5405d)`() const` | Checks whether AcceptedPrivacyPolicy_Optional has been set.
 `public inline bool `[`IsAcceptedPrivacyPolicyDefaultValue`](#structFRHAPI__OAuthTokenExchange_1ae5beea9b982bdfe51052d2b1ed011776)`() const` | Returns true if AcceptedPrivacyPolicy_Optional is set and matches the default value.
 `public inline void `[`SetAcceptedPrivacyPolicyToDefault`](#structFRHAPI__OAuthTokenExchange_1a3523911676aa77a4facdfba9699a4355)`()` | Sets the value of AcceptedPrivacyPolicy_Optional to its default and also sets AcceptedPrivacyPolicy_IsSet to true.
 
@@ -105,7 +108,7 @@ If true, the user has accepted the Privacy Policy.
 
 true if AcceptedPrivacyPolicy_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__OAuthTokenExchange_1ab682bf4d98710840e7a23f2ab2688818)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__OAuthTokenExchange_1ab682bf4d98710840e7a23f2ab2688818"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__OAuthTokenExchange_1afe430415050eb47e3c782e9c12260995)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__OAuthTokenExchange_1afe430415050eb47e3c782e9c12260995"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -115,7 +118,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__OAuthTokenExchange_1a3ca80a156dc9963e6ae8a2bae70404fa)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__OAuthTokenExchange_1a3ca80a156dc9963e6ae8a2bae70404fa"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__OAuthTokenExchange_1a8da27e302bc6b29df2bddd9995545ddf)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__OAuthTokenExchange_1a8da27e302bc6b29df2bddd9995545ddf"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -190,6 +193,10 @@ Sets the value of AcceptedEula_Optional and also sets AcceptedEula_IsSet to true
 
 Clears the value of AcceptedEula_Optional and sets AcceptedEula_IsSet to false.
 
+#### `public inline bool `[`IsAcceptedEulaSet`](#structFRHAPI__OAuthTokenExchange_1a1175ffb181bd3d493fac9de194cd20bc)`() const` <a id="structFRHAPI__OAuthTokenExchange_1a1175ffb181bd3d493fac9de194cd20bc"></a>
+
+Checks whether AcceptedEula_Optional has been set.
+
 #### `public inline bool `[`IsAcceptedEulaDefaultValue`](#structFRHAPI__OAuthTokenExchange_1a528451ab043b5a886b59f59ca182ca11)`() const` <a id="structFRHAPI__OAuthTokenExchange_1a528451ab043b5a886b59f59ca182ca11"></a>
 
 Returns true if AcceptedEula_Optional is set and matches the default value.
@@ -234,6 +241,10 @@ Sets the value of AcceptedTos_Optional and also sets AcceptedTos_IsSet to true u
 
 Clears the value of AcceptedTos_Optional and sets AcceptedTos_IsSet to false.
 
+#### `public inline bool `[`IsAcceptedTosSet`](#structFRHAPI__OAuthTokenExchange_1abab9a827d05ea22dc581a26322187d5e)`() const` <a id="structFRHAPI__OAuthTokenExchange_1abab9a827d05ea22dc581a26322187d5e"></a>
+
+Checks whether AcceptedTos_Optional has been set.
+
 #### `public inline bool `[`IsAcceptedTosDefaultValue`](#structFRHAPI__OAuthTokenExchange_1a54fb5e2dda724b25ab73be0c252e90d1)`() const` <a id="structFRHAPI__OAuthTokenExchange_1a54fb5e2dda724b25ab73be0c252e90d1"></a>
 
 Returns true if AcceptedTos_Optional is set and matches the default value.
@@ -277,6 +288,10 @@ Sets the value of AcceptedPrivacyPolicy_Optional and also sets AcceptedPrivacyPo
 #### `public inline void `[`ClearAcceptedPrivacyPolicy`](#structFRHAPI__OAuthTokenExchange_1addf1109e7e4b70e5492411ec62c83fb1)`()` <a id="structFRHAPI__OAuthTokenExchange_1addf1109e7e4b70e5492411ec62c83fb1"></a>
 
 Clears the value of AcceptedPrivacyPolicy_Optional and sets AcceptedPrivacyPolicy_IsSet to false.
+
+#### `public inline bool `[`IsAcceptedPrivacyPolicySet`](#structFRHAPI__OAuthTokenExchange_1ae888673d027ce6a836b183049fd5405d)`() const` <a id="structFRHAPI__OAuthTokenExchange_1ae888673d027ce6a836b183049fd5405d"></a>
+
+Checks whether AcceptedPrivacyPolicy_Optional has been set.
 
 #### `public inline bool `[`IsAcceptedPrivacyPolicyDefaultValue`](#structFRHAPI__OAuthTokenExchange_1ae5beea9b982bdfe51052d2b1ed011776)`() const` <a id="structFRHAPI__OAuthTokenExchange_1ae5beea9b982bdfe51052d2b1ed011776"></a>
 

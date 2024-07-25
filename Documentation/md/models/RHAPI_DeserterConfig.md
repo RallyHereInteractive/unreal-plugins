@@ -20,8 +20,8 @@ struct FRHAPI_DeserterConfig
 `public FGuid `[`DeserterId`](#structFRHAPI__DeserterConfig_1a42bd72546bd60dd7b5b6074e2e7e81a9) | Unique id for this set of deserter config.
 `public FDateTime `[`LastClearedTimestamp_Optional`](#structFRHAPI__DeserterConfig_1aa10fbedf77df6acf14c1baadbd85aed9) | Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone.
 `public bool `[`LastClearedTimestamp_IsSet`](#structFRHAPI__DeserterConfig_1a142a8e7dd0dd85a701c846e9e83240cb) | true if LastClearedTimestamp_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__DeserterConfig_1ab950edf6f534fd2b2ef88f7b2568f116)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__DeserterConfig_1a4c6d6628ce9e99d9c9f1fc03121bfa51)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__DeserterConfig_1aa56f80606556b57ee53c5c5fece60594)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__DeserterConfig_1a69ea1a70bdbe90e3f423288b58f91d25)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FGuid & `[`GetDeserterId`](#structFRHAPI__DeserterConfig_1abef8c3d4985a16c1eb40d4201d8c2936)`()` | Gets the value of DeserterId.
 `public inline const FGuid & `[`GetDeserterId`](#structFRHAPI__DeserterConfig_1a190a0c787e262b1567635044f20f93b5)`() const` | Gets the value of DeserterId.
 `public inline void `[`SetDeserterId`](#structFRHAPI__DeserterConfig_1af62955f81dcc7402a4966c62fc7951d0)`(const FGuid & NewValue)` | Sets the value of DeserterId.
@@ -35,6 +35,7 @@ struct FRHAPI_DeserterConfig
 `public inline void `[`SetLastClearedTimestamp`](#structFRHAPI__DeserterConfig_1aba498c071f117a16558e996462115ed2)`(const FDateTime & NewValue)` | Sets the value of LastClearedTimestamp_Optional and also sets LastClearedTimestamp_IsSet to true.
 `public inline void `[`SetLastClearedTimestamp`](#structFRHAPI__DeserterConfig_1a6322addc289964692a5f20845ad5a54a)`(FDateTime && NewValue)` | Sets the value of LastClearedTimestamp_Optional and also sets LastClearedTimestamp_IsSet to true using move semantics.
 `public inline void `[`ClearLastClearedTimestamp`](#structFRHAPI__DeserterConfig_1a2759353d424262873a9d4cbf842aa670)`()` | Clears the value of LastClearedTimestamp_Optional and sets LastClearedTimestamp_IsSet to false.
+`public inline bool `[`IsLastClearedTimestampSet`](#structFRHAPI__DeserterConfig_1ae958b92cae270f9d52ebac2cd4116c96)`() const` | Checks whether LastClearedTimestamp_Optional has been set.
 
 ### Members
 
@@ -50,7 +51,7 @@ Datetime that enforces that a timezone is given. Unix timestamps are allowed and
 
 true if LastClearedTimestamp_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__DeserterConfig_1ab950edf6f534fd2b2ef88f7b2568f116)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__DeserterConfig_1ab950edf6f534fd2b2ef88f7b2568f116"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__DeserterConfig_1aa56f80606556b57ee53c5c5fece60594)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__DeserterConfig_1aa56f80606556b57ee53c5c5fece60594"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -60,7 +61,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__DeserterConfig_1a4c6d6628ce9e99d9c9f1fc03121bfa51)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__DeserterConfig_1a4c6d6628ce9e99d9c9f1fc03121bfa51"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__DeserterConfig_1a69ea1a70bdbe90e3f423288b58f91d25)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__DeserterConfig_1a69ea1a70bdbe90e3f423288b58f91d25"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -118,4 +119,8 @@ Sets the value of LastClearedTimestamp_Optional and also sets LastClearedTimesta
 #### `public inline void `[`ClearLastClearedTimestamp`](#structFRHAPI__DeserterConfig_1a2759353d424262873a9d4cbf842aa670)`()` <a id="structFRHAPI__DeserterConfig_1a2759353d424262873a9d4cbf842aa670"></a>
 
 Clears the value of LastClearedTimestamp_Optional and sets LastClearedTimestamp_IsSet to false.
+
+#### `public inline bool `[`IsLastClearedTimestampSet`](#structFRHAPI__DeserterConfig_1ae958b92cae270f9d52ebac2cd4116c96)`() const` <a id="structFRHAPI__DeserterConfig_1ae958b92cae270f9d52ebac2cd4116c96"></a>
+
+Checks whether LastClearedTimestamp_Optional has been set.
 

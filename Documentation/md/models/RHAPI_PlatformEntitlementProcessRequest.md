@@ -26,8 +26,8 @@ Request to process a platform entitlement.
 `public ERHAPI_ClientType `[`ClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1a9674cba794d55a042afd6040cbf260a7) | client type this purchase was made on
 `public TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > `[`Entitlements_Optional`](#structFRHAPI__PlatformEntitlementProcessRequest_1adffb3e1d7d754a5bf42491736b963426) | Platform entitlements to process.
 `public bool `[`Entitlements_IsSet`](#structFRHAPI__PlatformEntitlementProcessRequest_1a1182b812111a8390a0f9ba60649e0755) | true if Entitlements_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__PlatformEntitlementProcessRequest_1a4748b946408ef3779d62d3cc9518c16a)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PlatformEntitlementProcessRequest_1af0754b911184c7a6b5bb0efc399ff22b)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__PlatformEntitlementProcessRequest_1a9e7f9a55d5149972e8d855bc22610868)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__PlatformEntitlementProcessRequest_1adef119a7ac18670cd8386e221d83d64d)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1a51301f3004ef1dbbaf6340a1d18d5ff8)`()` | Gets the value of TransactionId.
 `public inline const FString & `[`GetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1aadf7387ad49aafa891f81900413c8df7)`() const` | Gets the value of TransactionId.
 `public inline void `[`SetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1a42684c88f2421073ff3aa5c93a4d92f4)`(const FString & NewValue)` | Sets the value of TransactionId.
@@ -57,6 +57,7 @@ Request to process a platform entitlement.
 `public inline void `[`SetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1a707f605277c2a1e3ad3b1ac4841dc16f)`(const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & NewValue)` | Sets the value of Entitlements_Optional and also sets Entitlements_IsSet to true.
 `public inline void `[`SetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1ad39bf35d93c1f427798647fba3aed0d8)`(TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > && NewValue)` | Sets the value of Entitlements_Optional and also sets Entitlements_IsSet to true using move semantics.
 `public inline void `[`ClearEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1a9493313ad553516ff62bf102065e1344)`()` | Clears the value of Entitlements_Optional and sets Entitlements_IsSet to false.
+`public inline bool `[`IsEntitlementsSet`](#structFRHAPI__PlatformEntitlementProcessRequest_1a36806eac5075f88434404615ad626627)`() const` | Checks whether Entitlements_Optional has been set.
 
 ### Members
 
@@ -88,7 +89,7 @@ Platform entitlements to process.
 
 true if Entitlements_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__PlatformEntitlementProcessRequest_1a4748b946408ef3779d62d3cc9518c16a)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a4748b946408ef3779d62d3cc9518c16a"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__PlatformEntitlementProcessRequest_1a9e7f9a55d5149972e8d855bc22610868)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a9e7f9a55d5149972e8d855bc22610868"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -98,7 +99,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PlatformEntitlementProcessRequest_1af0754b911184c7a6b5bb0efc399ff22b)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1af0754b911184c7a6b5bb0efc399ff22b"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PlatformEntitlementProcessRequest_1adef119a7ac18670cd8386e221d83d64d)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1adef119a7ac18670cd8386e221d83d64d"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -220,4 +221,8 @@ Sets the value of Entitlements_Optional and also sets Entitlements_IsSet to true
 #### `public inline void `[`ClearEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1a9493313ad553516ff62bf102065e1344)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a9493313ad553516ff62bf102065e1344"></a>
 
 Clears the value of Entitlements_Optional and sets Entitlements_IsSet to false.
+
+#### `public inline bool `[`IsEntitlementsSet`](#structFRHAPI__PlatformEntitlementProcessRequest_1a36806eac5075f88434404615ad626627)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a36806eac5075f88434404615ad626627"></a>
+
+Checks whether Entitlements_Optional has been set.
 

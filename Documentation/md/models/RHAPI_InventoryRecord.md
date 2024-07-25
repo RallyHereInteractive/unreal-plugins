@@ -31,8 +31,8 @@ Inventory Record for a Player.
 `public bool `[`Expires_IsSet`](#structFRHAPI__InventoryRecord_1abf43a037e93daea3697d69dfc7934661) | true if Expires_Optional has been set to a value
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__InventoryRecord_1a696afe05e8ced2be8839d4d5af228d8d) | Arbitrary map of data for this Inventory Record.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__InventoryRecord_1a9dc9fa9ebdd2679071fb816b57a17384) | true if CustomData_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__InventoryRecord_1a10e72b7ebba9fa0e15d29318a9fa7705)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__InventoryRecord_1a507d662df00fd0187e69a3cb3e6487cf)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__InventoryRecord_1ae7ede53a3c480ddb5181bbbdce0f4401)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__InventoryRecord_1a7cbee1b59c428463fc2bd6b5a68bc677)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FGuid & `[`GetInventoryId`](#structFRHAPI__InventoryRecord_1a94bb21199671283b41bfb6f26819da4b)`()` | Gets the value of InventoryId.
 `public inline const FGuid & `[`GetInventoryId`](#structFRHAPI__InventoryRecord_1a80004630cabe078cd5b608f3a7027827)`() const` | Gets the value of InventoryId.
 `public inline void `[`SetInventoryId`](#structFRHAPI__InventoryRecord_1a97a011ec53a3ee85bcc66ed4379ab49c)`(const FGuid & NewValue)` | Sets the value of InventoryId.
@@ -50,6 +50,7 @@ Inventory Record for a Player.
 `public inline void `[`SetLegacyInventoryId`](#structFRHAPI__InventoryRecord_1af0cdfd7c1dd8ed60995c9cbdaeabd31f)`(const int64 & NewValue)` | Sets the value of LegacyInventoryId_Optional and also sets LegacyInventoryId_IsSet to true.
 `public inline void `[`SetLegacyInventoryId`](#structFRHAPI__InventoryRecord_1ad7bd0fa8421616b7eda433e4e9c1f0ed)`(int64 && NewValue)` | Sets the value of LegacyInventoryId_Optional and also sets LegacyInventoryId_IsSet to true using move semantics.
 `public inline void `[`ClearLegacyInventoryId`](#structFRHAPI__InventoryRecord_1aaf472c325358c57db16dd0f9ebf59d92)`()` | Clears the value of LegacyInventoryId_Optional and sets LegacyInventoryId_IsSet to false.
+`public inline bool `[`IsLegacyInventoryIdSet`](#structFRHAPI__InventoryRecord_1a9c47b9059eaaa3d08efa878a56648fc0)`() const` | Checks whether LegacyInventoryId_Optional has been set.
 `public inline bool `[`IsLegacyInventoryIdDefaultValue`](#structFRHAPI__InventoryRecord_1a5e6439100c244b919e743144ab3955f9)`() const` | Returns true if LegacyInventoryId_Optional is set and matches the default value.
 `public inline void `[`SetLegacyInventoryIdToDefault`](#structFRHAPI__InventoryRecord_1a8c218ecf9118863b1763fc91d1d224da)`()` | Sets the value of LegacyInventoryId_Optional to its default and also sets LegacyInventoryId_IsSet to true.
 `public inline ERHAPI_InventoryBucket & `[`GetBucket`](#structFRHAPI__InventoryRecord_1a86d117f09a70be7dbea3798b492440af)`()` | Gets the value of Bucket_Optional, regardless of it having been set.
@@ -61,6 +62,7 @@ Inventory Record for a Player.
 `public inline void `[`SetBucket`](#structFRHAPI__InventoryRecord_1a4a46afc391dd427fa321233a751c076c)`(const ERHAPI_InventoryBucket & NewValue)` | Sets the value of Bucket_Optional and also sets Bucket_IsSet to true.
 `public inline void `[`SetBucket`](#structFRHAPI__InventoryRecord_1acd9fcb190ac768702963e4c1ae9380ed)`(ERHAPI_InventoryBucket && NewValue)` | Sets the value of Bucket_Optional and also sets Bucket_IsSet to true using move semantics.
 `public inline void `[`ClearBucket`](#structFRHAPI__InventoryRecord_1ab17dce2e9f368e3fc89f9830d1e6c6c9)`()` | Clears the value of Bucket_Optional and sets Bucket_IsSet to false.
+`public inline bool `[`IsBucketSet`](#structFRHAPI__InventoryRecord_1a43cbbe666518beef20e93be0e242bbfe)`() const` | Checks whether Bucket_Optional has been set.
 `public inline int32 & `[`GetCount`](#structFRHAPI__InventoryRecord_1a113ae247db921a17a2d6da8fef790af6)`()` | Gets the value of Count.
 `public inline const int32 & `[`GetCount`](#structFRHAPI__InventoryRecord_1a88dd0330bbda1b30f07284c4e8d1aaa7)`() const` | Gets the value of Count.
 `public inline void `[`SetCount`](#structFRHAPI__InventoryRecord_1ab2a76f526d6d1d7b16c3610bef63eb90)`(const int32 & NewValue)` | Sets the value of Count.
@@ -80,6 +82,7 @@ Inventory Record for a Player.
 `public inline void `[`SetExpires`](#structFRHAPI__InventoryRecord_1a91b41b88c673b0125181652d30d8211a)`(const FDateTime & NewValue)` | Sets the value of Expires_Optional and also sets Expires_IsSet to true.
 `public inline void `[`SetExpires`](#structFRHAPI__InventoryRecord_1ab3d55edc57951df64e28d32734efde5c)`(FDateTime && NewValue)` | Sets the value of Expires_Optional and also sets Expires_IsSet to true using move semantics.
 `public inline void `[`ClearExpires`](#structFRHAPI__InventoryRecord_1a54ea52c0937d7f5df39a63e308800bad)`()` | Clears the value of Expires_Optional and sets Expires_IsSet to false.
+`public inline bool `[`IsExpiresSet`](#structFRHAPI__InventoryRecord_1a4d31995080add52f93b45d613f59f434)`() const` | Checks whether Expires_Optional has been set.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InventoryRecord_1adffbd7516ddcd9927933676864699c95)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InventoryRecord_1aa4687c79bc3956291cc24688c8fd351a)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InventoryRecord_1ad961452f6d97b614413c4a51d71c1165)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -89,6 +92,7 @@ Inventory Record for a Player.
 `public inline void `[`SetCustomData`](#structFRHAPI__InventoryRecord_1afba00ad1cdd903dc067b269084874c7e)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`SetCustomData`](#structFRHAPI__InventoryRecord_1a7571a24709322c2fb0ca6b97aaf4a039)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__InventoryRecord_1adef59732fd95e39cd8699d8fae251ec7)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+`public inline bool `[`IsCustomDataSet`](#structFRHAPI__InventoryRecord_1a5365a7f3c875f0b868798c00fde9e0d6)`() const` | Checks whether CustomData_Optional has been set.
 
 ### Members
 
@@ -140,7 +144,7 @@ Arbitrary map of data for this Inventory Record.
 
 true if CustomData_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__InventoryRecord_1a10e72b7ebba9fa0e15d29318a9fa7705)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__InventoryRecord_1a10e72b7ebba9fa0e15d29318a9fa7705"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__InventoryRecord_1ae7ede53a3c480ddb5181bbbdce0f4401)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__InventoryRecord_1ae7ede53a3c480ddb5181bbbdce0f4401"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -150,7 +154,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__InventoryRecord_1a507d662df00fd0187e69a3cb3e6487cf)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__InventoryRecord_1a507d662df00fd0187e69a3cb3e6487cf"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__InventoryRecord_1a7cbee1b59c428463fc2bd6b5a68bc677)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__InventoryRecord_1a7cbee1b59c428463fc2bd6b5a68bc677"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -225,6 +229,10 @@ Sets the value of LegacyInventoryId_Optional and also sets LegacyInventoryId_IsS
 
 Clears the value of LegacyInventoryId_Optional and sets LegacyInventoryId_IsSet to false.
 
+#### `public inline bool `[`IsLegacyInventoryIdSet`](#structFRHAPI__InventoryRecord_1a9c47b9059eaaa3d08efa878a56648fc0)`() const` <a id="structFRHAPI__InventoryRecord_1a9c47b9059eaaa3d08efa878a56648fc0"></a>
+
+Checks whether LegacyInventoryId_Optional has been set.
+
 #### `public inline bool `[`IsLegacyInventoryIdDefaultValue`](#structFRHAPI__InventoryRecord_1a5e6439100c244b919e743144ab3955f9)`() const` <a id="structFRHAPI__InventoryRecord_1a5e6439100c244b919e743144ab3955f9"></a>
 
 Returns true if LegacyInventoryId_Optional is set and matches the default value.
@@ -268,6 +276,10 @@ Sets the value of Bucket_Optional and also sets Bucket_IsSet to true using move 
 #### `public inline void `[`ClearBucket`](#structFRHAPI__InventoryRecord_1ab17dce2e9f368e3fc89f9830d1e6c6c9)`()` <a id="structFRHAPI__InventoryRecord_1ab17dce2e9f368e3fc89f9830d1e6c6c9"></a>
 
 Clears the value of Bucket_Optional and sets Bucket_IsSet to false.
+
+#### `public inline bool `[`IsBucketSet`](#structFRHAPI__InventoryRecord_1a43cbbe666518beef20e93be0e242bbfe)`() const` <a id="structFRHAPI__InventoryRecord_1a43cbbe666518beef20e93be0e242bbfe"></a>
+
+Checks whether Bucket_Optional has been set.
 
 #### `public inline int32 & `[`GetCount`](#structFRHAPI__InventoryRecord_1a113ae247db921a17a2d6da8fef790af6)`()` <a id="structFRHAPI__InventoryRecord_1a113ae247db921a17a2d6da8fef790af6"></a>
 
@@ -345,6 +357,10 @@ Sets the value of Expires_Optional and also sets Expires_IsSet to true using mov
 
 Clears the value of Expires_Optional and sets Expires_IsSet to false.
 
+#### `public inline bool `[`IsExpiresSet`](#structFRHAPI__InventoryRecord_1a4d31995080add52f93b45d613f59f434)`() const` <a id="structFRHAPI__InventoryRecord_1a4d31995080add52f93b45d613f59f434"></a>
+
+Checks whether Expires_Optional has been set.
+
 #### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InventoryRecord_1adffbd7516ddcd9927933676864699c95)`()` <a id="structFRHAPI__InventoryRecord_1adffbd7516ddcd9927933676864699c95"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
@@ -380,4 +396,8 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true usi
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__InventoryRecord_1adef59732fd95e39cd8699d8fae251ec7)`()` <a id="structFRHAPI__InventoryRecord_1adef59732fd95e39cd8699d8fae251ec7"></a>
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+
+#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__InventoryRecord_1a5365a7f3c875f0b868798c00fde9e0d6)`() const` <a id="structFRHAPI__InventoryRecord_1a5365a7f3c875f0b868798c00fde9e0d6"></a>
+
+Checks whether CustomData_Optional has been set.
 

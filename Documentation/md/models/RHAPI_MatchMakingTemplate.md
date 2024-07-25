@@ -25,8 +25,8 @@ DEPRECATED Configuration about what rules must be satisfied to use this template
 `public `[`FRHAPI_MatchMakingRuleset`](RHAPI_MatchMakingRuleset.md#structFRHAPI__MatchMakingRuleset)` `[`Ruleset_Optional`](#structFRHAPI__MatchMakingTemplate_1a0b293cb53335e80111e6df54a1ff4736) | A set of rules that determine whether or not this matchmaking config should be used.
 `public bool `[`Ruleset_IsSet`](#structFRHAPI__MatchMakingTemplate_1a24039c6b4464bf378c9f33b925e153e6) | true if Ruleset_Optional has been set to a value
 `public TArray< `[`FRHAPI_MatchMakingProfile`](RHAPI_MatchMakingProfile.md#structFRHAPI__MatchMakingProfile)` > `[`Profiles`](#structFRHAPI__MatchMakingTemplate_1a6a4d26ec5cd90fc3171de3feefcab0b9) | A list of which match making profiles are going to be created on the ticket.
-`public virtual bool `[`FromJson`](#structFRHAPI__MatchMakingTemplate_1ab94633abc15dee303084618701d41edf)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__MatchMakingTemplate_1a9436dbe2260f0473d685c56fce6c9bdd)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__MatchMakingTemplate_1a175d9b3636a34d419565ed2ee5161e5a)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__MatchMakingTemplate_1a6e37df9fdb150c17bc3ea3e7dc16b025)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FGuid & `[`GetMatchMakingTemplateId`](#structFRHAPI__MatchMakingTemplate_1a78f50b9ef1dd8183cf5d69a8330b3a13)`()` | Gets the value of MatchMakingTemplateId_Optional, regardless of it having been set.
 `public inline const FGuid & `[`GetMatchMakingTemplateId`](#structFRHAPI__MatchMakingTemplate_1ac8abf666e0b753c82e25db62ceccaef4)`() const` | Gets the value of MatchMakingTemplateId_Optional, regardless of it having been set.
 `public inline const FGuid & `[`GetMatchMakingTemplateId`](#structFRHAPI__MatchMakingTemplate_1a64469716151df452e49e2da4d60ca981)`(const FGuid & DefaultValue) const` | Gets the value of MatchMakingTemplateId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -36,6 +36,7 @@ DEPRECATED Configuration about what rules must be satisfied to use this template
 `public inline void `[`SetMatchMakingTemplateId`](#structFRHAPI__MatchMakingTemplate_1ad7e2223324a83e01232f1bcadf0bc1a0)`(const FGuid & NewValue)` | Sets the value of MatchMakingTemplateId_Optional and also sets MatchMakingTemplateId_IsSet to true.
 `public inline void `[`SetMatchMakingTemplateId`](#structFRHAPI__MatchMakingTemplate_1af81e1a364acbee6bf8b7e6f7e869fa6f)`(FGuid && NewValue)` | Sets the value of MatchMakingTemplateId_Optional and also sets MatchMakingTemplateId_IsSet to true using move semantics.
 `public inline void `[`ClearMatchMakingTemplateId`](#structFRHAPI__MatchMakingTemplate_1aba6ed3458027f078405c957e54196f4f)`()` | Clears the value of MatchMakingTemplateId_Optional and sets MatchMakingTemplateId_IsSet to false.
+`public inline bool `[`IsMatchMakingTemplateIdSet`](#structFRHAPI__MatchMakingTemplate_1adef7394a2259ed34da705895b0fc244e)`() const` | Checks whether MatchMakingTemplateId_Optional has been set.
 `public inline ERHAPI_MMRGroupingMethod & `[`GetMmrGroupingMethod`](#structFRHAPI__MatchMakingTemplate_1abf647090fae345e43e6269adf096a3f1)`()` | Gets the value of MmrGroupingMethod.
 `public inline const ERHAPI_MMRGroupingMethod & `[`GetMmrGroupingMethod`](#structFRHAPI__MatchMakingTemplate_1a778c3a09e3f33d2f57ece24d086593df)`() const` | Gets the value of MmrGroupingMethod.
 `public inline void `[`SetMmrGroupingMethod`](#structFRHAPI__MatchMakingTemplate_1a98f24006fd1b941df0e507fdf2d8ba9f)`(const ERHAPI_MMRGroupingMethod & NewValue)` | Sets the value of MmrGroupingMethod.
@@ -49,6 +50,7 @@ DEPRECATED Configuration about what rules must be satisfied to use this template
 `public inline void `[`SetRuleset`](#structFRHAPI__MatchMakingTemplate_1a161de86529e9aaafd56aa978635b7a5a)`(const `[`FRHAPI_MatchMakingRuleset`](RHAPI_MatchMakingRuleset.md#structFRHAPI__MatchMakingRuleset)` & NewValue)` | Sets the value of Ruleset_Optional and also sets Ruleset_IsSet to true.
 `public inline void `[`SetRuleset`](#structFRHAPI__MatchMakingTemplate_1a10fbcafed79d1355947f299b9704d087)`(`[`FRHAPI_MatchMakingRuleset`](RHAPI_MatchMakingRuleset.md#structFRHAPI__MatchMakingRuleset)` && NewValue)` | Sets the value of Ruleset_Optional and also sets Ruleset_IsSet to true using move semantics.
 `public inline void `[`ClearRuleset`](#structFRHAPI__MatchMakingTemplate_1add4f8053263cd740171a409700081376)`()` | Clears the value of Ruleset_Optional and sets Ruleset_IsSet to false.
+`public inline bool `[`IsRulesetSet`](#structFRHAPI__MatchMakingTemplate_1a935e3fa56ea9825ab8cf91d899637706)`() const` | Checks whether Ruleset_Optional has been set.
 `public inline TArray< `[`FRHAPI_MatchMakingProfile`](RHAPI_MatchMakingProfile.md#structFRHAPI__MatchMakingProfile)` > & `[`GetProfiles`](#structFRHAPI__MatchMakingTemplate_1afb18252df2f9f997555a3a9888fa7731)`()` | Gets the value of Profiles.
 `public inline const TArray< `[`FRHAPI_MatchMakingProfile`](RHAPI_MatchMakingProfile.md#structFRHAPI__MatchMakingProfile)` > & `[`GetProfiles`](#structFRHAPI__MatchMakingTemplate_1a20bb59793bbd9666efdd2574d62dfa3f)`() const` | Gets the value of Profiles.
 `public inline void `[`SetProfiles`](#structFRHAPI__MatchMakingTemplate_1a3a72b6a34d0b5e44eb0c03543bd896be)`(const TArray< `[`FRHAPI_MatchMakingProfile`](RHAPI_MatchMakingProfile.md#structFRHAPI__MatchMakingProfile)` > & NewValue)` | Sets the value of Profiles.
@@ -80,7 +82,7 @@ true if Ruleset_Optional has been set to a value
 
 A list of which match making profiles are going to be created on the ticket.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__MatchMakingTemplate_1ab94633abc15dee303084618701d41edf)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__MatchMakingTemplate_1ab94633abc15dee303084618701d41edf"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__MatchMakingTemplate_1a175d9b3636a34d419565ed2ee5161e5a)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__MatchMakingTemplate_1a175d9b3636a34d419565ed2ee5161e5a"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -90,7 +92,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__MatchMakingTemplate_1a9436dbe2260f0473d685c56fce6c9bdd)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__MatchMakingTemplate_1a9436dbe2260f0473d685c56fce6c9bdd"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__MatchMakingTemplate_1a6e37df9fdb150c17bc3ea3e7dc16b025)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__MatchMakingTemplate_1a6e37df9fdb150c17bc3ea3e7dc16b025"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -132,6 +134,10 @@ Sets the value of MatchMakingTemplateId_Optional and also sets MatchMakingTempla
 #### `public inline void `[`ClearMatchMakingTemplateId`](#structFRHAPI__MatchMakingTemplate_1aba6ed3458027f078405c957e54196f4f)`()` <a id="structFRHAPI__MatchMakingTemplate_1aba6ed3458027f078405c957e54196f4f"></a>
 
 Clears the value of MatchMakingTemplateId_Optional and sets MatchMakingTemplateId_IsSet to false.
+
+#### `public inline bool `[`IsMatchMakingTemplateIdSet`](#structFRHAPI__MatchMakingTemplate_1adef7394a2259ed34da705895b0fc244e)`() const` <a id="structFRHAPI__MatchMakingTemplate_1adef7394a2259ed34da705895b0fc244e"></a>
+
+Checks whether MatchMakingTemplateId_Optional has been set.
 
 #### `public inline ERHAPI_MMRGroupingMethod & `[`GetMmrGroupingMethod`](#structFRHAPI__MatchMakingTemplate_1abf647090fae345e43e6269adf096a3f1)`()` <a id="structFRHAPI__MatchMakingTemplate_1abf647090fae345e43e6269adf096a3f1"></a>
 
@@ -184,6 +190,10 @@ Sets the value of Ruleset_Optional and also sets Ruleset_IsSet to true using mov
 #### `public inline void `[`ClearRuleset`](#structFRHAPI__MatchMakingTemplate_1add4f8053263cd740171a409700081376)`()` <a id="structFRHAPI__MatchMakingTemplate_1add4f8053263cd740171a409700081376"></a>
 
 Clears the value of Ruleset_Optional and sets Ruleset_IsSet to false.
+
+#### `public inline bool `[`IsRulesetSet`](#structFRHAPI__MatchMakingTemplate_1a935e3fa56ea9825ab8cf91d899637706)`() const` <a id="structFRHAPI__MatchMakingTemplate_1a935e3fa56ea9825ab8cf91d899637706"></a>
+
+Checks whether Ruleset_Optional has been set.
 
 #### `public inline TArray< `[`FRHAPI_MatchMakingProfile`](RHAPI_MatchMakingProfile.md#structFRHAPI__MatchMakingProfile)` > & `[`GetProfiles`](#structFRHAPI__MatchMakingTemplate_1afb18252df2f9f997555a3a9888fa7731)`()` <a id="structFRHAPI__MatchMakingTemplate_1afb18252df2f9f997555a3a9888fa7731"></a>
 

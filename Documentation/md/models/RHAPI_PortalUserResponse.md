@@ -25,8 +25,8 @@ struct FRHAPI_PortalUserResponse
 `public bool `[`DisplayName_IsSet`](#structFRHAPI__PortalUserResponse_1a758e573c69f5c1d4ad97895109cdcee0) | true if DisplayName_Optional has been set to a value
 `public int32 `[`PlayerId`](#structFRHAPI__PortalUserResponse_1a2d6b6d603819120e125c82b880776263) | Player ID *DEPRECATED* use `player_uuid` instead.
 `public FGuid `[`PlayerUuid`](#structFRHAPI__PortalUserResponse_1a66933b04170b4adc512d07ccf09d0ddf) | Player UUID.
-`public virtual bool `[`FromJson`](#structFRHAPI__PortalUserResponse_1a821a0e1dc1846b6cf1b53279a6a4e33e)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PortalUserResponse_1a3747cae157a78d0f9f59c85f4b2c9ddd)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__PortalUserResponse_1afaef0cb3b0e9eb074dfd1989b82567f8)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__PortalUserResponse_1ae92108560c13140f59bae963031743fa)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetPortalUserId`](#structFRHAPI__PortalUserResponse_1ac1fff9577bf2fc695ee3575a632e3afb)`()` | Gets the value of PortalUserId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetPortalUserId`](#structFRHAPI__PortalUserResponse_1a0ebda139397a335f7f3a9467219b361e)`() const` | Gets the value of PortalUserId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetPortalUserId`](#structFRHAPI__PortalUserResponse_1aec818741460136b9163e376d4d559e9d)`(const FString & DefaultValue) const` | Gets the value of PortalUserId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -36,6 +36,7 @@ struct FRHAPI_PortalUserResponse
 `public inline void `[`SetPortalUserId`](#structFRHAPI__PortalUserResponse_1ad6fdc58828c183424840b570aa9d28e6)`(const FString & NewValue)` | Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true.
 `public inline void `[`SetPortalUserId`](#structFRHAPI__PortalUserResponse_1a6d73122f1ae011b7b7f4e38e0654bbb1)`(FString && NewValue)` | Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true using move semantics.
 `public inline void `[`ClearPortalUserId`](#structFRHAPI__PortalUserResponse_1aad55dab5c2f1d56b26e86181c1d70db8)`()` | Clears the value of PortalUserId_Optional and sets PortalUserId_IsSet to false.
+`public inline bool `[`IsPortalUserIdSet`](#structFRHAPI__PortalUserResponse_1a434609ce6c94d3a3426e376bf7572496)`() const` | Checks whether PortalUserId_Optional has been set.
 `public inline int32 & `[`GetPortalId`](#structFRHAPI__PortalUserResponse_1a767b0f99979bca91fc8c0ca75e2378e8)`()` | Gets the value of PortalId.
 `public inline const int32 & `[`GetPortalId`](#structFRHAPI__PortalUserResponse_1ab082c8bae25684cdfc101f77c392387d)`() const` | Gets the value of PortalId.
 `public inline void `[`SetPortalId`](#structFRHAPI__PortalUserResponse_1a1ec1d1cd0b9b691a1ed96e58132ab109)`(const int32 & NewValue)` | Sets the value of PortalId.
@@ -55,6 +56,7 @@ struct FRHAPI_PortalUserResponse
 `public inline void `[`SetDisplayName`](#structFRHAPI__PortalUserResponse_1a59e660e6cfed61d0053287d5d5fdc767)`(const FString & NewValue)` | Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true.
 `public inline void `[`SetDisplayName`](#structFRHAPI__PortalUserResponse_1a31be206bd1e6920254f7efbd692950c4)`(FString && NewValue)` | Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true using move semantics.
 `public inline void `[`ClearDisplayName`](#structFRHAPI__PortalUserResponse_1af3483949dd8f34604018d03fe5d13d06)`()` | Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false.
+`public inline bool `[`IsDisplayNameSet`](#structFRHAPI__PortalUserResponse_1a3dd504143f64417f4ef5b9b2a441d614)`() const` | Checks whether DisplayName_Optional has been set.
 `public inline int32 & `[`GetPlayerId`](#structFRHAPI__PortalUserResponse_1aaf8ad51ca28a6327856a0ebc821218c6)`()` | Gets the value of PlayerId.
 `public inline const int32 & `[`GetPlayerId`](#structFRHAPI__PortalUserResponse_1a992fd8d6aecb941c99c1f8ee8343952c)`() const` | Gets the value of PlayerId.
 `public inline void `[`SetPlayerId`](#structFRHAPI__PortalUserResponse_1a95f1f44abbce2195f1bd52db1b499e6d)`(const int32 & NewValue)` | Sets the value of PlayerId.
@@ -100,7 +102,7 @@ Player ID *DEPRECATED* use `player_uuid` instead.
 
 Player UUID.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__PortalUserResponse_1a821a0e1dc1846b6cf1b53279a6a4e33e)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PortalUserResponse_1a821a0e1dc1846b6cf1b53279a6a4e33e"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__PortalUserResponse_1afaef0cb3b0e9eb074dfd1989b82567f8)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PortalUserResponse_1afaef0cb3b0e9eb074dfd1989b82567f8"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -110,7 +112,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PortalUserResponse_1a3747cae157a78d0f9f59c85f4b2c9ddd)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PortalUserResponse_1a3747cae157a78d0f9f59c85f4b2c9ddd"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PortalUserResponse_1ae92108560c13140f59bae963031743fa)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PortalUserResponse_1ae92108560c13140f59bae963031743fa"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -152,6 +154,10 @@ Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true
 #### `public inline void `[`ClearPortalUserId`](#structFRHAPI__PortalUserResponse_1aad55dab5c2f1d56b26e86181c1d70db8)`()` <a id="structFRHAPI__PortalUserResponse_1aad55dab5c2f1d56b26e86181c1d70db8"></a>
 
 Clears the value of PortalUserId_Optional and sets PortalUserId_IsSet to false.
+
+#### `public inline bool `[`IsPortalUserIdSet`](#structFRHAPI__PortalUserResponse_1a434609ce6c94d3a3426e376bf7572496)`() const` <a id="structFRHAPI__PortalUserResponse_1a434609ce6c94d3a3426e376bf7572496"></a>
+
+Checks whether PortalUserId_Optional has been set.
 
 #### `public inline int32 & `[`GetPortalId`](#structFRHAPI__PortalUserResponse_1a767b0f99979bca91fc8c0ca75e2378e8)`()` <a id="structFRHAPI__PortalUserResponse_1a767b0f99979bca91fc8c0ca75e2378e8"></a>
 
@@ -228,6 +234,10 @@ Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true u
 #### `public inline void `[`ClearDisplayName`](#structFRHAPI__PortalUserResponse_1af3483949dd8f34604018d03fe5d13d06)`()` <a id="structFRHAPI__PortalUserResponse_1af3483949dd8f34604018d03fe5d13d06"></a>
 
 Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false.
+
+#### `public inline bool `[`IsDisplayNameSet`](#structFRHAPI__PortalUserResponse_1a3dd504143f64417f4ef5b9b2a441d614)`() const` <a id="structFRHAPI__PortalUserResponse_1a3dd504143f64417f4ef5b9b2a441d614"></a>
+
+Checks whether DisplayName_Optional has been set.
 
 #### `public inline int32 & `[`GetPlayerId`](#structFRHAPI__PortalUserResponse_1aaf8ad51ca28a6327856a0ebc821218c6)`()` <a id="structFRHAPI__PortalUserResponse_1aaf8ad51ca28a6327856a0ebc821218c6"></a>
 

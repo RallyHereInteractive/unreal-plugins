@@ -18,8 +18,8 @@ struct FRHAPI_EventList
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public TArray< `[`FRHAPI_RallyHereEvent`](RHAPI_RallyHereEvent.md#structFRHAPI__RallyHereEvent)` > `[`EventList`](#structFRHAPI__EventList_1ab40741de69839cb60db398e340ec2da7) | List of events.
-`public virtual bool `[`FromJson`](#structFRHAPI__EventList_1a27fccb2ee3f7cc4403c9ac51d1a9e924)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__EventList_1af2eb5752d7bff14073f7062f6568e6f3)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__EventList_1aca32196f1f1da902986dca067702a819)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__EventList_1a269710a2f39a312806ad93b89ded253d)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< `[`FRHAPI_RallyHereEvent`](RHAPI_RallyHereEvent.md#structFRHAPI__RallyHereEvent)` > & `[`GetEventList`](#structFRHAPI__EventList_1aee65131c89751011cb94fb7d13e025fb)`()` | Gets the value of EventList.
 `public inline const TArray< `[`FRHAPI_RallyHereEvent`](RHAPI_RallyHereEvent.md#structFRHAPI__RallyHereEvent)` > & `[`GetEventList`](#structFRHAPI__EventList_1a93799dde50ffba542b135d905641c5ae)`() const` | Gets the value of EventList.
 `public inline void `[`SetEventList`](#structFRHAPI__EventList_1a37bfeb079a01b6d73b07a1c4bd583950)`(const TArray< `[`FRHAPI_RallyHereEvent`](RHAPI_RallyHereEvent.md#structFRHAPI__RallyHereEvent)` > & NewValue)` | Sets the value of EventList.
@@ -31,7 +31,7 @@ struct FRHAPI_EventList
 
 List of events.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__EventList_1a27fccb2ee3f7cc4403c9ac51d1a9e924)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__EventList_1a27fccb2ee3f7cc4403c9ac51d1a9e924"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__EventList_1aca32196f1f1da902986dca067702a819)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__EventList_1aca32196f1f1da902986dca067702a819"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -41,7 +41,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__EventList_1af2eb5752d7bff14073f7062f6568e6f3)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__EventList_1af2eb5752d7bff14073f7062f6568e6f3"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__EventList_1a269710a2f39a312806ad93b89ded253d)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__EventList_1a269710a2f39a312806ad93b89ded253d"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 

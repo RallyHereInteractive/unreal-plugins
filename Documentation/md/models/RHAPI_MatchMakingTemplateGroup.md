@@ -23,8 +23,8 @@ DEPRECATED A collection of MatchMakingTemplates that may be used when a session 
 `public TArray< `[`FRHAPI_MatchMakingTemplate`](RHAPI_MatchMakingTemplate.md#structFRHAPI__MatchMakingTemplate)` > `[`TemplateOptions`](#structFRHAPI__MatchMakingTemplateGroup_1a48040d4429ae869814eda1b9f18c1363) | List of the different matchmaking templates that could be used. The config is chosen based on a set of rules in each MatchMakingTemplate object. If there are no rules, it's the default template.
 `public TSet< int32 > `[`RequiredItemIds_Optional`](#structFRHAPI__MatchMakingTemplateGroup_1a16723c7ac8626179a27c60612d9f34e8) | Set of all the item ids that are required to validate every rule contained in this template group.
 `public bool `[`RequiredItemIds_IsSet`](#structFRHAPI__MatchMakingTemplateGroup_1a3e01b3ff08aaf06e2b13085d40f00722) | true if RequiredItemIds_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__MatchMakingTemplateGroup_1abd695116d91d7ae35a4ce0c6ad56ba9b)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__MatchMakingTemplateGroup_1acd5701b5cf12bc29251d060e4a60f2b1)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__MatchMakingTemplateGroup_1acc88a050d788ebf1b8cdd85038ce90d6)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__MatchMakingTemplateGroup_1ad5c238d2c0d98bf26aea86dfb09372e1)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FGuid & `[`GetTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroup_1a6e102e2662b46623917c5aea1b005b2e)`()` | Gets the value of TemplateGroupId.
 `public inline const FGuid & `[`GetTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroup_1a9aae93ee73e27baeb7af048ac67f8bc5)`() const` | Gets the value of TemplateGroupId.
 `public inline void `[`SetTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroup_1a9893fb99fefc189808371a0e4a31cccc)`(const FGuid & NewValue)` | Sets the value of TemplateGroupId.
@@ -42,6 +42,7 @@ DEPRECATED A collection of MatchMakingTemplates that may be used when a session 
 `public inline void `[`SetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroup_1a74b354e3f991d4ae9ba5a76d03165718)`(const TSet< int32 > & NewValue)` | Sets the value of RequiredItemIds_Optional and also sets RequiredItemIds_IsSet to true.
 `public inline void `[`SetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroup_1a8b2ffd32cffcf860028698dc16a578e5)`(TSet< int32 > && NewValue)` | Sets the value of RequiredItemIds_Optional and also sets RequiredItemIds_IsSet to true using move semantics.
 `public inline void `[`ClearRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroup_1a0314a2ef038598347f0d17de6fda851b)`()` | Clears the value of RequiredItemIds_Optional and sets RequiredItemIds_IsSet to false.
+`public inline bool `[`IsRequiredItemIdsSet`](#structFRHAPI__MatchMakingTemplateGroup_1a76088870f10dd0164f74fbdfbb043702)`() const` | Checks whether RequiredItemIds_Optional has been set.
 
 ### Members
 
@@ -61,7 +62,7 @@ Set of all the item ids that are required to validate every rule contained in th
 
 true if RequiredItemIds_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__MatchMakingTemplateGroup_1abd695116d91d7ae35a4ce0c6ad56ba9b)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__MatchMakingTemplateGroup_1abd695116d91d7ae35a4ce0c6ad56ba9b"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__MatchMakingTemplateGroup_1acc88a050d788ebf1b8cdd85038ce90d6)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__MatchMakingTemplateGroup_1acc88a050d788ebf1b8cdd85038ce90d6"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -71,7 +72,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__MatchMakingTemplateGroup_1acd5701b5cf12bc29251d060e4a60f2b1)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__MatchMakingTemplateGroup_1acd5701b5cf12bc29251d060e4a60f2b1"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__MatchMakingTemplateGroup_1ad5c238d2c0d98bf26aea86dfb09372e1)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__MatchMakingTemplateGroup_1ad5c238d2c0d98bf26aea86dfb09372e1"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -145,4 +146,8 @@ Sets the value of RequiredItemIds_Optional and also sets RequiredItemIds_IsSet t
 #### `public inline void `[`ClearRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroup_1a0314a2ef038598347f0d17de6fda851b)`()` <a id="structFRHAPI__MatchMakingTemplateGroup_1a0314a2ef038598347f0d17de6fda851b"></a>
 
 Clears the value of RequiredItemIds_Optional and sets RequiredItemIds_IsSet to false.
+
+#### `public inline bool `[`IsRequiredItemIdsSet`](#structFRHAPI__MatchMakingTemplateGroup_1a76088870f10dd0164f74fbdfbb043702)`() const` <a id="structFRHAPI__MatchMakingTemplateGroup_1a76088870f10dd0164f74fbdfbb043702"></a>
+
+Checks whether RequiredItemIds_Optional has been set.
 

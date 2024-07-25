@@ -28,8 +28,8 @@ DEPRECATED Configuration about a specific map for an instance to load into.
 `public bool `[`SelectionChance_IsSet`](#structFRHAPI__MapConfig_1a882a8efdf2c0bca08798e710c2da009c) | true if SelectionChance_Optional has been set to a value
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__MapConfig_1a42c344d2c89e3fcf161b5df2439886e1) | Custom data to pass through to the instance.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__MapConfig_1a51ebcd51e205cda7d7c57bbc4209d1b5) | true if CustomData_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__MapConfig_1a3de7214c500186260bf974e68095261d)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__MapConfig_1accd3f9cf0e110a050df727587d58e4e9)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__MapConfig_1a13f29ac7373a2621b9077dbd52a6a3ed)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__MapConfig_1a977cc61ea7448bc7f271f956599b2a70)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline int32 & `[`GetMapGameId`](#structFRHAPI__MapConfig_1ae6c61d0fdd1981491193c42ac31eb607)`()` | Gets the value of MapGameId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetMapGameId`](#structFRHAPI__MapConfig_1a80ea786abbcbcbb4b3f42c306284284a)`() const` | Gets the value of MapGameId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetMapGameId`](#structFRHAPI__MapConfig_1aaaab76f8077d4e4eb71d4c8cba8cae7b)`(const int32 & DefaultValue) const` | Gets the value of MapGameId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -39,6 +39,7 @@ DEPRECATED Configuration about a specific map for an instance to load into.
 `public inline void `[`SetMapGameId`](#structFRHAPI__MapConfig_1a555ef18ebfe1199105223887ef10a79e)`(const int32 & NewValue)` | Sets the value of MapGameId_Optional and also sets MapGameId_IsSet to true.
 `public inline void `[`SetMapGameId`](#structFRHAPI__MapConfig_1a381bd2eacf46dc123c2c2e6a68df0bb4)`(int32 && NewValue)` | Sets the value of MapGameId_Optional and also sets MapGameId_IsSet to true using move semantics.
 `public inline void `[`ClearMapGameId`](#structFRHAPI__MapConfig_1ae3e70615eb594ca742b7aec8c469ef05)`()` | Clears the value of MapGameId_Optional and sets MapGameId_IsSet to false.
+`public inline bool `[`IsMapGameIdSet`](#structFRHAPI__MapConfig_1a3d3afebd6bb2b6e3b09a72a7620c08d7)`() const` | Checks whether MapGameId_Optional has been set.
 `public inline bool `[`IsMapGameIdDefaultValue`](#structFRHAPI__MapConfig_1a36a2156b1d30d0b47f56376bd242b123)`() const` | Returns true if MapGameId_Optional is set and matches the default value.
 `public inline void `[`SetMapGameIdToDefault`](#structFRHAPI__MapConfig_1a24903abb198452e204c245fbc922540c)`()` | Sets the value of MapGameId_Optional to its default and also sets MapGameId_IsSet to true.
 `public inline FString & `[`GetMapName`](#structFRHAPI__MapConfig_1a9613f874dcf15fefac1c813ae30c6d47)`()` | Gets the value of MapName.
@@ -54,6 +55,7 @@ DEPRECATED Configuration about a specific map for an instance to load into.
 `public inline void `[`SetMode`](#structFRHAPI__MapConfig_1a9bb5b7ae32eff47e0526c155870d7300)`(const FString & NewValue)` | Sets the value of Mode_Optional and also sets Mode_IsSet to true.
 `public inline void `[`SetMode`](#structFRHAPI__MapConfig_1a884904324fba5324d02d04cb638949fb)`(FString && NewValue)` | Sets the value of Mode_Optional and also sets Mode_IsSet to true using move semantics.
 `public inline void `[`ClearMode`](#structFRHAPI__MapConfig_1a9291111cf4da9be48df098a6a1b58b3e)`()` | Clears the value of Mode_Optional and sets Mode_IsSet to false.
+`public inline bool `[`IsModeSet`](#structFRHAPI__MapConfig_1a5a8e7e3b96a6915f72e52c08c283e38e)`() const` | Checks whether Mode_Optional has been set.
 `public inline float & `[`GetSelectionChance`](#structFRHAPI__MapConfig_1adff47451ba8cb1bc858eb86a705dee18)`()` | Gets the value of SelectionChance_Optional, regardless of it having been set.
 `public inline const float & `[`GetSelectionChance`](#structFRHAPI__MapConfig_1a77948a14fc86712b0da6c6089fb55435)`() const` | Gets the value of SelectionChance_Optional, regardless of it having been set.
 `public inline const float & `[`GetSelectionChance`](#structFRHAPI__MapConfig_1a5d02d77a96b0eadca36a6468dd1c5244)`(const float & DefaultValue) const` | Gets the value of SelectionChance_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -63,6 +65,7 @@ DEPRECATED Configuration about a specific map for an instance to load into.
 `public inline void `[`SetSelectionChance`](#structFRHAPI__MapConfig_1a59c91a0dbf932d04b80c96c185038f33)`(const float & NewValue)` | Sets the value of SelectionChance_Optional and also sets SelectionChance_IsSet to true.
 `public inline void `[`SetSelectionChance`](#structFRHAPI__MapConfig_1a4e5a9e2f65dc8604df605409fc358385)`(float && NewValue)` | Sets the value of SelectionChance_Optional and also sets SelectionChance_IsSet to true using move semantics.
 `public inline void `[`ClearSelectionChance`](#structFRHAPI__MapConfig_1ac69f4a713c2cc29e26310d8a19efd6eb)`()` | Clears the value of SelectionChance_Optional and sets SelectionChance_IsSet to false.
+`public inline bool `[`IsSelectionChanceSet`](#structFRHAPI__MapConfig_1a190238eee53e28e1950809331823d9af)`() const` | Checks whether SelectionChance_Optional has been set.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MapConfig_1aa21d7c490044213da89e8d7b46e3b563)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MapConfig_1adb5864db78f92ecec60c5826a505bbff)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MapConfig_1a32d1d42b213c9d44d3cc0200163f4633)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -72,6 +75,7 @@ DEPRECATED Configuration about a specific map for an instance to load into.
 `public inline void `[`SetCustomData`](#structFRHAPI__MapConfig_1a67d51a0f6481ccc2f5555006c9a9217b)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`SetCustomData`](#structFRHAPI__MapConfig_1a6297d9446c9c2b3ede12b70f856b5679)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__MapConfig_1ab2a70607f4490b6fc462260b8b91a693)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+`public inline bool `[`IsCustomDataSet`](#structFRHAPI__MapConfig_1abc72ecca66e834d5fa2ce64f5b94bac2)`() const` | Checks whether CustomData_Optional has been set.
 
 ### Members
 
@@ -111,7 +115,7 @@ Custom data to pass through to the instance.
 
 true if CustomData_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__MapConfig_1a3de7214c500186260bf974e68095261d)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__MapConfig_1a3de7214c500186260bf974e68095261d"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__MapConfig_1a13f29ac7373a2621b9077dbd52a6a3ed)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__MapConfig_1a13f29ac7373a2621b9077dbd52a6a3ed"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -121,7 +125,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__MapConfig_1accd3f9cf0e110a050df727587d58e4e9)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__MapConfig_1accd3f9cf0e110a050df727587d58e4e9"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__MapConfig_1a977cc61ea7448bc7f271f956599b2a70)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__MapConfig_1a977cc61ea7448bc7f271f956599b2a70"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -163,6 +167,10 @@ Sets the value of MapGameId_Optional and also sets MapGameId_IsSet to true using
 #### `public inline void `[`ClearMapGameId`](#structFRHAPI__MapConfig_1ae3e70615eb594ca742b7aec8c469ef05)`()` <a id="structFRHAPI__MapConfig_1ae3e70615eb594ca742b7aec8c469ef05"></a>
 
 Clears the value of MapGameId_Optional and sets MapGameId_IsSet to false.
+
+#### `public inline bool `[`IsMapGameIdSet`](#structFRHAPI__MapConfig_1a3d3afebd6bb2b6e3b09a72a7620c08d7)`() const` <a id="structFRHAPI__MapConfig_1a3d3afebd6bb2b6e3b09a72a7620c08d7"></a>
+
+Checks whether MapGameId_Optional has been set.
 
 #### `public inline bool `[`IsMapGameIdDefaultValue`](#structFRHAPI__MapConfig_1a36a2156b1d30d0b47f56376bd242b123)`() const` <a id="structFRHAPI__MapConfig_1a36a2156b1d30d0b47f56376bd242b123"></a>
 
@@ -224,6 +232,10 @@ Sets the value of Mode_Optional and also sets Mode_IsSet to true using move sema
 
 Clears the value of Mode_Optional and sets Mode_IsSet to false.
 
+#### `public inline bool `[`IsModeSet`](#structFRHAPI__MapConfig_1a5a8e7e3b96a6915f72e52c08c283e38e)`() const` <a id="structFRHAPI__MapConfig_1a5a8e7e3b96a6915f72e52c08c283e38e"></a>
+
+Checks whether Mode_Optional has been set.
+
 #### `public inline float & `[`GetSelectionChance`](#structFRHAPI__MapConfig_1adff47451ba8cb1bc858eb86a705dee18)`()` <a id="structFRHAPI__MapConfig_1adff47451ba8cb1bc858eb86a705dee18"></a>
 
 Gets the value of SelectionChance_Optional, regardless of it having been set.
@@ -260,6 +272,10 @@ Sets the value of SelectionChance_Optional and also sets SelectionChance_IsSet t
 
 Clears the value of SelectionChance_Optional and sets SelectionChance_IsSet to false.
 
+#### `public inline bool `[`IsSelectionChanceSet`](#structFRHAPI__MapConfig_1a190238eee53e28e1950809331823d9af)`() const` <a id="structFRHAPI__MapConfig_1a190238eee53e28e1950809331823d9af"></a>
+
+Checks whether SelectionChance_Optional has been set.
+
 #### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MapConfig_1aa21d7c490044213da89e8d7b46e3b563)`()` <a id="structFRHAPI__MapConfig_1aa21d7c490044213da89e8d7b46e3b563"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
@@ -295,4 +311,8 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true usi
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__MapConfig_1ab2a70607f4490b6fc462260b8b91a693)`()` <a id="structFRHAPI__MapConfig_1ab2a70607f4490b6fc462260b8b91a693"></a>
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+
+#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__MapConfig_1abc72ecca66e834d5fa2ce64f5b94bac2)`() const` <a id="structFRHAPI__MapConfig_1abc72ecca66e834d5fa2ce64f5b94bac2"></a>
+
+Checks whether CustomData_Optional has been set.
 

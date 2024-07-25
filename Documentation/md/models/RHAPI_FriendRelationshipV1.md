@@ -26,8 +26,8 @@ Represents the relationship with a potential friend. V1 includes player_id and p
 `public FString `[`Notes_Optional`](#structFRHAPI__FriendRelationshipV1_1a9fb229b7f12ae3cca981c92c6f7e7491) | 
 `public bool `[`Notes_IsSet`](#structFRHAPI__FriendRelationshipV1_1a47248abcf13c7b15e3f0dedf35ed979e) | true if Notes_Optional has been set to a value
 `public FDateTime `[`LastModifiedOn`](#structFRHAPI__FriendRelationshipV1_1a71e5b77ce982ad33be82daae3236b0f1) | 
-`public virtual bool `[`FromJson`](#structFRHAPI__FriendRelationshipV1_1a979b989f461647d4a62e39ddfcc199ad)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__FriendRelationshipV1_1a8cdd8111d616fd13d3e7c9c939970ab2)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__FriendRelationshipV1_1a5847b88fa897c71d07acf1d8b53890d4)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__FriendRelationshipV1_1a51f9b2a92ed9df7d64e5d77d688b236a)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FGuid & `[`GetFriendsPlayerUuid`](#structFRHAPI__FriendRelationshipV1_1ae09e5e5d3be8e29fd742d6b8fc0c976a)`()` | Gets the value of FriendsPlayerUuid.
 `public inline const FGuid & `[`GetFriendsPlayerUuid`](#structFRHAPI__FriendRelationshipV1_1a603c9200619c098479fd58b218dae130)`() const` | Gets the value of FriendsPlayerUuid.
 `public inline void `[`SetFriendsPlayerUuid`](#structFRHAPI__FriendRelationshipV1_1ade09ab75632bbe32fc0f1cd416327e72)`(const FGuid & NewValue)` | Sets the value of FriendsPlayerUuid.
@@ -41,6 +41,7 @@ Represents the relationship with a potential friend. V1 includes player_id and p
 `public inline void `[`SetFriendsPlayerId`](#structFRHAPI__FriendRelationshipV1_1aa1876b5b82c67ecd77bc56f9e960da95)`(const int32 & NewValue)` | Sets the value of FriendsPlayerId_Optional and also sets FriendsPlayerId_IsSet to true.
 `public inline void `[`SetFriendsPlayerId`](#structFRHAPI__FriendRelationshipV1_1a01ec81ba67013848f86934b31fac1a11)`(int32 && NewValue)` | Sets the value of FriendsPlayerId_Optional and also sets FriendsPlayerId_IsSet to true using move semantics.
 `public inline void `[`ClearFriendsPlayerId`](#structFRHAPI__FriendRelationshipV1_1a9f299a0d2c7c64960a44d6ee2d8f0c01)`()` | Clears the value of FriendsPlayerId_Optional and sets FriendsPlayerId_IsSet to false.
+`public inline bool `[`IsFriendsPlayerIdSet`](#structFRHAPI__FriendRelationshipV1_1a7c835ed4bd31bb34f7fbf0662539a17a)`() const` | Checks whether FriendsPlayerId_Optional has been set.
 `public inline bool `[`IsFriendsPlayerIdDefaultValue`](#structFRHAPI__FriendRelationshipV1_1af31f734d2234c4980bcfaa3818e6c959)`() const` | Returns true if FriendsPlayerId_Optional is set and matches the default value.
 `public inline void `[`SetFriendsPlayerIdToDefault`](#structFRHAPI__FriendRelationshipV1_1a01513c503faa103f818bdb286631316a)`()` | Sets the value of FriendsPlayerId_Optional to its default and also sets FriendsPlayerId_IsSet to true.
 `public inline ERHAPI_FriendshipStatus & `[`GetStatus`](#structFRHAPI__FriendRelationshipV1_1a50af0782f062afe2dfbbf1a54a54f1ea)`()` | Gets the value of Status.
@@ -56,6 +57,7 @@ Represents the relationship with a potential friend. V1 includes player_id and p
 `public inline void `[`SetNotes`](#structFRHAPI__FriendRelationshipV1_1a9d1c5fe1eb7ae1ad6c9236fd6b914712)`(const FString & NewValue)` | Sets the value of Notes_Optional and also sets Notes_IsSet to true.
 `public inline void `[`SetNotes`](#structFRHAPI__FriendRelationshipV1_1a17b159f0ebfb201980fa197b6d2d88f7)`(FString && NewValue)` | Sets the value of Notes_Optional and also sets Notes_IsSet to true using move semantics.
 `public inline void `[`ClearNotes`](#structFRHAPI__FriendRelationshipV1_1a167ae4b14a2577434b585bbebc2a24c0)`()` | Clears the value of Notes_Optional and sets Notes_IsSet to false.
+`public inline bool `[`IsNotesSet`](#structFRHAPI__FriendRelationshipV1_1a37496930c1e57ad29dede64a00f7951b)`() const` | Checks whether Notes_Optional has been set.
 `public inline FDateTime & `[`GetLastModifiedOn`](#structFRHAPI__FriendRelationshipV1_1ad2056206ccb715fda25af81a14315d3d)`()` | Gets the value of LastModifiedOn.
 `public inline const FDateTime & `[`GetLastModifiedOn`](#structFRHAPI__FriendRelationshipV1_1a1e2082e0e74f07f05d5d201632b249f2)`() const` | Gets the value of LastModifiedOn.
 `public inline void `[`SetLastModifiedOn`](#structFRHAPI__FriendRelationshipV1_1a7d233eeaef813489e235eb00b6ef8021)`(const FDateTime & NewValue)` | Sets the value of LastModifiedOn.
@@ -81,7 +83,7 @@ true if Notes_Optional has been set to a value
 
 #### `public FDateTime `[`LastModifiedOn`](#structFRHAPI__FriendRelationshipV1_1a71e5b77ce982ad33be82daae3236b0f1) <a id="structFRHAPI__FriendRelationshipV1_1a71e5b77ce982ad33be82daae3236b0f1"></a>
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__FriendRelationshipV1_1a979b989f461647d4a62e39ddfcc199ad)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__FriendRelationshipV1_1a979b989f461647d4a62e39ddfcc199ad"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__FriendRelationshipV1_1a5847b88fa897c71d07acf1d8b53890d4)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__FriendRelationshipV1_1a5847b88fa897c71d07acf1d8b53890d4"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -91,7 +93,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__FriendRelationshipV1_1a8cdd8111d616fd13d3e7c9c939970ab2)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__FriendRelationshipV1_1a8cdd8111d616fd13d3e7c9c939970ab2"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__FriendRelationshipV1_1a51f9b2a92ed9df7d64e5d77d688b236a)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__FriendRelationshipV1_1a51f9b2a92ed9df7d64e5d77d688b236a"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -149,6 +151,10 @@ Sets the value of FriendsPlayerId_Optional and also sets FriendsPlayerId_IsSet t
 #### `public inline void `[`ClearFriendsPlayerId`](#structFRHAPI__FriendRelationshipV1_1a9f299a0d2c7c64960a44d6ee2d8f0c01)`()` <a id="structFRHAPI__FriendRelationshipV1_1a9f299a0d2c7c64960a44d6ee2d8f0c01"></a>
 
 Clears the value of FriendsPlayerId_Optional and sets FriendsPlayerId_IsSet to false.
+
+#### `public inline bool `[`IsFriendsPlayerIdSet`](#structFRHAPI__FriendRelationshipV1_1a7c835ed4bd31bb34f7fbf0662539a17a)`() const` <a id="structFRHAPI__FriendRelationshipV1_1a7c835ed4bd31bb34f7fbf0662539a17a"></a>
+
+Checks whether FriendsPlayerId_Optional has been set.
 
 #### `public inline bool `[`IsFriendsPlayerIdDefaultValue`](#structFRHAPI__FriendRelationshipV1_1af31f734d2234c4980bcfaa3818e6c959)`() const` <a id="structFRHAPI__FriendRelationshipV1_1af31f734d2234c4980bcfaa3818e6c959"></a>
 
@@ -209,6 +215,10 @@ Sets the value of Notes_Optional and also sets Notes_IsSet to true using move se
 #### `public inline void `[`ClearNotes`](#structFRHAPI__FriendRelationshipV1_1a167ae4b14a2577434b585bbebc2a24c0)`()` <a id="structFRHAPI__FriendRelationshipV1_1a167ae4b14a2577434b585bbebc2a24c0"></a>
 
 Clears the value of Notes_Optional and sets Notes_IsSet to false.
+
+#### `public inline bool `[`IsNotesSet`](#structFRHAPI__FriendRelationshipV1_1a37496930c1e57ad29dede64a00f7951b)`() const` <a id="structFRHAPI__FriendRelationshipV1_1a37496930c1e57ad29dede64a00f7951b"></a>
+
+Checks whether Notes_Optional has been set.
 
 #### `public inline FDateTime & `[`GetLastModifiedOn`](#structFRHAPI__FriendRelationshipV1_1ad2056206ccb715fda25af81a14315d3d)`()` <a id="structFRHAPI__FriendRelationshipV1_1ad2056206ccb715fda25af81a14315d3d"></a>
 

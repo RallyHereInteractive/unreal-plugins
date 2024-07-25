@@ -21,8 +21,8 @@ The currencies of a Price Breakpoint.
 --------------------------------|---------------------------------------------
 `public int32 `[`PriceItemId`](#structFRHAPI__PriceBreakPointCurrency_1aab4fef02c40243609a2fd4bb04e7e0b3) | The Item used as the currency for the purchase.
 `public int32 `[`Price`](#structFRHAPI__PriceBreakPointCurrency_1a0fbeeaafec354c1df791be5b8b7d9a83) | The price of the Item.
-`public virtual bool `[`FromJson`](#structFRHAPI__PriceBreakPointCurrency_1aca7f3d4e9d19d19f0638d4ec8c40e1dd)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PriceBreakPointCurrency_1a31c4e71c4815cfdc93cef9c8cfd0f1fa)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__PriceBreakPointCurrency_1a38b39a44fd1bae117ba63e1600323843)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__PriceBreakPointCurrency_1a120ad3102af954846823ad19dbbddb21)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline int32 & `[`GetPriceItemId`](#structFRHAPI__PriceBreakPointCurrency_1a3833756dc86744bfe93773f94fa0f48e)`()` | Gets the value of PriceItemId.
 `public inline const int32 & `[`GetPriceItemId`](#structFRHAPI__PriceBreakPointCurrency_1a55430b28bf915560fc4c00533b42384c)`() const` | Gets the value of PriceItemId.
 `public inline void `[`SetPriceItemId`](#structFRHAPI__PriceBreakPointCurrency_1a4c32f427fd1a34146735b5e25cf5b7a8)`(const int32 & NewValue)` | Sets the value of PriceItemId.
@@ -46,7 +46,7 @@ The Item used as the currency for the purchase.
 
 The price of the Item.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__PriceBreakPointCurrency_1aca7f3d4e9d19d19f0638d4ec8c40e1dd)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PriceBreakPointCurrency_1aca7f3d4e9d19d19f0638d4ec8c40e1dd"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__PriceBreakPointCurrency_1a38b39a44fd1bae117ba63e1600323843)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PriceBreakPointCurrency_1a38b39a44fd1bae117ba63e1600323843"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -56,7 +56,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PriceBreakPointCurrency_1a31c4e71c4815cfdc93cef9c8cfd0f1fa)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PriceBreakPointCurrency_1a31c4e71c4815cfdc93cef9c8cfd0f1fa"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PriceBreakPointCurrency_1a120ad3102af954846823ad19dbbddb21)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PriceBreakPointCurrency_1a120ad3102af954846823ad19dbbddb21"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 

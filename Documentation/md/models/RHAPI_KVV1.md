@@ -23,8 +23,9 @@ A key/value pair that represents a setting to be used by the client.
 `public FString `[`Value`](#structFRHAPI__KVV1_1a7371b5d7b85e04f8f8e8826b1f552fe9) | The value for the setting.
 `public FString `[`Notes_Optional`](#structFRHAPI__KVV1_1a85ee373f386631eb4de63c619e9e32cd) | 
 `public bool `[`Notes_IsSet`](#structFRHAPI__KVV1_1a0b4646a683aa065edf28203a13a44358) | true if Notes_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__KVV1_1a56c580398961b817d89c625eafe4bbc9)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__KVV1_1a798858ea9602e85fba57483b811160cd)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public bool `[`Notes_IsNull`](#structFRHAPI__KVV1_1af8953ff35d2fac6eac48c1b453073dd7) | true if Notes_Optional has been explicitly set to null
+`public virtual bool `[`FromJson`](#structFRHAPI__KVV1_1a11f5ed51e69d88e7d414aaf5c335531d)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__KVV1_1a8568a7b0634763069760551ecf61ab6e)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetKey`](#structFRHAPI__KVV1_1a67d0feb893b0c257bb605749ad8c4a6e)`()` | Gets the value of Key.
 `public inline const FString & `[`GetKey`](#structFRHAPI__KVV1_1ad0a5f00fbc212bfd868aa0e84b6b3e3c)`() const` | Gets the value of Key.
 `public inline void `[`SetKey`](#structFRHAPI__KVV1_1ab5cfb7d89de63853749921cbdd61e785)`(const FString & NewValue)` | Sets the value of Key.
@@ -42,6 +43,9 @@ A key/value pair that represents a setting to be used by the client.
 `public inline void `[`SetNotes`](#structFRHAPI__KVV1_1ae036966c62919eabae4a3dc8dfb57cfc)`(const FString & NewValue)` | Sets the value of Notes_Optional and also sets Notes_IsSet to true.
 `public inline void `[`SetNotes`](#structFRHAPI__KVV1_1a8cf2a83390b6f97f5ca27e5837c6af20)`(FString && NewValue)` | Sets the value of Notes_Optional and also sets Notes_IsSet to true using move semantics.
 `public inline void `[`ClearNotes`](#structFRHAPI__KVV1_1af6138e37d8c64331aa5f9877e5fd3bab)`()` | Clears the value of Notes_Optional and sets Notes_IsSet to false.
+`public inline bool `[`IsNotesSet`](#structFRHAPI__KVV1_1ad508a91f34e21b50eb7ffb3941f71bf6)`() const` | Checks whether Notes_Optional has been set.
+`public inline void `[`SetNotesToNull`](#structFRHAPI__KVV1_1a8f5d46c72646c6b7d956d431868428f7)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsNotesNull`](#structFRHAPI__KVV1_1ad39f6f297acf47d794702089280bc7c4)`() const` | Checks whether Notes_Optional is set to null.
 
 ### Members
 
@@ -59,7 +63,11 @@ The value for the setting.
 
 true if Notes_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__KVV1_1a56c580398961b817d89c625eafe4bbc9)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__KVV1_1a56c580398961b817d89c625eafe4bbc9"></a>
+#### `public bool `[`Notes_IsNull`](#structFRHAPI__KVV1_1af8953ff35d2fac6eac48c1b453073dd7) <a id="structFRHAPI__KVV1_1af8953ff35d2fac6eac48c1b453073dd7"></a>
+
+true if Notes_Optional has been explicitly set to null
+
+#### `public virtual bool `[`FromJson`](#structFRHAPI__KVV1_1a11f5ed51e69d88e7d414aaf5c335531d)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__KVV1_1a11f5ed51e69d88e7d414aaf5c335531d"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -69,7 +77,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__KVV1_1a798858ea9602e85fba57483b811160cd)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__KVV1_1a798858ea9602e85fba57483b811160cd"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__KVV1_1a8568a7b0634763069760551ecf61ab6e)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__KVV1_1a8568a7b0634763069760551ecf61ab6e"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -143,4 +151,16 @@ Sets the value of Notes_Optional and also sets Notes_IsSet to true using move se
 #### `public inline void `[`ClearNotes`](#structFRHAPI__KVV1_1af6138e37d8c64331aa5f9877e5fd3bab)`()` <a id="structFRHAPI__KVV1_1af6138e37d8c64331aa5f9877e5fd3bab"></a>
 
 Clears the value of Notes_Optional and sets Notes_IsSet to false.
+
+#### `public inline bool `[`IsNotesSet`](#structFRHAPI__KVV1_1ad508a91f34e21b50eb7ffb3941f71bf6)`() const` <a id="structFRHAPI__KVV1_1ad508a91f34e21b50eb7ffb3941f71bf6"></a>
+
+Checks whether Notes_Optional has been set.
+
+#### `public inline void `[`SetNotesToNull`](#structFRHAPI__KVV1_1a8f5d46c72646c6b7d956d431868428f7)`()` <a id="structFRHAPI__KVV1_1a8f5d46c72646c6b7d956d431868428f7"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsNotesNull`](#structFRHAPI__KVV1_1ad39f6f297acf47d794702089280bc7c4)`() const` <a id="structFRHAPI__KVV1_1ad39f6f297acf47d794702089280bc7c4"></a>
+
+Checks whether Notes_Optional is set to null.
 

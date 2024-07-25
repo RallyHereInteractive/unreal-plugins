@@ -22,8 +22,8 @@ A request body to calculate players&#39; rankings, and return the results. Playe
 `public int32 `[`MatchLengthSeconds`](#structFRHAPI__CalculateRankRequest_1abdc15b22039fabcfbbe19eb71f42aabc) | How many seconds the match lasted.
 `public TArray< `[`FRHAPI_RankedTeam`](RHAPI_RankedTeam.md#structFRHAPI__RankedTeam)` > `[`Teams`](#structFRHAPI__CalculateRankRequest_1a36cb9d13dcff36596acf302d354df057) | List of teams that participated in this match.
 `public `[`FRHAPI_CalculateRankConfig`](RHAPI_CalculateRankConfig.md#structFRHAPI__CalculateRankConfig)` `[`RankConfig`](#structFRHAPI__CalculateRankRequest_1abdacac8e5f9da41c4ba102fcde2a458f) | Configs about how to recalculate and clamp newly calculated ranks.
-`public virtual bool `[`FromJson`](#structFRHAPI__CalculateRankRequest_1ac69f193e575b816a5e6471f797b0a789)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__CalculateRankRequest_1ac97c0b5d29c5b7defae89c20e07cc902)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__CalculateRankRequest_1a7b5c79755dc40620b1edaa921339462c)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__CalculateRankRequest_1a39f4279e6c25b138e368bce1bc51eb44)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline int32 & `[`GetMatchLengthSeconds`](#structFRHAPI__CalculateRankRequest_1a893175b3d81dbde856db066d308ef801)`()` | Gets the value of MatchLengthSeconds.
 `public inline const int32 & `[`GetMatchLengthSeconds`](#structFRHAPI__CalculateRankRequest_1a45272a3078d5813c8f024e80e68384c3)`() const` | Gets the value of MatchLengthSeconds.
 `public inline void `[`SetMatchLengthSeconds`](#structFRHAPI__CalculateRankRequest_1a2fadfce6e422d71f37b766603ffe10ab)`(const int32 & NewValue)` | Sets the value of MatchLengthSeconds.
@@ -53,7 +53,7 @@ List of teams that participated in this match.
 
 Configs about how to recalculate and clamp newly calculated ranks.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__CalculateRankRequest_1ac69f193e575b816a5e6471f797b0a789)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__CalculateRankRequest_1ac69f193e575b816a5e6471f797b0a789"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__CalculateRankRequest_1a7b5c79755dc40620b1edaa921339462c)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__CalculateRankRequest_1a7b5c79755dc40620b1edaa921339462c"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -63,7 +63,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__CalculateRankRequest_1ac97c0b5d29c5b7defae89c20e07cc902)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__CalculateRankRequest_1ac97c0b5d29c5b7defae89c20e07cc902"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__CalculateRankRequest_1a39f4279e6c25b138e368bce1bc51eb44)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__CalculateRankRequest_1a39f4279e6c25b138e368bce1bc51eb44"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 

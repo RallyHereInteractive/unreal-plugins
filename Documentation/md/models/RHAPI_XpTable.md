@@ -27,8 +27,8 @@ A collection of XP Levels from 1 to N. Each level has a minimum XP value.
 `public bool `[`XpEntries_IsSet`](#structFRHAPI__XpTable_1a0d1d82acc42c1ad029117cd1ea15cb12) | true if XpEntries_Optional has been set to a value
 `public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__XpTable_1a0785200adbf808bdd25fab3cb5f01b0b) | 
 `public bool `[`CacheInfo_IsSet`](#structFRHAPI__XpTable_1a90dc3ba87a1ecdef6402df456d2389f8) | true if CacheInfo_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__XpTable_1a24ea4b28edc4316d7b54c1c1cfccb6e8)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__XpTable_1aa42ec7439d7080f1fb091eb32ea5163f)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__XpTable_1a93218d75d5ca30eea726486a9f5d9646)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__XpTable_1a835fe543b7c2b0f0d54f8baf65aade32)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__XpTable_1a114b66b927102155aee991cd58933d6b)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__XpTable_1a807ff3cb851d942fe382189b2d1de39d)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__XpTable_1a49b4dce12c110d5ab853cb3806538360)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -38,6 +38,7 @@ A collection of XP Levels from 1 to N. Each level has a minimum XP value.
 `public inline void `[`SetCustomData`](#structFRHAPI__XpTable_1aebdb72d296e7b1dc2f64928bfecf7956)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`SetCustomData`](#structFRHAPI__XpTable_1aa8b701ac1c2dc04473e74ca442cec53b)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__XpTable_1ae84305fd00b049e142b7ca609225e959)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+`public inline bool `[`IsCustomDataSet`](#structFRHAPI__XpTable_1af11cb504877443551cb33d15d8a80c2b)`() const` | Checks whether CustomData_Optional has been set.
 `public inline FGuid & `[`GetXpUuid`](#structFRHAPI__XpTable_1aa959c114770a28fb7bfa2e0c3b5a01ea)`()` | Gets the value of XpUuid_Optional, regardless of it having been set.
 `public inline const FGuid & `[`GetXpUuid`](#structFRHAPI__XpTable_1a7ef1602cb6deaa93f30543e17eed1178)`() const` | Gets the value of XpUuid_Optional, regardless of it having been set.
 `public inline const FGuid & `[`GetXpUuid`](#structFRHAPI__XpTable_1a18bc8bab6fd96bb8acd8814416a8c762)`(const FGuid & DefaultValue) const` | Gets the value of XpUuid_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -47,6 +48,7 @@ A collection of XP Levels from 1 to N. Each level has a minimum XP value.
 `public inline void `[`SetXpUuid`](#structFRHAPI__XpTable_1aec23d5448ffdd4512ad1451a7852edb7)`(const FGuid & NewValue)` | Sets the value of XpUuid_Optional and also sets XpUuid_IsSet to true.
 `public inline void `[`SetXpUuid`](#structFRHAPI__XpTable_1a6004024ca9a2b27ce968ec767e212bf1)`(FGuid && NewValue)` | Sets the value of XpUuid_Optional and also sets XpUuid_IsSet to true using move semantics.
 `public inline void `[`ClearXpUuid`](#structFRHAPI__XpTable_1acb556ad5b7af78430e60dc1f7ffa63ae)`()` | Clears the value of XpUuid_Optional and sets XpUuid_IsSet to false.
+`public inline bool `[`IsXpUuidSet`](#structFRHAPI__XpTable_1ab638cd3628fdfef2ce62e1f8b508bcc8)`() const` | Checks whether XpUuid_Optional has been set.
 `public inline TMap< FString, int32 > & `[`GetXpEntries`](#structFRHAPI__XpTable_1af3fd80f0b0ca8769eb57089f7a672448)`()` | Gets the value of XpEntries_Optional, regardless of it having been set.
 `public inline const TMap< FString, int32 > & `[`GetXpEntries`](#structFRHAPI__XpTable_1a28bd1c9fbc988a8fb285418a5ff0f332)`() const` | Gets the value of XpEntries_Optional, regardless of it having been set.
 `public inline const TMap< FString, int32 > & `[`GetXpEntries`](#structFRHAPI__XpTable_1a19d0b92c5075718cb70ecaf15994a270)`(const TMap< FString, int32 > & DefaultValue) const` | Gets the value of XpEntries_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -56,6 +58,7 @@ A collection of XP Levels from 1 to N. Each level has a minimum XP value.
 `public inline void `[`SetXpEntries`](#structFRHAPI__XpTable_1a18ec58bc91b6ea5f076f3bc1964a3474)`(const TMap< FString, int32 > & NewValue)` | Sets the value of XpEntries_Optional and also sets XpEntries_IsSet to true.
 `public inline void `[`SetXpEntries`](#structFRHAPI__XpTable_1a851aa6c3f38e11c331168309d2febc21)`(TMap< FString, int32 > && NewValue)` | Sets the value of XpEntries_Optional and also sets XpEntries_IsSet to true using move semantics.
 `public inline void `[`ClearXpEntries`](#structFRHAPI__XpTable_1adfef2f411c225c0d6bfd1272ac300bb7)`()` | Clears the value of XpEntries_Optional and sets XpEntries_IsSet to false.
+`public inline bool `[`IsXpEntriesSet`](#structFRHAPI__XpTable_1a624a5d3da6f80680c03189091db423ca)`() const` | Checks whether XpEntries_Optional has been set.
 `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__XpTable_1a355e9df63257ca1d858dc66204012a91)`()` | Gets the value of CacheInfo_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__XpTable_1a56c3f70e35c5617fa2de8e753152b5de)`() const` | Gets the value of CacheInfo_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__XpTable_1a12fbb3744d1457d74515689bfb75f48d)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` | Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -65,6 +68,7 @@ A collection of XP Levels from 1 to N. Each level has a minimum XP value.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__XpTable_1afbb435a7aa83de75f4b16c329fd93025)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__XpTable_1ab8df1d7f48b45ceaa9c27f508dcbac3d)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__XpTable_1aa5ecb7e76cf1ff2ad80407b03a12f840)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
+`public inline bool `[`IsCacheInfoSet`](#structFRHAPI__XpTable_1acb93c51e056a0a6093982f33b56e3e5c)`() const` | Checks whether CacheInfo_Optional has been set.
 
 ### Members
 
@@ -96,7 +100,7 @@ true if XpEntries_Optional has been set to a value
 
 true if CacheInfo_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__XpTable_1a24ea4b28edc4316d7b54c1c1cfccb6e8)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__XpTable_1a24ea4b28edc4316d7b54c1c1cfccb6e8"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__XpTable_1a93218d75d5ca30eea726486a9f5d9646)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__XpTable_1a93218d75d5ca30eea726486a9f5d9646"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -106,7 +110,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__XpTable_1aa42ec7439d7080f1fb091eb32ea5163f)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__XpTable_1aa42ec7439d7080f1fb091eb32ea5163f"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__XpTable_1a835fe543b7c2b0f0d54f8baf65aade32)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__XpTable_1a835fe543b7c2b0f0d54f8baf65aade32"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -149,6 +153,10 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true usi
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
+#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__XpTable_1af11cb504877443551cb33d15d8a80c2b)`() const` <a id="structFRHAPI__XpTable_1af11cb504877443551cb33d15d8a80c2b"></a>
+
+Checks whether CustomData_Optional has been set.
+
 #### `public inline FGuid & `[`GetXpUuid`](#structFRHAPI__XpTable_1aa959c114770a28fb7bfa2e0c3b5a01ea)`()` <a id="structFRHAPI__XpTable_1aa959c114770a28fb7bfa2e0c3b5a01ea"></a>
 
 Gets the value of XpUuid_Optional, regardless of it having been set.
@@ -184,6 +192,10 @@ Sets the value of XpUuid_Optional and also sets XpUuid_IsSet to true using move 
 #### `public inline void `[`ClearXpUuid`](#structFRHAPI__XpTable_1acb556ad5b7af78430e60dc1f7ffa63ae)`()` <a id="structFRHAPI__XpTable_1acb556ad5b7af78430e60dc1f7ffa63ae"></a>
 
 Clears the value of XpUuid_Optional and sets XpUuid_IsSet to false.
+
+#### `public inline bool `[`IsXpUuidSet`](#structFRHAPI__XpTable_1ab638cd3628fdfef2ce62e1f8b508bcc8)`() const` <a id="structFRHAPI__XpTable_1ab638cd3628fdfef2ce62e1f8b508bcc8"></a>
+
+Checks whether XpUuid_Optional has been set.
 
 #### `public inline TMap< FString, int32 > & `[`GetXpEntries`](#structFRHAPI__XpTable_1af3fd80f0b0ca8769eb57089f7a672448)`()` <a id="structFRHAPI__XpTable_1af3fd80f0b0ca8769eb57089f7a672448"></a>
 
@@ -221,6 +233,10 @@ Sets the value of XpEntries_Optional and also sets XpEntries_IsSet to true using
 
 Clears the value of XpEntries_Optional and sets XpEntries_IsSet to false.
 
+#### `public inline bool `[`IsXpEntriesSet`](#structFRHAPI__XpTable_1a624a5d3da6f80680c03189091db423ca)`() const` <a id="structFRHAPI__XpTable_1a624a5d3da6f80680c03189091db423ca"></a>
+
+Checks whether XpEntries_Optional has been set.
+
 #### `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__XpTable_1a355e9df63257ca1d858dc66204012a91)`()` <a id="structFRHAPI__XpTable_1a355e9df63257ca1d858dc66204012a91"></a>
 
 Gets the value of CacheInfo_Optional, regardless of it having been set.
@@ -256,4 +272,8 @@ Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using
 #### `public inline void `[`ClearCacheInfo`](#structFRHAPI__XpTable_1aa5ecb7e76cf1ff2ad80407b03a12f840)`()` <a id="structFRHAPI__XpTable_1aa5ecb7e76cf1ff2ad80407b03a12f840"></a>
 
 Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
+
+#### `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__XpTable_1acb93c51e056a0a6093982f33b56e3e5c)`() const` <a id="structFRHAPI__XpTable_1acb93c51e056a0a6093982f33b56e3e5c"></a>
+
+Checks whether CacheInfo_Optional has been set.
 

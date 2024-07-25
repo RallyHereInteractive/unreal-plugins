@@ -21,8 +21,8 @@ struct FRHAPI_EnvironmentConfig
 `public FGuid `[`ProductId`](#structFRHAPI__EnvironmentConfig_1ab56749b08fffa20c2ba9c53340249fee) | 
 `public FGuid `[`EnvironmentId`](#structFRHAPI__EnvironmentConfig_1a1c8590990a98293aaaedeca48643f19c) | 
 `public FGuid `[`SandboxId`](#structFRHAPI__EnvironmentConfig_1ae2348297d79294e5659e8c58a10107ae) | 
-`public virtual bool `[`FromJson`](#structFRHAPI__EnvironmentConfig_1ac857b1dabad2b8f5fc78a4979616cf51)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__EnvironmentConfig_1a992656d1c13fc184430b3b56eba551fc)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__EnvironmentConfig_1a93fef0d1e16de7c1a1d4c4ae331c2d7e)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__EnvironmentConfig_1af26254fc5a3eb14dd56491d98aef16e0)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FGuid & `[`GetOrgId`](#structFRHAPI__EnvironmentConfig_1a4c13ed6b928931b9d64864ad5069ac4f)`()` | Gets the value of OrgId.
 `public inline const FGuid & `[`GetOrgId`](#structFRHAPI__EnvironmentConfig_1a7571e912a0feeea1dbc4a54dd44d6738)`() const` | Gets the value of OrgId.
 `public inline void `[`SetOrgId`](#structFRHAPI__EnvironmentConfig_1ab9d7a2bba99b90e236fd385172af442d)`(const FGuid & NewValue)` | Sets the value of OrgId.
@@ -50,7 +50,7 @@ struct FRHAPI_EnvironmentConfig
 
 #### `public FGuid `[`SandboxId`](#structFRHAPI__EnvironmentConfig_1ae2348297d79294e5659e8c58a10107ae) <a id="structFRHAPI__EnvironmentConfig_1ae2348297d79294e5659e8c58a10107ae"></a>
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__EnvironmentConfig_1ac857b1dabad2b8f5fc78a4979616cf51)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__EnvironmentConfig_1ac857b1dabad2b8f5fc78a4979616cf51"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__EnvironmentConfig_1a93fef0d1e16de7c1a1d4c4ae331c2d7e)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__EnvironmentConfig_1a93fef0d1e16de7c1a1d4c4ae331c2d7e"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -60,7 +60,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__EnvironmentConfig_1a992656d1c13fc184430b3b56eba551fc)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__EnvironmentConfig_1a992656d1c13fc184430b3b56eba551fc"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__EnvironmentConfig_1af26254fc5a3eb14dd56491d98aef16e0)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__EnvironmentConfig_1af26254fc5a3eb14dd56491d98aef16e0"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 

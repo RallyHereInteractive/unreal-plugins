@@ -19,8 +19,8 @@ struct FRHAPI_PortalTokenDetailsRequest
 --------------------------------|---------------------------------------------
 `public ERHAPI_PortalTokenDetailsGrantType `[`GrantType`](#structFRHAPI__PortalTokenDetailsRequest_1a548d6c8ee9cc94951d52dad3126cf369) | 
 `public FString `[`PortalAccessToken`](#structFRHAPI__PortalTokenDetailsRequest_1a5f955bb90686ea2875c2fe02ea524a98) | Token or secret used to authenticate the provided grant type.
-`public virtual bool `[`FromJson`](#structFRHAPI__PortalTokenDetailsRequest_1a0537d65dbaeccc3403ac707d1cc4995f)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PortalTokenDetailsRequest_1afef7776e0d4367f60e4298263e4cb67e)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__PortalTokenDetailsRequest_1a19d4549a8b5e8247a9211a483b8b82da)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__PortalTokenDetailsRequest_1ad1841db328a8a8552de393b9bc730b52)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_PortalTokenDetailsGrantType & `[`GetGrantType`](#structFRHAPI__PortalTokenDetailsRequest_1a6ad035d7838790f6fbb5f880bb0bfee7)`()` | Gets the value of GrantType.
 `public inline const ERHAPI_PortalTokenDetailsGrantType & `[`GetGrantType`](#structFRHAPI__PortalTokenDetailsRequest_1a97be8803a8e6d79aa4879a1b10cf900e)`() const` | Gets the value of GrantType.
 `public inline void `[`SetGrantType`](#structFRHAPI__PortalTokenDetailsRequest_1a6a742769dc62a4b77c63fc4dcb8d6ece)`(const ERHAPI_PortalTokenDetailsGrantType & NewValue)` | Sets the value of GrantType.
@@ -38,7 +38,7 @@ struct FRHAPI_PortalTokenDetailsRequest
 
 Token or secret used to authenticate the provided grant type.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__PortalTokenDetailsRequest_1a0537d65dbaeccc3403ac707d1cc4995f)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PortalTokenDetailsRequest_1a0537d65dbaeccc3403ac707d1cc4995f"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__PortalTokenDetailsRequest_1a19d4549a8b5e8247a9211a483b8b82da)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PortalTokenDetailsRequest_1a19d4549a8b5e8247a9211a483b8b82da"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -48,7 +48,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PortalTokenDetailsRequest_1afef7776e0d4367f60e4298263e4cb67e)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PortalTokenDetailsRequest_1afef7776e0d4367f60e4298263e4cb67e"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PortalTokenDetailsRequest_1ad1841db328a8a8552de393b9bc730b52)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PortalTokenDetailsRequest_1ad1841db328a8a8552de393b9bc730b52"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 

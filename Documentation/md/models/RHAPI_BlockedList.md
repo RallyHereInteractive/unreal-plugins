@@ -22,8 +22,8 @@ The list of players that is blocked.
 `public FGuid `[`PlayerUuid`](#structFRHAPI__BlockedList_1a81ca3ffaaa57933136d4e34c898eaf59) | 
 `public TArray< `[`FRHAPI_BlockedPlayer`](RHAPI_BlockedPlayer.md#structFRHAPI__BlockedPlayer)` > `[`Blocked`](#structFRHAPI__BlockedList_1a9513852bd685b421e1d530d4c5fef82b) | 
 `public `[`FRHAPI_PageMeta`](RHAPI_PageMeta.md#structFRHAPI__PageMeta)` `[`Page`](#structFRHAPI__BlockedList_1a8744288d16432ddc662e34b3390c569a) | 
-`public virtual bool `[`FromJson`](#structFRHAPI__BlockedList_1a4777a3c2c7202d9cb8b8d04f433fdb1d)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__BlockedList_1a86a943e21ccd5a660b10343c57622437)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__BlockedList_1a171178ab77c2a5d477bf0687a43ef1f5)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__BlockedList_1a27205c3796ebf53079617915054933cd)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__BlockedList_1a5396c01063e705f35bed44517fb57d9e)`()` | Gets the value of PlayerUuid.
 `public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__BlockedList_1a5788033debdec806a353b479d52e3774)`() const` | Gets the value of PlayerUuid.
 `public inline void `[`SetPlayerUuid`](#structFRHAPI__BlockedList_1a26d6054ecdf24c515ce7749f412a6140)`(const FGuid & NewValue)` | Sets the value of PlayerUuid.
@@ -45,7 +45,7 @@ The list of players that is blocked.
 
 #### `public `[`FRHAPI_PageMeta`](RHAPI_PageMeta.md#structFRHAPI__PageMeta)` `[`Page`](#structFRHAPI__BlockedList_1a8744288d16432ddc662e34b3390c569a) <a id="structFRHAPI__BlockedList_1a8744288d16432ddc662e34b3390c569a"></a>
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__BlockedList_1a4777a3c2c7202d9cb8b8d04f433fdb1d)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__BlockedList_1a4777a3c2c7202d9cb8b8d04f433fdb1d"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__BlockedList_1a171178ab77c2a5d477bf0687a43ef1f5)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__BlockedList_1a171178ab77c2a5d477bf0687a43ef1f5"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -55,7 +55,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__BlockedList_1a86a943e21ccd5a660b10343c57622437)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__BlockedList_1a86a943e21ccd5a660b10343c57622437"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__BlockedList_1a27205c3796ebf53079617915054933cd)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__BlockedList_1a27205c3796ebf53079617915054933cd"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 

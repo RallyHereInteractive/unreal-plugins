@@ -24,8 +24,8 @@ A platform player resource in a platform session.
 `public FGuid `[`PlayerUuid`](#structFRHAPI__PlatformSessionPlayer_1a1308c9d9ac539eda9d6a4e1ea013e7c1) | Player UUID representing the current player.
 `public bool `[`Leader_Optional`](#structFRHAPI__PlatformSessionPlayer_1af25bb552fada49ae3759e7bc473d6fb0) | Is this player the leader of the platform session? When setting up the parent session, if all players are from the same platform session, leadership is coordinated.
 `public bool `[`Leader_IsSet`](#structFRHAPI__PlatformSessionPlayer_1a5ffe9e5e4a236e96fb0ad853b7c6a1bb) | true if Leader_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__PlatformSessionPlayer_1ac306dece915d61efa007448f63f2db02)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PlatformSessionPlayer_1a363682afb881c387cb9871db8d80ac2a)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__PlatformSessionPlayer_1a652762ae9eff57e6df3e73dce1eab14d)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__PlatformSessionPlayer_1a0ffc9a65f24277eead93685215ac5add)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline int32 & `[`GetPlayerId`](#structFRHAPI__PlatformSessionPlayer_1ab97a96298dd08e0de097eae8912434d6)`()` | Gets the value of PlayerId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetPlayerId`](#structFRHAPI__PlatformSessionPlayer_1a3d0d01fcee6c5ef7a029a9c0c2e8ed2d)`() const` | Gets the value of PlayerId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetPlayerId`](#structFRHAPI__PlatformSessionPlayer_1a686f9f2d357e9ace50e724a1d606d97a)`(const int32 & DefaultValue) const` | Gets the value of PlayerId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -35,6 +35,7 @@ A platform player resource in a platform session.
 `public inline void `[`SetPlayerId`](#structFRHAPI__PlatformSessionPlayer_1a2c00de6c14ad9cf1244d73caa318018f)`(const int32 & NewValue)` | Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true.
 `public inline void `[`SetPlayerId`](#structFRHAPI__PlatformSessionPlayer_1aa3d8fa5d8bd05dedc36968376f722b93)`(int32 && NewValue)` | Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true using move semantics.
 `public inline void `[`ClearPlayerId`](#structFRHAPI__PlatformSessionPlayer_1ad90bf8e5f5568848bd0e4387377c39aa)`()` | Clears the value of PlayerId_Optional and sets PlayerId_IsSet to false.
+`public inline bool `[`IsPlayerIdSet`](#structFRHAPI__PlatformSessionPlayer_1a58df32cce2f11e4d08d19fba1a9c1104)`() const` | Checks whether PlayerId_Optional has been set.
 `public inline bool `[`IsPlayerIdDefaultValue`](#structFRHAPI__PlatformSessionPlayer_1aeab3f493aea47825d306eb7fc0d34a0b)`() const` | Returns true if PlayerId_Optional is set and matches the default value.
 `public inline void `[`SetPlayerIdToDefault`](#structFRHAPI__PlatformSessionPlayer_1a061c54f1a70a22fb0043bce4d70d2b6c)`()` | Sets the value of PlayerId_Optional to its default and also sets PlayerId_IsSet to true.
 `public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__PlatformSessionPlayer_1af89400cb11d1ee66cc086e93d342bcfc)`()` | Gets the value of PlayerUuid.
@@ -50,6 +51,7 @@ A platform player resource in a platform session.
 `public inline void `[`SetLeader`](#structFRHAPI__PlatformSessionPlayer_1a5e3022e81c3b022390fb0adffe4d3f70)`(const bool & NewValue)` | Sets the value of Leader_Optional and also sets Leader_IsSet to true.
 `public inline void `[`SetLeader`](#structFRHAPI__PlatformSessionPlayer_1ad12ab862e57ec633edade94ee2ec20fe)`(bool && NewValue)` | Sets the value of Leader_Optional and also sets Leader_IsSet to true using move semantics.
 `public inline void `[`ClearLeader`](#structFRHAPI__PlatformSessionPlayer_1a58f11cfb82926d116f78ba252050150e)`()` | Clears the value of Leader_Optional and sets Leader_IsSet to false.
+`public inline bool `[`IsLeaderSet`](#structFRHAPI__PlatformSessionPlayer_1af6f5738f9167c4be5552c573052f7c82)`() const` | Checks whether Leader_Optional has been set.
 `public inline bool `[`IsLeaderDefaultValue`](#structFRHAPI__PlatformSessionPlayer_1a3b18105fa390a5974fc04aad4472abad)`() const` | Returns true if Leader_Optional is set and matches the default value.
 `public inline void `[`SetLeaderToDefault`](#structFRHAPI__PlatformSessionPlayer_1a8d7d302ebb8566e204633630192a6a74)`()` | Sets the value of Leader_Optional to its default and also sets Leader_IsSet to true.
 
@@ -75,7 +77,7 @@ Is this player the leader of the platform session? When setting up the parent se
 
 true if Leader_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__PlatformSessionPlayer_1ac306dece915d61efa007448f63f2db02)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlatformSessionPlayer_1ac306dece915d61efa007448f63f2db02"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__PlatformSessionPlayer_1a652762ae9eff57e6df3e73dce1eab14d)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlatformSessionPlayer_1a652762ae9eff57e6df3e73dce1eab14d"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -85,7 +87,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PlatformSessionPlayer_1a363682afb881c387cb9871db8d80ac2a)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlatformSessionPlayer_1a363682afb881c387cb9871db8d80ac2a"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PlatformSessionPlayer_1a0ffc9a65f24277eead93685215ac5add)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlatformSessionPlayer_1a0ffc9a65f24277eead93685215ac5add"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -127,6 +129,10 @@ Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true using m
 #### `public inline void `[`ClearPlayerId`](#structFRHAPI__PlatformSessionPlayer_1ad90bf8e5f5568848bd0e4387377c39aa)`()` <a id="structFRHAPI__PlatformSessionPlayer_1ad90bf8e5f5568848bd0e4387377c39aa"></a>
 
 Clears the value of PlayerId_Optional and sets PlayerId_IsSet to false.
+
+#### `public inline bool `[`IsPlayerIdSet`](#structFRHAPI__PlatformSessionPlayer_1a58df32cce2f11e4d08d19fba1a9c1104)`() const` <a id="structFRHAPI__PlatformSessionPlayer_1a58df32cce2f11e4d08d19fba1a9c1104"></a>
+
+Checks whether PlayerId_Optional has been set.
 
 #### `public inline bool `[`IsPlayerIdDefaultValue`](#structFRHAPI__PlatformSessionPlayer_1aeab3f493aea47825d306eb7fc0d34a0b)`() const` <a id="structFRHAPI__PlatformSessionPlayer_1aeab3f493aea47825d306eb7fc0d34a0b"></a>
 
@@ -187,6 +193,10 @@ Sets the value of Leader_Optional and also sets Leader_IsSet to true using move 
 #### `public inline void `[`ClearLeader`](#structFRHAPI__PlatformSessionPlayer_1a58f11cfb82926d116f78ba252050150e)`()` <a id="structFRHAPI__PlatformSessionPlayer_1a58f11cfb82926d116f78ba252050150e"></a>
 
 Clears the value of Leader_Optional and sets Leader_IsSet to false.
+
+#### `public inline bool `[`IsLeaderSet`](#structFRHAPI__PlatformSessionPlayer_1af6f5738f9167c4be5552c573052f7c82)`() const` <a id="structFRHAPI__PlatformSessionPlayer_1af6f5738f9167c4be5552c573052f7c82"></a>
+
+Checks whether Leader_Optional has been set.
 
 #### `public inline bool `[`IsLeaderDefaultValue`](#structFRHAPI__PlatformSessionPlayer_1a3b18105fa390a5974fc04aad4472abad)`() const` <a id="structFRHAPI__PlatformSessionPlayer_1a3b18105fa390a5974fc04aad4472abad"></a>
 

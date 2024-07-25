@@ -28,8 +28,8 @@ A request body for a player updating information about themselves.
 `public bool `[`CrossplayPreferences_IsSet`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1abea2347af254bb0e3f9eb8cbb46fc9e3) | true if CrossplayPreferences_Optional has been set to a value
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1aaa1ded6c84ac6e5ddda821fe76a086ae) | player-defined custom data
 `public bool `[`CustomData_IsSet`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a8217d194f5c6d231a970922b72505333) | true if CustomData_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a8284666cfe41673b366681ac424cbef7)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a7ea4fe3aca12fa5606e876af960c89a4)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a689b45738def0c35f8b23d5062395aa1)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a1417b85422448456a79475daff1bf9a9)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_SessionPlayerStatus & `[`GetStatus`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a9396bf8b5d1ade1bcfba5f0012a7e840)`()` | Gets the value of Status_Optional, regardless of it having been set.
 `public inline const ERHAPI_SessionPlayerStatus & `[`GetStatus`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a02a02d49641845b380e4a9d6012cab8d)`() const` | Gets the value of Status_Optional, regardless of it having been set.
 `public inline const ERHAPI_SessionPlayerStatus & `[`GetStatus`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a2cf4b2102c37b21941a5880e3effab85)`(const ERHAPI_SessionPlayerStatus & DefaultValue) const` | Gets the value of Status_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -39,6 +39,7 @@ A request body for a player updating information about themselves.
 `public inline void `[`SetStatus`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a0f285e59bfe54b7d0c4b97241906b0be)`(const ERHAPI_SessionPlayerStatus & NewValue)` | Sets the value of Status_Optional and also sets Status_IsSet to true.
 `public inline void `[`SetStatus`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a4948faa7fe9618c2724448e48a7d850e)`(ERHAPI_SessionPlayerStatus && NewValue)` | Sets the value of Status_Optional and also sets Status_IsSet to true using move semantics.
 `public inline void `[`ClearStatus`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a43b611f41d315e4d920418702e1c508b)`()` | Clears the value of Status_Optional and sets Status_IsSet to false.
+`public inline bool `[`IsStatusSet`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a0e359e5db88aeb6df18a6c6bbfcf1297)`() const` | Checks whether Status_Optional has been set.
 `public inline FString & `[`GetClientVersion`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1ac28d2a14c9ab5f993dcf0f115ffe8065)`()` | Gets the value of ClientVersion.
 `public inline const FString & `[`GetClientVersion`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a9884671fb2a07272c4a254db4b5a60ea)`() const` | Gets the value of ClientVersion.
 `public inline void `[`SetClientVersion`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1afa6bcea0716b1ec9c7092fe36487504f)`(const FString & NewValue)` | Sets the value of ClientVersion.
@@ -62,6 +63,7 @@ A request body for a player updating information about themselves.
 `public inline void `[`SetCrossplayPreferences`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1ae8c58a3802a65126d2796b83ab9710d9)`(const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & NewValue)` | Sets the value of CrossplayPreferences_Optional and also sets CrossplayPreferences_IsSet to true.
 `public inline void `[`SetCrossplayPreferences`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1ad76136a2d0ff6bcd321f8bd2fa0fdaee)`(`[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` && NewValue)` | Sets the value of CrossplayPreferences_Optional and also sets CrossplayPreferences_IsSet to true using move semantics.
 `public inline void `[`ClearCrossplayPreferences`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1ad9dacb94ea41b6f8efbf9c1c9ed3420e)`()` | Clears the value of CrossplayPreferences_Optional and sets CrossplayPreferences_IsSet to false.
+`public inline bool `[`IsCrossplayPreferencesSet`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a0db5881c81d0a60eba18e0065f635c4d)`() const` | Checks whether CrossplayPreferences_Optional has been set.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a9ecf38ff0a4a3ba94c5a1106348428f9)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a7f2afaef3a77a2a4697806a10de2a5af)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1afbfbe077f9a58ba48b4f735d7de5e92e)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -71,6 +73,7 @@ A request body for a player updating information about themselves.
 `public inline void `[`SetCustomData`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a4fa7c9343daa4537935132227e07d4ae)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`SetCustomData`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a7abed25d8014343285c9a8af520774f4)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1afc76499c6b23732fdd02a72402d7e752)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+`public inline bool `[`IsCustomDataSet`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1af5b2c1bd05fafedcc787875fca55b5b1)`() const` | Checks whether CustomData_Optional has been set.
 
 ### Members
 
@@ -110,7 +113,7 @@ player-defined custom data
 
 true if CustomData_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a8284666cfe41673b366681ac424cbef7)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a8284666cfe41673b366681ac424cbef7"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a689b45738def0c35f8b23d5062395aa1)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a689b45738def0c35f8b23d5062395aa1"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -120,7 +123,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a7ea4fe3aca12fa5606e876af960c89a4)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a7ea4fe3aca12fa5606e876af960c89a4"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a1417b85422448456a79475daff1bf9a9)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a1417b85422448456a79475daff1bf9a9"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -162,6 +165,10 @@ Sets the value of Status_Optional and also sets Status_IsSet to true using move 
 #### `public inline void `[`ClearStatus`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a43b611f41d315e4d920418702e1c508b)`()` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a43b611f41d315e4d920418702e1c508b"></a>
 
 Clears the value of Status_Optional and sets Status_IsSet to false.
+
+#### `public inline bool `[`IsStatusSet`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a0e359e5db88aeb6df18a6c6bbfcf1297)`() const` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a0e359e5db88aeb6df18a6c6bbfcf1297"></a>
+
+Checks whether Status_Optional has been set.
 
 #### `public inline FString & `[`GetClientVersion`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1ac28d2a14c9ab5f993dcf0f115ffe8065)`()` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1ac28d2a14c9ab5f993dcf0f115ffe8065"></a>
 
@@ -255,6 +262,10 @@ Sets the value of CrossplayPreferences_Optional and also sets CrossplayPreferenc
 
 Clears the value of CrossplayPreferences_Optional and sets CrossplayPreferences_IsSet to false.
 
+#### `public inline bool `[`IsCrossplayPreferencesSet`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a0db5881c81d0a60eba18e0065f635c4d)`() const` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a0db5881c81d0a60eba18e0065f635c4d"></a>
+
+Checks whether CrossplayPreferences_Optional has been set.
+
 #### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a9ecf38ff0a4a3ba94c5a1106348428f9)`()` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a9ecf38ff0a4a3ba94c5a1106348428f9"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
@@ -290,4 +301,8 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true usi
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1afc76499c6b23732fdd02a72402d7e752)`()` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1afc76499c6b23732fdd02a72402d7e752"></a>
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+
+#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1af5b2c1bd05fafedcc787875fca55b5b1)`() const` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1af5b2c1bd05fafedcc787875fca55b5b1"></a>
+
+Checks whether CustomData_Optional has been set.
 

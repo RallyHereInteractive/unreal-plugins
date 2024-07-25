@@ -19,8 +19,8 @@ struct FRHAPI_BackfillTeam
 --------------------------------|---------------------------------------------
 `public int32 `[`PlayersRequired`](#structFRHAPI__BackfillTeam_1a72823c33bcf556c5082c0b332f17fc78) | The number of players we want to backfill.
 `public int32 `[`TeamId`](#structFRHAPI__BackfillTeam_1afcd2c20abecc7b477e720e5acd45a714) | Id for the team that requires backfilled players.
-`public virtual bool `[`FromJson`](#structFRHAPI__BackfillTeam_1abe15095b8b814cfcb566ac1dbe8632e6)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__BackfillTeam_1a1ec758b6cbab7517c5d34015a65c08ec)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__BackfillTeam_1ad85782569b80df848b47ce7b407ee409)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__BackfillTeam_1ab8c8ec881c12ad3cd1ea889dc1b9a0cf)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline int32 & `[`GetPlayersRequired`](#structFRHAPI__BackfillTeam_1a253eeecedf2f345cc05cbbfc75b6f9b1)`()` | Gets the value of PlayersRequired.
 `public inline const int32 & `[`GetPlayersRequired`](#structFRHAPI__BackfillTeam_1a57c08eca078b8af22a2f17efda5a35c8)`() const` | Gets the value of PlayersRequired.
 `public inline void `[`SetPlayersRequired`](#structFRHAPI__BackfillTeam_1aed64aa333297dcaa4240a81c2ab76b99)`(const int32 & NewValue)` | Sets the value of PlayersRequired.
@@ -44,7 +44,7 @@ The number of players we want to backfill.
 
 Id for the team that requires backfilled players.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__BackfillTeam_1abe15095b8b814cfcb566ac1dbe8632e6)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__BackfillTeam_1abe15095b8b814cfcb566ac1dbe8632e6"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__BackfillTeam_1ad85782569b80df848b47ce7b407ee409)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__BackfillTeam_1ad85782569b80df848b47ce7b407ee409"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -54,7 +54,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__BackfillTeam_1a1ec758b6cbab7517c5d34015a65c08ec)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__BackfillTeam_1a1ec758b6cbab7517c5d34015a65c08ec"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__BackfillTeam_1ab8c8ec881c12ad3cd1ea889dc1b9a0cf)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__BackfillTeam_1ab8c8ec881c12ad3cd1ea889dc1b9a0cf"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 

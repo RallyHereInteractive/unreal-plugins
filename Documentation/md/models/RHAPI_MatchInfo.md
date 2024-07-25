@@ -25,8 +25,8 @@ DEPRECATED Information about a match.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__MatchInfo_1a1429b2bd18c520ce2ba22a39710c5765) | true if CustomData_Optional has been set to a value
 `public TArray< FString > `[`TicketIds_Optional`](#structFRHAPI__MatchInfo_1a38789aaa46dde5136ed9a8a3626bdc0f) | List of tickets that were assigned to this match if created by matchmaking.
 `public bool `[`TicketIds_IsSet`](#structFRHAPI__MatchInfo_1a91574dfaac67cedbc94f7bf58ed53df9) | true if TicketIds_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__MatchInfo_1afd6eb58532faf8990f254b715dda7481)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__MatchInfo_1ad759073eaa762a9f28560aa65bddb3a4)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__MatchInfo_1a0e14cb4abf932498902694eddb02e8c5)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__MatchInfo_1a3b6c013193280e81baa38647210ed109)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetMatchId`](#structFRHAPI__MatchInfo_1a66a52762273bf0a0cf00646d2cf9af8d)`()` | Gets the value of MatchId.
 `public inline const FString & `[`GetMatchId`](#structFRHAPI__MatchInfo_1a9e9c91e87e3631e67364b3980fe54969)`() const` | Gets the value of MatchId.
 `public inline void `[`SetMatchId`](#structFRHAPI__MatchInfo_1ae255085185681d2d8bae8f32929e4d43)`(const FString & NewValue)` | Sets the value of MatchId.
@@ -44,6 +44,7 @@ DEPRECATED Information about a match.
 `public inline void `[`SetCustomData`](#structFRHAPI__MatchInfo_1a2486cf861dabf7cbd1dd66085c7def57)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`SetCustomData`](#structFRHAPI__MatchInfo_1a78df7b03b198462961629d850db3815f)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__MatchInfo_1a7272b7c7f05e68f044146691c6a444b7)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+`public inline bool `[`IsCustomDataSet`](#structFRHAPI__MatchInfo_1ade4a70e16a0b991442c814a202db7c37)`() const` | Checks whether CustomData_Optional has been set.
 `public inline TArray< FString > & `[`GetTicketIds`](#structFRHAPI__MatchInfo_1abb678240c130a0a257c19d966d4738ee)`()` | Gets the value of TicketIds_Optional, regardless of it having been set.
 `public inline const TArray< FString > & `[`GetTicketIds`](#structFRHAPI__MatchInfo_1a5dd9ca468dc97f8dd8cfe14d9348a3be)`() const` | Gets the value of TicketIds_Optional, regardless of it having been set.
 `public inline const TArray< FString > & `[`GetTicketIds`](#structFRHAPI__MatchInfo_1a3963850ecad78bc34a5ffde423630df7)`(const TArray< FString > & DefaultValue) const` | Gets the value of TicketIds_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -53,6 +54,7 @@ DEPRECATED Information about a match.
 `public inline void `[`SetTicketIds`](#structFRHAPI__MatchInfo_1ac1376837d89774af571875a8d05dbbdc)`(const TArray< FString > & NewValue)` | Sets the value of TicketIds_Optional and also sets TicketIds_IsSet to true.
 `public inline void `[`SetTicketIds`](#structFRHAPI__MatchInfo_1ade789dbf8e761ab25e248381ac06d399)`(TArray< FString > && NewValue)` | Sets the value of TicketIds_Optional and also sets TicketIds_IsSet to true using move semantics.
 `public inline void `[`ClearTicketIds`](#structFRHAPI__MatchInfo_1a0222662660481f1f5beeb18231b94b39)`()` | Clears the value of TicketIds_Optional and sets TicketIds_IsSet to false.
+`public inline bool `[`IsTicketIdsSet`](#structFRHAPI__MatchInfo_1af8d200efbbda6529b89d860a14171162)`() const` | Checks whether TicketIds_Optional has been set.
 
 ### Members
 
@@ -80,7 +82,7 @@ List of tickets that were assigned to this match if created by matchmaking.
 
 true if TicketIds_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__MatchInfo_1afd6eb58532faf8990f254b715dda7481)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__MatchInfo_1afd6eb58532faf8990f254b715dda7481"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__MatchInfo_1a0e14cb4abf932498902694eddb02e8c5)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__MatchInfo_1a0e14cb4abf932498902694eddb02e8c5"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -90,7 +92,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__MatchInfo_1ad759073eaa762a9f28560aa65bddb3a4)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__MatchInfo_1ad759073eaa762a9f28560aa65bddb3a4"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__MatchInfo_1a3b6c013193280e81baa38647210ed109)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__MatchInfo_1a3b6c013193280e81baa38647210ed109"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -165,6 +167,10 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true usi
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
+#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__MatchInfo_1ade4a70e16a0b991442c814a202db7c37)`() const` <a id="structFRHAPI__MatchInfo_1ade4a70e16a0b991442c814a202db7c37"></a>
+
+Checks whether CustomData_Optional has been set.
+
 #### `public inline TArray< FString > & `[`GetTicketIds`](#structFRHAPI__MatchInfo_1abb678240c130a0a257c19d966d4738ee)`()` <a id="structFRHAPI__MatchInfo_1abb678240c130a0a257c19d966d4738ee"></a>
 
 Gets the value of TicketIds_Optional, regardless of it having been set.
@@ -200,4 +206,8 @@ Sets the value of TicketIds_Optional and also sets TicketIds_IsSet to true using
 #### `public inline void `[`ClearTicketIds`](#structFRHAPI__MatchInfo_1a0222662660481f1f5beeb18231b94b39)`()` <a id="structFRHAPI__MatchInfo_1a0222662660481f1f5beeb18231b94b39"></a>
 
 Clears the value of TicketIds_Optional and sets TicketIds_IsSet to false.
+
+#### `public inline bool `[`IsTicketIdsSet`](#structFRHAPI__MatchInfo_1af8d200efbbda6529b89d860a14171162)`() const` <a id="structFRHAPI__MatchInfo_1af8d200efbbda6529b89d860a14171162"></a>
+
+Checks whether TicketIds_Optional has been set.
 

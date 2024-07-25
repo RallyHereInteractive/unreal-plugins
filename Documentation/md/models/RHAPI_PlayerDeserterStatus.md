@@ -27,8 +27,8 @@ struct FRHAPI_PlayerDeserterStatus
 `public bool `[`LastUpdated_IsSet`](#structFRHAPI__PlayerDeserterStatus_1a99a402b66ae47401403fbd02f3d83f93) | true if LastUpdated_Optional has been set to a value
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__PlayerDeserterStatus_1aeeacbbdfd3683bcecbda095d64d14641) | Custom data about a players desertion status.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__PlayerDeserterStatus_1a22be5f2d7a13fc498f5795bb665c346c) | true if CustomData_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__PlayerDeserterStatus_1afd2da128d4ccb98c12d6982038956534)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PlayerDeserterStatus_1a332bab6a93070449827625fbd3c4fdba)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__PlayerDeserterStatus_1a8982bd8e590c45cde96822d003cd402e)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__PlayerDeserterStatus_1ab8ab3442f15ce745cb811c3c0795a0dd)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetDeserterId`](#structFRHAPI__PlayerDeserterStatus_1a7cea54fde0eeb1245d3a554f9ed23ef6)`()` | Gets the value of DeserterId.
 `public inline const FString & `[`GetDeserterId`](#structFRHAPI__PlayerDeserterStatus_1ac6f03d69ec9e6fcf678afa2ac62a4e9d)`() const` | Gets the value of DeserterId.
 `public inline void `[`SetDeserterId`](#structFRHAPI__PlayerDeserterStatus_1a522a754e3536e6ea86881a54ff7940f8)`(const FString & NewValue)` | Sets the value of DeserterId.
@@ -48,6 +48,7 @@ struct FRHAPI_PlayerDeserterStatus
 `public inline void `[`SetDeserterExpiration`](#structFRHAPI__PlayerDeserterStatus_1ab78220d8b18d588abe3b451b898a2ae6)`(const FDateTime & NewValue)` | Sets the value of DeserterExpiration_Optional and also sets DeserterExpiration_IsSet to true.
 `public inline void `[`SetDeserterExpiration`](#structFRHAPI__PlayerDeserterStatus_1a84b3bb6defd3dbe6e054cf67bd3050a5)`(FDateTime && NewValue)` | Sets the value of DeserterExpiration_Optional and also sets DeserterExpiration_IsSet to true using move semantics.
 `public inline void `[`ClearDeserterExpiration`](#structFRHAPI__PlayerDeserterStatus_1ad3dbbeafc82edc9873b439047a74c805)`()` | Clears the value of DeserterExpiration_Optional and sets DeserterExpiration_IsSet to false.
+`public inline bool `[`IsDeserterExpirationSet`](#structFRHAPI__PlayerDeserterStatus_1a47f854f54b33a5f8066de5598b77c072)`() const` | Checks whether DeserterExpiration_Optional has been set.
 `public inline int32 & `[`GetDeserterCount`](#structFRHAPI__PlayerDeserterStatus_1acb0e2db74dc731b8b4f55971c54d91c9)`()` | Gets the value of DeserterCount_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetDeserterCount`](#structFRHAPI__PlayerDeserterStatus_1aee17b26ad0fbc03ad2b0b670ce25788e)`() const` | Gets the value of DeserterCount_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetDeserterCount`](#structFRHAPI__PlayerDeserterStatus_1a10a7d266f06f3e1ce91257f5ea3e9eb5)`(const int32 & DefaultValue) const` | Gets the value of DeserterCount_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -57,6 +58,7 @@ struct FRHAPI_PlayerDeserterStatus
 `public inline void `[`SetDeserterCount`](#structFRHAPI__PlayerDeserterStatus_1a6959789bd0a92187639a7d5dc1e1d337)`(const int32 & NewValue)` | Sets the value of DeserterCount_Optional and also sets DeserterCount_IsSet to true.
 `public inline void `[`SetDeserterCount`](#structFRHAPI__PlayerDeserterStatus_1a40ebaa63c9c06e27302e1f95709dfd60)`(int32 && NewValue)` | Sets the value of DeserterCount_Optional and also sets DeserterCount_IsSet to true using move semantics.
 `public inline void `[`ClearDeserterCount`](#structFRHAPI__PlayerDeserterStatus_1a4895724214bc6062a70449a90bae819d)`()` | Clears the value of DeserterCount_Optional and sets DeserterCount_IsSet to false.
+`public inline bool `[`IsDeserterCountSet`](#structFRHAPI__PlayerDeserterStatus_1a57ed9aac63e3e732b19fb878817898b3)`() const` | Checks whether DeserterCount_Optional has been set.
 `public inline bool `[`IsDeserterCountDefaultValue`](#structFRHAPI__PlayerDeserterStatus_1a58c842e3b9440596fc2e305f56ed7cc5)`() const` | Returns true if DeserterCount_Optional is set and matches the default value.
 `public inline void `[`SetDeserterCountToDefault`](#structFRHAPI__PlayerDeserterStatus_1a5a663a8d8919402a52a4b0cfd408dddb)`()` | Sets the value of DeserterCount_Optional to its default and also sets DeserterCount_IsSet to true.
 `public inline FDateTime & `[`GetLastUpdated`](#structFRHAPI__PlayerDeserterStatus_1a9db82463de5e4e64845316473df0290b)`()` | Gets the value of LastUpdated_Optional, regardless of it having been set.
@@ -68,6 +70,7 @@ struct FRHAPI_PlayerDeserterStatus
 `public inline void `[`SetLastUpdated`](#structFRHAPI__PlayerDeserterStatus_1a950605fff212b19bd51ff6963cdec34b)`(const FDateTime & NewValue)` | Sets the value of LastUpdated_Optional and also sets LastUpdated_IsSet to true.
 `public inline void `[`SetLastUpdated`](#structFRHAPI__PlayerDeserterStatus_1ae9cfd2b9ae7c481695bbc70500f69bc7)`(FDateTime && NewValue)` | Sets the value of LastUpdated_Optional and also sets LastUpdated_IsSet to true using move semantics.
 `public inline void `[`ClearLastUpdated`](#structFRHAPI__PlayerDeserterStatus_1aa3f49a37da22919a8848dd3b3f2654b5)`()` | Clears the value of LastUpdated_Optional and sets LastUpdated_IsSet to false.
+`public inline bool `[`IsLastUpdatedSet`](#structFRHAPI__PlayerDeserterStatus_1a32bd0521da49ff6fa5d7ca6905055019)`() const` | Checks whether LastUpdated_Optional has been set.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerDeserterStatus_1a46474b781a7cb6dacf64697f1b0ec44f)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerDeserterStatus_1ad9e45bba0216771e4d7d26cd074cda3f)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerDeserterStatus_1a394541f6c26faef6267f5abf168f18f4)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -77,6 +80,7 @@ struct FRHAPI_PlayerDeserterStatus
 `public inline void `[`SetCustomData`](#structFRHAPI__PlayerDeserterStatus_1a1e41046e80fc0723219298d86008784e)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`SetCustomData`](#structFRHAPI__PlayerDeserterStatus_1a9caadcff95f313596aa86dd385489df9)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__PlayerDeserterStatus_1af541cc96826985547c67e58683ce0700)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+`public inline bool `[`IsCustomDataSet`](#structFRHAPI__PlayerDeserterStatus_1af33b4aa8e00604e12d014021213942ce)`() const` | Checks whether CustomData_Optional has been set.
 
 ### Members
 
@@ -120,7 +124,7 @@ Custom data about a players desertion status.
 
 true if CustomData_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__PlayerDeserterStatus_1afd2da128d4ccb98c12d6982038956534)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlayerDeserterStatus_1afd2da128d4ccb98c12d6982038956534"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__PlayerDeserterStatus_1a8982bd8e590c45cde96822d003cd402e)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlayerDeserterStatus_1a8982bd8e590c45cde96822d003cd402e"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -130,7 +134,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PlayerDeserterStatus_1a332bab6a93070449827625fbd3c4fdba)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlayerDeserterStatus_1a332bab6a93070449827625fbd3c4fdba"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PlayerDeserterStatus_1ab8ab3442f15ce745cb811c3c0795a0dd)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlayerDeserterStatus_1ab8ab3442f15ce745cb811c3c0795a0dd"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -213,6 +217,10 @@ Sets the value of DeserterExpiration_Optional and also sets DeserterExpiration_I
 
 Clears the value of DeserterExpiration_Optional and sets DeserterExpiration_IsSet to false.
 
+#### `public inline bool `[`IsDeserterExpirationSet`](#structFRHAPI__PlayerDeserterStatus_1a47f854f54b33a5f8066de5598b77c072)`() const` <a id="structFRHAPI__PlayerDeserterStatus_1a47f854f54b33a5f8066de5598b77c072"></a>
+
+Checks whether DeserterExpiration_Optional has been set.
+
 #### `public inline int32 & `[`GetDeserterCount`](#structFRHAPI__PlayerDeserterStatus_1acb0e2db74dc731b8b4f55971c54d91c9)`()` <a id="structFRHAPI__PlayerDeserterStatus_1acb0e2db74dc731b8b4f55971c54d91c9"></a>
 
 Gets the value of DeserterCount_Optional, regardless of it having been set.
@@ -248,6 +256,10 @@ Sets the value of DeserterCount_Optional and also sets DeserterCount_IsSet to tr
 #### `public inline void `[`ClearDeserterCount`](#structFRHAPI__PlayerDeserterStatus_1a4895724214bc6062a70449a90bae819d)`()` <a id="structFRHAPI__PlayerDeserterStatus_1a4895724214bc6062a70449a90bae819d"></a>
 
 Clears the value of DeserterCount_Optional and sets DeserterCount_IsSet to false.
+
+#### `public inline bool `[`IsDeserterCountSet`](#structFRHAPI__PlayerDeserterStatus_1a57ed9aac63e3e732b19fb878817898b3)`() const` <a id="structFRHAPI__PlayerDeserterStatus_1a57ed9aac63e3e732b19fb878817898b3"></a>
+
+Checks whether DeserterCount_Optional has been set.
 
 #### `public inline bool `[`IsDeserterCountDefaultValue`](#structFRHAPI__PlayerDeserterStatus_1a58c842e3b9440596fc2e305f56ed7cc5)`() const` <a id="structFRHAPI__PlayerDeserterStatus_1a58c842e3b9440596fc2e305f56ed7cc5"></a>
 
@@ -293,6 +305,10 @@ Sets the value of LastUpdated_Optional and also sets LastUpdated_IsSet to true u
 
 Clears the value of LastUpdated_Optional and sets LastUpdated_IsSet to false.
 
+#### `public inline bool `[`IsLastUpdatedSet`](#structFRHAPI__PlayerDeserterStatus_1a32bd0521da49ff6fa5d7ca6905055019)`() const` <a id="structFRHAPI__PlayerDeserterStatus_1a32bd0521da49ff6fa5d7ca6905055019"></a>
+
+Checks whether LastUpdated_Optional has been set.
+
 #### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerDeserterStatus_1a46474b781a7cb6dacf64697f1b0ec44f)`()` <a id="structFRHAPI__PlayerDeserterStatus_1a46474b781a7cb6dacf64697f1b0ec44f"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
@@ -328,4 +344,8 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true usi
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__PlayerDeserterStatus_1af541cc96826985547c67e58683ce0700)`()` <a id="structFRHAPI__PlayerDeserterStatus_1af541cc96826985547c67e58683ce0700"></a>
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+
+#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__PlayerDeserterStatus_1af33b4aa8e00604e12d014021213942ce)`() const` <a id="structFRHAPI__PlayerDeserterStatus_1af33b4aa8e00604e12d014021213942ce"></a>
+
+Checks whether CustomData_Optional has been set.
 

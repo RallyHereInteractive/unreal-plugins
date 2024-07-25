@@ -24,8 +24,8 @@ A rule to determine which MatchMakingTemplate should be used on a session enteri
 `public bool `[`ItemId_IsSet`](#structFRHAPI__Rule_1ab446ced603f1d0503dbf7e9aa52dd24b) | true if ItemId_Optional has been set to a value
 `public ERHAPI_Operation `[`ComparisonOperation`](#structFRHAPI__Rule_1a9737a27e7a06796f094f4c9f25417470) | Comparison operation to be performed.
 `public int32 `[`ComparisonValue`](#structFRHAPI__Rule_1abd981c2162078fa95f3a39a67a48894a) | Value to compare to.
-`public virtual bool `[`FromJson`](#structFRHAPI__Rule_1ae84ce1919bd28b54bcb6179bd9bf6665)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__Rule_1ab4368b3cd531f6b628b167305c52748e)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__Rule_1adb7009c567f49d09752f29653c6b8ed9)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__Rule_1afbd014e5551ae3b06d22bfe9b05be2a2)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_RuleType & `[`GetRuleType`](#structFRHAPI__Rule_1a168823c366a662e77b21d5b9088fba46)`()` | Gets the value of RuleType.
 `public inline const ERHAPI_RuleType & `[`GetRuleType`](#structFRHAPI__Rule_1a150e40e4ab6bcd93172ef04b9e0f86b2)`() const` | Gets the value of RuleType.
 `public inline void `[`SetRuleType`](#structFRHAPI__Rule_1a552f079c16b03b9624f30f209df630ac)`(const ERHAPI_RuleType & NewValue)` | Sets the value of RuleType.
@@ -39,6 +39,7 @@ A rule to determine which MatchMakingTemplate should be used on a session enteri
 `public inline void `[`SetItemId`](#structFRHAPI__Rule_1a7db4da485fa38e7efcb0a2a3cdf0714e)`(const int32 & NewValue)` | Sets the value of ItemId_Optional and also sets ItemId_IsSet to true.
 `public inline void `[`SetItemId`](#structFRHAPI__Rule_1aa31058748baa9e54e06d436374391033)`(int32 && NewValue)` | Sets the value of ItemId_Optional and also sets ItemId_IsSet to true using move semantics.
 `public inline void `[`ClearItemId`](#structFRHAPI__Rule_1ac8c0859244d0e1917c0fe3fb1f434db4)`()` | Clears the value of ItemId_Optional and sets ItemId_IsSet to false.
+`public inline bool `[`IsItemIdSet`](#structFRHAPI__Rule_1abf0ef14b579af6c77806404d057cee46)`() const` | Checks whether ItemId_Optional has been set.
 `public inline bool `[`IsItemIdDefaultValue`](#structFRHAPI__Rule_1a13a1315b408ae91ba8c92347a354c9c7)`() const` | Returns true if ItemId_Optional is set and matches the default value.
 `public inline void `[`SetItemIdToDefault`](#structFRHAPI__Rule_1aaa71f1bf82e9fbe43ddb42d75cfff9d3)`()` | Sets the value of ItemId_Optional to its default and also sets ItemId_IsSet to true.
 `public inline ERHAPI_Operation & `[`GetComparisonOperation`](#structFRHAPI__Rule_1ad12c2f73831d1a133e47369553050d1d)`()` | Gets the value of ComparisonOperation.
@@ -74,7 +75,7 @@ Comparison operation to be performed.
 
 Value to compare to.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__Rule_1ae84ce1919bd28b54bcb6179bd9bf6665)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__Rule_1ae84ce1919bd28b54bcb6179bd9bf6665"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__Rule_1adb7009c567f49d09752f29653c6b8ed9)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__Rule_1adb7009c567f49d09752f29653c6b8ed9"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -84,7 +85,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__Rule_1ab4368b3cd531f6b628b167305c52748e)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__Rule_1ab4368b3cd531f6b628b167305c52748e"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__Rule_1afbd014e5551ae3b06d22bfe9b05be2a2)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__Rule_1afbd014e5551ae3b06d22bfe9b05be2a2"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -142,6 +143,10 @@ Sets the value of ItemId_Optional and also sets ItemId_IsSet to true using move 
 #### `public inline void `[`ClearItemId`](#structFRHAPI__Rule_1ac8c0859244d0e1917c0fe3fb1f434db4)`()` <a id="structFRHAPI__Rule_1ac8c0859244d0e1917c0fe3fb1f434db4"></a>
 
 Clears the value of ItemId_Optional and sets ItemId_IsSet to false.
+
+#### `public inline bool `[`IsItemIdSet`](#structFRHAPI__Rule_1abf0ef14b579af6c77806404d057cee46)`() const` <a id="structFRHAPI__Rule_1abf0ef14b579af6c77806404d057cee46"></a>
+
+Checks whether ItemId_Optional has been set.
 
 #### `public inline bool `[`IsItemIdDefaultValue`](#structFRHAPI__Rule_1a13a1315b408ae91ba8c92347a354c9c7)`() const` <a id="structFRHAPI__Rule_1a13a1315b408ae91ba8c92347a354c9c7"></a>
 

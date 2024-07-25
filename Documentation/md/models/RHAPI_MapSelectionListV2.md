@@ -19,8 +19,8 @@ struct FRHAPI_MapSelectionListV2
 --------------------------------|---------------------------------------------
 `public FString `[`MapSelectionListId`](#structFRHAPI__MapSelectionListV2_1a14dc8c0be8f15c5611dbf79087b0599e) | ID to uniquely identify this map selection list.
 `public TArray< `[`FRHAPI_MapConfigV2`](RHAPI_MapConfigV2.md#structFRHAPI__MapConfigV2)` > `[`Maps`](#structFRHAPI__MapSelectionListV2_1ac98cad728a16cb2c742629671a17b010) | List of maps that can be chosen in this selection list.
-`public virtual bool `[`FromJson`](#structFRHAPI__MapSelectionListV2_1a480a4fa3df75fcf83ea5b875d615187f)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__MapSelectionListV2_1acc9ee2168e3523742307aa8cc58d92eb)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__MapSelectionListV2_1a07a70f446f40c48c5b56b65bf4f91f34)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__MapSelectionListV2_1aef37b74981796fdd5296856fc8297fc6)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetMapSelectionListId`](#structFRHAPI__MapSelectionListV2_1ac7e58e7080e1e034770f8181bc5f258a)`()` | Gets the value of MapSelectionListId.
 `public inline const FString & `[`GetMapSelectionListId`](#structFRHAPI__MapSelectionListV2_1a92d6c0635bb56833635852c475a923b6)`() const` | Gets the value of MapSelectionListId.
 `public inline void `[`SetMapSelectionListId`](#structFRHAPI__MapSelectionListV2_1ae15bc147a01794d32ce87ce80a631ead)`(const FString & NewValue)` | Sets the value of MapSelectionListId.
@@ -40,7 +40,7 @@ ID to uniquely identify this map selection list.
 
 List of maps that can be chosen in this selection list.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__MapSelectionListV2_1a480a4fa3df75fcf83ea5b875d615187f)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__MapSelectionListV2_1a480a4fa3df75fcf83ea5b875d615187f"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__MapSelectionListV2_1a07a70f446f40c48c5b56b65bf4f91f34)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__MapSelectionListV2_1a07a70f446f40c48c5b56b65bf4f91f34"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -50,7 +50,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__MapSelectionListV2_1acc9ee2168e3523742307aa8cc58d92eb)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__MapSelectionListV2_1acc9ee2168e3523742307aa8cc58d92eb"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__MapSelectionListV2_1aef37b74981796fdd5296856fc8297fc6)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__MapSelectionListV2_1aef37b74981796fdd5296856fc8297fc6"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
