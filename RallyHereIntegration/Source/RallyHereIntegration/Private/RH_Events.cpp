@@ -255,7 +255,7 @@ namespace RHStandardEvents
 
 #include "RH_AutomationTests.h"
 
-IMPLEMENT_SIMPLE_AUTOMATION_TEST(FRH_GetsAutomationTestAll, "RHAutomation.Events.All", EAutomationTestFlags::ClientContext | EAutomationTestFlags::RequiresUser | EAutomationTestFlags::ProductFilter | EAutomationTestFlags::MediumPriority)
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FRH_GetsAutomationTestAll, "RHAutomation.Events.All", EAutomationTestFlags::ClientContext | EAutomationTestFlags::ServerContext | EAutomationTestFlags::ProductFilter | EAutomationTestFlags::MediumPriority)
 
 bool FRH_GetsAutomationTestAll::RunTest(const FString& Parameters)
 {

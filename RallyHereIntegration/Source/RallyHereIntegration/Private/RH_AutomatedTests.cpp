@@ -23,7 +23,7 @@
 
 #include "TimeAPI.h"
 
-BEGIN_DEFINE_SPEC(FRH_RequesterThreading, "RHAutomation.HttpRequester.Threading", EAutomationTestFlags::ClientContext | /*EAutomationTestFlags::RequiresUser |*/ EAutomationTestFlags::ProductFilter | EAutomationTestFlags::MediumPriority)
+BEGIN_DEFINE_SPEC(FRH_RequesterThreading, "RHAutomation.HttpRequester.Threading", EAutomationTestFlags::ClientContext | EAutomationTestFlags::ServerContext | EAutomationTestFlags::ProductFilter | EAutomationTestFlags::MediumPriority)
 
 END_DEFINE_SPEC(FRH_RequesterThreading)
 
