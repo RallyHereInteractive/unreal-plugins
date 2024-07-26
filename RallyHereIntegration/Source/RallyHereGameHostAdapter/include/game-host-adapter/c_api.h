@@ -233,6 +233,16 @@ extern "C"
                                       void (*callback)(const RallyHereStatusCode& code, void* user_data),
                                       void* user_data);
 
+    /// @brief Get any configured public host and port information.
+    ///
+    /// There are situations where you want to use the Reserve flow, but would like to reuse the operational paramaters
+    /// provided to SIC by RallyHere operations. This allows you to get a string map with the public_host and
+    /// public_port that were provided to the game host. This is currently only valid in SIC mode.
+    ///
+    /// Caller is responsible for freeing the string map with rallyhere_string_map_destroy.
+    /// @public @memberof RallyHereGameInstanceAdapter
+    RH_EXPORT void rallyhere_get_public_host_and_port(RallyHereGameInstanceAdapterPtr adapter, RallyHereStringMapPtr* map);
+
     /// @brief Tell the game host to reserve this game instance rather than marking it ready.
     ///
     /// This will stop the game host from destroying this game instance based on any ready timeouts. This is to be used
