@@ -46,15 +46,15 @@ bool FRHAPI_InventorySessionCreateResponse::FromJson(const TSharedPtr<FJsonValue
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonSessionIdField = (*Object)->TryGetField(TEXT("session_id"));
-	ParseSuccess &= JsonSessionIdField.IsValid() && !JsonSessionIdField->IsNull() && TryGetJsonValue(JsonSessionIdField, SessionId);
+	ParseSuccess &= JsonSessionIdField.IsValid() && (!JsonSessionIdField->IsNull() &&  TryGetJsonValue(JsonSessionIdField, SessionId));
 	const TSharedPtr<FJsonValue> JsonSessionPlatformField = (*Object)->TryGetField(TEXT("session_platform"));
-	if (JsonSessionPlatformField.IsValid() && !JsonSessionPlatformField->IsNull())
+	if (JsonSessionPlatformField.IsValid())
 	{
 		SessionPlatform_IsSet = TryGetJsonValue(JsonSessionPlatformField, SessionPlatform_Optional);
 		ParseSuccess &= SessionPlatform_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonOrderIdField = (*Object)->TryGetField(TEXT("order_id"));
-	if (JsonOrderIdField.IsValid() && !JsonOrderIdField->IsNull())
+	if (JsonOrderIdField.IsValid())
 	{
 		OrderId_IsSet = TryGetJsonValue(JsonOrderIdField, OrderId_Optional);
 		ParseSuccess &= OrderId_IsSet;

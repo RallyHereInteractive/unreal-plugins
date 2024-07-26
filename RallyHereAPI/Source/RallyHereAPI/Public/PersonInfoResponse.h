@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_PersonInfoResponse : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Person ID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -54,15 +54,17 @@ struct RALLYHEREAPI_API FRHAPI_PersonInfoResponse : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of PersonId_Optional and returns true if it has been set, otherwise returns false */
 	bool GetPersonId(FGuid& OutValue) const { if (PersonId_IsSet) OutValue = PersonId_Optional; return PersonId_IsSet; }
 	/** @brief Returns a pointer to PersonId_Optional, if it has been set, otherwise returns nullptr */
-	FGuid* GetPersonIdOrNull() { if (PersonId_IsSet) return &PersonId_Optional; return nullptr; }
+	FGuid* GetPersonIdOrNull() { if (PersonId_IsSet) return (&PersonId_Optional); return nullptr; }
 	/** @brief Returns a pointer to PersonId_Optional, if it has been set, otherwise returns nullptr */
-	const FGuid* GetPersonIdOrNull() const { if (PersonId_IsSet) return &PersonId_Optional; return nullptr; }
+	const FGuid* GetPersonIdOrNull() const { if (PersonId_IsSet) return (&PersonId_Optional); return nullptr; }
 	/** @brief Sets the value of PersonId_Optional and also sets PersonId_IsSet to true */
-	void SetPersonId(const FGuid& NewValue) { PersonId_Optional = NewValue; PersonId_IsSet = true; }
+	void SetPersonId(const FGuid& NewValue) { PersonId_Optional = NewValue; PersonId_IsSet = true;  }
 	/** @brief Sets the value of PersonId_Optional and also sets PersonId_IsSet to true using move semantics */
-	void SetPersonId(FGuid&& NewValue) { PersonId_Optional = NewValue; PersonId_IsSet = true; }
-	 /** @brief Clears the value of PersonId_Optional and sets PersonId_IsSet to false */
-	void ClearPersonId() { PersonId_IsSet = false; }
+	void SetPersonId(FGuid&& NewValue) { PersonId_Optional = NewValue; PersonId_IsSet = true;  }
+	/** @brief Clears the value of PersonId_Optional and sets PersonId_IsSet to false */
+	void ClearPersonId() { PersonId_IsSet = false;  }
+	/** @brief Checks whether PersonId_Optional has been set */
+	bool IsPersonIdSet() const { return PersonId_IsSet; }
 
 	/** @brief Active player ID, if the person has an active player. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -79,19 +81,21 @@ struct RALLYHEREAPI_API FRHAPI_PersonInfoResponse : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of ActivePlayerId_Optional and returns true if it has been set, otherwise returns false */
 	bool GetActivePlayerId(int32& OutValue) const { if (ActivePlayerId_IsSet) OutValue = ActivePlayerId_Optional; return ActivePlayerId_IsSet; }
 	/** @brief Returns a pointer to ActivePlayerId_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetActivePlayerIdOrNull() { if (ActivePlayerId_IsSet) return &ActivePlayerId_Optional; return nullptr; }
+	int32* GetActivePlayerIdOrNull() { if (ActivePlayerId_IsSet) return (&ActivePlayerId_Optional); return nullptr; }
 	/** @brief Returns a pointer to ActivePlayerId_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetActivePlayerIdOrNull() const { if (ActivePlayerId_IsSet) return &ActivePlayerId_Optional; return nullptr; }
+	const int32* GetActivePlayerIdOrNull() const { if (ActivePlayerId_IsSet) return (&ActivePlayerId_Optional); return nullptr; }
 	/** @brief Sets the value of ActivePlayerId_Optional and also sets ActivePlayerId_IsSet to true */
-	void SetActivePlayerId(const int32& NewValue) { ActivePlayerId_Optional = NewValue; ActivePlayerId_IsSet = true; }
+	void SetActivePlayerId(const int32& NewValue) { ActivePlayerId_Optional = NewValue; ActivePlayerId_IsSet = true;  }
 	/** @brief Sets the value of ActivePlayerId_Optional and also sets ActivePlayerId_IsSet to true using move semantics */
-	void SetActivePlayerId(int32&& NewValue) { ActivePlayerId_Optional = NewValue; ActivePlayerId_IsSet = true; }
-	 /** @brief Clears the value of ActivePlayerId_Optional and sets ActivePlayerId_IsSet to false */
-	void ClearActivePlayerId() { ActivePlayerId_Optional = 0; ActivePlayerId_IsSet = false; }
+	void SetActivePlayerId(int32&& NewValue) { ActivePlayerId_Optional = NewValue; ActivePlayerId_IsSet = true;  }
+	/** @brief Clears the value of ActivePlayerId_Optional and sets ActivePlayerId_IsSet to false */
+	void ClearActivePlayerId() { ActivePlayerId_Optional = 0; ActivePlayerId_IsSet = false;  }
+	/** @brief Checks whether ActivePlayerId_Optional has been set */
+	bool IsActivePlayerIdSet() const { return ActivePlayerId_IsSet; }
 	/** @brief Returns true if ActivePlayerId_Optional is set and matches the default value */
 	bool IsActivePlayerIdDefaultValue() const { return ActivePlayerId_IsSet && ActivePlayerId_Optional == 0; }
 	/** @brief Sets the value of ActivePlayerId_Optional to its default and also sets ActivePlayerId_IsSet to true */
-	void SetActivePlayerIdToDefault() { ActivePlayerId_Optional = 0; ActivePlayerId_IsSet = true; }
+	void SetActivePlayerIdToDefault() { SetActivePlayerId(0); }
 
 	/** @brief Email address */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -108,15 +112,17 @@ struct RALLYHEREAPI_API FRHAPI_PersonInfoResponse : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Email_Optional and returns true if it has been set, otherwise returns false */
 	bool GetEmail(FString& OutValue) const { if (Email_IsSet) OutValue = Email_Optional; return Email_IsSet; }
 	/** @brief Returns a pointer to Email_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetEmailOrNull() { if (Email_IsSet) return &Email_Optional; return nullptr; }
+	FString* GetEmailOrNull() { if (Email_IsSet) return (&Email_Optional); return nullptr; }
 	/** @brief Returns a pointer to Email_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetEmailOrNull() const { if (Email_IsSet) return &Email_Optional; return nullptr; }
+	const FString* GetEmailOrNull() const { if (Email_IsSet) return (&Email_Optional); return nullptr; }
 	/** @brief Sets the value of Email_Optional and also sets Email_IsSet to true */
-	void SetEmail(const FString& NewValue) { Email_Optional = NewValue; Email_IsSet = true; }
+	void SetEmail(const FString& NewValue) { Email_Optional = NewValue; Email_IsSet = true;  }
 	/** @brief Sets the value of Email_Optional and also sets Email_IsSet to true using move semantics */
-	void SetEmail(FString&& NewValue) { Email_Optional = NewValue; Email_IsSet = true; }
-	 /** @brief Clears the value of Email_Optional and sets Email_IsSet to false */
-	void ClearEmail() { Email_IsSet = false; }
+	void SetEmail(FString&& NewValue) { Email_Optional = NewValue; Email_IsSet = true;  }
+	/** @brief Clears the value of Email_Optional and sets Email_IsSet to false */
+	void ClearEmail() { Email_IsSet = false;  }
+	/** @brief Checks whether Email_Optional has been set */
+	bool IsEmailSet() const { return Email_IsSet; }
 };
 
 /** @} */

@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_AgreementMessage : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool AuthSuccess_Optional{  };
@@ -53,19 +53,21 @@ struct RALLYHEREAPI_API FRHAPI_AgreementMessage : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of AuthSuccess_Optional and returns true if it has been set, otherwise returns false */
 	bool GetAuthSuccess(bool& OutValue) const { if (AuthSuccess_IsSet) OutValue = AuthSuccess_Optional; return AuthSuccess_IsSet; }
 	/** @brief Returns a pointer to AuthSuccess_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetAuthSuccessOrNull() { if (AuthSuccess_IsSet) return &AuthSuccess_Optional; return nullptr; }
+	bool* GetAuthSuccessOrNull() { if (AuthSuccess_IsSet) return (&AuthSuccess_Optional); return nullptr; }
 	/** @brief Returns a pointer to AuthSuccess_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetAuthSuccessOrNull() const { if (AuthSuccess_IsSet) return &AuthSuccess_Optional; return nullptr; }
+	const bool* GetAuthSuccessOrNull() const { if (AuthSuccess_IsSet) return (&AuthSuccess_Optional); return nullptr; }
 	/** @brief Sets the value of AuthSuccess_Optional and also sets AuthSuccess_IsSet to true */
-	void SetAuthSuccess(const bool& NewValue) { AuthSuccess_Optional = NewValue; AuthSuccess_IsSet = true; }
+	void SetAuthSuccess(const bool& NewValue) { AuthSuccess_Optional = NewValue; AuthSuccess_IsSet = true;  }
 	/** @brief Sets the value of AuthSuccess_Optional and also sets AuthSuccess_IsSet to true using move semantics */
-	void SetAuthSuccess(bool&& NewValue) { AuthSuccess_Optional = NewValue; AuthSuccess_IsSet = true; }
-	 /** @brief Clears the value of AuthSuccess_Optional and sets AuthSuccess_IsSet to false */
-	void ClearAuthSuccess() { AuthSuccess_Optional = true; AuthSuccess_IsSet = false; }
+	void SetAuthSuccess(bool&& NewValue) { AuthSuccess_Optional = NewValue; AuthSuccess_IsSet = true;  }
+	/** @brief Clears the value of AuthSuccess_Optional and sets AuthSuccess_IsSet to false */
+	void ClearAuthSuccess() { AuthSuccess_Optional = true; AuthSuccess_IsSet = false;  }
+	/** @brief Checks whether AuthSuccess_Optional has been set */
+	bool IsAuthSuccessSet() const { return AuthSuccess_IsSet; }
 	/** @brief Returns true if AuthSuccess_Optional is set and matches the default value */
 	bool IsAuthSuccessDefaultValue() const { return AuthSuccess_IsSet && AuthSuccess_Optional == true; }
 	/** @brief Sets the value of AuthSuccess_Optional to its default and also sets AuthSuccess_IsSet to true */
-	void SetAuthSuccessToDefault() { AuthSuccess_Optional = true; AuthSuccess_IsSet = true; }
+	void SetAuthSuccessToDefault() { SetAuthSuccess(true); }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString ErrorCode{  };
@@ -74,9 +76,9 @@ struct RALLYHEREAPI_API FRHAPI_AgreementMessage : public FRHAPI_Model
 	/** @brief Gets the value of ErrorCode */
 	const FString& GetErrorCode() const { return ErrorCode; }
 	/** @brief Sets the value of ErrorCode */
-	void SetErrorCode(const FString& NewValue) { ErrorCode = NewValue;  }
+	void SetErrorCode(const FString& NewValue) { ErrorCode = NewValue;   }
 	/** @brief Sets the value of ErrorCode using move semantics */
-	void SetErrorCode(FString&& NewValue) { ErrorCode = NewValue;  }
+	void SetErrorCode(FString&& NewValue) { ErrorCode = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Desc{  };
@@ -85,9 +87,9 @@ struct RALLYHEREAPI_API FRHAPI_AgreementMessage : public FRHAPI_Model
 	/** @brief Gets the value of Desc */
 	const FString& GetDesc() const { return Desc; }
 	/** @brief Sets the value of Desc */
-	void SetDesc(const FString& NewValue) { Desc = NewValue;  }
+	void SetDesc(const FString& NewValue) { Desc = NewValue;   }
 	/** @brief Sets the value of Desc using move semantics */
-	void SetDesc(FString&& NewValue) { Desc = NewValue;  }
+	void SetDesc(FString&& NewValue) { Desc = NewValue;   }
 
 	/** @brief Whether the user needs to accept the End User License Agreement */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -104,19 +106,21 @@ struct RALLYHEREAPI_API FRHAPI_AgreementMessage : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of NeedsEula_Optional and returns true if it has been set, otherwise returns false */
 	bool GetNeedsEula(bool& OutValue) const { if (NeedsEula_IsSet) OutValue = NeedsEula_Optional; return NeedsEula_IsSet; }
 	/** @brief Returns a pointer to NeedsEula_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetNeedsEulaOrNull() { if (NeedsEula_IsSet) return &NeedsEula_Optional; return nullptr; }
+	bool* GetNeedsEulaOrNull() { if (NeedsEula_IsSet) return (&NeedsEula_Optional); return nullptr; }
 	/** @brief Returns a pointer to NeedsEula_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetNeedsEulaOrNull() const { if (NeedsEula_IsSet) return &NeedsEula_Optional; return nullptr; }
+	const bool* GetNeedsEulaOrNull() const { if (NeedsEula_IsSet) return (&NeedsEula_Optional); return nullptr; }
 	/** @brief Sets the value of NeedsEula_Optional and also sets NeedsEula_IsSet to true */
-	void SetNeedsEula(const bool& NewValue) { NeedsEula_Optional = NewValue; NeedsEula_IsSet = true; }
+	void SetNeedsEula(const bool& NewValue) { NeedsEula_Optional = NewValue; NeedsEula_IsSet = true;  }
 	/** @brief Sets the value of NeedsEula_Optional and also sets NeedsEula_IsSet to true using move semantics */
-	void SetNeedsEula(bool&& NewValue) { NeedsEula_Optional = NewValue; NeedsEula_IsSet = true; }
-	 /** @brief Clears the value of NeedsEula_Optional and sets NeedsEula_IsSet to false */
-	void ClearNeedsEula() { NeedsEula_Optional = false; NeedsEula_IsSet = false; }
+	void SetNeedsEula(bool&& NewValue) { NeedsEula_Optional = NewValue; NeedsEula_IsSet = true;  }
+	/** @brief Clears the value of NeedsEula_Optional and sets NeedsEula_IsSet to false */
+	void ClearNeedsEula() { NeedsEula_Optional = false; NeedsEula_IsSet = false;  }
+	/** @brief Checks whether NeedsEula_Optional has been set */
+	bool IsNeedsEulaSet() const { return NeedsEula_IsSet; }
 	/** @brief Returns true if NeedsEula_Optional is set and matches the default value */
 	bool IsNeedsEulaDefaultValue() const { return NeedsEula_IsSet && NeedsEula_Optional == false; }
 	/** @brief Sets the value of NeedsEula_Optional to its default and also sets NeedsEula_IsSet to true */
-	void SetNeedsEulaToDefault() { NeedsEula_Optional = false; NeedsEula_IsSet = true; }
+	void SetNeedsEulaToDefault() { SetNeedsEula(false); }
 
 	/** @brief Whether the user needs to accept the Terms of Service */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -133,19 +137,21 @@ struct RALLYHEREAPI_API FRHAPI_AgreementMessage : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of NeedsTos_Optional and returns true if it has been set, otherwise returns false */
 	bool GetNeedsTos(bool& OutValue) const { if (NeedsTos_IsSet) OutValue = NeedsTos_Optional; return NeedsTos_IsSet; }
 	/** @brief Returns a pointer to NeedsTos_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetNeedsTosOrNull() { if (NeedsTos_IsSet) return &NeedsTos_Optional; return nullptr; }
+	bool* GetNeedsTosOrNull() { if (NeedsTos_IsSet) return (&NeedsTos_Optional); return nullptr; }
 	/** @brief Returns a pointer to NeedsTos_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetNeedsTosOrNull() const { if (NeedsTos_IsSet) return &NeedsTos_Optional; return nullptr; }
+	const bool* GetNeedsTosOrNull() const { if (NeedsTos_IsSet) return (&NeedsTos_Optional); return nullptr; }
 	/** @brief Sets the value of NeedsTos_Optional and also sets NeedsTos_IsSet to true */
-	void SetNeedsTos(const bool& NewValue) { NeedsTos_Optional = NewValue; NeedsTos_IsSet = true; }
+	void SetNeedsTos(const bool& NewValue) { NeedsTos_Optional = NewValue; NeedsTos_IsSet = true;  }
 	/** @brief Sets the value of NeedsTos_Optional and also sets NeedsTos_IsSet to true using move semantics */
-	void SetNeedsTos(bool&& NewValue) { NeedsTos_Optional = NewValue; NeedsTos_IsSet = true; }
-	 /** @brief Clears the value of NeedsTos_Optional and sets NeedsTos_IsSet to false */
-	void ClearNeedsTos() { NeedsTos_Optional = false; NeedsTos_IsSet = false; }
+	void SetNeedsTos(bool&& NewValue) { NeedsTos_Optional = NewValue; NeedsTos_IsSet = true;  }
+	/** @brief Clears the value of NeedsTos_Optional and sets NeedsTos_IsSet to false */
+	void ClearNeedsTos() { NeedsTos_Optional = false; NeedsTos_IsSet = false;  }
+	/** @brief Checks whether NeedsTos_Optional has been set */
+	bool IsNeedsTosSet() const { return NeedsTos_IsSet; }
 	/** @brief Returns true if NeedsTos_Optional is set and matches the default value */
 	bool IsNeedsTosDefaultValue() const { return NeedsTos_IsSet && NeedsTos_Optional == false; }
 	/** @brief Sets the value of NeedsTos_Optional to its default and also sets NeedsTos_IsSet to true */
-	void SetNeedsTosToDefault() { NeedsTos_Optional = false; NeedsTos_IsSet = true; }
+	void SetNeedsTosToDefault() { SetNeedsTos(false); }
 
 	/** @brief Whether the user needs to accept the Privacy Policy */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -162,19 +168,21 @@ struct RALLYHEREAPI_API FRHAPI_AgreementMessage : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of NeedsPrivacyPolicy_Optional and returns true if it has been set, otherwise returns false */
 	bool GetNeedsPrivacyPolicy(bool& OutValue) const { if (NeedsPrivacyPolicy_IsSet) OutValue = NeedsPrivacyPolicy_Optional; return NeedsPrivacyPolicy_IsSet; }
 	/** @brief Returns a pointer to NeedsPrivacyPolicy_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetNeedsPrivacyPolicyOrNull() { if (NeedsPrivacyPolicy_IsSet) return &NeedsPrivacyPolicy_Optional; return nullptr; }
+	bool* GetNeedsPrivacyPolicyOrNull() { if (NeedsPrivacyPolicy_IsSet) return (&NeedsPrivacyPolicy_Optional); return nullptr; }
 	/** @brief Returns a pointer to NeedsPrivacyPolicy_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetNeedsPrivacyPolicyOrNull() const { if (NeedsPrivacyPolicy_IsSet) return &NeedsPrivacyPolicy_Optional; return nullptr; }
+	const bool* GetNeedsPrivacyPolicyOrNull() const { if (NeedsPrivacyPolicy_IsSet) return (&NeedsPrivacyPolicy_Optional); return nullptr; }
 	/** @brief Sets the value of NeedsPrivacyPolicy_Optional and also sets NeedsPrivacyPolicy_IsSet to true */
-	void SetNeedsPrivacyPolicy(const bool& NewValue) { NeedsPrivacyPolicy_Optional = NewValue; NeedsPrivacyPolicy_IsSet = true; }
+	void SetNeedsPrivacyPolicy(const bool& NewValue) { NeedsPrivacyPolicy_Optional = NewValue; NeedsPrivacyPolicy_IsSet = true;  }
 	/** @brief Sets the value of NeedsPrivacyPolicy_Optional and also sets NeedsPrivacyPolicy_IsSet to true using move semantics */
-	void SetNeedsPrivacyPolicy(bool&& NewValue) { NeedsPrivacyPolicy_Optional = NewValue; NeedsPrivacyPolicy_IsSet = true; }
-	 /** @brief Clears the value of NeedsPrivacyPolicy_Optional and sets NeedsPrivacyPolicy_IsSet to false */
-	void ClearNeedsPrivacyPolicy() { NeedsPrivacyPolicy_Optional = false; NeedsPrivacyPolicy_IsSet = false; }
+	void SetNeedsPrivacyPolicy(bool&& NewValue) { NeedsPrivacyPolicy_Optional = NewValue; NeedsPrivacyPolicy_IsSet = true;  }
+	/** @brief Clears the value of NeedsPrivacyPolicy_Optional and sets NeedsPrivacyPolicy_IsSet to false */
+	void ClearNeedsPrivacyPolicy() { NeedsPrivacyPolicy_Optional = false; NeedsPrivacyPolicy_IsSet = false;  }
+	/** @brief Checks whether NeedsPrivacyPolicy_Optional has been set */
+	bool IsNeedsPrivacyPolicySet() const { return NeedsPrivacyPolicy_IsSet; }
 	/** @brief Returns true if NeedsPrivacyPolicy_Optional is set and matches the default value */
 	bool IsNeedsPrivacyPolicyDefaultValue() const { return NeedsPrivacyPolicy_IsSet && NeedsPrivacyPolicy_Optional == false; }
 	/** @brief Sets the value of NeedsPrivacyPolicy_Optional to its default and also sets NeedsPrivacyPolicy_IsSet to true */
-	void SetNeedsPrivacyPolicyToDefault() { NeedsPrivacyPolicy_Optional = false; NeedsPrivacyPolicy_IsSet = true; }
+	void SetNeedsPrivacyPolicyToDefault() { SetNeedsPrivacyPolicy(false); }
 };
 
 /** @} */

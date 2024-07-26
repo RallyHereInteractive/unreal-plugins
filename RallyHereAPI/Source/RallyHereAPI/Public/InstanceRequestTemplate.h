@@ -32,14 +32,14 @@ struct RALLYHEREAPI_API FRHAPI_InstanceRequestTemplate : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief ID to uniquely identify this instance launch template */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -49,9 +49,9 @@ struct RALLYHEREAPI_API FRHAPI_InstanceRequestTemplate : public FRHAPI_Model
 	/** @brief Gets the value of InstanceRequestTemplateId */
 	const FGuid& GetInstanceRequestTemplateId() const { return InstanceRequestTemplateId; }
 	/** @brief Sets the value of InstanceRequestTemplateId */
-	void SetInstanceRequestTemplateId(const FGuid& NewValue) { InstanceRequestTemplateId = NewValue;  }
+	void SetInstanceRequestTemplateId(const FGuid& NewValue) { InstanceRequestTemplateId = NewValue;   }
 	/** @brief Sets the value of InstanceRequestTemplateId using move semantics */
-	void SetInstanceRequestTemplateId(FGuid&& NewValue) { InstanceRequestTemplateId = NewValue;  }
+	void SetInstanceRequestTemplateId(FGuid&& NewValue) { InstanceRequestTemplateId = NewValue;   }
 
 	/** @brief A selection list of maps that can be chosen to launch into */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -61,9 +61,9 @@ struct RALLYHEREAPI_API FRHAPI_InstanceRequestTemplate : public FRHAPI_Model
 	/** @brief Gets the value of MapSelectionList */
 	const FRHAPI_MapSelectionListV2& GetMapSelectionList() const { return MapSelectionList; }
 	/** @brief Sets the value of MapSelectionList */
-	void SetMapSelectionList(const FRHAPI_MapSelectionListV2& NewValue) { MapSelectionList = NewValue;  }
+	void SetMapSelectionList(const FRHAPI_MapSelectionListV2& NewValue) { MapSelectionList = NewValue;   }
 	/** @brief Sets the value of MapSelectionList using move semantics */
-	void SetMapSelectionList(FRHAPI_MapSelectionListV2&& NewValue) { MapSelectionList = NewValue;  }
+	void SetMapSelectionList(FRHAPI_MapSelectionListV2&& NewValue) { MapSelectionList = NewValue;   }
 
 	/** @brief Default host type for this template. Can be overriden in instance requests */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -73,9 +73,9 @@ struct RALLYHEREAPI_API FRHAPI_InstanceRequestTemplate : public FRHAPI_Model
 	/** @brief Gets the value of DefaultHostType */
 	const ERHAPI_HostType& GetDefaultHostType() const { return DefaultHostType; }
 	/** @brief Sets the value of DefaultHostType */
-	void SetDefaultHostType(const ERHAPI_HostType& NewValue) { DefaultHostType = NewValue;  }
+	void SetDefaultHostType(const ERHAPI_HostType& NewValue) { DefaultHostType = NewValue;   }
 	/** @brief Sets the value of DefaultHostType using move semantics */
-	void SetDefaultHostType(ERHAPI_HostType&& NewValue) { DefaultHostType = NewValue;  }
+	void SetDefaultHostType(ERHAPI_HostType&& NewValue) { DefaultHostType = NewValue;   }
 
 	/** @brief Custom data that will be passed to the session during the instance launch request */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -92,15 +92,17 @@ struct RALLYHEREAPI_API FRHAPI_InstanceRequestTemplate : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
 	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
-	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
-	void ClearCustomData() { CustomData_IsSet = false; }
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 };
 
 /** @} */

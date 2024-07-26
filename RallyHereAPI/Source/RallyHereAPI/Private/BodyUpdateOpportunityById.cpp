@@ -46,15 +46,15 @@ bool FRHAPI_BodyUpdateOpportunityById::FromJson(const TSharedPtr<FJsonValue>& Js
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonStateField = (*Object)->TryGetField(TEXT("state"));
-	ParseSuccess &= JsonStateField.IsValid() && !JsonStateField->IsNull() && TryGetJsonValue(JsonStateField, State);
+	ParseSuccess &= JsonStateField.IsValid() && (!JsonStateField->IsNull() &&  TryGetJsonValue(JsonStateField, State));
 	const TSharedPtr<FJsonValue> JsonAbortReasonField = (*Object)->TryGetField(TEXT("abort_reason"));
-	if (JsonAbortReasonField.IsValid() && !JsonAbortReasonField->IsNull())
+	if (JsonAbortReasonField.IsValid())
 	{
 		AbortReason_IsSet = TryGetJsonValue(JsonAbortReasonField, AbortReason_Optional);
 		ParseSuccess &= AbortReason_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonAbortSecondsField = (*Object)->TryGetField(TEXT("abort_seconds"));
-	if (JsonAbortSecondsField.IsValid() && !JsonAbortSecondsField->IsNull())
+	if (JsonAbortSecondsField.IsValid())
 	{
 		AbortSeconds_IsSet = TryGetJsonValue(JsonAbortSecondsField, AbortSeconds_Optional);
 		ParseSuccess &= AbortSeconds_IsSet;

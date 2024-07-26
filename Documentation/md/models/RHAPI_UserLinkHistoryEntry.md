@@ -32,8 +32,8 @@ struct FRHAPI_UserLinkHistoryEntry
 `public ERHAPI_LinkAction `[`Action`](#structFRHAPI__UserLinkHistoryEntry_1a0b41ce84ac75e4534c0283f535f1e7e6) | action
 `public FDateTime `[`Timestamp_Optional`](#structFRHAPI__UserLinkHistoryEntry_1ae004d4c3abf167c1ca780bdc865c8d81) | Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone.
 `public bool `[`Timestamp_IsSet`](#structFRHAPI__UserLinkHistoryEntry_1a0e932f269110c5d5fac42bb832b8f270) | true if Timestamp_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__UserLinkHistoryEntry_1ad0e53fa05ad1468bedcb70b09fc298f0)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__UserLinkHistoryEntry_1a67885ec45e1102e79313502772e8f4e5)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__UserLinkHistoryEntry_1a9ae54d5c66ece275b457fa27e8211a2a)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__UserLinkHistoryEntry_1ac91bc3e1e56ab8a991334c664a201b77)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetEntryId`](#structFRHAPI__UserLinkHistoryEntry_1a5ef6e119b5432af2ad51d3d88ba0e96a)`()` | Gets the value of EntryId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetEntryId`](#structFRHAPI__UserLinkHistoryEntry_1aa1e824c4b283054ce9e8000ea04812df)`() const` | Gets the value of EntryId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetEntryId`](#structFRHAPI__UserLinkHistoryEntry_1a162dd18ee004e049aa439ff22aa461cc)`(const FString & DefaultValue) const` | Gets the value of EntryId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -43,6 +43,7 @@ struct FRHAPI_UserLinkHistoryEntry
 `public inline void `[`SetEntryId`](#structFRHAPI__UserLinkHistoryEntry_1a1f12013fbaca9e2fd6f5ac2d85683a6b)`(const FString & NewValue)` | Sets the value of EntryId_Optional and also sets EntryId_IsSet to true.
 `public inline void `[`SetEntryId`](#structFRHAPI__UserLinkHistoryEntry_1af835de6746170829fb7bf20de7f579fe)`(FString && NewValue)` | Sets the value of EntryId_Optional and also sets EntryId_IsSet to true using move semantics.
 `public inline void `[`ClearEntryId`](#structFRHAPI__UserLinkHistoryEntry_1ade9214638f81f84249e19a8a90f6820a)`()` | Clears the value of EntryId_Optional and sets EntryId_IsSet to false.
+`public inline bool `[`IsEntryIdSet`](#structFRHAPI__UserLinkHistoryEntry_1a28b8d6e95ea567f240158ddbf3fb19d1)`() const` | Checks whether EntryId_Optional has been set.
 `public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__UserLinkHistoryEntry_1a3615dab5552f3569dc3887c930dac033)`()` | Gets the value of PlayerUuid_Optional, regardless of it having been set.
 `public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__UserLinkHistoryEntry_1a4bf9cc3eadccde05d61a40e9319b4b72)`() const` | Gets the value of PlayerUuid_Optional, regardless of it having been set.
 `public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__UserLinkHistoryEntry_1ac28e9899f3cff95ad20eaea74ba6824e)`(const FGuid & DefaultValue) const` | Gets the value of PlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -52,6 +53,7 @@ struct FRHAPI_UserLinkHistoryEntry
 `public inline void `[`SetPlayerUuid`](#structFRHAPI__UserLinkHistoryEntry_1aad24f7efaad23de5681a0712c6b8ec80)`(const FGuid & NewValue)` | Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true.
 `public inline void `[`SetPlayerUuid`](#structFRHAPI__UserLinkHistoryEntry_1ad6279412a3dc4a35ff13f234e9cf00e4)`(FGuid && NewValue)` | Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true using move semantics.
 `public inline void `[`ClearPlayerUuid`](#structFRHAPI__UserLinkHistoryEntry_1a067b2e03ddb899182e3165a16e03f4e7)`()` | Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false.
+`public inline bool `[`IsPlayerUuidSet`](#structFRHAPI__UserLinkHistoryEntry_1a4bfa2db959c91c2a5af40f7e31d02e05)`() const` | Checks whether PlayerUuid_Optional has been set.
 `public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__UserLinkHistoryEntry_1a7da0ea304d1723b921b1f64ec2ba1855)`()` | Gets the value of Platform_Optional, regardless of it having been set.
 `public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__UserLinkHistoryEntry_1a33ec364dd13365e3c8b829376ab81f9b)`() const` | Gets the value of Platform_Optional, regardless of it having been set.
 `public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__UserLinkHistoryEntry_1add9dddb4265fcfdd9af85b5ee2878d20)`(const ERHAPI_Platform & DefaultValue) const` | Gets the value of Platform_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -61,6 +63,7 @@ struct FRHAPI_UserLinkHistoryEntry
 `public inline void `[`SetPlatform`](#structFRHAPI__UserLinkHistoryEntry_1a6836023717b81a5dda6394c244b67c3c)`(const ERHAPI_Platform & NewValue)` | Sets the value of Platform_Optional and also sets Platform_IsSet to true.
 `public inline void `[`SetPlatform`](#structFRHAPI__UserLinkHistoryEntry_1a5a387b0d154e568092b2e9deb29b323e)`(ERHAPI_Platform && NewValue)` | Sets the value of Platform_Optional and also sets Platform_IsSet to true using move semantics.
 `public inline void `[`ClearPlatform`](#structFRHAPI__UserLinkHistoryEntry_1a51e01961a0f0610c6651f6a1b195a91d)`()` | Clears the value of Platform_Optional and sets Platform_IsSet to false.
+`public inline bool `[`IsPlatformSet`](#structFRHAPI__UserLinkHistoryEntry_1aa2f6ff5688514c4615fe2074ad2323e7)`() const` | Checks whether Platform_Optional has been set.
 `public inline FString & `[`GetPlatformUserId`](#structFRHAPI__UserLinkHistoryEntry_1a809f5cb9a0a81c27f66d61227e24d617)`()` | Gets the value of PlatformUserId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetPlatformUserId`](#structFRHAPI__UserLinkHistoryEntry_1a23046117137a5525e729ea04f930e208)`() const` | Gets the value of PlatformUserId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetPlatformUserId`](#structFRHAPI__UserLinkHistoryEntry_1a209d9df9620d31684495da7f4e08016a)`(const FString & DefaultValue) const` | Gets the value of PlatformUserId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -70,6 +73,7 @@ struct FRHAPI_UserLinkHistoryEntry
 `public inline void `[`SetPlatformUserId`](#structFRHAPI__UserLinkHistoryEntry_1a708cbdc91af05d6c5e7bc47b95f222c2)`(const FString & NewValue)` | Sets the value of PlatformUserId_Optional and also sets PlatformUserId_IsSet to true.
 `public inline void `[`SetPlatformUserId`](#structFRHAPI__UserLinkHistoryEntry_1a6d24f2e15aa034b6b3f9492401858de5)`(FString && NewValue)` | Sets the value of PlatformUserId_Optional and also sets PlatformUserId_IsSet to true using move semantics.
 `public inline void `[`ClearPlatformUserId`](#structFRHAPI__UserLinkHistoryEntry_1a3430e6ba7ce6bdb30949924e85a9cdb2)`()` | Clears the value of PlatformUserId_Optional and sets PlatformUserId_IsSet to false.
+`public inline bool `[`IsPlatformUserIdSet`](#structFRHAPI__UserLinkHistoryEntry_1a8428bdb088bdbe0afe57531e9f8dc371)`() const` | Checks whether PlatformUserId_Optional has been set.
 `public inline FGuid & `[`GetPersonId`](#structFRHAPI__UserLinkHistoryEntry_1af1f69c48fc21f0b55032ec9681870617)`()` | Gets the value of PersonId_Optional, regardless of it having been set.
 `public inline const FGuid & `[`GetPersonId`](#structFRHAPI__UserLinkHistoryEntry_1a38b74750a02cc289beb77d46b5fd95c7)`() const` | Gets the value of PersonId_Optional, regardless of it having been set.
 `public inline const FGuid & `[`GetPersonId`](#structFRHAPI__UserLinkHistoryEntry_1a00979e9fc84359b928a822a364a8488e)`(const FGuid & DefaultValue) const` | Gets the value of PersonId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -79,6 +83,7 @@ struct FRHAPI_UserLinkHistoryEntry
 `public inline void `[`SetPersonId`](#structFRHAPI__UserLinkHistoryEntry_1ac4fd9f20d1e9fc0b60354a12e8895def)`(const FGuid & NewValue)` | Sets the value of PersonId_Optional and also sets PersonId_IsSet to true.
 `public inline void `[`SetPersonId`](#structFRHAPI__UserLinkHistoryEntry_1a84608276ae6ce70dc33ee5a1c33e126e)`(FGuid && NewValue)` | Sets the value of PersonId_Optional and also sets PersonId_IsSet to true using move semantics.
 `public inline void `[`ClearPersonId`](#structFRHAPI__UserLinkHistoryEntry_1a85e1df666dc5b197b3858fd5b079d04f)`()` | Clears the value of PersonId_Optional and sets PersonId_IsSet to false.
+`public inline bool `[`IsPersonIdSet`](#structFRHAPI__UserLinkHistoryEntry_1a421d985d7e566311aabefeb26a303127)`() const` | Checks whether PersonId_Optional has been set.
 `public inline FGuid & `[`GetActivePlayerUuid`](#structFRHAPI__UserLinkHistoryEntry_1a6fcc22082b960fe25f7d53733d08c496)`()` | Gets the value of ActivePlayerUuid_Optional, regardless of it having been set.
 `public inline const FGuid & `[`GetActivePlayerUuid`](#structFRHAPI__UserLinkHistoryEntry_1ad58c7eab0ed2887f177e7d6f8ed1ad8e)`() const` | Gets the value of ActivePlayerUuid_Optional, regardless of it having been set.
 `public inline const FGuid & `[`GetActivePlayerUuid`](#structFRHAPI__UserLinkHistoryEntry_1a7a4b5737381eed50674f3bf2d8416294)`(const FGuid & DefaultValue) const` | Gets the value of ActivePlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -88,6 +93,7 @@ struct FRHAPI_UserLinkHistoryEntry
 `public inline void `[`SetActivePlayerUuid`](#structFRHAPI__UserLinkHistoryEntry_1ae514c4df2e4442a88dbc607e40f0b375)`(const FGuid & NewValue)` | Sets the value of ActivePlayerUuid_Optional and also sets ActivePlayerUuid_IsSet to true.
 `public inline void `[`SetActivePlayerUuid`](#structFRHAPI__UserLinkHistoryEntry_1ae92668cff887406d0ce8572f14cdb143)`(FGuid && NewValue)` | Sets the value of ActivePlayerUuid_Optional and also sets ActivePlayerUuid_IsSet to true using move semantics.
 `public inline void `[`ClearActivePlayerUuid`](#structFRHAPI__UserLinkHistoryEntry_1ad728fe83f8235bc2b713a550ccefd111)`()` | Clears the value of ActivePlayerUuid_Optional and sets ActivePlayerUuid_IsSet to false.
+`public inline bool `[`IsActivePlayerUuidSet`](#structFRHAPI__UserLinkHistoryEntry_1a32b19173e1fcdb6c664f4906ce271b19)`() const` | Checks whether ActivePlayerUuid_Optional has been set.
 `public inline ERHAPI_LinkAction & `[`GetAction`](#structFRHAPI__UserLinkHistoryEntry_1a1f70e58736def7c900af12097b1c151d)`()` | Gets the value of Action.
 `public inline const ERHAPI_LinkAction & `[`GetAction`](#structFRHAPI__UserLinkHistoryEntry_1a63beb6d3ff648c841e80868107de6b5b)`() const` | Gets the value of Action.
 `public inline void `[`SetAction`](#structFRHAPI__UserLinkHistoryEntry_1a23a2b1dc0c20c27723f3d7526e4f3010)`(const ERHAPI_LinkAction & NewValue)` | Sets the value of Action.
@@ -101,6 +107,7 @@ struct FRHAPI_UserLinkHistoryEntry
 `public inline void `[`SetTimestamp`](#structFRHAPI__UserLinkHistoryEntry_1a5590ffc7ff32d6c296e98b3ae738f05a)`(const FDateTime & NewValue)` | Sets the value of Timestamp_Optional and also sets Timestamp_IsSet to true.
 `public inline void `[`SetTimestamp`](#structFRHAPI__UserLinkHistoryEntry_1a7077f9b50b91a06146f77c1a4ccad9ab)`(FDateTime && NewValue)` | Sets the value of Timestamp_Optional and also sets Timestamp_IsSet to true using move semantics.
 `public inline void `[`ClearTimestamp`](#structFRHAPI__UserLinkHistoryEntry_1a08513e951f42b87a5eab036c388a1d2d)`()` | Clears the value of Timestamp_Optional and sets Timestamp_IsSet to false.
+`public inline bool `[`IsTimestampSet`](#structFRHAPI__UserLinkHistoryEntry_1a5aade2d917525534bee8d513fe4fe42a)`() const` | Checks whether Timestamp_Optional has been set.
 
 ### Members
 
@@ -164,7 +171,7 @@ Datetime that enforces that a timezone is given. Unix timestamps are allowed and
 
 true if Timestamp_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__UserLinkHistoryEntry_1ad0e53fa05ad1468bedcb70b09fc298f0)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__UserLinkHistoryEntry_1ad0e53fa05ad1468bedcb70b09fc298f0"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__UserLinkHistoryEntry_1a9ae54d5c66ece275b457fa27e8211a2a)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__UserLinkHistoryEntry_1a9ae54d5c66ece275b457fa27e8211a2a"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -174,7 +181,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__UserLinkHistoryEntry_1a67885ec45e1102e79313502772e8f4e5)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__UserLinkHistoryEntry_1a67885ec45e1102e79313502772e8f4e5"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__UserLinkHistoryEntry_1ac91bc3e1e56ab8a991334c664a201b77)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__UserLinkHistoryEntry_1ac91bc3e1e56ab8a991334c664a201b77"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -217,6 +224,10 @@ Sets the value of EntryId_Optional and also sets EntryId_IsSet to true using mov
 
 Clears the value of EntryId_Optional and sets EntryId_IsSet to false.
 
+#### `public inline bool `[`IsEntryIdSet`](#structFRHAPI__UserLinkHistoryEntry_1a28b8d6e95ea567f240158ddbf3fb19d1)`() const` <a id="structFRHAPI__UserLinkHistoryEntry_1a28b8d6e95ea567f240158ddbf3fb19d1"></a>
+
+Checks whether EntryId_Optional has been set.
+
 #### `public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__UserLinkHistoryEntry_1a3615dab5552f3569dc3887c930dac033)`()` <a id="structFRHAPI__UserLinkHistoryEntry_1a3615dab5552f3569dc3887c930dac033"></a>
 
 Gets the value of PlayerUuid_Optional, regardless of it having been set.
@@ -252,6 +263,10 @@ Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true usi
 #### `public inline void `[`ClearPlayerUuid`](#structFRHAPI__UserLinkHistoryEntry_1a067b2e03ddb899182e3165a16e03f4e7)`()` <a id="structFRHAPI__UserLinkHistoryEntry_1a067b2e03ddb899182e3165a16e03f4e7"></a>
 
 Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false.
+
+#### `public inline bool `[`IsPlayerUuidSet`](#structFRHAPI__UserLinkHistoryEntry_1a4bfa2db959c91c2a5af40f7e31d02e05)`() const` <a id="structFRHAPI__UserLinkHistoryEntry_1a4bfa2db959c91c2a5af40f7e31d02e05"></a>
+
+Checks whether PlayerUuid_Optional has been set.
 
 #### `public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__UserLinkHistoryEntry_1a7da0ea304d1723b921b1f64ec2ba1855)`()` <a id="structFRHAPI__UserLinkHistoryEntry_1a7da0ea304d1723b921b1f64ec2ba1855"></a>
 
@@ -289,6 +304,10 @@ Sets the value of Platform_Optional and also sets Platform_IsSet to true using m
 
 Clears the value of Platform_Optional and sets Platform_IsSet to false.
 
+#### `public inline bool `[`IsPlatformSet`](#structFRHAPI__UserLinkHistoryEntry_1aa2f6ff5688514c4615fe2074ad2323e7)`() const` <a id="structFRHAPI__UserLinkHistoryEntry_1aa2f6ff5688514c4615fe2074ad2323e7"></a>
+
+Checks whether Platform_Optional has been set.
+
 #### `public inline FString & `[`GetPlatformUserId`](#structFRHAPI__UserLinkHistoryEntry_1a809f5cb9a0a81c27f66d61227e24d617)`()` <a id="structFRHAPI__UserLinkHistoryEntry_1a809f5cb9a0a81c27f66d61227e24d617"></a>
 
 Gets the value of PlatformUserId_Optional, regardless of it having been set.
@@ -324,6 +343,10 @@ Sets the value of PlatformUserId_Optional and also sets PlatformUserId_IsSet to 
 #### `public inline void `[`ClearPlatformUserId`](#structFRHAPI__UserLinkHistoryEntry_1a3430e6ba7ce6bdb30949924e85a9cdb2)`()` <a id="structFRHAPI__UserLinkHistoryEntry_1a3430e6ba7ce6bdb30949924e85a9cdb2"></a>
 
 Clears the value of PlatformUserId_Optional and sets PlatformUserId_IsSet to false.
+
+#### `public inline bool `[`IsPlatformUserIdSet`](#structFRHAPI__UserLinkHistoryEntry_1a8428bdb088bdbe0afe57531e9f8dc371)`() const` <a id="structFRHAPI__UserLinkHistoryEntry_1a8428bdb088bdbe0afe57531e9f8dc371"></a>
+
+Checks whether PlatformUserId_Optional has been set.
 
 #### `public inline FGuid & `[`GetPersonId`](#structFRHAPI__UserLinkHistoryEntry_1af1f69c48fc21f0b55032ec9681870617)`()` <a id="structFRHAPI__UserLinkHistoryEntry_1af1f69c48fc21f0b55032ec9681870617"></a>
 
@@ -361,6 +384,10 @@ Sets the value of PersonId_Optional and also sets PersonId_IsSet to true using m
 
 Clears the value of PersonId_Optional and sets PersonId_IsSet to false.
 
+#### `public inline bool `[`IsPersonIdSet`](#structFRHAPI__UserLinkHistoryEntry_1a421d985d7e566311aabefeb26a303127)`() const` <a id="structFRHAPI__UserLinkHistoryEntry_1a421d985d7e566311aabefeb26a303127"></a>
+
+Checks whether PersonId_Optional has been set.
+
 #### `public inline FGuid & `[`GetActivePlayerUuid`](#structFRHAPI__UserLinkHistoryEntry_1a6fcc22082b960fe25f7d53733d08c496)`()` <a id="structFRHAPI__UserLinkHistoryEntry_1a6fcc22082b960fe25f7d53733d08c496"></a>
 
 Gets the value of ActivePlayerUuid_Optional, regardless of it having been set.
@@ -396,6 +423,10 @@ Sets the value of ActivePlayerUuid_Optional and also sets ActivePlayerUuid_IsSet
 #### `public inline void `[`ClearActivePlayerUuid`](#structFRHAPI__UserLinkHistoryEntry_1ad728fe83f8235bc2b713a550ccefd111)`()` <a id="structFRHAPI__UserLinkHistoryEntry_1ad728fe83f8235bc2b713a550ccefd111"></a>
 
 Clears the value of ActivePlayerUuid_Optional and sets ActivePlayerUuid_IsSet to false.
+
+#### `public inline bool `[`IsActivePlayerUuidSet`](#structFRHAPI__UserLinkHistoryEntry_1a32b19173e1fcdb6c664f4906ce271b19)`() const` <a id="structFRHAPI__UserLinkHistoryEntry_1a32b19173e1fcdb6c664f4906ce271b19"></a>
+
+Checks whether ActivePlayerUuid_Optional has been set.
 
 #### `public inline ERHAPI_LinkAction & `[`GetAction`](#structFRHAPI__UserLinkHistoryEntry_1a1f70e58736def7c900af12097b1c151d)`()` <a id="structFRHAPI__UserLinkHistoryEntry_1a1f70e58736def7c900af12097b1c151d"></a>
 
@@ -448,4 +479,8 @@ Sets the value of Timestamp_Optional and also sets Timestamp_IsSet to true using
 #### `public inline void `[`ClearTimestamp`](#structFRHAPI__UserLinkHistoryEntry_1a08513e951f42b87a5eab036c388a1d2d)`()` <a id="structFRHAPI__UserLinkHistoryEntry_1a08513e951f42b87a5eab036c388a1d2d"></a>
 
 Clears the value of Timestamp_Optional and sets Timestamp_IsSet to false.
+
+#### `public inline bool `[`IsTimestampSet`](#structFRHAPI__UserLinkHistoryEntry_1a5aade2d917525534bee8d513fe4fe42a)`() const` <a id="structFRHAPI__UserLinkHistoryEntry_1a5aade2d917525534bee8d513fe4fe42a"></a>
+
+Checks whether Timestamp_Optional has been set.
 

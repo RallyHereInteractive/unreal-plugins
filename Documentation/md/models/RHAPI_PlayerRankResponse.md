@@ -22,8 +22,8 @@ DEPRECATED Response to successfully requesting a player&#39;s rank.
 `public FGuid `[`PlayerUuid`](#structFRHAPI__PlayerRankResponse_1ad515f738c5f7ba86c3cc1cbc7aabb511) | UUID for this specific player.
 `public `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` `[`Rank`](#structFRHAPI__PlayerRankResponse_1a52b54e3853b393e59f3c344ec9e5e645) | Current rank info about player.
 `public int32 `[`RankId`](#structFRHAPI__PlayerRankResponse_1a8200a6af92b552e2e7976f8bc6b0356c) | ID for this rank.
-`public virtual bool `[`FromJson`](#structFRHAPI__PlayerRankResponse_1a629c47f7b0ca8162bc16f1cdad7b08dc)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PlayerRankResponse_1a412ba11e1fbd72b54600368177cfddb4)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__PlayerRankResponse_1a0db3f100bbafbfcc6004509fa3568e66)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__PlayerRankResponse_1ab6cdc5dcaa1a7dafb21570355943a5cc)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__PlayerRankResponse_1a857484d63bbcf814e50c28724260c4fe)`()` | Gets the value of PlayerUuid.
 `public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__PlayerRankResponse_1a4e9ebe28e42d96f00e27a7429635e380)`() const` | Gets the value of PlayerUuid.
 `public inline void `[`SetPlayerUuid`](#structFRHAPI__PlayerRankResponse_1a7d0f885871e9380b82622bb66e1e1adc)`(const FGuid & NewValue)` | Sets the value of PlayerUuid.
@@ -53,7 +53,7 @@ Current rank info about player.
 
 ID for this rank.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__PlayerRankResponse_1a629c47f7b0ca8162bc16f1cdad7b08dc)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlayerRankResponse_1a629c47f7b0ca8162bc16f1cdad7b08dc"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__PlayerRankResponse_1a0db3f100bbafbfcc6004509fa3568e66)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlayerRankResponse_1a0db3f100bbafbfcc6004509fa3568e66"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -63,7 +63,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PlayerRankResponse_1a412ba11e1fbd72b54600368177cfddb4)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlayerRankResponse_1a412ba11e1fbd72b54600368177cfddb4"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PlayerRankResponse_1ab6cdc5dcaa1a7dafb21570355943a5cc)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlayerRankResponse_1ab6cdc5dcaa1a7dafb21570355943a5cc"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 

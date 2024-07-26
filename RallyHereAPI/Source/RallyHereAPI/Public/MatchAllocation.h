@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_MatchAllocation : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Allocation ID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -47,9 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchAllocation : public FRHAPI_Model
 	/** @brief Gets the value of AllocationId */
 	const FString& GetAllocationId() const { return AllocationId; }
 	/** @brief Sets the value of AllocationId */
-	void SetAllocationId(const FString& NewValue) { AllocationId = NewValue;  }
+	void SetAllocationId(const FString& NewValue) { AllocationId = NewValue;   }
 	/** @brief Sets the value of AllocationId using move semantics */
-	void SetAllocationId(FString&& NewValue) { AllocationId = NewValue;  }
+	void SetAllocationId(FString&& NewValue) { AllocationId = NewValue;   }
 };
 
 /** @} */

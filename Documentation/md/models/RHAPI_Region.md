@@ -24,8 +24,8 @@ Information about a specific region.
 `public bool `[`CustomOnly`](#structFRHAPI__Region_1a773a40307613584027889ce3053cdbfa) | Indicates if the region is for custom games only.
 `public FString `[`Description_Optional`](#structFRHAPI__Region_1a25baef84a12c2319c89fadd82aed7f5d) | Text description of the region.
 `public bool `[`Description_IsSet`](#structFRHAPI__Region_1a33484d8aa6a83a063577ce58b71375e9) | true if Description_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__Region_1a844e25dd395ab4cc20d6909938b48994)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__Region_1a3a0dcfc462e78f2b31008333918e0b08)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__Region_1afd0967827b860f2b7258a1ef6ca5062c)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__Region_1ac9c2603ed1af9538bb80c449648d75bd)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetRegionId`](#structFRHAPI__Region_1a419a7d9e9b92188982ca861d534590fb)`()` | Gets the value of RegionId.
 `public inline const FString & `[`GetRegionId`](#structFRHAPI__Region_1a0813644e30e617ef463b8e52f44d8eb8)`() const` | Gets the value of RegionId.
 `public inline void `[`SetRegionId`](#structFRHAPI__Region_1a38c89d60160be4dff6ecc36eea4cba4b)`(const FString & NewValue)` | Sets the value of RegionId.
@@ -51,6 +51,7 @@ Information about a specific region.
 `public inline void `[`SetDescription`](#structFRHAPI__Region_1a714466401b540da4c26ec1576cdcbbc6)`(const FString & NewValue)` | Sets the value of Description_Optional and also sets Description_IsSet to true.
 `public inline void `[`SetDescription`](#structFRHAPI__Region_1af8f954be9a70c842bb42d055d0376139)`(FString && NewValue)` | Sets the value of Description_Optional and also sets Description_IsSet to true using move semantics.
 `public inline void `[`ClearDescription`](#structFRHAPI__Region_1abc95d39d9739c796eb3a63017be045af)`()` | Clears the value of Description_Optional and sets Description_IsSet to false.
+`public inline bool `[`IsDescriptionSet`](#structFRHAPI__Region_1a2461d4e6500a9f9b8952879fa0aeb416)`() const` | Checks whether Description_Optional has been set.
 
 ### Members
 
@@ -74,7 +75,7 @@ Text description of the region.
 
 true if Description_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__Region_1a844e25dd395ab4cc20d6909938b48994)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__Region_1a844e25dd395ab4cc20d6909938b48994"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__Region_1afd0967827b860f2b7258a1ef6ca5062c)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__Region_1afd0967827b860f2b7258a1ef6ca5062c"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -84,7 +85,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__Region_1a3a0dcfc462e78f2b31008333918e0b08)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__Region_1a3a0dcfc462e78f2b31008333918e0b08"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__Region_1ac9c2603ed1af9538bb80c449648d75bd)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__Region_1ac9c2603ed1af9538bb80c449648d75bd"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -190,4 +191,8 @@ Sets the value of Description_Optional and also sets Description_IsSet to true u
 #### `public inline void `[`ClearDescription`](#structFRHAPI__Region_1abc95d39d9739c796eb3a63017be045af)`()` <a id="structFRHAPI__Region_1abc95d39d9739c796eb3a63017be045af"></a>
 
 Clears the value of Description_Optional and sets Description_IsSet to false.
+
+#### `public inline bool `[`IsDescriptionSet`](#structFRHAPI__Region_1a2461d4e6500a9f9b8952879fa0aeb416)`() const` <a id="structFRHAPI__Region_1a2461d4e6500a9f9b8952879fa0aeb416"></a>
+
+Checks whether Description_Optional has been set.
 

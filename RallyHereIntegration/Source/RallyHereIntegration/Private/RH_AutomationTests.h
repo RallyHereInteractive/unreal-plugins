@@ -22,7 +22,7 @@ namespace RHAutomationTestUtils
 		check(Test != nullptr);
 		const auto TestFlags = Test->GetTestFlags();
 		// Accessing the game world is only valid for game-only 
-		check((TestFlags & EAutomationTestFlags::ApplicationContextMask) == EAutomationTestFlags::ClientContext);
+		check(((TestFlags & EAutomationTestFlags::ApplicationContextMask) & (EAutomationTestFlags::ClientContext | EAutomationTestFlags::ServerContext)) != 0);
 		check(GEngine->GetWorldContexts().Num() == 1);
 		check(GEngine->GetWorldContexts()[0].WorldType == EWorldType::Game);
 

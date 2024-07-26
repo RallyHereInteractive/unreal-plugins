@@ -21,8 +21,8 @@ Response for getting a player&#39;s linked portals.
 --------------------------------|---------------------------------------------
 `public `[`FRHAPI_PlayerPersonResponse`](RHAPI_PlayerPersonResponse.md#structFRHAPI__PlayerPersonResponse)` `[`Player`](#structFRHAPI__PlayerLinkedPortalsResponse_1acac06fcdbf166e78fa8fe536a4c55708) | Player info.
 `public TArray< `[`FRHAPI_PortalUserResponse`](RHAPI_PortalUserResponse.md#structFRHAPI__PortalUserResponse)` > `[`LinkedPortals`](#structFRHAPI__PlayerLinkedPortalsResponse_1ac1f8f019c04222056b61d97b54d8272f) | List of linked portals.
-`public virtual bool `[`FromJson`](#structFRHAPI__PlayerLinkedPortalsResponse_1a76e7a20aec8cefbb1a980050c7695338)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PlayerLinkedPortalsResponse_1aeba5999e8c3c9ea6e5bb1db98bebffb6)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__PlayerLinkedPortalsResponse_1ab764e0b7811ac62d2a24823d7e02837f)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__PlayerLinkedPortalsResponse_1a49f27aea6a327fa8231c13ad292bc7a7)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline `[`FRHAPI_PlayerPersonResponse`](RHAPI_PlayerPersonResponse.md#structFRHAPI__PlayerPersonResponse)` & `[`GetPlayer`](#structFRHAPI__PlayerLinkedPortalsResponse_1ab4f03673760a8590bb5e4a3538d12e91)`()` | Gets the value of Player.
 `public inline const `[`FRHAPI_PlayerPersonResponse`](RHAPI_PlayerPersonResponse.md#structFRHAPI__PlayerPersonResponse)` & `[`GetPlayer`](#structFRHAPI__PlayerLinkedPortalsResponse_1aba984aeda927da00cc0a451d9de3aed5)`() const` | Gets the value of Player.
 `public inline void `[`SetPlayer`](#structFRHAPI__PlayerLinkedPortalsResponse_1a61e0919c31cfd378c94cc3b4b68d48b0)`(const `[`FRHAPI_PlayerPersonResponse`](RHAPI_PlayerPersonResponse.md#structFRHAPI__PlayerPersonResponse)` & NewValue)` | Sets the value of Player.
@@ -42,7 +42,7 @@ Player info.
 
 List of linked portals.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__PlayerLinkedPortalsResponse_1a76e7a20aec8cefbb1a980050c7695338)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlayerLinkedPortalsResponse_1a76e7a20aec8cefbb1a980050c7695338"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__PlayerLinkedPortalsResponse_1ab764e0b7811ac62d2a24823d7e02837f)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlayerLinkedPortalsResponse_1ab764e0b7811ac62d2a24823d7e02837f"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -52,7 +52,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PlayerLinkedPortalsResponse_1aeba5999e8c3c9ea6e5bb1db98bebffb6)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlayerLinkedPortalsResponse_1aeba5999e8c3c9ea6e5bb1db98bebffb6"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PlayerLinkedPortalsResponse_1a49f27aea6a327fa8231c13ad292bc7a7)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlayerLinkedPortalsResponse_1a49f27aea6a327fa8231c13ad292bc7a7"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 

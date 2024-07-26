@@ -58,29 +58,29 @@ bool FRHAPI_AgreementMessage::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonAuthSuccessField = (*Object)->TryGetField(TEXT("auth_success"));
-	if (JsonAuthSuccessField.IsValid() && !JsonAuthSuccessField->IsNull())
+	if (JsonAuthSuccessField.IsValid())
 	{
 		AuthSuccess_IsSet = TryGetJsonValue(JsonAuthSuccessField, AuthSuccess_Optional);
 		ParseSuccess &= AuthSuccess_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonErrorCodeField = (*Object)->TryGetField(TEXT("error_code"));
-	ParseSuccess &= JsonErrorCodeField.IsValid() && !JsonErrorCodeField->IsNull() && TryGetJsonValue(JsonErrorCodeField, ErrorCode);
+	ParseSuccess &= JsonErrorCodeField.IsValid() && (!JsonErrorCodeField->IsNull() &&  TryGetJsonValue(JsonErrorCodeField, ErrorCode));
 	const TSharedPtr<FJsonValue> JsonDescField = (*Object)->TryGetField(TEXT("desc"));
-	ParseSuccess &= JsonDescField.IsValid() && !JsonDescField->IsNull() && TryGetJsonValue(JsonDescField, Desc);
+	ParseSuccess &= JsonDescField.IsValid() && (!JsonDescField->IsNull() &&  TryGetJsonValue(JsonDescField, Desc));
 	const TSharedPtr<FJsonValue> JsonNeedsEulaField = (*Object)->TryGetField(TEXT("needs_eula"));
-	if (JsonNeedsEulaField.IsValid() && !JsonNeedsEulaField->IsNull())
+	if (JsonNeedsEulaField.IsValid())
 	{
 		NeedsEula_IsSet = TryGetJsonValue(JsonNeedsEulaField, NeedsEula_Optional);
 		ParseSuccess &= NeedsEula_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonNeedsTosField = (*Object)->TryGetField(TEXT("needs_tos"));
-	if (JsonNeedsTosField.IsValid() && !JsonNeedsTosField->IsNull())
+	if (JsonNeedsTosField.IsValid())
 	{
 		NeedsTos_IsSet = TryGetJsonValue(JsonNeedsTosField, NeedsTos_Optional);
 		ParseSuccess &= NeedsTos_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonNeedsPrivacyPolicyField = (*Object)->TryGetField(TEXT("needs_privacy_policy"));
-	if (JsonNeedsPrivacyPolicyField.IsValid() && !JsonNeedsPrivacyPolicyField->IsNull())
+	if (JsonNeedsPrivacyPolicyField.IsValid())
 	{
 		NeedsPrivacyPolicy_IsSet = TryGetJsonValue(JsonNeedsPrivacyPolicyField, NeedsPrivacyPolicy_Optional);
 		ParseSuccess &= NeedsPrivacyPolicy_IsSet;

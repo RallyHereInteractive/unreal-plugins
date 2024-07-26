@@ -54,25 +54,25 @@ bool FRHAPI_PlayerInventoryChange::FromJson(const TSharedPtr<FJsonValue>& JsonVa
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonBeforeItemIdField = (*Object)->TryGetField(TEXT("before_item_id"));
-	if (JsonBeforeItemIdField.IsValid() && !JsonBeforeItemIdField->IsNull())
+	if (JsonBeforeItemIdField.IsValid())
 	{
 		BeforeItemId_IsSet = TryGetJsonValue(JsonBeforeItemIdField, BeforeItemId_Optional);
 		ParseSuccess &= BeforeItemId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonAfterItemIdField = (*Object)->TryGetField(TEXT("after_item_id"));
-	if (JsonAfterItemIdField.IsValid() && !JsonAfterItemIdField->IsNull())
+	if (JsonAfterItemIdField.IsValid())
 	{
 		AfterItemId_IsSet = TryGetJsonValue(JsonAfterItemIdField, AfterItemId_Optional);
 		ParseSuccess &= AfterItemId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonBeforeField = (*Object)->TryGetField(TEXT("before"));
-	if (JsonBeforeField.IsValid() && !JsonBeforeField->IsNull())
+	if (JsonBeforeField.IsValid())
 	{
 		Before_IsSet = TryGetJsonValue(JsonBeforeField, Before_Optional);
 		ParseSuccess &= Before_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonAfterField = (*Object)->TryGetField(TEXT("after"));
-	if (JsonAfterField.IsValid() && !JsonAfterField->IsNull())
+	if (JsonAfterField.IsValid())
 	{
 		After_IsSet = TryGetJsonValue(JsonAfterField, After_Optional);
 		ParseSuccess &= After_IsSet;

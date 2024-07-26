@@ -42,13 +42,13 @@ bool FRHAPI_PortalUserInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPlatformField = (*Object)->TryGetField(TEXT("platform"));
-	ParseSuccess &= JsonPlatformField.IsValid() && !JsonPlatformField->IsNull() && TryGetJsonValue(JsonPlatformField, Platform);
+	ParseSuccess &= JsonPlatformField.IsValid() && (!JsonPlatformField->IsNull() &&  TryGetJsonValue(JsonPlatformField, Platform));
 	const TSharedPtr<FJsonValue> JsonPortalIdField = (*Object)->TryGetField(TEXT("portal_id"));
-	ParseSuccess &= JsonPortalIdField.IsValid() && !JsonPortalIdField->IsNull() && TryGetJsonValue(JsonPortalIdField, PortalId);
+	ParseSuccess &= JsonPortalIdField.IsValid() && (!JsonPortalIdField->IsNull() &&  TryGetJsonValue(JsonPortalIdField, PortalId));
 	const TSharedPtr<FJsonValue> JsonPortalUserIdField = (*Object)->TryGetField(TEXT("portal_user_id"));
-	ParseSuccess &= JsonPortalUserIdField.IsValid() && !JsonPortalUserIdField->IsNull() && TryGetJsonValue(JsonPortalUserIdField, PortalUserId);
+	ParseSuccess &= JsonPortalUserIdField.IsValid() && (!JsonPortalUserIdField->IsNull() &&  TryGetJsonValue(JsonPortalUserIdField, PortalUserId));
 	const TSharedPtr<FJsonValue> JsonDisplayNameField = (*Object)->TryGetField(TEXT("display_name"));
-	ParseSuccess &= JsonDisplayNameField.IsValid() && !JsonDisplayNameField->IsNull() && TryGetJsonValue(JsonDisplayNameField, DisplayName);
+	ParseSuccess &= JsonDisplayNameField.IsValid() && (!JsonDisplayNameField->IsNull() &&  TryGetJsonValue(JsonDisplayNameField, DisplayName));
 
 	return ParseSuccess;
 }

@@ -46,15 +46,15 @@ bool FRHAPI_UpdateBackfillRequest::FromJson(const TSharedPtr<FJsonValue>& JsonVa
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonInstanceIdField = (*Object)->TryGetField(TEXT("instance_id"));
-	ParseSuccess &= JsonInstanceIdField.IsValid() && !JsonInstanceIdField->IsNull() && TryGetJsonValue(JsonInstanceIdField, InstanceId);
+	ParseSuccess &= JsonInstanceIdField.IsValid() && (!JsonInstanceIdField->IsNull() &&  TryGetJsonValue(JsonInstanceIdField, InstanceId));
 	const TSharedPtr<FJsonValue> JsonAdditionalJoinParamsField = (*Object)->TryGetField(TEXT("additional_join_params"));
-	if (JsonAdditionalJoinParamsField.IsValid() && !JsonAdditionalJoinParamsField->IsNull())
+	if (JsonAdditionalJoinParamsField.IsValid())
 	{
 		AdditionalJoinParams_IsSet = TryGetJsonValue(JsonAdditionalJoinParamsField, AdditionalJoinParams_Optional);
 		ParseSuccess &= AdditionalJoinParams_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonTeamsField = (*Object)->TryGetField(TEXT("teams"));
-	if (JsonTeamsField.IsValid() && !JsonTeamsField->IsNull())
+	if (JsonTeamsField.IsValid())
 	{
 		Teams_IsSet = TryGetJsonValue(JsonTeamsField, Teams_Optional);
 		ParseSuccess &= Teams_IsSet;

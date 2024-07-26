@@ -21,8 +21,8 @@ Purge request to purge a person from the system. This will remove all data about
 --------------------------------|---------------------------------------------
 `public FDateTime `[`SuggestedPurgeTime_Optional`](#structFRHAPI__PurgeRequest_1a4bf9b1063d210902a3f01fcc374debef) | Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone.
 `public bool `[`SuggestedPurgeTime_IsSet`](#structFRHAPI__PurgeRequest_1aeebdf2921a2e20d78da7649f9942d975) | true if SuggestedPurgeTime_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__PurgeRequest_1ae2926f8ed4d7ada3270a24fa22581b04)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PurgeRequest_1a9f8aea049ea3ea3f3804fed6fc4af285)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__PurgeRequest_1ac94f370231a16bea2ba179c10ce96820)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__PurgeRequest_1aff49d3ae97dfc558c1b21444c698f64b)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FDateTime & `[`GetSuggestedPurgeTime`](#structFRHAPI__PurgeRequest_1a90f105ad324cb69521d1fb64afccdb9d)`()` | Gets the value of SuggestedPurgeTime_Optional, regardless of it having been set.
 `public inline const FDateTime & `[`GetSuggestedPurgeTime`](#structFRHAPI__PurgeRequest_1aa373f9ebde40d495c28fd2d85fec7e08)`() const` | Gets the value of SuggestedPurgeTime_Optional, regardless of it having been set.
 `public inline const FDateTime & `[`GetSuggestedPurgeTime`](#structFRHAPI__PurgeRequest_1aa77827115c501ea8218a1feb85aa1168)`(const FDateTime & DefaultValue) const` | Gets the value of SuggestedPurgeTime_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -32,6 +32,7 @@ Purge request to purge a person from the system. This will remove all data about
 `public inline void `[`SetSuggestedPurgeTime`](#structFRHAPI__PurgeRequest_1a1f73e6419e4b8eada594472b95bdfbf7)`(const FDateTime & NewValue)` | Sets the value of SuggestedPurgeTime_Optional and also sets SuggestedPurgeTime_IsSet to true.
 `public inline void `[`SetSuggestedPurgeTime`](#structFRHAPI__PurgeRequest_1a8964cd9ad30dd3597c15da06e2e82a21)`(FDateTime && NewValue)` | Sets the value of SuggestedPurgeTime_Optional and also sets SuggestedPurgeTime_IsSet to true using move semantics.
 `public inline void `[`ClearSuggestedPurgeTime`](#structFRHAPI__PurgeRequest_1a90e1c3b323ef9c0d6582d92a4ba4b990)`()` | Clears the value of SuggestedPurgeTime_Optional and sets SuggestedPurgeTime_IsSet to false.
+`public inline bool `[`IsSuggestedPurgeTimeSet`](#structFRHAPI__PurgeRequest_1aafcc854a211fd0b7079d3e491476613f)`() const` | Checks whether SuggestedPurgeTime_Optional has been set.
 
 ### Members
 
@@ -43,7 +44,7 @@ Datetime that enforces that a timezone is given. Unix timestamps are allowed and
 
 true if SuggestedPurgeTime_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__PurgeRequest_1ae2926f8ed4d7ada3270a24fa22581b04)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PurgeRequest_1ae2926f8ed4d7ada3270a24fa22581b04"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__PurgeRequest_1ac94f370231a16bea2ba179c10ce96820)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PurgeRequest_1ac94f370231a16bea2ba179c10ce96820"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -53,7 +54,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PurgeRequest_1a9f8aea049ea3ea3f3804fed6fc4af285)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PurgeRequest_1a9f8aea049ea3ea3f3804fed6fc4af285"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PurgeRequest_1aff49d3ae97dfc558c1b21444c698f64b)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PurgeRequest_1aff49d3ae97dfc558c1b21444c698f64b"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -95,4 +96,8 @@ Sets the value of SuggestedPurgeTime_Optional and also sets SuggestedPurgeTime_I
 #### `public inline void `[`ClearSuggestedPurgeTime`](#structFRHAPI__PurgeRequest_1a90e1c3b323ef9c0d6582d92a4ba4b990)`()` <a id="structFRHAPI__PurgeRequest_1a90e1c3b323ef9c0d6582d92a4ba4b990"></a>
 
 Clears the value of SuggestedPurgeTime_Optional and sets SuggestedPurgeTime_IsSet to false.
+
+#### `public inline bool `[`IsSuggestedPurgeTimeSet`](#structFRHAPI__PurgeRequest_1aafcc854a211fd0b7079d3e491476613f)`() const` <a id="structFRHAPI__PurgeRequest_1aafcc854a211fd0b7079d3e491476613f"></a>
+
+Checks whether SuggestedPurgeTime_Optional has been set.
 

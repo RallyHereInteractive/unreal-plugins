@@ -203,203 +203,203 @@ bool FRHAPI_Loot::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	if (JsonCustomDataField.IsValid())
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonLootUuidField = (*Object)->TryGetField(TEXT("loot_uuid"));
-	if (JsonLootUuidField.IsValid() && !JsonLootUuidField->IsNull())
+	if (JsonLootUuidField.IsValid())
 	{
 		LootUuid_IsSet = TryGetJsonValue(JsonLootUuidField, LootUuid_Optional);
 		ParseSuccess &= LootUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonLootIdField = (*Object)->TryGetField(TEXT("loot_id"));
-	ParseSuccess &= JsonLootIdField.IsValid() && !JsonLootIdField->IsNull() && TryGetJsonValue(JsonLootIdField, LootId);
+	ParseSuccess &= JsonLootIdField.IsValid() && (!JsonLootIdField->IsNull() &&  TryGetJsonValue(JsonLootIdField, LootId));
 	const TSharedPtr<FJsonValue> JsonVendorIdField = (*Object)->TryGetField(TEXT("vendor_id"));
-	ParseSuccess &= JsonVendorIdField.IsValid() && !JsonVendorIdField->IsNull() && TryGetJsonValue(JsonVendorIdField, VendorId);
+	ParseSuccess &= JsonVendorIdField.IsValid() && (!JsonVendorIdField->IsNull() &&  TryGetJsonValue(JsonVendorIdField, VendorId));
 	const TSharedPtr<FJsonValue> JsonVendorUuidField = (*Object)->TryGetField(TEXT("vendor_uuid"));
-	if (JsonVendorUuidField.IsValid() && !JsonVendorUuidField->IsNull())
+	if (JsonVendorUuidField.IsValid())
 	{
 		VendorUuid_IsSet = TryGetJsonValue(JsonVendorUuidField, VendorUuid_Optional);
 		ParseSuccess &= VendorUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonItemIdField = (*Object)->TryGetField(TEXT("item_id"));
-	if (JsonItemIdField.IsValid() && !JsonItemIdField->IsNull())
+	if (JsonItemIdField.IsValid())
 	{
 		ItemId_IsSet = TryGetJsonValue(JsonItemIdField, ItemId_Optional);
 		ParseSuccess &= ItemId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonItemUuidField = (*Object)->TryGetField(TEXT("item_uuid"));
-	if (JsonItemUuidField.IsValid() && !JsonItemUuidField->IsNull())
+	if (JsonItemUuidField.IsValid())
 	{
 		ItemUuid_IsSet = TryGetJsonValue(JsonItemUuidField, ItemUuid_Optional);
 		ParseSuccess &= ItemUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonItemField = (*Object)->TryGetField(TEXT("item"));
-	if (JsonItemField.IsValid() && !JsonItemField->IsNull())
+	if (JsonItemField.IsValid())
 	{
 		Item_IsSet = TryGetJsonValue(JsonItemField, Item_Optional);
 		ParseSuccess &= Item_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonSubVendorIdField = (*Object)->TryGetField(TEXT("sub_vendor_id"));
-	if (JsonSubVendorIdField.IsValid() && !JsonSubVendorIdField->IsNull())
+	if (JsonSubVendorIdField.IsValid())
 	{
 		SubVendorId_IsSet = TryGetJsonValue(JsonSubVendorIdField, SubVendorId_Optional);
 		ParseSuccess &= SubVendorId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonSubVendorUuidField = (*Object)->TryGetField(TEXT("sub_vendor_uuid"));
-	if (JsonSubVendorUuidField.IsValid() && !JsonSubVendorUuidField->IsNull())
+	if (JsonSubVendorUuidField.IsValid())
 	{
 		SubVendorUuid_IsSet = TryGetJsonValue(JsonSubVendorUuidField, SubVendorUuid_Optional);
 		ParseSuccess &= SubVendorUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonQuantityField = (*Object)->TryGetField(TEXT("quantity"));
-	if (JsonQuantityField.IsValid() && !JsonQuantityField->IsNull())
+	if (JsonQuantityField.IsValid())
 	{
 		Quantity_IsSet = TryGetJsonValue(JsonQuantityField, Quantity_Optional);
 		ParseSuccess &= Quantity_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonInventorySelectorTypeField = (*Object)->TryGetField(TEXT("inventory_selector_type"));
-	if (JsonInventorySelectorTypeField.IsValid() && !JsonInventorySelectorTypeField->IsNull())
+	if (JsonInventorySelectorTypeField.IsValid())
 	{
 		InventorySelectorType_IsSet = TryGetJsonValue(JsonInventorySelectorTypeField, InventorySelectorType_Optional);
 		ParseSuccess &= InventorySelectorType_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonInventoryOperationField = (*Object)->TryGetField(TEXT("inventory_operation"));
-	if (JsonInventoryOperationField.IsValid() && !JsonInventoryOperationField->IsNull())
+	if (JsonInventoryOperationField.IsValid())
 	{
 		InventoryOperation_IsSet = TryGetJsonValue(JsonInventoryOperationField, InventoryOperation_Optional);
 		ParseSuccess &= InventoryOperation_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonActiveField = (*Object)->TryGetField(TEXT("active"));
-	if (JsonActiveField.IsValid() && !JsonActiveField->IsNull())
+	if (JsonActiveField.IsValid())
 	{
 		Active_IsSet = TryGetJsonValue(JsonActiveField, Active_Optional);
 		ParseSuccess &= Active_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonSortOrderField = (*Object)->TryGetField(TEXT("sort_order"));
-	if (JsonSortOrderField.IsValid() && !JsonSortOrderField->IsNull())
+	if (JsonSortOrderField.IsValid())
 	{
 		SortOrder_IsSet = TryGetJsonValue(JsonSortOrderField, SortOrder_Optional);
 		ParseSuccess &= SortOrder_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonDropWeightField = (*Object)->TryGetField(TEXT("drop_weight"));
-	if (JsonDropWeightField.IsValid() && !JsonDropWeightField->IsNull())
+	if (JsonDropWeightField.IsValid())
 	{
 		DropWeight_IsSet = TryGetJsonValue(JsonDropWeightField, DropWeight_Optional);
 		ParseSuccess &= DropWeight_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonFillInNewOrderField = (*Object)->TryGetField(TEXT("fill_in_new_order"));
-	if (JsonFillInNewOrderField.IsValid() && !JsonFillInNewOrderField->IsNull())
+	if (JsonFillInNewOrderField.IsValid())
 	{
 		FillInNewOrder_IsSet = TryGetJsonValue(JsonFillInNewOrderField, FillInNewOrder_Optional);
 		ParseSuccess &= FillInNewOrder_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonAllowPartialBundlesField = (*Object)->TryGetField(TEXT("allow_partial_bundles"));
-	if (JsonAllowPartialBundlesField.IsValid() && !JsonAllowPartialBundlesField->IsNull())
+	if (JsonAllowPartialBundlesField.IsValid())
 	{
 		AllowPartialBundles_IsSet = TryGetJsonValue(JsonAllowPartialBundlesField, AllowPartialBundles_Optional);
 		ParseSuccess &= AllowPartialBundles_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonRequiredItemIdField = (*Object)->TryGetField(TEXT("required_item_id"));
-	if (JsonRequiredItemIdField.IsValid() && !JsonRequiredItemIdField->IsNull())
+	if (JsonRequiredItemIdField.IsValid())
 	{
 		RequiredItemId_IsSet = TryGetJsonValue(JsonRequiredItemIdField, RequiredItemId_Optional);
 		ParseSuccess &= RequiredItemId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonRequiredItemUuidField = (*Object)->TryGetField(TEXT("required_item_uuid"));
-	if (JsonRequiredItemUuidField.IsValid() && !JsonRequiredItemUuidField->IsNull())
+	if (JsonRequiredItemUuidField.IsValid())
 	{
 		RequiredItemUuid_IsSet = TryGetJsonValue(JsonRequiredItemUuidField, RequiredItemUuid_Optional);
 		ParseSuccess &= RequiredItemUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonRequiredItemCountField = (*Object)->TryGetField(TEXT("required_item_count"));
-	if (JsonRequiredItemCountField.IsValid() && !JsonRequiredItemCountField->IsNull())
+	if (JsonRequiredItemCountField.IsValid())
 	{
 		RequiredItemCount_IsSet = TryGetJsonValue(JsonRequiredItemCountField, RequiredItemCount_Optional);
 		ParseSuccess &= RequiredItemCount_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonStackLimitField = (*Object)->TryGetField(TEXT("stack_limit"));
-	if (JsonStackLimitField.IsValid() && !JsonStackLimitField->IsNull())
+	if (JsonStackLimitField.IsValid())
 	{
 		StackLimit_IsSet = TryGetJsonValue(JsonStackLimitField, StackLimit_Optional);
 		ParseSuccess &= StackLimit_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonUiHintField = (*Object)->TryGetField(TEXT("ui_hint"));
-	if (JsonUiHintField.IsValid() && !JsonUiHintField->IsNull())
+	if (JsonUiHintField.IsValid())
 	{
 		UiHint_IsSet = TryGetJsonValue(JsonUiHintField, UiHint_Optional);
 		ParseSuccess &= UiHint_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonEffectiveFromField = (*Object)->TryGetField(TEXT("effective_from"));
-	if (JsonEffectiveFromField.IsValid() && !JsonEffectiveFromField->IsNull())
+	if (JsonEffectiveFromField.IsValid())
 	{
 		EffectiveFrom_IsSet = TryGetJsonValue(JsonEffectiveFromField, EffectiveFrom_Optional);
 		ParseSuccess &= EffectiveFrom_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonQuantityTypeField = (*Object)->TryGetField(TEXT("quantity_type"));
-	if (JsonQuantityTypeField.IsValid() && !JsonQuantityTypeField->IsNull())
+	if (JsonQuantityTypeField.IsValid())
 	{
 		QuantityType_IsSet = TryGetJsonValue(JsonQuantityTypeField, QuantityType_Optional);
 		ParseSuccess &= QuantityType_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonQuantityMultInventoryItemIdField = (*Object)->TryGetField(TEXT("quantity_mult_inventory_item_id"));
-	if (JsonQuantityMultInventoryItemIdField.IsValid() && !JsonQuantityMultInventoryItemIdField->IsNull())
+	if (JsonQuantityMultInventoryItemIdField.IsValid())
 	{
 		QuantityMultInventoryItemId_IsSet = TryGetJsonValue(JsonQuantityMultInventoryItemIdField, QuantityMultInventoryItemId_Optional);
 		ParseSuccess &= QuantityMultInventoryItemId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonQuantityMultInventoryItemUuidField = (*Object)->TryGetField(TEXT("quantity_mult_inventory_item_uuid"));
-	if (JsonQuantityMultInventoryItemUuidField.IsValid() && !JsonQuantityMultInventoryItemUuidField->IsNull())
+	if (JsonQuantityMultInventoryItemUuidField.IsValid())
 	{
 		QuantityMultInventoryItemUuid_IsSet = TryGetJsonValue(JsonQuantityMultInventoryItemUuidField, QuantityMultInventoryItemUuid_Optional);
 		ParseSuccess &= QuantityMultInventoryItemUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonIsClaimableByClientField = (*Object)->TryGetField(TEXT("is_claimable_by_client"));
-	if (JsonIsClaimableByClientField.IsValid() && !JsonIsClaimableByClientField->IsNull())
+	if (JsonIsClaimableByClientField.IsValid())
 	{
 		IsClaimableByClient_IsSet = TryGetJsonValue(JsonIsClaimableByClientField, IsClaimableByClient_Optional);
 		ParseSuccess &= IsClaimableByClient_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonTimeFrameIdField = (*Object)->TryGetField(TEXT("time_frame_id"));
-	if (JsonTimeFrameIdField.IsValid() && !JsonTimeFrameIdField->IsNull())
+	if (JsonTimeFrameIdField.IsValid())
 	{
 		TimeFrameId_IsSet = TryGetJsonValue(JsonTimeFrameIdField, TimeFrameId_Optional);
 		ParseSuccess &= TimeFrameId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonUseInventoryBucketField = (*Object)->TryGetField(TEXT("use_inventory_bucket"));
-	if (JsonUseInventoryBucketField.IsValid() && !JsonUseInventoryBucketField->IsNull())
+	if (JsonUseInventoryBucketField.IsValid())
 	{
 		UseInventoryBucket_IsSet = TryGetJsonValue(JsonUseInventoryBucketField, UseInventoryBucket_Optional);
 		ParseSuccess &= UseInventoryBucket_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonXpQuantityTransformTypeField = (*Object)->TryGetField(TEXT("xp_quantity_transform_type"));
-	if (JsonXpQuantityTransformTypeField.IsValid() && !JsonXpQuantityTransformTypeField->IsNull())
+	if (JsonXpQuantityTransformTypeField.IsValid())
 	{
 		XpQuantityTransformType_IsSet = TryGetJsonValue(JsonXpQuantityTransformTypeField, XpQuantityTransformType_Optional);
 		ParseSuccess &= XpQuantityTransformType_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCurrentPricePointGuidField = (*Object)->TryGetField(TEXT("current_price_point_guid"));
-	if (JsonCurrentPricePointGuidField.IsValid() && !JsonCurrentPricePointGuidField->IsNull())
+	if (JsonCurrentPricePointGuidField.IsValid())
 	{
 		CurrentPricePointGuid_IsSet = TryGetJsonValue(JsonCurrentPricePointGuidField, CurrentPricePointGuid_Optional);
 		ParseSuccess &= CurrentPricePointGuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPreSalePricePointGuidField = (*Object)->TryGetField(TEXT("pre_sale_price_point_guid"));
-	if (JsonPreSalePricePointGuidField.IsValid() && !JsonPreSalePricePointGuidField->IsNull())
+	if (JsonPreSalePricePointGuidField.IsValid())
 	{
 		PreSalePricePointGuid_IsSet = TryGetJsonValue(JsonPreSalePricePointGuidField, PreSalePricePointGuid_Optional);
 		ParseSuccess &= PreSalePricePointGuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
-	if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
+	if (JsonCacheInfoField.IsValid())
 	{
 		CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
 		ParseSuccess &= CacheInfo_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonHardQuantityMaximumField = (*Object)->TryGetField(TEXT("hard_quantity_maximum"));
-	if (JsonHardQuantityMaximumField.IsValid() && !JsonHardQuantityMaximumField->IsNull())
+	if (JsonHardQuantityMaximumField.IsValid())
 	{
 		HardQuantityMaximum_IsSet = TryGetJsonValue(JsonHardQuantityMaximumField, HardQuantityMaximum_Optional);
 		ParseSuccess &= HardQuantityMaximum_IsSet;

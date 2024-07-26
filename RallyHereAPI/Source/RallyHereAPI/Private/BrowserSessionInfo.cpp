@@ -51,21 +51,21 @@ bool FRHAPI_BrowserSessionInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonSessionIdField = (*Object)->TryGetField(TEXT("session_id"));
-	ParseSuccess &= JsonSessionIdField.IsValid() && !JsonSessionIdField->IsNull() && TryGetJsonValue(JsonSessionIdField, SessionId);
+	ParseSuccess &= JsonSessionIdField.IsValid() && (!JsonSessionIdField->IsNull() &&  TryGetJsonValue(JsonSessionIdField, SessionId));
 	const TSharedPtr<FJsonValue> JsonPlayerCountField = (*Object)->TryGetField(TEXT("player_count"));
-	if (JsonPlayerCountField.IsValid() && !JsonPlayerCountField->IsNull())
+	if (JsonPlayerCountField.IsValid())
 	{
 		PlayerCount_IsSet = TryGetJsonValue(JsonPlayerCountField, PlayerCount_Optional);
 		ParseSuccess &= PlayerCount_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonMaxPlayerCountField = (*Object)->TryGetField(TEXT("max_player_count"));
-	if (JsonMaxPlayerCountField.IsValid() && !JsonMaxPlayerCountField->IsNull())
+	if (JsonMaxPlayerCountField.IsValid())
 	{
 		MaxPlayerCount_IsSet = TryGetJsonValue(JsonMaxPlayerCountField, MaxPlayerCount_Optional);
 		ParseSuccess &= MaxPlayerCount_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	if (JsonCustomDataField.IsValid())
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;

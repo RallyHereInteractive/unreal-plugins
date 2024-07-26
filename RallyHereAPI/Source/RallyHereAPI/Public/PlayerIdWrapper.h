@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_PlayerIdWrapper : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Player ID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -47,13 +47,13 @@ struct RALLYHEREAPI_API FRHAPI_PlayerIdWrapper : public FRHAPI_Model
 	/** @brief Gets the value of PlayerId */
 	const int32& GetPlayerId() const { return PlayerId; }
 	/** @brief Sets the value of PlayerId */
-	void SetPlayerId(const int32& NewValue) { PlayerId = NewValue;  }
+	void SetPlayerId(const int32& NewValue) { PlayerId = NewValue;   }
 	/** @brief Sets the value of PlayerId using move semantics */
-	void SetPlayerId(int32&& NewValue) { PlayerId = NewValue;  }
+	void SetPlayerId(int32&& NewValue) { PlayerId = NewValue;   }
 	/** @brief Returns true if PlayerId matches the default value */
 	bool IsPlayerIdDefaultValue() const { return PlayerId == 0; }
 	/** @brief Sets the value of PlayerId to its default  */
-	void SetPlayerIdToDefault() { PlayerId = 0;  }
+	void SetPlayerIdToDefault() { SetPlayerId(0); }
 };
 
 /** @} */

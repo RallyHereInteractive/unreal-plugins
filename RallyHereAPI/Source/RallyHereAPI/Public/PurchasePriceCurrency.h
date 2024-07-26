@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_PurchasePriceCurrency : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief The Item used as the currency for the purchase. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -47,13 +47,13 @@ struct RALLYHEREAPI_API FRHAPI_PurchasePriceCurrency : public FRHAPI_Model
 	/** @brief Gets the value of PriceItemId */
 	const int32& GetPriceItemId() const { return PriceItemId; }
 	/** @brief Sets the value of PriceItemId */
-	void SetPriceItemId(const int32& NewValue) { PriceItemId = NewValue;  }
+	void SetPriceItemId(const int32& NewValue) { PriceItemId = NewValue;   }
 	/** @brief Sets the value of PriceItemId using move semantics */
-	void SetPriceItemId(int32&& NewValue) { PriceItemId = NewValue;  }
+	void SetPriceItemId(int32&& NewValue) { PriceItemId = NewValue;   }
 	/** @brief Returns true if PriceItemId matches the default value */
 	bool IsPriceItemIdDefaultValue() const { return PriceItemId == 0; }
 	/** @brief Sets the value of PriceItemId to its default  */
-	void SetPriceItemIdToDefault() { PriceItemId = 0;  }
+	void SetPriceItemIdToDefault() { SetPriceItemId(0); }
 
 	/** @brief The price of the Item. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -63,13 +63,13 @@ struct RALLYHEREAPI_API FRHAPI_PurchasePriceCurrency : public FRHAPI_Model
 	/** @brief Gets the value of Price */
 	const int32& GetPrice() const { return Price; }
 	/** @brief Sets the value of Price */
-	void SetPrice(const int32& NewValue) { Price = NewValue;  }
+	void SetPrice(const int32& NewValue) { Price = NewValue;   }
 	/** @brief Sets the value of Price using move semantics */
-	void SetPrice(int32&& NewValue) { Price = NewValue;  }
+	void SetPrice(int32&& NewValue) { Price = NewValue;   }
 	/** @brief Returns true if Price matches the default value */
 	bool IsPriceDefaultValue() const { return Price == 0; }
 	/** @brief Sets the value of Price to its default  */
-	void SetPriceToDefault() { Price = 0;  }
+	void SetPriceToDefault() { SetPrice(0); }
 };
 
 /** @} */

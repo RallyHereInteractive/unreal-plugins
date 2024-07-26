@@ -20,8 +20,8 @@ DEPRECATED Response to successfully updating players&#39; ranks.
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public TArray< `[`FRHAPI_PlayerRankResponse`](RHAPI_PlayerRankResponse.md#structFRHAPI__PlayerRankResponse)` > `[`UpdatedPlayers`](#structFRHAPI__PlayerRankUpdateResponse_1a7f6d7817320d4a24ba83cdbdb5f5acaf) | List of players and their updated ranks.
-`public virtual bool `[`FromJson`](#structFRHAPI__PlayerRankUpdateResponse_1a8c70e27184c2ed95c1687f0070de3a41)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PlayerRankUpdateResponse_1a47da0774dd217832f7b5ab5f20e70803)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__PlayerRankUpdateResponse_1a5a4b1116d953b9afbdc16acfbd4a96d1)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__PlayerRankUpdateResponse_1a8cd71b804c715c0c6ab1339c42416bd9)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< `[`FRHAPI_PlayerRankResponse`](RHAPI_PlayerRankResponse.md#structFRHAPI__PlayerRankResponse)` > & `[`GetUpdatedPlayers`](#structFRHAPI__PlayerRankUpdateResponse_1ac7213500ce83733148a448a808771080)`()` | Gets the value of UpdatedPlayers.
 `public inline const TArray< `[`FRHAPI_PlayerRankResponse`](RHAPI_PlayerRankResponse.md#structFRHAPI__PlayerRankResponse)` > & `[`GetUpdatedPlayers`](#structFRHAPI__PlayerRankUpdateResponse_1a67c1363557897ce067efec035674b8c5)`() const` | Gets the value of UpdatedPlayers.
 `public inline void `[`SetUpdatedPlayers`](#structFRHAPI__PlayerRankUpdateResponse_1aaa5e1d700194f6d9ee5274fbeb3c5a6e)`(const TArray< `[`FRHAPI_PlayerRankResponse`](RHAPI_PlayerRankResponse.md#structFRHAPI__PlayerRankResponse)` > & NewValue)` | Sets the value of UpdatedPlayers.
@@ -33,7 +33,7 @@ DEPRECATED Response to successfully updating players&#39; ranks.
 
 List of players and their updated ranks.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__PlayerRankUpdateResponse_1a8c70e27184c2ed95c1687f0070de3a41)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlayerRankUpdateResponse_1a8c70e27184c2ed95c1687f0070de3a41"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__PlayerRankUpdateResponse_1a5a4b1116d953b9afbdc16acfbd4a96d1)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlayerRankUpdateResponse_1a5a4b1116d953b9afbdc16acfbd4a96d1"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -43,7 +43,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PlayerRankUpdateResponse_1a47da0774dd217832f7b5ab5f20e70803)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlayerRankUpdateResponse_1a47da0774dd217832f7b5ab5f20e70803"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PlayerRankUpdateResponse_1a8cd71b804c715c0c6ab1339c42416bd9)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlayerRankUpdateResponse_1a8cd71b804c715c0c6ab1339c42416bd9"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 

@@ -32,14 +32,14 @@ struct RALLYHEREAPI_API FRHAPI_BlockedListV1 : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 PlayerId{ 0 };
@@ -48,13 +48,13 @@ struct RALLYHEREAPI_API FRHAPI_BlockedListV1 : public FRHAPI_Model
 	/** @brief Gets the value of PlayerId */
 	const int32& GetPlayerId() const { return PlayerId; }
 	/** @brief Sets the value of PlayerId */
-	void SetPlayerId(const int32& NewValue) { PlayerId = NewValue;  }
+	void SetPlayerId(const int32& NewValue) { PlayerId = NewValue;   }
 	/** @brief Sets the value of PlayerId using move semantics */
-	void SetPlayerId(int32&& NewValue) { PlayerId = NewValue;  }
+	void SetPlayerId(int32&& NewValue) { PlayerId = NewValue;   }
 	/** @brief Returns true if PlayerId matches the default value */
 	bool IsPlayerIdDefaultValue() const { return PlayerId == 0; }
 	/** @brief Sets the value of PlayerId to its default  */
-	void SetPlayerIdToDefault() { PlayerId = 0;  }
+	void SetPlayerIdToDefault() { SetPlayerId(0); }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid PlayerUuid{  };
@@ -63,9 +63,9 @@ struct RALLYHEREAPI_API FRHAPI_BlockedListV1 : public FRHAPI_Model
 	/** @brief Gets the value of PlayerUuid */
 	const FGuid& GetPlayerUuid() const { return PlayerUuid; }
 	/** @brief Sets the value of PlayerUuid */
-	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;  }
+	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;   }
 	/** @brief Sets the value of PlayerUuid using move semantics */
-	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;  }
+	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_BlockedPlayerV1> Blocked{  };
@@ -74,9 +74,9 @@ struct RALLYHEREAPI_API FRHAPI_BlockedListV1 : public FRHAPI_Model
 	/** @brief Gets the value of Blocked */
 	const TArray<FRHAPI_BlockedPlayerV1>& GetBlocked() const { return Blocked; }
 	/** @brief Sets the value of Blocked */
-	void SetBlocked(const TArray<FRHAPI_BlockedPlayerV1>& NewValue) { Blocked = NewValue;  }
+	void SetBlocked(const TArray<FRHAPI_BlockedPlayerV1>& NewValue) { Blocked = NewValue;   }
 	/** @brief Sets the value of Blocked using move semantics */
-	void SetBlocked(TArray<FRHAPI_BlockedPlayerV1>&& NewValue) { Blocked = NewValue;  }
+	void SetBlocked(TArray<FRHAPI_BlockedPlayerV1>&& NewValue) { Blocked = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_PageMeta Page{  };
@@ -85,9 +85,9 @@ struct RALLYHEREAPI_API FRHAPI_BlockedListV1 : public FRHAPI_Model
 	/** @brief Gets the value of Page */
 	const FRHAPI_PageMeta& GetPage() const { return Page; }
 	/** @brief Sets the value of Page */
-	void SetPage(const FRHAPI_PageMeta& NewValue) { Page = NewValue;  }
+	void SetPage(const FRHAPI_PageMeta& NewValue) { Page = NewValue;   }
 	/** @brief Sets the value of Page using move semantics */
-	void SetPage(FRHAPI_PageMeta&& NewValue) { Page = NewValue;  }
+	void SetPage(FRHAPI_PageMeta&& NewValue) { Page = NewValue;   }
 };
 
 /** @} */

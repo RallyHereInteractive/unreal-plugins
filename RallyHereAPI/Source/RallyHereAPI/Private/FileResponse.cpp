@@ -42,13 +42,13 @@ bool FRHAPI_FileResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonNameField = (*Object)->TryGetField(TEXT("name"));
-	ParseSuccess &= JsonNameField.IsValid() && !JsonNameField->IsNull() && TryGetJsonValue(JsonNameField, Name);
+	ParseSuccess &= JsonNameField.IsValid() && (!JsonNameField->IsNull() &&  TryGetJsonValue(JsonNameField, Name));
 	const TSharedPtr<FJsonValue> JsonSizeField = (*Object)->TryGetField(TEXT("size"));
-	ParseSuccess &= JsonSizeField.IsValid() && !JsonSizeField->IsNull() && TryGetJsonValue(JsonSizeField, Size);
+	ParseSuccess &= JsonSizeField.IsValid() && (!JsonSizeField->IsNull() &&  TryGetJsonValue(JsonSizeField, Size));
 	const TSharedPtr<FJsonValue> JsonContentTypeField = (*Object)->TryGetField(TEXT("content_type"));
-	ParseSuccess &= JsonContentTypeField.IsValid() && !JsonContentTypeField->IsNull() && TryGetJsonValue(JsonContentTypeField, ContentType);
+	ParseSuccess &= JsonContentTypeField.IsValid() && (!JsonContentTypeField->IsNull() &&  TryGetJsonValue(JsonContentTypeField, ContentType));
 	const TSharedPtr<FJsonValue> JsonCreatedTimestampField = (*Object)->TryGetField(TEXT("created_timestamp"));
-	ParseSuccess &= JsonCreatedTimestampField.IsValid() && !JsonCreatedTimestampField->IsNull() && TryGetJsonValue(JsonCreatedTimestampField, CreatedTimestamp);
+	ParseSuccess &= JsonCreatedTimestampField.IsValid() && (!JsonCreatedTimestampField->IsNull() &&  TryGetJsonValue(JsonCreatedTimestampField, CreatedTimestamp));
 
 	return ParseSuccess;
 }

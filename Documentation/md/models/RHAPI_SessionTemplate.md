@@ -58,8 +58,8 @@ Template used to create new RallyHere sessions of a specific type. Configurable 
 `public bool `[`CanChangeOwnTeam_IsSet`](#structFRHAPI__SessionTemplate_1ad6b80d668b66266c71f70affb0cae587) | true if CanChangeOwnTeam_Optional has been set to a value
 `public bool `[`NotifyOnReservation_Optional`](#structFRHAPI__SessionTemplate_1a5c0c06cf8165a39442dfc4ab5e830343) | If players should be notified when they are reserved in this type of session instead of waiting until they're invited.
 `public bool `[`NotifyOnReservation_IsSet`](#structFRHAPI__SessionTemplate_1a9fc86e1548fa8e1e0ea7c861f984f15b) | true if NotifyOnReservation_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__SessionTemplate_1a4a45fc40eed406ae864f33e45c0eadf2)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__SessionTemplate_1a8ddb8c09f6817591c4927b4a5c49df76)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__SessionTemplate_1a584ea37b08d01584233924dd39557b4a)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__SessionTemplate_1ac225d3f4b6be381a7c3674126b0284d3)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetSessionType`](#structFRHAPI__SessionTemplate_1a7772fb5d40d6b5c69dc188065146a39c)`()` | Gets the value of SessionType.
 `public inline const FString & `[`GetSessionType`](#structFRHAPI__SessionTemplate_1affce611355a919ed8acc4bbd307ae642)`() const` | Gets the value of SessionType.
 `public inline void `[`SetSessionType`](#structFRHAPI__SessionTemplate_1a775c1663b9ebd28bd3b8ced9fb39b92d)`(const FString & NewValue)` | Sets the value of SessionType.
@@ -73,6 +73,7 @@ Template used to create new RallyHere sessions of a specific type. Configurable 
 `public inline void `[`SetEngineSessionType`](#structFRHAPI__SessionTemplate_1ab49c18e1f0b8c7b4c9bd0e418f380bb6)`(const FString & NewValue)` | Sets the value of EngineSessionType_Optional and also sets EngineSessionType_IsSet to true.
 `public inline void `[`SetEngineSessionType`](#structFRHAPI__SessionTemplate_1a32899af07b115593b0148471783286e7)`(FString && NewValue)` | Sets the value of EngineSessionType_Optional and also sets EngineSessionType_IsSet to true using move semantics.
 `public inline void `[`ClearEngineSessionType`](#structFRHAPI__SessionTemplate_1a49cf645ee28f75e34b7e82a375b0b7a0)`()` | Clears the value of EngineSessionType_Optional and sets EngineSessionType_IsSet to false.
+`public inline bool `[`IsEngineSessionTypeSet`](#structFRHAPI__SessionTemplate_1ad7b96b3d4c45af4889a17bc0700bcb93)`() const` | Checks whether EngineSessionType_Optional has been set.
 `public inline bool `[`IsEngineSessionTypeDefaultValue`](#structFRHAPI__SessionTemplate_1a3cfbdbc7f9037595cd081510a49b47be)`() const` | Returns true if EngineSessionType_Optional is set and matches the default value.
 `public inline void `[`SetEngineSessionTypeToDefault`](#structFRHAPI__SessionTemplate_1a63b6dfef02bbfc4c1602f59da2e7f468)`()` | Sets the value of EngineSessionType_Optional to its default and also sets EngineSessionType_IsSet to true.
 `public inline bool & `[`GetCanJoinMatchmaking`](#structFRHAPI__SessionTemplate_1a0cf738471cdd5148be692454ccc855ba)`()` | Gets the value of CanJoinMatchmaking_Optional, regardless of it having been set.
@@ -84,6 +85,7 @@ Template used to create new RallyHere sessions of a specific type. Configurable 
 `public inline void `[`SetCanJoinMatchmaking`](#structFRHAPI__SessionTemplate_1a1b15c4db7b58bc335f847a653d28d503)`(const bool & NewValue)` | Sets the value of CanJoinMatchmaking_Optional and also sets CanJoinMatchmaking_IsSet to true.
 `public inline void `[`SetCanJoinMatchmaking`](#structFRHAPI__SessionTemplate_1abc9239242ba4cf83ce6727b03b389a6e)`(bool && NewValue)` | Sets the value of CanJoinMatchmaking_Optional and also sets CanJoinMatchmaking_IsSet to true using move semantics.
 `public inline void `[`ClearCanJoinMatchmaking`](#structFRHAPI__SessionTemplate_1aea8827859a78eea75ccb378ae6d34536)`()` | Clears the value of CanJoinMatchmaking_Optional and sets CanJoinMatchmaking_IsSet to false.
+`public inline bool `[`IsCanJoinMatchmakingSet`](#structFRHAPI__SessionTemplate_1af213e3709013876100f0230cf90247b7)`() const` | Checks whether CanJoinMatchmaking_Optional has been set.
 `public inline bool `[`IsCanJoinMatchmakingDefaultValue`](#structFRHAPI__SessionTemplate_1a712f72abd63eda494b43154b029822e9)`() const` | Returns true if CanJoinMatchmaking_Optional is set and matches the default value.
 `public inline void `[`SetCanJoinMatchmakingToDefault`](#structFRHAPI__SessionTemplate_1ab1db9565664aea038731887f24deff21)`()` | Sets the value of CanJoinMatchmaking_Optional to its default and also sets CanJoinMatchmaking_IsSet to true.
 `public inline bool & `[`GetCanBeCreatedByPlayersDirectly`](#structFRHAPI__SessionTemplate_1a245738afb53726c0b785aec39bf86106)`()` | Gets the value of CanBeCreatedByPlayersDirectly_Optional, regardless of it having been set.
@@ -95,6 +97,7 @@ Template used to create new RallyHere sessions of a specific type. Configurable 
 `public inline void `[`SetCanBeCreatedByPlayersDirectly`](#structFRHAPI__SessionTemplate_1a6bd3ddf628bb4358b89be928c6337759)`(const bool & NewValue)` | Sets the value of CanBeCreatedByPlayersDirectly_Optional and also sets CanBeCreatedByPlayersDirectly_IsSet to true.
 `public inline void `[`SetCanBeCreatedByPlayersDirectly`](#structFRHAPI__SessionTemplate_1a8aef4b2f30edd3721d971df495b8c235)`(bool && NewValue)` | Sets the value of CanBeCreatedByPlayersDirectly_Optional and also sets CanBeCreatedByPlayersDirectly_IsSet to true using move semantics.
 `public inline void `[`ClearCanBeCreatedByPlayersDirectly`](#structFRHAPI__SessionTemplate_1aeeead6ecb3330ef0ab4e0d0f1d51be6f)`()` | Clears the value of CanBeCreatedByPlayersDirectly_Optional and sets CanBeCreatedByPlayersDirectly_IsSet to false.
+`public inline bool `[`IsCanBeCreatedByPlayersDirectlySet`](#structFRHAPI__SessionTemplate_1a43a55df360c1ddf8d21e4771cea65873)`() const` | Checks whether CanBeCreatedByPlayersDirectly_Optional has been set.
 `public inline bool `[`IsCanBeCreatedByPlayersDirectlyDefaultValue`](#structFRHAPI__SessionTemplate_1afc9d293d6290f5c2de49e0abc1da9c4d)`() const` | Returns true if CanBeCreatedByPlayersDirectly_Optional is set and matches the default value.
 `public inline void `[`SetCanBeCreatedByPlayersDirectlyToDefault`](#structFRHAPI__SessionTemplate_1a5895d02285be3538be2d7e59412f7466)`()` | Sets the value of CanBeCreatedByPlayersDirectly_Optional to its default and also sets CanBeCreatedByPlayersDirectly_IsSet to true.
 `public inline bool & `[`GetJoinable`](#structFRHAPI__SessionTemplate_1af9cffd42d338984ff9c90540bc8ab561)`()` | Gets the value of Joinable_Optional, regardless of it having been set.
@@ -106,6 +109,7 @@ Template used to create new RallyHere sessions of a specific type. Configurable 
 `public inline void `[`SetJoinable`](#structFRHAPI__SessionTemplate_1a90e3ca10e69dbac64c38b2af379043f8)`(const bool & NewValue)` | Sets the value of Joinable_Optional and also sets Joinable_IsSet to true.
 `public inline void `[`SetJoinable`](#structFRHAPI__SessionTemplate_1a72fd1ea3c02fed97a32afac41654bdc3)`(bool && NewValue)` | Sets the value of Joinable_Optional and also sets Joinable_IsSet to true using move semantics.
 `public inline void `[`ClearJoinable`](#structFRHAPI__SessionTemplate_1a2656215bcf0eb51c71fed328166e6b68)`()` | Clears the value of Joinable_Optional and sets Joinable_IsSet to false.
+`public inline bool `[`IsJoinableSet`](#structFRHAPI__SessionTemplate_1a615f3ae971f8d57843f77db26b3c52bc)`() const` | Checks whether Joinable_Optional has been set.
 `public inline bool `[`IsJoinableDefaultValue`](#structFRHAPI__SessionTemplate_1a7005e50d8cbe3b02a9ce17dbb7d4bd4c)`() const` | Returns true if Joinable_Optional is set and matches the default value.
 `public inline void `[`SetJoinableToDefault`](#structFRHAPI__SessionTemplate_1aab55eb4066768dc2f660b6f7148789c6)`()` | Sets the value of Joinable_Optional to its default and also sets Joinable_IsSet to true.
 `public inline bool & `[`GetAttemptAutoJoin`](#structFRHAPI__SessionTemplate_1a0784581eddfc3da5b8d0d9053c1870c2)`()` | Gets the value of AttemptAutoJoin_Optional, regardless of it having been set.
@@ -117,6 +121,7 @@ Template used to create new RallyHere sessions of a specific type. Configurable 
 `public inline void `[`SetAttemptAutoJoin`](#structFRHAPI__SessionTemplate_1a2af8e5abde9154beb8a02238571eed82)`(const bool & NewValue)` | Sets the value of AttemptAutoJoin_Optional and also sets AttemptAutoJoin_IsSet to true.
 `public inline void `[`SetAttemptAutoJoin`](#structFRHAPI__SessionTemplate_1a92a14310dade9c5208574c3c4ac7ae17)`(bool && NewValue)` | Sets the value of AttemptAutoJoin_Optional and also sets AttemptAutoJoin_IsSet to true using move semantics.
 `public inline void `[`ClearAttemptAutoJoin`](#structFRHAPI__SessionTemplate_1af01c65d9412c08982e1d810d821508e6)`()` | Clears the value of AttemptAutoJoin_Optional and sets AttemptAutoJoin_IsSet to false.
+`public inline bool `[`IsAttemptAutoJoinSet`](#structFRHAPI__SessionTemplate_1a739c5165a310c80b399838bc6bd0532d)`() const` | Checks whether AttemptAutoJoin_Optional has been set.
 `public inline bool `[`IsAttemptAutoJoinDefaultValue`](#structFRHAPI__SessionTemplate_1a6272851fd94d2aae9769e3f49251f26e)`() const` | Returns true if AttemptAutoJoin_Optional is set and matches the default value.
 `public inline void `[`SetAttemptAutoJoinToDefault`](#structFRHAPI__SessionTemplate_1a625067a334f5914ab7695522f608984b)`()` | Sets the value of AttemptAutoJoin_Optional to its default and also sets AttemptAutoJoin_IsSet to true.
 `public inline bool & `[`GetDefaultPublic`](#structFRHAPI__SessionTemplate_1ad7fe254c574fc3e7253c753331a7ae4f)`()` | Gets the value of DefaultPublic_Optional, regardless of it having been set.
@@ -128,6 +133,7 @@ Template used to create new RallyHere sessions of a specific type. Configurable 
 `public inline void `[`SetDefaultPublic`](#structFRHAPI__SessionTemplate_1a917d570df95c56cc8bb10421aa9b07ee)`(const bool & NewValue)` | Sets the value of DefaultPublic_Optional and also sets DefaultPublic_IsSet to true.
 `public inline void `[`SetDefaultPublic`](#structFRHAPI__SessionTemplate_1aa895f5b178b0d787dac1c5d31f978965)`(bool && NewValue)` | Sets the value of DefaultPublic_Optional and also sets DefaultPublic_IsSet to true using move semantics.
 `public inline void `[`ClearDefaultPublic`](#structFRHAPI__SessionTemplate_1a0b7ec628161b7d1a8317204875d476e5)`()` | Clears the value of DefaultPublic_Optional and sets DefaultPublic_IsSet to false.
+`public inline bool `[`IsDefaultPublicSet`](#structFRHAPI__SessionTemplate_1a061b603b9b9c500a4e83172c131e8fce)`() const` | Checks whether DefaultPublic_Optional has been set.
 `public inline bool `[`IsDefaultPublicDefaultValue`](#structFRHAPI__SessionTemplate_1aded9e905d1ae97b71569316e9a93249f)`() const` | Returns true if DefaultPublic_Optional is set and matches the default value.
 `public inline void `[`SetDefaultPublicToDefault`](#structFRHAPI__SessionTemplate_1aeff38f0e7c8d477f6175359b09bf33e7)`()` | Sets the value of DefaultPublic_Optional to its default and also sets DefaultPublic_IsSet to true.
 `public inline bool & `[`GetAutoAddToBrowser`](#structFRHAPI__SessionTemplate_1adfdd95d3bbe2abb2bec34a1e505d1420)`()` | Gets the value of AutoAddToBrowser_Optional, regardless of it having been set.
@@ -139,6 +145,7 @@ Template used to create new RallyHere sessions of a specific type. Configurable 
 `public inline void `[`SetAutoAddToBrowser`](#structFRHAPI__SessionTemplate_1a07064519d9290d4742c9c2c842638738)`(const bool & NewValue)` | Sets the value of AutoAddToBrowser_Optional and also sets AutoAddToBrowser_IsSet to true.
 `public inline void `[`SetAutoAddToBrowser`](#structFRHAPI__SessionTemplate_1a56942ab4f363d7966f8b3c8c4f54be30)`(bool && NewValue)` | Sets the value of AutoAddToBrowser_Optional and also sets AutoAddToBrowser_IsSet to true using move semantics.
 `public inline void `[`ClearAutoAddToBrowser`](#structFRHAPI__SessionTemplate_1ae71defa87a1bc92560786421ece26aa0)`()` | Clears the value of AutoAddToBrowser_Optional and sets AutoAddToBrowser_IsSet to false.
+`public inline bool `[`IsAutoAddToBrowserSet`](#structFRHAPI__SessionTemplate_1ab431ba36b8a46d0fedd0443d5c5e38da)`() const` | Checks whether AutoAddToBrowser_Optional has been set.
 `public inline bool `[`IsAutoAddToBrowserDefaultValue`](#structFRHAPI__SessionTemplate_1a1aef6318593a8e024bab505bdc238fc9)`() const` | Returns true if AutoAddToBrowser_Optional is set and matches the default value.
 `public inline void `[`SetAutoAddToBrowserToDefault`](#structFRHAPI__SessionTemplate_1a78e197d8caad7dcbdb0a6325c5828d07)`()` | Sets the value of AutoAddToBrowser_Optional to its default and also sets AutoAddToBrowser_IsSet to true.
 `public inline TMap< FString, FString > & `[`GetAutoBrowserParams`](#structFRHAPI__SessionTemplate_1a9fbce9936f06a5974cc4c754cc6ba2be)`()` | Gets the value of AutoBrowserParams_Optional, regardless of it having been set.
@@ -150,6 +157,7 @@ Template used to create new RallyHere sessions of a specific type. Configurable 
 `public inline void `[`SetAutoBrowserParams`](#structFRHAPI__SessionTemplate_1abe4d9b3d9ad4d475ea1915a1b252abae)`(const TMap< FString, FString > & NewValue)` | Sets the value of AutoBrowserParams_Optional and also sets AutoBrowserParams_IsSet to true.
 `public inline void `[`SetAutoBrowserParams`](#structFRHAPI__SessionTemplate_1a23b627d4d14851620d18c9acab0a82b6)`(TMap< FString, FString > && NewValue)` | Sets the value of AutoBrowserParams_Optional and also sets AutoBrowserParams_IsSet to true using move semantics.
 `public inline void `[`ClearAutoBrowserParams`](#structFRHAPI__SessionTemplate_1afc6ccbb82066817f3e22ad01730802db)`()` | Clears the value of AutoBrowserParams_Optional and sets AutoBrowserParams_IsSet to false.
+`public inline bool `[`IsAutoBrowserParamsSet`](#structFRHAPI__SessionTemplate_1a28ad44e91169e211265cb22207a62739)`() const` | Checks whether AutoBrowserParams_Optional has been set.
 `public inline bool & `[`GetCanBeAddedToServerBrowser`](#structFRHAPI__SessionTemplate_1a356373eb133f994e7ac8d8efbb1775d1)`()` | Gets the value of CanBeAddedToServerBrowser_Optional, regardless of it having been set.
 `public inline const bool & `[`GetCanBeAddedToServerBrowser`](#structFRHAPI__SessionTemplate_1ad943f3983e02ba20c1e8216cbb1db291)`() const` | Gets the value of CanBeAddedToServerBrowser_Optional, regardless of it having been set.
 `public inline const bool & `[`GetCanBeAddedToServerBrowser`](#structFRHAPI__SessionTemplate_1a749dc792aaf08e7bb6f76273c6da485a)`(const bool & DefaultValue) const` | Gets the value of CanBeAddedToServerBrowser_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -159,6 +167,7 @@ Template used to create new RallyHere sessions of a specific type. Configurable 
 `public inline void `[`SetCanBeAddedToServerBrowser`](#structFRHAPI__SessionTemplate_1adfbb9e7dc7cdcf5053b2f0c2b7245f1b)`(const bool & NewValue)` | Sets the value of CanBeAddedToServerBrowser_Optional and also sets CanBeAddedToServerBrowser_IsSet to true.
 `public inline void `[`SetCanBeAddedToServerBrowser`](#structFRHAPI__SessionTemplate_1ac821ce049020b19861e32ceaf5b2591b)`(bool && NewValue)` | Sets the value of CanBeAddedToServerBrowser_Optional and also sets CanBeAddedToServerBrowser_IsSet to true using move semantics.
 `public inline void `[`ClearCanBeAddedToServerBrowser`](#structFRHAPI__SessionTemplate_1a23f4b3075ad5c6cf66442b7fb9ff4731)`()` | Clears the value of CanBeAddedToServerBrowser_Optional and sets CanBeAddedToServerBrowser_IsSet to false.
+`public inline bool `[`IsCanBeAddedToServerBrowserSet`](#structFRHAPI__SessionTemplate_1ae89419bc9b1476eb90fb40492082bce8)`() const` | Checks whether CanBeAddedToServerBrowser_Optional has been set.
 `public inline bool `[`IsCanBeAddedToServerBrowserDefaultValue`](#structFRHAPI__SessionTemplate_1a7d34d65f47086fd753f7ac691a4c0df5)`() const` | Returns true if CanBeAddedToServerBrowser_Optional is set and matches the default value.
 `public inline void `[`SetCanBeAddedToServerBrowserToDefault`](#structFRHAPI__SessionTemplate_1a933ba7bff1d990c9c0e12b47abd0864f)`()` | Sets the value of CanBeAddedToServerBrowser_Optional to its default and also sets CanBeAddedToServerBrowser_IsSet to true.
 `public inline bool & `[`GetKeepAliveOnEmpty`](#structFRHAPI__SessionTemplate_1a8ea968025808651306147a75bd67e3f4)`()` | Gets the value of KeepAliveOnEmpty_Optional, regardless of it having been set.
@@ -170,6 +179,7 @@ Template used to create new RallyHere sessions of a specific type. Configurable 
 `public inline void `[`SetKeepAliveOnEmpty`](#structFRHAPI__SessionTemplate_1a30f13ff4efe0062777248fffdc46887c)`(const bool & NewValue)` | Sets the value of KeepAliveOnEmpty_Optional and also sets KeepAliveOnEmpty_IsSet to true.
 `public inline void `[`SetKeepAliveOnEmpty`](#structFRHAPI__SessionTemplate_1ae7c94a6d9624530ce6035ac860672ed2)`(bool && NewValue)` | Sets the value of KeepAliveOnEmpty_Optional and also sets KeepAliveOnEmpty_IsSet to true using move semantics.
 `public inline void `[`ClearKeepAliveOnEmpty`](#structFRHAPI__SessionTemplate_1a296512654f450ed319f63f8b648c53b8)`()` | Clears the value of KeepAliveOnEmpty_Optional and sets KeepAliveOnEmpty_IsSet to false.
+`public inline bool `[`IsKeepAliveOnEmptySet`](#structFRHAPI__SessionTemplate_1a5aaba552bde3ef07dc59f9c0756c1f90)`() const` | Checks whether KeepAliveOnEmpty_Optional has been set.
 `public inline bool `[`IsKeepAliveOnEmptyDefaultValue`](#structFRHAPI__SessionTemplate_1a55aba4ea889f042e220c937f19078a59)`() const` | Returns true if KeepAliveOnEmpty_Optional is set and matches the default value.
 `public inline void `[`SetKeepAliveOnEmptyToDefault`](#structFRHAPI__SessionTemplate_1a8a37912d37e10efa335771cbdb045138)`()` | Sets the value of KeepAliveOnEmpty_Optional to its default and also sets KeepAliveOnEmpty_IsSet to true.
 `public inline TMap< FString, `[`FRHAPI_PlatformSessionTemplate`](RHAPI_PlatformSessionTemplate.md#structFRHAPI__PlatformSessionTemplate)` > & `[`GetPlatformTemplates`](#structFRHAPI__SessionTemplate_1ac6c83f72faa66211afc8ae944090b3d0)`()` | Gets the value of PlatformTemplates_Optional, regardless of it having been set.
@@ -181,6 +191,7 @@ Template used to create new RallyHere sessions of a specific type. Configurable 
 `public inline void `[`SetPlatformTemplates`](#structFRHAPI__SessionTemplate_1aef2a22d494689a2c8001ef25ac75b989)`(const TMap< FString, `[`FRHAPI_PlatformSessionTemplate`](RHAPI_PlatformSessionTemplate.md#structFRHAPI__PlatformSessionTemplate)` > & NewValue)` | Sets the value of PlatformTemplates_Optional and also sets PlatformTemplates_IsSet to true.
 `public inline void `[`SetPlatformTemplates`](#structFRHAPI__SessionTemplate_1ad33c9e8eb0653ab89dfa4379ac74b9e8)`(TMap< FString, `[`FRHAPI_PlatformSessionTemplate`](RHAPI_PlatformSessionTemplate.md#structFRHAPI__PlatformSessionTemplate)` > && NewValue)` | Sets the value of PlatformTemplates_Optional and also sets PlatformTemplates_IsSet to true using move semantics.
 `public inline void `[`ClearPlatformTemplates`](#structFRHAPI__SessionTemplate_1a63f0a0474639a53f8a0789e3850321dd)`()` | Clears the value of PlatformTemplates_Optional and sets PlatformTemplates_IsSet to false.
+`public inline bool `[`IsPlatformTemplatesSet`](#structFRHAPI__SessionTemplate_1ab169ff9497d80c552771861c9e99bd50)`() const` | Checks whether PlatformTemplates_Optional has been set.
 `public inline `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` & `[`GetAutoStartupParams`](#structFRHAPI__SessionTemplate_1ab8dd54ee2f4348500f01e44af3448a4a)`()` | Gets the value of AutoStartupParams_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` & `[`GetAutoStartupParams`](#structFRHAPI__SessionTemplate_1a6695f79c7358ba7b6dc665219044f694)`() const` | Gets the value of AutoStartupParams_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` & `[`GetAutoStartupParams`](#structFRHAPI__SessionTemplate_1a89c852cf18006b6e93e52086db3ffa82)`(const `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` & DefaultValue) const` | Gets the value of AutoStartupParams_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -190,6 +201,7 @@ Template used to create new RallyHere sessions of a specific type. Configurable 
 `public inline void `[`SetAutoStartupParams`](#structFRHAPI__SessionTemplate_1aa59440ea3fe08b7645432484d67097d2)`(const `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` & NewValue)` | Sets the value of AutoStartupParams_Optional and also sets AutoStartupParams_IsSet to true.
 `public inline void `[`SetAutoStartupParams`](#structFRHAPI__SessionTemplate_1a8a5bc47e88fe94a0ac5cc851f66b9b6b)`(`[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` && NewValue)` | Sets the value of AutoStartupParams_Optional and also sets AutoStartupParams_IsSet to true using move semantics.
 `public inline void `[`ClearAutoStartupParams`](#structFRHAPI__SessionTemplate_1a41041ffbd8775231d249554a072116d7)`()` | Clears the value of AutoStartupParams_Optional and sets AutoStartupParams_IsSet to false.
+`public inline bool `[`IsAutoStartupParamsSet`](#structFRHAPI__SessionTemplate_1ad558ef638e92f2195f4a2cd552bf11ee)`() const` | Checks whether AutoStartupParams_Optional has been set.
 `public inline FGuid & `[`GetAutoStartupInstanceTemplateId`](#structFRHAPI__SessionTemplate_1a613437211fadf3e44d3a28240bcb0185)`()` | Gets the value of AutoStartupInstanceTemplateId_Optional, regardless of it having been set.
 `public inline const FGuid & `[`GetAutoStartupInstanceTemplateId`](#structFRHAPI__SessionTemplate_1a3e6d3d4b473ce367d6add241b647ccaf)`() const` | Gets the value of AutoStartupInstanceTemplateId_Optional, regardless of it having been set.
 `public inline const FGuid & `[`GetAutoStartupInstanceTemplateId`](#structFRHAPI__SessionTemplate_1a5430fde6d440e7b612f56b65e33d1e6f)`(const FGuid & DefaultValue) const` | Gets the value of AutoStartupInstanceTemplateId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -199,6 +211,7 @@ Template used to create new RallyHere sessions of a specific type. Configurable 
 `public inline void `[`SetAutoStartupInstanceTemplateId`](#structFRHAPI__SessionTemplate_1a5309a18ed5a3de1bafcb9cbfabedfc46)`(const FGuid & NewValue)` | Sets the value of AutoStartupInstanceTemplateId_Optional and also sets AutoStartupInstanceTemplateId_IsSet to true.
 `public inline void `[`SetAutoStartupInstanceTemplateId`](#structFRHAPI__SessionTemplate_1a0335c7e457802515a793b2597691dc9f)`(FGuid && NewValue)` | Sets the value of AutoStartupInstanceTemplateId_Optional and also sets AutoStartupInstanceTemplateId_IsSet to true using move semantics.
 `public inline void `[`ClearAutoStartupInstanceTemplateId`](#structFRHAPI__SessionTemplate_1a34645ae41e39de740fe31869d3e1a64f)`()` | Clears the value of AutoStartupInstanceTemplateId_Optional and sets AutoStartupInstanceTemplateId_IsSet to false.
+`public inline bool `[`IsAutoStartupInstanceTemplateIdSet`](#structFRHAPI__SessionTemplate_1aea65eda3e21c0d36784eb20408abb6b3)`() const` | Checks whether AutoStartupInstanceTemplateId_Optional has been set.
 `public inline int32 & `[`GetMinSessionCount`](#structFRHAPI__SessionTemplate_1aab1a67e445ca5338fbb66baa3d3bcb9f)`()` | Gets the value of MinSessionCount_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetMinSessionCount`](#structFRHAPI__SessionTemplate_1ab7376fd46c054e32668b755907ac0d90)`() const` | Gets the value of MinSessionCount_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetMinSessionCount`](#structFRHAPI__SessionTemplate_1a1e5c95d760b8e9f40c01e6fb729c5398)`(const int32 & DefaultValue) const` | Gets the value of MinSessionCount_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -208,6 +221,7 @@ Template used to create new RallyHere sessions of a specific type. Configurable 
 `public inline void `[`SetMinSessionCount`](#structFRHAPI__SessionTemplate_1ace0c7cda6fdf8aaf0a8800a90b6429ab)`(const int32 & NewValue)` | Sets the value of MinSessionCount_Optional and also sets MinSessionCount_IsSet to true.
 `public inline void `[`SetMinSessionCount`](#structFRHAPI__SessionTemplate_1a0ce540f4fccad24c9591f7d44939909c)`(int32 && NewValue)` | Sets the value of MinSessionCount_Optional and also sets MinSessionCount_IsSet to true using move semantics.
 `public inline void `[`ClearMinSessionCount`](#structFRHAPI__SessionTemplate_1a563b899213f0a6ff1e7ab855e18df3a5)`()` | Clears the value of MinSessionCount_Optional and sets MinSessionCount_IsSet to false.
+`public inline bool `[`IsMinSessionCountSet`](#structFRHAPI__SessionTemplate_1a610dddf4eb602be4fdb0f12c88732fb1)`() const` | Checks whether MinSessionCount_Optional has been set.
 `public inline bool `[`IsMinSessionCountDefaultValue`](#structFRHAPI__SessionTemplate_1a8215c4b5ea50cf0228490c27c5db60fb)`() const` | Returns true if MinSessionCount_Optional is set and matches the default value.
 `public inline void `[`SetMinSessionCountToDefault`](#structFRHAPI__SessionTemplate_1af3b075285782037409643751bbaaa19d)`()` | Sets the value of MinSessionCount_Optional to its default and also sets MinSessionCount_IsSet to true.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__SessionTemplate_1a82fc45eec30dd2fdbc21dfd89596622b)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
@@ -219,6 +233,7 @@ Template used to create new RallyHere sessions of a specific type. Configurable 
 `public inline void `[`SetCustomData`](#structFRHAPI__SessionTemplate_1a993c448647d82c54afa34ce67ba87e2f)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`SetCustomData`](#structFRHAPI__SessionTemplate_1a869681a3b5716ffe763d5422d7246f9a)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__SessionTemplate_1ac20b3669d3a9488606e5e2afd59df8f1)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+`public inline bool `[`IsCustomDataSet`](#structFRHAPI__SessionTemplate_1a0bc6aaa6c0c6ded812dd13edf2c6947e)`() const` | Checks whether CustomData_Optional has been set.
 `public inline int32 & `[`GetNumTeams`](#structFRHAPI__SessionTemplate_1a756f008bb020837ad8503308147df6e2)`()` | Gets the value of NumTeams_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetNumTeams`](#structFRHAPI__SessionTemplate_1a0700118646093644624de6a22c77afbf)`() const` | Gets the value of NumTeams_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetNumTeams`](#structFRHAPI__SessionTemplate_1a96d38df114e19c81017a8e5a4b86061c)`(const int32 & DefaultValue) const` | Gets the value of NumTeams_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -228,6 +243,7 @@ Template used to create new RallyHere sessions of a specific type. Configurable 
 `public inline void `[`SetNumTeams`](#structFRHAPI__SessionTemplate_1ae9d88bcb1dae718613a5953230c617bd)`(const int32 & NewValue)` | Sets the value of NumTeams_Optional and also sets NumTeams_IsSet to true.
 `public inline void `[`SetNumTeams`](#structFRHAPI__SessionTemplate_1abbc1c0ac4092999273bf0ea2268b9ef6)`(int32 && NewValue)` | Sets the value of NumTeams_Optional and also sets NumTeams_IsSet to true using move semantics.
 `public inline void `[`ClearNumTeams`](#structFRHAPI__SessionTemplate_1ab05fd0888c21bacaaab9bd4b0ca92e00)`()` | Clears the value of NumTeams_Optional and sets NumTeams_IsSet to false.
+`public inline bool `[`IsNumTeamsSet`](#structFRHAPI__SessionTemplate_1a31cc47bed1561fe1337a30ba863c96f9)`() const` | Checks whether NumTeams_Optional has been set.
 `public inline bool `[`IsNumTeamsDefaultValue`](#structFRHAPI__SessionTemplate_1a4c6f7c1655e76727f7cb5b5ffc5c66af)`() const` | Returns true if NumTeams_Optional is set and matches the default value.
 `public inline void `[`SetNumTeamsToDefault`](#structFRHAPI__SessionTemplate_1a76d7e80355b9705e3a1ea1c86817fd45)`()` | Sets the value of NumTeams_Optional to its default and also sets NumTeams_IsSet to true.
 `public inline int32 & `[`GetPlayersPerTeam`](#structFRHAPI__SessionTemplate_1a6ae47ea0d86ead702c351b6f06d5b1bb)`()` | Gets the value of PlayersPerTeam_Optional, regardless of it having been set.
@@ -239,6 +255,7 @@ Template used to create new RallyHere sessions of a specific type. Configurable 
 `public inline void `[`SetPlayersPerTeam`](#structFRHAPI__SessionTemplate_1adca032e360f65d8887d1dea902dc5518)`(const int32 & NewValue)` | Sets the value of PlayersPerTeam_Optional and also sets PlayersPerTeam_IsSet to true.
 `public inline void `[`SetPlayersPerTeam`](#structFRHAPI__SessionTemplate_1acb852dcaf6689c03a4580016a0a795fb)`(int32 && NewValue)` | Sets the value of PlayersPerTeam_Optional and also sets PlayersPerTeam_IsSet to true using move semantics.
 `public inline void `[`ClearPlayersPerTeam`](#structFRHAPI__SessionTemplate_1aa2773b8e861aae5dd66d271167b6e2fb)`()` | Clears the value of PlayersPerTeam_Optional and sets PlayersPerTeam_IsSet to false.
+`public inline bool `[`IsPlayersPerTeamSet`](#structFRHAPI__SessionTemplate_1acd48ea97746af1fd74b29d2d65908a0c)`() const` | Checks whether PlayersPerTeam_Optional has been set.
 `public inline bool `[`IsPlayersPerTeamDefaultValue`](#structFRHAPI__SessionTemplate_1afc394c69e5ec383de5296897550060eb)`() const` | Returns true if PlayersPerTeam_Optional is set and matches the default value.
 `public inline void `[`SetPlayersPerTeamToDefault`](#structFRHAPI__SessionTemplate_1a8434c5519b75cac25c55f491f314dc7e)`()` | Sets the value of PlayersPerTeam_Optional to its default and also sets PlayersPerTeam_IsSet to true.
 `public inline bool & `[`GetCanChangeOwnTeam`](#structFRHAPI__SessionTemplate_1a05e870ee9cdc2c46e50ab7fc28482cc7)`()` | Gets the value of CanChangeOwnTeam_Optional, regardless of it having been set.
@@ -250,6 +267,7 @@ Template used to create new RallyHere sessions of a specific type. Configurable 
 `public inline void `[`SetCanChangeOwnTeam`](#structFRHAPI__SessionTemplate_1acef6ccf6e866904557c924d78547bad8)`(const bool & NewValue)` | Sets the value of CanChangeOwnTeam_Optional and also sets CanChangeOwnTeam_IsSet to true.
 `public inline void `[`SetCanChangeOwnTeam`](#structFRHAPI__SessionTemplate_1a1ef35ff58824fb5c386525eebc5ee6bb)`(bool && NewValue)` | Sets the value of CanChangeOwnTeam_Optional and also sets CanChangeOwnTeam_IsSet to true using move semantics.
 `public inline void `[`ClearCanChangeOwnTeam`](#structFRHAPI__SessionTemplate_1a9aa2afa1842ee1cab22a7b1a9a772c08)`()` | Clears the value of CanChangeOwnTeam_Optional and sets CanChangeOwnTeam_IsSet to false.
+`public inline bool `[`IsCanChangeOwnTeamSet`](#structFRHAPI__SessionTemplate_1ab01565d0f99d6172f027405ea0e2288d)`() const` | Checks whether CanChangeOwnTeam_Optional has been set.
 `public inline bool `[`IsCanChangeOwnTeamDefaultValue`](#structFRHAPI__SessionTemplate_1a26a5ebe40250064f888d423e23531bfa)`() const` | Returns true if CanChangeOwnTeam_Optional is set and matches the default value.
 `public inline void `[`SetCanChangeOwnTeamToDefault`](#structFRHAPI__SessionTemplate_1ac1a42404ac65f492acfd7e7fe75e4afb)`()` | Sets the value of CanChangeOwnTeam_Optional to its default and also sets CanChangeOwnTeam_IsSet to true.
 `public inline bool & `[`GetNotifyOnReservation`](#structFRHAPI__SessionTemplate_1afbde769cfdc7a6da59fb3ef7ffe29dcf)`()` | Gets the value of NotifyOnReservation_Optional, regardless of it having been set.
@@ -261,6 +279,7 @@ Template used to create new RallyHere sessions of a specific type. Configurable 
 `public inline void `[`SetNotifyOnReservation`](#structFRHAPI__SessionTemplate_1a987bbef32e73963afa90d7e617393876)`(const bool & NewValue)` | Sets the value of NotifyOnReservation_Optional and also sets NotifyOnReservation_IsSet to true.
 `public inline void `[`SetNotifyOnReservation`](#structFRHAPI__SessionTemplate_1a9fb66e4cd55fe694e458248c10d17927)`(bool && NewValue)` | Sets the value of NotifyOnReservation_Optional and also sets NotifyOnReservation_IsSet to true using move semantics.
 `public inline void `[`ClearNotifyOnReservation`](#structFRHAPI__SessionTemplate_1a09e9ca121b22271ccc7debde5c98afd1)`()` | Clears the value of NotifyOnReservation_Optional and sets NotifyOnReservation_IsSet to false.
+`public inline bool `[`IsNotifyOnReservationSet`](#structFRHAPI__SessionTemplate_1a6d7f33d80f239b54dc51a098fdb773d3)`() const` | Checks whether NotifyOnReservation_Optional has been set.
 `public inline bool `[`IsNotifyOnReservationDefaultValue`](#structFRHAPI__SessionTemplate_1a5178c473b0e58f10f8cecfa32f155623)`() const` | Returns true if NotifyOnReservation_Optional is set and matches the default value.
 `public inline void `[`SetNotifyOnReservationToDefault`](#structFRHAPI__SessionTemplate_1afbd6260244e4d1471d0049560f3c4ba8)`()` | Sets the value of NotifyOnReservation_Optional to its default and also sets NotifyOnReservation_IsSet to true.
 
@@ -422,7 +441,7 @@ If players should be notified when they are reserved in this type of session ins
 
 true if NotifyOnReservation_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__SessionTemplate_1a4a45fc40eed406ae864f33e45c0eadf2)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__SessionTemplate_1a4a45fc40eed406ae864f33e45c0eadf2"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__SessionTemplate_1a584ea37b08d01584233924dd39557b4a)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__SessionTemplate_1a584ea37b08d01584233924dd39557b4a"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -432,7 +451,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__SessionTemplate_1a8ddb8c09f6817591c4927b4a5c49df76)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__SessionTemplate_1a8ddb8c09f6817591c4927b4a5c49df76"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__SessionTemplate_1ac225d3f4b6be381a7c3674126b0284d3)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__SessionTemplate_1ac225d3f4b6be381a7c3674126b0284d3"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -491,6 +510,10 @@ Sets the value of EngineSessionType_Optional and also sets EngineSessionType_IsS
 
 Clears the value of EngineSessionType_Optional and sets EngineSessionType_IsSet to false.
 
+#### `public inline bool `[`IsEngineSessionTypeSet`](#structFRHAPI__SessionTemplate_1ad7b96b3d4c45af4889a17bc0700bcb93)`() const` <a id="structFRHAPI__SessionTemplate_1ad7b96b3d4c45af4889a17bc0700bcb93"></a>
+
+Checks whether EngineSessionType_Optional has been set.
+
 #### `public inline bool `[`IsEngineSessionTypeDefaultValue`](#structFRHAPI__SessionTemplate_1a3cfbdbc7f9037595cd081510a49b47be)`() const` <a id="structFRHAPI__SessionTemplate_1a3cfbdbc7f9037595cd081510a49b47be"></a>
 
 Returns true if EngineSessionType_Optional is set and matches the default value.
@@ -534,6 +557,10 @@ Sets the value of CanJoinMatchmaking_Optional and also sets CanJoinMatchmaking_I
 #### `public inline void `[`ClearCanJoinMatchmaking`](#structFRHAPI__SessionTemplate_1aea8827859a78eea75ccb378ae6d34536)`()` <a id="structFRHAPI__SessionTemplate_1aea8827859a78eea75ccb378ae6d34536"></a>
 
 Clears the value of CanJoinMatchmaking_Optional and sets CanJoinMatchmaking_IsSet to false.
+
+#### `public inline bool `[`IsCanJoinMatchmakingSet`](#structFRHAPI__SessionTemplate_1af213e3709013876100f0230cf90247b7)`() const` <a id="structFRHAPI__SessionTemplate_1af213e3709013876100f0230cf90247b7"></a>
+
+Checks whether CanJoinMatchmaking_Optional has been set.
 
 #### `public inline bool `[`IsCanJoinMatchmakingDefaultValue`](#structFRHAPI__SessionTemplate_1a712f72abd63eda494b43154b029822e9)`() const` <a id="structFRHAPI__SessionTemplate_1a712f72abd63eda494b43154b029822e9"></a>
 
@@ -579,6 +606,10 @@ Sets the value of CanBeCreatedByPlayersDirectly_Optional and also sets CanBeCrea
 
 Clears the value of CanBeCreatedByPlayersDirectly_Optional and sets CanBeCreatedByPlayersDirectly_IsSet to false.
 
+#### `public inline bool `[`IsCanBeCreatedByPlayersDirectlySet`](#structFRHAPI__SessionTemplate_1a43a55df360c1ddf8d21e4771cea65873)`() const` <a id="structFRHAPI__SessionTemplate_1a43a55df360c1ddf8d21e4771cea65873"></a>
+
+Checks whether CanBeCreatedByPlayersDirectly_Optional has been set.
+
 #### `public inline bool `[`IsCanBeCreatedByPlayersDirectlyDefaultValue`](#structFRHAPI__SessionTemplate_1afc9d293d6290f5c2de49e0abc1da9c4d)`() const` <a id="structFRHAPI__SessionTemplate_1afc9d293d6290f5c2de49e0abc1da9c4d"></a>
 
 Returns true if CanBeCreatedByPlayersDirectly_Optional is set and matches the default value.
@@ -622,6 +653,10 @@ Sets the value of Joinable_Optional and also sets Joinable_IsSet to true using m
 #### `public inline void `[`ClearJoinable`](#structFRHAPI__SessionTemplate_1a2656215bcf0eb51c71fed328166e6b68)`()` <a id="structFRHAPI__SessionTemplate_1a2656215bcf0eb51c71fed328166e6b68"></a>
 
 Clears the value of Joinable_Optional and sets Joinable_IsSet to false.
+
+#### `public inline bool `[`IsJoinableSet`](#structFRHAPI__SessionTemplate_1a615f3ae971f8d57843f77db26b3c52bc)`() const` <a id="structFRHAPI__SessionTemplate_1a615f3ae971f8d57843f77db26b3c52bc"></a>
+
+Checks whether Joinable_Optional has been set.
 
 #### `public inline bool `[`IsJoinableDefaultValue`](#structFRHAPI__SessionTemplate_1a7005e50d8cbe3b02a9ce17dbb7d4bd4c)`() const` <a id="structFRHAPI__SessionTemplate_1a7005e50d8cbe3b02a9ce17dbb7d4bd4c"></a>
 
@@ -667,6 +702,10 @@ Sets the value of AttemptAutoJoin_Optional and also sets AttemptAutoJoin_IsSet t
 
 Clears the value of AttemptAutoJoin_Optional and sets AttemptAutoJoin_IsSet to false.
 
+#### `public inline bool `[`IsAttemptAutoJoinSet`](#structFRHAPI__SessionTemplate_1a739c5165a310c80b399838bc6bd0532d)`() const` <a id="structFRHAPI__SessionTemplate_1a739c5165a310c80b399838bc6bd0532d"></a>
+
+Checks whether AttemptAutoJoin_Optional has been set.
+
 #### `public inline bool `[`IsAttemptAutoJoinDefaultValue`](#structFRHAPI__SessionTemplate_1a6272851fd94d2aae9769e3f49251f26e)`() const` <a id="structFRHAPI__SessionTemplate_1a6272851fd94d2aae9769e3f49251f26e"></a>
 
 Returns true if AttemptAutoJoin_Optional is set and matches the default value.
@@ -710,6 +749,10 @@ Sets the value of DefaultPublic_Optional and also sets DefaultPublic_IsSet to tr
 #### `public inline void `[`ClearDefaultPublic`](#structFRHAPI__SessionTemplate_1a0b7ec628161b7d1a8317204875d476e5)`()` <a id="structFRHAPI__SessionTemplate_1a0b7ec628161b7d1a8317204875d476e5"></a>
 
 Clears the value of DefaultPublic_Optional and sets DefaultPublic_IsSet to false.
+
+#### `public inline bool `[`IsDefaultPublicSet`](#structFRHAPI__SessionTemplate_1a061b603b9b9c500a4e83172c131e8fce)`() const` <a id="structFRHAPI__SessionTemplate_1a061b603b9b9c500a4e83172c131e8fce"></a>
+
+Checks whether DefaultPublic_Optional has been set.
 
 #### `public inline bool `[`IsDefaultPublicDefaultValue`](#structFRHAPI__SessionTemplate_1aded9e905d1ae97b71569316e9a93249f)`() const` <a id="structFRHAPI__SessionTemplate_1aded9e905d1ae97b71569316e9a93249f"></a>
 
@@ -755,6 +798,10 @@ Sets the value of AutoAddToBrowser_Optional and also sets AutoAddToBrowser_IsSet
 
 Clears the value of AutoAddToBrowser_Optional and sets AutoAddToBrowser_IsSet to false.
 
+#### `public inline bool `[`IsAutoAddToBrowserSet`](#structFRHAPI__SessionTemplate_1ab431ba36b8a46d0fedd0443d5c5e38da)`() const` <a id="structFRHAPI__SessionTemplate_1ab431ba36b8a46d0fedd0443d5c5e38da"></a>
+
+Checks whether AutoAddToBrowser_Optional has been set.
+
 #### `public inline bool `[`IsAutoAddToBrowserDefaultValue`](#structFRHAPI__SessionTemplate_1a1aef6318593a8e024bab505bdc238fc9)`() const` <a id="structFRHAPI__SessionTemplate_1a1aef6318593a8e024bab505bdc238fc9"></a>
 
 Returns true if AutoAddToBrowser_Optional is set and matches the default value.
@@ -799,6 +846,10 @@ Sets the value of AutoBrowserParams_Optional and also sets AutoBrowserParams_IsS
 
 Clears the value of AutoBrowserParams_Optional and sets AutoBrowserParams_IsSet to false.
 
+#### `public inline bool `[`IsAutoBrowserParamsSet`](#structFRHAPI__SessionTemplate_1a28ad44e91169e211265cb22207a62739)`() const` <a id="structFRHAPI__SessionTemplate_1a28ad44e91169e211265cb22207a62739"></a>
+
+Checks whether AutoBrowserParams_Optional has been set.
+
 #### `public inline bool & `[`GetCanBeAddedToServerBrowser`](#structFRHAPI__SessionTemplate_1a356373eb133f994e7ac8d8efbb1775d1)`()` <a id="structFRHAPI__SessionTemplate_1a356373eb133f994e7ac8d8efbb1775d1"></a>
 
 Gets the value of CanBeAddedToServerBrowser_Optional, regardless of it having been set.
@@ -834,6 +885,10 @@ Sets the value of CanBeAddedToServerBrowser_Optional and also sets CanBeAddedToS
 #### `public inline void `[`ClearCanBeAddedToServerBrowser`](#structFRHAPI__SessionTemplate_1a23f4b3075ad5c6cf66442b7fb9ff4731)`()` <a id="structFRHAPI__SessionTemplate_1a23f4b3075ad5c6cf66442b7fb9ff4731"></a>
 
 Clears the value of CanBeAddedToServerBrowser_Optional and sets CanBeAddedToServerBrowser_IsSet to false.
+
+#### `public inline bool `[`IsCanBeAddedToServerBrowserSet`](#structFRHAPI__SessionTemplate_1ae89419bc9b1476eb90fb40492082bce8)`() const` <a id="structFRHAPI__SessionTemplate_1ae89419bc9b1476eb90fb40492082bce8"></a>
+
+Checks whether CanBeAddedToServerBrowser_Optional has been set.
 
 #### `public inline bool `[`IsCanBeAddedToServerBrowserDefaultValue`](#structFRHAPI__SessionTemplate_1a7d34d65f47086fd753f7ac691a4c0df5)`() const` <a id="structFRHAPI__SessionTemplate_1a7d34d65f47086fd753f7ac691a4c0df5"></a>
 
@@ -879,6 +934,10 @@ Sets the value of KeepAliveOnEmpty_Optional and also sets KeepAliveOnEmpty_IsSet
 
 Clears the value of KeepAliveOnEmpty_Optional and sets KeepAliveOnEmpty_IsSet to false.
 
+#### `public inline bool `[`IsKeepAliveOnEmptySet`](#structFRHAPI__SessionTemplate_1a5aaba552bde3ef07dc59f9c0756c1f90)`() const` <a id="structFRHAPI__SessionTemplate_1a5aaba552bde3ef07dc59f9c0756c1f90"></a>
+
+Checks whether KeepAliveOnEmpty_Optional has been set.
+
 #### `public inline bool `[`IsKeepAliveOnEmptyDefaultValue`](#structFRHAPI__SessionTemplate_1a55aba4ea889f042e220c937f19078a59)`() const` <a id="structFRHAPI__SessionTemplate_1a55aba4ea889f042e220c937f19078a59"></a>
 
 Returns true if KeepAliveOnEmpty_Optional is set and matches the default value.
@@ -923,6 +982,10 @@ Sets the value of PlatformTemplates_Optional and also sets PlatformTemplates_IsS
 
 Clears the value of PlatformTemplates_Optional and sets PlatformTemplates_IsSet to false.
 
+#### `public inline bool `[`IsPlatformTemplatesSet`](#structFRHAPI__SessionTemplate_1ab169ff9497d80c552771861c9e99bd50)`() const` <a id="structFRHAPI__SessionTemplate_1ab169ff9497d80c552771861c9e99bd50"></a>
+
+Checks whether PlatformTemplates_Optional has been set.
+
 #### `public inline `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` & `[`GetAutoStartupParams`](#structFRHAPI__SessionTemplate_1ab8dd54ee2f4348500f01e44af3448a4a)`()` <a id="structFRHAPI__SessionTemplate_1ab8dd54ee2f4348500f01e44af3448a4a"></a>
 
 Gets the value of AutoStartupParams_Optional, regardless of it having been set.
@@ -958,6 +1021,10 @@ Sets the value of AutoStartupParams_Optional and also sets AutoStartupParams_IsS
 #### `public inline void `[`ClearAutoStartupParams`](#structFRHAPI__SessionTemplate_1a41041ffbd8775231d249554a072116d7)`()` <a id="structFRHAPI__SessionTemplate_1a41041ffbd8775231d249554a072116d7"></a>
 
 Clears the value of AutoStartupParams_Optional and sets AutoStartupParams_IsSet to false.
+
+#### `public inline bool `[`IsAutoStartupParamsSet`](#structFRHAPI__SessionTemplate_1ad558ef638e92f2195f4a2cd552bf11ee)`() const` <a id="structFRHAPI__SessionTemplate_1ad558ef638e92f2195f4a2cd552bf11ee"></a>
+
+Checks whether AutoStartupParams_Optional has been set.
 
 #### `public inline FGuid & `[`GetAutoStartupInstanceTemplateId`](#structFRHAPI__SessionTemplate_1a613437211fadf3e44d3a28240bcb0185)`()` <a id="structFRHAPI__SessionTemplate_1a613437211fadf3e44d3a28240bcb0185"></a>
 
@@ -995,6 +1062,10 @@ Sets the value of AutoStartupInstanceTemplateId_Optional and also sets AutoStart
 
 Clears the value of AutoStartupInstanceTemplateId_Optional and sets AutoStartupInstanceTemplateId_IsSet to false.
 
+#### `public inline bool `[`IsAutoStartupInstanceTemplateIdSet`](#structFRHAPI__SessionTemplate_1aea65eda3e21c0d36784eb20408abb6b3)`() const` <a id="structFRHAPI__SessionTemplate_1aea65eda3e21c0d36784eb20408abb6b3"></a>
+
+Checks whether AutoStartupInstanceTemplateId_Optional has been set.
+
 #### `public inline int32 & `[`GetMinSessionCount`](#structFRHAPI__SessionTemplate_1aab1a67e445ca5338fbb66baa3d3bcb9f)`()` <a id="structFRHAPI__SessionTemplate_1aab1a67e445ca5338fbb66baa3d3bcb9f"></a>
 
 Gets the value of MinSessionCount_Optional, regardless of it having been set.
@@ -1030,6 +1101,10 @@ Sets the value of MinSessionCount_Optional and also sets MinSessionCount_IsSet t
 #### `public inline void `[`ClearMinSessionCount`](#structFRHAPI__SessionTemplate_1a563b899213f0a6ff1e7ab855e18df3a5)`()` <a id="structFRHAPI__SessionTemplate_1a563b899213f0a6ff1e7ab855e18df3a5"></a>
 
 Clears the value of MinSessionCount_Optional and sets MinSessionCount_IsSet to false.
+
+#### `public inline bool `[`IsMinSessionCountSet`](#structFRHAPI__SessionTemplate_1a610dddf4eb602be4fdb0f12c88732fb1)`() const` <a id="structFRHAPI__SessionTemplate_1a610dddf4eb602be4fdb0f12c88732fb1"></a>
+
+Checks whether MinSessionCount_Optional has been set.
 
 #### `public inline bool `[`IsMinSessionCountDefaultValue`](#structFRHAPI__SessionTemplate_1a8215c4b5ea50cf0228490c27c5db60fb)`() const` <a id="structFRHAPI__SessionTemplate_1a8215c4b5ea50cf0228490c27c5db60fb"></a>
 
@@ -1075,6 +1150,10 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true usi
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
+#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__SessionTemplate_1a0bc6aaa6c0c6ded812dd13edf2c6947e)`() const` <a id="structFRHAPI__SessionTemplate_1a0bc6aaa6c0c6ded812dd13edf2c6947e"></a>
+
+Checks whether CustomData_Optional has been set.
+
 #### `public inline int32 & `[`GetNumTeams`](#structFRHAPI__SessionTemplate_1a756f008bb020837ad8503308147df6e2)`()` <a id="structFRHAPI__SessionTemplate_1a756f008bb020837ad8503308147df6e2"></a>
 
 Gets the value of NumTeams_Optional, regardless of it having been set.
@@ -1110,6 +1189,10 @@ Sets the value of NumTeams_Optional and also sets NumTeams_IsSet to true using m
 #### `public inline void `[`ClearNumTeams`](#structFRHAPI__SessionTemplate_1ab05fd0888c21bacaaab9bd4b0ca92e00)`()` <a id="structFRHAPI__SessionTemplate_1ab05fd0888c21bacaaab9bd4b0ca92e00"></a>
 
 Clears the value of NumTeams_Optional and sets NumTeams_IsSet to false.
+
+#### `public inline bool `[`IsNumTeamsSet`](#structFRHAPI__SessionTemplate_1a31cc47bed1561fe1337a30ba863c96f9)`() const` <a id="structFRHAPI__SessionTemplate_1a31cc47bed1561fe1337a30ba863c96f9"></a>
+
+Checks whether NumTeams_Optional has been set.
 
 #### `public inline bool `[`IsNumTeamsDefaultValue`](#structFRHAPI__SessionTemplate_1a4c6f7c1655e76727f7cb5b5ffc5c66af)`() const` <a id="structFRHAPI__SessionTemplate_1a4c6f7c1655e76727f7cb5b5ffc5c66af"></a>
 
@@ -1155,6 +1238,10 @@ Sets the value of PlayersPerTeam_Optional and also sets PlayersPerTeam_IsSet to 
 
 Clears the value of PlayersPerTeam_Optional and sets PlayersPerTeam_IsSet to false.
 
+#### `public inline bool `[`IsPlayersPerTeamSet`](#structFRHAPI__SessionTemplate_1acd48ea97746af1fd74b29d2d65908a0c)`() const` <a id="structFRHAPI__SessionTemplate_1acd48ea97746af1fd74b29d2d65908a0c"></a>
+
+Checks whether PlayersPerTeam_Optional has been set.
+
 #### `public inline bool `[`IsPlayersPerTeamDefaultValue`](#structFRHAPI__SessionTemplate_1afc394c69e5ec383de5296897550060eb)`() const` <a id="structFRHAPI__SessionTemplate_1afc394c69e5ec383de5296897550060eb"></a>
 
 Returns true if PlayersPerTeam_Optional is set and matches the default value.
@@ -1199,6 +1286,10 @@ Sets the value of CanChangeOwnTeam_Optional and also sets CanChangeOwnTeam_IsSet
 
 Clears the value of CanChangeOwnTeam_Optional and sets CanChangeOwnTeam_IsSet to false.
 
+#### `public inline bool `[`IsCanChangeOwnTeamSet`](#structFRHAPI__SessionTemplate_1ab01565d0f99d6172f027405ea0e2288d)`() const` <a id="structFRHAPI__SessionTemplate_1ab01565d0f99d6172f027405ea0e2288d"></a>
+
+Checks whether CanChangeOwnTeam_Optional has been set.
+
 #### `public inline bool `[`IsCanChangeOwnTeamDefaultValue`](#structFRHAPI__SessionTemplate_1a26a5ebe40250064f888d423e23531bfa)`() const` <a id="structFRHAPI__SessionTemplate_1a26a5ebe40250064f888d423e23531bfa"></a>
 
 Returns true if CanChangeOwnTeam_Optional is set and matches the default value.
@@ -1242,6 +1333,10 @@ Sets the value of NotifyOnReservation_Optional and also sets NotifyOnReservation
 #### `public inline void `[`ClearNotifyOnReservation`](#structFRHAPI__SessionTemplate_1a09e9ca121b22271ccc7debde5c98afd1)`()` <a id="structFRHAPI__SessionTemplate_1a09e9ca121b22271ccc7debde5c98afd1"></a>
 
 Clears the value of NotifyOnReservation_Optional and sets NotifyOnReservation_IsSet to false.
+
+#### `public inline bool `[`IsNotifyOnReservationSet`](#structFRHAPI__SessionTemplate_1a6d7f33d80f239b54dc51a098fdb773d3)`() const` <a id="structFRHAPI__SessionTemplate_1a6d7f33d80f239b54dc51a098fdb773d3"></a>
+
+Checks whether NotifyOnReservation_Optional has been set.
 
 #### `public inline bool `[`IsNotifyOnReservationDefaultValue`](#structFRHAPI__SessionTemplate_1a5178c473b0e58f10f8cecfa32f155623)`() const` <a id="structFRHAPI__SessionTemplate_1a5178c473b0e58f10f8cecfa32f155623"></a>
 

@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_StorageInformation : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 TotalFiles_Optional{  };
@@ -53,19 +53,21 @@ struct RALLYHEREAPI_API FRHAPI_StorageInformation : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of TotalFiles_Optional and returns true if it has been set, otherwise returns false */
 	bool GetTotalFiles(int32& OutValue) const { if (TotalFiles_IsSet) OutValue = TotalFiles_Optional; return TotalFiles_IsSet; }
 	/** @brief Returns a pointer to TotalFiles_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetTotalFilesOrNull() { if (TotalFiles_IsSet) return &TotalFiles_Optional; return nullptr; }
+	int32* GetTotalFilesOrNull() { if (TotalFiles_IsSet) return (&TotalFiles_Optional); return nullptr; }
 	/** @brief Returns a pointer to TotalFiles_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetTotalFilesOrNull() const { if (TotalFiles_IsSet) return &TotalFiles_Optional; return nullptr; }
+	const int32* GetTotalFilesOrNull() const { if (TotalFiles_IsSet) return (&TotalFiles_Optional); return nullptr; }
 	/** @brief Sets the value of TotalFiles_Optional and also sets TotalFiles_IsSet to true */
-	void SetTotalFiles(const int32& NewValue) { TotalFiles_Optional = NewValue; TotalFiles_IsSet = true; }
+	void SetTotalFiles(const int32& NewValue) { TotalFiles_Optional = NewValue; TotalFiles_IsSet = true;  }
 	/** @brief Sets the value of TotalFiles_Optional and also sets TotalFiles_IsSet to true using move semantics */
-	void SetTotalFiles(int32&& NewValue) { TotalFiles_Optional = NewValue; TotalFiles_IsSet = true; }
-	 /** @brief Clears the value of TotalFiles_Optional and sets TotalFiles_IsSet to false */
-	void ClearTotalFiles() { TotalFiles_Optional = 0; TotalFiles_IsSet = false; }
+	void SetTotalFiles(int32&& NewValue) { TotalFiles_Optional = NewValue; TotalFiles_IsSet = true;  }
+	/** @brief Clears the value of TotalFiles_Optional and sets TotalFiles_IsSet to false */
+	void ClearTotalFiles() { TotalFiles_Optional = 0; TotalFiles_IsSet = false;  }
+	/** @brief Checks whether TotalFiles_Optional has been set */
+	bool IsTotalFilesSet() const { return TotalFiles_IsSet; }
 	/** @brief Returns true if TotalFiles_Optional is set and matches the default value */
 	bool IsTotalFilesDefaultValue() const { return TotalFiles_IsSet && TotalFiles_Optional == 0; }
 	/** @brief Sets the value of TotalFiles_Optional to its default and also sets TotalFiles_IsSet to true */
-	void SetTotalFilesToDefault() { TotalFiles_Optional = 0; TotalFiles_IsSet = true; }
+	void SetTotalFilesToDefault() { SetTotalFiles(0); }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 TotalSizeBytes_Optional{  };
@@ -81,19 +83,21 @@ struct RALLYHEREAPI_API FRHAPI_StorageInformation : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of TotalSizeBytes_Optional and returns true if it has been set, otherwise returns false */
 	bool GetTotalSizeBytes(int32& OutValue) const { if (TotalSizeBytes_IsSet) OutValue = TotalSizeBytes_Optional; return TotalSizeBytes_IsSet; }
 	/** @brief Returns a pointer to TotalSizeBytes_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetTotalSizeBytesOrNull() { if (TotalSizeBytes_IsSet) return &TotalSizeBytes_Optional; return nullptr; }
+	int32* GetTotalSizeBytesOrNull() { if (TotalSizeBytes_IsSet) return (&TotalSizeBytes_Optional); return nullptr; }
 	/** @brief Returns a pointer to TotalSizeBytes_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetTotalSizeBytesOrNull() const { if (TotalSizeBytes_IsSet) return &TotalSizeBytes_Optional; return nullptr; }
+	const int32* GetTotalSizeBytesOrNull() const { if (TotalSizeBytes_IsSet) return (&TotalSizeBytes_Optional); return nullptr; }
 	/** @brief Sets the value of TotalSizeBytes_Optional and also sets TotalSizeBytes_IsSet to true */
-	void SetTotalSizeBytes(const int32& NewValue) { TotalSizeBytes_Optional = NewValue; TotalSizeBytes_IsSet = true; }
+	void SetTotalSizeBytes(const int32& NewValue) { TotalSizeBytes_Optional = NewValue; TotalSizeBytes_IsSet = true;  }
 	/** @brief Sets the value of TotalSizeBytes_Optional and also sets TotalSizeBytes_IsSet to true using move semantics */
-	void SetTotalSizeBytes(int32&& NewValue) { TotalSizeBytes_Optional = NewValue; TotalSizeBytes_IsSet = true; }
-	 /** @brief Clears the value of TotalSizeBytes_Optional and sets TotalSizeBytes_IsSet to false */
-	void ClearTotalSizeBytes() { TotalSizeBytes_Optional = 0; TotalSizeBytes_IsSet = false; }
+	void SetTotalSizeBytes(int32&& NewValue) { TotalSizeBytes_Optional = NewValue; TotalSizeBytes_IsSet = true;  }
+	/** @brief Clears the value of TotalSizeBytes_Optional and sets TotalSizeBytes_IsSet to false */
+	void ClearTotalSizeBytes() { TotalSizeBytes_Optional = 0; TotalSizeBytes_IsSet = false;  }
+	/** @brief Checks whether TotalSizeBytes_Optional has been set */
+	bool IsTotalSizeBytesSet() const { return TotalSizeBytes_IsSet; }
 	/** @brief Returns true if TotalSizeBytes_Optional is set and matches the default value */
 	bool IsTotalSizeBytesDefaultValue() const { return TotalSizeBytes_IsSet && TotalSizeBytes_Optional == 0; }
 	/** @brief Sets the value of TotalSizeBytes_Optional to its default and also sets TotalSizeBytes_IsSet to true */
-	void SetTotalSizeBytesToDefault() { TotalSizeBytes_Optional = 0; TotalSizeBytes_IsSet = true; }
+	void SetTotalSizeBytesToDefault() { SetTotalSizeBytes(0); }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 TotalSizeMb_Optional{  };
@@ -109,19 +113,21 @@ struct RALLYHEREAPI_API FRHAPI_StorageInformation : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of TotalSizeMb_Optional and returns true if it has been set, otherwise returns false */
 	bool GetTotalSizeMb(int32& OutValue) const { if (TotalSizeMb_IsSet) OutValue = TotalSizeMb_Optional; return TotalSizeMb_IsSet; }
 	/** @brief Returns a pointer to TotalSizeMb_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetTotalSizeMbOrNull() { if (TotalSizeMb_IsSet) return &TotalSizeMb_Optional; return nullptr; }
+	int32* GetTotalSizeMbOrNull() { if (TotalSizeMb_IsSet) return (&TotalSizeMb_Optional); return nullptr; }
 	/** @brief Returns a pointer to TotalSizeMb_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetTotalSizeMbOrNull() const { if (TotalSizeMb_IsSet) return &TotalSizeMb_Optional; return nullptr; }
+	const int32* GetTotalSizeMbOrNull() const { if (TotalSizeMb_IsSet) return (&TotalSizeMb_Optional); return nullptr; }
 	/** @brief Sets the value of TotalSizeMb_Optional and also sets TotalSizeMb_IsSet to true */
-	void SetTotalSizeMb(const int32& NewValue) { TotalSizeMb_Optional = NewValue; TotalSizeMb_IsSet = true; }
+	void SetTotalSizeMb(const int32& NewValue) { TotalSizeMb_Optional = NewValue; TotalSizeMb_IsSet = true;  }
 	/** @brief Sets the value of TotalSizeMb_Optional and also sets TotalSizeMb_IsSet to true using move semantics */
-	void SetTotalSizeMb(int32&& NewValue) { TotalSizeMb_Optional = NewValue; TotalSizeMb_IsSet = true; }
-	 /** @brief Clears the value of TotalSizeMb_Optional and sets TotalSizeMb_IsSet to false */
-	void ClearTotalSizeMb() { TotalSizeMb_Optional = 0; TotalSizeMb_IsSet = false; }
+	void SetTotalSizeMb(int32&& NewValue) { TotalSizeMb_Optional = NewValue; TotalSizeMb_IsSet = true;  }
+	/** @brief Clears the value of TotalSizeMb_Optional and sets TotalSizeMb_IsSet to false */
+	void ClearTotalSizeMb() { TotalSizeMb_Optional = 0; TotalSizeMb_IsSet = false;  }
+	/** @brief Checks whether TotalSizeMb_Optional has been set */
+	bool IsTotalSizeMbSet() const { return TotalSizeMb_IsSet; }
 	/** @brief Returns true if TotalSizeMb_Optional is set and matches the default value */
 	bool IsTotalSizeMbDefaultValue() const { return TotalSizeMb_IsSet && TotalSizeMb_Optional == 0; }
 	/** @brief Sets the value of TotalSizeMb_Optional to its default and also sets TotalSizeMb_IsSet to true */
-	void SetTotalSizeMbToDefault() { TotalSizeMb_Optional = 0; TotalSizeMb_IsSet = true; }
+	void SetTotalSizeMbToDefault() { SetTotalSizeMb(0); }
 };
 
 /** @} */

@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_DeserterConfigResponse : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief List of desertion config objects */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -48,9 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_DeserterConfigResponse : public FRHAPI_Model
 	/** @brief Gets the value of DeserterConfigs */
 	const TArray<FRHAPI_DeserterConfig>& GetDeserterConfigs() const { return DeserterConfigs; }
 	/** @brief Sets the value of DeserterConfigs */
-	void SetDeserterConfigs(const TArray<FRHAPI_DeserterConfig>& NewValue) { DeserterConfigs = NewValue;  }
+	void SetDeserterConfigs(const TArray<FRHAPI_DeserterConfig>& NewValue) { DeserterConfigs = NewValue;   }
 	/** @brief Sets the value of DeserterConfigs using move semantics */
-	void SetDeserterConfigs(TArray<FRHAPI_DeserterConfig>&& NewValue) { DeserterConfigs = NewValue;  }
+	void SetDeserterConfigs(TArray<FRHAPI_DeserterConfig>&& NewValue) { DeserterConfigs = NewValue;   }
 };
 
 /** @} */

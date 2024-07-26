@@ -161,6 +161,11 @@ void {{classname}}::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	{{#vars}}
 	{{#required}}
 	Writer->WriteIdentifierPrefix(TEXT("{{baseName}}"));
+	{{#isNullable}}
+	if ({{name}}_IsNull)
+		WriteJsonValue(Writer, nullptr);
+	else
+	{{/isNullable}}
 	{{#allowableValues.values.0}}
 	{{cppNamespaceDeclarations.0}}::WriteJsonValue(Writer, EnumToString({{name}}));
 	{{/allowableValues.values.0}}
@@ -177,6 +182,11 @@ void {{classname}}::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if ({{name}}_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("{{baseName}}"));
+		{{#isNullable}}
+		if ({{name}}_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		{{/isNullable}}
 		{{#allowableValues.values.0}}
 		{{cppNamespaceDeclarations.0}}::WriteJsonValue(Writer, EnumToString({{name}}_Optional));
 		{{/allowableValues.values.0}}
@@ -210,12 +220,18 @@ bool {{classname}}::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	{{#vars}}
 	const TSharedPtr<FJsonValue> Json{{name}}Field = (*Object)->TryGetField(TEXT("{{baseName}}"));
 	{{#required}}
-	{{^isWriteOnly}}ParseSuccess &= {{/isWriteOnly}}Json{{name}}Field.IsValid() && !Json{{name}}Field->IsNull() && TryGetJsonValue(Json{{name}}Field, {{name}});
+	{{#isNullable}}
+	{{name}}_IsNull = Json{{name}}Field->IsNull();
+	{{/isNullable}}
+	{{^isWriteOnly}}ParseSuccess &= {{/isWriteOnly}}Json{{name}}Field.IsValid() && ({{^isNullable}}!Json{{name}}Field->IsNull() && {{/isNullable}}{{#isNullable}}{{name}}_IsNull ||{{/isNullable}} TryGetJsonValue(Json{{name}}Field, {{name}}));
 	{{/required}}
 	{{^required}}
-	if (Json{{name}}Field.IsValid() && !Json{{name}}Field->IsNull())
+	if (Json{{name}}Field.IsValid())
 	{
-		{{name}}_IsSet = TryGetJsonValue(Json{{name}}Field, {{name}}_Optional);
+		{{#isNullable}}
+		{{name}}_IsNull = Json{{name}}Field->IsNull();
+		{{/isNullable}}
+		{{name}}_IsSet = {{#isNullable}}{{name}}_IsNull || {{/isNullable}}TryGetJsonValue(Json{{name}}Field, {{name}}_Optional);
 		ParseSuccess &= {{name}}_IsSet;
 	}
 	{{/required}}

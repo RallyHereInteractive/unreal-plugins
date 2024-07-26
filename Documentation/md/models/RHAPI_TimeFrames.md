@@ -23,8 +23,8 @@ A collection of Time Frames by Time Frame ID.
 `public bool `[`TimeFrames_IsSet`](#structFRHAPI__TimeFrames_1abc179739c5b667f1fbe350aacd64f941) | true if TimeFrames_Optional has been set to a value
 `public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__TimeFrames_1a658dd30efd4811f5113ac01e04a590f4) | Cache info for the Time Frames.
 `public bool `[`CacheInfo_IsSet`](#structFRHAPI__TimeFrames_1a4f869a5a8f88fa36afadc371a9e5498a) | true if CacheInfo_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__TimeFrames_1ae878fe3b3c90541d724f10fc6f314553)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__TimeFrames_1af19b5115fb551f63293d5e526bbea6a0)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__TimeFrames_1a71b1b876e517a1d839b0d3af5d4a6a56)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__TimeFrames_1a2a3eece905a69332db7b3822c7883137)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TMap< FString, `[`FRHAPI_TimeFrame`](RHAPI_TimeFrame.md#structFRHAPI__TimeFrame)` > & `[`GetTimeFrames`](#structFRHAPI__TimeFrames_1a0de07dc2f3be8a9ddf80f432abd04ac2)`()` | Gets the value of TimeFrames_Optional, regardless of it having been set.
 `public inline const TMap< FString, `[`FRHAPI_TimeFrame`](RHAPI_TimeFrame.md#structFRHAPI__TimeFrame)` > & `[`GetTimeFrames`](#structFRHAPI__TimeFrames_1a92572355f05fcf7a8444dff1631781ae)`() const` | Gets the value of TimeFrames_Optional, regardless of it having been set.
 `public inline const TMap< FString, `[`FRHAPI_TimeFrame`](RHAPI_TimeFrame.md#structFRHAPI__TimeFrame)` > & `[`GetTimeFrames`](#structFRHAPI__TimeFrames_1a6039960c7cb3ca287c1454a4654f516f)`(const TMap< FString, `[`FRHAPI_TimeFrame`](RHAPI_TimeFrame.md#structFRHAPI__TimeFrame)` > & DefaultValue) const` | Gets the value of TimeFrames_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -34,6 +34,7 @@ A collection of Time Frames by Time Frame ID.
 `public inline void `[`SetTimeFrames`](#structFRHAPI__TimeFrames_1af43b446bb61e39c4dc7e66ce4b34e745)`(const TMap< FString, `[`FRHAPI_TimeFrame`](RHAPI_TimeFrame.md#structFRHAPI__TimeFrame)` > & NewValue)` | Sets the value of TimeFrames_Optional and also sets TimeFrames_IsSet to true.
 `public inline void `[`SetTimeFrames`](#structFRHAPI__TimeFrames_1a6faad45359bee55ffd502b81a679c137)`(TMap< FString, `[`FRHAPI_TimeFrame`](RHAPI_TimeFrame.md#structFRHAPI__TimeFrame)` > && NewValue)` | Sets the value of TimeFrames_Optional and also sets TimeFrames_IsSet to true using move semantics.
 `public inline void `[`ClearTimeFrames`](#structFRHAPI__TimeFrames_1a92daf6e6ae00995223c00ed1764513ac)`()` | Clears the value of TimeFrames_Optional and sets TimeFrames_IsSet to false.
+`public inline bool `[`IsTimeFramesSet`](#structFRHAPI__TimeFrames_1af1bbb92edcbe78e756b8616b7e59fded)`() const` | Checks whether TimeFrames_Optional has been set.
 `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__TimeFrames_1afdce661d2525303ec4f6efd32d6267a6)`()` | Gets the value of CacheInfo_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__TimeFrames_1a244e574ac594017a49cedd06d9833c7e)`() const` | Gets the value of CacheInfo_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__TimeFrames_1a102ea5ffca49bf4c8f266282dcc69659)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` | Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -43,6 +44,7 @@ A collection of Time Frames by Time Frame ID.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__TimeFrames_1aa539b5ac4cdc2250c69942a21d49b931)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__TimeFrames_1a76eec18ec87788692a2fad05c3d21505)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__TimeFrames_1a44c43ad3220c43980b0743df8de23078)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
+`public inline bool `[`IsCacheInfoSet`](#structFRHAPI__TimeFrames_1a8a3b7e4784e81162e412798d64db6a0c)`() const` | Checks whether CacheInfo_Optional has been set.
 
 ### Members
 
@@ -62,7 +64,7 @@ Cache info for the Time Frames.
 
 true if CacheInfo_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__TimeFrames_1ae878fe3b3c90541d724f10fc6f314553)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__TimeFrames_1ae878fe3b3c90541d724f10fc6f314553"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__TimeFrames_1a71b1b876e517a1d839b0d3af5d4a6a56)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__TimeFrames_1a71b1b876e517a1d839b0d3af5d4a6a56"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -72,7 +74,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__TimeFrames_1af19b5115fb551f63293d5e526bbea6a0)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__TimeFrames_1af19b5115fb551f63293d5e526bbea6a0"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__TimeFrames_1a2a3eece905a69332db7b3822c7883137)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__TimeFrames_1a2a3eece905a69332db7b3822c7883137"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -115,6 +117,10 @@ Sets the value of TimeFrames_Optional and also sets TimeFrames_IsSet to true usi
 
 Clears the value of TimeFrames_Optional and sets TimeFrames_IsSet to false.
 
+#### `public inline bool `[`IsTimeFramesSet`](#structFRHAPI__TimeFrames_1af1bbb92edcbe78e756b8616b7e59fded)`() const` <a id="structFRHAPI__TimeFrames_1af1bbb92edcbe78e756b8616b7e59fded"></a>
+
+Checks whether TimeFrames_Optional has been set.
+
 #### `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__TimeFrames_1afdce661d2525303ec4f6efd32d6267a6)`()` <a id="structFRHAPI__TimeFrames_1afdce661d2525303ec4f6efd32d6267a6"></a>
 
 Gets the value of CacheInfo_Optional, regardless of it having been set.
@@ -150,4 +156,8 @@ Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using
 #### `public inline void `[`ClearCacheInfo`](#structFRHAPI__TimeFrames_1a44c43ad3220c43980b0743df8de23078)`()` <a id="structFRHAPI__TimeFrames_1a44c43ad3220c43980b0743df8de23078"></a>
 
 Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
+
+#### `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__TimeFrames_1a8a3b7e4784e81162e412798d64db6a0c)`() const` <a id="structFRHAPI__TimeFrames_1a8a3b7e4784e81162e412798d64db6a0c"></a>
+
+Checks whether CacheInfo_Optional has been set.
 

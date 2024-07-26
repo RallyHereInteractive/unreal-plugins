@@ -55,25 +55,25 @@ bool FRHAPI_SelfSessionPlayerUpdateRequest::FromJson(const TSharedPtr<FJsonValue
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonStatusField = (*Object)->TryGetField(TEXT("status"));
-	if (JsonStatusField.IsValid() && !JsonStatusField->IsNull())
+	if (JsonStatusField.IsValid())
 	{
 		Status_IsSet = TryGetJsonValue(JsonStatusField, Status_Optional);
 		ParseSuccess &= Status_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonClientVersionField = (*Object)->TryGetField(TEXT("client_version"));
-	ParseSuccess &= JsonClientVersionField.IsValid() && !JsonClientVersionField->IsNull() && TryGetJsonValue(JsonClientVersionField, ClientVersion);
+	ParseSuccess &= JsonClientVersionField.IsValid() && (!JsonClientVersionField->IsNull() &&  TryGetJsonValue(JsonClientVersionField, ClientVersion));
 	const TSharedPtr<FJsonValue> JsonClientSettingsField = (*Object)->TryGetField(TEXT("client_settings"));
-	ParseSuccess &= JsonClientSettingsField.IsValid() && !JsonClientSettingsField->IsNull() && TryGetJsonValue(JsonClientSettingsField, ClientSettings);
+	ParseSuccess &= JsonClientSettingsField.IsValid() && (!JsonClientSettingsField->IsNull() &&  TryGetJsonValue(JsonClientSettingsField, ClientSettings));
 	const TSharedPtr<FJsonValue> JsonTeamIdField = (*Object)->TryGetField(TEXT("team_id"));
-	ParseSuccess &= JsonTeamIdField.IsValid() && !JsonTeamIdField->IsNull() && TryGetJsonValue(JsonTeamIdField, TeamId);
+	ParseSuccess &= JsonTeamIdField.IsValid() && (!JsonTeamIdField->IsNull() &&  TryGetJsonValue(JsonTeamIdField, TeamId));
 	const TSharedPtr<FJsonValue> JsonCrossplayPreferencesField = (*Object)->TryGetField(TEXT("crossplay_preferences"));
-	if (JsonCrossplayPreferencesField.IsValid() && !JsonCrossplayPreferencesField->IsNull())
+	if (JsonCrossplayPreferencesField.IsValid())
 	{
 		CrossplayPreferences_IsSet = TryGetJsonValue(JsonCrossplayPreferencesField, CrossplayPreferences_Optional);
 		ParseSuccess &= CrossplayPreferences_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	if (JsonCustomDataField.IsValid())
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;

@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_InstanceHealthStatusUpdate : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief The health status of the instance */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -48,9 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_InstanceHealthStatusUpdate : public FRHAPI_Model
 	/** @brief Gets the value of InstanceHealth */
 	const ERHAPI_InstanceHealthStatus& GetInstanceHealth() const { return InstanceHealth; }
 	/** @brief Sets the value of InstanceHealth */
-	void SetInstanceHealth(const ERHAPI_InstanceHealthStatus& NewValue) { InstanceHealth = NewValue;  }
+	void SetInstanceHealth(const ERHAPI_InstanceHealthStatus& NewValue) { InstanceHealth = NewValue;   }
 	/** @brief Sets the value of InstanceHealth using move semantics */
-	void SetInstanceHealth(ERHAPI_InstanceHealthStatus&& NewValue) { InstanceHealth = NewValue;  }
+	void SetInstanceHealth(ERHAPI_InstanceHealthStatus&& NewValue) { InstanceHealth = NewValue;   }
 
 	/** @brief The instance ID for the instance whose health you are reporting */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -60,9 +60,9 @@ struct RALLYHEREAPI_API FRHAPI_InstanceHealthStatusUpdate : public FRHAPI_Model
 	/** @brief Gets the value of InstanceId */
 	const FString& GetInstanceId() const { return InstanceId; }
 	/** @brief Sets the value of InstanceId */
-	void SetInstanceId(const FString& NewValue) { InstanceId = NewValue;  }
+	void SetInstanceId(const FString& NewValue) { InstanceId = NewValue;   }
 	/** @brief Sets the value of InstanceId using move semantics */
-	void SetInstanceId(FString&& NewValue) { InstanceId = NewValue;  }
+	void SetInstanceId(FString&& NewValue) { InstanceId = NewValue;   }
 };
 
 /** @} */

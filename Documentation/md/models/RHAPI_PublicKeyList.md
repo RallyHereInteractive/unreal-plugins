@@ -20,8 +20,8 @@ List of public keys for verifying Access Token JWTs. This is in the JWK Set form
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public TArray< `[`FRHAPI_PublicKey`](RHAPI_PublicKey.md#structFRHAPI__PublicKey)` > `[`Keys`](#structFRHAPI__PublicKeyList_1a9f2304e8a8edbb03597d352a4a60415a) | List of public keys for verifying Access Token JWTs.
-`public virtual bool `[`FromJson`](#structFRHAPI__PublicKeyList_1a18900c214f8cb8ca4164d3f2a2f31012)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PublicKeyList_1a8c25ebaf73ef9daefeab572798243793)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__PublicKeyList_1a354e93bc244ab7352e529f9cf966757a)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__PublicKeyList_1ab5dc3b7953d8088134c1d1302845a6b7)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< `[`FRHAPI_PublicKey`](RHAPI_PublicKey.md#structFRHAPI__PublicKey)` > & `[`GetKeys`](#structFRHAPI__PublicKeyList_1a28b2056cffd0315aa4069ff32bc02e2b)`()` | Gets the value of Keys.
 `public inline const TArray< `[`FRHAPI_PublicKey`](RHAPI_PublicKey.md#structFRHAPI__PublicKey)` > & `[`GetKeys`](#structFRHAPI__PublicKeyList_1a13568df60d8f7252b26a2e5b3806b170)`() const` | Gets the value of Keys.
 `public inline void `[`SetKeys`](#structFRHAPI__PublicKeyList_1ab7a3175d5e8e2a6ba0e3769d3d7cb411)`(const TArray< `[`FRHAPI_PublicKey`](RHAPI_PublicKey.md#structFRHAPI__PublicKey)` > & NewValue)` | Sets the value of Keys.
@@ -33,7 +33,7 @@ List of public keys for verifying Access Token JWTs. This is in the JWK Set form
 
 List of public keys for verifying Access Token JWTs.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__PublicKeyList_1a18900c214f8cb8ca4164d3f2a2f31012)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PublicKeyList_1a18900c214f8cb8ca4164d3f2a2f31012"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__PublicKeyList_1a354e93bc244ab7352e529f9cf966757a)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PublicKeyList_1a354e93bc244ab7352e529f9cf966757a"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -43,7 +43,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PublicKeyList_1a8c25ebaf73ef9daefeab572798243793)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PublicKeyList_1a8c25ebaf73ef9daefeab572798243793"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PublicKeyList_1ab5dc3b7953d8088134c1d1302845a6b7)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PublicKeyList_1ab5dc3b7953d8088134c1d1302845a6b7"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 

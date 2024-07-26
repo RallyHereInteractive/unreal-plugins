@@ -20,8 +20,8 @@ struct FRHAPI_PageMeta
 `public int32 `[`Page`](#structFRHAPI__PageMeta_1a6cca0387aa38f6160e818ff8bad85a67) | 
 `public int32 `[`Limit`](#structFRHAPI__PageMeta_1a1ee76853639b633ab5165c18bda1e546) | 
 `public int32 `[`Total`](#structFRHAPI__PageMeta_1a13e9adca196130185d55586e2c812859) | 
-`public virtual bool `[`FromJson`](#structFRHAPI__PageMeta_1a526bc02761af6690d057a3ba39fe3b3d)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PageMeta_1ab83e2c68322bd5468368a8ca4dc49d9b)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__PageMeta_1a3a6c36c80d941d3803312fdd3396c4b5)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__PageMeta_1ab179c9d82fc94ff946238e7d56b4dd7f)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline int32 & `[`GetPage`](#structFRHAPI__PageMeta_1aa13cc6ef0f0b621ac065a75a236e686e)`()` | Gets the value of Page.
 `public inline const int32 & `[`GetPage`](#structFRHAPI__PageMeta_1a1ec015c5ce6921cb3e46a6eb9c587704)`() const` | Gets the value of Page.
 `public inline void `[`SetPage`](#structFRHAPI__PageMeta_1aa1e4cab16e2b23f83e88a2fc86964641)`(const int32 & NewValue)` | Sets the value of Page.
@@ -49,7 +49,7 @@ struct FRHAPI_PageMeta
 
 #### `public int32 `[`Total`](#structFRHAPI__PageMeta_1a13e9adca196130185d55586e2c812859) <a id="structFRHAPI__PageMeta_1a13e9adca196130185d55586e2c812859"></a>
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__PageMeta_1a526bc02761af6690d057a3ba39fe3b3d)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PageMeta_1a526bc02761af6690d057a3ba39fe3b3d"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__PageMeta_1a3a6c36c80d941d3803312fdd3396c4b5)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PageMeta_1a3a6c36c80d941d3803312fdd3396c4b5"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -59,7 +59,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PageMeta_1ab83e2c68322bd5468368a8ca4dc49d9b)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PageMeta_1ab83e2c68322bd5468368a8ca4dc49d9b"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PageMeta_1ab179c9d82fc94ff946238e7d56b4dd7f)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PageMeta_1ab179c9d82fc94ff946238e7d56b4dd7f"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 

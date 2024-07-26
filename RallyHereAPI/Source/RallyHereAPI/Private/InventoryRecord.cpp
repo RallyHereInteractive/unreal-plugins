@@ -62,33 +62,33 @@ bool FRHAPI_InventoryRecord::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonInventoryIdField = (*Object)->TryGetField(TEXT("inventory_id"));
-	ParseSuccess &= JsonInventoryIdField.IsValid() && !JsonInventoryIdField->IsNull() && TryGetJsonValue(JsonInventoryIdField, InventoryId);
+	ParseSuccess &= JsonInventoryIdField.IsValid() && (!JsonInventoryIdField->IsNull() &&  TryGetJsonValue(JsonInventoryIdField, InventoryId));
 	const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
-	ParseSuccess &= JsonTypeField.IsValid() && !JsonTypeField->IsNull() && TryGetJsonValue(JsonTypeField, Type);
+	ParseSuccess &= JsonTypeField.IsValid() && (!JsonTypeField->IsNull() &&  TryGetJsonValue(JsonTypeField, Type));
 	const TSharedPtr<FJsonValue> JsonLegacyInventoryIdField = (*Object)->TryGetField(TEXT("legacy_inventory_id"));
-	if (JsonLegacyInventoryIdField.IsValid() && !JsonLegacyInventoryIdField->IsNull())
+	if (JsonLegacyInventoryIdField.IsValid())
 	{
 		LegacyInventoryId_IsSet = TryGetJsonValue(JsonLegacyInventoryIdField, LegacyInventoryId_Optional);
 		ParseSuccess &= LegacyInventoryId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonBucketField = (*Object)->TryGetField(TEXT("bucket"));
-	if (JsonBucketField.IsValid() && !JsonBucketField->IsNull())
+	if (JsonBucketField.IsValid())
 	{
 		Bucket_IsSet = TryGetJsonValue(JsonBucketField, Bucket_Optional);
 		ParseSuccess &= Bucket_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCountField = (*Object)->TryGetField(TEXT("count"));
-	ParseSuccess &= JsonCountField.IsValid() && !JsonCountField->IsNull() && TryGetJsonValue(JsonCountField, Count);
+	ParseSuccess &= JsonCountField.IsValid() && (!JsonCountField->IsNull() &&  TryGetJsonValue(JsonCountField, Count));
 	const TSharedPtr<FJsonValue> JsonAcquiredField = (*Object)->TryGetField(TEXT("acquired"));
-	ParseSuccess &= JsonAcquiredField.IsValid() && !JsonAcquiredField->IsNull() && TryGetJsonValue(JsonAcquiredField, Acquired);
+	ParseSuccess &= JsonAcquiredField.IsValid() && (!JsonAcquiredField->IsNull() &&  TryGetJsonValue(JsonAcquiredField, Acquired));
 	const TSharedPtr<FJsonValue> JsonExpiresField = (*Object)->TryGetField(TEXT("expires"));
-	if (JsonExpiresField.IsValid() && !JsonExpiresField->IsNull())
+	if (JsonExpiresField.IsValid())
 	{
 		Expires_IsSet = TryGetJsonValue(JsonExpiresField, Expires_Optional);
 		ParseSuccess &= Expires_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	if (JsonCustomDataField.IsValid())
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;

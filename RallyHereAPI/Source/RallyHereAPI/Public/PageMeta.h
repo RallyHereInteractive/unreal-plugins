@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_PageMeta : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Page{ 0 };
@@ -46,13 +46,13 @@ struct RALLYHEREAPI_API FRHAPI_PageMeta : public FRHAPI_Model
 	/** @brief Gets the value of Page */
 	const int32& GetPage() const { return Page; }
 	/** @brief Sets the value of Page */
-	void SetPage(const int32& NewValue) { Page = NewValue;  }
+	void SetPage(const int32& NewValue) { Page = NewValue;   }
 	/** @brief Sets the value of Page using move semantics */
-	void SetPage(int32&& NewValue) { Page = NewValue;  }
+	void SetPage(int32&& NewValue) { Page = NewValue;   }
 	/** @brief Returns true if Page matches the default value */
 	bool IsPageDefaultValue() const { return Page == 0; }
 	/** @brief Sets the value of Page to its default  */
-	void SetPageToDefault() { Page = 0;  }
+	void SetPageToDefault() { SetPage(0); }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Limit{ 0 };
@@ -61,13 +61,13 @@ struct RALLYHEREAPI_API FRHAPI_PageMeta : public FRHAPI_Model
 	/** @brief Gets the value of Limit */
 	const int32& GetLimit() const { return Limit; }
 	/** @brief Sets the value of Limit */
-	void SetLimit(const int32& NewValue) { Limit = NewValue;  }
+	void SetLimit(const int32& NewValue) { Limit = NewValue;   }
 	/** @brief Sets the value of Limit using move semantics */
-	void SetLimit(int32&& NewValue) { Limit = NewValue;  }
+	void SetLimit(int32&& NewValue) { Limit = NewValue;   }
 	/** @brief Returns true if Limit matches the default value */
 	bool IsLimitDefaultValue() const { return Limit == 0; }
 	/** @brief Sets the value of Limit to its default  */
-	void SetLimitToDefault() { Limit = 0;  }
+	void SetLimitToDefault() { SetLimit(0); }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Total{ 0 };
@@ -76,13 +76,13 @@ struct RALLYHEREAPI_API FRHAPI_PageMeta : public FRHAPI_Model
 	/** @brief Gets the value of Total */
 	const int32& GetTotal() const { return Total; }
 	/** @brief Sets the value of Total */
-	void SetTotal(const int32& NewValue) { Total = NewValue;  }
+	void SetTotal(const int32& NewValue) { Total = NewValue;   }
 	/** @brief Sets the value of Total using move semantics */
-	void SetTotal(int32&& NewValue) { Total = NewValue;  }
+	void SetTotal(int32&& NewValue) { Total = NewValue;   }
 	/** @brief Returns true if Total matches the default value */
 	bool IsTotalDefaultValue() const { return Total == 0; }
 	/** @brief Sets the value of Total to its default  */
-	void SetTotalToDefault() { Total = 0;  }
+	void SetTotalToDefault() { SetTotal(0); }
 };
 
 /** @} */

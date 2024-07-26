@@ -44,13 +44,13 @@ bool FRHAPI_KVsResponseV1::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonKvsField = (*Object)->TryGetField(TEXT("kvs"));
-	if (JsonKvsField.IsValid() && !JsonKvsField->IsNull())
+	if (JsonKvsField.IsValid())
 	{
 		Kvs_IsSet = TryGetJsonValue(JsonKvsField, Kvs_Optional);
 		ParseSuccess &= Kvs_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonSecretKvsField = (*Object)->TryGetField(TEXT("secret_kvs"));
-	if (JsonSecretKvsField.IsValid() && !JsonSecretKvsField->IsNull())
+	if (JsonSecretKvsField.IsValid())
 	{
 		SecretKvs_IsSet = TryGetJsonValue(JsonSecretKvsField, SecretKvs_Optional);
 		ParseSuccess &= SecretKvs_IsSet;

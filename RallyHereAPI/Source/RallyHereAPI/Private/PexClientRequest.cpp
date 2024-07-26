@@ -25,111 +25,177 @@ void FRHAPI_PexClientRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (FrameTime_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("frame_time"));
+		if (FrameTime_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, FrameTime_Optional);
 	}
 	if (DeltaTime_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("delta_time"));
+		if (DeltaTime_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, DeltaTime_Optional);
 	}
 	if (TickCount_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("tick_count"));
+		if (TickCount_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, TickCount_Optional);
 	}
 	if (DelayedTickCount_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("delayed_tick_count"));
+		if (DelayedTickCount_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, DelayedTickCount_Optional);
 	}
 	if (MemoryWs_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("memory_ws"));
+		if (MemoryWs_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, MemoryWs_Optional);
 	}
 	if (MemoryVb_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("memory_vb"));
+		if (MemoryVb_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, MemoryVb_Optional);
 	}
 	if (CpuProcess_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("cpu_process"));
+		if (CpuProcess_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, CpuProcess_Optional);
 	}
 	if (Ping_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("ping"));
+		if (Ping_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, Ping_Optional);
 	}
 	if (InPackets_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("in_packets"));
+		if (InPackets_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, InPackets_Optional);
 	}
 	if (OutPackets_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("out_packets"));
+		if (OutPackets_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, OutPackets_Optional);
 	}
 	if (TotalPackets_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("total_packets"));
+		if (TotalPackets_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, TotalPackets_Optional);
 	}
 	if (InPacketLoss_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("in_packet_loss"));
+		if (InPacketLoss_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, InPacketLoss_Optional);
 	}
 	if (OutPacketLoss_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("out_packet_loss"));
+		if (OutPacketLoss_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, OutPacketLoss_Optional);
 	}
 	if (TotalPacketLoss_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("total_packet_loss"));
+		if (TotalPacketLoss_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, TotalPacketLoss_Optional);
 	}
 	if (InPacketLossPct_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("in_packet_loss_pct"));
+		if (InPacketLossPct_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, InPacketLossPct_Optional);
 	}
 	if (OutPacketLossPct_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("out_packet_loss_pct"));
+		if (OutPacketLossPct_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, OutPacketLossPct_Optional);
 	}
 	if (TotalPacketLossPct_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("total_packet_loss_pct"));
+		if (TotalPacketLossPct_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, TotalPacketLossPct_Optional);
 	}
 	if (TotalDisconnects_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("total_disconnects"));
+		if (TotalDisconnects_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, TotalDisconnects_Optional);
 	}
 	if (MatchDuration_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("match_duration"));
+		if (MatchDuration_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, MatchDuration_Optional);
 	}
 	if (GameThreadTime_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("game_thread_time"));
+		if (GameThreadTime_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, GameThreadTime_Optional);
 	}
 	if (RenderThreadTime_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("render_thread_time"));
+		if (RenderThreadTime_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, RenderThreadTime_Optional);
 	}
 	if (GpuTime_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("gpu_time"));
+		if (GpuTime_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, GpuTime_Optional);
 	}
 	Writer->WriteIdentifierPrefix(TEXT("match_id"));
@@ -137,71 +203,113 @@ void FRHAPI_PexClientRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (RegionId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("region_id"));
+		if (RegionId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, RegionId_Optional);
 	}
 	if (ServerId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("server_id"));
+		if (ServerId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, ServerId_Optional);
 	}
 	if (AllocationId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("allocation_id"));
+		if (AllocationId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, AllocationId_Optional);
 	}
 	if (DatacenterProvider_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("datacenter_provider"));
+		if (DatacenterProvider_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, DatacenterProvider_Optional);
 	}
 	if (DatacenterLocation_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("datacenter_location"));
+		if (DatacenterLocation_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, DatacenterLocation_Optional);
 	}
 	if (AddressIp_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("address_ip"));
+		if (AddressIp_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, AddressIp_Optional);
 	}
 	if (MapName_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("map_name"));
+		if (MapName_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, MapName_Optional);
 	}
 	if (GameMode_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("game_mode"));
+		if (GameMode_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, GameMode_Optional);
 	}
 	if (MatchmakingProfileId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("matchmaking_profile_id"));
+		if (MatchmakingProfileId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, MatchmakingProfileId_Optional);
 	}
 	if (ExpectedTeamSize_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("expected_team_size"));
+		if (ExpectedTeamSize_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, ExpectedTeamSize_Optional);
 	}
 	if (ExpectedPlayerCount_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("expected_player_count"));
+		if (ExpectedPlayerCount_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, ExpectedPlayerCount_Optional);
 	}
 	if (HostPlayerUuid_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("host_player_uuid"));
+		if (HostPlayerUuid_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, HostPlayerUuid_Optional);
 	}
 	if (OwningPlayerUuid_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("owning_player_uuid"));
+		if (OwningPlayerUuid_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, OwningPlayerUuid_Optional);
 	}
 	if (Version_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("version"));
+		if (Version_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, Version_Optional);
 	}
 	Writer->WriteIdentifierPrefix(TEXT("player_uuid"));
@@ -209,6 +317,9 @@ void FRHAPI_PexClientRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (DeviceInfo_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("device_info"));
+		if (DeviceInfo_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, DeviceInfo_Optional);
 	}
 	Writer->WriteObjectEnd();
@@ -223,229 +334,266 @@ bool FRHAPI_PexClientRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonFrameTimeField = (*Object)->TryGetField(TEXT("frame_time"));
-	if (JsonFrameTimeField.IsValid() && !JsonFrameTimeField->IsNull())
+	if (JsonFrameTimeField.IsValid())
 	{
-		FrameTime_IsSet = TryGetJsonValue(JsonFrameTimeField, FrameTime_Optional);
+		FrameTime_IsNull = JsonFrameTimeField->IsNull();
+		FrameTime_IsSet = FrameTime_IsNull || TryGetJsonValue(JsonFrameTimeField, FrameTime_Optional);
 		ParseSuccess &= FrameTime_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonDeltaTimeField = (*Object)->TryGetField(TEXT("delta_time"));
-	if (JsonDeltaTimeField.IsValid() && !JsonDeltaTimeField->IsNull())
+	if (JsonDeltaTimeField.IsValid())
 	{
-		DeltaTime_IsSet = TryGetJsonValue(JsonDeltaTimeField, DeltaTime_Optional);
+		DeltaTime_IsNull = JsonDeltaTimeField->IsNull();
+		DeltaTime_IsSet = DeltaTime_IsNull || TryGetJsonValue(JsonDeltaTimeField, DeltaTime_Optional);
 		ParseSuccess &= DeltaTime_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonTickCountField = (*Object)->TryGetField(TEXT("tick_count"));
-	if (JsonTickCountField.IsValid() && !JsonTickCountField->IsNull())
+	if (JsonTickCountField.IsValid())
 	{
-		TickCount_IsSet = TryGetJsonValue(JsonTickCountField, TickCount_Optional);
+		TickCount_IsNull = JsonTickCountField->IsNull();
+		TickCount_IsSet = TickCount_IsNull || TryGetJsonValue(JsonTickCountField, TickCount_Optional);
 		ParseSuccess &= TickCount_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonDelayedTickCountField = (*Object)->TryGetField(TEXT("delayed_tick_count"));
-	if (JsonDelayedTickCountField.IsValid() && !JsonDelayedTickCountField->IsNull())
+	if (JsonDelayedTickCountField.IsValid())
 	{
-		DelayedTickCount_IsSet = TryGetJsonValue(JsonDelayedTickCountField, DelayedTickCount_Optional);
+		DelayedTickCount_IsNull = JsonDelayedTickCountField->IsNull();
+		DelayedTickCount_IsSet = DelayedTickCount_IsNull || TryGetJsonValue(JsonDelayedTickCountField, DelayedTickCount_Optional);
 		ParseSuccess &= DelayedTickCount_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonMemoryWsField = (*Object)->TryGetField(TEXT("memory_ws"));
-	if (JsonMemoryWsField.IsValid() && !JsonMemoryWsField->IsNull())
+	if (JsonMemoryWsField.IsValid())
 	{
-		MemoryWs_IsSet = TryGetJsonValue(JsonMemoryWsField, MemoryWs_Optional);
+		MemoryWs_IsNull = JsonMemoryWsField->IsNull();
+		MemoryWs_IsSet = MemoryWs_IsNull || TryGetJsonValue(JsonMemoryWsField, MemoryWs_Optional);
 		ParseSuccess &= MemoryWs_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonMemoryVbField = (*Object)->TryGetField(TEXT("memory_vb"));
-	if (JsonMemoryVbField.IsValid() && !JsonMemoryVbField->IsNull())
+	if (JsonMemoryVbField.IsValid())
 	{
-		MemoryVb_IsSet = TryGetJsonValue(JsonMemoryVbField, MemoryVb_Optional);
+		MemoryVb_IsNull = JsonMemoryVbField->IsNull();
+		MemoryVb_IsSet = MemoryVb_IsNull || TryGetJsonValue(JsonMemoryVbField, MemoryVb_Optional);
 		ParseSuccess &= MemoryVb_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCpuProcessField = (*Object)->TryGetField(TEXT("cpu_process"));
-	if (JsonCpuProcessField.IsValid() && !JsonCpuProcessField->IsNull())
+	if (JsonCpuProcessField.IsValid())
 	{
-		CpuProcess_IsSet = TryGetJsonValue(JsonCpuProcessField, CpuProcess_Optional);
+		CpuProcess_IsNull = JsonCpuProcessField->IsNull();
+		CpuProcess_IsSet = CpuProcess_IsNull || TryGetJsonValue(JsonCpuProcessField, CpuProcess_Optional);
 		ParseSuccess &= CpuProcess_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPingField = (*Object)->TryGetField(TEXT("ping"));
-	if (JsonPingField.IsValid() && !JsonPingField->IsNull())
+	if (JsonPingField.IsValid())
 	{
-		Ping_IsSet = TryGetJsonValue(JsonPingField, Ping_Optional);
+		Ping_IsNull = JsonPingField->IsNull();
+		Ping_IsSet = Ping_IsNull || TryGetJsonValue(JsonPingField, Ping_Optional);
 		ParseSuccess &= Ping_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonInPacketsField = (*Object)->TryGetField(TEXT("in_packets"));
-	if (JsonInPacketsField.IsValid() && !JsonInPacketsField->IsNull())
+	if (JsonInPacketsField.IsValid())
 	{
-		InPackets_IsSet = TryGetJsonValue(JsonInPacketsField, InPackets_Optional);
+		InPackets_IsNull = JsonInPacketsField->IsNull();
+		InPackets_IsSet = InPackets_IsNull || TryGetJsonValue(JsonInPacketsField, InPackets_Optional);
 		ParseSuccess &= InPackets_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonOutPacketsField = (*Object)->TryGetField(TEXT("out_packets"));
-	if (JsonOutPacketsField.IsValid() && !JsonOutPacketsField->IsNull())
+	if (JsonOutPacketsField.IsValid())
 	{
-		OutPackets_IsSet = TryGetJsonValue(JsonOutPacketsField, OutPackets_Optional);
+		OutPackets_IsNull = JsonOutPacketsField->IsNull();
+		OutPackets_IsSet = OutPackets_IsNull || TryGetJsonValue(JsonOutPacketsField, OutPackets_Optional);
 		ParseSuccess &= OutPackets_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonTotalPacketsField = (*Object)->TryGetField(TEXT("total_packets"));
-	if (JsonTotalPacketsField.IsValid() && !JsonTotalPacketsField->IsNull())
+	if (JsonTotalPacketsField.IsValid())
 	{
-		TotalPackets_IsSet = TryGetJsonValue(JsonTotalPacketsField, TotalPackets_Optional);
+		TotalPackets_IsNull = JsonTotalPacketsField->IsNull();
+		TotalPackets_IsSet = TotalPackets_IsNull || TryGetJsonValue(JsonTotalPacketsField, TotalPackets_Optional);
 		ParseSuccess &= TotalPackets_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonInPacketLossField = (*Object)->TryGetField(TEXT("in_packet_loss"));
-	if (JsonInPacketLossField.IsValid() && !JsonInPacketLossField->IsNull())
+	if (JsonInPacketLossField.IsValid())
 	{
-		InPacketLoss_IsSet = TryGetJsonValue(JsonInPacketLossField, InPacketLoss_Optional);
+		InPacketLoss_IsNull = JsonInPacketLossField->IsNull();
+		InPacketLoss_IsSet = InPacketLoss_IsNull || TryGetJsonValue(JsonInPacketLossField, InPacketLoss_Optional);
 		ParseSuccess &= InPacketLoss_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonOutPacketLossField = (*Object)->TryGetField(TEXT("out_packet_loss"));
-	if (JsonOutPacketLossField.IsValid() && !JsonOutPacketLossField->IsNull())
+	if (JsonOutPacketLossField.IsValid())
 	{
-		OutPacketLoss_IsSet = TryGetJsonValue(JsonOutPacketLossField, OutPacketLoss_Optional);
+		OutPacketLoss_IsNull = JsonOutPacketLossField->IsNull();
+		OutPacketLoss_IsSet = OutPacketLoss_IsNull || TryGetJsonValue(JsonOutPacketLossField, OutPacketLoss_Optional);
 		ParseSuccess &= OutPacketLoss_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonTotalPacketLossField = (*Object)->TryGetField(TEXT("total_packet_loss"));
-	if (JsonTotalPacketLossField.IsValid() && !JsonTotalPacketLossField->IsNull())
+	if (JsonTotalPacketLossField.IsValid())
 	{
-		TotalPacketLoss_IsSet = TryGetJsonValue(JsonTotalPacketLossField, TotalPacketLoss_Optional);
+		TotalPacketLoss_IsNull = JsonTotalPacketLossField->IsNull();
+		TotalPacketLoss_IsSet = TotalPacketLoss_IsNull || TryGetJsonValue(JsonTotalPacketLossField, TotalPacketLoss_Optional);
 		ParseSuccess &= TotalPacketLoss_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonInPacketLossPctField = (*Object)->TryGetField(TEXT("in_packet_loss_pct"));
-	if (JsonInPacketLossPctField.IsValid() && !JsonInPacketLossPctField->IsNull())
+	if (JsonInPacketLossPctField.IsValid())
 	{
-		InPacketLossPct_IsSet = TryGetJsonValue(JsonInPacketLossPctField, InPacketLossPct_Optional);
+		InPacketLossPct_IsNull = JsonInPacketLossPctField->IsNull();
+		InPacketLossPct_IsSet = InPacketLossPct_IsNull || TryGetJsonValue(JsonInPacketLossPctField, InPacketLossPct_Optional);
 		ParseSuccess &= InPacketLossPct_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonOutPacketLossPctField = (*Object)->TryGetField(TEXT("out_packet_loss_pct"));
-	if (JsonOutPacketLossPctField.IsValid() && !JsonOutPacketLossPctField->IsNull())
+	if (JsonOutPacketLossPctField.IsValid())
 	{
-		OutPacketLossPct_IsSet = TryGetJsonValue(JsonOutPacketLossPctField, OutPacketLossPct_Optional);
+		OutPacketLossPct_IsNull = JsonOutPacketLossPctField->IsNull();
+		OutPacketLossPct_IsSet = OutPacketLossPct_IsNull || TryGetJsonValue(JsonOutPacketLossPctField, OutPacketLossPct_Optional);
 		ParseSuccess &= OutPacketLossPct_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonTotalPacketLossPctField = (*Object)->TryGetField(TEXT("total_packet_loss_pct"));
-	if (JsonTotalPacketLossPctField.IsValid() && !JsonTotalPacketLossPctField->IsNull())
+	if (JsonTotalPacketLossPctField.IsValid())
 	{
-		TotalPacketLossPct_IsSet = TryGetJsonValue(JsonTotalPacketLossPctField, TotalPacketLossPct_Optional);
+		TotalPacketLossPct_IsNull = JsonTotalPacketLossPctField->IsNull();
+		TotalPacketLossPct_IsSet = TotalPacketLossPct_IsNull || TryGetJsonValue(JsonTotalPacketLossPctField, TotalPacketLossPct_Optional);
 		ParseSuccess &= TotalPacketLossPct_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonTotalDisconnectsField = (*Object)->TryGetField(TEXT("total_disconnects"));
-	if (JsonTotalDisconnectsField.IsValid() && !JsonTotalDisconnectsField->IsNull())
+	if (JsonTotalDisconnectsField.IsValid())
 	{
-		TotalDisconnects_IsSet = TryGetJsonValue(JsonTotalDisconnectsField, TotalDisconnects_Optional);
+		TotalDisconnects_IsNull = JsonTotalDisconnectsField->IsNull();
+		TotalDisconnects_IsSet = TotalDisconnects_IsNull || TryGetJsonValue(JsonTotalDisconnectsField, TotalDisconnects_Optional);
 		ParseSuccess &= TotalDisconnects_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonMatchDurationField = (*Object)->TryGetField(TEXT("match_duration"));
-	if (JsonMatchDurationField.IsValid() && !JsonMatchDurationField->IsNull())
+	if (JsonMatchDurationField.IsValid())
 	{
-		MatchDuration_IsSet = TryGetJsonValue(JsonMatchDurationField, MatchDuration_Optional);
+		MatchDuration_IsNull = JsonMatchDurationField->IsNull();
+		MatchDuration_IsSet = MatchDuration_IsNull || TryGetJsonValue(JsonMatchDurationField, MatchDuration_Optional);
 		ParseSuccess &= MatchDuration_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonGameThreadTimeField = (*Object)->TryGetField(TEXT("game_thread_time"));
-	if (JsonGameThreadTimeField.IsValid() && !JsonGameThreadTimeField->IsNull())
+	if (JsonGameThreadTimeField.IsValid())
 	{
-		GameThreadTime_IsSet = TryGetJsonValue(JsonGameThreadTimeField, GameThreadTime_Optional);
+		GameThreadTime_IsNull = JsonGameThreadTimeField->IsNull();
+		GameThreadTime_IsSet = GameThreadTime_IsNull || TryGetJsonValue(JsonGameThreadTimeField, GameThreadTime_Optional);
 		ParseSuccess &= GameThreadTime_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonRenderThreadTimeField = (*Object)->TryGetField(TEXT("render_thread_time"));
-	if (JsonRenderThreadTimeField.IsValid() && !JsonRenderThreadTimeField->IsNull())
+	if (JsonRenderThreadTimeField.IsValid())
 	{
-		RenderThreadTime_IsSet = TryGetJsonValue(JsonRenderThreadTimeField, RenderThreadTime_Optional);
+		RenderThreadTime_IsNull = JsonRenderThreadTimeField->IsNull();
+		RenderThreadTime_IsSet = RenderThreadTime_IsNull || TryGetJsonValue(JsonRenderThreadTimeField, RenderThreadTime_Optional);
 		ParseSuccess &= RenderThreadTime_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonGpuTimeField = (*Object)->TryGetField(TEXT("gpu_time"));
-	if (JsonGpuTimeField.IsValid() && !JsonGpuTimeField->IsNull())
+	if (JsonGpuTimeField.IsValid())
 	{
-		GpuTime_IsSet = TryGetJsonValue(JsonGpuTimeField, GpuTime_Optional);
+		GpuTime_IsNull = JsonGpuTimeField->IsNull();
+		GpuTime_IsSet = GpuTime_IsNull || TryGetJsonValue(JsonGpuTimeField, GpuTime_Optional);
 		ParseSuccess &= GpuTime_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonMatchIdField = (*Object)->TryGetField(TEXT("match_id"));
-	ParseSuccess &= JsonMatchIdField.IsValid() && !JsonMatchIdField->IsNull() && TryGetJsonValue(JsonMatchIdField, MatchId);
+	ParseSuccess &= JsonMatchIdField.IsValid() && (!JsonMatchIdField->IsNull() &&  TryGetJsonValue(JsonMatchIdField, MatchId));
 	const TSharedPtr<FJsonValue> JsonRegionIdField = (*Object)->TryGetField(TEXT("region_id"));
-	if (JsonRegionIdField.IsValid() && !JsonRegionIdField->IsNull())
+	if (JsonRegionIdField.IsValid())
 	{
-		RegionId_IsSet = TryGetJsonValue(JsonRegionIdField, RegionId_Optional);
+		RegionId_IsNull = JsonRegionIdField->IsNull();
+		RegionId_IsSet = RegionId_IsNull || TryGetJsonValue(JsonRegionIdField, RegionId_Optional);
 		ParseSuccess &= RegionId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonServerIdField = (*Object)->TryGetField(TEXT("server_id"));
-	if (JsonServerIdField.IsValid() && !JsonServerIdField->IsNull())
+	if (JsonServerIdField.IsValid())
 	{
-		ServerId_IsSet = TryGetJsonValue(JsonServerIdField, ServerId_Optional);
+		ServerId_IsNull = JsonServerIdField->IsNull();
+		ServerId_IsSet = ServerId_IsNull || TryGetJsonValue(JsonServerIdField, ServerId_Optional);
 		ParseSuccess &= ServerId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonAllocationIdField = (*Object)->TryGetField(TEXT("allocation_id"));
-	if (JsonAllocationIdField.IsValid() && !JsonAllocationIdField->IsNull())
+	if (JsonAllocationIdField.IsValid())
 	{
-		AllocationId_IsSet = TryGetJsonValue(JsonAllocationIdField, AllocationId_Optional);
+		AllocationId_IsNull = JsonAllocationIdField->IsNull();
+		AllocationId_IsSet = AllocationId_IsNull || TryGetJsonValue(JsonAllocationIdField, AllocationId_Optional);
 		ParseSuccess &= AllocationId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonDatacenterProviderField = (*Object)->TryGetField(TEXT("datacenter_provider"));
-	if (JsonDatacenterProviderField.IsValid() && !JsonDatacenterProviderField->IsNull())
+	if (JsonDatacenterProviderField.IsValid())
 	{
-		DatacenterProvider_IsSet = TryGetJsonValue(JsonDatacenterProviderField, DatacenterProvider_Optional);
+		DatacenterProvider_IsNull = JsonDatacenterProviderField->IsNull();
+		DatacenterProvider_IsSet = DatacenterProvider_IsNull || TryGetJsonValue(JsonDatacenterProviderField, DatacenterProvider_Optional);
 		ParseSuccess &= DatacenterProvider_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonDatacenterLocationField = (*Object)->TryGetField(TEXT("datacenter_location"));
-	if (JsonDatacenterLocationField.IsValid() && !JsonDatacenterLocationField->IsNull())
+	if (JsonDatacenterLocationField.IsValid())
 	{
-		DatacenterLocation_IsSet = TryGetJsonValue(JsonDatacenterLocationField, DatacenterLocation_Optional);
+		DatacenterLocation_IsNull = JsonDatacenterLocationField->IsNull();
+		DatacenterLocation_IsSet = DatacenterLocation_IsNull || TryGetJsonValue(JsonDatacenterLocationField, DatacenterLocation_Optional);
 		ParseSuccess &= DatacenterLocation_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonAddressIpField = (*Object)->TryGetField(TEXT("address_ip"));
-	if (JsonAddressIpField.IsValid() && !JsonAddressIpField->IsNull())
+	if (JsonAddressIpField.IsValid())
 	{
-		AddressIp_IsSet = TryGetJsonValue(JsonAddressIpField, AddressIp_Optional);
+		AddressIp_IsNull = JsonAddressIpField->IsNull();
+		AddressIp_IsSet = AddressIp_IsNull || TryGetJsonValue(JsonAddressIpField, AddressIp_Optional);
 		ParseSuccess &= AddressIp_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonMapNameField = (*Object)->TryGetField(TEXT("map_name"));
-	if (JsonMapNameField.IsValid() && !JsonMapNameField->IsNull())
+	if (JsonMapNameField.IsValid())
 	{
-		MapName_IsSet = TryGetJsonValue(JsonMapNameField, MapName_Optional);
+		MapName_IsNull = JsonMapNameField->IsNull();
+		MapName_IsSet = MapName_IsNull || TryGetJsonValue(JsonMapNameField, MapName_Optional);
 		ParseSuccess &= MapName_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonGameModeField = (*Object)->TryGetField(TEXT("game_mode"));
-	if (JsonGameModeField.IsValid() && !JsonGameModeField->IsNull())
+	if (JsonGameModeField.IsValid())
 	{
-		GameMode_IsSet = TryGetJsonValue(JsonGameModeField, GameMode_Optional);
+		GameMode_IsNull = JsonGameModeField->IsNull();
+		GameMode_IsSet = GameMode_IsNull || TryGetJsonValue(JsonGameModeField, GameMode_Optional);
 		ParseSuccess &= GameMode_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonMatchmakingProfileIdField = (*Object)->TryGetField(TEXT("matchmaking_profile_id"));
-	if (JsonMatchmakingProfileIdField.IsValid() && !JsonMatchmakingProfileIdField->IsNull())
+	if (JsonMatchmakingProfileIdField.IsValid())
 	{
-		MatchmakingProfileId_IsSet = TryGetJsonValue(JsonMatchmakingProfileIdField, MatchmakingProfileId_Optional);
+		MatchmakingProfileId_IsNull = JsonMatchmakingProfileIdField->IsNull();
+		MatchmakingProfileId_IsSet = MatchmakingProfileId_IsNull || TryGetJsonValue(JsonMatchmakingProfileIdField, MatchmakingProfileId_Optional);
 		ParseSuccess &= MatchmakingProfileId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonExpectedTeamSizeField = (*Object)->TryGetField(TEXT("expected_team_size"));
-	if (JsonExpectedTeamSizeField.IsValid() && !JsonExpectedTeamSizeField->IsNull())
+	if (JsonExpectedTeamSizeField.IsValid())
 	{
-		ExpectedTeamSize_IsSet = TryGetJsonValue(JsonExpectedTeamSizeField, ExpectedTeamSize_Optional);
+		ExpectedTeamSize_IsNull = JsonExpectedTeamSizeField->IsNull();
+		ExpectedTeamSize_IsSet = ExpectedTeamSize_IsNull || TryGetJsonValue(JsonExpectedTeamSizeField, ExpectedTeamSize_Optional);
 		ParseSuccess &= ExpectedTeamSize_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonExpectedPlayerCountField = (*Object)->TryGetField(TEXT("expected_player_count"));
-	if (JsonExpectedPlayerCountField.IsValid() && !JsonExpectedPlayerCountField->IsNull())
+	if (JsonExpectedPlayerCountField.IsValid())
 	{
-		ExpectedPlayerCount_IsSet = TryGetJsonValue(JsonExpectedPlayerCountField, ExpectedPlayerCount_Optional);
+		ExpectedPlayerCount_IsNull = JsonExpectedPlayerCountField->IsNull();
+		ExpectedPlayerCount_IsSet = ExpectedPlayerCount_IsNull || TryGetJsonValue(JsonExpectedPlayerCountField, ExpectedPlayerCount_Optional);
 		ParseSuccess &= ExpectedPlayerCount_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonHostPlayerUuidField = (*Object)->TryGetField(TEXT("host_player_uuid"));
-	if (JsonHostPlayerUuidField.IsValid() && !JsonHostPlayerUuidField->IsNull())
+	if (JsonHostPlayerUuidField.IsValid())
 	{
-		HostPlayerUuid_IsSet = TryGetJsonValue(JsonHostPlayerUuidField, HostPlayerUuid_Optional);
+		HostPlayerUuid_IsNull = JsonHostPlayerUuidField->IsNull();
+		HostPlayerUuid_IsSet = HostPlayerUuid_IsNull || TryGetJsonValue(JsonHostPlayerUuidField, HostPlayerUuid_Optional);
 		ParseSuccess &= HostPlayerUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonOwningPlayerUuidField = (*Object)->TryGetField(TEXT("owning_player_uuid"));
-	if (JsonOwningPlayerUuidField.IsValid() && !JsonOwningPlayerUuidField->IsNull())
+	if (JsonOwningPlayerUuidField.IsValid())
 	{
-		OwningPlayerUuid_IsSet = TryGetJsonValue(JsonOwningPlayerUuidField, OwningPlayerUuid_Optional);
+		OwningPlayerUuid_IsNull = JsonOwningPlayerUuidField->IsNull();
+		OwningPlayerUuid_IsSet = OwningPlayerUuid_IsNull || TryGetJsonValue(JsonOwningPlayerUuidField, OwningPlayerUuid_Optional);
 		ParseSuccess &= OwningPlayerUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonVersionField = (*Object)->TryGetField(TEXT("version"));
-	if (JsonVersionField.IsValid() && !JsonVersionField->IsNull())
+	if (JsonVersionField.IsValid())
 	{
-		Version_IsSet = TryGetJsonValue(JsonVersionField, Version_Optional);
+		Version_IsNull = JsonVersionField->IsNull();
+		Version_IsSet = Version_IsNull || TryGetJsonValue(JsonVersionField, Version_Optional);
 		ParseSuccess &= Version_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
-	ParseSuccess &= JsonPlayerUuidField.IsValid() && !JsonPlayerUuidField->IsNull() && TryGetJsonValue(JsonPlayerUuidField, PlayerUuid);
+	ParseSuccess &= JsonPlayerUuidField.IsValid() && (!JsonPlayerUuidField->IsNull() &&  TryGetJsonValue(JsonPlayerUuidField, PlayerUuid));
 	const TSharedPtr<FJsonValue> JsonDeviceInfoField = (*Object)->TryGetField(TEXT("device_info"));
-	if (JsonDeviceInfoField.IsValid() && !JsonDeviceInfoField->IsNull())
+	if (JsonDeviceInfoField.IsValid())
 	{
-		DeviceInfo_IsSet = TryGetJsonValue(JsonDeviceInfoField, DeviceInfo_Optional);
+		DeviceInfo_IsNull = JsonDeviceInfoField->IsNull();
+		DeviceInfo_IsSet = DeviceInfo_IsNull || TryGetJsonValue(JsonDeviceInfoField, DeviceInfo_Optional);
 		ParseSuccess &= DeviceInfo_IsSet;
 	}
 

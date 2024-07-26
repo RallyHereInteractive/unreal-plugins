@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_PersonEmailListRequest : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief List of all email list ids the user is subscribed to, even if already subscribed before request */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -54,15 +54,17 @@ struct RALLYHEREAPI_API FRHAPI_PersonEmailListRequest : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of EmailListIds_Optional and returns true if it has been set, otherwise returns false */
 	bool GetEmailListIds(TArray<int32>& OutValue) const { if (EmailListIds_IsSet) OutValue = EmailListIds_Optional; return EmailListIds_IsSet; }
 	/** @brief Returns a pointer to EmailListIds_Optional, if it has been set, otherwise returns nullptr */
-	TArray<int32>* GetEmailListIdsOrNull() { if (EmailListIds_IsSet) return &EmailListIds_Optional; return nullptr; }
+	TArray<int32>* GetEmailListIdsOrNull() { if (EmailListIds_IsSet) return (&EmailListIds_Optional); return nullptr; }
 	/** @brief Returns a pointer to EmailListIds_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<int32>* GetEmailListIdsOrNull() const { if (EmailListIds_IsSet) return &EmailListIds_Optional; return nullptr; }
+	const TArray<int32>* GetEmailListIdsOrNull() const { if (EmailListIds_IsSet) return (&EmailListIds_Optional); return nullptr; }
 	/** @brief Sets the value of EmailListIds_Optional and also sets EmailListIds_IsSet to true */
-	void SetEmailListIds(const TArray<int32>& NewValue) { EmailListIds_Optional = NewValue; EmailListIds_IsSet = true; }
+	void SetEmailListIds(const TArray<int32>& NewValue) { EmailListIds_Optional = NewValue; EmailListIds_IsSet = true;  }
 	/** @brief Sets the value of EmailListIds_Optional and also sets EmailListIds_IsSet to true using move semantics */
-	void SetEmailListIds(TArray<int32>&& NewValue) { EmailListIds_Optional = NewValue; EmailListIds_IsSet = true; }
-	 /** @brief Clears the value of EmailListIds_Optional and sets EmailListIds_IsSet to false */
-	void ClearEmailListIds() { EmailListIds_IsSet = false; }
+	void SetEmailListIds(TArray<int32>&& NewValue) { EmailListIds_Optional = NewValue; EmailListIds_IsSet = true;  }
+	/** @brief Clears the value of EmailListIds_Optional and sets EmailListIds_IsSet to false */
+	void ClearEmailListIds() { EmailListIds_IsSet = false;  }
+	/** @brief Checks whether EmailListIds_Optional has been set */
+	bool IsEmailListIdsSet() const { return EmailListIds_IsSet; }
 };
 
 /** @} */

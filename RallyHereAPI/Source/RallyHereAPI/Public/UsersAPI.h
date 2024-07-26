@@ -17,7 +17,6 @@
 #include "HzApiErrorModel.h"
 #include "LoginHistoryPage.h"
 #include "LookupResults.h"
-#include "MessageOnly.h"
 #include "PersonEmailListRequest.h"
 #include "PersonEmailListResponse.h"
 #include "PersonInfoResponse.h"
@@ -32,7 +31,6 @@
 #include "PurgeRequest.h"
 #include "PurgeResponse.h"
 #include "Role.h"
-#include "SendInBlueContact.h"
 #include "UpdatePersonInfoRequest.h"
 #include "UserLinkHistory.h"
 
@@ -183,9 +181,9 @@ struct RALLYHEREAPI_API FRequest_DequeueMeForPurge : public FRequest
 };
 
 /** The response type for FRequest_DequeueMeForPurge */
-struct RALLYHEREAPI_API FResponse_DequeueMeForPurge : public FResponseAccessorTemplate< FRHAPI_MessageOnly>
+struct RALLYHEREAPI_API FResponse_DequeueMeForPurge : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_MessageOnly> Super;
+	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel> Super;
 
 	FResponse_DequeueMeForPurge(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_DequeueMeForPurge() = default;
@@ -208,14 +206,9 @@ struct RALLYHEREAPI_API FResponse_DequeueMeForPurge : public FResponseAccessorTe
 	*/
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
-	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
-
-	/* Response 500
-	Internal Server Error
-	*/
-	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 };
 
@@ -249,7 +242,11 @@ struct RALLYHEREAPI_API Traits_DequeueMeForPurge
 
 /**
  * @brief Dequeue Person For Purge
- * Dequeue a Person that is queued to be purged. This will only work if the purge has not already begun. Requires permission: purge:person:admin
+ * Dequeue a Person that is queued to be purged. This will only work if the purge has not already begun. 
+ *     
+ * Required Permissions:
+ * 
+ * - For any person (including themselves) any of: `purge:*:*`, `purge:person:admin`
 */
 struct RALLYHEREAPI_API FRequest_DequeuePersonForPurge : public FRequest
 {
@@ -273,9 +270,9 @@ struct RALLYHEREAPI_API FRequest_DequeuePersonForPurge : public FRequest
 };
 
 /** The response type for FRequest_DequeuePersonForPurge */
-struct RALLYHEREAPI_API FResponse_DequeuePersonForPurge : public FResponseAccessorTemplate< FRHAPI_MessageOnly, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_DequeuePersonForPurge : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_MessageOnly, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_DequeuePersonForPurge(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_DequeuePersonForPurge() = default;
@@ -298,19 +295,14 @@ struct RALLYHEREAPI_API FResponse_DequeuePersonForPurge : public FResponseAccess
 	*/
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
-	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 422
 	Validation Error
 	*/
 	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-	/* Response 500
-	Internal Server Error
-	*/
-	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
@@ -682,6 +674,10 @@ struct RALLYHEREAPI_API Traits_FindPlatformUserById
 /**
  * @brief Get All Roles
  * Get all current roles. Including their custom_data and login_loot_rewards.
+ *     
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) : `role:read`
 */
 struct RALLYHEREAPI_API FRequest_GetAllRoles : public FRequest
 {
@@ -740,13 +736,8 @@ struct RALLYHEREAPI_API FResponse_GetAllRoles : public FResponseAccessorTemplate
 	*/
 	bool TryGetContentFor200(TArray<FRHAPI_Role>& OutContent) const;
 
-	/* Response 400
-	Bad Request
-	*/
-	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
-
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -783,6 +774,12 @@ struct RALLYHEREAPI_API Traits_GetAllRoles
 /**
  * @brief Get Link History
  * Get the Link history for a given user
+ *     
+ * Required Permissions:
+ * 
+ * - For any player, person or platform identity (including themselves) any of: `user:*`, `user:audit:any`
+ * 
+ * - For the player, person or platform identity themselves : `user:audit:self`
 */
 struct RALLYHEREAPI_API FRequest_GetLinkHistory : public FRequest
 {
@@ -904,6 +901,12 @@ struct RALLYHEREAPI_API Traits_GetLinkHistory
 /**
  * @brief Get Login History
  * Get the Login history for a given user
+ *     
+ * Required Permissions:
+ * 
+ * - For any player, person or platform identity (including themselves) any of: `user:*`, `user:audit:any`
+ * 
+ * - For the player, person or platform identity themselves : `user:audit:self`
 */
 struct RALLYHEREAPI_API FRequest_GetLoginHistory : public FRequest
 {
@@ -1043,9 +1046,9 @@ struct RALLYHEREAPI_API FRequest_GetPerson : public FRequest
 };
 
 /** The response type for FRequest_GetPerson */
-struct RALLYHEREAPI_API FResponse_GetPerson : public FResponseAccessorTemplate<FRHAPI_PersonInfoResponse, FRHAPI_MessageOnly, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_GetPerson : public FResponseAccessorTemplate<FRHAPI_PersonInfoResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PersonInfoResponse, FRHAPI_MessageOnly, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PersonInfoResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_GetPerson(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetPerson() = default;
@@ -1080,19 +1083,14 @@ struct RALLYHEREAPI_API FResponse_GetPerson : public FResponseAccessorTemplate<F
 	bool TryGetContentFor200(FRHAPI_PersonInfoResponse& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
-	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 422
 	Validation Error
 	*/
 	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-	/* Response 500
-	Internal Server Error
-	*/
-	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
@@ -1150,9 +1148,9 @@ struct RALLYHEREAPI_API FRequest_GetPersonEmailList : public FRequest
 };
 
 /** The response type for FRequest_GetPersonEmailList */
-struct RALLYHEREAPI_API FResponse_GetPersonEmailList : public FResponseAccessorTemplate<FRHAPI_PersonEmailListResponse, FRHAPI_MessageOnly, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_GetPersonEmailList : public FResponseAccessorTemplate<FRHAPI_PersonEmailListResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PersonEmailListResponse, FRHAPI_MessageOnly, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PersonEmailListResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_GetPersonEmailList(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetPersonEmailList() = default;
@@ -1187,19 +1185,14 @@ struct RALLYHEREAPI_API FResponse_GetPersonEmailList : public FResponseAccessorT
 	bool TryGetContentFor200(FRHAPI_PersonEmailListResponse& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
-	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 422
 	Validation Error
 	*/
 	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-	/* Response 500
-	Internal Server Error
-	*/
-	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
@@ -1256,9 +1249,9 @@ struct RALLYHEREAPI_API FRequest_GetPersonEmailListForSelf : public FRequest
 };
 
 /** The response type for FRequest_GetPersonEmailListForSelf */
-struct RALLYHEREAPI_API FResponse_GetPersonEmailListForSelf : public FResponseAccessorTemplate<FRHAPI_PersonEmailListResponse, FRHAPI_MessageOnly>
+struct RALLYHEREAPI_API FResponse_GetPersonEmailListForSelf : public FResponseAccessorTemplate<FRHAPI_PersonEmailListResponse, FRHAPI_HzApiErrorModel>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PersonEmailListResponse, FRHAPI_MessageOnly> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PersonEmailListResponse, FRHAPI_HzApiErrorModel> Super;
 
 	FResponse_GetPersonEmailListForSelf(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetPersonEmailListForSelf() = default;
@@ -1293,14 +1286,9 @@ struct RALLYHEREAPI_API FResponse_GetPersonEmailListForSelf : public FResponseAc
 	bool TryGetContentFor200(FRHAPI_PersonEmailListResponse& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
-	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
-
-	/* Response 500
-	Internal Server Error
-	*/
-	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 };
 
@@ -1357,9 +1345,9 @@ struct RALLYHEREAPI_API FRequest_GetPersonForSelf : public FRequest
 };
 
 /** The response type for FRequest_GetPersonForSelf */
-struct RALLYHEREAPI_API FResponse_GetPersonForSelf : public FResponseAccessorTemplate<FRHAPI_PersonInfoResponse, FRHAPI_MessageOnly>
+struct RALLYHEREAPI_API FResponse_GetPersonForSelf : public FResponseAccessorTemplate<FRHAPI_PersonInfoResponse, FRHAPI_HzApiErrorModel>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PersonInfoResponse, FRHAPI_MessageOnly> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PersonInfoResponse, FRHAPI_HzApiErrorModel> Super;
 
 	FResponse_GetPersonForSelf(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetPersonForSelf() = default;
@@ -1394,14 +1382,9 @@ struct RALLYHEREAPI_API FResponse_GetPersonForSelf : public FResponseAccessorTem
 	bool TryGetContentFor200(FRHAPI_PersonInfoResponse& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
-	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
-
-	/* Response 500
-	Internal Server Error
-	*/
-	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 };
 
@@ -2386,6 +2369,10 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerIdV2
  * @brief Get Players Paged
  * Iterate over all players.  This is a paginated API, so you will need to call it multiple times to get all players.
  * There is no guaranteed ordering of players.  So if you need to run multiple iterations for comparison, you will need to sort the results.
+ * 
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `user:*`, `user:player:iterate`
 */
 struct RALLYHEREAPI_API FRequest_GetPlayersPaged : public FRequest
 {
@@ -2412,9 +2399,9 @@ struct RALLYHEREAPI_API FRequest_GetPlayersPaged : public FRequest
 };
 
 /** The response type for FRequest_GetPlayersPaged */
-struct RALLYHEREAPI_API FResponse_GetPlayersPaged : public FResponseAccessorTemplate<FRHAPI_PlayerIterateResponse, FRHAPI_MessageOnly, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_GetPlayersPaged : public FResponseAccessorTemplate<FRHAPI_PlayerIterateResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PlayerIterateResponse, FRHAPI_MessageOnly, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerIterateResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_GetPlayersPaged(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetPlayersPaged() = default;
@@ -2451,22 +2438,17 @@ struct RALLYHEREAPI_API FResponse_GetPlayersPaged : public FResponseAccessorTemp
 	/* Response 400
 	Bad Request
 	*/
-	bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
-	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 422
 	Validation Error
 	*/
 	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-	/* Response 500
-	Internal Server Error
-	*/
-	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
@@ -2523,9 +2505,9 @@ struct RALLYHEREAPI_API FRequest_GetQueuePurgeStatusForMe : public FRequest
 };
 
 /** The response type for FRequest_GetQueuePurgeStatusForMe */
-struct RALLYHEREAPI_API FResponse_GetQueuePurgeStatusForMe : public FResponseAccessorTemplate<FRHAPI_PurgeResponse, FRHAPI_MessageOnly, FRHAPI_HzApiErrorModel>
+struct RALLYHEREAPI_API FResponse_GetQueuePurgeStatusForMe : public FResponseAccessorTemplate<FRHAPI_PurgeResponse, FRHAPI_HzApiErrorModel>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PurgeResponse, FRHAPI_MessageOnly, FRHAPI_HzApiErrorModel> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PurgeResponse, FRHAPI_HzApiErrorModel> Super;
 
 	FResponse_GetQueuePurgeStatusForMe(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetQueuePurgeStatusForMe() = default;
@@ -2560,19 +2542,14 @@ struct RALLYHEREAPI_API FResponse_GetQueuePurgeStatusForMe : public FResponseAcc
 	bool TryGetContentFor200(FRHAPI_PurgeResponse& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
-	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 404
 	Not Found
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 500
-	Internal Server Error
-	*/
-	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
@@ -2606,7 +2583,11 @@ struct RALLYHEREAPI_API Traits_GetQueuePurgeStatusForMe
 
 /**
  * @brief Get Queue Purge Status For Person
- * Get the purge status for a person. Requires permission: purge:person:admin
+ * Get the purge status for a person. 
+ *     
+ * Required Permissions:
+ * 
+ * - For any person (including themselves) any of: `purge:*:*`, `purge:person:admin`
 */
 struct RALLYHEREAPI_API FRequest_GetQueuePurgeStatusForPerson : public FRequest
 {
@@ -2630,9 +2611,9 @@ struct RALLYHEREAPI_API FRequest_GetQueuePurgeStatusForPerson : public FRequest
 };
 
 /** The response type for FRequest_GetQueuePurgeStatusForPerson */
-struct RALLYHEREAPI_API FResponse_GetQueuePurgeStatusForPerson : public FResponseAccessorTemplate<FRHAPI_PurgeResponse, FRHAPI_MessageOnly, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_GetQueuePurgeStatusForPerson : public FResponseAccessorTemplate<FRHAPI_PurgeResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PurgeResponse, FRHAPI_MessageOnly, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PurgeResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_GetQueuePurgeStatusForPerson(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetQueuePurgeStatusForPerson() = default;
@@ -2667,9 +2648,9 @@ struct RALLYHEREAPI_API FResponse_GetQueuePurgeStatusForPerson : public FRespons
 	bool TryGetContentFor200(FRHAPI_PurgeResponse& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
-	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 404
 	Not Found
@@ -2680,11 +2661,6 @@ struct RALLYHEREAPI_API FResponse_GetQueuePurgeStatusForPerson : public FRespons
 	Validation Error
 	*/
 	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-	/* Response 500
-	Internal Server Error
-	*/
-	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
@@ -2968,9 +2944,9 @@ struct RALLYHEREAPI_API FRequest_QueueMeForPurge : public FRequest
 };
 
 /** The response type for FRequest_QueueMeForPurge */
-struct RALLYHEREAPI_API FResponse_QueueMeForPurge : public FResponseAccessorTemplate<FRHAPI_PurgeResponse, FRHAPI_MessageOnly, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_QueueMeForPurge : public FResponseAccessorTemplate<FRHAPI_PurgeResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PurgeResponse, FRHAPI_MessageOnly, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PurgeResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_QueueMeForPurge(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_QueueMeForPurge() = default;
@@ -3005,9 +2981,9 @@ struct RALLYHEREAPI_API FResponse_QueueMeForPurge : public FResponseAccessorTemp
 	bool TryGetContentFor202(FRHAPI_PurgeResponse& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
-	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 409
 	Conflict
@@ -3018,11 +2994,6 @@ struct RALLYHEREAPI_API FResponse_QueueMeForPurge : public FResponseAccessorTemp
 	Validation Error
 	*/
 	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-	/* Response 500
-	Internal Server Error
-	*/
-	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
@@ -3056,7 +3027,11 @@ struct RALLYHEREAPI_API Traits_QueueMeForPurge
 
 /**
  * @brief Queue Person For Purge
- * Queue a person for purging. This can occur up to a configured amount of time in the future or can occur immediately depending on `suggested_purge_time`. Requires permission: purge:person:admin
+ * Queue a person for purging. This can occur up to a configured amount of time in the future or can occur immediately depending on `suggested_purge_time`.
+ * 
+ * Required Permissions:
+ * 
+ * - For any person (including themselves) any of: `purge:*:*`, `purge:person:admin`
 */
 struct RALLYHEREAPI_API FRequest_QueuePersonForPurge : public FRequest
 {
@@ -3081,9 +3056,9 @@ struct RALLYHEREAPI_API FRequest_QueuePersonForPurge : public FRequest
 };
 
 /** The response type for FRequest_QueuePersonForPurge */
-struct RALLYHEREAPI_API FResponse_QueuePersonForPurge : public FResponseAccessorTemplate<FRHAPI_PurgeResponse, FRHAPI_MessageOnly, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_QueuePersonForPurge : public FResponseAccessorTemplate<FRHAPI_PurgeResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PurgeResponse, FRHAPI_MessageOnly, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PurgeResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_QueuePersonForPurge(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_QueuePersonForPurge() = default;
@@ -3118,19 +3093,14 @@ struct RALLYHEREAPI_API FResponse_QueuePersonForPurge : public FResponseAccessor
 	bool TryGetContentFor202(FRHAPI_PurgeResponse& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
-	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 422
 	Validation Error
 	*/
 	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-	/* Response 500
-	Internal Server Error
-	*/
-	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
@@ -3298,9 +3268,9 @@ struct RALLYHEREAPI_API FRequest_UpdatePerson : public FRequest
 };
 
 /** The response type for FRequest_UpdatePerson */
-struct RALLYHEREAPI_API FResponse_UpdatePerson : public FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_MessageOnly, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_UpdatePerson : public FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_MessageOnly, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_UpdatePerson(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_UpdatePerson() = default;
@@ -3335,19 +3305,14 @@ struct RALLYHEREAPI_API FResponse_UpdatePerson : public FResponseAccessorTemplat
 	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
-	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 422
 	Validation Error
 	*/
 	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-	/* Response 500
-	Internal Server Error
-	*/
-	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
@@ -3406,9 +3371,9 @@ struct RALLYHEREAPI_API FRequest_UpdatePersonEmailList : public FRequest
 };
 
 /** The response type for FRequest_UpdatePersonEmailList */
-struct RALLYHEREAPI_API FResponse_UpdatePersonEmailList : public FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_MessageOnly, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_UpdatePersonEmailList : public FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_MessageOnly, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_UpdatePersonEmailList(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_UpdatePersonEmailList() = default;
@@ -3443,19 +3408,14 @@ struct RALLYHEREAPI_API FResponse_UpdatePersonEmailList : public FResponseAccess
 	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
-	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 422
 	Validation Error
 	*/
 	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-	/* Response 500
-	Internal Server Error
-	*/
-	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
@@ -3513,9 +3473,9 @@ struct RALLYHEREAPI_API FRequest_UpdatePersonEmailListForSelf : public FRequest
 };
 
 /** The response type for FRequest_UpdatePersonEmailListForSelf */
-struct RALLYHEREAPI_API FResponse_UpdatePersonEmailListForSelf : public FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_MessageOnly, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_UpdatePersonEmailListForSelf : public FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_MessageOnly, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_UpdatePersonEmailListForSelf(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_UpdatePersonEmailListForSelf() = default;
@@ -3550,19 +3510,14 @@ struct RALLYHEREAPI_API FResponse_UpdatePersonEmailListForSelf : public FRespons
 	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
-	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 422
 	Validation Error
 	*/
 	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-	/* Response 500
-	Internal Server Error
-	*/
-	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
@@ -3620,9 +3575,9 @@ struct RALLYHEREAPI_API FRequest_UpdatePersonForSelf : public FRequest
 };
 
 /** The response type for FRequest_UpdatePersonForSelf */
-struct RALLYHEREAPI_API FResponse_UpdatePersonForSelf : public FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_MessageOnly, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_UpdatePersonForSelf : public FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_MessageOnly, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_UpdatePersonForSelf(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_UpdatePersonForSelf() = default;
@@ -3657,19 +3612,14 @@ struct RALLYHEREAPI_API FResponse_UpdatePersonForSelf : public FResponseAccessor
 	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
-	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 422
 	Validation Error
 	*/
 	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-	/* Response 500
-	Internal Server Error
-	*/
-	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 
 };
 
@@ -3685,113 +3635,6 @@ struct RALLYHEREAPI_API Traits_UpdatePersonForSelf
 	typedef FResponse_UpdatePersonForSelf Response;
 	/** The delegate type, triggered by the response */
 	typedef FDelegate_UpdatePersonForSelf Delegate;
-	/** The API object that supports this API call */
-	typedef FUsersAPI API;
-	/** A human readable name for this API call */
-	static FString Name;
-
-	/**
-	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
-	 * @param [in] InAPI The API object the call will be made with
-	 * @param [in] InRequest The request to submit to the API call
-	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
-	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
-	 * @return A http request object, if the call was successfully queued.
-	 */
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
-};
-
-/**
- * @brief Upsert Contact
- * Create or update a contact with SendInBlue, Requires permission: user:sendinblue:write
-*/
-struct RALLYHEREAPI_API FRequest_UpsertContact : public FRequest
-{
-	FRequest_UpsertContact();
-	virtual ~FRequest_UpsertContact() = default;
-	
-	/** @brief Given a http request, apply data and settings from this request object to it */
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	/** @brief Compute the URL path for this request instance */
-	FString ComputePath() const override;
-	/** @brief Get the simplified URL path for this request, not including the verb */
-	FName GetSimplifiedPath() const override;
-	/** @brief Get the simplified URL path for this request, including the verb */
-	FName GetSimplifiedPathWithVerb() const override;
-	/** @brief Get the auth context used for this request */
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	/** The specified auth context to use for this request */
-	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_SendInBlueContact SendInBlueContact;
-};
-
-/** The response type for FRequest_UpsertContact */
-struct RALLYHEREAPI_API FResponse_UpsertContact : public FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_MessageOnly, FRHAPI_HTTPValidationError>
-{
-	typedef FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_MessageOnly, FRHAPI_HTTPValidationError> Super;
-
-	FResponse_UpsertContact(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_UpsertContact() = default;
-	
-	/** @brief Parse out response content into local storage from a given JsonValue */
-	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	/** @brief Parse out header information for later usage */
-	virtual bool ParseHeaders() override;
-	/** @brief Gets the description of the response code */
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	/** Default Response Content */
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_JsonValue Content;
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	/** @brief Attempt to retrieve the content in the default response */
-	bool TryGetDefaultContent(FRHAPI_JsonValue& OutContent) const { return TryGetContent<FRHAPI_JsonValue>(OutContent); }
-	/** @brief Attempt to retrieve the content in the default response */
-	bool TryGetDefaultContent(TOptional<FRHAPI_JsonValue>& OutContent) const { return TryGetContent<FRHAPI_JsonValue>(OutContent); }
-	/** @brief Attempt to retrieve the content in the default response */
-	const FRHAPI_JsonValue* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_JsonValue>(); }
-	/** @brief Attempt to retrieve the content in the default response */
-	TOptional<FRHAPI_JsonValue> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_JsonValue>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-	/* Response 500
-	Internal Server Error
-	*/
-	bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
-
-};
-
-/** The delegate class for FRequest_UpsertContact */
-DECLARE_DELEGATE_OneParam(FDelegate_UpsertContact, const FResponse_UpsertContact&);
-
-/** @brief A helper metadata object for UpsertContact that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
-struct RALLYHEREAPI_API Traits_UpsertContact
-{
-	/** The request type */
-	typedef FRequest_UpsertContact Request;
-	/** The response type */
-	typedef FResponse_UpsertContact Response;
-	/** The delegate type, triggered by the response */
-	typedef FDelegate_UpsertContact Delegate;
 	/** The API object that supports this API call */
 	typedef FUsersAPI API;
 	/** A human readable name for this API call */
@@ -3850,7 +3693,6 @@ public:
 	FHttpRequestPtr UpdatePersonEmailList(const FRequest_UpdatePersonEmailList& Request, const FDelegate_UpdatePersonEmailList& Delegate = FDelegate_UpdatePersonEmailList(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr UpdatePersonEmailListForSelf(const FRequest_UpdatePersonEmailListForSelf& Request, const FDelegate_UpdatePersonEmailListForSelf& Delegate = FDelegate_UpdatePersonEmailListForSelf(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr UpdatePersonForSelf(const FRequest_UpdatePersonForSelf& Request, const FDelegate_UpdatePersonForSelf& Delegate = FDelegate_UpdatePersonForSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr UpsertContact(const FRequest_UpsertContact& Request, const FDelegate_UpsertContact& Delegate = FDelegate_UpsertContact(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
 	void OnCreatePlatformUserByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreatePlatformUserById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
@@ -3887,7 +3729,6 @@ private:
 	void OnUpdatePersonEmailListResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdatePersonEmailList Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnUpdatePersonEmailListForSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdatePersonEmailListForSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnUpdatePersonForSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdatePersonForSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	void OnUpsertContactResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpsertContact Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 

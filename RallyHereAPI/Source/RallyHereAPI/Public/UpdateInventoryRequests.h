@@ -32,14 +32,14 @@ struct RALLYHEREAPI_API FRHAPI_UpdateInventoryRequests : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Source of this Inventory Operation. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -56,15 +56,17 @@ struct RALLYHEREAPI_API FRHAPI_UpdateInventoryRequests : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Source_Optional and returns true if it has been set, otherwise returns false */
 	bool GetSource(ERHAPI_Source& OutValue) const { if (Source_IsSet) OutValue = Source_Optional; return Source_IsSet; }
 	/** @brief Returns a pointer to Source_Optional, if it has been set, otherwise returns nullptr */
-	ERHAPI_Source* GetSourceOrNull() { if (Source_IsSet) return &Source_Optional; return nullptr; }
+	ERHAPI_Source* GetSourceOrNull() { if (Source_IsSet) return (&Source_Optional); return nullptr; }
 	/** @brief Returns a pointer to Source_Optional, if it has been set, otherwise returns nullptr */
-	const ERHAPI_Source* GetSourceOrNull() const { if (Source_IsSet) return &Source_Optional; return nullptr; }
+	const ERHAPI_Source* GetSourceOrNull() const { if (Source_IsSet) return (&Source_Optional); return nullptr; }
 	/** @brief Sets the value of Source_Optional and also sets Source_IsSet to true */
-	void SetSource(const ERHAPI_Source& NewValue) { Source_Optional = NewValue; Source_IsSet = true; }
+	void SetSource(const ERHAPI_Source& NewValue) { Source_Optional = NewValue; Source_IsSet = true;  }
 	/** @brief Sets the value of Source_Optional and also sets Source_IsSet to true using move semantics */
-	void SetSource(ERHAPI_Source&& NewValue) { Source_Optional = NewValue; Source_IsSet = true; }
-	 /** @brief Clears the value of Source_Optional and sets Source_IsSet to false */
-	void ClearSource() { Source_IsSet = false; }
+	void SetSource(ERHAPI_Source&& NewValue) { Source_Optional = NewValue; Source_IsSet = true;  }
+	/** @brief Clears the value of Source_Optional and sets Source_IsSet to false */
+	void ClearSource() { Source_IsSet = false;  }
+	/** @brief Checks whether Source_Optional has been set */
+	bool IsSourceSet() const { return Source_IsSet; }
 
 	/** @brief Arbitrary UUID that can be used by clients to correlate Order requests with Order responses. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -81,15 +83,17 @@ struct RALLYHEREAPI_API FRHAPI_UpdateInventoryRequests : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of ClientOrderRefId_Optional and returns true if it has been set, otherwise returns false */
 	bool GetClientOrderRefId(FGuid& OutValue) const { if (ClientOrderRefId_IsSet) OutValue = ClientOrderRefId_Optional; return ClientOrderRefId_IsSet; }
 	/** @brief Returns a pointer to ClientOrderRefId_Optional, if it has been set, otherwise returns nullptr */
-	FGuid* GetClientOrderRefIdOrNull() { if (ClientOrderRefId_IsSet) return &ClientOrderRefId_Optional; return nullptr; }
+	FGuid* GetClientOrderRefIdOrNull() { if (ClientOrderRefId_IsSet) return (&ClientOrderRefId_Optional); return nullptr; }
 	/** @brief Returns a pointer to ClientOrderRefId_Optional, if it has been set, otherwise returns nullptr */
-	const FGuid* GetClientOrderRefIdOrNull() const { if (ClientOrderRefId_IsSet) return &ClientOrderRefId_Optional; return nullptr; }
+	const FGuid* GetClientOrderRefIdOrNull() const { if (ClientOrderRefId_IsSet) return (&ClientOrderRefId_Optional); return nullptr; }
 	/** @brief Sets the value of ClientOrderRefId_Optional and also sets ClientOrderRefId_IsSet to true */
-	void SetClientOrderRefId(const FGuid& NewValue) { ClientOrderRefId_Optional = NewValue; ClientOrderRefId_IsSet = true; }
+	void SetClientOrderRefId(const FGuid& NewValue) { ClientOrderRefId_Optional = NewValue; ClientOrderRefId_IsSet = true;  }
 	/** @brief Sets the value of ClientOrderRefId_Optional and also sets ClientOrderRefId_IsSet to true using move semantics */
-	void SetClientOrderRefId(FGuid&& NewValue) { ClientOrderRefId_Optional = NewValue; ClientOrderRefId_IsSet = true; }
-	 /** @brief Clears the value of ClientOrderRefId_Optional and sets ClientOrderRefId_IsSet to false */
-	void ClearClientOrderRefId() { ClientOrderRefId_IsSet = false; }
+	void SetClientOrderRefId(FGuid&& NewValue) { ClientOrderRefId_Optional = NewValue; ClientOrderRefId_IsSet = true;  }
+	/** @brief Clears the value of ClientOrderRefId_Optional and sets ClientOrderRefId_IsSet to false */
+	void ClearClientOrderRefId() { ClientOrderRefId_IsSet = false;  }
+	/** @brief Checks whether ClientOrderRefId_Optional has been set */
+	bool IsClientOrderRefIdSet() const { return ClientOrderRefId_IsSet; }
 
 	/** @brief Collection of Update Inventory Requests. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -99,9 +103,9 @@ struct RALLYHEREAPI_API FRHAPI_UpdateInventoryRequests : public FRHAPI_Model
 	/** @brief Gets the value of Inventory */
 	const TArray<FRHAPI_UpdateInventoryRequestById>& GetInventory() const { return Inventory; }
 	/** @brief Sets the value of Inventory */
-	void SetInventory(const TArray<FRHAPI_UpdateInventoryRequestById>& NewValue) { Inventory = NewValue;  }
+	void SetInventory(const TArray<FRHAPI_UpdateInventoryRequestById>& NewValue) { Inventory = NewValue;   }
 	/** @brief Sets the value of Inventory using move semantics */
-	void SetInventory(TArray<FRHAPI_UpdateInventoryRequestById>&& NewValue) { Inventory = NewValue;  }
+	void SetInventory(TArray<FRHAPI_UpdateInventoryRequestById>&& NewValue) { Inventory = NewValue;   }
 };
 
 /** @} */

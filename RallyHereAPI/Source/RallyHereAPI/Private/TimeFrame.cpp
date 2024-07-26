@@ -68,41 +68,41 @@ bool FRHAPI_TimeFrame::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonNameField = (*Object)->TryGetField(TEXT("name"));
-	if (JsonNameField.IsValid() && !JsonNameField->IsNull())
+	if (JsonNameField.IsValid())
 	{
 		Name_IsSet = TryGetJsonValue(JsonNameField, Name_Optional);
 		ParseSuccess &= Name_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonActiveField = (*Object)->TryGetField(TEXT("active"));
-	if (JsonActiveField.IsValid() && !JsonActiveField->IsNull())
+	if (JsonActiveField.IsValid())
 	{
 		Active_IsSet = TryGetJsonValue(JsonActiveField, Active_Optional);
 		ParseSuccess &= Active_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonEpisodeField = (*Object)->TryGetField(TEXT("episode"));
-	if (JsonEpisodeField.IsValid() && !JsonEpisodeField->IsNull())
+	if (JsonEpisodeField.IsValid())
 	{
 		Episode_IsSet = TryGetJsonValue(JsonEpisodeField, Episode_Optional);
 		ParseSuccess &= Episode_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonEpisodeTypeField = (*Object)->TryGetField(TEXT("episode_type"));
-	if (JsonEpisodeTypeField.IsValid() && !JsonEpisodeTypeField->IsNull())
+	if (JsonEpisodeTypeField.IsValid())
 	{
 		EpisodeType_IsSet = TryGetJsonValue(JsonEpisodeTypeField, EpisodeType_Optional);
 		ParseSuccess &= EpisodeType_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonHourIntervalField = (*Object)->TryGetField(TEXT("hour_interval"));
-	if (JsonHourIntervalField.IsValid() && !JsonHourIntervalField->IsNull())
+	if (JsonHourIntervalField.IsValid())
 	{
 		HourInterval_IsSet = TryGetJsonValue(JsonHourIntervalField, HourInterval_Optional);
 		ParseSuccess &= HourInterval_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonStartField = (*Object)->TryGetField(TEXT("start"));
-	ParseSuccess &= JsonStartField.IsValid() && !JsonStartField->IsNull() && TryGetJsonValue(JsonStartField, Start);
+	ParseSuccess &= JsonStartField.IsValid() && (!JsonStartField->IsNull() &&  TryGetJsonValue(JsonStartField, Start));
 	const TSharedPtr<FJsonValue> JsonEndField = (*Object)->TryGetField(TEXT("end"));
-	ParseSuccess &= JsonEndField.IsValid() && !JsonEndField->IsNull() && TryGetJsonValue(JsonEndField, End);
+	ParseSuccess &= JsonEndField.IsValid() && (!JsonEndField->IsNull() &&  TryGetJsonValue(JsonEndField, End));
 	const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
-	if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
+	if (JsonCacheInfoField.IsValid())
 	{
 		CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
 		ParseSuccess &= CacheInfo_IsSet;

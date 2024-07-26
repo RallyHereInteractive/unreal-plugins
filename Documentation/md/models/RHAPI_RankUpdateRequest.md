@@ -24,8 +24,8 @@ DEPRECATED A request body to calculate and update players&#39; ratings from a ma
 `public int32 `[`RankId`](#structFRHAPI__RankUpdateRequest_1ab9ce37215c4e7070a1a676f767e078dc) | ID for the rank type used in this match.
 `public int32 `[`MatchLengthSeconds`](#structFRHAPI__RankUpdateRequest_1adae1542db62db6b7689c428aa14e4692) | How many seconds the match lasted.
 `public TArray< `[`FRHAPI_RankedTeam`](RHAPI_RankedTeam.md#structFRHAPI__RankedTeam)` > `[`Teams`](#structFRHAPI__RankUpdateRequest_1a5df6b65300c1e31bc647d0bc8f1ab7eb) | List of teams that participated in this match.
-`public virtual bool `[`FromJson`](#structFRHAPI__RankUpdateRequest_1ad07807033b1c34300bb454b20e4e6152)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__RankUpdateRequest_1adfd80782f4915996120f962a25809ed7)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__RankUpdateRequest_1a5bf5679924195a78832f02146e9f68d2)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__RankUpdateRequest_1a92e057f20f86c89bb230301512cfab57)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetInstanceId`](#structFRHAPI__RankUpdateRequest_1a59e9769e02bf85fad053d49bd81168e5)`()` | Gets the value of InstanceId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetInstanceId`](#structFRHAPI__RankUpdateRequest_1a69935ac6780c45d40fa8c15e07366035)`() const` | Gets the value of InstanceId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetInstanceId`](#structFRHAPI__RankUpdateRequest_1a27007ef16eb3b6177c6521b0777a677e)`(const FString & DefaultValue) const` | Gets the value of InstanceId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -35,6 +35,7 @@ DEPRECATED A request body to calculate and update players&#39; ratings from a ma
 `public inline void `[`SetInstanceId`](#structFRHAPI__RankUpdateRequest_1a9a2e732f263d7c2ccc688ab0b85836b5)`(const FString & NewValue)` | Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true.
 `public inline void `[`SetInstanceId`](#structFRHAPI__RankUpdateRequest_1aaed0b6e61fc02abea7d82ccb1d8b1f92)`(FString && NewValue)` | Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true using move semantics.
 `public inline void `[`ClearInstanceId`](#structFRHAPI__RankUpdateRequest_1aa84c3fd36883c09c7587d4db5455e84b)`()` | Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false.
+`public inline bool `[`IsInstanceIdSet`](#structFRHAPI__RankUpdateRequest_1ac2d173461639c021b3d8d32200cd2871)`() const` | Checks whether InstanceId_Optional has been set.
 `public inline int32 & `[`GetRankId`](#structFRHAPI__RankUpdateRequest_1a086ceba2c60a0d6c3c66890f56ea748e)`()` | Gets the value of RankId.
 `public inline const int32 & `[`GetRankId`](#structFRHAPI__RankUpdateRequest_1afb5c7a89156d6ed273fd1db6d25588f7)`() const` | Gets the value of RankId.
 `public inline void `[`SetRankId`](#structFRHAPI__RankUpdateRequest_1ac911af516164652a809343afb64ef4a9)`(const int32 & NewValue)` | Sets the value of RankId.
@@ -74,7 +75,7 @@ How many seconds the match lasted.
 
 List of teams that participated in this match.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__RankUpdateRequest_1ad07807033b1c34300bb454b20e4e6152)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__RankUpdateRequest_1ad07807033b1c34300bb454b20e4e6152"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__RankUpdateRequest_1a5bf5679924195a78832f02146e9f68d2)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__RankUpdateRequest_1a5bf5679924195a78832f02146e9f68d2"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -84,7 +85,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__RankUpdateRequest_1adfd80782f4915996120f962a25809ed7)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__RankUpdateRequest_1adfd80782f4915996120f962a25809ed7"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__RankUpdateRequest_1a92e057f20f86c89bb230301512cfab57)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__RankUpdateRequest_1a92e057f20f86c89bb230301512cfab57"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -126,6 +127,10 @@ Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true usi
 #### `public inline void `[`ClearInstanceId`](#structFRHAPI__RankUpdateRequest_1aa84c3fd36883c09c7587d4db5455e84b)`()` <a id="structFRHAPI__RankUpdateRequest_1aa84c3fd36883c09c7587d4db5455e84b"></a>
 
 Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false.
+
+#### `public inline bool `[`IsInstanceIdSet`](#structFRHAPI__RankUpdateRequest_1ac2d173461639c021b3d8d32200cd2871)`() const` <a id="structFRHAPI__RankUpdateRequest_1ac2d173461639c021b3d8d32200cd2871"></a>
+
+Checks whether InstanceId_Optional has been set.
 
 #### `public inline int32 & `[`GetRankId`](#structFRHAPI__RankUpdateRequest_1a086ceba2c60a0d6c3c66890f56ea748e)`()` <a id="structFRHAPI__RankUpdateRequest_1a086ceba2c60a0d6c3c66890f56ea748e"></a>
 

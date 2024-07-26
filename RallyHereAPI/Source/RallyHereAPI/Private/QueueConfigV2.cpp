@@ -47,15 +47,15 @@ bool FRHAPI_QueueConfigV2::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonQueueIdField = (*Object)->TryGetField(TEXT("queue_id"));
-	ParseSuccess &= JsonQueueIdField.IsValid() && !JsonQueueIdField->IsNull() && TryGetJsonValue(JsonQueueIdField, QueueId);
+	ParseSuccess &= JsonQueueIdField.IsValid() && (!JsonQueueIdField->IsNull() &&  TryGetJsonValue(JsonQueueIdField, QueueId));
 	const TSharedPtr<FJsonValue> JsonActiveField = (*Object)->TryGetField(TEXT("active"));
-	ParseSuccess &= JsonActiveField.IsValid() && !JsonActiveField->IsNull() && TryGetJsonValue(JsonActiveField, Active);
+	ParseSuccess &= JsonActiveField.IsValid() && (!JsonActiveField->IsNull() &&  TryGetJsonValue(JsonActiveField, Active));
 	const TSharedPtr<FJsonValue> JsonMaxQueueGroupSizeField = (*Object)->TryGetField(TEXT("max_queue_group_size"));
-	ParseSuccess &= JsonMaxQueueGroupSizeField.IsValid() && !JsonMaxQueueGroupSizeField->IsNull() && TryGetJsonValue(JsonMaxQueueGroupSizeField, MaxQueueGroupSize);
+	ParseSuccess &= JsonMaxQueueGroupSizeField.IsValid() && (!JsonMaxQueueGroupSizeField->IsNull() &&  TryGetJsonValue(JsonMaxQueueGroupSizeField, MaxQueueGroupSize));
 	const TSharedPtr<FJsonValue> JsonMatchMakingTemplateGroupIdField = (*Object)->TryGetField(TEXT("match_making_template_group_id"));
-	ParseSuccess &= JsonMatchMakingTemplateGroupIdField.IsValid() && !JsonMatchMakingTemplateGroupIdField->IsNull() && TryGetJsonValue(JsonMatchMakingTemplateGroupIdField, MatchMakingTemplateGroupId);
+	ParseSuccess &= JsonMatchMakingTemplateGroupIdField.IsValid() && (!JsonMatchMakingTemplateGroupIdField->IsNull() &&  TryGetJsonValue(JsonMatchMakingTemplateGroupIdField, MatchMakingTemplateGroupId));
 	const TSharedPtr<FJsonValue> JsonLegacyConfigField = (*Object)->TryGetField(TEXT("legacy_config"));
-	if (JsonLegacyConfigField.IsValid() && !JsonLegacyConfigField->IsNull())
+	if (JsonLegacyConfigField.IsValid())
 	{
 		LegacyConfig_IsSet = TryGetJsonValue(JsonLegacyConfigField, LegacyConfig_Optional);
 		ParseSuccess &= LegacyConfig_IsSet;

@@ -49,19 +49,19 @@ bool FRHAPI_LookupResults::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonDisplayNamesField = (*Object)->TryGetField(TEXT("display_names"));
-	if (JsonDisplayNamesField.IsValid() && !JsonDisplayNamesField->IsNull())
+	if (JsonDisplayNamesField.IsValid())
 	{
 		DisplayNames_IsSet = TryGetJsonValue(JsonDisplayNamesField, DisplayNames_Optional);
 		ParseSuccess &= DisplayNames_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonIdentityPlatformsField = (*Object)->TryGetField(TEXT("identity_platforms"));
-	if (JsonIdentityPlatformsField.IsValid() && !JsonIdentityPlatformsField->IsNull())
+	if (JsonIdentityPlatformsField.IsValid())
 	{
 		IdentityPlatforms_IsSet = TryGetJsonValue(JsonIdentityPlatformsField, IdentityPlatforms_Optional);
 		ParseSuccess &= IdentityPlatforms_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonIdentityPlatformsByPlatformField = (*Object)->TryGetField(TEXT("identity_platforms_by_platform"));
-	if (JsonIdentityPlatformsByPlatformField.IsValid() && !JsonIdentityPlatformsByPlatformField->IsNull())
+	if (JsonIdentityPlatformsByPlatformField.IsValid())
 	{
 		IdentityPlatformsByPlatform_IsSet = TryGetJsonValue(JsonIdentityPlatformsByPlatformField, IdentityPlatformsByPlatform_Optional);
 		ParseSuccess &= IdentityPlatformsByPlatform_IsSet;

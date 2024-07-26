@@ -56,27 +56,27 @@ bool FRHAPI_Role::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonRoleIdField = (*Object)->TryGetField(TEXT("role_id"));
-	ParseSuccess &= JsonRoleIdField.IsValid() && !JsonRoleIdField->IsNull() && TryGetJsonValue(JsonRoleIdField, RoleId);
+	ParseSuccess &= JsonRoleIdField.IsValid() && (!JsonRoleIdField->IsNull() &&  TryGetJsonValue(JsonRoleIdField, RoleId));
 	const TSharedPtr<FJsonValue> JsonLegacyRoleIdField = (*Object)->TryGetField(TEXT("legacy_role_id"));
-	if (JsonLegacyRoleIdField.IsValid() && !JsonLegacyRoleIdField->IsNull())
+	if (JsonLegacyRoleIdField.IsValid())
 	{
 		LegacyRoleId_IsSet = TryGetJsonValue(JsonLegacyRoleIdField, LegacyRoleId_Optional);
 		ParseSuccess &= LegacyRoleId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	if (JsonCustomDataField.IsValid())
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonAuthBypassField = (*Object)->TryGetField(TEXT("auth_bypass"));
-	if (JsonAuthBypassField.IsValid() && !JsonAuthBypassField->IsNull())
+	if (JsonAuthBypassField.IsValid())
 	{
 		AuthBypass_IsSet = TryGetJsonValue(JsonAuthBypassField, AuthBypass_Optional);
 		ParseSuccess &= AuthBypass_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonLoginLootRewardsField = (*Object)->TryGetField(TEXT("login_loot_rewards"));
-	if (JsonLoginLootRewardsField.IsValid() && !JsonLoginLootRewardsField->IsNull())
+	if (JsonLoginLootRewardsField.IsValid())
 	{
 		LoginLootRewards_IsSet = TryGetJsonValue(JsonLoginLootRewardsField, LoginLootRewards_Optional);
 		ParseSuccess &= LoginLootRewards_IsSet;

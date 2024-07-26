@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigRequestResponseV3 : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief List of rank configurations */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -48,9 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigRequestResponseV3 : public FRHAPI_Model
 	/** @brief Gets the value of RankConfigs */
 	const TArray<FRHAPI_RankConfigV3>& GetRankConfigs() const { return RankConfigs; }
 	/** @brief Sets the value of RankConfigs */
-	void SetRankConfigs(const TArray<FRHAPI_RankConfigV3>& NewValue) { RankConfigs = NewValue;  }
+	void SetRankConfigs(const TArray<FRHAPI_RankConfigV3>& NewValue) { RankConfigs = NewValue;   }
 	/** @brief Sets the value of RankConfigs using move semantics */
-	void SetRankConfigs(TArray<FRHAPI_RankConfigV3>&& NewValue) { RankConfigs = NewValue;  }
+	void SetRankConfigs(TArray<FRHAPI_RankConfigV3>&& NewValue) { RankConfigs = NewValue;   }
 };
 
 /** @} */

@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigV3 : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Human readable name for this rank */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -54,15 +54,17 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigV3 : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Name_Optional and returns true if it has been set, otherwise returns false */
 	bool GetName(FString& OutValue) const { if (Name_IsSet) OutValue = Name_Optional; return Name_IsSet; }
 	/** @brief Returns a pointer to Name_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetNameOrNull() { if (Name_IsSet) return &Name_Optional; return nullptr; }
+	FString* GetNameOrNull() { if (Name_IsSet) return (&Name_Optional); return nullptr; }
 	/** @brief Returns a pointer to Name_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetNameOrNull() const { if (Name_IsSet) return &Name_Optional; return nullptr; }
+	const FString* GetNameOrNull() const { if (Name_IsSet) return (&Name_Optional); return nullptr; }
 	/** @brief Sets the value of Name_Optional and also sets Name_IsSet to true */
-	void SetName(const FString& NewValue) { Name_Optional = NewValue; Name_IsSet = true; }
+	void SetName(const FString& NewValue) { Name_Optional = NewValue; Name_IsSet = true;  }
 	/** @brief Sets the value of Name_Optional and also sets Name_IsSet to true using move semantics */
-	void SetName(FString&& NewValue) { Name_Optional = NewValue; Name_IsSet = true; }
-	 /** @brief Clears the value of Name_Optional and sets Name_IsSet to false */
-	void ClearName() { Name_IsSet = false; }
+	void SetName(FString&& NewValue) { Name_Optional = NewValue; Name_IsSet = true;  }
+	/** @brief Clears the value of Name_Optional and sets Name_IsSet to false */
+	void ClearName() { Name_IsSet = false;  }
+	/** @brief Checks whether Name_Optional has been set */
+	bool IsNameSet() const { return Name_IsSet; }
 
 	/** @brief Description of this rank */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -79,15 +81,17 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigV3 : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Description_Optional and returns true if it has been set, otherwise returns false */
 	bool GetDescription(FString& OutValue) const { if (Description_IsSet) OutValue = Description_Optional; return Description_IsSet; }
 	/** @brief Returns a pointer to Description_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetDescriptionOrNull() { if (Description_IsSet) return &Description_Optional; return nullptr; }
+	FString* GetDescriptionOrNull() { if (Description_IsSet) return (&Description_Optional); return nullptr; }
 	/** @brief Returns a pointer to Description_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetDescriptionOrNull() const { if (Description_IsSet) return &Description_Optional; return nullptr; }
+	const FString* GetDescriptionOrNull() const { if (Description_IsSet) return (&Description_Optional); return nullptr; }
 	/** @brief Sets the value of Description_Optional and also sets Description_IsSet to true */
-	void SetDescription(const FString& NewValue) { Description_Optional = NewValue; Description_IsSet = true; }
+	void SetDescription(const FString& NewValue) { Description_Optional = NewValue; Description_IsSet = true;  }
 	/** @brief Sets the value of Description_Optional and also sets Description_IsSet to true using move semantics */
-	void SetDescription(FString&& NewValue) { Description_Optional = NewValue; Description_IsSet = true; }
-	 /** @brief Clears the value of Description_Optional and sets Description_IsSet to false */
-	void ClearDescription() { Description_IsSet = false; }
+	void SetDescription(FString&& NewValue) { Description_Optional = NewValue; Description_IsSet = true;  }
+	/** @brief Clears the value of Description_Optional and sets Description_IsSet to false */
+	void ClearDescription() { Description_IsSet = false;  }
+	/** @brief Checks whether Description_Optional has been set */
+	bool IsDescriptionSet() const { return Description_IsSet; }
 
 	/** @brief Custom data about this rank */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -104,15 +108,17 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigV3 : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
 	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
-	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
-	void ClearCustomData() { CustomData_IsSet = false; }
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 
 	/** @brief The maximum mu value achievable. Any attempts to update a rank value to be higher than this get clamped to the maximum */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -122,9 +128,9 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigV3 : public FRHAPI_Model
 	/** @brief Gets the value of MaxMu */
 	const float& GetMaxMu() const { return MaxMu; }
 	/** @brief Sets the value of MaxMu */
-	void SetMaxMu(const float& NewValue) { MaxMu = NewValue;  }
+	void SetMaxMu(const float& NewValue) { MaxMu = NewValue;   }
 	/** @brief Sets the value of MaxMu using move semantics */
-	void SetMaxMu(float&& NewValue) { MaxMu = NewValue;  }
+	void SetMaxMu(float&& NewValue) { MaxMu = NewValue;   }
 
 	/** @brief The minimum mu value achievable. Any attempts to update a rank value to be lower than this get clamped to the minimum */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -134,9 +140,9 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigV3 : public FRHAPI_Model
 	/** @brief Gets the value of MinMu */
 	const float& GetMinMu() const { return MinMu; }
 	/** @brief Sets the value of MinMu */
-	void SetMinMu(const float& NewValue) { MinMu = NewValue;  }
+	void SetMinMu(const float& NewValue) { MinMu = NewValue;   }
 	/** @brief Sets the value of MinMu using move semantics */
-	void SetMinMu(float&& NewValue) { MinMu = NewValue;  }
+	void SetMinMu(float&& NewValue) { MinMu = NewValue;   }
 
 	/** @brief The minimum sigma allowed. Any attempts to update sigma to be lower than this get clamped to the minimum */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -146,9 +152,9 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigV3 : public FRHAPI_Model
 	/** @brief Gets the value of MinSigma */
 	const float& GetMinSigma() const { return MinSigma; }
 	/** @brief Sets the value of MinSigma */
-	void SetMinSigma(const float& NewValue) { MinSigma = NewValue;  }
+	void SetMinSigma(const float& NewValue) { MinSigma = NewValue;   }
 	/** @brief Sets the value of MinSigma using move semantics */
-	void SetMinSigma(float&& NewValue) { MinSigma = NewValue;  }
+	void SetMinSigma(float&& NewValue) { MinSigma = NewValue;   }
 
 	/** @brief The distance between skill ranks that yields ~76% chance of winning. Recommended value is half the default sigma */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -165,15 +171,17 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigV3 : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Beta_Optional and returns true if it has been set, otherwise returns false */
 	bool GetBeta(float& OutValue) const { if (Beta_IsSet) OutValue = Beta_Optional; return Beta_IsSet; }
 	/** @brief Returns a pointer to Beta_Optional, if it has been set, otherwise returns nullptr */
-	float* GetBetaOrNull() { if (Beta_IsSet) return &Beta_Optional; return nullptr; }
+	float* GetBetaOrNull() { if (Beta_IsSet) return (&Beta_Optional); return nullptr; }
 	/** @brief Returns a pointer to Beta_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetBetaOrNull() const { if (Beta_IsSet) return &Beta_Optional; return nullptr; }
+	const float* GetBetaOrNull() const { if (Beta_IsSet) return (&Beta_Optional); return nullptr; }
 	/** @brief Sets the value of Beta_Optional and also sets Beta_IsSet to true */
-	void SetBeta(const float& NewValue) { Beta_Optional = NewValue; Beta_IsSet = true; }
+	void SetBeta(const float& NewValue) { Beta_Optional = NewValue; Beta_IsSet = true;  }
 	/** @brief Sets the value of Beta_Optional and also sets Beta_IsSet to true using move semantics */
-	void SetBeta(float&& NewValue) { Beta_Optional = NewValue; Beta_IsSet = true; }
-	 /** @brief Clears the value of Beta_Optional and sets Beta_IsSet to false */
-	void ClearBeta() { Beta_IsSet = false; }
+	void SetBeta(float&& NewValue) { Beta_Optional = NewValue; Beta_IsSet = true;  }
+	/** @brief Clears the value of Beta_Optional and sets Beta_IsSet to false */
+	void ClearBeta() { Beta_IsSet = false;  }
+	/** @brief Checks whether Beta_Optional has been set */
+	bool IsBetaSet() const { return Beta_IsSet; }
 
 	/** @brief The default mu value for this rank id. Will be used when players do not have any rank history */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -183,9 +191,9 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigV3 : public FRHAPI_Model
 	/** @brief Gets the value of DefaultMu */
 	const float& GetDefaultMu() const { return DefaultMu; }
 	/** @brief Sets the value of DefaultMu */
-	void SetDefaultMu(const float& NewValue) { DefaultMu = NewValue;  }
+	void SetDefaultMu(const float& NewValue) { DefaultMu = NewValue;   }
 	/** @brief Sets the value of DefaultMu using move semantics */
-	void SetDefaultMu(float&& NewValue) { DefaultMu = NewValue;  }
+	void SetDefaultMu(float&& NewValue) { DefaultMu = NewValue;   }
 
 	/** @brief The default sigma for this rank id. Will be used when players do not have any rank history */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -195,9 +203,9 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigV3 : public FRHAPI_Model
 	/** @brief Gets the value of DefaultSigma */
 	const float& GetDefaultSigma() const { return DefaultSigma; }
 	/** @brief Sets the value of DefaultSigma */
-	void SetDefaultSigma(const float& NewValue) { DefaultSigma = NewValue;  }
+	void SetDefaultSigma(const float& NewValue) { DefaultSigma = NewValue;   }
 	/** @brief Sets the value of DefaultSigma using move semantics */
-	void SetDefaultSigma(float&& NewValue) { DefaultSigma = NewValue;  }
+	void SetDefaultSigma(float&& NewValue) { DefaultSigma = NewValue;   }
 
 	/** @brief The percent probability of a draw occuring in the game. Must be in [0, 1) */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -214,15 +222,17 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigV3 : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of DrawProbability_Optional and returns true if it has been set, otherwise returns false */
 	bool GetDrawProbability(float& OutValue) const { if (DrawProbability_IsSet) OutValue = DrawProbability_Optional; return DrawProbability_IsSet; }
 	/** @brief Returns a pointer to DrawProbability_Optional, if it has been set, otherwise returns nullptr */
-	float* GetDrawProbabilityOrNull() { if (DrawProbability_IsSet) return &DrawProbability_Optional; return nullptr; }
+	float* GetDrawProbabilityOrNull() { if (DrawProbability_IsSet) return (&DrawProbability_Optional); return nullptr; }
 	/** @brief Returns a pointer to DrawProbability_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetDrawProbabilityOrNull() const { if (DrawProbability_IsSet) return &DrawProbability_Optional; return nullptr; }
+	const float* GetDrawProbabilityOrNull() const { if (DrawProbability_IsSet) return (&DrawProbability_Optional); return nullptr; }
 	/** @brief Sets the value of DrawProbability_Optional and also sets DrawProbability_IsSet to true */
-	void SetDrawProbability(const float& NewValue) { DrawProbability_Optional = NewValue; DrawProbability_IsSet = true; }
+	void SetDrawProbability(const float& NewValue) { DrawProbability_Optional = NewValue; DrawProbability_IsSet = true;  }
 	/** @brief Sets the value of DrawProbability_Optional and also sets DrawProbability_IsSet to true using move semantics */
-	void SetDrawProbability(float&& NewValue) { DrawProbability_Optional = NewValue; DrawProbability_IsSet = true; }
-	 /** @brief Clears the value of DrawProbability_Optional and sets DrawProbability_IsSet to false */
-	void ClearDrawProbability() { DrawProbability_IsSet = false; }
+	void SetDrawProbability(float&& NewValue) { DrawProbability_Optional = NewValue; DrawProbability_IsSet = true;  }
+	/** @brief Clears the value of DrawProbability_Optional and sets DrawProbability_IsSet to false */
+	void ClearDrawProbability() { DrawProbability_IsSet = false;  }
+	/** @brief Checks whether DrawProbability_Optional has been set */
+	bool IsDrawProbabilitySet() const { return DrawProbability_IsSet; }
 
 	/** @brief Factor that determines how quickly a player's sigma is adjusted. A larger tau will result in more volatile in ranks. Recommended value is is (default_sigma * .01) */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -239,15 +249,17 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigV3 : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Tau_Optional and returns true if it has been set, otherwise returns false */
 	bool GetTau(float& OutValue) const { if (Tau_IsSet) OutValue = Tau_Optional; return Tau_IsSet; }
 	/** @brief Returns a pointer to Tau_Optional, if it has been set, otherwise returns nullptr */
-	float* GetTauOrNull() { if (Tau_IsSet) return &Tau_Optional; return nullptr; }
+	float* GetTauOrNull() { if (Tau_IsSet) return (&Tau_Optional); return nullptr; }
 	/** @brief Returns a pointer to Tau_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetTauOrNull() const { if (Tau_IsSet) return &Tau_Optional; return nullptr; }
+	const float* GetTauOrNull() const { if (Tau_IsSet) return (&Tau_Optional); return nullptr; }
 	/** @brief Sets the value of Tau_Optional and also sets Tau_IsSet to true */
-	void SetTau(const float& NewValue) { Tau_Optional = NewValue; Tau_IsSet = true; }
+	void SetTau(const float& NewValue) { Tau_Optional = NewValue; Tau_IsSet = true;  }
 	/** @brief Sets the value of Tau_Optional and also sets Tau_IsSet to true using move semantics */
-	void SetTau(float&& NewValue) { Tau_Optional = NewValue; Tau_IsSet = true; }
-	 /** @brief Clears the value of Tau_Optional and sets Tau_IsSet to false */
-	void ClearTau() { Tau_IsSet = false; }
+	void SetTau(float&& NewValue) { Tau_Optional = NewValue; Tau_IsSet = true;  }
+	/** @brief Clears the value of Tau_Optional and sets Tau_IsSet to false */
+	void ClearTau() { Tau_IsSet = false;  }
+	/** @brief Checks whether Tau_Optional has been set */
+	bool IsTauSet() const { return Tau_IsSet; }
 
 	/** @brief ID for this rank type */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -257,9 +269,9 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigV3 : public FRHAPI_Model
 	/** @brief Gets the value of RankId */
 	const FString& GetRankId() const { return RankId; }
 	/** @brief Sets the value of RankId */
-	void SetRankId(const FString& NewValue) { RankId = NewValue;  }
+	void SetRankId(const FString& NewValue) { RankId = NewValue;   }
 	/** @brief Sets the value of RankId using move semantics */
-	void SetRankId(FString&& NewValue) { RankId = NewValue;  }
+	void SetRankId(FString&& NewValue) { RankId = NewValue;   }
 };
 
 /** @} */

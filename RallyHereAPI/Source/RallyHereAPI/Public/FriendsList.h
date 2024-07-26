@@ -32,14 +32,14 @@ struct RALLYHEREAPI_API FRHAPI_FriendsList : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid PlayerUuid{  };
@@ -48,9 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_FriendsList : public FRHAPI_Model
 	/** @brief Gets the value of PlayerUuid */
 	const FGuid& GetPlayerUuid() const { return PlayerUuid; }
 	/** @brief Sets the value of PlayerUuid */
-	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;  }
+	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;   }
 	/** @brief Sets the value of PlayerUuid using move semantics */
-	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;  }
+	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_FriendRelationship> Friends{  };
@@ -59,9 +59,9 @@ struct RALLYHEREAPI_API FRHAPI_FriendsList : public FRHAPI_Model
 	/** @brief Gets the value of Friends */
 	const TArray<FRHAPI_FriendRelationship>& GetFriends() const { return Friends; }
 	/** @brief Sets the value of Friends */
-	void SetFriends(const TArray<FRHAPI_FriendRelationship>& NewValue) { Friends = NewValue;  }
+	void SetFriends(const TArray<FRHAPI_FriendRelationship>& NewValue) { Friends = NewValue;   }
 	/** @brief Sets the value of Friends using move semantics */
-	void SetFriends(TArray<FRHAPI_FriendRelationship>&& NewValue) { Friends = NewValue;  }
+	void SetFriends(TArray<FRHAPI_FriendRelationship>&& NewValue) { Friends = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_PageMeta Page{  };
@@ -70,9 +70,9 @@ struct RALLYHEREAPI_API FRHAPI_FriendsList : public FRHAPI_Model
 	/** @brief Gets the value of Page */
 	const FRHAPI_PageMeta& GetPage() const { return Page; }
 	/** @brief Sets the value of Page */
-	void SetPage(const FRHAPI_PageMeta& NewValue) { Page = NewValue;  }
+	void SetPage(const FRHAPI_PageMeta& NewValue) { Page = NewValue;   }
 	/** @brief Sets the value of Page using move semantics */
-	void SetPage(FRHAPI_PageMeta&& NewValue) { Page = NewValue;  }
+	void SetPage(FRHAPI_PageMeta&& NewValue) { Page = NewValue;   }
 };
 
 /** @} */

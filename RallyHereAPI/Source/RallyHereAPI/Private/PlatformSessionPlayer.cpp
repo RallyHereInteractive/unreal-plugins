@@ -46,15 +46,15 @@ bool FRHAPI_PlatformSessionPlayer::FromJson(const TSharedPtr<FJsonValue>& JsonVa
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPlayerIdField = (*Object)->TryGetField(TEXT("player_id"));
-	if (JsonPlayerIdField.IsValid() && !JsonPlayerIdField->IsNull())
+	if (JsonPlayerIdField.IsValid())
 	{
 		PlayerId_IsSet = TryGetJsonValue(JsonPlayerIdField, PlayerId_Optional);
 		ParseSuccess &= PlayerId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
-	ParseSuccess &= JsonPlayerUuidField.IsValid() && !JsonPlayerUuidField->IsNull() && TryGetJsonValue(JsonPlayerUuidField, PlayerUuid);
+	ParseSuccess &= JsonPlayerUuidField.IsValid() && (!JsonPlayerUuidField->IsNull() &&  TryGetJsonValue(JsonPlayerUuidField, PlayerUuid));
 	const TSharedPtr<FJsonValue> JsonLeaderField = (*Object)->TryGetField(TEXT("leader"));
-	if (JsonLeaderField.IsValid() && !JsonLeaderField->IsNull())
+	if (JsonLeaderField.IsValid())
 	{
 		Leader_IsSet = TryGetJsonValue(JsonLeaderField, Leader_Optional);
 		ParseSuccess &= Leader_IsSet;

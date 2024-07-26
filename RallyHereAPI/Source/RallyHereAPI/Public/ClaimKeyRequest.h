@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_ClaimKeyRequest : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString ExternalKeyType_Optional{  };
@@ -53,19 +53,21 @@ struct RALLYHEREAPI_API FRHAPI_ClaimKeyRequest : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of ExternalKeyType_Optional and returns true if it has been set, otherwise returns false */
 	bool GetExternalKeyType(FString& OutValue) const { if (ExternalKeyType_IsSet) OutValue = ExternalKeyType_Optional; return ExternalKeyType_IsSet; }
 	/** @brief Returns a pointer to ExternalKeyType_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetExternalKeyTypeOrNull() { if (ExternalKeyType_IsSet) return &ExternalKeyType_Optional; return nullptr; }
+	FString* GetExternalKeyTypeOrNull() { if (ExternalKeyType_IsSet) return (&ExternalKeyType_Optional); return nullptr; }
 	/** @brief Returns a pointer to ExternalKeyType_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetExternalKeyTypeOrNull() const { if (ExternalKeyType_IsSet) return &ExternalKeyType_Optional; return nullptr; }
+	const FString* GetExternalKeyTypeOrNull() const { if (ExternalKeyType_IsSet) return (&ExternalKeyType_Optional); return nullptr; }
 	/** @brief Sets the value of ExternalKeyType_Optional and also sets ExternalKeyType_IsSet to true */
-	void SetExternalKeyType(const FString& NewValue) { ExternalKeyType_Optional = NewValue; ExternalKeyType_IsSet = true; }
+	void SetExternalKeyType(const FString& NewValue) { ExternalKeyType_Optional = NewValue; ExternalKeyType_IsSet = true;  }
 	/** @brief Sets the value of ExternalKeyType_Optional and also sets ExternalKeyType_IsSet to true using move semantics */
-	void SetExternalKeyType(FString&& NewValue) { ExternalKeyType_Optional = NewValue; ExternalKeyType_IsSet = true; }
-	 /** @brief Clears the value of ExternalKeyType_Optional and sets ExternalKeyType_IsSet to false */
-	void ClearExternalKeyType() { ExternalKeyType_Optional = TEXT("Type of the External Key"); ExternalKeyType_IsSet = false; }
+	void SetExternalKeyType(FString&& NewValue) { ExternalKeyType_Optional = NewValue; ExternalKeyType_IsSet = true;  }
+	/** @brief Clears the value of ExternalKeyType_Optional and sets ExternalKeyType_IsSet to false */
+	void ClearExternalKeyType() { ExternalKeyType_Optional = TEXT("Type of the External Key"); ExternalKeyType_IsSet = false;  }
+	/** @brief Checks whether ExternalKeyType_Optional has been set */
+	bool IsExternalKeyTypeSet() const { return ExternalKeyType_IsSet; }
 	/** @brief Returns true if ExternalKeyType_Optional is set and matches the default value */
 	bool IsExternalKeyTypeDefaultValue() const { return ExternalKeyType_IsSet && ExternalKeyType_Optional == TEXT("Type of the External Key"); }
 	/** @brief Sets the value of ExternalKeyType_Optional to its default and also sets ExternalKeyType_IsSet to true */
-	void SetExternalKeyTypeToDefault() { ExternalKeyType_Optional = TEXT("Type of the External Key"); ExternalKeyType_IsSet = true; }
+	void SetExternalKeyTypeToDefault() { SetExternalKeyType(TEXT("Type of the External Key")); }
 };
 
 /** @} */

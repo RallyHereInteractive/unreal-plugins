@@ -20,8 +20,8 @@ Request to update a person&#39;s info.
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public FString `[`Email`](#structFRHAPI__UpdatePersonInfoRequest_1af5a820fdad3bb4e59df07be959c7858e) | Email address to update to.
-`public virtual bool `[`FromJson`](#structFRHAPI__UpdatePersonInfoRequest_1a761aa4132a1c2e9a303b08d59d1e6197)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__UpdatePersonInfoRequest_1a27ed6dc5682a17500361ca5e956a9eaa)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__UpdatePersonInfoRequest_1ab271bcfd365918be206355786350fdf7)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__UpdatePersonInfoRequest_1a1bb8ac0bd4701974658495b231443f57)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1af78a67575dd9865d044c07949b497844)`()` | Gets the value of Email.
 `public inline const FString & `[`GetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1a45d6be43aae6a507a369fcd3a7bf6501)`() const` | Gets the value of Email.
 `public inline void `[`SetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1a645433b72c507ec2fe0e716b643527cb)`(const FString & NewValue)` | Sets the value of Email.
@@ -33,7 +33,7 @@ Request to update a person&#39;s info.
 
 Email address to update to.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__UpdatePersonInfoRequest_1a761aa4132a1c2e9a303b08d59d1e6197)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__UpdatePersonInfoRequest_1a761aa4132a1c2e9a303b08d59d1e6197"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__UpdatePersonInfoRequest_1ab271bcfd365918be206355786350fdf7)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__UpdatePersonInfoRequest_1ab271bcfd365918be206355786350fdf7"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -43,7 +43,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__UpdatePersonInfoRequest_1a27ed6dc5682a17500361ca5e956a9eaa)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__UpdatePersonInfoRequest_1a27ed6dc5682a17500361ca5e956a9eaa"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__UpdatePersonInfoRequest_1a1bb8ac0bd4701974658495b231443f57)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__UpdatePersonInfoRequest_1a1bb8ac0bd4701974658495b231443f57"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 

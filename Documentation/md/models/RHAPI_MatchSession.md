@@ -20,8 +20,9 @@ struct FRHAPI_MatchSession
 `public FString `[`SessionId`](#structFRHAPI__MatchSession_1a8b77d2997c9e8510dba7a59c146d84d0) | Session ID.
 `public FString `[`MatchmakingProfileId_Optional`](#structFRHAPI__MatchSession_1ab7e89caa19dfe366a75e457dcce9df84) | 
 `public bool `[`MatchmakingProfileId_IsSet`](#structFRHAPI__MatchSession_1aa41ad74778848a5236bae0c24c1bffc5) | true if MatchmakingProfileId_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__MatchSession_1a6a3b9a38f31bd1136e932684b590af10)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__MatchSession_1a61e05e90bad5f3222c0821e2011fc5dc)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public bool `[`MatchmakingProfileId_IsNull`](#structFRHAPI__MatchSession_1a11772773df94890a47bca6a1c5a03b28) | true if MatchmakingProfileId_Optional has been explicitly set to null
+`public virtual bool `[`FromJson`](#structFRHAPI__MatchSession_1a0ca3b9c6415fec3618b589c8a2790b5a)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__MatchSession_1a4453cde926ba30bcb940c682d908ea79)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetSessionId`](#structFRHAPI__MatchSession_1ac8973b2343878c9fceb6d310ed416da4)`()` | Gets the value of SessionId.
 `public inline const FString & `[`GetSessionId`](#structFRHAPI__MatchSession_1ab792f83bd80f35cc28398b868b32981a)`() const` | Gets the value of SessionId.
 `public inline void `[`SetSessionId`](#structFRHAPI__MatchSession_1a0de515a8e818ddb0fd9c47361a84e320)`(const FString & NewValue)` | Sets the value of SessionId.
@@ -35,6 +36,9 @@ struct FRHAPI_MatchSession
 `public inline void `[`SetMatchmakingProfileId`](#structFRHAPI__MatchSession_1a160b1b1d01e0b332e92dfde4d43a3725)`(const FString & NewValue)` | Sets the value of MatchmakingProfileId_Optional and also sets MatchmakingProfileId_IsSet to true.
 `public inline void `[`SetMatchmakingProfileId`](#structFRHAPI__MatchSession_1a80d3bdc3aa38fd0c8bcaac499eb26c38)`(FString && NewValue)` | Sets the value of MatchmakingProfileId_Optional and also sets MatchmakingProfileId_IsSet to true using move semantics.
 `public inline void `[`ClearMatchmakingProfileId`](#structFRHAPI__MatchSession_1a619a8b5b4a2c7348fd5a26f7c4b10caf)`()` | Clears the value of MatchmakingProfileId_Optional and sets MatchmakingProfileId_IsSet to false.
+`public inline bool `[`IsMatchmakingProfileIdSet`](#structFRHAPI__MatchSession_1a52b5e1c26a9078d4e341e74aec7b9f18)`() const` | Checks whether MatchmakingProfileId_Optional has been set.
+`public inline void `[`SetMatchmakingProfileIdToNull`](#structFRHAPI__MatchSession_1a0896d1f5e2b7e033ad847563c776bef2)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsMatchmakingProfileIdNull`](#structFRHAPI__MatchSession_1a41a832d6f035be1573b5be34d18c5dc9)`() const` | Checks whether MatchmakingProfileId_Optional is set to null.
 
 ### Members
 
@@ -48,7 +52,11 @@ Session ID.
 
 true if MatchmakingProfileId_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__MatchSession_1a6a3b9a38f31bd1136e932684b590af10)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__MatchSession_1a6a3b9a38f31bd1136e932684b590af10"></a>
+#### `public bool `[`MatchmakingProfileId_IsNull`](#structFRHAPI__MatchSession_1a11772773df94890a47bca6a1c5a03b28) <a id="structFRHAPI__MatchSession_1a11772773df94890a47bca6a1c5a03b28"></a>
+
+true if MatchmakingProfileId_Optional has been explicitly set to null
+
+#### `public virtual bool `[`FromJson`](#structFRHAPI__MatchSession_1a0ca3b9c6415fec3618b589c8a2790b5a)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__MatchSession_1a0ca3b9c6415fec3618b589c8a2790b5a"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -58,7 +66,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__MatchSession_1a61e05e90bad5f3222c0821e2011fc5dc)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__MatchSession_1a61e05e90bad5f3222c0821e2011fc5dc"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__MatchSession_1a4453cde926ba30bcb940c682d908ea79)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__MatchSession_1a4453cde926ba30bcb940c682d908ea79"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -116,4 +124,16 @@ Sets the value of MatchmakingProfileId_Optional and also sets MatchmakingProfile
 #### `public inline void `[`ClearMatchmakingProfileId`](#structFRHAPI__MatchSession_1a619a8b5b4a2c7348fd5a26f7c4b10caf)`()` <a id="structFRHAPI__MatchSession_1a619a8b5b4a2c7348fd5a26f7c4b10caf"></a>
 
 Clears the value of MatchmakingProfileId_Optional and sets MatchmakingProfileId_IsSet to false.
+
+#### `public inline bool `[`IsMatchmakingProfileIdSet`](#structFRHAPI__MatchSession_1a52b5e1c26a9078d4e341e74aec7b9f18)`() const` <a id="structFRHAPI__MatchSession_1a52b5e1c26a9078d4e341e74aec7b9f18"></a>
+
+Checks whether MatchmakingProfileId_Optional has been set.
+
+#### `public inline void `[`SetMatchmakingProfileIdToNull`](#structFRHAPI__MatchSession_1a0896d1f5e2b7e033ad847563c776bef2)`()` <a id="structFRHAPI__MatchSession_1a0896d1f5e2b7e033ad847563c776bef2"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsMatchmakingProfileIdNull`](#structFRHAPI__MatchSession_1a41a832d6f035be1573b5be34d18c5dc9)`() const` <a id="structFRHAPI__MatchSession_1a41a832d6f035be1573b5be34d18c5dc9"></a>
+
+Checks whether MatchmakingProfileId_Optional is set to null.
 

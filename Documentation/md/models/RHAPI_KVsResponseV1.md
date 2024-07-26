@@ -21,8 +21,8 @@ struct FRHAPI_KVsResponseV1
 `public bool `[`Kvs_IsSet`](#structFRHAPI__KVsResponseV1_1ac74ddfb8d6d3a75bfd9f1267380790b4) | true if Kvs_Optional has been set to a value
 `public TArray< `[`FRHAPI_KVV1`](RHAPI_KVV1.md#structFRHAPI__KVV1)` > `[`SecretKvs_Optional`](#structFRHAPI__KVsResponseV1_1aeaf4e42d75bb2c22939063c4ece1d22e) | The list of secret key/value pairs.
 `public bool `[`SecretKvs_IsSet`](#structFRHAPI__KVsResponseV1_1a1e80a2c6accd456e8d993cba8b74f704) | true if SecretKvs_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__KVsResponseV1_1a652b39727a8f973113da7d83fe9969aa)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__KVsResponseV1_1a25765fb93d1f23014ce2ade5b965f1c8)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__KVsResponseV1_1ad50aed82c32961cc5f6489b5c9e1f5d8)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__KVsResponseV1_1aa19e033c0c2fce3e6336ac272de7d4ec)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< `[`FRHAPI_KVV1`](RHAPI_KVV1.md#structFRHAPI__KVV1)` > & `[`GetKvs`](#structFRHAPI__KVsResponseV1_1aebc7e45e43b9e866220239c093744296)`()` | Gets the value of Kvs_Optional, regardless of it having been set.
 `public inline const TArray< `[`FRHAPI_KVV1`](RHAPI_KVV1.md#structFRHAPI__KVV1)` > & `[`GetKvs`](#structFRHAPI__KVsResponseV1_1ad66953bc728790daffa11dbb9e9f8609)`() const` | Gets the value of Kvs_Optional, regardless of it having been set.
 `public inline const TArray< `[`FRHAPI_KVV1`](RHAPI_KVV1.md#structFRHAPI__KVV1)` > & `[`GetKvs`](#structFRHAPI__KVsResponseV1_1a007312b70175dba0a4500ef787252cf9)`(const TArray< `[`FRHAPI_KVV1`](RHAPI_KVV1.md#structFRHAPI__KVV1)` > & DefaultValue) const` | Gets the value of Kvs_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -32,6 +32,7 @@ struct FRHAPI_KVsResponseV1
 `public inline void `[`SetKvs`](#structFRHAPI__KVsResponseV1_1a06ec866582f72b0508fc8c89de9404a1)`(const TArray< `[`FRHAPI_KVV1`](RHAPI_KVV1.md#structFRHAPI__KVV1)` > & NewValue)` | Sets the value of Kvs_Optional and also sets Kvs_IsSet to true.
 `public inline void `[`SetKvs`](#structFRHAPI__KVsResponseV1_1aa386c4a0412fe7baa7fdd5b974fbe468)`(TArray< `[`FRHAPI_KVV1`](RHAPI_KVV1.md#structFRHAPI__KVV1)` > && NewValue)` | Sets the value of Kvs_Optional and also sets Kvs_IsSet to true using move semantics.
 `public inline void `[`ClearKvs`](#structFRHAPI__KVsResponseV1_1a7465f01d1c4c2984037bcb54bf40cf59)`()` | Clears the value of Kvs_Optional and sets Kvs_IsSet to false.
+`public inline bool `[`IsKvsSet`](#structFRHAPI__KVsResponseV1_1aeafe07793dc565852f5f1769bcc7c0d6)`() const` | Checks whether Kvs_Optional has been set.
 `public inline TArray< `[`FRHAPI_KVV1`](RHAPI_KVV1.md#structFRHAPI__KVV1)` > & `[`GetSecretKvs`](#structFRHAPI__KVsResponseV1_1a4046e4bda45db1b8b03fb8d38f821137)`()` | Gets the value of SecretKvs_Optional, regardless of it having been set.
 `public inline const TArray< `[`FRHAPI_KVV1`](RHAPI_KVV1.md#structFRHAPI__KVV1)` > & `[`GetSecretKvs`](#structFRHAPI__KVsResponseV1_1a64235bf384336afe0d2ea6e424a0a139)`() const` | Gets the value of SecretKvs_Optional, regardless of it having been set.
 `public inline const TArray< `[`FRHAPI_KVV1`](RHAPI_KVV1.md#structFRHAPI__KVV1)` > & `[`GetSecretKvs`](#structFRHAPI__KVsResponseV1_1a6b8db2c5703fcdc1745466c4d3a3a748)`(const TArray< `[`FRHAPI_KVV1`](RHAPI_KVV1.md#structFRHAPI__KVV1)` > & DefaultValue) const` | Gets the value of SecretKvs_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -41,6 +42,7 @@ struct FRHAPI_KVsResponseV1
 `public inline void `[`SetSecretKvs`](#structFRHAPI__KVsResponseV1_1ab1d67394c13286d2f111d5c0d1ba8ec6)`(const TArray< `[`FRHAPI_KVV1`](RHAPI_KVV1.md#structFRHAPI__KVV1)` > & NewValue)` | Sets the value of SecretKvs_Optional and also sets SecretKvs_IsSet to true.
 `public inline void `[`SetSecretKvs`](#structFRHAPI__KVsResponseV1_1a576192ef45052a4efb24463b40da06a2)`(TArray< `[`FRHAPI_KVV1`](RHAPI_KVV1.md#structFRHAPI__KVV1)` > && NewValue)` | Sets the value of SecretKvs_Optional and also sets SecretKvs_IsSet to true using move semantics.
 `public inline void `[`ClearSecretKvs`](#structFRHAPI__KVsResponseV1_1a025ac2d03f64ce986ac5b4ea9acd4902)`()` | Clears the value of SecretKvs_Optional and sets SecretKvs_IsSet to false.
+`public inline bool `[`IsSecretKvsSet`](#structFRHAPI__KVsResponseV1_1aea72a3b91a1e14271af201720b97f070)`() const` | Checks whether SecretKvs_Optional has been set.
 
 ### Members
 
@@ -60,7 +62,7 @@ The list of secret key/value pairs.
 
 true if SecretKvs_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__KVsResponseV1_1a652b39727a8f973113da7d83fe9969aa)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__KVsResponseV1_1a652b39727a8f973113da7d83fe9969aa"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__KVsResponseV1_1ad50aed82c32961cc5f6489b5c9e1f5d8)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__KVsResponseV1_1ad50aed82c32961cc5f6489b5c9e1f5d8"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -70,7 +72,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__KVsResponseV1_1a25765fb93d1f23014ce2ade5b965f1c8)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__KVsResponseV1_1a25765fb93d1f23014ce2ade5b965f1c8"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__KVsResponseV1_1aa19e033c0c2fce3e6336ac272de7d4ec)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__KVsResponseV1_1aa19e033c0c2fce3e6336ac272de7d4ec"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -113,6 +115,10 @@ Sets the value of Kvs_Optional and also sets Kvs_IsSet to true using move semant
 
 Clears the value of Kvs_Optional and sets Kvs_IsSet to false.
 
+#### `public inline bool `[`IsKvsSet`](#structFRHAPI__KVsResponseV1_1aeafe07793dc565852f5f1769bcc7c0d6)`() const` <a id="structFRHAPI__KVsResponseV1_1aeafe07793dc565852f5f1769bcc7c0d6"></a>
+
+Checks whether Kvs_Optional has been set.
+
 #### `public inline TArray< `[`FRHAPI_KVV1`](RHAPI_KVV1.md#structFRHAPI__KVV1)` > & `[`GetSecretKvs`](#structFRHAPI__KVsResponseV1_1a4046e4bda45db1b8b03fb8d38f821137)`()` <a id="structFRHAPI__KVsResponseV1_1a4046e4bda45db1b8b03fb8d38f821137"></a>
 
 Gets the value of SecretKvs_Optional, regardless of it having been set.
@@ -148,4 +154,8 @@ Sets the value of SecretKvs_Optional and also sets SecretKvs_IsSet to true using
 #### `public inline void `[`ClearSecretKvs`](#structFRHAPI__KVsResponseV1_1a025ac2d03f64ce986ac5b4ea9acd4902)`()` <a id="structFRHAPI__KVsResponseV1_1a025ac2d03f64ce986ac5b4ea9acd4902"></a>
 
 Clears the value of SecretKvs_Optional and sets SecretKvs_IsSet to false.
+
+#### `public inline bool `[`IsSecretKvsSet`](#structFRHAPI__KVsResponseV1_1aea72a3b91a1e14271af201720b97f070)`() const` <a id="structFRHAPI__KVsResponseV1_1aea72a3b91a1e14271af201720b97f070"></a>
+
+Checks whether SecretKvs_Optional has been set.
 

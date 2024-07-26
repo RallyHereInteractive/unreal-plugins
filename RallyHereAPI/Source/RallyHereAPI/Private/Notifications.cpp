@@ -41,13 +41,13 @@ bool FRHAPI_Notifications::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonNotificationsField = (*Object)->TryGetField(TEXT("notifications"));
-	if (JsonNotificationsField.IsValid() && !JsonNotificationsField->IsNull())
+	if (JsonNotificationsField.IsValid())
 	{
 		Notifications_IsSet = TryGetJsonValue(JsonNotificationsField, Notifications_Optional);
 		ParseSuccess &= Notifications_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCursorField = (*Object)->TryGetField(TEXT("cursor"));
-	ParseSuccess &= JsonCursorField.IsValid() && !JsonCursorField->IsNull() && TryGetJsonValue(JsonCursorField, Cursor);
+	ParseSuccess &= JsonCursorField.IsValid() && (!JsonCursorField->IsNull() &&  TryGetJsonValue(JsonCursorField, Cursor));
 
 	return ParseSuccess;
 }

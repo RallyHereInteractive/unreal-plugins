@@ -54,25 +54,25 @@ bool FRHAPI_PlayerPresenceUpdateSelf::FromJson(const TSharedPtr<FJsonValue>& Jso
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonStatusField = (*Object)->TryGetField(TEXT("status"));
-	if (JsonStatusField.IsValid() && !JsonStatusField->IsNull())
+	if (JsonStatusField.IsValid())
 	{
 		Status_IsSet = TryGetJsonValue(JsonStatusField, Status_Optional);
 		ParseSuccess &= Status_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonMessageField = (*Object)->TryGetField(TEXT("message"));
-	if (JsonMessageField.IsValid() && !JsonMessageField->IsNull())
+	if (JsonMessageField.IsValid())
 	{
 		Message_IsSet = TryGetJsonValue(JsonMessageField, Message_Optional);
 		ParseSuccess &= Message_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonDoNotDisturbField = (*Object)->TryGetField(TEXT("do_not_disturb"));
-	if (JsonDoNotDisturbField.IsValid() && !JsonDoNotDisturbField->IsNull())
+	if (JsonDoNotDisturbField.IsValid())
 	{
 		DoNotDisturb_IsSet = TryGetJsonValue(JsonDoNotDisturbField, DoNotDisturb_Optional);
 		ParseSuccess &= DoNotDisturb_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	if (JsonCustomDataField.IsValid())
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;

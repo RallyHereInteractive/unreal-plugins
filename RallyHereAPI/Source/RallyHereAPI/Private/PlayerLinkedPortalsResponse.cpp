@@ -38,9 +38,9 @@ bool FRHAPI_PlayerLinkedPortalsResponse::FromJson(const TSharedPtr<FJsonValue>& 
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPlayerField = (*Object)->TryGetField(TEXT("player"));
-	ParseSuccess &= JsonPlayerField.IsValid() && !JsonPlayerField->IsNull() && TryGetJsonValue(JsonPlayerField, Player);
+	ParseSuccess &= JsonPlayerField.IsValid() && (!JsonPlayerField->IsNull() &&  TryGetJsonValue(JsonPlayerField, Player));
 	const TSharedPtr<FJsonValue> JsonLinkedPortalsField = (*Object)->TryGetField(TEXT("linked_portals"));
-	ParseSuccess &= JsonLinkedPortalsField.IsValid() && !JsonLinkedPortalsField->IsNull() && TryGetJsonValue(JsonLinkedPortalsField, LinkedPortals);
+	ParseSuccess &= JsonLinkedPortalsField.IsValid() && (!JsonLinkedPortalsField->IsNull() &&  TryGetJsonValue(JsonLinkedPortalsField, LinkedPortals));
 
 	return ParseSuccess;
 }

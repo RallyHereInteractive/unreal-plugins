@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_Region : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief ID for this region */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -47,9 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_Region : public FRHAPI_Model
 	/** @brief Gets the value of RegionId */
 	const FString& GetRegionId() const { return RegionId; }
 	/** @brief Sets the value of RegionId */
-	void SetRegionId(const FString& NewValue) { RegionId = NewValue;  }
+	void SetRegionId(const FString& NewValue) { RegionId = NewValue;   }
 	/** @brief Sets the value of RegionId using move semantics */
-	void SetRegionId(FString&& NewValue) { RegionId = NewValue;  }
+	void SetRegionId(FString&& NewValue) { RegionId = NewValue;   }
 
 	/** @brief The sorting priority order for this region */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -59,13 +59,13 @@ struct RALLYHEREAPI_API FRHAPI_Region : public FRHAPI_Model
 	/** @brief Gets the value of SortOrder */
 	const int32& GetSortOrder() const { return SortOrder; }
 	/** @brief Sets the value of SortOrder */
-	void SetSortOrder(const int32& NewValue) { SortOrder = NewValue;  }
+	void SetSortOrder(const int32& NewValue) { SortOrder = NewValue;   }
 	/** @brief Sets the value of SortOrder using move semantics */
-	void SetSortOrder(int32&& NewValue) { SortOrder = NewValue;  }
+	void SetSortOrder(int32&& NewValue) { SortOrder = NewValue;   }
 	/** @brief Returns true if SortOrder matches the default value */
 	bool IsSortOrderDefaultValue() const { return SortOrder == 0; }
 	/** @brief Sets the value of SortOrder to its default  */
-	void SetSortOrderToDefault() { SortOrder = 0;  }
+	void SetSortOrderToDefault() { SetSortOrder(0); }
 
 	/** @brief Indicates if the region is for custom games only */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -75,13 +75,13 @@ struct RALLYHEREAPI_API FRHAPI_Region : public FRHAPI_Model
 	/** @brief Gets the value of CustomOnly */
 	const bool& GetCustomOnly() const { return CustomOnly; }
 	/** @brief Sets the value of CustomOnly */
-	void SetCustomOnly(const bool& NewValue) { CustomOnly = NewValue;  }
+	void SetCustomOnly(const bool& NewValue) { CustomOnly = NewValue;   }
 	/** @brief Sets the value of CustomOnly using move semantics */
-	void SetCustomOnly(bool&& NewValue) { CustomOnly = NewValue;  }
+	void SetCustomOnly(bool&& NewValue) { CustomOnly = NewValue;   }
 	/** @brief Returns true if CustomOnly matches the default value */
 	bool IsCustomOnlyDefaultValue() const { return CustomOnly == false; }
 	/** @brief Sets the value of CustomOnly to its default  */
-	void SetCustomOnlyToDefault() { CustomOnly = false;  }
+	void SetCustomOnlyToDefault() { SetCustomOnly(false); }
 
 	/** @brief Text description of the region */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -98,15 +98,17 @@ struct RALLYHEREAPI_API FRHAPI_Region : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Description_Optional and returns true if it has been set, otherwise returns false */
 	bool GetDescription(FString& OutValue) const { if (Description_IsSet) OutValue = Description_Optional; return Description_IsSet; }
 	/** @brief Returns a pointer to Description_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetDescriptionOrNull() { if (Description_IsSet) return &Description_Optional; return nullptr; }
+	FString* GetDescriptionOrNull() { if (Description_IsSet) return (&Description_Optional); return nullptr; }
 	/** @brief Returns a pointer to Description_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetDescriptionOrNull() const { if (Description_IsSet) return &Description_Optional; return nullptr; }
+	const FString* GetDescriptionOrNull() const { if (Description_IsSet) return (&Description_Optional); return nullptr; }
 	/** @brief Sets the value of Description_Optional and also sets Description_IsSet to true */
-	void SetDescription(const FString& NewValue) { Description_Optional = NewValue; Description_IsSet = true; }
+	void SetDescription(const FString& NewValue) { Description_Optional = NewValue; Description_IsSet = true;  }
 	/** @brief Sets the value of Description_Optional and also sets Description_IsSet to true using move semantics */
-	void SetDescription(FString&& NewValue) { Description_Optional = NewValue; Description_IsSet = true; }
-	 /** @brief Clears the value of Description_Optional and sets Description_IsSet to false */
-	void ClearDescription() { Description_IsSet = false; }
+	void SetDescription(FString&& NewValue) { Description_Optional = NewValue; Description_IsSet = true;  }
+	/** @brief Clears the value of Description_Optional and sets Description_IsSet to false */
+	void ClearDescription() { Description_IsSet = false;  }
+	/** @brief Checks whether Description_Optional has been set */
+	bool IsDescriptionSet() const { return Description_IsSet; }
 };
 
 /** @} */

@@ -170,7 +170,7 @@ FString FResponse_DeleteAllPlayerIdSettingsForSettingType::GetHttpResponseCodeDe
 	case 400:
 		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator ");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         ");
 	case 422:
@@ -498,7 +498,7 @@ FString FResponse_DeleteAllPlayerUuidSettingsForSettingType::GetHttpResponseCode
 	case 400:
 		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator ");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         ");
 	case 422:
@@ -825,7 +825,7 @@ FString FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf::GetHttpResponse
 	case 400:
 		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator ");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         ");
 	case 422:
@@ -1154,7 +1154,7 @@ FString FResponse_DeleteSinglePlayerIdSetting::GetHttpResponseCodeDescription(EH
 	case 400:
 		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator ");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         ");
 	case 422:
@@ -1483,7 +1483,7 @@ FString FResponse_DeleteSinglePlayerUuidSetting::GetHttpResponseCodeDescription(
 	case 400:
 		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator ");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         ");
 	case 422:
@@ -1811,7 +1811,7 @@ FString FResponse_DeleteSinglePlayerUuidSettingSelf::GetHttpResponseCodeDescript
 	case 400:
 		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator ");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         ");
 	case 422:
@@ -2147,7 +2147,7 @@ FString FResponse_GetAllPlayerIdSettingsForSettingType::GetHttpResponseCodeDescr
 	case 400:
 		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator ");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found         ");
 	case 422:
@@ -2483,7 +2483,7 @@ FString FResponse_GetAllPlayerUuidSettingsForSettingType::GetHttpResponseCodeDes
 	case 400:
 		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator ");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found         ");
 	case 422:
@@ -2818,7 +2818,7 @@ FString FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::GetHttpResponseCod
 	case 400:
 		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator ");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found         ");
 	case 422:
@@ -3137,6 +3137,8 @@ FString FResponse_GetConfigForAllSettingTypes::GetHttpResponseCodeDescription(EH
 	{
 	case 200:
 		return TEXT("Successful Response");
+	case 403:
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -3155,6 +3157,8 @@ bool FResponse_GetConfigForAllSettingTypes::ParseHeaders()
 	switch ((int)GetHttpResponseCode())
 	{
 	case 200:
+		break;
+	case 403:
 		break;
 	default:
 		break;
@@ -3175,6 +3179,18 @@ bool FResponse_GetConfigForAllSettingTypes::TryGetContentFor200(TMap<FString, FR
 	return TryGetContent(OutContent);
 }
 
+bool FResponse_GetConfigForAllSettingTypes::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 403)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
 bool FResponse_GetConfigForAllSettingTypes::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	bool bParsed = false;
@@ -3187,6 +3203,16 @@ bool FResponse_GetConfigForAllSettingTypes::FromJson(const TSharedPtr<FJsonValue
 				if (TryGetJsonValue(JsonValue, Object))
 				{
 					ParsedContent.Set<TMap<FString, FRHAPI_SettingType>>(Object);
+					bParsed = true;
+				}
+				break;
+			} 
+		case 403:
+			{
+				FRHAPI_HzApiErrorModel Object;
+				if (TryGetJsonValue(JsonValue, Object))
+				{
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 					bParsed = true;
 				}
 				break;
@@ -3361,7 +3387,7 @@ FString FResponse_GetConfigForSingleSettingTypeAllVersions::GetHttpResponseCodeD
 	case 200:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found         ");
 	case 422:
@@ -3663,7 +3689,7 @@ FString FResponse_GetConfigForSingleSettingTypeAndVersion::GetHttpResponseCodeDe
 	case 200:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;setting_version_id_not_found&#x60; - The setting Version was not found for that type         ");
 	case 422:
@@ -3968,7 +3994,7 @@ FString FResponse_GetSinglePlayerIdSetting::GetHttpResponseCodeDescription(EHttp
 	case 400:
 		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator ");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;not_found&#x60; - The setting key was not found         ");
 	case 422:
@@ -4297,7 +4323,7 @@ FString FResponse_GetSinglePlayerUuidSetting::GetHttpResponseCodeDescription(EHt
 	case 400:
 		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator ");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;not_found&#x60; - The setting key was not found         ");
 	case 422:
@@ -4625,7 +4651,7 @@ FString FResponse_GetSinglePlayerUuidSettingSelf::GetHttpResponseCodeDescription
 	case 400:
 		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator ");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;not_found&#x60; - The setting key was not found         ");
 	case 422:
@@ -4965,7 +4991,7 @@ FString FResponse_SetSinglePlayerIdSetting::GetHttpResponseCodeDescription(EHttp
 	case 400:
 		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator - &#x60;setting_version_invalid&#x60; - Setting Version is not valid for the provided type - &#x60;update_not_enabled&#x60; - Setting Type Version has updates disabled - &#x60;setting_key_invalid&#x60; - Setting Key does not meet requirements for that type/version - &#x60;setting_value_invalid&#x60; - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details ");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist - This will only occur for legacy setting types.         ");
 	case 422:
@@ -5331,7 +5357,7 @@ FString FResponse_SetSinglePlayerUuidSetting::GetHttpResponseCodeDescription(EHt
 	case 400:
 		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator - &#x60;setting_version_invalid&#x60; - Setting Version is not valid for the provided type - &#x60;update_not_enabled&#x60; - Setting Type Version has updates disabled - &#x60;setting_key_invalid&#x60; - Setting Key does not meet requirements for that type/version - &#x60;setting_value_invalid&#x60; - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details ");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist - This will only occur for legacy setting types.         ");
 	case 422:
@@ -5696,7 +5722,7 @@ FString FResponse_SetSinglePlayerUuidSettingSelf::GetHttpResponseCodeDescription
 	case 400:
 		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator - &#x60;setting_version_invalid&#x60; - Setting Version is not valid for the provided type - &#x60;update_not_enabled&#x60; - Setting Type Version has updates disabled - &#x60;setting_key_invalid&#x60; - Setting Key does not meet requirements for that type/version - &#x60;setting_value_invalid&#x60; - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details ");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist - This will only occur for legacy setting types.         ");
 	case 422:

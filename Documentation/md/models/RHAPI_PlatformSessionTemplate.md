@@ -26,8 +26,8 @@ Template used to create new platform sessions for a specific type of platform. C
 `public bool `[`MaxPlayers_IsSet`](#structFRHAPI__PlatformSessionTemplate_1a820d7ec5127d55985fe8ec28a8507cf9) | true if MaxPlayers_Optional has been set to a value
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__PlatformSessionTemplate_1a011145a99ccb57b768e35067cded1d1d) | Product-defined custom data.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__PlatformSessionTemplate_1a466d856fb15205041dfe368181512ec7) | true if CustomData_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__PlatformSessionTemplate_1a78cd0b4d539885405306af3001fda3f9)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PlatformSessionTemplate_1ae18e5802f726493cc53d3b6a941052f3)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__PlatformSessionTemplate_1a5feca0eb1cdc60926b84e5cba8ddfd14)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__PlatformSessionTemplate_1a1223ab3404a5e19e789d597eeba2b954)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_PlatformID & `[`GetPlatformId`](#structFRHAPI__PlatformSessionTemplate_1a1ba25b3925205ce1043ab6405149c654)`()` | Gets the value of PlatformId.
 `public inline const ERHAPI_PlatformID & `[`GetPlatformId`](#structFRHAPI__PlatformSessionTemplate_1a29a74f1aec1b8bbb0da3b4dc7ff9cfe4)`() const` | Gets the value of PlatformId.
 `public inline void `[`SetPlatformId`](#structFRHAPI__PlatformSessionTemplate_1a50de2227039ed3b70a00f0bdd56c6176)`(const ERHAPI_PlatformID & NewValue)` | Sets the value of PlatformId.
@@ -49,6 +49,7 @@ Template used to create new platform sessions for a specific type of platform. C
 `public inline void `[`SetMaxPlayers`](#structFRHAPI__PlatformSessionTemplate_1a20472cbcd3e87ccbbf4933a6f7db32a3)`(const int32 & NewValue)` | Sets the value of MaxPlayers_Optional and also sets MaxPlayers_IsSet to true.
 `public inline void `[`SetMaxPlayers`](#structFRHAPI__PlatformSessionTemplate_1a54fcc2739ae5f6a0c923525ccfe7250e)`(int32 && NewValue)` | Sets the value of MaxPlayers_Optional and also sets MaxPlayers_IsSet to true using move semantics.
 `public inline void `[`ClearMaxPlayers`](#structFRHAPI__PlatformSessionTemplate_1af2d8b5f464542815bcbbcf41870d0acc)`()` | Clears the value of MaxPlayers_Optional and sets MaxPlayers_IsSet to false.
+`public inline bool `[`IsMaxPlayersSet`](#structFRHAPI__PlatformSessionTemplate_1aeb4e9ed316f1003e389b5163b4f052b3)`() const` | Checks whether MaxPlayers_Optional has been set.
 `public inline bool `[`IsMaxPlayersDefaultValue`](#structFRHAPI__PlatformSessionTemplate_1afcc99ba028d9ae88bd51bd821e79081e)`() const` | Returns true if MaxPlayers_Optional is set and matches the default value.
 `public inline void `[`SetMaxPlayersToDefault`](#structFRHAPI__PlatformSessionTemplate_1a906c779ed24a184bbf330d00f26a6f21)`()` | Sets the value of MaxPlayers_Optional to its default and also sets MaxPlayers_IsSet to true.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlatformSessionTemplate_1a968db4e8e03ce9a1ded8a4e2b83fb437)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
@@ -60,6 +61,7 @@ Template used to create new platform sessions for a specific type of platform. C
 `public inline void `[`SetCustomData`](#structFRHAPI__PlatformSessionTemplate_1a84b094834ca70ea0cdef308dfca71190)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`SetCustomData`](#structFRHAPI__PlatformSessionTemplate_1aca029e260d3091a665af93f24722cea1)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__PlatformSessionTemplate_1a1bab29f42e2c1c50068349c69c644583)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+`public inline bool `[`IsCustomDataSet`](#structFRHAPI__PlatformSessionTemplate_1ad4b2f954c49c787ae1e31ed9d827ab0a)`() const` | Checks whether CustomData_Optional has been set.
 
 ### Members
 
@@ -91,7 +93,7 @@ Product-defined custom data.
 
 true if CustomData_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__PlatformSessionTemplate_1a78cd0b4d539885405306af3001fda3f9)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlatformSessionTemplate_1a78cd0b4d539885405306af3001fda3f9"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__PlatformSessionTemplate_1a5feca0eb1cdc60926b84e5cba8ddfd14)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlatformSessionTemplate_1a5feca0eb1cdc60926b84e5cba8ddfd14"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -101,7 +103,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PlatformSessionTemplate_1ae18e5802f726493cc53d3b6a941052f3)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlatformSessionTemplate_1ae18e5802f726493cc53d3b6a941052f3"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PlatformSessionTemplate_1a1223ab3404a5e19e789d597eeba2b954)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlatformSessionTemplate_1a1223ab3404a5e19e789d597eeba2b954"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -192,6 +194,10 @@ Sets the value of MaxPlayers_Optional and also sets MaxPlayers_IsSet to true usi
 
 Clears the value of MaxPlayers_Optional and sets MaxPlayers_IsSet to false.
 
+#### `public inline bool `[`IsMaxPlayersSet`](#structFRHAPI__PlatformSessionTemplate_1aeb4e9ed316f1003e389b5163b4f052b3)`() const` <a id="structFRHAPI__PlatformSessionTemplate_1aeb4e9ed316f1003e389b5163b4f052b3"></a>
+
+Checks whether MaxPlayers_Optional has been set.
+
 #### `public inline bool `[`IsMaxPlayersDefaultValue`](#structFRHAPI__PlatformSessionTemplate_1afcc99ba028d9ae88bd51bd821e79081e)`() const` <a id="structFRHAPI__PlatformSessionTemplate_1afcc99ba028d9ae88bd51bd821e79081e"></a>
 
 Returns true if MaxPlayers_Optional is set and matches the default value.
@@ -235,4 +241,8 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true usi
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__PlatformSessionTemplate_1a1bab29f42e2c1c50068349c69c644583)`()` <a id="structFRHAPI__PlatformSessionTemplate_1a1bab29f42e2c1c50068349c69c644583"></a>
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+
+#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__PlatformSessionTemplate_1ad4b2f954c49c787ae1e31ed9d827ab0a)`() const` <a id="structFRHAPI__PlatformSessionTemplate_1ad4b2f954c49c787ae1e31ed9d827ab0a"></a>
+
+Checks whether CustomData_Optional has been set.
 

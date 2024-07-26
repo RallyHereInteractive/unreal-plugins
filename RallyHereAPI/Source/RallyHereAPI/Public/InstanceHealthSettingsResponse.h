@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_InstanceHealthSettingsResponse : public FRHAPI_Mo
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief How often we expect instance health checks to occur */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -47,13 +47,13 @@ struct RALLYHEREAPI_API FRHAPI_InstanceHealthSettingsResponse : public FRHAPI_Mo
 	/** @brief Gets the value of CadenceSeconds */
 	const int32& GetCadenceSeconds() const { return CadenceSeconds; }
 	/** @brief Sets the value of CadenceSeconds */
-	void SetCadenceSeconds(const int32& NewValue) { CadenceSeconds = NewValue;  }
+	void SetCadenceSeconds(const int32& NewValue) { CadenceSeconds = NewValue;   }
 	/** @brief Sets the value of CadenceSeconds using move semantics */
-	void SetCadenceSeconds(int32&& NewValue) { CadenceSeconds = NewValue;  }
+	void SetCadenceSeconds(int32&& NewValue) { CadenceSeconds = NewValue;   }
 	/** @brief Returns true if CadenceSeconds matches the default value */
 	bool IsCadenceSecondsDefaultValue() const { return CadenceSeconds == 0; }
 	/** @brief Sets the value of CadenceSeconds to its default  */
-	void SetCadenceSecondsToDefault() { CadenceSeconds = 0;  }
+	void SetCadenceSecondsToDefault() { SetCadenceSeconds(0); }
 
 	/** @brief What percentage of health checks must be missing before an instance's status becomes unhealthy */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -63,9 +63,9 @@ struct RALLYHEREAPI_API FRHAPI_InstanceHealthSettingsResponse : public FRHAPI_Mo
 	/** @brief Gets the value of UnhealthyHealthCheckPercentage */
 	const float& GetUnhealthyHealthCheckPercentage() const { return UnhealthyHealthCheckPercentage; }
 	/** @brief Sets the value of UnhealthyHealthCheckPercentage */
-	void SetUnhealthyHealthCheckPercentage(const float& NewValue) { UnhealthyHealthCheckPercentage = NewValue;  }
+	void SetUnhealthyHealthCheckPercentage(const float& NewValue) { UnhealthyHealthCheckPercentage = NewValue;   }
 	/** @brief Sets the value of UnhealthyHealthCheckPercentage using move semantics */
-	void SetUnhealthyHealthCheckPercentage(float&& NewValue) { UnhealthyHealthCheckPercentage = NewValue;  }
+	void SetUnhealthyHealthCheckPercentage(float&& NewValue) { UnhealthyHealthCheckPercentage = NewValue;   }
 
 	/** @brief How many health checks we must miss in a row before an instance's status becomes unknown */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -75,13 +75,13 @@ struct RALLYHEREAPI_API FRHAPI_InstanceHealthSettingsResponse : public FRHAPI_Mo
 	/** @brief Gets the value of MissedChecksBeforeUnknown */
 	const int32& GetMissedChecksBeforeUnknown() const { return MissedChecksBeforeUnknown; }
 	/** @brief Sets the value of MissedChecksBeforeUnknown */
-	void SetMissedChecksBeforeUnknown(const int32& NewValue) { MissedChecksBeforeUnknown = NewValue;  }
+	void SetMissedChecksBeforeUnknown(const int32& NewValue) { MissedChecksBeforeUnknown = NewValue;   }
 	/** @brief Sets the value of MissedChecksBeforeUnknown using move semantics */
-	void SetMissedChecksBeforeUnknown(int32&& NewValue) { MissedChecksBeforeUnknown = NewValue;  }
+	void SetMissedChecksBeforeUnknown(int32&& NewValue) { MissedChecksBeforeUnknown = NewValue;   }
 	/** @brief Returns true if MissedChecksBeforeUnknown matches the default value */
 	bool IsMissedChecksBeforeUnknownDefaultValue() const { return MissedChecksBeforeUnknown == 0; }
 	/** @brief Sets the value of MissedChecksBeforeUnknown to its default  */
-	void SetMissedChecksBeforeUnknownToDefault() { MissedChecksBeforeUnknown = 0;  }
+	void SetMissedChecksBeforeUnknownToDefault() { SetMissedChecksBeforeUnknown(0); }
 };
 
 /** @} */

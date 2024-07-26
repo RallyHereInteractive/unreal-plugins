@@ -20,8 +20,8 @@ struct FRHAPI_EntitlementEventList
 `public TArray< `[`FRHAPI_EntitlementEvent`](RHAPI_EntitlementEvent.md#structFRHAPI__EntitlementEvent)` > `[`Events`](#structFRHAPI__EntitlementEventList_1a3f05027a0a92306457e4e110ac0bb94f) | The list of events.
 `public FString `[`Cursor_Optional`](#structFRHAPI__EntitlementEventList_1a408ef5f5bcc7a30ccd70aef3dc2b725b) | The cursor for the next page of events.
 `public bool `[`Cursor_IsSet`](#structFRHAPI__EntitlementEventList_1ac03319ea77109225c8aab85baac83423) | true if Cursor_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__EntitlementEventList_1a7a07f86414852d47e1c63d7e031b1372)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__EntitlementEventList_1a416fced08062c5929550f55b07bee1f8)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__EntitlementEventList_1ad02c5e9cf0c7f78082a43a7c6df53f82)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__EntitlementEventList_1a33f1ede9d86a914b9ef81fee84d8b29e)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< `[`FRHAPI_EntitlementEvent`](RHAPI_EntitlementEvent.md#structFRHAPI__EntitlementEvent)` > & `[`GetEvents`](#structFRHAPI__EntitlementEventList_1a8013cde2cf4350616ed670ab98d5b3d4)`()` | Gets the value of Events.
 `public inline const TArray< `[`FRHAPI_EntitlementEvent`](RHAPI_EntitlementEvent.md#structFRHAPI__EntitlementEvent)` > & `[`GetEvents`](#structFRHAPI__EntitlementEventList_1a88b1e46345294753cdd0aa133e46e1f0)`() const` | Gets the value of Events.
 `public inline void `[`SetEvents`](#structFRHAPI__EntitlementEventList_1ab93fb31f064e847fd1bf83fa2e0f726d)`(const TArray< `[`FRHAPI_EntitlementEvent`](RHAPI_EntitlementEvent.md#structFRHAPI__EntitlementEvent)` > & NewValue)` | Sets the value of Events.
@@ -35,6 +35,7 @@ struct FRHAPI_EntitlementEventList
 `public inline void `[`SetCursor`](#structFRHAPI__EntitlementEventList_1aad3eb200ef55d113aea11a8e19609c23)`(const FString & NewValue)` | Sets the value of Cursor_Optional and also sets Cursor_IsSet to true.
 `public inline void `[`SetCursor`](#structFRHAPI__EntitlementEventList_1a5cf732a8165b81e2ddde2435ad36cc3d)`(FString && NewValue)` | Sets the value of Cursor_Optional and also sets Cursor_IsSet to true using move semantics.
 `public inline void `[`ClearCursor`](#structFRHAPI__EntitlementEventList_1ad53ca1646a6b5f74c4fcc9fd64d63c0f)`()` | Clears the value of Cursor_Optional and sets Cursor_IsSet to false.
+`public inline bool `[`IsCursorSet`](#structFRHAPI__EntitlementEventList_1a495d29458e447466a5d54cabb0559b5b)`() const` | Checks whether Cursor_Optional has been set.
 
 ### Members
 
@@ -50,7 +51,7 @@ The cursor for the next page of events.
 
 true if Cursor_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__EntitlementEventList_1a7a07f86414852d47e1c63d7e031b1372)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__EntitlementEventList_1a7a07f86414852d47e1c63d7e031b1372"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__EntitlementEventList_1ad02c5e9cf0c7f78082a43a7c6df53f82)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__EntitlementEventList_1ad02c5e9cf0c7f78082a43a7c6df53f82"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -60,7 +61,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__EntitlementEventList_1a416fced08062c5929550f55b07bee1f8)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__EntitlementEventList_1a416fced08062c5929550f55b07bee1f8"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__EntitlementEventList_1a33f1ede9d86a914b9ef81fee84d8b29e)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__EntitlementEventList_1a33f1ede9d86a914b9ef81fee84d8b29e"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -118,4 +119,8 @@ Sets the value of Cursor_Optional and also sets Cursor_IsSet to true using move 
 #### `public inline void `[`ClearCursor`](#structFRHAPI__EntitlementEventList_1ad53ca1646a6b5f74c4fcc9fd64d63c0f)`()` <a id="structFRHAPI__EntitlementEventList_1ad53ca1646a6b5f74c4fcc9fd64d63c0f"></a>
 
 Clears the value of Cursor_Optional and sets Cursor_IsSet to false.
+
+#### `public inline bool `[`IsCursorSet`](#structFRHAPI__EntitlementEventList_1a495d29458e447466a5d54cabb0559b5b)`() const` <a id="structFRHAPI__EntitlementEventList_1a495d29458e447466a5d54cabb0559b5b"></a>
+
+Checks whether Cursor_Optional has been set.
 

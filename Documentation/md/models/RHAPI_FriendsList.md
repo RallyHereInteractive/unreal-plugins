@@ -22,8 +22,8 @@ List of the player&#39;s friends. Includes sent friend requests and received fri
 `public FGuid `[`PlayerUuid`](#structFRHAPI__FriendsList_1a00993f4b19d7fda1904312a3eb2a721b) | 
 `public TArray< `[`FRHAPI_FriendRelationship`](RHAPI_FriendRelationship.md#structFRHAPI__FriendRelationship)` > `[`Friends`](#structFRHAPI__FriendsList_1ab0a6ee5eb6e5ebeaaa99474ef95b5af2) | 
 `public `[`FRHAPI_PageMeta`](RHAPI_PageMeta.md#structFRHAPI__PageMeta)` `[`Page`](#structFRHAPI__FriendsList_1a6b5c622ef326cc1ecf38070ec82ba6ef) | 
-`public virtual bool `[`FromJson`](#structFRHAPI__FriendsList_1ae9e7ad7dadfb8351eb319327d832c9db)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__FriendsList_1ada7287c9fe486755ba1170ea84c93716)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__FriendsList_1a4fa987a488b777087c6a5babb387321f)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__FriendsList_1a8bf5e6ea4da5af8c400652b6a88892b7)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__FriendsList_1a77a2a4ab921922160437b22c8198fbc1)`()` | Gets the value of PlayerUuid.
 `public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__FriendsList_1a8eabd6c72d7710f20eaadba1085ab064)`() const` | Gets the value of PlayerUuid.
 `public inline void `[`SetPlayerUuid`](#structFRHAPI__FriendsList_1ac846a842d64a2297ef77339daba6b6e0)`(const FGuid & NewValue)` | Sets the value of PlayerUuid.
@@ -45,7 +45,7 @@ List of the player&#39;s friends. Includes sent friend requests and received fri
 
 #### `public `[`FRHAPI_PageMeta`](RHAPI_PageMeta.md#structFRHAPI__PageMeta)` `[`Page`](#structFRHAPI__FriendsList_1a6b5c622ef326cc1ecf38070ec82ba6ef) <a id="structFRHAPI__FriendsList_1a6b5c622ef326cc1ecf38070ec82ba6ef"></a>
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__FriendsList_1ae9e7ad7dadfb8351eb319327d832c9db)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__FriendsList_1ae9e7ad7dadfb8351eb319327d832c9db"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__FriendsList_1a4fa987a488b777087c6a5babb387321f)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__FriendsList_1a4fa987a488b777087c6a5babb387321f"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -55,7 +55,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__FriendsList_1ada7287c9fe486755ba1170ea84c93716)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__FriendsList_1ada7287c9fe486755ba1170ea84c93716"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__FriendsList_1a8bf5e6ea4da5af8c400652b6a88892b7)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__FriendsList_1a8bf5e6ea4da5af8c400652b6a88892b7"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 

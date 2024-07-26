@@ -30,8 +30,8 @@ Config about how to recalculate ranks.
 `public bool `[`DrawProbability_IsSet`](#structFRHAPI__CalculateRankConfig_1ab9bbc720ec57dc213e57387836d11331) | true if DrawProbability_Optional has been set to a value
 `public float `[`Tau_Optional`](#structFRHAPI__CalculateRankConfig_1ad0320266fe4644fa05494fb8a8348f88) | Factor that determines how quickly a player's sigma is adjusted. A larger tau will result in more volatile in ranks. Recommended value is is (default_sigma * .01)
 `public bool `[`Tau_IsSet`](#structFRHAPI__CalculateRankConfig_1a49fbdfba770543a4e59044bcff730caa) | true if Tau_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__CalculateRankConfig_1ac05343dd5f282f7c6f099bd9818f2325)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__CalculateRankConfig_1aa59baa8536bd1e90cb31ed1c68deb981)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__CalculateRankConfig_1abe90ce86f518a05fe9f7a1faffe2cb5f)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__CalculateRankConfig_1aecf7bcc9f044e58e48bbd69beb4d605e)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline float & `[`GetMaxMu`](#structFRHAPI__CalculateRankConfig_1a01e875b1c5405db4eeaee1d10969c20c)`()` | Gets the value of MaxMu.
 `public inline const float & `[`GetMaxMu`](#structFRHAPI__CalculateRankConfig_1a5efbdbd92e3310b2c0d065658a96aee9)`() const` | Gets the value of MaxMu.
 `public inline void `[`SetMaxMu`](#structFRHAPI__CalculateRankConfig_1acd0691d3a265c65bdbc4ed53ee5c95a1)`(const float & NewValue)` | Sets the value of MaxMu.
@@ -53,6 +53,7 @@ Config about how to recalculate ranks.
 `public inline void `[`SetBeta`](#structFRHAPI__CalculateRankConfig_1a546a5075fb30f1f950780e5f92024e98)`(const float & NewValue)` | Sets the value of Beta_Optional and also sets Beta_IsSet to true.
 `public inline void `[`SetBeta`](#structFRHAPI__CalculateRankConfig_1a69eeb4efad2250cd07fc6ebea211bcfe)`(float && NewValue)` | Sets the value of Beta_Optional and also sets Beta_IsSet to true using move semantics.
 `public inline void `[`ClearBeta`](#structFRHAPI__CalculateRankConfig_1a5495d0a7983f7f4ed73429427a9ba94f)`()` | Clears the value of Beta_Optional and sets Beta_IsSet to false.
+`public inline bool `[`IsBetaSet`](#structFRHAPI__CalculateRankConfig_1aed263880d46483ed1dcd32a2cb9e0510)`() const` | Checks whether Beta_Optional has been set.
 `public inline float & `[`GetDefaultMu`](#structFRHAPI__CalculateRankConfig_1aa5a30319843e114131387ef7185db60c)`()` | Gets the value of DefaultMu.
 `public inline const float & `[`GetDefaultMu`](#structFRHAPI__CalculateRankConfig_1a1250ed1a4960e9d415d4075463f212a2)`() const` | Gets the value of DefaultMu.
 `public inline void `[`SetDefaultMu`](#structFRHAPI__CalculateRankConfig_1a70ec9ace8236f3ed7e94ec480b77d5a8)`(const float & NewValue)` | Sets the value of DefaultMu.
@@ -70,6 +71,7 @@ Config about how to recalculate ranks.
 `public inline void `[`SetDrawProbability`](#structFRHAPI__CalculateRankConfig_1a390ec04720a84a62117eee8806cf02cf)`(const float & NewValue)` | Sets the value of DrawProbability_Optional and also sets DrawProbability_IsSet to true.
 `public inline void `[`SetDrawProbability`](#structFRHAPI__CalculateRankConfig_1aa264dc773d707204165a1c2183f7f854)`(float && NewValue)` | Sets the value of DrawProbability_Optional and also sets DrawProbability_IsSet to true using move semantics.
 `public inline void `[`ClearDrawProbability`](#structFRHAPI__CalculateRankConfig_1a986a6d4c10fd5c3a5b5c6b63f44837bc)`()` | Clears the value of DrawProbability_Optional and sets DrawProbability_IsSet to false.
+`public inline bool `[`IsDrawProbabilitySet`](#structFRHAPI__CalculateRankConfig_1ac25ef5d7af027fd9cf4e98e407b63ec0)`() const` | Checks whether DrawProbability_Optional has been set.
 `public inline float & `[`GetTau`](#structFRHAPI__CalculateRankConfig_1a73d471dd5f6edf8b62fe214765bc98c1)`()` | Gets the value of Tau_Optional, regardless of it having been set.
 `public inline const float & `[`GetTau`](#structFRHAPI__CalculateRankConfig_1a58fa867c66313b36ba8e36cc02dc36df)`() const` | Gets the value of Tau_Optional, regardless of it having been set.
 `public inline const float & `[`GetTau`](#structFRHAPI__CalculateRankConfig_1a582668d0443556a37c17a70e82f43d4c)`(const float & DefaultValue) const` | Gets the value of Tau_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -79,6 +81,7 @@ Config about how to recalculate ranks.
 `public inline void `[`SetTau`](#structFRHAPI__CalculateRankConfig_1aa626c0274e3b64de482cf49451bc5269)`(const float & NewValue)` | Sets the value of Tau_Optional and also sets Tau_IsSet to true.
 `public inline void `[`SetTau`](#structFRHAPI__CalculateRankConfig_1ae55c3d98ea367092635b7fe8431c2d39)`(float && NewValue)` | Sets the value of Tau_Optional and also sets Tau_IsSet to true using move semantics.
 `public inline void `[`ClearTau`](#structFRHAPI__CalculateRankConfig_1a31d8369cc30a32d57dfde8ff2b296c32)`()` | Clears the value of Tau_Optional and sets Tau_IsSet to false.
+`public inline bool `[`IsTauSet`](#structFRHAPI__CalculateRankConfig_1a3a2da481c54a7edd7e87504342c54233)`() const` | Checks whether Tau_Optional has been set.
 
 ### Members
 
@@ -126,7 +129,7 @@ Factor that determines how quickly a player's sigma is adjusted. A larger tau wi
 
 true if Tau_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__CalculateRankConfig_1ac05343dd5f282f7c6f099bd9818f2325)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__CalculateRankConfig_1ac05343dd5f282f7c6f099bd9818f2325"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__CalculateRankConfig_1abe90ce86f518a05fe9f7a1faffe2cb5f)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__CalculateRankConfig_1abe90ce86f518a05fe9f7a1faffe2cb5f"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -136,7 +139,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__CalculateRankConfig_1aa59baa8536bd1e90cb31ed1c68deb981)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__CalculateRankConfig_1aa59baa8536bd1e90cb31ed1c68deb981"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__CalculateRankConfig_1aecf7bcc9f044e58e48bbd69beb4d605e)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__CalculateRankConfig_1aecf7bcc9f044e58e48bbd69beb4d605e"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -227,6 +230,10 @@ Sets the value of Beta_Optional and also sets Beta_IsSet to true using move sema
 
 Clears the value of Beta_Optional and sets Beta_IsSet to false.
 
+#### `public inline bool `[`IsBetaSet`](#structFRHAPI__CalculateRankConfig_1aed263880d46483ed1dcd32a2cb9e0510)`() const` <a id="structFRHAPI__CalculateRankConfig_1aed263880d46483ed1dcd32a2cb9e0510"></a>
+
+Checks whether Beta_Optional has been set.
+
 #### `public inline float & `[`GetDefaultMu`](#structFRHAPI__CalculateRankConfig_1aa5a30319843e114131387ef7185db60c)`()` <a id="structFRHAPI__CalculateRankConfig_1aa5a30319843e114131387ef7185db60c"></a>
 
 Gets the value of DefaultMu.
@@ -295,6 +302,10 @@ Sets the value of DrawProbability_Optional and also sets DrawProbability_IsSet t
 
 Clears the value of DrawProbability_Optional and sets DrawProbability_IsSet to false.
 
+#### `public inline bool `[`IsDrawProbabilitySet`](#structFRHAPI__CalculateRankConfig_1ac25ef5d7af027fd9cf4e98e407b63ec0)`() const` <a id="structFRHAPI__CalculateRankConfig_1ac25ef5d7af027fd9cf4e98e407b63ec0"></a>
+
+Checks whether DrawProbability_Optional has been set.
+
 #### `public inline float & `[`GetTau`](#structFRHAPI__CalculateRankConfig_1a73d471dd5f6edf8b62fe214765bc98c1)`()` <a id="structFRHAPI__CalculateRankConfig_1a73d471dd5f6edf8b62fe214765bc98c1"></a>
 
 Gets the value of Tau_Optional, regardless of it having been set.
@@ -330,4 +341,8 @@ Sets the value of Tau_Optional and also sets Tau_IsSet to true using move semant
 #### `public inline void `[`ClearTau`](#structFRHAPI__CalculateRankConfig_1a31d8369cc30a32d57dfde8ff2b296c32)`()` <a id="structFRHAPI__CalculateRankConfig_1a31d8369cc30a32d57dfde8ff2b296c32"></a>
 
 Clears the value of Tau_Optional and sets Tau_IsSet to false.
+
+#### `public inline bool `[`IsTauSet`](#structFRHAPI__CalculateRankConfig_1a3a2da481c54a7edd7e87504342c54233)`() const` <a id="structFRHAPI__CalculateRankConfig_1a3a2da481c54a7edd7e87504342c54233"></a>
+
+Checks whether Tau_Optional has been set.
 

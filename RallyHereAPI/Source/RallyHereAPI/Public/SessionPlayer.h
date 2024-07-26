@@ -33,14 +33,14 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Legacy id for this player */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -57,19 +57,21 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of PlayerId_Optional and returns true if it has been set, otherwise returns false */
 	bool GetPlayerId(int32& OutValue) const { if (PlayerId_IsSet) OutValue = PlayerId_Optional; return PlayerId_IsSet; }
 	/** @brief Returns a pointer to PlayerId_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetPlayerIdOrNull() { if (PlayerId_IsSet) return &PlayerId_Optional; return nullptr; }
+	int32* GetPlayerIdOrNull() { if (PlayerId_IsSet) return (&PlayerId_Optional); return nullptr; }
 	/** @brief Returns a pointer to PlayerId_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetPlayerIdOrNull() const { if (PlayerId_IsSet) return &PlayerId_Optional; return nullptr; }
+	const int32* GetPlayerIdOrNull() const { if (PlayerId_IsSet) return (&PlayerId_Optional); return nullptr; }
 	/** @brief Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true */
-	void SetPlayerId(const int32& NewValue) { PlayerId_Optional = NewValue; PlayerId_IsSet = true; }
+	void SetPlayerId(const int32& NewValue) { PlayerId_Optional = NewValue; PlayerId_IsSet = true;  }
 	/** @brief Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true using move semantics */
-	void SetPlayerId(int32&& NewValue) { PlayerId_Optional = NewValue; PlayerId_IsSet = true; }
-	 /** @brief Clears the value of PlayerId_Optional and sets PlayerId_IsSet to false */
-	void ClearPlayerId() { PlayerId_Optional = 0; PlayerId_IsSet = false; }
+	void SetPlayerId(int32&& NewValue) { PlayerId_Optional = NewValue; PlayerId_IsSet = true;  }
+	/** @brief Clears the value of PlayerId_Optional and sets PlayerId_IsSet to false */
+	void ClearPlayerId() { PlayerId_Optional = 0; PlayerId_IsSet = false;  }
+	/** @brief Checks whether PlayerId_Optional has been set */
+	bool IsPlayerIdSet() const { return PlayerId_IsSet; }
 	/** @brief Returns true if PlayerId_Optional is set and matches the default value */
 	bool IsPlayerIdDefaultValue() const { return PlayerId_IsSet && PlayerId_Optional == 0; }
 	/** @brief Sets the value of PlayerId_Optional to its default and also sets PlayerId_IsSet to true */
-	void SetPlayerIdToDefault() { PlayerId_Optional = 0; PlayerId_IsSet = true; }
+	void SetPlayerIdToDefault() { SetPlayerId(0); }
 
 	/** @brief UUID for this player */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -79,9 +81,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
 	/** @brief Gets the value of PlayerUuid */
 	const FGuid& GetPlayerUuid() const { return PlayerUuid; }
 	/** @brief Sets the value of PlayerUuid */
-	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;  }
+	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;   }
 	/** @brief Sets the value of PlayerUuid using move semantics */
-	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;  }
+	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;   }
 
 	/** @brief Status of the player in the session */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -91,9 +93,9 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
 	/** @brief Gets the value of Status */
 	const ERHAPI_SessionPlayerStatus& GetStatus() const { return Status; }
 	/** @brief Sets the value of Status */
-	void SetStatus(const ERHAPI_SessionPlayerStatus& NewValue) { Status = NewValue;  }
+	void SetStatus(const ERHAPI_SessionPlayerStatus& NewValue) { Status = NewValue;   }
 	/** @brief Sets the value of Status using move semantics */
-	void SetStatus(ERHAPI_SessionPlayerStatus&& NewValue) { Status = NewValue;  }
+	void SetStatus(ERHAPI_SessionPlayerStatus&& NewValue) { Status = NewValue;   }
 
 	/** @brief UUID of the player who sent this players invite, if any */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -110,15 +112,17 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of InvitingPlayerUuid_Optional and returns true if it has been set, otherwise returns false */
 	bool GetInvitingPlayerUuid(FGuid& OutValue) const { if (InvitingPlayerUuid_IsSet) OutValue = InvitingPlayerUuid_Optional; return InvitingPlayerUuid_IsSet; }
 	/** @brief Returns a pointer to InvitingPlayerUuid_Optional, if it has been set, otherwise returns nullptr */
-	FGuid* GetInvitingPlayerUuidOrNull() { if (InvitingPlayerUuid_IsSet) return &InvitingPlayerUuid_Optional; return nullptr; }
+	FGuid* GetInvitingPlayerUuidOrNull() { if (InvitingPlayerUuid_IsSet) return (&InvitingPlayerUuid_Optional); return nullptr; }
 	/** @brief Returns a pointer to InvitingPlayerUuid_Optional, if it has been set, otherwise returns nullptr */
-	const FGuid* GetInvitingPlayerUuidOrNull() const { if (InvitingPlayerUuid_IsSet) return &InvitingPlayerUuid_Optional; return nullptr; }
+	const FGuid* GetInvitingPlayerUuidOrNull() const { if (InvitingPlayerUuid_IsSet) return (&InvitingPlayerUuid_Optional); return nullptr; }
 	/** @brief Sets the value of InvitingPlayerUuid_Optional and also sets InvitingPlayerUuid_IsSet to true */
-	void SetInvitingPlayerUuid(const FGuid& NewValue) { InvitingPlayerUuid_Optional = NewValue; InvitingPlayerUuid_IsSet = true; }
+	void SetInvitingPlayerUuid(const FGuid& NewValue) { InvitingPlayerUuid_Optional = NewValue; InvitingPlayerUuid_IsSet = true;  }
 	/** @brief Sets the value of InvitingPlayerUuid_Optional and also sets InvitingPlayerUuid_IsSet to true using move semantics */
-	void SetInvitingPlayerUuid(FGuid&& NewValue) { InvitingPlayerUuid_Optional = NewValue; InvitingPlayerUuid_IsSet = true; }
-	 /** @brief Clears the value of InvitingPlayerUuid_Optional and sets InvitingPlayerUuid_IsSet to false */
-	void ClearInvitingPlayerUuid() { InvitingPlayerUuid_IsSet = false; }
+	void SetInvitingPlayerUuid(FGuid&& NewValue) { InvitingPlayerUuid_Optional = NewValue; InvitingPlayerUuid_IsSet = true;  }
+	/** @brief Clears the value of InvitingPlayerUuid_Optional and sets InvitingPlayerUuid_IsSet to false */
+	void ClearInvitingPlayerUuid() { InvitingPlayerUuid_IsSet = false;  }
+	/** @brief Checks whether InvitingPlayerUuid_Optional has been set */
+	bool IsInvitingPlayerUuidSet() const { return InvitingPlayerUuid_IsSet; }
 
 	/** @brief The UUID of the session that this player was invited from */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -135,15 +139,17 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of SourceSessionId_Optional and returns true if it has been set, otherwise returns false */
 	bool GetSourceSessionId(FString& OutValue) const { if (SourceSessionId_IsSet) OutValue = SourceSessionId_Optional; return SourceSessionId_IsSet; }
 	/** @brief Returns a pointer to SourceSessionId_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetSourceSessionIdOrNull() { if (SourceSessionId_IsSet) return &SourceSessionId_Optional; return nullptr; }
+	FString* GetSourceSessionIdOrNull() { if (SourceSessionId_IsSet) return (&SourceSessionId_Optional); return nullptr; }
 	/** @brief Returns a pointer to SourceSessionId_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetSourceSessionIdOrNull() const { if (SourceSessionId_IsSet) return &SourceSessionId_Optional; return nullptr; }
+	const FString* GetSourceSessionIdOrNull() const { if (SourceSessionId_IsSet) return (&SourceSessionId_Optional); return nullptr; }
 	/** @brief Sets the value of SourceSessionId_Optional and also sets SourceSessionId_IsSet to true */
-	void SetSourceSessionId(const FString& NewValue) { SourceSessionId_Optional = NewValue; SourceSessionId_IsSet = true; }
+	void SetSourceSessionId(const FString& NewValue) { SourceSessionId_Optional = NewValue; SourceSessionId_IsSet = true;  }
 	/** @brief Sets the value of SourceSessionId_Optional and also sets SourceSessionId_IsSet to true using move semantics */
-	void SetSourceSessionId(FString&& NewValue) { SourceSessionId_Optional = NewValue; SourceSessionId_IsSet = true; }
-	 /** @brief Clears the value of SourceSessionId_Optional and sets SourceSessionId_IsSet to false */
-	void ClearSourceSessionId() { SourceSessionId_IsSet = false; }
+	void SetSourceSessionId(FString&& NewValue) { SourceSessionId_Optional = NewValue; SourceSessionId_IsSet = true;  }
+	/** @brief Clears the value of SourceSessionId_Optional and sets SourceSessionId_IsSet to false */
+	void ClearSourceSessionId() { SourceSessionId_IsSet = false;  }
+	/** @brief Checks whether SourceSessionId_Optional has been set */
+	bool IsSourceSessionIdSet() const { return SourceSessionId_IsSet; }
 
 	/** @brief player-defined custom data */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -160,15 +166,17 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
 	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
-	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
-	void ClearCustomData() { CustomData_IsSet = false; }
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 
 	/** @brief Product Client Version number.  Used for compatibility checking with other players and instances */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -185,15 +193,17 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Version_Optional and returns true if it has been set, otherwise returns false */
 	bool GetVersion(FString& OutValue) const { if (Version_IsSet) OutValue = Version_Optional; return Version_IsSet; }
 	/** @brief Returns a pointer to Version_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetVersionOrNull() { if (Version_IsSet) return &Version_Optional; return nullptr; }
+	FString* GetVersionOrNull() { if (Version_IsSet) return (&Version_Optional); return nullptr; }
 	/** @brief Returns a pointer to Version_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetVersionOrNull() const { if (Version_IsSet) return &Version_Optional; return nullptr; }
+	const FString* GetVersionOrNull() const { if (Version_IsSet) return (&Version_Optional); return nullptr; }
 	/** @brief Sets the value of Version_Optional and also sets Version_IsSet to true */
-	void SetVersion(const FString& NewValue) { Version_Optional = NewValue; Version_IsSet = true; }
+	void SetVersion(const FString& NewValue) { Version_Optional = NewValue; Version_IsSet = true;  }
 	/** @brief Sets the value of Version_Optional and also sets Version_IsSet to true using move semantics */
-	void SetVersion(FString&& NewValue) { Version_Optional = NewValue; Version_IsSet = true; }
-	 /** @brief Clears the value of Version_Optional and sets Version_IsSet to false */
-	void ClearVersion() { Version_IsSet = false; }
+	void SetVersion(FString&& NewValue) { Version_Optional = NewValue; Version_IsSet = true;  }
+	/** @brief Clears the value of Version_Optional and sets Version_IsSet to false */
+	void ClearVersion() { Version_IsSet = false;  }
+	/** @brief Checks whether Version_Optional has been set */
+	bool IsVersionSet() const { return Version_IsSet; }
 
 	/** @brief Which input type and platform the client is using */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -210,15 +220,17 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of ClientSettings_Optional and returns true if it has been set, otherwise returns false */
 	bool GetClientSettings(FRHAPI_ClientSettings& OutValue) const { if (ClientSettings_IsSet) OutValue = ClientSettings_Optional; return ClientSettings_IsSet; }
 	/** @brief Returns a pointer to ClientSettings_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_ClientSettings* GetClientSettingsOrNull() { if (ClientSettings_IsSet) return &ClientSettings_Optional; return nullptr; }
+	FRHAPI_ClientSettings* GetClientSettingsOrNull() { if (ClientSettings_IsSet) return (&ClientSettings_Optional); return nullptr; }
 	/** @brief Returns a pointer to ClientSettings_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_ClientSettings* GetClientSettingsOrNull() const { if (ClientSettings_IsSet) return &ClientSettings_Optional; return nullptr; }
+	const FRHAPI_ClientSettings* GetClientSettingsOrNull() const { if (ClientSettings_IsSet) return (&ClientSettings_Optional); return nullptr; }
 	/** @brief Sets the value of ClientSettings_Optional and also sets ClientSettings_IsSet to true */
-	void SetClientSettings(const FRHAPI_ClientSettings& NewValue) { ClientSettings_Optional = NewValue; ClientSettings_IsSet = true; }
+	void SetClientSettings(const FRHAPI_ClientSettings& NewValue) { ClientSettings_Optional = NewValue; ClientSettings_IsSet = true;  }
 	/** @brief Sets the value of ClientSettings_Optional and also sets ClientSettings_IsSet to true using move semantics */
-	void SetClientSettings(FRHAPI_ClientSettings&& NewValue) { ClientSettings_Optional = NewValue; ClientSettings_IsSet = true; }
-	 /** @brief Clears the value of ClientSettings_Optional and sets ClientSettings_IsSet to false */
-	void ClearClientSettings() { ClientSettings_IsSet = false; }
+	void SetClientSettings(FRHAPI_ClientSettings&& NewValue) { ClientSettings_Optional = NewValue; ClientSettings_IsSet = true;  }
+	/** @brief Clears the value of ClientSettings_Optional and sets ClientSettings_IsSet to false */
+	void ClearClientSettings() { ClientSettings_IsSet = false;  }
+	/** @brief Checks whether ClientSettings_Optional has been set */
+	bool IsClientSettingsSet() const { return ClientSettings_IsSet; }
 
 	/** @brief Client's desired crossplay settings to determine which other clients it can play with. If not defined, assumed to be as permissive as possible */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -235,15 +247,17 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of CrossplayPreferences_Optional and returns true if it has been set, otherwise returns false */
 	bool GetCrossplayPreferences(FRHAPI_CrossplayPreferences& OutValue) const { if (CrossplayPreferences_IsSet) OutValue = CrossplayPreferences_Optional; return CrossplayPreferences_IsSet; }
 	/** @brief Returns a pointer to CrossplayPreferences_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_CrossplayPreferences* GetCrossplayPreferencesOrNull() { if (CrossplayPreferences_IsSet) return &CrossplayPreferences_Optional; return nullptr; }
+	FRHAPI_CrossplayPreferences* GetCrossplayPreferencesOrNull() { if (CrossplayPreferences_IsSet) return (&CrossplayPreferences_Optional); return nullptr; }
 	/** @brief Returns a pointer to CrossplayPreferences_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_CrossplayPreferences* GetCrossplayPreferencesOrNull() const { if (CrossplayPreferences_IsSet) return &CrossplayPreferences_Optional; return nullptr; }
+	const FRHAPI_CrossplayPreferences* GetCrossplayPreferencesOrNull() const { if (CrossplayPreferences_IsSet) return (&CrossplayPreferences_Optional); return nullptr; }
 	/** @brief Sets the value of CrossplayPreferences_Optional and also sets CrossplayPreferences_IsSet to true */
-	void SetCrossplayPreferences(const FRHAPI_CrossplayPreferences& NewValue) { CrossplayPreferences_Optional = NewValue; CrossplayPreferences_IsSet = true; }
+	void SetCrossplayPreferences(const FRHAPI_CrossplayPreferences& NewValue) { CrossplayPreferences_Optional = NewValue; CrossplayPreferences_IsSet = true;  }
 	/** @brief Sets the value of CrossplayPreferences_Optional and also sets CrossplayPreferences_IsSet to true using move semantics */
-	void SetCrossplayPreferences(FRHAPI_CrossplayPreferences&& NewValue) { CrossplayPreferences_Optional = NewValue; CrossplayPreferences_IsSet = true; }
-	 /** @brief Clears the value of CrossplayPreferences_Optional and sets CrossplayPreferences_IsSet to false */
-	void ClearCrossplayPreferences() { CrossplayPreferences_IsSet = false; }
+	void SetCrossplayPreferences(FRHAPI_CrossplayPreferences&& NewValue) { CrossplayPreferences_Optional = NewValue; CrossplayPreferences_IsSet = true;  }
+	/** @brief Clears the value of CrossplayPreferences_Optional and sets CrossplayPreferences_IsSet to false */
+	void ClearCrossplayPreferences() { CrossplayPreferences_IsSet = false;  }
+	/** @brief Checks whether CrossplayPreferences_Optional has been set */
+	bool IsCrossplayPreferencesSet() const { return CrossplayPreferences_IsSet; }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -260,15 +274,17 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Invited_Optional and returns true if it has been set, otherwise returns false */
 	bool GetInvited(FDateTime& OutValue) const { if (Invited_IsSet) OutValue = Invited_Optional; return Invited_IsSet; }
 	/** @brief Returns a pointer to Invited_Optional, if it has been set, otherwise returns nullptr */
-	FDateTime* GetInvitedOrNull() { if (Invited_IsSet) return &Invited_Optional; return nullptr; }
+	FDateTime* GetInvitedOrNull() { if (Invited_IsSet) return (&Invited_Optional); return nullptr; }
 	/** @brief Returns a pointer to Invited_Optional, if it has been set, otherwise returns nullptr */
-	const FDateTime* GetInvitedOrNull() const { if (Invited_IsSet) return &Invited_Optional; return nullptr; }
+	const FDateTime* GetInvitedOrNull() const { if (Invited_IsSet) return (&Invited_Optional); return nullptr; }
 	/** @brief Sets the value of Invited_Optional and also sets Invited_IsSet to true */
-	void SetInvited(const FDateTime& NewValue) { Invited_Optional = NewValue; Invited_IsSet = true; }
+	void SetInvited(const FDateTime& NewValue) { Invited_Optional = NewValue; Invited_IsSet = true;  }
 	/** @brief Sets the value of Invited_Optional and also sets Invited_IsSet to true using move semantics */
-	void SetInvited(FDateTime&& NewValue) { Invited_Optional = NewValue; Invited_IsSet = true; }
-	 /** @brief Clears the value of Invited_Optional and sets Invited_IsSet to false */
-	void ClearInvited() { Invited_IsSet = false; }
+	void SetInvited(FDateTime&& NewValue) { Invited_Optional = NewValue; Invited_IsSet = true;  }
+	/** @brief Clears the value of Invited_Optional and sets Invited_IsSet to false */
+	void ClearInvited() { Invited_IsSet = false;  }
+	/** @brief Checks whether Invited_Optional has been set */
+	bool IsInvitedSet() const { return Invited_IsSet; }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -285,15 +301,17 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Joined_Optional and returns true if it has been set, otherwise returns false */
 	bool GetJoined(FDateTime& OutValue) const { if (Joined_IsSet) OutValue = Joined_Optional; return Joined_IsSet; }
 	/** @brief Returns a pointer to Joined_Optional, if it has been set, otherwise returns nullptr */
-	FDateTime* GetJoinedOrNull() { if (Joined_IsSet) return &Joined_Optional; return nullptr; }
+	FDateTime* GetJoinedOrNull() { if (Joined_IsSet) return (&Joined_Optional); return nullptr; }
 	/** @brief Returns a pointer to Joined_Optional, if it has been set, otherwise returns nullptr */
-	const FDateTime* GetJoinedOrNull() const { if (Joined_IsSet) return &Joined_Optional; return nullptr; }
+	const FDateTime* GetJoinedOrNull() const { if (Joined_IsSet) return (&Joined_Optional); return nullptr; }
 	/** @brief Sets the value of Joined_Optional and also sets Joined_IsSet to true */
-	void SetJoined(const FDateTime& NewValue) { Joined_Optional = NewValue; Joined_IsSet = true; }
+	void SetJoined(const FDateTime& NewValue) { Joined_Optional = NewValue; Joined_IsSet = true;  }
 	/** @brief Sets the value of Joined_Optional and also sets Joined_IsSet to true using move semantics */
-	void SetJoined(FDateTime&& NewValue) { Joined_Optional = NewValue; Joined_IsSet = true; }
-	 /** @brief Clears the value of Joined_Optional and sets Joined_IsSet to false */
-	void ClearJoined() { Joined_IsSet = false; }
+	void SetJoined(FDateTime&& NewValue) { Joined_Optional = NewValue; Joined_IsSet = true;  }
+	/** @brief Clears the value of Joined_Optional and sets Joined_IsSet to false */
+	void ClearJoined() { Joined_IsSet = false;  }
+	/** @brief Checks whether Joined_Optional has been set */
+	bool IsJoinedSet() const { return Joined_IsSet; }
 };
 
 /** @} */

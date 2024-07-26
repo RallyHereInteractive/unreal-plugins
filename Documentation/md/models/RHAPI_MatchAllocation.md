@@ -18,8 +18,8 @@ struct FRHAPI_MatchAllocation
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public FString `[`AllocationId`](#structFRHAPI__MatchAllocation_1a7246bc5564bcd98726ff94a1f212fbb4) | Allocation ID.
-`public virtual bool `[`FromJson`](#structFRHAPI__MatchAllocation_1a707da5cff61584fe431566c6c4c3601a)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__MatchAllocation_1ab828cb823e2e08717f526f2f7f1ce61e)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__MatchAllocation_1aa8fc29ab9b0a2ee4e49d623bd3ac5e25)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__MatchAllocation_1a46cfe8ba3c79eeb2a6d2497515319dcc)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetAllocationId`](#structFRHAPI__MatchAllocation_1a73f7061eded6be56a570e700437ba7bf)`()` | Gets the value of AllocationId.
 `public inline const FString & `[`GetAllocationId`](#structFRHAPI__MatchAllocation_1a1914dff0951bd239fc38b0c943432842)`() const` | Gets the value of AllocationId.
 `public inline void `[`SetAllocationId`](#structFRHAPI__MatchAllocation_1a280e4d2923e0a42fb40d4ad6cd8cd674)`(const FString & NewValue)` | Sets the value of AllocationId.
@@ -31,7 +31,7 @@ struct FRHAPI_MatchAllocation
 
 Allocation ID.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__MatchAllocation_1a707da5cff61584fe431566c6c4c3601a)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__MatchAllocation_1a707da5cff61584fe431566c6c4c3601a"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__MatchAllocation_1aa8fc29ab9b0a2ee4e49d623bd3ac5e25)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__MatchAllocation_1aa8fc29ab9b0a2ee4e49d623bd3ac5e25"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -41,7 +41,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__MatchAllocation_1ab828cb823e2e08717f526f2f7f1ce61e)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__MatchAllocation_1ab828cb823e2e08717f526f2f7f1ce61e"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__MatchAllocation_1a46cfe8ba3c79eeb2a6d2497515319dcc)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__MatchAllocation_1a46cfe8ba3c79eeb2a6d2497515319dcc"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 

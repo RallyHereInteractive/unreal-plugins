@@ -20,8 +20,8 @@ struct FRHAPI_PostGameEventsResponse
 `public int32 `[`PostedEvents`](#structFRHAPI__PostGameEventsResponse_1ab14cbee3111a9f8af4d2dc4a81b91a77) | Number of events successfully posted to Event Hub.
 `public TArray< `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > `[`Errors_Optional`](#structFRHAPI__PostGameEventsResponse_1a4bcd13cbbb6908fe7b3c2cd698b09b3d) | list of validation failure for each event.
 `public bool `[`Errors_IsSet`](#structFRHAPI__PostGameEventsResponse_1a64e1d83ca099175ac36efd3fd0778b4f) | true if Errors_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__PostGameEventsResponse_1ae85902fce843a04afa56f4a445605834)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PostGameEventsResponse_1a2526583c3c98ef274d01a87d86108cb0)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__PostGameEventsResponse_1a2dade96758fe7cd662dfb62d2d99c146)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__PostGameEventsResponse_1ac70dc7dd5cd6acac877b1a05d212e00b)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline int32 & `[`GetPostedEvents`](#structFRHAPI__PostGameEventsResponse_1a5d308cdc0e5647372e993ed02ec53701)`()` | Gets the value of PostedEvents.
 `public inline const int32 & `[`GetPostedEvents`](#structFRHAPI__PostGameEventsResponse_1ac08763c5db10d34a410d0ed7711bf03a)`() const` | Gets the value of PostedEvents.
 `public inline void `[`SetPostedEvents`](#structFRHAPI__PostGameEventsResponse_1a64844278435658b99e033b639e3a65cc)`(const int32 & NewValue)` | Sets the value of PostedEvents.
@@ -37,6 +37,7 @@ struct FRHAPI_PostGameEventsResponse
 `public inline void `[`SetErrors`](#structFRHAPI__PostGameEventsResponse_1a6e16076b25ada896380954560c7174a9)`(const TArray< `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > & NewValue)` | Sets the value of Errors_Optional and also sets Errors_IsSet to true.
 `public inline void `[`SetErrors`](#structFRHAPI__PostGameEventsResponse_1a68e03e76d789a236685f659d4347b830)`(TArray< `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > && NewValue)` | Sets the value of Errors_Optional and also sets Errors_IsSet to true using move semantics.
 `public inline void `[`ClearErrors`](#structFRHAPI__PostGameEventsResponse_1afbb863db522201168db69a6f6c10e2af)`()` | Clears the value of Errors_Optional and sets Errors_IsSet to false.
+`public inline bool `[`IsErrorsSet`](#structFRHAPI__PostGameEventsResponse_1a56fb4d3668da5ee77d3cb4233eb63b0f)`() const` | Checks whether Errors_Optional has been set.
 
 ### Members
 
@@ -52,7 +53,7 @@ list of validation failure for each event.
 
 true if Errors_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__PostGameEventsResponse_1ae85902fce843a04afa56f4a445605834)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PostGameEventsResponse_1ae85902fce843a04afa56f4a445605834"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__PostGameEventsResponse_1a2dade96758fe7cd662dfb62d2d99c146)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PostGameEventsResponse_1a2dade96758fe7cd662dfb62d2d99c146"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -62,7 +63,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PostGameEventsResponse_1a2526583c3c98ef274d01a87d86108cb0)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PostGameEventsResponse_1a2526583c3c98ef274d01a87d86108cb0"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PostGameEventsResponse_1ac70dc7dd5cd6acac877b1a05d212e00b)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PostGameEventsResponse_1ac70dc7dd5cd6acac877b1a05d212e00b"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -128,4 +129,8 @@ Sets the value of Errors_Optional and also sets Errors_IsSet to true using move 
 #### `public inline void `[`ClearErrors`](#structFRHAPI__PostGameEventsResponse_1afbb863db522201168db69a6f6c10e2af)`()` <a id="structFRHAPI__PostGameEventsResponse_1afbb863db522201168db69a6f6c10e2af"></a>
 
 Clears the value of Errors_Optional and sets Errors_IsSet to false.
+
+#### `public inline bool `[`IsErrorsSet`](#structFRHAPI__PostGameEventsResponse_1a56fb4d3668da5ee77d3cb4233eb63b0f)`() const` <a id="structFRHAPI__PostGameEventsResponse_1a56fb4d3668da5ee77d3cb4233eb63b0f"></a>
+
+Checks whether Errors_Optional has been set.
 

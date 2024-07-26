@@ -22,8 +22,8 @@ Login loot reward.
 `public FString `[`LootId_Optional`](#structFRHAPI__LoginLootReward_1a3c7355b5ae7afadb19fd186467d9b659) | Loot ID.
 `public bool `[`LootId_IsSet`](#structFRHAPI__LoginLootReward_1a505db80f34984d397003439ac4ef9ea1) | true if LootId_Optional has been set to a value
 `public int32 `[`LegacyLootId`](#structFRHAPI__LoginLootReward_1a7ab376e7657f818e5d5abf6d6558b23c) | Legacy Loot ID.
-`public virtual bool `[`FromJson`](#structFRHAPI__LoginLootReward_1acf6772e1819ef8d6678e94e9272a488d)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__LoginLootReward_1af3e59016910e6e47542c6ebd0e2ef028)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__LoginLootReward_1a111983aef9ed55934b367e0a217ab245)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__LoginLootReward_1a423419a898e3c5d93c94abc312b03a7c)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetLootId`](#structFRHAPI__LoginLootReward_1a393aa7d31c39cd5b4a22ac94560ac52f)`()` | Gets the value of LootId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetLootId`](#structFRHAPI__LoginLootReward_1a53b7d6a8c4949adddd7f3287f82438dd)`() const` | Gets the value of LootId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetLootId`](#structFRHAPI__LoginLootReward_1aa0c901d4df484781f626338ebe88c46d)`(const FString & DefaultValue) const` | Gets the value of LootId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -33,6 +33,7 @@ Login loot reward.
 `public inline void `[`SetLootId`](#structFRHAPI__LoginLootReward_1a2c74628775622824442d43b14a8323e0)`(const FString & NewValue)` | Sets the value of LootId_Optional and also sets LootId_IsSet to true.
 `public inline void `[`SetLootId`](#structFRHAPI__LoginLootReward_1a31799f251da9efc5e249bbdc584ad7f7)`(FString && NewValue)` | Sets the value of LootId_Optional and also sets LootId_IsSet to true using move semantics.
 `public inline void `[`ClearLootId`](#structFRHAPI__LoginLootReward_1a599ca6fce01c2ff467e8f87d54826046)`()` | Clears the value of LootId_Optional and sets LootId_IsSet to false.
+`public inline bool `[`IsLootIdSet`](#structFRHAPI__LoginLootReward_1ac48dde4cbe606123df68fc4de4856d00)`() const` | Checks whether LootId_Optional has been set.
 `public inline int32 & `[`GetLegacyLootId`](#structFRHAPI__LoginLootReward_1a23e679876c96adc266d53bbca0e80689)`()` | Gets the value of LegacyLootId.
 `public inline const int32 & `[`GetLegacyLootId`](#structFRHAPI__LoginLootReward_1aaca54d418920f8ce674db0687045b798)`() const` | Gets the value of LegacyLootId.
 `public inline void `[`SetLegacyLootId`](#structFRHAPI__LoginLootReward_1ac149a32f1007e60a1387fbd375bd20ef)`(const int32 & NewValue)` | Sets the value of LegacyLootId.
@@ -54,7 +55,7 @@ true if LootId_Optional has been set to a value
 
 Legacy Loot ID.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__LoginLootReward_1acf6772e1819ef8d6678e94e9272a488d)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__LoginLootReward_1acf6772e1819ef8d6678e94e9272a488d"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__LoginLootReward_1a111983aef9ed55934b367e0a217ab245)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__LoginLootReward_1a111983aef9ed55934b367e0a217ab245"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -64,7 +65,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__LoginLootReward_1af3e59016910e6e47542c6ebd0e2ef028)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__LoginLootReward_1af3e59016910e6e47542c6ebd0e2ef028"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__LoginLootReward_1a423419a898e3c5d93c94abc312b03a7c)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__LoginLootReward_1a423419a898e3c5d93c94abc312b03a7c"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -106,6 +107,10 @@ Sets the value of LootId_Optional and also sets LootId_IsSet to true using move 
 #### `public inline void `[`ClearLootId`](#structFRHAPI__LoginLootReward_1a599ca6fce01c2ff467e8f87d54826046)`()` <a id="structFRHAPI__LoginLootReward_1a599ca6fce01c2ff467e8f87d54826046"></a>
 
 Clears the value of LootId_Optional and sets LootId_IsSet to false.
+
+#### `public inline bool `[`IsLootIdSet`](#structFRHAPI__LoginLootReward_1ac48dde4cbe606123df68fc4de4856d00)`() const` <a id="structFRHAPI__LoginLootReward_1ac48dde4cbe606123df68fc4de4856d00"></a>
+
+Checks whether LootId_Optional has been set.
 
 #### `public inline int32 & `[`GetLegacyLootId`](#structFRHAPI__LoginLootReward_1a23e679876c96adc266d53bbca0e80689)`()` <a id="structFRHAPI__LoginLootReward_1a23e679876c96adc266d53bbca0e80689"></a>
 

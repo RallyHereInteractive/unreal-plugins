@@ -48,17 +48,17 @@ bool FRHAPI_MatchMakingTemplateGroupV2::FromJson(const TSharedPtr<FJsonValue>& J
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonMatchMakingTemplateGroupIdField = (*Object)->TryGetField(TEXT("match_making_template_group_id"));
-	ParseSuccess &= JsonMatchMakingTemplateGroupIdField.IsValid() && !JsonMatchMakingTemplateGroupIdField->IsNull() && TryGetJsonValue(JsonMatchMakingTemplateGroupIdField, MatchMakingTemplateGroupId);
+	ParseSuccess &= JsonMatchMakingTemplateGroupIdField.IsValid() && (!JsonMatchMakingTemplateGroupIdField->IsNull() &&  TryGetJsonValue(JsonMatchMakingTemplateGroupIdField, MatchMakingTemplateGroupId));
 	const TSharedPtr<FJsonValue> JsonTemplateOptionsField = (*Object)->TryGetField(TEXT("template_options"));
-	ParseSuccess &= JsonTemplateOptionsField.IsValid() && !JsonTemplateOptionsField->IsNull() && TryGetJsonValue(JsonTemplateOptionsField, TemplateOptions);
+	ParseSuccess &= JsonTemplateOptionsField.IsValid() && (!JsonTemplateOptionsField->IsNull() &&  TryGetJsonValue(JsonTemplateOptionsField, TemplateOptions));
 	const TSharedPtr<FJsonValue> JsonRequiredItemIdsField = (*Object)->TryGetField(TEXT("required_item_ids"));
-	if (JsonRequiredItemIdsField.IsValid() && !JsonRequiredItemIdsField->IsNull())
+	if (JsonRequiredItemIdsField.IsValid())
 	{
 		RequiredItemIds_IsSet = TryGetJsonValue(JsonRequiredItemIdsField, RequiredItemIds_Optional);
 		ParseSuccess &= RequiredItemIds_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonRequiresAllPlayersItemsField = (*Object)->TryGetField(TEXT("requires_all_players_items"));
-	if (JsonRequiresAllPlayersItemsField.IsValid() && !JsonRequiresAllPlayersItemsField->IsNull())
+	if (JsonRequiresAllPlayersItemsField.IsValid())
 	{
 		RequiresAllPlayersItems_IsSet = TryGetJsonValue(JsonRequiresAllPlayersItemsField, RequiresAllPlayersItems_Optional);
 		ParseSuccess &= RequiresAllPlayersItems_IsSet;

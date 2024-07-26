@@ -64,37 +64,37 @@ bool FRHAPI_InstanceInfoUpdate::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonAllocationIdField = (*Object)->TryGetField(TEXT("allocation_id"));
-	if (JsonAllocationIdField.IsValid() && !JsonAllocationIdField->IsNull())
+	if (JsonAllocationIdField.IsValid())
 	{
 		AllocationId_IsSet = TryGetJsonValue(JsonAllocationIdField, AllocationId_Optional);
 		ParseSuccess &= AllocationId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonJoinStatusField = (*Object)->TryGetField(TEXT("join_status"));
-	if (JsonJoinStatusField.IsValid() && !JsonJoinStatusField->IsNull())
+	if (JsonJoinStatusField.IsValid())
 	{
 		JoinStatus_IsSet = TryGetJsonValue(JsonJoinStatusField, JoinStatus_Optional);
 		ParseSuccess &= JoinStatus_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonJoinParamsField = (*Object)->TryGetField(TEXT("join_params"));
-	if (JsonJoinParamsField.IsValid() && !JsonJoinParamsField->IsNull())
+	if (JsonJoinParamsField.IsValid())
 	{
 		JoinParams_IsSet = TryGetJsonValue(JsonJoinParamsField, JoinParams_Optional);
 		ParseSuccess &= JoinParams_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonVersionField = (*Object)->TryGetField(TEXT("version"));
-	if (JsonVersionField.IsValid() && !JsonVersionField->IsNull())
+	if (JsonVersionField.IsValid())
 	{
 		Version_IsSet = TryGetJsonValue(JsonVersionField, Version_Optional);
 		ParseSuccess &= Version_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	if (JsonCustomDataField.IsValid())
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonMatchIdField = (*Object)->TryGetField(TEXT("match_id"));
-	if (JsonMatchIdField.IsValid() && !JsonMatchIdField->IsNull())
+	if (JsonMatchIdField.IsValid())
 	{
 		MatchId_IsSet = TryGetJsonValue(JsonMatchIdField, MatchId_Optional);
 		ParseSuccess &= MatchId_IsSet;

@@ -36,7 +36,7 @@ bool FRHAPI_PublicKeyList::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonKeysField = (*Object)->TryGetField(TEXT("keys"));
-	ParseSuccess &= JsonKeysField.IsValid() && !JsonKeysField->IsNull() && TryGetJsonValue(JsonKeysField, Keys);
+	ParseSuccess &= JsonKeysField.IsValid() && (!JsonKeysField->IsNull() &&  TryGetJsonValue(JsonKeysField, Keys));
 
 	return ParseSuccess;
 }

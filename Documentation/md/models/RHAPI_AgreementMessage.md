@@ -29,8 +29,8 @@ Error message for when a user has not agreed to the EULA, TOS, or Privacy Policy
 `public bool `[`NeedsTos_IsSet`](#structFRHAPI__AgreementMessage_1abd60f2debe16b2924f731615d3e6a841) | true if NeedsTos_Optional has been set to a value
 `public bool `[`NeedsPrivacyPolicy_Optional`](#structFRHAPI__AgreementMessage_1a99d643a23f43e3f9508584d2cb3c3ecd) | Whether the user needs to accept the Privacy Policy.
 `public bool `[`NeedsPrivacyPolicy_IsSet`](#structFRHAPI__AgreementMessage_1a0fc51c53961a3d1b7b5ff9cbd5784fa0) | true if NeedsPrivacyPolicy_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__AgreementMessage_1a7c23aac9b13afd476198e45e0c380cc7)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__AgreementMessage_1a8c963c13ac21dd41a28d5fc01766e7c0)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__AgreementMessage_1a84302c674f288247e32316cc06ac50e1)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__AgreementMessage_1a493ddf6f69ceb5db4dc80e63b8e29e67)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline bool & `[`GetAuthSuccess`](#structFRHAPI__AgreementMessage_1a57397b50391881929fa779675378cae2)`()` | Gets the value of AuthSuccess_Optional, regardless of it having been set.
 `public inline const bool & `[`GetAuthSuccess`](#structFRHAPI__AgreementMessage_1ad52e8bc7849d6105395bd1a4d4949a5d)`() const` | Gets the value of AuthSuccess_Optional, regardless of it having been set.
 `public inline const bool & `[`GetAuthSuccess`](#structFRHAPI__AgreementMessage_1ac0aaa4e2629a8d9ab9544aa0425aff4e)`(const bool & DefaultValue) const` | Gets the value of AuthSuccess_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -40,6 +40,7 @@ Error message for when a user has not agreed to the EULA, TOS, or Privacy Policy
 `public inline void `[`SetAuthSuccess`](#structFRHAPI__AgreementMessage_1ac87e1b8186520bb85f2cc4a5deb8d261)`(const bool & NewValue)` | Sets the value of AuthSuccess_Optional and also sets AuthSuccess_IsSet to true.
 `public inline void `[`SetAuthSuccess`](#structFRHAPI__AgreementMessage_1a9bd8a6a4e05b8a0907c3bdce795ec7c6)`(bool && NewValue)` | Sets the value of AuthSuccess_Optional and also sets AuthSuccess_IsSet to true using move semantics.
 `public inline void `[`ClearAuthSuccess`](#structFRHAPI__AgreementMessage_1a569f91a13a065cd63d8f4bbd46931e03)`()` | Clears the value of AuthSuccess_Optional and sets AuthSuccess_IsSet to false.
+`public inline bool `[`IsAuthSuccessSet`](#structFRHAPI__AgreementMessage_1a84c0a212ec6e6594bed8881f3d659941)`() const` | Checks whether AuthSuccess_Optional has been set.
 `public inline bool `[`IsAuthSuccessDefaultValue`](#structFRHAPI__AgreementMessage_1a38906364052e15ec8ce894d3b17930fe)`() const` | Returns true if AuthSuccess_Optional is set and matches the default value.
 `public inline void `[`SetAuthSuccessToDefault`](#structFRHAPI__AgreementMessage_1ac09a3293bf19d0071292ab20bf77e3e4)`()` | Sets the value of AuthSuccess_Optional to its default and also sets AuthSuccess_IsSet to true.
 `public inline FString & `[`GetErrorCode`](#structFRHAPI__AgreementMessage_1ae24b2e3d39c42e5e5752be0ed0a789f2)`()` | Gets the value of ErrorCode.
@@ -59,6 +60,7 @@ Error message for when a user has not agreed to the EULA, TOS, or Privacy Policy
 `public inline void `[`SetNeedsEula`](#structFRHAPI__AgreementMessage_1a43b1cb5331c181aec16b0d3e3a83a052)`(const bool & NewValue)` | Sets the value of NeedsEula_Optional and also sets NeedsEula_IsSet to true.
 `public inline void `[`SetNeedsEula`](#structFRHAPI__AgreementMessage_1ad677db5eb48d135b54d92fee5c6f1b80)`(bool && NewValue)` | Sets the value of NeedsEula_Optional and also sets NeedsEula_IsSet to true using move semantics.
 `public inline void `[`ClearNeedsEula`](#structFRHAPI__AgreementMessage_1ad76381803a6b990168d202d29903118e)`()` | Clears the value of NeedsEula_Optional and sets NeedsEula_IsSet to false.
+`public inline bool `[`IsNeedsEulaSet`](#structFRHAPI__AgreementMessage_1a61578c9b0c4d50abd398ce812c30854a)`() const` | Checks whether NeedsEula_Optional has been set.
 `public inline bool `[`IsNeedsEulaDefaultValue`](#structFRHAPI__AgreementMessage_1a0f6954a486cb2355b362e857baed47d9)`() const` | Returns true if NeedsEula_Optional is set and matches the default value.
 `public inline void `[`SetNeedsEulaToDefault`](#structFRHAPI__AgreementMessage_1ae4f905afb92d34b4fe046c35c62cc511)`()` | Sets the value of NeedsEula_Optional to its default and also sets NeedsEula_IsSet to true.
 `public inline bool & `[`GetNeedsTos`](#structFRHAPI__AgreementMessage_1a507796f242e8017a626f43a71f5b4a75)`()` | Gets the value of NeedsTos_Optional, regardless of it having been set.
@@ -70,6 +72,7 @@ Error message for when a user has not agreed to the EULA, TOS, or Privacy Policy
 `public inline void `[`SetNeedsTos`](#structFRHAPI__AgreementMessage_1abf6a9297e98482ce129c24aa34de7e56)`(const bool & NewValue)` | Sets the value of NeedsTos_Optional and also sets NeedsTos_IsSet to true.
 `public inline void `[`SetNeedsTos`](#structFRHAPI__AgreementMessage_1a80987e8e5e684144b8e25dda1184199a)`(bool && NewValue)` | Sets the value of NeedsTos_Optional and also sets NeedsTos_IsSet to true using move semantics.
 `public inline void `[`ClearNeedsTos`](#structFRHAPI__AgreementMessage_1a23d8a09446816e9d676cf2e07a009149)`()` | Clears the value of NeedsTos_Optional and sets NeedsTos_IsSet to false.
+`public inline bool `[`IsNeedsTosSet`](#structFRHAPI__AgreementMessage_1a5c10838a8aa1b0f9858b2ede523ae39f)`() const` | Checks whether NeedsTos_Optional has been set.
 `public inline bool `[`IsNeedsTosDefaultValue`](#structFRHAPI__AgreementMessage_1a59c6374a2bdfc6dc54099782b4e7aa57)`() const` | Returns true if NeedsTos_Optional is set and matches the default value.
 `public inline void `[`SetNeedsTosToDefault`](#structFRHAPI__AgreementMessage_1a7e79d25c311a8221d0b94783d4ee10a5)`()` | Sets the value of NeedsTos_Optional to its default and also sets NeedsTos_IsSet to true.
 `public inline bool & `[`GetNeedsPrivacyPolicy`](#structFRHAPI__AgreementMessage_1a3b7f585517e712ca2d419dade15d259f)`()` | Gets the value of NeedsPrivacyPolicy_Optional, regardless of it having been set.
@@ -81,6 +84,7 @@ Error message for when a user has not agreed to the EULA, TOS, or Privacy Policy
 `public inline void `[`SetNeedsPrivacyPolicy`](#structFRHAPI__AgreementMessage_1ab8f512cb94e67d62e9f52ba5e1e6b5dd)`(const bool & NewValue)` | Sets the value of NeedsPrivacyPolicy_Optional and also sets NeedsPrivacyPolicy_IsSet to true.
 `public inline void `[`SetNeedsPrivacyPolicy`](#structFRHAPI__AgreementMessage_1a460fb5de41bcd52a45e38dad77ff598d)`(bool && NewValue)` | Sets the value of NeedsPrivacyPolicy_Optional and also sets NeedsPrivacyPolicy_IsSet to true using move semantics.
 `public inline void `[`ClearNeedsPrivacyPolicy`](#structFRHAPI__AgreementMessage_1a348fe783e1dbf284bc53a43207e0bfee)`()` | Clears the value of NeedsPrivacyPolicy_Optional and sets NeedsPrivacyPolicy_IsSet to false.
+`public inline bool `[`IsNeedsPrivacyPolicySet`](#structFRHAPI__AgreementMessage_1ab0af72f1338d9dcdbf370a0a1f8c917d)`() const` | Checks whether NeedsPrivacyPolicy_Optional has been set.
 `public inline bool `[`IsNeedsPrivacyPolicyDefaultValue`](#structFRHAPI__AgreementMessage_1a21c366b675bc08ace0486b94122e0a4b)`() const` | Returns true if NeedsPrivacyPolicy_Optional is set and matches the default value.
 `public inline void `[`SetNeedsPrivacyPolicyToDefault`](#structFRHAPI__AgreementMessage_1a5dc593776c4406f97a3fa94ad20adfc4)`()` | Sets the value of NeedsPrivacyPolicy_Optional to its default and also sets NeedsPrivacyPolicy_IsSet to true.
 
@@ -120,7 +124,7 @@ Whether the user needs to accept the Privacy Policy.
 
 true if NeedsPrivacyPolicy_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__AgreementMessage_1a7c23aac9b13afd476198e45e0c380cc7)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__AgreementMessage_1a7c23aac9b13afd476198e45e0c380cc7"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__AgreementMessage_1a84302c674f288247e32316cc06ac50e1)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__AgreementMessage_1a84302c674f288247e32316cc06ac50e1"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -130,7 +134,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__AgreementMessage_1a8c963c13ac21dd41a28d5fc01766e7c0)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__AgreementMessage_1a8c963c13ac21dd41a28d5fc01766e7c0"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__AgreementMessage_1a493ddf6f69ceb5db4dc80e63b8e29e67)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__AgreementMessage_1a493ddf6f69ceb5db4dc80e63b8e29e67"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -172,6 +176,10 @@ Sets the value of AuthSuccess_Optional and also sets AuthSuccess_IsSet to true u
 #### `public inline void `[`ClearAuthSuccess`](#structFRHAPI__AgreementMessage_1a569f91a13a065cd63d8f4bbd46931e03)`()` <a id="structFRHAPI__AgreementMessage_1a569f91a13a065cd63d8f4bbd46931e03"></a>
 
 Clears the value of AuthSuccess_Optional and sets AuthSuccess_IsSet to false.
+
+#### `public inline bool `[`IsAuthSuccessSet`](#structFRHAPI__AgreementMessage_1a84c0a212ec6e6594bed8881f3d659941)`() const` <a id="structFRHAPI__AgreementMessage_1a84c0a212ec6e6594bed8881f3d659941"></a>
+
+Checks whether AuthSuccess_Optional has been set.
 
 #### `public inline bool `[`IsAuthSuccessDefaultValue`](#structFRHAPI__AgreementMessage_1a38906364052e15ec8ce894d3b17930fe)`() const` <a id="structFRHAPI__AgreementMessage_1a38906364052e15ec8ce894d3b17930fe"></a>
 
@@ -249,6 +257,10 @@ Sets the value of NeedsEula_Optional and also sets NeedsEula_IsSet to true using
 
 Clears the value of NeedsEula_Optional and sets NeedsEula_IsSet to false.
 
+#### `public inline bool `[`IsNeedsEulaSet`](#structFRHAPI__AgreementMessage_1a61578c9b0c4d50abd398ce812c30854a)`() const` <a id="structFRHAPI__AgreementMessage_1a61578c9b0c4d50abd398ce812c30854a"></a>
+
+Checks whether NeedsEula_Optional has been set.
+
 #### `public inline bool `[`IsNeedsEulaDefaultValue`](#structFRHAPI__AgreementMessage_1a0f6954a486cb2355b362e857baed47d9)`() const` <a id="structFRHAPI__AgreementMessage_1a0f6954a486cb2355b362e857baed47d9"></a>
 
 Returns true if NeedsEula_Optional is set and matches the default value.
@@ -293,6 +305,10 @@ Sets the value of NeedsTos_Optional and also sets NeedsTos_IsSet to true using m
 
 Clears the value of NeedsTos_Optional and sets NeedsTos_IsSet to false.
 
+#### `public inline bool `[`IsNeedsTosSet`](#structFRHAPI__AgreementMessage_1a5c10838a8aa1b0f9858b2ede523ae39f)`() const` <a id="structFRHAPI__AgreementMessage_1a5c10838a8aa1b0f9858b2ede523ae39f"></a>
+
+Checks whether NeedsTos_Optional has been set.
+
 #### `public inline bool `[`IsNeedsTosDefaultValue`](#structFRHAPI__AgreementMessage_1a59c6374a2bdfc6dc54099782b4e7aa57)`() const` <a id="structFRHAPI__AgreementMessage_1a59c6374a2bdfc6dc54099782b4e7aa57"></a>
 
 Returns true if NeedsTos_Optional is set and matches the default value.
@@ -336,6 +352,10 @@ Sets the value of NeedsPrivacyPolicy_Optional and also sets NeedsPrivacyPolicy_I
 #### `public inline void `[`ClearNeedsPrivacyPolicy`](#structFRHAPI__AgreementMessage_1a348fe783e1dbf284bc53a43207e0bfee)`()` <a id="structFRHAPI__AgreementMessage_1a348fe783e1dbf284bc53a43207e0bfee"></a>
 
 Clears the value of NeedsPrivacyPolicy_Optional and sets NeedsPrivacyPolicy_IsSet to false.
+
+#### `public inline bool `[`IsNeedsPrivacyPolicySet`](#structFRHAPI__AgreementMessage_1ab0af72f1338d9dcdbf370a0a1f8c917d)`() const` <a id="structFRHAPI__AgreementMessage_1ab0af72f1338d9dcdbf370a0a1f8c917d"></a>
+
+Checks whether NeedsPrivacyPolicy_Optional has been set.
 
 #### `public inline bool `[`IsNeedsPrivacyPolicyDefaultValue`](#structFRHAPI__AgreementMessage_1a21c366b675bc08ace0486b94122e0a4b)`() const` <a id="structFRHAPI__AgreementMessage_1a21c366b675bc08ace0486b94122e0a4b"></a>
 

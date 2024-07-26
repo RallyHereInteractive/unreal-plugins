@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_SettingTypeVersion : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Are players allowed to set/update keys to this version of the setting type?  Does not affect getting or deleting existing settings. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -54,19 +54,21 @@ struct RALLYHEREAPI_API FRHAPI_SettingTypeVersion : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of AllowUpdate_Optional and returns true if it has been set, otherwise returns false */
 	bool GetAllowUpdate(bool& OutValue) const { if (AllowUpdate_IsSet) OutValue = AllowUpdate_Optional; return AllowUpdate_IsSet; }
 	/** @brief Returns a pointer to AllowUpdate_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetAllowUpdateOrNull() { if (AllowUpdate_IsSet) return &AllowUpdate_Optional; return nullptr; }
+	bool* GetAllowUpdateOrNull() { if (AllowUpdate_IsSet) return (&AllowUpdate_Optional); return nullptr; }
 	/** @brief Returns a pointer to AllowUpdate_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetAllowUpdateOrNull() const { if (AllowUpdate_IsSet) return &AllowUpdate_Optional; return nullptr; }
+	const bool* GetAllowUpdateOrNull() const { if (AllowUpdate_IsSet) return (&AllowUpdate_Optional); return nullptr; }
 	/** @brief Sets the value of AllowUpdate_Optional and also sets AllowUpdate_IsSet to true */
-	void SetAllowUpdate(const bool& NewValue) { AllowUpdate_Optional = NewValue; AllowUpdate_IsSet = true; }
+	void SetAllowUpdate(const bool& NewValue) { AllowUpdate_Optional = NewValue; AllowUpdate_IsSet = true;  }
 	/** @brief Sets the value of AllowUpdate_Optional and also sets AllowUpdate_IsSet to true using move semantics */
-	void SetAllowUpdate(bool&& NewValue) { AllowUpdate_Optional = NewValue; AllowUpdate_IsSet = true; }
-	 /** @brief Clears the value of AllowUpdate_Optional and sets AllowUpdate_IsSet to false */
-	void ClearAllowUpdate() { AllowUpdate_Optional = true; AllowUpdate_IsSet = false; }
+	void SetAllowUpdate(bool&& NewValue) { AllowUpdate_Optional = NewValue; AllowUpdate_IsSet = true;  }
+	/** @brief Clears the value of AllowUpdate_Optional and sets AllowUpdate_IsSet to false */
+	void ClearAllowUpdate() { AllowUpdate_Optional = true; AllowUpdate_IsSet = false;  }
+	/** @brief Checks whether AllowUpdate_Optional has been set */
+	bool IsAllowUpdateSet() const { return AllowUpdate_IsSet; }
 	/** @brief Returns true if AllowUpdate_Optional is set and matches the default value */
 	bool IsAllowUpdateDefaultValue() const { return AllowUpdate_IsSet && AllowUpdate_Optional == true; }
 	/** @brief Sets the value of AllowUpdate_Optional to its default and also sets AllowUpdate_IsSet to true */
-	void SetAllowUpdateToDefault() { AllowUpdate_Optional = true; AllowUpdate_IsSet = true; }
+	void SetAllowUpdateToDefault() { SetAllowUpdate(true); }
 
 	/** @brief Regex that is used to verify keys at assignment time */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -83,19 +85,21 @@ struct RALLYHEREAPI_API FRHAPI_SettingTypeVersion : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of KeyRegex_Optional and returns true if it has been set, otherwise returns false */
 	bool GetKeyRegex(FString& OutValue) const { if (KeyRegex_IsSet) OutValue = KeyRegex_Optional; return KeyRegex_IsSet; }
 	/** @brief Returns a pointer to KeyRegex_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetKeyRegexOrNull() { if (KeyRegex_IsSet) return &KeyRegex_Optional; return nullptr; }
+	FString* GetKeyRegexOrNull() { if (KeyRegex_IsSet) return (&KeyRegex_Optional); return nullptr; }
 	/** @brief Returns a pointer to KeyRegex_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetKeyRegexOrNull() const { if (KeyRegex_IsSet) return &KeyRegex_Optional; return nullptr; }
+	const FString* GetKeyRegexOrNull() const { if (KeyRegex_IsSet) return (&KeyRegex_Optional); return nullptr; }
 	/** @brief Sets the value of KeyRegex_Optional and also sets KeyRegex_IsSet to true */
-	void SetKeyRegex(const FString& NewValue) { KeyRegex_Optional = NewValue; KeyRegex_IsSet = true; }
+	void SetKeyRegex(const FString& NewValue) { KeyRegex_Optional = NewValue; KeyRegex_IsSet = true;  }
 	/** @brief Sets the value of KeyRegex_Optional and also sets KeyRegex_IsSet to true using move semantics */
-	void SetKeyRegex(FString&& NewValue) { KeyRegex_Optional = NewValue; KeyRegex_IsSet = true; }
-	 /** @brief Clears the value of KeyRegex_Optional and sets KeyRegex_IsSet to false */
-	void ClearKeyRegex() { KeyRegex_Optional = TEXT("^.+$"); KeyRegex_IsSet = false; }
+	void SetKeyRegex(FString&& NewValue) { KeyRegex_Optional = NewValue; KeyRegex_IsSet = true;  }
+	/** @brief Clears the value of KeyRegex_Optional and sets KeyRegex_IsSet to false */
+	void ClearKeyRegex() { KeyRegex_Optional = TEXT("^.+$"); KeyRegex_IsSet = false;  }
+	/** @brief Checks whether KeyRegex_Optional has been set */
+	bool IsKeyRegexSet() const { return KeyRegex_IsSet; }
 	/** @brief Returns true if KeyRegex_Optional is set and matches the default value */
 	bool IsKeyRegexDefaultValue() const { return KeyRegex_IsSet && KeyRegex_Optional == TEXT("^.+$"); }
 	/** @brief Sets the value of KeyRegex_Optional to its default and also sets KeyRegex_IsSet to true */
-	void SetKeyRegexToDefault() { KeyRegex_Optional = TEXT("^.+$"); KeyRegex_IsSet = true; }
+	void SetKeyRegexToDefault() { SetKeyRegex(TEXT("^.+$")); }
 
 	/** @brief [jsonschema](https://json-schema.org/understanding-json-schema/index.html) that is used to verify values at assignment time */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -105,9 +109,9 @@ struct RALLYHEREAPI_API FRHAPI_SettingTypeVersion : public FRHAPI_Model
 	/** @brief Gets the value of ValueJsonschema */
 	const FRHAPI_JsonObject& GetValueJsonschema() const { return ValueJsonschema; }
 	/** @brief Sets the value of ValueJsonschema */
-	void SetValueJsonschema(const FRHAPI_JsonObject& NewValue) { ValueJsonschema = NewValue;  }
+	void SetValueJsonschema(const FRHAPI_JsonObject& NewValue) { ValueJsonschema = NewValue;   }
 	/** @brief Sets the value of ValueJsonschema using move semantics */
-	void SetValueJsonschema(FRHAPI_JsonObject&& NewValue) { ValueJsonschema = NewValue;  }
+	void SetValueJsonschema(FRHAPI_JsonObject&& NewValue) { ValueJsonschema = NewValue;   }
 
 	/** @brief Custom data that was provided when the setting type was created */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -124,15 +128,17 @@ struct RALLYHEREAPI_API FRHAPI_SettingTypeVersion : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
 	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
-	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
-	void ClearCustomData() { CustomData_IsSet = false; }
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 };
 
 /** @} */

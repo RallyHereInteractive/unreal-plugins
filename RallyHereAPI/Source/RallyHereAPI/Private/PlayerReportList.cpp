@@ -27,6 +27,9 @@ void FRHAPI_PlayerReportList::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (NextCursor_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("next_cursor"));
+		if (NextCursor_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, NextCursor_Optional);
 	}
 	Writer->WriteObjectEnd();
@@ -41,11 +44,12 @@ bool FRHAPI_PlayerReportList::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonReportsField = (*Object)->TryGetField(TEXT("reports"));
-	ParseSuccess &= JsonReportsField.IsValid() && !JsonReportsField->IsNull() && TryGetJsonValue(JsonReportsField, Reports);
+	ParseSuccess &= JsonReportsField.IsValid() && (!JsonReportsField->IsNull() &&  TryGetJsonValue(JsonReportsField, Reports));
 	const TSharedPtr<FJsonValue> JsonNextCursorField = (*Object)->TryGetField(TEXT("next_cursor"));
-	if (JsonNextCursorField.IsValid() && !JsonNextCursorField->IsNull())
+	if (JsonNextCursorField.IsValid())
 	{
-		NextCursor_IsSet = TryGetJsonValue(JsonNextCursorField, NextCursor_Optional);
+		NextCursor_IsNull = JsonNextCursorField->IsNull();
+		NextCursor_IsSet = NextCursor_IsNull || TryGetJsonValue(JsonNextCursorField, NextCursor_Optional);
 		ParseSuccess &= NextCursor_IsSet;
 	}
 

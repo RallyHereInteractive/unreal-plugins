@@ -37,8 +37,8 @@ Configuration about a specific rank type.
 `public float `[`Tau_Optional`](#structFRHAPI__RankConfigV3_1aefd17a64ac7443e571088de4d3306378) | Factor that determines how quickly a player's sigma is adjusted. A larger tau will result in more volatile in ranks. Recommended value is is (default_sigma * .01)
 `public bool `[`Tau_IsSet`](#structFRHAPI__RankConfigV3_1ac117cbd11c23707ec49ee99b7ef0808a) | true if Tau_Optional has been set to a value
 `public FString `[`RankId`](#structFRHAPI__RankConfigV3_1a88c7b8dd55eb3aee4ea7697c3e904345) | ID for this rank type.
-`public virtual bool `[`FromJson`](#structFRHAPI__RankConfigV3_1ae7f09019f2af28bb98d8c792d4283f19)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__RankConfigV3_1ab3bb1455b09a17ad0b79639d4efdeaf4)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__RankConfigV3_1a705e8ab1469a66cc155d8389c29d1120)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__RankConfigV3_1a7e34fdf3e4314aa913dd6113d0cadc2a)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetName`](#structFRHAPI__RankConfigV3_1ab0a827ff8774f093337e74f2c8d6bb88)`()` | Gets the value of Name_Optional, regardless of it having been set.
 `public inline const FString & `[`GetName`](#structFRHAPI__RankConfigV3_1a7fcf76cab5045ed5409bf06b696ed32f)`() const` | Gets the value of Name_Optional, regardless of it having been set.
 `public inline const FString & `[`GetName`](#structFRHAPI__RankConfigV3_1ac0fcb122f6cba272c3adfd927ffdfae5)`(const FString & DefaultValue) const` | Gets the value of Name_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -48,6 +48,7 @@ Configuration about a specific rank type.
 `public inline void `[`SetName`](#structFRHAPI__RankConfigV3_1ae7e2b275fa92a5fdbe03fef02cea9097)`(const FString & NewValue)` | Sets the value of Name_Optional and also sets Name_IsSet to true.
 `public inline void `[`SetName`](#structFRHAPI__RankConfigV3_1a6e8c789e6b8cc5524811073ca463e22d)`(FString && NewValue)` | Sets the value of Name_Optional and also sets Name_IsSet to true using move semantics.
 `public inline void `[`ClearName`](#structFRHAPI__RankConfigV3_1af482314ef4046a8c9b71dd08fe95aff6)`()` | Clears the value of Name_Optional and sets Name_IsSet to false.
+`public inline bool `[`IsNameSet`](#structFRHAPI__RankConfigV3_1a1b3d1485095428114d754281079931aa)`() const` | Checks whether Name_Optional has been set.
 `public inline FString & `[`GetDescription`](#structFRHAPI__RankConfigV3_1abe1a9e0db5f9b8850e698a5675f669f6)`()` | Gets the value of Description_Optional, regardless of it having been set.
 `public inline const FString & `[`GetDescription`](#structFRHAPI__RankConfigV3_1a91944a18dc3f55dce973208bfe832287)`() const` | Gets the value of Description_Optional, regardless of it having been set.
 `public inline const FString & `[`GetDescription`](#structFRHAPI__RankConfigV3_1a00071995b03eacd5f64bf84a27c48d51)`(const FString & DefaultValue) const` | Gets the value of Description_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -57,6 +58,7 @@ Configuration about a specific rank type.
 `public inline void `[`SetDescription`](#structFRHAPI__RankConfigV3_1a603e86d5560015b5c6949589c152324c)`(const FString & NewValue)` | Sets the value of Description_Optional and also sets Description_IsSet to true.
 `public inline void `[`SetDescription`](#structFRHAPI__RankConfigV3_1a603d749ee10b49ba80f9293267b63f39)`(FString && NewValue)` | Sets the value of Description_Optional and also sets Description_IsSet to true using move semantics.
 `public inline void `[`ClearDescription`](#structFRHAPI__RankConfigV3_1ade3a6bc2d3803668adf87ddd29a4feef)`()` | Clears the value of Description_Optional and sets Description_IsSet to false.
+`public inline bool `[`IsDescriptionSet`](#structFRHAPI__RankConfigV3_1a5595e9502c5c13394a21fa7affb2f00e)`() const` | Checks whether Description_Optional has been set.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__RankConfigV3_1a6e83ef875d512d1e48fd59370a9cc2ce)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__RankConfigV3_1ad9569380eda401ff0cd692f817977ef2)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__RankConfigV3_1acbef2bd9aa42fd955101c8bc86b1ab1f)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -66,6 +68,7 @@ Configuration about a specific rank type.
 `public inline void `[`SetCustomData`](#structFRHAPI__RankConfigV3_1ac14f3fd35eeb0c394c0914c0be197f8d)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`SetCustomData`](#structFRHAPI__RankConfigV3_1a10857f051ea2f1a6e31ff8c17a35e177)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__RankConfigV3_1a0870724f4b3103eca4c45110dfb9f2d4)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+`public inline bool `[`IsCustomDataSet`](#structFRHAPI__RankConfigV3_1a64833686463497e83d2b4c32e691acc5)`() const` | Checks whether CustomData_Optional has been set.
 `public inline float & `[`GetMaxMu`](#structFRHAPI__RankConfigV3_1a0cc4a5ba5ebcaf9ac9df788fa4bd0b04)`()` | Gets the value of MaxMu.
 `public inline const float & `[`GetMaxMu`](#structFRHAPI__RankConfigV3_1a2b91c4dc2e176faaa5222c1173648bdb)`() const` | Gets the value of MaxMu.
 `public inline void `[`SetMaxMu`](#structFRHAPI__RankConfigV3_1a1c1307ea081f83bb65fb13b554cb2e3d)`(const float & NewValue)` | Sets the value of MaxMu.
@@ -87,6 +90,7 @@ Configuration about a specific rank type.
 `public inline void `[`SetBeta`](#structFRHAPI__RankConfigV3_1ae2313f56a98bb383a974ff827c233d8b)`(const float & NewValue)` | Sets the value of Beta_Optional and also sets Beta_IsSet to true.
 `public inline void `[`SetBeta`](#structFRHAPI__RankConfigV3_1afe479cc01f401214dd4013952e576607)`(float && NewValue)` | Sets the value of Beta_Optional and also sets Beta_IsSet to true using move semantics.
 `public inline void `[`ClearBeta`](#structFRHAPI__RankConfigV3_1a4672cd7c59abd9ba02d1c8da6d8560a1)`()` | Clears the value of Beta_Optional and sets Beta_IsSet to false.
+`public inline bool `[`IsBetaSet`](#structFRHAPI__RankConfigV3_1a812b40b6441eb1867a0198f52f8f730f)`() const` | Checks whether Beta_Optional has been set.
 `public inline float & `[`GetDefaultMu`](#structFRHAPI__RankConfigV3_1a18143fb9b3652719d57200a2d53bd6fe)`()` | Gets the value of DefaultMu.
 `public inline const float & `[`GetDefaultMu`](#structFRHAPI__RankConfigV3_1ab92a97fe2effc985a7bc330ec6110879)`() const` | Gets the value of DefaultMu.
 `public inline void `[`SetDefaultMu`](#structFRHAPI__RankConfigV3_1a107e50a17221c144a5e049ad359b5233)`(const float & NewValue)` | Sets the value of DefaultMu.
@@ -104,6 +108,7 @@ Configuration about a specific rank type.
 `public inline void `[`SetDrawProbability`](#structFRHAPI__RankConfigV3_1a030aaa0de708f438a8b59807aee1d330)`(const float & NewValue)` | Sets the value of DrawProbability_Optional and also sets DrawProbability_IsSet to true.
 `public inline void `[`SetDrawProbability`](#structFRHAPI__RankConfigV3_1a460d627de58b5e781c9c7daccf7b4190)`(float && NewValue)` | Sets the value of DrawProbability_Optional and also sets DrawProbability_IsSet to true using move semantics.
 `public inline void `[`ClearDrawProbability`](#structFRHAPI__RankConfigV3_1ae2389061b46365999a4db689a240ffed)`()` | Clears the value of DrawProbability_Optional and sets DrawProbability_IsSet to false.
+`public inline bool `[`IsDrawProbabilitySet`](#structFRHAPI__RankConfigV3_1a10f2fc7326281bf998720a1d4774dbc5)`() const` | Checks whether DrawProbability_Optional has been set.
 `public inline float & `[`GetTau`](#structFRHAPI__RankConfigV3_1acb49e21505f080d3fe58ed7320a46d80)`()` | Gets the value of Tau_Optional, regardless of it having been set.
 `public inline const float & `[`GetTau`](#structFRHAPI__RankConfigV3_1a4fdc5bd0e5dae7677f59f794df760f18)`() const` | Gets the value of Tau_Optional, regardless of it having been set.
 `public inline const float & `[`GetTau`](#structFRHAPI__RankConfigV3_1add4dade0de746c4c0ebacfa24809af3c)`(const float & DefaultValue) const` | Gets the value of Tau_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -113,6 +118,7 @@ Configuration about a specific rank type.
 `public inline void `[`SetTau`](#structFRHAPI__RankConfigV3_1a97075173b8f02eba04fa19e507a6e9eb)`(const float & NewValue)` | Sets the value of Tau_Optional and also sets Tau_IsSet to true.
 `public inline void `[`SetTau`](#structFRHAPI__RankConfigV3_1a2ee2e8155662a9426e09e81cea30f046)`(float && NewValue)` | Sets the value of Tau_Optional and also sets Tau_IsSet to true using move semantics.
 `public inline void `[`ClearTau`](#structFRHAPI__RankConfigV3_1a8a5a0bee2d1ff5962c2e286ceb8169cc)`()` | Clears the value of Tau_Optional and sets Tau_IsSet to false.
+`public inline bool `[`IsTauSet`](#structFRHAPI__RankConfigV3_1aee8dac8ff7f24f55542b5b2e16a1cb9c)`() const` | Checks whether Tau_Optional has been set.
 `public inline FString & `[`GetRankId`](#structFRHAPI__RankConfigV3_1a00f960f5d31cf14b461c0d44f00cf9db)`()` | Gets the value of RankId.
 `public inline const FString & `[`GetRankId`](#structFRHAPI__RankConfigV3_1a3545a5994d56ed4e9ac0d59ca73d1540)`() const` | Gets the value of RankId.
 `public inline void `[`SetRankId`](#structFRHAPI__RankConfigV3_1a0d9727ddd4a4ac0c195ae9e1f7242b8f)`(const FString & NewValue)` | Sets the value of RankId.
@@ -192,7 +198,7 @@ true if Tau_Optional has been set to a value
 
 ID for this rank type.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__RankConfigV3_1ae7f09019f2af28bb98d8c792d4283f19)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__RankConfigV3_1ae7f09019f2af28bb98d8c792d4283f19"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__RankConfigV3_1a705e8ab1469a66cc155d8389c29d1120)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__RankConfigV3_1a705e8ab1469a66cc155d8389c29d1120"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -202,7 +208,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__RankConfigV3_1ab3bb1455b09a17ad0b79639d4efdeaf4)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__RankConfigV3_1ab3bb1455b09a17ad0b79639d4efdeaf4"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__RankConfigV3_1a7e34fdf3e4314aa913dd6113d0cadc2a)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__RankConfigV3_1a7e34fdf3e4314aa913dd6113d0cadc2a"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -245,6 +251,10 @@ Sets the value of Name_Optional and also sets Name_IsSet to true using move sema
 
 Clears the value of Name_Optional and sets Name_IsSet to false.
 
+#### `public inline bool `[`IsNameSet`](#structFRHAPI__RankConfigV3_1a1b3d1485095428114d754281079931aa)`() const` <a id="structFRHAPI__RankConfigV3_1a1b3d1485095428114d754281079931aa"></a>
+
+Checks whether Name_Optional has been set.
+
 #### `public inline FString & `[`GetDescription`](#structFRHAPI__RankConfigV3_1abe1a9e0db5f9b8850e698a5675f669f6)`()` <a id="structFRHAPI__RankConfigV3_1abe1a9e0db5f9b8850e698a5675f669f6"></a>
 
 Gets the value of Description_Optional, regardless of it having been set.
@@ -281,6 +291,10 @@ Sets the value of Description_Optional and also sets Description_IsSet to true u
 
 Clears the value of Description_Optional and sets Description_IsSet to false.
 
+#### `public inline bool `[`IsDescriptionSet`](#structFRHAPI__RankConfigV3_1a5595e9502c5c13394a21fa7affb2f00e)`() const` <a id="structFRHAPI__RankConfigV3_1a5595e9502c5c13394a21fa7affb2f00e"></a>
+
+Checks whether Description_Optional has been set.
+
 #### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__RankConfigV3_1a6e83ef875d512d1e48fd59370a9cc2ce)`()` <a id="structFRHAPI__RankConfigV3_1a6e83ef875d512d1e48fd59370a9cc2ce"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
@@ -316,6 +330,10 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true usi
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__RankConfigV3_1a0870724f4b3103eca4c45110dfb9f2d4)`()` <a id="structFRHAPI__RankConfigV3_1a0870724f4b3103eca4c45110dfb9f2d4"></a>
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+
+#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__RankConfigV3_1a64833686463497e83d2b4c32e691acc5)`() const` <a id="structFRHAPI__RankConfigV3_1a64833686463497e83d2b4c32e691acc5"></a>
+
+Checks whether CustomData_Optional has been set.
 
 #### `public inline float & `[`GetMaxMu`](#structFRHAPI__RankConfigV3_1a0cc4a5ba5ebcaf9ac9df788fa4bd0b04)`()` <a id="structFRHAPI__RankConfigV3_1a0cc4a5ba5ebcaf9ac9df788fa4bd0b04"></a>
 
@@ -401,6 +419,10 @@ Sets the value of Beta_Optional and also sets Beta_IsSet to true using move sema
 
 Clears the value of Beta_Optional and sets Beta_IsSet to false.
 
+#### `public inline bool `[`IsBetaSet`](#structFRHAPI__RankConfigV3_1a812b40b6441eb1867a0198f52f8f730f)`() const` <a id="structFRHAPI__RankConfigV3_1a812b40b6441eb1867a0198f52f8f730f"></a>
+
+Checks whether Beta_Optional has been set.
+
 #### `public inline float & `[`GetDefaultMu`](#structFRHAPI__RankConfigV3_1a18143fb9b3652719d57200a2d53bd6fe)`()` <a id="structFRHAPI__RankConfigV3_1a18143fb9b3652719d57200a2d53bd6fe"></a>
 
 Gets the value of DefaultMu.
@@ -469,6 +491,10 @@ Sets the value of DrawProbability_Optional and also sets DrawProbability_IsSet t
 
 Clears the value of DrawProbability_Optional and sets DrawProbability_IsSet to false.
 
+#### `public inline bool `[`IsDrawProbabilitySet`](#structFRHAPI__RankConfigV3_1a10f2fc7326281bf998720a1d4774dbc5)`() const` <a id="structFRHAPI__RankConfigV3_1a10f2fc7326281bf998720a1d4774dbc5"></a>
+
+Checks whether DrawProbability_Optional has been set.
+
 #### `public inline float & `[`GetTau`](#structFRHAPI__RankConfigV3_1acb49e21505f080d3fe58ed7320a46d80)`()` <a id="structFRHAPI__RankConfigV3_1acb49e21505f080d3fe58ed7320a46d80"></a>
 
 Gets the value of Tau_Optional, regardless of it having been set.
@@ -504,6 +530,10 @@ Sets the value of Tau_Optional and also sets Tau_IsSet to true using move semant
 #### `public inline void `[`ClearTau`](#structFRHAPI__RankConfigV3_1a8a5a0bee2d1ff5962c2e286ceb8169cc)`()` <a id="structFRHAPI__RankConfigV3_1a8a5a0bee2d1ff5962c2e286ceb8169cc"></a>
 
 Clears the value of Tau_Optional and sets Tau_IsSet to false.
+
+#### `public inline bool `[`IsTauSet`](#structFRHAPI__RankConfigV3_1aee8dac8ff7f24f55542b5b2e16a1cb9c)`() const` <a id="structFRHAPI__RankConfigV3_1aee8dac8ff7f24f55542b5b2e16a1cb9c"></a>
+
+Checks whether Tau_Optional has been set.
 
 #### `public inline FString & `[`GetRankId`](#structFRHAPI__RankConfigV3_1a00f960f5d31cf14b461c0d44f00cf9db)`()` <a id="structFRHAPI__RankConfigV3_1a00f960f5d31cf14b461c0d44f00cf9db"></a>
 

@@ -20,8 +20,8 @@ struct FRHAPI_BodyBeginNewSession
 `public FString `[`CountryCode`](#structFRHAPI__BodyBeginNewSession_1a870690b3e6af31e45215bbdaa0127596) | [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code for the user
 `public FString `[`DeviceId_Optional`](#structFRHAPI__BodyBeginNewSession_1afb3f92a8ebaa4b435f58d8a3e2f1cb6b) | Unique Identifier for the device a session is started on. E.g should be the same for multiple users on the same device.
 `public bool `[`DeviceId_IsSet`](#structFRHAPI__BodyBeginNewSession_1a1ab96b1e204409126b40d416a87d4255) | true if DeviceId_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__BodyBeginNewSession_1ad9fa67312817cbcb19ff67cb57f29efe)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__BodyBeginNewSession_1a5d1dde9f77c7668e7b6719a96ef7b764)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__BodyBeginNewSession_1a5434d98824dd8551f368ff6f30b526ce)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__BodyBeginNewSession_1a7163a59cca173520257bcc43f52648c1)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetCountryCode`](#structFRHAPI__BodyBeginNewSession_1a6389cd1eff5913dc8846897aa608bac7)`()` | Gets the value of CountryCode.
 `public inline const FString & `[`GetCountryCode`](#structFRHAPI__BodyBeginNewSession_1a260f56c1f98a11fb15cee9782b9ed373)`() const` | Gets the value of CountryCode.
 `public inline void `[`SetCountryCode`](#structFRHAPI__BodyBeginNewSession_1a35478f3af0971b1433dbad006124973c)`(const FString & NewValue)` | Sets the value of CountryCode.
@@ -35,6 +35,7 @@ struct FRHAPI_BodyBeginNewSession
 `public inline void `[`SetDeviceId`](#structFRHAPI__BodyBeginNewSession_1afa826ef99895ffefc51fc55e5f3e70cf)`(const FString & NewValue)` | Sets the value of DeviceId_Optional and also sets DeviceId_IsSet to true.
 `public inline void `[`SetDeviceId`](#structFRHAPI__BodyBeginNewSession_1a65bfb4595fdf40d2ec1aa2e5574958e0)`(FString && NewValue)` | Sets the value of DeviceId_Optional and also sets DeviceId_IsSet to true using move semantics.
 `public inline void `[`ClearDeviceId`](#structFRHAPI__BodyBeginNewSession_1aae458d9179139e19b99c983ce6ba80c5)`()` | Clears the value of DeviceId_Optional and sets DeviceId_IsSet to false.
+`public inline bool `[`IsDeviceIdSet`](#structFRHAPI__BodyBeginNewSession_1accaefee47354645ae421f8076077602c)`() const` | Checks whether DeviceId_Optional has been set.
 
 ### Members
 
@@ -50,7 +51,7 @@ Unique Identifier for the device a session is started on. E.g should be the same
 
 true if DeviceId_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__BodyBeginNewSession_1ad9fa67312817cbcb19ff67cb57f29efe)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__BodyBeginNewSession_1ad9fa67312817cbcb19ff67cb57f29efe"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__BodyBeginNewSession_1a5434d98824dd8551f368ff6f30b526ce)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__BodyBeginNewSession_1a5434d98824dd8551f368ff6f30b526ce"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -60,7 +61,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__BodyBeginNewSession_1a5d1dde9f77c7668e7b6719a96ef7b764)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__BodyBeginNewSession_1a5d1dde9f77c7668e7b6719a96ef7b764"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__BodyBeginNewSession_1a7163a59cca173520257bcc43f52648c1)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__BodyBeginNewSession_1a7163a59cca173520257bcc43f52648c1"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -118,4 +119,8 @@ Sets the value of DeviceId_Optional and also sets DeviceId_IsSet to true using m
 #### `public inline void `[`ClearDeviceId`](#structFRHAPI__BodyBeginNewSession_1aae458d9179139e19b99c983ce6ba80c5)`()` <a id="structFRHAPI__BodyBeginNewSession_1aae458d9179139e19b99c983ce6ba80c5"></a>
 
 Clears the value of DeviceId_Optional and sets DeviceId_IsSet to false.
+
+#### `public inline bool `[`IsDeviceIdSet`](#structFRHAPI__BodyBeginNewSession_1accaefee47354645ae421f8076077602c)`() const` <a id="structFRHAPI__BodyBeginNewSession_1accaefee47354645ae421f8076077602c"></a>
+
+Checks whether DeviceId_Optional has been set.
 

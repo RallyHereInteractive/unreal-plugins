@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_KeyType : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief The type of key */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -47,9 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_KeyType : public FRHAPI_Model
 	/** @brief Gets the value of Type */
 	const FString& GetType() const { return Type; }
 	/** @brief Sets the value of Type */
-	void SetType(const FString& NewValue) { Type = NewValue;  }
+	void SetType(const FString& NewValue) { Type = NewValue;   }
 	/** @brief Sets the value of Type using move semantics */
-	void SetType(FString&& NewValue) { Type = NewValue;  }
+	void SetType(FString&& NewValue) { Type = NewValue;   }
 };
 
 /** @} */

@@ -39,7 +39,7 @@ bool FRHAPI_PersonEmailListRequest::FromJson(const TSharedPtr<FJsonValue>& JsonV
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonEmailListIdsField = (*Object)->TryGetField(TEXT("email_list_ids"));
-	if (JsonEmailListIdsField.IsValid() && !JsonEmailListIdsField->IsNull())
+	if (JsonEmailListIdsField.IsValid())
 	{
 		EmailListIds_IsSet = TryGetJsonValue(JsonEmailListIdsField, EmailListIds_Optional);
 		ParseSuccess &= EmailListIds_IsSet;

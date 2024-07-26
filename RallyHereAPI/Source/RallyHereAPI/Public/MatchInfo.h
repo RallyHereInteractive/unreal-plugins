@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_MatchInfo : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Unique ID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -47,9 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchInfo : public FRHAPI_Model
 	/** @brief Gets the value of MatchId */
 	const FString& GetMatchId() const { return MatchId; }
 	/** @brief Sets the value of MatchId */
-	void SetMatchId(const FString& NewValue) { MatchId = NewValue;  }
+	void SetMatchId(const FString& NewValue) { MatchId = NewValue;   }
 	/** @brief Sets the value of MatchId using move semantics */
-	void SetMatchId(FString&& NewValue) { MatchId = NewValue;  }
+	void SetMatchId(FString&& NewValue) { MatchId = NewValue;   }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -59,9 +59,9 @@ struct RALLYHEREAPI_API FRHAPI_MatchInfo : public FRHAPI_Model
 	/** @brief Gets the value of Created */
 	const FDateTime& GetCreated() const { return Created; }
 	/** @brief Sets the value of Created */
-	void SetCreated(const FDateTime& NewValue) { Created = NewValue;  }
+	void SetCreated(const FDateTime& NewValue) { Created = NewValue;   }
 	/** @brief Sets the value of Created using move semantics */
-	void SetCreated(FDateTime&& NewValue) { Created = NewValue;  }
+	void SetCreated(FDateTime&& NewValue) { Created = NewValue;   }
 
 	/** @brief instance-defined custom data */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -78,15 +78,17 @@ struct RALLYHEREAPI_API FRHAPI_MatchInfo : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
 	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
-	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
-	void ClearCustomData() { CustomData_IsSet = false; }
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 
 	/** @brief List of tickets that were assigned to this match if created by matchmaking */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -103,15 +105,17 @@ struct RALLYHEREAPI_API FRHAPI_MatchInfo : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of TicketIds_Optional and returns true if it has been set, otherwise returns false */
 	bool GetTicketIds(TArray<FString>& OutValue) const { if (TicketIds_IsSet) OutValue = TicketIds_Optional; return TicketIds_IsSet; }
 	/** @brief Returns a pointer to TicketIds_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FString>* GetTicketIdsOrNull() { if (TicketIds_IsSet) return &TicketIds_Optional; return nullptr; }
+	TArray<FString>* GetTicketIdsOrNull() { if (TicketIds_IsSet) return (&TicketIds_Optional); return nullptr; }
 	/** @brief Returns a pointer to TicketIds_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FString>* GetTicketIdsOrNull() const { if (TicketIds_IsSet) return &TicketIds_Optional; return nullptr; }
+	const TArray<FString>* GetTicketIdsOrNull() const { if (TicketIds_IsSet) return (&TicketIds_Optional); return nullptr; }
 	/** @brief Sets the value of TicketIds_Optional and also sets TicketIds_IsSet to true */
-	void SetTicketIds(const TArray<FString>& NewValue) { TicketIds_Optional = NewValue; TicketIds_IsSet = true; }
+	void SetTicketIds(const TArray<FString>& NewValue) { TicketIds_Optional = NewValue; TicketIds_IsSet = true;  }
 	/** @brief Sets the value of TicketIds_Optional and also sets TicketIds_IsSet to true using move semantics */
-	void SetTicketIds(TArray<FString>&& NewValue) { TicketIds_Optional = NewValue; TicketIds_IsSet = true; }
-	 /** @brief Clears the value of TicketIds_Optional and sets TicketIds_IsSet to false */
-	void ClearTicketIds() { TicketIds_IsSet = false; }
+	void SetTicketIds(TArray<FString>&& NewValue) { TicketIds_Optional = NewValue; TicketIds_IsSet = true;  }
+	/** @brief Clears the value of TicketIds_Optional and sets TicketIds_IsSet to false */
+	void ClearTicketIds() { TicketIds_IsSet = false;  }
+	/** @brief Checks whether TicketIds_Optional has been set */
+	bool IsTicketIdsSet() const { return TicketIds_IsSet; }
 };
 
 /** @} */

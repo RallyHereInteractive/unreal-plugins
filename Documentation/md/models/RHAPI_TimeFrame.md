@@ -33,8 +33,8 @@ Time Frames are used to calculate the expiration of Inventory.
 `public FDateTime `[`End`](#structFRHAPI__TimeFrame_1ad3022631cc8ca9e042b21e579e1c7056) | Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone.
 `public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__TimeFrame_1a147c3051181706c6bdf0c078e9f8d44b) | Cache info for the Time Frame.
 `public bool `[`CacheInfo_IsSet`](#structFRHAPI__TimeFrame_1a35e7451323d4130ffdf6f1768334514e) | true if CacheInfo_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__TimeFrame_1a6216b8f840e8a64f7415c31d82b359e4)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__TimeFrame_1a51b994d0e2578162a4385fe227282178)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__TimeFrame_1a8c5ba6096db5b29dd96e0eb9087defc9)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__TimeFrame_1afed34952d9089480a218492c7d09aff0)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetName`](#structFRHAPI__TimeFrame_1a61a9c58b46ee70d81e2db50065091133)`()` | Gets the value of Name_Optional, regardless of it having been set.
 `public inline const FString & `[`GetName`](#structFRHAPI__TimeFrame_1a74a8f2660fa870509e208f709bb5f324)`() const` | Gets the value of Name_Optional, regardless of it having been set.
 `public inline const FString & `[`GetName`](#structFRHAPI__TimeFrame_1a61956dabee5d81e6010fd6649465f058)`(const FString & DefaultValue) const` | Gets the value of Name_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -44,6 +44,7 @@ Time Frames are used to calculate the expiration of Inventory.
 `public inline void `[`SetName`](#structFRHAPI__TimeFrame_1a2b6aa3730d162fe1d537f122483136a6)`(const FString & NewValue)` | Sets the value of Name_Optional and also sets Name_IsSet to true.
 `public inline void `[`SetName`](#structFRHAPI__TimeFrame_1af76700d9c576a7d16b5b8d9db1c577a5)`(FString && NewValue)` | Sets the value of Name_Optional and also sets Name_IsSet to true using move semantics.
 `public inline void `[`ClearName`](#structFRHAPI__TimeFrame_1a581126a53e4cb04c4151c1454e79aded)`()` | Clears the value of Name_Optional and sets Name_IsSet to false.
+`public inline bool `[`IsNameSet`](#structFRHAPI__TimeFrame_1a94d84d4feee4fd1c4749b56d34286a49)`() const` | Checks whether Name_Optional has been set.
 `public inline bool & `[`GetActive`](#structFRHAPI__TimeFrame_1a7a12bcf20262c2009ed84473cd914405)`()` | Gets the value of Active_Optional, regardless of it having been set.
 `public inline const bool & `[`GetActive`](#structFRHAPI__TimeFrame_1a5ef2ffa44fefe506cebaa4f66ce1ef48)`() const` | Gets the value of Active_Optional, regardless of it having been set.
 `public inline const bool & `[`GetActive`](#structFRHAPI__TimeFrame_1a09122c2a9538d8b41f96f10e304179ad)`(const bool & DefaultValue) const` | Gets the value of Active_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -53,6 +54,7 @@ Time Frames are used to calculate the expiration of Inventory.
 `public inline void `[`SetActive`](#structFRHAPI__TimeFrame_1adf8e0210edf162531c1cc33dc3200945)`(const bool & NewValue)` | Sets the value of Active_Optional and also sets Active_IsSet to true.
 `public inline void `[`SetActive`](#structFRHAPI__TimeFrame_1a4a51c8ebfef2e6a7a780e4f024f02a67)`(bool && NewValue)` | Sets the value of Active_Optional and also sets Active_IsSet to true using move semantics.
 `public inline void `[`ClearActive`](#structFRHAPI__TimeFrame_1ad0aca5c772290bd9b2c69b0e95cac039)`()` | Clears the value of Active_Optional and sets Active_IsSet to false.
+`public inline bool `[`IsActiveSet`](#structFRHAPI__TimeFrame_1aa05d94f6f8a14f013a55b823c9801670)`() const` | Checks whether Active_Optional has been set.
 `public inline bool `[`IsActiveDefaultValue`](#structFRHAPI__TimeFrame_1a868ac1cf044aba574f8b71380cd5c84e)`() const` | Returns true if Active_Optional is set and matches the default value.
 `public inline void `[`SetActiveToDefault`](#structFRHAPI__TimeFrame_1ac3e33f300357adaafe87c2d29e058a31)`()` | Sets the value of Active_Optional to its default and also sets Active_IsSet to true.
 `public inline int32 & `[`GetEpisode`](#structFRHAPI__TimeFrame_1a81efe2c90e4897f348a02ec956bca5b7)`()` | Gets the value of Episode_Optional, regardless of it having been set.
@@ -64,6 +66,7 @@ Time Frames are used to calculate the expiration of Inventory.
 `public inline void `[`SetEpisode`](#structFRHAPI__TimeFrame_1a85fc0ed2b27cc005ce9f9e375ee02e55)`(const int32 & NewValue)` | Sets the value of Episode_Optional and also sets Episode_IsSet to true.
 `public inline void `[`SetEpisode`](#structFRHAPI__TimeFrame_1af31f55a5df19d62398ca8ad582f92c59)`(int32 && NewValue)` | Sets the value of Episode_Optional and also sets Episode_IsSet to true using move semantics.
 `public inline void `[`ClearEpisode`](#structFRHAPI__TimeFrame_1a2f88f072cc4379db7a5e9355178dedcd)`()` | Clears the value of Episode_Optional and sets Episode_IsSet to false.
+`public inline bool `[`IsEpisodeSet`](#structFRHAPI__TimeFrame_1acd56fc53175186fa2a084040ff72040c)`() const` | Checks whether Episode_Optional has been set.
 `public inline bool `[`IsEpisodeDefaultValue`](#structFRHAPI__TimeFrame_1a3c1c4726e257599575433177bab44d2f)`() const` | Returns true if Episode_Optional is set and matches the default value.
 `public inline void `[`SetEpisodeToDefault`](#structFRHAPI__TimeFrame_1a7dd090778af7205fb0076af77f84e4d5)`()` | Sets the value of Episode_Optional to its default and also sets Episode_IsSet to true.
 `public inline int32 & `[`GetEpisodeType`](#structFRHAPI__TimeFrame_1a8fd40449d98103424b3b0ebc22b9eadd)`()` | Gets the value of EpisodeType_Optional, regardless of it having been set.
@@ -75,6 +78,7 @@ Time Frames are used to calculate the expiration of Inventory.
 `public inline void `[`SetEpisodeType`](#structFRHAPI__TimeFrame_1aa1f0fe9acc79f543ae69717f82bc7f07)`(const int32 & NewValue)` | Sets the value of EpisodeType_Optional and also sets EpisodeType_IsSet to true.
 `public inline void `[`SetEpisodeType`](#structFRHAPI__TimeFrame_1a0d039f254312db0611d5ae4b4698201b)`(int32 && NewValue)` | Sets the value of EpisodeType_Optional and also sets EpisodeType_IsSet to true using move semantics.
 `public inline void `[`ClearEpisodeType`](#structFRHAPI__TimeFrame_1ac593875efb4429774428eb2de7ff4eb9)`()` | Clears the value of EpisodeType_Optional and sets EpisodeType_IsSet to false.
+`public inline bool `[`IsEpisodeTypeSet`](#structFRHAPI__TimeFrame_1aa3948c743870c0fca05f0692c4992c78)`() const` | Checks whether EpisodeType_Optional has been set.
 `public inline bool `[`IsEpisodeTypeDefaultValue`](#structFRHAPI__TimeFrame_1ab1cc20719aabc912a5fb97d99ee0e211)`() const` | Returns true if EpisodeType_Optional is set and matches the default value.
 `public inline void `[`SetEpisodeTypeToDefault`](#structFRHAPI__TimeFrame_1a211e7b5d08b87886daddaf325358ee15)`()` | Sets the value of EpisodeType_Optional to its default and also sets EpisodeType_IsSet to true.
 `public inline int32 & `[`GetHourInterval`](#structFRHAPI__TimeFrame_1a96fe52c2123c0171189076b9957d5055)`()` | Gets the value of HourInterval_Optional, regardless of it having been set.
@@ -86,6 +90,7 @@ Time Frames are used to calculate the expiration of Inventory.
 `public inline void `[`SetHourInterval`](#structFRHAPI__TimeFrame_1a096e26c1f4005b9c491f45d21fd87823)`(const int32 & NewValue)` | Sets the value of HourInterval_Optional and also sets HourInterval_IsSet to true.
 `public inline void `[`SetHourInterval`](#structFRHAPI__TimeFrame_1ae05fd793a0ef5aa5cf1e08435e41f18e)`(int32 && NewValue)` | Sets the value of HourInterval_Optional and also sets HourInterval_IsSet to true using move semantics.
 `public inline void `[`ClearHourInterval`](#structFRHAPI__TimeFrame_1a7488c51a0f1ecd54b148cc00009ef711)`()` | Clears the value of HourInterval_Optional and sets HourInterval_IsSet to false.
+`public inline bool `[`IsHourIntervalSet`](#structFRHAPI__TimeFrame_1a1dd1f6d9ef520cc44f685e2b6c69e776)`() const` | Checks whether HourInterval_Optional has been set.
 `public inline bool `[`IsHourIntervalDefaultValue`](#structFRHAPI__TimeFrame_1adaaf6dfb8a78bdd20d76260a45d65d95)`() const` | Returns true if HourInterval_Optional is set and matches the default value.
 `public inline void `[`SetHourIntervalToDefault`](#structFRHAPI__TimeFrame_1a1b3affee895187185d25a80d848097c6)`()` | Sets the value of HourInterval_Optional to its default and also sets HourInterval_IsSet to true.
 `public inline FDateTime & `[`GetStart`](#structFRHAPI__TimeFrame_1afcd1399a2f4d19035b6dc7e1b068b971)`()` | Gets the value of Start.
@@ -105,6 +110,7 @@ Time Frames are used to calculate the expiration of Inventory.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__TimeFrame_1a16eb4bafb287d3a668539440b25c376d)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__TimeFrame_1a35c2ab3e943bf2e56280c6209c3d273d)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__TimeFrame_1a38a9e13c08ae05b91dd35621c129a2d1)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
+`public inline bool `[`IsCacheInfoSet`](#structFRHAPI__TimeFrame_1af36cdcffec95df40a6502886271f1091)`() const` | Checks whether CacheInfo_Optional has been set.
 
 ### Members
 
@@ -160,7 +166,7 @@ Cache info for the Time Frame.
 
 true if CacheInfo_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__TimeFrame_1a6216b8f840e8a64f7415c31d82b359e4)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__TimeFrame_1a6216b8f840e8a64f7415c31d82b359e4"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__TimeFrame_1a8c5ba6096db5b29dd96e0eb9087defc9)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__TimeFrame_1a8c5ba6096db5b29dd96e0eb9087defc9"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -170,7 +176,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__TimeFrame_1a51b994d0e2578162a4385fe227282178)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__TimeFrame_1a51b994d0e2578162a4385fe227282178"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__TimeFrame_1afed34952d9089480a218492c7d09aff0)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__TimeFrame_1afed34952d9089480a218492c7d09aff0"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -213,6 +219,10 @@ Sets the value of Name_Optional and also sets Name_IsSet to true using move sema
 
 Clears the value of Name_Optional and sets Name_IsSet to false.
 
+#### `public inline bool `[`IsNameSet`](#structFRHAPI__TimeFrame_1a94d84d4feee4fd1c4749b56d34286a49)`() const` <a id="structFRHAPI__TimeFrame_1a94d84d4feee4fd1c4749b56d34286a49"></a>
+
+Checks whether Name_Optional has been set.
+
 #### `public inline bool & `[`GetActive`](#structFRHAPI__TimeFrame_1a7a12bcf20262c2009ed84473cd914405)`()` <a id="structFRHAPI__TimeFrame_1a7a12bcf20262c2009ed84473cd914405"></a>
 
 Gets the value of Active_Optional, regardless of it having been set.
@@ -248,6 +258,10 @@ Sets the value of Active_Optional and also sets Active_IsSet to true using move 
 #### `public inline void `[`ClearActive`](#structFRHAPI__TimeFrame_1ad0aca5c772290bd9b2c69b0e95cac039)`()` <a id="structFRHAPI__TimeFrame_1ad0aca5c772290bd9b2c69b0e95cac039"></a>
 
 Clears the value of Active_Optional and sets Active_IsSet to false.
+
+#### `public inline bool `[`IsActiveSet`](#structFRHAPI__TimeFrame_1aa05d94f6f8a14f013a55b823c9801670)`() const` <a id="structFRHAPI__TimeFrame_1aa05d94f6f8a14f013a55b823c9801670"></a>
+
+Checks whether Active_Optional has been set.
 
 #### `public inline bool `[`IsActiveDefaultValue`](#structFRHAPI__TimeFrame_1a868ac1cf044aba574f8b71380cd5c84e)`() const` <a id="structFRHAPI__TimeFrame_1a868ac1cf044aba574f8b71380cd5c84e"></a>
 
@@ -293,6 +307,10 @@ Sets the value of Episode_Optional and also sets Episode_IsSet to true using mov
 
 Clears the value of Episode_Optional and sets Episode_IsSet to false.
 
+#### `public inline bool `[`IsEpisodeSet`](#structFRHAPI__TimeFrame_1acd56fc53175186fa2a084040ff72040c)`() const` <a id="structFRHAPI__TimeFrame_1acd56fc53175186fa2a084040ff72040c"></a>
+
+Checks whether Episode_Optional has been set.
+
 #### `public inline bool `[`IsEpisodeDefaultValue`](#structFRHAPI__TimeFrame_1a3c1c4726e257599575433177bab44d2f)`() const` <a id="structFRHAPI__TimeFrame_1a3c1c4726e257599575433177bab44d2f"></a>
 
 Returns true if Episode_Optional is set and matches the default value.
@@ -337,6 +355,10 @@ Sets the value of EpisodeType_Optional and also sets EpisodeType_IsSet to true u
 
 Clears the value of EpisodeType_Optional and sets EpisodeType_IsSet to false.
 
+#### `public inline bool `[`IsEpisodeTypeSet`](#structFRHAPI__TimeFrame_1aa3948c743870c0fca05f0692c4992c78)`() const` <a id="structFRHAPI__TimeFrame_1aa3948c743870c0fca05f0692c4992c78"></a>
+
+Checks whether EpisodeType_Optional has been set.
+
 #### `public inline bool `[`IsEpisodeTypeDefaultValue`](#structFRHAPI__TimeFrame_1ab1cc20719aabc912a5fb97d99ee0e211)`() const` <a id="structFRHAPI__TimeFrame_1ab1cc20719aabc912a5fb97d99ee0e211"></a>
 
 Returns true if EpisodeType_Optional is set and matches the default value.
@@ -380,6 +402,10 @@ Sets the value of HourInterval_Optional and also sets HourInterval_IsSet to true
 #### `public inline void `[`ClearHourInterval`](#structFRHAPI__TimeFrame_1a7488c51a0f1ecd54b148cc00009ef711)`()` <a id="structFRHAPI__TimeFrame_1a7488c51a0f1ecd54b148cc00009ef711"></a>
 
 Clears the value of HourInterval_Optional and sets HourInterval_IsSet to false.
+
+#### `public inline bool `[`IsHourIntervalSet`](#structFRHAPI__TimeFrame_1a1dd1f6d9ef520cc44f685e2b6c69e776)`() const` <a id="structFRHAPI__TimeFrame_1a1dd1f6d9ef520cc44f685e2b6c69e776"></a>
+
+Checks whether HourInterval_Optional has been set.
 
 #### `public inline bool `[`IsHourIntervalDefaultValue`](#structFRHAPI__TimeFrame_1adaaf6dfb8a78bdd20d76260a45d65d95)`() const` <a id="structFRHAPI__TimeFrame_1adaaf6dfb8a78bdd20d76260a45d65d95"></a>
 
@@ -456,4 +482,8 @@ Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using
 #### `public inline void `[`ClearCacheInfo`](#structFRHAPI__TimeFrame_1a38a9e13c08ae05b91dd35621c129a2d1)`()` <a id="structFRHAPI__TimeFrame_1a38a9e13c08ae05b91dd35621c129a2d1"></a>
 
 Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
+
+#### `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__TimeFrame_1af36cdcffec95df40a6502886271f1091)`() const` <a id="structFRHAPI__TimeFrame_1af36cdcffec95df40a6502886271f1091"></a>
+
+Checks whether CacheInfo_Optional has been set.
 

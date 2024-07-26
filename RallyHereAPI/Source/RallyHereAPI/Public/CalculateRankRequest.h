@@ -32,14 +32,14 @@ struct RALLYHEREAPI_API FRHAPI_CalculateRankRequest : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief How many seconds the match lasted */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -49,13 +49,13 @@ struct RALLYHEREAPI_API FRHAPI_CalculateRankRequest : public FRHAPI_Model
 	/** @brief Gets the value of MatchLengthSeconds */
 	const int32& GetMatchLengthSeconds() const { return MatchLengthSeconds; }
 	/** @brief Sets the value of MatchLengthSeconds */
-	void SetMatchLengthSeconds(const int32& NewValue) { MatchLengthSeconds = NewValue;  }
+	void SetMatchLengthSeconds(const int32& NewValue) { MatchLengthSeconds = NewValue;   }
 	/** @brief Sets the value of MatchLengthSeconds using move semantics */
-	void SetMatchLengthSeconds(int32&& NewValue) { MatchLengthSeconds = NewValue;  }
+	void SetMatchLengthSeconds(int32&& NewValue) { MatchLengthSeconds = NewValue;   }
 	/** @brief Returns true if MatchLengthSeconds matches the default value */
 	bool IsMatchLengthSecondsDefaultValue() const { return MatchLengthSeconds == 0; }
 	/** @brief Sets the value of MatchLengthSeconds to its default  */
-	void SetMatchLengthSecondsToDefault() { MatchLengthSeconds = 0;  }
+	void SetMatchLengthSecondsToDefault() { SetMatchLengthSeconds(0); }
 
 	/** @brief List of teams that participated in this match */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -65,9 +65,9 @@ struct RALLYHEREAPI_API FRHAPI_CalculateRankRequest : public FRHAPI_Model
 	/** @brief Gets the value of Teams */
 	const TArray<FRHAPI_RankedTeam>& GetTeams() const { return Teams; }
 	/** @brief Sets the value of Teams */
-	void SetTeams(const TArray<FRHAPI_RankedTeam>& NewValue) { Teams = NewValue;  }
+	void SetTeams(const TArray<FRHAPI_RankedTeam>& NewValue) { Teams = NewValue;   }
 	/** @brief Sets the value of Teams using move semantics */
-	void SetTeams(TArray<FRHAPI_RankedTeam>&& NewValue) { Teams = NewValue;  }
+	void SetTeams(TArray<FRHAPI_RankedTeam>&& NewValue) { Teams = NewValue;   }
 
 	/** @brief Configs about how to recalculate and clamp newly calculated ranks */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -77,9 +77,9 @@ struct RALLYHEREAPI_API FRHAPI_CalculateRankRequest : public FRHAPI_Model
 	/** @brief Gets the value of RankConfig */
 	const FRHAPI_CalculateRankConfig& GetRankConfig() const { return RankConfig; }
 	/** @brief Sets the value of RankConfig */
-	void SetRankConfig(const FRHAPI_CalculateRankConfig& NewValue) { RankConfig = NewValue;  }
+	void SetRankConfig(const FRHAPI_CalculateRankConfig& NewValue) { RankConfig = NewValue;   }
 	/** @brief Sets the value of RankConfig using move semantics */
-	void SetRankConfig(FRHAPI_CalculateRankConfig&& NewValue) { RankConfig = NewValue;  }
+	void SetRankConfig(FRHAPI_CalculateRankConfig&& NewValue) { RankConfig = NewValue;   }
 };
 
 /** @} */

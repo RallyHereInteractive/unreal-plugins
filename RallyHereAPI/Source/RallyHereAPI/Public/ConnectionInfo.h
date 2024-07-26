@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_ConnectionInfo : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief IP that sent the request */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -47,9 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_ConnectionInfo : public FRHAPI_Model
 	/** @brief Gets the value of Ip */
 	const FString& GetIp() const { return Ip; }
 	/** @brief Sets the value of Ip */
-	void SetIp(const FString& NewValue) { Ip = NewValue;  }
+	void SetIp(const FString& NewValue) { Ip = NewValue;   }
 	/** @brief Sets the value of Ip using move semantics */
-	void SetIp(FString&& NewValue) { Ip = NewValue;  }
+	void SetIp(FString&& NewValue) { Ip = NewValue;   }
 };
 
 /** @} */

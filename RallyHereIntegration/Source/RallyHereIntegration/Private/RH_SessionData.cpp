@@ -1672,7 +1672,7 @@ struct FRH_SessionTestPayload
 	}
 };
 
-BEGIN_DEFINE_SPEC(FRH_SessionVoipSimple, "RHAutomation.Session.VOIP.Spec", EAutomationTestFlags::ClientContext | EAutomationTestFlags::RequiresUser | EAutomationTestFlags::ProductFilter | EAutomationTestFlags::MediumPriority)
+BEGIN_DEFINE_SPEC(FRH_SessionVoipSimple, "RHAutomation.Session.VOIP.Spec", EAutomationTestFlags::ClientContext | EAutomationTestFlags::ProductFilter | EAutomationTestFlags::MediumPriority)
 
 FRH_SessionTestPayload TestPayload;
 

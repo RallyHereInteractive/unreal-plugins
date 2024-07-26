@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_AuditResponse : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief List of audit events */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -55,15 +55,17 @@ struct RALLYHEREAPI_API FRHAPI_AuditResponse : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Events_Optional and returns true if it has been set, otherwise returns false */
 	bool GetEvents(TArray<FRHAPI_AuditEvent>& OutValue) const { if (Events_IsSet) OutValue = Events_Optional; return Events_IsSet; }
 	/** @brief Returns a pointer to Events_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FRHAPI_AuditEvent>* GetEventsOrNull() { if (Events_IsSet) return &Events_Optional; return nullptr; }
+	TArray<FRHAPI_AuditEvent>* GetEventsOrNull() { if (Events_IsSet) return (&Events_Optional); return nullptr; }
 	/** @brief Returns a pointer to Events_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FRHAPI_AuditEvent>* GetEventsOrNull() const { if (Events_IsSet) return &Events_Optional; return nullptr; }
+	const TArray<FRHAPI_AuditEvent>* GetEventsOrNull() const { if (Events_IsSet) return (&Events_Optional); return nullptr; }
 	/** @brief Sets the value of Events_Optional and also sets Events_IsSet to true */
-	void SetEvents(const TArray<FRHAPI_AuditEvent>& NewValue) { Events_Optional = NewValue; Events_IsSet = true; }
+	void SetEvents(const TArray<FRHAPI_AuditEvent>& NewValue) { Events_Optional = NewValue; Events_IsSet = true;  }
 	/** @brief Sets the value of Events_Optional and also sets Events_IsSet to true using move semantics */
-	void SetEvents(TArray<FRHAPI_AuditEvent>&& NewValue) { Events_Optional = NewValue; Events_IsSet = true; }
-	 /** @brief Clears the value of Events_Optional and sets Events_IsSet to false */
-	void ClearEvents() { Events_IsSet = false; }
+	void SetEvents(TArray<FRHAPI_AuditEvent>&& NewValue) { Events_Optional = NewValue; Events_IsSet = true;  }
+	/** @brief Clears the value of Events_Optional and sets Events_IsSet to false */
+	void ClearEvents() { Events_IsSet = false;  }
+	/** @brief Checks whether Events_Optional has been set */
+	bool IsEventsSet() const { return Events_IsSet; }
 };
 
 /** @} */

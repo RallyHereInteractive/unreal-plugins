@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_BlockedPlayer : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid BlockedPlayerUuid{  };
@@ -46,9 +46,9 @@ struct RALLYHEREAPI_API FRHAPI_BlockedPlayer : public FRHAPI_Model
 	/** @brief Gets the value of BlockedPlayerUuid */
 	const FGuid& GetBlockedPlayerUuid() const { return BlockedPlayerUuid; }
 	/** @brief Sets the value of BlockedPlayerUuid */
-	void SetBlockedPlayerUuid(const FGuid& NewValue) { BlockedPlayerUuid = NewValue;  }
+	void SetBlockedPlayerUuid(const FGuid& NewValue) { BlockedPlayerUuid = NewValue;   }
 	/** @brief Sets the value of BlockedPlayerUuid using move semantics */
-	void SetBlockedPlayerUuid(FGuid&& NewValue) { BlockedPlayerUuid = NewValue;  }
+	void SetBlockedPlayerUuid(FGuid&& NewValue) { BlockedPlayerUuid = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FDateTime LastModifiedOn{  };
@@ -57,9 +57,9 @@ struct RALLYHEREAPI_API FRHAPI_BlockedPlayer : public FRHAPI_Model
 	/** @brief Gets the value of LastModifiedOn */
 	const FDateTime& GetLastModifiedOn() const { return LastModifiedOn; }
 	/** @brief Sets the value of LastModifiedOn */
-	void SetLastModifiedOn(const FDateTime& NewValue) { LastModifiedOn = NewValue;  }
+	void SetLastModifiedOn(const FDateTime& NewValue) { LastModifiedOn = NewValue;   }
 	/** @brief Sets the value of LastModifiedOn using move semantics */
-	void SetLastModifiedOn(FDateTime&& NewValue) { LastModifiedOn = NewValue;  }
+	void SetLastModifiedOn(FDateTime&& NewValue) { LastModifiedOn = NewValue;   }
 };
 
 /** @} */

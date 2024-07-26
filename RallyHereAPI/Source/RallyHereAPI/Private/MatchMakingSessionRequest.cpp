@@ -89,69 +89,69 @@ bool FRHAPI_MatchMakingSessionRequest::FromJson(const TSharedPtr<FJsonValue>& Js
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonTeamsField = (*Object)->TryGetField(TEXT("teams"));
-	ParseSuccess &= JsonTeamsField.IsValid() && !JsonTeamsField->IsNull() && TryGetJsonValue(JsonTeamsField, Teams);
+	ParseSuccess &= JsonTeamsField.IsValid() && (!JsonTeamsField->IsNull() &&  TryGetJsonValue(JsonTeamsField, Teams));
 	const TSharedPtr<FJsonValue> JsonSessionTicketsField = (*Object)->TryGetField(TEXT("session_tickets"));
-	if (JsonSessionTicketsField.IsValid() && !JsonSessionTicketsField->IsNull())
+	if (JsonSessionTicketsField.IsValid())
 	{
 		SessionTickets_IsSet = TryGetJsonValue(JsonSessionTicketsField, SessionTickets_Optional);
 		ParseSuccess &= SessionTickets_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonSessionsField = (*Object)->TryGetField(TEXT("sessions"));
-	if (JsonSessionsField.IsValid() && !JsonSessionsField->IsNull())
+	if (JsonSessionsField.IsValid())
 	{
 		Sessions_IsSet = TryGetJsonValue(JsonSessionsField, Sessions_Optional);
 		ParseSuccess &= Sessions_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonInstanceLaunchTemplateIdField = (*Object)->TryGetField(TEXT("instance_launch_template_id"));
-	if (JsonInstanceLaunchTemplateIdField.IsValid() && !JsonInstanceLaunchTemplateIdField->IsNull())
+	if (JsonInstanceLaunchTemplateIdField.IsValid())
 	{
 		InstanceLaunchTemplateId_IsSet = TryGetJsonValue(JsonInstanceLaunchTemplateIdField, InstanceLaunchTemplateId_Optional);
 		ParseSuccess &= InstanceLaunchTemplateId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonInstanceRequestTemplateIdField = (*Object)->TryGetField(TEXT("instance_request_template_id"));
-	if (JsonInstanceRequestTemplateIdField.IsValid() && !JsonInstanceRequestTemplateIdField->IsNull())
+	if (JsonInstanceRequestTemplateIdField.IsValid())
 	{
 		InstanceRequestTemplateId_IsSet = TryGetJsonValue(JsonInstanceRequestTemplateIdField, InstanceRequestTemplateId_Optional);
 		ParseSuccess &= InstanceRequestTemplateId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonRegionIdField = (*Object)->TryGetField(TEXT("region_id"));
-	ParseSuccess &= JsonRegionIdField.IsValid() && !JsonRegionIdField->IsNull() && TryGetJsonValue(JsonRegionIdField, RegionId);
+	ParseSuccess &= JsonRegionIdField.IsValid() && (!JsonRegionIdField->IsNull() &&  TryGetJsonValue(JsonRegionIdField, RegionId));
 	const TSharedPtr<FJsonValue> JsonMatchIdField = (*Object)->TryGetField(TEXT("match_id"));
-	ParseSuccess &= JsonMatchIdField.IsValid() && !JsonMatchIdField->IsNull() && TryGetJsonValue(JsonMatchIdField, MatchId);
+	ParseSuccess &= JsonMatchIdField.IsValid() && (!JsonMatchIdField->IsNull() &&  TryGetJsonValue(JsonMatchIdField, MatchId));
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	if (JsonCustomDataField.IsValid())
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonHostPlayerUuidField = (*Object)->TryGetField(TEXT("host_player_uuid"));
-	if (JsonHostPlayerUuidField.IsValid() && !JsonHostPlayerUuidField->IsNull())
+	if (JsonHostPlayerUuidField.IsValid())
 	{
 		HostPlayerUuid_IsSet = TryGetJsonValue(JsonHostPlayerUuidField, HostPlayerUuid_Optional);
 		ParseSuccess &= HostPlayerUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonBackfillIdField = (*Object)->TryGetField(TEXT("backfill_id"));
-	if (JsonBackfillIdField.IsValid() && !JsonBackfillIdField->IsNull())
+	if (JsonBackfillIdField.IsValid())
 	{
 		BackfillId_IsSet = TryGetJsonValue(JsonBackfillIdField, BackfillId_Optional);
 		ParseSuccess &= BackfillId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonMatchCreateRequestTimeField = (*Object)->TryGetField(TEXT("match_create_request_time"));
-	ParseSuccess &= JsonMatchCreateRequestTimeField.IsValid() && !JsonMatchCreateRequestTimeField->IsNull() && TryGetJsonValue(JsonMatchCreateRequestTimeField, MatchCreateRequestTime);
+	ParseSuccess &= JsonMatchCreateRequestTimeField.IsValid() && (!JsonMatchCreateRequestTimeField->IsNull() &&  TryGetJsonValue(JsonMatchCreateRequestTimeField, MatchCreateRequestTime));
 	const TSharedPtr<FJsonValue> JsonEvaluationScoreField = (*Object)->TryGetField(TEXT("evaluation_score"));
-	if (JsonEvaluationScoreField.IsValid() && !JsonEvaluationScoreField->IsNull())
+	if (JsonEvaluationScoreField.IsValid())
 	{
 		EvaluationScore_IsSet = TryGetJsonValue(JsonEvaluationScoreField, EvaluationScore_Optional);
 		ParseSuccess &= EvaluationScore_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonRankQualityField = (*Object)->TryGetField(TEXT("rank_quality"));
-	if (JsonRankQualityField.IsValid() && !JsonRankQualityField->IsNull())
+	if (JsonRankQualityField.IsValid())
 	{
 		RankQuality_IsSet = TryGetJsonValue(JsonRankQualityField, RankQuality_Optional);
 		ParseSuccess &= RankQuality_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonMatchMakingProfileIdField = (*Object)->TryGetField(TEXT("match_making_profile_id"));
-	ParseSuccess &= JsonMatchMakingProfileIdField.IsValid() && !JsonMatchMakingProfileIdField->IsNull() && TryGetJsonValue(JsonMatchMakingProfileIdField, MatchMakingProfileId);
+	ParseSuccess &= JsonMatchMakingProfileIdField.IsValid() && (!JsonMatchMakingProfileIdField->IsNull() &&  TryGetJsonValue(JsonMatchMakingProfileIdField, MatchMakingProfileId));
 
 	return ParseSuccess;
 }

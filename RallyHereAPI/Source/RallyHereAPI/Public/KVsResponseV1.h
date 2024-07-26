@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_KVsResponseV1 : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief The list of key/value pairs */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -55,15 +55,17 @@ struct RALLYHEREAPI_API FRHAPI_KVsResponseV1 : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Kvs_Optional and returns true if it has been set, otherwise returns false */
 	bool GetKvs(TArray<FRHAPI_KVV1>& OutValue) const { if (Kvs_IsSet) OutValue = Kvs_Optional; return Kvs_IsSet; }
 	/** @brief Returns a pointer to Kvs_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FRHAPI_KVV1>* GetKvsOrNull() { if (Kvs_IsSet) return &Kvs_Optional; return nullptr; }
+	TArray<FRHAPI_KVV1>* GetKvsOrNull() { if (Kvs_IsSet) return (&Kvs_Optional); return nullptr; }
 	/** @brief Returns a pointer to Kvs_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FRHAPI_KVV1>* GetKvsOrNull() const { if (Kvs_IsSet) return &Kvs_Optional; return nullptr; }
+	const TArray<FRHAPI_KVV1>* GetKvsOrNull() const { if (Kvs_IsSet) return (&Kvs_Optional); return nullptr; }
 	/** @brief Sets the value of Kvs_Optional and also sets Kvs_IsSet to true */
-	void SetKvs(const TArray<FRHAPI_KVV1>& NewValue) { Kvs_Optional = NewValue; Kvs_IsSet = true; }
+	void SetKvs(const TArray<FRHAPI_KVV1>& NewValue) { Kvs_Optional = NewValue; Kvs_IsSet = true;  }
 	/** @brief Sets the value of Kvs_Optional and also sets Kvs_IsSet to true using move semantics */
-	void SetKvs(TArray<FRHAPI_KVV1>&& NewValue) { Kvs_Optional = NewValue; Kvs_IsSet = true; }
-	 /** @brief Clears the value of Kvs_Optional and sets Kvs_IsSet to false */
-	void ClearKvs() { Kvs_IsSet = false; }
+	void SetKvs(TArray<FRHAPI_KVV1>&& NewValue) { Kvs_Optional = NewValue; Kvs_IsSet = true;  }
+	/** @brief Clears the value of Kvs_Optional and sets Kvs_IsSet to false */
+	void ClearKvs() { Kvs_IsSet = false;  }
+	/** @brief Checks whether Kvs_Optional has been set */
+	bool IsKvsSet() const { return Kvs_IsSet; }
 
 	/** @brief The list of secret key/value pairs */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -80,15 +82,17 @@ struct RALLYHEREAPI_API FRHAPI_KVsResponseV1 : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of SecretKvs_Optional and returns true if it has been set, otherwise returns false */
 	bool GetSecretKvs(TArray<FRHAPI_KVV1>& OutValue) const { if (SecretKvs_IsSet) OutValue = SecretKvs_Optional; return SecretKvs_IsSet; }
 	/** @brief Returns a pointer to SecretKvs_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FRHAPI_KVV1>* GetSecretKvsOrNull() { if (SecretKvs_IsSet) return &SecretKvs_Optional; return nullptr; }
+	TArray<FRHAPI_KVV1>* GetSecretKvsOrNull() { if (SecretKvs_IsSet) return (&SecretKvs_Optional); return nullptr; }
 	/** @brief Returns a pointer to SecretKvs_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FRHAPI_KVV1>* GetSecretKvsOrNull() const { if (SecretKvs_IsSet) return &SecretKvs_Optional; return nullptr; }
+	const TArray<FRHAPI_KVV1>* GetSecretKvsOrNull() const { if (SecretKvs_IsSet) return (&SecretKvs_Optional); return nullptr; }
 	/** @brief Sets the value of SecretKvs_Optional and also sets SecretKvs_IsSet to true */
-	void SetSecretKvs(const TArray<FRHAPI_KVV1>& NewValue) { SecretKvs_Optional = NewValue; SecretKvs_IsSet = true; }
+	void SetSecretKvs(const TArray<FRHAPI_KVV1>& NewValue) { SecretKvs_Optional = NewValue; SecretKvs_IsSet = true;  }
 	/** @brief Sets the value of SecretKvs_Optional and also sets SecretKvs_IsSet to true using move semantics */
-	void SetSecretKvs(TArray<FRHAPI_KVV1>&& NewValue) { SecretKvs_Optional = NewValue; SecretKvs_IsSet = true; }
-	 /** @brief Clears the value of SecretKvs_Optional and sets SecretKvs_IsSet to false */
-	void ClearSecretKvs() { SecretKvs_IsSet = false; }
+	void SetSecretKvs(TArray<FRHAPI_KVV1>&& NewValue) { SecretKvs_Optional = NewValue; SecretKvs_IsSet = true;  }
+	/** @brief Clears the value of SecretKvs_Optional and sets SecretKvs_IsSet to false */
+	void ClearSecretKvs() { SecretKvs_IsSet = false;  }
+	/** @brief Checks whether SecretKvs_Optional has been set */
+	bool IsSecretKvsSet() const { return SecretKvs_IsSet; }
 };
 
 /** @} */

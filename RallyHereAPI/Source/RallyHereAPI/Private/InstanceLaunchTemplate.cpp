@@ -45,13 +45,13 @@ bool FRHAPI_InstanceLaunchTemplate::FromJson(const TSharedPtr<FJsonValue>& JsonV
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonInstanceLaunchTemplateIdField = (*Object)->TryGetField(TEXT("instance_launch_template_id"));
-	ParseSuccess &= JsonInstanceLaunchTemplateIdField.IsValid() && !JsonInstanceLaunchTemplateIdField->IsNull() && TryGetJsonValue(JsonInstanceLaunchTemplateIdField, InstanceLaunchTemplateId);
+	ParseSuccess &= JsonInstanceLaunchTemplateIdField.IsValid() && (!JsonInstanceLaunchTemplateIdField->IsNull() &&  TryGetJsonValue(JsonInstanceLaunchTemplateIdField, InstanceLaunchTemplateId));
 	const TSharedPtr<FJsonValue> JsonMapSelectionListField = (*Object)->TryGetField(TEXT("map_selection_list"));
-	ParseSuccess &= JsonMapSelectionListField.IsValid() && !JsonMapSelectionListField->IsNull() && TryGetJsonValue(JsonMapSelectionListField, MapSelectionList);
+	ParseSuccess &= JsonMapSelectionListField.IsValid() && (!JsonMapSelectionListField->IsNull() &&  TryGetJsonValue(JsonMapSelectionListField, MapSelectionList));
 	const TSharedPtr<FJsonValue> JsonDefaultHostTypeField = (*Object)->TryGetField(TEXT("default_host_type"));
-	ParseSuccess &= JsonDefaultHostTypeField.IsValid() && !JsonDefaultHostTypeField->IsNull() && TryGetJsonValue(JsonDefaultHostTypeField, DefaultHostType);
+	ParseSuccess &= JsonDefaultHostTypeField.IsValid() && (!JsonDefaultHostTypeField->IsNull() &&  TryGetJsonValue(JsonDefaultHostTypeField, DefaultHostType));
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	if (JsonCustomDataField.IsValid())
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;

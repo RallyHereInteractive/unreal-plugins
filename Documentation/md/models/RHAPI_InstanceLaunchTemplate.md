@@ -24,8 +24,8 @@ struct FRHAPI_InstanceLaunchTemplate
 `public ERHAPI_HostType `[`DefaultHostType`](#structFRHAPI__InstanceLaunchTemplate_1a0b56b43efbfe4616f67e08338d568d47) | Default host type for this template. Can be overriden in instance requests.
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__InstanceLaunchTemplate_1a6bf36189794fec0d38e69a55b4135363) | Custom data that will be passed to the session during the instance launch request.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__InstanceLaunchTemplate_1a364303f0bb7d6d6f0e90eb75c41ac937) | true if CustomData_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__InstanceLaunchTemplate_1a9c24a5ea21de69f9bcd65c73f4d15559)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__InstanceLaunchTemplate_1ad2fe1ba96c85828d23d5122a7cd2ce95)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__InstanceLaunchTemplate_1a387cb5e47813e6272589cfb2063a977e)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__InstanceLaunchTemplate_1aba0cb2f6952633f8e5f32227a4fdd89f)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FGuid & `[`GetInstanceLaunchTemplateId`](#structFRHAPI__InstanceLaunchTemplate_1a645feb373f0302fd43e3a4fded7a1d5d)`()` | Gets the value of InstanceLaunchTemplateId.
 `public inline const FGuid & `[`GetInstanceLaunchTemplateId`](#structFRHAPI__InstanceLaunchTemplate_1a0b3842d18f16d2c94079fe0c93910c9b)`() const` | Gets the value of InstanceLaunchTemplateId.
 `public inline void `[`SetInstanceLaunchTemplateId`](#structFRHAPI__InstanceLaunchTemplate_1a3bc4212567aa2e3680f46dc5639ba8b4)`(const FGuid & NewValue)` | Sets the value of InstanceLaunchTemplateId.
@@ -47,6 +47,7 @@ struct FRHAPI_InstanceLaunchTemplate
 `public inline void `[`SetCustomData`](#structFRHAPI__InstanceLaunchTemplate_1ab47861711e09857401a9e4618918727c)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`SetCustomData`](#structFRHAPI__InstanceLaunchTemplate_1ac3511caecbc2a9851a13b8ff6d761ab9)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__InstanceLaunchTemplate_1accf875216c04898f0a996ce52e838833)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+`public inline bool `[`IsCustomDataSet`](#structFRHAPI__InstanceLaunchTemplate_1a11b1e5cffb2fd79075ecffe055775e54)`() const` | Checks whether CustomData_Optional has been set.
 
 ### Members
 
@@ -70,7 +71,7 @@ Custom data that will be passed to the session during the instance launch reques
 
 true if CustomData_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__InstanceLaunchTemplate_1a9c24a5ea21de69f9bcd65c73f4d15559)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__InstanceLaunchTemplate_1a9c24a5ea21de69f9bcd65c73f4d15559"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__InstanceLaunchTemplate_1a387cb5e47813e6272589cfb2063a977e)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__InstanceLaunchTemplate_1a387cb5e47813e6272589cfb2063a977e"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -80,7 +81,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__InstanceLaunchTemplate_1ad2fe1ba96c85828d23d5122a7cd2ce95)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__InstanceLaunchTemplate_1ad2fe1ba96c85828d23d5122a7cd2ce95"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__InstanceLaunchTemplate_1aba0cb2f6952633f8e5f32227a4fdd89f)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__InstanceLaunchTemplate_1aba0cb2f6952633f8e5f32227a4fdd89f"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -170,4 +171,8 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true usi
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__InstanceLaunchTemplate_1accf875216c04898f0a996ce52e838833)`()` <a id="structFRHAPI__InstanceLaunchTemplate_1accf875216c04898f0a996ce52e838833"></a>
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+
+#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__InstanceLaunchTemplate_1a11b1e5cffb2fd79075ecffe055775e54)`() const` <a id="structFRHAPI__InstanceLaunchTemplate_1a11b1e5cffb2fd79075ecffe055775e54"></a>
+
+Checks whether CustomData_Optional has been set.
 

@@ -45,17 +45,17 @@ bool FRHAPI_RankUpdateRequestV2::FromJson(const TSharedPtr<FJsonValue>& JsonValu
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonInstanceIdField = (*Object)->TryGetField(TEXT("instance_id"));
-	if (JsonInstanceIdField.IsValid() && !JsonInstanceIdField->IsNull())
+	if (JsonInstanceIdField.IsValid())
 	{
 		InstanceId_IsSet = TryGetJsonValue(JsonInstanceIdField, InstanceId_Optional);
 		ParseSuccess &= InstanceId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonRankIdField = (*Object)->TryGetField(TEXT("rank_id"));
-	ParseSuccess &= JsonRankIdField.IsValid() && !JsonRankIdField->IsNull() && TryGetJsonValue(JsonRankIdField, RankId);
+	ParseSuccess &= JsonRankIdField.IsValid() && (!JsonRankIdField->IsNull() &&  TryGetJsonValue(JsonRankIdField, RankId));
 	const TSharedPtr<FJsonValue> JsonMatchLengthSecondsField = (*Object)->TryGetField(TEXT("match_length_seconds"));
-	ParseSuccess &= JsonMatchLengthSecondsField.IsValid() && !JsonMatchLengthSecondsField->IsNull() && TryGetJsonValue(JsonMatchLengthSecondsField, MatchLengthSeconds);
+	ParseSuccess &= JsonMatchLengthSecondsField.IsValid() && (!JsonMatchLengthSecondsField->IsNull() &&  TryGetJsonValue(JsonMatchLengthSecondsField, MatchLengthSeconds));
 	const TSharedPtr<FJsonValue> JsonTeamsField = (*Object)->TryGetField(TEXT("teams"));
-	ParseSuccess &= JsonTeamsField.IsValid() && !JsonTeamsField->IsNull() && TryGetJsonValue(JsonTeamsField, Teams);
+	ParseSuccess &= JsonTeamsField.IsValid() && (!JsonTeamsField->IsNull() &&  TryGetJsonValue(JsonTeamsField, Teams));
 
 	return ParseSuccess;
 }

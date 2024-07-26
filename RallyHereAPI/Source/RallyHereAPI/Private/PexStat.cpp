@@ -25,21 +25,33 @@ void FRHAPI_PexStat::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (Min_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("min"));
+		if (Min_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, Min_Optional);
 	}
 	if (Max_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("max"));
+		if (Max_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, Max_Optional);
 	}
 	if (Avg_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("avg"));
+		if (Avg_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, Avg_Optional);
 	}
 	if (Stddev_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("stddev"));
+		if (Stddev_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, Stddev_Optional);
 	}
 	Writer->WriteObjectEnd();
@@ -54,27 +66,31 @@ bool FRHAPI_PexStat::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonMinField = (*Object)->TryGetField(TEXT("min"));
-	if (JsonMinField.IsValid() && !JsonMinField->IsNull())
+	if (JsonMinField.IsValid())
 	{
-		Min_IsSet = TryGetJsonValue(JsonMinField, Min_Optional);
+		Min_IsNull = JsonMinField->IsNull();
+		Min_IsSet = Min_IsNull || TryGetJsonValue(JsonMinField, Min_Optional);
 		ParseSuccess &= Min_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonMaxField = (*Object)->TryGetField(TEXT("max"));
-	if (JsonMaxField.IsValid() && !JsonMaxField->IsNull())
+	if (JsonMaxField.IsValid())
 	{
-		Max_IsSet = TryGetJsonValue(JsonMaxField, Max_Optional);
+		Max_IsNull = JsonMaxField->IsNull();
+		Max_IsSet = Max_IsNull || TryGetJsonValue(JsonMaxField, Max_Optional);
 		ParseSuccess &= Max_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonAvgField = (*Object)->TryGetField(TEXT("avg"));
-	if (JsonAvgField.IsValid() && !JsonAvgField->IsNull())
+	if (JsonAvgField.IsValid())
 	{
-		Avg_IsSet = TryGetJsonValue(JsonAvgField, Avg_Optional);
+		Avg_IsNull = JsonAvgField->IsNull();
+		Avg_IsSet = Avg_IsNull || TryGetJsonValue(JsonAvgField, Avg_Optional);
 		ParseSuccess &= Avg_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonStddevField = (*Object)->TryGetField(TEXT("stddev"));
-	if (JsonStddevField.IsValid() && !JsonStddevField->IsNull())
+	if (JsonStddevField.IsValid())
 	{
-		Stddev_IsSet = TryGetJsonValue(JsonStddevField, Stddev_Optional);
+		Stddev_IsNull = JsonStddevField->IsNull();
+		Stddev_IsSet = Stddev_IsNull || TryGetJsonValue(JsonStddevField, Stddev_Optional);
 		ParseSuccess &= Stddev_IsSet;
 	}
 

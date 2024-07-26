@@ -40,11 +40,11 @@ bool FRHAPI_ValidationError::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonLocField = (*Object)->TryGetField(TEXT("loc"));
-	ParseSuccess &= JsonLocField.IsValid() && !JsonLocField->IsNull() && TryGetJsonValue(JsonLocField, Loc);
+	ParseSuccess &= JsonLocField.IsValid() && (!JsonLocField->IsNull() &&  TryGetJsonValue(JsonLocField, Loc));
 	const TSharedPtr<FJsonValue> JsonMsgField = (*Object)->TryGetField(TEXT("msg"));
-	ParseSuccess &= JsonMsgField.IsValid() && !JsonMsgField->IsNull() && TryGetJsonValue(JsonMsgField, Msg);
+	ParseSuccess &= JsonMsgField.IsValid() && (!JsonMsgField->IsNull() &&  TryGetJsonValue(JsonMsgField, Msg));
 	const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
-	ParseSuccess &= JsonTypeField.IsValid() && !JsonTypeField->IsNull() && TryGetJsonValue(JsonTypeField, Type);
+	ParseSuccess &= JsonTypeField.IsValid() && (!JsonTypeField->IsNull() &&  TryGetJsonValue(JsonTypeField, Type));
 
 	return ParseSuccess;
 }

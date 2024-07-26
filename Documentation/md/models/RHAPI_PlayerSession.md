@@ -26,8 +26,8 @@ Information about the sessions of a specific type that a player is currently a m
 `public bool `[`PendingInvites_IsSet`](#structFRHAPI__PlayerSession_1aba663c2e6b24e60538396ac8a3de5af2) | true if PendingInvites_Optional has been set to a value
 `public TSet< FString > `[`ReservedSessions_Optional`](#structFRHAPI__PlayerSession_1a36aacad4f1ddb069672c659abd92f5fc) | Sessions that the player has a reserved place in, but has not yet been invited.
 `public bool `[`ReservedSessions_IsSet`](#structFRHAPI__PlayerSession_1ac6c94d6b012b91a945e9031c684a9c31) | true if ReservedSessions_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__PlayerSession_1a8b06f282829c1099c858758efac216dd)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PlayerSession_1a49a41127e076ba0e320cf7307dc44c6b)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__PlayerSession_1a677f3d5abbd7a98ae0a3e22ea01b458d)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__PlayerSession_1a4bfc4e2e26b5558e2d1154df20078a7d)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetType`](#structFRHAPI__PlayerSession_1a7ff94c4a2229b98fed3c43e0374cb306)`()` | Gets the value of Type.
 `public inline const FString & `[`GetType`](#structFRHAPI__PlayerSession_1af43796b74a5b4e504393de65bbc87e08)`() const` | Gets the value of Type.
 `public inline void `[`SetType`](#structFRHAPI__PlayerSession_1af86f050a33d387d66adf46ec6fe36934)`(const FString & NewValue)` | Sets the value of Type.
@@ -41,6 +41,7 @@ Information about the sessions of a specific type that a player is currently a m
 `public inline void `[`SetSessionIds`](#structFRHAPI__PlayerSession_1a9d41ade2657356be4797805e52c898a6)`(const TSet< FString > & NewValue)` | Sets the value of SessionIds_Optional and also sets SessionIds_IsSet to true.
 `public inline void `[`SetSessionIds`](#structFRHAPI__PlayerSession_1aa1130c036555be1331947d3a69d940cf)`(TSet< FString > && NewValue)` | Sets the value of SessionIds_Optional and also sets SessionIds_IsSet to true using move semantics.
 `public inline void `[`ClearSessionIds`](#structFRHAPI__PlayerSession_1a394fa3d1911935ba6e4a2ce6c46ecac7)`()` | Clears the value of SessionIds_Optional and sets SessionIds_IsSet to false.
+`public inline bool `[`IsSessionIdsSet`](#structFRHAPI__PlayerSession_1abb6bb160ee41d118863a0adc6e7bcec4)`() const` | Checks whether SessionIds_Optional has been set.
 `public inline TMap< FString, `[`FRHAPI_PlayerSessionInvite`](RHAPI_PlayerSessionInvite.md#structFRHAPI__PlayerSessionInvite)` > & `[`GetPendingInvites`](#structFRHAPI__PlayerSession_1a0883615754858962e6e6b8fce19eac66)`()` | Gets the value of PendingInvites_Optional, regardless of it having been set.
 `public inline const TMap< FString, `[`FRHAPI_PlayerSessionInvite`](RHAPI_PlayerSessionInvite.md#structFRHAPI__PlayerSessionInvite)` > & `[`GetPendingInvites`](#structFRHAPI__PlayerSession_1a16a9e22d7bbd01a609bcf1bc10a4abf0)`() const` | Gets the value of PendingInvites_Optional, regardless of it having been set.
 `public inline const TMap< FString, `[`FRHAPI_PlayerSessionInvite`](RHAPI_PlayerSessionInvite.md#structFRHAPI__PlayerSessionInvite)` > & `[`GetPendingInvites`](#structFRHAPI__PlayerSession_1a8d1c57d9d0813cf2d8ae6649be140c0b)`(const TMap< FString, `[`FRHAPI_PlayerSessionInvite`](RHAPI_PlayerSessionInvite.md#structFRHAPI__PlayerSessionInvite)` > & DefaultValue) const` | Gets the value of PendingInvites_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -50,6 +51,7 @@ Information about the sessions of a specific type that a player is currently a m
 `public inline void `[`SetPendingInvites`](#structFRHAPI__PlayerSession_1a4fd4a8a71532eb7dc2088b7837c1ae44)`(const TMap< FString, `[`FRHAPI_PlayerSessionInvite`](RHAPI_PlayerSessionInvite.md#structFRHAPI__PlayerSessionInvite)` > & NewValue)` | Sets the value of PendingInvites_Optional and also sets PendingInvites_IsSet to true.
 `public inline void `[`SetPendingInvites`](#structFRHAPI__PlayerSession_1a01f8ad57514ec6faa8f348f03937e4ba)`(TMap< FString, `[`FRHAPI_PlayerSessionInvite`](RHAPI_PlayerSessionInvite.md#structFRHAPI__PlayerSessionInvite)` > && NewValue)` | Sets the value of PendingInvites_Optional and also sets PendingInvites_IsSet to true using move semantics.
 `public inline void `[`ClearPendingInvites`](#structFRHAPI__PlayerSession_1a00bfb8f183bf0c2da022701f403bc692)`()` | Clears the value of PendingInvites_Optional and sets PendingInvites_IsSet to false.
+`public inline bool `[`IsPendingInvitesSet`](#structFRHAPI__PlayerSession_1a9284256bd736105e6b03e962e8800eb6)`() const` | Checks whether PendingInvites_Optional has been set.
 `public inline TSet< FString > & `[`GetReservedSessions`](#structFRHAPI__PlayerSession_1ad0a89fedb9edfaa153614319398afa9e)`()` | Gets the value of ReservedSessions_Optional, regardless of it having been set.
 `public inline const TSet< FString > & `[`GetReservedSessions`](#structFRHAPI__PlayerSession_1a8c84f2653dbd74e0b29230d92ba3d917)`() const` | Gets the value of ReservedSessions_Optional, regardless of it having been set.
 `public inline const TSet< FString > & `[`GetReservedSessions`](#structFRHAPI__PlayerSession_1a1e3704847bf55add300efb3fb7a53b76)`(const TSet< FString > & DefaultValue) const` | Gets the value of ReservedSessions_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -59,6 +61,7 @@ Information about the sessions of a specific type that a player is currently a m
 `public inline void `[`SetReservedSessions`](#structFRHAPI__PlayerSession_1a54b45270b6511ce851702da842561e9e)`(const TSet< FString > & NewValue)` | Sets the value of ReservedSessions_Optional and also sets ReservedSessions_IsSet to true.
 `public inline void `[`SetReservedSessions`](#structFRHAPI__PlayerSession_1a432207491da947ca843a94ce76d17ae9)`(TSet< FString > && NewValue)` | Sets the value of ReservedSessions_Optional and also sets ReservedSessions_IsSet to true using move semantics.
 `public inline void `[`ClearReservedSessions`](#structFRHAPI__PlayerSession_1a5b6d166ad566b26e591a928c5bf4f74b)`()` | Clears the value of ReservedSessions_Optional and sets ReservedSessions_IsSet to false.
+`public inline bool `[`IsReservedSessionsSet`](#structFRHAPI__PlayerSession_1a40872b186cd04121e67440e6cf04d9bb)`() const` | Checks whether ReservedSessions_Optional has been set.
 
 ### Members
 
@@ -90,7 +93,7 @@ Sessions that the player has a reserved place in, but has not yet been invited.
 
 true if ReservedSessions_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__PlayerSession_1a8b06f282829c1099c858758efac216dd)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlayerSession_1a8b06f282829c1099c858758efac216dd"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__PlayerSession_1a677f3d5abbd7a98ae0a3e22ea01b458d)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlayerSession_1a677f3d5abbd7a98ae0a3e22ea01b458d"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -100,7 +103,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PlayerSession_1a49a41127e076ba0e320cf7307dc44c6b)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlayerSession_1a49a41127e076ba0e320cf7307dc44c6b"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PlayerSession_1a4bfc4e2e26b5558e2d1154df20078a7d)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlayerSession_1a4bfc4e2e26b5558e2d1154df20078a7d"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -159,6 +162,10 @@ Sets the value of SessionIds_Optional and also sets SessionIds_IsSet to true usi
 
 Clears the value of SessionIds_Optional and sets SessionIds_IsSet to false.
 
+#### `public inline bool `[`IsSessionIdsSet`](#structFRHAPI__PlayerSession_1abb6bb160ee41d118863a0adc6e7bcec4)`() const` <a id="structFRHAPI__PlayerSession_1abb6bb160ee41d118863a0adc6e7bcec4"></a>
+
+Checks whether SessionIds_Optional has been set.
+
 #### `public inline TMap< FString, `[`FRHAPI_PlayerSessionInvite`](RHAPI_PlayerSessionInvite.md#structFRHAPI__PlayerSessionInvite)` > & `[`GetPendingInvites`](#structFRHAPI__PlayerSession_1a0883615754858962e6e6b8fce19eac66)`()` <a id="structFRHAPI__PlayerSession_1a0883615754858962e6e6b8fce19eac66"></a>
 
 Gets the value of PendingInvites_Optional, regardless of it having been set.
@@ -195,6 +202,10 @@ Sets the value of PendingInvites_Optional and also sets PendingInvites_IsSet to 
 
 Clears the value of PendingInvites_Optional and sets PendingInvites_IsSet to false.
 
+#### `public inline bool `[`IsPendingInvitesSet`](#structFRHAPI__PlayerSession_1a9284256bd736105e6b03e962e8800eb6)`() const` <a id="structFRHAPI__PlayerSession_1a9284256bd736105e6b03e962e8800eb6"></a>
+
+Checks whether PendingInvites_Optional has been set.
+
 #### `public inline TSet< FString > & `[`GetReservedSessions`](#structFRHAPI__PlayerSession_1ad0a89fedb9edfaa153614319398afa9e)`()` <a id="structFRHAPI__PlayerSession_1ad0a89fedb9edfaa153614319398afa9e"></a>
 
 Gets the value of ReservedSessions_Optional, regardless of it having been set.
@@ -230,4 +241,8 @@ Sets the value of ReservedSessions_Optional and also sets ReservedSessions_IsSet
 #### `public inline void `[`ClearReservedSessions`](#structFRHAPI__PlayerSession_1a5b6d166ad566b26e591a928c5bf4f74b)`()` <a id="structFRHAPI__PlayerSession_1a5b6d166ad566b26e591a928c5bf4f74b"></a>
 
 Clears the value of ReservedSessions_Optional and sets ReservedSessions_IsSet to false.
+
+#### `public inline bool `[`IsReservedSessionsSet`](#structFRHAPI__PlayerSession_1a40872b186cd04121e67440e6cf04d9bb)`() const` <a id="structFRHAPI__PlayerSession_1a40872b186cd04121e67440e6cf04d9bb"></a>
+
+Checks whether ReservedSessions_Optional has been set.
 

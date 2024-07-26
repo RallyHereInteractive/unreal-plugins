@@ -39,7 +39,7 @@ bool FRHAPI_InventorySessionCreateRequest::FromJson(const TSharedPtr<FJsonValue>
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonSessionPlatformField = (*Object)->TryGetField(TEXT("session_platform"));
-	if (JsonSessionPlatformField.IsValid() && !JsonSessionPlatformField->IsNull())
+	if (JsonSessionPlatformField.IsValid())
 	{
 		SessionPlatform_IsSet = TryGetJsonValue(JsonSessionPlatformField, SessionPlatform_Optional);
 		ParseSuccess &= SessionPlatform_IsSet;

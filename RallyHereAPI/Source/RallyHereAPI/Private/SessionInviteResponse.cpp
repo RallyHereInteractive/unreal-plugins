@@ -36,7 +36,7 @@ bool FRHAPI_SessionInviteResponse::FromJson(const TSharedPtr<FJsonValue>& JsonVa
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPlayersField = (*Object)->TryGetField(TEXT("players"));
-	ParseSuccess &= JsonPlayersField.IsValid() && !JsonPlayersField->IsNull() && TryGetJsonValue(JsonPlayersField, Players);
+	ParseSuccess &= JsonPlayersField.IsValid() && (!JsonPlayersField->IsNull() &&  TryGetJsonValue(JsonPlayersField, Players));
 
 	return ParseSuccess;
 }

@@ -25,8 +25,8 @@ Response to a request to update a player in a session.
 `public int32 `[`TeamId`](#structFRHAPI__SessionPlayerUpdateResponse_1a7e5d666f5988f2203a73e25f8b033134) | Which team the player joined.
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__SessionPlayerUpdateResponse_1aacc41614b0df8f8f891da6dbd72693d1) | Resulting custom data about the player.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__SessionPlayerUpdateResponse_1a0fcb6944466793eba1437f99d0d838f1) | true if CustomData_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__SessionPlayerUpdateResponse_1a022836b19e964a142c582bedf3029335)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__SessionPlayerUpdateResponse_1aa3d1846e019c5cb83d6b70a2a5e9eefd)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__SessionPlayerUpdateResponse_1a37c2f6505971005b69b2c56c0dca6209)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__SessionPlayerUpdateResponse_1a73fec1611e97811fe7c9bf4f75b2dc1c)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__SessionPlayerUpdateResponse_1aaac919243d1c9ffb72862b00505d5f60)`()` | Gets the value of PlayerUuid_Optional, regardless of it having been set.
 `public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__SessionPlayerUpdateResponse_1a20d830a862dbaff5968b506e31b6f17e)`() const` | Gets the value of PlayerUuid_Optional, regardless of it having been set.
 `public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__SessionPlayerUpdateResponse_1ac10947100065d2b36e59e0e3d2b9b29e)`(const FGuid & DefaultValue) const` | Gets the value of PlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -36,6 +36,7 @@ Response to a request to update a player in a session.
 `public inline void `[`SetPlayerUuid`](#structFRHAPI__SessionPlayerUpdateResponse_1a0a8688de2aa66dcab14b24676ab2e69c)`(const FGuid & NewValue)` | Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true.
 `public inline void `[`SetPlayerUuid`](#structFRHAPI__SessionPlayerUpdateResponse_1a881297a0f9e402af6c0f58e5701e65fa)`(FGuid && NewValue)` | Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true using move semantics.
 `public inline void `[`ClearPlayerUuid`](#structFRHAPI__SessionPlayerUpdateResponse_1a755f14ea84c27f433407c6bdb38e1d83)`()` | Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false.
+`public inline bool `[`IsPlayerUuidSet`](#structFRHAPI__SessionPlayerUpdateResponse_1a46b7e39e500974f858739678ab39a4f7)`() const` | Checks whether PlayerUuid_Optional has been set.
 `public inline ERHAPI_SessionPlayerStatus & `[`GetStatus`](#structFRHAPI__SessionPlayerUpdateResponse_1a148c72bdfa8dbd8814a12b1ded135818)`()` | Gets the value of Status.
 `public inline const ERHAPI_SessionPlayerStatus & `[`GetStatus`](#structFRHAPI__SessionPlayerUpdateResponse_1abbe6baee678c48f03f8d0fe9fb355231)`() const` | Gets the value of Status.
 `public inline void `[`SetStatus`](#structFRHAPI__SessionPlayerUpdateResponse_1a6e604666518dc1009c6d745926107b55)`(const ERHAPI_SessionPlayerStatus & NewValue)` | Sets the value of Status.
@@ -55,6 +56,7 @@ Response to a request to update a player in a session.
 `public inline void `[`SetCustomData`](#structFRHAPI__SessionPlayerUpdateResponse_1a73dfe3c9b3b3ef5271eff5305bbe517b)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`SetCustomData`](#structFRHAPI__SessionPlayerUpdateResponse_1aa41d34d793e5baafec31abcbc6b62e56)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__SessionPlayerUpdateResponse_1a10c6e7f878de0a38058d2d3cf42b90dc)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+`public inline bool `[`IsCustomDataSet`](#structFRHAPI__SessionPlayerUpdateResponse_1a5e6ab2ceba035259409d8e994dfafa43)`() const` | Checks whether CustomData_Optional has been set.
 
 ### Members
 
@@ -82,7 +84,7 @@ Resulting custom data about the player.
 
 true if CustomData_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__SessionPlayerUpdateResponse_1a022836b19e964a142c582bedf3029335)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__SessionPlayerUpdateResponse_1a022836b19e964a142c582bedf3029335"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__SessionPlayerUpdateResponse_1a37c2f6505971005b69b2c56c0dca6209)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__SessionPlayerUpdateResponse_1a37c2f6505971005b69b2c56c0dca6209"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -92,7 +94,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__SessionPlayerUpdateResponse_1aa3d1846e019c5cb83d6b70a2a5e9eefd)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__SessionPlayerUpdateResponse_1aa3d1846e019c5cb83d6b70a2a5e9eefd"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__SessionPlayerUpdateResponse_1a73fec1611e97811fe7c9bf4f75b2dc1c)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__SessionPlayerUpdateResponse_1a73fec1611e97811fe7c9bf4f75b2dc1c"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -134,6 +136,10 @@ Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true usi
 #### `public inline void `[`ClearPlayerUuid`](#structFRHAPI__SessionPlayerUpdateResponse_1a755f14ea84c27f433407c6bdb38e1d83)`()` <a id="structFRHAPI__SessionPlayerUpdateResponse_1a755f14ea84c27f433407c6bdb38e1d83"></a>
 
 Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false.
+
+#### `public inline bool `[`IsPlayerUuidSet`](#structFRHAPI__SessionPlayerUpdateResponse_1a46b7e39e500974f858739678ab39a4f7)`() const` <a id="structFRHAPI__SessionPlayerUpdateResponse_1a46b7e39e500974f858739678ab39a4f7"></a>
+
+Checks whether PlayerUuid_Optional has been set.
 
 #### `public inline ERHAPI_SessionPlayerStatus & `[`GetStatus`](#structFRHAPI__SessionPlayerUpdateResponse_1a148c72bdfa8dbd8814a12b1ded135818)`()` <a id="structFRHAPI__SessionPlayerUpdateResponse_1a148c72bdfa8dbd8814a12b1ded135818"></a>
 
@@ -210,4 +216,8 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true usi
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__SessionPlayerUpdateResponse_1a10c6e7f878de0a38058d2d3cf42b90dc)`()` <a id="structFRHAPI__SessionPlayerUpdateResponse_1a10c6e7f878de0a38058d2d3cf42b90dc"></a>
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+
+#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__SessionPlayerUpdateResponse_1a5e6ab2ceba035259409d8e994dfafa43)`() const` <a id="structFRHAPI__SessionPlayerUpdateResponse_1a5e6ab2ceba035259409d8e994dfafa43"></a>
+
+Checks whether CustomData_Optional has been set.
 

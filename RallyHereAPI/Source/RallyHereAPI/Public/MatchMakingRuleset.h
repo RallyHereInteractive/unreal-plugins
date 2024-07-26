@@ -33,14 +33,14 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingRuleset : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief A list of the rules to be checked for this ruleset */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -57,15 +57,17 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingRuleset : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Rules_Optional and returns true if it has been set, otherwise returns false */
 	bool GetRules(TArray<FRHAPI_Rule>& OutValue) const { if (Rules_IsSet) OutValue = Rules_Optional; return Rules_IsSet; }
 	/** @brief Returns a pointer to Rules_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FRHAPI_Rule>* GetRulesOrNull() { if (Rules_IsSet) return &Rules_Optional; return nullptr; }
+	TArray<FRHAPI_Rule>* GetRulesOrNull() { if (Rules_IsSet) return (&Rules_Optional); return nullptr; }
 	/** @brief Returns a pointer to Rules_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FRHAPI_Rule>* GetRulesOrNull() const { if (Rules_IsSet) return &Rules_Optional; return nullptr; }
+	const TArray<FRHAPI_Rule>* GetRulesOrNull() const { if (Rules_IsSet) return (&Rules_Optional); return nullptr; }
 	/** @brief Sets the value of Rules_Optional and also sets Rules_IsSet to true */
-	void SetRules(const TArray<FRHAPI_Rule>& NewValue) { Rules_Optional = NewValue; Rules_IsSet = true; }
+	void SetRules(const TArray<FRHAPI_Rule>& NewValue) { Rules_Optional = NewValue; Rules_IsSet = true;  }
 	/** @brief Sets the value of Rules_Optional and also sets Rules_IsSet to true using move semantics */
-	void SetRules(TArray<FRHAPI_Rule>&& NewValue) { Rules_Optional = NewValue; Rules_IsSet = true; }
-	 /** @brief Clears the value of Rules_Optional and sets Rules_IsSet to false */
-	void ClearRules() { Rules_IsSet = false; }
+	void SetRules(TArray<FRHAPI_Rule>&& NewValue) { Rules_Optional = NewValue; Rules_IsSet = true;  }
+	/** @brief Clears the value of Rules_Optional and sets Rules_IsSet to false */
+	void ClearRules() { Rules_IsSet = false;  }
+	/** @brief Checks whether Rules_Optional has been set */
+	bool IsRulesSet() const { return Rules_IsSet; }
 
 	/** @brief Determiner of how many rules must be satisfied in this rulest (all, any, one, none) */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -82,15 +84,17 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingRuleset : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Determiner_Optional and returns true if it has been set, otherwise returns false */
 	bool GetDeterminer(ERHAPI_Determiner& OutValue) const { if (Determiner_IsSet) OutValue = Determiner_Optional; return Determiner_IsSet; }
 	/** @brief Returns a pointer to Determiner_Optional, if it has been set, otherwise returns nullptr */
-	ERHAPI_Determiner* GetDeterminerOrNull() { if (Determiner_IsSet) return &Determiner_Optional; return nullptr; }
+	ERHAPI_Determiner* GetDeterminerOrNull() { if (Determiner_IsSet) return (&Determiner_Optional); return nullptr; }
 	/** @brief Returns a pointer to Determiner_Optional, if it has been set, otherwise returns nullptr */
-	const ERHAPI_Determiner* GetDeterminerOrNull() const { if (Determiner_IsSet) return &Determiner_Optional; return nullptr; }
+	const ERHAPI_Determiner* GetDeterminerOrNull() const { if (Determiner_IsSet) return (&Determiner_Optional); return nullptr; }
 	/** @brief Sets the value of Determiner_Optional and also sets Determiner_IsSet to true */
-	void SetDeterminer(const ERHAPI_Determiner& NewValue) { Determiner_Optional = NewValue; Determiner_IsSet = true; }
+	void SetDeterminer(const ERHAPI_Determiner& NewValue) { Determiner_Optional = NewValue; Determiner_IsSet = true;  }
 	/** @brief Sets the value of Determiner_Optional and also sets Determiner_IsSet to true using move semantics */
-	void SetDeterminer(ERHAPI_Determiner&& NewValue) { Determiner_Optional = NewValue; Determiner_IsSet = true; }
-	 /** @brief Clears the value of Determiner_Optional and sets Determiner_IsSet to false */
-	void ClearDeterminer() { Determiner_IsSet = false; }
+	void SetDeterminer(ERHAPI_Determiner&& NewValue) { Determiner_Optional = NewValue; Determiner_IsSet = true;  }
+	/** @brief Clears the value of Determiner_Optional and sets Determiner_IsSet to false */
+	void ClearDeterminer() { Determiner_IsSet = false;  }
+	/** @brief Checks whether Determiner_Optional has been set */
+	bool IsDeterminerSet() const { return Determiner_IsSet; }
 
 	/** @brief Which members of a session must be validated to satisfy this ruleset */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -107,15 +111,17 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingRuleset : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of PlayersToValidate_Optional and returns true if it has been set, otherwise returns false */
 	bool GetPlayersToValidate(ERHAPI_PlayersToValidate& OutValue) const { if (PlayersToValidate_IsSet) OutValue = PlayersToValidate_Optional; return PlayersToValidate_IsSet; }
 	/** @brief Returns a pointer to PlayersToValidate_Optional, if it has been set, otherwise returns nullptr */
-	ERHAPI_PlayersToValidate* GetPlayersToValidateOrNull() { if (PlayersToValidate_IsSet) return &PlayersToValidate_Optional; return nullptr; }
+	ERHAPI_PlayersToValidate* GetPlayersToValidateOrNull() { if (PlayersToValidate_IsSet) return (&PlayersToValidate_Optional); return nullptr; }
 	/** @brief Returns a pointer to PlayersToValidate_Optional, if it has been set, otherwise returns nullptr */
-	const ERHAPI_PlayersToValidate* GetPlayersToValidateOrNull() const { if (PlayersToValidate_IsSet) return &PlayersToValidate_Optional; return nullptr; }
+	const ERHAPI_PlayersToValidate* GetPlayersToValidateOrNull() const { if (PlayersToValidate_IsSet) return (&PlayersToValidate_Optional); return nullptr; }
 	/** @brief Sets the value of PlayersToValidate_Optional and also sets PlayersToValidate_IsSet to true */
-	void SetPlayersToValidate(const ERHAPI_PlayersToValidate& NewValue) { PlayersToValidate_Optional = NewValue; PlayersToValidate_IsSet = true; }
+	void SetPlayersToValidate(const ERHAPI_PlayersToValidate& NewValue) { PlayersToValidate_Optional = NewValue; PlayersToValidate_IsSet = true;  }
 	/** @brief Sets the value of PlayersToValidate_Optional and also sets PlayersToValidate_IsSet to true using move semantics */
-	void SetPlayersToValidate(ERHAPI_PlayersToValidate&& NewValue) { PlayersToValidate_Optional = NewValue; PlayersToValidate_IsSet = true; }
-	 /** @brief Clears the value of PlayersToValidate_Optional and sets PlayersToValidate_IsSet to false */
-	void ClearPlayersToValidate() { PlayersToValidate_IsSet = false; }
+	void SetPlayersToValidate(ERHAPI_PlayersToValidate&& NewValue) { PlayersToValidate_Optional = NewValue; PlayersToValidate_IsSet = true;  }
+	/** @brief Clears the value of PlayersToValidate_Optional and sets PlayersToValidate_IsSet to false */
+	void ClearPlayersToValidate() { PlayersToValidate_IsSet = false;  }
+	/** @brief Checks whether PlayersToValidate_Optional has been set */
+	bool IsPlayersToValidateSet() const { return PlayersToValidate_IsSet; }
 };
 
 /** @} */

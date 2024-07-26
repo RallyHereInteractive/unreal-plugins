@@ -39,7 +39,7 @@ bool FRHAPI_HTTPValidationError::FromJson(const TSharedPtr<FJsonValue>& JsonValu
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonDetailField = (*Object)->TryGetField(TEXT("detail"));
-	if (JsonDetailField.IsValid() && !JsonDetailField->IsNull())
+	if (JsonDetailField.IsValid())
 	{
 		Detail_IsSet = TryGetJsonValue(JsonDetailField, Detail_Optional);
 		ParseSuccess &= Detail_IsSet;

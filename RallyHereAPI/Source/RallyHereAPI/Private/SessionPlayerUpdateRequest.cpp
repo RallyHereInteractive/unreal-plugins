@@ -51,21 +51,21 @@ bool FRHAPI_SessionPlayerUpdateRequest::FromJson(const TSharedPtr<FJsonValue>& J
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonStatusField = (*Object)->TryGetField(TEXT("status"));
-	if (JsonStatusField.IsValid() && !JsonStatusField->IsNull())
+	if (JsonStatusField.IsValid())
 	{
 		Status_IsSet = TryGetJsonValue(JsonStatusField, Status_Optional);
 		ParseSuccess &= Status_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonTeamIdField = (*Object)->TryGetField(TEXT("team_id"));
-	ParseSuccess &= JsonTeamIdField.IsValid() && !JsonTeamIdField->IsNull() && TryGetJsonValue(JsonTeamIdField, TeamId);
+	ParseSuccess &= JsonTeamIdField.IsValid() && (!JsonTeamIdField->IsNull() &&  TryGetJsonValue(JsonTeamIdField, TeamId));
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	if (JsonCustomDataField.IsValid())
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonOverflowActionField = (*Object)->TryGetField(TEXT("overflow_action"));
-	if (JsonOverflowActionField.IsValid() && !JsonOverflowActionField->IsNull())
+	if (JsonOverflowActionField.IsValid())
 	{
 		OverflowAction_IsSet = TryGetJsonValue(JsonOverflowActionField, OverflowAction_Optional);
 		ParseSuccess &= OverflowAction_IsSet;

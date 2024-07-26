@@ -43,11 +43,11 @@ bool FRHAPI_CreatePlatformUserRequest::FromJson(const TSharedPtr<FJsonValue>& Js
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPlatformField = (*Object)->TryGetField(TEXT("platform"));
-	ParseSuccess &= JsonPlatformField.IsValid() && !JsonPlatformField->IsNull() && TryGetJsonValue(JsonPlatformField, Platform);
+	ParseSuccess &= JsonPlatformField.IsValid() && (!JsonPlatformField->IsNull() &&  TryGetJsonValue(JsonPlatformField, Platform));
 	const TSharedPtr<FJsonValue> JsonPlatformUserIdField = (*Object)->TryGetField(TEXT("platform_user_id"));
-	ParseSuccess &= JsonPlatformUserIdField.IsValid() && !JsonPlatformUserIdField->IsNull() && TryGetJsonValue(JsonPlatformUserIdField, PlatformUserId);
+	ParseSuccess &= JsonPlatformUserIdField.IsValid() && (!JsonPlatformUserIdField->IsNull() &&  TryGetJsonValue(JsonPlatformUserIdField, PlatformUserId));
 	const TSharedPtr<FJsonValue> JsonDisplayNameField = (*Object)->TryGetField(TEXT("display_name"));
-	if (JsonDisplayNameField.IsValid() && !JsonDisplayNameField->IsNull())
+	if (JsonDisplayNameField.IsValid())
 	{
 		DisplayName_IsSet = TryGetJsonValue(JsonDisplayNameField, DisplayName_Optional);
 		ParseSuccess &= DisplayName_IsSet;

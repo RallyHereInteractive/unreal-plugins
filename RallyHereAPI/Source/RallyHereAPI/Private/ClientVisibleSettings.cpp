@@ -44,13 +44,13 @@ bool FRHAPI_ClientVisibleSettings::FromJson(const TSharedPtr<FJsonValue>& JsonVa
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonSelfPingIntervalSecondsField = (*Object)->TryGetField(TEXT("self_ping_interval_seconds"));
-	if (JsonSelfPingIntervalSecondsField.IsValid() && !JsonSelfPingIntervalSecondsField->IsNull())
+	if (JsonSelfPingIntervalSecondsField.IsValid())
 	{
 		SelfPingIntervalSeconds_IsSet = TryGetJsonValue(JsonSelfPingIntervalSecondsField, SelfPingIntervalSeconds_Optional);
 		ParseSuccess &= SelfPingIntervalSeconds_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonLastSeenAgeConsideredOfflineSecondsField = (*Object)->TryGetField(TEXT("last_seen_age_considered_offline_seconds"));
-	if (JsonLastSeenAgeConsideredOfflineSecondsField.IsValid() && !JsonLastSeenAgeConsideredOfflineSecondsField->IsNull())
+	if (JsonLastSeenAgeConsideredOfflineSecondsField.IsValid())
 	{
 		LastSeenAgeConsideredOfflineSeconds_IsSet = TryGetJsonValue(JsonLastSeenAgeConsideredOfflineSecondsField, LastSeenAgeConsideredOfflineSeconds_Optional);
 		ParseSuccess &= LastSeenAgeConsideredOfflineSeconds_IsSet;

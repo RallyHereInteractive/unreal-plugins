@@ -36,7 +36,7 @@ bool FRHAPI_BaseBackfillRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValu
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonInstanceIdField = (*Object)->TryGetField(TEXT("instance_id"));
-	ParseSuccess &= JsonInstanceIdField.IsValid() && !JsonInstanceIdField->IsNull() && TryGetJsonValue(JsonInstanceIdField, InstanceId);
+	ParseSuccess &= JsonInstanceIdField.IsValid() && (!JsonInstanceIdField->IsNull() &&  TryGetJsonValue(JsonInstanceIdField, InstanceId));
 
 	return ParseSuccess;
 }

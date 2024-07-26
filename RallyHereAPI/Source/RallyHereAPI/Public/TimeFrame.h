@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrame : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief The name of the Time Frame. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -55,15 +55,17 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrame : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Name_Optional and returns true if it has been set, otherwise returns false */
 	bool GetName(FString& OutValue) const { if (Name_IsSet) OutValue = Name_Optional; return Name_IsSet; }
 	/** @brief Returns a pointer to Name_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetNameOrNull() { if (Name_IsSet) return &Name_Optional; return nullptr; }
+	FString* GetNameOrNull() { if (Name_IsSet) return (&Name_Optional); return nullptr; }
 	/** @brief Returns a pointer to Name_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetNameOrNull() const { if (Name_IsSet) return &Name_Optional; return nullptr; }
+	const FString* GetNameOrNull() const { if (Name_IsSet) return (&Name_Optional); return nullptr; }
 	/** @brief Sets the value of Name_Optional and also sets Name_IsSet to true */
-	void SetName(const FString& NewValue) { Name_Optional = NewValue; Name_IsSet = true; }
+	void SetName(const FString& NewValue) { Name_Optional = NewValue; Name_IsSet = true;  }
 	/** @brief Sets the value of Name_Optional and also sets Name_IsSet to true using move semantics */
-	void SetName(FString&& NewValue) { Name_Optional = NewValue; Name_IsSet = true; }
-	 /** @brief Clears the value of Name_Optional and sets Name_IsSet to false */
-	void ClearName() { Name_IsSet = false; }
+	void SetName(FString&& NewValue) { Name_Optional = NewValue; Name_IsSet = true;  }
+	/** @brief Clears the value of Name_Optional and sets Name_IsSet to false */
+	void ClearName() { Name_IsSet = false;  }
+	/** @brief Checks whether Name_Optional has been set */
+	bool IsNameSet() const { return Name_IsSet; }
 
 	/** @brief Whether or not the Time Frame is active. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -80,19 +82,21 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrame : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Active_Optional and returns true if it has been set, otherwise returns false */
 	bool GetActive(bool& OutValue) const { if (Active_IsSet) OutValue = Active_Optional; return Active_IsSet; }
 	/** @brief Returns a pointer to Active_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetActiveOrNull() { if (Active_IsSet) return &Active_Optional; return nullptr; }
+	bool* GetActiveOrNull() { if (Active_IsSet) return (&Active_Optional); return nullptr; }
 	/** @brief Returns a pointer to Active_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetActiveOrNull() const { if (Active_IsSet) return &Active_Optional; return nullptr; }
+	const bool* GetActiveOrNull() const { if (Active_IsSet) return (&Active_Optional); return nullptr; }
 	/** @brief Sets the value of Active_Optional and also sets Active_IsSet to true */
-	void SetActive(const bool& NewValue) { Active_Optional = NewValue; Active_IsSet = true; }
+	void SetActive(const bool& NewValue) { Active_Optional = NewValue; Active_IsSet = true;  }
 	/** @brief Sets the value of Active_Optional and also sets Active_IsSet to true using move semantics */
-	void SetActive(bool&& NewValue) { Active_Optional = NewValue; Active_IsSet = true; }
-	 /** @brief Clears the value of Active_Optional and sets Active_IsSet to false */
-	void ClearActive() { Active_Optional = false; Active_IsSet = false; }
+	void SetActive(bool&& NewValue) { Active_Optional = NewValue; Active_IsSet = true;  }
+	/** @brief Clears the value of Active_Optional and sets Active_IsSet to false */
+	void ClearActive() { Active_Optional = false; Active_IsSet = false;  }
+	/** @brief Checks whether Active_Optional has been set */
+	bool IsActiveSet() const { return Active_IsSet; }
 	/** @brief Returns true if Active_Optional is set and matches the default value */
 	bool IsActiveDefaultValue() const { return Active_IsSet && Active_Optional == false; }
 	/** @brief Sets the value of Active_Optional to its default and also sets Active_IsSet to true */
-	void SetActiveToDefault() { Active_Optional = false; Active_IsSet = true; }
+	void SetActiveToDefault() { SetActive(false); }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Episode_Optional{  };
@@ -108,19 +112,21 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrame : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Episode_Optional and returns true if it has been set, otherwise returns false */
 	bool GetEpisode(int32& OutValue) const { if (Episode_IsSet) OutValue = Episode_Optional; return Episode_IsSet; }
 	/** @brief Returns a pointer to Episode_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetEpisodeOrNull() { if (Episode_IsSet) return &Episode_Optional; return nullptr; }
+	int32* GetEpisodeOrNull() { if (Episode_IsSet) return (&Episode_Optional); return nullptr; }
 	/** @brief Returns a pointer to Episode_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetEpisodeOrNull() const { if (Episode_IsSet) return &Episode_Optional; return nullptr; }
+	const int32* GetEpisodeOrNull() const { if (Episode_IsSet) return (&Episode_Optional); return nullptr; }
 	/** @brief Sets the value of Episode_Optional and also sets Episode_IsSet to true */
-	void SetEpisode(const int32& NewValue) { Episode_Optional = NewValue; Episode_IsSet = true; }
+	void SetEpisode(const int32& NewValue) { Episode_Optional = NewValue; Episode_IsSet = true;  }
 	/** @brief Sets the value of Episode_Optional and also sets Episode_IsSet to true using move semantics */
-	void SetEpisode(int32&& NewValue) { Episode_Optional = NewValue; Episode_IsSet = true; }
-	 /** @brief Clears the value of Episode_Optional and sets Episode_IsSet to false */
-	void ClearEpisode() { Episode_Optional = 0; Episode_IsSet = false; }
+	void SetEpisode(int32&& NewValue) { Episode_Optional = NewValue; Episode_IsSet = true;  }
+	/** @brief Clears the value of Episode_Optional and sets Episode_IsSet to false */
+	void ClearEpisode() { Episode_Optional = 0; Episode_IsSet = false;  }
+	/** @brief Checks whether Episode_Optional has been set */
+	bool IsEpisodeSet() const { return Episode_IsSet; }
 	/** @brief Returns true if Episode_Optional is set and matches the default value */
 	bool IsEpisodeDefaultValue() const { return Episode_IsSet && Episode_Optional == 0; }
 	/** @brief Sets the value of Episode_Optional to its default and also sets Episode_IsSet to true */
-	void SetEpisodeToDefault() { Episode_Optional = 0; Episode_IsSet = true; }
+	void SetEpisodeToDefault() { SetEpisode(0); }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 EpisodeType_Optional{  };
@@ -136,19 +142,21 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrame : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of EpisodeType_Optional and returns true if it has been set, otherwise returns false */
 	bool GetEpisodeType(int32& OutValue) const { if (EpisodeType_IsSet) OutValue = EpisodeType_Optional; return EpisodeType_IsSet; }
 	/** @brief Returns a pointer to EpisodeType_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetEpisodeTypeOrNull() { if (EpisodeType_IsSet) return &EpisodeType_Optional; return nullptr; }
+	int32* GetEpisodeTypeOrNull() { if (EpisodeType_IsSet) return (&EpisodeType_Optional); return nullptr; }
 	/** @brief Returns a pointer to EpisodeType_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetEpisodeTypeOrNull() const { if (EpisodeType_IsSet) return &EpisodeType_Optional; return nullptr; }
+	const int32* GetEpisodeTypeOrNull() const { if (EpisodeType_IsSet) return (&EpisodeType_Optional); return nullptr; }
 	/** @brief Sets the value of EpisodeType_Optional and also sets EpisodeType_IsSet to true */
-	void SetEpisodeType(const int32& NewValue) { EpisodeType_Optional = NewValue; EpisodeType_IsSet = true; }
+	void SetEpisodeType(const int32& NewValue) { EpisodeType_Optional = NewValue; EpisodeType_IsSet = true;  }
 	/** @brief Sets the value of EpisodeType_Optional and also sets EpisodeType_IsSet to true using move semantics */
-	void SetEpisodeType(int32&& NewValue) { EpisodeType_Optional = NewValue; EpisodeType_IsSet = true; }
-	 /** @brief Clears the value of EpisodeType_Optional and sets EpisodeType_IsSet to false */
-	void ClearEpisodeType() { EpisodeType_Optional = 0; EpisodeType_IsSet = false; }
+	void SetEpisodeType(int32&& NewValue) { EpisodeType_Optional = NewValue; EpisodeType_IsSet = true;  }
+	/** @brief Clears the value of EpisodeType_Optional and sets EpisodeType_IsSet to false */
+	void ClearEpisodeType() { EpisodeType_Optional = 0; EpisodeType_IsSet = false;  }
+	/** @brief Checks whether EpisodeType_Optional has been set */
+	bool IsEpisodeTypeSet() const { return EpisodeType_IsSet; }
 	/** @brief Returns true if EpisodeType_Optional is set and matches the default value */
 	bool IsEpisodeTypeDefaultValue() const { return EpisodeType_IsSet && EpisodeType_Optional == 0; }
 	/** @brief Sets the value of EpisodeType_Optional to its default and also sets EpisodeType_IsSet to true */
-	void SetEpisodeTypeToDefault() { EpisodeType_Optional = 0; EpisodeType_IsSet = true; }
+	void SetEpisodeTypeToDefault() { SetEpisodeType(0); }
 
 	/** @brief Number of hours that this time frame lasts until restarting.0 interval means no repeating. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -165,19 +173,21 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrame : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of HourInterval_Optional and returns true if it has been set, otherwise returns false */
 	bool GetHourInterval(int32& OutValue) const { if (HourInterval_IsSet) OutValue = HourInterval_Optional; return HourInterval_IsSet; }
 	/** @brief Returns a pointer to HourInterval_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetHourIntervalOrNull() { if (HourInterval_IsSet) return &HourInterval_Optional; return nullptr; }
+	int32* GetHourIntervalOrNull() { if (HourInterval_IsSet) return (&HourInterval_Optional); return nullptr; }
 	/** @brief Returns a pointer to HourInterval_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetHourIntervalOrNull() const { if (HourInterval_IsSet) return &HourInterval_Optional; return nullptr; }
+	const int32* GetHourIntervalOrNull() const { if (HourInterval_IsSet) return (&HourInterval_Optional); return nullptr; }
 	/** @brief Sets the value of HourInterval_Optional and also sets HourInterval_IsSet to true */
-	void SetHourInterval(const int32& NewValue) { HourInterval_Optional = NewValue; HourInterval_IsSet = true; }
+	void SetHourInterval(const int32& NewValue) { HourInterval_Optional = NewValue; HourInterval_IsSet = true;  }
 	/** @brief Sets the value of HourInterval_Optional and also sets HourInterval_IsSet to true using move semantics */
-	void SetHourInterval(int32&& NewValue) { HourInterval_Optional = NewValue; HourInterval_IsSet = true; }
-	 /** @brief Clears the value of HourInterval_Optional and sets HourInterval_IsSet to false */
-	void ClearHourInterval() { HourInterval_Optional = 0; HourInterval_IsSet = false; }
+	void SetHourInterval(int32&& NewValue) { HourInterval_Optional = NewValue; HourInterval_IsSet = true;  }
+	/** @brief Clears the value of HourInterval_Optional and sets HourInterval_IsSet to false */
+	void ClearHourInterval() { HourInterval_Optional = 0; HourInterval_IsSet = false;  }
+	/** @brief Checks whether HourInterval_Optional has been set */
+	bool IsHourIntervalSet() const { return HourInterval_IsSet; }
 	/** @brief Returns true if HourInterval_Optional is set and matches the default value */
 	bool IsHourIntervalDefaultValue() const { return HourInterval_IsSet && HourInterval_Optional == 0; }
 	/** @brief Sets the value of HourInterval_Optional to its default and also sets HourInterval_IsSet to true */
-	void SetHourIntervalToDefault() { HourInterval_Optional = 0; HourInterval_IsSet = true; }
+	void SetHourIntervalToDefault() { SetHourInterval(0); }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -187,9 +197,9 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrame : public FRHAPI_Model
 	/** @brief Gets the value of Start */
 	const FDateTime& GetStart() const { return Start; }
 	/** @brief Sets the value of Start */
-	void SetStart(const FDateTime& NewValue) { Start = NewValue;  }
+	void SetStart(const FDateTime& NewValue) { Start = NewValue;   }
 	/** @brief Sets the value of Start using move semantics */
-	void SetStart(FDateTime&& NewValue) { Start = NewValue;  }
+	void SetStart(FDateTime&& NewValue) { Start = NewValue;   }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -199,9 +209,9 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrame : public FRHAPI_Model
 	/** @brief Gets the value of End */
 	const FDateTime& GetEnd() const { return End; }
 	/** @brief Sets the value of End */
-	void SetEnd(const FDateTime& NewValue) { End = NewValue;  }
+	void SetEnd(const FDateTime& NewValue) { End = NewValue;   }
 	/** @brief Sets the value of End using move semantics */
-	void SetEnd(FDateTime&& NewValue) { End = NewValue;  }
+	void SetEnd(FDateTime&& NewValue) { End = NewValue;   }
 
 	/** @brief Cache info for the Time Frame. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -218,15 +228,17 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrame : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false */
 	bool GetCacheInfo(FRHAPI_CacheInfo& OutValue) const { if (CacheInfo_IsSet) OutValue = CacheInfo_Optional; return CacheInfo_IsSet; }
 	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_CacheInfo* GetCacheInfoOrNull() { if (CacheInfo_IsSet) return &CacheInfo_Optional; return nullptr; }
+	FRHAPI_CacheInfo* GetCacheInfoOrNull() { if (CacheInfo_IsSet) return (&CacheInfo_Optional); return nullptr; }
 	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return &CacheInfo_Optional; return nullptr; }
+	const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return (&CacheInfo_Optional); return nullptr; }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true */
-	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
+	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
-	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
-	 /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
-	void ClearCacheInfo() { CacheInfo_IsSet = false; }
+	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
+	/** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
+	void ClearCacheInfo() { CacheInfo_IsSet = false;  }
+	/** @brief Checks whether CacheInfo_Optional has been set */
+	bool IsCacheInfoSet() const { return CacheInfo_IsSet; }
 };
 
 /** @} */

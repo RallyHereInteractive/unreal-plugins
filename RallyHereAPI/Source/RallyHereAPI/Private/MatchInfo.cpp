@@ -48,17 +48,17 @@ bool FRHAPI_MatchInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonMatchIdField = (*Object)->TryGetField(TEXT("match_id"));
-	ParseSuccess &= JsonMatchIdField.IsValid() && !JsonMatchIdField->IsNull() && TryGetJsonValue(JsonMatchIdField, MatchId);
+	ParseSuccess &= JsonMatchIdField.IsValid() && (!JsonMatchIdField->IsNull() &&  TryGetJsonValue(JsonMatchIdField, MatchId));
 	const TSharedPtr<FJsonValue> JsonCreatedField = (*Object)->TryGetField(TEXT("created"));
-	ParseSuccess &= JsonCreatedField.IsValid() && !JsonCreatedField->IsNull() && TryGetJsonValue(JsonCreatedField, Created);
+	ParseSuccess &= JsonCreatedField.IsValid() && (!JsonCreatedField->IsNull() &&  TryGetJsonValue(JsonCreatedField, Created));
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	if (JsonCustomDataField.IsValid())
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonTicketIdsField = (*Object)->TryGetField(TEXT("ticket_ids"));
-	if (JsonTicketIdsField.IsValid() && !JsonTicketIdsField->IsNull())
+	if (JsonTicketIdsField.IsValid())
 	{
 		TicketIds_IsSet = TryGetJsonValue(JsonTicketIdsField, TicketIds_Optional);
 		ParseSuccess &= TicketIds_IsSet;

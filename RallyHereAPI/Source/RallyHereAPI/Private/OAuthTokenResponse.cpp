@@ -69,43 +69,43 @@ bool FRHAPI_OAuthTokenResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonAccessTokenField = (*Object)->TryGetField(TEXT("access_token"));
-	if (JsonAccessTokenField.IsValid() && !JsonAccessTokenField->IsNull())
+	if (JsonAccessTokenField.IsValid())
 	{
 		AccessToken_IsSet = TryGetJsonValue(JsonAccessTokenField, AccessToken_Optional);
 		ParseSuccess &= AccessToken_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonRefreshTokenField = (*Object)->TryGetField(TEXT("refresh_token"));
-	if (JsonRefreshTokenField.IsValid() && !JsonRefreshTokenField->IsNull())
+	if (JsonRefreshTokenField.IsValid())
 	{
 		RefreshToken_IsSet = TryGetJsonValue(JsonRefreshTokenField, RefreshToken_Optional);
 		ParseSuccess &= RefreshToken_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonNeedsEulaField = (*Object)->TryGetField(TEXT("needs_eula"));
-	if (JsonNeedsEulaField.IsValid() && !JsonNeedsEulaField->IsNull())
+	if (JsonNeedsEulaField.IsValid())
 	{
 		NeedsEula_IsSet = TryGetJsonValue(JsonNeedsEulaField, NeedsEula_Optional);
 		ParseSuccess &= NeedsEula_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonNeedsTosField = (*Object)->TryGetField(TEXT("needs_tos"));
-	if (JsonNeedsTosField.IsValid() && !JsonNeedsTosField->IsNull())
+	if (JsonNeedsTosField.IsValid())
 	{
 		NeedsTos_IsSet = TryGetJsonValue(JsonNeedsTosField, NeedsTos_Optional);
 		ParseSuccess &= NeedsTos_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonNeedsPrivacyPolicyField = (*Object)->TryGetField(TEXT("needs_privacy_policy"));
-	if (JsonNeedsPrivacyPolicyField.IsValid() && !JsonNeedsPrivacyPolicyField->IsNull())
+	if (JsonNeedsPrivacyPolicyField.IsValid())
 	{
 		NeedsPrivacyPolicy_IsSet = TryGetJsonValue(JsonNeedsPrivacyPolicyField, NeedsPrivacyPolicy_Optional);
 		ParseSuccess &= NeedsPrivacyPolicy_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonRegeneratedCodeField = (*Object)->TryGetField(TEXT("regenerated_code"));
-	if (JsonRegeneratedCodeField.IsValid() && !JsonRegeneratedCodeField->IsNull())
+	if (JsonRegeneratedCodeField.IsValid())
 	{
 		RegeneratedCode_IsSet = TryGetJsonValue(JsonRegeneratedCodeField, RegeneratedCode_Optional);
 		ParseSuccess &= RegeneratedCode_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonErrorMessageField = (*Object)->TryGetField(TEXT("error_message"));
-	if (JsonErrorMessageField.IsValid() && !JsonErrorMessageField->IsNull())
+	if (JsonErrorMessageField.IsValid())
 	{
 		ErrorMessage_IsSet = TryGetJsonValue(JsonErrorMessageField, ErrorMessage_Optional);
 		ParseSuccess &= ErrorMessage_IsSet;

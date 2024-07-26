@@ -21,8 +21,8 @@ struct FRHAPI_FileResponse
 `public int32 `[`Size`](#structFRHAPI__FileResponse_1a5bad6f39bc7893caf0eb5e7b834bcef3) | 
 `public FString `[`ContentType`](#structFRHAPI__FileResponse_1a5a3fc5a9ae9529bcec5a87b01178bd3e) | 
 `public FDateTime `[`CreatedTimestamp`](#structFRHAPI__FileResponse_1ae862f97e31ca9b769a5b3b1c1e104fdd) | Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone.
-`public virtual bool `[`FromJson`](#structFRHAPI__FileResponse_1a46d972855e7ba94080ed79672ffbd217)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__FileResponse_1ad140087173cf29fe5b4be8e148b0f71b)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__FileResponse_1a0e24bb57749f3c550d17c9711324bd93)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__FileResponse_1a07c01c77934aaf1d97925d0670a86fc9)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetName`](#structFRHAPI__FileResponse_1aa4e55ba624a6ed72cd8462f8061bf4ba)`()` | Gets the value of Name.
 `public inline const FString & `[`GetName`](#structFRHAPI__FileResponse_1a9f5b6e88c05a336654f519ab9c84973c)`() const` | Gets the value of Name.
 `public inline void `[`SetName`](#structFRHAPI__FileResponse_1a9c5ee25fd63e4b1a0ba51845038c8371)`(const FString & NewValue)` | Sets the value of Name.
@@ -54,7 +54,7 @@ struct FRHAPI_FileResponse
 
 Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__FileResponse_1a46d972855e7ba94080ed79672ffbd217)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__FileResponse_1a46d972855e7ba94080ed79672ffbd217"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__FileResponse_1a0e24bb57749f3c550d17c9711324bd93)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__FileResponse_1a0e24bb57749f3c550d17c9711324bd93"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -64,7 +64,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__FileResponse_1ad140087173cf29fe5b4be8e148b0f71b)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__FileResponse_1ad140087173cf29fe5b4be8e148b0f71b"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__FileResponse_1a07c01c77934aaf1d97925d0670a86fc9)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__FileResponse_1a07c01c77934aaf1d97925d0670a86fc9"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 

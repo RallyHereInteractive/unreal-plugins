@@ -41,9 +41,9 @@ bool FRHAPI_BodyBeginNewSession::FromJson(const TSharedPtr<FJsonValue>& JsonValu
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonCountryCodeField = (*Object)->TryGetField(TEXT("country_code"));
-	ParseSuccess &= JsonCountryCodeField.IsValid() && !JsonCountryCodeField->IsNull() && TryGetJsonValue(JsonCountryCodeField, CountryCode);
+	ParseSuccess &= JsonCountryCodeField.IsValid() && (!JsonCountryCodeField->IsNull() &&  TryGetJsonValue(JsonCountryCodeField, CountryCode));
 	const TSharedPtr<FJsonValue> JsonDeviceIdField = (*Object)->TryGetField(TEXT("device_id"));
-	if (JsonDeviceIdField.IsValid() && !JsonDeviceIdField->IsNull())
+	if (JsonDeviceIdField.IsValid())
 	{
 		DeviceId_IsSet = TryGetJsonValue(JsonDeviceIdField, DeviceId_Optional);
 		ParseSuccess &= DeviceId_IsSet;

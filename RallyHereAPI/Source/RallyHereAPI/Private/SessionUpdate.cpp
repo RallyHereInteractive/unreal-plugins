@@ -54,25 +54,25 @@ bool FRHAPI_SessionUpdate::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonRegionIdField = (*Object)->TryGetField(TEXT("region_id"));
-	if (JsonRegionIdField.IsValid() && !JsonRegionIdField->IsNull())
+	if (JsonRegionIdField.IsValid())
 	{
 		RegionId_IsSet = TryGetJsonValue(JsonRegionIdField, RegionId_Optional);
 		ParseSuccess &= RegionId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	if (JsonCustomDataField.IsValid())
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonJoinableField = (*Object)->TryGetField(TEXT("joinable"));
-	if (JsonJoinableField.IsValid() && !JsonJoinableField->IsNull())
+	if (JsonJoinableField.IsValid())
 	{
 		Joinable_IsSet = TryGetJsonValue(JsonJoinableField, Joinable_Optional);
 		ParseSuccess &= Joinable_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonTeamsField = (*Object)->TryGetField(TEXT("teams"));
-	if (JsonTeamsField.IsValid() && !JsonTeamsField->IsNull())
+	if (JsonTeamsField.IsValid())
 	{
 		Teams_IsSet = TryGetJsonValue(JsonTeamsField, Teams_Optional);
 		ParseSuccess &= Teams_IsSet;

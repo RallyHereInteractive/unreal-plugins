@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_AllPlayerDeserterStatuses : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief List of all of a player's deserter statuses. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -48,9 +48,9 @@ struct RALLYHEREAPI_API FRHAPI_AllPlayerDeserterStatuses : public FRHAPI_Model
 	/** @brief Gets the value of DeserterStatuses */
 	const TArray<FRHAPI_PlayerDeserterStatus>& GetDeserterStatuses() const { return DeserterStatuses; }
 	/** @brief Sets the value of DeserterStatuses */
-	void SetDeserterStatuses(const TArray<FRHAPI_PlayerDeserterStatus>& NewValue) { DeserterStatuses = NewValue;  }
+	void SetDeserterStatuses(const TArray<FRHAPI_PlayerDeserterStatus>& NewValue) { DeserterStatuses = NewValue;   }
 	/** @brief Sets the value of DeserterStatuses using move semantics */
-	void SetDeserterStatuses(TArray<FRHAPI_PlayerDeserterStatus>&& NewValue) { DeserterStatuses = NewValue;  }
+	void SetDeserterStatuses(TArray<FRHAPI_PlayerDeserterStatus>&& NewValue) { DeserterStatuses = NewValue;   }
 };
 
 /** @} */

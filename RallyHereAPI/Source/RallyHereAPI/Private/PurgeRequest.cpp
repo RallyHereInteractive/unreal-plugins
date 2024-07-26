@@ -39,7 +39,7 @@ bool FRHAPI_PurgeRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonSuggestedPurgeTimeField = (*Object)->TryGetField(TEXT("suggested_purge_time"));
-	if (JsonSuggestedPurgeTimeField.IsValid() && !JsonSuggestedPurgeTimeField->IsNull())
+	if (JsonSuggestedPurgeTimeField.IsValid())
 	{
 		SuggestedPurgeTime_IsSet = TryGetJsonValue(JsonSuggestedPurgeTimeField, SuggestedPurgeTime_Optional);
 		ParseSuccess &= SuggestedPurgeTime_IsSet;

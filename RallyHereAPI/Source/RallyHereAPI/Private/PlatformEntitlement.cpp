@@ -58,29 +58,29 @@ bool FRHAPI_PlatformEntitlement::FromJson(const TSharedPtr<FJsonValue>& JsonValu
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPlatformSkuField = (*Object)->TryGetField(TEXT("platform_sku"));
-	ParseSuccess &= JsonPlatformSkuField.IsValid() && !JsonPlatformSkuField->IsNull() && TryGetJsonValue(JsonPlatformSkuField, PlatformSku);
+	ParseSuccess &= JsonPlatformSkuField.IsValid() && (!JsonPlatformSkuField->IsNull() &&  TryGetJsonValue(JsonPlatformSkuField, PlatformSku));
 	const TSharedPtr<FJsonValue> JsonPlatformEntitlementIdField = (*Object)->TryGetField(TEXT("platform_entitlement_id"));
-	ParseSuccess &= JsonPlatformEntitlementIdField.IsValid() && !JsonPlatformEntitlementIdField->IsNull() && TryGetJsonValue(JsonPlatformEntitlementIdField, PlatformEntitlementId);
+	ParseSuccess &= JsonPlatformEntitlementIdField.IsValid() && (!JsonPlatformEntitlementIdField->IsNull() &&  TryGetJsonValue(JsonPlatformEntitlementIdField, PlatformEntitlementId));
 	const TSharedPtr<FJsonValue> JsonQuantityField = (*Object)->TryGetField(TEXT("quantity"));
-	if (JsonQuantityField.IsValid() && !JsonQuantityField->IsNull())
+	if (JsonQuantityField.IsValid())
 	{
 		Quantity_IsSet = TryGetJsonValue(JsonQuantityField, Quantity_Optional);
 		ParseSuccess &= Quantity_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonStatusField = (*Object)->TryGetField(TEXT("status"));
-	if (JsonStatusField.IsValid() && !JsonStatusField->IsNull())
+	if (JsonStatusField.IsValid())
 	{
 		Status_IsSet = TryGetJsonValue(JsonStatusField, Status_Optional);
 		ParseSuccess &= Status_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonErrorCodeField = (*Object)->TryGetField(TEXT("error_code"));
-	if (JsonErrorCodeField.IsValid() && !JsonErrorCodeField->IsNull())
+	if (JsonErrorCodeField.IsValid())
 	{
 		ErrorCode_IsSet = TryGetJsonValue(JsonErrorCodeField, ErrorCode_Optional);
 		ParseSuccess &= ErrorCode_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonOrderIdField = (*Object)->TryGetField(TEXT("order_id"));
-	if (JsonOrderIdField.IsValid() && !JsonOrderIdField->IsNull())
+	if (JsonOrderIdField.IsValid())
 	{
 		OrderId_IsSet = TryGetJsonValue(JsonOrderIdField, OrderId_Optional);
 		ParseSuccess &= OrderId_IsSet;

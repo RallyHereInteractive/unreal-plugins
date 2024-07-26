@@ -19,8 +19,8 @@ struct FRHAPI_HTTPValidationError
 --------------------------------|---------------------------------------------
 `public TArray< `[`FRHAPI_ValidationError`](RHAPI_ValidationError.md#structFRHAPI__ValidationError)` > `[`Detail_Optional`](#structFRHAPI__HTTPValidationError_1a17b75a583ce83c3bce0f5380c72440b9) | 
 `public bool `[`Detail_IsSet`](#structFRHAPI__HTTPValidationError_1a2290ebbfc4b29a3f3a602efc45c7b090) | true if Detail_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__HTTPValidationError_1a1b14f96f3b555573c6a8a0427591684b)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__HTTPValidationError_1ada9fc3bd658abc6828ba3a33dc4dba0b)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__HTTPValidationError_1a60959951088adf8b9e93ee360b07b067)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__HTTPValidationError_1a8087c6dc741c5659b32163f30e2d6ba9)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< `[`FRHAPI_ValidationError`](RHAPI_ValidationError.md#structFRHAPI__ValidationError)` > & `[`GetDetail`](#structFRHAPI__HTTPValidationError_1aa18d8ac7961d800c6e8fddb664659900)`()` | Gets the value of Detail_Optional, regardless of it having been set.
 `public inline const TArray< `[`FRHAPI_ValidationError`](RHAPI_ValidationError.md#structFRHAPI__ValidationError)` > & `[`GetDetail`](#structFRHAPI__HTTPValidationError_1ab656ce2e78d8361555bfd9dd97313acb)`() const` | Gets the value of Detail_Optional, regardless of it having been set.
 `public inline const TArray< `[`FRHAPI_ValidationError`](RHAPI_ValidationError.md#structFRHAPI__ValidationError)` > & `[`GetDetail`](#structFRHAPI__HTTPValidationError_1a35587fbca93183b276060179b5716be4)`(const TArray< `[`FRHAPI_ValidationError`](RHAPI_ValidationError.md#structFRHAPI__ValidationError)` > & DefaultValue) const` | Gets the value of Detail_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -30,6 +30,7 @@ struct FRHAPI_HTTPValidationError
 `public inline void `[`SetDetail`](#structFRHAPI__HTTPValidationError_1af63be614152fce3a6283029c6aceb4d1)`(const TArray< `[`FRHAPI_ValidationError`](RHAPI_ValidationError.md#structFRHAPI__ValidationError)` > & NewValue)` | Sets the value of Detail_Optional and also sets Detail_IsSet to true.
 `public inline void `[`SetDetail`](#structFRHAPI__HTTPValidationError_1ac73f4df75f7ab26f4ef7cef8b71701d0)`(TArray< `[`FRHAPI_ValidationError`](RHAPI_ValidationError.md#structFRHAPI__ValidationError)` > && NewValue)` | Sets the value of Detail_Optional and also sets Detail_IsSet to true using move semantics.
 `public inline void `[`ClearDetail`](#structFRHAPI__HTTPValidationError_1a12352d19408f341b50d0c3235fc78cab)`()` | Clears the value of Detail_Optional and sets Detail_IsSet to false.
+`public inline bool `[`IsDetailSet`](#structFRHAPI__HTTPValidationError_1a35e2cc9cb95a0885b2db4830e045d690)`() const` | Checks whether Detail_Optional has been set.
 
 ### Members
 
@@ -39,7 +40,7 @@ struct FRHAPI_HTTPValidationError
 
 true if Detail_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__HTTPValidationError_1a1b14f96f3b555573c6a8a0427591684b)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__HTTPValidationError_1a1b14f96f3b555573c6a8a0427591684b"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__HTTPValidationError_1a60959951088adf8b9e93ee360b07b067)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__HTTPValidationError_1a60959951088adf8b9e93ee360b07b067"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -49,7 +50,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__HTTPValidationError_1ada9fc3bd658abc6828ba3a33dc4dba0b)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__HTTPValidationError_1ada9fc3bd658abc6828ba3a33dc4dba0b"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__HTTPValidationError_1a8087c6dc741c5659b32163f30e2d6ba9)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__HTTPValidationError_1a8087c6dc741c5659b32163f30e2d6ba9"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -91,4 +92,8 @@ Sets the value of Detail_Optional and also sets Detail_IsSet to true using move 
 #### `public inline void `[`ClearDetail`](#structFRHAPI__HTTPValidationError_1a12352d19408f341b50d0c3235fc78cab)`()` <a id="structFRHAPI__HTTPValidationError_1a12352d19408f341b50d0c3235fc78cab"></a>
 
 Clears the value of Detail_Optional and sets Detail_IsSet to false.
+
+#### `public inline bool `[`IsDetailSet`](#structFRHAPI__HTTPValidationError_1a35e2cc9cb95a0885b2db4830e045d690)`() const` <a id="structFRHAPI__HTTPValidationError_1a35e2cc9cb95a0885b2db4830e045d690"></a>
+
+Checks whether Detail_Optional has been set.
 

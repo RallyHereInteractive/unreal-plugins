@@ -36,7 +36,7 @@ bool FRHAPI_UpdatePersonInfoRequest::FromJson(const TSharedPtr<FJsonValue>& Json
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonEmailField = (*Object)->TryGetField(TEXT("email"));
-	ParseSuccess &= JsonEmailField.IsValid() && !JsonEmailField->IsNull() && TryGetJsonValue(JsonEmailField, Email);
+	ParseSuccess &= JsonEmailField.IsValid() && (!JsonEmailField->IsNull() &&  TryGetJsonValue(JsonEmailField, Email));
 
 	return ParseSuccess;
 }

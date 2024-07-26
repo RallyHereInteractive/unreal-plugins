@@ -38,9 +38,9 @@ bool FRHAPI_UnionCCU::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonCountField = (*Object)->TryGetField(TEXT("count"));
-	ParseSuccess &= JsonCountField.IsValid() && !JsonCountField->IsNull() && TryGetJsonValue(JsonCountField, Count);
+	ParseSuccess &= JsonCountField.IsValid() && (!JsonCountField->IsNull() &&  TryGetJsonValue(JsonCountField, Count));
 	const TSharedPtr<FJsonValue> JsonTimestampsField = (*Object)->TryGetField(TEXT("timestamps"));
-	ParseSuccess &= JsonTimestampsField.IsValid() && !JsonTimestampsField->IsNull() && TryGetJsonValue(JsonTimestampsField, Timestamps);
+	ParseSuccess &= JsonTimestampsField.IsValid() && (!JsonTimestampsField->IsNull() &&  TryGetJsonValue(JsonTimestampsField, Timestamps));
 
 	return ParseSuccess;
 }

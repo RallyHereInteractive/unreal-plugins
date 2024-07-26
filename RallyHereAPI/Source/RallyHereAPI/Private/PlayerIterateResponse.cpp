@@ -44,13 +44,13 @@ bool FRHAPI_PlayerIterateResponse::FromJson(const TSharedPtr<FJsonValue>& JsonVa
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPlayersField = (*Object)->TryGetField(TEXT("players"));
-	if (JsonPlayersField.IsValid() && !JsonPlayersField->IsNull())
+	if (JsonPlayersField.IsValid())
 	{
 		Players_IsSet = TryGetJsonValue(JsonPlayersField, Players_Optional);
 		ParseSuccess &= Players_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCursorField = (*Object)->TryGetField(TEXT("cursor"));
-	if (JsonCursorField.IsValid() && !JsonCursorField->IsNull())
+	if (JsonCursorField.IsValid())
 	{
 		Cursor_IsSet = TryGetJsonValue(JsonCursorField, Cursor_Optional);
 		ParseSuccess &= Cursor_IsSet;

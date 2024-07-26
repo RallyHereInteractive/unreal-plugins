@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_PostGameEventsResponse : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Number of events successfully posted to Event Hub */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -47,13 +47,13 @@ struct RALLYHEREAPI_API FRHAPI_PostGameEventsResponse : public FRHAPI_Model
 	/** @brief Gets the value of PostedEvents */
 	const int32& GetPostedEvents() const { return PostedEvents; }
 	/** @brief Sets the value of PostedEvents */
-	void SetPostedEvents(const int32& NewValue) { PostedEvents = NewValue;  }
+	void SetPostedEvents(const int32& NewValue) { PostedEvents = NewValue;   }
 	/** @brief Sets the value of PostedEvents using move semantics */
-	void SetPostedEvents(int32&& NewValue) { PostedEvents = NewValue;  }
+	void SetPostedEvents(int32&& NewValue) { PostedEvents = NewValue;   }
 	/** @brief Returns true if PostedEvents matches the default value */
 	bool IsPostedEventsDefaultValue() const { return PostedEvents == 0; }
 	/** @brief Sets the value of PostedEvents to its default  */
-	void SetPostedEventsToDefault() { PostedEvents = 0;  }
+	void SetPostedEventsToDefault() { SetPostedEvents(0); }
 
 	/** @brief list of validation failure for each event. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -70,15 +70,17 @@ struct RALLYHEREAPI_API FRHAPI_PostGameEventsResponse : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Errors_Optional and returns true if it has been set, otherwise returns false */
 	bool GetErrors(TArray<FRHAPI_JsonValue>& OutValue) const { if (Errors_IsSet) OutValue = Errors_Optional; return Errors_IsSet; }
 	/** @brief Returns a pointer to Errors_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FRHAPI_JsonValue>* GetErrorsOrNull() { if (Errors_IsSet) return &Errors_Optional; return nullptr; }
+	TArray<FRHAPI_JsonValue>* GetErrorsOrNull() { if (Errors_IsSet) return (&Errors_Optional); return nullptr; }
 	/** @brief Returns a pointer to Errors_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FRHAPI_JsonValue>* GetErrorsOrNull() const { if (Errors_IsSet) return &Errors_Optional; return nullptr; }
+	const TArray<FRHAPI_JsonValue>* GetErrorsOrNull() const { if (Errors_IsSet) return (&Errors_Optional); return nullptr; }
 	/** @brief Sets the value of Errors_Optional and also sets Errors_IsSet to true */
-	void SetErrors(const TArray<FRHAPI_JsonValue>& NewValue) { Errors_Optional = NewValue; Errors_IsSet = true; }
+	void SetErrors(const TArray<FRHAPI_JsonValue>& NewValue) { Errors_Optional = NewValue; Errors_IsSet = true;  }
 	/** @brief Sets the value of Errors_Optional and also sets Errors_IsSet to true using move semantics */
-	void SetErrors(TArray<FRHAPI_JsonValue>&& NewValue) { Errors_Optional = NewValue; Errors_IsSet = true; }
-	 /** @brief Clears the value of Errors_Optional and sets Errors_IsSet to false */
-	void ClearErrors() { Errors_IsSet = false; }
+	void SetErrors(TArray<FRHAPI_JsonValue>&& NewValue) { Errors_Optional = NewValue; Errors_IsSet = true;  }
+	/** @brief Clears the value of Errors_Optional and sets Errors_IsSet to false */
+	void ClearErrors() { Errors_IsSet = false;  }
+	/** @brief Checks whether Errors_Optional has been set */
+	bool IsErrorsSet() const { return Errors_IsSet; }
 };
 
 /** @} */

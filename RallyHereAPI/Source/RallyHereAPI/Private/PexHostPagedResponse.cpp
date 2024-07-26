@@ -30,6 +30,9 @@ void FRHAPI_PexHostPagedResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) c
 	if (Cursor_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("cursor"));
+		if (Cursor_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, Cursor_Optional);
 	}
 	if (Filters_IsSet)
@@ -49,19 +52,20 @@ bool FRHAPI_PexHostPagedResponse::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonResultsField = (*Object)->TryGetField(TEXT("results"));
-	if (JsonResultsField.IsValid() && !JsonResultsField->IsNull())
+	if (JsonResultsField.IsValid())
 	{
 		Results_IsSet = TryGetJsonValue(JsonResultsField, Results_Optional);
 		ParseSuccess &= Results_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCursorField = (*Object)->TryGetField(TEXT("cursor"));
-	if (JsonCursorField.IsValid() && !JsonCursorField->IsNull())
+	if (JsonCursorField.IsValid())
 	{
-		Cursor_IsSet = TryGetJsonValue(JsonCursorField, Cursor_Optional);
+		Cursor_IsNull = JsonCursorField->IsNull();
+		Cursor_IsSet = Cursor_IsNull || TryGetJsonValue(JsonCursorField, Cursor_Optional);
 		ParseSuccess &= Cursor_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonFiltersField = (*Object)->TryGetField(TEXT("filters"));
-	if (JsonFiltersField.IsValid() && !JsonFiltersField->IsNull())
+	if (JsonFiltersField.IsValid())
 	{
 		Filters_IsSet = TryGetJsonValue(JsonFiltersField, Filters_Optional);
 		ParseSuccess &= Filters_IsSet;

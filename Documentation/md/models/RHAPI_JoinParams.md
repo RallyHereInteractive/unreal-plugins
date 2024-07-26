@@ -23,8 +23,8 @@ Parameters provided by the allocation system or an instance on how to connect.
 `public FString `[`PrivateConnStr`](#structFRHAPI__JoinParams_1a9c469f021b97b98b3a193479771dd3a8) | Private connection string for instance.
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__JoinParams_1aa1a3af1c48b41dc686ba9ac09ba84328) | Custom data to join a instance.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__JoinParams_1ad502760dd98a7e62abb7ec030f2c209f) | true if CustomData_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__JoinParams_1acb519a5577d5d523125b841bf14e4da3)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__JoinParams_1acefadc7ec44a0de7c8fe330a2d76e277)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__JoinParams_1ad3621724eee0f43d0cebcc60d49b08dc)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__JoinParams_1ad3bc41bc554a62d1c6a508a3f6060c66)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetPublicConnStr`](#structFRHAPI__JoinParams_1a4ec632af38b7cd9bc53e077cf4ace8ea)`()` | Gets the value of PublicConnStr.
 `public inline const FString & `[`GetPublicConnStr`](#structFRHAPI__JoinParams_1a8680b3b0b87b12b65a68a5aed1400b54)`() const` | Gets the value of PublicConnStr.
 `public inline void `[`SetPublicConnStr`](#structFRHAPI__JoinParams_1a58188052fcf7e77357f3c0d08e5e3321)`(const FString & NewValue)` | Sets the value of PublicConnStr.
@@ -42,6 +42,7 @@ Parameters provided by the allocation system or an instance on how to connect.
 `public inline void `[`SetCustomData`](#structFRHAPI__JoinParams_1a6636bc8012fbb39f659d325d07c748dd)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`SetCustomData`](#structFRHAPI__JoinParams_1aaf252e8d7923b668e36cf1e9b4351988)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__JoinParams_1acbe843cc9336e24b9b7ac3dbeac3bccb)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+`public inline bool `[`IsCustomDataSet`](#structFRHAPI__JoinParams_1af1a2f7811ceb11e6e93c60c724855c4a)`() const` | Checks whether CustomData_Optional has been set.
 
 ### Members
 
@@ -61,7 +62,7 @@ Custom data to join a instance.
 
 true if CustomData_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__JoinParams_1acb519a5577d5d523125b841bf14e4da3)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__JoinParams_1acb519a5577d5d523125b841bf14e4da3"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__JoinParams_1ad3621724eee0f43d0cebcc60d49b08dc)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__JoinParams_1ad3621724eee0f43d0cebcc60d49b08dc"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -71,7 +72,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__JoinParams_1acefadc7ec44a0de7c8fe330a2d76e277)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__JoinParams_1acefadc7ec44a0de7c8fe330a2d76e277"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__JoinParams_1ad3bc41bc554a62d1c6a508a3f6060c66)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__JoinParams_1ad3bc41bc554a62d1c6a508a3f6060c66"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -145,4 +146,8 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true usi
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__JoinParams_1acbe843cc9336e24b9b7ac3dbeac3bccb)`()` <a id="structFRHAPI__JoinParams_1acbe843cc9336e24b9b7ac3dbeac3bccb"></a>
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+
+#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__JoinParams_1af1a2f7811ceb11e6e93c60c724855c4a)`() const` <a id="structFRHAPI__JoinParams_1af1a2f7811ceb11e6e93c60c724855c4a"></a>
+
+Checks whether CustomData_Optional has been set.
 

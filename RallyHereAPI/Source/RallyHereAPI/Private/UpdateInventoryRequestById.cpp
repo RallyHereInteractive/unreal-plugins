@@ -61,37 +61,37 @@ bool FRHAPI_UpdateInventoryRequestById::FromJson(const TSharedPtr<FJsonValue>& J
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonBucketField = (*Object)->TryGetField(TEXT("bucket"));
-	if (JsonBucketField.IsValid() && !JsonBucketField->IsNull())
+	if (JsonBucketField.IsValid())
 	{
 		Bucket_IsSet = TryGetJsonValue(JsonBucketField, Bucket_Optional);
 		ParseSuccess &= Bucket_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCountField = (*Object)->TryGetField(TEXT("count"));
-	if (JsonCountField.IsValid() && !JsonCountField->IsNull())
+	if (JsonCountField.IsValid())
 	{
 		Count_IsSet = TryGetJsonValue(JsonCountField, Count_Optional);
 		ParseSuccess &= Count_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonExpiresField = (*Object)->TryGetField(TEXT("expires"));
-	if (JsonExpiresField.IsValid() && !JsonExpiresField->IsNull())
+	if (JsonExpiresField.IsValid())
 	{
 		Expires_IsSet = TryGetJsonValue(JsonExpiresField, Expires_Optional);
 		ParseSuccess &= Expires_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	if (JsonCustomDataField.IsValid())
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonItemIdField = (*Object)->TryGetField(TEXT("item_id"));
-	if (JsonItemIdField.IsValid() && !JsonItemIdField->IsNull())
+	if (JsonItemIdField.IsValid())
 	{
 		ItemId_IsSet = TryGetJsonValue(JsonItemIdField, ItemId_Optional);
 		ParseSuccess &= ItemId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonInventoryIdField = (*Object)->TryGetField(TEXT("inventory_id"));
-	ParseSuccess &= JsonInventoryIdField.IsValid() && !JsonInventoryIdField->IsNull() && TryGetJsonValue(JsonInventoryIdField, InventoryId);
+	ParseSuccess &= JsonInventoryIdField.IsValid() && (!JsonInventoryIdField->IsNull() &&  TryGetJsonValue(JsonInventoryIdField, InventoryId));
 
 	return ParseSuccess;
 }

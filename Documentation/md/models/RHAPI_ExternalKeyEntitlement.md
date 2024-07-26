@@ -19,8 +19,8 @@ struct FRHAPI_ExternalKeyEntitlement
 --------------------------------|---------------------------------------------
 `public FGuid `[`ExternalKeyCampaignId`](#structFRHAPI__ExternalKeyEntitlement_1abce6e9b546cabed58bef65fe84f251e0) | The External Key Campaign ID.
 `public int32 `[`Quantity`](#structFRHAPI__ExternalKeyEntitlement_1a810b35bdfda5a77732ecaef7c1bb64de) | The quantity of the External Key Entitlement.
-`public virtual bool `[`FromJson`](#structFRHAPI__ExternalKeyEntitlement_1a2e297fe6ed86125988dc6c68bc1d8d5c)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__ExternalKeyEntitlement_1a6831e9a20454fde5be949c9eda4d1cf3)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__ExternalKeyEntitlement_1a37c7f892a7b35dfe64f77c97930a5143)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__ExternalKeyEntitlement_1afe733b1be1e58ef176d86cc71dd27ab3)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FGuid & `[`GetExternalKeyCampaignId`](#structFRHAPI__ExternalKeyEntitlement_1a49904cd188d4a941aca80f9239cbfb0c)`()` | Gets the value of ExternalKeyCampaignId.
 `public inline const FGuid & `[`GetExternalKeyCampaignId`](#structFRHAPI__ExternalKeyEntitlement_1a30c244fd7d094a7c9aa9e06bf915822e)`() const` | Gets the value of ExternalKeyCampaignId.
 `public inline void `[`SetExternalKeyCampaignId`](#structFRHAPI__ExternalKeyEntitlement_1a2e888984fb8e180516c5454bfe85ed8e)`(const FGuid & NewValue)` | Sets the value of ExternalKeyCampaignId.
@@ -42,7 +42,7 @@ The External Key Campaign ID.
 
 The quantity of the External Key Entitlement.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__ExternalKeyEntitlement_1a2e297fe6ed86125988dc6c68bc1d8d5c)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__ExternalKeyEntitlement_1a2e297fe6ed86125988dc6c68bc1d8d5c"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__ExternalKeyEntitlement_1a37c7f892a7b35dfe64f77c97930a5143)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__ExternalKeyEntitlement_1a37c7f892a7b35dfe64f77c97930a5143"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -52,7 +52,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__ExternalKeyEntitlement_1a6831e9a20454fde5be949c9eda4d1cf3)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__ExternalKeyEntitlement_1a6831e9a20454fde5be949c9eda4d1cf3"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__ExternalKeyEntitlement_1afe733b1be1e58ef176d86cc71dd27ab3)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__ExternalKeyEntitlement_1afe733b1be1e58ef176d86cc71dd27ab3"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 

@@ -44,13 +44,13 @@ bool FRHAPI_Loots::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonLootField = (*Object)->TryGetField(TEXT("loot"));
-	if (JsonLootField.IsValid() && !JsonLootField->IsNull())
+	if (JsonLootField.IsValid())
 	{
 		Loot_IsSet = TryGetJsonValue(JsonLootField, Loot_Optional);
 		ParseSuccess &= Loot_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
-	if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
+	if (JsonCacheInfoField.IsValid())
 	{
 		CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
 		ParseSuccess &= CacheInfo_IsSet;

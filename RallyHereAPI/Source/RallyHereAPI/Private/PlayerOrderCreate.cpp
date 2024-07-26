@@ -76,55 +76,55 @@ bool FRHAPI_PlayerOrderCreate::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonSourceField = (*Object)->TryGetField(TEXT("source"));
-	if (JsonSourceField.IsValid() && !JsonSourceField->IsNull())
+	if (JsonSourceField.IsValid())
 	{
 		Source_IsSet = TryGetJsonValue(JsonSourceField, Source_Optional);
 		ParseSuccess &= Source_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonClientOrderRefIdField = (*Object)->TryGetField(TEXT("client_order_ref_id"));
-	if (JsonClientOrderRefIdField.IsValid() && !JsonClientOrderRefIdField->IsNull())
+	if (JsonClientOrderRefIdField.IsValid())
 	{
 		ClientOrderRefId_IsSet = TryGetJsonValue(JsonClientOrderRefIdField, ClientOrderRefId_Optional);
 		ParseSuccess &= ClientOrderRefId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPortalIdField = (*Object)->TryGetField(TEXT("portal_id"));
-	if (JsonPortalIdField.IsValid() && !JsonPortalIdField->IsNull())
+	if (JsonPortalIdField.IsValid())
 	{
 		PortalId_IsSet = TryGetJsonValue(JsonPortalIdField, PortalId_Optional);
 		ParseSuccess &= PortalId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPortalUserIdField = (*Object)->TryGetField(TEXT("portal_user_id"));
-	if (JsonPortalUserIdField.IsValid() && !JsonPortalUserIdField->IsNull())
+	if (JsonPortalUserIdField.IsValid())
 	{
 		PortalUserId_IsSet = TryGetJsonValue(JsonPortalUserIdField, PortalUserId_Optional);
 		ParseSuccess &= PortalUserId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonInstanceIdField = (*Object)->TryGetField(TEXT("instance_id"));
-	if (JsonInstanceIdField.IsValid() && !JsonInstanceIdField->IsNull())
+	if (JsonInstanceIdField.IsValid())
 	{
 		InstanceId_IsSet = TryGetJsonValue(JsonInstanceIdField, InstanceId_Optional);
 		ParseSuccess &= InstanceId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonMatchIdField = (*Object)->TryGetField(TEXT("match_id"));
-	if (JsonMatchIdField.IsValid() && !JsonMatchIdField->IsNull())
+	if (JsonMatchIdField.IsValid())
 	{
 		MatchId_IsSet = TryGetJsonValue(JsonMatchIdField, MatchId_Optional);
 		ParseSuccess &= MatchId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonIsTransactionField = (*Object)->TryGetField(TEXT("is_transaction"));
-	if (JsonIsTransactionField.IsValid() && !JsonIsTransactionField->IsNull())
+	if (JsonIsTransactionField.IsValid())
 	{
 		IsTransaction_IsSet = TryGetJsonValue(JsonIsTransactionField, IsTransaction_Optional);
 		ParseSuccess &= IsTransaction_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonOrderIdField = (*Object)->TryGetField(TEXT("order_id"));
-	if (JsonOrderIdField.IsValid() && !JsonOrderIdField->IsNull())
+	if (JsonOrderIdField.IsValid())
 	{
 		OrderId_IsSet = TryGetJsonValue(JsonOrderIdField, OrderId_Optional);
 		ParseSuccess &= OrderId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonEntriesField = (*Object)->TryGetField(TEXT("entries"));
-	ParseSuccess &= JsonEntriesField.IsValid() && !JsonEntriesField->IsNull() && TryGetJsonValue(JsonEntriesField, Entries);
+	ParseSuccess &= JsonEntriesField.IsValid() && (!JsonEntriesField->IsNull() &&  TryGetJsonValue(JsonEntriesField, Entries));
 
 	return ParseSuccess;
 }

@@ -21,8 +21,8 @@ A session&#39;s or player&#39;s preferences around crossplay platforms and input
 --------------------------------|---------------------------------------------
 `public ERHAPI_CrossplayPlatform `[`PermittedPlatform`](#structFRHAPI__CrossplayPreferences_1a647bcd2529106e841d692fb555865051) | The platform type that the client is allowed to play with (any, xbox-like only, playstation-like only etc.)
 `public ERHAPI_CrossplayInput `[`PermittedInput`](#structFRHAPI__CrossplayPreferences_1a5813a58f2450a66cef55eae278165b25) | The input type that the client is allowed to play with (keyboard and mouse, gamepad, touch input etc.)
-`public virtual bool `[`FromJson`](#structFRHAPI__CrossplayPreferences_1a91388e37c3dc50e88f786a22a670f4b4)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__CrossplayPreferences_1ad1acab088331e99ab2ff3fa42c9b1973)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__CrossplayPreferences_1a4bd84c758c05a4c6d20c91c9589a4809)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__CrossplayPreferences_1ad1f73a7207943eec0792c0c03ce533e2)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_CrossplayPlatform & `[`GetPermittedPlatform`](#structFRHAPI__CrossplayPreferences_1a218dd80d52dd5a946464d85276a9712c)`()` | Gets the value of PermittedPlatform.
 `public inline const ERHAPI_CrossplayPlatform & `[`GetPermittedPlatform`](#structFRHAPI__CrossplayPreferences_1aad1c87f3bf1cfd812a1fed142b7aed4f)`() const` | Gets the value of PermittedPlatform.
 `public inline void `[`SetPermittedPlatform`](#structFRHAPI__CrossplayPreferences_1ab64e2c751110fa6a1df0ced701add27c)`(const ERHAPI_CrossplayPlatform & NewValue)` | Sets the value of PermittedPlatform.
@@ -42,7 +42,7 @@ The platform type that the client is allowed to play with (any, xbox-like only, 
 
 The input type that the client is allowed to play with (keyboard and mouse, gamepad, touch input etc.)
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__CrossplayPreferences_1a91388e37c3dc50e88f786a22a670f4b4)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__CrossplayPreferences_1a91388e37c3dc50e88f786a22a670f4b4"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__CrossplayPreferences_1a4bd84c758c05a4c6d20c91c9589a4809)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__CrossplayPreferences_1a4bd84c758c05a4c6d20c91c9589a4809"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -52,7 +52,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__CrossplayPreferences_1ad1acab088331e99ab2ff3fa42c9b1973)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__CrossplayPreferences_1ad1acab088331e99ab2ff3fa42c9b1973"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__CrossplayPreferences_1ad1f73a7207943eec0792c0c03ce533e2)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__CrossplayPreferences_1ad1f73a7207943eec0792c0c03ce533e2"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 

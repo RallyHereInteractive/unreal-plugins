@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_PlatformUnionCCUs : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TMap<FString, FRHAPI_UnionCCU> PlatformCounts{  };
@@ -47,9 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_PlatformUnionCCUs : public FRHAPI_Model
 	/** @brief Gets the value of PlatformCounts */
 	const TMap<FString, FRHAPI_UnionCCU>& GetPlatformCounts() const { return PlatformCounts; }
 	/** @brief Sets the value of PlatformCounts */
-	void SetPlatformCounts(const TMap<FString, FRHAPI_UnionCCU>& NewValue) { PlatformCounts = NewValue;  }
+	void SetPlatformCounts(const TMap<FString, FRHAPI_UnionCCU>& NewValue) { PlatformCounts = NewValue;   }
 	/** @brief Sets the value of PlatformCounts using move semantics */
-	void SetPlatformCounts(TMap<FString, FRHAPI_UnionCCU>&& NewValue) { PlatformCounts = NewValue;  }
+	void SetPlatformCounts(TMap<FString, FRHAPI_UnionCCU>&& NewValue) { PlatformCounts = NewValue;   }
 };
 
 /** @} */

@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_Notifications : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief List of notifications */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -55,15 +55,17 @@ struct RALLYHEREAPI_API FRHAPI_Notifications : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Notifications_Optional and returns true if it has been set, otherwise returns false */
 	bool GetNotifications(TArray<FRHAPI_Notification>& OutValue) const { if (Notifications_IsSet) OutValue = Notifications_Optional; return Notifications_IsSet; }
 	/** @brief Returns a pointer to Notifications_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FRHAPI_Notification>* GetNotificationsOrNull() { if (Notifications_IsSet) return &Notifications_Optional; return nullptr; }
+	TArray<FRHAPI_Notification>* GetNotificationsOrNull() { if (Notifications_IsSet) return (&Notifications_Optional); return nullptr; }
 	/** @brief Returns a pointer to Notifications_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FRHAPI_Notification>* GetNotificationsOrNull() const { if (Notifications_IsSet) return &Notifications_Optional; return nullptr; }
+	const TArray<FRHAPI_Notification>* GetNotificationsOrNull() const { if (Notifications_IsSet) return (&Notifications_Optional); return nullptr; }
 	/** @brief Sets the value of Notifications_Optional and also sets Notifications_IsSet to true */
-	void SetNotifications(const TArray<FRHAPI_Notification>& NewValue) { Notifications_Optional = NewValue; Notifications_IsSet = true; }
+	void SetNotifications(const TArray<FRHAPI_Notification>& NewValue) { Notifications_Optional = NewValue; Notifications_IsSet = true;  }
 	/** @brief Sets the value of Notifications_Optional and also sets Notifications_IsSet to true using move semantics */
-	void SetNotifications(TArray<FRHAPI_Notification>&& NewValue) { Notifications_Optional = NewValue; Notifications_IsSet = true; }
-	 /** @brief Clears the value of Notifications_Optional and sets Notifications_IsSet to false */
-	void ClearNotifications() { Notifications_IsSet = false; }
+	void SetNotifications(TArray<FRHAPI_Notification>&& NewValue) { Notifications_Optional = NewValue; Notifications_IsSet = true;  }
+	/** @brief Clears the value of Notifications_Optional and sets Notifications_IsSet to false */
+	void ClearNotifications() { Notifications_IsSet = false;  }
+	/** @brief Checks whether Notifications_Optional has been set */
+	bool IsNotificationsSet() const { return Notifications_IsSet; }
 
 	/** @brief Cursor to use for the next request */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -73,9 +75,9 @@ struct RALLYHEREAPI_API FRHAPI_Notifications : public FRHAPI_Model
 	/** @brief Gets the value of Cursor */
 	const FString& GetCursor() const { return Cursor; }
 	/** @brief Sets the value of Cursor */
-	void SetCursor(const FString& NewValue) { Cursor = NewValue;  }
+	void SetCursor(const FString& NewValue) { Cursor = NewValue;   }
 	/** @brief Sets the value of Cursor using move semantics */
-	void SetCursor(FString&& NewValue) { Cursor = NewValue;  }
+	void SetCursor(FString&& NewValue) { Cursor = NewValue;   }
 };
 
 /** @} */

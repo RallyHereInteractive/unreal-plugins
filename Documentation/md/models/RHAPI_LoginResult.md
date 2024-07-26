@@ -53,8 +53,8 @@ Login result.
 `public FString `[`TokenType`](#structFRHAPI__LoginResult_1aa14a8a2d5dd54ac2622d936a977dd2c6) | Token type.
 `public int32 `[`ExpiresIn_Optional`](#structFRHAPI__LoginResult_1a7d1933cdc5be268381830d15f6c8a132) | Result access token expiration time in seconds.
 `public bool `[`ExpiresIn_IsSet`](#structFRHAPI__LoginResult_1a24059abe66a39f9e4eb782d00cb3fc8b) | true if ExpiresIn_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__LoginResult_1af9386114ff2777a0a15b36708f6e5f09)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__LoginResult_1aa5959a551d8a530e874d75d5595f88d8)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__LoginResult_1a3d682d12ef3087fdaa22bb5e6d8f13c7)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__LoginResult_1a3b541869e038f70f3fee77f692760d49)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline `[`FRHAPI_PortalUserInfo`](RHAPI_PortalUserInfo.md#structFRHAPI__PortalUserInfo)` & `[`GetPortalParentAuthResult`](#structFRHAPI__LoginResult_1af45c0420e8f2c53dd90f6ab04e8a13cd)`()` | Gets the value of PortalParentAuthResult_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_PortalUserInfo`](RHAPI_PortalUserInfo.md#structFRHAPI__PortalUserInfo)` & `[`GetPortalParentAuthResult`](#structFRHAPI__LoginResult_1a16396a932b03209e12da35c8c31ec90d)`() const` | Gets the value of PortalParentAuthResult_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_PortalUserInfo`](RHAPI_PortalUserInfo.md#structFRHAPI__PortalUserInfo)` & `[`GetPortalParentAuthResult`](#structFRHAPI__LoginResult_1a45e8281fa0ddfa075482e2bf5987da49)`(const `[`FRHAPI_PortalUserInfo`](RHAPI_PortalUserInfo.md#structFRHAPI__PortalUserInfo)` & DefaultValue) const` | Gets the value of PortalParentAuthResult_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -64,6 +64,7 @@ Login result.
 `public inline void `[`SetPortalParentAuthResult`](#structFRHAPI__LoginResult_1a1f255e124da7e061b930e3e94d5ba35c)`(const `[`FRHAPI_PortalUserInfo`](RHAPI_PortalUserInfo.md#structFRHAPI__PortalUserInfo)` & NewValue)` | Sets the value of PortalParentAuthResult_Optional and also sets PortalParentAuthResult_IsSet to true.
 `public inline void `[`SetPortalParentAuthResult`](#structFRHAPI__LoginResult_1ab890e3417180fbbf4435e3df655fed60)`(`[`FRHAPI_PortalUserInfo`](RHAPI_PortalUserInfo.md#structFRHAPI__PortalUserInfo)` && NewValue)` | Sets the value of PortalParentAuthResult_Optional and also sets PortalParentAuthResult_IsSet to true using move semantics.
 `public inline void `[`ClearPortalParentAuthResult`](#structFRHAPI__LoginResult_1aa36803dfc08638528fd8c688bf80bf24)`()` | Clears the value of PortalParentAuthResult_Optional and sets PortalParentAuthResult_IsSet to false.
+`public inline bool `[`IsPortalParentAuthResultSet`](#structFRHAPI__LoginResult_1a00e83eb5317a5215092e147e14adc96d)`() const` | Checks whether PortalParentAuthResult_Optional has been set.
 `public inline TArray< FString > & `[`GetPermissions`](#structFRHAPI__LoginResult_1ae52fc41eac76d05e0ef38b26fc6778be)`()` | Gets the value of Permissions_Optional, regardless of it having been set.
 `public inline const TArray< FString > & `[`GetPermissions`](#structFRHAPI__LoginResult_1ab2e0574f4c6cbc666fb4dbe57814e9a5)`() const` | Gets the value of Permissions_Optional, regardless of it having been set.
 `public inline const TArray< FString > & `[`GetPermissions`](#structFRHAPI__LoginResult_1a0ed9a8cebad4bc2b0cba5c330550731d)`(const TArray< FString > & DefaultValue) const` | Gets the value of Permissions_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -73,6 +74,7 @@ Login result.
 `public inline void `[`SetPermissions`](#structFRHAPI__LoginResult_1a015afefa3214e661cdd7c8bbc1d50a94)`(const TArray< FString > & NewValue)` | Sets the value of Permissions_Optional and also sets Permissions_IsSet to true.
 `public inline void `[`SetPermissions`](#structFRHAPI__LoginResult_1a4aaf96f9d5db26d8905d1c12d36651d8)`(TArray< FString > && NewValue)` | Sets the value of Permissions_Optional and also sets Permissions_IsSet to true using move semantics.
 `public inline void `[`ClearPermissions`](#structFRHAPI__LoginResult_1ac2213188392440997ac42e87729525bb)`()` | Clears the value of Permissions_Optional and sets Permissions_IsSet to false.
+`public inline bool `[`IsPermissionsSet`](#structFRHAPI__LoginResult_1a36de5a4f168da64a1ccf75640260e8ef)`() const` | Checks whether Permissions_Optional has been set.
 `public inline TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & `[`GetRestrictions`](#structFRHAPI__LoginResult_1a5f81447e492fba869512ee5f8fa39604)`()` | Gets the value of Restrictions_Optional, regardless of it having been set.
 `public inline const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & `[`GetRestrictions`](#structFRHAPI__LoginResult_1a0b3682ccc2e6fe31dbb71424150a99e0)`() const` | Gets the value of Restrictions_Optional, regardless of it having been set.
 `public inline const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & `[`GetRestrictions`](#structFRHAPI__LoginResult_1a0c3558c768839889f205e7703ce00b71)`(const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & DefaultValue) const` | Gets the value of Restrictions_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -82,6 +84,7 @@ Login result.
 `public inline void `[`SetRestrictions`](#structFRHAPI__LoginResult_1af0f1711013fb64809083a6d34c219539)`(const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & NewValue)` | Sets the value of Restrictions_Optional and also sets Restrictions_IsSet to true.
 `public inline void `[`SetRestrictions`](#structFRHAPI__LoginResult_1a43ae15baae395ce4a8ca35dd5320fca6)`(TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > && NewValue)` | Sets the value of Restrictions_Optional and also sets Restrictions_IsSet to true using move semantics.
 `public inline void `[`ClearRestrictions`](#structFRHAPI__LoginResult_1a8064e54643a413110e09279104d1eee5)`()` | Clears the value of Restrictions_Optional and sets Restrictions_IsSet to false.
+`public inline bool `[`IsRestrictionsSet`](#structFRHAPI__LoginResult_1aa1b16af8595489bd6b8644f6ec4b92b4)`() const` | Checks whether Restrictions_Optional has been set.
 `public inline int32 & `[`GetActivePlayerId`](#structFRHAPI__LoginResult_1abd6312561724ae3080f95ee5f5e78776)`()` | Gets the value of ActivePlayerId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetActivePlayerId`](#structFRHAPI__LoginResult_1a8380c009e055919c8ceb6a13434626a3)`() const` | Gets the value of ActivePlayerId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetActivePlayerId`](#structFRHAPI__LoginResult_1a6b94a2bb9623072601994c865f0616cd)`(const int32 & DefaultValue) const` | Gets the value of ActivePlayerId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -91,6 +94,7 @@ Login result.
 `public inline void `[`SetActivePlayerId`](#structFRHAPI__LoginResult_1a29a49a2f607279de3e2dac975730e621)`(const int32 & NewValue)` | Sets the value of ActivePlayerId_Optional and also sets ActivePlayerId_IsSet to true.
 `public inline void `[`SetActivePlayerId`](#structFRHAPI__LoginResult_1a8e028b0d5e9e285e2000eff940a4ff69)`(int32 && NewValue)` | Sets the value of ActivePlayerId_Optional and also sets ActivePlayerId_IsSet to true using move semantics.
 `public inline void `[`ClearActivePlayerId`](#structFRHAPI__LoginResult_1a1b9c9b478e52a173f801ad3895c195a3)`()` | Clears the value of ActivePlayerId_Optional and sets ActivePlayerId_IsSet to false.
+`public inline bool `[`IsActivePlayerIdSet`](#structFRHAPI__LoginResult_1a0c35927fab94b21ec7968d82e2048045)`() const` | Checks whether ActivePlayerId_Optional has been set.
 `public inline bool `[`IsActivePlayerIdDefaultValue`](#structFRHAPI__LoginResult_1a45c87ab795b97f82c2fb0d089c52a09e)`() const` | Returns true if ActivePlayerId_Optional is set and matches the default value.
 `public inline void `[`SetActivePlayerIdToDefault`](#structFRHAPI__LoginResult_1a357fd4f7bc1fe3c03452da3a468304f2)`()` | Sets the value of ActivePlayerId_Optional to its default and also sets ActivePlayerId_IsSet to true.
 `public inline FGuid & `[`GetActivePlayerUuid`](#structFRHAPI__LoginResult_1ad16fbc95e56950f7bd52bbb3ac196009)`()` | Gets the value of ActivePlayerUuid_Optional, regardless of it having been set.
@@ -102,6 +106,7 @@ Login result.
 `public inline void `[`SetActivePlayerUuid`](#structFRHAPI__LoginResult_1a4dd59cf7a9d7b64df40eedc748982121)`(const FGuid & NewValue)` | Sets the value of ActivePlayerUuid_Optional and also sets ActivePlayerUuid_IsSet to true.
 `public inline void `[`SetActivePlayerUuid`](#structFRHAPI__LoginResult_1a64a32dd38de6bd5ddeed9dfde3c69273)`(FGuid && NewValue)` | Sets the value of ActivePlayerUuid_Optional and also sets ActivePlayerUuid_IsSet to true using move semantics.
 `public inline void `[`ClearActivePlayerUuid`](#structFRHAPI__LoginResult_1a061552f18cd22ca6b609b2112934525d)`()` | Clears the value of ActivePlayerUuid_Optional and sets ActivePlayerUuid_IsSet to false.
+`public inline bool `[`IsActivePlayerUuidSet`](#structFRHAPI__LoginResult_1a70e2a307fdf5e23990a263bc8ea83c22)`() const` | Checks whether ActivePlayerUuid_Optional has been set.
 `public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__LoginResult_1a712826e629138103d8339c89233ffe80)`()` | Gets the value of Platform_Optional, regardless of it having been set.
 `public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__LoginResult_1afd7f6afc21762473033d3d7040785da2)`() const` | Gets the value of Platform_Optional, regardless of it having been set.
 `public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__LoginResult_1aadfdbf9836fe4022991613c7fd291187)`(const ERHAPI_Platform & DefaultValue) const` | Gets the value of Platform_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -111,6 +116,7 @@ Login result.
 `public inline void `[`SetPlatform`](#structFRHAPI__LoginResult_1aaa122a472e12be17785761f89bfcd003)`(const ERHAPI_Platform & NewValue)` | Sets the value of Platform_Optional and also sets Platform_IsSet to true.
 `public inline void `[`SetPlatform`](#structFRHAPI__LoginResult_1a4d8dfe9efca167b4a18ef1e5135d5051)`(ERHAPI_Platform && NewValue)` | Sets the value of Platform_Optional and also sets Platform_IsSet to true using move semantics.
 `public inline void `[`ClearPlatform`](#structFRHAPI__LoginResult_1a308a1f4ca675358c484366e796a2d3cb)`()` | Clears the value of Platform_Optional and sets Platform_IsSet to false.
+`public inline bool `[`IsPlatformSet`](#structFRHAPI__LoginResult_1af7387a450f1161862eae6b3021d52a7f)`() const` | Checks whether Platform_Optional has been set.
 `public inline int32 & `[`GetPortalId`](#structFRHAPI__LoginResult_1a81bb1a5f2b0b910b94e7fb379225ea41)`()` | Gets the value of PortalId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetPortalId`](#structFRHAPI__LoginResult_1a403967e58a0b7745cec24f0669251d3c)`() const` | Gets the value of PortalId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetPortalId`](#structFRHAPI__LoginResult_1a5b1d13bbb8c4812884cc10a655a59775)`(const int32 & DefaultValue) const` | Gets the value of PortalId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -120,6 +126,7 @@ Login result.
 `public inline void `[`SetPortalId`](#structFRHAPI__LoginResult_1abefcec558be214599717e1013cd20ee0)`(const int32 & NewValue)` | Sets the value of PortalId_Optional and also sets PortalId_IsSet to true.
 `public inline void `[`SetPortalId`](#structFRHAPI__LoginResult_1a7349810d1b84f56cca91f9fe965fc38b)`(int32 && NewValue)` | Sets the value of PortalId_Optional and also sets PortalId_IsSet to true using move semantics.
 `public inline void `[`ClearPortalId`](#structFRHAPI__LoginResult_1a712d02eaecff2b7f12f87880c8077b78)`()` | Clears the value of PortalId_Optional and sets PortalId_IsSet to false.
+`public inline bool `[`IsPortalIdSet`](#structFRHAPI__LoginResult_1ab2c646862e4daea75c7464b584f72d02)`() const` | Checks whether PortalId_Optional has been set.
 `public inline bool `[`IsPortalIdDefaultValue`](#structFRHAPI__LoginResult_1abd66958d8a434197e742d08131ee7edc)`() const` | Returns true if PortalId_Optional is set and matches the default value.
 `public inline void `[`SetPortalIdToDefault`](#structFRHAPI__LoginResult_1a59c6c295c2390b3a91c5ea8ccf2e08ba)`()` | Sets the value of PortalId_Optional to its default and also sets PortalId_IsSet to true.
 `public inline FString & `[`GetPortalUserId`](#structFRHAPI__LoginResult_1a7827ac1341c121eb35939596064ad6b1)`()` | Gets the value of PortalUserId_Optional, regardless of it having been set.
@@ -131,6 +138,7 @@ Login result.
 `public inline void `[`SetPortalUserId`](#structFRHAPI__LoginResult_1a0f3d2ce9a736a7edd66453177f6e42f8)`(const FString & NewValue)` | Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true.
 `public inline void `[`SetPortalUserId`](#structFRHAPI__LoginResult_1a03b96bddb9841327dce473288ae493b7)`(FString && NewValue)` | Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true using move semantics.
 `public inline void `[`ClearPortalUserId`](#structFRHAPI__LoginResult_1a1a87647cf0a6cdeafe147e2696e9d94a)`()` | Clears the value of PortalUserId_Optional and sets PortalUserId_IsSet to false.
+`public inline bool `[`IsPortalUserIdSet`](#structFRHAPI__LoginResult_1a11e99240bfc0f80cd55f182f5acee8ec)`() const` | Checks whether PortalUserId_Optional has been set.
 `public inline FString & `[`GetDisplayName`](#structFRHAPI__LoginResult_1a5310c11bcc70cb20b3f250a58e6bd4f5)`()` | Gets the value of DisplayName_Optional, regardless of it having been set.
 `public inline const FString & `[`GetDisplayName`](#structFRHAPI__LoginResult_1a6857d153e9e5aabd9ebb2d9b05c5d61f)`() const` | Gets the value of DisplayName_Optional, regardless of it having been set.
 `public inline const FString & `[`GetDisplayName`](#structFRHAPI__LoginResult_1a16d995689359f780431cc035aa54c317)`(const FString & DefaultValue) const` | Gets the value of DisplayName_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -140,6 +148,7 @@ Login result.
 `public inline void `[`SetDisplayName`](#structFRHAPI__LoginResult_1a1555a130d44f05972bfa4180c18d7e54)`(const FString & NewValue)` | Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true.
 `public inline void `[`SetDisplayName`](#structFRHAPI__LoginResult_1a611569e84eac856e1d30ac6bd7047af6)`(FString && NewValue)` | Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true using move semantics.
 `public inline void `[`ClearDisplayName`](#structFRHAPI__LoginResult_1a283b86fec06f806b51bd4cd784f95e96)`()` | Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false.
+`public inline bool `[`IsDisplayNameSet`](#structFRHAPI__LoginResult_1ae906335cb99b77c6c53147ab0c6ead4e)`() const` | Checks whether DisplayName_Optional has been set.
 `public inline int32 & `[`GetRoleId`](#structFRHAPI__LoginResult_1a31ab2c464f256a2d199eefa76fd625de)`()` | Gets the value of RoleId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetRoleId`](#structFRHAPI__LoginResult_1a13cc2a2262f4565a4753c25261a45ca9)`() const` | Gets the value of RoleId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetRoleId`](#structFRHAPI__LoginResult_1a60520556eface9e7d1002c2933c10ae3)`(const int32 & DefaultValue) const` | Gets the value of RoleId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -149,6 +158,7 @@ Login result.
 `public inline void `[`SetRoleId`](#structFRHAPI__LoginResult_1a7015d43993bfdb3217ca8199b0cc0e5a)`(const int32 & NewValue)` | Sets the value of RoleId_Optional and also sets RoleId_IsSet to true.
 `public inline void `[`SetRoleId`](#structFRHAPI__LoginResult_1acd1a7701e7640991e621f790c91a07bf)`(int32 && NewValue)` | Sets the value of RoleId_Optional and also sets RoleId_IsSet to true using move semantics.
 `public inline void `[`ClearRoleId`](#structFRHAPI__LoginResult_1a8569561d7b4bde1c550ddf791bbc70c9)`()` | Clears the value of RoleId_Optional and sets RoleId_IsSet to false.
+`public inline bool `[`IsRoleIdSet`](#structFRHAPI__LoginResult_1a0336e83cdc962c5d7c4de60094795ada)`() const` | Checks whether RoleId_Optional has been set.
 `public inline bool `[`IsRoleIdDefaultValue`](#structFRHAPI__LoginResult_1a903468ea6be9d761fd9121fc38ed301b)`() const` | Returns true if RoleId_Optional is set and matches the default value.
 `public inline void `[`SetRoleIdToDefault`](#structFRHAPI__LoginResult_1afb04194d63508bb667829c333ee1325a)`()` | Sets the value of RoleId_Optional to its default and also sets RoleId_IsSet to true.
 `public inline FGuid & `[`GetPersonId`](#structFRHAPI__LoginResult_1ad5f7841745b8c2353b872744d1fa430d)`()` | Gets the value of PersonId_Optional, regardless of it having been set.
@@ -160,6 +170,7 @@ Login result.
 `public inline void `[`SetPersonId`](#structFRHAPI__LoginResult_1a855b8d39d3c7334d2b1cc19294d01ca1)`(const FGuid & NewValue)` | Sets the value of PersonId_Optional and also sets PersonId_IsSet to true.
 `public inline void `[`SetPersonId`](#structFRHAPI__LoginResult_1a0141c2b6958471ca7d77492212040fe1)`(FGuid && NewValue)` | Sets the value of PersonId_Optional and also sets PersonId_IsSet to true using move semantics.
 `public inline void `[`ClearPersonId`](#structFRHAPI__LoginResult_1a8e32ddf5cbf7be065d8323e337ef6a81)`()` | Clears the value of PersonId_Optional and sets PersonId_IsSet to false.
+`public inline bool `[`IsPersonIdSet`](#structFRHAPI__LoginResult_1a0204dee635520b1ccabf6a1a897a61d7)`() const` | Checks whether PersonId_Optional has been set.
 `public inline FString & `[`GetAccessToken`](#structFRHAPI__LoginResult_1ae45a5a0b9ddda92565f4a3938418fb71)`()` | Gets the value of AccessToken_Optional, regardless of it having been set.
 `public inline const FString & `[`GetAccessToken`](#structFRHAPI__LoginResult_1a38705f5e253421c6ce0354c199779afc)`() const` | Gets the value of AccessToken_Optional, regardless of it having been set.
 `public inline const FString & `[`GetAccessToken`](#structFRHAPI__LoginResult_1ab7fdf728e3ec81e5bb6959c4c6b55f66)`(const FString & DefaultValue) const` | Gets the value of AccessToken_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -169,6 +180,7 @@ Login result.
 `public inline void `[`SetAccessToken`](#structFRHAPI__LoginResult_1ac8238f0c90d4964155f40619cb8ab132)`(const FString & NewValue)` | Sets the value of AccessToken_Optional and also sets AccessToken_IsSet to true.
 `public inline void `[`SetAccessToken`](#structFRHAPI__LoginResult_1a410ef798c6ca6df190876744af82f7c6)`(FString && NewValue)` | Sets the value of AccessToken_Optional and also sets AccessToken_IsSet to true using move semantics.
 `public inline void `[`ClearAccessToken`](#structFRHAPI__LoginResult_1ad7662e9ca33b063f594a57ab806030fc)`()` | Clears the value of AccessToken_Optional and sets AccessToken_IsSet to false.
+`public inline bool `[`IsAccessTokenSet`](#structFRHAPI__LoginResult_1a9629802d2cb8068064fcd0dc2ea41b15)`() const` | Checks whether AccessToken_Optional has been set.
 `public inline bool `[`IsAccessTokenDefaultValue`](#structFRHAPI__LoginResult_1a05208b4c9a1d2a966040a827b88faace)`() const` | Returns true if AccessToken_Optional is set and matches the default value.
 `public inline void `[`SetAccessTokenToDefault`](#structFRHAPI__LoginResult_1af5c8db0da958879c920fcc3ad51ede27)`()` | Sets the value of AccessToken_Optional to its default and also sets AccessToken_IsSet to true.
 `public inline FString & `[`GetRefreshToken`](#structFRHAPI__LoginResult_1adda4636d7b154c46c3a360319ed15e19)`()` | Gets the value of RefreshToken_Optional, regardless of it having been set.
@@ -180,6 +192,7 @@ Login result.
 `public inline void `[`SetRefreshToken`](#structFRHAPI__LoginResult_1acf3ee475a5bd39a885bcbac0518258ad)`(const FString & NewValue)` | Sets the value of RefreshToken_Optional and also sets RefreshToken_IsSet to true.
 `public inline void `[`SetRefreshToken`](#structFRHAPI__LoginResult_1ac0ca4355972bf143a734bddf3c5dd53b)`(FString && NewValue)` | Sets the value of RefreshToken_Optional and also sets RefreshToken_IsSet to true using move semantics.
 `public inline void `[`ClearRefreshToken`](#structFRHAPI__LoginResult_1a31fd8762d202e872dd192dadeb3e6b99)`()` | Clears the value of RefreshToken_Optional and sets RefreshToken_IsSet to false.
+`public inline bool `[`IsRefreshTokenSet`](#structFRHAPI__LoginResult_1a7abf8b4ca9f8538cbe0d0917fa5ba486)`() const` | Checks whether RefreshToken_Optional has been set.
 `public inline FGuid & `[`GetPublisherUuid`](#structFRHAPI__LoginResult_1a1fd8421a3033ad6b0277631a32801bf5)`()` | Gets the value of PublisherUuid.
 `public inline const FGuid & `[`GetPublisherUuid`](#structFRHAPI__LoginResult_1a496281b4f8ecff54d0d769135f8861c1)`() const` | Gets the value of PublisherUuid.
 `public inline void `[`SetPublisherUuid`](#structFRHAPI__LoginResult_1a9390d26a43e2249c47ea0e843d58db21)`(const FGuid & NewValue)` | Sets the value of PublisherUuid.
@@ -213,6 +226,7 @@ Login result.
 `public inline void `[`SetExpiresIn`](#structFRHAPI__LoginResult_1a758471c3ec0f84c4ab772cdfd2065e4c)`(const int32 & NewValue)` | Sets the value of ExpiresIn_Optional and also sets ExpiresIn_IsSet to true.
 `public inline void `[`SetExpiresIn`](#structFRHAPI__LoginResult_1addfe828d00d7b90fb8717af1ce42a973)`(int32 && NewValue)` | Sets the value of ExpiresIn_Optional and also sets ExpiresIn_IsSet to true using move semantics.
 `public inline void `[`ClearExpiresIn`](#structFRHAPI__LoginResult_1a80efb45adcc41e57693500a0bf4b31ae)`()` | Clears the value of ExpiresIn_Optional and sets ExpiresIn_IsSet to false.
+`public inline bool `[`IsExpiresInSet`](#structFRHAPI__LoginResult_1af60780d8671d0b3388ecccefc8ca348b)`() const` | Checks whether ExpiresIn_Optional has been set.
 `public inline bool `[`IsExpiresInDefaultValue`](#structFRHAPI__LoginResult_1a2a984e7838336bff1cb832e105ddebaf)`() const` | Returns true if ExpiresIn_Optional is set and matches the default value.
 `public inline void `[`SetExpiresInToDefault`](#structFRHAPI__LoginResult_1a60c0277fb290298bc3c9c8d9ef6e4b82)`()` | Sets the value of ExpiresIn_Optional to its default and also sets ExpiresIn_IsSet to true.
 
@@ -354,7 +368,7 @@ Result access token expiration time in seconds.
 
 true if ExpiresIn_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__LoginResult_1af9386114ff2777a0a15b36708f6e5f09)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__LoginResult_1af9386114ff2777a0a15b36708f6e5f09"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__LoginResult_1a3d682d12ef3087fdaa22bb5e6d8f13c7)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__LoginResult_1a3d682d12ef3087fdaa22bb5e6d8f13c7"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -364,7 +378,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__LoginResult_1aa5959a551d8a530e874d75d5595f88d8)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__LoginResult_1aa5959a551d8a530e874d75d5595f88d8"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__LoginResult_1a3b541869e038f70f3fee77f692760d49)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__LoginResult_1a3b541869e038f70f3fee77f692760d49"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -407,6 +421,10 @@ Sets the value of PortalParentAuthResult_Optional and also sets PortalParentAuth
 
 Clears the value of PortalParentAuthResult_Optional and sets PortalParentAuthResult_IsSet to false.
 
+#### `public inline bool `[`IsPortalParentAuthResultSet`](#structFRHAPI__LoginResult_1a00e83eb5317a5215092e147e14adc96d)`() const` <a id="structFRHAPI__LoginResult_1a00e83eb5317a5215092e147e14adc96d"></a>
+
+Checks whether PortalParentAuthResult_Optional has been set.
+
 #### `public inline TArray< FString > & `[`GetPermissions`](#structFRHAPI__LoginResult_1ae52fc41eac76d05e0ef38b26fc6778be)`()` <a id="structFRHAPI__LoginResult_1ae52fc41eac76d05e0ef38b26fc6778be"></a>
 
 Gets the value of Permissions_Optional, regardless of it having been set.
@@ -442,6 +460,10 @@ Sets the value of Permissions_Optional and also sets Permissions_IsSet to true u
 #### `public inline void `[`ClearPermissions`](#structFRHAPI__LoginResult_1ac2213188392440997ac42e87729525bb)`()` <a id="structFRHAPI__LoginResult_1ac2213188392440997ac42e87729525bb"></a>
 
 Clears the value of Permissions_Optional and sets Permissions_IsSet to false.
+
+#### `public inline bool `[`IsPermissionsSet`](#structFRHAPI__LoginResult_1a36de5a4f168da64a1ccf75640260e8ef)`() const` <a id="structFRHAPI__LoginResult_1a36de5a4f168da64a1ccf75640260e8ef"></a>
+
+Checks whether Permissions_Optional has been set.
 
 #### `public inline TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & `[`GetRestrictions`](#structFRHAPI__LoginResult_1a5f81447e492fba869512ee5f8fa39604)`()` <a id="structFRHAPI__LoginResult_1a5f81447e492fba869512ee5f8fa39604"></a>
 
@@ -479,6 +501,10 @@ Sets the value of Restrictions_Optional and also sets Restrictions_IsSet to true
 
 Clears the value of Restrictions_Optional and sets Restrictions_IsSet to false.
 
+#### `public inline bool `[`IsRestrictionsSet`](#structFRHAPI__LoginResult_1aa1b16af8595489bd6b8644f6ec4b92b4)`() const` <a id="structFRHAPI__LoginResult_1aa1b16af8595489bd6b8644f6ec4b92b4"></a>
+
+Checks whether Restrictions_Optional has been set.
+
 #### `public inline int32 & `[`GetActivePlayerId`](#structFRHAPI__LoginResult_1abd6312561724ae3080f95ee5f5e78776)`()` <a id="structFRHAPI__LoginResult_1abd6312561724ae3080f95ee5f5e78776"></a>
 
 Gets the value of ActivePlayerId_Optional, regardless of it having been set.
@@ -514,6 +540,10 @@ Sets the value of ActivePlayerId_Optional and also sets ActivePlayerId_IsSet to 
 #### `public inline void `[`ClearActivePlayerId`](#structFRHAPI__LoginResult_1a1b9c9b478e52a173f801ad3895c195a3)`()` <a id="structFRHAPI__LoginResult_1a1b9c9b478e52a173f801ad3895c195a3"></a>
 
 Clears the value of ActivePlayerId_Optional and sets ActivePlayerId_IsSet to false.
+
+#### `public inline bool `[`IsActivePlayerIdSet`](#structFRHAPI__LoginResult_1a0c35927fab94b21ec7968d82e2048045)`() const` <a id="structFRHAPI__LoginResult_1a0c35927fab94b21ec7968d82e2048045"></a>
+
+Checks whether ActivePlayerId_Optional has been set.
 
 #### `public inline bool `[`IsActivePlayerIdDefaultValue`](#structFRHAPI__LoginResult_1a45c87ab795b97f82c2fb0d089c52a09e)`() const` <a id="structFRHAPI__LoginResult_1a45c87ab795b97f82c2fb0d089c52a09e"></a>
 
@@ -559,6 +589,10 @@ Sets the value of ActivePlayerUuid_Optional and also sets ActivePlayerUuid_IsSet
 
 Clears the value of ActivePlayerUuid_Optional and sets ActivePlayerUuid_IsSet to false.
 
+#### `public inline bool `[`IsActivePlayerUuidSet`](#structFRHAPI__LoginResult_1a70e2a307fdf5e23990a263bc8ea83c22)`() const` <a id="structFRHAPI__LoginResult_1a70e2a307fdf5e23990a263bc8ea83c22"></a>
+
+Checks whether ActivePlayerUuid_Optional has been set.
+
 #### `public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__LoginResult_1a712826e629138103d8339c89233ffe80)`()` <a id="structFRHAPI__LoginResult_1a712826e629138103d8339c89233ffe80"></a>
 
 Gets the value of Platform_Optional, regardless of it having been set.
@@ -595,6 +629,10 @@ Sets the value of Platform_Optional and also sets Platform_IsSet to true using m
 
 Clears the value of Platform_Optional and sets Platform_IsSet to false.
 
+#### `public inline bool `[`IsPlatformSet`](#structFRHAPI__LoginResult_1af7387a450f1161862eae6b3021d52a7f)`() const` <a id="structFRHAPI__LoginResult_1af7387a450f1161862eae6b3021d52a7f"></a>
+
+Checks whether Platform_Optional has been set.
+
 #### `public inline int32 & `[`GetPortalId`](#structFRHAPI__LoginResult_1a81bb1a5f2b0b910b94e7fb379225ea41)`()` <a id="structFRHAPI__LoginResult_1a81bb1a5f2b0b910b94e7fb379225ea41"></a>
 
 Gets the value of PortalId_Optional, regardless of it having been set.
@@ -630,6 +668,10 @@ Sets the value of PortalId_Optional and also sets PortalId_IsSet to true using m
 #### `public inline void `[`ClearPortalId`](#structFRHAPI__LoginResult_1a712d02eaecff2b7f12f87880c8077b78)`()` <a id="structFRHAPI__LoginResult_1a712d02eaecff2b7f12f87880c8077b78"></a>
 
 Clears the value of PortalId_Optional and sets PortalId_IsSet to false.
+
+#### `public inline bool `[`IsPortalIdSet`](#structFRHAPI__LoginResult_1ab2c646862e4daea75c7464b584f72d02)`() const` <a id="structFRHAPI__LoginResult_1ab2c646862e4daea75c7464b584f72d02"></a>
+
+Checks whether PortalId_Optional has been set.
 
 #### `public inline bool `[`IsPortalIdDefaultValue`](#structFRHAPI__LoginResult_1abd66958d8a434197e742d08131ee7edc)`() const` <a id="structFRHAPI__LoginResult_1abd66958d8a434197e742d08131ee7edc"></a>
 
@@ -675,6 +717,10 @@ Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true
 
 Clears the value of PortalUserId_Optional and sets PortalUserId_IsSet to false.
 
+#### `public inline bool `[`IsPortalUserIdSet`](#structFRHAPI__LoginResult_1a11e99240bfc0f80cd55f182f5acee8ec)`() const` <a id="structFRHAPI__LoginResult_1a11e99240bfc0f80cd55f182f5acee8ec"></a>
+
+Checks whether PortalUserId_Optional has been set.
+
 #### `public inline FString & `[`GetDisplayName`](#structFRHAPI__LoginResult_1a5310c11bcc70cb20b3f250a58e6bd4f5)`()` <a id="structFRHAPI__LoginResult_1a5310c11bcc70cb20b3f250a58e6bd4f5"></a>
 
 Gets the value of DisplayName_Optional, regardless of it having been set.
@@ -711,6 +757,10 @@ Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true u
 
 Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false.
 
+#### `public inline bool `[`IsDisplayNameSet`](#structFRHAPI__LoginResult_1ae906335cb99b77c6c53147ab0c6ead4e)`() const` <a id="structFRHAPI__LoginResult_1ae906335cb99b77c6c53147ab0c6ead4e"></a>
+
+Checks whether DisplayName_Optional has been set.
+
 #### `public inline int32 & `[`GetRoleId`](#structFRHAPI__LoginResult_1a31ab2c464f256a2d199eefa76fd625de)`()` <a id="structFRHAPI__LoginResult_1a31ab2c464f256a2d199eefa76fd625de"></a>
 
 Gets the value of RoleId_Optional, regardless of it having been set.
@@ -746,6 +796,10 @@ Sets the value of RoleId_Optional and also sets RoleId_IsSet to true using move 
 #### `public inline void `[`ClearRoleId`](#structFRHAPI__LoginResult_1a8569561d7b4bde1c550ddf791bbc70c9)`()` <a id="structFRHAPI__LoginResult_1a8569561d7b4bde1c550ddf791bbc70c9"></a>
 
 Clears the value of RoleId_Optional and sets RoleId_IsSet to false.
+
+#### `public inline bool `[`IsRoleIdSet`](#structFRHAPI__LoginResult_1a0336e83cdc962c5d7c4de60094795ada)`() const` <a id="structFRHAPI__LoginResult_1a0336e83cdc962c5d7c4de60094795ada"></a>
+
+Checks whether RoleId_Optional has been set.
 
 #### `public inline bool `[`IsRoleIdDefaultValue`](#structFRHAPI__LoginResult_1a903468ea6be9d761fd9121fc38ed301b)`() const` <a id="structFRHAPI__LoginResult_1a903468ea6be9d761fd9121fc38ed301b"></a>
 
@@ -791,6 +845,10 @@ Sets the value of PersonId_Optional and also sets PersonId_IsSet to true using m
 
 Clears the value of PersonId_Optional and sets PersonId_IsSet to false.
 
+#### `public inline bool `[`IsPersonIdSet`](#structFRHAPI__LoginResult_1a0204dee635520b1ccabf6a1a897a61d7)`() const` <a id="structFRHAPI__LoginResult_1a0204dee635520b1ccabf6a1a897a61d7"></a>
+
+Checks whether PersonId_Optional has been set.
+
 #### `public inline FString & `[`GetAccessToken`](#structFRHAPI__LoginResult_1ae45a5a0b9ddda92565f4a3938418fb71)`()` <a id="structFRHAPI__LoginResult_1ae45a5a0b9ddda92565f4a3938418fb71"></a>
 
 Gets the value of AccessToken_Optional, regardless of it having been set.
@@ -826,6 +884,10 @@ Sets the value of AccessToken_Optional and also sets AccessToken_IsSet to true u
 #### `public inline void `[`ClearAccessToken`](#structFRHAPI__LoginResult_1ad7662e9ca33b063f594a57ab806030fc)`()` <a id="structFRHAPI__LoginResult_1ad7662e9ca33b063f594a57ab806030fc"></a>
 
 Clears the value of AccessToken_Optional and sets AccessToken_IsSet to false.
+
+#### `public inline bool `[`IsAccessTokenSet`](#structFRHAPI__LoginResult_1a9629802d2cb8068064fcd0dc2ea41b15)`() const` <a id="structFRHAPI__LoginResult_1a9629802d2cb8068064fcd0dc2ea41b15"></a>
+
+Checks whether AccessToken_Optional has been set.
 
 #### `public inline bool `[`IsAccessTokenDefaultValue`](#structFRHAPI__LoginResult_1a05208b4c9a1d2a966040a827b88faace)`() const` <a id="structFRHAPI__LoginResult_1a05208b4c9a1d2a966040a827b88faace"></a>
 
@@ -870,6 +932,10 @@ Sets the value of RefreshToken_Optional and also sets RefreshToken_IsSet to true
 #### `public inline void `[`ClearRefreshToken`](#structFRHAPI__LoginResult_1a31fd8762d202e872dd192dadeb3e6b99)`()` <a id="structFRHAPI__LoginResult_1a31fd8762d202e872dd192dadeb3e6b99"></a>
 
 Clears the value of RefreshToken_Optional and sets RefreshToken_IsSet to false.
+
+#### `public inline bool `[`IsRefreshTokenSet`](#structFRHAPI__LoginResult_1a7abf8b4ca9f8538cbe0d0917fa5ba486)`() const` <a id="structFRHAPI__LoginResult_1a7abf8b4ca9f8538cbe0d0917fa5ba486"></a>
+
+Checks whether RefreshToken_Optional has been set.
 
 #### `public inline FGuid & `[`GetPublisherUuid`](#structFRHAPI__LoginResult_1a1fd8421a3033ad6b0277631a32801bf5)`()` <a id="structFRHAPI__LoginResult_1a1fd8421a3033ad6b0277631a32801bf5"></a>
 
@@ -1002,6 +1068,10 @@ Sets the value of ExpiresIn_Optional and also sets ExpiresIn_IsSet to true using
 #### `public inline void `[`ClearExpiresIn`](#structFRHAPI__LoginResult_1a80efb45adcc41e57693500a0bf4b31ae)`()` <a id="structFRHAPI__LoginResult_1a80efb45adcc41e57693500a0bf4b31ae"></a>
 
 Clears the value of ExpiresIn_Optional and sets ExpiresIn_IsSet to false.
+
+#### `public inline bool `[`IsExpiresInSet`](#structFRHAPI__LoginResult_1af60780d8671d0b3388ecccefc8ca348b)`() const` <a id="structFRHAPI__LoginResult_1af60780d8671d0b3388ecccefc8ca348b"></a>
+
+Checks whether ExpiresIn_Optional has been set.
 
 #### `public inline bool `[`IsExpiresInDefaultValue`](#structFRHAPI__LoginResult_1a2a984e7838336bff1cb832e105ddebaf)`() const` <a id="structFRHAPI__LoginResult_1a2a984e7838336bff1cb832e105ddebaf"></a>
 

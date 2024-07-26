@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_BackfillSettingsResponse : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief How often we expect backfill heartbeats to occur */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -47,9 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_BackfillSettingsResponse : public FRHAPI_Model
 	/** @brief Gets the value of Timeout */
 	const float& GetTimeout() const { return Timeout; }
 	/** @brief Sets the value of Timeout */
-	void SetTimeout(const float& NewValue) { Timeout = NewValue;  }
+	void SetTimeout(const float& NewValue) { Timeout = NewValue;   }
 	/** @brief Sets the value of Timeout using move semantics */
-	void SetTimeout(float&& NewValue) { Timeout = NewValue;  }
+	void SetTimeout(float&& NewValue) { Timeout = NewValue;   }
 };
 
 /** @} */

@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_TeamUpdate : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Maximum number of players for this team */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -54,19 +54,21 @@ struct RALLYHEREAPI_API FRHAPI_TeamUpdate : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of MaxSize_Optional and returns true if it has been set, otherwise returns false */
 	bool GetMaxSize(int32& OutValue) const { if (MaxSize_IsSet) OutValue = MaxSize_Optional; return MaxSize_IsSet; }
 	/** @brief Returns a pointer to MaxSize_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetMaxSizeOrNull() { if (MaxSize_IsSet) return &MaxSize_Optional; return nullptr; }
+	int32* GetMaxSizeOrNull() { if (MaxSize_IsSet) return (&MaxSize_Optional); return nullptr; }
 	/** @brief Returns a pointer to MaxSize_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetMaxSizeOrNull() const { if (MaxSize_IsSet) return &MaxSize_Optional; return nullptr; }
+	const int32* GetMaxSizeOrNull() const { if (MaxSize_IsSet) return (&MaxSize_Optional); return nullptr; }
 	/** @brief Sets the value of MaxSize_Optional and also sets MaxSize_IsSet to true */
-	void SetMaxSize(const int32& NewValue) { MaxSize_Optional = NewValue; MaxSize_IsSet = true; }
+	void SetMaxSize(const int32& NewValue) { MaxSize_Optional = NewValue; MaxSize_IsSet = true;  }
 	/** @brief Sets the value of MaxSize_Optional and also sets MaxSize_IsSet to true using move semantics */
-	void SetMaxSize(int32&& NewValue) { MaxSize_Optional = NewValue; MaxSize_IsSet = true; }
-	 /** @brief Clears the value of MaxSize_Optional and sets MaxSize_IsSet to false */
-	void ClearMaxSize() { MaxSize_Optional = 0; MaxSize_IsSet = false; }
+	void SetMaxSize(int32&& NewValue) { MaxSize_Optional = NewValue; MaxSize_IsSet = true;  }
+	/** @brief Clears the value of MaxSize_Optional and sets MaxSize_IsSet to false */
+	void ClearMaxSize() { MaxSize_Optional = 0; MaxSize_IsSet = false;  }
+	/** @brief Checks whether MaxSize_Optional has been set */
+	bool IsMaxSizeSet() const { return MaxSize_IsSet; }
 	/** @brief Returns true if MaxSize_Optional is set and matches the default value */
 	bool IsMaxSizeDefaultValue() const { return MaxSize_IsSet && MaxSize_Optional == 0; }
 	/** @brief Sets the value of MaxSize_Optional to its default and also sets MaxSize_IsSet to true */
-	void SetMaxSizeToDefault() { MaxSize_Optional = 0; MaxSize_IsSet = true; }
+	void SetMaxSizeToDefault() { SetMaxSize(0); }
 
 	/** @brief Custom data about this team */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -83,15 +85,17 @@ struct RALLYHEREAPI_API FRHAPI_TeamUpdate : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
 	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
-	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
-	 /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
-	void ClearCustomData() { CustomData_IsSet = false; }
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	void ClearCustomData() { CustomData_IsSet = false;  }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
 };
 
 /** @} */

@@ -41,9 +41,9 @@ bool FRHAPI_UserLinkHistory::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonEntriesField = (*Object)->TryGetField(TEXT("entries"));
-	ParseSuccess &= JsonEntriesField.IsValid() && !JsonEntriesField->IsNull() && TryGetJsonValue(JsonEntriesField, Entries);
+	ParseSuccess &= JsonEntriesField.IsValid() && (!JsonEntriesField->IsNull() &&  TryGetJsonValue(JsonEntriesField, Entries));
 	const TSharedPtr<FJsonValue> JsonContinuationTokenField = (*Object)->TryGetField(TEXT("continuation_token"));
-	if (JsonContinuationTokenField.IsValid() && !JsonContinuationTokenField->IsNull())
+	if (JsonContinuationTokenField.IsValid())
 	{
 		ContinuationToken_IsSet = TryGetJsonValue(JsonContinuationTokenField, ContinuationToken_Optional);
 		ParseSuccess &= ContinuationToken_IsSet;

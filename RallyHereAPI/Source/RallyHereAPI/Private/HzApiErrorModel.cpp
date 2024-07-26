@@ -43,15 +43,15 @@ bool FRHAPI_HzApiErrorModel::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonAuthSuccessField = (*Object)->TryGetField(TEXT("auth_success"));
-	if (JsonAuthSuccessField.IsValid() && !JsonAuthSuccessField->IsNull())
+	if (JsonAuthSuccessField.IsValid())
 	{
 		AuthSuccess_IsSet = TryGetJsonValue(JsonAuthSuccessField, AuthSuccess_Optional);
 		ParseSuccess &= AuthSuccess_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonErrorCodeField = (*Object)->TryGetField(TEXT("error_code"));
-	ParseSuccess &= JsonErrorCodeField.IsValid() && !JsonErrorCodeField->IsNull() && TryGetJsonValue(JsonErrorCodeField, ErrorCode);
+	ParseSuccess &= JsonErrorCodeField.IsValid() && (!JsonErrorCodeField->IsNull() &&  TryGetJsonValue(JsonErrorCodeField, ErrorCode));
 	const TSharedPtr<FJsonValue> JsonDescField = (*Object)->TryGetField(TEXT("desc"));
-	ParseSuccess &= JsonDescField.IsValid() && !JsonDescField->IsNull() && TryGetJsonValue(JsonDescField, Desc);
+	ParseSuccess &= JsonDescField.IsValid() && (!JsonDescField->IsNull() &&  TryGetJsonValue(JsonDescField, Desc));
 
 	return ParseSuccess;
 }

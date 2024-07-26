@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_ClientVisibleSettings : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief How frequently the client should tell this service that it's online. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -54,19 +54,21 @@ struct RALLYHEREAPI_API FRHAPI_ClientVisibleSettings : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of SelfPingIntervalSeconds_Optional and returns true if it has been set, otherwise returns false */
 	bool GetSelfPingIntervalSeconds(int32& OutValue) const { if (SelfPingIntervalSeconds_IsSet) OutValue = SelfPingIntervalSeconds_Optional; return SelfPingIntervalSeconds_IsSet; }
 	/** @brief Returns a pointer to SelfPingIntervalSeconds_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetSelfPingIntervalSecondsOrNull() { if (SelfPingIntervalSeconds_IsSet) return &SelfPingIntervalSeconds_Optional; return nullptr; }
+	int32* GetSelfPingIntervalSecondsOrNull() { if (SelfPingIntervalSeconds_IsSet) return (&SelfPingIntervalSeconds_Optional); return nullptr; }
 	/** @brief Returns a pointer to SelfPingIntervalSeconds_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetSelfPingIntervalSecondsOrNull() const { if (SelfPingIntervalSeconds_IsSet) return &SelfPingIntervalSeconds_Optional; return nullptr; }
+	const int32* GetSelfPingIntervalSecondsOrNull() const { if (SelfPingIntervalSeconds_IsSet) return (&SelfPingIntervalSeconds_Optional); return nullptr; }
 	/** @brief Sets the value of SelfPingIntervalSeconds_Optional and also sets SelfPingIntervalSeconds_IsSet to true */
-	void SetSelfPingIntervalSeconds(const int32& NewValue) { SelfPingIntervalSeconds_Optional = NewValue; SelfPingIntervalSeconds_IsSet = true; }
+	void SetSelfPingIntervalSeconds(const int32& NewValue) { SelfPingIntervalSeconds_Optional = NewValue; SelfPingIntervalSeconds_IsSet = true;  }
 	/** @brief Sets the value of SelfPingIntervalSeconds_Optional and also sets SelfPingIntervalSeconds_IsSet to true using move semantics */
-	void SetSelfPingIntervalSeconds(int32&& NewValue) { SelfPingIntervalSeconds_Optional = NewValue; SelfPingIntervalSeconds_IsSet = true; }
-	 /** @brief Clears the value of SelfPingIntervalSeconds_Optional and sets SelfPingIntervalSeconds_IsSet to false */
-	void ClearSelfPingIntervalSeconds() { SelfPingIntervalSeconds_Optional = 30; SelfPingIntervalSeconds_IsSet = false; }
+	void SetSelfPingIntervalSeconds(int32&& NewValue) { SelfPingIntervalSeconds_Optional = NewValue; SelfPingIntervalSeconds_IsSet = true;  }
+	/** @brief Clears the value of SelfPingIntervalSeconds_Optional and sets SelfPingIntervalSeconds_IsSet to false */
+	void ClearSelfPingIntervalSeconds() { SelfPingIntervalSeconds_Optional = 30; SelfPingIntervalSeconds_IsSet = false;  }
+	/** @brief Checks whether SelfPingIntervalSeconds_Optional has been set */
+	bool IsSelfPingIntervalSecondsSet() const { return SelfPingIntervalSeconds_IsSet; }
 	/** @brief Returns true if SelfPingIntervalSeconds_Optional is set and matches the default value */
 	bool IsSelfPingIntervalSecondsDefaultValue() const { return SelfPingIntervalSeconds_IsSet && SelfPingIntervalSeconds_Optional == 30; }
 	/** @brief Sets the value of SelfPingIntervalSeconds_Optional to its default and also sets SelfPingIntervalSeconds_IsSet to true */
-	void SetSelfPingIntervalSecondsToDefault() { SelfPingIntervalSeconds_Optional = 30; SelfPingIntervalSeconds_IsSet = true; }
+	void SetSelfPingIntervalSecondsToDefault() { SetSelfPingIntervalSeconds(30); }
 
 	/** @brief If a client hasn't said that it's online within this time period, it will be treated as offline when others query its presence. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -83,19 +85,21 @@ struct RALLYHEREAPI_API FRHAPI_ClientVisibleSettings : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of LastSeenAgeConsideredOfflineSeconds_Optional and returns true if it has been set, otherwise returns false */
 	bool GetLastSeenAgeConsideredOfflineSeconds(int32& OutValue) const { if (LastSeenAgeConsideredOfflineSeconds_IsSet) OutValue = LastSeenAgeConsideredOfflineSeconds_Optional; return LastSeenAgeConsideredOfflineSeconds_IsSet; }
 	/** @brief Returns a pointer to LastSeenAgeConsideredOfflineSeconds_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetLastSeenAgeConsideredOfflineSecondsOrNull() { if (LastSeenAgeConsideredOfflineSeconds_IsSet) return &LastSeenAgeConsideredOfflineSeconds_Optional; return nullptr; }
+	int32* GetLastSeenAgeConsideredOfflineSecondsOrNull() { if (LastSeenAgeConsideredOfflineSeconds_IsSet) return (&LastSeenAgeConsideredOfflineSeconds_Optional); return nullptr; }
 	/** @brief Returns a pointer to LastSeenAgeConsideredOfflineSeconds_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetLastSeenAgeConsideredOfflineSecondsOrNull() const { if (LastSeenAgeConsideredOfflineSeconds_IsSet) return &LastSeenAgeConsideredOfflineSeconds_Optional; return nullptr; }
+	const int32* GetLastSeenAgeConsideredOfflineSecondsOrNull() const { if (LastSeenAgeConsideredOfflineSeconds_IsSet) return (&LastSeenAgeConsideredOfflineSeconds_Optional); return nullptr; }
 	/** @brief Sets the value of LastSeenAgeConsideredOfflineSeconds_Optional and also sets LastSeenAgeConsideredOfflineSeconds_IsSet to true */
-	void SetLastSeenAgeConsideredOfflineSeconds(const int32& NewValue) { LastSeenAgeConsideredOfflineSeconds_Optional = NewValue; LastSeenAgeConsideredOfflineSeconds_IsSet = true; }
+	void SetLastSeenAgeConsideredOfflineSeconds(const int32& NewValue) { LastSeenAgeConsideredOfflineSeconds_Optional = NewValue; LastSeenAgeConsideredOfflineSeconds_IsSet = true;  }
 	/** @brief Sets the value of LastSeenAgeConsideredOfflineSeconds_Optional and also sets LastSeenAgeConsideredOfflineSeconds_IsSet to true using move semantics */
-	void SetLastSeenAgeConsideredOfflineSeconds(int32&& NewValue) { LastSeenAgeConsideredOfflineSeconds_Optional = NewValue; LastSeenAgeConsideredOfflineSeconds_IsSet = true; }
-	 /** @brief Clears the value of LastSeenAgeConsideredOfflineSeconds_Optional and sets LastSeenAgeConsideredOfflineSeconds_IsSet to false */
-	void ClearLastSeenAgeConsideredOfflineSeconds() { LastSeenAgeConsideredOfflineSeconds_Optional = 60; LastSeenAgeConsideredOfflineSeconds_IsSet = false; }
+	void SetLastSeenAgeConsideredOfflineSeconds(int32&& NewValue) { LastSeenAgeConsideredOfflineSeconds_Optional = NewValue; LastSeenAgeConsideredOfflineSeconds_IsSet = true;  }
+	/** @brief Clears the value of LastSeenAgeConsideredOfflineSeconds_Optional and sets LastSeenAgeConsideredOfflineSeconds_IsSet to false */
+	void ClearLastSeenAgeConsideredOfflineSeconds() { LastSeenAgeConsideredOfflineSeconds_Optional = 60; LastSeenAgeConsideredOfflineSeconds_IsSet = false;  }
+	/** @brief Checks whether LastSeenAgeConsideredOfflineSeconds_Optional has been set */
+	bool IsLastSeenAgeConsideredOfflineSecondsSet() const { return LastSeenAgeConsideredOfflineSeconds_IsSet; }
 	/** @brief Returns true if LastSeenAgeConsideredOfflineSeconds_Optional is set and matches the default value */
 	bool IsLastSeenAgeConsideredOfflineSecondsDefaultValue() const { return LastSeenAgeConsideredOfflineSeconds_IsSet && LastSeenAgeConsideredOfflineSeconds_Optional == 60; }
 	/** @brief Sets the value of LastSeenAgeConsideredOfflineSeconds_Optional to its default and also sets LastSeenAgeConsideredOfflineSeconds_IsSet to true */
-	void SetLastSeenAgeConsideredOfflineSecondsToDefault() { LastSeenAgeConsideredOfflineSeconds_Optional = 60; LastSeenAgeConsideredOfflineSeconds_IsSet = true; }
+	void SetLastSeenAgeConsideredOfflineSecondsToDefault() { SetLastSeenAgeConsideredOfflineSeconds(60); }
 };
 
 /** @} */

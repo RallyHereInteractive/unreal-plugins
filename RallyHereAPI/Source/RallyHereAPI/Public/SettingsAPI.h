@@ -28,11 +28,13 @@ class FSettingsAPI;
 
 /**
  * @brief Delete All Player Id Settings For Setting Type
- * Delete all player setting for a specific type
+ * **DEPRECATED** - Use v2 instead. Delete all player setting documents for a specific type
  * 
- * Required Permissions: `setting:write` for any player.  `setting:write:self` for the player of the access token.
+ * Required Permissions:
  * 
- * **DEPRECATED** - Use v2 instead
+ * - For any player (including themselves) any of: `setting:*:*`, `setting:write`
+ * 
+ * - For the player themselves : `setting:write:self`
 */
 struct RALLYHEREAPI_API FRequest_DeleteAllPlayerIdSettingsForSettingType : public FRequest
 {
@@ -99,7 +101,7 @@ struct RALLYHEREAPI_API FResponse_DeleteAllPlayerIdSettingsForSettingType : publ
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -145,9 +147,13 @@ struct RALLYHEREAPI_API Traits_DeleteAllPlayerIdSettingsForSettingType
 
 /**
  * @brief Delete All Player Uuid Settings For Setting Type
- * Delete all player setting for a specific type
+ * Delete all player setting documents for a specific type
  * 
- * Required Permissions: `setting:write` for any player.  `setting:write:self` for the player of the access token.
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `setting:*:*`, `setting:write`
+ * 
+ * - For the player themselves : `setting:write:self`
 */
 struct RALLYHEREAPI_API FRequest_DeleteAllPlayerUuidSettingsForSettingType : public FRequest
 {
@@ -216,7 +222,7 @@ struct RALLYHEREAPI_API FResponse_DeleteAllPlayerUuidSettingsForSettingType : pu
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -262,9 +268,13 @@ struct RALLYHEREAPI_API Traits_DeleteAllPlayerUuidSettingsForSettingType
 
 /**
  * @brief Delete All Player Uuid Settings For Setting Type Self
- * Delete all player setting for a specific type
+ * Delete all player setting documents for a specific type
  * 
- * Required Permissions: `setting:write` or `setting:write:self`
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `setting:*:*`, `setting:write`
+ * 
+ * - For the player themselves : `setting:write:self`
 */
 struct RALLYHEREAPI_API FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf : public FRequest
 {
@@ -331,7 +341,7 @@ struct RALLYHEREAPI_API FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf 
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -377,11 +387,13 @@ struct RALLYHEREAPI_API Traits_DeleteAllPlayerUuidSettingsForSettingTypeSelf
 
 /**
  * @brief Delete Single Player Id Setting
- * Delete a single player setting
+ * **DEPRECATED** - Use v2 instead. Delete a single player setting document
  *     
- * Required Permissions: `setting:write` for any player.  `setting:write:self` for the player of the access token.
- *     
- * **DEPRECATED** - Use v2 instead
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `setting:*:*`, `setting:write`
+ * 
+ * - For the player themselves : `setting:write:self`
 */
 struct RALLYHEREAPI_API FRequest_DeleteSinglePlayerIdSetting : public FRequest
 {
@@ -452,7 +464,7 @@ struct RALLYHEREAPI_API FResponse_DeleteSinglePlayerIdSetting : public FResponse
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -498,9 +510,13 @@ struct RALLYHEREAPI_API Traits_DeleteSinglePlayerIdSetting
 
 /**
  * @brief Delete Single Player Uuid Setting
- * Delete a single player setting
+ * Delete a single player setting document
  * 
- * Required Permissions: `setting:write` for any player.  `setting:write:self` for the player of the access token.
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `setting:*:*`, `setting:write`
+ * 
+ * - For the player themselves : `setting:write:self`
 */
 struct RALLYHEREAPI_API FRequest_DeleteSinglePlayerUuidSetting : public FRequest
 {
@@ -571,7 +587,7 @@ struct RALLYHEREAPI_API FResponse_DeleteSinglePlayerUuidSetting : public FRespon
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -617,9 +633,13 @@ struct RALLYHEREAPI_API Traits_DeleteSinglePlayerUuidSetting
 
 /**
  * @brief Delete Single Player Uuid Setting Self
- * Delete a single player setting
+ * Delete a single player setting document
  * 
- * Required Permissions: `setting:write` or `setting:write:self`
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `setting:*:*`, `setting:write`
+ * 
+ * - For the player themselves : `setting:write:self`
 */
 struct RALLYHEREAPI_API FRequest_DeleteSinglePlayerUuidSettingSelf : public FRequest
 {
@@ -688,7 +708,7 @@ struct RALLYHEREAPI_API FResponse_DeleteSinglePlayerUuidSettingSelf : public FRe
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -734,11 +754,13 @@ struct RALLYHEREAPI_API Traits_DeleteSinglePlayerUuidSettingSelf
 
 /**
  * @brief Get All Player Id Settings For Setting Type
- * Get a list of all player settings for a specific Setting Type.
+ * **DEPRECATED** - Use v2 instead.  Get a list of all player setting documents for a specific Setting Type.
  * 
- * Required Permissions: `setting:read` for any player.  `setting:read:self` for the player of the access token.
+ * Required Permissions:
  * 
- * **DEPRECATED** - Use v2 instead
+ * - For any player (including themselves) any of: `setting:*:*`, `setting:read`
+ * 
+ * - For the player themselves : `setting:read:self`
 */
 struct RALLYHEREAPI_API FRequest_GetAllPlayerIdSettingsForSettingType : public FRequest
 {
@@ -809,7 +831,7 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerIdSettingsForSettingType : public 
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -855,9 +877,13 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerIdSettingsForSettingType
 
 /**
  * @brief Get All Player Uuid Settings For Setting Type
- * Get a list of all player settings for a specific Setting Type
+ * Get a list of all player setting documents for a specific Setting Type
  * 
- * Required Permissions: `setting:read` for any player.  `setting:read:self` for the player of the access token.
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `setting:*:*`, `setting:read`
+ * 
+ * - For the player themselves : `setting:read:self`
 */
 struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidSettingsForSettingType : public FRequest
 {
@@ -928,7 +954,7 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidSettingsForSettingType : publi
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -974,9 +1000,13 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerUuidSettingsForSettingType
 
 /**
  * @brief Get All Player Uuid Settings For Setting Type Self
- * Get a list of all player settings for a specific Setting Type
+ * Get a list of all player setting documents for a specific Setting Type
  * 
- * Required Permissions: `setting:read` or `setting:read:self`
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `setting:*:*`, `setting:read`
+ * 
+ * - For the player themselves : `setting:read:self`
 */
 struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf : public FRequest
 {
@@ -1045,7 +1075,7 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf : p
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -1093,7 +1123,9 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerUuidSettingsForSettingTypeSelf
  * @brief Get Config For All Setting Types
  * Get all setting types and their configuration.
  *     
- * Required Permissions: `setting-config:read`
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `setting-config:read`, `setting:*:*`
 */
 struct RALLYHEREAPI_API FRequest_GetConfigForAllSettingTypes : public FRequest
 {
@@ -1116,9 +1148,9 @@ struct RALLYHEREAPI_API FRequest_GetConfigForAllSettingTypes : public FRequest
 };
 
 /** The response type for FRequest_GetConfigForAllSettingTypes */
-struct RALLYHEREAPI_API FResponse_GetConfigForAllSettingTypes : public FResponseAccessorTemplate<TMap<FString, FRHAPI_SettingType>>
+struct RALLYHEREAPI_API FResponse_GetConfigForAllSettingTypes : public FResponseAccessorTemplate<TMap<FString, FRHAPI_SettingType>, FRHAPI_HzApiErrorModel>
 {
-	typedef FResponseAccessorTemplate<TMap<FString, FRHAPI_SettingType>> Super;
+	typedef FResponseAccessorTemplate<TMap<FString, FRHAPI_SettingType>, FRHAPI_HzApiErrorModel> Super;
 
 	FResponse_GetConfigForAllSettingTypes(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetConfigForAllSettingTypes() = default;
@@ -1151,6 +1183,11 @@ struct RALLYHEREAPI_API FResponse_GetConfigForAllSettingTypes : public FResponse
 	Successful Response
 	*/
 	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingType>& OutContent) const;
+
+	/* Response 403
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 };
 
@@ -1186,7 +1223,9 @@ struct RALLYHEREAPI_API Traits_GetConfigForAllSettingTypes
  * @brief Get Config For Single Setting Type All Versions
  * Get a configuration and all versions for a given setting type ID.
  *     
- * Required Permissions: `setting-config:read`
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `setting-config:read`, `setting:*:*`
 */
 struct RALLYHEREAPI_API FRequest_GetConfigForSingleSettingTypeAllVersions : public FRequest
 {
@@ -1247,7 +1286,7 @@ struct RALLYHEREAPI_API FResponse_GetConfigForSingleSettingTypeAllVersions : pub
 	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingTypeVersion>& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -1294,6 +1333,10 @@ struct RALLYHEREAPI_API Traits_GetConfigForSingleSettingTypeAllVersions
 /**
  * @brief Get Config For Single Setting Type And Version
  * Get a specific version of a specific setting type.
+ *     
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `setting-config:read`, `setting:*:*`
 */
 struct RALLYHEREAPI_API FRequest_GetConfigForSingleSettingTypeAndVersion : public FRequest
 {
@@ -1355,7 +1398,7 @@ struct RALLYHEREAPI_API FResponse_GetConfigForSingleSettingTypeAndVersion : publ
 	bool TryGetContentFor200(FRHAPI_SettingTypeVersion& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -1401,11 +1444,13 @@ struct RALLYHEREAPI_API Traits_GetConfigForSingleSettingTypeAndVersion
 
 /**
  * @brief Get Single Player Id Setting
- * Get a single player setting
+ * **DEPRECATED** - Use v2 instead.  Get a single player setting document
  * 
- * Required Permissions: `setting:read` for any player.  `setting:read:self` for the player of the access token.
+ * Required Permissions:
  * 
- * **DEPRECATED** - Use v2 instead
+ * - For any player (including themselves) any of: `setting:*:*`, `setting:read`
+ * 
+ * - For the player themselves : `setting:read:self`
 */
 struct RALLYHEREAPI_API FRequest_GetSinglePlayerIdSetting : public FRequest
 {
@@ -1476,7 +1521,7 @@ struct RALLYHEREAPI_API FResponse_GetSinglePlayerIdSetting : public FResponseAcc
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -1522,9 +1567,13 @@ struct RALLYHEREAPI_API Traits_GetSinglePlayerIdSetting
 
 /**
  * @brief Get Single Player Uuid Setting
- * Get a single player setting
+ * Get a single player setting document
  * 
- * Required Permissions: `setting:read` for any player.  `setting:read:self` for the player of the access token.
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `setting:*:*`, `setting:read`
+ * 
+ * - For the player themselves : `setting:read:self`
 */
 struct RALLYHEREAPI_API FRequest_GetSinglePlayerUuidSetting : public FRequest
 {
@@ -1595,7 +1644,7 @@ struct RALLYHEREAPI_API FResponse_GetSinglePlayerUuidSetting : public FResponseA
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -1641,9 +1690,13 @@ struct RALLYHEREAPI_API Traits_GetSinglePlayerUuidSetting
 
 /**
  * @brief Get Single Player Uuid Setting Self
- * Get a single player setting
+ * Get a single player setting document
  * 
- * Required Permissions: `setting:read` or `setting:read:self`
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `setting:*:*`, `setting:read`
+ * 
+ * - For the player themselves : `setting:read:self`
 */
 struct RALLYHEREAPI_API FRequest_GetSinglePlayerUuidSettingSelf : public FRequest
 {
@@ -1712,7 +1765,7 @@ struct RALLYHEREAPI_API FResponse_GetSinglePlayerUuidSettingSelf : public FRespo
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -1758,17 +1811,20 @@ struct RALLYHEREAPI_API Traits_GetSinglePlayerUuidSettingSelf
 
 /**
  * @brief Set Single Player Id Setting
- * Update the value of a single player setting.
+ * **DEPRECATED** - Use the v2 endpoint instead.  This endpoint will be removed in a future release.  Update the value of a single player setting document.
  * 
- * Required Permissions: `setting:write` for any player.  `setting:write:self` for the player of the access token.
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `setting:*:*`, `setting:write`
+ * 
+ * - For the player themselves : `setting:write:self`
+ * 
  * 
  * If Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling:
- * * Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and data in the response. 
+ * * Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and document in the response. 
  * * Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code. 
- * * Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and data in the response.  All items keys will be given a new key 
- * * Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key. 
- * 
- * **DEPRECATED** - Use the v2 endpoint instead.  This endpoint will be removed in a future release.
+ * * Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and document in the response.  All items keys will be given a new key 
+ * * Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key.
 */
 struct RALLYHEREAPI_API FRequest_SetSinglePlayerIdSetting : public FRequest
 {
@@ -1840,7 +1896,7 @@ struct RALLYHEREAPI_API FResponse_SetSinglePlayerIdSetting : public FResponseAcc
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -1891,14 +1947,19 @@ struct RALLYHEREAPI_API Traits_SetSinglePlayerIdSetting
 
 /**
  * @brief Set Single Player Uuid Setting
- * Update the value of a single player setting.
- *     
- * Required Permissions: `setting:write` for any player.  `setting:write:self` for the player of the access token.
+ * Update the value of a single player setting document.
+ * 
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `setting:*:*`, `setting:write`
+ * 
+ * - For the player themselves : `setting:write:self`
+ * 
  * 
  * If Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling:
- * * Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and data in the response. 
+ * * Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and document in the response. 
  * * Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code. 
- * * Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and data in the response.  All items keys will be given a new key 
+ * * Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and document in the response.  All items keys will be given a new key 
  * * Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key.
 */
 struct RALLYHEREAPI_API FRequest_SetSinglePlayerUuidSetting : public FRequest
@@ -1971,7 +2032,7 @@ struct RALLYHEREAPI_API FResponse_SetSinglePlayerUuidSetting : public FResponseA
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -2022,14 +2083,19 @@ struct RALLYHEREAPI_API Traits_SetSinglePlayerUuidSetting
 
 /**
  * @brief Set Single Player Uuid Setting Self
- * Update the value of a single player setting.
+ * Update the value of a single player setting document.
  *     
- * Required Permissions: `setting:write` or `setting:write:self`
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `setting:*:*`, `setting:write`
+ * 
+ * - For the player themselves : `setting:write:self`
+ * 
  * 
  * If Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling:
- * * Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and data in the response. 
+ * * Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and document in the response. 
  * * Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code. 
- * * Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and data in the response.  All items keys will be given a new key 
+ * * Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and document in the response.  All items keys will be given a new key 
  * * Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key.
 */
 struct RALLYHEREAPI_API FRequest_SetSinglePlayerUuidSettingSelf : public FRequest
@@ -2100,7 +2166,7 @@ struct RALLYHEREAPI_API FResponse_SetSinglePlayerUuidSettingSelf : public FRespo
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 

@@ -205,209 +205,209 @@ bool FRHAPI_AuditEvent::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonEventNameField = (*Object)->TryGetField(TEXT("event_name"));
-	ParseSuccess &= JsonEventNameField.IsValid() && !JsonEventNameField->IsNull() && TryGetJsonValue(JsonEventNameField, EventName);
+	ParseSuccess &= JsonEventNameField.IsValid() && (!JsonEventNameField->IsNull() &&  TryGetJsonValue(JsonEventNameField, EventName));
 	const TSharedPtr<FJsonValue> JsonSessionIdField = (*Object)->TryGetField(TEXT("session_id"));
-	ParseSuccess &= JsonSessionIdField.IsValid() && !JsonSessionIdField->IsNull() && TryGetJsonValue(JsonSessionIdField, SessionId);
+	ParseSuccess &= JsonSessionIdField.IsValid() && (!JsonSessionIdField->IsNull() &&  TryGetJsonValue(JsonSessionIdField, SessionId));
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	if (JsonCustomDataField.IsValid())
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonSessionTypeField = (*Object)->TryGetField(TEXT("session_type"));
-	if (JsonSessionTypeField.IsValid() && !JsonSessionTypeField->IsNull())
+	if (JsonSessionTypeField.IsValid())
 	{
 		SessionType_IsSet = TryGetJsonValue(JsonSessionTypeField, SessionType_Optional);
 		ParseSuccess &= SessionType_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonRegionIdField = (*Object)->TryGetField(TEXT("region_id"));
-	if (JsonRegionIdField.IsValid() && !JsonRegionIdField->IsNull())
+	if (JsonRegionIdField.IsValid())
 	{
 		RegionId_IsSet = TryGetJsonValue(JsonRegionIdField, RegionId_Optional);
 		ParseSuccess &= RegionId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonJoinableField = (*Object)->TryGetField(TEXT("joinable"));
-	if (JsonJoinableField.IsValid() && !JsonJoinableField->IsNull())
+	if (JsonJoinableField.IsValid())
 	{
 		Joinable_IsSet = TryGetJsonValue(JsonJoinableField, Joinable_Optional);
 		ParseSuccess &= Joinable_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonUpdatedTeamsField = (*Object)->TryGetField(TEXT("updated_teams"));
-	if (JsonUpdatedTeamsField.IsValid() && !JsonUpdatedTeamsField->IsNull())
+	if (JsonUpdatedTeamsField.IsValid())
 	{
 		UpdatedTeams_IsSet = TryGetJsonValue(JsonUpdatedTeamsField, UpdatedTeams_Optional);
 		ParseSuccess &= UpdatedTeams_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonSourceField = (*Object)->TryGetField(TEXT("source"));
-	if (JsonSourceField.IsValid() && !JsonSourceField->IsNull())
+	if (JsonSourceField.IsValid())
 	{
 		Source_IsSet = TryGetJsonValue(JsonSourceField, Source_Optional);
 		ParseSuccess &= Source_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
-	if (JsonPlayerUuidField.IsValid() && !JsonPlayerUuidField->IsNull())
+	if (JsonPlayerUuidField.IsValid())
 	{
 		PlayerUuid_IsSet = TryGetJsonValue(JsonPlayerUuidField, PlayerUuid_Optional);
 		ParseSuccess &= PlayerUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonTeamIdField = (*Object)->TryGetField(TEXT("team_id"));
-	if (JsonTeamIdField.IsValid() && !JsonTeamIdField->IsNull())
+	if (JsonTeamIdField.IsValid())
 	{
 		TeamId_IsSet = TryGetJsonValue(JsonTeamIdField, TeamId_Optional);
 		ParseSuccess &= TeamId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonInvitedSessionIdField = (*Object)->TryGetField(TEXT("invited_session_id"));
-	if (JsonInvitedSessionIdField.IsValid() && !JsonInvitedSessionIdField->IsNull())
+	if (JsonInvitedSessionIdField.IsValid())
 	{
 		InvitedSessionId_IsSet = TryGetJsonValue(JsonInvitedSessionIdField, InvitedSessionId_Optional);
 		ParseSuccess &= InvitedSessionId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonRemovedSessionIdField = (*Object)->TryGetField(TEXT("removed_session_id"));
-	if (JsonRemovedSessionIdField.IsValid() && !JsonRemovedSessionIdField->IsNull())
+	if (JsonRemovedSessionIdField.IsValid())
 	{
 		RemovedSessionId_IsSet = TryGetJsonValue(JsonRemovedSessionIdField, RemovedSessionId_Optional);
 		ParseSuccess &= RemovedSessionId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonVersionField = (*Object)->TryGetField(TEXT("version"));
-	if (JsonVersionField.IsValid() && !JsonVersionField->IsNull())
+	if (JsonVersionField.IsValid())
 	{
 		Version_IsSet = TryGetJsonValue(JsonVersionField, Version_Optional);
 		ParseSuccess &= Version_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonClientSettingsField = (*Object)->TryGetField(TEXT("client_settings"));
-	if (JsonClientSettingsField.IsValid() && !JsonClientSettingsField->IsNull())
+	if (JsonClientSettingsField.IsValid())
 	{
 		ClientSettings_IsSet = TryGetJsonValue(JsonClientSettingsField, ClientSettings_Optional);
 		ParseSuccess &= ClientSettings_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCrossplayPreferencesField = (*Object)->TryGetField(TEXT("crossplay_preferences"));
-	if (JsonCrossplayPreferencesField.IsValid() && !JsonCrossplayPreferencesField->IsNull())
+	if (JsonCrossplayPreferencesField.IsValid())
 	{
 		CrossplayPreferences_IsSet = TryGetJsonValue(JsonCrossplayPreferencesField, CrossplayPreferences_Optional);
 		ParseSuccess &= CrossplayPreferences_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlayerStatusField = (*Object)->TryGetField(TEXT("player_status"));
-	if (JsonPlayerStatusField.IsValid() && !JsonPlayerStatusField->IsNull())
+	if (JsonPlayerStatusField.IsValid())
 	{
 		PlayerStatus_IsSet = TryGetJsonValue(JsonPlayerStatusField, PlayerStatus_Optional);
 		ParseSuccess &= PlayerStatus_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlatformField = (*Object)->TryGetField(TEXT("platform"));
-	if (JsonPlatformField.IsValid() && !JsonPlatformField->IsNull())
+	if (JsonPlatformField.IsValid())
 	{
 		Platform_IsSet = TryGetJsonValue(JsonPlatformField, Platform_Optional);
 		ParseSuccess &= Platform_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlatformSessionIdField = (*Object)->TryGetField(TEXT("platform_session_id"));
-	if (JsonPlatformSessionIdField.IsValid() && !JsonPlatformSessionIdField->IsNull())
+	if (JsonPlatformSessionIdField.IsValid())
 	{
 		PlatformSessionId_IsSet = TryGetJsonValue(JsonPlatformSessionIdField, PlatformSessionId_Optional);
 		ParseSuccess &= PlatformSessionId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonInstanceIdField = (*Object)->TryGetField(TEXT("instance_id"));
-	if (JsonInstanceIdField.IsValid() && !JsonInstanceIdField->IsNull())
+	if (JsonInstanceIdField.IsValid())
 	{
 		InstanceId_IsSet = TryGetJsonValue(JsonInstanceIdField, InstanceId_Optional);
 		ParseSuccess &= InstanceId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonHostTypeField = (*Object)->TryGetField(TEXT("host_type"));
-	if (JsonHostTypeField.IsValid() && !JsonHostTypeField->IsNull())
+	if (JsonHostTypeField.IsValid())
 	{
 		HostType_IsSet = TryGetJsonValue(JsonHostTypeField, HostType_Optional);
 		ParseSuccess &= HostType_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonHostPlayerUuidField = (*Object)->TryGetField(TEXT("host_player_uuid"));
-	if (JsonHostPlayerUuidField.IsValid() && !JsonHostPlayerUuidField->IsNull())
+	if (JsonHostPlayerUuidField.IsValid())
 	{
 		HostPlayerUuid_IsSet = TryGetJsonValue(JsonHostPlayerUuidField, HostPlayerUuid_Optional);
 		ParseSuccess &= HostPlayerUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonInstanceRequestTemplateField = (*Object)->TryGetField(TEXT("instance_request_template"));
-	if (JsonInstanceRequestTemplateField.IsValid() && !JsonInstanceRequestTemplateField->IsNull())
+	if (JsonInstanceRequestTemplateField.IsValid())
 	{
 		InstanceRequestTemplate_IsSet = TryGetJsonValue(JsonInstanceRequestTemplateField, InstanceRequestTemplate_Optional);
 		ParseSuccess &= InstanceRequestTemplate_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonMapField = (*Object)->TryGetField(TEXT("map"));
-	if (JsonMapField.IsValid() && !JsonMapField->IsNull())
+	if (JsonMapField.IsValid())
 	{
 		Map_IsSet = TryGetJsonValue(JsonMapField, Map_Optional);
 		ParseSuccess &= Map_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonModeField = (*Object)->TryGetField(TEXT("mode"));
-	if (JsonModeField.IsValid() && !JsonModeField->IsNull())
+	if (JsonModeField.IsValid())
 	{
 		Mode_IsSet = TryGetJsonValue(JsonModeField, Mode_Optional);
 		ParseSuccess &= Mode_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonAllocationIdField = (*Object)->TryGetField(TEXT("allocation_id"));
-	if (JsonAllocationIdField.IsValid() && !JsonAllocationIdField->IsNull())
+	if (JsonAllocationIdField.IsValid())
 	{
 		AllocationId_IsSet = TryGetJsonValue(JsonAllocationIdField, AllocationId_Optional);
 		ParseSuccess &= AllocationId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonJoinStatusField = (*Object)->TryGetField(TEXT("join_status"));
-	if (JsonJoinStatusField.IsValid() && !JsonJoinStatusField->IsNull())
+	if (JsonJoinStatusField.IsValid())
 	{
 		JoinStatus_IsSet = TryGetJsonValue(JsonJoinStatusField, JoinStatus_Optional);
 		ParseSuccess &= JoinStatus_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonJoinParamsField = (*Object)->TryGetField(TEXT("join_params"));
-	if (JsonJoinParamsField.IsValid() && !JsonJoinParamsField->IsNull())
+	if (JsonJoinParamsField.IsValid())
 	{
 		JoinParams_IsSet = TryGetJsonValue(JsonJoinParamsField, JoinParams_Optional);
 		ParseSuccess &= JoinParams_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonInstanceHealthField = (*Object)->TryGetField(TEXT("instance_health"));
-	if (JsonInstanceHealthField.IsValid() && !JsonInstanceHealthField->IsNull())
+	if (JsonInstanceHealthField.IsValid())
 	{
 		InstanceHealth_IsSet = TryGetJsonValue(JsonInstanceHealthField, InstanceHealth_Optional);
 		ParseSuccess &= InstanceHealth_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonQueueIdField = (*Object)->TryGetField(TEXT("queue_id"));
-	if (JsonQueueIdField.IsValid() && !JsonQueueIdField->IsNull())
+	if (JsonQueueIdField.IsValid())
 	{
 		QueueId_IsSet = TryGetJsonValue(JsonQueueIdField, QueueId_Optional);
 		ParseSuccess &= QueueId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonTicketIdField = (*Object)->TryGetField(TEXT("ticket_id"));
-	if (JsonTicketIdField.IsValid() && !JsonTicketIdField->IsNull())
+	if (JsonTicketIdField.IsValid())
 	{
 		TicketId_IsSet = TryGetJsonValue(JsonTicketIdField, TicketId_Optional);
 		ParseSuccess &= TicketId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonAdditionalParamsField = (*Object)->TryGetField(TEXT("additional_params"));
-	if (JsonAdditionalParamsField.IsValid() && !JsonAdditionalParamsField->IsNull())
+	if (JsonAdditionalParamsField.IsValid())
 	{
 		AdditionalParams_IsSet = TryGetJsonValue(JsonAdditionalParamsField, AdditionalParams_Optional);
 		ParseSuccess &= AdditionalParams_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonMapPreferencesField = (*Object)->TryGetField(TEXT("map_preferences"));
-	if (JsonMapPreferencesField.IsValid() && !JsonMapPreferencesField->IsNull())
+	if (JsonMapPreferencesField.IsValid())
 	{
 		MapPreferences_IsSet = TryGetJsonValue(JsonMapPreferencesField, MapPreferences_Optional);
 		ParseSuccess &= MapPreferences_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonQueuedSessionIdField = (*Object)->TryGetField(TEXT("queued_session_id"));
-	if (JsonQueuedSessionIdField.IsValid() && !JsonQueuedSessionIdField->IsNull())
+	if (JsonQueuedSessionIdField.IsValid())
 	{
 		QueuedSessionId_IsSet = TryGetJsonValue(JsonQueuedSessionIdField, QueuedSessionId_Optional);
 		ParseSuccess &= QueuedSessionId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonMatchIdField = (*Object)->TryGetField(TEXT("match_id"));
-	if (JsonMatchIdField.IsValid() && !JsonMatchIdField->IsNull())
+	if (JsonMatchIdField.IsValid())
 	{
 		MatchId_IsSet = TryGetJsonValue(JsonMatchIdField, MatchId_Optional);
 		ParseSuccess &= MatchId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonRequestingUserUuidField = (*Object)->TryGetField(TEXT("requesting_user_uuid"));
-	if (JsonRequestingUserUuidField.IsValid() && !JsonRequestingUserUuidField->IsNull())
+	if (JsonRequestingUserUuidField.IsValid())
 	{
 		RequestingUserUuid_IsSet = TryGetJsonValue(JsonRequestingUserUuidField, RequestingUserUuid_Optional);
 		ParseSuccess &= RequestingUserUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonEventDatetimeField = (*Object)->TryGetField(TEXT("event_datetime"));
-	ParseSuccess &= JsonEventDatetimeField.IsValid() && !JsonEventDatetimeField->IsNull() && TryGetJsonValue(JsonEventDatetimeField, EventDatetime);
+	ParseSuccess &= JsonEventDatetimeField.IsValid() && (!JsonEventDatetimeField->IsNull() &&  TryGetJsonValue(JsonEventDatetimeField, EventDatetime));
 
 	return ParseSuccess;
 }

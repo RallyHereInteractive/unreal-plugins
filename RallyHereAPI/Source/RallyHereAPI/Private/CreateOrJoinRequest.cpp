@@ -55,25 +55,25 @@ bool FRHAPI_CreateOrJoinRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValu
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonClientVersionField = (*Object)->TryGetField(TEXT("client_version"));
-	ParseSuccess &= JsonClientVersionField.IsValid() && !JsonClientVersionField->IsNull() && TryGetJsonValue(JsonClientVersionField, ClientVersion);
+	ParseSuccess &= JsonClientVersionField.IsValid() && (!JsonClientVersionField->IsNull() &&  TryGetJsonValue(JsonClientVersionField, ClientVersion));
 	const TSharedPtr<FJsonValue> JsonClientSettingsField = (*Object)->TryGetField(TEXT("client_settings"));
-	ParseSuccess &= JsonClientSettingsField.IsValid() && !JsonClientSettingsField->IsNull() && TryGetJsonValue(JsonClientSettingsField, ClientSettings);
+	ParseSuccess &= JsonClientSettingsField.IsValid() && (!JsonClientSettingsField->IsNull() &&  TryGetJsonValue(JsonClientSettingsField, ClientSettings));
 	const TSharedPtr<FJsonValue> JsonCrossplayPreferencesField = (*Object)->TryGetField(TEXT("crossplay_preferences"));
-	if (JsonCrossplayPreferencesField.IsValid() && !JsonCrossplayPreferencesField->IsNull())
+	if (JsonCrossplayPreferencesField.IsValid())
 	{
 		CrossplayPreferences_IsSet = TryGetJsonValue(JsonCrossplayPreferencesField, CrossplayPreferences_Optional);
 		ParseSuccess &= CrossplayPreferences_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonSessionTypeField = (*Object)->TryGetField(TEXT("session_type"));
-	ParseSuccess &= JsonSessionTypeField.IsValid() && !JsonSessionTypeField->IsNull() && TryGetJsonValue(JsonSessionTypeField, SessionType);
+	ParseSuccess &= JsonSessionTypeField.IsValid() && (!JsonSessionTypeField->IsNull() &&  TryGetJsonValue(JsonSessionTypeField, SessionType));
 	const TSharedPtr<FJsonValue> JsonRegionIdField = (*Object)->TryGetField(TEXT("region_id"));
-	if (JsonRegionIdField.IsValid() && !JsonRegionIdField->IsNull())
+	if (JsonRegionIdField.IsValid())
 	{
 		RegionId_IsSet = TryGetJsonValue(JsonRegionIdField, RegionId_Optional);
 		ParseSuccess &= RegionId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlayerField = (*Object)->TryGetField(TEXT("player"));
-	if (JsonPlayerField.IsValid() && !JsonPlayerField->IsNull())
+	if (JsonPlayerField.IsValid())
 	{
 		Player_IsSet = TryGetJsonValue(JsonPlayerField, Player_Optional);
 		ParseSuccess &= Player_IsSet;

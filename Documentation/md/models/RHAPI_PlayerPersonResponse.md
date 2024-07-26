@@ -26,8 +26,10 @@ Response for getting a player&#39;s info.
 `public FGuid `[`ActivePlayerUuid_Optional`](#structFRHAPI__PlayerPersonResponse_1a3dde1fe982714d74c0fd44719367decb) | Active player UUID, if the player has an active player.
 `public bool `[`ActivePlayerUuid_IsSet`](#structFRHAPI__PlayerPersonResponse_1a7e4f80a38d2b12f0420786801305dffd) | true if ActivePlayerUuid_Optional has been set to a value
 `public FGuid `[`PersonId`](#structFRHAPI__PlayerPersonResponse_1a7c9c64673c5f4060541b705be6a68e4e) | Person ID.
-`public virtual bool `[`FromJson`](#structFRHAPI__PlayerPersonResponse_1aae962d8a5cb967cb7bcd382cc1188962)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PlayerPersonResponse_1a07e5f87c8b258ba8b4b5f9cf24294188)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public FString `[`RoleId_Optional`](#structFRHAPI__PlayerPersonResponse_1a17b9eecd802abc7e2d9dea7b8715f1d4) | Role ID of the person, if available.
+`public bool `[`RoleId_IsSet`](#structFRHAPI__PlayerPersonResponse_1a38bfe4967a766d285681f24cce2eca62) | true if RoleId_Optional has been set to a value
+`public virtual bool `[`FromJson`](#structFRHAPI__PlayerPersonResponse_1afc12973fb7a26385782fae13b652a33a)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__PlayerPersonResponse_1a92b17a99bd2b4d9a649da7868a8422fa)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline int32 & `[`GetPlayerId`](#structFRHAPI__PlayerPersonResponse_1afed3098f55fb2c1175b20d5f9a469f11)`()` | Gets the value of PlayerId.
 `public inline const int32 & `[`GetPlayerId`](#structFRHAPI__PlayerPersonResponse_1a218ed87d8e156eda4bf474f4a4efb050)`() const` | Gets the value of PlayerId.
 `public inline void `[`SetPlayerId`](#structFRHAPI__PlayerPersonResponse_1a820ab44ccf334526c874dfe032ae1179)`(const int32 & NewValue)` | Sets the value of PlayerId.
@@ -47,6 +49,7 @@ Response for getting a player&#39;s info.
 `public inline void `[`SetActivePlayerId`](#structFRHAPI__PlayerPersonResponse_1a19ad9813c879aff779d6ce0980e44769)`(const int32 & NewValue)` | Sets the value of ActivePlayerId_Optional and also sets ActivePlayerId_IsSet to true.
 `public inline void `[`SetActivePlayerId`](#structFRHAPI__PlayerPersonResponse_1a2cf3a97116d00a6afee51dd794aead0d)`(int32 && NewValue)` | Sets the value of ActivePlayerId_Optional and also sets ActivePlayerId_IsSet to true using move semantics.
 `public inline void `[`ClearActivePlayerId`](#structFRHAPI__PlayerPersonResponse_1a52911bca3d1c286aa9c49fa76861047a)`()` | Clears the value of ActivePlayerId_Optional and sets ActivePlayerId_IsSet to false.
+`public inline bool `[`IsActivePlayerIdSet`](#structFRHAPI__PlayerPersonResponse_1ae9dedb7d6010ae53929c7d6e36d7488f)`() const` | Checks whether ActivePlayerId_Optional has been set.
 `public inline bool `[`IsActivePlayerIdDefaultValue`](#structFRHAPI__PlayerPersonResponse_1a7b9f33082c19d3b28c613a7dbfd8243e)`() const` | Returns true if ActivePlayerId_Optional is set and matches the default value.
 `public inline void `[`SetActivePlayerIdToDefault`](#structFRHAPI__PlayerPersonResponse_1a2b06fa3955a69ff033aa899285fe0cc2)`()` | Sets the value of ActivePlayerId_Optional to its default and also sets ActivePlayerId_IsSet to true.
 `public inline FGuid & `[`GetActivePlayerUuid`](#structFRHAPI__PlayerPersonResponse_1a023f6dcd8796e5bd8fded941f8ceaff8)`()` | Gets the value of ActivePlayerUuid_Optional, regardless of it having been set.
@@ -58,10 +61,21 @@ Response for getting a player&#39;s info.
 `public inline void `[`SetActivePlayerUuid`](#structFRHAPI__PlayerPersonResponse_1aca41ca7015a9149ef82d8ab2763c027d)`(const FGuid & NewValue)` | Sets the value of ActivePlayerUuid_Optional and also sets ActivePlayerUuid_IsSet to true.
 `public inline void `[`SetActivePlayerUuid`](#structFRHAPI__PlayerPersonResponse_1a0005536a280a08f5c1c5e7368d6249ba)`(FGuid && NewValue)` | Sets the value of ActivePlayerUuid_Optional and also sets ActivePlayerUuid_IsSet to true using move semantics.
 `public inline void `[`ClearActivePlayerUuid`](#structFRHAPI__PlayerPersonResponse_1a4d3688ff68e789bac4d134e5781e3235)`()` | Clears the value of ActivePlayerUuid_Optional and sets ActivePlayerUuid_IsSet to false.
+`public inline bool `[`IsActivePlayerUuidSet`](#structFRHAPI__PlayerPersonResponse_1a40cd59e4ade4e758ec73fc488f616ac0)`() const` | Checks whether ActivePlayerUuid_Optional has been set.
 `public inline FGuid & `[`GetPersonId`](#structFRHAPI__PlayerPersonResponse_1ac85300f4fb4136190db63cae819ab715)`()` | Gets the value of PersonId.
 `public inline const FGuid & `[`GetPersonId`](#structFRHAPI__PlayerPersonResponse_1a8881ca097d22c79931874d8334478bbc)`() const` | Gets the value of PersonId.
 `public inline void `[`SetPersonId`](#structFRHAPI__PlayerPersonResponse_1a35a4f7105803ece61ed04ad20ccb29b0)`(const FGuid & NewValue)` | Sets the value of PersonId.
 `public inline void `[`SetPersonId`](#structFRHAPI__PlayerPersonResponse_1a2b42e72a1a9775df4f065c704ae18dcc)`(FGuid && NewValue)` | Sets the value of PersonId using move semantics.
+`public inline FString & `[`GetRoleId`](#structFRHAPI__PlayerPersonResponse_1a276caf68cbaaf0ebee7cdee1838df9d3)`()` | Gets the value of RoleId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetRoleId`](#structFRHAPI__PlayerPersonResponse_1a4dbfa515f227109de4515c5b9cb87ebc)`() const` | Gets the value of RoleId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetRoleId`](#structFRHAPI__PlayerPersonResponse_1a390ddf88faa39194ec820718fb62ad4e)`(const FString & DefaultValue) const` | Gets the value of RoleId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetRoleId`](#structFRHAPI__PlayerPersonResponse_1a795e80b4c10ba64fda9f714128df6974)`(FString & OutValue) const` | Fills OutValue with the value of RoleId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FString * `[`GetRoleIdOrNull`](#structFRHAPI__PlayerPersonResponse_1a2a582f0eef7f58addd70179767180bf1)`()` | Returns a pointer to RoleId_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetRoleIdOrNull`](#structFRHAPI__PlayerPersonResponse_1a78b4743866b0aede56e9c7bdc40dd8c8)`() const` | Returns a pointer to RoleId_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetRoleId`](#structFRHAPI__PlayerPersonResponse_1a8ff2a899d7bb20917687024b5f6e93fa)`(const FString & NewValue)` | Sets the value of RoleId_Optional and also sets RoleId_IsSet to true.
+`public inline void `[`SetRoleId`](#structFRHAPI__PlayerPersonResponse_1a209f7147883acbde77d9715329bd3158)`(FString && NewValue)` | Sets the value of RoleId_Optional and also sets RoleId_IsSet to true using move semantics.
+`public inline void `[`ClearRoleId`](#structFRHAPI__PlayerPersonResponse_1a0e2d859a90de28ce4aa6bce422c66761)`()` | Clears the value of RoleId_Optional and sets RoleId_IsSet to false.
+`public inline bool `[`IsRoleIdSet`](#structFRHAPI__PlayerPersonResponse_1a2cad8daa1a192c9602043e73967760e4)`() const` | Checks whether RoleId_Optional has been set.
 
 ### Members
 
@@ -93,7 +107,15 @@ true if ActivePlayerUuid_Optional has been set to a value
 
 Person ID.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__PlayerPersonResponse_1aae962d8a5cb967cb7bcd382cc1188962)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlayerPersonResponse_1aae962d8a5cb967cb7bcd382cc1188962"></a>
+#### `public FString `[`RoleId_Optional`](#structFRHAPI__PlayerPersonResponse_1a17b9eecd802abc7e2d9dea7b8715f1d4) <a id="structFRHAPI__PlayerPersonResponse_1a17b9eecd802abc7e2d9dea7b8715f1d4"></a>
+
+Role ID of the person, if available.
+
+#### `public bool `[`RoleId_IsSet`](#structFRHAPI__PlayerPersonResponse_1a38bfe4967a766d285681f24cce2eca62) <a id="structFRHAPI__PlayerPersonResponse_1a38bfe4967a766d285681f24cce2eca62"></a>
+
+true if RoleId_Optional has been set to a value
+
+#### `public virtual bool `[`FromJson`](#structFRHAPI__PlayerPersonResponse_1afc12973fb7a26385782fae13b652a33a)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlayerPersonResponse_1afc12973fb7a26385782fae13b652a33a"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -103,7 +125,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PlayerPersonResponse_1a07e5f87c8b258ba8b4b5f9cf24294188)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlayerPersonResponse_1a07e5f87c8b258ba8b4b5f9cf24294188"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PlayerPersonResponse_1a92b17a99bd2b4d9a649da7868a8422fa)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlayerPersonResponse_1a92b17a99bd2b4d9a649da7868a8422fa"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -186,6 +208,10 @@ Sets the value of ActivePlayerId_Optional and also sets ActivePlayerId_IsSet to 
 
 Clears the value of ActivePlayerId_Optional and sets ActivePlayerId_IsSet to false.
 
+#### `public inline bool `[`IsActivePlayerIdSet`](#structFRHAPI__PlayerPersonResponse_1ae9dedb7d6010ae53929c7d6e36d7488f)`() const` <a id="structFRHAPI__PlayerPersonResponse_1ae9dedb7d6010ae53929c7d6e36d7488f"></a>
+
+Checks whether ActivePlayerId_Optional has been set.
+
 #### `public inline bool `[`IsActivePlayerIdDefaultValue`](#structFRHAPI__PlayerPersonResponse_1a7b9f33082c19d3b28c613a7dbfd8243e)`() const` <a id="structFRHAPI__PlayerPersonResponse_1a7b9f33082c19d3b28c613a7dbfd8243e"></a>
 
 Returns true if ActivePlayerId_Optional is set and matches the default value.
@@ -230,6 +256,10 @@ Sets the value of ActivePlayerUuid_Optional and also sets ActivePlayerUuid_IsSet
 
 Clears the value of ActivePlayerUuid_Optional and sets ActivePlayerUuid_IsSet to false.
 
+#### `public inline bool `[`IsActivePlayerUuidSet`](#structFRHAPI__PlayerPersonResponse_1a40cd59e4ade4e758ec73fc488f616ac0)`() const` <a id="structFRHAPI__PlayerPersonResponse_1a40cd59e4ade4e758ec73fc488f616ac0"></a>
+
+Checks whether ActivePlayerUuid_Optional has been set.
+
 #### `public inline FGuid & `[`GetPersonId`](#structFRHAPI__PlayerPersonResponse_1ac85300f4fb4136190db63cae819ab715)`()` <a id="structFRHAPI__PlayerPersonResponse_1ac85300f4fb4136190db63cae819ab715"></a>
 
 Gets the value of PersonId.
@@ -245,4 +275,44 @@ Sets the value of PersonId.
 #### `public inline void `[`SetPersonId`](#structFRHAPI__PlayerPersonResponse_1a2b42e72a1a9775df4f065c704ae18dcc)`(FGuid && NewValue)` <a id="structFRHAPI__PlayerPersonResponse_1a2b42e72a1a9775df4f065c704ae18dcc"></a>
 
 Sets the value of PersonId using move semantics.
+
+#### `public inline FString & `[`GetRoleId`](#structFRHAPI__PlayerPersonResponse_1a276caf68cbaaf0ebee7cdee1838df9d3)`()` <a id="structFRHAPI__PlayerPersonResponse_1a276caf68cbaaf0ebee7cdee1838df9d3"></a>
+
+Gets the value of RoleId_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetRoleId`](#structFRHAPI__PlayerPersonResponse_1a4dbfa515f227109de4515c5b9cb87ebc)`() const` <a id="structFRHAPI__PlayerPersonResponse_1a4dbfa515f227109de4515c5b9cb87ebc"></a>
+
+Gets the value of RoleId_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetRoleId`](#structFRHAPI__PlayerPersonResponse_1a390ddf88faa39194ec820718fb62ad4e)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlayerPersonResponse_1a390ddf88faa39194ec820718fb62ad4e"></a>
+
+Gets the value of RoleId_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetRoleId`](#structFRHAPI__PlayerPersonResponse_1a795e80b4c10ba64fda9f714128df6974)`(FString & OutValue) const` <a id="structFRHAPI__PlayerPersonResponse_1a795e80b4c10ba64fda9f714128df6974"></a>
+
+Fills OutValue with the value of RoleId_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline FString * `[`GetRoleIdOrNull`](#structFRHAPI__PlayerPersonResponse_1a2a582f0eef7f58addd70179767180bf1)`()` <a id="structFRHAPI__PlayerPersonResponse_1a2a582f0eef7f58addd70179767180bf1"></a>
+
+Returns a pointer to RoleId_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const FString * `[`GetRoleIdOrNull`](#structFRHAPI__PlayerPersonResponse_1a78b4743866b0aede56e9c7bdc40dd8c8)`() const` <a id="structFRHAPI__PlayerPersonResponse_1a78b4743866b0aede56e9c7bdc40dd8c8"></a>
+
+Returns a pointer to RoleId_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetRoleId`](#structFRHAPI__PlayerPersonResponse_1a8ff2a899d7bb20917687024b5f6e93fa)`(const FString & NewValue)` <a id="structFRHAPI__PlayerPersonResponse_1a8ff2a899d7bb20917687024b5f6e93fa"></a>
+
+Sets the value of RoleId_Optional and also sets RoleId_IsSet to true.
+
+#### `public inline void `[`SetRoleId`](#structFRHAPI__PlayerPersonResponse_1a209f7147883acbde77d9715329bd3158)`(FString && NewValue)` <a id="structFRHAPI__PlayerPersonResponse_1a209f7147883acbde77d9715329bd3158"></a>
+
+Sets the value of RoleId_Optional and also sets RoleId_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearRoleId`](#structFRHAPI__PlayerPersonResponse_1a0e2d859a90de28ce4aa6bce422c66761)`()` <a id="structFRHAPI__PlayerPersonResponse_1a0e2d859a90de28ce4aa6bce422c66761"></a>
+
+Clears the value of RoleId_Optional and sets RoleId_IsSet to false.
+
+#### `public inline bool `[`IsRoleIdSet`](#structFRHAPI__PlayerPersonResponse_1a2cad8daa1a192c9602043e73967760e4)`() const` <a id="structFRHAPI__PlayerPersonResponse_1a2cad8daa1a192c9602043e73967760e4"></a>
+
+Checks whether RoleId_Optional has been set.
 

@@ -44,13 +44,13 @@ bool FRHAPI_XpTables::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonXpTablesField = (*Object)->TryGetField(TEXT("xp_tables"));
-	if (JsonXpTablesField.IsValid() && !JsonXpTablesField->IsNull())
+	if (JsonXpTablesField.IsValid())
 	{
 		XpTables_IsSet = TryGetJsonValue(JsonXpTablesField, XpTables_Optional);
 		ParseSuccess &= XpTables_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
-	if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
+	if (JsonCacheInfoField.IsValid())
 	{
 		CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
 		ParseSuccess &= CacheInfo_IsSet;

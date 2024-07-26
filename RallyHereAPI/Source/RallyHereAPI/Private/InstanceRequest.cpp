@@ -64,37 +64,37 @@ bool FRHAPI_InstanceRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonInstanceIdField = (*Object)->TryGetField(TEXT("instance_id"));
-	if (JsonInstanceIdField.IsValid() && !JsonInstanceIdField->IsNull())
+	if (JsonInstanceIdField.IsValid())
 	{
 		InstanceId_IsSet = TryGetJsonValue(JsonInstanceIdField, InstanceId_Optional);
 		ParseSuccess &= InstanceId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonInstanceStartupParamsField = (*Object)->TryGetField(TEXT("instance_startup_params"));
-	if (JsonInstanceStartupParamsField.IsValid() && !JsonInstanceStartupParamsField->IsNull())
+	if (JsonInstanceStartupParamsField.IsValid())
 	{
 		InstanceStartupParams_IsSet = TryGetJsonValue(JsonInstanceStartupParamsField, InstanceStartupParams_Optional);
 		ParseSuccess &= InstanceStartupParams_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonHostTypeField = (*Object)->TryGetField(TEXT("host_type"));
-	if (JsonHostTypeField.IsValid() && !JsonHostTypeField->IsNull())
+	if (JsonHostTypeField.IsValid())
 	{
 		HostType_IsSet = TryGetJsonValue(JsonHostTypeField, HostType_Optional);
 		ParseSuccess &= HostType_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonInstanceRequestTemplateIdField = (*Object)->TryGetField(TEXT("instance_request_template_id"));
-	if (JsonInstanceRequestTemplateIdField.IsValid() && !JsonInstanceRequestTemplateIdField->IsNull())
+	if (JsonInstanceRequestTemplateIdField.IsValid())
 	{
 		InstanceRequestTemplateId_IsSet = TryGetJsonValue(JsonInstanceRequestTemplateIdField, InstanceRequestTemplateId_Optional);
 		ParseSuccess &= InstanceRequestTemplateId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonHostPlayerUuidField = (*Object)->TryGetField(TEXT("host_player_uuid"));
-	if (JsonHostPlayerUuidField.IsValid() && !JsonHostPlayerUuidField->IsNull())
+	if (JsonHostPlayerUuidField.IsValid())
 	{
 		HostPlayerUuid_IsSet = TryGetJsonValue(JsonHostPlayerUuidField, HostPlayerUuid_Optional);
 		ParseSuccess &= HostPlayerUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	if (JsonCustomDataField.IsValid())
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;

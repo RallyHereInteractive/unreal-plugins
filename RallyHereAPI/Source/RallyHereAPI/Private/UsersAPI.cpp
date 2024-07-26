@@ -469,9 +469,7 @@ FString FResponse_DequeueMeForPurge::GetHttpResponseCodeDescription(EHttpRespons
 	case 204:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
-	case 500:
-		return TEXT("Internal Server Error");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -493,8 +491,6 @@ bool FResponse_DequeueMeForPurge::ParseHeaders()
 		break;
 	case 403:
 		break;
-	case 500:
-		break;
 	default:
 		break;
 	}
@@ -502,22 +498,10 @@ bool FResponse_DequeueMeForPurge::ParseHeaders()
 	return bParsedAllRequiredHeaders;
 }
 
-bool FResponse_DequeueMeForPurge::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_DequeueMeForPurge::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
-	{
-		return false;
-	}
-
-	// forward on to type only handler
-	return TryGetContent(OutContent);
-}
-
-bool FResponse_DequeueMeForPurge::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
-{
-	// if this is not the correct response code, fail quickly.
-	if ((int)GetHttpResponseCode() != 500)
 	{
 		return false;
 	}
@@ -688,11 +672,9 @@ FString FResponse_DequeuePersonForPurge::GetHttpResponseCodeDescription(EHttpRes
 	case 204:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 422:
 		return TEXT("Validation Error");
-	case 500:
-		return TEXT("Internal Server Error");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -716,8 +698,6 @@ bool FResponse_DequeuePersonForPurge::ParseHeaders()
 		break;
 	case 422:
 		break;
-	case 500:
-		break;
 	default:
 		break;
 	}
@@ -725,7 +705,7 @@ bool FResponse_DequeuePersonForPurge::ParseHeaders()
 	return bParsedAllRequiredHeaders;
 }
 
-bool FResponse_DequeuePersonForPurge::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_DequeuePersonForPurge::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
@@ -741,18 +721,6 @@ bool FResponse_DequeuePersonForPurge::TryGetContentFor422(FRHAPI_HTTPValidationE
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
-	{
-		return false;
-	}
-
-	// forward on to type only handler
-	return TryGetContent(OutContent);
-}
-
-bool FResponse_DequeuePersonForPurge::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
-{
-	// if this is not the correct response code, fail quickly.
-	if ((int)GetHttpResponseCode() != 500)
 	{
 		return false;
 	}
@@ -1707,10 +1675,8 @@ FString FResponse_GetAllRoles::GetHttpResponseCodeDescription(EHttpResponseCodes
 	{
 	case 200:
 		return TEXT("Successful Response");
-	case 400:
-		return TEXT("Bad Request");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -1730,8 +1696,6 @@ bool FResponse_GetAllRoles::ParseHeaders()
 	{
 	case 200:
 		break;
-	case 400:
-		break;
 	case 403:
 		break;
 	default:
@@ -1745,18 +1709,6 @@ bool FResponse_GetAllRoles::TryGetContentFor200(TArray<FRHAPI_Role>& OutContent)
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 200)
-	{
-		return false;
-	}
-
-	// forward on to type only handler
-	return TryGetContent(OutContent);
-}
-
-bool FResponse_GetAllRoles::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
-{
-	// if this is not the correct response code, fail quickly.
-	if ((int)GetHttpResponseCode() != 400)
 	{
 		return false;
 	}
@@ -1789,16 +1741,6 @@ bool FResponse_GetAllRoles::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 				if (TryGetJsonValue(JsonValue, Object))
 				{
 					ParsedContent.Set<TArray<FRHAPI_Role>>(Object);
-					bParsed = true;
-				}
-				break;
-			} 
-		case 400:
-			{
-				FRHAPI_HzApiErrorModel Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 					bParsed = true;
 				}
 				break;
@@ -2649,11 +2591,9 @@ FString FResponse_GetPerson::GetHttpResponseCodeDescription(EHttpResponseCodes::
 	case 200:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 422:
 		return TEXT("Validation Error");
-	case 500:
-		return TEXT("Internal Server Error");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -2677,8 +2617,6 @@ bool FResponse_GetPerson::ParseHeaders()
 		break;
 	case 422:
 		break;
-	case 500:
-		break;
 	default:
 		break;
 	}
@@ -2698,7 +2636,7 @@ bool FResponse_GetPerson::TryGetContentFor200(FRHAPI_PersonInfoResponse& OutCont
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetPerson::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPerson::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
@@ -2714,18 +2652,6 @@ bool FResponse_GetPerson::TryGetContentFor422(FRHAPI_HTTPValidationError& OutCon
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
-	{
-		return false;
-	}
-
-	// forward on to type only handler
-	return TryGetContent(OutContent);
-}
-
-bool FResponse_GetPerson::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
-{
-	// if this is not the correct response code, fail quickly.
-	if ((int)GetHttpResponseCode() != 500)
 	{
 		return false;
 	}
@@ -2752,10 +2678,10 @@ bool FResponse_GetPerson::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 			} 
 		case 403:
 			{
-				FRHAPI_MessageOnly Object;
+				FRHAPI_HzApiErrorModel Object;
 				if (TryGetJsonValue(JsonValue, Object))
 				{
-					ParsedContent.Set<FRHAPI_MessageOnly>(Object);
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 					bParsed = true;
 				}
 				break;
@@ -2766,16 +2692,6 @@ bool FResponse_GetPerson::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 				if (TryGetJsonValue(JsonValue, Object))
 				{
 					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
-					bParsed = true;
-				}
-				break;
-			} 
-		case 500:
-			{
-				FRHAPI_MessageOnly Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_MessageOnly>(Object);
 					bParsed = true;
 				}
 				break;
@@ -2950,11 +2866,9 @@ FString FResponse_GetPersonEmailList::GetHttpResponseCodeDescription(EHttpRespon
 	case 200:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 422:
 		return TEXT("Validation Error");
-	case 500:
-		return TEXT("Internal Server Error");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -2978,8 +2892,6 @@ bool FResponse_GetPersonEmailList::ParseHeaders()
 		break;
 	case 422:
 		break;
-	case 500:
-		break;
 	default:
 		break;
 	}
@@ -2999,7 +2911,7 @@ bool FResponse_GetPersonEmailList::TryGetContentFor200(FRHAPI_PersonEmailListRes
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetPersonEmailList::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPersonEmailList::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
@@ -3015,18 +2927,6 @@ bool FResponse_GetPersonEmailList::TryGetContentFor422(FRHAPI_HTTPValidationErro
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
-	{
-		return false;
-	}
-
-	// forward on to type only handler
-	return TryGetContent(OutContent);
-}
-
-bool FResponse_GetPersonEmailList::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
-{
-	// if this is not the correct response code, fail quickly.
-	if ((int)GetHttpResponseCode() != 500)
 	{
 		return false;
 	}
@@ -3053,10 +2953,10 @@ bool FResponse_GetPersonEmailList::FromJson(const TSharedPtr<FJsonValue>& JsonVa
 			} 
 		case 403:
 			{
-				FRHAPI_MessageOnly Object;
+				FRHAPI_HzApiErrorModel Object;
 				if (TryGetJsonValue(JsonValue, Object))
 				{
-					ParsedContent.Set<FRHAPI_MessageOnly>(Object);
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 					bParsed = true;
 				}
 				break;
@@ -3067,16 +2967,6 @@ bool FResponse_GetPersonEmailList::FromJson(const TSharedPtr<FJsonValue>& JsonVa
 				if (TryGetJsonValue(JsonValue, Object))
 				{
 					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
-					bParsed = true;
-				}
-				break;
-			} 
-		case 500:
-			{
-				FRHAPI_MessageOnly Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_MessageOnly>(Object);
 					bParsed = true;
 				}
 				break;
@@ -3246,9 +3136,7 @@ FString FResponse_GetPersonEmailListForSelf::GetHttpResponseCodeDescription(EHtt
 	case 200:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
-	case 500:
-		return TEXT("Internal Server Error");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -3270,8 +3158,6 @@ bool FResponse_GetPersonEmailListForSelf::ParseHeaders()
 		break;
 	case 403:
 		break;
-	case 500:
-		break;
 	default:
 		break;
 	}
@@ -3291,22 +3177,10 @@ bool FResponse_GetPersonEmailListForSelf::TryGetContentFor200(FRHAPI_PersonEmail
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetPersonEmailListForSelf::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPersonEmailListForSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
-	{
-		return false;
-	}
-
-	// forward on to type only handler
-	return TryGetContent(OutContent);
-}
-
-bool FResponse_GetPersonEmailListForSelf::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
-{
-	// if this is not the correct response code, fail quickly.
-	if ((int)GetHttpResponseCode() != 500)
 	{
 		return false;
 	}
@@ -3333,20 +3207,10 @@ bool FResponse_GetPersonEmailListForSelf::FromJson(const TSharedPtr<FJsonValue>&
 			} 
 		case 403:
 			{
-				FRHAPI_MessageOnly Object;
+				FRHAPI_HzApiErrorModel Object;
 				if (TryGetJsonValue(JsonValue, Object))
 				{
-					ParsedContent.Set<FRHAPI_MessageOnly>(Object);
-					bParsed = true;
-				}
-				break;
-			} 
-		case 500:
-			{
-				FRHAPI_MessageOnly Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_MessageOnly>(Object);
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 					bParsed = true;
 				}
 				break;
@@ -3516,9 +3380,7 @@ FString FResponse_GetPersonForSelf::GetHttpResponseCodeDescription(EHttpResponse
 	case 200:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
-	case 500:
-		return TEXT("Internal Server Error");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -3540,8 +3402,6 @@ bool FResponse_GetPersonForSelf::ParseHeaders()
 		break;
 	case 403:
 		break;
-	case 500:
-		break;
 	default:
 		break;
 	}
@@ -3561,22 +3421,10 @@ bool FResponse_GetPersonForSelf::TryGetContentFor200(FRHAPI_PersonInfoResponse& 
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetPersonForSelf::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPersonForSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
-	{
-		return false;
-	}
-
-	// forward on to type only handler
-	return TryGetContent(OutContent);
-}
-
-bool FResponse_GetPersonForSelf::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
-{
-	// if this is not the correct response code, fail quickly.
-	if ((int)GetHttpResponseCode() != 500)
 	{
 		return false;
 	}
@@ -3603,20 +3451,10 @@ bool FResponse_GetPersonForSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValu
 			} 
 		case 403:
 			{
-				FRHAPI_MessageOnly Object;
+				FRHAPI_HzApiErrorModel Object;
 				if (TryGetJsonValue(JsonValue, Object))
 				{
-					ParsedContent.Set<FRHAPI_MessageOnly>(Object);
-					bParsed = true;
-				}
-				break;
-			} 
-		case 500:
-			{
-				FRHAPI_MessageOnly Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_MessageOnly>(Object);
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 					bParsed = true;
 				}
 				break;
@@ -6437,11 +6275,9 @@ FString FResponse_GetPlayersPaged::GetHttpResponseCodeDescription(EHttpResponseC
 	case 400:
 		return TEXT("Bad Request");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 422:
 		return TEXT("Validation Error");
-	case 500:
-		return TEXT("Internal Server Error");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -6467,8 +6303,6 @@ bool FResponse_GetPlayersPaged::ParseHeaders()
 		break;
 	case 422:
 		break;
-	case 500:
-		break;
 	default:
 		break;
 	}
@@ -6488,7 +6322,7 @@ bool FResponse_GetPlayersPaged::TryGetContentFor200(FRHAPI_PlayerIterateResponse
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetPlayersPaged::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayersPaged::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 400)
@@ -6500,7 +6334,7 @@ bool FResponse_GetPlayersPaged::TryGetContentFor400(FRHAPI_MessageOnly& OutConte
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetPlayersPaged::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetPlayersPaged::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
@@ -6516,18 +6350,6 @@ bool FResponse_GetPlayersPaged::TryGetContentFor422(FRHAPI_HTTPValidationError& 
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
-	{
-		return false;
-	}
-
-	// forward on to type only handler
-	return TryGetContent(OutContent);
-}
-
-bool FResponse_GetPlayersPaged::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
-{
-	// if this is not the correct response code, fail quickly.
-	if ((int)GetHttpResponseCode() != 500)
 	{
 		return false;
 	}
@@ -6554,20 +6376,20 @@ bool FResponse_GetPlayersPaged::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 			} 
 		case 400:
 			{
-				FRHAPI_MessageOnly Object;
+				FRHAPI_HzApiErrorModel Object;
 				if (TryGetJsonValue(JsonValue, Object))
 				{
-					ParsedContent.Set<FRHAPI_MessageOnly>(Object);
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 					bParsed = true;
 				}
 				break;
 			} 
 		case 403:
 			{
-				FRHAPI_MessageOnly Object;
+				FRHAPI_HzApiErrorModel Object;
 				if (TryGetJsonValue(JsonValue, Object))
 				{
-					ParsedContent.Set<FRHAPI_MessageOnly>(Object);
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 					bParsed = true;
 				}
 				break;
@@ -6578,16 +6400,6 @@ bool FResponse_GetPlayersPaged::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 				if (TryGetJsonValue(JsonValue, Object))
 				{
 					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
-					bParsed = true;
-				}
-				break;
-			} 
-		case 500:
-			{
-				FRHAPI_MessageOnly Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_MessageOnly>(Object);
 					bParsed = true;
 				}
 				break;
@@ -6757,11 +6569,9 @@ FString FResponse_GetQueuePurgeStatusForMe::GetHttpResponseCodeDescription(EHttp
 	case 200:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT("Not Found");
-	case 500:
-		return TEXT("Internal Server Error");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -6785,8 +6595,6 @@ bool FResponse_GetQueuePurgeStatusForMe::ParseHeaders()
 		break;
 	case 404:
 		break;
-	case 500:
-		break;
 	default:
 		break;
 	}
@@ -6806,7 +6614,7 @@ bool FResponse_GetQueuePurgeStatusForMe::TryGetContentFor200(FRHAPI_PurgeRespons
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetQueuePurgeStatusForMe::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetQueuePurgeStatusForMe::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
@@ -6822,18 +6630,6 @@ bool FResponse_GetQueuePurgeStatusForMe::TryGetContentFor404(FRHAPI_HzApiErrorMo
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 404)
-	{
-		return false;
-	}
-
-	// forward on to type only handler
-	return TryGetContent(OutContent);
-}
-
-bool FResponse_GetQueuePurgeStatusForMe::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
-{
-	// if this is not the correct response code, fail quickly.
-	if ((int)GetHttpResponseCode() != 500)
 	{
 		return false;
 	}
@@ -6860,10 +6656,10 @@ bool FResponse_GetQueuePurgeStatusForMe::FromJson(const TSharedPtr<FJsonValue>& 
 			} 
 		case 403:
 			{
-				FRHAPI_MessageOnly Object;
+				FRHAPI_HzApiErrorModel Object;
 				if (TryGetJsonValue(JsonValue, Object))
 				{
-					ParsedContent.Set<FRHAPI_MessageOnly>(Object);
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 					bParsed = true;
 				}
 				break;
@@ -6874,16 +6670,6 @@ bool FResponse_GetQueuePurgeStatusForMe::FromJson(const TSharedPtr<FJsonValue>& 
 				if (TryGetJsonValue(JsonValue, Object))
 				{
 					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
-					bParsed = true;
-				}
-				break;
-			} 
-		case 500:
-			{
-				FRHAPI_MessageOnly Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_MessageOnly>(Object);
 					bParsed = true;
 				}
 				break;
@@ -7058,13 +6844,11 @@ FString FResponse_GetQueuePurgeStatusForPerson::GetHttpResponseCodeDescription(E
 	case 200:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT("Not Found");
 	case 422:
 		return TEXT("Validation Error");
-	case 500:
-		return TEXT("Internal Server Error");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -7090,8 +6874,6 @@ bool FResponse_GetQueuePurgeStatusForPerson::ParseHeaders()
 		break;
 	case 422:
 		break;
-	case 500:
-		break;
 	default:
 		break;
 	}
@@ -7111,7 +6893,7 @@ bool FResponse_GetQueuePurgeStatusForPerson::TryGetContentFor200(FRHAPI_PurgeRes
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetQueuePurgeStatusForPerson::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_GetQueuePurgeStatusForPerson::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
@@ -7147,18 +6929,6 @@ bool FResponse_GetQueuePurgeStatusForPerson::TryGetContentFor422(FRHAPI_HTTPVali
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetQueuePurgeStatusForPerson::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
-{
-	// if this is not the correct response code, fail quickly.
-	if ((int)GetHttpResponseCode() != 500)
-	{
-		return false;
-	}
-
-	// forward on to type only handler
-	return TryGetContent(OutContent);
-}
-
 bool FResponse_GetQueuePurgeStatusForPerson::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	bool bParsed = false;
@@ -7177,10 +6947,10 @@ bool FResponse_GetQueuePurgeStatusForPerson::FromJson(const TSharedPtr<FJsonValu
 			} 
 		case 403:
 			{
-				FRHAPI_MessageOnly Object;
+				FRHAPI_HzApiErrorModel Object;
 				if (TryGetJsonValue(JsonValue, Object))
 				{
-					ParsedContent.Set<FRHAPI_MessageOnly>(Object);
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 					bParsed = true;
 				}
 				break;
@@ -7201,16 +6971,6 @@ bool FResponse_GetQueuePurgeStatusForPerson::FromJson(const TSharedPtr<FJsonValu
 				if (TryGetJsonValue(JsonValue, Object))
 				{
 					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
-					bParsed = true;
-				}
-				break;
-			} 
-		case 500:
-			{
-				FRHAPI_MessageOnly Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_MessageOnly>(Object);
 					bParsed = true;
 				}
 				break;
@@ -7925,13 +7685,11 @@ FString FResponse_QueueMeForPurge::GetHttpResponseCodeDescription(EHttpResponseC
 	case 202:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 409:
 		return TEXT("Conflict");
 	case 422:
 		return TEXT("Validation Error");
-	case 500:
-		return TEXT("Internal Server Error");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -7957,8 +7715,6 @@ bool FResponse_QueueMeForPurge::ParseHeaders()
 		break;
 	case 422:
 		break;
-	case 500:
-		break;
 	default:
 		break;
 	}
@@ -7978,7 +7734,7 @@ bool FResponse_QueueMeForPurge::TryGetContentFor202(FRHAPI_PurgeResponse& OutCon
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_QueueMeForPurge::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_QueueMeForPurge::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
@@ -8014,18 +7770,6 @@ bool FResponse_QueueMeForPurge::TryGetContentFor422(FRHAPI_HTTPValidationError& 
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_QueueMeForPurge::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
-{
-	// if this is not the correct response code, fail quickly.
-	if ((int)GetHttpResponseCode() != 500)
-	{
-		return false;
-	}
-
-	// forward on to type only handler
-	return TryGetContent(OutContent);
-}
-
 bool FResponse_QueueMeForPurge::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	bool bParsed = false;
@@ -8044,10 +7788,10 @@ bool FResponse_QueueMeForPurge::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 			} 
 		case 403:
 			{
-				FRHAPI_MessageOnly Object;
+				FRHAPI_HzApiErrorModel Object;
 				if (TryGetJsonValue(JsonValue, Object))
 				{
-					ParsedContent.Set<FRHAPI_MessageOnly>(Object);
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 					bParsed = true;
 				}
 				break;
@@ -8068,16 +7812,6 @@ bool FResponse_QueueMeForPurge::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 				if (TryGetJsonValue(JsonValue, Object))
 				{
 					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
-					bParsed = true;
-				}
-				break;
-			} 
-		case 500:
-			{
-				FRHAPI_MessageOnly Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_MessageOnly>(Object);
 					bParsed = true;
 				}
 				break;
@@ -8263,11 +7997,9 @@ FString FResponse_QueuePersonForPurge::GetHttpResponseCodeDescription(EHttpRespo
 	case 202:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 422:
 		return TEXT("Validation Error");
-	case 500:
-		return TEXT("Internal Server Error");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -8291,8 +8023,6 @@ bool FResponse_QueuePersonForPurge::ParseHeaders()
 		break;
 	case 422:
 		break;
-	case 500:
-		break;
 	default:
 		break;
 	}
@@ -8312,7 +8042,7 @@ bool FResponse_QueuePersonForPurge::TryGetContentFor202(FRHAPI_PurgeResponse& Ou
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_QueuePersonForPurge::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_QueuePersonForPurge::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
@@ -8328,18 +8058,6 @@ bool FResponse_QueuePersonForPurge::TryGetContentFor422(FRHAPI_HTTPValidationErr
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
-	{
-		return false;
-	}
-
-	// forward on to type only handler
-	return TryGetContent(OutContent);
-}
-
-bool FResponse_QueuePersonForPurge::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
-{
-	// if this is not the correct response code, fail quickly.
-	if ((int)GetHttpResponseCode() != 500)
 	{
 		return false;
 	}
@@ -8366,10 +8084,10 @@ bool FResponse_QueuePersonForPurge::FromJson(const TSharedPtr<FJsonValue>& JsonV
 			} 
 		case 403:
 			{
-				FRHAPI_MessageOnly Object;
+				FRHAPI_HzApiErrorModel Object;
 				if (TryGetJsonValue(JsonValue, Object))
 				{
-					ParsedContent.Set<FRHAPI_MessageOnly>(Object);
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 					bParsed = true;
 				}
 				break;
@@ -8380,16 +8098,6 @@ bool FResponse_QueuePersonForPurge::FromJson(const TSharedPtr<FJsonValue>& JsonV
 				if (TryGetJsonValue(JsonValue, Object))
 				{
 					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
-					bParsed = true;
-				}
-				break;
-			} 
-		case 500:
-			{
-				FRHAPI_MessageOnly Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_MessageOnly>(Object);
 					bParsed = true;
 				}
 				break;
@@ -8819,11 +8527,9 @@ FString FResponse_UpdatePerson::GetHttpResponseCodeDescription(EHttpResponseCode
 	case 200:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 422:
 		return TEXT("Validation Error");
-	case 500:
-		return TEXT("Internal Server Error");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -8847,8 +8553,6 @@ bool FResponse_UpdatePerson::ParseHeaders()
 		break;
 	case 422:
 		break;
-	case 500:
-		break;
 	default:
 		break;
 	}
@@ -8868,7 +8572,7 @@ bool FResponse_UpdatePerson::TryGetContentFor200(FRHAPI_JsonValue& OutContent) c
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_UpdatePerson::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_UpdatePerson::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
@@ -8884,18 +8588,6 @@ bool FResponse_UpdatePerson::TryGetContentFor422(FRHAPI_HTTPValidationError& Out
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
-	{
-		return false;
-	}
-
-	// forward on to type only handler
-	return TryGetContent(OutContent);
-}
-
-bool FResponse_UpdatePerson::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
-{
-	// if this is not the correct response code, fail quickly.
-	if ((int)GetHttpResponseCode() != 500)
 	{
 		return false;
 	}
@@ -8922,10 +8614,10 @@ bool FResponse_UpdatePerson::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 			} 
 		case 403:
 			{
-				FRHAPI_MessageOnly Object;
+				FRHAPI_HzApiErrorModel Object;
 				if (TryGetJsonValue(JsonValue, Object))
 				{
-					ParsedContent.Set<FRHAPI_MessageOnly>(Object);
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 					bParsed = true;
 				}
 				break;
@@ -8936,16 +8628,6 @@ bool FResponse_UpdatePerson::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 				if (TryGetJsonValue(JsonValue, Object))
 				{
 					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
-					bParsed = true;
-				}
-				break;
-			} 
-		case 500:
-			{
-				FRHAPI_MessageOnly Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_MessageOnly>(Object);
 					bParsed = true;
 				}
 				break;
@@ -9131,11 +8813,9 @@ FString FResponse_UpdatePersonEmailList::GetHttpResponseCodeDescription(EHttpRes
 	case 200:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 422:
 		return TEXT("Validation Error");
-	case 500:
-		return TEXT("Internal Server Error");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -9159,8 +8839,6 @@ bool FResponse_UpdatePersonEmailList::ParseHeaders()
 		break;
 	case 422:
 		break;
-	case 500:
-		break;
 	default:
 		break;
 	}
@@ -9180,7 +8858,7 @@ bool FResponse_UpdatePersonEmailList::TryGetContentFor200(FRHAPI_JsonValue& OutC
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_UpdatePersonEmailList::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_UpdatePersonEmailList::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
@@ -9196,18 +8874,6 @@ bool FResponse_UpdatePersonEmailList::TryGetContentFor422(FRHAPI_HTTPValidationE
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
-	{
-		return false;
-	}
-
-	// forward on to type only handler
-	return TryGetContent(OutContent);
-}
-
-bool FResponse_UpdatePersonEmailList::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
-{
-	// if this is not the correct response code, fail quickly.
-	if ((int)GetHttpResponseCode() != 500)
 	{
 		return false;
 	}
@@ -9234,10 +8900,10 @@ bool FResponse_UpdatePersonEmailList::FromJson(const TSharedPtr<FJsonValue>& Jso
 			} 
 		case 403:
 			{
-				FRHAPI_MessageOnly Object;
+				FRHAPI_HzApiErrorModel Object;
 				if (TryGetJsonValue(JsonValue, Object))
 				{
-					ParsedContent.Set<FRHAPI_MessageOnly>(Object);
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 					bParsed = true;
 				}
 				break;
@@ -9248,16 +8914,6 @@ bool FResponse_UpdatePersonEmailList::FromJson(const TSharedPtr<FJsonValue>& Jso
 				if (TryGetJsonValue(JsonValue, Object))
 				{
 					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
-					bParsed = true;
-				}
-				break;
-			} 
-		case 500:
-			{
-				FRHAPI_MessageOnly Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_MessageOnly>(Object);
 					bParsed = true;
 				}
 				break;
@@ -9438,11 +9094,9 @@ FString FResponse_UpdatePersonEmailListForSelf::GetHttpResponseCodeDescription(E
 	case 200:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 422:
 		return TEXT("Validation Error");
-	case 500:
-		return TEXT("Internal Server Error");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -9466,8 +9120,6 @@ bool FResponse_UpdatePersonEmailListForSelf::ParseHeaders()
 		break;
 	case 422:
 		break;
-	case 500:
-		break;
 	default:
 		break;
 	}
@@ -9487,7 +9139,7 @@ bool FResponse_UpdatePersonEmailListForSelf::TryGetContentFor200(FRHAPI_JsonValu
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_UpdatePersonEmailListForSelf::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_UpdatePersonEmailListForSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
@@ -9503,18 +9155,6 @@ bool FResponse_UpdatePersonEmailListForSelf::TryGetContentFor422(FRHAPI_HTTPVali
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
-	{
-		return false;
-	}
-
-	// forward on to type only handler
-	return TryGetContent(OutContent);
-}
-
-bool FResponse_UpdatePersonEmailListForSelf::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
-{
-	// if this is not the correct response code, fail quickly.
-	if ((int)GetHttpResponseCode() != 500)
 	{
 		return false;
 	}
@@ -9541,10 +9181,10 @@ bool FResponse_UpdatePersonEmailListForSelf::FromJson(const TSharedPtr<FJsonValu
 			} 
 		case 403:
 			{
-				FRHAPI_MessageOnly Object;
+				FRHAPI_HzApiErrorModel Object;
 				if (TryGetJsonValue(JsonValue, Object))
 				{
-					ParsedContent.Set<FRHAPI_MessageOnly>(Object);
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 					bParsed = true;
 				}
 				break;
@@ -9555,16 +9195,6 @@ bool FResponse_UpdatePersonEmailListForSelf::FromJson(const TSharedPtr<FJsonValu
 				if (TryGetJsonValue(JsonValue, Object))
 				{
 					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
-					bParsed = true;
-				}
-				break;
-			} 
-		case 500:
-			{
-				FRHAPI_MessageOnly Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_MessageOnly>(Object);
 					bParsed = true;
 				}
 				break;
@@ -9745,11 +9375,9 @@ FString FResponse_UpdatePersonForSelf::GetHttpResponseCodeDescription(EHttpRespo
 	case 200:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 422:
 		return TEXT("Validation Error");
-	case 500:
-		return TEXT("Internal Server Error");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -9773,8 +9401,6 @@ bool FResponse_UpdatePersonForSelf::ParseHeaders()
 		break;
 	case 422:
 		break;
-	case 500:
-		break;
 	default:
 		break;
 	}
@@ -9794,7 +9420,7 @@ bool FResponse_UpdatePersonForSelf::TryGetContentFor200(FRHAPI_JsonValue& OutCon
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_UpdatePersonForSelf::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
+bool FResponse_UpdatePersonForSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
@@ -9810,18 +9436,6 @@ bool FResponse_UpdatePersonForSelf::TryGetContentFor422(FRHAPI_HTTPValidationErr
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
-	{
-		return false;
-	}
-
-	// forward on to type only handler
-	return TryGetContent(OutContent);
-}
-
-bool FResponse_UpdatePersonForSelf::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
-{
-	// if this is not the correct response code, fail quickly.
-	if ((int)GetHttpResponseCode() != 500)
 	{
 		return false;
 	}
@@ -9848,10 +9462,10 @@ bool FResponse_UpdatePersonForSelf::FromJson(const TSharedPtr<FJsonValue>& JsonV
 			} 
 		case 403:
 			{
-				FRHAPI_MessageOnly Object;
+				FRHAPI_HzApiErrorModel Object;
 				if (TryGetJsonValue(JsonValue, Object))
 				{
-					ParsedContent.Set<FRHAPI_MessageOnly>(Object);
+					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 					bParsed = true;
 				}
 				break;
@@ -9862,16 +9476,6 @@ bool FResponse_UpdatePersonForSelf::FromJson(const TSharedPtr<FJsonValue>& JsonV
 				if (TryGetJsonValue(JsonValue, Object))
 				{
 					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
-					bParsed = true;
-				}
-				break;
-			} 
-		case 500:
-			{
-				FRHAPI_MessageOnly Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_MessageOnly>(Object);
 					bParsed = true;
 				}
 				break;
@@ -9900,313 +9504,6 @@ FString Traits_UpdatePersonForSelf::Name = TEXT("UpdatePersonForSelf");
 FHttpRequestPtr Traits_UpdatePersonForSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
 {
 	return InAPI->UpdatePersonForSelf(InRequest, InDelegate, InPriority);
-}
-
-FHttpRequestPtr FUsersAPI::UpsertContact(const FRequest_UpsertContact& Request, const FDelegate_UpsertContact& Delegate /*= FDelegate_UpsertContact()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
-{
-	if (!IsValid())
-		return nullptr;
-
-	// create the http request and tracking structure
-	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
-	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-	// add headers to tracker
-	for(const auto& It : AdditionalHeaderParams)
-	{
-		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-	}
-
-	// setup http request from custom request object
-	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-	{
-		return nullptr;
-	}
-	
-	// allow a delegate to modify the http request (such as binding custom handling delegates)
-	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
-	
-	// update request metadata flags just before we store it in the tracking object
-	FRequestMetadata Metadata = Request.GetRequestMetadata();
-	Request.SetMetadataFlags(Metadata);
-
-	// store metadata in tracking object (last place used by request)
-	RequestData->SetMetadata(Metadata);
-
-	// bind response handler
-	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FUsersAPI::OnUpsertContactResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
-	RequestData->SetDelegate(ResponseDelegate);
-
-	// submit request to http system
-	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
-	if (HttpRequester)
-	{
-		HttpRequester->EnqueueHttpRequest(RequestData);
-	}
-	return RequestData->HttpRequest;
-}
-
-void FUsersAPI::OnUpsertContactResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpsertContact Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-	FHttpRequestCompleteDelegate ResponseDelegate;
-
-	if (AuthContextForRetry)
-	{
-		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FUsersAPI::OnUpsertContactResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-	}
-
-	FResponse_UpsertContact Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
-	{
-		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
-}
-
-FRequest_UpsertContact::FRequest_UpsertContact()
-	: FRequest()
-{
-	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
-}
-
-FName FRequest_UpsertContact::GetSimplifiedPath() const
-{
-	static FName Path = FName(TEXT("/users/v1/sendinblue/contact"));
-	return Path;
-}
-
-FName FRequest_UpsertContact::GetSimplifiedPathWithVerb() const
-{
-	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
-	return PathWithVerb;
-}
-
-FString FRequest_UpsertContact::ComputePath() const
-{
-	FString Path = GetSimplifiedPath().ToString();
-	return Path;
-}
-
-bool FRequest_UpsertContact::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-	static const TArray<FString> Consumes = { TEXT("application/json") };
-	//static const TArray<FString> Produces = { TEXT("application/json") };
-
-	HttpRequest->SetVerb(TEXT("POST"));
-
-	if (!AuthContext && !bDisableAuthRequirement)
-	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpsertContact - missing auth context"));
-		return false;
-	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
-	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpsertContact - failed to add bearer token"));
-		return false;
-	}
-
-	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-	{
-		// Body parameters
-		FString JsonBody;
-		TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
-
-		WriteJsonValue(Writer, SendInBlueContact);
-		Writer->Close();
-
-		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-		HttpRequest->SetContentAsString(JsonBody);
-	}
-	else if (Consumes.Contains(TEXT("multipart/form-data")))
-	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpsertContact - Body parameter (FRHAPI_SendInBlueContact) was ignored, not supported in multipart form"));
-	}
-	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpsertContact - Body parameter (FRHAPI_SendInBlueContact) was ignored, not supported in urlencoded requests"));
-	}
-	else
-	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpsertContact - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-		return false;
-	}
-
-	return true;
-}
-
-FString FResponse_UpsertContact::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
-{
-	switch ((int)InHttpResponseCode)
-	{
-	case 200:
-		return TEXT("Successful Response");
-	case 403:
-		return TEXT("Forbidden");
-	case 422:
-		return TEXT("Validation Error");
-	case 500:
-		return TEXT("Internal Server Error");
-	}
-	
-	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
-}
-
-bool FResponse_UpsertContact::ParseHeaders()
-{
-	if (!Super::ParseHeaders())
-	{
-		return false;
-	}
-
-
-	// determine if all required headers were parsed
-	bool bParsedAllRequiredHeaders = true;
-	switch ((int)GetHttpResponseCode())
-	{
-	case 200:
-		break;
-	case 403:
-		break;
-	case 422:
-		break;
-	case 500:
-		break;
-	default:
-		break;
-	}
-	
-	return bParsedAllRequiredHeaders;
-}
-
-bool FResponse_UpsertContact::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
-{
-	// if this is not the correct response code, fail quickly.
-	if ((int)GetHttpResponseCode() != 200)
-	{
-		return false;
-	}
-
-	// forward on to type only handler
-	return TryGetContent(OutContent);
-}
-
-bool FResponse_UpsertContact::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
-{
-	// if this is not the correct response code, fail quickly.
-	if ((int)GetHttpResponseCode() != 403)
-	{
-		return false;
-	}
-
-	// forward on to type only handler
-	return TryGetContent(OutContent);
-}
-
-bool FResponse_UpsertContact::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
-{
-	// if this is not the correct response code, fail quickly.
-	if ((int)GetHttpResponseCode() != 422)
-	{
-		return false;
-	}
-
-	// forward on to type only handler
-	return TryGetContent(OutContent);
-}
-
-bool FResponse_UpsertContact::TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const
-{
-	// if this is not the correct response code, fail quickly.
-	if ((int)GetHttpResponseCode() != 500)
-	{
-		return false;
-	}
-
-	// forward on to type only handler
-	return TryGetContent(OutContent);
-}
-
-bool FResponse_UpsertContact::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-	bool bParsed = false;
-	// for non default responses, parse into a temporary object to validate the response can be parsed properly
-	switch ((int)GetHttpResponseCode())
-	{  
-		case 200:
-			{
-				FRHAPI_JsonValue Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_JsonValue>(Object);
-					bParsed = true;
-				}
-				break;
-			} 
-		case 403:
-			{
-				FRHAPI_MessageOnly Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_MessageOnly>(Object);
-					bParsed = true;
-				}
-				break;
-			} 
-		case 422:
-			{
-				FRHAPI_HTTPValidationError Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
-					bParsed = true;
-				}
-				break;
-			} 
-		case 500:
-			{
-				FRHAPI_MessageOnly Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_MessageOnly>(Object);
-					bParsed = true;
-				}
-				break;
-			}
-		default:
-			break;
-	}
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	// if using legacy content object, attempt to parse any response into the main content object.  For some legacy reasons around multiple success variants, this needs to ignore the intended type and always parse into the default type
-	PRAGMA_DISABLE_DEPRECATION_WARNINGS;
-	TryGetJsonValue(JsonValue, Content);
-	PRAGMA_ENABLE_DEPRECATION_WARNINGS;
-#endif
-
-	return bParsed;
-}
-
-FResponse_UpsertContact::FResponse_UpsertContact(FRequestMetadata InRequestMetadata)
-	: Super(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_UpsertContact::Name = TEXT("UpsertContact");
-
-FHttpRequestPtr Traits_UpsertContact::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
-{
-	return InAPI->UpsertContact(InRequest, InDelegate, InPriority);
 }
 
 

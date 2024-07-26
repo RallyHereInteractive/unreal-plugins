@@ -649,21 +649,20 @@ void URH_PlayerInfo::SetPlayerSettings(const FString& SettingTypeId, FRH_PlayerS
 
 	for (const auto& Pair : SettingsData.Content)
 	{
-		if (const auto Value = Pair.Value.GetValueOrNull())
+		const auto& Setting = Pair.Value;
+		
+		auto Request = SetSettings::Request();
+		Request.PlayerUuid = RHPlayerUuid;
+		Request.SettingTypeId = SettingTypeId;
+		Request.AuthContext = GetAuthContext();
+		Request.Key = Pair.Key;
+		Request.SetSinglePlayerSettingRequest.SetV(Setting.V);
+		Request.SetSinglePlayerSettingRequest.SetValue(Setting.Value);
+		if (!SetSettings::DoCall(RH_APIs::GetSettingsAPI(), Request, SetSettings::Delegate::CreateUObject(this, &URH_PlayerInfo::OnSetPlayerSettingsResponse, Delegate, SettingTypeId, Pair.Key, SettingsData), GetDefault<URH_IntegrationSettings>()->SettingsUpdatePriority))
 		{
-			auto Request = SetSettings::Request();
-			Request.PlayerUuid = RHPlayerUuid;
-			Request.SettingTypeId = SettingTypeId;
-			Request.AuthContext = GetAuthContext();
-			Request.Key = Pair.Key;
-			Request.SetSinglePlayerSettingRequest.SetV(Pair.Value.V);
-			Request.SetSinglePlayerSettingRequest.SetValue(*Value);
-			if (!SetSettings::DoCall(RH_APIs::GetSettingsAPI(), Request, SetSettings::Delegate::CreateUObject(this, &URH_PlayerInfo::OnSetPlayerSettingsResponse, Delegate, SettingTypeId, Pair.Key, SettingsData), GetDefault<URH_IntegrationSettings>()->SettingsUpdatePriority))
-			{
-				PendingSettingRequestsByTypeId.Remove(SettingTypeId);
-				FRH_PlayerSettingsDataWrapper EmptyWrapper;
-				Delegate.ExecuteIfBound(false, EmptyWrapper);
-			}
+			PendingSettingRequestsByTypeId.Remove(SettingTypeId);
+			FRH_PlayerSettingsDataWrapper EmptyWrapper;
+			Delegate.ExecuteIfBound(false, EmptyWrapper);
 		}
 	}
 }

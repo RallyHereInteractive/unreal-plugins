@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_InventoryPageMeta : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -55,15 +55,17 @@ struct RALLYHEREAPI_API FRHAPI_InventoryPageMeta : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of StartingPosition_Optional and returns true if it has been set, otherwise returns false */
 	bool GetStartingPosition(FDateTime& OutValue) const { if (StartingPosition_IsSet) OutValue = StartingPosition_Optional; return StartingPosition_IsSet; }
 	/** @brief Returns a pointer to StartingPosition_Optional, if it has been set, otherwise returns nullptr */
-	FDateTime* GetStartingPositionOrNull() { if (StartingPosition_IsSet) return &StartingPosition_Optional; return nullptr; }
+	FDateTime* GetStartingPositionOrNull() { if (StartingPosition_IsSet) return (&StartingPosition_Optional); return nullptr; }
 	/** @brief Returns a pointer to StartingPosition_Optional, if it has been set, otherwise returns nullptr */
-	const FDateTime* GetStartingPositionOrNull() const { if (StartingPosition_IsSet) return &StartingPosition_Optional; return nullptr; }
+	const FDateTime* GetStartingPositionOrNull() const { if (StartingPosition_IsSet) return (&StartingPosition_Optional); return nullptr; }
 	/** @brief Sets the value of StartingPosition_Optional and also sets StartingPosition_IsSet to true */
-	void SetStartingPosition(const FDateTime& NewValue) { StartingPosition_Optional = NewValue; StartingPosition_IsSet = true; }
+	void SetStartingPosition(const FDateTime& NewValue) { StartingPosition_Optional = NewValue; StartingPosition_IsSet = true;  }
 	/** @brief Sets the value of StartingPosition_Optional and also sets StartingPosition_IsSet to true using move semantics */
-	void SetStartingPosition(FDateTime&& NewValue) { StartingPosition_Optional = NewValue; StartingPosition_IsSet = true; }
-	 /** @brief Clears the value of StartingPosition_Optional and sets StartingPosition_IsSet to false */
-	void ClearStartingPosition() { StartingPosition_IsSet = false; }
+	void SetStartingPosition(FDateTime&& NewValue) { StartingPosition_Optional = NewValue; StartingPosition_IsSet = true;  }
+	/** @brief Clears the value of StartingPosition_Optional and sets StartingPosition_IsSet to false */
+	void ClearStartingPosition() { StartingPosition_IsSet = false;  }
+	/** @brief Checks whether StartingPosition_Optional has been set */
+	bool IsStartingPositionSet() const { return StartingPosition_IsSet; }
 
 	/** @brief The cursor value pointing to the next page of results. If cursor is provided, starting_position is ignored */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -80,15 +82,17 @@ struct RALLYHEREAPI_API FRHAPI_InventoryPageMeta : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Cursor_Optional and returns true if it has been set, otherwise returns false */
 	bool GetCursor(FString& OutValue) const { if (Cursor_IsSet) OutValue = Cursor_Optional; return Cursor_IsSet; }
 	/** @brief Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetCursorOrNull() { if (Cursor_IsSet) return &Cursor_Optional; return nullptr; }
+	FString* GetCursorOrNull() { if (Cursor_IsSet) return (&Cursor_Optional); return nullptr; }
 	/** @brief Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetCursorOrNull() const { if (Cursor_IsSet) return &Cursor_Optional; return nullptr; }
+	const FString* GetCursorOrNull() const { if (Cursor_IsSet) return (&Cursor_Optional); return nullptr; }
 	/** @brief Sets the value of Cursor_Optional and also sets Cursor_IsSet to true */
-	void SetCursor(const FString& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true; }
+	void SetCursor(const FString& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true;  }
 	/** @brief Sets the value of Cursor_Optional and also sets Cursor_IsSet to true using move semantics */
-	void SetCursor(FString&& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true; }
-	 /** @brief Clears the value of Cursor_Optional and sets Cursor_IsSet to false */
-	void ClearCursor() { Cursor_IsSet = false; }
+	void SetCursor(FString&& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true;  }
+	/** @brief Clears the value of Cursor_Optional and sets Cursor_IsSet to false */
+	void ClearCursor() { Cursor_IsSet = false;  }
+	/** @brief Checks whether Cursor_Optional has been set */
+	bool IsCursorSet() const { return Cursor_IsSet; }
 
 	/** @brief The direction to search. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -105,15 +109,17 @@ struct RALLYHEREAPI_API FRHAPI_InventoryPageMeta : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Sort_Optional and returns true if it has been set, otherwise returns false */
 	bool GetSort(ERHAPI_SortOrder& OutValue) const { if (Sort_IsSet) OutValue = Sort_Optional; return Sort_IsSet; }
 	/** @brief Returns a pointer to Sort_Optional, if it has been set, otherwise returns nullptr */
-	ERHAPI_SortOrder* GetSortOrNull() { if (Sort_IsSet) return &Sort_Optional; return nullptr; }
+	ERHAPI_SortOrder* GetSortOrNull() { if (Sort_IsSet) return (&Sort_Optional); return nullptr; }
 	/** @brief Returns a pointer to Sort_Optional, if it has been set, otherwise returns nullptr */
-	const ERHAPI_SortOrder* GetSortOrNull() const { if (Sort_IsSet) return &Sort_Optional; return nullptr; }
+	const ERHAPI_SortOrder* GetSortOrNull() const { if (Sort_IsSet) return (&Sort_Optional); return nullptr; }
 	/** @brief Sets the value of Sort_Optional and also sets Sort_IsSet to true */
-	void SetSort(const ERHAPI_SortOrder& NewValue) { Sort_Optional = NewValue; Sort_IsSet = true; }
+	void SetSort(const ERHAPI_SortOrder& NewValue) { Sort_Optional = NewValue; Sort_IsSet = true;  }
 	/** @brief Sets the value of Sort_Optional and also sets Sort_IsSet to true using move semantics */
-	void SetSort(ERHAPI_SortOrder&& NewValue) { Sort_Optional = NewValue; Sort_IsSet = true; }
-	 /** @brief Clears the value of Sort_Optional and sets Sort_IsSet to false */
-	void ClearSort() { Sort_IsSet = false; }
+	void SetSort(ERHAPI_SortOrder&& NewValue) { Sort_Optional = NewValue; Sort_IsSet = true;  }
+	/** @brief Clears the value of Sort_Optional and sets Sort_IsSet to false */
+	void ClearSort() { Sort_IsSet = false;  }
+	/** @brief Checks whether Sort_Optional has been set */
+	bool IsSortSet() const { return Sort_IsSet; }
 
 	/** @brief The number of Orders to return */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -130,19 +136,21 @@ struct RALLYHEREAPI_API FRHAPI_InventoryPageMeta : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Limit_Optional and returns true if it has been set, otherwise returns false */
 	bool GetLimit(int32& OutValue) const { if (Limit_IsSet) OutValue = Limit_Optional; return Limit_IsSet; }
 	/** @brief Returns a pointer to Limit_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetLimitOrNull() { if (Limit_IsSet) return &Limit_Optional; return nullptr; }
+	int32* GetLimitOrNull() { if (Limit_IsSet) return (&Limit_Optional); return nullptr; }
 	/** @brief Returns a pointer to Limit_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetLimitOrNull() const { if (Limit_IsSet) return &Limit_Optional; return nullptr; }
+	const int32* GetLimitOrNull() const { if (Limit_IsSet) return (&Limit_Optional); return nullptr; }
 	/** @brief Sets the value of Limit_Optional and also sets Limit_IsSet to true */
-	void SetLimit(const int32& NewValue) { Limit_Optional = NewValue; Limit_IsSet = true; }
+	void SetLimit(const int32& NewValue) { Limit_Optional = NewValue; Limit_IsSet = true;  }
 	/** @brief Sets the value of Limit_Optional and also sets Limit_IsSet to true using move semantics */
-	void SetLimit(int32&& NewValue) { Limit_Optional = NewValue; Limit_IsSet = true; }
-	 /** @brief Clears the value of Limit_Optional and sets Limit_IsSet to false */
-	void ClearLimit() { Limit_Optional = 10; Limit_IsSet = false; }
+	void SetLimit(int32&& NewValue) { Limit_Optional = NewValue; Limit_IsSet = true;  }
+	/** @brief Clears the value of Limit_Optional and sets Limit_IsSet to false */
+	void ClearLimit() { Limit_Optional = 10; Limit_IsSet = false;  }
+	/** @brief Checks whether Limit_Optional has been set */
+	bool IsLimitSet() const { return Limit_IsSet; }
 	/** @brief Returns true if Limit_Optional is set and matches the default value */
 	bool IsLimitDefaultValue() const { return Limit_IsSet && Limit_Optional == 10; }
 	/** @brief Sets the value of Limit_Optional to its default and also sets Limit_IsSet to true */
-	void SetLimitToDefault() { Limit_Optional = 10; Limit_IsSet = true; }
+	void SetLimitToDefault() { SetLimit(10); }
 };
 
 /** @} */

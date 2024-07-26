@@ -638,6 +638,10 @@ inline void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const TVariant<T, 
 	}
 }
 
+inline void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, nullptr_t)
+{
+	Writer->WriteNull();
+}
 
 //////////////////////////////////////////////////////////////////////////
 

@@ -40,46 +40,73 @@ void FRHAPI_MatchPlayerWithMatch::WriteJson(TSharedRef<TJsonWriter<>>& Writer) c
 	if (TeamId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("team_id"));
+		if (TeamId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, TeamId_Optional);
 	}
 	if (PartySessionId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("party_session_id"));
+		if (PartySessionId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, PartySessionId_Optional);
 	}
 	if (Placement_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("placement"));
+		if (Placement_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, Placement_Optional);
 	}
 	if (JoinedMatchTimestamp_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("joined_match_timestamp"));
+		if (JoinedMatchTimestamp_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, JoinedMatchTimestamp_Optional);
 	}
 	if (LeftMatchTimestamp_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("left_match_timestamp"));
+		if (LeftMatchTimestamp_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, LeftMatchTimestamp_Optional);
 	}
 	if (DurationSeconds_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("duration_seconds"));
+		if (DurationSeconds_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, DurationSeconds_Optional);
 	}
 	if (StartingRank_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("starting_rank"));
+		if (StartingRank_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, StartingRank_Optional);
 	}
 	if (FinishingRank_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("finishing_rank"));
+		if (FinishingRank_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, FinishingRank_Optional);
 	}
 	if (CustomData_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("custom_data"));
+		if (CustomData_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
 	}
 	Writer->WriteIdentifierPrefix(TEXT("match"));
@@ -96,79 +123,88 @@ bool FRHAPI_MatchPlayerWithMatch::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonLastModifiedTimestampField = (*Object)->TryGetField(TEXT("last_modified_timestamp"));
-	if (JsonLastModifiedTimestampField.IsValid() && !JsonLastModifiedTimestampField->IsNull())
+	if (JsonLastModifiedTimestampField.IsValid())
 	{
 		LastModifiedTimestamp_IsSet = TryGetJsonValue(JsonLastModifiedTimestampField, LastModifiedTimestamp_Optional);
 		ParseSuccess &= LastModifiedTimestamp_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCreatedTimestampField = (*Object)->TryGetField(TEXT("created_timestamp"));
-	if (JsonCreatedTimestampField.IsValid() && !JsonCreatedTimestampField->IsNull())
+	if (JsonCreatedTimestampField.IsValid())
 	{
 		CreatedTimestamp_IsSet = TryGetJsonValue(JsonCreatedTimestampField, CreatedTimestamp_Optional);
 		ParseSuccess &= CreatedTimestamp_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
-	if (JsonPlayerUuidField.IsValid() && !JsonPlayerUuidField->IsNull())
+	if (JsonPlayerUuidField.IsValid())
 	{
 		PlayerUuid_IsSet = TryGetJsonValue(JsonPlayerUuidField, PlayerUuid_Optional);
 		ParseSuccess &= PlayerUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonTeamIdField = (*Object)->TryGetField(TEXT("team_id"));
-	if (JsonTeamIdField.IsValid() && !JsonTeamIdField->IsNull())
+	if (JsonTeamIdField.IsValid())
 	{
-		TeamId_IsSet = TryGetJsonValue(JsonTeamIdField, TeamId_Optional);
+		TeamId_IsNull = JsonTeamIdField->IsNull();
+		TeamId_IsSet = TeamId_IsNull || TryGetJsonValue(JsonTeamIdField, TeamId_Optional);
 		ParseSuccess &= TeamId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPartySessionIdField = (*Object)->TryGetField(TEXT("party_session_id"));
-	if (JsonPartySessionIdField.IsValid() && !JsonPartySessionIdField->IsNull())
+	if (JsonPartySessionIdField.IsValid())
 	{
-		PartySessionId_IsSet = TryGetJsonValue(JsonPartySessionIdField, PartySessionId_Optional);
+		PartySessionId_IsNull = JsonPartySessionIdField->IsNull();
+		PartySessionId_IsSet = PartySessionId_IsNull || TryGetJsonValue(JsonPartySessionIdField, PartySessionId_Optional);
 		ParseSuccess &= PartySessionId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlacementField = (*Object)->TryGetField(TEXT("placement"));
-	if (JsonPlacementField.IsValid() && !JsonPlacementField->IsNull())
+	if (JsonPlacementField.IsValid())
 	{
-		Placement_IsSet = TryGetJsonValue(JsonPlacementField, Placement_Optional);
+		Placement_IsNull = JsonPlacementField->IsNull();
+		Placement_IsSet = Placement_IsNull || TryGetJsonValue(JsonPlacementField, Placement_Optional);
 		ParseSuccess &= Placement_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonJoinedMatchTimestampField = (*Object)->TryGetField(TEXT("joined_match_timestamp"));
-	if (JsonJoinedMatchTimestampField.IsValid() && !JsonJoinedMatchTimestampField->IsNull())
+	if (JsonJoinedMatchTimestampField.IsValid())
 	{
-		JoinedMatchTimestamp_IsSet = TryGetJsonValue(JsonJoinedMatchTimestampField, JoinedMatchTimestamp_Optional);
+		JoinedMatchTimestamp_IsNull = JsonJoinedMatchTimestampField->IsNull();
+		JoinedMatchTimestamp_IsSet = JoinedMatchTimestamp_IsNull || TryGetJsonValue(JsonJoinedMatchTimestampField, JoinedMatchTimestamp_Optional);
 		ParseSuccess &= JoinedMatchTimestamp_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonLeftMatchTimestampField = (*Object)->TryGetField(TEXT("left_match_timestamp"));
-	if (JsonLeftMatchTimestampField.IsValid() && !JsonLeftMatchTimestampField->IsNull())
+	if (JsonLeftMatchTimestampField.IsValid())
 	{
-		LeftMatchTimestamp_IsSet = TryGetJsonValue(JsonLeftMatchTimestampField, LeftMatchTimestamp_Optional);
+		LeftMatchTimestamp_IsNull = JsonLeftMatchTimestampField->IsNull();
+		LeftMatchTimestamp_IsSet = LeftMatchTimestamp_IsNull || TryGetJsonValue(JsonLeftMatchTimestampField, LeftMatchTimestamp_Optional);
 		ParseSuccess &= LeftMatchTimestamp_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonDurationSecondsField = (*Object)->TryGetField(TEXT("duration_seconds"));
-	if (JsonDurationSecondsField.IsValid() && !JsonDurationSecondsField->IsNull())
+	if (JsonDurationSecondsField.IsValid())
 	{
-		DurationSeconds_IsSet = TryGetJsonValue(JsonDurationSecondsField, DurationSeconds_Optional);
+		DurationSeconds_IsNull = JsonDurationSecondsField->IsNull();
+		DurationSeconds_IsSet = DurationSeconds_IsNull || TryGetJsonValue(JsonDurationSecondsField, DurationSeconds_Optional);
 		ParseSuccess &= DurationSeconds_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonStartingRankField = (*Object)->TryGetField(TEXT("starting_rank"));
-	if (JsonStartingRankField.IsValid() && !JsonStartingRankField->IsNull())
+	if (JsonStartingRankField.IsValid())
 	{
-		StartingRank_IsSet = TryGetJsonValue(JsonStartingRankField, StartingRank_Optional);
+		StartingRank_IsNull = JsonStartingRankField->IsNull();
+		StartingRank_IsSet = StartingRank_IsNull || TryGetJsonValue(JsonStartingRankField, StartingRank_Optional);
 		ParseSuccess &= StartingRank_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonFinishingRankField = (*Object)->TryGetField(TEXT("finishing_rank"));
-	if (JsonFinishingRankField.IsValid() && !JsonFinishingRankField->IsNull())
+	if (JsonFinishingRankField.IsValid())
 	{
-		FinishingRank_IsSet = TryGetJsonValue(JsonFinishingRankField, FinishingRank_Optional);
+		FinishingRank_IsNull = JsonFinishingRankField->IsNull();
+		FinishingRank_IsSet = FinishingRank_IsNull || TryGetJsonValue(JsonFinishingRankField, FinishingRank_Optional);
 		ParseSuccess &= FinishingRank_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	if (JsonCustomDataField.IsValid())
 	{
-		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
+		CustomData_IsNull = JsonCustomDataField->IsNull();
+		CustomData_IsSet = CustomData_IsNull || TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonMatchField = (*Object)->TryGetField(TEXT("match"));
-	ParseSuccess &= JsonMatchField.IsValid() && !JsonMatchField->IsNull() && TryGetJsonValue(JsonMatchField, Match);
+	ParseSuccess &= JsonMatchField.IsValid() && (!JsonMatchField->IsNull() &&  TryGetJsonValue(JsonMatchField, Match));
 
 	return ParseSuccess;
 }

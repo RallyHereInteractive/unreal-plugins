@@ -20,8 +20,8 @@ OAuth2 Token Request.
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public ERHAPI_OAuthGrantType `[`GrantType`](#structFRHAPI__TokenRequest_1a45139537ed91d6ab4f23f2e92475fcde) | OAuth2 grant type.
-`public virtual bool `[`FromJson`](#structFRHAPI__TokenRequest_1a16926f69d0289f119a3f8afa46462780)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__TokenRequest_1ac6a1c593c454eca89fbab0bfeb2b3ab8)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__TokenRequest_1a66597c9a53777ca07e7ea4c371c08095)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__TokenRequest_1a8c79253cf264841b93a800e3cd11c11f)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_OAuthGrantType & `[`GetGrantType`](#structFRHAPI__TokenRequest_1af877a2666bfbcc00776b4cabb10be0c1)`()` | Gets the value of GrantType.
 `public inline const ERHAPI_OAuthGrantType & `[`GetGrantType`](#structFRHAPI__TokenRequest_1a42354cce6c75b41d7a086d04e271e4b3)`() const` | Gets the value of GrantType.
 `public inline void `[`SetGrantType`](#structFRHAPI__TokenRequest_1a160962cad4802550db661b2c28f293da)`(const ERHAPI_OAuthGrantType & NewValue)` | Sets the value of GrantType.
@@ -33,7 +33,7 @@ OAuth2 Token Request.
 
 OAuth2 grant type.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__TokenRequest_1a16926f69d0289f119a3f8afa46462780)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__TokenRequest_1a16926f69d0289f119a3f8afa46462780"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__TokenRequest_1a66597c9a53777ca07e7ea4c371c08095)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__TokenRequest_1a66597c9a53777ca07e7ea4c371c08095"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -43,7 +43,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__TokenRequest_1ac6a1c593c454eca89fbab0bfeb2b3ab8)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__TokenRequest_1ac6a1c593c454eca89fbab0bfeb2b3ab8"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__TokenRequest_1a8c79253cf264841b93a800e3cd11c11f)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__TokenRequest_1a8c79253cf264841b93a800e3cd11c11f"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 

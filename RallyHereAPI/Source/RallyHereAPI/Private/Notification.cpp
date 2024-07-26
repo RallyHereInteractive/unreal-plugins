@@ -55,29 +55,29 @@ bool FRHAPI_Notification::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonMessageField = (*Object)->TryGetField(TEXT("message"));
-	ParseSuccess &= JsonMessageField.IsValid() && !JsonMessageField->IsNull() && TryGetJsonValue(JsonMessageField, Message);
+	ParseSuccess &= JsonMessageField.IsValid() && (!JsonMessageField->IsNull() &&  TryGetJsonValue(JsonMessageField, Message));
 	const TSharedPtr<FJsonValue> JsonRhUrlField = (*Object)->TryGetField(TEXT("rh_url"));
-	if (JsonRhUrlField.IsValid() && !JsonRhUrlField->IsNull())
+	if (JsonRhUrlField.IsValid())
 	{
 		RhUrl_IsSet = TryGetJsonValue(JsonRhUrlField, RhUrl_Optional);
 		ParseSuccess &= RhUrl_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	if (JsonCustomDataField.IsValid())
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonEtagField = (*Object)->TryGetField(TEXT("etag"));
-	if (JsonEtagField.IsValid() && !JsonEtagField->IsNull())
+	if (JsonEtagField.IsValid())
 	{
 		Etag_IsSet = TryGetJsonValue(JsonEtagField, Etag_Optional);
 		ParseSuccess &= Etag_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonNotificationIdField = (*Object)->TryGetField(TEXT("notification_id"));
-	ParseSuccess &= JsonNotificationIdField.IsValid() && !JsonNotificationIdField->IsNull() && TryGetJsonValue(JsonNotificationIdField, NotificationId);
+	ParseSuccess &= JsonNotificationIdField.IsValid() && (!JsonNotificationIdField->IsNull() &&  TryGetJsonValue(JsonNotificationIdField, NotificationId));
 	const TSharedPtr<FJsonValue> JsonCreatedField = (*Object)->TryGetField(TEXT("created"));
-	ParseSuccess &= JsonCreatedField.IsValid() && !JsonCreatedField->IsNull() && TryGetJsonValue(JsonCreatedField, Created);
+	ParseSuccess &= JsonCreatedField.IsValid() && (!JsonCreatedField->IsNull() &&  TryGetJsonValue(JsonCreatedField, Created));
 
 	return ParseSuccess;
 }

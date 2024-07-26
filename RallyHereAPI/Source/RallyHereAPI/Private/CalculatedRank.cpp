@@ -40,11 +40,11 @@ bool FRHAPI_CalculatedRank::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
-	ParseSuccess &= JsonPlayerUuidField.IsValid() && !JsonPlayerUuidField->IsNull() && TryGetJsonValue(JsonPlayerUuidField, PlayerUuid);
+	ParseSuccess &= JsonPlayerUuidField.IsValid() && (!JsonPlayerUuidField->IsNull() &&  TryGetJsonValue(JsonPlayerUuidField, PlayerUuid));
 	const TSharedPtr<FJsonValue> JsonRankField = (*Object)->TryGetField(TEXT("rank"));
-	ParseSuccess &= JsonRankField.IsValid() && !JsonRankField->IsNull() && TryGetJsonValue(JsonRankField, Rank);
+	ParseSuccess &= JsonRankField.IsValid() && (!JsonRankField->IsNull() &&  TryGetJsonValue(JsonRankField, Rank));
 	const TSharedPtr<FJsonValue> JsonSecondsInMatchField = (*Object)->TryGetField(TEXT("seconds_in_match"));
-	ParseSuccess &= JsonSecondsInMatchField.IsValid() && !JsonSecondsInMatchField->IsNull() && TryGetJsonValue(JsonSecondsInMatchField, SecondsInMatch);
+	ParseSuccess &= JsonSecondsInMatchField.IsValid() && (!JsonSecondsInMatchField->IsNull() &&  TryGetJsonValue(JsonSecondsInMatchField, SecondsInMatch));
 
 	return ParseSuccess;
 }

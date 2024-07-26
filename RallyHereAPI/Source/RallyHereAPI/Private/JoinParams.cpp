@@ -43,11 +43,11 @@ bool FRHAPI_JoinParams::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPublicConnStrField = (*Object)->TryGetField(TEXT("public_conn_str"));
-	ParseSuccess &= JsonPublicConnStrField.IsValid() && !JsonPublicConnStrField->IsNull() && TryGetJsonValue(JsonPublicConnStrField, PublicConnStr);
+	ParseSuccess &= JsonPublicConnStrField.IsValid() && (!JsonPublicConnStrField->IsNull() &&  TryGetJsonValue(JsonPublicConnStrField, PublicConnStr));
 	const TSharedPtr<FJsonValue> JsonPrivateConnStrField = (*Object)->TryGetField(TEXT("private_conn_str"));
-	ParseSuccess &= JsonPrivateConnStrField.IsValid() && !JsonPrivateConnStrField->IsNull() && TryGetJsonValue(JsonPrivateConnStrField, PrivateConnStr);
+	ParseSuccess &= JsonPrivateConnStrField.IsValid() && (!JsonPrivateConnStrField->IsNull() &&  TryGetJsonValue(JsonPrivateConnStrField, PrivateConnStr));
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	if (JsonCustomDataField.IsValid())
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;

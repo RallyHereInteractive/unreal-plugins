@@ -20,8 +20,8 @@ struct FRHAPI_ValidationError
 `public TArray< `[`FRHAPI_LocationInner`](RHAPI_LocationInner.md#structFRHAPI__LocationInner)` > `[`Loc`](#structFRHAPI__ValidationError_1a1a98d9fa06ac2d429c8dfc06f71e6095) | 
 `public FString `[`Msg`](#structFRHAPI__ValidationError_1aad95bbd2a625698ef454b0b973bd3b4c) | 
 `public FString `[`Type`](#structFRHAPI__ValidationError_1a8e9d427414bc73fe37828220e2cc8d18) | 
-`public virtual bool `[`FromJson`](#structFRHAPI__ValidationError_1ab3562d087a66613270f2c2108ff79b78)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__ValidationError_1a6ad60c5e03c830506b58887849fa43db)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__ValidationError_1a5292552a28b325837314a85273c37612)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__ValidationError_1ac3580685a3cb768c379729b0dd3cf771)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< `[`FRHAPI_LocationInner`](RHAPI_LocationInner.md#structFRHAPI__LocationInner)` > & `[`GetLoc`](#structFRHAPI__ValidationError_1abf1227d9ef5b4a4238422c016c0859da)`()` | Gets the value of Loc.
 `public inline const TArray< `[`FRHAPI_LocationInner`](RHAPI_LocationInner.md#structFRHAPI__LocationInner)` > & `[`GetLoc`](#structFRHAPI__ValidationError_1afee16f1cb4b4b1cff3be2fb367b9194b)`() const` | Gets the value of Loc.
 `public inline void `[`SetLoc`](#structFRHAPI__ValidationError_1af21480c81ac669bd963361807082dc17)`(const TArray< `[`FRHAPI_LocationInner`](RHAPI_LocationInner.md#structFRHAPI__LocationInner)` > & NewValue)` | Sets the value of Loc.
@@ -43,7 +43,7 @@ struct FRHAPI_ValidationError
 
 #### `public FString `[`Type`](#structFRHAPI__ValidationError_1a8e9d427414bc73fe37828220e2cc8d18) <a id="structFRHAPI__ValidationError_1a8e9d427414bc73fe37828220e2cc8d18"></a>
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__ValidationError_1ab3562d087a66613270f2c2108ff79b78)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__ValidationError_1ab3562d087a66613270f2c2108ff79b78"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__ValidationError_1a5292552a28b325837314a85273c37612)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__ValidationError_1a5292552a28b325837314a85273c37612"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -53,7 +53,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__ValidationError_1a6ad60c5e03c830506b58887849fa43db)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__ValidationError_1a6ad60c5e03c830506b58887849fa43db"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__ValidationError_1ac3580685a3cb768c379729b0dd3cf771)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__ValidationError_1ac3580685a3cb768c379729b0dd3cf771"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 

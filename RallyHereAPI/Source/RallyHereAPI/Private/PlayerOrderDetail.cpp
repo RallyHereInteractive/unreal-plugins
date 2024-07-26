@@ -51,21 +51,21 @@ bool FRHAPI_PlayerOrderDetail::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
-	ParseSuccess &= JsonTypeField.IsValid() && !JsonTypeField->IsNull() && TryGetJsonValue(JsonTypeField, Type);
+	ParseSuccess &= JsonTypeField.IsValid() && (!JsonTypeField->IsNull() &&  TryGetJsonValue(JsonTypeField, Type));
 	const TSharedPtr<FJsonValue> JsonLootIdField = (*Object)->TryGetField(TEXT("loot_id"));
-	if (JsonLootIdField.IsValid() && !JsonLootIdField->IsNull())
+	if (JsonLootIdField.IsValid())
 	{
 		LootId_IsSet = TryGetJsonValue(JsonLootIdField, LootId_Optional);
 		ParseSuccess &= LootId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonInvChangeField = (*Object)->TryGetField(TEXT("inv_change"));
-	if (JsonInvChangeField.IsValid() && !JsonInvChangeField->IsNull())
+	if (JsonInvChangeField.IsValid())
 	{
 		InvChange_IsSet = TryGetJsonValue(JsonInvChangeField, InvChange_Optional);
 		ParseSuccess &= InvChange_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonOrderField = (*Object)->TryGetField(TEXT("order"));
-	if (JsonOrderField.IsValid() && !JsonOrderField->IsNull())
+	if (JsonOrderField.IsValid())
 	{
 		Order_IsSet = TryGetJsonValue(JsonOrderField, Order_Optional);
 		ParseSuccess &= Order_IsSet;

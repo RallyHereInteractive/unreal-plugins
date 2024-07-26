@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_PlayerLastSeenUpdate : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Last time this player reported their online status */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -47,9 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerLastSeenUpdate : public FRHAPI_Model
 	/** @brief Gets the value of Time */
 	const FDateTime& GetTime() const { return Time; }
 	/** @brief Sets the value of Time */
-	void SetTime(const FDateTime& NewValue) { Time = NewValue;  }
+	void SetTime(const FDateTime& NewValue) { Time = NewValue;   }
 	/** @brief Sets the value of Time using move semantics */
-	void SetTime(FDateTime&& NewValue) { Time = NewValue;  }
+	void SetTime(FDateTime&& NewValue) { Time = NewValue;   }
 
 	/** @brief Platform the user was online in */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -66,15 +66,17 @@ struct RALLYHEREAPI_API FRHAPI_PlayerLastSeenUpdate : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Platform_Optional and returns true if it has been set, otherwise returns false */
 	bool GetPlatform(FString& OutValue) const { if (Platform_IsSet) OutValue = Platform_Optional; return Platform_IsSet; }
 	/** @brief Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetPlatformOrNull() { if (Platform_IsSet) return &Platform_Optional; return nullptr; }
+	FString* GetPlatformOrNull() { if (Platform_IsSet) return (&Platform_Optional); return nullptr; }
 	/** @brief Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetPlatformOrNull() const { if (Platform_IsSet) return &Platform_Optional; return nullptr; }
+	const FString* GetPlatformOrNull() const { if (Platform_IsSet) return (&Platform_Optional); return nullptr; }
 	/** @brief Sets the value of Platform_Optional and also sets Platform_IsSet to true */
-	void SetPlatform(const FString& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true; }
+	void SetPlatform(const FString& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true;  }
 	/** @brief Sets the value of Platform_Optional and also sets Platform_IsSet to true using move semantics */
-	void SetPlatform(FString&& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true; }
-	 /** @brief Clears the value of Platform_Optional and sets Platform_IsSet to false */
-	void ClearPlatform() { Platform_IsSet = false; }
+	void SetPlatform(FString&& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true;  }
+	/** @brief Clears the value of Platform_Optional and sets Platform_IsSet to false */
+	void ClearPlatform() { Platform_IsSet = false;  }
+	/** @brief Checks whether Platform_Optional has been set */
+	bool IsPlatformSet() const { return Platform_IsSet; }
 
 	/** @brief Player Display Name */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -91,15 +93,17 @@ struct RALLYHEREAPI_API FRHAPI_PlayerLastSeenUpdate : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of DisplayName_Optional and returns true if it has been set, otherwise returns false */
 	bool GetDisplayName(FString& OutValue) const { if (DisplayName_IsSet) OutValue = DisplayName_Optional; return DisplayName_IsSet; }
 	/** @brief Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetDisplayNameOrNull() { if (DisplayName_IsSet) return &DisplayName_Optional; return nullptr; }
+	FString* GetDisplayNameOrNull() { if (DisplayName_IsSet) return (&DisplayName_Optional); return nullptr; }
 	/** @brief Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetDisplayNameOrNull() const { if (DisplayName_IsSet) return &DisplayName_Optional; return nullptr; }
+	const FString* GetDisplayNameOrNull() const { if (DisplayName_IsSet) return (&DisplayName_Optional); return nullptr; }
 	/** @brief Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true */
-	void SetDisplayName(const FString& NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true; }
+	void SetDisplayName(const FString& NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true;  }
 	/** @brief Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true using move semantics */
-	void SetDisplayName(FString&& NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true; }
-	 /** @brief Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false */
-	void ClearDisplayName() { DisplayName_IsSet = false; }
+	void SetDisplayName(FString&& NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true;  }
+	/** @brief Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false */
+	void ClearDisplayName() { DisplayName_IsSet = false;  }
+	/** @brief Checks whether DisplayName_Optional has been set */
+	bool IsDisplayNameSet() const { return DisplayName_IsSet; }
 };
 
 /** @} */

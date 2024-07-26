@@ -30,6 +30,9 @@ void FRHAPI_PagedPlayerMatchResponse::WriteJson(TSharedRef<TJsonWriter<>>& Write
 	if (Cursor_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("cursor"));
+		if (Cursor_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, Cursor_Optional);
 	}
 	Writer->WriteObjectEnd();
@@ -44,15 +47,16 @@ bool FRHAPI_PagedPlayerMatchResponse::FromJson(const TSharedPtr<FJsonValue>& Jso
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPlayerMatchesField = (*Object)->TryGetField(TEXT("player_matches"));
-	if (JsonPlayerMatchesField.IsValid() && !JsonPlayerMatchesField->IsNull())
+	if (JsonPlayerMatchesField.IsValid())
 	{
 		PlayerMatches_IsSet = TryGetJsonValue(JsonPlayerMatchesField, PlayerMatches_Optional);
 		ParseSuccess &= PlayerMatches_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCursorField = (*Object)->TryGetField(TEXT("cursor"));
-	if (JsonCursorField.IsValid() && !JsonCursorField->IsNull())
+	if (JsonCursorField.IsValid())
 	{
-		Cursor_IsSet = TryGetJsonValue(JsonCursorField, Cursor_Optional);
+		Cursor_IsNull = JsonCursorField->IsNull();
+		Cursor_IsSet = Cursor_IsNull || TryGetJsonValue(JsonCursorField, Cursor_Optional);
 		ParseSuccess &= Cursor_IsSet;
 	}
 

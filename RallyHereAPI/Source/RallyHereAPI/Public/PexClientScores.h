@@ -30,20 +30,23 @@ struct RALLYHEREAPI_API FRHAPI_PexClientScores : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool OverallMatchScore_Optional{  };
 	/** @brief true if OverallMatchScore_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool OverallMatchScore_IsSet{ false };
+	/** @brief true if OverallMatchScore_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool OverallMatchScore_IsNull{ false };
 	/** @brief Gets the value of OverallMatchScore_Optional, regardless of it having been set */
 	bool& GetOverallMatchScore() { return OverallMatchScore_Optional; }
 	/** @brief Gets the value of OverallMatchScore_Optional, regardless of it having been set */
@@ -51,27 +54,36 @@ struct RALLYHEREAPI_API FRHAPI_PexClientScores : public FRHAPI_Model
 	/** @brief Gets the value of OverallMatchScore_Optional, if it has been set, otherwise it returns DefaultValue */
 	const bool& GetOverallMatchScore(const bool& DefaultValue) const { if (OverallMatchScore_IsSet) return OverallMatchScore_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of OverallMatchScore_Optional and returns true if it has been set, otherwise returns false */
-	bool GetOverallMatchScore(bool& OutValue) const { if (OverallMatchScore_IsSet) OutValue = OverallMatchScore_Optional; return OverallMatchScore_IsSet; }
+	bool GetOverallMatchScore(bool& OutValue) const { if (OverallMatchScore_IsSet && !OverallMatchScore_IsNull) OutValue = OverallMatchScore_Optional; return OverallMatchScore_IsSet; }
 	/** @brief Returns a pointer to OverallMatchScore_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetOverallMatchScoreOrNull() { if (OverallMatchScore_IsSet) return &OverallMatchScore_Optional; return nullptr; }
+	bool* GetOverallMatchScoreOrNull() { if (OverallMatchScore_IsSet) return (OverallMatchScore_IsNull ? nullptr : &OverallMatchScore_Optional); return nullptr; }
 	/** @brief Returns a pointer to OverallMatchScore_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetOverallMatchScoreOrNull() const { if (OverallMatchScore_IsSet) return &OverallMatchScore_Optional; return nullptr; }
+	const bool* GetOverallMatchScoreOrNull() const { if (OverallMatchScore_IsSet) return (OverallMatchScore_IsNull ? nullptr : &OverallMatchScore_Optional); return nullptr; }
 	/** @brief Sets the value of OverallMatchScore_Optional and also sets OverallMatchScore_IsSet to true */
-	void SetOverallMatchScore(const bool& NewValue) { OverallMatchScore_Optional = NewValue; OverallMatchScore_IsSet = true; }
+	void SetOverallMatchScore(const bool& NewValue) { OverallMatchScore_Optional = NewValue; OverallMatchScore_IsSet = true; OverallMatchScore_IsNull = false; }
 	/** @brief Sets the value of OverallMatchScore_Optional and also sets OverallMatchScore_IsSet to true using move semantics */
-	void SetOverallMatchScore(bool&& NewValue) { OverallMatchScore_Optional = NewValue; OverallMatchScore_IsSet = true; }
-	 /** @brief Clears the value of OverallMatchScore_Optional and sets OverallMatchScore_IsSet to false */
-	void ClearOverallMatchScore() { OverallMatchScore_Optional = false; OverallMatchScore_IsSet = false; }
+	void SetOverallMatchScore(bool&& NewValue) { OverallMatchScore_Optional = NewValue; OverallMatchScore_IsSet = true; OverallMatchScore_IsNull = false; }
+	/** @brief Clears the value of OverallMatchScore_Optional and sets OverallMatchScore_IsSet to false */
+	void ClearOverallMatchScore() { OverallMatchScore_Optional = false; OverallMatchScore_IsSet = false; OverallMatchScore_IsNull = false; }
+	/** @brief Checks whether OverallMatchScore_Optional has been set */
+	bool IsOverallMatchScoreSet() const { return OverallMatchScore_IsSet; }
 	/** @brief Returns true if OverallMatchScore_Optional is set and matches the default value */
 	bool IsOverallMatchScoreDefaultValue() const { return OverallMatchScore_IsSet && OverallMatchScore_Optional == false; }
 	/** @brief Sets the value of OverallMatchScore_Optional to its default and also sets OverallMatchScore_IsSet to true */
-	void SetOverallMatchScoreToDefault() { OverallMatchScore_Optional = false; OverallMatchScore_IsSet = true; }
+	void SetOverallMatchScoreToDefault() { SetOverallMatchScore(false); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetOverallMatchScoreToNull() { OverallMatchScore_IsSet = true; OverallMatchScore_IsNull = true; }
+	/** @brief Checks whether OverallMatchScore_Optional is set to null */
+	bool IsOverallMatchScoreNull() const { return OverallMatchScore_IsSet && OverallMatchScore_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool AppScore_Optional{  };
 	/** @brief true if AppScore_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool AppScore_IsSet{ false };
+	/** @brief true if AppScore_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool AppScore_IsNull{ false };
 	/** @brief Gets the value of AppScore_Optional, regardless of it having been set */
 	bool& GetAppScore() { return AppScore_Optional; }
 	/** @brief Gets the value of AppScore_Optional, regardless of it having been set */
@@ -79,27 +91,36 @@ struct RALLYHEREAPI_API FRHAPI_PexClientScores : public FRHAPI_Model
 	/** @brief Gets the value of AppScore_Optional, if it has been set, otherwise it returns DefaultValue */
 	const bool& GetAppScore(const bool& DefaultValue) const { if (AppScore_IsSet) return AppScore_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of AppScore_Optional and returns true if it has been set, otherwise returns false */
-	bool GetAppScore(bool& OutValue) const { if (AppScore_IsSet) OutValue = AppScore_Optional; return AppScore_IsSet; }
+	bool GetAppScore(bool& OutValue) const { if (AppScore_IsSet && !AppScore_IsNull) OutValue = AppScore_Optional; return AppScore_IsSet; }
 	/** @brief Returns a pointer to AppScore_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetAppScoreOrNull() { if (AppScore_IsSet) return &AppScore_Optional; return nullptr; }
+	bool* GetAppScoreOrNull() { if (AppScore_IsSet) return (AppScore_IsNull ? nullptr : &AppScore_Optional); return nullptr; }
 	/** @brief Returns a pointer to AppScore_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetAppScoreOrNull() const { if (AppScore_IsSet) return &AppScore_Optional; return nullptr; }
+	const bool* GetAppScoreOrNull() const { if (AppScore_IsSet) return (AppScore_IsNull ? nullptr : &AppScore_Optional); return nullptr; }
 	/** @brief Sets the value of AppScore_Optional and also sets AppScore_IsSet to true */
-	void SetAppScore(const bool& NewValue) { AppScore_Optional = NewValue; AppScore_IsSet = true; }
+	void SetAppScore(const bool& NewValue) { AppScore_Optional = NewValue; AppScore_IsSet = true; AppScore_IsNull = false; }
 	/** @brief Sets the value of AppScore_Optional and also sets AppScore_IsSet to true using move semantics */
-	void SetAppScore(bool&& NewValue) { AppScore_Optional = NewValue; AppScore_IsSet = true; }
-	 /** @brief Clears the value of AppScore_Optional and sets AppScore_IsSet to false */
-	void ClearAppScore() { AppScore_Optional = false; AppScore_IsSet = false; }
+	void SetAppScore(bool&& NewValue) { AppScore_Optional = NewValue; AppScore_IsSet = true; AppScore_IsNull = false; }
+	/** @brief Clears the value of AppScore_Optional and sets AppScore_IsSet to false */
+	void ClearAppScore() { AppScore_Optional = false; AppScore_IsSet = false; AppScore_IsNull = false; }
+	/** @brief Checks whether AppScore_Optional has been set */
+	bool IsAppScoreSet() const { return AppScore_IsSet; }
 	/** @brief Returns true if AppScore_Optional is set and matches the default value */
 	bool IsAppScoreDefaultValue() const { return AppScore_IsSet && AppScore_Optional == false; }
 	/** @brief Sets the value of AppScore_Optional to its default and also sets AppScore_IsSet to true */
-	void SetAppScoreToDefault() { AppScore_Optional = false; AppScore_IsSet = true; }
+	void SetAppScoreToDefault() { SetAppScore(false); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetAppScoreToNull() { AppScore_IsSet = true; AppScore_IsNull = true; }
+	/** @brief Checks whether AppScore_Optional is set to null */
+	bool IsAppScoreNull() const { return AppScore_IsSet && AppScore_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool GameplayScore_Optional{  };
 	/** @brief true if GameplayScore_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool GameplayScore_IsSet{ false };
+	/** @brief true if GameplayScore_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool GameplayScore_IsNull{ false };
 	/** @brief Gets the value of GameplayScore_Optional, regardless of it having been set */
 	bool& GetGameplayScore() { return GameplayScore_Optional; }
 	/** @brief Gets the value of GameplayScore_Optional, regardless of it having been set */
@@ -107,27 +128,36 @@ struct RALLYHEREAPI_API FRHAPI_PexClientScores : public FRHAPI_Model
 	/** @brief Gets the value of GameplayScore_Optional, if it has been set, otherwise it returns DefaultValue */
 	const bool& GetGameplayScore(const bool& DefaultValue) const { if (GameplayScore_IsSet) return GameplayScore_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of GameplayScore_Optional and returns true if it has been set, otherwise returns false */
-	bool GetGameplayScore(bool& OutValue) const { if (GameplayScore_IsSet) OutValue = GameplayScore_Optional; return GameplayScore_IsSet; }
+	bool GetGameplayScore(bool& OutValue) const { if (GameplayScore_IsSet && !GameplayScore_IsNull) OutValue = GameplayScore_Optional; return GameplayScore_IsSet; }
 	/** @brief Returns a pointer to GameplayScore_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetGameplayScoreOrNull() { if (GameplayScore_IsSet) return &GameplayScore_Optional; return nullptr; }
+	bool* GetGameplayScoreOrNull() { if (GameplayScore_IsSet) return (GameplayScore_IsNull ? nullptr : &GameplayScore_Optional); return nullptr; }
 	/** @brief Returns a pointer to GameplayScore_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetGameplayScoreOrNull() const { if (GameplayScore_IsSet) return &GameplayScore_Optional; return nullptr; }
+	const bool* GetGameplayScoreOrNull() const { if (GameplayScore_IsSet) return (GameplayScore_IsNull ? nullptr : &GameplayScore_Optional); return nullptr; }
 	/** @brief Sets the value of GameplayScore_Optional and also sets GameplayScore_IsSet to true */
-	void SetGameplayScore(const bool& NewValue) { GameplayScore_Optional = NewValue; GameplayScore_IsSet = true; }
+	void SetGameplayScore(const bool& NewValue) { GameplayScore_Optional = NewValue; GameplayScore_IsSet = true; GameplayScore_IsNull = false; }
 	/** @brief Sets the value of GameplayScore_Optional and also sets GameplayScore_IsSet to true using move semantics */
-	void SetGameplayScore(bool&& NewValue) { GameplayScore_Optional = NewValue; GameplayScore_IsSet = true; }
-	 /** @brief Clears the value of GameplayScore_Optional and sets GameplayScore_IsSet to false */
-	void ClearGameplayScore() { GameplayScore_Optional = false; GameplayScore_IsSet = false; }
+	void SetGameplayScore(bool&& NewValue) { GameplayScore_Optional = NewValue; GameplayScore_IsSet = true; GameplayScore_IsNull = false; }
+	/** @brief Clears the value of GameplayScore_Optional and sets GameplayScore_IsSet to false */
+	void ClearGameplayScore() { GameplayScore_Optional = false; GameplayScore_IsSet = false; GameplayScore_IsNull = false; }
+	/** @brief Checks whether GameplayScore_Optional has been set */
+	bool IsGameplayScoreSet() const { return GameplayScore_IsSet; }
 	/** @brief Returns true if GameplayScore_Optional is set and matches the default value */
 	bool IsGameplayScoreDefaultValue() const { return GameplayScore_IsSet && GameplayScore_Optional == false; }
 	/** @brief Sets the value of GameplayScore_Optional to its default and also sets GameplayScore_IsSet to true */
-	void SetGameplayScoreToDefault() { GameplayScore_Optional = false; GameplayScore_IsSet = true; }
+	void SetGameplayScoreToDefault() { SetGameplayScore(false); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetGameplayScoreToNull() { GameplayScore_IsSet = true; GameplayScore_IsNull = true; }
+	/** @brief Checks whether GameplayScore_Optional is set to null */
+	bool IsGameplayScoreNull() const { return GameplayScore_IsSet && GameplayScore_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool NetworkScore_Optional{  };
 	/** @brief true if NetworkScore_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool NetworkScore_IsSet{ false };
+	/** @brief true if NetworkScore_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool NetworkScore_IsNull{ false };
 	/** @brief Gets the value of NetworkScore_Optional, regardless of it having been set */
 	bool& GetNetworkScore() { return NetworkScore_Optional; }
 	/** @brief Gets the value of NetworkScore_Optional, regardless of it having been set */
@@ -135,27 +165,36 @@ struct RALLYHEREAPI_API FRHAPI_PexClientScores : public FRHAPI_Model
 	/** @brief Gets the value of NetworkScore_Optional, if it has been set, otherwise it returns DefaultValue */
 	const bool& GetNetworkScore(const bool& DefaultValue) const { if (NetworkScore_IsSet) return NetworkScore_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of NetworkScore_Optional and returns true if it has been set, otherwise returns false */
-	bool GetNetworkScore(bool& OutValue) const { if (NetworkScore_IsSet) OutValue = NetworkScore_Optional; return NetworkScore_IsSet; }
+	bool GetNetworkScore(bool& OutValue) const { if (NetworkScore_IsSet && !NetworkScore_IsNull) OutValue = NetworkScore_Optional; return NetworkScore_IsSet; }
 	/** @brief Returns a pointer to NetworkScore_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetNetworkScoreOrNull() { if (NetworkScore_IsSet) return &NetworkScore_Optional; return nullptr; }
+	bool* GetNetworkScoreOrNull() { if (NetworkScore_IsSet) return (NetworkScore_IsNull ? nullptr : &NetworkScore_Optional); return nullptr; }
 	/** @brief Returns a pointer to NetworkScore_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetNetworkScoreOrNull() const { if (NetworkScore_IsSet) return &NetworkScore_Optional; return nullptr; }
+	const bool* GetNetworkScoreOrNull() const { if (NetworkScore_IsSet) return (NetworkScore_IsNull ? nullptr : &NetworkScore_Optional); return nullptr; }
 	/** @brief Sets the value of NetworkScore_Optional and also sets NetworkScore_IsSet to true */
-	void SetNetworkScore(const bool& NewValue) { NetworkScore_Optional = NewValue; NetworkScore_IsSet = true; }
+	void SetNetworkScore(const bool& NewValue) { NetworkScore_Optional = NewValue; NetworkScore_IsSet = true; NetworkScore_IsNull = false; }
 	/** @brief Sets the value of NetworkScore_Optional and also sets NetworkScore_IsSet to true using move semantics */
-	void SetNetworkScore(bool&& NewValue) { NetworkScore_Optional = NewValue; NetworkScore_IsSet = true; }
-	 /** @brief Clears the value of NetworkScore_Optional and sets NetworkScore_IsSet to false */
-	void ClearNetworkScore() { NetworkScore_Optional = false; NetworkScore_IsSet = false; }
+	void SetNetworkScore(bool&& NewValue) { NetworkScore_Optional = NewValue; NetworkScore_IsSet = true; NetworkScore_IsNull = false; }
+	/** @brief Clears the value of NetworkScore_Optional and sets NetworkScore_IsSet to false */
+	void ClearNetworkScore() { NetworkScore_Optional = false; NetworkScore_IsSet = false; NetworkScore_IsNull = false; }
+	/** @brief Checks whether NetworkScore_Optional has been set */
+	bool IsNetworkScoreSet() const { return NetworkScore_IsSet; }
 	/** @brief Returns true if NetworkScore_Optional is set and matches the default value */
 	bool IsNetworkScoreDefaultValue() const { return NetworkScore_IsSet && NetworkScore_Optional == false; }
 	/** @brief Sets the value of NetworkScore_Optional to its default and also sets NetworkScore_IsSet to true */
-	void SetNetworkScoreToDefault() { NetworkScore_Optional = false; NetworkScore_IsSet = true; }
+	void SetNetworkScoreToDefault() { SetNetworkScore(false); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetNetworkScoreToNull() { NetworkScore_IsSet = true; NetworkScore_IsNull = true; }
+	/** @brief Checks whether NetworkScore_Optional is set to null */
+	bool IsNetworkScoreNull() const { return NetworkScore_IsSet && NetworkScore_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ConnectionCountScore_Optional{  };
 	/** @brief true if ConnectionCountScore_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ConnectionCountScore_IsSet{ false };
+	/** @brief true if ConnectionCountScore_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool ConnectionCountScore_IsNull{ false };
 	/** @brief Gets the value of ConnectionCountScore_Optional, regardless of it having been set */
 	bool& GetConnectionCountScore() { return ConnectionCountScore_Optional; }
 	/** @brief Gets the value of ConnectionCountScore_Optional, regardless of it having been set */
@@ -163,27 +202,36 @@ struct RALLYHEREAPI_API FRHAPI_PexClientScores : public FRHAPI_Model
 	/** @brief Gets the value of ConnectionCountScore_Optional, if it has been set, otherwise it returns DefaultValue */
 	const bool& GetConnectionCountScore(const bool& DefaultValue) const { if (ConnectionCountScore_IsSet) return ConnectionCountScore_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of ConnectionCountScore_Optional and returns true if it has been set, otherwise returns false */
-	bool GetConnectionCountScore(bool& OutValue) const { if (ConnectionCountScore_IsSet) OutValue = ConnectionCountScore_Optional; return ConnectionCountScore_IsSet; }
+	bool GetConnectionCountScore(bool& OutValue) const { if (ConnectionCountScore_IsSet && !ConnectionCountScore_IsNull) OutValue = ConnectionCountScore_Optional; return ConnectionCountScore_IsSet; }
 	/** @brief Returns a pointer to ConnectionCountScore_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetConnectionCountScoreOrNull() { if (ConnectionCountScore_IsSet) return &ConnectionCountScore_Optional; return nullptr; }
+	bool* GetConnectionCountScoreOrNull() { if (ConnectionCountScore_IsSet) return (ConnectionCountScore_IsNull ? nullptr : &ConnectionCountScore_Optional); return nullptr; }
 	/** @brief Returns a pointer to ConnectionCountScore_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetConnectionCountScoreOrNull() const { if (ConnectionCountScore_IsSet) return &ConnectionCountScore_Optional; return nullptr; }
+	const bool* GetConnectionCountScoreOrNull() const { if (ConnectionCountScore_IsSet) return (ConnectionCountScore_IsNull ? nullptr : &ConnectionCountScore_Optional); return nullptr; }
 	/** @brief Sets the value of ConnectionCountScore_Optional and also sets ConnectionCountScore_IsSet to true */
-	void SetConnectionCountScore(const bool& NewValue) { ConnectionCountScore_Optional = NewValue; ConnectionCountScore_IsSet = true; }
+	void SetConnectionCountScore(const bool& NewValue) { ConnectionCountScore_Optional = NewValue; ConnectionCountScore_IsSet = true; ConnectionCountScore_IsNull = false; }
 	/** @brief Sets the value of ConnectionCountScore_Optional and also sets ConnectionCountScore_IsSet to true using move semantics */
-	void SetConnectionCountScore(bool&& NewValue) { ConnectionCountScore_Optional = NewValue; ConnectionCountScore_IsSet = true; }
-	 /** @brief Clears the value of ConnectionCountScore_Optional and sets ConnectionCountScore_IsSet to false */
-	void ClearConnectionCountScore() { ConnectionCountScore_Optional = false; ConnectionCountScore_IsSet = false; }
+	void SetConnectionCountScore(bool&& NewValue) { ConnectionCountScore_Optional = NewValue; ConnectionCountScore_IsSet = true; ConnectionCountScore_IsNull = false; }
+	/** @brief Clears the value of ConnectionCountScore_Optional and sets ConnectionCountScore_IsSet to false */
+	void ClearConnectionCountScore() { ConnectionCountScore_Optional = false; ConnectionCountScore_IsSet = false; ConnectionCountScore_IsNull = false; }
+	/** @brief Checks whether ConnectionCountScore_Optional has been set */
+	bool IsConnectionCountScoreSet() const { return ConnectionCountScore_IsSet; }
 	/** @brief Returns true if ConnectionCountScore_Optional is set and matches the default value */
 	bool IsConnectionCountScoreDefaultValue() const { return ConnectionCountScore_IsSet && ConnectionCountScore_Optional == false; }
 	/** @brief Sets the value of ConnectionCountScore_Optional to its default and also sets ConnectionCountScore_IsSet to true */
-	void SetConnectionCountScoreToDefault() { ConnectionCountScore_Optional = false; ConnectionCountScore_IsSet = true; }
+	void SetConnectionCountScoreToDefault() { SetConnectionCountScore(false); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetConnectionCountScoreToNull() { ConnectionCountScore_IsSet = true; ConnectionCountScore_IsNull = true; }
+	/** @brief Checks whether ConnectionCountScore_Optional is set to null */
+	bool IsConnectionCountScoreNull() const { return ConnectionCountScore_IsSet && ConnectionCountScore_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool FrameTimeScore_Optional{  };
 	/** @brief true if FrameTimeScore_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool FrameTimeScore_IsSet{ false };
+	/** @brief true if FrameTimeScore_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool FrameTimeScore_IsNull{ false };
 	/** @brief Gets the value of FrameTimeScore_Optional, regardless of it having been set */
 	bool& GetFrameTimeScore() { return FrameTimeScore_Optional; }
 	/** @brief Gets the value of FrameTimeScore_Optional, regardless of it having been set */
@@ -191,27 +239,36 @@ struct RALLYHEREAPI_API FRHAPI_PexClientScores : public FRHAPI_Model
 	/** @brief Gets the value of FrameTimeScore_Optional, if it has been set, otherwise it returns DefaultValue */
 	const bool& GetFrameTimeScore(const bool& DefaultValue) const { if (FrameTimeScore_IsSet) return FrameTimeScore_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of FrameTimeScore_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFrameTimeScore(bool& OutValue) const { if (FrameTimeScore_IsSet) OutValue = FrameTimeScore_Optional; return FrameTimeScore_IsSet; }
+	bool GetFrameTimeScore(bool& OutValue) const { if (FrameTimeScore_IsSet && !FrameTimeScore_IsNull) OutValue = FrameTimeScore_Optional; return FrameTimeScore_IsSet; }
 	/** @brief Returns a pointer to FrameTimeScore_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetFrameTimeScoreOrNull() { if (FrameTimeScore_IsSet) return &FrameTimeScore_Optional; return nullptr; }
+	bool* GetFrameTimeScoreOrNull() { if (FrameTimeScore_IsSet) return (FrameTimeScore_IsNull ? nullptr : &FrameTimeScore_Optional); return nullptr; }
 	/** @brief Returns a pointer to FrameTimeScore_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetFrameTimeScoreOrNull() const { if (FrameTimeScore_IsSet) return &FrameTimeScore_Optional; return nullptr; }
+	const bool* GetFrameTimeScoreOrNull() const { if (FrameTimeScore_IsSet) return (FrameTimeScore_IsNull ? nullptr : &FrameTimeScore_Optional); return nullptr; }
 	/** @brief Sets the value of FrameTimeScore_Optional and also sets FrameTimeScore_IsSet to true */
-	void SetFrameTimeScore(const bool& NewValue) { FrameTimeScore_Optional = NewValue; FrameTimeScore_IsSet = true; }
+	void SetFrameTimeScore(const bool& NewValue) { FrameTimeScore_Optional = NewValue; FrameTimeScore_IsSet = true; FrameTimeScore_IsNull = false; }
 	/** @brief Sets the value of FrameTimeScore_Optional and also sets FrameTimeScore_IsSet to true using move semantics */
-	void SetFrameTimeScore(bool&& NewValue) { FrameTimeScore_Optional = NewValue; FrameTimeScore_IsSet = true; }
-	 /** @brief Clears the value of FrameTimeScore_Optional and sets FrameTimeScore_IsSet to false */
-	void ClearFrameTimeScore() { FrameTimeScore_Optional = false; FrameTimeScore_IsSet = false; }
+	void SetFrameTimeScore(bool&& NewValue) { FrameTimeScore_Optional = NewValue; FrameTimeScore_IsSet = true; FrameTimeScore_IsNull = false; }
+	/** @brief Clears the value of FrameTimeScore_Optional and sets FrameTimeScore_IsSet to false */
+	void ClearFrameTimeScore() { FrameTimeScore_Optional = false; FrameTimeScore_IsSet = false; FrameTimeScore_IsNull = false; }
+	/** @brief Checks whether FrameTimeScore_Optional has been set */
+	bool IsFrameTimeScoreSet() const { return FrameTimeScore_IsSet; }
 	/** @brief Returns true if FrameTimeScore_Optional is set and matches the default value */
 	bool IsFrameTimeScoreDefaultValue() const { return FrameTimeScore_IsSet && FrameTimeScore_Optional == false; }
 	/** @brief Sets the value of FrameTimeScore_Optional to its default and also sets FrameTimeScore_IsSet to true */
-	void SetFrameTimeScoreToDefault() { FrameTimeScore_Optional = false; FrameTimeScore_IsSet = true; }
+	void SetFrameTimeScoreToDefault() { SetFrameTimeScore(false); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetFrameTimeScoreToNull() { FrameTimeScore_IsSet = true; FrameTimeScore_IsNull = true; }
+	/** @brief Checks whether FrameTimeScore_Optional is set to null */
+	bool IsFrameTimeScoreNull() const { return FrameTimeScore_IsSet && FrameTimeScore_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool DeltaTimeScore_Optional{  };
 	/** @brief true if DeltaTimeScore_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool DeltaTimeScore_IsSet{ false };
+	/** @brief true if DeltaTimeScore_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool DeltaTimeScore_IsNull{ false };
 	/** @brief Gets the value of DeltaTimeScore_Optional, regardless of it having been set */
 	bool& GetDeltaTimeScore() { return DeltaTimeScore_Optional; }
 	/** @brief Gets the value of DeltaTimeScore_Optional, regardless of it having been set */
@@ -219,27 +276,36 @@ struct RALLYHEREAPI_API FRHAPI_PexClientScores : public FRHAPI_Model
 	/** @brief Gets the value of DeltaTimeScore_Optional, if it has been set, otherwise it returns DefaultValue */
 	const bool& GetDeltaTimeScore(const bool& DefaultValue) const { if (DeltaTimeScore_IsSet) return DeltaTimeScore_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of DeltaTimeScore_Optional and returns true if it has been set, otherwise returns false */
-	bool GetDeltaTimeScore(bool& OutValue) const { if (DeltaTimeScore_IsSet) OutValue = DeltaTimeScore_Optional; return DeltaTimeScore_IsSet; }
+	bool GetDeltaTimeScore(bool& OutValue) const { if (DeltaTimeScore_IsSet && !DeltaTimeScore_IsNull) OutValue = DeltaTimeScore_Optional; return DeltaTimeScore_IsSet; }
 	/** @brief Returns a pointer to DeltaTimeScore_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetDeltaTimeScoreOrNull() { if (DeltaTimeScore_IsSet) return &DeltaTimeScore_Optional; return nullptr; }
+	bool* GetDeltaTimeScoreOrNull() { if (DeltaTimeScore_IsSet) return (DeltaTimeScore_IsNull ? nullptr : &DeltaTimeScore_Optional); return nullptr; }
 	/** @brief Returns a pointer to DeltaTimeScore_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetDeltaTimeScoreOrNull() const { if (DeltaTimeScore_IsSet) return &DeltaTimeScore_Optional; return nullptr; }
+	const bool* GetDeltaTimeScoreOrNull() const { if (DeltaTimeScore_IsSet) return (DeltaTimeScore_IsNull ? nullptr : &DeltaTimeScore_Optional); return nullptr; }
 	/** @brief Sets the value of DeltaTimeScore_Optional and also sets DeltaTimeScore_IsSet to true */
-	void SetDeltaTimeScore(const bool& NewValue) { DeltaTimeScore_Optional = NewValue; DeltaTimeScore_IsSet = true; }
+	void SetDeltaTimeScore(const bool& NewValue) { DeltaTimeScore_Optional = NewValue; DeltaTimeScore_IsSet = true; DeltaTimeScore_IsNull = false; }
 	/** @brief Sets the value of DeltaTimeScore_Optional and also sets DeltaTimeScore_IsSet to true using move semantics */
-	void SetDeltaTimeScore(bool&& NewValue) { DeltaTimeScore_Optional = NewValue; DeltaTimeScore_IsSet = true; }
-	 /** @brief Clears the value of DeltaTimeScore_Optional and sets DeltaTimeScore_IsSet to false */
-	void ClearDeltaTimeScore() { DeltaTimeScore_Optional = false; DeltaTimeScore_IsSet = false; }
+	void SetDeltaTimeScore(bool&& NewValue) { DeltaTimeScore_Optional = NewValue; DeltaTimeScore_IsSet = true; DeltaTimeScore_IsNull = false; }
+	/** @brief Clears the value of DeltaTimeScore_Optional and sets DeltaTimeScore_IsSet to false */
+	void ClearDeltaTimeScore() { DeltaTimeScore_Optional = false; DeltaTimeScore_IsSet = false; DeltaTimeScore_IsNull = false; }
+	/** @brief Checks whether DeltaTimeScore_Optional has been set */
+	bool IsDeltaTimeScoreSet() const { return DeltaTimeScore_IsSet; }
 	/** @brief Returns true if DeltaTimeScore_Optional is set and matches the default value */
 	bool IsDeltaTimeScoreDefaultValue() const { return DeltaTimeScore_IsSet && DeltaTimeScore_Optional == false; }
 	/** @brief Sets the value of DeltaTimeScore_Optional to its default and also sets DeltaTimeScore_IsSet to true */
-	void SetDeltaTimeScoreToDefault() { DeltaTimeScore_Optional = false; DeltaTimeScore_IsSet = true; }
+	void SetDeltaTimeScoreToDefault() { SetDeltaTimeScore(false); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetDeltaTimeScoreToNull() { DeltaTimeScore_IsSet = true; DeltaTimeScore_IsNull = true; }
+	/** @brief Checks whether DeltaTimeScore_Optional is set to null */
+	bool IsDeltaTimeScoreNull() const { return DeltaTimeScore_IsSet && DeltaTimeScore_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool TickCountScore_Optional{  };
 	/** @brief true if TickCountScore_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool TickCountScore_IsSet{ false };
+	/** @brief true if TickCountScore_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool TickCountScore_IsNull{ false };
 	/** @brief Gets the value of TickCountScore_Optional, regardless of it having been set */
 	bool& GetTickCountScore() { return TickCountScore_Optional; }
 	/** @brief Gets the value of TickCountScore_Optional, regardless of it having been set */
@@ -247,27 +313,36 @@ struct RALLYHEREAPI_API FRHAPI_PexClientScores : public FRHAPI_Model
 	/** @brief Gets the value of TickCountScore_Optional, if it has been set, otherwise it returns DefaultValue */
 	const bool& GetTickCountScore(const bool& DefaultValue) const { if (TickCountScore_IsSet) return TickCountScore_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of TickCountScore_Optional and returns true if it has been set, otherwise returns false */
-	bool GetTickCountScore(bool& OutValue) const { if (TickCountScore_IsSet) OutValue = TickCountScore_Optional; return TickCountScore_IsSet; }
+	bool GetTickCountScore(bool& OutValue) const { if (TickCountScore_IsSet && !TickCountScore_IsNull) OutValue = TickCountScore_Optional; return TickCountScore_IsSet; }
 	/** @brief Returns a pointer to TickCountScore_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetTickCountScoreOrNull() { if (TickCountScore_IsSet) return &TickCountScore_Optional; return nullptr; }
+	bool* GetTickCountScoreOrNull() { if (TickCountScore_IsSet) return (TickCountScore_IsNull ? nullptr : &TickCountScore_Optional); return nullptr; }
 	/** @brief Returns a pointer to TickCountScore_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetTickCountScoreOrNull() const { if (TickCountScore_IsSet) return &TickCountScore_Optional; return nullptr; }
+	const bool* GetTickCountScoreOrNull() const { if (TickCountScore_IsSet) return (TickCountScore_IsNull ? nullptr : &TickCountScore_Optional); return nullptr; }
 	/** @brief Sets the value of TickCountScore_Optional and also sets TickCountScore_IsSet to true */
-	void SetTickCountScore(const bool& NewValue) { TickCountScore_Optional = NewValue; TickCountScore_IsSet = true; }
+	void SetTickCountScore(const bool& NewValue) { TickCountScore_Optional = NewValue; TickCountScore_IsSet = true; TickCountScore_IsNull = false; }
 	/** @brief Sets the value of TickCountScore_Optional and also sets TickCountScore_IsSet to true using move semantics */
-	void SetTickCountScore(bool&& NewValue) { TickCountScore_Optional = NewValue; TickCountScore_IsSet = true; }
-	 /** @brief Clears the value of TickCountScore_Optional and sets TickCountScore_IsSet to false */
-	void ClearTickCountScore() { TickCountScore_Optional = false; TickCountScore_IsSet = false; }
+	void SetTickCountScore(bool&& NewValue) { TickCountScore_Optional = NewValue; TickCountScore_IsSet = true; TickCountScore_IsNull = false; }
+	/** @brief Clears the value of TickCountScore_Optional and sets TickCountScore_IsSet to false */
+	void ClearTickCountScore() { TickCountScore_Optional = false; TickCountScore_IsSet = false; TickCountScore_IsNull = false; }
+	/** @brief Checks whether TickCountScore_Optional has been set */
+	bool IsTickCountScoreSet() const { return TickCountScore_IsSet; }
 	/** @brief Returns true if TickCountScore_Optional is set and matches the default value */
 	bool IsTickCountScoreDefaultValue() const { return TickCountScore_IsSet && TickCountScore_Optional == false; }
 	/** @brief Sets the value of TickCountScore_Optional to its default and also sets TickCountScore_IsSet to true */
-	void SetTickCountScoreToDefault() { TickCountScore_Optional = false; TickCountScore_IsSet = true; }
+	void SetTickCountScoreToDefault() { SetTickCountScore(false); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetTickCountScoreToNull() { TickCountScore_IsSet = true; TickCountScore_IsNull = true; }
+	/** @brief Checks whether TickCountScore_Optional is set to null */
+	bool IsTickCountScoreNull() const { return TickCountScore_IsSet && TickCountScore_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool DelayedTickCountScore_Optional{  };
 	/** @brief true if DelayedTickCountScore_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool DelayedTickCountScore_IsSet{ false };
+	/** @brief true if DelayedTickCountScore_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool DelayedTickCountScore_IsNull{ false };
 	/** @brief Gets the value of DelayedTickCountScore_Optional, regardless of it having been set */
 	bool& GetDelayedTickCountScore() { return DelayedTickCountScore_Optional; }
 	/** @brief Gets the value of DelayedTickCountScore_Optional, regardless of it having been set */
@@ -275,27 +350,36 @@ struct RALLYHEREAPI_API FRHAPI_PexClientScores : public FRHAPI_Model
 	/** @brief Gets the value of DelayedTickCountScore_Optional, if it has been set, otherwise it returns DefaultValue */
 	const bool& GetDelayedTickCountScore(const bool& DefaultValue) const { if (DelayedTickCountScore_IsSet) return DelayedTickCountScore_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of DelayedTickCountScore_Optional and returns true if it has been set, otherwise returns false */
-	bool GetDelayedTickCountScore(bool& OutValue) const { if (DelayedTickCountScore_IsSet) OutValue = DelayedTickCountScore_Optional; return DelayedTickCountScore_IsSet; }
+	bool GetDelayedTickCountScore(bool& OutValue) const { if (DelayedTickCountScore_IsSet && !DelayedTickCountScore_IsNull) OutValue = DelayedTickCountScore_Optional; return DelayedTickCountScore_IsSet; }
 	/** @brief Returns a pointer to DelayedTickCountScore_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetDelayedTickCountScoreOrNull() { if (DelayedTickCountScore_IsSet) return &DelayedTickCountScore_Optional; return nullptr; }
+	bool* GetDelayedTickCountScoreOrNull() { if (DelayedTickCountScore_IsSet) return (DelayedTickCountScore_IsNull ? nullptr : &DelayedTickCountScore_Optional); return nullptr; }
 	/** @brief Returns a pointer to DelayedTickCountScore_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetDelayedTickCountScoreOrNull() const { if (DelayedTickCountScore_IsSet) return &DelayedTickCountScore_Optional; return nullptr; }
+	const bool* GetDelayedTickCountScoreOrNull() const { if (DelayedTickCountScore_IsSet) return (DelayedTickCountScore_IsNull ? nullptr : &DelayedTickCountScore_Optional); return nullptr; }
 	/** @brief Sets the value of DelayedTickCountScore_Optional and also sets DelayedTickCountScore_IsSet to true */
-	void SetDelayedTickCountScore(const bool& NewValue) { DelayedTickCountScore_Optional = NewValue; DelayedTickCountScore_IsSet = true; }
+	void SetDelayedTickCountScore(const bool& NewValue) { DelayedTickCountScore_Optional = NewValue; DelayedTickCountScore_IsSet = true; DelayedTickCountScore_IsNull = false; }
 	/** @brief Sets the value of DelayedTickCountScore_Optional and also sets DelayedTickCountScore_IsSet to true using move semantics */
-	void SetDelayedTickCountScore(bool&& NewValue) { DelayedTickCountScore_Optional = NewValue; DelayedTickCountScore_IsSet = true; }
-	 /** @brief Clears the value of DelayedTickCountScore_Optional and sets DelayedTickCountScore_IsSet to false */
-	void ClearDelayedTickCountScore() { DelayedTickCountScore_Optional = false; DelayedTickCountScore_IsSet = false; }
+	void SetDelayedTickCountScore(bool&& NewValue) { DelayedTickCountScore_Optional = NewValue; DelayedTickCountScore_IsSet = true; DelayedTickCountScore_IsNull = false; }
+	/** @brief Clears the value of DelayedTickCountScore_Optional and sets DelayedTickCountScore_IsSet to false */
+	void ClearDelayedTickCountScore() { DelayedTickCountScore_Optional = false; DelayedTickCountScore_IsSet = false; DelayedTickCountScore_IsNull = false; }
+	/** @brief Checks whether DelayedTickCountScore_Optional has been set */
+	bool IsDelayedTickCountScoreSet() const { return DelayedTickCountScore_IsSet; }
 	/** @brief Returns true if DelayedTickCountScore_Optional is set and matches the default value */
 	bool IsDelayedTickCountScoreDefaultValue() const { return DelayedTickCountScore_IsSet && DelayedTickCountScore_Optional == false; }
 	/** @brief Sets the value of DelayedTickCountScore_Optional to its default and also sets DelayedTickCountScore_IsSet to true */
-	void SetDelayedTickCountScoreToDefault() { DelayedTickCountScore_Optional = false; DelayedTickCountScore_IsSet = true; }
+	void SetDelayedTickCountScoreToDefault() { SetDelayedTickCountScore(false); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetDelayedTickCountScoreToNull() { DelayedTickCountScore_IsSet = true; DelayedTickCountScore_IsNull = true; }
+	/** @brief Checks whether DelayedTickCountScore_Optional is set to null */
+	bool IsDelayedTickCountScoreNull() const { return DelayedTickCountScore_IsSet && DelayedTickCountScore_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool MemoryWsScore_Optional{  };
 	/** @brief true if MemoryWsScore_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool MemoryWsScore_IsSet{ false };
+	/** @brief true if MemoryWsScore_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool MemoryWsScore_IsNull{ false };
 	/** @brief Gets the value of MemoryWsScore_Optional, regardless of it having been set */
 	bool& GetMemoryWsScore() { return MemoryWsScore_Optional; }
 	/** @brief Gets the value of MemoryWsScore_Optional, regardless of it having been set */
@@ -303,27 +387,36 @@ struct RALLYHEREAPI_API FRHAPI_PexClientScores : public FRHAPI_Model
 	/** @brief Gets the value of MemoryWsScore_Optional, if it has been set, otherwise it returns DefaultValue */
 	const bool& GetMemoryWsScore(const bool& DefaultValue) const { if (MemoryWsScore_IsSet) return MemoryWsScore_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of MemoryWsScore_Optional and returns true if it has been set, otherwise returns false */
-	bool GetMemoryWsScore(bool& OutValue) const { if (MemoryWsScore_IsSet) OutValue = MemoryWsScore_Optional; return MemoryWsScore_IsSet; }
+	bool GetMemoryWsScore(bool& OutValue) const { if (MemoryWsScore_IsSet && !MemoryWsScore_IsNull) OutValue = MemoryWsScore_Optional; return MemoryWsScore_IsSet; }
 	/** @brief Returns a pointer to MemoryWsScore_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetMemoryWsScoreOrNull() { if (MemoryWsScore_IsSet) return &MemoryWsScore_Optional; return nullptr; }
+	bool* GetMemoryWsScoreOrNull() { if (MemoryWsScore_IsSet) return (MemoryWsScore_IsNull ? nullptr : &MemoryWsScore_Optional); return nullptr; }
 	/** @brief Returns a pointer to MemoryWsScore_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetMemoryWsScoreOrNull() const { if (MemoryWsScore_IsSet) return &MemoryWsScore_Optional; return nullptr; }
+	const bool* GetMemoryWsScoreOrNull() const { if (MemoryWsScore_IsSet) return (MemoryWsScore_IsNull ? nullptr : &MemoryWsScore_Optional); return nullptr; }
 	/** @brief Sets the value of MemoryWsScore_Optional and also sets MemoryWsScore_IsSet to true */
-	void SetMemoryWsScore(const bool& NewValue) { MemoryWsScore_Optional = NewValue; MemoryWsScore_IsSet = true; }
+	void SetMemoryWsScore(const bool& NewValue) { MemoryWsScore_Optional = NewValue; MemoryWsScore_IsSet = true; MemoryWsScore_IsNull = false; }
 	/** @brief Sets the value of MemoryWsScore_Optional and also sets MemoryWsScore_IsSet to true using move semantics */
-	void SetMemoryWsScore(bool&& NewValue) { MemoryWsScore_Optional = NewValue; MemoryWsScore_IsSet = true; }
-	 /** @brief Clears the value of MemoryWsScore_Optional and sets MemoryWsScore_IsSet to false */
-	void ClearMemoryWsScore() { MemoryWsScore_Optional = false; MemoryWsScore_IsSet = false; }
+	void SetMemoryWsScore(bool&& NewValue) { MemoryWsScore_Optional = NewValue; MemoryWsScore_IsSet = true; MemoryWsScore_IsNull = false; }
+	/** @brief Clears the value of MemoryWsScore_Optional and sets MemoryWsScore_IsSet to false */
+	void ClearMemoryWsScore() { MemoryWsScore_Optional = false; MemoryWsScore_IsSet = false; MemoryWsScore_IsNull = false; }
+	/** @brief Checks whether MemoryWsScore_Optional has been set */
+	bool IsMemoryWsScoreSet() const { return MemoryWsScore_IsSet; }
 	/** @brief Returns true if MemoryWsScore_Optional is set and matches the default value */
 	bool IsMemoryWsScoreDefaultValue() const { return MemoryWsScore_IsSet && MemoryWsScore_Optional == false; }
 	/** @brief Sets the value of MemoryWsScore_Optional to its default and also sets MemoryWsScore_IsSet to true */
-	void SetMemoryWsScoreToDefault() { MemoryWsScore_Optional = false; MemoryWsScore_IsSet = true; }
+	void SetMemoryWsScoreToDefault() { SetMemoryWsScore(false); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetMemoryWsScoreToNull() { MemoryWsScore_IsSet = true; MemoryWsScore_IsNull = true; }
+	/** @brief Checks whether MemoryWsScore_Optional is set to null */
+	bool IsMemoryWsScoreNull() const { return MemoryWsScore_IsSet && MemoryWsScore_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool MemoryVbScore_Optional{  };
 	/** @brief true if MemoryVbScore_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool MemoryVbScore_IsSet{ false };
+	/** @brief true if MemoryVbScore_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool MemoryVbScore_IsNull{ false };
 	/** @brief Gets the value of MemoryVbScore_Optional, regardless of it having been set */
 	bool& GetMemoryVbScore() { return MemoryVbScore_Optional; }
 	/** @brief Gets the value of MemoryVbScore_Optional, regardless of it having been set */
@@ -331,27 +424,36 @@ struct RALLYHEREAPI_API FRHAPI_PexClientScores : public FRHAPI_Model
 	/** @brief Gets the value of MemoryVbScore_Optional, if it has been set, otherwise it returns DefaultValue */
 	const bool& GetMemoryVbScore(const bool& DefaultValue) const { if (MemoryVbScore_IsSet) return MemoryVbScore_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of MemoryVbScore_Optional and returns true if it has been set, otherwise returns false */
-	bool GetMemoryVbScore(bool& OutValue) const { if (MemoryVbScore_IsSet) OutValue = MemoryVbScore_Optional; return MemoryVbScore_IsSet; }
+	bool GetMemoryVbScore(bool& OutValue) const { if (MemoryVbScore_IsSet && !MemoryVbScore_IsNull) OutValue = MemoryVbScore_Optional; return MemoryVbScore_IsSet; }
 	/** @brief Returns a pointer to MemoryVbScore_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetMemoryVbScoreOrNull() { if (MemoryVbScore_IsSet) return &MemoryVbScore_Optional; return nullptr; }
+	bool* GetMemoryVbScoreOrNull() { if (MemoryVbScore_IsSet) return (MemoryVbScore_IsNull ? nullptr : &MemoryVbScore_Optional); return nullptr; }
 	/** @brief Returns a pointer to MemoryVbScore_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetMemoryVbScoreOrNull() const { if (MemoryVbScore_IsSet) return &MemoryVbScore_Optional; return nullptr; }
+	const bool* GetMemoryVbScoreOrNull() const { if (MemoryVbScore_IsSet) return (MemoryVbScore_IsNull ? nullptr : &MemoryVbScore_Optional); return nullptr; }
 	/** @brief Sets the value of MemoryVbScore_Optional and also sets MemoryVbScore_IsSet to true */
-	void SetMemoryVbScore(const bool& NewValue) { MemoryVbScore_Optional = NewValue; MemoryVbScore_IsSet = true; }
+	void SetMemoryVbScore(const bool& NewValue) { MemoryVbScore_Optional = NewValue; MemoryVbScore_IsSet = true; MemoryVbScore_IsNull = false; }
 	/** @brief Sets the value of MemoryVbScore_Optional and also sets MemoryVbScore_IsSet to true using move semantics */
-	void SetMemoryVbScore(bool&& NewValue) { MemoryVbScore_Optional = NewValue; MemoryVbScore_IsSet = true; }
-	 /** @brief Clears the value of MemoryVbScore_Optional and sets MemoryVbScore_IsSet to false */
-	void ClearMemoryVbScore() { MemoryVbScore_Optional = false; MemoryVbScore_IsSet = false; }
+	void SetMemoryVbScore(bool&& NewValue) { MemoryVbScore_Optional = NewValue; MemoryVbScore_IsSet = true; MemoryVbScore_IsNull = false; }
+	/** @brief Clears the value of MemoryVbScore_Optional and sets MemoryVbScore_IsSet to false */
+	void ClearMemoryVbScore() { MemoryVbScore_Optional = false; MemoryVbScore_IsSet = false; MemoryVbScore_IsNull = false; }
+	/** @brief Checks whether MemoryVbScore_Optional has been set */
+	bool IsMemoryVbScoreSet() const { return MemoryVbScore_IsSet; }
 	/** @brief Returns true if MemoryVbScore_Optional is set and matches the default value */
 	bool IsMemoryVbScoreDefaultValue() const { return MemoryVbScore_IsSet && MemoryVbScore_Optional == false; }
 	/** @brief Sets the value of MemoryVbScore_Optional to its default and also sets MemoryVbScore_IsSet to true */
-	void SetMemoryVbScoreToDefault() { MemoryVbScore_Optional = false; MemoryVbScore_IsSet = true; }
+	void SetMemoryVbScoreToDefault() { SetMemoryVbScore(false); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetMemoryVbScoreToNull() { MemoryVbScore_IsSet = true; MemoryVbScore_IsNull = true; }
+	/** @brief Checks whether MemoryVbScore_Optional is set to null */
+	bool IsMemoryVbScoreNull() const { return MemoryVbScore_IsSet && MemoryVbScore_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool CpuProcessScore_Optional{  };
 	/** @brief true if CpuProcessScore_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool CpuProcessScore_IsSet{ false };
+	/** @brief true if CpuProcessScore_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool CpuProcessScore_IsNull{ false };
 	/** @brief Gets the value of CpuProcessScore_Optional, regardless of it having been set */
 	bool& GetCpuProcessScore() { return CpuProcessScore_Optional; }
 	/** @brief Gets the value of CpuProcessScore_Optional, regardless of it having been set */
@@ -359,27 +461,36 @@ struct RALLYHEREAPI_API FRHAPI_PexClientScores : public FRHAPI_Model
 	/** @brief Gets the value of CpuProcessScore_Optional, if it has been set, otherwise it returns DefaultValue */
 	const bool& GetCpuProcessScore(const bool& DefaultValue) const { if (CpuProcessScore_IsSet) return CpuProcessScore_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of CpuProcessScore_Optional and returns true if it has been set, otherwise returns false */
-	bool GetCpuProcessScore(bool& OutValue) const { if (CpuProcessScore_IsSet) OutValue = CpuProcessScore_Optional; return CpuProcessScore_IsSet; }
+	bool GetCpuProcessScore(bool& OutValue) const { if (CpuProcessScore_IsSet && !CpuProcessScore_IsNull) OutValue = CpuProcessScore_Optional; return CpuProcessScore_IsSet; }
 	/** @brief Returns a pointer to CpuProcessScore_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetCpuProcessScoreOrNull() { if (CpuProcessScore_IsSet) return &CpuProcessScore_Optional; return nullptr; }
+	bool* GetCpuProcessScoreOrNull() { if (CpuProcessScore_IsSet) return (CpuProcessScore_IsNull ? nullptr : &CpuProcessScore_Optional); return nullptr; }
 	/** @brief Returns a pointer to CpuProcessScore_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetCpuProcessScoreOrNull() const { if (CpuProcessScore_IsSet) return &CpuProcessScore_Optional; return nullptr; }
+	const bool* GetCpuProcessScoreOrNull() const { if (CpuProcessScore_IsSet) return (CpuProcessScore_IsNull ? nullptr : &CpuProcessScore_Optional); return nullptr; }
 	/** @brief Sets the value of CpuProcessScore_Optional and also sets CpuProcessScore_IsSet to true */
-	void SetCpuProcessScore(const bool& NewValue) { CpuProcessScore_Optional = NewValue; CpuProcessScore_IsSet = true; }
+	void SetCpuProcessScore(const bool& NewValue) { CpuProcessScore_Optional = NewValue; CpuProcessScore_IsSet = true; CpuProcessScore_IsNull = false; }
 	/** @brief Sets the value of CpuProcessScore_Optional and also sets CpuProcessScore_IsSet to true using move semantics */
-	void SetCpuProcessScore(bool&& NewValue) { CpuProcessScore_Optional = NewValue; CpuProcessScore_IsSet = true; }
-	 /** @brief Clears the value of CpuProcessScore_Optional and sets CpuProcessScore_IsSet to false */
-	void ClearCpuProcessScore() { CpuProcessScore_Optional = false; CpuProcessScore_IsSet = false; }
+	void SetCpuProcessScore(bool&& NewValue) { CpuProcessScore_Optional = NewValue; CpuProcessScore_IsSet = true; CpuProcessScore_IsNull = false; }
+	/** @brief Clears the value of CpuProcessScore_Optional and sets CpuProcessScore_IsSet to false */
+	void ClearCpuProcessScore() { CpuProcessScore_Optional = false; CpuProcessScore_IsSet = false; CpuProcessScore_IsNull = false; }
+	/** @brief Checks whether CpuProcessScore_Optional has been set */
+	bool IsCpuProcessScoreSet() const { return CpuProcessScore_IsSet; }
 	/** @brief Returns true if CpuProcessScore_Optional is set and matches the default value */
 	bool IsCpuProcessScoreDefaultValue() const { return CpuProcessScore_IsSet && CpuProcessScore_Optional == false; }
 	/** @brief Sets the value of CpuProcessScore_Optional to its default and also sets CpuProcessScore_IsSet to true */
-	void SetCpuProcessScoreToDefault() { CpuProcessScore_Optional = false; CpuProcessScore_IsSet = true; }
+	void SetCpuProcessScoreToDefault() { SetCpuProcessScore(false); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetCpuProcessScoreToNull() { CpuProcessScore_IsSet = true; CpuProcessScore_IsNull = true; }
+	/** @brief Checks whether CpuProcessScore_Optional is set to null */
+	bool IsCpuProcessScoreNull() const { return CpuProcessScore_IsSet && CpuProcessScore_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PingScore_Optional{  };
 	/** @brief true if PingScore_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PingScore_IsSet{ false };
+	/** @brief true if PingScore_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool PingScore_IsNull{ false };
 	/** @brief Gets the value of PingScore_Optional, regardless of it having been set */
 	bool& GetPingScore() { return PingScore_Optional; }
 	/** @brief Gets the value of PingScore_Optional, regardless of it having been set */
@@ -387,27 +498,36 @@ struct RALLYHEREAPI_API FRHAPI_PexClientScores : public FRHAPI_Model
 	/** @brief Gets the value of PingScore_Optional, if it has been set, otherwise it returns DefaultValue */
 	const bool& GetPingScore(const bool& DefaultValue) const { if (PingScore_IsSet) return PingScore_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of PingScore_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPingScore(bool& OutValue) const { if (PingScore_IsSet) OutValue = PingScore_Optional; return PingScore_IsSet; }
+	bool GetPingScore(bool& OutValue) const { if (PingScore_IsSet && !PingScore_IsNull) OutValue = PingScore_Optional; return PingScore_IsSet; }
 	/** @brief Returns a pointer to PingScore_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetPingScoreOrNull() { if (PingScore_IsSet) return &PingScore_Optional; return nullptr; }
+	bool* GetPingScoreOrNull() { if (PingScore_IsSet) return (PingScore_IsNull ? nullptr : &PingScore_Optional); return nullptr; }
 	/** @brief Returns a pointer to PingScore_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetPingScoreOrNull() const { if (PingScore_IsSet) return &PingScore_Optional; return nullptr; }
+	const bool* GetPingScoreOrNull() const { if (PingScore_IsSet) return (PingScore_IsNull ? nullptr : &PingScore_Optional); return nullptr; }
 	/** @brief Sets the value of PingScore_Optional and also sets PingScore_IsSet to true */
-	void SetPingScore(const bool& NewValue) { PingScore_Optional = NewValue; PingScore_IsSet = true; }
+	void SetPingScore(const bool& NewValue) { PingScore_Optional = NewValue; PingScore_IsSet = true; PingScore_IsNull = false; }
 	/** @brief Sets the value of PingScore_Optional and also sets PingScore_IsSet to true using move semantics */
-	void SetPingScore(bool&& NewValue) { PingScore_Optional = NewValue; PingScore_IsSet = true; }
-	 /** @brief Clears the value of PingScore_Optional and sets PingScore_IsSet to false */
-	void ClearPingScore() { PingScore_Optional = false; PingScore_IsSet = false; }
+	void SetPingScore(bool&& NewValue) { PingScore_Optional = NewValue; PingScore_IsSet = true; PingScore_IsNull = false; }
+	/** @brief Clears the value of PingScore_Optional and sets PingScore_IsSet to false */
+	void ClearPingScore() { PingScore_Optional = false; PingScore_IsSet = false; PingScore_IsNull = false; }
+	/** @brief Checks whether PingScore_Optional has been set */
+	bool IsPingScoreSet() const { return PingScore_IsSet; }
 	/** @brief Returns true if PingScore_Optional is set and matches the default value */
 	bool IsPingScoreDefaultValue() const { return PingScore_IsSet && PingScore_Optional == false; }
 	/** @brief Sets the value of PingScore_Optional to its default and also sets PingScore_IsSet to true */
-	void SetPingScoreToDefault() { PingScore_Optional = false; PingScore_IsSet = true; }
+	void SetPingScoreToDefault() { SetPingScore(false); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetPingScoreToNull() { PingScore_IsSet = true; PingScore_IsNull = true; }
+	/** @brief Checks whether PingScore_Optional is set to null */
+	bool IsPingScoreNull() const { return PingScore_IsSet && PingScore_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool InPacketLossScore_Optional{  };
 	/** @brief true if InPacketLossScore_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool InPacketLossScore_IsSet{ false };
+	/** @brief true if InPacketLossScore_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool InPacketLossScore_IsNull{ false };
 	/** @brief Gets the value of InPacketLossScore_Optional, regardless of it having been set */
 	bool& GetInPacketLossScore() { return InPacketLossScore_Optional; }
 	/** @brief Gets the value of InPacketLossScore_Optional, regardless of it having been set */
@@ -415,27 +535,36 @@ struct RALLYHEREAPI_API FRHAPI_PexClientScores : public FRHAPI_Model
 	/** @brief Gets the value of InPacketLossScore_Optional, if it has been set, otherwise it returns DefaultValue */
 	const bool& GetInPacketLossScore(const bool& DefaultValue) const { if (InPacketLossScore_IsSet) return InPacketLossScore_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of InPacketLossScore_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInPacketLossScore(bool& OutValue) const { if (InPacketLossScore_IsSet) OutValue = InPacketLossScore_Optional; return InPacketLossScore_IsSet; }
+	bool GetInPacketLossScore(bool& OutValue) const { if (InPacketLossScore_IsSet && !InPacketLossScore_IsNull) OutValue = InPacketLossScore_Optional; return InPacketLossScore_IsSet; }
 	/** @brief Returns a pointer to InPacketLossScore_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetInPacketLossScoreOrNull() { if (InPacketLossScore_IsSet) return &InPacketLossScore_Optional; return nullptr; }
+	bool* GetInPacketLossScoreOrNull() { if (InPacketLossScore_IsSet) return (InPacketLossScore_IsNull ? nullptr : &InPacketLossScore_Optional); return nullptr; }
 	/** @brief Returns a pointer to InPacketLossScore_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetInPacketLossScoreOrNull() const { if (InPacketLossScore_IsSet) return &InPacketLossScore_Optional; return nullptr; }
+	const bool* GetInPacketLossScoreOrNull() const { if (InPacketLossScore_IsSet) return (InPacketLossScore_IsNull ? nullptr : &InPacketLossScore_Optional); return nullptr; }
 	/** @brief Sets the value of InPacketLossScore_Optional and also sets InPacketLossScore_IsSet to true */
-	void SetInPacketLossScore(const bool& NewValue) { InPacketLossScore_Optional = NewValue; InPacketLossScore_IsSet = true; }
+	void SetInPacketLossScore(const bool& NewValue) { InPacketLossScore_Optional = NewValue; InPacketLossScore_IsSet = true; InPacketLossScore_IsNull = false; }
 	/** @brief Sets the value of InPacketLossScore_Optional and also sets InPacketLossScore_IsSet to true using move semantics */
-	void SetInPacketLossScore(bool&& NewValue) { InPacketLossScore_Optional = NewValue; InPacketLossScore_IsSet = true; }
-	 /** @brief Clears the value of InPacketLossScore_Optional and sets InPacketLossScore_IsSet to false */
-	void ClearInPacketLossScore() { InPacketLossScore_Optional = false; InPacketLossScore_IsSet = false; }
+	void SetInPacketLossScore(bool&& NewValue) { InPacketLossScore_Optional = NewValue; InPacketLossScore_IsSet = true; InPacketLossScore_IsNull = false; }
+	/** @brief Clears the value of InPacketLossScore_Optional and sets InPacketLossScore_IsSet to false */
+	void ClearInPacketLossScore() { InPacketLossScore_Optional = false; InPacketLossScore_IsSet = false; InPacketLossScore_IsNull = false; }
+	/** @brief Checks whether InPacketLossScore_Optional has been set */
+	bool IsInPacketLossScoreSet() const { return InPacketLossScore_IsSet; }
 	/** @brief Returns true if InPacketLossScore_Optional is set and matches the default value */
 	bool IsInPacketLossScoreDefaultValue() const { return InPacketLossScore_IsSet && InPacketLossScore_Optional == false; }
 	/** @brief Sets the value of InPacketLossScore_Optional to its default and also sets InPacketLossScore_IsSet to true */
-	void SetInPacketLossScoreToDefault() { InPacketLossScore_Optional = false; InPacketLossScore_IsSet = true; }
+	void SetInPacketLossScoreToDefault() { SetInPacketLossScore(false); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInPacketLossScoreToNull() { InPacketLossScore_IsSet = true; InPacketLossScore_IsNull = true; }
+	/** @brief Checks whether InPacketLossScore_Optional is set to null */
+	bool IsInPacketLossScoreNull() const { return InPacketLossScore_IsSet && InPacketLossScore_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool OutPacketLossScore_Optional{  };
 	/** @brief true if OutPacketLossScore_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool OutPacketLossScore_IsSet{ false };
+	/** @brief true if OutPacketLossScore_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool OutPacketLossScore_IsNull{ false };
 	/** @brief Gets the value of OutPacketLossScore_Optional, regardless of it having been set */
 	bool& GetOutPacketLossScore() { return OutPacketLossScore_Optional; }
 	/** @brief Gets the value of OutPacketLossScore_Optional, regardless of it having been set */
@@ -443,27 +572,36 @@ struct RALLYHEREAPI_API FRHAPI_PexClientScores : public FRHAPI_Model
 	/** @brief Gets the value of OutPacketLossScore_Optional, if it has been set, otherwise it returns DefaultValue */
 	const bool& GetOutPacketLossScore(const bool& DefaultValue) const { if (OutPacketLossScore_IsSet) return OutPacketLossScore_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of OutPacketLossScore_Optional and returns true if it has been set, otherwise returns false */
-	bool GetOutPacketLossScore(bool& OutValue) const { if (OutPacketLossScore_IsSet) OutValue = OutPacketLossScore_Optional; return OutPacketLossScore_IsSet; }
+	bool GetOutPacketLossScore(bool& OutValue) const { if (OutPacketLossScore_IsSet && !OutPacketLossScore_IsNull) OutValue = OutPacketLossScore_Optional; return OutPacketLossScore_IsSet; }
 	/** @brief Returns a pointer to OutPacketLossScore_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetOutPacketLossScoreOrNull() { if (OutPacketLossScore_IsSet) return &OutPacketLossScore_Optional; return nullptr; }
+	bool* GetOutPacketLossScoreOrNull() { if (OutPacketLossScore_IsSet) return (OutPacketLossScore_IsNull ? nullptr : &OutPacketLossScore_Optional); return nullptr; }
 	/** @brief Returns a pointer to OutPacketLossScore_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetOutPacketLossScoreOrNull() const { if (OutPacketLossScore_IsSet) return &OutPacketLossScore_Optional; return nullptr; }
+	const bool* GetOutPacketLossScoreOrNull() const { if (OutPacketLossScore_IsSet) return (OutPacketLossScore_IsNull ? nullptr : &OutPacketLossScore_Optional); return nullptr; }
 	/** @brief Sets the value of OutPacketLossScore_Optional and also sets OutPacketLossScore_IsSet to true */
-	void SetOutPacketLossScore(const bool& NewValue) { OutPacketLossScore_Optional = NewValue; OutPacketLossScore_IsSet = true; }
+	void SetOutPacketLossScore(const bool& NewValue) { OutPacketLossScore_Optional = NewValue; OutPacketLossScore_IsSet = true; OutPacketLossScore_IsNull = false; }
 	/** @brief Sets the value of OutPacketLossScore_Optional and also sets OutPacketLossScore_IsSet to true using move semantics */
-	void SetOutPacketLossScore(bool&& NewValue) { OutPacketLossScore_Optional = NewValue; OutPacketLossScore_IsSet = true; }
-	 /** @brief Clears the value of OutPacketLossScore_Optional and sets OutPacketLossScore_IsSet to false */
-	void ClearOutPacketLossScore() { OutPacketLossScore_Optional = false; OutPacketLossScore_IsSet = false; }
+	void SetOutPacketLossScore(bool&& NewValue) { OutPacketLossScore_Optional = NewValue; OutPacketLossScore_IsSet = true; OutPacketLossScore_IsNull = false; }
+	/** @brief Clears the value of OutPacketLossScore_Optional and sets OutPacketLossScore_IsSet to false */
+	void ClearOutPacketLossScore() { OutPacketLossScore_Optional = false; OutPacketLossScore_IsSet = false; OutPacketLossScore_IsNull = false; }
+	/** @brief Checks whether OutPacketLossScore_Optional has been set */
+	bool IsOutPacketLossScoreSet() const { return OutPacketLossScore_IsSet; }
 	/** @brief Returns true if OutPacketLossScore_Optional is set and matches the default value */
 	bool IsOutPacketLossScoreDefaultValue() const { return OutPacketLossScore_IsSet && OutPacketLossScore_Optional == false; }
 	/** @brief Sets the value of OutPacketLossScore_Optional to its default and also sets OutPacketLossScore_IsSet to true */
-	void SetOutPacketLossScoreToDefault() { OutPacketLossScore_Optional = false; OutPacketLossScore_IsSet = true; }
+	void SetOutPacketLossScoreToDefault() { SetOutPacketLossScore(false); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetOutPacketLossScoreToNull() { OutPacketLossScore_IsSet = true; OutPacketLossScore_IsNull = true; }
+	/** @brief Checks whether OutPacketLossScore_Optional is set to null */
+	bool IsOutPacketLossScoreNull() const { return OutPacketLossScore_IsSet && OutPacketLossScore_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool TotalDisconnectsScore_Optional{  };
 	/** @brief true if TotalDisconnectsScore_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool TotalDisconnectsScore_IsSet{ false };
+	/** @brief true if TotalDisconnectsScore_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool TotalDisconnectsScore_IsNull{ false };
 	/** @brief Gets the value of TotalDisconnectsScore_Optional, regardless of it having been set */
 	bool& GetTotalDisconnectsScore() { return TotalDisconnectsScore_Optional; }
 	/** @brief Gets the value of TotalDisconnectsScore_Optional, regardless of it having been set */
@@ -471,21 +609,27 @@ struct RALLYHEREAPI_API FRHAPI_PexClientScores : public FRHAPI_Model
 	/** @brief Gets the value of TotalDisconnectsScore_Optional, if it has been set, otherwise it returns DefaultValue */
 	const bool& GetTotalDisconnectsScore(const bool& DefaultValue) const { if (TotalDisconnectsScore_IsSet) return TotalDisconnectsScore_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of TotalDisconnectsScore_Optional and returns true if it has been set, otherwise returns false */
-	bool GetTotalDisconnectsScore(bool& OutValue) const { if (TotalDisconnectsScore_IsSet) OutValue = TotalDisconnectsScore_Optional; return TotalDisconnectsScore_IsSet; }
+	bool GetTotalDisconnectsScore(bool& OutValue) const { if (TotalDisconnectsScore_IsSet && !TotalDisconnectsScore_IsNull) OutValue = TotalDisconnectsScore_Optional; return TotalDisconnectsScore_IsSet; }
 	/** @brief Returns a pointer to TotalDisconnectsScore_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetTotalDisconnectsScoreOrNull() { if (TotalDisconnectsScore_IsSet) return &TotalDisconnectsScore_Optional; return nullptr; }
+	bool* GetTotalDisconnectsScoreOrNull() { if (TotalDisconnectsScore_IsSet) return (TotalDisconnectsScore_IsNull ? nullptr : &TotalDisconnectsScore_Optional); return nullptr; }
 	/** @brief Returns a pointer to TotalDisconnectsScore_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetTotalDisconnectsScoreOrNull() const { if (TotalDisconnectsScore_IsSet) return &TotalDisconnectsScore_Optional; return nullptr; }
+	const bool* GetTotalDisconnectsScoreOrNull() const { if (TotalDisconnectsScore_IsSet) return (TotalDisconnectsScore_IsNull ? nullptr : &TotalDisconnectsScore_Optional); return nullptr; }
 	/** @brief Sets the value of TotalDisconnectsScore_Optional and also sets TotalDisconnectsScore_IsSet to true */
-	void SetTotalDisconnectsScore(const bool& NewValue) { TotalDisconnectsScore_Optional = NewValue; TotalDisconnectsScore_IsSet = true; }
+	void SetTotalDisconnectsScore(const bool& NewValue) { TotalDisconnectsScore_Optional = NewValue; TotalDisconnectsScore_IsSet = true; TotalDisconnectsScore_IsNull = false; }
 	/** @brief Sets the value of TotalDisconnectsScore_Optional and also sets TotalDisconnectsScore_IsSet to true using move semantics */
-	void SetTotalDisconnectsScore(bool&& NewValue) { TotalDisconnectsScore_Optional = NewValue; TotalDisconnectsScore_IsSet = true; }
-	 /** @brief Clears the value of TotalDisconnectsScore_Optional and sets TotalDisconnectsScore_IsSet to false */
-	void ClearTotalDisconnectsScore() { TotalDisconnectsScore_Optional = false; TotalDisconnectsScore_IsSet = false; }
+	void SetTotalDisconnectsScore(bool&& NewValue) { TotalDisconnectsScore_Optional = NewValue; TotalDisconnectsScore_IsSet = true; TotalDisconnectsScore_IsNull = false; }
+	/** @brief Clears the value of TotalDisconnectsScore_Optional and sets TotalDisconnectsScore_IsSet to false */
+	void ClearTotalDisconnectsScore() { TotalDisconnectsScore_Optional = false; TotalDisconnectsScore_IsSet = false; TotalDisconnectsScore_IsNull = false; }
+	/** @brief Checks whether TotalDisconnectsScore_Optional has been set */
+	bool IsTotalDisconnectsScoreSet() const { return TotalDisconnectsScore_IsSet; }
 	/** @brief Returns true if TotalDisconnectsScore_Optional is set and matches the default value */
 	bool IsTotalDisconnectsScoreDefaultValue() const { return TotalDisconnectsScore_IsSet && TotalDisconnectsScore_Optional == false; }
 	/** @brief Sets the value of TotalDisconnectsScore_Optional to its default and also sets TotalDisconnectsScore_IsSet to true */
-	void SetTotalDisconnectsScoreToDefault() { TotalDisconnectsScore_Optional = false; TotalDisconnectsScore_IsSet = true; }
+	void SetTotalDisconnectsScoreToDefault() { SetTotalDisconnectsScore(false); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetTotalDisconnectsScoreToNull() { TotalDisconnectsScore_IsSet = true; TotalDisconnectsScore_IsNull = true; }
+	/** @brief Checks whether TotalDisconnectsScore_Optional is set to null */
+	bool IsTotalDisconnectsScoreNull() const { return TotalDisconnectsScore_IsSet && TotalDisconnectsScore_IsNull; }
 };
 
 /** @} */

@@ -24,8 +24,8 @@ Collection of Create Inventory Requests. This will create new Inventory for each
 `public FGuid `[`ClientOrderRefId_Optional`](#structFRHAPI__CreateInventoryRequests_1a4c62974407c099235da7ecc889b1f5da) | Arbitrary UUID that can be used by clients to correlate Order requests with Order responses.
 `public bool `[`ClientOrderRefId_IsSet`](#structFRHAPI__CreateInventoryRequests_1a65113778350c9bdc67e1c97626afb562) | true if ClientOrderRefId_Optional has been set to a value
 `public TArray< `[`FRHAPI_CreateInventoryRequest`](RHAPI_CreateInventoryRequest.md#structFRHAPI__CreateInventoryRequest)` > `[`Inventory`](#structFRHAPI__CreateInventoryRequests_1ad5c1065a425471ead065a069b830e19a) | 
-`public virtual bool `[`FromJson`](#structFRHAPI__CreateInventoryRequests_1ac2b8055447714c8995c1559a981b65f5)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__CreateInventoryRequests_1afa6301fedd555ab58c415e584e9098ac)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__CreateInventoryRequests_1a0df8d837ee113e5821c56ecf7a46374a)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__CreateInventoryRequests_1ab909ff830bc85f713674359bd8a94c5b)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_Source & `[`GetSource`](#structFRHAPI__CreateInventoryRequests_1a9e43c93b0a9a5c7af37a7d9cf3ae97fc)`()` | Gets the value of Source_Optional, regardless of it having been set.
 `public inline const ERHAPI_Source & `[`GetSource`](#structFRHAPI__CreateInventoryRequests_1a9f9ff36141cdb47965679de1fbcb83a1)`() const` | Gets the value of Source_Optional, regardless of it having been set.
 `public inline const ERHAPI_Source & `[`GetSource`](#structFRHAPI__CreateInventoryRequests_1aefae853960da20680ba75f5a65683ddc)`(const ERHAPI_Source & DefaultValue) const` | Gets the value of Source_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -35,6 +35,7 @@ Collection of Create Inventory Requests. This will create new Inventory for each
 `public inline void `[`SetSource`](#structFRHAPI__CreateInventoryRequests_1a927b4ccfd780d215a6dbeecbf6197d40)`(const ERHAPI_Source & NewValue)` | Sets the value of Source_Optional and also sets Source_IsSet to true.
 `public inline void `[`SetSource`](#structFRHAPI__CreateInventoryRequests_1a8d1d0836ca4df8466e8afccc54098193)`(ERHAPI_Source && NewValue)` | Sets the value of Source_Optional and also sets Source_IsSet to true using move semantics.
 `public inline void `[`ClearSource`](#structFRHAPI__CreateInventoryRequests_1a90ace01fa6f2f82a0e13574fe30bb348)`()` | Clears the value of Source_Optional and sets Source_IsSet to false.
+`public inline bool `[`IsSourceSet`](#structFRHAPI__CreateInventoryRequests_1a4f35f5e62ca9f33f7c4a5bab057ca48e)`() const` | Checks whether Source_Optional has been set.
 `public inline FGuid & `[`GetClientOrderRefId`](#structFRHAPI__CreateInventoryRequests_1a565a833705289f5c07105b05943cc039)`()` | Gets the value of ClientOrderRefId_Optional, regardless of it having been set.
 `public inline const FGuid & `[`GetClientOrderRefId`](#structFRHAPI__CreateInventoryRequests_1a0698edcf7fbb16caf071a17880b7e28a)`() const` | Gets the value of ClientOrderRefId_Optional, regardless of it having been set.
 `public inline const FGuid & `[`GetClientOrderRefId`](#structFRHAPI__CreateInventoryRequests_1acdfc93d4f3cbaab4f34422a5b43fbe4b)`(const FGuid & DefaultValue) const` | Gets the value of ClientOrderRefId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -44,6 +45,7 @@ Collection of Create Inventory Requests. This will create new Inventory for each
 `public inline void `[`SetClientOrderRefId`](#structFRHAPI__CreateInventoryRequests_1ad7b137a8293edf10154ba5e8dee88117)`(const FGuid & NewValue)` | Sets the value of ClientOrderRefId_Optional and also sets ClientOrderRefId_IsSet to true.
 `public inline void `[`SetClientOrderRefId`](#structFRHAPI__CreateInventoryRequests_1abfcc2485ded03c4584f0f97e76567449)`(FGuid && NewValue)` | Sets the value of ClientOrderRefId_Optional and also sets ClientOrderRefId_IsSet to true using move semantics.
 `public inline void `[`ClearClientOrderRefId`](#structFRHAPI__CreateInventoryRequests_1ad1d3d71c22d0fa589bbd5574932c60a8)`()` | Clears the value of ClientOrderRefId_Optional and sets ClientOrderRefId_IsSet to false.
+`public inline bool `[`IsClientOrderRefIdSet`](#structFRHAPI__CreateInventoryRequests_1add1a1d74d3e2317f98ceac8d0708b0fa)`() const` | Checks whether ClientOrderRefId_Optional has been set.
 `public inline TArray< `[`FRHAPI_CreateInventoryRequest`](RHAPI_CreateInventoryRequest.md#structFRHAPI__CreateInventoryRequest)` > & `[`GetInventory`](#structFRHAPI__CreateInventoryRequests_1ab87530ee191fc29901fa0476956ac096)`()` | Gets the value of Inventory.
 `public inline const TArray< `[`FRHAPI_CreateInventoryRequest`](RHAPI_CreateInventoryRequest.md#structFRHAPI__CreateInventoryRequest)` > & `[`GetInventory`](#structFRHAPI__CreateInventoryRequests_1a3e03c3090869f269a876a2aebc5ecae9)`() const` | Gets the value of Inventory.
 `public inline void `[`SetInventory`](#structFRHAPI__CreateInventoryRequests_1a8165f96527b37b8baed72db3aa8ed4e0)`(const TArray< `[`FRHAPI_CreateInventoryRequest`](RHAPI_CreateInventoryRequest.md#structFRHAPI__CreateInventoryRequest)` > & NewValue)` | Sets the value of Inventory.
@@ -69,7 +71,7 @@ true if ClientOrderRefId_Optional has been set to a value
 
 #### `public TArray< `[`FRHAPI_CreateInventoryRequest`](RHAPI_CreateInventoryRequest.md#structFRHAPI__CreateInventoryRequest)` > `[`Inventory`](#structFRHAPI__CreateInventoryRequests_1ad5c1065a425471ead065a069b830e19a) <a id="structFRHAPI__CreateInventoryRequests_1ad5c1065a425471ead065a069b830e19a"></a>
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__CreateInventoryRequests_1ac2b8055447714c8995c1559a981b65f5)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__CreateInventoryRequests_1ac2b8055447714c8995c1559a981b65f5"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__CreateInventoryRequests_1a0df8d837ee113e5821c56ecf7a46374a)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__CreateInventoryRequests_1a0df8d837ee113e5821c56ecf7a46374a"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -79,7 +81,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__CreateInventoryRequests_1afa6301fedd555ab58c415e584e9098ac)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__CreateInventoryRequests_1afa6301fedd555ab58c415e584e9098ac"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__CreateInventoryRequests_1ab909ff830bc85f713674359bd8a94c5b)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__CreateInventoryRequests_1ab909ff830bc85f713674359bd8a94c5b"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -122,6 +124,10 @@ Sets the value of Source_Optional and also sets Source_IsSet to true using move 
 
 Clears the value of Source_Optional and sets Source_IsSet to false.
 
+#### `public inline bool `[`IsSourceSet`](#structFRHAPI__CreateInventoryRequests_1a4f35f5e62ca9f33f7c4a5bab057ca48e)`() const` <a id="structFRHAPI__CreateInventoryRequests_1a4f35f5e62ca9f33f7c4a5bab057ca48e"></a>
+
+Checks whether Source_Optional has been set.
+
 #### `public inline FGuid & `[`GetClientOrderRefId`](#structFRHAPI__CreateInventoryRequests_1a565a833705289f5c07105b05943cc039)`()` <a id="structFRHAPI__CreateInventoryRequests_1a565a833705289f5c07105b05943cc039"></a>
 
 Gets the value of ClientOrderRefId_Optional, regardless of it having been set.
@@ -157,6 +163,10 @@ Sets the value of ClientOrderRefId_Optional and also sets ClientOrderRefId_IsSet
 #### `public inline void `[`ClearClientOrderRefId`](#structFRHAPI__CreateInventoryRequests_1ad1d3d71c22d0fa589bbd5574932c60a8)`()` <a id="structFRHAPI__CreateInventoryRequests_1ad1d3d71c22d0fa589bbd5574932c60a8"></a>
 
 Clears the value of ClientOrderRefId_Optional and sets ClientOrderRefId_IsSet to false.
+
+#### `public inline bool `[`IsClientOrderRefIdSet`](#structFRHAPI__CreateInventoryRequests_1add1a1d74d3e2317f98ceac8d0708b0fa)`() const` <a id="structFRHAPI__CreateInventoryRequests_1add1a1d74d3e2317f98ceac8d0708b0fa"></a>
+
+Checks whether ClientOrderRefId_Optional has been set.
 
 #### `public inline TArray< `[`FRHAPI_CreateInventoryRequest`](RHAPI_CreateInventoryRequest.md#structFRHAPI__CreateInventoryRequest)` > & `[`GetInventory`](#structFRHAPI__CreateInventoryRequests_1ab87530ee191fc29901fa0476956ac096)`()` <a id="structFRHAPI__CreateInventoryRequests_1ab87530ee191fc29901fa0476956ac096"></a>
 

@@ -31,14 +31,14 @@ struct RALLYHEREAPI_API FRHAPI_HTTPValidationError : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_ValidationError> Detail_Optional{  };
@@ -54,15 +54,17 @@ struct RALLYHEREAPI_API FRHAPI_HTTPValidationError : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Detail_Optional and returns true if it has been set, otherwise returns false */
 	bool GetDetail(TArray<FRHAPI_ValidationError>& OutValue) const { if (Detail_IsSet) OutValue = Detail_Optional; return Detail_IsSet; }
 	/** @brief Returns a pointer to Detail_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FRHAPI_ValidationError>* GetDetailOrNull() { if (Detail_IsSet) return &Detail_Optional; return nullptr; }
+	TArray<FRHAPI_ValidationError>* GetDetailOrNull() { if (Detail_IsSet) return (&Detail_Optional); return nullptr; }
 	/** @brief Returns a pointer to Detail_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FRHAPI_ValidationError>* GetDetailOrNull() const { if (Detail_IsSet) return &Detail_Optional; return nullptr; }
+	const TArray<FRHAPI_ValidationError>* GetDetailOrNull() const { if (Detail_IsSet) return (&Detail_Optional); return nullptr; }
 	/** @brief Sets the value of Detail_Optional and also sets Detail_IsSet to true */
-	void SetDetail(const TArray<FRHAPI_ValidationError>& NewValue) { Detail_Optional = NewValue; Detail_IsSet = true; }
+	void SetDetail(const TArray<FRHAPI_ValidationError>& NewValue) { Detail_Optional = NewValue; Detail_IsSet = true;  }
 	/** @brief Sets the value of Detail_Optional and also sets Detail_IsSet to true using move semantics */
-	void SetDetail(TArray<FRHAPI_ValidationError>&& NewValue) { Detail_Optional = NewValue; Detail_IsSet = true; }
-	 /** @brief Clears the value of Detail_Optional and sets Detail_IsSet to false */
-	void ClearDetail() { Detail_IsSet = false; }
+	void SetDetail(TArray<FRHAPI_ValidationError>&& NewValue) { Detail_Optional = NewValue; Detail_IsSet = true;  }
+	/** @brief Clears the value of Detail_Optional and sets Detail_IsSet to false */
+	void ClearDetail() { Detail_IsSet = false;  }
+	/** @brief Checks whether Detail_Optional has been set */
+	bool IsDetailSet() const { return Detail_IsSet; }
 };
 
 /** @} */

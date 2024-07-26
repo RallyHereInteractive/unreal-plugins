@@ -20,8 +20,8 @@ struct FRHAPI_LoginHistoryPage
 `public TArray< `[`FRHAPI_LoginHistoryEntry`](RHAPI_LoginHistoryEntry.md#structFRHAPI__LoginHistoryEntry)` > `[`Entries`](#structFRHAPI__LoginHistoryPage_1ab49054edc49807c4285bbbd0b4bfc747) | The login history entries.
 `public FString `[`ContinuationToken_Optional`](#structFRHAPI__LoginHistoryPage_1a7f15192e09602cfab9b46bbd8a882260) | Token to retrieve the next page of results.
 `public bool `[`ContinuationToken_IsSet`](#structFRHAPI__LoginHistoryPage_1aa7efa46fc736debb688497937a2930ed) | true if ContinuationToken_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__LoginHistoryPage_1a01c9a93a7e7807ef099b288261a9a75e)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__LoginHistoryPage_1a43f2f0a36c6812c8655630917a412923)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__LoginHistoryPage_1a9320e1edf84affdb1e680ccab65de6e9)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__LoginHistoryPage_1ab883a6c0ac45551f15a670fa4b8a0f7d)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< `[`FRHAPI_LoginHistoryEntry`](RHAPI_LoginHistoryEntry.md#structFRHAPI__LoginHistoryEntry)` > & `[`GetEntries`](#structFRHAPI__LoginHistoryPage_1ada05a2055110bde2ffbbdc471a08a945)`()` | Gets the value of Entries.
 `public inline const TArray< `[`FRHAPI_LoginHistoryEntry`](RHAPI_LoginHistoryEntry.md#structFRHAPI__LoginHistoryEntry)` > & `[`GetEntries`](#structFRHAPI__LoginHistoryPage_1a3ab6fe984b9b54340ff6d0366ba7d0a0)`() const` | Gets the value of Entries.
 `public inline void `[`SetEntries`](#structFRHAPI__LoginHistoryPage_1af2b61d09cdd51caa038820292645723d)`(const TArray< `[`FRHAPI_LoginHistoryEntry`](RHAPI_LoginHistoryEntry.md#structFRHAPI__LoginHistoryEntry)` > & NewValue)` | Sets the value of Entries.
@@ -35,6 +35,7 @@ struct FRHAPI_LoginHistoryPage
 `public inline void `[`SetContinuationToken`](#structFRHAPI__LoginHistoryPage_1a781b011aa9422a2e9140a0bb6047cdae)`(const FString & NewValue)` | Sets the value of ContinuationToken_Optional and also sets ContinuationToken_IsSet to true.
 `public inline void `[`SetContinuationToken`](#structFRHAPI__LoginHistoryPage_1a404c404e0186e776bd2c8e92b964f813)`(FString && NewValue)` | Sets the value of ContinuationToken_Optional and also sets ContinuationToken_IsSet to true using move semantics.
 `public inline void `[`ClearContinuationToken`](#structFRHAPI__LoginHistoryPage_1a0aadae52cf25417902e09c1378374209)`()` | Clears the value of ContinuationToken_Optional and sets ContinuationToken_IsSet to false.
+`public inline bool `[`IsContinuationTokenSet`](#structFRHAPI__LoginHistoryPage_1a556005273c3001a10dfb17feba6f2084)`() const` | Checks whether ContinuationToken_Optional has been set.
 
 ### Members
 
@@ -50,7 +51,7 @@ Token to retrieve the next page of results.
 
 true if ContinuationToken_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__LoginHistoryPage_1a01c9a93a7e7807ef099b288261a9a75e)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__LoginHistoryPage_1a01c9a93a7e7807ef099b288261a9a75e"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__LoginHistoryPage_1a9320e1edf84affdb1e680ccab65de6e9)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__LoginHistoryPage_1a9320e1edf84affdb1e680ccab65de6e9"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -60,7 +61,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__LoginHistoryPage_1a43f2f0a36c6812c8655630917a412923)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__LoginHistoryPage_1a43f2f0a36c6812c8655630917a412923"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__LoginHistoryPage_1ab883a6c0ac45551f15a670fa4b8a0f7d)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__LoginHistoryPage_1ab883a6c0ac45551f15a670fa4b8a0f7d"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -118,4 +119,8 @@ Sets the value of ContinuationToken_Optional and also sets ContinuationToken_IsS
 #### `public inline void `[`ClearContinuationToken`](#structFRHAPI__LoginHistoryPage_1a0aadae52cf25417902e09c1378374209)`()` <a id="structFRHAPI__LoginHistoryPage_1a0aadae52cf25417902e09c1378374209"></a>
 
 Clears the value of ContinuationToken_Optional and sets ContinuationToken_IsSet to false.
+
+#### `public inline bool `[`IsContinuationTokenSet`](#structFRHAPI__LoginHistoryPage_1a556005273c3001a10dfb17feba6f2084)`() const` <a id="structFRHAPI__LoginHistoryPage_1a556005273c3001a10dfb17feba6f2084"></a>
+
+Checks whether ContinuationToken_Optional has been set.
 

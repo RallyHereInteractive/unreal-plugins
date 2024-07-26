@@ -24,8 +24,8 @@ OAuth2 Token Response.
 `public FString `[`RefreshToken_Optional`](#structFRHAPI__TokenResponse_1ac68a5e1154530c8e88fb8ac2f508ab72) | Result refresh token that can be used to get new access tokens.
 `public bool `[`RefreshToken_IsSet`](#structFRHAPI__TokenResponse_1af8d74d0749fb2de5acdf4acfe60272f3) | true if RefreshToken_Optional has been set to a value
 `public int32 `[`ExpiresIn`](#structFRHAPI__TokenResponse_1a86483ede9759e7f6e91e8699982e7d2e) | Result access token expiration time in seconds.
-`public virtual bool `[`FromJson`](#structFRHAPI__TokenResponse_1aa9593a8aca941473bdec4de63517e340)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__TokenResponse_1a667fb38cc9a4612f7b20de637d509c56)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__TokenResponse_1a51d04bfd1988cc71eb7d202a6261f8b7)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__TokenResponse_1ac653f721ba5be22b233e4a1645654976)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetAccessToken`](#structFRHAPI__TokenResponse_1ae02bb6e092058e18ccf61352b24820b5)`()` | Gets the value of AccessToken.
 `public inline const FString & `[`GetAccessToken`](#structFRHAPI__TokenResponse_1ad604cb33c5feaf308d4c76460ec5bb41)`() const` | Gets the value of AccessToken.
 `public inline void `[`SetAccessToken`](#structFRHAPI__TokenResponse_1a5c77cea4ccdffd1795a07441390ce271)`(const FString & NewValue)` | Sets the value of AccessToken.
@@ -43,6 +43,7 @@ OAuth2 Token Response.
 `public inline void `[`SetRefreshToken`](#structFRHAPI__TokenResponse_1a8f82d55b9c6af0d3c05ff883caa71632)`(const FString & NewValue)` | Sets the value of RefreshToken_Optional and also sets RefreshToken_IsSet to true.
 `public inline void `[`SetRefreshToken`](#structFRHAPI__TokenResponse_1a3f50259541f620e7be54d14f8ba6cfab)`(FString && NewValue)` | Sets the value of RefreshToken_Optional and also sets RefreshToken_IsSet to true using move semantics.
 `public inline void `[`ClearRefreshToken`](#structFRHAPI__TokenResponse_1a74cbde90c757cf242fc68161279ebfb8)`()` | Clears the value of RefreshToken_Optional and sets RefreshToken_IsSet to false.
+`public inline bool `[`IsRefreshTokenSet`](#structFRHAPI__TokenResponse_1a16030adf3bc9232e15d18c7302ae084e)`() const` | Checks whether RefreshToken_Optional has been set.
 `public inline int32 & `[`GetExpiresIn`](#structFRHAPI__TokenResponse_1a6756fc1ebbcd784b9a872ad5262fe371)`()` | Gets the value of ExpiresIn.
 `public inline const int32 & `[`GetExpiresIn`](#structFRHAPI__TokenResponse_1a190123e7780c4e2e63fe2dee23ab5bc8)`() const` | Gets the value of ExpiresIn.
 `public inline void `[`SetExpiresIn`](#structFRHAPI__TokenResponse_1a2aac788ac3241e8e2ff90f7074213fd4)`(const int32 & NewValue)` | Sets the value of ExpiresIn.
@@ -72,7 +73,7 @@ true if RefreshToken_Optional has been set to a value
 
 Result access token expiration time in seconds.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__TokenResponse_1aa9593a8aca941473bdec4de63517e340)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__TokenResponse_1aa9593a8aca941473bdec4de63517e340"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__TokenResponse_1a51d04bfd1988cc71eb7d202a6261f8b7)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__TokenResponse_1a51d04bfd1988cc71eb7d202a6261f8b7"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -82,7 +83,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__TokenResponse_1a667fb38cc9a4612f7b20de637d509c56)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__TokenResponse_1a667fb38cc9a4612f7b20de637d509c56"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__TokenResponse_1ac653f721ba5be22b233e4a1645654976)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__TokenResponse_1ac653f721ba5be22b233e4a1645654976"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -156,6 +157,10 @@ Sets the value of RefreshToken_Optional and also sets RefreshToken_IsSet to true
 #### `public inline void `[`ClearRefreshToken`](#structFRHAPI__TokenResponse_1a74cbde90c757cf242fc68161279ebfb8)`()` <a id="structFRHAPI__TokenResponse_1a74cbde90c757cf242fc68161279ebfb8"></a>
 
 Clears the value of RefreshToken_Optional and sets RefreshToken_IsSet to false.
+
+#### `public inline bool `[`IsRefreshTokenSet`](#structFRHAPI__TokenResponse_1a16030adf3bc9232e15d18c7302ae084e)`() const` <a id="structFRHAPI__TokenResponse_1a16030adf3bc9232e15d18c7302ae084e"></a>
+
+Checks whether RefreshToken_Optional has been set.
 
 #### `public inline int32 & `[`GetExpiresIn`](#structFRHAPI__TokenResponse_1a6756fc1ebbcd784b9a872ad5262fe371)`()` <a id="structFRHAPI__TokenResponse_1a6756fc1ebbcd784b9a872ad5262fe371"></a>
 

@@ -318,7 +318,7 @@ T GenerateTestMatchEntry()
 	CustomData.Add(TEXT("TestField2"), TEXT("TestValue2"));
 	MatchRequest.SetCustomData(CustomData);
 
-	MatchRequest.SetCorrelationId(FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens));
+	MatchRequest.SetCorrelationIdToNull();
 
 	// players
 	TArray<FRHAPI_MatchPlayerRequest> Players;
@@ -377,7 +377,7 @@ T GenerateTestMatchEntry()
 	return MatchRequest;
 }
 
-BEGIN_DEFINE_SPEC(FRH_MatchCreateSimple, "RHAutomation.Match.Spec", EAutomationTestFlags::ClientContext | EAutomationTestFlags::RequiresUser | EAutomationTestFlags::ProductFilter | EAutomationTestFlags::MediumPriority)
+BEGIN_DEFINE_SPEC(FRH_MatchCreateSimple, "RHAutomation.Match.Spec", EAutomationTestFlags::ClientContext | EAutomationTestFlags::ServerContext | EAutomationTestFlags::ProductFilter | EAutomationTestFlags::MediumPriority)
 	FRHAPI_MatchRequest MatchRequest;
 	TWeakObjectPtr<URH_MatchSubsystem> Subsystem;
 	TOptional<FString> MatchId;

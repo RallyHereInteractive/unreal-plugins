@@ -21,8 +21,8 @@ One team of players from a match along with their placement in the match, and pr
 --------------------------------|---------------------------------------------
 `public TArray< `[`FRHAPI_CalculatedRank`](RHAPI_CalculatedRank.md#structFRHAPI__CalculatedRank)` > `[`Players`](#structFRHAPI__RankedTeam_1ab1dfafc29c7642f9c16484f0cdb9908b) | List of CalculatedRank objects that give stats about a specific player from the match.
 `public int32 `[`TeamRank`](#structFRHAPI__RankedTeam_1a350d4eb07e1820adb0dc652d69bcacb3) | What rank this team came in. 1 indicates victory, and higher values are placements. Matching ranks indicate draws.
-`public virtual bool `[`FromJson`](#structFRHAPI__RankedTeam_1a29e61f5ed78662d7bceedff35b4bff20)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__RankedTeam_1aca0fb8d52b8f9c3e394cd117acb1416d)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__RankedTeam_1a0b18ac4b37703eefccc47dbc6a89944c)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__RankedTeam_1a737d085973cbfb64c1c4b9a0618cced4)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< `[`FRHAPI_CalculatedRank`](RHAPI_CalculatedRank.md#structFRHAPI__CalculatedRank)` > & `[`GetPlayers`](#structFRHAPI__RankedTeam_1af380e38877a7b061956b8423e6d654df)`()` | Gets the value of Players.
 `public inline const TArray< `[`FRHAPI_CalculatedRank`](RHAPI_CalculatedRank.md#structFRHAPI__CalculatedRank)` > & `[`GetPlayers`](#structFRHAPI__RankedTeam_1a2e5020da54589aa3261af2228ce25ab2)`() const` | Gets the value of Players.
 `public inline void `[`SetPlayers`](#structFRHAPI__RankedTeam_1a1b91806d20a0847a24e43cc24011b405)`(const TArray< `[`FRHAPI_CalculatedRank`](RHAPI_CalculatedRank.md#structFRHAPI__CalculatedRank)` > & NewValue)` | Sets the value of Players.
@@ -44,7 +44,7 @@ List of CalculatedRank objects that give stats about a specific player from the 
 
 What rank this team came in. 1 indicates victory, and higher values are placements. Matching ranks indicate draws.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__RankedTeam_1a29e61f5ed78662d7bceedff35b4bff20)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__RankedTeam_1a29e61f5ed78662d7bceedff35b4bff20"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__RankedTeam_1a0b18ac4b37703eefccc47dbc6a89944c)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__RankedTeam_1a0b18ac4b37703eefccc47dbc6a89944c"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -54,7 +54,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__RankedTeam_1aca0fb8d52b8f9c3e394cd117acb1416d)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__RankedTeam_1aca0fb8d52b8f9c3e394cd117acb1416d"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__RankedTeam_1a737d085973cbfb64c1c4b9a0618cced4)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__RankedTeam_1a737d085973cbfb64c1c4b9a0618cced4"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 

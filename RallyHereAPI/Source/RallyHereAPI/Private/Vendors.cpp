@@ -44,13 +44,13 @@ bool FRHAPI_Vendors::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonVendorsField = (*Object)->TryGetField(TEXT("vendors"));
-	if (JsonVendorsField.IsValid() && !JsonVendorsField->IsNull())
+	if (JsonVendorsField.IsValid())
 	{
 		Vendors_IsSet = TryGetJsonValue(JsonVendorsField, Vendors_Optional);
 		ParseSuccess &= Vendors_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
-	if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
+	if (JsonCacheInfoField.IsValid())
 	{
 		CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
 		ParseSuccess &= CacheInfo_IsSet;

@@ -23,8 +23,8 @@ A collections of Items by Item ID.
 `public bool `[`Items_IsSet`](#structFRHAPI__Items_1ab618761f9969f6d5952ba37001edac5a) | true if Items_Optional has been set to a value
 `public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__Items_1a1217986ceec7a05241e7e957cb9828fa) | Item's cache information.
 `public bool `[`CacheInfo_IsSet`](#structFRHAPI__Items_1aa69362208158a2532fe056d3826818a2) | true if CacheInfo_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__Items_1a7d988b32b08e2f3336e8a842c35af7b7)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__Items_1a913a71601a108617f25afa168f333d97)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__Items_1ae83e7d76c864b082bd3c2903d7105b17)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__Items_1a64ebbe992c344ea1c3f25fc35e0b10ba)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TMap< FString, `[`FRHAPI_Item`](RHAPI_Item.md#structFRHAPI__Item)` > & `[`GetItems`](#structFRHAPI__Items_1ab44675ebca65c87de42ec268fc199997)`()` | Gets the value of Items_Optional, regardless of it having been set.
 `public inline const TMap< FString, `[`FRHAPI_Item`](RHAPI_Item.md#structFRHAPI__Item)` > & `[`GetItems`](#structFRHAPI__Items_1aed87cc2a3e31525a7da7a9eb8a7278a1)`() const` | Gets the value of Items_Optional, regardless of it having been set.
 `public inline const TMap< FString, `[`FRHAPI_Item`](RHAPI_Item.md#structFRHAPI__Item)` > & `[`GetItems`](#structFRHAPI__Items_1a1d50f8da7328aef3369ebd7a22b1bfd1)`(const TMap< FString, `[`FRHAPI_Item`](RHAPI_Item.md#structFRHAPI__Item)` > & DefaultValue) const` | Gets the value of Items_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -34,6 +34,7 @@ A collections of Items by Item ID.
 `public inline void `[`SetItems`](#structFRHAPI__Items_1a47eafcaaf4df9d3232ee0435885bdac9)`(const TMap< FString, `[`FRHAPI_Item`](RHAPI_Item.md#structFRHAPI__Item)` > & NewValue)` | Sets the value of Items_Optional and also sets Items_IsSet to true.
 `public inline void `[`SetItems`](#structFRHAPI__Items_1ab46ba0d20c0b3a5858b5f355162c65c8)`(TMap< FString, `[`FRHAPI_Item`](RHAPI_Item.md#structFRHAPI__Item)` > && NewValue)` | Sets the value of Items_Optional and also sets Items_IsSet to true using move semantics.
 `public inline void `[`ClearItems`](#structFRHAPI__Items_1a2f14e5ee5d4d02ff849753ef84a9a713)`()` | Clears the value of Items_Optional and sets Items_IsSet to false.
+`public inline bool `[`IsItemsSet`](#structFRHAPI__Items_1a9e8b50de2df7d46aeda267feec475ced)`() const` | Checks whether Items_Optional has been set.
 `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Items_1a298ec445177a4b83f5ecb0033a193b7f)`()` | Gets the value of CacheInfo_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Items_1af09b7f5f49d7f5ba4e38002a72473e18)`() const` | Gets the value of CacheInfo_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Items_1a4817236512ffe065a3acbb51cc8be6e9)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` | Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -43,6 +44,7 @@ A collections of Items by Item ID.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__Items_1aadfa9e40f2503e083779241e131ba28d)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__Items_1af646e5c2a1dfac658afe04beb5af0623)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__Items_1a92bb319e2322768d4493dd851721c1ac)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
+`public inline bool `[`IsCacheInfoSet`](#structFRHAPI__Items_1a51c4b682b194f94627f854d414c1ab71)`() const` | Checks whether CacheInfo_Optional has been set.
 
 ### Members
 
@@ -62,7 +64,7 @@ Item's cache information.
 
 true if CacheInfo_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__Items_1a7d988b32b08e2f3336e8a842c35af7b7)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__Items_1a7d988b32b08e2f3336e8a842c35af7b7"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__Items_1ae83e7d76c864b082bd3c2903d7105b17)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__Items_1ae83e7d76c864b082bd3c2903d7105b17"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -72,7 +74,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__Items_1a913a71601a108617f25afa168f333d97)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__Items_1a913a71601a108617f25afa168f333d97"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__Items_1a64ebbe992c344ea1c3f25fc35e0b10ba)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__Items_1a64ebbe992c344ea1c3f25fc35e0b10ba"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -115,6 +117,10 @@ Sets the value of Items_Optional and also sets Items_IsSet to true using move se
 
 Clears the value of Items_Optional and sets Items_IsSet to false.
 
+#### `public inline bool `[`IsItemsSet`](#structFRHAPI__Items_1a9e8b50de2df7d46aeda267feec475ced)`() const` <a id="structFRHAPI__Items_1a9e8b50de2df7d46aeda267feec475ced"></a>
+
+Checks whether Items_Optional has been set.
+
 #### `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Items_1a298ec445177a4b83f5ecb0033a193b7f)`()` <a id="structFRHAPI__Items_1a298ec445177a4b83f5ecb0033a193b7f"></a>
 
 Gets the value of CacheInfo_Optional, regardless of it having been set.
@@ -150,4 +156,8 @@ Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using
 #### `public inline void `[`ClearCacheInfo`](#structFRHAPI__Items_1a92bb319e2322768d4493dd851721c1ac)`()` <a id="structFRHAPI__Items_1a92bb319e2322768d4493dd851721c1ac"></a>
 
 Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
+
+#### `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__Items_1a51c4b682b194f94627f854d414c1ab71)`() const` <a id="structFRHAPI__Items_1a51c4b682b194f94627f854d414c1ab71"></a>
+
+Checks whether CacheInfo_Optional has been set.
 

@@ -18,8 +18,8 @@ struct FRHAPI_SettingType
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public TMap< FString, `[`FRHAPI_SettingTypeVersion`](RHAPI_SettingTypeVersion.md#structFRHAPI__SettingTypeVersion)` > `[`Versions`](#structFRHAPI__SettingType_1ab890cf6c935d2cd691a9b5c4caac7cc1) | Map of setting type version ids to the version.
-`public virtual bool `[`FromJson`](#structFRHAPI__SettingType_1aceab82a3fc5d56e8469b3c7053be6330)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__SettingType_1a274f8e9b15db0cff2780a3ddd7a5e3fb)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__SettingType_1a8ff93dadfeb17aa6a6cdec4e751d4de4)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__SettingType_1a90af79126bf99302cc8800bacbcc14aa)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TMap< FString, `[`FRHAPI_SettingTypeVersion`](RHAPI_SettingTypeVersion.md#structFRHAPI__SettingTypeVersion)` > & `[`GetVersions`](#structFRHAPI__SettingType_1a187afb11a54ff15041642bb3aa31bcb9)`()` | Gets the value of Versions.
 `public inline const TMap< FString, `[`FRHAPI_SettingTypeVersion`](RHAPI_SettingTypeVersion.md#structFRHAPI__SettingTypeVersion)` > & `[`GetVersions`](#structFRHAPI__SettingType_1a0e2c33862b30c54b7acc43560f9eff0c)`() const` | Gets the value of Versions.
 `public inline void `[`SetVersions`](#structFRHAPI__SettingType_1a39ed1d4f0efb9d3bb1b199caab1a36f1)`(const TMap< FString, `[`FRHAPI_SettingTypeVersion`](RHAPI_SettingTypeVersion.md#structFRHAPI__SettingTypeVersion)` > & NewValue)` | Sets the value of Versions.
@@ -31,7 +31,7 @@ struct FRHAPI_SettingType
 
 Map of setting type version ids to the version.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__SettingType_1aceab82a3fc5d56e8469b3c7053be6330)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__SettingType_1aceab82a3fc5d56e8469b3c7053be6330"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__SettingType_1a8ff93dadfeb17aa6a6cdec4e751d4de4)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__SettingType_1a8ff93dadfeb17aa6a6cdec4e751d4de4"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -41,7 +41,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__SettingType_1a274f8e9b15db0cff2780a3ddd7a5e3fb)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__SettingType_1a274f8e9b15db0cff2780a3ddd7a5e3fb"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__SettingType_1a90af79126bf99302cc8800bacbcc14aa)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__SettingType_1a90af79126bf99302cc8800bacbcc14aa"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 

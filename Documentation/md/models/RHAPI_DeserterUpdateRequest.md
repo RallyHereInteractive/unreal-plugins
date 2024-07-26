@@ -21,8 +21,8 @@ struct FRHAPI_DeserterUpdateRequest
 `public int32 `[`DeserterCount`](#structFRHAPI__DeserterUpdateRequest_1ac80af6ecd1fdc8e77afc74bb313fe68c) | The number of times a player has deserted before the expiration.
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__DeserterUpdateRequest_1a9d624dd17989a5011d32e545f4c8c83f) | Custom data about a players desertion status.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__DeserterUpdateRequest_1ad18fdc843a868e4dfe59153c294d1ec5) | true if CustomData_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__DeserterUpdateRequest_1ae7f10f24271c923cf68c4d120de3adf8)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__DeserterUpdateRequest_1ab696319431ac9fcccb61d7e15e967604)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__DeserterUpdateRequest_1a28c8fc915ef9169844490fd6f6b25a12)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__DeserterUpdateRequest_1ae2b4c31a8ff79ac3b2e69a3bda68d0e4)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FDateTime & `[`GetDeserterExpiration`](#structFRHAPI__DeserterUpdateRequest_1aed611343bfe1e9edc7042051b97e7db3)`()` | Gets the value of DeserterExpiration.
 `public inline const FDateTime & `[`GetDeserterExpiration`](#structFRHAPI__DeserterUpdateRequest_1aaee4a1afd2768036284934ebde4af3c4)`() const` | Gets the value of DeserterExpiration.
 `public inline void `[`SetDeserterExpiration`](#structFRHAPI__DeserterUpdateRequest_1a40498a8ddd61dab1f042ef765f2e886e)`(const FDateTime & NewValue)` | Sets the value of DeserterExpiration.
@@ -42,6 +42,7 @@ struct FRHAPI_DeserterUpdateRequest
 `public inline void `[`SetCustomData`](#structFRHAPI__DeserterUpdateRequest_1a30f9399f7db13b0c0587f35388b14f7e)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`SetCustomData`](#structFRHAPI__DeserterUpdateRequest_1a660f3f2dec0b37be51e06c1b5eb6f65b)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__DeserterUpdateRequest_1aaa49a77e8a5df6f2321b8d1fca196c4a)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+`public inline bool `[`IsCustomDataSet`](#structFRHAPI__DeserterUpdateRequest_1a1adf1430f406588bffef1bdfa550bc96)`() const` | Checks whether CustomData_Optional has been set.
 
 ### Members
 
@@ -61,7 +62,7 @@ Custom data about a players desertion status.
 
 true if CustomData_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__DeserterUpdateRequest_1ae7f10f24271c923cf68c4d120de3adf8)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__DeserterUpdateRequest_1ae7f10f24271c923cf68c4d120de3adf8"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__DeserterUpdateRequest_1a28c8fc915ef9169844490fd6f6b25a12)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__DeserterUpdateRequest_1a28c8fc915ef9169844490fd6f6b25a12"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -71,7 +72,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__DeserterUpdateRequest_1ab696319431ac9fcccb61d7e15e967604)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__DeserterUpdateRequest_1ab696319431ac9fcccb61d7e15e967604"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__DeserterUpdateRequest_1ae2b4c31a8ff79ac3b2e69a3bda68d0e4)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__DeserterUpdateRequest_1ae2b4c31a8ff79ac3b2e69a3bda68d0e4"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -153,4 +154,8 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true usi
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__DeserterUpdateRequest_1aaa49a77e8a5df6f2321b8d1fca196c4a)`()` <a id="structFRHAPI__DeserterUpdateRequest_1aaa49a77e8a5df6f2321b8d1fca196c4a"></a>
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+
+#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__DeserterUpdateRequest_1a1adf1430f406588bffef1bdfa550bc96)`() const` <a id="structFRHAPI__DeserterUpdateRequest_1a1adf1430f406588bffef1bdfa550bc96"></a>
+
+Checks whether CustomData_Optional has been set.
 

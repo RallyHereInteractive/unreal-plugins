@@ -54,25 +54,25 @@ bool FRHAPI_AdditionalJoinParams::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonDoubleArgsField = (*Object)->TryGetField(TEXT("double_args"));
-	if (JsonDoubleArgsField.IsValid() && !JsonDoubleArgsField->IsNull())
+	if (JsonDoubleArgsField.IsValid())
 	{
 		DoubleArgs_IsSet = TryGetJsonValue(JsonDoubleArgsField, DoubleArgs_Optional);
 		ParseSuccess &= DoubleArgs_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonStringArgsField = (*Object)->TryGetField(TEXT("string_args"));
-	if (JsonStringArgsField.IsValid() && !JsonStringArgsField->IsNull())
+	if (JsonStringArgsField.IsValid())
 	{
 		StringArgs_IsSet = TryGetJsonValue(JsonStringArgsField, StringArgs_Optional);
 		ParseSuccess &= StringArgs_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonTagsField = (*Object)->TryGetField(TEXT("tags"));
-	if (JsonTagsField.IsValid() && !JsonTagsField->IsNull())
+	if (JsonTagsField.IsValid())
 	{
 		Tags_IsSet = TryGetJsonValue(JsonTagsField, Tags_Optional);
 		ParseSuccess &= Tags_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonExtensionsField = (*Object)->TryGetField(TEXT("extensions"));
-	if (JsonExtensionsField.IsValid() && !JsonExtensionsField->IsNull())
+	if (JsonExtensionsField.IsValid())
 	{
 		Extensions_IsSet = TryGetJsonValue(JsonExtensionsField, Extensions_Optional);
 		ParseSuccess &= Extensions_IsSet;

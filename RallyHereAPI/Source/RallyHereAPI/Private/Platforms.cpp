@@ -36,7 +36,7 @@ bool FRHAPI_Platforms::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPlatformsField = (*Object)->TryGetField(TEXT("platforms"));
-	ParseSuccess &= JsonPlatformsField.IsValid() && !JsonPlatformsField->IsNull() && TryGetJsonValue(JsonPlatformsField, Platforms);
+	ParseSuccess &= JsonPlatformsField.IsValid() && (!JsonPlatformsField->IsNull() &&  TryGetJsonValue(JsonPlatformsField, Platforms));
 
 	return ParseSuccess;
 }

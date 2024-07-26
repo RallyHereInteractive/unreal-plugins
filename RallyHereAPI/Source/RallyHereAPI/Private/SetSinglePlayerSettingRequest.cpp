@@ -25,6 +25,9 @@ void FRHAPI_SetSinglePlayerSettingRequest::WriteJson(TSharedRef<TJsonWriter<>>& 
 	Writer->WriteIdentifierPrefix(TEXT("v"));
 	RallyHereAPI::WriteJsonValue(Writer, V);
 	Writer->WriteIdentifierPrefix(TEXT("value"));
+	if (Value_IsNull)
+		WriteJsonValue(Writer, nullptr);
+	else
 	RallyHereAPI::WriteJsonValue(Writer, Value);
 	Writer->WriteObjectEnd();
 }
@@ -38,9 +41,10 @@ bool FRHAPI_SetSinglePlayerSettingRequest::FromJson(const TSharedPtr<FJsonValue>
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonVField = (*Object)->TryGetField(TEXT("v"));
-	ParseSuccess &= JsonVField.IsValid() && !JsonVField->IsNull() && TryGetJsonValue(JsonVField, V);
+	ParseSuccess &= JsonVField.IsValid() && (!JsonVField->IsNull() &&  TryGetJsonValue(JsonVField, V));
 	const TSharedPtr<FJsonValue> JsonValueField = (*Object)->TryGetField(TEXT("value"));
-	ParseSuccess &= JsonValueField.IsValid() && !JsonValueField->IsNull() && TryGetJsonValue(JsonValueField, Value);
+	Value_IsNull = JsonValueField->IsNull();
+	ParseSuccess &= JsonValueField.IsValid() && (Value_IsNull || TryGetJsonValue(JsonValueField, Value));
 
 	return ParseSuccess;
 }

@@ -26,8 +26,8 @@ Represents details of what occurred in a Player Order Entry.
 `public bool `[`InvChange_IsSet`](#structFRHAPI__PlayerOrderDetail_1aa8dc87095dfe419acb5acf090308c998) | true if InvChange_Optional has been set to a value
 `public `[`FRHAPI_PlayerOrderCreate`](RHAPI_PlayerOrderCreate.md#structFRHAPI__PlayerOrderCreate)` `[`Order_Optional`](#structFRHAPI__PlayerOrderDetail_1a68f838a280f08b03b0bf5964b28098cc) | Reference to the Player Order that this detail belongs to.
 `public bool `[`Order_IsSet`](#structFRHAPI__PlayerOrderDetail_1a3921beba6e9b7a0608bc782c7c05aa22) | true if Order_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__PlayerOrderDetail_1a4ba5c63e5403eb6ddd51041593318f46)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PlayerOrderDetail_1a68f1fb71c6510a14fb0c6fb09668bd90)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__PlayerOrderDetail_1a9bf006065aa4be046d4efe6014056774)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__PlayerOrderDetail_1a4cb7dfec12c6f8c4e39ee837ac3f1aae)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_PlayerOrderDetailType & `[`GetType`](#structFRHAPI__PlayerOrderDetail_1a09de077b2f6fe4d527abce325cb1dec1)`()` | Gets the value of Type.
 `public inline const ERHAPI_PlayerOrderDetailType & `[`GetType`](#structFRHAPI__PlayerOrderDetail_1a9646c80d2cdf34ad649d00d6dd5fbba1)`() const` | Gets the value of Type.
 `public inline void `[`SetType`](#structFRHAPI__PlayerOrderDetail_1aad51114e60b095d81a47c7566b00d4b8)`(const ERHAPI_PlayerOrderDetailType & NewValue)` | Sets the value of Type.
@@ -41,6 +41,7 @@ Represents details of what occurred in a Player Order Entry.
 `public inline void `[`SetLootId`](#structFRHAPI__PlayerOrderDetail_1a46c5107743267d79ede185d085bd67cc)`(const int32 & NewValue)` | Sets the value of LootId_Optional and also sets LootId_IsSet to true.
 `public inline void `[`SetLootId`](#structFRHAPI__PlayerOrderDetail_1a8fb4eb87fb7a8dcd84b33d8ab743b519)`(int32 && NewValue)` | Sets the value of LootId_Optional and also sets LootId_IsSet to true using move semantics.
 `public inline void `[`ClearLootId`](#structFRHAPI__PlayerOrderDetail_1a0b1f1836912a9cfdddb8bf0f573445b7)`()` | Clears the value of LootId_Optional and sets LootId_IsSet to false.
+`public inline bool `[`IsLootIdSet`](#structFRHAPI__PlayerOrderDetail_1abae5f2cadfbafe4dfeabced5e44feb93)`() const` | Checks whether LootId_Optional has been set.
 `public inline bool `[`IsLootIdDefaultValue`](#structFRHAPI__PlayerOrderDetail_1ad5478466d9bf3662dbccfb7684288409)`() const` | Returns true if LootId_Optional is set and matches the default value.
 `public inline void `[`SetLootIdToDefault`](#structFRHAPI__PlayerOrderDetail_1a08f997151224d7cd1ba80989513b0d6e)`()` | Sets the value of LootId_Optional to its default and also sets LootId_IsSet to true.
 `public inline `[`FRHAPI_PlayerInventoryChange`](RHAPI_PlayerInventoryChange.md#structFRHAPI__PlayerInventoryChange)` & `[`GetInvChange`](#structFRHAPI__PlayerOrderDetail_1a90dc58840bc985ff425e780abbc5b06b)`()` | Gets the value of InvChange_Optional, regardless of it having been set.
@@ -52,6 +53,7 @@ Represents details of what occurred in a Player Order Entry.
 `public inline void `[`SetInvChange`](#structFRHAPI__PlayerOrderDetail_1a6ca7c8f5f96d12ca68d556b41a2a712e)`(const `[`FRHAPI_PlayerInventoryChange`](RHAPI_PlayerInventoryChange.md#structFRHAPI__PlayerInventoryChange)` & NewValue)` | Sets the value of InvChange_Optional and also sets InvChange_IsSet to true.
 `public inline void `[`SetInvChange`](#structFRHAPI__PlayerOrderDetail_1a64b9bd3fdae8560389a4c8337a45a3fd)`(`[`FRHAPI_PlayerInventoryChange`](RHAPI_PlayerInventoryChange.md#structFRHAPI__PlayerInventoryChange)` && NewValue)` | Sets the value of InvChange_Optional and also sets InvChange_IsSet to true using move semantics.
 `public inline void `[`ClearInvChange`](#structFRHAPI__PlayerOrderDetail_1ad90a321e6010de2f8a6bc38bd8b9bf7d)`()` | Clears the value of InvChange_Optional and sets InvChange_IsSet to false.
+`public inline bool `[`IsInvChangeSet`](#structFRHAPI__PlayerOrderDetail_1aa2284d50b6ed46ed376ff95fc409d404)`() const` | Checks whether InvChange_Optional has been set.
 `public inline `[`FRHAPI_PlayerOrderCreate`](RHAPI_PlayerOrderCreate.md#structFRHAPI__PlayerOrderCreate)` & `[`GetOrder`](#structFRHAPI__PlayerOrderDetail_1a70b42b24e651a36375ed51a61a2ecc99)`()` | Gets the value of Order_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_PlayerOrderCreate`](RHAPI_PlayerOrderCreate.md#structFRHAPI__PlayerOrderCreate)` & `[`GetOrder`](#structFRHAPI__PlayerOrderDetail_1a60fd2aa1695a2914bc45156aaafa4636)`() const` | Gets the value of Order_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_PlayerOrderCreate`](RHAPI_PlayerOrderCreate.md#structFRHAPI__PlayerOrderCreate)` & `[`GetOrder`](#structFRHAPI__PlayerOrderDetail_1a3ca03ffed0676543f3221612b8294aa0)`(const `[`FRHAPI_PlayerOrderCreate`](RHAPI_PlayerOrderCreate.md#structFRHAPI__PlayerOrderCreate)` & DefaultValue) const` | Gets the value of Order_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -61,6 +63,7 @@ Represents details of what occurred in a Player Order Entry.
 `public inline void `[`SetOrder`](#structFRHAPI__PlayerOrderDetail_1a5dcc39a55b7cad2ca1a91b66ad070d0e)`(const `[`FRHAPI_PlayerOrderCreate`](RHAPI_PlayerOrderCreate.md#structFRHAPI__PlayerOrderCreate)` & NewValue)` | Sets the value of Order_Optional and also sets Order_IsSet to true.
 `public inline void `[`SetOrder`](#structFRHAPI__PlayerOrderDetail_1a577fa3435b8c5cd40a9ab0a30042ed7e)`(`[`FRHAPI_PlayerOrderCreate`](RHAPI_PlayerOrderCreate.md#structFRHAPI__PlayerOrderCreate)` && NewValue)` | Sets the value of Order_Optional and also sets Order_IsSet to true using move semantics.
 `public inline void `[`ClearOrder`](#structFRHAPI__PlayerOrderDetail_1a996f6d1b2cebd9f8e5569afe2f5c9e67)`()` | Clears the value of Order_Optional and sets Order_IsSet to false.
+`public inline bool `[`IsOrderSet`](#structFRHAPI__PlayerOrderDetail_1a3fa920ee3d1d452ac8884177e312163b)`() const` | Checks whether Order_Optional has been set.
 
 ### Members
 
@@ -92,7 +95,7 @@ Reference to the Player Order that this detail belongs to.
 
 true if Order_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__PlayerOrderDetail_1a4ba5c63e5403eb6ddd51041593318f46)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlayerOrderDetail_1a4ba5c63e5403eb6ddd51041593318f46"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__PlayerOrderDetail_1a9bf006065aa4be046d4efe6014056774)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlayerOrderDetail_1a9bf006065aa4be046d4efe6014056774"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -102,7 +105,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PlayerOrderDetail_1a68f1fb71c6510a14fb0c6fb09668bd90)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlayerOrderDetail_1a68f1fb71c6510a14fb0c6fb09668bd90"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PlayerOrderDetail_1a4cb7dfec12c6f8c4e39ee837ac3f1aae)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlayerOrderDetail_1a4cb7dfec12c6f8c4e39ee837ac3f1aae"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -161,6 +164,10 @@ Sets the value of LootId_Optional and also sets LootId_IsSet to true using move 
 
 Clears the value of LootId_Optional and sets LootId_IsSet to false.
 
+#### `public inline bool `[`IsLootIdSet`](#structFRHAPI__PlayerOrderDetail_1abae5f2cadfbafe4dfeabced5e44feb93)`() const` <a id="structFRHAPI__PlayerOrderDetail_1abae5f2cadfbafe4dfeabced5e44feb93"></a>
+
+Checks whether LootId_Optional has been set.
+
 #### `public inline bool `[`IsLootIdDefaultValue`](#structFRHAPI__PlayerOrderDetail_1ad5478466d9bf3662dbccfb7684288409)`() const` <a id="structFRHAPI__PlayerOrderDetail_1ad5478466d9bf3662dbccfb7684288409"></a>
 
 Returns true if LootId_Optional is set and matches the default value.
@@ -205,6 +212,10 @@ Sets the value of InvChange_Optional and also sets InvChange_IsSet to true using
 
 Clears the value of InvChange_Optional and sets InvChange_IsSet to false.
 
+#### `public inline bool `[`IsInvChangeSet`](#structFRHAPI__PlayerOrderDetail_1aa2284d50b6ed46ed376ff95fc409d404)`() const` <a id="structFRHAPI__PlayerOrderDetail_1aa2284d50b6ed46ed376ff95fc409d404"></a>
+
+Checks whether InvChange_Optional has been set.
+
 #### `public inline `[`FRHAPI_PlayerOrderCreate`](RHAPI_PlayerOrderCreate.md#structFRHAPI__PlayerOrderCreate)` & `[`GetOrder`](#structFRHAPI__PlayerOrderDetail_1a70b42b24e651a36375ed51a61a2ecc99)`()` <a id="structFRHAPI__PlayerOrderDetail_1a70b42b24e651a36375ed51a61a2ecc99"></a>
 
 Gets the value of Order_Optional, regardless of it having been set.
@@ -240,4 +251,8 @@ Sets the value of Order_Optional and also sets Order_IsSet to true using move se
 #### `public inline void `[`ClearOrder`](#structFRHAPI__PlayerOrderDetail_1a996f6d1b2cebd9f8e5569afe2f5c9e67)`()` <a id="structFRHAPI__PlayerOrderDetail_1a996f6d1b2cebd9f8e5569afe2f5c9e67"></a>
 
 Clears the value of Order_Optional and sets Order_IsSet to false.
+
+#### `public inline bool `[`IsOrderSet`](#structFRHAPI__PlayerOrderDetail_1a3fa920ee3d1d452ac8884177e312163b)`() const` <a id="structFRHAPI__PlayerOrderDetail_1a3fa920ee3d1d452ac8884177e312163b"></a>
+
+Checks whether Order_Optional has been set.
 

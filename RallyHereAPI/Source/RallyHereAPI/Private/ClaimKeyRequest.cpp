@@ -39,7 +39,7 @@ bool FRHAPI_ClaimKeyRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonExternalKeyTypeField = (*Object)->TryGetField(TEXT("external_key_type"));
-	if (JsonExternalKeyTypeField.IsValid() && !JsonExternalKeyTypeField->IsNull())
+	if (JsonExternalKeyTypeField.IsValid())
 	{
 		ExternalKeyType_IsSet = TryGetJsonValue(JsonExternalKeyTypeField, ExternalKeyType_Optional);
 		ParseSuccess &= ExternalKeyType_IsSet;

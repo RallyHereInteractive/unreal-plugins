@@ -38,16 +38,25 @@ void FRHAPI_RallyHereEvent::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (UserId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("user_id"));
+		if (UserId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, UserId_Optional);
 	}
 	if (SessionId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("session_id"));
+		if (SessionId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, SessionId_Optional);
 	}
 	if (CorrelationId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("correlation_id"));
+		if (CorrelationId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, CorrelationId_Optional);
 	}
 	Writer->WriteObjectEnd();
@@ -62,35 +71,38 @@ bool FRHAPI_RallyHereEvent::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonEventUuidField = (*Object)->TryGetField(TEXT("event_uuid"));
-	ParseSuccess &= JsonEventUuidField.IsValid() && !JsonEventUuidField->IsNull() && TryGetJsonValue(JsonEventUuidField, EventUuid);
+	ParseSuccess &= JsonEventUuidField.IsValid() && (!JsonEventUuidField->IsNull() &&  TryGetJsonValue(JsonEventUuidField, EventUuid));
 	const TSharedPtr<FJsonValue> JsonEventNameField = (*Object)->TryGetField(TEXT("event_name"));
-	ParseSuccess &= JsonEventNameField.IsValid() && !JsonEventNameField->IsNull() && TryGetJsonValue(JsonEventNameField, EventName);
+	ParseSuccess &= JsonEventNameField.IsValid() && (!JsonEventNameField->IsNull() &&  TryGetJsonValue(JsonEventNameField, EventName));
 	const TSharedPtr<FJsonValue> JsonEventTimestampField = (*Object)->TryGetField(TEXT("event_timestamp"));
-	ParseSuccess &= JsonEventTimestampField.IsValid() && !JsonEventTimestampField->IsNull() && TryGetJsonValue(JsonEventTimestampField, EventTimestamp);
+	ParseSuccess &= JsonEventTimestampField.IsValid() && (!JsonEventTimestampField->IsNull() &&  TryGetJsonValue(JsonEventTimestampField, EventTimestamp));
 	const TSharedPtr<FJsonValue> JsonEventParamsField = (*Object)->TryGetField(TEXT("event_params"));
-	ParseSuccess &= JsonEventParamsField.IsValid() && !JsonEventParamsField->IsNull() && TryGetJsonValue(JsonEventParamsField, EventParams);
+	ParseSuccess &= JsonEventParamsField.IsValid() && (!JsonEventParamsField->IsNull() &&  TryGetJsonValue(JsonEventParamsField, EventParams));
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	if (JsonCustomDataField.IsValid())
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonUserIdField = (*Object)->TryGetField(TEXT("user_id"));
-	if (JsonUserIdField.IsValid() && !JsonUserIdField->IsNull())
+	if (JsonUserIdField.IsValid())
 	{
-		UserId_IsSet = TryGetJsonValue(JsonUserIdField, UserId_Optional);
+		UserId_IsNull = JsonUserIdField->IsNull();
+		UserId_IsSet = UserId_IsNull || TryGetJsonValue(JsonUserIdField, UserId_Optional);
 		ParseSuccess &= UserId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonSessionIdField = (*Object)->TryGetField(TEXT("session_id"));
-	if (JsonSessionIdField.IsValid() && !JsonSessionIdField->IsNull())
+	if (JsonSessionIdField.IsValid())
 	{
-		SessionId_IsSet = TryGetJsonValue(JsonSessionIdField, SessionId_Optional);
+		SessionId_IsNull = JsonSessionIdField->IsNull();
+		SessionId_IsSet = SessionId_IsNull || TryGetJsonValue(JsonSessionIdField, SessionId_Optional);
 		ParseSuccess &= SessionId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCorrelationIdField = (*Object)->TryGetField(TEXT("correlation_id"));
-	if (JsonCorrelationIdField.IsValid() && !JsonCorrelationIdField->IsNull())
+	if (JsonCorrelationIdField.IsValid())
 	{
-		CorrelationId_IsSet = TryGetJsonValue(JsonCorrelationIdField, CorrelationId_Optional);
+		CorrelationId_IsNull = JsonCorrelationIdField->IsNull();
+		CorrelationId_IsSet = CorrelationId_IsNull || TryGetJsonValue(JsonCorrelationIdField, CorrelationId_Optional);
 		ParseSuccess &= CorrelationId_IsSet;
 	}
 

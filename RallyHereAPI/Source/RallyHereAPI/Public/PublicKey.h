@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_PublicKey : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Key ID - see https://datatracker.ietf.org/doc/html/rfc7517#section-4.5 */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -47,9 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_PublicKey : public FRHAPI_Model
 	/** @brief Gets the value of Kid */
 	const FString& GetKid() const { return Kid; }
 	/** @brief Sets the value of Kid */
-	void SetKid(const FString& NewValue) { Kid = NewValue;  }
+	void SetKid(const FString& NewValue) { Kid = NewValue;   }
 	/** @brief Sets the value of Kid using move semantics */
-	void SetKid(FString&& NewValue) { Kid = NewValue;  }
+	void SetKid(FString&& NewValue) { Kid = NewValue;   }
 
 	/** @brief Key Type - see https://datatracker.ietf.org/doc/html/rfc7517#section-4.1 */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -59,9 +59,9 @@ struct RALLYHEREAPI_API FRHAPI_PublicKey : public FRHAPI_Model
 	/** @brief Gets the value of Kty */
 	const FString& GetKty() const { return Kty; }
 	/** @brief Sets the value of Kty */
-	void SetKty(const FString& NewValue) { Kty = NewValue;  }
+	void SetKty(const FString& NewValue) { Kty = NewValue;   }
 	/** @brief Sets the value of Kty using move semantics */
-	void SetKty(FString&& NewValue) { Kty = NewValue;  }
+	void SetKty(FString&& NewValue) { Kty = NewValue;   }
 
 	/** @brief Modulus - see https://www.rfc-editor.org/rfc/rfc7518.html#section-6.3.1 */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -71,9 +71,9 @@ struct RALLYHEREAPI_API FRHAPI_PublicKey : public FRHAPI_Model
 	/** @brief Gets the value of N */
 	const FString& GetN() const { return N; }
 	/** @brief Sets the value of N */
-	void SetN(const FString& NewValue) { N = NewValue;  }
+	void SetN(const FString& NewValue) { N = NewValue;   }
 	/** @brief Sets the value of N using move semantics */
-	void SetN(FString&& NewValue) { N = NewValue;  }
+	void SetN(FString&& NewValue) { N = NewValue;   }
 
 	/** @brief Exponent - see https://www.rfc-editor.org/rfc/rfc7518.html#section-6.3.1 */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -83,9 +83,9 @@ struct RALLYHEREAPI_API FRHAPI_PublicKey : public FRHAPI_Model
 	/** @brief Gets the value of E */
 	const FString& GetE() const { return E; }
 	/** @brief Sets the value of E */
-	void SetE(const FString& NewValue) { E = NewValue;  }
+	void SetE(const FString& NewValue) { E = NewValue;   }
 	/** @brief Sets the value of E using move semantics */
-	void SetE(FString&& NewValue) { E = NewValue;  }
+	void SetE(FString&& NewValue) { E = NewValue;   }
 };
 
 /** @} */

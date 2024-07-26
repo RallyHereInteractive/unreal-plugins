@@ -45,17 +45,17 @@ bool FRHAPI_FriendRelationship::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonFriendsPlayerUuidField = (*Object)->TryGetField(TEXT("friends_player_uuid"));
-	ParseSuccess &= JsonFriendsPlayerUuidField.IsValid() && !JsonFriendsPlayerUuidField->IsNull() && TryGetJsonValue(JsonFriendsPlayerUuidField, FriendsPlayerUuid);
+	ParseSuccess &= JsonFriendsPlayerUuidField.IsValid() && (!JsonFriendsPlayerUuidField->IsNull() &&  TryGetJsonValue(JsonFriendsPlayerUuidField, FriendsPlayerUuid));
 	const TSharedPtr<FJsonValue> JsonStatusField = (*Object)->TryGetField(TEXT("status"));
-	ParseSuccess &= JsonStatusField.IsValid() && !JsonStatusField->IsNull() && TryGetJsonValue(JsonStatusField, Status);
+	ParseSuccess &= JsonStatusField.IsValid() && (!JsonStatusField->IsNull() &&  TryGetJsonValue(JsonStatusField, Status));
 	const TSharedPtr<FJsonValue> JsonNotesField = (*Object)->TryGetField(TEXT("notes"));
-	if (JsonNotesField.IsValid() && !JsonNotesField->IsNull())
+	if (JsonNotesField.IsValid())
 	{
 		Notes_IsSet = TryGetJsonValue(JsonNotesField, Notes_Optional);
 		ParseSuccess &= Notes_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonLastModifiedOnField = (*Object)->TryGetField(TEXT("last_modified_on"));
-	ParseSuccess &= JsonLastModifiedOnField.IsValid() && !JsonLastModifiedOnField->IsNull() && TryGetJsonValue(JsonLastModifiedOnField, LastModifiedOn);
+	ParseSuccess &= JsonLastModifiedOnField.IsValid() && (!JsonLastModifiedOnField->IsNull() &&  TryGetJsonValue(JsonLastModifiedOnField, LastModifiedOn));
 
 	return ParseSuccess;
 }

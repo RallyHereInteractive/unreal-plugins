@@ -87,8 +87,8 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public bool `[`CacheInfo_IsSet`](#structFRHAPI__Loot_1aafb036901a2d16ef1337d520d808ec6b) | true if CacheInfo_Optional has been set to a value
 `public int32 `[`HardQuantityMaximum_Optional`](#structFRHAPI__Loot_1aa6a8b8fcd71d2911a55ea28b6be66cde) | Hard cap on quantity of an item this Loot can give. Disabled with 0.
 `public bool `[`HardQuantityMaximum_IsSet`](#structFRHAPI__Loot_1a7d6fe172fee6cd5f1545379d64367c01) | true if HardQuantityMaximum_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__Loot_1a242a4296481c5fb420d714cd32fec3ad)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__Loot_1a06faa7738909f964886ad0e56d8da1ec)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__Loot_1ae1fafb9905923f64a0753b812227f84b)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__Loot_1a221346eede3fffebad0d4576f67e422b)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Loot_1a0495d616eb651af6641ec2812b920f2e)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Loot_1a6406b470cab476fcf1238cec9ecbdf9c)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Loot_1ae0a3ada990e150f805128840817f4e03)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -98,6 +98,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline void `[`SetCustomData`](#structFRHAPI__Loot_1aa36b0c0b7c3f30f5246629aa3da3a69d)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`SetCustomData`](#structFRHAPI__Loot_1aa5228ab9d32a49746465a23fb1f546c9)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__Loot_1aa0d5fdee11fa5753a1253b36ae688fe7)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+`public inline bool `[`IsCustomDataSet`](#structFRHAPI__Loot_1aad7353c9d0e83d3cbce2f0b6701e184a)`() const` | Checks whether CustomData_Optional has been set.
 `public inline FGuid & `[`GetLootUuid`](#structFRHAPI__Loot_1a317feac29977e4e89b7ae4baef3de007)`()` | Gets the value of LootUuid_Optional, regardless of it having been set.
 `public inline const FGuid & `[`GetLootUuid`](#structFRHAPI__Loot_1ae002f626e2704c08199d2f5fcc1f0d11)`() const` | Gets the value of LootUuid_Optional, regardless of it having been set.
 `public inline const FGuid & `[`GetLootUuid`](#structFRHAPI__Loot_1afa83c7d51909c93588f8a6f0b2df8f16)`(const FGuid & DefaultValue) const` | Gets the value of LootUuid_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -107,6 +108,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline void `[`SetLootUuid`](#structFRHAPI__Loot_1a6269114a54510259ba74e3ba02baf9b7)`(const FGuid & NewValue)` | Sets the value of LootUuid_Optional and also sets LootUuid_IsSet to true.
 `public inline void `[`SetLootUuid`](#structFRHAPI__Loot_1af18833c1ede8b9bea806cd50a97fc581)`(FGuid && NewValue)` | Sets the value of LootUuid_Optional and also sets LootUuid_IsSet to true using move semantics.
 `public inline void `[`ClearLootUuid`](#structFRHAPI__Loot_1ad0eb5151359a29ff49a600e4e8faa236)`()` | Clears the value of LootUuid_Optional and sets LootUuid_IsSet to false.
+`public inline bool `[`IsLootUuidSet`](#structFRHAPI__Loot_1a0055e1d3190b40815755e7a7de3d1800)`() const` | Checks whether LootUuid_Optional has been set.
 `public inline int32 & `[`GetLootId`](#structFRHAPI__Loot_1acd2ed4c712d9bed9983240653df6e25e)`()` | Gets the value of LootId.
 `public inline const int32 & `[`GetLootId`](#structFRHAPI__Loot_1a207349872f4c121f408f0fd02314ca89)`() const` | Gets the value of LootId.
 `public inline void `[`SetLootId`](#structFRHAPI__Loot_1afdaef30a5fe95ab02988ab4ec957e4dd)`(const int32 & NewValue)` | Sets the value of LootId.
@@ -128,6 +130,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline void `[`SetVendorUuid`](#structFRHAPI__Loot_1a38bdba90f027d1fdc0097cb9235f551d)`(const FGuid & NewValue)` | Sets the value of VendorUuid_Optional and also sets VendorUuid_IsSet to true.
 `public inline void `[`SetVendorUuid`](#structFRHAPI__Loot_1a54b130316e8ed20b4684697c9647604e)`(FGuid && NewValue)` | Sets the value of VendorUuid_Optional and also sets VendorUuid_IsSet to true using move semantics.
 `public inline void `[`ClearVendorUuid`](#structFRHAPI__Loot_1ab8eefa8d3e6b848d9ae649f62f42bc77)`()` | Clears the value of VendorUuid_Optional and sets VendorUuid_IsSet to false.
+`public inline bool `[`IsVendorUuidSet`](#structFRHAPI__Loot_1a15822bbcd6abd6c905072ae4bad92193)`() const` | Checks whether VendorUuid_Optional has been set.
 `public inline int32 & `[`GetItemId`](#structFRHAPI__Loot_1acbe340fce6f530fbce884bc9a4fa1766)`()` | Gets the value of ItemId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetItemId`](#structFRHAPI__Loot_1a1cdf690a9d65f41ac2f903514b1f5f57)`() const` | Gets the value of ItemId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetItemId`](#structFRHAPI__Loot_1a2fa583df5dafce861fe723c8450b93cc)`(const int32 & DefaultValue) const` | Gets the value of ItemId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -137,6 +140,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline void `[`SetItemId`](#structFRHAPI__Loot_1a9644d761f2970aedb3907e28e7329fdf)`(const int32 & NewValue)` | Sets the value of ItemId_Optional and also sets ItemId_IsSet to true.
 `public inline void `[`SetItemId`](#structFRHAPI__Loot_1aea42066abd1642e685a2782db762ffed)`(int32 && NewValue)` | Sets the value of ItemId_Optional and also sets ItemId_IsSet to true using move semantics.
 `public inline void `[`ClearItemId`](#structFRHAPI__Loot_1ae7d18acc8c516d75d0698fe73b6514ac)`()` | Clears the value of ItemId_Optional and sets ItemId_IsSet to false.
+`public inline bool `[`IsItemIdSet`](#structFRHAPI__Loot_1a3bd9f1d783d96bb8f7087fe53822e8a9)`() const` | Checks whether ItemId_Optional has been set.
 `public inline bool `[`IsItemIdDefaultValue`](#structFRHAPI__Loot_1ab1fb89c1cd120fbdccbad20b4f1058c9)`() const` | Returns true if ItemId_Optional is set and matches the default value.
 `public inline void `[`SetItemIdToDefault`](#structFRHAPI__Loot_1a175257a1162b73e5e5897dc7ce9138de)`()` | Sets the value of ItemId_Optional to its default and also sets ItemId_IsSet to true.
 `public inline FGuid & `[`GetItemUuid`](#structFRHAPI__Loot_1adab3a8bad7b62e8e54b02000b1855e24)`()` | Gets the value of ItemUuid_Optional, regardless of it having been set.
@@ -148,6 +152,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline void `[`SetItemUuid`](#structFRHAPI__Loot_1a7340b358ec7f40244767290dd36231f6)`(const FGuid & NewValue)` | Sets the value of ItemUuid_Optional and also sets ItemUuid_IsSet to true.
 `public inline void `[`SetItemUuid`](#structFRHAPI__Loot_1ae3e1920626a006ae79da706dbe68a7a5)`(FGuid && NewValue)` | Sets the value of ItemUuid_Optional and also sets ItemUuid_IsSet to true using move semantics.
 `public inline void `[`ClearItemUuid`](#structFRHAPI__Loot_1a7d4d0b4d2020d60a73326ae1a436380e)`()` | Clears the value of ItemUuid_Optional and sets ItemUuid_IsSet to false.
+`public inline bool `[`IsItemUuidSet`](#structFRHAPI__Loot_1a94a4fecce862a531daedbbb5db9cdd5f)`() const` | Checks whether ItemUuid_Optional has been set.
 `public inline `[`FRHAPI_Item`](RHAPI_Item.md#structFRHAPI__Item)` & `[`GetItem`](#structFRHAPI__Loot_1ab6b9ab768d5f3f6787f199565b9f5276)`()` | Gets the value of Item_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_Item`](RHAPI_Item.md#structFRHAPI__Item)` & `[`GetItem`](#structFRHAPI__Loot_1a055ddfc83937a90aa78b468fde6ba0ae)`() const` | Gets the value of Item_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_Item`](RHAPI_Item.md#structFRHAPI__Item)` & `[`GetItem`](#structFRHAPI__Loot_1ae5d5dfe794234b8af9b212fdbf0ca1ff)`(const `[`FRHAPI_Item`](RHAPI_Item.md#structFRHAPI__Item)` & DefaultValue) const` | Gets the value of Item_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -157,6 +162,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline void `[`SetItem`](#structFRHAPI__Loot_1ab8db52d9494b290cf633f9433ac64e02)`(const `[`FRHAPI_Item`](RHAPI_Item.md#structFRHAPI__Item)` & NewValue)` | Sets the value of Item_Optional and also sets Item_IsSet to true.
 `public inline void `[`SetItem`](#structFRHAPI__Loot_1aa52823829875545fd00ace4031039413)`(`[`FRHAPI_Item`](RHAPI_Item.md#structFRHAPI__Item)` && NewValue)` | Sets the value of Item_Optional and also sets Item_IsSet to true using move semantics.
 `public inline void `[`ClearItem`](#structFRHAPI__Loot_1a287c3e4040dbb75274ad22300643d9d8)`()` | Clears the value of Item_Optional and sets Item_IsSet to false.
+`public inline bool `[`IsItemSet`](#structFRHAPI__Loot_1a00b84b8a70a8b3c27f0efdf51194e14a)`() const` | Checks whether Item_Optional has been set.
 `public inline int32 & `[`GetSubVendorId`](#structFRHAPI__Loot_1a15a91fdfd7149929f1ee3b10ef2fc4fe)`()` | Gets the value of SubVendorId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetSubVendorId`](#structFRHAPI__Loot_1ad6c05065e6d1cc723d0da0272e1f57ce)`() const` | Gets the value of SubVendorId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetSubVendorId`](#structFRHAPI__Loot_1a73101b64e45e1926453dfe6b743f9f1c)`(const int32 & DefaultValue) const` | Gets the value of SubVendorId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -166,6 +172,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline void `[`SetSubVendorId`](#structFRHAPI__Loot_1a725de669455d784feb45568d0cbf98ae)`(const int32 & NewValue)` | Sets the value of SubVendorId_Optional and also sets SubVendorId_IsSet to true.
 `public inline void `[`SetSubVendorId`](#structFRHAPI__Loot_1a845ac2dc17af57c95ae88c911504e19b)`(int32 && NewValue)` | Sets the value of SubVendorId_Optional and also sets SubVendorId_IsSet to true using move semantics.
 `public inline void `[`ClearSubVendorId`](#structFRHAPI__Loot_1a79b5893a6149af047f8c0c59c7476058)`()` | Clears the value of SubVendorId_Optional and sets SubVendorId_IsSet to false.
+`public inline bool `[`IsSubVendorIdSet`](#structFRHAPI__Loot_1a1d533b637fd1fc9d05df1dfd7c64ab0f)`() const` | Checks whether SubVendorId_Optional has been set.
 `public inline bool `[`IsSubVendorIdDefaultValue`](#structFRHAPI__Loot_1ac0a741bcd286b2adccd25fe38f97983b)`() const` | Returns true if SubVendorId_Optional is set and matches the default value.
 `public inline void `[`SetSubVendorIdToDefault`](#structFRHAPI__Loot_1afd50a2496a24d46fddc881f22eed4b02)`()` | Sets the value of SubVendorId_Optional to its default and also sets SubVendorId_IsSet to true.
 `public inline FGuid & `[`GetSubVendorUuid`](#structFRHAPI__Loot_1ace99a654b77c4f6ef2ecc36afc41774b)`()` | Gets the value of SubVendorUuid_Optional, regardless of it having been set.
@@ -177,6 +184,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline void `[`SetSubVendorUuid`](#structFRHAPI__Loot_1af56a9987fa9f2184ae67895fababf07d)`(const FGuid & NewValue)` | Sets the value of SubVendorUuid_Optional and also sets SubVendorUuid_IsSet to true.
 `public inline void `[`SetSubVendorUuid`](#structFRHAPI__Loot_1af77645ae4aa35601abc00db5ba3ee5ea)`(FGuid && NewValue)` | Sets the value of SubVendorUuid_Optional and also sets SubVendorUuid_IsSet to true using move semantics.
 `public inline void `[`ClearSubVendorUuid`](#structFRHAPI__Loot_1ae750501163eb9a843eb23a6b1247b8e1)`()` | Clears the value of SubVendorUuid_Optional and sets SubVendorUuid_IsSet to false.
+`public inline bool `[`IsSubVendorUuidSet`](#structFRHAPI__Loot_1a99e16b3fc068c13fcbb95796596dba5a)`() const` | Checks whether SubVendorUuid_Optional has been set.
 `public inline int32 & `[`GetQuantity`](#structFRHAPI__Loot_1ae066065a51d0fb4abc472d85f9ddcc4b)`()` | Gets the value of Quantity_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetQuantity`](#structFRHAPI__Loot_1a87646105d6db15b764841a20f4540bbb)`() const` | Gets the value of Quantity_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetQuantity`](#structFRHAPI__Loot_1ade46fe47ab6ded01d87ed716e4846bbc)`(const int32 & DefaultValue) const` | Gets the value of Quantity_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -186,6 +194,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline void `[`SetQuantity`](#structFRHAPI__Loot_1a20604dbc96d84bdbb648a9c3e606edbf)`(const int32 & NewValue)` | Sets the value of Quantity_Optional and also sets Quantity_IsSet to true.
 `public inline void `[`SetQuantity`](#structFRHAPI__Loot_1ae6d618648bb8114acfd1d75bec28825f)`(int32 && NewValue)` | Sets the value of Quantity_Optional and also sets Quantity_IsSet to true using move semantics.
 `public inline void `[`ClearQuantity`](#structFRHAPI__Loot_1afb0108aec2ba965d46c21f9ff6c63a51)`()` | Clears the value of Quantity_Optional and sets Quantity_IsSet to false.
+`public inline bool `[`IsQuantitySet`](#structFRHAPI__Loot_1a00a01a8335980cfda514b6b70a3f5997)`() const` | Checks whether Quantity_Optional has been set.
 `public inline bool `[`IsQuantityDefaultValue`](#structFRHAPI__Loot_1a5e81fc2e46f491acafcf83ec9eb97c7f)`() const` | Returns true if Quantity_Optional is set and matches the default value.
 `public inline void `[`SetQuantityToDefault`](#structFRHAPI__Loot_1a88fbbb95da4cab22777b629c403c4155)`()` | Sets the value of Quantity_Optional to its default and also sets Quantity_IsSet to true.
 `public inline ERHAPI_InventorySelector & `[`GetInventorySelectorType`](#structFRHAPI__Loot_1aa322e86131bd4530064572a111b6f43a)`()` | Gets the value of InventorySelectorType_Optional, regardless of it having been set.
@@ -197,6 +206,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline void `[`SetInventorySelectorType`](#structFRHAPI__Loot_1a4bac4ec7f141cd22174be8bed51cf6f8)`(const ERHAPI_InventorySelector & NewValue)` | Sets the value of InventorySelectorType_Optional and also sets InventorySelectorType_IsSet to true.
 `public inline void `[`SetInventorySelectorType`](#structFRHAPI__Loot_1aed76077b233919e80fdd37f8271b708d)`(ERHAPI_InventorySelector && NewValue)` | Sets the value of InventorySelectorType_Optional and also sets InventorySelectorType_IsSet to true using move semantics.
 `public inline void `[`ClearInventorySelectorType`](#structFRHAPI__Loot_1a81f1462eb76952ddc9e19bcf35f8772b)`()` | Clears the value of InventorySelectorType_Optional and sets InventorySelectorType_IsSet to false.
+`public inline bool `[`IsInventorySelectorTypeSet`](#structFRHAPI__Loot_1ae58489ede4e165cb9e227f1de1b17ce0)`() const` | Checks whether InventorySelectorType_Optional has been set.
 `public inline ERHAPI_InventoryOperation & `[`GetInventoryOperation`](#structFRHAPI__Loot_1ad7302341dbcffaff54d40249299cc812)`()` | Gets the value of InventoryOperation_Optional, regardless of it having been set.
 `public inline const ERHAPI_InventoryOperation & `[`GetInventoryOperation`](#structFRHAPI__Loot_1a1f8266c7f24dd4d474446d96bec2eb5b)`() const` | Gets the value of InventoryOperation_Optional, regardless of it having been set.
 `public inline const ERHAPI_InventoryOperation & `[`GetInventoryOperation`](#structFRHAPI__Loot_1a67e40cc05376283592441d4fde58cb0a)`(const ERHAPI_InventoryOperation & DefaultValue) const` | Gets the value of InventoryOperation_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -206,6 +216,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline void `[`SetInventoryOperation`](#structFRHAPI__Loot_1a2ca2d2a007ca2ca1e4b58da6e78c4537)`(const ERHAPI_InventoryOperation & NewValue)` | Sets the value of InventoryOperation_Optional and also sets InventoryOperation_IsSet to true.
 `public inline void `[`SetInventoryOperation`](#structFRHAPI__Loot_1a22fe6582484fe9454802962a3d956302)`(ERHAPI_InventoryOperation && NewValue)` | Sets the value of InventoryOperation_Optional and also sets InventoryOperation_IsSet to true using move semantics.
 `public inline void `[`ClearInventoryOperation`](#structFRHAPI__Loot_1a25c29dbb430d88ad868c1497ebe1fc68)`()` | Clears the value of InventoryOperation_Optional and sets InventoryOperation_IsSet to false.
+`public inline bool `[`IsInventoryOperationSet`](#structFRHAPI__Loot_1a736c2c5de18122560b750d7af701debd)`() const` | Checks whether InventoryOperation_Optional has been set.
 `public inline bool & `[`GetActive`](#structFRHAPI__Loot_1aaa40a6889d2d480eeda7900dd5826c4c)`()` | Gets the value of Active_Optional, regardless of it having been set.
 `public inline const bool & `[`GetActive`](#structFRHAPI__Loot_1a3ff4c80bbc2b0d4f018ecf6681c6a27f)`() const` | Gets the value of Active_Optional, regardless of it having been set.
 `public inline const bool & `[`GetActive`](#structFRHAPI__Loot_1a15d262ce19e2772650104738f4f62438)`(const bool & DefaultValue) const` | Gets the value of Active_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -215,6 +226,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline void `[`SetActive`](#structFRHAPI__Loot_1a08d28507bd619fd5db8363c6b4f3364a)`(const bool & NewValue)` | Sets the value of Active_Optional and also sets Active_IsSet to true.
 `public inline void `[`SetActive`](#structFRHAPI__Loot_1a9350c7930d19d24133f65ff99b3032fb)`(bool && NewValue)` | Sets the value of Active_Optional and also sets Active_IsSet to true using move semantics.
 `public inline void `[`ClearActive`](#structFRHAPI__Loot_1a0d398c5d970bba65e642c7c38db2e0b8)`()` | Clears the value of Active_Optional and sets Active_IsSet to false.
+`public inline bool `[`IsActiveSet`](#structFRHAPI__Loot_1a3d50e44bfa48ffa323c852621df55c87)`() const` | Checks whether Active_Optional has been set.
 `public inline bool `[`IsActiveDefaultValue`](#structFRHAPI__Loot_1a21764f599b5c382557c5f5f3f4d42e20)`() const` | Returns true if Active_Optional is set and matches the default value.
 `public inline void `[`SetActiveToDefault`](#structFRHAPI__Loot_1a99fdeb71b6776d8b69d964f1f6554e50)`()` | Sets the value of Active_Optional to its default and also sets Active_IsSet to true.
 `public inline int32 & `[`GetSortOrder`](#structFRHAPI__Loot_1a5f12da47e4d500c12717aa05d5b3297d)`()` | Gets the value of SortOrder_Optional, regardless of it having been set.
@@ -226,6 +238,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline void `[`SetSortOrder`](#structFRHAPI__Loot_1aa2d0587fcb36026311a3cbb4ecee21d2)`(const int32 & NewValue)` | Sets the value of SortOrder_Optional and also sets SortOrder_IsSet to true.
 `public inline void `[`SetSortOrder`](#structFRHAPI__Loot_1a9d31791b68fb7c870d8bd35147b33e46)`(int32 && NewValue)` | Sets the value of SortOrder_Optional and also sets SortOrder_IsSet to true using move semantics.
 `public inline void `[`ClearSortOrder`](#structFRHAPI__Loot_1a41a21f428e130b7a7d021536ec455955)`()` | Clears the value of SortOrder_Optional and sets SortOrder_IsSet to false.
+`public inline bool `[`IsSortOrderSet`](#structFRHAPI__Loot_1a6929f1f030f4c95d302448d48eea9183)`() const` | Checks whether SortOrder_Optional has been set.
 `public inline bool `[`IsSortOrderDefaultValue`](#structFRHAPI__Loot_1a476d6b43e6c290f07c3879d9d18f0acb)`() const` | Returns true if SortOrder_Optional is set and matches the default value.
 `public inline void `[`SetSortOrderToDefault`](#structFRHAPI__Loot_1a69397f89697497621e33a6ee1eb4f0a3)`()` | Sets the value of SortOrder_Optional to its default and also sets SortOrder_IsSet to true.
 `public inline int32 & `[`GetDropWeight`](#structFRHAPI__Loot_1a8a66c24b792f4f865e495d8f331dd701)`()` | Gets the value of DropWeight_Optional, regardless of it having been set.
@@ -237,6 +250,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline void `[`SetDropWeight`](#structFRHAPI__Loot_1ab89d6f704862be83139da7e579b32154)`(const int32 & NewValue)` | Sets the value of DropWeight_Optional and also sets DropWeight_IsSet to true.
 `public inline void `[`SetDropWeight`](#structFRHAPI__Loot_1a7f8e9153f621f127ca943f87a434923a)`(int32 && NewValue)` | Sets the value of DropWeight_Optional and also sets DropWeight_IsSet to true using move semantics.
 `public inline void `[`ClearDropWeight`](#structFRHAPI__Loot_1a56b9f2775876a68ac240381cd6646412)`()` | Clears the value of DropWeight_Optional and sets DropWeight_IsSet to false.
+`public inline bool `[`IsDropWeightSet`](#structFRHAPI__Loot_1a6e099dfbf18bd3d7e8c1317a67fd3b8d)`() const` | Checks whether DropWeight_Optional has been set.
 `public inline bool `[`IsDropWeightDefaultValue`](#structFRHAPI__Loot_1ac612f584a88113b0c0cd73ce5a3b7486)`() const` | Returns true if DropWeight_Optional is set and matches the default value.
 `public inline void `[`SetDropWeightToDefault`](#structFRHAPI__Loot_1a6363ba8bb117c271097619b48a5cb685)`()` | Sets the value of DropWeight_Optional to its default and also sets DropWeight_IsSet to true.
 `public inline bool & `[`GetFillInNewOrder`](#structFRHAPI__Loot_1ab299812c7b635f1527c2ae7e4c99cf24)`()` | Gets the value of FillInNewOrder_Optional, regardless of it having been set.
@@ -248,6 +262,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline void `[`SetFillInNewOrder`](#structFRHAPI__Loot_1a5e182efbdd7faaf9f2420899162153ef)`(const bool & NewValue)` | Sets the value of FillInNewOrder_Optional and also sets FillInNewOrder_IsSet to true.
 `public inline void `[`SetFillInNewOrder`](#structFRHAPI__Loot_1a1c9c9bef3b5f0ce18c42ff6982147f36)`(bool && NewValue)` | Sets the value of FillInNewOrder_Optional and also sets FillInNewOrder_IsSet to true using move semantics.
 `public inline void `[`ClearFillInNewOrder`](#structFRHAPI__Loot_1a0041c640e6cb438e7a64c42e4a1aaabb)`()` | Clears the value of FillInNewOrder_Optional and sets FillInNewOrder_IsSet to false.
+`public inline bool `[`IsFillInNewOrderSet`](#structFRHAPI__Loot_1a4c627a1b1695a2eca1462e38d0785a71)`() const` | Checks whether FillInNewOrder_Optional has been set.
 `public inline bool `[`IsFillInNewOrderDefaultValue`](#structFRHAPI__Loot_1a096cd5304b7e6ce8e38e2ed23a2d9937)`() const` | Returns true if FillInNewOrder_Optional is set and matches the default value.
 `public inline void `[`SetFillInNewOrderToDefault`](#structFRHAPI__Loot_1af49c135f5f8a2278cd294b0f856c69a0)`()` | Sets the value of FillInNewOrder_Optional to its default and also sets FillInNewOrder_IsSet to true.
 `public inline bool & `[`GetAllowPartialBundles`](#structFRHAPI__Loot_1adab6cf0ce7e1dbb963bdc969b2f2e3a9)`()` | Gets the value of AllowPartialBundles_Optional, regardless of it having been set.
@@ -259,6 +274,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline void `[`SetAllowPartialBundles`](#structFRHAPI__Loot_1ac08c0d23a9fe1959373b99f3d9a599e6)`(const bool & NewValue)` | Sets the value of AllowPartialBundles_Optional and also sets AllowPartialBundles_IsSet to true.
 `public inline void `[`SetAllowPartialBundles`](#structFRHAPI__Loot_1a2bf67472b454720a3c4e79906d13a711)`(bool && NewValue)` | Sets the value of AllowPartialBundles_Optional and also sets AllowPartialBundles_IsSet to true using move semantics.
 `public inline void `[`ClearAllowPartialBundles`](#structFRHAPI__Loot_1a343ba6e659d1bdddc71f62a2490e9f95)`()` | Clears the value of AllowPartialBundles_Optional and sets AllowPartialBundles_IsSet to false.
+`public inline bool `[`IsAllowPartialBundlesSet`](#structFRHAPI__Loot_1ab4d949e49537a13654740303da8903f5)`() const` | Checks whether AllowPartialBundles_Optional has been set.
 `public inline bool `[`IsAllowPartialBundlesDefaultValue`](#structFRHAPI__Loot_1a398d73cfc4df91f93783bc9f8134b731)`() const` | Returns true if AllowPartialBundles_Optional is set and matches the default value.
 `public inline void `[`SetAllowPartialBundlesToDefault`](#structFRHAPI__Loot_1afa4e37c2b1cc8728c875d20c143de249)`()` | Sets the value of AllowPartialBundles_Optional to its default and also sets AllowPartialBundles_IsSet to true.
 `public inline int32 & `[`GetRequiredItemId`](#structFRHAPI__Loot_1afce6e6ec62acd1bdec2f24240802866f)`()` | Gets the value of RequiredItemId_Optional, regardless of it having been set.
@@ -270,6 +286,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline void `[`SetRequiredItemId`](#structFRHAPI__Loot_1aedc8b2da4d0c228eefeddc9ad359e7e8)`(const int32 & NewValue)` | Sets the value of RequiredItemId_Optional and also sets RequiredItemId_IsSet to true.
 `public inline void `[`SetRequiredItemId`](#structFRHAPI__Loot_1a68dafe7433eea381adb188a20ab45009)`(int32 && NewValue)` | Sets the value of RequiredItemId_Optional and also sets RequiredItemId_IsSet to true using move semantics.
 `public inline void `[`ClearRequiredItemId`](#structFRHAPI__Loot_1a488fcbe7cb1876ab47e2ded062c11181)`()` | Clears the value of RequiredItemId_Optional and sets RequiredItemId_IsSet to false.
+`public inline bool `[`IsRequiredItemIdSet`](#structFRHAPI__Loot_1abad4d37297ee50c37546b3ebef139fd2)`() const` | Checks whether RequiredItemId_Optional has been set.
 `public inline bool `[`IsRequiredItemIdDefaultValue`](#structFRHAPI__Loot_1ac293dab8fa44d784dc6f80acbb030b9d)`() const` | Returns true if RequiredItemId_Optional is set and matches the default value.
 `public inline void `[`SetRequiredItemIdToDefault`](#structFRHAPI__Loot_1ae89159c7256c304f929c487a1d6668c3)`()` | Sets the value of RequiredItemId_Optional to its default and also sets RequiredItemId_IsSet to true.
 `public inline FGuid & `[`GetRequiredItemUuid`](#structFRHAPI__Loot_1a0a3dc67a31128e14edb27d3ccba4b90f)`()` | Gets the value of RequiredItemUuid_Optional, regardless of it having been set.
@@ -281,6 +298,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline void `[`SetRequiredItemUuid`](#structFRHAPI__Loot_1ae795e53a83af5ef7fcdfcc7fafe868f1)`(const FGuid & NewValue)` | Sets the value of RequiredItemUuid_Optional and also sets RequiredItemUuid_IsSet to true.
 `public inline void `[`SetRequiredItemUuid`](#structFRHAPI__Loot_1a6776bae33ae3f4fdf6f1ea8cebd001dd)`(FGuid && NewValue)` | Sets the value of RequiredItemUuid_Optional and also sets RequiredItemUuid_IsSet to true using move semantics.
 `public inline void `[`ClearRequiredItemUuid`](#structFRHAPI__Loot_1aa41e02a9d9dd29c3497869a31d64b977)`()` | Clears the value of RequiredItemUuid_Optional and sets RequiredItemUuid_IsSet to false.
+`public inline bool `[`IsRequiredItemUuidSet`](#structFRHAPI__Loot_1a748958019132d24d849841183bb43031)`() const` | Checks whether RequiredItemUuid_Optional has been set.
 `public inline int32 & `[`GetRequiredItemCount`](#structFRHAPI__Loot_1aec8edb7083d53fcf1bff458a05f73701)`()` | Gets the value of RequiredItemCount_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetRequiredItemCount`](#structFRHAPI__Loot_1afd7decfa1c4a8c1b91d2d0c53e20a736)`() const` | Gets the value of RequiredItemCount_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetRequiredItemCount`](#structFRHAPI__Loot_1adabba1a845f2abd7c12409c078754949)`(const int32 & DefaultValue) const` | Gets the value of RequiredItemCount_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -290,6 +308,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline void `[`SetRequiredItemCount`](#structFRHAPI__Loot_1a9eac390a8e7ede0a245342e5a323aaba)`(const int32 & NewValue)` | Sets the value of RequiredItemCount_Optional and also sets RequiredItemCount_IsSet to true.
 `public inline void `[`SetRequiredItemCount`](#structFRHAPI__Loot_1aa6c50e038013978ed1ec83fcab8b5a5c)`(int32 && NewValue)` | Sets the value of RequiredItemCount_Optional and also sets RequiredItemCount_IsSet to true using move semantics.
 `public inline void `[`ClearRequiredItemCount`](#structFRHAPI__Loot_1a1562a07810c78bd35faf79f6028a63fd)`()` | Clears the value of RequiredItemCount_Optional and sets RequiredItemCount_IsSet to false.
+`public inline bool `[`IsRequiredItemCountSet`](#structFRHAPI__Loot_1a93e2fc425b8a0d30a2cb123c0b094ee4)`() const` | Checks whether RequiredItemCount_Optional has been set.
 `public inline bool `[`IsRequiredItemCountDefaultValue`](#structFRHAPI__Loot_1ab465a43f9dcfe5bbac7aeac109cb7c81)`() const` | Returns true if RequiredItemCount_Optional is set and matches the default value.
 `public inline void `[`SetRequiredItemCountToDefault`](#structFRHAPI__Loot_1a98f2f8f4d019a7d4a7d58658c5061857)`()` | Sets the value of RequiredItemCount_Optional to its default and also sets RequiredItemCount_IsSet to true.
 `public inline int32 & `[`GetStackLimit`](#structFRHAPI__Loot_1ab6d9334cf474f61dc7df2d5352779036)`()` | Gets the value of StackLimit_Optional, regardless of it having been set.
@@ -301,6 +320,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline void `[`SetStackLimit`](#structFRHAPI__Loot_1a5c0d6ac331d6378e8df0b557148b993c)`(const int32 & NewValue)` | Sets the value of StackLimit_Optional and also sets StackLimit_IsSet to true.
 `public inline void `[`SetStackLimit`](#structFRHAPI__Loot_1aa2d922b6609527df433764e835871bb7)`(int32 && NewValue)` | Sets the value of StackLimit_Optional and also sets StackLimit_IsSet to true using move semantics.
 `public inline void `[`ClearStackLimit`](#structFRHAPI__Loot_1a43dda814136109aadf6b5d9e7ae36a68)`()` | Clears the value of StackLimit_Optional and sets StackLimit_IsSet to false.
+`public inline bool `[`IsStackLimitSet`](#structFRHAPI__Loot_1a79e96ce475ebfd6865cd67b9b3ec26f7)`() const` | Checks whether StackLimit_Optional has been set.
 `public inline bool `[`IsStackLimitDefaultValue`](#structFRHAPI__Loot_1a4411301f594cf03ca1ac883fc5aa8092)`() const` | Returns true if StackLimit_Optional is set and matches the default value.
 `public inline void `[`SetStackLimitToDefault`](#structFRHAPI__Loot_1a4178e812d7007b89cffdc5425bc70165)`()` | Sets the value of StackLimit_Optional to its default and also sets StackLimit_IsSet to true.
 `public inline int32 & `[`GetUiHint`](#structFRHAPI__Loot_1a3d1dff274c7f9da278a3d1248d563041)`()` | Gets the value of UiHint_Optional, regardless of it having been set.
@@ -312,6 +332,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline void `[`SetUiHint`](#structFRHAPI__Loot_1afaad686a069f3871ac204f5b42a6ab82)`(const int32 & NewValue)` | Sets the value of UiHint_Optional and also sets UiHint_IsSet to true.
 `public inline void `[`SetUiHint`](#structFRHAPI__Loot_1aab69be8553516257498e87b900fbbff4)`(int32 && NewValue)` | Sets the value of UiHint_Optional and also sets UiHint_IsSet to true using move semantics.
 `public inline void `[`ClearUiHint`](#structFRHAPI__Loot_1adc42e15214e2fbcd3b9c2ee28153f666)`()` | Clears the value of UiHint_Optional and sets UiHint_IsSet to false.
+`public inline bool `[`IsUiHintSet`](#structFRHAPI__Loot_1ad89add7bbbb5d24e86c86afbf083a67f)`() const` | Checks whether UiHint_Optional has been set.
 `public inline bool `[`IsUiHintDefaultValue`](#structFRHAPI__Loot_1a768434aca6d481543db42a6ba4ab04fb)`() const` | Returns true if UiHint_Optional is set and matches the default value.
 `public inline void `[`SetUiHintToDefault`](#structFRHAPI__Loot_1aa04866c631982d1d3fb998505c09f763)`()` | Sets the value of UiHint_Optional to its default and also sets UiHint_IsSet to true.
 `public inline FDateTime & `[`GetEffectiveFrom`](#structFRHAPI__Loot_1aee89d8de5f3ec4c4d02fcebe58ffe536)`()` | Gets the value of EffectiveFrom_Optional, regardless of it having been set.
@@ -323,6 +344,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline void `[`SetEffectiveFrom`](#structFRHAPI__Loot_1a26810f22a8dc416770296510ddcf492b)`(const FDateTime & NewValue)` | Sets the value of EffectiveFrom_Optional and also sets EffectiveFrom_IsSet to true.
 `public inline void `[`SetEffectiveFrom`](#structFRHAPI__Loot_1a634a4374f488fe51d04f770efe8d217b)`(FDateTime && NewValue)` | Sets the value of EffectiveFrom_Optional and also sets EffectiveFrom_IsSet to true using move semantics.
 `public inline void `[`ClearEffectiveFrom`](#structFRHAPI__Loot_1a60c3ccc74ab75b57706c6a193fb97008)`()` | Clears the value of EffectiveFrom_Optional and sets EffectiveFrom_IsSet to false.
+`public inline bool `[`IsEffectiveFromSet`](#structFRHAPI__Loot_1ae2266b7ddce7252d3cd27cf3eb42f5cf)`() const` | Checks whether EffectiveFrom_Optional has been set.
 `public inline ERHAPI_QuantityType & `[`GetQuantityType`](#structFRHAPI__Loot_1ac60f5021029d7495532f4e92256d2c1c)`()` | Gets the value of QuantityType_Optional, regardless of it having been set.
 `public inline const ERHAPI_QuantityType & `[`GetQuantityType`](#structFRHAPI__Loot_1a52f893e2ba2b5efb550dc3d4219ae57c)`() const` | Gets the value of QuantityType_Optional, regardless of it having been set.
 `public inline const ERHAPI_QuantityType & `[`GetQuantityType`](#structFRHAPI__Loot_1a98bb97bded9f560574b06547ca11c68b)`(const ERHAPI_QuantityType & DefaultValue) const` | Gets the value of QuantityType_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -332,6 +354,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline void `[`SetQuantityType`](#structFRHAPI__Loot_1a4d80f18bdfa8d7727db0b3eb5cfac683)`(const ERHAPI_QuantityType & NewValue)` | Sets the value of QuantityType_Optional and also sets QuantityType_IsSet to true.
 `public inline void `[`SetQuantityType`](#structFRHAPI__Loot_1a12a6df55378ba27c2674e87029eb4400)`(ERHAPI_QuantityType && NewValue)` | Sets the value of QuantityType_Optional and also sets QuantityType_IsSet to true using move semantics.
 `public inline void `[`ClearQuantityType`](#structFRHAPI__Loot_1aaaa1b44c90a587da748f686ab192cedd)`()` | Clears the value of QuantityType_Optional and sets QuantityType_IsSet to false.
+`public inline bool `[`IsQuantityTypeSet`](#structFRHAPI__Loot_1a3d659a8e8109c0ba0da785a8a23f3bba)`() const` | Checks whether QuantityType_Optional has been set.
 `public inline int32 & `[`GetQuantityMultInventoryItemId`](#structFRHAPI__Loot_1abdb65cbbe843109fc780c5896e836d84)`()` | Gets the value of QuantityMultInventoryItemId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetQuantityMultInventoryItemId`](#structFRHAPI__Loot_1a8407f742227106b6e18f2d68286e7f8b)`() const` | Gets the value of QuantityMultInventoryItemId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetQuantityMultInventoryItemId`](#structFRHAPI__Loot_1a5a93c513af4fb98079d1f4e8f8e48ef5)`(const int32 & DefaultValue) const` | Gets the value of QuantityMultInventoryItemId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -341,6 +364,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline void `[`SetQuantityMultInventoryItemId`](#structFRHAPI__Loot_1afc9ef0444a38b7bb4325218462ab9eed)`(const int32 & NewValue)` | Sets the value of QuantityMultInventoryItemId_Optional and also sets QuantityMultInventoryItemId_IsSet to true.
 `public inline void `[`SetQuantityMultInventoryItemId`](#structFRHAPI__Loot_1a602fad89314b60b581244f945e870690)`(int32 && NewValue)` | Sets the value of QuantityMultInventoryItemId_Optional and also sets QuantityMultInventoryItemId_IsSet to true using move semantics.
 `public inline void `[`ClearQuantityMultInventoryItemId`](#structFRHAPI__Loot_1ab739ef0b153c66e713663ee8e4556f50)`()` | Clears the value of QuantityMultInventoryItemId_Optional and sets QuantityMultInventoryItemId_IsSet to false.
+`public inline bool `[`IsQuantityMultInventoryItemIdSet`](#structFRHAPI__Loot_1a1a2509821822f1d7500f7fbfd44ee230)`() const` | Checks whether QuantityMultInventoryItemId_Optional has been set.
 `public inline bool `[`IsQuantityMultInventoryItemIdDefaultValue`](#structFRHAPI__Loot_1a1c513bf258edd56413a96b8e4ca2f63d)`() const` | Returns true if QuantityMultInventoryItemId_Optional is set and matches the default value.
 `public inline void `[`SetQuantityMultInventoryItemIdToDefault`](#structFRHAPI__Loot_1a480179232e881178aa0bae6eac822e72)`()` | Sets the value of QuantityMultInventoryItemId_Optional to its default and also sets QuantityMultInventoryItemId_IsSet to true.
 `public inline FGuid & `[`GetQuantityMultInventoryItemUuid`](#structFRHAPI__Loot_1a923d18271f28cc94b3c72731f0b9d1d5)`()` | Gets the value of QuantityMultInventoryItemUuid_Optional, regardless of it having been set.
@@ -352,6 +376,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline void `[`SetQuantityMultInventoryItemUuid`](#structFRHAPI__Loot_1ae8921ffcff5270847f002ec162602684)`(const FGuid & NewValue)` | Sets the value of QuantityMultInventoryItemUuid_Optional and also sets QuantityMultInventoryItemUuid_IsSet to true.
 `public inline void `[`SetQuantityMultInventoryItemUuid`](#structFRHAPI__Loot_1a7a02b8d2b63c29570c51e7e6fb5c8219)`(FGuid && NewValue)` | Sets the value of QuantityMultInventoryItemUuid_Optional and also sets QuantityMultInventoryItemUuid_IsSet to true using move semantics.
 `public inline void `[`ClearQuantityMultInventoryItemUuid`](#structFRHAPI__Loot_1a69be0a85188c51421539df8cf652912b)`()` | Clears the value of QuantityMultInventoryItemUuid_Optional and sets QuantityMultInventoryItemUuid_IsSet to false.
+`public inline bool `[`IsQuantityMultInventoryItemUuidSet`](#structFRHAPI__Loot_1a41e42b918a91333946db8b704191afc7)`() const` | Checks whether QuantityMultInventoryItemUuid_Optional has been set.
 `public inline bool & `[`GetIsClaimableByClient`](#structFRHAPI__Loot_1a78b6c6b4774fab979e3ad6f8eb81949b)`()` | Gets the value of IsClaimableByClient_Optional, regardless of it having been set.
 `public inline const bool & `[`GetIsClaimableByClient`](#structFRHAPI__Loot_1a07b4aebdcd35fc8b7954ac84d3a47fde)`() const` | Gets the value of IsClaimableByClient_Optional, regardless of it having been set.
 `public inline const bool & `[`GetIsClaimableByClient`](#structFRHAPI__Loot_1ad7c1e53d67d82fdf3c2a45695da55930)`(const bool & DefaultValue) const` | Gets the value of IsClaimableByClient_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -361,6 +386,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline void `[`SetIsClaimableByClient`](#structFRHAPI__Loot_1af1b3ba3dd60616855dff4c177d5f934b)`(const bool & NewValue)` | Sets the value of IsClaimableByClient_Optional and also sets IsClaimableByClient_IsSet to true.
 `public inline void `[`SetIsClaimableByClient`](#structFRHAPI__Loot_1a4ce0dc54c2b3f539c157e3a5e5569ee5)`(bool && NewValue)` | Sets the value of IsClaimableByClient_Optional and also sets IsClaimableByClient_IsSet to true using move semantics.
 `public inline void `[`ClearIsClaimableByClient`](#structFRHAPI__Loot_1a6ea498ee374a33944d629d4e884c13d6)`()` | Clears the value of IsClaimableByClient_Optional and sets IsClaimableByClient_IsSet to false.
+`public inline bool `[`IsIsClaimableByClientSet`](#structFRHAPI__Loot_1ae393a59c5dfd958a440df421fde06169)`() const` | Checks whether IsClaimableByClient_Optional has been set.
 `public inline bool `[`IsIsClaimableByClientDefaultValue`](#structFRHAPI__Loot_1a9d2152f9ebbac480467ccf601a3fe673)`() const` | Returns true if IsClaimableByClient_Optional is set and matches the default value.
 `public inline void `[`SetIsClaimableByClientToDefault`](#structFRHAPI__Loot_1a336c1ad23684075d60e7da97dca72e26)`()` | Sets the value of IsClaimableByClient_Optional to its default and also sets IsClaimableByClient_IsSet to true.
 `public inline int32 & `[`GetTimeFrameId`](#structFRHAPI__Loot_1ae8cb1df8ccb738ea8ce1ed44ead0ba12)`()` | Gets the value of TimeFrameId_Optional, regardless of it having been set.
@@ -372,6 +398,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline void `[`SetTimeFrameId`](#structFRHAPI__Loot_1ae8e2e7fd878445d35dbc3fe6b0479e7b)`(const int32 & NewValue)` | Sets the value of TimeFrameId_Optional and also sets TimeFrameId_IsSet to true.
 `public inline void `[`SetTimeFrameId`](#structFRHAPI__Loot_1a5fd203ce391fe60c3929ed65c73c6d40)`(int32 && NewValue)` | Sets the value of TimeFrameId_Optional and also sets TimeFrameId_IsSet to true using move semantics.
 `public inline void `[`ClearTimeFrameId`](#structFRHAPI__Loot_1a67f539e792c398b2faa6f80bafed2ad0)`()` | Clears the value of TimeFrameId_Optional and sets TimeFrameId_IsSet to false.
+`public inline bool `[`IsTimeFrameIdSet`](#structFRHAPI__Loot_1a8f6c139e0717dd774a9a0e0b61ea669a)`() const` | Checks whether TimeFrameId_Optional has been set.
 `public inline bool `[`IsTimeFrameIdDefaultValue`](#structFRHAPI__Loot_1ab7ce5827e1a9a6f065f55fa958ea9dfe)`() const` | Returns true if TimeFrameId_Optional is set and matches the default value.
 `public inline void `[`SetTimeFrameIdToDefault`](#structFRHAPI__Loot_1aaaf27b49e24ee23b0584f580d46d0e36)`()` | Sets the value of TimeFrameId_Optional to its default and also sets TimeFrameId_IsSet to true.
 `public inline ERHAPI_InventoryBucket & `[`GetUseInventoryBucket`](#structFRHAPI__Loot_1a3f4efa8c5d7eab831433c61eee98789f)`()` | Gets the value of UseInventoryBucket_Optional, regardless of it having been set.
@@ -383,6 +410,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline void `[`SetUseInventoryBucket`](#structFRHAPI__Loot_1aa87a5e0280fe48d98ba27884b5d0333b)`(const ERHAPI_InventoryBucket & NewValue)` | Sets the value of UseInventoryBucket_Optional and also sets UseInventoryBucket_IsSet to true.
 `public inline void `[`SetUseInventoryBucket`](#structFRHAPI__Loot_1a0ec60ab61d2175b194366ffaa42b6f33)`(ERHAPI_InventoryBucket && NewValue)` | Sets the value of UseInventoryBucket_Optional and also sets UseInventoryBucket_IsSet to true using move semantics.
 `public inline void `[`ClearUseInventoryBucket`](#structFRHAPI__Loot_1aa17ac8272fd46eb2841ba92836a4a1ed)`()` | Clears the value of UseInventoryBucket_Optional and sets UseInventoryBucket_IsSet to false.
+`public inline bool `[`IsUseInventoryBucketSet`](#structFRHAPI__Loot_1a0c83e17321a542a48869ef74233968a6)`() const` | Checks whether UseInventoryBucket_Optional has been set.
 `public inline ERHAPI_XpQuantityTransform & `[`GetXpQuantityTransformType`](#structFRHAPI__Loot_1a1ae16806e9cb8f3051903c5a55e4a986)`()` | Gets the value of XpQuantityTransformType_Optional, regardless of it having been set.
 `public inline const ERHAPI_XpQuantityTransform & `[`GetXpQuantityTransformType`](#structFRHAPI__Loot_1ac4f6778d5b2a41b175b1d69b7460bd85)`() const` | Gets the value of XpQuantityTransformType_Optional, regardless of it having been set.
 `public inline const ERHAPI_XpQuantityTransform & `[`GetXpQuantityTransformType`](#structFRHAPI__Loot_1a30605e03961ef334f131fae77c39559a)`(const ERHAPI_XpQuantityTransform & DefaultValue) const` | Gets the value of XpQuantityTransformType_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -392,6 +420,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline void `[`SetXpQuantityTransformType`](#structFRHAPI__Loot_1aede41113f17cdc20912efe9357e824d7)`(const ERHAPI_XpQuantityTransform & NewValue)` | Sets the value of XpQuantityTransformType_Optional and also sets XpQuantityTransformType_IsSet to true.
 `public inline void `[`SetXpQuantityTransformType`](#structFRHAPI__Loot_1aaf5c492282ab518ab8b1ae9e3b2e0b2c)`(ERHAPI_XpQuantityTransform && NewValue)` | Sets the value of XpQuantityTransformType_Optional and also sets XpQuantityTransformType_IsSet to true using move semantics.
 `public inline void `[`ClearXpQuantityTransformType`](#structFRHAPI__Loot_1a0bc58abfb350a0bbc8559a670bff36da)`()` | Clears the value of XpQuantityTransformType_Optional and sets XpQuantityTransformType_IsSet to false.
+`public inline bool `[`IsXpQuantityTransformTypeSet`](#structFRHAPI__Loot_1ad1abe2db996f93f6323e225683f5d05b)`() const` | Checks whether XpQuantityTransformType_Optional has been set.
 `public inline FString & `[`GetCurrentPricePointGuid`](#structFRHAPI__Loot_1a3b85b73e88cefbdde01435440a11076d)`()` | Gets the value of CurrentPricePointGuid_Optional, regardless of it having been set.
 `public inline const FString & `[`GetCurrentPricePointGuid`](#structFRHAPI__Loot_1a412f4764df6dfb5cee18e7fa883a1896)`() const` | Gets the value of CurrentPricePointGuid_Optional, regardless of it having been set.
 `public inline const FString & `[`GetCurrentPricePointGuid`](#structFRHAPI__Loot_1a71bdcce58525f93601c85b385ce5141e)`(const FString & DefaultValue) const` | Gets the value of CurrentPricePointGuid_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -401,6 +430,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline void `[`SetCurrentPricePointGuid`](#structFRHAPI__Loot_1aa07ac83717115f7907fae06487989d5c)`(const FString & NewValue)` | Sets the value of CurrentPricePointGuid_Optional and also sets CurrentPricePointGuid_IsSet to true.
 `public inline void `[`SetCurrentPricePointGuid`](#structFRHAPI__Loot_1a61087ca6e438436c957d8253568eebdf)`(FString && NewValue)` | Sets the value of CurrentPricePointGuid_Optional and also sets CurrentPricePointGuid_IsSet to true using move semantics.
 `public inline void `[`ClearCurrentPricePointGuid`](#structFRHAPI__Loot_1aff194f7ec2aac0bbc07e4ed16e9c560e)`()` | Clears the value of CurrentPricePointGuid_Optional and sets CurrentPricePointGuid_IsSet to false.
+`public inline bool `[`IsCurrentPricePointGuidSet`](#structFRHAPI__Loot_1ad5230b0d787b81d156fa59517733c73c)`() const` | Checks whether CurrentPricePointGuid_Optional has been set.
 `public inline FString & `[`GetPreSalePricePointGuid`](#structFRHAPI__Loot_1aa9d374bc62fd3b59b776a17b1834bc9f)`()` | Gets the value of PreSalePricePointGuid_Optional, regardless of it having been set.
 `public inline const FString & `[`GetPreSalePricePointGuid`](#structFRHAPI__Loot_1a791fe69ee647033dd38511bc3b11d3f0)`() const` | Gets the value of PreSalePricePointGuid_Optional, regardless of it having been set.
 `public inline const FString & `[`GetPreSalePricePointGuid`](#structFRHAPI__Loot_1a8ee4701f8e546cef003f40836fb11e9f)`(const FString & DefaultValue) const` | Gets the value of PreSalePricePointGuid_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -410,6 +440,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline void `[`SetPreSalePricePointGuid`](#structFRHAPI__Loot_1af4a068f843b026090a8c35a43ac21700)`(const FString & NewValue)` | Sets the value of PreSalePricePointGuid_Optional and also sets PreSalePricePointGuid_IsSet to true.
 `public inline void `[`SetPreSalePricePointGuid`](#structFRHAPI__Loot_1afae4c15dc92a4eafa9218baee86f5ddd)`(FString && NewValue)` | Sets the value of PreSalePricePointGuid_Optional and also sets PreSalePricePointGuid_IsSet to true using move semantics.
 `public inline void `[`ClearPreSalePricePointGuid`](#structFRHAPI__Loot_1a1abdd3498369af9ef69be5b62f09ef0e)`()` | Clears the value of PreSalePricePointGuid_Optional and sets PreSalePricePointGuid_IsSet to false.
+`public inline bool `[`IsPreSalePricePointGuidSet`](#structFRHAPI__Loot_1ad6f9cbc630b08f103dad3d20cfe69fed)`() const` | Checks whether PreSalePricePointGuid_Optional has been set.
 `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Loot_1adac9909b3816a31768afbd01c129f76b)`()` | Gets the value of CacheInfo_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Loot_1a7168aeb8126ef8adb139410146ccf77e)`() const` | Gets the value of CacheInfo_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Loot_1acdf9b0a96fc3568814e93a938f79a57c)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` | Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -419,6 +450,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline void `[`SetCacheInfo`](#structFRHAPI__Loot_1a1d8e16be89e1f22c6672c547df6593f3)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__Loot_1a990dfa89a8255c0ea88443aeb68b0be1)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__Loot_1a25a34ca49677cf59c5f100985d372f8a)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
+`public inline bool `[`IsCacheInfoSet`](#structFRHAPI__Loot_1a151daa852517492e955e1bb4375d32c5)`() const` | Checks whether CacheInfo_Optional has been set.
 `public inline int32 & `[`GetHardQuantityMaximum`](#structFRHAPI__Loot_1a22ad3a8f1b3ff1bb6b6444f74a6ac17a)`()` | Gets the value of HardQuantityMaximum_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetHardQuantityMaximum`](#structFRHAPI__Loot_1af2c0aa49b89341a3b62b8a4a87402aa7)`() const` | Gets the value of HardQuantityMaximum_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetHardQuantityMaximum`](#structFRHAPI__Loot_1aff89e7fdd36eddb551bdd11499f13da9)`(const int32 & DefaultValue) const` | Gets the value of HardQuantityMaximum_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -428,6 +460,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline void `[`SetHardQuantityMaximum`](#structFRHAPI__Loot_1ad3ad704a5b89921dc3d08745b4954bd6)`(const int32 & NewValue)` | Sets the value of HardQuantityMaximum_Optional and also sets HardQuantityMaximum_IsSet to true.
 `public inline void `[`SetHardQuantityMaximum`](#structFRHAPI__Loot_1a0125a96961951141e108df6f8bc9d8e3)`(int32 && NewValue)` | Sets the value of HardQuantityMaximum_Optional and also sets HardQuantityMaximum_IsSet to true using move semantics.
 `public inline void `[`ClearHardQuantityMaximum`](#structFRHAPI__Loot_1a54dc1f52107b15b7ff50d282cc43d8df)`()` | Clears the value of HardQuantityMaximum_Optional and sets HardQuantityMaximum_IsSet to false.
+`public inline bool `[`IsHardQuantityMaximumSet`](#structFRHAPI__Loot_1ac77f90979a81dc8f0675a30189d97b6e)`() const` | Checks whether HardQuantityMaximum_Optional has been set.
 `public inline bool `[`IsHardQuantityMaximumDefaultValue`](#structFRHAPI__Loot_1a1dcf73ab36076f3fe98df72496ac7ae1)`() const` | Returns true if HardQuantityMaximum_Optional is set and matches the default value.
 `public inline void `[`SetHardQuantityMaximumToDefault`](#structFRHAPI__Loot_1ae75d4313ecf4e431d50d1a6defb18831)`()` | Sets the value of HardQuantityMaximum_Optional to its default and also sets HardQuantityMaximum_IsSet to true.
 
@@ -701,7 +734,7 @@ Hard cap on quantity of an item this Loot can give. Disabled with 0.
 
 true if HardQuantityMaximum_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__Loot_1a242a4296481c5fb420d714cd32fec3ad)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__Loot_1a242a4296481c5fb420d714cd32fec3ad"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__Loot_1ae1fafb9905923f64a0753b812227f84b)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__Loot_1ae1fafb9905923f64a0753b812227f84b"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -711,7 +744,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__Loot_1a06faa7738909f964886ad0e56d8da1ec)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__Loot_1a06faa7738909f964886ad0e56d8da1ec"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__Loot_1a221346eede3fffebad0d4576f67e422b)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__Loot_1a221346eede3fffebad0d4576f67e422b"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -754,6 +787,10 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true usi
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
+#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__Loot_1aad7353c9d0e83d3cbce2f0b6701e184a)`() const` <a id="structFRHAPI__Loot_1aad7353c9d0e83d3cbce2f0b6701e184a"></a>
+
+Checks whether CustomData_Optional has been set.
+
 #### `public inline FGuid & `[`GetLootUuid`](#structFRHAPI__Loot_1a317feac29977e4e89b7ae4baef3de007)`()` <a id="structFRHAPI__Loot_1a317feac29977e4e89b7ae4baef3de007"></a>
 
 Gets the value of LootUuid_Optional, regardless of it having been set.
@@ -789,6 +826,10 @@ Sets the value of LootUuid_Optional and also sets LootUuid_IsSet to true using m
 #### `public inline void `[`ClearLootUuid`](#structFRHAPI__Loot_1ad0eb5151359a29ff49a600e4e8faa236)`()` <a id="structFRHAPI__Loot_1ad0eb5151359a29ff49a600e4e8faa236"></a>
 
 Clears the value of LootUuid_Optional and sets LootUuid_IsSet to false.
+
+#### `public inline bool `[`IsLootUuidSet`](#structFRHAPI__Loot_1a0055e1d3190b40815755e7a7de3d1800)`() const` <a id="structFRHAPI__Loot_1a0055e1d3190b40815755e7a7de3d1800"></a>
+
+Checks whether LootUuid_Optional has been set.
 
 #### `public inline int32 & `[`GetLootId`](#structFRHAPI__Loot_1acd2ed4c712d9bed9983240653df6e25e)`()` <a id="structFRHAPI__Loot_1acd2ed4c712d9bed9983240653df6e25e"></a>
 
@@ -874,6 +915,10 @@ Sets the value of VendorUuid_Optional and also sets VendorUuid_IsSet to true usi
 
 Clears the value of VendorUuid_Optional and sets VendorUuid_IsSet to false.
 
+#### `public inline bool `[`IsVendorUuidSet`](#structFRHAPI__Loot_1a15822bbcd6abd6c905072ae4bad92193)`() const` <a id="structFRHAPI__Loot_1a15822bbcd6abd6c905072ae4bad92193"></a>
+
+Checks whether VendorUuid_Optional has been set.
+
 #### `public inline int32 & `[`GetItemId`](#structFRHAPI__Loot_1acbe340fce6f530fbce884bc9a4fa1766)`()` <a id="structFRHAPI__Loot_1acbe340fce6f530fbce884bc9a4fa1766"></a>
 
 Gets the value of ItemId_Optional, regardless of it having been set.
@@ -909,6 +954,10 @@ Sets the value of ItemId_Optional and also sets ItemId_IsSet to true using move 
 #### `public inline void `[`ClearItemId`](#structFRHAPI__Loot_1ae7d18acc8c516d75d0698fe73b6514ac)`()` <a id="structFRHAPI__Loot_1ae7d18acc8c516d75d0698fe73b6514ac"></a>
 
 Clears the value of ItemId_Optional and sets ItemId_IsSet to false.
+
+#### `public inline bool `[`IsItemIdSet`](#structFRHAPI__Loot_1a3bd9f1d783d96bb8f7087fe53822e8a9)`() const` <a id="structFRHAPI__Loot_1a3bd9f1d783d96bb8f7087fe53822e8a9"></a>
+
+Checks whether ItemId_Optional has been set.
 
 #### `public inline bool `[`IsItemIdDefaultValue`](#structFRHAPI__Loot_1ab1fb89c1cd120fbdccbad20b4f1058c9)`() const` <a id="structFRHAPI__Loot_1ab1fb89c1cd120fbdccbad20b4f1058c9"></a>
 
@@ -954,6 +1003,10 @@ Sets the value of ItemUuid_Optional and also sets ItemUuid_IsSet to true using m
 
 Clears the value of ItemUuid_Optional and sets ItemUuid_IsSet to false.
 
+#### `public inline bool `[`IsItemUuidSet`](#structFRHAPI__Loot_1a94a4fecce862a531daedbbb5db9cdd5f)`() const` <a id="structFRHAPI__Loot_1a94a4fecce862a531daedbbb5db9cdd5f"></a>
+
+Checks whether ItemUuid_Optional has been set.
+
 #### `public inline `[`FRHAPI_Item`](RHAPI_Item.md#structFRHAPI__Item)` & `[`GetItem`](#structFRHAPI__Loot_1ab6b9ab768d5f3f6787f199565b9f5276)`()` <a id="structFRHAPI__Loot_1ab6b9ab768d5f3f6787f199565b9f5276"></a>
 
 Gets the value of Item_Optional, regardless of it having been set.
@@ -990,6 +1043,10 @@ Sets the value of Item_Optional and also sets Item_IsSet to true using move sema
 
 Clears the value of Item_Optional and sets Item_IsSet to false.
 
+#### `public inline bool `[`IsItemSet`](#structFRHAPI__Loot_1a00b84b8a70a8b3c27f0efdf51194e14a)`() const` <a id="structFRHAPI__Loot_1a00b84b8a70a8b3c27f0efdf51194e14a"></a>
+
+Checks whether Item_Optional has been set.
+
 #### `public inline int32 & `[`GetSubVendorId`](#structFRHAPI__Loot_1a15a91fdfd7149929f1ee3b10ef2fc4fe)`()` <a id="structFRHAPI__Loot_1a15a91fdfd7149929f1ee3b10ef2fc4fe"></a>
 
 Gets the value of SubVendorId_Optional, regardless of it having been set.
@@ -1025,6 +1082,10 @@ Sets the value of SubVendorId_Optional and also sets SubVendorId_IsSet to true u
 #### `public inline void `[`ClearSubVendorId`](#structFRHAPI__Loot_1a79b5893a6149af047f8c0c59c7476058)`()` <a id="structFRHAPI__Loot_1a79b5893a6149af047f8c0c59c7476058"></a>
 
 Clears the value of SubVendorId_Optional and sets SubVendorId_IsSet to false.
+
+#### `public inline bool `[`IsSubVendorIdSet`](#structFRHAPI__Loot_1a1d533b637fd1fc9d05df1dfd7c64ab0f)`() const` <a id="structFRHAPI__Loot_1a1d533b637fd1fc9d05df1dfd7c64ab0f"></a>
+
+Checks whether SubVendorId_Optional has been set.
 
 #### `public inline bool `[`IsSubVendorIdDefaultValue`](#structFRHAPI__Loot_1ac0a741bcd286b2adccd25fe38f97983b)`() const` <a id="structFRHAPI__Loot_1ac0a741bcd286b2adccd25fe38f97983b"></a>
 
@@ -1070,6 +1131,10 @@ Sets the value of SubVendorUuid_Optional and also sets SubVendorUuid_IsSet to tr
 
 Clears the value of SubVendorUuid_Optional and sets SubVendorUuid_IsSet to false.
 
+#### `public inline bool `[`IsSubVendorUuidSet`](#structFRHAPI__Loot_1a99e16b3fc068c13fcbb95796596dba5a)`() const` <a id="structFRHAPI__Loot_1a99e16b3fc068c13fcbb95796596dba5a"></a>
+
+Checks whether SubVendorUuid_Optional has been set.
+
 #### `public inline int32 & `[`GetQuantity`](#structFRHAPI__Loot_1ae066065a51d0fb4abc472d85f9ddcc4b)`()` <a id="structFRHAPI__Loot_1ae066065a51d0fb4abc472d85f9ddcc4b"></a>
 
 Gets the value of Quantity_Optional, regardless of it having been set.
@@ -1105,6 +1170,10 @@ Sets the value of Quantity_Optional and also sets Quantity_IsSet to true using m
 #### `public inline void `[`ClearQuantity`](#structFRHAPI__Loot_1afb0108aec2ba965d46c21f9ff6c63a51)`()` <a id="structFRHAPI__Loot_1afb0108aec2ba965d46c21f9ff6c63a51"></a>
 
 Clears the value of Quantity_Optional and sets Quantity_IsSet to false.
+
+#### `public inline bool `[`IsQuantitySet`](#structFRHAPI__Loot_1a00a01a8335980cfda514b6b70a3f5997)`() const` <a id="structFRHAPI__Loot_1a00a01a8335980cfda514b6b70a3f5997"></a>
+
+Checks whether Quantity_Optional has been set.
 
 #### `public inline bool `[`IsQuantityDefaultValue`](#structFRHAPI__Loot_1a5e81fc2e46f491acafcf83ec9eb97c7f)`() const` <a id="structFRHAPI__Loot_1a5e81fc2e46f491acafcf83ec9eb97c7f"></a>
 
@@ -1150,6 +1219,10 @@ Sets the value of InventorySelectorType_Optional and also sets InventorySelector
 
 Clears the value of InventorySelectorType_Optional and sets InventorySelectorType_IsSet to false.
 
+#### `public inline bool `[`IsInventorySelectorTypeSet`](#structFRHAPI__Loot_1ae58489ede4e165cb9e227f1de1b17ce0)`() const` <a id="structFRHAPI__Loot_1ae58489ede4e165cb9e227f1de1b17ce0"></a>
+
+Checks whether InventorySelectorType_Optional has been set.
+
 #### `public inline ERHAPI_InventoryOperation & `[`GetInventoryOperation`](#structFRHAPI__Loot_1ad7302341dbcffaff54d40249299cc812)`()` <a id="structFRHAPI__Loot_1ad7302341dbcffaff54d40249299cc812"></a>
 
 Gets the value of InventoryOperation_Optional, regardless of it having been set.
@@ -1186,6 +1259,10 @@ Sets the value of InventoryOperation_Optional and also sets InventoryOperation_I
 
 Clears the value of InventoryOperation_Optional and sets InventoryOperation_IsSet to false.
 
+#### `public inline bool `[`IsInventoryOperationSet`](#structFRHAPI__Loot_1a736c2c5de18122560b750d7af701debd)`() const` <a id="structFRHAPI__Loot_1a736c2c5de18122560b750d7af701debd"></a>
+
+Checks whether InventoryOperation_Optional has been set.
+
 #### `public inline bool & `[`GetActive`](#structFRHAPI__Loot_1aaa40a6889d2d480eeda7900dd5826c4c)`()` <a id="structFRHAPI__Loot_1aaa40a6889d2d480eeda7900dd5826c4c"></a>
 
 Gets the value of Active_Optional, regardless of it having been set.
@@ -1221,6 +1298,10 @@ Sets the value of Active_Optional and also sets Active_IsSet to true using move 
 #### `public inline void `[`ClearActive`](#structFRHAPI__Loot_1a0d398c5d970bba65e642c7c38db2e0b8)`()` <a id="structFRHAPI__Loot_1a0d398c5d970bba65e642c7c38db2e0b8"></a>
 
 Clears the value of Active_Optional and sets Active_IsSet to false.
+
+#### `public inline bool `[`IsActiveSet`](#structFRHAPI__Loot_1a3d50e44bfa48ffa323c852621df55c87)`() const` <a id="structFRHAPI__Loot_1a3d50e44bfa48ffa323c852621df55c87"></a>
+
+Checks whether Active_Optional has been set.
 
 #### `public inline bool `[`IsActiveDefaultValue`](#structFRHAPI__Loot_1a21764f599b5c382557c5f5f3f4d42e20)`() const` <a id="structFRHAPI__Loot_1a21764f599b5c382557c5f5f3f4d42e20"></a>
 
@@ -1266,6 +1347,10 @@ Sets the value of SortOrder_Optional and also sets SortOrder_IsSet to true using
 
 Clears the value of SortOrder_Optional and sets SortOrder_IsSet to false.
 
+#### `public inline bool `[`IsSortOrderSet`](#structFRHAPI__Loot_1a6929f1f030f4c95d302448d48eea9183)`() const` <a id="structFRHAPI__Loot_1a6929f1f030f4c95d302448d48eea9183"></a>
+
+Checks whether SortOrder_Optional has been set.
+
 #### `public inline bool `[`IsSortOrderDefaultValue`](#structFRHAPI__Loot_1a476d6b43e6c290f07c3879d9d18f0acb)`() const` <a id="structFRHAPI__Loot_1a476d6b43e6c290f07c3879d9d18f0acb"></a>
 
 Returns true if SortOrder_Optional is set and matches the default value.
@@ -1309,6 +1394,10 @@ Sets the value of DropWeight_Optional and also sets DropWeight_IsSet to true usi
 #### `public inline void `[`ClearDropWeight`](#structFRHAPI__Loot_1a56b9f2775876a68ac240381cd6646412)`()` <a id="structFRHAPI__Loot_1a56b9f2775876a68ac240381cd6646412"></a>
 
 Clears the value of DropWeight_Optional and sets DropWeight_IsSet to false.
+
+#### `public inline bool `[`IsDropWeightSet`](#structFRHAPI__Loot_1a6e099dfbf18bd3d7e8c1317a67fd3b8d)`() const` <a id="structFRHAPI__Loot_1a6e099dfbf18bd3d7e8c1317a67fd3b8d"></a>
+
+Checks whether DropWeight_Optional has been set.
 
 #### `public inline bool `[`IsDropWeightDefaultValue`](#structFRHAPI__Loot_1ac612f584a88113b0c0cd73ce5a3b7486)`() const` <a id="structFRHAPI__Loot_1ac612f584a88113b0c0cd73ce5a3b7486"></a>
 
@@ -1354,6 +1443,10 @@ Sets the value of FillInNewOrder_Optional and also sets FillInNewOrder_IsSet to 
 
 Clears the value of FillInNewOrder_Optional and sets FillInNewOrder_IsSet to false.
 
+#### `public inline bool `[`IsFillInNewOrderSet`](#structFRHAPI__Loot_1a4c627a1b1695a2eca1462e38d0785a71)`() const` <a id="structFRHAPI__Loot_1a4c627a1b1695a2eca1462e38d0785a71"></a>
+
+Checks whether FillInNewOrder_Optional has been set.
+
 #### `public inline bool `[`IsFillInNewOrderDefaultValue`](#structFRHAPI__Loot_1a096cd5304b7e6ce8e38e2ed23a2d9937)`() const` <a id="structFRHAPI__Loot_1a096cd5304b7e6ce8e38e2ed23a2d9937"></a>
 
 Returns true if FillInNewOrder_Optional is set and matches the default value.
@@ -1397,6 +1490,10 @@ Sets the value of AllowPartialBundles_Optional and also sets AllowPartialBundles
 #### `public inline void `[`ClearAllowPartialBundles`](#structFRHAPI__Loot_1a343ba6e659d1bdddc71f62a2490e9f95)`()` <a id="structFRHAPI__Loot_1a343ba6e659d1bdddc71f62a2490e9f95"></a>
 
 Clears the value of AllowPartialBundles_Optional and sets AllowPartialBundles_IsSet to false.
+
+#### `public inline bool `[`IsAllowPartialBundlesSet`](#structFRHAPI__Loot_1ab4d949e49537a13654740303da8903f5)`() const` <a id="structFRHAPI__Loot_1ab4d949e49537a13654740303da8903f5"></a>
+
+Checks whether AllowPartialBundles_Optional has been set.
 
 #### `public inline bool `[`IsAllowPartialBundlesDefaultValue`](#structFRHAPI__Loot_1a398d73cfc4df91f93783bc9f8134b731)`() const` <a id="structFRHAPI__Loot_1a398d73cfc4df91f93783bc9f8134b731"></a>
 
@@ -1442,6 +1539,10 @@ Sets the value of RequiredItemId_Optional and also sets RequiredItemId_IsSet to 
 
 Clears the value of RequiredItemId_Optional and sets RequiredItemId_IsSet to false.
 
+#### `public inline bool `[`IsRequiredItemIdSet`](#structFRHAPI__Loot_1abad4d37297ee50c37546b3ebef139fd2)`() const` <a id="structFRHAPI__Loot_1abad4d37297ee50c37546b3ebef139fd2"></a>
+
+Checks whether RequiredItemId_Optional has been set.
+
 #### `public inline bool `[`IsRequiredItemIdDefaultValue`](#structFRHAPI__Loot_1ac293dab8fa44d784dc6f80acbb030b9d)`() const` <a id="structFRHAPI__Loot_1ac293dab8fa44d784dc6f80acbb030b9d"></a>
 
 Returns true if RequiredItemId_Optional is set and matches the default value.
@@ -1486,6 +1587,10 @@ Sets the value of RequiredItemUuid_Optional and also sets RequiredItemUuid_IsSet
 
 Clears the value of RequiredItemUuid_Optional and sets RequiredItemUuid_IsSet to false.
 
+#### `public inline bool `[`IsRequiredItemUuidSet`](#structFRHAPI__Loot_1a748958019132d24d849841183bb43031)`() const` <a id="structFRHAPI__Loot_1a748958019132d24d849841183bb43031"></a>
+
+Checks whether RequiredItemUuid_Optional has been set.
+
 #### `public inline int32 & `[`GetRequiredItemCount`](#structFRHAPI__Loot_1aec8edb7083d53fcf1bff458a05f73701)`()` <a id="structFRHAPI__Loot_1aec8edb7083d53fcf1bff458a05f73701"></a>
 
 Gets the value of RequiredItemCount_Optional, regardless of it having been set.
@@ -1521,6 +1626,10 @@ Sets the value of RequiredItemCount_Optional and also sets RequiredItemCount_IsS
 #### `public inline void `[`ClearRequiredItemCount`](#structFRHAPI__Loot_1a1562a07810c78bd35faf79f6028a63fd)`()` <a id="structFRHAPI__Loot_1a1562a07810c78bd35faf79f6028a63fd"></a>
 
 Clears the value of RequiredItemCount_Optional and sets RequiredItemCount_IsSet to false.
+
+#### `public inline bool `[`IsRequiredItemCountSet`](#structFRHAPI__Loot_1a93e2fc425b8a0d30a2cb123c0b094ee4)`() const` <a id="structFRHAPI__Loot_1a93e2fc425b8a0d30a2cb123c0b094ee4"></a>
+
+Checks whether RequiredItemCount_Optional has been set.
 
 #### `public inline bool `[`IsRequiredItemCountDefaultValue`](#structFRHAPI__Loot_1ab465a43f9dcfe5bbac7aeac109cb7c81)`() const` <a id="structFRHAPI__Loot_1ab465a43f9dcfe5bbac7aeac109cb7c81"></a>
 
@@ -1566,6 +1675,10 @@ Sets the value of StackLimit_Optional and also sets StackLimit_IsSet to true usi
 
 Clears the value of StackLimit_Optional and sets StackLimit_IsSet to false.
 
+#### `public inline bool `[`IsStackLimitSet`](#structFRHAPI__Loot_1a79e96ce475ebfd6865cd67b9b3ec26f7)`() const` <a id="structFRHAPI__Loot_1a79e96ce475ebfd6865cd67b9b3ec26f7"></a>
+
+Checks whether StackLimit_Optional has been set.
+
 #### `public inline bool `[`IsStackLimitDefaultValue`](#structFRHAPI__Loot_1a4411301f594cf03ca1ac883fc5aa8092)`() const` <a id="structFRHAPI__Loot_1a4411301f594cf03ca1ac883fc5aa8092"></a>
 
 Returns true if StackLimit_Optional is set and matches the default value.
@@ -1609,6 +1722,10 @@ Sets the value of UiHint_Optional and also sets UiHint_IsSet to true using move 
 #### `public inline void `[`ClearUiHint`](#structFRHAPI__Loot_1adc42e15214e2fbcd3b9c2ee28153f666)`()` <a id="structFRHAPI__Loot_1adc42e15214e2fbcd3b9c2ee28153f666"></a>
 
 Clears the value of UiHint_Optional and sets UiHint_IsSet to false.
+
+#### `public inline bool `[`IsUiHintSet`](#structFRHAPI__Loot_1ad89add7bbbb5d24e86c86afbf083a67f)`() const` <a id="structFRHAPI__Loot_1ad89add7bbbb5d24e86c86afbf083a67f"></a>
+
+Checks whether UiHint_Optional has been set.
 
 #### `public inline bool `[`IsUiHintDefaultValue`](#structFRHAPI__Loot_1a768434aca6d481543db42a6ba4ab04fb)`() const` <a id="structFRHAPI__Loot_1a768434aca6d481543db42a6ba4ab04fb"></a>
 
@@ -1654,6 +1771,10 @@ Sets the value of EffectiveFrom_Optional and also sets EffectiveFrom_IsSet to tr
 
 Clears the value of EffectiveFrom_Optional and sets EffectiveFrom_IsSet to false.
 
+#### `public inline bool `[`IsEffectiveFromSet`](#structFRHAPI__Loot_1ae2266b7ddce7252d3cd27cf3eb42f5cf)`() const` <a id="structFRHAPI__Loot_1ae2266b7ddce7252d3cd27cf3eb42f5cf"></a>
+
+Checks whether EffectiveFrom_Optional has been set.
+
 #### `public inline ERHAPI_QuantityType & `[`GetQuantityType`](#structFRHAPI__Loot_1ac60f5021029d7495532f4e92256d2c1c)`()` <a id="structFRHAPI__Loot_1ac60f5021029d7495532f4e92256d2c1c"></a>
 
 Gets the value of QuantityType_Optional, regardless of it having been set.
@@ -1690,6 +1811,10 @@ Sets the value of QuantityType_Optional and also sets QuantityType_IsSet to true
 
 Clears the value of QuantityType_Optional and sets QuantityType_IsSet to false.
 
+#### `public inline bool `[`IsQuantityTypeSet`](#structFRHAPI__Loot_1a3d659a8e8109c0ba0da785a8a23f3bba)`() const` <a id="structFRHAPI__Loot_1a3d659a8e8109c0ba0da785a8a23f3bba"></a>
+
+Checks whether QuantityType_Optional has been set.
+
 #### `public inline int32 & `[`GetQuantityMultInventoryItemId`](#structFRHAPI__Loot_1abdb65cbbe843109fc780c5896e836d84)`()` <a id="structFRHAPI__Loot_1abdb65cbbe843109fc780c5896e836d84"></a>
 
 Gets the value of QuantityMultInventoryItemId_Optional, regardless of it having been set.
@@ -1725,6 +1850,10 @@ Sets the value of QuantityMultInventoryItemId_Optional and also sets QuantityMul
 #### `public inline void `[`ClearQuantityMultInventoryItemId`](#structFRHAPI__Loot_1ab739ef0b153c66e713663ee8e4556f50)`()` <a id="structFRHAPI__Loot_1ab739ef0b153c66e713663ee8e4556f50"></a>
 
 Clears the value of QuantityMultInventoryItemId_Optional and sets QuantityMultInventoryItemId_IsSet to false.
+
+#### `public inline bool `[`IsQuantityMultInventoryItemIdSet`](#structFRHAPI__Loot_1a1a2509821822f1d7500f7fbfd44ee230)`() const` <a id="structFRHAPI__Loot_1a1a2509821822f1d7500f7fbfd44ee230"></a>
+
+Checks whether QuantityMultInventoryItemId_Optional has been set.
 
 #### `public inline bool `[`IsQuantityMultInventoryItemIdDefaultValue`](#structFRHAPI__Loot_1a1c513bf258edd56413a96b8e4ca2f63d)`() const` <a id="structFRHAPI__Loot_1a1c513bf258edd56413a96b8e4ca2f63d"></a>
 
@@ -1770,6 +1899,10 @@ Sets the value of QuantityMultInventoryItemUuid_Optional and also sets QuantityM
 
 Clears the value of QuantityMultInventoryItemUuid_Optional and sets QuantityMultInventoryItemUuid_IsSet to false.
 
+#### `public inline bool `[`IsQuantityMultInventoryItemUuidSet`](#structFRHAPI__Loot_1a41e42b918a91333946db8b704191afc7)`() const` <a id="structFRHAPI__Loot_1a41e42b918a91333946db8b704191afc7"></a>
+
+Checks whether QuantityMultInventoryItemUuid_Optional has been set.
+
 #### `public inline bool & `[`GetIsClaimableByClient`](#structFRHAPI__Loot_1a78b6c6b4774fab979e3ad6f8eb81949b)`()` <a id="structFRHAPI__Loot_1a78b6c6b4774fab979e3ad6f8eb81949b"></a>
 
 Gets the value of IsClaimableByClient_Optional, regardless of it having been set.
@@ -1805,6 +1938,10 @@ Sets the value of IsClaimableByClient_Optional and also sets IsClaimableByClient
 #### `public inline void `[`ClearIsClaimableByClient`](#structFRHAPI__Loot_1a6ea498ee374a33944d629d4e884c13d6)`()` <a id="structFRHAPI__Loot_1a6ea498ee374a33944d629d4e884c13d6"></a>
 
 Clears the value of IsClaimableByClient_Optional and sets IsClaimableByClient_IsSet to false.
+
+#### `public inline bool `[`IsIsClaimableByClientSet`](#structFRHAPI__Loot_1ae393a59c5dfd958a440df421fde06169)`() const` <a id="structFRHAPI__Loot_1ae393a59c5dfd958a440df421fde06169"></a>
+
+Checks whether IsClaimableByClient_Optional has been set.
 
 #### `public inline bool `[`IsIsClaimableByClientDefaultValue`](#structFRHAPI__Loot_1a9d2152f9ebbac480467ccf601a3fe673)`() const` <a id="structFRHAPI__Loot_1a9d2152f9ebbac480467ccf601a3fe673"></a>
 
@@ -1850,6 +1987,10 @@ Sets the value of TimeFrameId_Optional and also sets TimeFrameId_IsSet to true u
 
 Clears the value of TimeFrameId_Optional and sets TimeFrameId_IsSet to false.
 
+#### `public inline bool `[`IsTimeFrameIdSet`](#structFRHAPI__Loot_1a8f6c139e0717dd774a9a0e0b61ea669a)`() const` <a id="structFRHAPI__Loot_1a8f6c139e0717dd774a9a0e0b61ea669a"></a>
+
+Checks whether TimeFrameId_Optional has been set.
+
 #### `public inline bool `[`IsTimeFrameIdDefaultValue`](#structFRHAPI__Loot_1ab7ce5827e1a9a6f065f55fa958ea9dfe)`() const` <a id="structFRHAPI__Loot_1ab7ce5827e1a9a6f065f55fa958ea9dfe"></a>
 
 Returns true if TimeFrameId_Optional is set and matches the default value.
@@ -1894,6 +2035,10 @@ Sets the value of UseInventoryBucket_Optional and also sets UseInventoryBucket_I
 
 Clears the value of UseInventoryBucket_Optional and sets UseInventoryBucket_IsSet to false.
 
+#### `public inline bool `[`IsUseInventoryBucketSet`](#structFRHAPI__Loot_1a0c83e17321a542a48869ef74233968a6)`() const` <a id="structFRHAPI__Loot_1a0c83e17321a542a48869ef74233968a6"></a>
+
+Checks whether UseInventoryBucket_Optional has been set.
+
 #### `public inline ERHAPI_XpQuantityTransform & `[`GetXpQuantityTransformType`](#structFRHAPI__Loot_1a1ae16806e9cb8f3051903c5a55e4a986)`()` <a id="structFRHAPI__Loot_1a1ae16806e9cb8f3051903c5a55e4a986"></a>
 
 Gets the value of XpQuantityTransformType_Optional, regardless of it having been set.
@@ -1929,6 +2074,10 @@ Sets the value of XpQuantityTransformType_Optional and also sets XpQuantityTrans
 #### `public inline void `[`ClearXpQuantityTransformType`](#structFRHAPI__Loot_1a0bc58abfb350a0bbc8559a670bff36da)`()` <a id="structFRHAPI__Loot_1a0bc58abfb350a0bbc8559a670bff36da"></a>
 
 Clears the value of XpQuantityTransformType_Optional and sets XpQuantityTransformType_IsSet to false.
+
+#### `public inline bool `[`IsXpQuantityTransformTypeSet`](#structFRHAPI__Loot_1ad1abe2db996f93f6323e225683f5d05b)`() const` <a id="structFRHAPI__Loot_1ad1abe2db996f93f6323e225683f5d05b"></a>
+
+Checks whether XpQuantityTransformType_Optional has been set.
 
 #### `public inline FString & `[`GetCurrentPricePointGuid`](#structFRHAPI__Loot_1a3b85b73e88cefbdde01435440a11076d)`()` <a id="structFRHAPI__Loot_1a3b85b73e88cefbdde01435440a11076d"></a>
 
@@ -1966,6 +2115,10 @@ Sets the value of CurrentPricePointGuid_Optional and also sets CurrentPricePoint
 
 Clears the value of CurrentPricePointGuid_Optional and sets CurrentPricePointGuid_IsSet to false.
 
+#### `public inline bool `[`IsCurrentPricePointGuidSet`](#structFRHAPI__Loot_1ad5230b0d787b81d156fa59517733c73c)`() const` <a id="structFRHAPI__Loot_1ad5230b0d787b81d156fa59517733c73c"></a>
+
+Checks whether CurrentPricePointGuid_Optional has been set.
+
 #### `public inline FString & `[`GetPreSalePricePointGuid`](#structFRHAPI__Loot_1aa9d374bc62fd3b59b776a17b1834bc9f)`()` <a id="structFRHAPI__Loot_1aa9d374bc62fd3b59b776a17b1834bc9f"></a>
 
 Gets the value of PreSalePricePointGuid_Optional, regardless of it having been set.
@@ -2001,6 +2154,10 @@ Sets the value of PreSalePricePointGuid_Optional and also sets PreSalePricePoint
 #### `public inline void `[`ClearPreSalePricePointGuid`](#structFRHAPI__Loot_1a1abdd3498369af9ef69be5b62f09ef0e)`()` <a id="structFRHAPI__Loot_1a1abdd3498369af9ef69be5b62f09ef0e"></a>
 
 Clears the value of PreSalePricePointGuid_Optional and sets PreSalePricePointGuid_IsSet to false.
+
+#### `public inline bool `[`IsPreSalePricePointGuidSet`](#structFRHAPI__Loot_1ad6f9cbc630b08f103dad3d20cfe69fed)`() const` <a id="structFRHAPI__Loot_1ad6f9cbc630b08f103dad3d20cfe69fed"></a>
+
+Checks whether PreSalePricePointGuid_Optional has been set.
 
 #### `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Loot_1adac9909b3816a31768afbd01c129f76b)`()` <a id="structFRHAPI__Loot_1adac9909b3816a31768afbd01c129f76b"></a>
 
@@ -2038,6 +2195,10 @@ Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using
 
 Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 
+#### `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__Loot_1a151daa852517492e955e1bb4375d32c5)`() const` <a id="structFRHAPI__Loot_1a151daa852517492e955e1bb4375d32c5"></a>
+
+Checks whether CacheInfo_Optional has been set.
+
 #### `public inline int32 & `[`GetHardQuantityMaximum`](#structFRHAPI__Loot_1a22ad3a8f1b3ff1bb6b6444f74a6ac17a)`()` <a id="structFRHAPI__Loot_1a22ad3a8f1b3ff1bb6b6444f74a6ac17a"></a>
 
 Gets the value of HardQuantityMaximum_Optional, regardless of it having been set.
@@ -2073,6 +2234,10 @@ Sets the value of HardQuantityMaximum_Optional and also sets HardQuantityMaximum
 #### `public inline void `[`ClearHardQuantityMaximum`](#structFRHAPI__Loot_1a54dc1f52107b15b7ff50d282cc43d8df)`()` <a id="structFRHAPI__Loot_1a54dc1f52107b15b7ff50d282cc43d8df"></a>
 
 Clears the value of HardQuantityMaximum_Optional and sets HardQuantityMaximum_IsSet to false.
+
+#### `public inline bool `[`IsHardQuantityMaximumSet`](#structFRHAPI__Loot_1ac77f90979a81dc8f0675a30189d97b6e)`() const` <a id="structFRHAPI__Loot_1ac77f90979a81dc8f0675a30189d97b6e"></a>
+
+Checks whether HardQuantityMaximum_Optional has been set.
 
 #### `public inline bool `[`IsHardQuantityMaximumDefaultValue`](#structFRHAPI__Loot_1a1dcf73ab36076f3fe98df72496ac7ae1)`() const` <a id="structFRHAPI__Loot_1a1dcf73ab36076f3fe98df72496ac7ae1"></a>
 

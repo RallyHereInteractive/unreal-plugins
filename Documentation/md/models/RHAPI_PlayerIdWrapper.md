@@ -20,8 +20,8 @@ Model for getting a player ID from a player UUID.
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public int32 `[`PlayerId`](#structFRHAPI__PlayerIdWrapper_1a9d3517523183b4512a3e4335470be60a) | Player ID.
-`public virtual bool `[`FromJson`](#structFRHAPI__PlayerIdWrapper_1af5ce582a754d7f0db265d7e33b039674)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PlayerIdWrapper_1ac9e978d8c152b4cc909db76a787e4529)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__PlayerIdWrapper_1a3901b65228ad40fc0678e8e626e7efde)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__PlayerIdWrapper_1a9d2fa7ecba7e969c4b941e5d98284fbd)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline int32 & `[`GetPlayerId`](#structFRHAPI__PlayerIdWrapper_1a1f525c0cdd5ad98d8bd51582e9644900)`()` | Gets the value of PlayerId.
 `public inline const int32 & `[`GetPlayerId`](#structFRHAPI__PlayerIdWrapper_1a6d4d79522551ec4b8d5bd0045cd3784f)`() const` | Gets the value of PlayerId.
 `public inline void `[`SetPlayerId`](#structFRHAPI__PlayerIdWrapper_1a0c32b1185c5d5cd36af803e3d7dd6257)`(const int32 & NewValue)` | Sets the value of PlayerId.
@@ -35,7 +35,7 @@ Model for getting a player ID from a player UUID.
 
 Player ID.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__PlayerIdWrapper_1af5ce582a754d7f0db265d7e33b039674)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlayerIdWrapper_1af5ce582a754d7f0db265d7e33b039674"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__PlayerIdWrapper_1a3901b65228ad40fc0678e8e626e7efde)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlayerIdWrapper_1a3901b65228ad40fc0678e8e626e7efde"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -45,7 +45,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PlayerIdWrapper_1ac9e978d8c152b4cc909db76a787e4529)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlayerIdWrapper_1ac9e978d8c152b4cc909db76a787e4529"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PlayerIdWrapper_1a9d2fa7ecba7e969c4b941e5d98284fbd)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlayerIdWrapper_1a9d2fa7ecba7e969c4b941e5d98284fbd"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 

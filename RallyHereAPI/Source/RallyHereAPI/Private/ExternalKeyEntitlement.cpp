@@ -38,9 +38,9 @@ bool FRHAPI_ExternalKeyEntitlement::FromJson(const TSharedPtr<FJsonValue>& JsonV
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonExternalKeyCampaignIdField = (*Object)->TryGetField(TEXT("external_key_campaign_id"));
-	ParseSuccess &= JsonExternalKeyCampaignIdField.IsValid() && !JsonExternalKeyCampaignIdField->IsNull() && TryGetJsonValue(JsonExternalKeyCampaignIdField, ExternalKeyCampaignId);
+	ParseSuccess &= JsonExternalKeyCampaignIdField.IsValid() && (!JsonExternalKeyCampaignIdField->IsNull() &&  TryGetJsonValue(JsonExternalKeyCampaignIdField, ExternalKeyCampaignId));
 	const TSharedPtr<FJsonValue> JsonQuantityField = (*Object)->TryGetField(TEXT("quantity"));
-	ParseSuccess &= JsonQuantityField.IsValid() && !JsonQuantityField->IsNull() && TryGetJsonValue(JsonQuantityField, Quantity);
+	ParseSuccess &= JsonQuantityField.IsValid() && (!JsonQuantityField->IsNull() &&  TryGetJsonValue(JsonQuantityField, Quantity));
 
 	return ParseSuccess;
 }

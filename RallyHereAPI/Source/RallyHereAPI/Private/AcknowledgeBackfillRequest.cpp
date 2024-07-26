@@ -46,15 +46,15 @@ bool FRHAPI_AcknowledgeBackfillRequest::FromJson(const TSharedPtr<FJsonValue>& J
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonInstanceIdField = (*Object)->TryGetField(TEXT("instance_id"));
-	ParseSuccess &= JsonInstanceIdField.IsValid() && !JsonInstanceIdField->IsNull() && TryGetJsonValue(JsonInstanceIdField, InstanceId);
+	ParseSuccess &= JsonInstanceIdField.IsValid() && (!JsonInstanceIdField->IsNull() &&  TryGetJsonValue(JsonInstanceIdField, InstanceId));
 	const TSharedPtr<FJsonValue> JsonExtensionsField = (*Object)->TryGetField(TEXT("extensions"));
-	if (JsonExtensionsField.IsValid() && !JsonExtensionsField->IsNull())
+	if (JsonExtensionsField.IsValid())
 	{
 		Extensions_IsSet = TryGetJsonValue(JsonExtensionsField, Extensions_Optional);
 		ParseSuccess &= Extensions_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonOverflowActionField = (*Object)->TryGetField(TEXT("overflow_action"));
-	if (JsonOverflowActionField.IsValid() && !JsonOverflowActionField->IsNull())
+	if (JsonOverflowActionField.IsValid())
 	{
 		OverflowAction_IsSet = TryGetJsonValue(JsonOverflowActionField, OverflowAction_Optional);
 		ParseSuccess &= OverflowAction_IsSet;

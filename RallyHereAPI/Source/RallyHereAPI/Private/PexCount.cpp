@@ -25,6 +25,9 @@ void FRHAPI_PexCount::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (Count_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("count"));
+		if (Count_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, Count_Optional);
 	}
 	Writer->WriteObjectEnd();
@@ -39,9 +42,10 @@ bool FRHAPI_PexCount::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonCountField = (*Object)->TryGetField(TEXT("count"));
-	if (JsonCountField.IsValid() && !JsonCountField->IsNull())
+	if (JsonCountField.IsValid())
 	{
-		Count_IsSet = TryGetJsonValue(JsonCountField, Count_Optional);
+		Count_IsNull = JsonCountField->IsNull();
+		Count_IsSet = Count_IsNull || TryGetJsonValue(JsonCountField, Count_Optional);
 		ParseSuccess &= Count_IsSet;
 	}
 

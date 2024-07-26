@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_LoginLootReward : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Loot ID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -54,15 +54,17 @@ struct RALLYHEREAPI_API FRHAPI_LoginLootReward : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of LootId_Optional and returns true if it has been set, otherwise returns false */
 	bool GetLootId(FString& OutValue) const { if (LootId_IsSet) OutValue = LootId_Optional; return LootId_IsSet; }
 	/** @brief Returns a pointer to LootId_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetLootIdOrNull() { if (LootId_IsSet) return &LootId_Optional; return nullptr; }
+	FString* GetLootIdOrNull() { if (LootId_IsSet) return (&LootId_Optional); return nullptr; }
 	/** @brief Returns a pointer to LootId_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetLootIdOrNull() const { if (LootId_IsSet) return &LootId_Optional; return nullptr; }
+	const FString* GetLootIdOrNull() const { if (LootId_IsSet) return (&LootId_Optional); return nullptr; }
 	/** @brief Sets the value of LootId_Optional and also sets LootId_IsSet to true */
-	void SetLootId(const FString& NewValue) { LootId_Optional = NewValue; LootId_IsSet = true; }
+	void SetLootId(const FString& NewValue) { LootId_Optional = NewValue; LootId_IsSet = true;  }
 	/** @brief Sets the value of LootId_Optional and also sets LootId_IsSet to true using move semantics */
-	void SetLootId(FString&& NewValue) { LootId_Optional = NewValue; LootId_IsSet = true; }
-	 /** @brief Clears the value of LootId_Optional and sets LootId_IsSet to false */
-	void ClearLootId() { LootId_IsSet = false; }
+	void SetLootId(FString&& NewValue) { LootId_Optional = NewValue; LootId_IsSet = true;  }
+	/** @brief Clears the value of LootId_Optional and sets LootId_IsSet to false */
+	void ClearLootId() { LootId_IsSet = false;  }
+	/** @brief Checks whether LootId_Optional has been set */
+	bool IsLootIdSet() const { return LootId_IsSet; }
 
 	/** @brief Legacy Loot ID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -72,13 +74,13 @@ struct RALLYHEREAPI_API FRHAPI_LoginLootReward : public FRHAPI_Model
 	/** @brief Gets the value of LegacyLootId */
 	const int32& GetLegacyLootId() const { return LegacyLootId; }
 	/** @brief Sets the value of LegacyLootId */
-	void SetLegacyLootId(const int32& NewValue) { LegacyLootId = NewValue;  }
+	void SetLegacyLootId(const int32& NewValue) { LegacyLootId = NewValue;   }
 	/** @brief Sets the value of LegacyLootId using move semantics */
-	void SetLegacyLootId(int32&& NewValue) { LegacyLootId = NewValue;  }
+	void SetLegacyLootId(int32&& NewValue) { LegacyLootId = NewValue;   }
 	/** @brief Returns true if LegacyLootId matches the default value */
 	bool IsLegacyLootIdDefaultValue() const { return LegacyLootId == 0; }
 	/** @brief Sets the value of LegacyLootId to its default  */
-	void SetLegacyLootIdToDefault() { LegacyLootId = 0;  }
+	void SetLegacyLootIdToDefault() { SetLegacyLootId(0); }
 };
 
 /** @} */

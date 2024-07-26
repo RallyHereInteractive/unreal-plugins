@@ -48,17 +48,17 @@ bool FRHAPI_InstanceStartupParams::FromJson(const TSharedPtr<FJsonValue>& JsonVa
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonMapField = (*Object)->TryGetField(TEXT("map"));
-	ParseSuccess &= JsonMapField.IsValid() && !JsonMapField->IsNull() && TryGetJsonValue(JsonMapField, Map);
+	ParseSuccess &= JsonMapField.IsValid() && (!JsonMapField->IsNull() &&  TryGetJsonValue(JsonMapField, Map));
 	const TSharedPtr<FJsonValue> JsonModeField = (*Object)->TryGetField(TEXT("mode"));
-	if (JsonModeField.IsValid() && !JsonModeField->IsNull())
+	if (JsonModeField.IsValid())
 	{
 		Mode_IsSet = TryGetJsonValue(JsonModeField, Mode_Optional);
 		ParseSuccess &= Mode_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonMiscParamsField = (*Object)->TryGetField(TEXT("misc_params"));
-	ParseSuccess &= JsonMiscParamsField.IsValid() && !JsonMiscParamsField->IsNull() && TryGetJsonValue(JsonMiscParamsField, MiscParams);
+	ParseSuccess &= JsonMiscParamsField.IsValid() && (!JsonMiscParamsField->IsNull() &&  TryGetJsonValue(JsonMiscParamsField, MiscParams));
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	if (JsonCustomDataField.IsValid())
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;

@@ -25,8 +25,8 @@ A collection of MatchMakingTemplates that may be used when a session enters a qu
 `public bool `[`RequiredItemIds_IsSet`](#structFRHAPI__MatchMakingTemplateGroupV2_1acf8e308da6fcec42032dd998a15284c3) | true if RequiredItemIds_Optional has been set to a value
 `public bool `[`RequiresAllPlayersItems_Optional`](#structFRHAPI__MatchMakingTemplateGroupV2_1a8488674c91fc3cf5cfe7be4c51b89abb) | Whether or not the rulesets under this group will require us to query all players inventory, or just the leader's.
 `public bool `[`RequiresAllPlayersItems_IsSet`](#structFRHAPI__MatchMakingTemplateGroupV2_1aa1ce654df8e332c2883087f691bd7503) | true if RequiresAllPlayersItems_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__MatchMakingTemplateGroupV2_1aa82d7762c65e34e906c1fa2af0a15b80)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__MatchMakingTemplateGroupV2_1ae72915da0979e90493d2d2f47c565c9d)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__MatchMakingTemplateGroupV2_1ab2bd4c99d48b826ea841c97880c250a2)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__MatchMakingTemplateGroupV2_1a9909abfe12210b32cd90427daa2bd70a)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FGuid & `[`GetMatchMakingTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1a01e8f3d3b4d2a717e193aed171c0d40c)`()` | Gets the value of MatchMakingTemplateGroupId.
 `public inline const FGuid & `[`GetMatchMakingTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1aa0748064b7da8fe6a9be9e0d7c02c438)`() const` | Gets the value of MatchMakingTemplateGroupId.
 `public inline void `[`SetMatchMakingTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1a094adccf60c562ee00ee715ce110e2f0)`(const FGuid & NewValue)` | Sets the value of MatchMakingTemplateGroupId.
@@ -44,6 +44,7 @@ A collection of MatchMakingTemplates that may be used when a session enters a qu
 `public inline void `[`SetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroupV2_1a6b7152abdcc6bc8f559c78276aaba2c1)`(const TSet< int32 > & NewValue)` | Sets the value of RequiredItemIds_Optional and also sets RequiredItemIds_IsSet to true.
 `public inline void `[`SetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroupV2_1acef58f4a11f6a0c69b8056554918b7cb)`(TSet< int32 > && NewValue)` | Sets the value of RequiredItemIds_Optional and also sets RequiredItemIds_IsSet to true using move semantics.
 `public inline void `[`ClearRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroupV2_1a2cfe134d15ff3ce519d7be4a1a681055)`()` | Clears the value of RequiredItemIds_Optional and sets RequiredItemIds_IsSet to false.
+`public inline bool `[`IsRequiredItemIdsSet`](#structFRHAPI__MatchMakingTemplateGroupV2_1a1ec1af18752cde6ea5ffb197b32d5427)`() const` | Checks whether RequiredItemIds_Optional has been set.
 `public inline bool & `[`GetRequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1a246a17ce9a4879981499f53ad51a1771)`()` | Gets the value of RequiresAllPlayersItems_Optional, regardless of it having been set.
 `public inline const bool & `[`GetRequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1a4f412da2a00abe6a487e4ef33188c7d4)`() const` | Gets the value of RequiresAllPlayersItems_Optional, regardless of it having been set.
 `public inline const bool & `[`GetRequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1a9d78f37c8943b6a8e3e8e7dc32f336be)`(const bool & DefaultValue) const` | Gets the value of RequiresAllPlayersItems_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -53,6 +54,7 @@ A collection of MatchMakingTemplates that may be used when a session enters a qu
 `public inline void `[`SetRequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1a113333608a253de1488967459a319592)`(const bool & NewValue)` | Sets the value of RequiresAllPlayersItems_Optional and also sets RequiresAllPlayersItems_IsSet to true.
 `public inline void `[`SetRequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1a1c6c9ddc6263db8933ed72fa52af18b6)`(bool && NewValue)` | Sets the value of RequiresAllPlayersItems_Optional and also sets RequiresAllPlayersItems_IsSet to true using move semantics.
 `public inline void `[`ClearRequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1a438d6d46a18dafa5a98aa7494af4d712)`()` | Clears the value of RequiresAllPlayersItems_Optional and sets RequiresAllPlayersItems_IsSet to false.
+`public inline bool `[`IsRequiresAllPlayersItemsSet`](#structFRHAPI__MatchMakingTemplateGroupV2_1a442668f810897c3c52da93a512bb3335)`() const` | Checks whether RequiresAllPlayersItems_Optional has been set.
 `public inline bool `[`IsRequiresAllPlayersItemsDefaultValue`](#structFRHAPI__MatchMakingTemplateGroupV2_1a630b53fea6154b63951c162e05197d59)`() const` | Returns true if RequiresAllPlayersItems_Optional is set and matches the default value.
 `public inline void `[`SetRequiresAllPlayersItemsToDefault`](#structFRHAPI__MatchMakingTemplateGroupV2_1a7a3a20244efffa3ce670adcbd1cce5a7)`()` | Sets the value of RequiresAllPlayersItems_Optional to its default and also sets RequiresAllPlayersItems_IsSet to true.
 
@@ -82,7 +84,7 @@ Whether or not the rulesets under this group will require us to query all player
 
 true if RequiresAllPlayersItems_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__MatchMakingTemplateGroupV2_1aa82d7762c65e34e906c1fa2af0a15b80)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1aa82d7762c65e34e906c1fa2af0a15b80"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__MatchMakingTemplateGroupV2_1ab2bd4c99d48b826ea841c97880c250a2)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1ab2bd4c99d48b826ea841c97880c250a2"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -92,7 +94,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__MatchMakingTemplateGroupV2_1ae72915da0979e90493d2d2f47c565c9d)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1ae72915da0979e90493d2d2f47c565c9d"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__MatchMakingTemplateGroupV2_1a9909abfe12210b32cd90427daa2bd70a)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a9909abfe12210b32cd90427daa2bd70a"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -167,6 +169,10 @@ Sets the value of RequiredItemIds_Optional and also sets RequiredItemIds_IsSet t
 
 Clears the value of RequiredItemIds_Optional and sets RequiredItemIds_IsSet to false.
 
+#### `public inline bool `[`IsRequiredItemIdsSet`](#structFRHAPI__MatchMakingTemplateGroupV2_1a1ec1af18752cde6ea5ffb197b32d5427)`() const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a1ec1af18752cde6ea5ffb197b32d5427"></a>
+
+Checks whether RequiredItemIds_Optional has been set.
+
 #### `public inline bool & `[`GetRequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1a246a17ce9a4879981499f53ad51a1771)`()` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a246a17ce9a4879981499f53ad51a1771"></a>
 
 Gets the value of RequiresAllPlayersItems_Optional, regardless of it having been set.
@@ -202,6 +208,10 @@ Sets the value of RequiresAllPlayersItems_Optional and also sets RequiresAllPlay
 #### `public inline void `[`ClearRequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1a438d6d46a18dafa5a98aa7494af4d712)`()` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a438d6d46a18dafa5a98aa7494af4d712"></a>
 
 Clears the value of RequiresAllPlayersItems_Optional and sets RequiresAllPlayersItems_IsSet to false.
+
+#### `public inline bool `[`IsRequiresAllPlayersItemsSet`](#structFRHAPI__MatchMakingTemplateGroupV2_1a442668f810897c3c52da93a512bb3335)`() const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a442668f810897c3c52da93a512bb3335"></a>
+
+Checks whether RequiresAllPlayersItems_Optional has been set.
 
 #### `public inline bool `[`IsRequiresAllPlayersItemsDefaultValue`](#structFRHAPI__MatchMakingTemplateGroupV2_1a630b53fea6154b63951c162e05197d59)`() const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a630b53fea6154b63951c162e05197d59"></a>
 

@@ -47,15 +47,15 @@ bool FRHAPI_PlatformSession::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPlatformField = (*Object)->TryGetField(TEXT("platform"));
-	ParseSuccess &= JsonPlatformField.IsValid() && !JsonPlatformField->IsNull() && TryGetJsonValue(JsonPlatformField, Platform);
+	ParseSuccess &= JsonPlatformField.IsValid() && (!JsonPlatformField->IsNull() &&  TryGetJsonValue(JsonPlatformField, Platform));
 	const TSharedPtr<FJsonValue> JsonPlatformSessionTypeField = (*Object)->TryGetField(TEXT("platform_session_type"));
-	ParseSuccess &= JsonPlatformSessionTypeField.IsValid() && !JsonPlatformSessionTypeField->IsNull() && TryGetJsonValue(JsonPlatformSessionTypeField, PlatformSessionType);
+	ParseSuccess &= JsonPlatformSessionTypeField.IsValid() && (!JsonPlatformSessionTypeField->IsNull() &&  TryGetJsonValue(JsonPlatformSessionTypeField, PlatformSessionType));
 	const TSharedPtr<FJsonValue> JsonPlatformSessionIdBase64Field = (*Object)->TryGetField(TEXT("platform_session_id_base64"));
-	ParseSuccess &= JsonPlatformSessionIdBase64Field.IsValid() && !JsonPlatformSessionIdBase64Field->IsNull() && TryGetJsonValue(JsonPlatformSessionIdBase64Field, PlatformSessionIdBase64);
+	ParseSuccess &= JsonPlatformSessionIdBase64Field.IsValid() && (!JsonPlatformSessionIdBase64Field->IsNull() &&  TryGetJsonValue(JsonPlatformSessionIdBase64Field, PlatformSessionIdBase64));
 	const TSharedPtr<FJsonValue> JsonPlayersField = (*Object)->TryGetField(TEXT("players"));
-	ParseSuccess &= JsonPlayersField.IsValid() && !JsonPlayersField->IsNull() && TryGetJsonValue(JsonPlayersField, Players);
+	ParseSuccess &= JsonPlayersField.IsValid() && (!JsonPlayersField->IsNull() &&  TryGetJsonValue(JsonPlayersField, Players));
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+	if (JsonCustomDataField.IsValid())
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;

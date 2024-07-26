@@ -49,19 +49,19 @@ bool FRHAPI_PersonOperationRequest::FromJson(const TSharedPtr<FJsonValue>& JsonV
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPersonIdField = (*Object)->TryGetField(TEXT("person_id"));
-	if (JsonPersonIdField.IsValid() && !JsonPersonIdField->IsNull())
+	if (JsonPersonIdField.IsValid())
 	{
 		PersonId_IsSet = TryGetJsonValue(JsonPersonIdField, PersonId_Optional);
 		ParseSuccess &= PersonId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlatformField = (*Object)->TryGetField(TEXT("platform"));
-	if (JsonPlatformField.IsValid() && !JsonPlatformField->IsNull())
+	if (JsonPlatformField.IsValid())
 	{
 		Platform_IsSet = TryGetJsonValue(JsonPlatformField, Platform_Optional);
 		ParseSuccess &= Platform_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlatformUserIdField = (*Object)->TryGetField(TEXT("platform_user_id"));
-	if (JsonPlatformUserIdField.IsValid() && !JsonPlatformUserIdField->IsNull())
+	if (JsonPlatformUserIdField.IsValid())
 	{
 		PlatformUserId_IsSet = TryGetJsonValue(JsonPlatformUserIdField, PlatformUserId_Optional);
 		ParseSuccess &= PlatformUserId_IsSet;

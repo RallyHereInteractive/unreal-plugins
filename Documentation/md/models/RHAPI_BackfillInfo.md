@@ -22,8 +22,8 @@ Info about the open-match backfill object in a session.
 `public FString `[`BackfillId`](#structFRHAPI__BackfillInfo_1a01c5dc7289f87b6f57bbb0783f183b83) | Unique ID for the backfill object.
 `public TMap< FString, FString > `[`Extensions_Optional`](#structFRHAPI__BackfillInfo_1ac013531459d42192ff7f1967c0157816) | Optional additional extensions used when acknowledging backfill requests.
 `public bool `[`Extensions_IsSet`](#structFRHAPI__BackfillInfo_1ac63b53074f4e5de2f25454cf263297d4) | true if Extensions_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__BackfillInfo_1ae4ed55e687619a482f28db4b50c90a56)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__BackfillInfo_1a4fcd1e078a86ff0937721ffd81b085b8)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__BackfillInfo_1aa85a7adc49b6501ce619d1601bbb8d7f)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__BackfillInfo_1a99f4578708916dad5470cd3e36bb1446)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetBackfillId`](#structFRHAPI__BackfillInfo_1a659925f7bed4235d2b8463c5186f41f9)`()` | Gets the value of BackfillId.
 `public inline const FString & `[`GetBackfillId`](#structFRHAPI__BackfillInfo_1a2cbdf4b05da0a9c98abd8cb3c19f2876)`() const` | Gets the value of BackfillId.
 `public inline void `[`SetBackfillId`](#structFRHAPI__BackfillInfo_1a35158eff975fcdcf6d4877fe2c983a4f)`(const FString & NewValue)` | Sets the value of BackfillId.
@@ -37,6 +37,7 @@ Info about the open-match backfill object in a session.
 `public inline void `[`SetExtensions`](#structFRHAPI__BackfillInfo_1a3c04338bc88a636450e4abec9fe9eca2)`(const TMap< FString, FString > & NewValue)` | Sets the value of Extensions_Optional and also sets Extensions_IsSet to true.
 `public inline void `[`SetExtensions`](#structFRHAPI__BackfillInfo_1aa6c9c0dd772bba3b58df204387dfc0a1)`(TMap< FString, FString > && NewValue)` | Sets the value of Extensions_Optional and also sets Extensions_IsSet to true using move semantics.
 `public inline void `[`ClearExtensions`](#structFRHAPI__BackfillInfo_1a13c1c5696be1196b66b1706a090c59ee)`()` | Clears the value of Extensions_Optional and sets Extensions_IsSet to false.
+`public inline bool `[`IsExtensionsSet`](#structFRHAPI__BackfillInfo_1a4905698ed079fc1a90ea503bb401632b)`() const` | Checks whether Extensions_Optional has been set.
 
 ### Members
 
@@ -52,7 +53,7 @@ Optional additional extensions used when acknowledging backfill requests.
 
 true if Extensions_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__BackfillInfo_1ae4ed55e687619a482f28db4b50c90a56)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__BackfillInfo_1ae4ed55e687619a482f28db4b50c90a56"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__BackfillInfo_1aa85a7adc49b6501ce619d1601bbb8d7f)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__BackfillInfo_1aa85a7adc49b6501ce619d1601bbb8d7f"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -62,7 +63,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__BackfillInfo_1a4fcd1e078a86ff0937721ffd81b085b8)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__BackfillInfo_1a4fcd1e078a86ff0937721ffd81b085b8"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__BackfillInfo_1a99f4578708916dad5470cd3e36bb1446)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__BackfillInfo_1a99f4578708916dad5470cd3e36bb1446"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -120,4 +121,8 @@ Sets the value of Extensions_Optional and also sets Extensions_IsSet to true usi
 #### `public inline void `[`ClearExtensions`](#structFRHAPI__BackfillInfo_1a13c1c5696be1196b66b1706a090c59ee)`()` <a id="structFRHAPI__BackfillInfo_1a13c1c5696be1196b66b1706a090c59ee"></a>
 
 Clears the value of Extensions_Optional and sets Extensions_IsSet to false.
+
+#### `public inline bool `[`IsExtensionsSet`](#structFRHAPI__BackfillInfo_1a4905698ed079fc1a90ea503bb401632b)`() const` <a id="structFRHAPI__BackfillInfo_1a4905698ed079fc1a90ea503bb401632b"></a>
+
+Checks whether Extensions_Optional has been set.
 

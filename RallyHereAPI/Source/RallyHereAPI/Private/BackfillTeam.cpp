@@ -38,9 +38,9 @@ bool FRHAPI_BackfillTeam::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPlayersRequiredField = (*Object)->TryGetField(TEXT("players_required"));
-	ParseSuccess &= JsonPlayersRequiredField.IsValid() && !JsonPlayersRequiredField->IsNull() && TryGetJsonValue(JsonPlayersRequiredField, PlayersRequired);
+	ParseSuccess &= JsonPlayersRequiredField.IsValid() && (!JsonPlayersRequiredField->IsNull() &&  TryGetJsonValue(JsonPlayersRequiredField, PlayersRequired));
 	const TSharedPtr<FJsonValue> JsonTeamIdField = (*Object)->TryGetField(TEXT("team_id"));
-	ParseSuccess &= JsonTeamIdField.IsValid() && !JsonTeamIdField->IsNull() && TryGetJsonValue(JsonTeamIdField, TeamId);
+	ParseSuccess &= JsonTeamIdField.IsValid() && (!JsonTeamIdField->IsNull() &&  TryGetJsonValue(JsonTeamIdField, TeamId));
 
 	return ParseSuccess;
 }

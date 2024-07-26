@@ -32,14 +32,14 @@ struct RALLYHEREAPI_API FRHAPI_PlayerLinkedPortalsResponse : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Player info */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -49,9 +49,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerLinkedPortalsResponse : public FRHAPI_Model
 	/** @brief Gets the value of Player */
 	const FRHAPI_PlayerPersonResponse& GetPlayer() const { return Player; }
 	/** @brief Sets the value of Player */
-	void SetPlayer(const FRHAPI_PlayerPersonResponse& NewValue) { Player = NewValue;  }
+	void SetPlayer(const FRHAPI_PlayerPersonResponse& NewValue) { Player = NewValue;   }
 	/** @brief Sets the value of Player using move semantics */
-	void SetPlayer(FRHAPI_PlayerPersonResponse&& NewValue) { Player = NewValue;  }
+	void SetPlayer(FRHAPI_PlayerPersonResponse&& NewValue) { Player = NewValue;   }
 
 	/** @brief List of linked portals */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -61,9 +61,9 @@ struct RALLYHEREAPI_API FRHAPI_PlayerLinkedPortalsResponse : public FRHAPI_Model
 	/** @brief Gets the value of LinkedPortals */
 	const TArray<FRHAPI_PortalUserResponse>& GetLinkedPortals() const { return LinkedPortals; }
 	/** @brief Sets the value of LinkedPortals */
-	void SetLinkedPortals(const TArray<FRHAPI_PortalUserResponse>& NewValue) { LinkedPortals = NewValue;  }
+	void SetLinkedPortals(const TArray<FRHAPI_PortalUserResponse>& NewValue) { LinkedPortals = NewValue;   }
 	/** @brief Sets the value of LinkedPortals using move semantics */
-	void SetLinkedPortals(TArray<FRHAPI_PortalUserResponse>&& NewValue) { LinkedPortals = NewValue;  }
+	void SetLinkedPortals(TArray<FRHAPI_PortalUserResponse>&& NewValue) { LinkedPortals = NewValue;   }
 };
 
 /** @} */

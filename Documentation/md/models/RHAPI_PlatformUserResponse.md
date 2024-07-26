@@ -30,8 +30,8 @@ Response for successfully creating a platform user.
 `public bool `[`ActivePlayerId_IsSet`](#structFRHAPI__PlatformUserResponse_1a9c034f207e9f821bab3bb304121dc759) | true if ActivePlayerId_Optional has been set to a value
 `public FGuid `[`ActivePlayerUuid_Optional`](#structFRHAPI__PlatformUserResponse_1a3c1b8038c0d17def6ed1b427052a5f59) | Active player UUID, if the player has an active player.
 `public bool `[`ActivePlayerUuid_IsSet`](#structFRHAPI__PlatformUserResponse_1a968d6667a7ba19495696a298e831abda) | true if ActivePlayerUuid_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__PlatformUserResponse_1a072ec067006e040f7236458dc680a296)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PlatformUserResponse_1aa60153a7d3b65c767195ba78782f192c)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__PlatformUserResponse_1a44a8104467f51ee4e94b2f7f66de9f47)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__PlatformUserResponse_1aafb0f8383581c90546d3a6f294f0c719)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PlatformUserResponse_1a6054701d552a69f01655b651084810da)`()` | Gets the value of Platform.
 `public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PlatformUserResponse_1a55a4b8ee113e898cfe7d377347d5965a)`() const` | Gets the value of Platform.
 `public inline void `[`SetPlatform`](#structFRHAPI__PlatformUserResponse_1a377377680ec35199220d84d7a21810b7)`(const ERHAPI_Platform & NewValue)` | Sets the value of Platform.
@@ -49,6 +49,7 @@ Response for successfully creating a platform user.
 `public inline void `[`SetDisplayName`](#structFRHAPI__PlatformUserResponse_1a0556fddd45d01f91bac2a9d675880803)`(const FString & NewValue)` | Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true.
 `public inline void `[`SetDisplayName`](#structFRHAPI__PlatformUserResponse_1a15904ed9cd3cdb4668985956acb2d1ff)`(FString && NewValue)` | Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true using move semantics.
 `public inline void `[`ClearDisplayName`](#structFRHAPI__PlatformUserResponse_1a867c074fe63e383a69916ce2496f65ff)`()` | Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false.
+`public inline bool `[`IsDisplayNameSet`](#structFRHAPI__PlatformUserResponse_1a1962dd4c078e1a49c952c804482618ad)`() const` | Checks whether DisplayName_Optional has been set.
 `public inline int32 & `[`GetPlayerId`](#structFRHAPI__PlatformUserResponse_1a8ec2981c26d30ee9b369680b1d413d76)`()` | Gets the value of PlayerId.
 `public inline const int32 & `[`GetPlayerId`](#structFRHAPI__PlatformUserResponse_1a947bb37b608bd05320eee4265a8c5be4)`() const` | Gets the value of PlayerId.
 `public inline void `[`SetPlayerId`](#structFRHAPI__PlatformUserResponse_1a412ddedf30aa8c550028bd3998cc0c0f)`(const int32 & NewValue)` | Sets the value of PlayerId.
@@ -72,6 +73,7 @@ Response for successfully creating a platform user.
 `public inline void `[`SetActivePlayerId`](#structFRHAPI__PlatformUserResponse_1a6427703804c535344c327db6537a5aac)`(const int32 & NewValue)` | Sets the value of ActivePlayerId_Optional and also sets ActivePlayerId_IsSet to true.
 `public inline void `[`SetActivePlayerId`](#structFRHAPI__PlatformUserResponse_1a97447fcdcbd78156fa9bf077a1f30b3a)`(int32 && NewValue)` | Sets the value of ActivePlayerId_Optional and also sets ActivePlayerId_IsSet to true using move semantics.
 `public inline void `[`ClearActivePlayerId`](#structFRHAPI__PlatformUserResponse_1afb84ba974117532705d640d3f9d8eaf5)`()` | Clears the value of ActivePlayerId_Optional and sets ActivePlayerId_IsSet to false.
+`public inline bool `[`IsActivePlayerIdSet`](#structFRHAPI__PlatformUserResponse_1aa27e5e8423387f1d0db6bc7791c359c7)`() const` | Checks whether ActivePlayerId_Optional has been set.
 `public inline bool `[`IsActivePlayerIdDefaultValue`](#structFRHAPI__PlatformUserResponse_1a96a8b8dee4552a4c297159ebd623ea33)`() const` | Returns true if ActivePlayerId_Optional is set and matches the default value.
 `public inline void `[`SetActivePlayerIdToDefault`](#structFRHAPI__PlatformUserResponse_1aed7a5f7a1d8d9ebdb0b2eb1099a9d069)`()` | Sets the value of ActivePlayerId_Optional to its default and also sets ActivePlayerId_IsSet to true.
 `public inline FGuid & `[`GetActivePlayerUuid`](#structFRHAPI__PlatformUserResponse_1ae6b0c1cd02488434af4c3cf70e21efb4)`()` | Gets the value of ActivePlayerUuid_Optional, regardless of it having been set.
@@ -83,6 +85,7 @@ Response for successfully creating a platform user.
 `public inline void `[`SetActivePlayerUuid`](#structFRHAPI__PlatformUserResponse_1ae9880caf59ae92cd3bd3f0dd1de7d7e8)`(const FGuid & NewValue)` | Sets the value of ActivePlayerUuid_Optional and also sets ActivePlayerUuid_IsSet to true.
 `public inline void `[`SetActivePlayerUuid`](#structFRHAPI__PlatformUserResponse_1a6472ff0d766b92f19d45a6348a04bee0)`(FGuid && NewValue)` | Sets the value of ActivePlayerUuid_Optional and also sets ActivePlayerUuid_IsSet to true using move semantics.
 `public inline void `[`ClearActivePlayerUuid`](#structFRHAPI__PlatformUserResponse_1ac732875511b55956fcd144638593c3f0)`()` | Clears the value of ActivePlayerUuid_Optional and sets ActivePlayerUuid_IsSet to false.
+`public inline bool `[`IsActivePlayerUuidSet`](#structFRHAPI__PlatformUserResponse_1a2384ba3d2cb90392a5dbd83aa67db1fb)`() const` | Checks whether ActivePlayerUuid_Optional has been set.
 
 ### Members
 
@@ -130,7 +133,7 @@ Active player UUID, if the player has an active player.
 
 true if ActivePlayerUuid_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__PlatformUserResponse_1a072ec067006e040f7236458dc680a296)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlatformUserResponse_1a072ec067006e040f7236458dc680a296"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__PlatformUserResponse_1a44a8104467f51ee4e94b2f7f66de9f47)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlatformUserResponse_1a44a8104467f51ee4e94b2f7f66de9f47"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -140,7 +143,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PlatformUserResponse_1aa60153a7d3b65c767195ba78782f192c)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlatformUserResponse_1aa60153a7d3b65c767195ba78782f192c"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PlatformUserResponse_1aafb0f8383581c90546d3a6f294f0c719)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlatformUserResponse_1aafb0f8383581c90546d3a6f294f0c719"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -214,6 +217,10 @@ Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true u
 #### `public inline void `[`ClearDisplayName`](#structFRHAPI__PlatformUserResponse_1a867c074fe63e383a69916ce2496f65ff)`()` <a id="structFRHAPI__PlatformUserResponse_1a867c074fe63e383a69916ce2496f65ff"></a>
 
 Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false.
+
+#### `public inline bool `[`IsDisplayNameSet`](#structFRHAPI__PlatformUserResponse_1a1962dd4c078e1a49c952c804482618ad)`() const` <a id="structFRHAPI__PlatformUserResponse_1a1962dd4c078e1a49c952c804482618ad"></a>
+
+Checks whether DisplayName_Optional has been set.
 
 #### `public inline int32 & `[`GetPlayerId`](#structFRHAPI__PlatformUserResponse_1a8ec2981c26d30ee9b369680b1d413d76)`()` <a id="structFRHAPI__PlatformUserResponse_1a8ec2981c26d30ee9b369680b1d413d76"></a>
 
@@ -307,6 +314,10 @@ Sets the value of ActivePlayerId_Optional and also sets ActivePlayerId_IsSet to 
 
 Clears the value of ActivePlayerId_Optional and sets ActivePlayerId_IsSet to false.
 
+#### `public inline bool `[`IsActivePlayerIdSet`](#structFRHAPI__PlatformUserResponse_1aa27e5e8423387f1d0db6bc7791c359c7)`() const` <a id="structFRHAPI__PlatformUserResponse_1aa27e5e8423387f1d0db6bc7791c359c7"></a>
+
+Checks whether ActivePlayerId_Optional has been set.
+
 #### `public inline bool `[`IsActivePlayerIdDefaultValue`](#structFRHAPI__PlatformUserResponse_1a96a8b8dee4552a4c297159ebd623ea33)`() const` <a id="structFRHAPI__PlatformUserResponse_1a96a8b8dee4552a4c297159ebd623ea33"></a>
 
 Returns true if ActivePlayerId_Optional is set and matches the default value.
@@ -350,4 +361,8 @@ Sets the value of ActivePlayerUuid_Optional and also sets ActivePlayerUuid_IsSet
 #### `public inline void `[`ClearActivePlayerUuid`](#structFRHAPI__PlatformUserResponse_1ac732875511b55956fcd144638593c3f0)`()` <a id="structFRHAPI__PlatformUserResponse_1ac732875511b55956fcd144638593c3f0"></a>
 
 Clears the value of ActivePlayerUuid_Optional and sets ActivePlayerUuid_IsSet to false.
+
+#### `public inline bool `[`IsActivePlayerUuidSet`](#structFRHAPI__PlatformUserResponse_1a2384ba3d2cb90392a5dbd83aa67db1fb)`() const` <a id="structFRHAPI__PlatformUserResponse_1a2384ba3d2cb90392a5dbd83aa67db1fb"></a>
+
+Checks whether ActivePlayerUuid_Optional has been set.
 

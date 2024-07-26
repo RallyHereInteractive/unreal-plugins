@@ -32,14 +32,14 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSKUs : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief A collection of SKUs */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -56,15 +56,17 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSKUs : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of Skus_Optional and returns true if it has been set, otherwise returns false */
 	bool GetSkus(TArray<FRHAPI_PlatformSKU>& OutValue) const { if (Skus_IsSet) OutValue = Skus_Optional; return Skus_IsSet; }
 	/** @brief Returns a pointer to Skus_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FRHAPI_PlatformSKU>* GetSkusOrNull() { if (Skus_IsSet) return &Skus_Optional; return nullptr; }
+	TArray<FRHAPI_PlatformSKU>* GetSkusOrNull() { if (Skus_IsSet) return (&Skus_Optional); return nullptr; }
 	/** @brief Returns a pointer to Skus_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FRHAPI_PlatformSKU>* GetSkusOrNull() const { if (Skus_IsSet) return &Skus_Optional; return nullptr; }
+	const TArray<FRHAPI_PlatformSKU>* GetSkusOrNull() const { if (Skus_IsSet) return (&Skus_Optional); return nullptr; }
 	/** @brief Sets the value of Skus_Optional and also sets Skus_IsSet to true */
-	void SetSkus(const TArray<FRHAPI_PlatformSKU>& NewValue) { Skus_Optional = NewValue; Skus_IsSet = true; }
+	void SetSkus(const TArray<FRHAPI_PlatformSKU>& NewValue) { Skus_Optional = NewValue; Skus_IsSet = true;  }
 	/** @brief Sets the value of Skus_Optional and also sets Skus_IsSet to true using move semantics */
-	void SetSkus(TArray<FRHAPI_PlatformSKU>&& NewValue) { Skus_Optional = NewValue; Skus_IsSet = true; }
-	 /** @brief Clears the value of Skus_Optional and sets Skus_IsSet to false */
-	void ClearSkus() { Skus_IsSet = false; }
+	void SetSkus(TArray<FRHAPI_PlatformSKU>&& NewValue) { Skus_Optional = NewValue; Skus_IsSet = true;  }
+	/** @brief Clears the value of Skus_Optional and sets Skus_IsSet to false */
+	void ClearSkus() { Skus_IsSet = false;  }
+	/** @brief Checks whether Skus_Optional has been set */
+	bool IsSkusSet() const { return Skus_IsSet; }
 
 	/** @brief Cache info for the Platform SKUs. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -81,15 +83,17 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSKUs : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false */
 	bool GetCacheInfo(FRHAPI_CacheInfo& OutValue) const { if (CacheInfo_IsSet) OutValue = CacheInfo_Optional; return CacheInfo_IsSet; }
 	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_CacheInfo* GetCacheInfoOrNull() { if (CacheInfo_IsSet) return &CacheInfo_Optional; return nullptr; }
+	FRHAPI_CacheInfo* GetCacheInfoOrNull() { if (CacheInfo_IsSet) return (&CacheInfo_Optional); return nullptr; }
 	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return &CacheInfo_Optional; return nullptr; }
+	const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return (&CacheInfo_Optional); return nullptr; }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true */
-	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
+	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
-	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
-	 /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
-	void ClearCacheInfo() { CacheInfo_IsSet = false; }
+	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
+	/** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
+	void ClearCacheInfo() { CacheInfo_IsSet = false;  }
+	/** @brief Checks whether CacheInfo_Optional has been set */
+	bool IsCacheInfoSet() const { return CacheInfo_IsSet; }
 };
 
 /** @} */

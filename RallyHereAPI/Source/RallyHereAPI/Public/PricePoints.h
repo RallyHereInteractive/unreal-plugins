@@ -32,14 +32,14 @@ struct RALLYHEREAPI_API FRHAPI_PricePoints : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Price Points mapped by Price Point ID. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -56,15 +56,17 @@ struct RALLYHEREAPI_API FRHAPI_PricePoints : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of PricePoints_Optional and returns true if it has been set, otherwise returns false */
 	bool GetPricePoints(TMap<FString, FRHAPI_PricePoint>& OutValue) const { if (PricePoints_IsSet) OutValue = PricePoints_Optional; return PricePoints_IsSet; }
 	/** @brief Returns a pointer to PricePoints_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FRHAPI_PricePoint>* GetPricePointsOrNull() { if (PricePoints_IsSet) return &PricePoints_Optional; return nullptr; }
+	TMap<FString, FRHAPI_PricePoint>* GetPricePointsOrNull() { if (PricePoints_IsSet) return (&PricePoints_Optional); return nullptr; }
 	/** @brief Returns a pointer to PricePoints_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FRHAPI_PricePoint>* GetPricePointsOrNull() const { if (PricePoints_IsSet) return &PricePoints_Optional; return nullptr; }
+	const TMap<FString, FRHAPI_PricePoint>* GetPricePointsOrNull() const { if (PricePoints_IsSet) return (&PricePoints_Optional); return nullptr; }
 	/** @brief Sets the value of PricePoints_Optional and also sets PricePoints_IsSet to true */
-	void SetPricePoints(const TMap<FString, FRHAPI_PricePoint>& NewValue) { PricePoints_Optional = NewValue; PricePoints_IsSet = true; }
+	void SetPricePoints(const TMap<FString, FRHAPI_PricePoint>& NewValue) { PricePoints_Optional = NewValue; PricePoints_IsSet = true;  }
 	/** @brief Sets the value of PricePoints_Optional and also sets PricePoints_IsSet to true using move semantics */
-	void SetPricePoints(TMap<FString, FRHAPI_PricePoint>&& NewValue) { PricePoints_Optional = NewValue; PricePoints_IsSet = true; }
-	 /** @brief Clears the value of PricePoints_Optional and sets PricePoints_IsSet to false */
-	void ClearPricePoints() { PricePoints_IsSet = false; }
+	void SetPricePoints(TMap<FString, FRHAPI_PricePoint>&& NewValue) { PricePoints_Optional = NewValue; PricePoints_IsSet = true;  }
+	/** @brief Clears the value of PricePoints_Optional and sets PricePoints_IsSet to false */
+	void ClearPricePoints() { PricePoints_IsSet = false;  }
+	/** @brief Checks whether PricePoints_Optional has been set */
+	bool IsPricePointsSet() const { return PricePoints_IsSet; }
 
 	/** @brief Cache info for the Price Points. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -81,15 +83,17 @@ struct RALLYHEREAPI_API FRHAPI_PricePoints : public FRHAPI_Model
 	/** @brief Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false */
 	bool GetCacheInfo(FRHAPI_CacheInfo& OutValue) const { if (CacheInfo_IsSet) OutValue = CacheInfo_Optional; return CacheInfo_IsSet; }
 	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_CacheInfo* GetCacheInfoOrNull() { if (CacheInfo_IsSet) return &CacheInfo_Optional; return nullptr; }
+	FRHAPI_CacheInfo* GetCacheInfoOrNull() { if (CacheInfo_IsSet) return (&CacheInfo_Optional); return nullptr; }
 	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return &CacheInfo_Optional; return nullptr; }
+	const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return (&CacheInfo_Optional); return nullptr; }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true */
-	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
+	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
-	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; }
-	 /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
-	void ClearCacheInfo() { CacheInfo_IsSet = false; }
+	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
+	/** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
+	void ClearCacheInfo() { CacheInfo_IsSet = false;  }
+	/** @brief Checks whether CacheInfo_Optional has been set */
+	bool IsCacheInfoSet() const { return CacheInfo_IsSet; }
 };
 
 /** @} */

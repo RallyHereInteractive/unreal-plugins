@@ -20,8 +20,8 @@ struct FRHAPI_Notifications
 `public TArray< `[`FRHAPI_Notification`](RHAPI_Notification.md#structFRHAPI__Notification)` > `[`Notifications_Optional`](#structFRHAPI__Notifications_1a0bf3aa9ba6d2b3e4edb9fe9349833122) | List of notifications.
 `public bool `[`Notifications_IsSet`](#structFRHAPI__Notifications_1a23b554d64f425834a6ba28ac850a66a0) | true if Notifications_Optional has been set to a value
 `public FString `[`Cursor`](#structFRHAPI__Notifications_1ac9e923901b178bd1c257c48368b7dc00) | Cursor to use for the next request.
-`public virtual bool `[`FromJson`](#structFRHAPI__Notifications_1a8e6f88ce785d00b5a08e5f628548d40f)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__Notifications_1ad9d21610b3fc82034c570e4724adb55f)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__Notifications_1ababd294af1a75b09c55cb5bc312164bc)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__Notifications_1a9bd958cb7ad9b090077cd6153733da7b)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< `[`FRHAPI_Notification`](RHAPI_Notification.md#structFRHAPI__Notification)` > & `[`GetNotifications`](#structFRHAPI__Notifications_1ad71dc5b11bc4a8bf5dfedd76389ae9ce)`()` | Gets the value of Notifications_Optional, regardless of it having been set.
 `public inline const TArray< `[`FRHAPI_Notification`](RHAPI_Notification.md#structFRHAPI__Notification)` > & `[`GetNotifications`](#structFRHAPI__Notifications_1afd69056610fe73ad8158d15a3e12452a)`() const` | Gets the value of Notifications_Optional, regardless of it having been set.
 `public inline const TArray< `[`FRHAPI_Notification`](RHAPI_Notification.md#structFRHAPI__Notification)` > & `[`GetNotifications`](#structFRHAPI__Notifications_1a598ffd3e7077b3fc61cb56b89801b759)`(const TArray< `[`FRHAPI_Notification`](RHAPI_Notification.md#structFRHAPI__Notification)` > & DefaultValue) const` | Gets the value of Notifications_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -31,6 +31,7 @@ struct FRHAPI_Notifications
 `public inline void `[`SetNotifications`](#structFRHAPI__Notifications_1a4eb945b50dcc4faca7571723eb2e91d5)`(const TArray< `[`FRHAPI_Notification`](RHAPI_Notification.md#structFRHAPI__Notification)` > & NewValue)` | Sets the value of Notifications_Optional and also sets Notifications_IsSet to true.
 `public inline void `[`SetNotifications`](#structFRHAPI__Notifications_1ae9db3383c9f48e586cc62d4264404f21)`(TArray< `[`FRHAPI_Notification`](RHAPI_Notification.md#structFRHAPI__Notification)` > && NewValue)` | Sets the value of Notifications_Optional and also sets Notifications_IsSet to true using move semantics.
 `public inline void `[`ClearNotifications`](#structFRHAPI__Notifications_1ab07527aa1d7b633c781fd47dae70826d)`()` | Clears the value of Notifications_Optional and sets Notifications_IsSet to false.
+`public inline bool `[`IsNotificationsSet`](#structFRHAPI__Notifications_1a0e6dfb45e6e351254c57bd6026ae0851)`() const` | Checks whether Notifications_Optional has been set.
 `public inline FString & `[`GetCursor`](#structFRHAPI__Notifications_1afd9b7aa38d363efdbc1c5faa0d991062)`()` | Gets the value of Cursor.
 `public inline const FString & `[`GetCursor`](#structFRHAPI__Notifications_1a35aceb22cd3df426a3b5f6b0bef10636)`() const` | Gets the value of Cursor.
 `public inline void `[`SetCursor`](#structFRHAPI__Notifications_1acce0e608d250eb18342aae92248637d8)`(const FString & NewValue)` | Sets the value of Cursor.
@@ -50,7 +51,7 @@ true if Notifications_Optional has been set to a value
 
 Cursor to use for the next request.
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__Notifications_1a8e6f88ce785d00b5a08e5f628548d40f)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__Notifications_1a8e6f88ce785d00b5a08e5f628548d40f"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__Notifications_1ababd294af1a75b09c55cb5bc312164bc)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__Notifications_1ababd294af1a75b09c55cb5bc312164bc"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -60,7 +61,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__Notifications_1ad9d21610b3fc82034c570e4724adb55f)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__Notifications_1ad9d21610b3fc82034c570e4724adb55f"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__Notifications_1a9bd958cb7ad9b090077cd6153733da7b)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__Notifications_1a9bd958cb7ad9b090077cd6153733da7b"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -102,6 +103,10 @@ Sets the value of Notifications_Optional and also sets Notifications_IsSet to tr
 #### `public inline void `[`ClearNotifications`](#structFRHAPI__Notifications_1ab07527aa1d7b633c781fd47dae70826d)`()` <a id="structFRHAPI__Notifications_1ab07527aa1d7b633c781fd47dae70826d"></a>
 
 Clears the value of Notifications_Optional and sets Notifications_IsSet to false.
+
+#### `public inline bool `[`IsNotificationsSet`](#structFRHAPI__Notifications_1a0e6dfb45e6e351254c57bd6026ae0851)`() const` <a id="structFRHAPI__Notifications_1a0e6dfb45e6e351254c57bd6026ae0851"></a>
+
+Checks whether Notifications_Optional has been set.
 
 #### `public inline FString & `[`GetCursor`](#structFRHAPI__Notifications_1afd9b7aa38d363efdbc1c5faa0d991062)`()` <a id="structFRHAPI__Notifications_1afd9b7aa38d363efdbc1c5faa0d991062"></a>
 

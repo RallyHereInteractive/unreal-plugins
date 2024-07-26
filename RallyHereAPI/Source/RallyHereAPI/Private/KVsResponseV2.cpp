@@ -35,6 +35,9 @@ void FRHAPI_KVsResponseV2::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (KickBeforeHint_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("kick_before_hint"));
+		if (KickBeforeHint_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, KickBeforeHint_Optional);
 	}
 	Writer->WriteObjectEnd();
@@ -49,21 +52,22 @@ bool FRHAPI_KVsResponseV2::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonKvsField = (*Object)->TryGetField(TEXT("kvs"));
-	if (JsonKvsField.IsValid() && !JsonKvsField->IsNull())
+	if (JsonKvsField.IsValid())
 	{
 		Kvs_IsSet = TryGetJsonValue(JsonKvsField, Kvs_Optional);
 		ParseSuccess &= Kvs_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonSecretKvsField = (*Object)->TryGetField(TEXT("secret_kvs"));
-	if (JsonSecretKvsField.IsValid() && !JsonSecretKvsField->IsNull())
+	if (JsonSecretKvsField.IsValid())
 	{
 		SecretKvs_IsSet = TryGetJsonValue(JsonSecretKvsField, SecretKvs_Optional);
 		ParseSuccess &= SecretKvs_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonKickBeforeHintField = (*Object)->TryGetField(TEXT("kick_before_hint"));
-	if (JsonKickBeforeHintField.IsValid() && !JsonKickBeforeHintField->IsNull())
+	if (JsonKickBeforeHintField.IsValid())
 	{
-		KickBeforeHint_IsSet = TryGetJsonValue(JsonKickBeforeHintField, KickBeforeHint_Optional);
+		KickBeforeHint_IsNull = JsonKickBeforeHintField->IsNull();
+		KickBeforeHint_IsSet = KickBeforeHint_IsNull || TryGetJsonValue(JsonKickBeforeHintField, KickBeforeHint_Optional);
 		ParseSuccess &= KickBeforeHint_IsSet;
 	}
 

@@ -35,8 +35,8 @@ Result of processing a platform entitlement.
 `public FString `[`PlatformUserId`](#structFRHAPI__PlatformEntitlementProcessResult_1a5e27e7e6c68e086ec3a2eb805c2d6488) | Unique identifier for the platform user that processed this entitlement.
 `public bool `[`SkippedServerEntitlements_Optional`](#structFRHAPI__PlatformEntitlementProcessResult_1aedc8e7425204af954d95b39faaef2e53) | True if the server entitlements were skipped.
 `public bool `[`SkippedServerEntitlements_IsSet`](#structFRHAPI__PlatformEntitlementProcessResult_1a1588a5d0d180aff1f81430371a93a6e0) | true if SkippedServerEntitlements_Optional has been set to a value
-`public virtual bool `[`FromJson`](#structFRHAPI__PlatformEntitlementProcessResult_1ad108abc48df6c4c617e0fe351747dc01)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PlatformEntitlementProcessResult_1aba0657945dfaf09647ac494f0c0e6ae5)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public virtual bool `[`FromJson`](#structFRHAPI__PlatformEntitlementProcessResult_1a3f329be368de00ffc6b35006d7776894)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
+`public virtual void `[`WriteJson`](#structFRHAPI__PlatformEntitlementProcessResult_1aba7b6e7fddf83c024e436a2ba7ce424b)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetRequestId`](#structFRHAPI__PlatformEntitlementProcessResult_1ad91f9ad6322419576a16fa20ae6f024c)`()` | Gets the value of RequestId.
 `public inline const FString & `[`GetRequestId`](#structFRHAPI__PlatformEntitlementProcessResult_1a670729b04ecca6b3fbd9eba1f0030bf6)`() const` | Gets the value of RequestId.
 `public inline void `[`SetRequestId`](#structFRHAPI__PlatformEntitlementProcessResult_1ad2aab3c733cbe131b97c43c18cc4648f)`(const FString & NewValue)` | Sets the value of RequestId.
@@ -62,6 +62,7 @@ Result of processing a platform entitlement.
 `public inline void `[`SetStatus`](#structFRHAPI__PlatformEntitlementProcessResult_1adb0151a121028f0bacefc2dfeb0f36f6)`(const FString & NewValue)` | Sets the value of Status_Optional and also sets Status_IsSet to true.
 `public inline void `[`SetStatus`](#structFRHAPI__PlatformEntitlementProcessResult_1a4a5f8ca8e26f8994d49d7b866eebff4d)`(FString && NewValue)` | Sets the value of Status_Optional and also sets Status_IsSet to true using move semantics.
 `public inline void `[`ClearStatus`](#structFRHAPI__PlatformEntitlementProcessResult_1ad2735d15394bd2b76d3291a0790cec96)`()` | Clears the value of Status_Optional and sets Status_IsSet to false.
+`public inline bool `[`IsStatusSet`](#structFRHAPI__PlatformEntitlementProcessResult_1a94b225de767f2ccccfea9cf55e95eb86)`() const` | Checks whether Status_Optional has been set.
 `public inline bool `[`IsStatusDefaultValue`](#structFRHAPI__PlatformEntitlementProcessResult_1a87e997a54582d7f013b354e3489f60dc)`() const` | Returns true if Status_Optional is set and matches the default value.
 `public inline void `[`SetStatusToDefault`](#structFRHAPI__PlatformEntitlementProcessResult_1a15d890c6ce1c2c6f535b6868932b5664)`()` | Sets the value of Status_Optional to its default and also sets Status_IsSet to true.
 `public inline FString & `[`GetErrorCode`](#structFRHAPI__PlatformEntitlementProcessResult_1a1870188bc33fea7e643edeb737d6fc48)`()` | Gets the value of ErrorCode_Optional, regardless of it having been set.
@@ -73,6 +74,7 @@ Result of processing a platform entitlement.
 `public inline void `[`SetErrorCode`](#structFRHAPI__PlatformEntitlementProcessResult_1a65841c2ac942ab03bc18ac8b674afd1f)`(const FString & NewValue)` | Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true.
 `public inline void `[`SetErrorCode`](#structFRHAPI__PlatformEntitlementProcessResult_1ad34ba6e275d1e94533c55a375b3c2107)`(FString && NewValue)` | Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true using move semantics.
 `public inline void `[`ClearErrorCode`](#structFRHAPI__PlatformEntitlementProcessResult_1a93ec866a89fb160d53864189c43c91ce)`()` | Clears the value of ErrorCode_Optional and sets ErrorCode_IsSet to false.
+`public inline bool `[`IsErrorCodeSet`](#structFRHAPI__PlatformEntitlementProcessResult_1a64cd1c7350f84bcd82bc0c92ddadc6df)`() const` | Checks whether ErrorCode_Optional has been set.
 `public inline TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & `[`GetClientEntitlements`](#structFRHAPI__PlatformEntitlementProcessResult_1ace2fa9dcbf9c9ced3c956a60efb6cb2b)`()` | Gets the value of ClientEntitlements_Optional, regardless of it having been set.
 `public inline const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & `[`GetClientEntitlements`](#structFRHAPI__PlatformEntitlementProcessResult_1ad7276a2b47f6e251330e25604416ad7f)`() const` | Gets the value of ClientEntitlements_Optional, regardless of it having been set.
 `public inline const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & `[`GetClientEntitlements`](#structFRHAPI__PlatformEntitlementProcessResult_1a4d311cc311e31b455690fcd8e54df93d)`(const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & DefaultValue) const` | Gets the value of ClientEntitlements_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -82,6 +84,7 @@ Result of processing a platform entitlement.
 `public inline void `[`SetClientEntitlements`](#structFRHAPI__PlatformEntitlementProcessResult_1a5ced2a22c971b9b55150d6d2f290d657)`(const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & NewValue)` | Sets the value of ClientEntitlements_Optional and also sets ClientEntitlements_IsSet to true.
 `public inline void `[`SetClientEntitlements`](#structFRHAPI__PlatformEntitlementProcessResult_1a89a1cfc6a3aa99a7fd443f9e115e091f)`(TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > && NewValue)` | Sets the value of ClientEntitlements_Optional and also sets ClientEntitlements_IsSet to true using move semantics.
 `public inline void `[`ClearClientEntitlements`](#structFRHAPI__PlatformEntitlementProcessResult_1af651efecd120bf707ceb0030de1faaa5)`()` | Clears the value of ClientEntitlements_Optional and sets ClientEntitlements_IsSet to false.
+`public inline bool `[`IsClientEntitlementsSet`](#structFRHAPI__PlatformEntitlementProcessResult_1a5de56851b9cabc862953f64eb0950236)`() const` | Checks whether ClientEntitlements_Optional has been set.
 `public inline TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & `[`GetServerEntitlements`](#structFRHAPI__PlatformEntitlementProcessResult_1a343c7db8c5068c4bbe6038fa2895cd06)`()` | Gets the value of ServerEntitlements_Optional, regardless of it having been set.
 `public inline const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & `[`GetServerEntitlements`](#structFRHAPI__PlatformEntitlementProcessResult_1ab4559c62ee5964d0d60a2db04c01ceae)`() const` | Gets the value of ServerEntitlements_Optional, regardless of it having been set.
 `public inline const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & `[`GetServerEntitlements`](#structFRHAPI__PlatformEntitlementProcessResult_1a03801eab63d8d1ea1b63865738d626f7)`(const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & DefaultValue) const` | Gets the value of ServerEntitlements_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -91,6 +94,7 @@ Result of processing a platform entitlement.
 `public inline void `[`SetServerEntitlements`](#structFRHAPI__PlatformEntitlementProcessResult_1a2b34311d32fa7d37a22d88e358c90279)`(const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & NewValue)` | Sets the value of ServerEntitlements_Optional and also sets ServerEntitlements_IsSet to true.
 `public inline void `[`SetServerEntitlements`](#structFRHAPI__PlatformEntitlementProcessResult_1afcffdc50adb7bbb283bc5159774708a1)`(TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > && NewValue)` | Sets the value of ServerEntitlements_Optional and also sets ServerEntitlements_IsSet to true using move semantics.
 `public inline void `[`ClearServerEntitlements`](#structFRHAPI__PlatformEntitlementProcessResult_1aa079715cdcbcf91c7ce6dc1f2bc5f0d6)`()` | Clears the value of ServerEntitlements_Optional and sets ServerEntitlements_IsSet to false.
+`public inline bool `[`IsServerEntitlementsSet`](#structFRHAPI__PlatformEntitlementProcessResult_1aa702227046e5e3a103fbb4218ef9f464)`() const` | Checks whether ServerEntitlements_Optional has been set.
 `public inline ERHAPI_Platform & `[`GetPlatformId`](#structFRHAPI__PlatformEntitlementProcessResult_1ab72adc5136d6adfb22b38eb7d079b5c6)`()` | Gets the value of PlatformId.
 `public inline const ERHAPI_Platform & `[`GetPlatformId`](#structFRHAPI__PlatformEntitlementProcessResult_1a9022daf3ec5d7955a01f8a1f1fa59c92)`() const` | Gets the value of PlatformId.
 `public inline void `[`SetPlatformId`](#structFRHAPI__PlatformEntitlementProcessResult_1a58347440bfd05f90d90b163a54a87a31)`(const ERHAPI_Platform & NewValue)` | Sets the value of PlatformId.
@@ -108,6 +112,7 @@ Result of processing a platform entitlement.
 `public inline void `[`SetSkippedServerEntitlements`](#structFRHAPI__PlatformEntitlementProcessResult_1ac084f78fed3ed8410e2c6a8132b30b2c)`(const bool & NewValue)` | Sets the value of SkippedServerEntitlements_Optional and also sets SkippedServerEntitlements_IsSet to true.
 `public inline void `[`SetSkippedServerEntitlements`](#structFRHAPI__PlatformEntitlementProcessResult_1a590028abdad3cbf4b6cd7744641e7744)`(bool && NewValue)` | Sets the value of SkippedServerEntitlements_Optional and also sets SkippedServerEntitlements_IsSet to true using move semantics.
 `public inline void `[`ClearSkippedServerEntitlements`](#structFRHAPI__PlatformEntitlementProcessResult_1a06090335dcdb3a2b4fbb0521e5fa685e)`()` | Clears the value of SkippedServerEntitlements_Optional and sets SkippedServerEntitlements_IsSet to false.
+`public inline bool `[`IsSkippedServerEntitlementsSet`](#structFRHAPI__PlatformEntitlementProcessResult_1ae9d3fcbc32b19316d176eaa755a1a498)`() const` | Checks whether SkippedServerEntitlements_Optional has been set.
 `public inline bool `[`IsSkippedServerEntitlementsDefaultValue`](#structFRHAPI__PlatformEntitlementProcessResult_1ae124e63567ad85ca72f9ef7297f9dd4a)`() const` | Returns true if SkippedServerEntitlements_Optional is set and matches the default value.
 `public inline void `[`SetSkippedServerEntitlementsToDefault`](#structFRHAPI__PlatformEntitlementProcessResult_1ac278ece6c8d1a8180f643b6f342f5a96)`()` | Sets the value of SkippedServerEntitlements_Optional to its default and also sets SkippedServerEntitlements_IsSet to true.
 
@@ -177,7 +182,7 @@ True if the server entitlements were skipped.
 
 true if SkippedServerEntitlements_Optional has been set to a value
 
-#### `public virtual bool `[`FromJson`](#structFRHAPI__PlatformEntitlementProcessResult_1ad108abc48df6c4c617e0fe351747dc01)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlatformEntitlementProcessResult_1ad108abc48df6c4c617e0fe351747dc01"></a>
+#### `public virtual bool `[`FromJson`](#structFRHAPI__PlatformEntitlementProcessResult_1a3f329be368de00ffc6b35006d7776894)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlatformEntitlementProcessResult_1a3f329be368de00ffc6b35006d7776894"></a>
 
 Fills this object with data from the passed in JSON.
 
@@ -187,7 +192,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PlatformEntitlementProcessResult_1aba0657945dfaf09647ac494f0c0e6ae5)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlatformEntitlementProcessResult_1aba0657945dfaf09647ac494f0c0e6ae5"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PlatformEntitlementProcessResult_1aba7b6e7fddf83c024e436a2ba7ce424b)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlatformEntitlementProcessResult_1aba7b6e7fddf83c024e436a2ba7ce424b"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
@@ -294,6 +299,10 @@ Sets the value of Status_Optional and also sets Status_IsSet to true using move 
 
 Clears the value of Status_Optional and sets Status_IsSet to false.
 
+#### `public inline bool `[`IsStatusSet`](#structFRHAPI__PlatformEntitlementProcessResult_1a94b225de767f2ccccfea9cf55e95eb86)`() const` <a id="structFRHAPI__PlatformEntitlementProcessResult_1a94b225de767f2ccccfea9cf55e95eb86"></a>
+
+Checks whether Status_Optional has been set.
+
 #### `public inline bool `[`IsStatusDefaultValue`](#structFRHAPI__PlatformEntitlementProcessResult_1a87e997a54582d7f013b354e3489f60dc)`() const` <a id="structFRHAPI__PlatformEntitlementProcessResult_1a87e997a54582d7f013b354e3489f60dc"></a>
 
 Returns true if Status_Optional is set and matches the default value.
@@ -338,6 +347,10 @@ Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true using
 
 Clears the value of ErrorCode_Optional and sets ErrorCode_IsSet to false.
 
+#### `public inline bool `[`IsErrorCodeSet`](#structFRHAPI__PlatformEntitlementProcessResult_1a64cd1c7350f84bcd82bc0c92ddadc6df)`() const` <a id="structFRHAPI__PlatformEntitlementProcessResult_1a64cd1c7350f84bcd82bc0c92ddadc6df"></a>
+
+Checks whether ErrorCode_Optional has been set.
+
 #### `public inline TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & `[`GetClientEntitlements`](#structFRHAPI__PlatformEntitlementProcessResult_1ace2fa9dcbf9c9ced3c956a60efb6cb2b)`()` <a id="structFRHAPI__PlatformEntitlementProcessResult_1ace2fa9dcbf9c9ced3c956a60efb6cb2b"></a>
 
 Gets the value of ClientEntitlements_Optional, regardless of it having been set.
@@ -374,6 +387,10 @@ Sets the value of ClientEntitlements_Optional and also sets ClientEntitlements_I
 
 Clears the value of ClientEntitlements_Optional and sets ClientEntitlements_IsSet to false.
 
+#### `public inline bool `[`IsClientEntitlementsSet`](#structFRHAPI__PlatformEntitlementProcessResult_1a5de56851b9cabc862953f64eb0950236)`() const` <a id="structFRHAPI__PlatformEntitlementProcessResult_1a5de56851b9cabc862953f64eb0950236"></a>
+
+Checks whether ClientEntitlements_Optional has been set.
+
 #### `public inline TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & `[`GetServerEntitlements`](#structFRHAPI__PlatformEntitlementProcessResult_1a343c7db8c5068c4bbe6038fa2895cd06)`()` <a id="structFRHAPI__PlatformEntitlementProcessResult_1a343c7db8c5068c4bbe6038fa2895cd06"></a>
 
 Gets the value of ServerEntitlements_Optional, regardless of it having been set.
@@ -409,6 +426,10 @@ Sets the value of ServerEntitlements_Optional and also sets ServerEntitlements_I
 #### `public inline void `[`ClearServerEntitlements`](#structFRHAPI__PlatformEntitlementProcessResult_1aa079715cdcbcf91c7ce6dc1f2bc5f0d6)`()` <a id="structFRHAPI__PlatformEntitlementProcessResult_1aa079715cdcbcf91c7ce6dc1f2bc5f0d6"></a>
 
 Clears the value of ServerEntitlements_Optional and sets ServerEntitlements_IsSet to false.
+
+#### `public inline bool `[`IsServerEntitlementsSet`](#structFRHAPI__PlatformEntitlementProcessResult_1aa702227046e5e3a103fbb4218ef9f464)`() const` <a id="structFRHAPI__PlatformEntitlementProcessResult_1aa702227046e5e3a103fbb4218ef9f464"></a>
+
+Checks whether ServerEntitlements_Optional has been set.
 
 #### `public inline ERHAPI_Platform & `[`GetPlatformId`](#structFRHAPI__PlatformEntitlementProcessResult_1ab72adc5136d6adfb22b38eb7d079b5c6)`()` <a id="structFRHAPI__PlatformEntitlementProcessResult_1ab72adc5136d6adfb22b38eb7d079b5c6"></a>
 
@@ -477,6 +498,10 @@ Sets the value of SkippedServerEntitlements_Optional and also sets SkippedServer
 #### `public inline void `[`ClearSkippedServerEntitlements`](#structFRHAPI__PlatformEntitlementProcessResult_1a06090335dcdb3a2b4fbb0521e5fa685e)`()` <a id="structFRHAPI__PlatformEntitlementProcessResult_1a06090335dcdb3a2b4fbb0521e5fa685e"></a>
 
 Clears the value of SkippedServerEntitlements_Optional and sets SkippedServerEntitlements_IsSet to false.
+
+#### `public inline bool `[`IsSkippedServerEntitlementsSet`](#structFRHAPI__PlatformEntitlementProcessResult_1ae9d3fcbc32b19316d176eaa755a1a498)`() const` <a id="structFRHAPI__PlatformEntitlementProcessResult_1ae9d3fcbc32b19316d176eaa755a1a498"></a>
+
+Checks whether SkippedServerEntitlements_Optional has been set.
 
 #### `public inline bool `[`IsSkippedServerEntitlementsDefaultValue`](#structFRHAPI__PlatformEntitlementProcessResult_1ae124e63567ad85ca72f9ef7297f9dd4a)`() const` <a id="structFRHAPI__PlatformEntitlementProcessResult_1ae124e63567ad85ca72f9ef7297f9dd4a"></a>
 

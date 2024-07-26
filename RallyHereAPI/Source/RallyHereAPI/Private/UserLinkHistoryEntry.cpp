@@ -71,45 +71,45 @@ bool FRHAPI_UserLinkHistoryEntry::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonEntryIdField = (*Object)->TryGetField(TEXT("entry_id"));
-	if (JsonEntryIdField.IsValid() && !JsonEntryIdField->IsNull())
+	if (JsonEntryIdField.IsValid())
 	{
 		EntryId_IsSet = TryGetJsonValue(JsonEntryIdField, EntryId_Optional);
 		ParseSuccess &= EntryId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
-	if (JsonPlayerUuidField.IsValid() && !JsonPlayerUuidField->IsNull())
+	if (JsonPlayerUuidField.IsValid())
 	{
 		PlayerUuid_IsSet = TryGetJsonValue(JsonPlayerUuidField, PlayerUuid_Optional);
 		ParseSuccess &= PlayerUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlatformField = (*Object)->TryGetField(TEXT("platform"));
-	if (JsonPlatformField.IsValid() && !JsonPlatformField->IsNull())
+	if (JsonPlatformField.IsValid())
 	{
 		Platform_IsSet = TryGetJsonValue(JsonPlatformField, Platform_Optional);
 		ParseSuccess &= Platform_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlatformUserIdField = (*Object)->TryGetField(TEXT("platform_user_id"));
-	if (JsonPlatformUserIdField.IsValid() && !JsonPlatformUserIdField->IsNull())
+	if (JsonPlatformUserIdField.IsValid())
 	{
 		PlatformUserId_IsSet = TryGetJsonValue(JsonPlatformUserIdField, PlatformUserId_Optional);
 		ParseSuccess &= PlatformUserId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPersonIdField = (*Object)->TryGetField(TEXT("person_id"));
-	if (JsonPersonIdField.IsValid() && !JsonPersonIdField->IsNull())
+	if (JsonPersonIdField.IsValid())
 	{
 		PersonId_IsSet = TryGetJsonValue(JsonPersonIdField, PersonId_Optional);
 		ParseSuccess &= PersonId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonActivePlayerUuidField = (*Object)->TryGetField(TEXT("active_player_uuid"));
-	if (JsonActivePlayerUuidField.IsValid() && !JsonActivePlayerUuidField->IsNull())
+	if (JsonActivePlayerUuidField.IsValid())
 	{
 		ActivePlayerUuid_IsSet = TryGetJsonValue(JsonActivePlayerUuidField, ActivePlayerUuid_Optional);
 		ParseSuccess &= ActivePlayerUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonActionField = (*Object)->TryGetField(TEXT("action"));
-	ParseSuccess &= JsonActionField.IsValid() && !JsonActionField->IsNull() && TryGetJsonValue(JsonActionField, Action);
+	ParseSuccess &= JsonActionField.IsValid() && (!JsonActionField->IsNull() &&  TryGetJsonValue(JsonActionField, Action));
 	const TSharedPtr<FJsonValue> JsonTimestampField = (*Object)->TryGetField(TEXT("timestamp"));
-	if (JsonTimestampField.IsValid() && !JsonTimestampField->IsNull())
+	if (JsonTimestampField.IsValid())
 	{
 		Timestamp_IsSet = TryGetJsonValue(JsonTimestampField, Timestamp_Optional);
 		ParseSuccess &= Timestamp_IsSet;

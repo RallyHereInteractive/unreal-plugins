@@ -71,43 +71,43 @@ bool FRHAPI_PlatformEntitlementProcessResult::FromJson(const TSharedPtr<FJsonVal
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonRequestIdField = (*Object)->TryGetField(TEXT("request_id"));
-	ParseSuccess &= JsonRequestIdField.IsValid() && !JsonRequestIdField->IsNull() && TryGetJsonValue(JsonRequestIdField, RequestId);
+	ParseSuccess &= JsonRequestIdField.IsValid() && (!JsonRequestIdField->IsNull() &&  TryGetJsonValue(JsonRequestIdField, RequestId));
 	const TSharedPtr<FJsonValue> JsonClientTypeField = (*Object)->TryGetField(TEXT("client_type"));
-	ParseSuccess &= JsonClientTypeField.IsValid() && !JsonClientTypeField->IsNull() && TryGetJsonValue(JsonClientTypeField, ClientType);
+	ParseSuccess &= JsonClientTypeField.IsValid() && (!JsonClientTypeField->IsNull() &&  TryGetJsonValue(JsonClientTypeField, ClientType));
 	const TSharedPtr<FJsonValue> JsonTransactionIdField = (*Object)->TryGetField(TEXT("transaction_id"));
-	ParseSuccess &= JsonTransactionIdField.IsValid() && !JsonTransactionIdField->IsNull() && TryGetJsonValue(JsonTransactionIdField, TransactionId);
+	ParseSuccess &= JsonTransactionIdField.IsValid() && (!JsonTransactionIdField->IsNull() &&  TryGetJsonValue(JsonTransactionIdField, TransactionId));
 	const TSharedPtr<FJsonValue> JsonPlatformRegionField = (*Object)->TryGetField(TEXT("platform_region"));
-	ParseSuccess &= JsonPlatformRegionField.IsValid() && !JsonPlatformRegionField->IsNull() && TryGetJsonValue(JsonPlatformRegionField, PlatformRegion);
+	ParseSuccess &= JsonPlatformRegionField.IsValid() && (!JsonPlatformRegionField->IsNull() &&  TryGetJsonValue(JsonPlatformRegionField, PlatformRegion));
 	const TSharedPtr<FJsonValue> JsonStatusField = (*Object)->TryGetField(TEXT("status"));
-	if (JsonStatusField.IsValid() && !JsonStatusField->IsNull())
+	if (JsonStatusField.IsValid())
 	{
 		Status_IsSet = TryGetJsonValue(JsonStatusField, Status_Optional);
 		ParseSuccess &= Status_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonErrorCodeField = (*Object)->TryGetField(TEXT("error_code"));
-	if (JsonErrorCodeField.IsValid() && !JsonErrorCodeField->IsNull())
+	if (JsonErrorCodeField.IsValid())
 	{
 		ErrorCode_IsSet = TryGetJsonValue(JsonErrorCodeField, ErrorCode_Optional);
 		ParseSuccess &= ErrorCode_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonClientEntitlementsField = (*Object)->TryGetField(TEXT("client_entitlements"));
-	if (JsonClientEntitlementsField.IsValid() && !JsonClientEntitlementsField->IsNull())
+	if (JsonClientEntitlementsField.IsValid())
 	{
 		ClientEntitlements_IsSet = TryGetJsonValue(JsonClientEntitlementsField, ClientEntitlements_Optional);
 		ParseSuccess &= ClientEntitlements_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonServerEntitlementsField = (*Object)->TryGetField(TEXT("server_entitlements"));
-	if (JsonServerEntitlementsField.IsValid() && !JsonServerEntitlementsField->IsNull())
+	if (JsonServerEntitlementsField.IsValid())
 	{
 		ServerEntitlements_IsSet = TryGetJsonValue(JsonServerEntitlementsField, ServerEntitlements_Optional);
 		ParseSuccess &= ServerEntitlements_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlatformIdField = (*Object)->TryGetField(TEXT("platform_id"));
-	ParseSuccess &= JsonPlatformIdField.IsValid() && !JsonPlatformIdField->IsNull() && TryGetJsonValue(JsonPlatformIdField, PlatformId);
+	ParseSuccess &= JsonPlatformIdField.IsValid() && (!JsonPlatformIdField->IsNull() &&  TryGetJsonValue(JsonPlatformIdField, PlatformId));
 	const TSharedPtr<FJsonValue> JsonPlatformUserIdField = (*Object)->TryGetField(TEXT("platform_user_id"));
-	ParseSuccess &= JsonPlatformUserIdField.IsValid() && !JsonPlatformUserIdField->IsNull() && TryGetJsonValue(JsonPlatformUserIdField, PlatformUserId);
+	ParseSuccess &= JsonPlatformUserIdField.IsValid() && (!JsonPlatformUserIdField->IsNull() &&  TryGetJsonValue(JsonPlatformUserIdField, PlatformUserId));
 	const TSharedPtr<FJsonValue> JsonSkippedServerEntitlementsField = (*Object)->TryGetField(TEXT("skipped_server_entitlements"));
-	if (JsonSkippedServerEntitlementsField.IsValid() && !JsonSkippedServerEntitlementsField->IsNull())
+	if (JsonSkippedServerEntitlementsField.IsValid())
 	{
 		SkippedServerEntitlements_IsSet = TryGetJsonValue(JsonSkippedServerEntitlementsField, SkippedServerEntitlements_Optional);
 		ParseSuccess &= SkippedServerEntitlements_IsSet;

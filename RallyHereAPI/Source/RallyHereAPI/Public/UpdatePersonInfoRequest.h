@@ -30,14 +30,14 @@ struct RALLYHEREAPI_API FRHAPI_UpdatePersonInfoRequest : public FRHAPI_Model
 	*
 	* @return true if parsing of the JSON data was successful.
 	*/
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override final;
 
 	/**
 	* @brief Writes the data from this object into the specified JSON Writer stream
 	*
 	* @param [in] Writer JSON Writer stream to push .
 	*/
-	void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	/** @brief Email address to update to */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -47,9 +47,9 @@ struct RALLYHEREAPI_API FRHAPI_UpdatePersonInfoRequest : public FRHAPI_Model
 	/** @brief Gets the value of Email */
 	const FString& GetEmail() const { return Email; }
 	/** @brief Sets the value of Email */
-	void SetEmail(const FString& NewValue) { Email = NewValue;  }
+	void SetEmail(const FString& NewValue) { Email = NewValue;   }
 	/** @brief Sets the value of Email using move semantics */
-	void SetEmail(FString&& NewValue) { Email = NewValue;  }
+	void SetEmail(FString&& NewValue) { Email = NewValue;   }
 };
 
 /** @} */
