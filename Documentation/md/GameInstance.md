@@ -19,10 +19,10 @@
 
  Values                         | Descriptions                                
 --------------------------------|---------------------------------------------
-GameHostProvider            | We are in an unknown mode which cannot be handled internally to this subsystem, instead rely on the GameHostProvider to handle the mode
 Disabled            | Bootstrapping is disabled entirely
 LoginOnly            | Bootstrapping is restricted to login only
-AutoCreate            | Special type of GameHostProvider mode, which has a fallback provider if needed and will allocate itself a session
+Allocated            | Use the GameHostProvider interface to perform an allocation
+Reserved            | Use the GameHostProvider interface to perform a reservation
 
 An enum for the handled bootstrapping modes.
 
@@ -167,7 +167,7 @@ Server Bootstrapper for the Game Instance.
 `protected virtual void `[`OnRegisterComplete`](#classURH__GameInstanceServerBootstrapper_1ac7200145aca8c04b0fc8d036d32fc0ea)`(bool bSucess)` | Bootstrapping Flow [Registration][Allocation] - completion callback for registering with the provider.
 `protected virtual void `[`OnAllocationComplete`](#classURH__GameInstanceServerBootstrapper_1a175d8c93883c53869093cc3ec7c431fd)`(ERH_AllocationStatus Status,const FRH_GameHostAllocationInfo & AllocationInfo)` | Bootstrapping Flow [Registration][Allocation] - completion callback for allocation being ready.
 `protected virtual void `[`BeginReservation`](#classURH__GameInstanceServerBootstrapper_1aec6f4c87f39a37cbdcd605d6449fcd13)`()` | Bootstrapping Flow [Registration][AutoCreate] - begin a reservation so that the provider can know about this server.
-`protected virtual void `[`OnReservationComplete`](#classURH__GameInstanceServerBootstrapper_1a490388b65fb63bd0536a4cc264455e53)`(bool bSuccess)` | Bootstrapping Flow [Registration][AutoCreate] - completion callback for reservation creation.
+`protected virtual void `[`OnReservationComplete`](#classURH__GameInstanceServerBootstrapper_1a6a23c6df3c57bcbcd2ba5617e5794913)`(bool bSuccess,const FRH_GameHostAllocationInfo & ReservationInfo)` | Bootstrapping Flow [Registration][AutoCreate] - completion callback for reservation creation.
 `protected virtual void `[`BeginSelfAllocate`](#classURH__GameInstanceServerBootstrapper_1a2754313adb76f07d1a0d57d7ff94353b)`()` | Bootstrapping Flow [Registration][AutoCreate] - inform the provider that this server is self-allocated.
 `protected virtual void `[`OnSelfAllocateComplete`](#classURH__GameInstanceServerBootstrapper_1a141d3bcd49aa8079af7852e5a09f9985)`(bool bSuccess)` | Bootstrapping Flow [Registration][AutoCreate] - completion callback for self allocation.
 `protected virtual void `[`OnRegistrationFinalizerComplete`](#classURH__GameInstanceServerBootstrapper_1af5393fb9a958e0dd9d2a9d90e82cde47)`(bool bSuccess,const `[`FRH_BootstrappingResult`](GameInstance.md#structFRH__BootstrappingResult)` & Result)` | Bootstrapping Flow [WaitingForSession] - callback for when registration process has completed and produced a bootstrapping result. Checks the result and then checks for an instance. Either creates and instance, or forwards on to [OnSessionInstanceCreationCompleted()](GameInstance.md#classURH__GameInstanceServerBootstrapper_1a664cad446221aca95b830ddab2eadd3f)
@@ -544,12 +544,14 @@ Bootstrapping Flow [Registration][Allocation] - completion callback for allocati
 
 Bootstrapping Flow [Registration][AutoCreate] - begin a reservation so that the provider can know about this server.
 
-#### `protected virtual void `[`OnReservationComplete`](#classURH__GameInstanceServerBootstrapper_1a490388b65fb63bd0536a4cc264455e53)`(bool bSuccess)` <a id="classURH__GameInstanceServerBootstrapper_1a490388b65fb63bd0536a4cc264455e53"></a>
+#### `protected virtual void `[`OnReservationComplete`](#classURH__GameInstanceServerBootstrapper_1a6a23c6df3c57bcbcd2ba5617e5794913)`(bool bSuccess,const FRH_GameHostAllocationInfo & ReservationInfo)` <a id="classURH__GameInstanceServerBootstrapper_1a6a23c6df3c57bcbcd2ba5617e5794913"></a>
 
 Bootstrapping Flow [Registration][AutoCreate] - completion callback for reservation creation.
 
 #### Parameters
-* `bSuccess` Whether or not the reservation was successful
+* `bSuccess` Whether or not the reservation was successful 
+
+* `ReservationInfo` The reservation info that was produced
 
 #### `protected virtual void `[`BeginSelfAllocate`](#classURH__GameInstanceServerBootstrapper_1a2754313adb76f07d1a0d57d7ff94353b)`()` <a id="classURH__GameInstanceServerBootstrapper_1a2754313adb76f07d1a0d57d7ff94353b"></a>
 
