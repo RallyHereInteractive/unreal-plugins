@@ -21,7 +21,7 @@ struct FRHDTW_Friends : public FRH_DebugToolWindow
 	void DoBlockedPlayersTab(URH_FriendSubsystem* Urh_FriendSubsystem);
 
 	void HandleFetchFriendsList(bool bSuccessful, const FGuid InstigatorUuid);
-	void HandleAddFriend(bool bSuccessful, const FGuid& FriendsPlayerUuid, FriendshipStatus FriendsStatus, const FGuid InstigatorUuid, const FGuid TargetUuid);
+	void HandleAddFriend(bool bSuccessful, const FGuid& FriendsPlayerUuid, ERHAPI_FriendshipStatus FriendsStatus, const FGuid InstigatorUuid, const FGuid TargetUuid);
 	void HandleRemoveFriend(bool bSuccessful, const FGuid& FriendsPlayerUuid, const FGuid InstigatorUuid, const FGuid TargetUuid);
 	void HandleAddNote(bool bSuccessful, const FGuid& FriendsPlayerUuid, const FString& NewNote, const FGuid InstigatorUuid, const FGuid TargetUuid);
 	void HandleDeleteNote(bool bSuccessful, const FGuid& FriendsPlayerUuid, const FGuid InstigatorUuid, const FGuid TargetUuid);
