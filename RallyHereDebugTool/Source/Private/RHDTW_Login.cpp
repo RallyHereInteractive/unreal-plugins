@@ -402,6 +402,12 @@ void FRHDTW_Login::DoServerLoginTab()
 		return;
 	}
 
+	if (!pRH_GameInstanceBootstrapper->GetAuthContext().IsValid())
+	{
+		ImGui::Text("AuthContext not available.");
+		return;
+	}
+
 	auto LoginResult = pRH_GameInstanceBootstrapper->GetAuthContext()->GetLoginResult();
 	const bool bIsLoggedIn = pRH_GameInstanceBootstrapper->GetAuthContext()->IsLoggedIn();
 	if (bIsLoggedIn)
