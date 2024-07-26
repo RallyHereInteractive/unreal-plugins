@@ -37,10 +37,17 @@ struct FRH_GameHostAllocationInfo
 	/** Public Port, if known */
 	TOptional<FString> PublicPort;
 
-	/** @brief Whether the allocation info is valid */
-	FORCEINLINE bool IsValid() const
+	/** @brief Whether the allocation info is valid for allocation workflows */
+	FORCEINLINE bool IsValidForAllocation() const
 	{
-		return AllocationId.IsSet();
+		// allocations must have a valid allocation id AND a public host to advertise with
+		return AllocationId.IsSet() && PublicHost.IsSet();
+	}
+	/** @brief Whether the allocation info is valid for reservation workflows */
+	FORCEINLINE bool IsValidForReservation() const
+	{
+		// reservations must have a session id AND a public host to advertise with
+		return PublicHost.IsSet();
 	}
 };
 
@@ -74,7 +81,7 @@ struct FRH_GameHostProviderStats
 // completion callbacks
 DECLARE_DELEGATE_OneParam(FRH_GameHostProviderOnProviderConnectComplete, bool /*bSuccess*/);
 DECLARE_DELEGATE_OneParam(FRH_GameHostProviderOnProviderRegisterComplete, bool /*bSuccess*/);
-DECLARE_DELEGATE_OneParam(FRH_GameHostProviderOnProviderReservationComplete, bool /*bSuccess*/);
+DECLARE_DELEGATE_TwoParams(FRH_GameHostProviderOnProviderReservationComplete, bool /*bSuccess*/, const FRH_GameHostAllocationInfo& /*ReservationInfo*/);
 DECLARE_DELEGATE_OneParam(FRH_GameHostProviderOnProviderSelfAllocateComplete, bool /*bSuccess*/);
 DECLARE_DELEGATE_TwoParams(FRH_GameHostProviderOnProviderAllocationComplete, ERH_AllocationStatus /*Status*/, const FRH_GameHostAllocationInfo& /*AllocationInfo*/);
 

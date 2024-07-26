@@ -43,7 +43,8 @@ THIRD_PARTY_INCLUDES_START
 	FOREACH_RHGHA_IMPORT_FUNC_IMPL(rallyhere_set_additional_info) \
 	FOREACH_RHGHA_IMPORT_FUNC_IMPL(rallyhere_stats_gauge) \
 	FOREACH_RHGHA_IMPORT_FUNC_IMPL(rallyhere_stats_gauge_with_labels) \
-	FOREACH_RHGHA_IMPORT_FUNC_IMPL(rallyhere_stats_base)
+	FOREACH_RHGHA_IMPORT_FUNC_IMPL(rallyhere_stats_base) \
+	FOREACH_RHGHA_IMPORT_FUNC_IMPL(rallyhere_get_public_host_and_port)
 
 // convenience class for importing the game host adapter library
 class GameHostAdapterImporter

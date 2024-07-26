@@ -301,6 +301,31 @@ void FRH_GameHostProviderGHA::OnRegisterComplete(const RallyHereStatusCode& code
 	OnProviderRegisterComplete.ExecuteIfBound(!bIsError);
 }
 
+// gets the allocation info from the string map, does not destroy the map
+FRH_GameHostAllocationInfo GetAllocationInfoFromStringMap(const RallyHereStringMapPtr allocation_info)
+{
+	FRH_GameHostAllocationInfo AllocationInfo;
+	if (allocation_info)
+	{
+		const char* value_to_check = nullptr;
+		unsigned int value_size = 0;
+		auto result = GameHostAdapterImporter::rallyhere_string_map_get(allocation_info, "allocation_id", &value_to_check, &value_size);
+		if (RH_STATUS_OK == result)
+			AllocationInfo.AllocationId = { static_cast<int32>(value_size), reinterpret_cast<const UTF8CHAR*>(value_to_check) };
+		result = GameHostAdapterImporter::rallyhere_string_map_get(allocation_info, "session_id", &value_to_check, &value_size);
+		if (RH_STATUS_OK == result)
+			AllocationInfo.SessionId = { static_cast<int32>(value_size), reinterpret_cast<const UTF8CHAR*>(value_to_check) };
+		result = GameHostAdapterImporter::rallyhere_string_map_get(allocation_info, "public_host", &value_to_check, &value_size);
+		if (RH_STATUS_OK == result)
+			AllocationInfo.PublicHost = { static_cast<int32>(value_size), reinterpret_cast<const UTF8CHAR*>(value_to_check) };
+		result = GameHostAdapterImporter::rallyhere_string_map_get(allocation_info, "public_port", &value_to_check, &value_size);
+		if (RH_STATUS_OK == result)
+			AllocationInfo.PublicPort = { static_cast<int32>(value_size), reinterpret_cast<const UTF8CHAR*>(value_to_check) };
+	}
+
+	return AllocationInfo;
+}
+
 void FRH_GameHostProviderGHA::OnAllocationComplete(RallyHereStringMapPtr allocation_info, const RallyHereStatusCode& code)
 {
 	// ensure allocation info block is destroyed
@@ -321,25 +346,7 @@ void FRH_GameHostProviderGHA::OnAllocationComplete(RallyHereStringMapPtr allocat
 		return;
 	}
 
-	FRH_GameHostAllocationInfo AllocationInfo;
-
-	if (allocation_info)
-	{
-		const char* value_to_check = nullptr;
-		unsigned int value_size = 0;
-		auto result = GameHostAdapterImporter::rallyhere_string_map_get(allocation_info, "allocation_id", &value_to_check, &value_size);
-		if (RH_STATUS_OK == result)
-			AllocationInfo.AllocationId = { static_cast<int32>(value_size), reinterpret_cast<const UTF8CHAR*>(value_to_check) };
-		result = GameHostAdapterImporter::rallyhere_string_map_get(allocation_info, "session_id", &value_to_check, &value_size);
-		if (RH_STATUS_OK == result)
-			AllocationInfo.SessionId = { static_cast<int32>(value_size), reinterpret_cast<const UTF8CHAR*>(value_to_check) };
-		result = GameHostAdapterImporter::rallyhere_string_map_get(allocation_info, "public_host", &value_to_check, &value_size);
-		if (RH_STATUS_OK == result)
-			AllocationInfo.PublicHost = { static_cast<int32>(value_size), reinterpret_cast<const UTF8CHAR*>(value_to_check) };
-		result = GameHostAdapterImporter::rallyhere_string_map_get(allocation_info, "public_port", &value_to_check, &value_size);
-		if (RH_STATUS_OK == result)
-			AllocationInfo.PublicPort = { static_cast<int32>(value_size), reinterpret_cast<const UTF8CHAR*>(value_to_check) };
-	}
+	FRH_GameHostAllocationInfo AllocationInfo = GetAllocationInfoFromStringMap(allocation_info);
 
 	OnProviderAllocationComplete.ExecuteIfBound(ERH_AllocationStatus::Success, AllocationInfo);
 }
@@ -373,7 +380,16 @@ void FRH_GameHostProviderGHA::OnReservationComplete(const RallyHereStatusCode& c
 		UE_LOG(LogRHGameHostProvider, Log, TEXT("[%s] GameHostAdapter successfully created reservation: %s"), ANSI_TO_TCHAR(__FUNCTION__), UTF8_TO_TCHAR(GameHostAdapterImporter::rallyhere_status_text(code)));
 	}
 
-	OnProviderReservationComplete.ExecuteIfBound(!bIsError);
+	
+	RallyHereStringMapPtr reservation_info;
+	
+	GameHostAdapterImporter::rallyhere_get_public_host_and_port(GameHostAdapter, &reservation_info);
+	// ensure allocation info block is destroyed
+	ON_SCOPE_EXIT{ GameHostAdapterImporter::rallyhere_string_map_destroy(reservation_info); };
+
+	FRH_GameHostAllocationInfo ReservationInfo = GetAllocationInfoFromStringMap(reservation_info);
+	
+	OnProviderReservationComplete.ExecuteIfBound(!bIsError, ReservationInfo);
 }
 
 

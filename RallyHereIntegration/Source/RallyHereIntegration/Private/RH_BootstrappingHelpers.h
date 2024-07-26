@@ -165,8 +165,15 @@ protected:
 		}
 
 		// if allocation id is set, it is treated as the primary, as it means we MUST have a session and it MUST have a matching instance
-		if (BootstrappingResult.AllocationInfo.AllocationId.IsSet())
+		if (BootstrappingResult.AllocationInfo.IsValidForAllocation())
 		{
+			// allocation must have provided an allocation id to be finalized
+			if(!ensure(BootstrappingResult.AllocationInfo.AllocationId.IsSet()))
+			{
+				Failed(TEXT("AllocationInfo was valid for allocation but did not have an allocation id"));
+				return;
+			}
+			
 			SessionByAllocationIdType::Request Request;
 			Request.AllocationId = BootstrappingResult.AllocationInfo.AllocationId.GetValue();
 			Request.AuthContext = AuthContext;
@@ -176,11 +183,19 @@ protected:
 			{
 				FString ErrorMsg = FString::Printf(TEXT("Could not create lookup request for AllocationId %s"), *BootstrappingResult.AllocationInfo.AllocationId.GetValue());
 				Failed(*ErrorMsg);
+				return;
 			}
 		}
 		// if only a session id was set, we do not care if it has an instance, we just need the session object
-		else if (BootstrappingResult.AllocationInfo.SessionId.IsSet())
+		else if (BootstrappingResult.AllocationInfo.IsValidForReservation())
 		{
+			// reservation must have provided a session id to be finalized
+			if(!ensure(BootstrappingResult.AllocationInfo.SessionId.IsSet()))
+			{
+				Failed(TEXT("AllocationInfo was valid for reservation but did not have an session id"));
+				return;
+			}
+			
 			SessionByIdType::Request Request;
 			Request.SessionId = BootstrappingResult.AllocationInfo.SessionId.GetValue();
 			Request.AuthContext = AuthContext;
@@ -190,6 +205,7 @@ protected:
 			{
 				FString ErrorMsg = FString::Printf(TEXT("Could not create lookup request for SessionId %s"), *BootstrappingResult.AllocationInfo.AllocationId.GetValue());
 				Failed(*ErrorMsg);
+				return;
 			}
 		}
 		else
@@ -251,12 +267,12 @@ protected:
 	int32 MaxPollCount;
 };
 
-class FRH_GameHostProviderFallbackAutoCreate : public IRH_GameHostProviderInterface
+class FRH_GameHostProviderFallback : public IRH_GameHostProviderInterface
 {
 public:
 	typedef RallyHereAPI::Traits_CreateOrJoinSession BaseType;
 
-	FRH_GameHostProviderFallbackAutoCreate(const FString& Commandline) : IRH_GameHostProviderInterface(Commandline)
+	FRH_GameHostProviderFallback(const FString& Commandline) : IRH_GameHostProviderInterface(Commandline)
 	{
 
 	}
@@ -282,7 +298,23 @@ public:
 	/** @brief Asynchronous reservation creation for self-allocating servers, triggers OnProviderReservationComplete upon completion */
 	virtual void BeginReservation()
 	{
-		OnProviderReservationComplete.ExecuteIfBound(true);
+		FRH_GameHostAllocationInfo ReservationInfo;
+		FString PublicHost, PublicPort;
+		// allow the public host commandline argument to specify a public host
+		if (FParse::Value(FCommandLine::Get(), TEXT("rh.publichost="), PublicHost)
+			|| FParse::Value(FCommandLine::Get(), TEXT("rhpublichost="), PublicHost))
+		{
+			ReservationInfo.PublicHost = PublicHost;
+		}
+		// allow the public port commandline argument to specify a public port
+		if (FParse::Value(FCommandLine::Get(), TEXT("rh.publicport="), PublicPort)
+			|| FParse::Value(FCommandLine::Get(), TEXT("rhpublicport="), PublicPort)
+			|| FParse::Value(FCommandLine::Get(), TEXT("PORT="), PublicPort))
+		{
+			ReservationInfo.PublicPort = PublicPort;
+		}
+		
+		OnProviderReservationComplete.ExecuteIfBound(true, ReservationInfo);
 	}
 
 	/** @brief Asynchronous creation an allocation with the provider for self-allocating servers, triggers OnProviderSelfAllocateComplete upon completion */
