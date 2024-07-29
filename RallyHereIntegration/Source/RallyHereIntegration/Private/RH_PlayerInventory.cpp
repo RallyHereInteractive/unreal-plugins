@@ -128,7 +128,7 @@ void URH_PlayerInventory::GetInventoryCount_INTERNAL(URH_CatalogItem* Item, cons
 				{
 					Count += InventoryItem.Count;
 				}
-				else if (InventoryItem.Expires.GetValue() < FDateTime::UtcNow())
+				else if (InventoryItem.Expires.GetValue() >= FDateTime::UtcNow())
 				{
 					Count += InventoryItem.Count;
 				}
@@ -247,7 +247,7 @@ void URH_PlayerInventory::IsInventoryItemRented_INTERNAL(URH_CatalogItem* Item, 
 					}
 				}
 
-				if (InventoryItem.Expires.IsSet() && InventoryItem.Expires.GetValue() < FDateTime::UtcNow() && InventoryItem.Count > 0)
+				if (InventoryItem.Expires.IsSet() && InventoryItem.Expires.GetValue() >= FDateTime::UtcNow() && InventoryItem.Count > 0)
 				{
 					Delegate.ExecuteIfBound(true);
 					return;
