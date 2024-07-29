@@ -7,9 +7,11 @@
 #include "RH_GameInstanceSubsystem.h"
 #include "RH_LocalPlayer.h"
 #include "RH_RemoteFileSubsystem.h"
+#include "RH_SessionData.h"
 #include "Net/NetPing.h"
 #include "Net/PerfCountersHelpers.h"
 #include "RenderTimer.h"
+#include "GameFramework/GameModeBase.h"
 #include "Serialization/AsyncPackageLoader.h"
 
 FString FRH_StatAccumulator::SummaryFields::Name = TEXT("Name");
@@ -119,6 +121,29 @@ void URH_PEXCollector::Close()
 
 bool URH_PEXCollector::Init(IRH_PEXOwnerInterface* InOwner)
 {
+	// automatically determine which config class to use
+	const URH_PEXCollectorConfig* Config = GetDefault<URH_PEXCollectorConfig_Client>();
+	if (IsRunningDedicatedServer())
+	{
+		Config = GetDefault<URH_PEXCollectorConfig_DedicatedServer>();
+	}
+	else if (InOwner != nullptr && InOwner->GetPEXIsHost())
+	{
+		Config = GetDefault<URH_PEXCollectorConfig_Host>();
+	}
+
+	return InitWithConfig(InOwner, Config);
+}
+
+bool URH_PEXCollector::InitWithConfig(IRH_PEXOwnerInterface* InOwner, const URH_PEXCollectorConfig* InConfig)
+{
+	if (bHasBeenInitialized)
+	{
+		UE_LOG(LogRallyHereIntegration, Warning, TEXT("Player Experience Collector has already been initialized"));
+		return false;
+	}
+
+	// cache off the owner
 	Owner = InOwner;
 
 	if (!Owner.IsValid())
@@ -126,9 +151,13 @@ bool URH_PEXCollector::Init(IRH_PEXOwnerInterface* InOwner)
 		UE_LOG(LogRallyHereIntegration, Warning, TEXT("Player Experience Collector owner is invalid (may not implement IRH_PEXOwnerInterface)"));
 		return false;
 	}
-	else if (bHasBeenInitialized)
+
+	// cache off the config
+	CachedConfig = InConfig;
+
+	if (CachedConfig == nullptr)
 	{
-		UE_LOG(LogRallyHereIntegration, Warning, TEXT("Player Experience Collector has already been initialized"));
+		UE_LOG(LogRallyHereIntegration, Warning, TEXT("Player Experience Collector config is invalid"));
 		return false;
 	}
 	
@@ -137,20 +166,6 @@ bool URH_PEXCollector::Init(IRH_PEXOwnerInterface* InOwner)
 	CachedRemoteFileDirectory = Owner->GetPEXRemoteFileDirectory();
 	CachedPlayerId = Owner->GetPEXPlayerId();
 	bCachedIsHost = Owner->GetPEXIsHost();
-	
-	// cache which config class to use
-	if (IsRunningDedicatedServer())
-	{
-		CachedConfig = GetDefault<URH_PEXCollectorConfig_DedicatedServer>();
-	}
-	else if (bCachedIsHost)
-	{
-		CachedConfig = GetDefault<URH_PEXCollectorConfig_Host>();
-	}
-	else
-	{
-		CachedConfig = GetDefault<URH_PEXCollectorConfig_Client>();		
-	}
 	
 	// validate cached values
 	if (!GetConfig()->WantsEnabled())
@@ -320,7 +335,7 @@ void URH_PEXCollector::WriteSummary()
 		{
 			FileName = FString::Printf(TEXT("%s_%s_%s.json"), *GetConfig()->SummaryFilePrefix, *CachedMatchId, *CachedPlayerId.ToString(EGuidFormats::DigitsWithHyphens));
 		}
-		FString FilePath = FPaths::ProjectLogDir() / FileName;
+		SummaryFilePath = FPaths::ProjectLogDir() / FileName;
 
 		auto Document = GetSummaryJson();
 
@@ -329,12 +344,12 @@ void URH_PEXCollector::WriteSummary()
 		TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&DocumentString);
 		if (FJsonSerializer::Serialize(Document, Writer))
 		{
-			if (FFileHelper::SaveStringToFile(DocumentString, *FilePath))
+			if (FFileHelper::SaveStringToFile(DocumentString, *SummaryFilePath))
 			{
 				// upload the file if requested
 				if (GetConfig()->bUploadSummaryToFileAPI)
 				{
-					UploadFile(FilePath, FPaths::GetCleanFilename(FilePath));
+					UploadFile(SummaryFilePath, FPaths::GetCleanFilename(SummaryFilePath));
 				}
 			}
 		}
@@ -782,5 +797,339 @@ void URH_PEXGameStats::CapturePerIntervalStats(const TScriptInterface<IRH_PEXOwn
 		Stats[PawnCount].CaptureValue(ValuePawnCount);
 	}
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void URH_TestPEXOwner::SubmitPEXHostSummary(FRHAPI_PexHostRequest&& Report) const
+{
+	// match id should have been set before calling this function!
+	check (Report.MatchId.Len() > 0);
+	
+	Report.SetServerId(FPlatformProcess::ComputerName());
+	
+	const auto HostUuid = GetPEXPlayerId();
+	if (HostUuid.IsValid())
+	{
+		Report.SetHostPlayerUuid(HostUuid);
+	}
+			
+	Report.SetVersion(URH_JoinedSession::GetClientVersionForSession());
+
+	auto World = GetWorld();
+	if (World != nullptr)
+	{
+		Report.SetMapName(World->GetMapName());
+		auto GameMode = World->GetAuthGameMode();
+		if (GameMode != nullptr)
+		{
+			Report.SetGameMode(GameMode->GetClass()->GetPathName());
+		}
+
+		// only send the report if configured to do so
+		if (bSendReportsToAPI)
+		{
+			auto GameInstance = World->GetGameInstance();
+			if (GameInstance != nullptr)
+			{
+				auto RHGameInstance = Cast<URH_GameInstanceSubsystem>(GameInstance);
+				if (RHGameInstance != nullptr)
+				{
+					
+					typedef RallyHereAPI::Traits_CreatePexHost BaseType;
+					BaseType::Request Request;
+					Request.AuthContext = RHGameInstance->GetAuthContext();
+					Request.PexHostRequest = Report;
+
+					auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+						BaseType::Delegate(),
+						FRH_GenericSuccessWithErrorDelegate::CreateLambda([](bool bSucess, const FRH_ErrorInfo& ErrorInfo)
+							{
+								if (!bSucess)
+								{
+									if (ErrorInfo.bIsRHCommonError)
+									{
+										UE_LOG(LogRallyHereIntegration, Error, TEXT("Failed to submit PEX host summary.  Error Code: %s"), *ErrorInfo.RHCommonError.ErrorCode);
+									}
+									else
+									{
+										UE_LOG(LogRallyHereIntegration, Error, TEXT("Failed to submit PEX host summary: %s"), *ErrorInfo.ResponseContent);
+									}
+								}
+								else
+								{
+									UE_LOG(LogRallyHereIntegration, Error, TEXT("Submitted PEX host summary successfully"));
+								}
+							}),
+						GetDefault<URH_IntegrationSettings>()->PexReportPriority
+					);
+			
+					Helper->Start(RH_APIs::GetAPIs().GetPex(), Request);
+				}
+			}
+		}
+	}
+	
+	HostReport = Report;
+}
+void URH_TestPEXOwner::SubmitPEXClientSummary(FRHAPI_PexClientRequest&& Report) const
+{
+	// match id should have been set before calling this function!
+	check (Report.MatchId.Len() > 0);
+	
+	Report.SetVersion(URH_JoinedSession::GetClientVersionForSession());
+
+	auto World = GetWorld();
+	if (World != nullptr)
+	{
+		Report.SetMapName(World->GetMapName());
+		auto GameMode = World->GetAuthGameMode();
+		if (GameMode != nullptr)
+		{
+			Report.SetGameMode(GameMode->GetClass()->GetPathName());
+		}
+
+		if (bSendReportsToAPI)
+		{
+			auto GameInstance = World->GetGameInstance();
+			if (GameInstance != nullptr)
+			{
+				auto RHGameInstance = Cast<URH_GameInstanceSubsystem>(GameInstance);
+				if (RHGameInstance != nullptr)
+				{
+					typedef RallyHereAPI::Traits_CreatePexPlayer BaseType;
+					BaseType::Request Request;
+					Request.AuthContext = RHGameInstance->GetAuthContext();
+					Request.PexClientRequest = Report;
+
+					auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+						BaseType::Delegate(),
+						FRH_GenericSuccessWithErrorDelegate::CreateLambda([](bool bSucess, const FRH_ErrorInfo& ErrorInfo)
+							{
+								if (!bSucess)
+								{
+									if (ErrorInfo.bIsRHCommonError)
+									{
+										UE_LOG(LogRallyHereIntegration, Error, TEXT("Failed to submit PEX player summary.  Error Code: %s"), *ErrorInfo.RHCommonError.ErrorCode);
+									}
+									else
+									{
+										UE_LOG(LogRallyHereIntegration, Error, TEXT("Failed to submit PEX player summary: %s"), *ErrorInfo.ResponseContent);
+									}
+								}
+								else
+								{
+									UE_LOG(LogRallyHereIntegration, Error, TEXT("Submitted PEX player summary successfully"));
+								}
+							}),
+						GetDefault<URH_IntegrationSettings>()->PexReportPriority
+					);
+				
+					Helper->Start(RH_APIs::GetAPIs().GetPex(), Request);
+				}
+			}
+		}
+	}
+
+	ClientReport = Report;
+}
+
+void URH_TestPEXOwner::ValidateReports(FAutomationTestBase* Test, const URH_PEXCollectorConfig* Config) const
+{
+	// if reports are disabled, verify none were generated
+	if (!Config->bUploadSummaryToPEXAPI)
+	{
+		Test->TestTrue(TEXT("HostReport is empty when reports are disabled"), !HostReport.IsSet());
+		Test->TestTrue(TEXT("ClientReport is empty when reports are disabled"), !ClientReport.IsSet());
+		return;
+	}
+	
+	// validate the reports
+	if (HostReport.IsSet())
+	{
+		Test->TestTrue(TEXT("Host Report has a match id"), HostReport->GetMatchId().Len() > 0);
+	}
+	else if (GetPEXIsHost())
+	{
+		Test->AddError(TEXT("Was expecting a host report, but none was generated"));
+	}
+
+	if (ClientReport.IsSet())
+	{
+		Test->TestTrue(TEXT("Client Report has a match id"), HostReport->GetMatchId().Len() > 0);
+	}
+	else if (!IsRunningDedicatedServer())
+	{
+		Test->AddError(TEXT("Was expecting a client report, but none was generated"));
+	}
+}
+
+#if WITH_DEV_AUTOMATION_TESTS
+
+#include "RH_AutomationTests.h"
+#include "Misc/AutomationTest.h"
+#include "TimerManager.h"
+
+BEGIN_DEFINE_SPEC(FRH_PEXCollectorTest, "RHAutomation.PEXCollector", EAutomationTestFlags::ClientContext | EAutomationTestFlags::ServerContext | EAutomationTestFlags::ProductFilter | EAutomationTestFlags::MediumPriority)
+END_DEFINE_SPEC(FRH_PEXCollectorTest)
+
+void FRH_PEXCollectorTest::Define()
+{
+    LatentIt(TEXT("should run the PEX collector for 10 seconds"), [this](const FDoneDelegate& Done)
+    {
+        // Use the utility function to get the game world
+        UWorld* World = RHAutomationTestUtils::GetWorld(this);
+        TestNotNull(TEXT("World should not be null"), World);
+
+        // Create a test owner implementing the IRH_PEXOwnerInterface
+        TWeakObjectPtr<URH_TestPEXOwner> TestOwner = NewObject<URH_TestPEXOwner>();
+        TestOwner->AddToRoot();
+
+        // Instantiate the PEX collector
+        TWeakObjectPtr<URH_PEXCollector> PEXCollector = NewObject<URH_PEXCollector>();
+        PEXCollector->AddToRoot();
+
+        // Initialize the collector with the test owner and test config
+        bool bInitialized = PEXCollector->InitWithConfig(TestOwner.Get(), GetDefault<URH_PEXCollectorConfig_Test>());
+        TestTrue(TEXT("PEXCollector should initialize successfully"), bInitialized);
+
+        // Run the collector for 10 seconds
+        FTimerHandle TimerHandle;
+        World->GetTimerManager().SetTimer(TimerHandle, [this, PEXCollector, TestOwner, Done]()
+        {
+            if (PEXCollector.IsValid())
+            {
+                PEXCollector->Close();
+                PEXCollector->RemoveFromRoot();
+
+            	if (PEXCollector->GetConfig()->WantsTimeline() && PEXCollector->GetConfig()->bWriteTimelineFile)
+            	{
+					TestTrue(TEXT("Timeline File Exists"), FPaths::FileExists(PEXCollector->GetTimelineFilePath()));
+				}
+				if (PEXCollector->GetConfig()->WantsSummary() && PEXCollector->GetConfig()->bWriteSummaryFile)
+				{
+					TestTrue(TEXT("Summary File Exists"), FPaths::FileExists(PEXCollector->GetSummaryFilePath()));
+				}
+            }
+            if (TestOwner.IsValid())
+            {
+                TestOwner->RemoveFromRoot();
+            	
+            	TestOwner->ValidateReports(this, PEXCollector->GetConfig());
+            }
+        	
+            Done.Execute();
+        }, 10.0f, false);
+    });
+
+	LatentIt(TEXT("should run the PEX collector for 10 seconds, and inject game thread hitches that are detected as delayed ticks"), [this](const FDoneDelegate& Done)
+	{
+		// Use the utility function to get the game world
+		UWorld* World = RHAutomationTestUtils::GetWorld(this);
+		TestNotNull(TEXT("World should not be null"), World);
+
+		// Create a test owner implementing the IRH_PEXOwnerInterface
+		TWeakObjectPtr<URH_TestPEXOwner> TestOwner = NewObject<URH_TestPEXOwner>();
+		TestOwner->AddToRoot();
+
+		// Instantiate the PEX collector
+		TWeakObjectPtr<URH_PEXCollector> PEXCollector = NewObject<URH_PEXCollector>();
+		PEXCollector->AddToRoot();
+
+		// Initialize the collector with the test owner and test config
+		bool bInitialized = PEXCollector->InitWithConfig(TestOwner.Get(), GetDefault<URH_PEXCollectorConfig_Test>());
+		TestTrue(TEXT("PEXCollector should initialize successfully"), bInitialized);
+
+		// Inject a hitch into the game thread.  Every 0.5 seconds, sleep for 0.15 seconds
+		FTimerHandle InjectionTimerHandle;
+		World->GetTimerManager().SetTimer(InjectionTimerHandle, []()
+		{
+			FPlatformProcess::Sleep(0.15f);
+		}
+		, 0.5f, true);
+
+		TestTrue(TEXT("Injection Timer should be valid"), InjectionTimerHandle.IsValid() );
+		
+		// Run the collector for 10 seconds
+		FTimerHandle TimerHandle;
+		World->GetTimerManager().SetTimer(TimerHandle, [this, InjectionTimerHandle, PEXCollector, TestOwner, Done]()
+		{
+			// stop the injection timer
+			auto World = RHAutomationTestUtils::GetWorld(this);
+			auto InjectionTimerHandleCopy = InjectionTimerHandle;
+			World->GetTimerManager().ClearTimer(InjectionTimerHandleCopy);
+			
+			if (PEXCollector.IsValid())
+			{
+				PEXCollector->Close();
+				PEXCollector->RemoveFromRoot();
+
+				if (PEXCollector->GetConfig()->WantsTimeline() && PEXCollector->GetConfig()->bWriteTimelineFile)
+				{
+					TestTrue(TEXT("Timeline File Exists"), FPaths::FileExists(PEXCollector->GetTimelineFilePath()));
+				}
+				if (PEXCollector->GetConfig()->WantsSummary() && PEXCollector->GetConfig()->bWriteSummaryFile)
+				{
+					TestTrue(TEXT("Summary File Exists"), FPaths::FileExists(PEXCollector->GetSummaryFilePath()));
+				}
+
+				if (PEXCollector->GetConfig()->WantsSummary())
+				{
+					const auto ReportJson = PEXCollector->GetSummaryJson();
+					const TSharedPtr<FJsonObject>* TopLevelChildren = nullptr;
+					ReportJson->TryGetObjectField(URH_PEXStatGroup::SummaryFields::Children, TopLevelChildren);
+					TestNotNull(TEXT("TopLevelChildren should be non-null"), TopLevelChildren);
+					TestValid(TEXT("TopLevelChildren should be valid"), TopLevelChildren ? *TopLevelChildren : nullptr);
+					
+					if (TopLevelChildren != nullptr && TopLevelChildren->IsValid())
+					{
+						const auto DefaultPrimaryStats = GetDefault<URH_PEXPrimaryStats>();
+						const TSharedPtr<FJsonObject>* PrimaryStats = nullptr;
+						(*TopLevelChildren)->TryGetObjectField(DefaultPrimaryStats->GroupName.ToString(), PrimaryStats);
+						TestNotNull(TEXT("PrimaryStats should be non-null"), PrimaryStats);
+						TestValid(TEXT("PrimaryStats should be valid"), PrimaryStats ? *PrimaryStats : nullptr);
+
+						if (PrimaryStats != nullptr && PrimaryStats->IsValid())
+						{
+							const TSharedPtr<FJsonObject>* Stats = nullptr;
+							(*PrimaryStats)->TryGetObjectField(URH_PEXPrimaryStats::SummaryFields::Stats, Stats);
+							TestNotNull(TEXT("Stats should be non-null"), Stats);
+							TestValid(TEXT("Stats should be valid"), Stats ? *Stats : nullptr);
+
+							if (Stats != nullptr && Stats->IsValid())
+							{
+								const TSharedPtr<FJsonObject>* DelayedTickCount = nullptr;
+								(*Stats)->TryGetObjectField(DefaultPrimaryStats->Stats[URH_PEXPrimaryStats::DelayedTickCount].Name.ToString(), DelayedTickCount);
+								TestNotNull(TEXT("DelayedTickCount should be non-null"), DelayedTickCount);
+								TestValid(TEXT("DelayedTickCount should be valid"), DelayedTickCount ? *DelayedTickCount : nullptr);
+							
+								if (DelayedTickCount != nullptr && (*DelayedTickCount).IsValid())
+								{
+									const auto DelayedTickCountMax = (*DelayedTickCount)->GetNumberField(TEXT("Max"));
+									TestNotEqual(TEXT("DelayedTickCount should be non-zero"), DelayedTickCountMax, 0.0);
+									AddInfo(FString::Printf(TEXT("DelayedTickCount Max: %0.f"), DelayedTickCountMax));
+								}
+							}
+						}
+					}
+				}
+				
+			}
+			if (TestOwner.IsValid())
+			{
+				TestOwner->RemoveFromRoot();
+			}
+
+			if (PEXCollector.IsValid() && TestOwner.IsValid())
+			{
+				// validate the reports
+				TestOwner->ValidateReports(this, PEXCollector->GetConfig());
+			}
+        	
+			Done.Execute();
+		}, 10.0f, false);
+	});
+}
+
+#endif // WITH_DEV_AUTOMATION_TESTS
 
 
