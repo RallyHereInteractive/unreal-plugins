@@ -298,42 +298,42 @@ bool FResponse_GetPlayerPresencePublicById::FromJson(const TSharedPtr<FJsonValue
 	{  
 		case 200:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_PlayerPresence Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_PlayerPresence>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_PlayerPresence>(Object);
 				break;
 			} 
 		case 403:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_HzApiErrorModel Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
 			} 
 		case 404:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_HzApiErrorModel Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
 			} 
 		case 422:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_HTTPValidationError Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -637,42 +637,42 @@ bool FResponse_GetPlayerPresencePublicByUuid::FromJson(const TSharedPtr<FJsonVal
 	{  
 		case 200:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_PlayerPresence Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_PlayerPresence>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_PlayerPresence>(Object);
 				break;
 			} 
 		case 403:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_HzApiErrorModel Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
 			} 
 		case 404:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_HzApiErrorModel Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
 			} 
 		case 422:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_HTTPValidationError Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -949,32 +949,32 @@ bool FResponse_GetPlayerPresenceSelf::FromJson(const TSharedPtr<FJsonValue>& Jso
 	{  
 		case 200:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_PlayerPresence Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_PlayerPresence>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_PlayerPresence>(Object);
 				break;
 			} 
 		case 403:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_HzApiErrorModel Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
 			} 
 		case 422:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_HTTPValidationError Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -1176,12 +1176,12 @@ bool FResponse_GetPresenceSettings::FromJson(const TSharedPtr<FJsonValue>& JsonV
 	{  
 		case 200:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_ClientVisibleSettings Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_ClientVisibleSettings>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_ClientVisibleSettings>(Object);
 				break;
 			}
 		default:

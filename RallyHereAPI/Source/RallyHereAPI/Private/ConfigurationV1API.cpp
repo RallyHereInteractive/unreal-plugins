@@ -223,22 +223,22 @@ bool FResponse_GetFriendsAndBlockLimits::FromJson(const TSharedPtr<FJsonValue>& 
 	{  
 		case 200:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_FriendsApiConfig Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_FriendsApiConfig>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_FriendsApiConfig>(Object);
 				break;
 			} 
 		case 403:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_HzApiErrorModel Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
 			}
 		default:

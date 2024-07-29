@@ -797,42 +797,42 @@ bool FResponse_GetAllPexClientRawByFilter::FromJson(const TSharedPtr<FJsonValue>
 	{  
 		case 200:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_PexClientPagedResponse Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_PexClientPagedResponse>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_PexClientPagedResponse>(Object);
 				break;
 			} 
 		case 403:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_HzApiErrorModel Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
 			} 
 		case 404:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_HzApiErrorModel Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
 			} 
 		case 422:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_HTTPValidationError Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -1169,32 +1169,32 @@ bool FResponse_GetAllPexClientScoresByFilter::FromJson(const TSharedPtr<FJsonVal
 	{  
 		case 200:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_PexClientPagedResponse Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_PexClientPagedResponse>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_PexClientPagedResponse>(Object);
 				break;
 			} 
 		case 403:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_HzApiErrorModel Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
 			} 
 		case 422:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_HTTPValidationError Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -1539,42 +1539,42 @@ bool FResponse_GetAllPexHostRawByFilter::FromJson(const TSharedPtr<FJsonValue>& 
 	{  
 		case 200:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_PexHostPagedResponse Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_PexHostPagedResponse>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_PexHostPagedResponse>(Object);
 				break;
 			} 
 		case 403:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_HzApiErrorModel Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
 			} 
 		case 404:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_HzApiErrorModel Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
 			} 
 		case 422:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_HTTPValidationError Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -1903,32 +1903,32 @@ bool FResponse_GetAllPexHostScoresByFilter::FromJson(const TSharedPtr<FJsonValue
 	{  
 		case 200:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_PexHostPagedResponse Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_PexHostPagedResponse>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_PexHostPagedResponse>(Object);
 				break;
 			} 
 		case 403:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_HzApiErrorModel Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
 			} 
 		case 422:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_HTTPValidationError Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
 				break;
 			}
 		default:

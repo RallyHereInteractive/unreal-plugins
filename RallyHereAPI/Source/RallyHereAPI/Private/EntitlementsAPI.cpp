@@ -282,52 +282,52 @@ bool FResponse_GenerateEntitlementEvent::FromJson(const TSharedPtr<FJsonValue>& 
 	{  
 		case 200:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_EntitlementEvent Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_EntitlementEvent>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_EntitlementEvent>(Object);
 				break;
 			} 
 		case 403:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_HzApiErrorModel Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
 			} 
 		case 404:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_HzApiErrorModel Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
 			} 
 		case 409:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_HzApiErrorModel Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
 			} 
 		case 422:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_HTTPValidationError Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -588,32 +588,32 @@ bool FResponse_GetEntitlementEvents::FromJson(const TSharedPtr<FJsonValue>& Json
 	{  
 		case 200:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_EntitlementEventList Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_EntitlementEventList>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_EntitlementEventList>(Object);
 				break;
 			} 
 		case 403:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_HzApiErrorModel Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
 			} 
 		case 422:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_HTTPValidationError Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -869,32 +869,32 @@ bool FResponse_ProcessPlatformEntitlementForMe::FromJson(const TSharedPtr<FJsonV
 	{  
 		case 200:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_PlatformEntitlementProcessResult Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_PlatformEntitlementProcessResult>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_PlatformEntitlementProcessResult>(Object);
 				break;
 			} 
 		case 403:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_HzApiErrorModel Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
 			} 
 		case 422:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_HTTPValidationError Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -1155,32 +1155,32 @@ bool FResponse_ProcessPlatformEntitlementsByPlayerUuid::FromJson(const TSharedPt
 	{  
 		case 200:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_PlatformEntitlementProcessResult Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_PlatformEntitlementProcessResult>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_PlatformEntitlementProcessResult>(Object);
 				break;
 			} 
 		case 403:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_HzApiErrorModel Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
 			} 
 		case 422:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_HTTPValidationError Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -1431,32 +1431,32 @@ bool FResponse_RetrieveEntitlementRequestByPlayerUuid::FromJson(const TSharedPtr
 	{  
 		case 200:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_PlatformEntitlementProcessResult Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_PlatformEntitlementProcessResult>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_PlatformEntitlementProcessResult>(Object);
 				break;
 			} 
 		case 403:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_HzApiErrorModel Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
 			} 
 		case 422:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_HTTPValidationError Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -1706,32 +1706,32 @@ bool FResponse_RetrieveEntitlementRequestForMe::FromJson(const TSharedPtr<FJsonV
 	{  
 		case 200:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_PlatformEntitlementProcessResult Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_PlatformEntitlementProcessResult>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_PlatformEntitlementProcessResult>(Object);
 				break;
 			} 
 		case 403:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_HzApiErrorModel Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
 			} 
 		case 422:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_HTTPValidationError Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
 				break;
 			}
 		default:

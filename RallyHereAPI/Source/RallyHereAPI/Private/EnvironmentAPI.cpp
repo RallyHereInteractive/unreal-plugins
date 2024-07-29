@@ -196,12 +196,12 @@ bool FResponse_GetEnvironmentId::FromJson(const TSharedPtr<FJsonValue>& JsonValu
 	{  
 		case 200:
 			{
+				// parse into the structured data format from the json object
 				FRHAPI_EnvironmentConfig Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FRHAPI_EnvironmentConfig>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_EnvironmentConfig>(Object);
 				break;
 			}
 		default:

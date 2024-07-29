@@ -196,12 +196,12 @@ bool FResponse_GetUtcTime::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	{  
 		case 200:
 			{
+				// parse into the structured data format from the json object
 				FDateTime Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<FDateTime>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FDateTime>(Object);
 				break;
 			}
 		default:

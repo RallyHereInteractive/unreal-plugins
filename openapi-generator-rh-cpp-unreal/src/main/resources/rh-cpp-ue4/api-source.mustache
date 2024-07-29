@@ -511,12 +511,12 @@ bool FResponse_{{operationIdCamelCase}}::FromJson(const TSharedPtr<FJsonValue>& 
 	{ {{#responses}} {{#dataType}}
 		case {{code}}:
 			{
+				// parse into the structured data format from the json object
 				{{{.}}} Object;
-				if (TryGetJsonValue(JsonValue, Object))
-				{
-					ParsedContent.Set<{{{.}}}>(Object);
-					bParsed = true;
-				}
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<{{{.}}}>(Object);
 				break;
 			}{{/dataType}}{{/responses}}
 		default:
