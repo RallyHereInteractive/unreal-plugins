@@ -66,9 +66,9 @@ struct RALLYHEREINTEGRATION_API FRH_ServerTimeCache
 		return true;
 	}
 	/**
-	 * @brief Gets the approximate server time, if we have received one.
+	 * @brief Gets the difference between approximate server time and local time, if possible.
 	 * @param [out] Timespan The approximate server time drift
-	 * @return True if we have received a server time, false otherwise.
+	 * @return True if the drift was calculated, false otherwise.
 	 */
 	bool GetServerTimeDrift(FTimespan& Timespan) const
 	{
@@ -78,6 +78,38 @@ struct RALLYHEREINTEGRATION_API FRH_ServerTimeCache
 		}
 		Timespan = LastReceivedServerAtTime - LastReceivedServerDateTime;
 		return true;
+	}
+	/**
+	 * @brief Converts a timestamp from local time to server time by applying the drift
+	 * @param [in] InLocalTime The local time to convert.
+	 * @param [out] OutServerTime The server time equivalent of the input local time.
+	 * @return True if the conversion was successful, false otherwise.
+	 */
+	bool ConvertLocalTimeToServerTime(const FDateTime& InLocalTime, FDateTime& OutServerTime) const
+	{
+		FTimespan Drift;
+		if (GetServerTimeDrift(Drift))
+		{
+			OutServerTime = InLocalTime - Drift;
+			return true;
+		}
+		return false;
+	}
+	/**
+	 * @brief Converts a timestamp from server time to local time by applying the drift
+	 * @param [in] InServerTime The server time to convert.
+	 * @param [out] OutLocalTime The local time equivalent of the input server time.
+	 * @return True if the conversion was successful, false otherwise.
+	 */
+	bool ConvertServerTimeToLocalTime(const FDateTime& InServerTime, FDateTime& OutLocalTime) const
+	{
+		FTimespan Drift;
+		if (GetServerTimeDrift(Drift))
+		{
+			OutLocalTime = InServerTime + Drift;
+			return true;
+		}
+		return false;
 	}
 	/**
 	 * @brief Imports data from the server response

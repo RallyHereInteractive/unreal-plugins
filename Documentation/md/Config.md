@@ -253,7 +253,9 @@ An object that caches information about server time and differences.
 `public FDateTime `[`LastReceivedServerAtTime`](#structFRH__ServerTimeCache_1af3fc128d16c059cb4420ca5841a91d20) | The time we received the most recent update from the server.
 `public inline  `[`FRH_ServerTimeCache`](#structFRH__ServerTimeCache_1a4b895cff8968b4e82df5e794376b8168)`()` | Constructor.
 `public inline bool `[`GetServerTime`](#structFRH__ServerTimeCache_1aaa54f6ae4bddd94bc4665ae40f69dae6)`(FDateTime & Time) const` | Gets the approximate server time, if we have received one.
-`public inline bool `[`GetServerTimeDrift`](#structFRH__ServerTimeCache_1a777a359d346cb75f394b622844fa6f68)`(FTimespan & Timespan) const` | Gets the approximate server time, if we have received one.
+`public inline bool `[`GetServerTimeDrift`](#structFRH__ServerTimeCache_1a777a359d346cb75f394b622844fa6f68)`(FTimespan & Timespan) const` | Gets the difference between approximate server time and local time, if possible.
+`public inline bool `[`ConvertLocalTimeToServerTime`](#structFRH__ServerTimeCache_1a9ccc2e98c937bfdaff2284e1eada9a7c)`(const FDateTime & InLocalTime,FDateTime & OutServerTime) const` | Converts a timestamp from local time to server time by applying the drift.
+`public inline bool `[`ConvertServerTimeToLocalTime`](#structFRH__ServerTimeCache_1afab561ddb70ec364c0d379a8be1c0817)`(const FDateTime & InServerTime,FDateTime & OutLocalTime) const` | Converts a timestamp from server time to local time by applying the drift.
 `public inline void `[`ImportAPITime`](#structFRH__ServerTimeCache_1a5b805808b827d56da61fe16ecd38cf20)`(const RallyHereAPI::FResponse_GetUtcTime & Time)` | Imports data from the server response.
 
 ### Members
@@ -282,13 +284,37 @@ True if we have received a server time, false otherwise.
 
 #### `public inline bool `[`GetServerTimeDrift`](#structFRH__ServerTimeCache_1a777a359d346cb75f394b622844fa6f68)`(FTimespan & Timespan) const` <a id="structFRH__ServerTimeCache_1a777a359d346cb75f394b622844fa6f68"></a>
 
-Gets the approximate server time, if we have received one.
+Gets the difference between approximate server time and local time, if possible.
 
 #### Parameters
 * `Timespan` The approximate server time drift 
 
 #### Returns
-True if we have received a server time, false otherwise.
+True if the drift was calculated, false otherwise.
+
+#### `public inline bool `[`ConvertLocalTimeToServerTime`](#structFRH__ServerTimeCache_1a9ccc2e98c937bfdaff2284e1eada9a7c)`(const FDateTime & InLocalTime,FDateTime & OutServerTime) const` <a id="structFRH__ServerTimeCache_1a9ccc2e98c937bfdaff2284e1eada9a7c"></a>
+
+Converts a timestamp from local time to server time by applying the drift.
+
+#### Parameters
+* `InLocalTime` The local time to convert. 
+
+* `OutServerTime` The server time equivalent of the input local time. 
+
+#### Returns
+True if the conversion was successful, false otherwise.
+
+#### `public inline bool `[`ConvertServerTimeToLocalTime`](#structFRH__ServerTimeCache_1afab561ddb70ec364c0d379a8be1c0817)`(const FDateTime & InServerTime,FDateTime & OutLocalTime) const` <a id="structFRH__ServerTimeCache_1afab561ddb70ec364c0d379a8be1c0817"></a>
+
+Converts a timestamp from server time to local time by applying the drift.
+
+#### Parameters
+* `InServerTime` The server time to convert. 
+
+* `OutLocalTime` The local time equivalent of the input server time. 
+
+#### Returns
+True if the conversion was successful, false otherwise.
 
 #### `public inline void `[`ImportAPITime`](#structFRH__ServerTimeCache_1a5b805808b827d56da61fe16ecd38cf20)`(const RallyHereAPI::FResponse_GetUtcTime & Time)` <a id="structFRH__ServerTimeCache_1a5b805808b827d56da61fe16ecd38cf20"></a>
 
