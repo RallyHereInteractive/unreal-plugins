@@ -381,13 +381,25 @@ void FRH_GameHostProviderGHA::OnReservationComplete(const RallyHereStatusCode& c
 	}
 
 	
-	RallyHereStringMapPtr reservation_info;
+	RallyHereStringMapPtr reservation_info = nullptr;
+
+	// ensure allocation info block is destroyed
+	ON_SCOPE_EXIT
+	{
+		if (reservation_info != nullptr)
+		{
+			GameHostAdapterImporter::rallyhere_string_map_destroy(reservation_info);
+			reservation_info = nullptr;
+		}
+	};
 	
 	GameHostAdapterImporter::rallyhere_get_public_host_and_port(GameHostAdapter, &reservation_info);
-	// ensure allocation info block is destroyed
-	ON_SCOPE_EXIT{ GameHostAdapterImporter::rallyhere_string_map_destroy(reservation_info); };
 
-	FRH_GameHostAllocationInfo ReservationInfo = GetAllocationInfoFromStringMap(reservation_info);
+	FRH_GameHostAllocationInfo ReservationInfo;
+	if (reservation_info != nullptr)
+	{
+		ReservationInfo = GetAllocationInfoFromStringMap(reservation_info);
+	}
 	
 	OnProviderReservationComplete.ExecuteIfBound(!bIsError, ReservationInfo);
 }
