@@ -83,7 +83,8 @@ bool URH_GameInstanceServerBootstrapper::GetCommandlineBootstrapModeOverride(ERH
 		}
 		else
 		{
-			mode = ERH_ServerBootstrapMode::GameHostProvider;
+			// for unrecognized values, fall back to allocated for backwards compatibility
+			mode = ERH_ServerBootstrapMode::Allocated;
 			return true;
 		}
 	}
@@ -140,7 +141,7 @@ void URH_GameInstanceServerBootstrapper::Initialize()
 	BootstrapMode = DefaultBootstrapMode;
 
 	FString BootstrapCommandlineModeString;
-	ERH_ServerBootstrapMode BootstrapCommandlineMode = ERH_ServerBootstrapMode::GameHostProvider;
+	ERH_ServerBootstrapMode BootstrapCommandlineMode = ERH_ServerBootstrapMode::Allocated;
 	if (GetCommandlineBootstrapModeOverride(BootstrapCommandlineMode))
 	{
 		BootstrapMode = (ERH_ServerBootstrapMode)BootstrapCommandlineMode;
@@ -749,14 +750,8 @@ void URH_GameInstanceServerBootstrapper::BeginRegistration()
 		}
 		else 
 #endif
-		if (BootstrapMode == ERH_ServerBootstrapMode::AutoCreate)
 		{
-			return IRH_GameHostProviderInterface::Create<FRH_GameHostProviderFallbackAutoCreate>(arguments);
-		}
-		else
-		{
-			UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - GameHostAdapter provider could not be loaded, and not in autocreate mode"), ANSI_TO_TCHAR(__FUNCTION__));
-			return nullptr;
+			return IRH_GameHostProviderInterface::Create<FRH_GameHostProviderFallback>(arguments);
 		}
 	};
 
@@ -808,7 +803,7 @@ void URH_GameInstanceServerBootstrapper::OnConnectComplete(bool bSuccess)
 
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] GameHostProvider connection complete"), ANSI_TO_TCHAR(__FUNCTION__));
 
-	if (BootstrapMode == ERH_ServerBootstrapMode::AutoCreate)
+	if (BootstrapMode == ERH_ServerBootstrapMode::Reserved)
 	{
 		BeginReservation();
 	}
@@ -870,7 +865,7 @@ void URH_GameInstanceServerBootstrapper::OnAllocationComplete(ERH_AllocationStat
 		return;
 	}
 
-	if (!AllocationInfo.IsValid())
+	if (!AllocationInfo.IsValidForAllocation())
 	{
 		DeferBootstrappingFailed(FString::Printf(TEXT("[%s] Invalid allocation info"), ANSI_TO_TCHAR(__FUNCTION__)));
 		return;
@@ -898,13 +893,15 @@ void URH_GameInstanceServerBootstrapper::BeginReservation()
 	}
 }
 
-void URH_GameInstanceServerBootstrapper::OnReservationComplete(bool bSuccess)
+void URH_GameInstanceServerBootstrapper::OnReservationComplete(bool bSuccess, const FRH_GameHostAllocationInfo& ReservationInfo)
 {
 	if (!bSuccess)
 	{
 		DeferBootstrappingFailed(FString::Printf(TEXT("[%s] GameHostProvider failed to reserve"), ANSI_TO_TCHAR(__FUNCTION__)));
 		return;
 	}
+	
+	BootstrappingResult = ReservationInfo;
 
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] GameHostProvider reservation complete"), ANSI_TO_TCHAR(__FUNCTION__));
 
@@ -953,16 +950,23 @@ void URH_GameInstanceServerBootstrapper::OnReservationComplete(bool bSuccess)
 				}),
 			FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this](bool bSuccess, const FRH_ErrorInfo& Error)
 				{
-					if (bSuccess && BootstrappingResult.IsValid())
+					if (bSuccess)
 					{
-						UE_LOG(LogRallyHereIntegration, Log, TEXT("Session created successfully: %s"), *BootstrappingResult.AllocationInfo.SessionId.Get(TEXT("<INVALID>")))
+						if (BootstrappingResult.IsValid())
+						{
+							UE_LOG(LogRallyHereIntegration, Log, TEXT("Session created successfully: %s"), *BootstrappingResult.AllocationInfo.SessionId.Get(TEXT("<INVALID>")))
 
-						// finalize the result
-						auto Helper = MakeShared<FRH_SessionBootstrappingFinalizer>(
-							AuthContext,
-							BootstrappingResult,
-							FRH_ServerBootstrapFinalizerDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnRegistrationFinalizerComplete));
-						Helper->Start();
+							// finalize the result
+							auto Helper = MakeShared<FRH_SessionBootstrappingFinalizer>(
+								AuthContext,
+								BootstrappingResult,
+								FRH_ServerBootstrapFinalizerDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnRegistrationFinalizerComplete));
+							Helper->Start();
+						}
+						else
+						{
+							DeferBootstrappingFailed(FString::Printf(TEXT("[%s] - bootstrapping result invalid for reservation flow"), ANSI_TO_TCHAR(__FUNCTION__)));
+						}
 					}
 					else
 					{
@@ -1110,7 +1114,7 @@ void URH_GameInstanceServerBootstrapper::SyncToSession()
 		UpdateBootstrapStep(ERH_ServerBootstrapFlowStep::SyncingToSession);
 		
 		// notify the hosting provider that we are now allocating ourselves
-        if (BootstrapMode == ERH_ServerBootstrapMode::AutoCreate)
+        if (BootstrapMode == ERH_ServerBootstrapMode::Reserved)
         {
         	BeginSelfAllocate();
         }

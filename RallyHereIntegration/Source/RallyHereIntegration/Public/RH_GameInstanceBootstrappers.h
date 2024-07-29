@@ -26,14 +26,14 @@ class URH_GameInstanceClientBootstrapper;
 UENUM()
 enum class ERH_ServerBootstrapMode : uint8
 {
-	/** We are in an unknown mode which cannot be handled internally to this subsystem, instead rely on the GameHostProvider to handle the mode */
-	GameHostProvider,
 	/** Bootstrapping is disabled entirely */
 	Disabled,
 	/** Bootstrapping is restricted to login only */
 	LoginOnly,
-	/** Special type of GameHostProvider mode, which has a fallback provider if needed and will allocate itself a session */
-	AutoCreate,
+	/** Use the GameHostProvider interface to perform an allocation */
+	Allocated,
+	/** Use the GameHostProvider interface to perform a reservation */
+	Reserved,
 };
 
 /** @ingroup GameInstance
@@ -121,7 +121,7 @@ struct FRH_BootstrappingResult
 	/** @brief Whether or not this result is valid (it has the required IDs to be finalized) */
 	FORCEINLINE bool IsValid() const
 	{
-		return AllocationInfo.AllocationId.IsSet() || AllocationInfo.SessionId.IsSet() || Session.IsSet();
+		return AllocationInfo.IsValidForAllocation() || AllocationInfo.IsValidForReservation() || Session.IsSet();
 	}
 	/** @brief Whether or not this result is complete (it has valid and matching session information) */
 	FORCEINLINE bool IsComplete() const
@@ -318,8 +318,9 @@ protected:
 	/**
 	* @brief Bootstrapping Flow [Registration][AutoCreate] - completion callback for reservation creation
 	* @param [in] bSuccess Whether or not the reservation was successful
+	* @param [in] ReservationInfo The reservation info that was produced
 	*/
-	virtual void OnReservationComplete(bool bSuccess);
+	virtual void OnReservationComplete(bool bSuccess, const FRH_GameHostAllocationInfo& ReservationInfo);
 	/**
 	* @brief Bootstrapping Flow [Registration][AutoCreate] - inform the provider that this server is self-allocated
 	*/

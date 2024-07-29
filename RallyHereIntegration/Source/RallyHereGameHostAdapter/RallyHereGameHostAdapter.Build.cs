@@ -23,12 +23,12 @@ public class RallyHereGameHostAdapter : ModuleRules
 			{
 				RuntimeDependencies.Add("$(TargetOutputDir)/game-host-adapter.dll",
 					Path.Combine(LibSubdirectory, "Win64", "game-host-adapter.dll"));
-				RuntimeDependencies.Add("$(TargetOutputDir)/boost_filesystem-vc143-mt-x64-1_83.dll",
-					Path.Combine(LibSubdirectory, "Win64", "boost_filesystem-vc143-mt-x64-1_83.dll"));
-				RuntimeDependencies.Add("$(TargetOutputDir)/boost_json-vc143-mt-x64-1_83.dll",
-					Path.Combine(LibSubdirectory, "Win64", "boost_json-vc143-mt-x64-1_83.dll"));
-				RuntimeDependencies.Add("$(TargetOutputDir)/boost_url-vc143-mt-x64-1_83.dll",
-					Path.Combine(LibSubdirectory, "Win64", "boost_url-vc143-mt-x64-1_83.dll"));
+				RuntimeDependencies.Add("$(TargetOutputDir)/boost_filesystem-vc142-mt-x64-1_83.dll",
+					Path.Combine(LibSubdirectory, "Win64", "boost_filesystem-vc142-mt-x64-1_83.dll"));
+				RuntimeDependencies.Add("$(TargetOutputDir)/boost_json-vc142-mt-x64-1_83.dll",
+					Path.Combine(LibSubdirectory, "Win64", "boost_json-vc142-mt-x64-1_83.dll"));
+				RuntimeDependencies.Add("$(TargetOutputDir)/boost_url-vc142-mt-x64-1_83.dll",
+					Path.Combine(LibSubdirectory, "Win64", "boost_url-vc142-mt-x64-1_83.dll"));
 				RuntimeDependencies.Add("$(TargetOutputDir)/libcrypto-3-x64.dll",
 					Path.Combine(LibSubdirectory, "Win64", "libcrypto-3-x64.dll"));
 				RuntimeDependencies.Add("$(TargetOutputDir)/libssl-3-x64.dll",
