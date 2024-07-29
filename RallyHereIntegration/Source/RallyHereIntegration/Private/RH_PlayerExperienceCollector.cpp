@@ -604,9 +604,9 @@ void URH_PEXNetworkStats_Connection::CapturePerSecondStats(const TScriptInterfac
 		Stats[OutPacketsLost].CaptureValue(Connection->OutPacketsLost);
 		Stats[TotalPacketsLost].CaptureValue(Connection->InPacketsLost + Connection->OutPacketsLost);
 
-		Stats[InPacketLossPct].CaptureValue(((float)(Connection->InPacketsLost)) / FMath::Max<float>(1.0f, (float)(Connection->InPackets + Connection->InPacketsLost)));
-		Stats[OutPacketLossPct].CaptureValue(((float)(Connection->OutPacketsLost)) / FMath::Max<float>(1.0f, (float)(Connection->OutPackets + Connection->OutPacketsLost)));
-		Stats[TotalPacketLossPct].CaptureValue(((float)(Connection->InPacketsLost + Connection->OutPacketsLost)) / FMath::Max<float>(1.0f, (float)(Connection->InPackets + Connection->InPacketsLost + Connection->OutPackets + Connection->OutPacketsLost)));
+		Stats[InPacketLossPct].CaptureValue(((Connection->InPacketsLost * 100.f)) / FMath::Max<float>(1.0f, (float)(Connection->InPackets + Connection->InPacketsLost)));
+		Stats[OutPacketLossPct].CaptureValue(((Connection->OutPacketsLost * 100.f)) / FMath::Max<float>(1.0f, (float)(Connection->OutPackets + Connection->OutPacketsLost)));
+		Stats[TotalPacketLossPct].CaptureValue(((Connection->InPacketsLost + Connection->OutPacketsLost) * 100.f) / FMath::Max<float>(1.0f, (float)(Connection->InPackets + Connection->InPacketsLost + Connection->OutPackets + Connection->OutPacketsLost)));
 	}
 }
 
