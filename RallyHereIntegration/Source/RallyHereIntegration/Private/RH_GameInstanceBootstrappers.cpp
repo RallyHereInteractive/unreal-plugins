@@ -982,7 +982,7 @@ void URH_GameInstanceServerBootstrapper::OnReservationComplete(bool bSuccess, co
 
 	if (!bStartedHelper)
 	{
-		DeferBootstrappingFailed(FString::Printf(TEXT("[%s] - Could not start auto create bootstrapping finalizer helper"), ANSI_TO_TCHAR(__FUNCTION__)));
+		DeferBootstrappingFailed(FString::Printf(TEXT("[%s] - Could not start reserved bootstrapping finalizer helper"), ANSI_TO_TCHAR(__FUNCTION__)));
 		return;
 	}
 }
