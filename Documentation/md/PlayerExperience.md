@@ -24,6 +24,8 @@
 `class `[`URH_PEXNetworkStats`](#classURH__PEXNetworkStats) | Stat group for capturing local whole-state network stats, plus per-player stats.
 `class `[`URH_PEXGameStats`](#classURH__PEXGameStats) | Stat group for capturing game stats.
 `class `[`URH_PEXBlueprintableStats`](#classURH__PEXBlueprintableStats) | Blueprintable stat group for capturing stats.
+`class `[`URH_PEXCollectorConfig_Test`](#classURH__PEXCollectorConfig__Test) | 
+`class `[`URH_TestPEXOwner`](#classURH__TestPEXOwner) | 
 `struct `[`FRH_PEXStatState`](#structFRH__PEXStatState) | State of the accumulated stat.
 `struct `[`FRH_StatAccumulator`](#structFRH__StatAccumulator) | Simple accumulator that represents a captured statistic. Tracks min, max, average, and other values internally without having to store all values.
 
@@ -356,11 +358,14 @@ PlayerExperience Collector class, responsible for collecting and tracking PEX da
 `public  `[`URH_PEXCollector`](#classURH__PEXCollector_1aa973c234bd466bd10779d9bcea257ee9)`()` | 
 `public virtual  `[`~URH_PEXCollector`](#classURH__PEXCollector_1a92a6e63282290fdd5684fd3a5b2284fa)`()` | 
 `public virtual bool `[`Init`](#classURH__PEXCollector_1a5976807cc07bb1aba1719f8949df42a2)`(`[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` * InOwner)` | Initialize the collector. Can only be done once.
+`public virtual bool `[`InitWithConfig`](#classURH__PEXCollector_1aa1ce8de7522accac1b9f80242be8a705)`(`[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` * InOwner,const `[`URH_PEXCollectorConfig`](PlayerExperience.md#classURH__PEXCollectorConfig)` * InConfig)` | Initialize the collector. Can only be done once.
 `public virtual void `[`OnEndFrame`](#classURH__PEXCollector_1a4aef02ed0ddba34d7b2f970537071d01)`()` | Tick the collector, updating per frame stats and potentially per second stats.
 `public inline const `[`URH_PEXCollectorConfig`](PlayerExperience.md#classURH__PEXCollectorConfig)` * `[`GetConfig`](#classURH__PEXCollector_1a71bd22ee8057031fe4adbfb7c06bc48e)`() const` | Retrieve the config to use for this collector instance.
 `public inline void `[`ResetSummary`](#classURH__PEXCollector_1a73fa2f29acff15a77101afdf3ca6214a)`()` | Reset the summary state, which is useful if wanting to trim the front of the summary to when gameplay starts.
 `public void `[`Close`](#classURH__PEXCollector_1a29b53ef9f1777a3bb14cda202bc9e8a9)`()` | Closes state, writes summary if needed, and uploads data if needed. Can only be done once.
 `public void `[`WriteSummary`](#classURH__PEXCollector_1ad508ef615e45584a827b3aeb7bac96b6)`()` | Writes summary data to file and/or API, and uploads any data requested, can only be called once.
+`public inline FString `[`GetSummaryFilePath`](#classURH__PEXCollector_1a33d74feb6daa05f89c03fe93734dd1b4)`() const` | Get the file path for the summary file, if it was written.
+`public inline FString `[`GetTimelineFilePath`](#classURH__PEXCollector_1af4e9b3118636396e8801ea2c7878a78b)`() const` | Get the file path for the timeline file, if it was written.
 `public TSharedRef< FJsonObject > `[`GetSummaryJson`](#classURH__PEXCollector_1ae056ff5a734c2de99ffec883886ecbbf)`() const` | Retrieves the summary data in Json format.
 `protected TWeakInterfacePtr< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > `[`Owner`](#classURH__PEXCollector_1ae8ba839b956c23850efc1549e9d542d4) | Cached owner of the collector
 `protected const `[`URH_PEXCollectorConfig`](PlayerExperience.md#classURH__PEXCollectorConfig)` * `[`CachedConfig`](#classURH__PEXCollector_1a9cf7c881dd3f599b9815556751677d87) | Cached file path for timeline file
@@ -376,6 +381,7 @@ PlayerExperience Collector class, responsible for collecting and tracking PEX da
 `protected `[`URH_PEXStatGroupsTopLevel`](PlayerExperience.md#classURH__PEXStatGroupsTopLevel)` * `[`TopLevelStatGroup`](#classURH__PEXCollector_1a19bd2bcb0f8f408f9690f7161265ed93) | 
 `protected class FArchive * `[`TimelineFileCSV`](#classURH__PEXCollector_1a82fd95d78b4ec189504331f0e8c0ab9d) | Local file archive to write timeline data to
 `protected FString `[`TimelineFilePath`](#classURH__PEXCollector_1a1f032b2d4926fd92ab96ce7f68018fa5) | Cached file path for timeline file
+`protected FString `[`SummaryFilePath`](#classURH__PEXCollector_1ac4cb8e098782eebc4e2cbfbc30927ba2) | Cached file path for summary file
 `protected void `[`UploadFile`](#classURH__PEXCollector_1a3093ebae2fc7eecb2b495c4b8215b0fe)`(const FString & FilePath,const FString & RemoteFileName) const` | Internal helper to upload a file to remote file storage
 
 ### Members
@@ -385,6 +391,10 @@ PlayerExperience Collector class, responsible for collecting and tracking PEX da
 #### `public virtual  `[`~URH_PEXCollector`](#classURH__PEXCollector_1a92a6e63282290fdd5684fd3a5b2284fa)`()` <a id="classURH__PEXCollector_1a92a6e63282290fdd5684fd3a5b2284fa"></a>
 
 #### `public virtual bool `[`Init`](#classURH__PEXCollector_1a5976807cc07bb1aba1719f8949df42a2)`(`[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` * InOwner)` <a id="classURH__PEXCollector_1a5976807cc07bb1aba1719f8949df42a2"></a>
+
+Initialize the collector. Can only be done once.
+
+#### `public virtual bool `[`InitWithConfig`](#classURH__PEXCollector_1aa1ce8de7522accac1b9f80242be8a705)`(`[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` * InOwner,const `[`URH_PEXCollectorConfig`](PlayerExperience.md#classURH__PEXCollectorConfig)` * InConfig)` <a id="classURH__PEXCollector_1aa1ce8de7522accac1b9f80242be8a705"></a>
 
 Initialize the collector. Can only be done once.
 
@@ -407,6 +417,14 @@ Closes state, writes summary if needed, and uploads data if needed. Can only be 
 #### `public void `[`WriteSummary`](#classURH__PEXCollector_1ad508ef615e45584a827b3aeb7bac96b6)`()` <a id="classURH__PEXCollector_1ad508ef615e45584a827b3aeb7bac96b6"></a>
 
 Writes summary data to file and/or API, and uploads any data requested, can only be called once.
+
+#### `public inline FString `[`GetSummaryFilePath`](#classURH__PEXCollector_1a33d74feb6daa05f89c03fe93734dd1b4)`() const` <a id="classURH__PEXCollector_1a33d74feb6daa05f89c03fe93734dd1b4"></a>
+
+Get the file path for the summary file, if it was written.
+
+#### `public inline FString `[`GetTimelineFilePath`](#classURH__PEXCollector_1af4e9b3118636396e8801ea2c7878a78b)`() const` <a id="classURH__PEXCollector_1af4e9b3118636396e8801ea2c7878a78b"></a>
+
+Get the file path for the timeline file, if it was written.
 
 #### `public TSharedRef< FJsonObject > `[`GetSummaryJson`](#classURH__PEXCollector_1ae056ff5a734c2de99ffec883886ecbbf)`() const` <a id="classURH__PEXCollector_1ae056ff5a734c2de99ffec883886ecbbf"></a>
 
@@ -465,6 +483,10 @@ Local file archive to write timeline data to
 #### `protected FString `[`TimelineFilePath`](#classURH__PEXCollector_1a1f032b2d4926fd92ab96ce7f68018fa5) <a id="classURH__PEXCollector_1a1f032b2d4926fd92ab96ce7f68018fa5"></a>
 
 Cached file path for timeline file
+
+#### `protected FString `[`SummaryFilePath`](#classURH__PEXCollector_1ac4cb8e098782eebc4e2cbfbc30927ba2) <a id="classURH__PEXCollector_1ac4cb8e098782eebc4e2cbfbc30927ba2"></a>
+
+Cached file path for summary file
 
 #### `protected void `[`UploadFile`](#classURH__PEXCollector_1a3093ebae2fc7eecb2b495c4b8215b0fe)`(const FString & FilePath,const FString & RemoteFileName) const` <a id="classURH__PEXCollector_1a3093ebae2fc7eecb2b495c4b8215b0fe"></a>
 
@@ -850,6 +872,80 @@ Capture once-per-interval stats.
 #### `public void `[`BLUEPRINT_CapturePerSecondStats`](#classURH__PEXBlueprintableStats_1afd712220fec60d44ab2d2481ba24b7ae)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` <a id="classURH__PEXBlueprintableStats_1afd712220fec60d44ab2d2481ba24b7ae"></a>
 
 #### `public inline void `[`CaptureValue`](#classURH__PEXBlueprintableStats_1a20215f05c76bf4399d7a3cdcff1a4183)`(FName StatName,float Value)` <a id="classURH__PEXBlueprintableStats_1a20215f05c76bf4399d7a3cdcff1a4183"></a>
+
+## class `URH_PEXCollectorConfig_Test` <a id="classURH__PEXCollectorConfig__Test"></a>
+
+```
+class URH_PEXCollectorConfig_Test
+  : public URH_PEXCollectorConfig_Host
+```
+
+### Summary
+
+ Members                        | Descriptions                                
+--------------------------------|---------------------------------------------
+
+### Members
+
+## class `URH_TestPEXOwner` <a id="classURH__TestPEXOwner"></a>
+
+```
+class URH_TestPEXOwner
+  : public UObject
+  : public IRH_PEXOwnerInterface
+```
+
+### Summary
+
+ Members                        | Descriptions                                
+--------------------------------|---------------------------------------------
+`public FGuid `[`PlayerId`](#classURH__TestPEXOwner_1a43b7bd0bb58a6ebb37ade126a774f2d6) | 
+`public FString `[`MatchId`](#classURH__TestPEXOwner_1a1127493ed99ade6e18620921a4470b91) | 
+`public bool `[`bSendReportsToAPI`](#classURH__TestPEXOwner_1a234ed01e57ee337a919bae13d1001f1d) | 
+`public mutable TOptional< `[`FRHAPI_PexClientRequest`](models/RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` > `[`ClientReport`](#classURH__TestPEXOwner_1a94bed84e6a2aef0f3135344dfdc414cf) | 
+`public mutable TOptional< `[`FRHAPI_PexHostRequest`](models/RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` > `[`HostReport`](#classURH__TestPEXOwner_1afe117b1194971b6c8f20f1726b20cb73) | 
+`public inline  `[`URH_TestPEXOwner`](#classURH__TestPEXOwner_1a59cc322ce116f2a880e3057909b6da18)`()` | 
+`public inline virtual UEngine * `[`GetPEXEngine`](#classURH__TestPEXOwner_1a59738a682866e8a7a6194b51713ff39f)`() const` | 
+`public inline virtual UWorld * `[`GetPEXWorld`](#classURH__TestPEXOwner_1a5b50b9ea1dc76a9a830f1f901fd83365)`() const` | 
+`public inline virtual FString `[`GetPEXMatchId`](#classURH__TestPEXOwner_1a5cbb10cd0279946092f0b12650c848b6)`() const` | 
+`public inline virtual FGuid `[`GetPEXPlayerId`](#classURH__TestPEXOwner_1ac975e4caa360548e994a27f2443188f6)`() const` | 
+`public inline virtual `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` `[`GetPEXRemoteFileDirectory`](#classURH__TestPEXOwner_1a5854365a69238f85f4007083e38f4979)`() const` | 
+`public inline virtual bool `[`GetPEXIsHost`](#classURH__TestPEXOwner_1a1a7d5a3b776e8c01bd668fcbe027ecf8)`() const` | 
+`public virtual void `[`SubmitPEXHostSummary`](#classURH__TestPEXOwner_1a420ec1e5e87bcc7c08c3fa70a28d643b)`(`[`FRHAPI_PexHostRequest`](models/RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` && Report) const` | 
+`public virtual void `[`SubmitPEXClientSummary`](#classURH__TestPEXOwner_1a8b6db289fa0ccfd3931e368eaa088d17)`(`[`FRHAPI_PexClientRequest`](models/RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` && Report) const` | 
+`public virtual void `[`ValidateReports`](#classURH__TestPEXOwner_1a85e7219ba356d999310e7244bc8ca205)`(FAutomationTestBase * Test,const `[`URH_PEXCollectorConfig`](PlayerExperience.md#classURH__PEXCollectorConfig)` * Config) const` | 
+
+### Members
+
+#### `public FGuid `[`PlayerId`](#classURH__TestPEXOwner_1a43b7bd0bb58a6ebb37ade126a774f2d6) <a id="classURH__TestPEXOwner_1a43b7bd0bb58a6ebb37ade126a774f2d6"></a>
+
+#### `public FString `[`MatchId`](#classURH__TestPEXOwner_1a1127493ed99ade6e18620921a4470b91) <a id="classURH__TestPEXOwner_1a1127493ed99ade6e18620921a4470b91"></a>
+
+#### `public bool `[`bSendReportsToAPI`](#classURH__TestPEXOwner_1a234ed01e57ee337a919bae13d1001f1d) <a id="classURH__TestPEXOwner_1a234ed01e57ee337a919bae13d1001f1d"></a>
+
+#### `public mutable TOptional< `[`FRHAPI_PexClientRequest`](models/RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` > `[`ClientReport`](#classURH__TestPEXOwner_1a94bed84e6a2aef0f3135344dfdc414cf) <a id="classURH__TestPEXOwner_1a94bed84e6a2aef0f3135344dfdc414cf"></a>
+
+#### `public mutable TOptional< `[`FRHAPI_PexHostRequest`](models/RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` > `[`HostReport`](#classURH__TestPEXOwner_1afe117b1194971b6c8f20f1726b20cb73) <a id="classURH__TestPEXOwner_1afe117b1194971b6c8f20f1726b20cb73"></a>
+
+#### `public inline  `[`URH_TestPEXOwner`](#classURH__TestPEXOwner_1a59cc322ce116f2a880e3057909b6da18)`()` <a id="classURH__TestPEXOwner_1a59cc322ce116f2a880e3057909b6da18"></a>
+
+#### `public inline virtual UEngine * `[`GetPEXEngine`](#classURH__TestPEXOwner_1a59738a682866e8a7a6194b51713ff39f)`() const` <a id="classURH__TestPEXOwner_1a59738a682866e8a7a6194b51713ff39f"></a>
+
+#### `public inline virtual UWorld * `[`GetPEXWorld`](#classURH__TestPEXOwner_1a5b50b9ea1dc76a9a830f1f901fd83365)`() const` <a id="classURH__TestPEXOwner_1a5b50b9ea1dc76a9a830f1f901fd83365"></a>
+
+#### `public inline virtual FString `[`GetPEXMatchId`](#classURH__TestPEXOwner_1a5cbb10cd0279946092f0b12650c848b6)`() const` <a id="classURH__TestPEXOwner_1a5cbb10cd0279946092f0b12650c848b6"></a>
+
+#### `public inline virtual FGuid `[`GetPEXPlayerId`](#classURH__TestPEXOwner_1ac975e4caa360548e994a27f2443188f6)`() const` <a id="classURH__TestPEXOwner_1ac975e4caa360548e994a27f2443188f6"></a>
+
+#### `public inline virtual `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` `[`GetPEXRemoteFileDirectory`](#classURH__TestPEXOwner_1a5854365a69238f85f4007083e38f4979)`() const` <a id="classURH__TestPEXOwner_1a5854365a69238f85f4007083e38f4979"></a>
+
+#### `public inline virtual bool `[`GetPEXIsHost`](#classURH__TestPEXOwner_1a1a7d5a3b776e8c01bd668fcbe027ecf8)`() const` <a id="classURH__TestPEXOwner_1a1a7d5a3b776e8c01bd668fcbe027ecf8"></a>
+
+#### `public virtual void `[`SubmitPEXHostSummary`](#classURH__TestPEXOwner_1a420ec1e5e87bcc7c08c3fa70a28d643b)`(`[`FRHAPI_PexHostRequest`](models/RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` && Report) const` <a id="classURH__TestPEXOwner_1a420ec1e5e87bcc7c08c3fa70a28d643b"></a>
+
+#### `public virtual void `[`SubmitPEXClientSummary`](#classURH__TestPEXOwner_1a8b6db289fa0ccfd3931e368eaa088d17)`(`[`FRHAPI_PexClientRequest`](models/RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` && Report) const` <a id="classURH__TestPEXOwner_1a8b6db289fa0ccfd3931e368eaa088d17"></a>
+
+#### `public virtual void `[`ValidateReports`](#classURH__TestPEXOwner_1a85e7219ba356d999310e7244bc8ca205)`(FAutomationTestBase * Test,const `[`URH_PEXCollectorConfig`](PlayerExperience.md#classURH__PEXCollectorConfig)` * Config) const` <a id="classURH__TestPEXOwner_1a85e7219ba356d999310e7244bc8ca205"></a>
 
 ## struct `FRH_PEXStatState` <a id="structFRH__PEXStatState"></a>
 
