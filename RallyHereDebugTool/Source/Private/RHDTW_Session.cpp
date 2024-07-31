@@ -74,8 +74,6 @@ FRHDTW_Session::FRHDTW_Session()
 
 	InstanceLaunchParamsDisplay->ResetToDefaults();
 
-	UpdateSessionRegionIdString.SetNumZeroed(IMGUI_SESSION_TEXTENTRY_PREALLOCATION_SIZE);
-
 	SearchByTypeString.SetNumZeroed(IMGUI_SESSION_TYPE_PREALLOCATION_SIZE);
 	SearchByRegionIdString.SetNumZeroed(IMGUI_SESSION_TYPE_PREALLOCATION_SIZE);
 
@@ -98,7 +96,7 @@ FRHDTW_Session::FRHDTW_Session()
 	InstanceCustomDataStager.SetName("Instance Update");
 	InvitePlayerCustomDataStager.SetName("Invite Players");
 	BrowserCustomDataStager.SetName("Browser");
-	SessionCustomDataStager.SetName("Session");
+	SessionUpdateCustomDataStager.SetName("Session Update");
 }
 
 FRHDTW_Session::~FRHDTW_Session()
@@ -946,24 +944,44 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 
 		if (ImGui::TreeNodeEx("Update Session State", RH_DefaultTreeFlags))
 		{
-			ImGui::InputText("Region Id", UpdateSessionRegionIdString.GetData(), UpdateSessionRegionIdString.Num());
+			if (ImGui::Button("Reset"))
+			{
+				SessionUpdate = FRHAPI_SessionUpdate();
+			}
 
-			SessionCustomDataStager.DisplayCustomDataStager(false, Session.GetCustomDataOrNull());
+			{
+				ImGui::Checkbox("##RegionIdOptional", &SessionUpdate.RegionId_IsSet);
+				ImGui::SameLine();
+				ImGui::BeginDisabled(!SessionUpdate.RegionId_IsSet);
+		
+				ImGui::InputText("Region Id", &SessionUpdate.RegionId_Optional);
 
+				ImGui::EndDisabled();
+			}
+			
+			{
+				ImGui::Checkbox("##JoinableOptional", &SessionUpdate.Joinable_IsSet);
+				ImGui::SameLine();
+				ImGui::BeginDisabled(!SessionUpdate.Joinable_IsSet);
+		
+				ImGui::Checkbox("Joinable", &SessionUpdate.Joinable_Optional);
+
+				ImGui::EndDisabled();
+			}
+			
+			{
+				ImGui::Checkbox("##CustomDataOptional", &SessionUpdate.CustomData_IsSet);
+				ImGui::SameLine();
+				ImGui::BeginDisabled(!SessionUpdate.CustomData_IsSet);
+		
+				SessionUpdateCustomDataStager.DisplayCustomDataStager(false, &SessionUpdate.CustomData_Optional);
+				SessionUpdateCustomDataStager.GetCustomDataMap(SessionUpdate.CustomData_Optional);
+
+				ImGui::EndDisabled();
+			}
+			
 			if (RHJoinedSession != nullptr && ImGui::Button("Update Session Info"))
 			{
-				FRHAPI_SessionUpdate SessionUpdate;
-
-				auto RegionId = ImGuiGetStringFromTextInputBuffer(UpdateSessionRegionIdString);
-				if (RegionId.Len() > 0)
-				{
-					SessionUpdate.SetRegionId(RegionId);
-				}
-
-				TMap<FString, FString> CustomData;
-				SessionCustomDataStager.GetCustomDataMap(CustomData);
-				SessionUpdate.SetCustomData(CustomData);
-
 				RHJoinedSession->UpdateSessionInfo(SessionUpdate);
 			}
 

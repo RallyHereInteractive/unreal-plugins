@@ -63,7 +63,8 @@ public:
 	};
 	TSharedRef<FInstanceLaunchParamsDisplay> InstanceLaunchParamsDisplay;
 
-	TArray<ANSICHAR> UpdateSessionRegionIdString;
+	FRHAPI_SessionUpdate SessionUpdate;
+	FImGuiCustomDataStager SessionUpdateCustomDataStager;
 
 	TArray<ANSICHAR> SearchByTypeString;
 	TArray<ANSICHAR> SearchByRegionIdString;
@@ -127,6 +128,5 @@ protected:
 	FImGuiCustomDataStager InstanceCustomDataStager;
 	FImGuiCustomDataStager InvitePlayerCustomDataStager;
 	FImGuiCustomDataStager BrowserCustomDataStager;
-	FImGuiCustomDataStager SessionCustomDataStager;
 	TMap<FGuid, FImGuiCustomDataStager*> UpdatePlayerCustomDataStagers;
 };
