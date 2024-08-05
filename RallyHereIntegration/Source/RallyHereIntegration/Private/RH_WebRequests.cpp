@@ -672,15 +672,14 @@ void FRH_WebRequests::DetectRecentBursts(TMap<FName, TTuple<int32, int32>>* OutB
 	FTimespan burstTimeThreshold = FTimespan(0, 0, IntegrationSettings->WebRequestsBurstTimeThresholdInSeconds);
 	auto burstCountThreshold = IntegrationSettings->WebRequestsBurstCountThreshold;
 
-	auto DetectBurstsAndPopulateMap = [this, burstTimeThreshold, burstCountThreshold](TDoubleLinkedListIterator<TDoubleLinkedList<TSharedPtr<FRH_WebRequest>>::TDoubleLinkedListNode, TSharedPtr<FRH_WebRequest>>& RequestsIterator,
-																FRH_WebRequest* StartingRequest,
+	auto DetectBurstsAndPopulateMap = [this, burstTimeThreshold, burstCountThreshold](const TDoubleLinkedList<TSharedPtr<FRH_WebRequest>>::TDoubleLinkedListNode* listNode,
+																const FRH_WebRequest* StartingRequest,
 																auto& IsMatch,
 																auto& GetKeyFromRequest,
 																TMap<FName, TSet<TSharedPtr<FRH_WebRequest>>>& CurrentBurstRequestsMap,
 																TMap<FName, TTuple<int32, int32>>* OutBurstMap)
 	{
 		int currentIntervalCallCount = 1;
-		auto listNode = RequestsIterator.GetNode();
 		TSet<TSharedPtr<FRH_WebRequest>> currentBurstRequests;
 		currentBurstRequests.Add(listNode->GetValue());
 
@@ -718,22 +717,22 @@ void FRH_WebRequests::DetectRecentBursts(TMap<FName, TTuple<int32, int32>>* OutB
 	};
 
 	// For API Name map
-	auto IsMatchByAPIName = [](FRH_WebRequest* Request1, FRH_WebRequest* Request2) -> bool
+	auto IsMatchByAPIName = [](const FRH_WebRequest* Request1, const FRH_WebRequest* Request2) -> bool
 	{
 		return Request1->APIName == Request2->APIName;
 	};
 	// For API Name map
-	auto GetAPINameFromRequest = [](FRH_WebRequest* Request) -> FName
+	auto GetAPINameFromRequest = [](const FRH_WebRequest* Request) -> FName
 	{
 		return Request->APIName;
 	};
 	// For URL map
-	auto IsMatchByURL = [](FRH_WebRequest* Request1, FRH_WebRequest* Request2) -> bool
+	auto IsMatchByURL = [](const FRH_WebRequest* Request1, const FRH_WebRequest* Request2) -> bool
 	{
 		return Request1->Metadata.SimplifiedPathWithVerb == Request2->Metadata.SimplifiedPathWithVerb;
 	};
 	// For URL map
-	auto GetURLFromRequest = [](FRH_WebRequest* Request) -> FName
+	auto GetURLFromRequest = [](const FRH_WebRequest* Request) -> FName
 	{
 		return Request->Metadata.SimplifiedPathWithVerb;
 	};
@@ -742,7 +741,7 @@ void FRH_WebRequests::DetectRecentBursts(TMap<FName, TTuple<int32, int32>>* OutB
 	TMap<FName, TSet<TSharedPtr<FRH_WebRequest>>> APINameToCurrentBurstRequests;
 	TMap<FName, TSet<TSharedPtr<FRH_WebRequest>>> URLToCurrentBurstRequests;
 
-	for (auto requestsIterator = TDoubleLinkedListIterator<TDoubleLinkedList<TSharedPtr<FRH_WebRequest>>::TDoubleLinkedListNode, TSharedPtr<FRH_WebRequest>>(GetTrackedRequests().GetHead()); requestsIterator.GetNode() != nullptr; requestsIterator++)
+	for (auto requestsIterator = TDoubleLinkedListIterator<TDoubleLinkedList<TSharedPtr<FRH_WebRequest>>::TDoubleLinkedListNode, TSharedPtr<FRH_WebRequest>>(GetTrackedRequests().GetHead()); requestsIterator; requestsIterator++)
 	{
 		auto startingRequest = requestsIterator.GetNode()->GetValue().Get();
 		if (startingRequest == nullptr || startingRequest->Timestamp < TimeLimit) // not within last 60s
@@ -751,11 +750,11 @@ void FRH_WebRequests::DetectRecentBursts(TMap<FName, TTuple<int32, int32>>* OutB
 		}
 		if (OutBurstMapByAPIName != nullptr)
 		{
-			DetectBurstsAndPopulateMap(requestsIterator, startingRequest, IsMatchByAPIName, GetAPINameFromRequest, APINameToCurrentBurstRequests, OutBurstMapByAPIName);
+			DetectBurstsAndPopulateMap(requestsIterator.GetNode(), startingRequest, IsMatchByAPIName, GetAPINameFromRequest, APINameToCurrentBurstRequests, OutBurstMapByAPIName);
 		}
 		if (OutBurstMapByURL != nullptr)
 		{
-			DetectBurstsAndPopulateMap(requestsIterator, startingRequest, IsMatchByURL, GetURLFromRequest, URLToCurrentBurstRequests, OutBurstMapByURL);
+			DetectBurstsAndPopulateMap(requestsIterator.GetNode(), startingRequest, IsMatchByURL, GetURLFromRequest, URLToCurrentBurstRequests, OutBurstMapByURL);
 		}
 	}
 }

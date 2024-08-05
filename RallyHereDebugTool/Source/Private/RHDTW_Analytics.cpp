@@ -408,7 +408,7 @@ void FRHDTW_Analytics::DoTimelinePlot(FRH_WebRequests* WebRequestsTracker, const
 	TimelineCountByTimeAndKey.SetNum(SecondsInOneMinute);
 	TArray<FName> ItemsByFName;
 	TDoubleLinkedListIterator<TDoubleLinkedList<TSharedPtr<FRH_WebRequest>>::TDoubleLinkedListNode, TSharedPtr<FRH_WebRequest>>  requestsIterator(TrackedRequests.GetTail());
-	for (; requestsIterator.GetNode() != nullptr; --requestsIterator)
+	for (; requestsIterator; --requestsIterator)
 	{
 		auto request = requestsIterator.GetNode()->GetValue().Get();
 		if (!request)
