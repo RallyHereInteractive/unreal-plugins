@@ -94,6 +94,7 @@ FRHDTW_Session::FRHDTW_Session()
 	bFilterInactiveQueues = true;
 
 	InstanceCustomDataStager.SetName("Instance Update");
+	InstanceJoinParamsCustomDataStager.SetName("Instance JoinParams Custom Data");
 	InvitePlayerCustomDataStager.SetName("Invite Players");
 	BrowserCustomDataStager.SetName("Browser");
 	SessionUpdateCustomDataStager.SetName("Session Update");
@@ -163,16 +164,79 @@ void FRHDTW_Session::ImGuiDisplayInstance(const FRHAPI_InstanceInfo& Info, URH_S
 
 		if (ImGui::TreeNodeEx("Update Instance State", RH_DefaultTreeFlags))
 		{
-			InstanceCustomDataStager.DisplayCustomDataStager(false, Info.GetCustomDataOrNull());
+			{
+				ImGui::Checkbox("##JoinStatusOptional", &InstanceUpdate.JoinStatus_IsSet);
+				ImGui::SameLine();
+				ImGui::BeginDisabled(!InstanceUpdate.JoinStatus_IsSet);
+		
+				ImGuiDisplayEnumCombo("JoinStatus", InstanceUpdate.JoinStatus_Optional);
+
+				ImGui::EndDisabled();
+			}
+
+			{
+				ImGui::Checkbox("##JoinParamsOptional", &InstanceUpdate.JoinParams_IsSet);
+				ImGui::SameLine();
+				ImGui::BeginDisabled(!InstanceUpdate.JoinParams_IsSet);
+		
+				if (ImGui::TreeNodeEx("JoinParams", RH_DefaultTreeFlags))
+				{
+					auto& JoinParams = InstanceUpdate.JoinParams_Optional;
+					
+					ImGui::InputText("PublicConnStr", &JoinParams.PublicConnStr);
+					ImGui::InputText("PrivateConnStr", &JoinParams.PrivateConnStr);
+
+					{
+						ImGui::Checkbox("##CustomDataOptional", &JoinParams.CustomData_IsSet);
+						ImGui::SameLine();
+						ImGui::BeginDisabled(!JoinParams.CustomData_IsSet);
+						
+						InstanceJoinParamsCustomDataStager.DisplayCustomDataStager(false, Info.GetJoinParamsOrNull() ? Info.GetJoinParamsOrNull()->GetCustomDataOrNull() : nullptr);
+						InstanceJoinParamsCustomDataStager.GetCustomDataMap(JoinParams.CustomData_Optional);
+
+						ImGui::EndDisabled();
+					}
+					
+					
+					ImGui::TreePop();
+				}
+
+				ImGui::EndDisabled();
+			}
+			
+			{
+				ImGui::Checkbox("##VersionOptional", &InstanceUpdate.Version_IsSet);
+				ImGui::SameLine();
+				ImGui::BeginDisabled(!InstanceUpdate.Version_IsSet);
+		
+				ImGui::InputText("Version", &InstanceUpdate.Version_Optional);
+
+				ImGui::EndDisabled();
+			}
+			
+			{
+				ImGui::Checkbox("##MatchIdOptional", &InstanceUpdate.MatchId_IsSet);
+				ImGui::SameLine();
+				ImGui::BeginDisabled(!InstanceUpdate.MatchId_IsSet);
+		
+				ImGui::InputText("MatchId", &InstanceUpdate.MatchId_Optional);
+
+				ImGui::EndDisabled();
+			}
+			
+			{
+				ImGui::Checkbox("##CustomDataOptional", &InstanceUpdate.CustomData_IsSet);
+				ImGui::SameLine();
+				ImGui::BeginDisabled(!InstanceUpdate.CustomData_IsSet);
+		
+				InstanceCustomDataStager.DisplayCustomDataStager(false, Info.GetCustomDataOrNull());
+				InstanceCustomDataStager.GetCustomDataMap(InstanceUpdate.CustomData_Optional);
+
+				ImGui::EndDisabled();
+			}
 
 			if (RHJoinedSession != nullptr && ImGui::Button("Update Instance Info"))
 			{
-				FRHAPI_InstanceInfoUpdate InstanceUpdate;
-
-				TMap<FString, FString> CustomData;
-				InstanceCustomDataStager.GetCustomDataMap(CustomData);
-				InstanceUpdate.SetCustomData(CustomData);
-
 				RHJoinedSession->UpdateInstanceInfo(InstanceUpdate);
 			}
 
@@ -974,7 +1038,7 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 				ImGui::SameLine();
 				ImGui::BeginDisabled(!SessionUpdate.CustomData_IsSet);
 		
-				SessionUpdateCustomDataStager.DisplayCustomDataStager(false, &SessionUpdate.CustomData_Optional);
+				SessionUpdateCustomDataStager.DisplayCustomDataStager(false, Session.GetCustomDataOrNull());
 				SessionUpdateCustomDataStager.GetCustomDataMap(SessionUpdate.CustomData_Optional);
 
 				ImGui::EndDisabled();
