@@ -26,9 +26,17 @@ void URH_RemoteFileSubsystem::Deinitialize()
 	Super::Deinitialize();
 }
 
-void URH_RemoteFileSubsystem::UploadFile(const FRH_RemoteFileApiDirectory& Directory, const FString& RemoteFileName, const FString& LocalFilePath, const FRH_GenericSuccessWithErrorBlock Delegate)
+
+void URH_RemoteFileSubsystem::UploadFromFile(const FRH_RemoteFileApiDirectory& Directory, const FString& RemoteFileName, const FString& LocalFilePath, bool bStreamFile, const FRH_GenericSuccessWithErrorBlock Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] Request to upload file %s to %s::%s"), ANSI_TO_TCHAR(__FUNCTION__), *LocalFilePath, *Directory.ToDescriptionString(), *RemoteFileName);
+	
+	if (!IFileManager::Get().FileExists(*LocalFilePath))
+	{
+		Delegate.ExecuteIfBound(false, FRH_ErrorInfo());
+		return;
+	}
+	
 	typedef RallyHereAPI::Traits_CreateEntityDirectoryFile BaseType;
 
 	BaseType::Request Request;
@@ -37,11 +45,27 @@ void URH_RemoteFileSubsystem::UploadFile(const FRH_RemoteFileApiDirectory& Direc
 	Request.EntityType = Directory.EntityType;
 	Request.EntityId = Directory.EntityId;
 	Request.FileName = RemoteFileName;
-	Request.File.SetFilePath(*LocalFilePath);
-	// if type autodetection failed, treat as a binary stream
-	if (Request.File.GetContentType() == TEXT("application/unknown"))
+
+	// if streaming the file, wrapper via the file streaming content flag on the request (this is handled after the request is created via callback), else set onto the file input object on the request to do an in memory upload
+	if (bStreamFile)
 	{
-		Request.File.SetContentType(TEXT("application/octet-stream"));
+		Request.OnModifyRequest().AddLambda([LocalFilePath](const RallyHereAPI::FRequest& APIRequest, FHttpRequestRef HttpRequest)
+		{
+			// override upload type to octet-stream
+			HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("octet-stream"));
+				
+			// set the stream as the request body
+			HttpRequest->SetContentAsStreamedFile(*LocalFilePath);
+		});
+	}
+	else
+	{
+		Request.File.SetFilePath(*LocalFilePath);
+		// if type autodetection failed, treat as a binary stream
+		if (Request.File.GetContentType() == TEXT("application/unknown"))
+		{
+			Request.File.SetContentType(TEXT("application/octet-stream"));
+		}
 	}
 
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
@@ -54,6 +78,47 @@ void URH_RemoteFileSubsystem::UploadFile(const FRH_RemoteFileApiDirectory& Direc
 				else
 				{
 					UE_LOG(LogRallyHereIntegration, Error, TEXT("Failed to upload file %s to %s::%s"), *LocalFilePath, *Directory.ToDescriptionString(), *RemoteFileName);
+				}
+			}),
+		Delegate,
+		GetDefault<URH_IntegrationSettings>()->FileUploadPriority
+	);
+
+	Helper->Start(RH_APIs::GetRemoteFileAPI(), Request);
+}
+
+void URH_RemoteFileSubsystem::UploadFromStream(const FRH_RemoteFileApiDirectory& Directory, const FString& RemoteFileName, TSharedRef<FArchive, ESPMode::ThreadSafe> Stream, const FRH_GenericSuccessWithErrorBlock Delegate)
+{
+	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] Request to upload stream to %s::%s"), ANSI_TO_TCHAR(__FUNCTION__), *Directory.ToDescriptionString(), *RemoteFileName);
+		
+	typedef RallyHereAPI::Traits_CreateEntityDirectoryFile BaseType;
+
+	BaseType::Request Request;
+	Request.AuthContext = GetAuthContext();
+	Request.FileType = Directory.FileType;
+	Request.EntityType = Directory.EntityType;
+	Request.EntityId = Directory.EntityId;
+	Request.FileName = RemoteFileName;
+	
+	Request.OnModifyRequest().AddLambda([Stream](const RallyHereAPI::FRequest& APIRequest, FHttpRequestRef HttpRequest)
+	{
+		// override upload type to octet-stream
+		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("octet-stream"));
+		
+		// set the stream as the request body
+		HttpRequest->SetContentFromStream(Stream);
+	});
+
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate::CreateWeakLambda(this, [this, Directory, RemoteFileName, Stream](const BaseType::Response& Response)
+			{
+				if (Response.IsSuccessful())
+				{
+					UE_LOG(LogRallyHereIntegration, Log, TEXT("Stream uploaded successfully to %s::%s"), *Directory.ToDescriptionString(), *RemoteFileName);
+				}
+				else
+				{
+					UE_LOG(LogRallyHereIntegration, Error, TEXT("Failed to upload stream to %s::%s"), *Directory.ToDescriptionString(), *RemoteFileName);
 				}
 			}),
 		Delegate,
@@ -95,9 +160,32 @@ void URH_RemoteFileSubsystem::DeleteFile(const FRH_RemoteFileApiDirectory& Direc
 	Helper->Start(RH_APIs::GetRemoteFileAPI(), Request);
 }
 
-void URH_RemoteFileSubsystem::DownloadFile(const FRH_RemoteFileApiDirectory& Directory, const FString& RemoteFileName, const FString& LocalFilePath, const FRH_GenericSuccessWithErrorBlock Delegate)
+void URH_RemoteFileSubsystem::DownloadToFile(const FRH_RemoteFileApiDirectory& Directory, const FString& RemoteFileName, const FString& LocalFilePath, bool bStreamFile, const FRH_GenericSuccessWithErrorBlock Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] Request to download file %s::%s to %s"), ANSI_TO_TCHAR(__FUNCTION__), *Directory.ToDescriptionString(), *RemoteFileName, *LocalFilePath);
+
+	if (bStreamFile)
+	{
+		// reroute to streaming upload via a wrapper
+		TSharedPtr<FArchive, ESPMode::ThreadSafe> Archive = MakeShareable(IFileManager::Get().CreateFileWriter(*LocalFilePath));
+		if (Archive.IsValid())
+		{
+			// use a delegate wrapper to close the archive after the upload
+			FRH_GenericSuccessWithErrorDelegate CloseWrapper = FRH_GenericSuccessWithErrorDelegate::CreateLambda([Archive, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				Archive->Close();
+				Delegate.ExecuteIfBound(bSuccess, ErrorInfo);
+			});
+			DownloadToStream(Directory, RemoteFileName, Archive.ToSharedRef(), Delegate);
+		}
+		else
+		{
+			UE_LOG(LogRallyHereIntegration, Error, TEXT("Failed to create file writer %s for streaming downlaod"), *LocalFilePath);
+			Delegate.ExecuteIfBound(false, FRH_ErrorInfo());
+		}
+		return;
+	}
+	
 	typedef RallyHereAPI::Traits_DownloadEntityDirectoryFile BaseType;
 
 	BaseType::Request Request;
@@ -140,7 +228,7 @@ void URH_RemoteFileSubsystem::DownloadFile(const FRH_RemoteFileApiDirectory& Dir
 }
 
 
-void URH_RemoteFileSubsystem::DownloadFile(const FRH_RemoteFileApiDirectory& Directory, const FString& RemoteFileName, const FRH_FileDownloadDelegate Delegate)
+void URH_RemoteFileSubsystem::DownloadToMemory(const FRH_RemoteFileApiDirectory& Directory, const FString& RemoteFileName, const FRH_FileDownloadDelegate Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] Request to download file %s::%s to memory"), ANSI_TO_TCHAR(__FUNCTION__), *Directory.ToDescriptionString(), *RemoteFileName);
 	typedef RallyHereAPI::Traits_DownloadEntityDirectoryFile BaseType;
@@ -168,6 +256,42 @@ void URH_RemoteFileSubsystem::DownloadFile(const FRH_RemoteFileApiDirectory& Dir
 				}
 				Delegate.ExecuteIfBound(bSuccess, Payload, ErrorInfo);
 			}),
+		GetDefault<URH_IntegrationSettings>()->FileDownloadPriority
+	);
+
+	Helper->Start(RH_APIs::GetRemoteFileAPI(), Request);
+}
+
+
+void URH_RemoteFileSubsystem::DownloadToStream(const FRH_RemoteFileApiDirectory& Directory, const FString& RemoteFileName, TSharedRef<FArchive> Stream, const FRH_GenericSuccessWithErrorBlock Delegate)
+{
+	typedef RallyHereAPI::Traits_DownloadEntityDirectoryFile BaseType;
+
+	BaseType::Request Request;
+	Request.AuthContext = GetAuthContext();
+	Request.FileType = Directory.FileType;
+	Request.EntityType = Directory.EntityType;
+	Request.EntityId = Directory.EntityId;
+	Request.FileName = RemoteFileName;
+	
+	Request.OnModifyRequest().AddLambda([Stream](const RallyHereAPI::FRequest& APIRequest, FHttpRequestRef HttpRequest)
+	{
+		HttpRequest->SetResponseBodyReceiveStream(Stream);
+	});
+
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate::CreateWeakLambda(this, [this, Directory, RemoteFileName, Stream](const BaseType::Response& Response)
+			{
+				if (Response.IsSuccessful())
+				{
+					UE_LOG(LogRallyHereIntegration, Log, TEXT("Successfully downloaded %s::%s as a stream"), *Directory.ToDescriptionString(), *RemoteFileName);
+				}
+				else
+				{
+					UE_LOG(LogRallyHereIntegration, Error, TEXT("Failed to download file %s::%s as a stream"), *Directory.ToDescriptionString(), *RemoteFileName);
+				}
+			}),
+		Delegate,
 		GetDefault<URH_IntegrationSettings>()->FileDownloadPriority
 	);
 
@@ -251,7 +375,7 @@ void URH_RemoteFileSubsystem::DownloadFileList(const FRH_RemoteFileApiDirectory&
 	TSharedPtr<FDownloadMultiFileContext> ContextPtr = Context;
 	for (const auto& File : RemoteFileNames)
 	{
-		DownloadFile(Directory, File, FPaths::Combine(LocalDirectory, File), FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [ContextPtr, File](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+		DownloadToFile(Directory, File, FPaths::Combine(LocalDirectory, File), true, FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [ContextPtr, File](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 			{
 				// record result
 				if (bSuccess)

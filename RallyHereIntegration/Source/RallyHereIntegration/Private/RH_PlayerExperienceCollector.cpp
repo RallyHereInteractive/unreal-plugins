@@ -408,7 +408,7 @@ void URH_PEXCollector::UploadFile(const FString& FilePath, const FString& Remote
 				auto RHGI = World->GetGameInstance()->GetSubsystem<URH_GameInstanceSubsystem>();
 				if (RHGI != nullptr && RHGI->GetRemoteFileSubsystem() != nullptr)
 				{
-					RHGI->GetRemoteFileSubsystem()->UploadFile(UploadDirectory, RemoteFileName, FilePath);
+					RHGI->GetRemoteFileSubsystem()->UploadFromFile(UploadDirectory, RemoteFileName, FilePath, true);
 				}
 			}
 		}

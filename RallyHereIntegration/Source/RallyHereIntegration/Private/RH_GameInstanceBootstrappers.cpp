@@ -1776,7 +1776,7 @@ void URH_GameInstanceServerBootstrapper::ConditionalAutoUploadLogFile() const
 				Log->Flush();
 			}
 
-			return GISS->GetRemoteFileSubsystem()->UploadFile(Directory, LogFilename, LogSrcAbsolute);
+			return GISS->GetRemoteFileSubsystem()->UploadFromFile(Directory, LogFilename, LogSrcAbsolute, true);
 		}
 	}
 }
@@ -1791,7 +1791,7 @@ void URH_GameInstanceServerBootstrapper::ConditionalAutoUploadTraceFile(const FS
 		{
 			FString LogFilename = FPaths::GetCleanFilename(TraceFile);
 
-			return GISS->GetRemoteFileSubsystem()->UploadFile(Directory, LogFilename, TraceFile);
+			return GISS->GetRemoteFileSubsystem()->UploadFromFile(Directory, LogFilename, TraceFile, true);
 		}
 	}
 }
