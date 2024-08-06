@@ -132,12 +132,13 @@ bool FRequest_ClaimPlayerUuidUnclaimedKeyClaim::SetupHttpRequest(const FHttpRequ
 
 	HttpRequest->SetVerb(TEXT("POST"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_ClaimPlayerUuidUnclaimedKeyClaim - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_ClaimPlayerUuidUnclaimedKeyClaim - failed to add bearer token"));
 		return false;
@@ -470,12 +471,13 @@ bool FRequest_ClaimPlayerUuidUnclaimedKeyClaimForMe::SetupHttpRequest(const FHtt
 
 	HttpRequest->SetVerb(TEXT("POST"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_ClaimPlayerUuidUnclaimedKeyClaimForMe - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_ClaimPlayerUuidUnclaimedKeyClaimForMe - failed to add bearer token"));
 		return false;
@@ -809,12 +811,13 @@ bool FRequest_ClaimUnclaimedKeyClaim::SetupHttpRequest(const FHttpRequestRef& Ht
 
 	HttpRequest->SetVerb(TEXT("POST"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_ClaimUnclaimedKeyClaim - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_ClaimUnclaimedKeyClaim - failed to add bearer token"));
 		return false;
@@ -1147,12 +1150,13 @@ bool FRequest_ClaimUnclaimedKeyClaimForMe::SetupHttpRequest(const FHttpRequestRe
 
 	HttpRequest->SetVerb(TEXT("POST"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_ClaimUnclaimedKeyClaimForMe - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_ClaimUnclaimedKeyClaimForMe - failed to add bearer token"));
 		return false;
@@ -1486,12 +1490,13 @@ bool FRequest_GetKeyClaim::SetupHttpRequest(const FHttpRequestRef& HttpRequest) 
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetKeyClaim - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetKeyClaim - failed to add bearer token"));
 		return false;
@@ -1813,12 +1818,13 @@ bool FRequest_GetKeyClaimForMe::SetupHttpRequest(const FHttpRequestRef& HttpRequ
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetKeyClaimForMe - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetKeyClaimForMe - failed to add bearer token"));
 		return false;
@@ -2140,12 +2146,13 @@ bool FRequest_GetKeyClaims::SetupHttpRequest(const FHttpRequestRef& HttpRequest)
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetKeyClaims - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetKeyClaims - failed to add bearer token"));
 		return false;
@@ -2462,12 +2469,13 @@ bool FRequest_GetKeyClaimsForMe::SetupHttpRequest(const FHttpRequestRef& HttpReq
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetKeyClaimsForMe - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetKeyClaimsForMe - failed to add bearer token"));
 		return false;
@@ -2758,12 +2766,13 @@ bool FRequest_GetKeyClaimsForMyUuid::SetupHttpRequest(const FHttpRequestRef& Htt
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetKeyClaimsForMyUuid - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetKeyClaimsForMyUuid - failed to add bearer token"));
 		return false;
@@ -3060,12 +3069,13 @@ bool FRequest_GetPlayerUuidKeyClaim::SetupHttpRequest(const FHttpRequestRef& Htt
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayerUuidKeyClaim - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayerUuidKeyClaim - failed to add bearer token"));
 		return false;
@@ -3387,12 +3397,13 @@ bool FRequest_GetPlayerUuidKeyClaimSelf::SetupHttpRequest(const FHttpRequestRef&
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayerUuidKeyClaimSelf - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayerUuidKeyClaimSelf - failed to add bearer token"));
 		return false;
@@ -3714,12 +3725,13 @@ bool FRequest_GetPlayerUuidKeyClaims::SetupHttpRequest(const FHttpRequestRef& Ht
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayerUuidKeyClaims - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayerUuidKeyClaims - failed to add bearer token"));
 		return false;

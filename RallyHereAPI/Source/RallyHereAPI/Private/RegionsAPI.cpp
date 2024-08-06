@@ -138,12 +138,13 @@ bool FRequest_GetAllRegions::SetupHttpRequest(const FHttpRequestRef& HttpRequest
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetAllRegions - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetAllRegions - failed to add bearer token"));
 		return false;

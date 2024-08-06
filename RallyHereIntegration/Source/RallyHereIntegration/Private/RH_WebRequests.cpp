@@ -190,16 +190,22 @@ namespace
 		}
 	}
 
-	void LogHttpBase(IHttpBase& HttpBase, const FString& Prefix, const TArray<FString>& SensitiveHeaders = {}, const TArray<FString>& SensitiveFields = {})
+	void LogHttp(const FString& Prefix, const TArray<FString>* Headers, const TArray<uint8>* Content, const TArray<FString>& SensitiveHeaders = {}, const TArray<FString>& SensitiveFields = {})
 	{
-		const TArray<FString> Headers = SanitizeHeaders(HttpBase.GetAllHeaders(), SensitiveHeaders);
-		LogHeaders(Headers);
+		if (Headers != nullptr)
+		{
+			const TArray<FString> SanitizedHeaders = SanitizeHeaders(*Headers, SensitiveHeaders);
+			LogHeaders(SanitizedHeaders);
+		}
 
-		const FUTF8ToTCHAR TCHARData(reinterpret_cast<const ANSICHAR*>(HttpBase.GetContent().GetData()), HttpBase.GetContent().Num());
-		const FString ContentTemp{ TCHARData.Length(), TCHARData.Get() };
-		const FString Content = SanitizeContent(ContentTemp, SensitiveFields);
+		if (Content != nullptr)
+		{
+			const FUTF8ToTCHAR TCHARData(reinterpret_cast<const ANSICHAR*>(Content->GetData()), Content->Num());
+			const FString ContentTemp{ TCHARData.Length(), TCHARData.Get() };
+			const FString SanitizedContent = SanitizeContent(ContentTemp, SensitiveFields);
 
-		LogContent(Content, Prefix);
+			LogContent(SanitizedContent, Prefix);
+		}
 	}
 }
 
@@ -318,10 +324,14 @@ void FRH_WebRequests::OnWebRequestStarted_Track(const RallyHereAPI::FRequestMeta
 
 	// Requests do not allow GetContentAsString(), so parse it out manually
 	FString TempContent;
-	TempContent.Reserve(HttpRequest->GetContent().Num());
-	for (auto b : HttpRequest->GetContent())
+	// if the request modification delegate is bound, its possible that content was streamed and therefore cannot be accessed (can throw asserts)
+	if (!RequestMetadata.Flags.bDisableReadRequestContent)
 	{
-		TempContent.AppendChar(static_cast<char>(b));
+		TempContent.Reserve(HttpRequest->GetContent().Num());
+		for (auto b : HttpRequest->GetContent())
+		{
+			TempContent.AppendChar(static_cast<char>(b));
+		}
 	}
 	Request->Content = SanitizeContent(TempContent, GetSensitiveFieldsForRequest(RequestMetadata));
 	TArray<FString> Headers = SanitizeHeaders(HttpRequest->GetAllHeaders(), GetSensitiveHeadersForRequest(RequestMetadata));
@@ -373,7 +383,12 @@ void FRH_WebRequests::OnWebRequestStarted_Log(const RallyHereAPI::FRequestMetada
 
 	const FString Prefix = FString::Printf(TEXT("Req [%s]:"), *RequestMetadata.Identifier.ToString().Left(6));
 	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("%s Verb=%s URL=%s"), *Prefix, *HttpRequest->GetVerb(), *HttpRequest->GetURL());
-	LogHttpBase(*HttpRequest, Prefix, GetSensitiveHeadersForRequest(RequestMetadata), GetSensitiveFieldsForRequest(RequestMetadata));
+
+	const auto Headers = HttpRequest->GetAllHeaders();
+	// if the request modification delegate is bound, its possible that content was streamed and therefore cannot be accessed (can throw asserts)
+	const auto* Content = RequestMetadata.Flags.bDisableReadRequestContent ? nullptr : &HttpRequest->GetContent();
+	
+	LogHttp(Prefix, &Headers, Content, GetSensitiveHeadersForRequest(RequestMetadata), GetSensitiveFieldsForRequest(RequestMetadata));
 }
 
 void FRH_WebRequests::OnWebRequestCompleted(const RallyHereAPI::FResponse& Response, FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSuccess, bool bWillRetryWithAuth, TSharedRef<RallyHereAPI::FAPI> API)

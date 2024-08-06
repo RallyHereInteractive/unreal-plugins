@@ -126,12 +126,13 @@ bool FRequest_ClearAllDeserter::SetupHttpRequest(const FHttpRequestRef& HttpRequ
 
 	HttpRequest->SetVerb(TEXT("POST"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_ClearAllDeserter - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_ClearAllDeserter - failed to add bearer token"));
 		return false;
@@ -329,12 +330,13 @@ bool FRequest_ClearSpecificDeserter::SetupHttpRequest(const FHttpRequestRef& Htt
 
 	HttpRequest->SetVerb(TEXT("POST"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_ClearSpecificDeserter - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_ClearSpecificDeserter - failed to add bearer token"));
 		return false;
@@ -548,12 +550,13 @@ bool FRequest_DeleteAllPlayerDeserter::SetupHttpRequest(const FHttpRequestRef& H
 
 	HttpRequest->SetVerb(TEXT("DELETE"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteAllPlayerDeserter - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteAllPlayerDeserter - failed to add bearer token"));
 		return false;
@@ -768,12 +771,13 @@ bool FRequest_DeletePlayerDeserter::SetupHttpRequest(const FHttpRequestRef& Http
 
 	HttpRequest->SetVerb(TEXT("DELETE"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeletePlayerDeserter - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeletePlayerDeserter - failed to add bearer token"));
 		return false;
@@ -982,12 +986,13 @@ bool FRequest_GetAllDeserterConfigs::SetupHttpRequest(const FHttpRequestRef& Htt
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetAllDeserterConfigs - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetAllDeserterConfigs - failed to add bearer token"));
 		return false;
@@ -1231,12 +1236,13 @@ bool FRequest_GetAllPlayerDeserters::SetupHttpRequest(const FHttpRequestRef& Htt
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetAllPlayerDeserters - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetAllPlayerDeserters - failed to add bearer token"));
 		return false;
@@ -1507,12 +1513,13 @@ bool FRequest_GetPlayerDeserter::SetupHttpRequest(const FHttpRequestRef& HttpReq
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayerDeserter - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayerDeserter - failed to add bearer token"));
 		return false;
@@ -1782,12 +1789,13 @@ bool FRequest_GetSpecificDeserterConfig::SetupHttpRequest(const FHttpRequestRef&
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetSpecificDeserterConfig - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetSpecificDeserterConfig - failed to add bearer token"));
 		return false;
@@ -2058,12 +2066,13 @@ bool FRequest_PutPlayerDeserter::SetupHttpRequest(const FHttpRequestRef& HttpReq
 
 	HttpRequest->SetVerb(TEXT("PUT"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PutPlayerDeserter - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PutPlayerDeserter - failed to add bearer token"));
 		return false;

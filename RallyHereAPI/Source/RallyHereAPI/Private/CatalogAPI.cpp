@@ -132,12 +132,13 @@ bool FRequest_GetCatalogAll::SetupHttpRequest(const FHttpRequestRef& HttpRequest
 		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
 	}
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogAll - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogAll - failed to add bearer token"));
 		return false;
@@ -468,12 +469,13 @@ bool FRequest_GetCatalogEntitlementSku::SetupHttpRequest(const FHttpRequestRef& 
 		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
 	}
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogEntitlementSku - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogEntitlementSku - failed to add bearer token"));
 		return false;
@@ -798,12 +800,13 @@ bool FRequest_GetCatalogEntitlementSkuAll::SetupHttpRequest(const FHttpRequestRe
 		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
 	}
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogEntitlementSkuAll - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogEntitlementSkuAll - failed to add bearer token"));
 		return false;
@@ -1133,12 +1136,13 @@ bool FRequest_GetCatalogInventoryBucketUseRuleSet::SetupHttpRequest(const FHttpR
 		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
 	}
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogInventoryBucketUseRuleSet - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogInventoryBucketUseRuleSet - failed to add bearer token"));
 		return false;
@@ -1463,12 +1467,13 @@ bool FRequest_GetCatalogInventoryBucketUseRuleSetsAll::SetupHttpRequest(const FH
 		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
 	}
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogInventoryBucketUseRuleSetsAll - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogInventoryBucketUseRuleSetsAll - failed to add bearer token"));
 		return false;
@@ -1798,12 +1803,13 @@ bool FRequest_GetCatalogItem::SetupHttpRequest(const FHttpRequestRef& HttpReques
 		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
 	}
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogItem - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogItem - failed to add bearer token"));
 		return false;
@@ -2128,12 +2134,13 @@ bool FRequest_GetCatalogItemsAll::SetupHttpRequest(const FHttpRequestRef& HttpRe
 		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
 	}
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogItemsAll - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogItemsAll - failed to add bearer token"));
 		return false;
@@ -2463,12 +2470,13 @@ bool FRequest_GetCatalogLoot::SetupHttpRequest(const FHttpRequestRef& HttpReques
 		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
 	}
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogLoot - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogLoot - failed to add bearer token"));
 		return false;
@@ -2793,12 +2801,13 @@ bool FRequest_GetCatalogLootsAll::SetupHttpRequest(const FHttpRequestRef& HttpRe
 		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
 	}
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogLootsAll - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogLootsAll - failed to add bearer token"));
 		return false;
@@ -3128,12 +3137,13 @@ bool FRequest_GetCatalogPortalUseRuleset::SetupHttpRequest(const FHttpRequestRef
 		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
 	}
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogPortalUseRuleset - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogPortalUseRuleset - failed to add bearer token"));
 		return false;
@@ -3458,12 +3468,13 @@ bool FRequest_GetCatalogPortalUseRulesetsAll::SetupHttpRequest(const FHttpReques
 		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
 	}
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogPortalUseRulesetsAll - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogPortalUseRulesetsAll - failed to add bearer token"));
 		return false;
@@ -3793,12 +3804,13 @@ bool FRequest_GetCatalogPricePoint::SetupHttpRequest(const FHttpRequestRef& Http
 		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
 	}
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogPricePoint - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogPricePoint - failed to add bearer token"));
 		return false;
@@ -4123,12 +4135,13 @@ bool FRequest_GetCatalogPricePointsAll::SetupHttpRequest(const FHttpRequestRef& 
 		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
 	}
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogPricePointsAll - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogPricePointsAll - failed to add bearer token"));
 		return false;
@@ -4458,12 +4471,13 @@ bool FRequest_GetCatalogTimeFrame::SetupHttpRequest(const FHttpRequestRef& HttpR
 		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
 	}
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogTimeFrame - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogTimeFrame - failed to add bearer token"));
 		return false;
@@ -4788,12 +4802,13 @@ bool FRequest_GetCatalogTimeFramesAll::SetupHttpRequest(const FHttpRequestRef& H
 		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
 	}
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogTimeFramesAll - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogTimeFramesAll - failed to add bearer token"));
 		return false;
@@ -5123,12 +5138,13 @@ bool FRequest_GetCatalogVendor::SetupHttpRequest(const FHttpRequestRef& HttpRequ
 		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
 	}
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogVendor - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogVendor - failed to add bearer token"));
 		return false;
@@ -5453,12 +5469,13 @@ bool FRequest_GetCatalogVendorsAll::SetupHttpRequest(const FHttpRequestRef& Http
 		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
 	}
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogVendorsAll - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogVendorsAll - failed to add bearer token"));
 		return false;
@@ -5783,12 +5800,13 @@ bool FRequest_GetCatalogXpAll::SetupHttpRequest(const FHttpRequestRef& HttpReque
 		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
 	}
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogXpAll - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogXpAll - failed to add bearer token"));
 		return false;
@@ -6118,12 +6136,13 @@ bool FRequest_GetCatalogXpTable::SetupHttpRequest(const FHttpRequestRef& HttpReq
 		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
 	}
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogXpTable - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogXpTable - failed to add bearer token"));
 		return false;

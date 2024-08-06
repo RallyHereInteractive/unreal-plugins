@@ -132,12 +132,13 @@ bool FRequest_DeleteAllPlayerIdSettingsForSettingType::SetupHttpRequest(const FH
 
 	HttpRequest->SetVerb(TEXT("DELETE"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteAllPlayerIdSettingsForSettingType - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteAllPlayerIdSettingsForSettingType - failed to add bearer token"));
 		return false;
@@ -460,12 +461,13 @@ bool FRequest_DeleteAllPlayerUuidSettingsForSettingType::SetupHttpRequest(const 
 
 	HttpRequest->SetVerb(TEXT("DELETE"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteAllPlayerUuidSettingsForSettingType - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteAllPlayerUuidSettingsForSettingType - failed to add bearer token"));
 		return false;
@@ -787,12 +789,13 @@ bool FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf::SetupHttpRequest(co
 
 	HttpRequest->SetVerb(TEXT("DELETE"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf - failed to add bearer token"));
 		return false;
@@ -1116,12 +1119,13 @@ bool FRequest_DeleteSinglePlayerIdSetting::SetupHttpRequest(const FHttpRequestRe
 
 	HttpRequest->SetVerb(TEXT("DELETE"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteSinglePlayerIdSetting - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteSinglePlayerIdSetting - failed to add bearer token"));
 		return false;
@@ -1445,12 +1449,13 @@ bool FRequest_DeleteSinglePlayerUuidSetting::SetupHttpRequest(const FHttpRequest
 
 	HttpRequest->SetVerb(TEXT("DELETE"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteSinglePlayerUuidSetting - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteSinglePlayerUuidSetting - failed to add bearer token"));
 		return false;
@@ -1773,12 +1778,13 @@ bool FRequest_DeleteSinglePlayerUuidSettingSelf::SetupHttpRequest(const FHttpReq
 
 	HttpRequest->SetVerb(TEXT("DELETE"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteSinglePlayerUuidSettingSelf - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteSinglePlayerUuidSettingSelf - failed to add bearer token"));
 		return false;
@@ -2109,12 +2115,13 @@ bool FRequest_GetAllPlayerIdSettingsForSettingType::SetupHttpRequest(const FHttp
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetAllPlayerIdSettingsForSettingType - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetAllPlayerIdSettingsForSettingType - failed to add bearer token"));
 		return false;
@@ -2445,12 +2452,13 @@ bool FRequest_GetAllPlayerUuidSettingsForSettingType::SetupHttpRequest(const FHt
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetAllPlayerUuidSettingsForSettingType - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetAllPlayerUuidSettingsForSettingType - failed to add bearer token"));
 		return false;
@@ -2780,12 +2788,13 @@ bool FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf::SetupHttpRequest(const
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf - failed to add bearer token"));
 		return false;
@@ -3102,12 +3111,13 @@ bool FRequest_GetConfigForAllSettingTypes::SetupHttpRequest(const FHttpRequestRe
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetConfigForAllSettingTypes - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetConfigForAllSettingTypes - failed to add bearer token"));
 		return false;
@@ -3351,12 +3361,13 @@ bool FRequest_GetConfigForSingleSettingTypeAllVersions::SetupHttpRequest(const F
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetConfigForSingleSettingTypeAllVersions - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetConfigForSingleSettingTypeAllVersions - failed to add bearer token"));
 		return false;
@@ -3653,12 +3664,13 @@ bool FRequest_GetConfigForSingleSettingTypeAndVersion::SetupHttpRequest(const FH
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetConfigForSingleSettingTypeAndVersion - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetConfigForSingleSettingTypeAndVersion - failed to add bearer token"));
 		return false;
@@ -3956,12 +3968,13 @@ bool FRequest_GetSinglePlayerIdSetting::SetupHttpRequest(const FHttpRequestRef& 
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetSinglePlayerIdSetting - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetSinglePlayerIdSetting - failed to add bearer token"));
 		return false;
@@ -4285,12 +4298,13 @@ bool FRequest_GetSinglePlayerUuidSetting::SetupHttpRequest(const FHttpRequestRef
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetSinglePlayerUuidSetting - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetSinglePlayerUuidSetting - failed to add bearer token"));
 		return false;
@@ -4613,12 +4627,13 @@ bool FRequest_GetSinglePlayerUuidSettingSelf::SetupHttpRequest(const FHttpReques
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetSinglePlayerUuidSettingSelf - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetSinglePlayerUuidSettingSelf - failed to add bearer token"));
 		return false;
@@ -4942,12 +4957,13 @@ bool FRequest_SetSinglePlayerIdSetting::SetupHttpRequest(const FHttpRequestRef& 
 
 	HttpRequest->SetVerb(TEXT("PUT"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerIdSetting - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerIdSetting - failed to add bearer token"));
 		return false;
@@ -5308,12 +5324,13 @@ bool FRequest_SetSinglePlayerUuidSetting::SetupHttpRequest(const FHttpRequestRef
 
 	HttpRequest->SetVerb(TEXT("PUT"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerUuidSetting - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerUuidSetting - failed to add bearer token"));
 		return false;
@@ -5673,12 +5690,13 @@ bool FRequest_SetSinglePlayerUuidSettingSelf::SetupHttpRequest(const FHttpReques
 
 	HttpRequest->SetVerb(TEXT("PUT"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerUuidSettingSelf - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SetSinglePlayerUuidSettingSelf - failed to add bearer token"));
 		return false;

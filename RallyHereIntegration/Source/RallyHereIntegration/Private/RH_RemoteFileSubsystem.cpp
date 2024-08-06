@@ -49,6 +49,10 @@ void URH_RemoteFileSubsystem::UploadFromFile(const FRH_RemoteFileApiDirectory& D
 	// if streaming the file, wrapper via the file streaming content flag on the request (this is handled after the request is created via callback), else set onto the file input object on the request to do an in memory upload
 	if (bStreamFile)
 	{
+		// disable reading the request content, as we are going to stream it
+		Request.SetDisableReadContent(true, false);
+
+		// modify the request after creation to override request handling to stream the file
 		Request.OnModifyRequest().AddLambda([LocalFilePath](const RallyHereAPI::FRequest& APIRequest, FHttpRequestRef HttpRequest)
 		{
 			// override upload type to octet-stream
@@ -99,7 +103,11 @@ void URH_RemoteFileSubsystem::UploadFromStream(const FRH_RemoteFileApiDirectory&
 	Request.EntityType = Directory.EntityType;
 	Request.EntityId = Directory.EntityId;
 	Request.FileName = RemoteFileName;
-	
+
+	// disable reading the request content, as we are going to stream it
+	Request.SetDisableReadContent(true, false);
+
+	// modify the request after creation to override request handling to stream the data
 	Request.OnModifyRequest().AddLambda([Stream](const RallyHereAPI::FRequest& APIRequest, FHttpRequestRef HttpRequest)
 	{
 		// override upload type to octet-stream
@@ -273,7 +281,11 @@ void URH_RemoteFileSubsystem::DownloadToStream(const FRH_RemoteFileApiDirectory&
 	Request.EntityType = Directory.EntityType;
 	Request.EntityId = Directory.EntityId;
 	Request.FileName = RemoteFileName;
-	
+
+	// disable reading the response content, as we are going to stream it
+	Request.SetDisableReadContent(false, true);
+
+	// modify the request after creation to override response handling to stream the response
 	Request.OnModifyRequest().AddLambda([Stream](const RallyHereAPI::FRequest& APIRequest, FHttpRequestRef HttpRequest)
 	{
 		HttpRequest->SetResponseBodyReceiveStream(Stream);

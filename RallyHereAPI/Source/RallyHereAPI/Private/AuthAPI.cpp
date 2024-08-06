@@ -865,12 +865,13 @@ bool FRequest_Login::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 		HttpRequest->SetHeader(TEXT("x-forwarded-for"), XForwardedFor.GetValue());
 	}
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_Login - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddClientCredentials(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddClientCredentials(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_Login - failed to add client credentials"));
 		return false;
@@ -1926,12 +1927,13 @@ bool FRequest_OauthTokenExchange::SetupHttpRequest(const FHttpRequestRef& HttpRe
 		HttpRequest->SetHeader(TEXT("x-forwarded-for"), XForwardedFor.GetValue());
 	}
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_OauthTokenExchange - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddClientCredentials(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddClientCredentials(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_OauthTokenExchange - failed to add client credentials"));
 		return false;
@@ -2217,12 +2219,13 @@ bool FRequest_Token::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 		HttpRequest->SetHeader(TEXT("x-forwarded-for"), XForwardedFor.GetValue());
 	}
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_Token - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddClientCredentials(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddClientCredentials(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_Token - failed to add client credentials"));
 		return false;
@@ -2472,12 +2475,13 @@ bool FRequest_Verify::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 
 	HttpRequest->SetVerb(TEXT("POST"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_Verify - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_Verify - failed to add bearer token"));
 		return false;

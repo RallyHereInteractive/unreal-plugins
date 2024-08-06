@@ -52,7 +52,7 @@ bool FResponse::ParseContent()
 	FString ContentType = HttpResponse->GetContentType();
 	ContentType.TrimStartAndEndInline();
 
-	if (ContentType.IsEmpty())
+	if (ContentType.IsEmpty() || RequestMetadata.Flags.bDisableReadResponseContent)
 	{
 		return ParseTypelessContent();
 	}

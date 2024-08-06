@@ -138,12 +138,13 @@ bool FRequest_AddFriendV2::SetupHttpRequest(const FHttpRequestRef& HttpRequest) 
 		HttpRequest->SetHeader(TEXT("if-match"), IfMatch.GetValue());
 	}
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_AddFriendV2 - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_AddFriendV2 - failed to add bearer token"));
 		return false;
@@ -514,12 +515,13 @@ bool FRequest_AddNotesV2::SetupHttpRequest(const FHttpRequestRef& HttpRequest) c
 		HttpRequest->SetHeader(TEXT("if-match"), IfMatch.GetValue());
 	}
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_AddNotesV2 - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_AddNotesV2 - failed to add bearer token"));
 		return false;
@@ -883,12 +885,13 @@ bool FRequest_DeleteFriendV2::SetupHttpRequest(const FHttpRequestRef& HttpReques
 		HttpRequest->SetHeader(TEXT("if-match"), IfMatch.GetValue());
 	}
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteFriendV2 - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteFriendV2 - failed to add bearer token"));
 		return false;
@@ -1162,12 +1165,13 @@ bool FRequest_DeleteFriendsV2::SetupHttpRequest(const FHttpRequestRef& HttpReque
 
 	HttpRequest->SetVerb(TEXT("DELETE"));
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteFriendsV2 - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteFriendsV2 - failed to add bearer token"));
 		return false;
@@ -1431,12 +1435,13 @@ bool FRequest_DeleteNotesV2::SetupHttpRequest(const FHttpRequestRef& HttpRequest
 		HttpRequest->SetHeader(TEXT("if-match"), IfMatch.GetValue());
 	}
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteNotesV2 - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteNotesV2 - failed to add bearer token"));
 		return false;
@@ -1689,12 +1694,13 @@ bool FRequest_GetFriendRelationshipV2::SetupHttpRequest(const FHttpRequestRef& H
 		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
 	}
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetFriendRelationshipV2 - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetFriendRelationshipV2 - failed to add bearer token"));
 		return false;
@@ -2062,12 +2068,13 @@ bool FRequest_GetFriendsListForPlayerV2::SetupHttpRequest(const FHttpRequestRef&
 		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
 	}
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetFriendsListForPlayerV2 - missing auth context"));
 		return false;
 	}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetFriendsListForPlayerV2 - failed to add bearer token"));
 		return false;

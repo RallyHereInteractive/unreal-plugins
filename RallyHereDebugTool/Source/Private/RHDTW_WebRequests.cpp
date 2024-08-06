@@ -363,6 +363,8 @@ void FRHDTW_WebRequests::DoViewMetadata(const FRH_WebRequest* WebRequest)
 	if (!WebRequest)
 		return;
 
+	const auto& Metadata = WebRequest->Metadata;
+
 	if (ImGui::BeginTable("MetadataTable", 2, RH_TableFlagsFitSizing))
 	{
 		// Header
@@ -373,56 +375,67 @@ void FRHDTW_WebRequests::DoViewMetadata(const FRH_WebRequest* WebRequest)
 		// Content
 		ImGui::TableNextRow();
 		ImGui::TableNextColumn();
-		ImGuiDisplayCopyableValue("Identifier", WebRequest->Metadata.Identifier, ECopyMode::Key);
+		ImGuiDisplayCopyableValue("Identifier", Metadata.Identifier, ECopyMode::Key);
 		ImGui::TableNextColumn();
-		ImGui::Text("%s", TCHAR_TO_UTF8(*WebRequest->Metadata.Identifier.ToString(EGuidFormats::DigitsWithHyphens)));
+		ImGui::Text("%s", TCHAR_TO_UTF8(*Metadata.Identifier.ToString(EGuidFormats::DigitsWithHyphens)));
 
 		ImGui::TableNextRow();
 		ImGui::TableNextColumn();
-		ImGuiDisplayCopyableValue("Simplified Path", WebRequest->Metadata.SimplifiedPath.ToString(), ECopyMode::Key);
+		ImGuiDisplayCopyableValue("Simplified Path", Metadata.SimplifiedPath.ToString(), ECopyMode::Key);
 		ImGui::TableNextColumn();
-		ImGui::Text("%s", TCHAR_TO_UTF8(*WebRequest->Metadata.SimplifiedPath.ToString()));
+		ImGui::Text("%s", TCHAR_TO_UTF8(*Metadata.SimplifiedPath.ToString()));
 
 		ImGui::TableNextRow();
 		ImGui::TableNextColumn();
-		ImGuiDisplayCopyableValue("Retry Count", WebRequest->Metadata.RetryCount, ECopyMode::Key);
+		ImGuiDisplayCopyableValue("Retry Count", Metadata.RetryCount, ECopyMode::Key);
 		ImGui::TableNextColumn();
-		ImGui::Text("%d", WebRequest->Metadata.RetryCount);
+		ImGui::Text("%d", Metadata.RetryCount);
 
 		ImGui::TableNextRow();
 		ImGui::TableNextColumn();
-		ImGuiDisplayCopyableValue("Request Create Time", WebRequest->Metadata.CreateTimestamp, ECopyMode::Key);
+		ImGuiDisplayCopyableValue("Request Create Time", Metadata.CreateTimestamp, ECopyMode::Key);
 		ImGui::TableNextColumn();
-		ImGui::Text("%s", TCHAR_TO_UTF8(*WebRequest->Metadata.CreateTimestamp.ToIso8601()));
+		ImGui::Text("%s", TCHAR_TO_UTF8(*Metadata.CreateTimestamp.ToIso8601()));
 
 		ImGui::TableNextRow();
 		ImGui::TableNextColumn();
-		ImGuiDisplayCopyableValue("Requester Queue Time", WebRequest->Metadata.QueuedTimestamp, ECopyMode::Key);
+		ImGuiDisplayCopyableValue("Requester Queue Time", Metadata.QueuedTimestamp, ECopyMode::Key);
 		ImGui::TableNextColumn();
-		ImGui::Text("%s", TCHAR_TO_UTF8(*WebRequest->Metadata.QueuedTimestamp.ToIso8601()));
+		ImGui::Text("%s", TCHAR_TO_UTF8(*Metadata.QueuedTimestamp.ToIso8601()));
 
 		ImGui::TableNextRow();
 		ImGui::TableNextColumn();
-		ImGuiDisplayCopyableValue("Http Queue Time", WebRequest->Metadata.HttpQueuedTimestamp, ECopyMode::Key);
+		ImGuiDisplayCopyableValue("Http Queue Time", Metadata.HttpQueuedTimestamp, ECopyMode::Key);
 		ImGui::TableNextColumn();
-		ImGui::Text("%s", TCHAR_TO_UTF8(*WebRequest->Metadata.HttpQueuedTimestamp.ToIso8601()));
+		ImGui::Text("%s", TCHAR_TO_UTF8(*Metadata.HttpQueuedTimestamp.ToIso8601()));
 
-		if (WebRequest->Metadata.QueuedTimestamp.GetTicks() > 0 && WebRequest->Metadata.HttpQueuedTimestamp.GetTicks() > 0)
+		if (Metadata.QueuedTimestamp.GetTicks() > 0 && Metadata.HttpQueuedTimestamp.GetTicks() > 0)
 		{
-			const auto RequestQueueDuration = (WebRequest->Metadata.HttpQueuedTimestamp - WebRequest->Metadata.QueuedTimestamp);
+			const auto RequestQueueDuration = (Metadata.HttpQueuedTimestamp - Metadata.QueuedTimestamp);
 			ImGui::TableNextRow();
 			ImGui::TableNextColumn();
 			ImGuiDisplayCopyableValue("Requester Queue Duration", RequestQueueDuration, ECopyMode::Key);
 			ImGui::TableNextColumn();
 			ImGui::Text("%s", TCHAR_TO_UTF8(*RequestQueueDuration.ToString()));
 
-			const auto HttpQueueDuration = (WebRequest->Timestamp - WebRequest->Metadata.HttpQueuedTimestamp);
+			const auto HttpQueueDuration = (WebRequest->Timestamp - Metadata.HttpQueuedTimestamp);
 			ImGui::TableNextRow();
 			ImGui::TableNextColumn();
 			ImGuiDisplayCopyableValue("Http Queue Duration", HttpQueueDuration, ECopyMode::Key);
 			ImGui::TableNextColumn();
 			ImGui::Text("%s", TCHAR_TO_UTF8(*HttpQueueDuration.ToString()));
 		}
+
+		{
+			const auto Flags = Metadata.Flags.Flags;
+			const auto StringFlags = FString::Printf(TEXT("%#010X"), Flags);
+			ImGui::TableNextRow();
+			ImGui::TableNextColumn();
+			ImGuiDisplayCopyableValue("Flags", StringFlags, ECopyMode::Key);
+			ImGui::TableNextColumn();
+			ImGui::Text(TCHAR_TO_UTF8(*StringFlags));
+		}
+		
 
 		ImGui::EndTable();
 	}

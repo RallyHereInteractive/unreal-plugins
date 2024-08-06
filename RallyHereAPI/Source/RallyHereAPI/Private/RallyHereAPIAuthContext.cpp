@@ -259,7 +259,7 @@ bool FAuthContext::Refresh()
 
 bool FAuthContext::ConditionalRefreshOnFailedResponse(const FResponse& TriggeringResponse, const FRequestMetadata& RequestMetadata)
 {
-	if (RequestMetadata.bDisableLoginRetryOnAuthorizationFailure)
+	if (RequestMetadata.Flags.bDisableLoginRetryOnAuthorizationFailure)
 	{
 		// do not attempt a refresh
 		return false;
