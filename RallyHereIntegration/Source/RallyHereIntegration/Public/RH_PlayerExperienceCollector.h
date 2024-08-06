@@ -740,6 +740,8 @@ public:
 
 	/** @brief Initialize the collector.  Can only be done once */
     virtual bool Init(IRH_PEXOwnerInterface* InOwner);
+	/** @brief Initialize the collector.  Can only be done once */
+	virtual bool InitWithConfig(IRH_PEXOwnerInterface* InOwner, const URH_PEXCollectorConfig* InConfig);
 	/** @brief Tick the collector, updating per frame stats and potentially per second stats. */
     virtual void OnEndFrame();
 
@@ -763,6 +765,18 @@ public:
 	
 	/** @brief Writes summary data to file and/or API, and uploads any data requested, can only be called once */
 	void WriteSummary();
+
+	/** @brief Get the file path for the summary file, if it was written */
+	FString GetSummaryFilePath() const
+	{
+		return SummaryFilePath;
+	}
+
+	/** @brief Get the file path for the timeline file, if it was written */
+	FString GetTimelineFilePath() const
+	{
+		return TimelineFilePath;
+	}
 
 	/** @brief Retrieves the summary data in Json format */
 	TSharedRef<FJsonObject> GetSummaryJson() const;
@@ -820,6 +834,10 @@ protected:
 	/** Cached file path for timeline file */
 	UPROPERTY(BlueprintReadOnly, Transient, Category="PlayerExperience")
 	FString TimelineFilePath;
+
+	/** Cached file path for summary file */
+	UPROPERTY(BlueprintReadOnly, Transient, Category="PlayerExperience")
+	FString SummaryFilePath;
 };
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -1175,5 +1193,45 @@ public:
 };
 
 //////////////////////////////////////////////////////////////////////////////////////
+
+UCLASS()
+class URH_PEXCollectorConfig_Test : public URH_PEXCollectorConfig_Host
+{
+	GENERATED_BODY()
+};
+
+UCLASS()
+class URH_TestPEXOwner : public UObject, public IRH_PEXOwnerInterface
+{
+	GENERATED_BODY()
+
+public:
+	URH_TestPEXOwner()
+	{
+		PlayerId = FGuid::NewGuid();
+		MatchId = FString("TestMatchID");
+		bSendReportsToAPI = false;
+	}
+	UPROPERTY()
+	FGuid PlayerId;
+	UPROPERTY()
+	FString MatchId;
+	UPROPERTY()
+	bool bSendReportsToAPI;
+
+	mutable TOptional<FRHAPI_PexClientRequest> ClientReport;
+	mutable TOptional<FRHAPI_PexHostRequest> HostReport;
+	
+	virtual UEngine* GetPEXEngine() const override { return GEngine; }
+	virtual UWorld* GetPEXWorld() const override { return GEngine->GetWorld(); }
+	virtual FString GetPEXMatchId() const override { return MatchId; }
+	virtual FGuid GetPEXPlayerId() const override { return PlayerId; }
+	virtual FRH_RemoteFileApiDirectory GetPEXRemoteFileDirectory() const override { return FRH_RemoteFileApiDirectory(); }
+	virtual bool GetPEXIsHost() const override { return true; }
+	virtual void SubmitPEXHostSummary(FRHAPI_PexHostRequest&& Report) const override;
+	virtual void SubmitPEXClientSummary(FRHAPI_PexClientRequest&& Report) const override;
+
+	virtual void ValidateReports(FAutomationTestBase* Test, const URH_PEXCollectorConfig* Config) const;
+};
 
 /** @} */
