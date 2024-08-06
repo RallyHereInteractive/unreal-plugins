@@ -7,6 +7,7 @@
 #include "RH_Common.h"
 #include "RH_IntegrationSettings.h"
 #include "Misc/FileHelper.h"
+#include "Misc/Paths.h"
 #include "HAL/PlatformFileManager.h"
 
 

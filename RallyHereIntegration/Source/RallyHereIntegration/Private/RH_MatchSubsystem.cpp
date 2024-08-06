@@ -5,6 +5,7 @@
 
 #include "RallyHereIntegrationModule.h"
 #include "RH_Common.h"
+#include "Misc/Paths.h"
 #include "RH_RemoteFileSubsystem.h"
 
 

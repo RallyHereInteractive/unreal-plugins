@@ -1,5 +1,7 @@
 // Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
+
+#include "RHDTW_Analytics.h"
 #include "RallyHereDebugToolModule.h"
 #include "RallyHereDebugTool.h"
 #include "RallyHereIntegrationModule.h"
@@ -10,12 +12,12 @@
 #include "RH_GameInstanceSessionSubsystem.h"
 #include "RH_PlayerExperienceCollector.h"
 #include <string>
+#include "Engine/GameInstance.h"
 
 #ifdef WITH_IMGUI_IMPLOT
 #include "implot.h"
 #endif
 
-#include "RHDTW_Analytics.h"
 
 FRHDTW_Analytics::FRHDTW_Analytics()
 	: Super()
