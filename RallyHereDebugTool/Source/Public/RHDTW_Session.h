@@ -63,8 +63,6 @@ public:
 	};
 	TSharedRef<FInstanceLaunchParamsDisplay> InstanceLaunchParamsDisplay;
 
-	TArray<ANSICHAR> UpdateSessionRegionIdString;
-
 	TArray<ANSICHAR> SearchByTypeString;
 	TArray<ANSICHAR> SearchByRegionIdString;
 	bool SearchCacheSessions;
@@ -123,10 +121,15 @@ protected:
 	int32 SetDeserterTime[3] = {0,0,0};
 	int32 SetDeserterCount = 0;
 	FImGuiCustomDataStager SetDeserterCustomDataStager;
-	
+
+	FRHAPI_SessionUpdate SessionUpdate;
+	FImGuiCustomDataStager SessionUpdateCustomDataStager;
+
+	FRHAPI_InstanceInfoUpdate InstanceUpdate;
 	FImGuiCustomDataStager InstanceCustomDataStager;
+	FImGuiCustomDataStager InstanceJoinParamsCustomDataStager;
+
 	FImGuiCustomDataStager InvitePlayerCustomDataStager;
 	FImGuiCustomDataStager BrowserCustomDataStager;
-	FImGuiCustomDataStager SessionCustomDataStager;
 	TMap<FGuid, FImGuiCustomDataStager*> UpdatePlayerCustomDataStagers;
 };
