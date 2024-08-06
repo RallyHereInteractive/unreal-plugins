@@ -159,7 +159,7 @@ void FRHDTW_WebRequests::DoViewRequests(FRH_WebRequests* WebRequestsTracker)
 	TDoubleLinkedListIterator<TDoubleLinkedList<TSharedPtr<FRH_WebRequest>>::TDoubleLinkedListNode, TSharedPtr<FRH_WebRequest>>  requestsIterator(TrackedRequests.GetTail());
 
 	int indexId = 0; // Index for IDing the ImGui buttons
-	for (; requestsIterator.GetNode() != nullptr; --requestsIterator)
+	for (; requestsIterator; --requestsIterator)
 	{
 		auto request = requestsIterator.GetNode()->GetValue().Get();
 		if (!request)
