@@ -6,6 +6,7 @@
 
 #include "imgui.h"
 #include "Engine/GameInstance.h"
+#include "Misc/Paths.h"
 #include "RH_GameInstanceSubsystem.h"
 #include "RH_MatchSubsystem.h"
 #include "RH_RemoteFileSubsystem.h"
