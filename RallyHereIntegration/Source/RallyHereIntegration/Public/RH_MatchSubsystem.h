@@ -274,7 +274,7 @@ public:
 	void BLUEPRINT_CreateMatch(const FRHAPI_MatchRequest& Match, const FRH_OnMatchUpdateCompleteDynamicDelegate& Delegate) { CreateMatch(Match, Delegate); }
 
 	/**
-	 * @brief Update a match (PATCH)
+	 * @brief Update a match (PATCH w/ UPSERT)
 	 * @param [in] MatchId The match to update
 	 * @param [in] Match The match to update
 	 * @param [in] Delegate Callback with the results of the match update
@@ -296,6 +296,18 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Matches", meta = (DisplayName = "Update Match Player", AutoCreateRefTerm = "Player,Delegate"))
 	void BLUEPRINT_UpdateMatchPlayer(const FString& MatchId, const FGuid& PlayerId, const FRHAPI_MatchPlayerRequest& Player, const FRH_OnMatchPlayerUpdatedCompleteDynamicDelegate& Delegate) { UpdateMatchPlayer(MatchId, PlayerId, Player, Delegate); }
 
+	/**
+	 * @brief Update a specific match segment (PATCH w/ UPSERT)
+	 * @param [in] MatchId The match to update
+	 * @param [in] SegmentId The segment id to update
+	 * @param [in] Segment The segment data to update
+	 * @param [in] Delegate Callback with the results of the match update
+	 */
+	virtual void UpdateMatchSegment(const FString& MatchId, const FString& SegmentId, const FRHAPI_MatchSegmentPatchRequest& Segment, const FRH_OnMatchUpdateCompleteDelegateBlock& Delegate = FRH_OnMatchUpdateCompleteDelegateBlock());
+	/** @private */
+	UFUNCTION(BlueprintCallable, Category = "Matches", meta = (DisplayName = "Update Match", AutoCreateRefTerm = "Match,Delegate"))
+	void BLUEPRINT_UpdateMatchSegment(const FString& MatchId, const FString& SegmentId, const FRHAPI_MatchSegmentPatchRequest& Segment, const FRH_OnMatchUpdateCompleteDynamicDelegate& Delegate) { UpdateMatchSegment(MatchId, SegmentId, Segment, Delegate); }
+	
 	// Files
 	/**
 	 * @brief Get the file directory structure to be used with File API requests for a given match id
@@ -313,7 +325,7 @@ protected:
 	/** @brief Structure containing context information for match update calls */
 	struct FMatchUpdateCallContext
 	{
-		FString MatchId;
+		FString MatchId, SegmentId;
 		TOptional<FRHAPI_MatchWithPlayers> Match;
 
 		FMatchUpdateCallContext()
@@ -321,6 +333,11 @@ protected:
 
 		FMatchUpdateCallContext(const FString& InMatchId)
 			: MatchId(InMatchId)
+		{}
+
+		FMatchUpdateCallContext(const FString& InMatchId, const FString& InSegmentId)
+			: MatchId(InMatchId)
+			, SegmentId(InSegmentId)
 		{}
 	};
 
