@@ -272,6 +272,70 @@ void URH_MatchSubsystem::UpdateMatchPlayer(const FString& MatchId, const FGuid& 
 	Helper->Start(RH_APIs::GetMatchAPI(), Request);
 }
 
+
+void URH_MatchSubsystem::UpdateMatchSegment(const FString& MatchId, const FString& SegmentId, const FRHAPI_MatchSegmentPatchRequest& Segment, const FRH_OnMatchUpdateCompleteDelegateBlock& Delegate)
+{
+	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	typedef RallyHereAPI::Traits_PatchMatchSegment BaseType;
+
+	BaseType::Request Request;
+	Request.AuthContext = GetAuthContext();
+	Request.MatchId = MatchId;
+	Request.SegmentId = SegmentId;
+	Request.MatchSegmentPatchRequest = Segment;
+
+	auto Context = MakeShared<FMatchUpdateCallContext>();
+	Context->MatchId = MatchId;
+	Context->SegmentId = SegmentId;
+
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate::CreateWeakLambda(this, [this, Context](const BaseType::Response& Resp)
+			{
+				const auto Content = Resp.TryGetDefaultContentAsPointer();
+				if (Resp.IsSuccessful() && Content != nullptr)
+				{
+					auto Match = MatchesCache.Find(Context->MatchId);
+					if (Match != nullptr)
+					{						
+						// update the segment in the cache
+						auto Segments = Match->GetSegmentsOrNull();
+						if (Segments != nullptr)
+						{
+							for (auto& Segment : *Segments)
+							{
+								if (Segment.GetMatchSegment() == Context->SegmentId)
+								{
+									Segment = *Content;
+									break;
+								}
+							}
+						}
+						
+						// update the context from the cached value
+						Context->Match = *Match;;
+					}
+					else
+					{
+						// create a dummy match object to use to store the segment for the return value only
+						TArray<FRHAPI_MatchSegmentWithPlayers> Segments;
+						Segments.Add(*Content);
+						Context->Match = FRHAPI_MatchWithPlayers();
+						Context->Match->SetMatchId(Context->MatchId);
+						Context->Match->SetSegments(Segments);
+					}
+				}
+			}),
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Context, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				Delegate.ExecuteIfBound(bSuccess, Context->Match.Get(FRHAPI_MatchWithPlayers()), ErrorInfo);
+			}),
+		GetDefault<URH_IntegrationSettings>()->MatchesUpdatePriority
+	);
+
+	Helper->Start(RH_APIs::GetMatchAPI(), Request);
+}
+
 #if WITH_DEV_AUTOMATION_TESTS
 
 #include "RH_AutomationTests.h"

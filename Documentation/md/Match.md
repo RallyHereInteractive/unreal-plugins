@@ -69,8 +69,9 @@ Match Subsystem used for match API calls.
 `public inline const TMap< FString, `[`FRHAPI_MatchWithPlayers`](models/RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` > & `[`GetAllMatches`](#classURH__MatchSubsystem_1a051681ea68418192d99aaffe1264b258)`() const` | Get all matches from the cache.
 `public inline void `[`ClearMatchesCache`](#classURH__MatchSubsystem_1abad303e288ec2208c57861a2c449b17b)`()` | Clear the match cache.
 `public virtual void `[`CreateMatch`](#classURH__MatchSubsystem_1a1857cd27251cdd8d7dbb34056214d8be)`(const `[`FRHAPI_MatchRequest`](models/RHAPI_MatchRequest.md#structFRHAPI__MatchRequest)` & Match,const FRH_OnMatchUpdateCompleteDelegateBlock & Delegate)` | Create a match (POST)
-`public virtual void `[`UpdateMatch`](#classURH__MatchSubsystem_1a3300d745ccd6c04a28a76895dfd7a6fd)`(const FString & MatchId,const `[`FRHAPI_MatchRequest`](models/RHAPI_MatchRequest.md#structFRHAPI__MatchRequest)` & Match,const FRH_OnMatchUpdateCompleteDelegateBlock & Delegate)` | Update a match (PATCH)
+`public virtual void `[`UpdateMatch`](#classURH__MatchSubsystem_1a3300d745ccd6c04a28a76895dfd7a6fd)`(const FString & MatchId,const `[`FRHAPI_MatchRequest`](models/RHAPI_MatchRequest.md#structFRHAPI__MatchRequest)` & Match,const FRH_OnMatchUpdateCompleteDelegateBlock & Delegate)` | Update a match (PATCH w/ UPSERT)
 `public virtual void `[`UpdateMatchPlayer`](#classURH__MatchSubsystem_1a920e474a59dcdd94bc07bf58fc71f710)`(const FString & MatchId,const FGuid & PlayerId,const `[`FRHAPI_MatchPlayerRequest`](models/RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` & Player,const FRH_OnMatchPlayerUpdateCompleteDelegateBlock & Delegate)` | Update a player in a match (PATCH w/ UPSERT)
+`public virtual void `[`UpdateMatchSegment`](#classURH__MatchSubsystem_1af480a4bdb8be3d1ae88ffe0b0e888510)`(const FString & MatchId,const FString & SegmentId,const `[`FRHAPI_MatchSegmentPatchRequest`](models/RHAPI_MatchSegmentPatchRequest.md#structFRHAPI__MatchSegmentPatchRequest)` & Segment,const FRH_OnMatchUpdateCompleteDelegateBlock & Delegate)` | Update a specific match segment (PATCH w/ UPSERT)
 `protected TMap< FString, `[`FRHAPI_MatchWithPlayers`](models/RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` > `[`MatchesCache`](#classURH__MatchSubsystem_1af6ae949b60bac5983489fe295a5b914a) | 
 `protected TOptional< FString > `[`ActiveMatchId`](#classURH__MatchSubsystem_1aa6948be8c609b94e612435f7b0767e7b) | The last match created with bSetActive = true, for ease of use.
 
@@ -128,7 +129,7 @@ Create a match (POST)
 
 #### `public virtual void `[`UpdateMatch`](#classURH__MatchSubsystem_1a3300d745ccd6c04a28a76895dfd7a6fd)`(const FString & MatchId,const `[`FRHAPI_MatchRequest`](models/RHAPI_MatchRequest.md#structFRHAPI__MatchRequest)` & Match,const FRH_OnMatchUpdateCompleteDelegateBlock & Delegate)` <a id="classURH__MatchSubsystem_1a3300d745ccd6c04a28a76895dfd7a6fd"></a>
 
-Update a match (PATCH)
+Update a match (PATCH w/ UPSERT)
 
 #### Parameters
 * `MatchId` The match to update 
@@ -149,6 +150,19 @@ Update a player in a match (PATCH w/ UPSERT)
 * `Player` The player data request to update 
 
 * `Delegate` Callback with the results of the player update
+
+#### `public virtual void `[`UpdateMatchSegment`](#classURH__MatchSubsystem_1af480a4bdb8be3d1ae88ffe0b0e888510)`(const FString & MatchId,const FString & SegmentId,const `[`FRHAPI_MatchSegmentPatchRequest`](models/RHAPI_MatchSegmentPatchRequest.md#structFRHAPI__MatchSegmentPatchRequest)` & Segment,const FRH_OnMatchUpdateCompleteDelegateBlock & Delegate)` <a id="classURH__MatchSubsystem_1af480a4bdb8be3d1ae88ffe0b0e888510"></a>
+
+Update a specific match segment (PATCH w/ UPSERT)
+
+#### Parameters
+* `MatchId` The match to update 
+
+* `SegmentId` The segment id to update 
+
+* `Segment` The segment data to update 
+
+* `Delegate` Callback with the results of the match update
 
 #### `protected TMap< FString, `[`FRHAPI_MatchWithPlayers`](models/RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` > `[`MatchesCache`](#classURH__MatchSubsystem_1af6ae949b60bac5983489fe295a5b914a) <a id="classURH__MatchSubsystem_1af6ae949b60bac5983489fe295a5b914a"></a>
 
