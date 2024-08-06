@@ -2,14 +2,21 @@
 #include "RH_PlayerExperienceCollector.h"
 #include "GameFramework/PlayerController.h"
 #include "EngineUtils.h"
+#include "EngineGlobals.h"
 #include "PerfCountersModule.h"
 #include "RH_Common.h"
+#include "Misc/FileHelper.h"
+#include "Engine/GameInstance.h"
+#include "Engine/GameViewportClient.h"
 #include "RH_GameInstanceSubsystem.h"
 #include "RH_LocalPlayer.h"
 #include "RH_RemoteFileSubsystem.h"
 #include "RH_SessionData.h"
+#include "HAL/FileManager.h"
 #include "Net/NetPing.h"
 #include "Net/PerfCountersHelpers.h"
+#include "Misc/App.h"
+#include "GameFramework/Pawn.h"
 #include "RenderTimer.h"
 #include "GameFramework/GameModeBase.h"
 #include "Serialization/AsyncPackageLoader.h"
@@ -469,6 +476,7 @@ void URH_PEXPrimaryStats::CapturePerFrameStats(const TScriptInterface<IRH_PEXOwn
 	
 	if (!IsRunningDedicatedServer())
 	{
+		Stats[GameThreadTime].CaptureValue(CYCLES_TO_MILLISECONDS(GameThreadTime));
 		Stats[RenderThreadTime].CaptureValue(CYCLES_TO_MILLISECONDS(GRenderThreadTime));
 		Stats[RHIThreadTime].CaptureValue(CYCLES_TO_MILLISECONDS(GRHIThreadTime));
 		Stats[GPUTime].CaptureValue(CYCLES_TO_MILLISECONDS(GGPUFrameTime));
@@ -483,20 +491,9 @@ void URH_PEXPrimaryStats::CapturePerFrameStats(const TScriptInterface<IRH_PEXOwn
 	else
 	{
 		// on servers, we only have game thread time
+		Stats[GameThreadTime].CaptureValue(CYCLES_TO_MILLISECONDS(GameThreadTime));
 		Stats[FrameTime].CaptureValue(CYCLES_TO_MILLISECONDS(GameThreadTime));
 	}
-	
-    if (ParentWorld != nullptr && ParentWorld->GetGameViewport() != nullptr && ParentWorld->GetGameViewport()->GetStatUnitData())
-    {
-        FStatUnitData* pData = ParentWorld->GetGameViewport()->GetStatUnitData();
-    	
-    }
-    else
-    {
-    	auto MainThreadValue = SECONDS_TO_MILLISECONDS(FApp::GetDeltaTime() - FApp::GetIdleTime());
-    	Stats[FrameTime].CaptureValue(MainThreadValue);
-        Stats[GameThreadTime].CaptureValue(MainThreadValue);
-    }
 
 	auto DeltaSeconds = FApp::GetDeltaTime();
     Stats[DeltaTime].CaptureValue(SECONDS_TO_MILLISECONDS(DeltaSeconds));
