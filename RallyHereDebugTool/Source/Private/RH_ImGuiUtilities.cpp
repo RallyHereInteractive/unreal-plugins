@@ -447,6 +447,7 @@ bool ImGuiDisplayCombo(const FString& ComboLabel, FString& CurrentValue, const T
 	bool bChanged = false;
 	const FString& DisplayCurrentValue = DisplayNames != nullptr && DisplayNames->Contains(*CurrentValue) ? DisplayNames->FindRef(*CurrentValue) : CurrentValue;
 
+	ImGui::PushID(TCHAR_TO_UTF8(*ComboLabel));
 	if (ImGui::BeginCombo(TCHAR_TO_UTF8(*ComboLabel), TCHAR_TO_UTF8(*DisplayCurrentValue)))
 	{
 		for (auto& Value : PossibleValues)
@@ -456,6 +457,7 @@ bool ImGuiDisplayCombo(const FString& ComboLabel, FString& CurrentValue, const T
 			bool bIsSelected = CurrentValue == Value;
 
 			FTCHARToUTF8 UTF8DisplayValue(*DisplayValue);
+			ImGui::PushID(UTF8DisplayValue.Get());
 			if (ImGui::Selectable(UTF8DisplayValue.Get(), bIsSelected))
 			{
 				CurrentValue = Value;
@@ -466,9 +468,11 @@ bool ImGuiDisplayCombo(const FString& ComboLabel, FString& CurrentValue, const T
 			{
 				ImGui::SetItemDefaultFocus();
 			}
+			ImGui::PopID();
 		}
 		ImGui::EndCombo();
 	}
+	ImGui::PopID();
 
 	return bChanged;
 }

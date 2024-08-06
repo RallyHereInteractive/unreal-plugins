@@ -359,3 +359,26 @@ private:
 // Helpers
 	void ConvertToJsonStringIfValid(TArray<ANSICHAR>& InString) const;
 };
+
+void ImGuiBeginEditableOptionalValue(const char* OptionalLabel, bool& IsSet)
+{
+	ImGui::Checkbox(OptionalLabel, &IsSet);
+	ImGui::SameLine();
+	ImGui::BeginDisabled(!IsSet);	
+}
+void ImGuiEndEditableOptionalValue()
+{
+	ImGui::EndDisabled();
+}
+
+template<typename F>
+void ImGuiEditableOptionalValue(const char* OptionalLabel, bool& IsSet, const F& EditFunction)
+{
+	ImGuiBeginEditableOptionalValue(OptionalLabel, IsSet);
+	EditFunction();
+	ImGuiEndEditableOptionalValue();
+}
+
+// Macro version of the above that generates the label from the set value definition, and runs the provided code block without needing a lambda mapping
+#define IMGUI_EDITABLE_OPTIONAL_VALUE(IsSet, ...) ImGuiBeginEditableOptionalValue("##" #IsSet, IsSet); { __VA_ARGS__; } ImGuiEndEditableOptionalValue();
+

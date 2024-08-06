@@ -164,76 +164,44 @@ void FRHDTW_Session::ImGuiDisplayInstance(const FRHAPI_InstanceInfo& Info, URH_S
 
 		if (ImGui::TreeNodeEx("Update Instance State", RH_DefaultTreeFlags))
 		{
+			if (ImGui::Button("Reset"))
 			{
-				ImGui::Checkbox("##JoinStatusOptional", &InstanceUpdate.JoinStatus_IsSet);
-				ImGui::SameLine();
-				ImGui::BeginDisabled(!InstanceUpdate.JoinStatus_IsSet);
-		
-				ImGuiDisplayEnumCombo("JoinStatus", InstanceUpdate.JoinStatus_Optional);
-
-				ImGui::EndDisabled();
+				InstanceUpdate = FRHAPI_InstanceInfoUpdate();
 			}
+			
+			ImGuiEditableOptionalValue("##JoinStatusOptional", InstanceUpdate.JoinStatus_IsSet,
+				[&]() { ImGuiDisplayEnumCombo("JoinStatus", InstanceUpdate.JoinStatus_Optional); });
 
-			{
-				ImGui::Checkbox("##JoinParamsOptional", &InstanceUpdate.JoinParams_IsSet);
-				ImGui::SameLine();
-				ImGui::BeginDisabled(!InstanceUpdate.JoinParams_IsSet);
-		
-				if (ImGui::TreeNodeEx("JoinParams", RH_DefaultTreeFlags))
-				{
-					auto& JoinParams = InstanceUpdate.JoinParams_Optional;
-					
-					ImGui::InputText("PublicConnStr", &JoinParams.PublicConnStr);
-					ImGui::InputText("PrivateConnStr", &JoinParams.PrivateConnStr);
-
+			ImGuiEditableOptionalValue("##JoinParamsOptional", InstanceUpdate.JoinParams_IsSet,
+				[&]() {
+					if (ImGui::TreeNodeEx("JoinParams", RH_DefaultTreeFlags))
 					{
-						ImGui::Checkbox("##CustomDataOptional", &JoinParams.CustomData_IsSet);
-						ImGui::SameLine();
-						ImGui::BeginDisabled(!JoinParams.CustomData_IsSet);
+						auto& JoinParams = InstanceUpdate.JoinParams_Optional;
 						
-						InstanceJoinParamsCustomDataStager.DisplayCustomDataStager(false, Info.GetJoinParamsOrNull() ? Info.GetJoinParamsOrNull()->GetCustomDataOrNull() : nullptr);
-						InstanceJoinParamsCustomDataStager.GetCustomDataMap(JoinParams.CustomData_Optional);
+						ImGui::InputText("PublicConnStr", &JoinParams.PublicConnStr);
+						ImGui::InputText("PrivateConnStr", &JoinParams.PrivateConnStr);
 
-						ImGui::EndDisabled();
+						ImGuiEditableOptionalValue("##CustomDataOptional", InstanceUpdate.JoinParams_Optional.CustomData_IsSet,
+							[&]() {
+								InstanceJoinParamsCustomDataStager.DisplayCustomDataStager(false, Info.GetJoinParamsOrNull() ? Info.GetJoinParamsOrNull()->GetCustomDataOrNull() : nullptr);
+								InstanceJoinParamsCustomDataStager.GetCustomDataMap(InstanceUpdate.JoinParams_Optional.CustomData_Optional);
+							});
+
+						ImGui::TreePop();
 					}
-					
-					
-					ImGui::TreePop();
-				}
+				});
 
-				ImGui::EndDisabled();
-			}
+			ImGuiEditableOptionalValue("##VersionOptional", InstanceUpdate.Version_IsSet,
+				[&]() { ImGui::InputText("Version", &InstanceUpdate.Version_Optional); });
+
+			ImGuiEditableOptionalValue("##MatchIdOptional", InstanceUpdate.MatchId_IsSet,
+				[&]() { ImGui::InputText("MatchId", &InstanceUpdate.MatchId_Optional); });
 			
-			{
-				ImGui::Checkbox("##VersionOptional", &InstanceUpdate.Version_IsSet);
-				ImGui::SameLine();
-				ImGui::BeginDisabled(!InstanceUpdate.Version_IsSet);
-		
-				ImGui::InputText("Version", &InstanceUpdate.Version_Optional);
-
-				ImGui::EndDisabled();
-			}
-			
-			{
-				ImGui::Checkbox("##MatchIdOptional", &InstanceUpdate.MatchId_IsSet);
-				ImGui::SameLine();
-				ImGui::BeginDisabled(!InstanceUpdate.MatchId_IsSet);
-		
-				ImGui::InputText("MatchId", &InstanceUpdate.MatchId_Optional);
-
-				ImGui::EndDisabled();
-			}
-			
-			{
-				ImGui::Checkbox("##CustomDataOptional", &InstanceUpdate.CustomData_IsSet);
-				ImGui::SameLine();
-				ImGui::BeginDisabled(!InstanceUpdate.CustomData_IsSet);
-		
-				InstanceCustomDataStager.DisplayCustomDataStager(false, Info.GetCustomDataOrNull());
-				InstanceCustomDataStager.GetCustomDataMap(InstanceUpdate.CustomData_Optional);
-
-				ImGui::EndDisabled();
-			}
+			ImGuiEditableOptionalValue("##CustomDataOptional", InstanceUpdate.CustomData_IsSet,
+				[&]() {
+					InstanceCustomDataStager.DisplayCustomDataStager(false, Info.GetCustomDataOrNull());
+					InstanceCustomDataStager.GetCustomDataMap(InstanceUpdate.CustomData_Optional);
+				});
 
 			if (RHJoinedSession != nullptr && ImGui::Button("Update Instance Info"))
 			{
@@ -259,108 +227,91 @@ void FRHDTW_Session::ImGuiDisplayInstanceRequest(TSharedRef<FInstanceLaunchParam
 		InstanceLaunchParams->ResetToDefaults();
 	}
 	
-	{
-		ImGui::Checkbox("##TemplateIdOptional", &InstanceLaunchParams->Request.InstanceRequestTemplateId_IsSet);
-		ImGui::SameLine();
-		ImGui::BeginDisabled(!InstanceLaunchParams->Request.InstanceRequestTemplateId_IsSet);	
-		
-		ImGui::SetNextItemWidth(GuidFieldWidth);
-		ImGui::InputText("TemplateId", &InstanceLaunchParams->TemplateIdString);
-		FGuid LaunchTemplateId = FGuid(InstanceLaunchParams->TemplateIdString);
-
-		bool bValidTemplateId = LaunchTemplateId.IsValid();
-		if (bValidTemplateId)
+	ImGuiEditableOptionalValue("TemplateIdOptional", InstanceLaunchParams->Request.InstanceRequestTemplateId_IsSet,
+		[&]()
 		{
-			InstanceLaunchParams->Request.InstanceRequestTemplateId_Optional = LaunchTemplateId;
-
-			ImGui::Indent();
-			// display the template if able
-			if (pGISubsystem != nullptr)
+			ImGui::SetNextItemWidth(GuidFieldWidth);
+        	ImGui::InputText("TemplateId", &InstanceLaunchParams->TemplateIdString);
+        	FGuid LaunchTemplateId = FGuid(InstanceLaunchParams->TemplateIdString);
+			
+			
+			bool bValidTemplateId = LaunchTemplateId.IsValid();
+			if (bValidTemplateId)
 			{
-				auto pGIMatchmakingCache = pGISubsystem != nullptr ? pGISubsystem->GetMatchmakingCache() : nullptr;
-				if (pGIMatchmakingCache != nullptr)
+				InstanceLaunchParams->Request.InstanceRequestTemplateId_Optional = LaunchTemplateId;
+
+				ImGui::Indent();
+				// display the template if able
+				if (pGISubsystem != nullptr)
 				{
-					if (auto LaunchTemplate = pGIMatchmakingCache->GetInstanceRequestTemplate(LaunchTemplateId))
+					auto pGIMatchmakingCache = pGISubsystem != nullptr ? pGISubsystem->GetMatchmakingCache() : nullptr;
+					if (pGIMatchmakingCache != nullptr)
 					{
-						ImGuiDisplayInstanceRequestTemplate(LaunchTemplate->GetInfo(), pGIMatchmakingCache);
-					}
-					else
-					{
-						if (ImGui::Button("Lookup Template"))
+						if (auto LaunchTemplate = pGIMatchmakingCache->GetInstanceRequestTemplate(LaunchTemplateId))
 						{
-							pGIMatchmakingCache->SearchInstanceRequestTemplate(LaunchTemplateId);
+							ImGuiDisplayInstanceRequestTemplate(LaunchTemplate->GetInfo(), pGIMatchmakingCache);
+						}
+						else
+						{
+							if (ImGui::Button("Lookup Template"))
+							{
+								pGIMatchmakingCache->SearchInstanceRequestTemplate(LaunchTemplateId);
+							}
 						}
 					}
 				}
+				ImGui::Unindent();
 			}
-			ImGui::Unindent();
-		}
-		else
-		{
-			InstanceLaunchParams->Request.InstanceRequestTemplateId_Optional = FGuid();
-
-			if (InstanceLaunchParams->TemplateIdString.Len() > 0)
+			else
 			{
-				ImGui::SameLine();
-				ImGui::Text("Invalid Template Id");
+				InstanceLaunchParams->Request.InstanceRequestTemplateId_Optional = FGuid();
+
+				if (InstanceLaunchParams->TemplateIdString.Len() > 0)
+				{
+					ImGui::SameLine();
+					ImGui::Text("Invalid Template Id");
+				}
 			}
-		}
+		});
 
-		ImGui::EndDisabled();
-	}
-
-	{
-		ImGui::Checkbox("##StartupParamsOptional", &InstanceLaunchParams->Request.InstanceStartupParams_IsSet);
-		ImGui::SameLine();
-		ImGui::BeginDisabled(!InstanceLaunchParams->Request.InstanceStartupParams_IsSet);
-		
-		if (ImGui::TreeNodeEx("Startup Params", RH_DefaultTreeFlagsDefaultOpen))
+	ImGuiEditableOptionalValue("##StartupParamsOptional", InstanceLaunchParams->Request.InstanceStartupParams_IsSet,
+		[&]()
 		{
-			auto& StartupParams = InstanceLaunchParams->Request.InstanceStartupParams_Optional;
-			ImGui::InputText("Map", &StartupParams.Map);
-			ImGui::InputText("GameMode", &StartupParams.Mode_Optional);
-			StartupParams.Mode_IsSet = StartupParams.Mode_Optional.Len() > 0;
-			ImGui::InputText("MiscParams", &StartupParams.MiscParams);
-
-			InstanceLaunchParams->InstanceStartupCustomDataStager.DisplayCustomDataStager(false);
-			InstanceLaunchParams->InstanceStartupCustomDataStager.GetCustomDataMap(StartupParams.CustomData_Optional);
-		
-			ImGui::Checkbox("Beacon", &InstanceLaunchParams->bMakeBeaconInstance);
-			if (InstanceLaunchParams->bMakeBeaconInstance)
+			if (ImGui::TreeNodeEx("Startup Params", RH_DefaultTreeFlagsDefaultOpen))
 			{
-				// inject beacon flag into final custom data if enabled
-				StartupParams.CustomData_Optional.Add(RH_SessionCustomDataKeys::BeaconFlag, TEXT("true"));
+				auto& StartupParams = InstanceLaunchParams->Request.InstanceStartupParams_Optional;
+				ImGui::InputText("Map", &StartupParams.Map);
+				ImGui::InputText("GameMode", &StartupParams.Mode_Optional);
+				StartupParams.Mode_IsSet = StartupParams.Mode_Optional.Len() > 0;
+				ImGui::InputText("MiscParams", &StartupParams.MiscParams);
+
+				InstanceLaunchParams->InstanceStartupCustomDataStager.DisplayCustomDataStager(false);
+				InstanceLaunchParams->InstanceStartupCustomDataStager.GetCustomDataMap(StartupParams.CustomData_Optional);
+		
+				ImGui::Checkbox("Beacon", &InstanceLaunchParams->bMakeBeaconInstance);
+				if (InstanceLaunchParams->bMakeBeaconInstance)
+				{
+					// inject beacon flag into final custom data if enabled
+					StartupParams.CustomData_Optional.Add(RH_SessionCustomDataKeys::BeaconFlag, TEXT("true"));
+				}
+				StartupParams.CustomData_IsSet = StartupParams.CustomData_Optional.Num() > 0;
+
+				ImGui::TreePop();
 			}
-			StartupParams.CustomData_IsSet = StartupParams.CustomData_Optional.Num() > 0;
+		});
 
-			ImGui::TreePop();
-		}
+	ImGuiEditableOptionalValue("##CustomDataOptional", InstanceLaunchParams->Request.CustomData_IsSet,
+		[&]()
+		{
+			InstanceLaunchParams->InstanceCustomDataStager.DisplayCustomDataStager(false);
+			InstanceLaunchParams->InstanceCustomDataStager.GetCustomDataMap(InstanceLaunchParams->Request.CustomData_Optional);
+		});
 
-		ImGui::EndDisabled();
-	}
-
-	{
-		ImGui::Checkbox("##CustomDataOptional", &InstanceLaunchParams->Request.CustomData_IsSet);
-		ImGui::SameLine();
-		ImGui::BeginDisabled(!InstanceLaunchParams->Request.CustomData_IsSet);
-		
-		InstanceLaunchParams->InstanceCustomDataStager.DisplayCustomDataStager(false);
-		InstanceLaunchParams->InstanceCustomDataStager.GetCustomDataMap(InstanceLaunchParams->Request.CustomData_Optional);
-	
-		InstanceLaunchParams->Request.CustomData_IsSet = InstanceLaunchParams->Request.CustomData_Optional.Num() > 0;
-
-		ImGui::EndDisabled();
-	}
-
-	{
-		ImGui::Checkbox("##HostTypeOptional", &InstanceLaunchParams->Request.HostType_IsSet);
-		ImGui::SameLine();
-		ImGui::BeginDisabled(!InstanceLaunchParams->Request.HostType_IsSet);
-		
-		ImGuiDisplayEnumCombo("HostType", InstanceLaunchParams->Request.HostType_Optional);
-
-		ImGui::EndDisabled();
-	}
+	ImGuiEditableOptionalValue("##HostTypeOptional", InstanceLaunchParams->Request.HostType_IsSet,
+		[&]()
+		{
+			ImGuiDisplayEnumCombo("HostType", InstanceLaunchParams->Request.HostType_Optional);
+		});
 
 	ImGui::BeginDisabled(Session == nullptr);
 	if (ImGui::Button("Request Instance"))
@@ -1013,36 +964,17 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 				SessionUpdate = FRHAPI_SessionUpdate();
 			}
 
-			{
-				ImGui::Checkbox("##RegionIdOptional", &SessionUpdate.RegionId_IsSet);
-				ImGui::SameLine();
-				ImGui::BeginDisabled(!SessionUpdate.RegionId_IsSet);
-		
-				ImGui::InputText("Region Id", &SessionUpdate.RegionId_Optional);
+			ImGuiEditableOptionalValue("##RegionIdOptional", SessionUpdate.RegionId_IsSet,
+				[&]() { ImGui::InputText("RegionId", &SessionUpdate.RegionId_Optional); });
 
-				ImGui::EndDisabled();
-			}
+			ImGuiEditableOptionalValue("##JoinableOptional", SessionUpdate.Joinable_IsSet,
+				[&]() { ImGui::Checkbox("Joinable", &SessionUpdate.Joinable_Optional); });
 			
-			{
-				ImGui::Checkbox("##JoinableOptional", &SessionUpdate.Joinable_IsSet);
-				ImGui::SameLine();
-				ImGui::BeginDisabled(!SessionUpdate.Joinable_IsSet);
-		
-				ImGui::Checkbox("Joinable", &SessionUpdate.Joinable_Optional);
-
-				ImGui::EndDisabled();
-			}
-			
-			{
-				ImGui::Checkbox("##CustomDataOptional", &SessionUpdate.CustomData_IsSet);
-				ImGui::SameLine();
-				ImGui::BeginDisabled(!SessionUpdate.CustomData_IsSet);
-		
-				SessionUpdateCustomDataStager.DisplayCustomDataStager(false, Session.GetCustomDataOrNull());
-				SessionUpdateCustomDataStager.GetCustomDataMap(SessionUpdate.CustomData_Optional);
-
-				ImGui::EndDisabled();
-			}
+			ImGuiEditableOptionalValue("##CustomDataOptional", SessionUpdate.CustomData_IsSet,
+				[&]() {
+					SessionUpdateCustomDataStager.DisplayCustomDataStager(false, Session.GetCustomDataOrNull());
+					SessionUpdateCustomDataStager.GetCustomDataMap(SessionUpdate.CustomData_Optional);
+				});
 			
 			if (RHJoinedSession != nullptr && ImGui::Button("Update Session Info"))
 			{
