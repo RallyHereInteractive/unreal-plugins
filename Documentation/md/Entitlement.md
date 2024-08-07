@@ -36,7 +36,7 @@ Subsystem for handling requesting and processing entitlements from the online su
 `protected FName `[`EntitlementOSSName`](#classURH__EntitlementSubsystem_1a3a1c18058080e0dc894e3f986f9f4230) | Online Subsystem to use for entitlements. If not provided, will use the default OSS.
 `protected FTimerManager & `[`GetTimerManager`](#classURH__EntitlementSubsystem_1a3ac920200686b3ec67e976322e2913db)`()` | Helper to get the engines Timer Manager.
 `protected `[`URH_LocalPlayerSubsystem`](LocalPlayer.md#classURH__LocalPlayerSubsystem)` * `[`GetRH_LocalPlayerSubsystem`](#classURH__EntitlementSubsystem_1ab1f1a051a4db3625191e529a6536a14a)`() const` | Helper to the local player subsystem.
-`protected IOnlineSubsystem * `[`GetOSS`](#classURH__EntitlementSubsystem_1a9d4639fe82b8dad3e126519ac79f579b)`() const` | Helper to the online subsystem.
+`protected IOnlineSubsystemPtr `[`GetOSS`](#classURH__EntitlementSubsystem_1a0d8e49257638cc04901e70b8a2fccab9)`() const` | Helper to the online subsystem.
 `protected IOnlinePurchasePtr `[`GetPurchaseSubsystem`](#classURH__EntitlementSubsystem_1a68e068e84180db974ab6b29444847399)`() const` | Helper to the online purchase subsystem.
 
 ### Members
@@ -148,7 +148,7 @@ Helper to get the engines Timer Manager.
 
 Helper to the local player subsystem.
 
-#### `protected IOnlineSubsystem * `[`GetOSS`](#classURH__EntitlementSubsystem_1a9d4639fe82b8dad3e126519ac79f579b)`() const` <a id="classURH__EntitlementSubsystem_1a9d4639fe82b8dad3e126519ac79f579b"></a>
+#### `protected IOnlineSubsystemPtr `[`GetOSS`](#classURH__EntitlementSubsystem_1a0d8e49257638cc04901e70b8a2fccab9)`() const` <a id="classURH__EntitlementSubsystem_1a0d8e49257638cc04901e70b8a2fccab9"></a>
 
 Helper to the online subsystem.
 
