@@ -469,14 +469,15 @@ void URH_PEXPrimaryStats::CapturePerFrameStats(const TScriptInterface<IRH_PEXOwn
 	auto ParentWorld = Owner->GetPEXWorld();
 	
 	Stats[GameThreadTime].CaptureValue(CYCLES_TO_MILLISECONDS(GGameThreadTime));
+#if RH_FROM_ENGINE_VERSION(5, 3)
 	Stats[GameThreadWaitTime].CaptureValue(CYCLES_TO_MILLISECONDS(GGameThreadWaitTime));
+#endif
 
 	// note this is recorded in seconds, not cycles
 	Stats[FlushLoadingTime].CaptureValue(SECONDS_TO_MILLISECONDS(GFlushAsyncLoadingTime));
 	
 	if (!IsRunningDedicatedServer())
 	{
-		Stats[GameThreadTime].CaptureValue(CYCLES_TO_MILLISECONDS(GameThreadTime));
 		Stats[RenderThreadTime].CaptureValue(CYCLES_TO_MILLISECONDS(GRenderThreadTime));
 		Stats[RHIThreadTime].CaptureValue(CYCLES_TO_MILLISECONDS(GRHIThreadTime));
 		Stats[GPUTime].CaptureValue(CYCLES_TO_MILLISECONDS(GGPUFrameTime));
@@ -491,7 +492,6 @@ void URH_PEXPrimaryStats::CapturePerFrameStats(const TScriptInterface<IRH_PEXOwn
 	else
 	{
 		// on servers, we only have game thread time
-		Stats[GameThreadTime].CaptureValue(CYCLES_TO_MILLISECONDS(GameThreadTime));
 		Stats[FrameTime].CaptureValue(CYCLES_TO_MILLISECONDS(GameThreadTime));
 	}
 
