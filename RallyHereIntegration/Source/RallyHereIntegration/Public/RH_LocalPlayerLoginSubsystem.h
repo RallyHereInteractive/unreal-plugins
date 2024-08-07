@@ -80,6 +80,12 @@ enum class ERHAPI_LoginResult : uint8
 	/** Relogin called without saved credentials */
 	Fail_ReloginWithoutSavedCredentials,
 
+	/** The auth context has become invalid over the course of the login process */
+	Fail_InvalidAuthContext,
+	
+	/** The OSS unique id is invalid after it was required to be valid in the login process */
+	Fail_InvalidOSSUniqueNetId,
+
     /** RH web login failed for an unknown reason.  This usually means there was a server error of some kind. */
     Fail_RHUnknown,
 };

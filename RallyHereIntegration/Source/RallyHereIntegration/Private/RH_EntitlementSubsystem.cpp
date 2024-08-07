@@ -135,7 +135,7 @@ TMap<FString, FRHAPI_PlatformEntitlementProcessResult>* URH_EntitlementSubsystem
 	return &EntitlementProcessResultMap;
 }
 
-IOnlineSubsystem* URH_EntitlementSubsystem::GetOSS() const
+IOnlineSubsystemPtr URH_EntitlementSubsystem::GetOSS() const
 {
 	if (URH_LocalPlayerSubsystem* LPSS = GetLocalPlayerSubsystem())
 	{
@@ -144,13 +144,13 @@ IOnlineSubsystem* URH_EntitlementSubsystem::GetOSS() const
 			return nullptr;
 		}
 
-		IOnlineSubsystem* oss = LPSS->GetOSS(EntitlementOSSName);
-		if (oss == nullptr)
+		IOnlineSubsystemPtr OSS = MakeShareable(LPSS->GetOSS(EntitlementOSSName));
+		if (OSS.IsValid())
 		{
 			return nullptr;
 		}
 
-		return oss;
+		return OSS;
 	}
 
 	return nullptr;
@@ -158,7 +158,8 @@ IOnlineSubsystem* URH_EntitlementSubsystem::GetOSS() const
 
 IOnlinePurchasePtr URH_EntitlementSubsystem::GetPurchaseSubsystem() const
 {
-	if (IOnlineSubsystem* OSS = GetOSS())
+	auto OSS = GetOSS();
+	if (OSS.IsValid())
 	{
 		IOnlinePurchasePtr purchase = OSS->GetPurchaseInterface();
 		return purchase;

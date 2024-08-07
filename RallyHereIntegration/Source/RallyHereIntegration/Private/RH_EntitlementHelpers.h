@@ -33,7 +33,7 @@ public:
 	 * @brief Main Constructor for Entitlement Processor, used internally by the entitlement process calls.
 	 */
 	FRH_EntitlementProcessor(URH_EntitlementSubsystem* InEntitlementSubsystem,
-		IOnlineSubsystem* InOSS,
+		const IOnlineSubsystemPtr& InOSS,
 		const IOnlinePurchasePtr& InPurchaseSubsystem,
 		int32 InLocalUserNum,
 		FUniqueNetIdWrapper InPlatformUserId,
@@ -107,10 +107,25 @@ protected:
 	 */
 	void QueryEntitlements()
 	{
-		if(PurchaseSubsystem != nullptr && !bIsOverride)
+		if(!bIsOverride)
 		{
-			PurchaseSubsystem->QueryReceipts(*OSS->GetIdentityInterface()->GetUniquePlayerId(LocalUserNum), false,
-			FOnQueryReceiptsComplete::CreateSP(this, &FRH_EntitlementProcessor::QueryEntitlementsComplete, OSS));
+			if (OSS.IsValid() && OSS->GetIdentityInterface().IsValid() && PurchaseSubsystem.IsValid())
+			{
+				auto UniquePlayerId = OSS->GetIdentityInterface()->GetUniquePlayerId(LocalUserNum);
+				if (UniquePlayerId.IsValid())
+				{
+					PurchaseSubsystem->QueryReceipts(*UniquePlayerId, false,
+					FOnQueryReceiptsComplete::CreateSP(this, &FRH_EntitlementProcessor::QueryEntitlementsComplete));
+				}
+				else
+				{
+					Failed(TEXT("Could not retreieve player unique id when querying entitlements"));
+				}
+			}
+			else
+			{
+				Failed(TEXT("OSS Interfaces not valid when querying entitlements"));
+			}
 		}
 		else
 		{
@@ -120,9 +135,8 @@ protected:
 	/**
 	 * @brief Response from the online subsystem query entitlements call.
 	 * @param [in] Result The result of the query.
-	 * @param [in] ProvidedOSS The OSS that provided the result.
 	 */
-	void QueryEntitlementsComplete(const FOnlineError& Result, IOnlineSubsystem* ProvidedOSS)
+	void QueryEntitlementsComplete(const FOnlineError& Result)
 	{
 		if (!Result.bSucceeded)
 		{
@@ -166,11 +180,26 @@ protected:
 
 		if(bShouldFinalize)
 		{
-			for (FString validationInfo: ValidationInfos)
+			if (OSS.IsValid() && OSS->GetIdentityInterface().IsValid() && PurchaseSubsystem.IsValid())
 			{
-				PurchaseSubsystem->FinalizeReceiptValidationInfo(*OSS->GetIdentityInterface()->GetUniquePlayerId(LocalUserNum),
-					validationInfo,
-					FOnFinalizeReceiptValidationInfoComplete::CreateSP(this, &FRH_EntitlementProcessor::OnReceiptValidationComplete));
+				auto UniquePlayerId = OSS->GetIdentityInterface()->GetUniquePlayerId(LocalUserNum);
+				if (UniquePlayerId.IsValid())
+				{
+					for (FString validationInfo: ValidationInfos)
+					{
+						PurchaseSubsystem->FinalizeReceiptValidationInfo(*UniquePlayerId,
+							validationInfo,
+							FOnFinalizeReceiptValidationInfoComplete::CreateSP(this, &FRH_EntitlementProcessor::OnReceiptValidationComplete));
+					}
+				}
+				else
+				{
+					Failed(TEXT("Could not retreieve player unique id when validating entitlements"));
+				}
+			}
+			else
+			{
+				Failed(TEXT("OSS Interfaces not valid when validating entitlements"));
 			}
 		}
 		else
@@ -501,9 +530,13 @@ protected:
 	void FinalizePurchase()
 	{
 		UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - Process Platform Entitlements was success, calling finalize purchase on Transaction Id: %s"), ANSI_TO_TCHAR(__FUNCTION__), *ProcessEntitlementResult.TransactionId);
-		if (PurchaseSubsystem != nullptr)
+		if (OSS.IsValid() && OSS->GetIdentityInterface().IsValid() && PurchaseSubsystem.IsValid())
 		{
-			PurchaseSubsystem->FinalizePurchase(*OSS->GetIdentityInterface()->GetUniquePlayerId(LocalUserNum), *ProcessEntitlementResult.GetTransactionId());
+			auto UniquePlayerId = OSS->GetIdentityInterface()->GetUniquePlayerId(LocalUserNum);
+			if (UniquePlayerId.IsValid())
+			{
+				PurchaseSubsystem->FinalizePurchase(*UniquePlayerId, *ProcessEntitlementResult.GetTransactionId());
+			}
 		}
 
 		Completed(true);
@@ -539,7 +572,7 @@ protected:
 	/** @brief Pointer back to the entitlement subsystem that owns this processor. */
 	TWeakObjectPtr<URH_EntitlementSubsystem> EntitlementSubsystem;
 	/** @brief Online Subsystem this processor is for. */
-	IOnlineSubsystem* OSS;
+	IOnlineSubsystemPtr OSS;
 	/** @brief Online Purchase Subsystem this processor is for. */
 	IOnlinePurchasePtr PurchaseSubsystem;
 	/** @brief Contorller Id of the user. */
