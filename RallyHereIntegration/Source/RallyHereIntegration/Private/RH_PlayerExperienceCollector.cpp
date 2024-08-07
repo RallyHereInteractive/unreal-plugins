@@ -828,7 +828,7 @@ void URH_TestPEXOwner::SubmitPEXHostSummary(FRHAPI_PexHostRequest&& Report) cons
 			auto GameInstance = World->GetGameInstance();
 			if (GameInstance != nullptr)
 			{
-				auto RHGameInstance = Cast<URH_GameInstanceSubsystem>(GameInstance);
+				auto RHGameInstance = GameInstance->GetSubsystem<URH_GameInstanceSubsystem>();
 				if (RHGameInstance != nullptr)
 				{
 					
