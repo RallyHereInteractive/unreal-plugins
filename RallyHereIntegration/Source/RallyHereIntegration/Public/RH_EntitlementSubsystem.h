@@ -146,7 +146,7 @@ protected:
 	/** @brief Map of results from Entitlement Process calls. */
 	TMap<FString, FRHAPI_PlatformEntitlementProcessResult> EntitlementProcessResultMap;
 	/** @brief Helper to the online subsystem. */
-	IOnlineSubsystemPtr GetOSS() const;
+	IOnlineSubsystem* GetOSS() const;
 	/** @brief Helper to the online purchase subsystem. */
 	IOnlinePurchasePtr GetPurchaseSubsystem() const;
 
