@@ -37,6 +37,8 @@ Fail_MustAcceptAgreements            | User must accept all required agreements.
 Fail_RHDenied            | RH web login was denied. There are many reasons that can cause this, including misconfiguration of OSS IDs with the Rally Here APIs
 Fail_LocalPlayerMissing            | Local player went missing during login process
 Fail_ReloginWithoutSavedCredentials            | Relogin called without saved credentials
+Fail_InvalidAuthContext            | The auth context has become invalid over the course of the login process
+Fail_InvalidOSSUniqueNetId            | The OSS unique id is invalid after it was required to be valid in the login process
 Fail_RHUnknown            | RH web login failed for an unknown reason. This usually means there was a server error of some kind.
 
 Login Results.

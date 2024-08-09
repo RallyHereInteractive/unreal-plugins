@@ -864,8 +864,15 @@ void URH_FriendSubsystem::OnOSSBlockListChanged(int32 LocalUserNum, const FStrin
 		return;
 	}
 
+	auto UniquePlayerId = OSSIdentityInterface->GetUniquePlayerId(LocalUserNum);
+	if (!UniquePlayerId.IsValid())
+	{
+		UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] failed to get unique player id"), ANSI_TO_TCHAR(__FUNCTION__));
+		return;
+	}
+	
 	TArray<TSharedRef<FOnlineBlockedPlayer>> BlockedPlayers;
-	if (!OSSFriendsInterface->GetBlockedPlayers(*OSSIdentityInterface->GetUniquePlayerId(LocalUserNum), BlockedPlayers))
+	if (!OSSFriendsInterface->GetBlockedPlayers(*UniquePlayerId, BlockedPlayers))
 	{
 		UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] failed to get list of blocked players"), ANSI_TO_TCHAR(__FUNCTION__));
 		return;
