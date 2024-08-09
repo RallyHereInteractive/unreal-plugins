@@ -94,11 +94,12 @@ protected:
 	/** @brief Create the RallyHereAPI based request */
 	virtual TOptional<RallyHereAPI::FRequest_ProcessPlatformEntitlementsByPlayerUuid> CreateRallyHereAPIEntitlementsRequest(const FString& PlatformAuthToken, const FGuid& PlayerUuid)
 	{
-		ProcessEntitlementResult.SetStatus("SUBMITTED");
-		EntitlementSubsystem->GetEntitlementResults()->Emplace(TaskId, ProcessEntitlementResult);
+		auto Request = RallyHereAPI::FRequest_ProcessPlatformEntitlementsByPlayerUuid();
+		Request.AuthContext = AuthContext;
+		Request.PlayerUuid = PlayerUuid;
+		
+		auto& entitlementRequest = Request.PlatformEntitlementProcessRequest;
 
-		FRHAPI_PlatformEntitlementProcessRequest entitlementRequest;
-		entitlementRequest.SetEntitlements(ProcessEntitlementResult.GetClientEntitlements());
 		entitlementRequest.SetPlatformId(EnumToString(Platform.GetValue()));
 
 		entitlementRequest.SetPlatformToken(PlatformAuthToken);
@@ -106,11 +107,6 @@ protected:
 
 		entitlementRequest.SetPlatformRegion(Region.Get(ERHAPI_PlatformRegion::Unknown));
 		entitlementRequest.SetTransactionId(ProcessEntitlementResult.TransactionId);
-
-		auto Request = RallyHereAPI::FRequest_ProcessPlatformEntitlementsByPlayerUuid();
-		Request.AuthContext = AuthContext;
-		Request.PlayerUuid = PlayerUuid;
-		Request.PlatformEntitlementProcessRequest = entitlementRequest;
 
 		return Request;
 	}
@@ -146,6 +142,9 @@ protected:
 			Failed(TEXT("Could not create RallyHereAPI Entitlements Request"));
 			return;
 		}
+		
+		ProcessEntitlementResult.SetStatus("SUBMITTED");
+		EntitlementSubsystem->GetEntitlementResults()->Emplace(TaskId, ProcessEntitlementResult);
 		
 		const auto HttpPtr = RH_APIs::GetAPIs().GetEntitlements()->ProcessPlatformEntitlementsByPlayerUuid(Request.GetValue(),
 			RallyHereAPI::FDelegate_ProcessPlatformEntitlementsByPlayerUuid::CreateSP(this, &FRH_EntitlementProcessor::ProcessPlatformInventoryComplete), GetDefault<URH_IntegrationSettings>()->ProcessPlatformEntitlementsPriority);
@@ -521,18 +520,11 @@ protected:
 
 		if(bShouldFinalize)
 		{
-			if (OSSData.UniqueNetId.IsValid() && OSSData.Purchase.IsValid())
+			for (FString validationInfo: ValidationInfos)
 			{
-				for (FString validationInfo: ValidationInfos)
-				{
-					OSSData.Purchase->FinalizeReceiptValidationInfo(*OSSData.UniqueNetId,
-						validationInfo,
-						FOnFinalizeReceiptValidationInfoComplete::CreateSP(this, &FRH_EntitlementProcessorOSSPurchase::OnReceiptValidationComplete));
-				}
-			}
-			else
-			{
-				Failed(TEXT("OSS Interfaces not valid when validating entitlements"));
+				OSSData.Purchase->FinalizeReceiptValidationInfo(*OSSData.UniqueNetId,
+					validationInfo,
+					FOnFinalizeReceiptValidationInfoComplete::CreateSP(this, &FRH_EntitlementProcessorOSSPurchase::OnReceiptValidationComplete));
 			}
 		}
 		else
@@ -594,26 +586,19 @@ protected:
 
 	void RetrieveOSSAuthToken()
 	{
-		if (OSSData.Identity.IsValid())
+		if (RH_UseGetAuthTokenFallbackFromOSSName(OSSData.SubsystemName))
 		{
-			if (RH_UseGetAuthTokenFallbackFromOSSName(OSSData.SubsystemName))
-			{
-				FExternalAuthToken AuthToken;
-				AuthToken.TokenString = OSSData.Identity->GetAuthToken(OSSData.LocalUserNum);
-				RetrieveOSSAuthTokenComplete(OSSData.LocalUserNum, AuthToken.IsValid(), AuthToken);
-			}
-			else
-			{
-#if RH_FROM_ENGINE_VERSION(5,2)
-				OSSData.Identity->GetLinkedAccountAuthToken(OSSData.LocalUserNum, FString(), IOnlineIdentity::FOnGetLinkedAccountAuthTokenCompleteDelegate::CreateSP(this, &FRH_EntitlementProcessorOSSPurchase::RetrieveOSSAuthTokenComplete));
-#else
-				IdentityInterface->GetLinkedAccountAuthToken(LocalUserNum, IOnlineIdentity::FOnGetLinkedAccountAuthTokenCompleteDelegate::CreateSP(this, &FRH_EntitlementProcessor::RetrieveOSSAuthTokenComplete));
-#endif
-			}
+			FExternalAuthToken AuthToken;
+			AuthToken.TokenString = OSSData.Identity->GetAuthToken(OSSData.LocalUserNum);
+			RetrieveOSSAuthTokenComplete(OSSData.LocalUserNum, AuthToken.IsValid(), AuthToken);
 		}
 		else
 		{
-			RetrieveOSSAuthTokenComplete(OSSData.LocalUserNum, false, FExternalAuthToken());
+#if RH_FROM_ENGINE_VERSION(5,2)
+			OSSData.Identity->GetLinkedAccountAuthToken(OSSData.LocalUserNum, FString(), IOnlineIdentity::FOnGetLinkedAccountAuthTokenCompleteDelegate::CreateSP(this, &FRH_EntitlementProcessorOSSPurchase::RetrieveOSSAuthTokenComplete));
+#else
+			IdentityInterface->GetLinkedAccountAuthToken(LocalUserNum, IOnlineIdentity::FOnGetLinkedAccountAuthTokenCompleteDelegate::CreateSP(this, &FRH_EntitlementProcessor::RetrieveOSSAuthTokenComplete));
+#endif
 		}
 	}
 
@@ -630,7 +615,7 @@ protected:
 	}
 
 	/** Create the RallyHereAPI based request */
-	virtual TOptional<RallyHereAPI::FRequest_ProcessPlatformEntitlementsByPlayerUuid> CreateRallyHereAPIEntitlementsRequest(const FString& PlatformAuthToken, const FGuid& PlayerUuid)
+	virtual TOptional<RallyHereAPI::FRequest_ProcessPlatformEntitlementsByPlayerUuid> CreateRallyHereAPIEntitlementsRequest(const FString& PlatformAuthToken, const FGuid& PlayerUuid) override
 	{
 		auto RequestOptional = FRH_EntitlementProcessor::CreateRallyHereAPIEntitlementsRequest(PlatformAuthToken, PlayerUuid);
 
@@ -640,6 +625,7 @@ protected:
 		}
 
 		auto& Request = RequestOptional.GetValue();
+		auto& entitlementRequest = Request.PlatformEntitlementProcessRequest;
 
 		// inject the OSS receipt data into the request
 		for (FPurchaseReceipt receipt: Receipts)
@@ -665,6 +651,8 @@ protected:
 			}
 		}
 
+		Request.PlatformEntitlementProcessRequest.SetEntitlements(ProcessEntitlementResult.GetClientEntitlements());
+
 		return RequestOptional;
 	}
 	
@@ -674,10 +662,7 @@ protected:
 	virtual void FinalizePurchase() override
 	{
 		UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - Process Platform Entitlements was success, calling finalize purchase on Transaction Id: %s"), ANSI_TO_TCHAR(__FUNCTION__), *ProcessEntitlementResult.TransactionId);
-		if (OSSData.UniqueNetId.IsValid() && OSSData.Purchase.IsValid())
-		{
-			OSSData.Purchase->FinalizePurchase(*OSSData.UniqueNetId, *ProcessEntitlementResult.GetTransactionId());
-		}
+		OSSData.Purchase->FinalizePurchase(*OSSData.UniqueNetId, *ProcessEntitlementResult.GetTransactionId());
 
 		FRH_EntitlementProcessor::FinalizePurchase();
 	}
