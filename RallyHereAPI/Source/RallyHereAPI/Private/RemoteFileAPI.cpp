@@ -153,7 +153,10 @@ bool FRequest_CreateEntityDirectoryFile::SetupHttpRequest(const FHttpRequestRef&
 	else if (Consumes.Contains(TEXT("multipart/form-data")))
 	{
 		FHttpMultipartFormData FormData;
-		FormData.AddFilePart(TEXT("file"), File);
+		if(File.IsSet())
+		{
+			FormData.AddFilePart(TEXT("file"), File.GetValue());
+		}
 
 		FormData.SetupHttpRequest(HttpRequest);
 	}

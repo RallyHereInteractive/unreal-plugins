@@ -684,6 +684,108 @@ struct RALLYHEREAPI_API Traits_GetPlayerDeserter
 };
 
 /**
+ * @brief Get Player Deserter Self
+ * Get currently authed player's deserter status
+*/
+struct RALLYHEREAPI_API FRequest_GetPlayerDeserterSelf : public FRequest
+{
+	FRequest_GetPlayerDeserterSelf();
+	virtual ~FRequest_GetPlayerDeserterSelf() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FString DeserterId;
+};
+
+/** The response type for FRequest_GetPlayerDeserterSelf */
+struct RALLYHEREAPI_API FResponse_GetPlayerDeserterSelf : public FResponseAccessorTemplate<FRHAPI_PlayerDeserterStatus, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerDeserterStatus, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_GetPlayerDeserterSelf(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetPlayerDeserterSelf() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_PlayerDeserterStatus Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_PlayerDeserterStatus& OutContent) const { return TryGetContent<FRHAPI_PlayerDeserterStatus>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_PlayerDeserterStatus>& OutContent) const { return TryGetContent<FRHAPI_PlayerDeserterStatus>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_PlayerDeserterStatus* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlayerDeserterStatus>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_PlayerDeserterStatus> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlayerDeserterStatus>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerDeserterStatus& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetPlayerDeserterSelf */
+DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerDeserterSelf, const FResponse_GetPlayerDeserterSelf&);
+
+/** @brief A helper metadata object for GetPlayerDeserterSelf that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetPlayerDeserterSelf
+{
+	/** The request type */
+	typedef FRequest_GetPlayerDeserterSelf Request;
+	/** The response type */
+	typedef FResponse_GetPlayerDeserterSelf Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetPlayerDeserterSelf Delegate;
+	/** The API object that supports this API call */
+	typedef FDeserterAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
  * @brief Get Specific Deserter Config
  * Get specific deserter configs
 */
@@ -904,6 +1006,7 @@ public:
 	FHttpRequestPtr GetAllDeserterConfigs(const FRequest_GetAllDeserterConfigs& Request, const FDelegate_GetAllDeserterConfigs& Delegate = FDelegate_GetAllDeserterConfigs(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr GetAllPlayerDeserters(const FRequest_GetAllPlayerDeserters& Request, const FDelegate_GetAllPlayerDeserters& Delegate = FDelegate_GetAllPlayerDeserters(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr GetPlayerDeserter(const FRequest_GetPlayerDeserter& Request, const FDelegate_GetPlayerDeserter& Delegate = FDelegate_GetPlayerDeserter(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetPlayerDeserterSelf(const FRequest_GetPlayerDeserterSelf& Request, const FDelegate_GetPlayerDeserterSelf& Delegate = FDelegate_GetPlayerDeserterSelf(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr GetSpecificDeserterConfig(const FRequest_GetSpecificDeserterConfig& Request, const FDelegate_GetSpecificDeserterConfig& Delegate = FDelegate_GetSpecificDeserterConfig(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr PutPlayerDeserter(const FRequest_PutPlayerDeserter& Request, const FDelegate_PutPlayerDeserter& Delegate = FDelegate_PutPlayerDeserter(), int32 Priority = DefaultRallyHereAPIPriority);
 
@@ -915,6 +1018,7 @@ private:
 	void OnGetAllDeserterConfigsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllDeserterConfigs Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnGetAllPlayerDesertersResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPlayerDeserters Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnGetPlayerDeserterResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerDeserter Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetPlayerDeserterSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerDeserterSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnGetSpecificDeserterConfigResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSpecificDeserterConfig Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnPutPlayerDeserterResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PutPlayerDeserter Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 

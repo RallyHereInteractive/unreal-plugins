@@ -22,6 +22,8 @@ using RallyHereAPI::TryGetJsonValue;
 void FRHAPI_PriceBreakPointCurrency::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
 	Writer->WriteObjectStart();
+	Writer->WriteIdentifierPrefix(TEXT("price_item_uuid"));
+	RallyHereAPI::WriteJsonValue(Writer, PriceItemUuid);
 	Writer->WriteIdentifierPrefix(TEXT("price_item_id"));
 	RallyHereAPI::WriteJsonValue(Writer, PriceItemId);
 	Writer->WriteIdentifierPrefix(TEXT("price"));
@@ -37,6 +39,8 @@ bool FRHAPI_PriceBreakPointCurrency::FromJson(const TSharedPtr<FJsonValue>& Json
 
 	bool ParseSuccess = true;
 
+	const TSharedPtr<FJsonValue> JsonPriceItemUuidField = (*Object)->TryGetField(TEXT("price_item_uuid"));
+	ParseSuccess &= JsonPriceItemUuidField.IsValid() && (!JsonPriceItemUuidField->IsNull() &&  TryGetJsonValue(JsonPriceItemUuidField, PriceItemUuid));
 	const TSharedPtr<FJsonValue> JsonPriceItemIdField = (*Object)->TryGetField(TEXT("price_item_id"));
 	ParseSuccess &= JsonPriceItemIdField.IsValid() && (!JsonPriceItemIdField->IsNull() &&  TryGetJsonValue(JsonPriceItemIdField, PriceItemId));
 	const TSharedPtr<FJsonValue> JsonPriceField = (*Object)->TryGetField(TEXT("price"));

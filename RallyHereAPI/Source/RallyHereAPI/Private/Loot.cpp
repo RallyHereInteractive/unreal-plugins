@@ -191,6 +191,11 @@ void FRHAPI_Loot::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		Writer->WriteIdentifierPrefix(TEXT("hard_quantity_maximum"));
 		RallyHereAPI::WriteJsonValue(Writer, HardQuantityMaximum_Optional);
 	}
+	if (Price_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("price"));
+		RallyHereAPI::WriteJsonValue(Writer, Price_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -403,6 +408,12 @@ bool FRHAPI_Loot::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	{
 		HardQuantityMaximum_IsSet = TryGetJsonValue(JsonHardQuantityMaximumField, HardQuantityMaximum_Optional);
 		ParseSuccess &= HardQuantityMaximum_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonPriceField = (*Object)->TryGetField(TEXT("price"));
+	if (JsonPriceField.IsValid())
+	{
+		Price_IsSet = TryGetJsonValue(JsonPriceField, Price_Optional);
+		ParseSuccess &= Price_IsSet;
 	}
 
 	return ParseSuccess;

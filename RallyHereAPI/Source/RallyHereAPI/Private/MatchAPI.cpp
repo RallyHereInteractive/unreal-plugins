@@ -174,7 +174,7 @@ FString FResponse_CreateMatch::GetHttpResponseCodeDescription(EHttpResponseCodes
 	case 200:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -462,7 +462,9 @@ FString FResponse_CreateMatchPlayer::GetHttpResponseCodeDescription(EHttpRespons
 	case 200:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 404:
+		return TEXT("Not Found");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -485,6 +487,8 @@ bool FResponse_CreateMatchPlayer::ParseHeaders()
 	case 200:
 		break;
 	case 403:
+		break;
+	case 404:
 		break;
 	case 422:
 		break;
@@ -511,6 +515,18 @@ bool FResponse_CreateMatchPlayer::TryGetContentFor403(FRHAPI_HzApiErrorModel& Ou
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_CreateMatchPlayer::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 404)
 	{
 		return false;
 	}
@@ -548,6 +564,16 @@ bool FResponse_CreateMatchPlayer::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 				break;
 			} 
 		case 403:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_HzApiErrorModel Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+				break;
+			} 
+		case 404:
 			{
 				// parse into the structured data format from the json object
 				FRHAPI_HzApiErrorModel Object;
@@ -749,7 +775,7 @@ FString FResponse_CreateMatchSegment::GetHttpResponseCodeDescription(EHttpRespon
 	case 200:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -1022,10 +1048,12 @@ FString FResponse_DeleteMatch::GetHttpResponseCodeDescription(EHttpResponseCodes
 {
 	switch ((int)InHttpResponseCode)
 	{
-	case 200:
+	case 204:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 404:
+		return TEXT("Not Found");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -1045,9 +1073,11 @@ bool FResponse_DeleteMatch::ParseHeaders()
 	bool bParsedAllRequiredHeaders = true;
 	switch ((int)GetHttpResponseCode())
 	{
-	case 200:
+	case 204:
 		break;
 	case 403:
+		break;
+	case 404:
 		break;
 	case 422:
 		break;
@@ -1062,6 +1092,18 @@ bool FResponse_DeleteMatch::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutConte
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_DeleteMatch::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 404)
 	{
 		return false;
 	}
@@ -1243,10 +1285,12 @@ FString FResponse_DeleteMatchPlayer::GetHttpResponseCodeDescription(EHttpRespons
 {
 	switch ((int)InHttpResponseCode)
 	{
-	case 200:
+	case 204:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 404:
+		return TEXT("Not Found");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -1266,9 +1310,11 @@ bool FResponse_DeleteMatchPlayer::ParseHeaders()
 	bool bParsedAllRequiredHeaders = true;
 	switch ((int)GetHttpResponseCode())
 	{
-	case 200:
+	case 204:
 		break;
 	case 403:
+		break;
+	case 404:
 		break;
 	case 422:
 		break;
@@ -1283,6 +1329,18 @@ bool FResponse_DeleteMatchPlayer::TryGetContentFor403(FRHAPI_HzApiErrorModel& Ou
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_DeleteMatchPlayer::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 404)
 	{
 		return false;
 	}
@@ -1464,10 +1522,12 @@ FString FResponse_DeleteMatchSegment::GetHttpResponseCodeDescription(EHttpRespon
 {
 	switch ((int)InHttpResponseCode)
 	{
-	case 200:
+	case 204:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 404:
+		return TEXT("Not Found");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -1487,9 +1547,11 @@ bool FResponse_DeleteMatchSegment::ParseHeaders()
 	bool bParsedAllRequiredHeaders = true;
 	switch ((int)GetHttpResponseCode())
 	{
-	case 200:
+	case 204:
 		break;
 	case 403:
+		break;
+	case 404:
 		break;
 	case 422:
 		break;
@@ -1504,6 +1566,18 @@ bool FResponse_DeleteMatchSegment::TryGetContentFor403(FRHAPI_HzApiErrorModel& O
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_DeleteMatchSegment::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 404)
 	{
 		return false;
 	}
@@ -1687,7 +1761,7 @@ FString FResponse_GetMatch::GetHttpResponseCodeDescription(EHttpResponseCodes::T
 	case 200:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT("Not Found");
 	case 422:
@@ -1990,7 +2064,9 @@ FString FResponse_GetMatchPlayer::GetHttpResponseCodeDescription(EHttpResponseCo
 	case 200:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 404:
+		return TEXT("Not Found");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -2013,6 +2089,8 @@ bool FResponse_GetMatchPlayer::ParseHeaders()
 	case 200:
 		break;
 	case 403:
+		break;
+	case 404:
 		break;
 	case 422:
 		break;
@@ -2039,6 +2117,18 @@ bool FResponse_GetMatchPlayer::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutCo
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_GetMatchPlayer::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 404)
 	{
 		return false;
 	}
@@ -2076,6 +2166,16 @@ bool FResponse_GetMatchPlayer::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 				break;
 			} 
 		case 403:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_HzApiErrorModel Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+				break;
+			} 
+		case 404:
 			{
 				// parse into the structured data format from the json object
 				FRHAPI_HzApiErrorModel Object;
@@ -2267,7 +2367,7 @@ FString FResponse_GetMatchSegment::GetHttpResponseCodeDescription(EHttpResponseC
 	case 200:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT("Not Found");
 	case 422:
@@ -2608,7 +2708,7 @@ FString FResponse_GetMatches::GetHttpResponseCodeDescription(EHttpResponseCodes:
 	case 200:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -2891,7 +2991,7 @@ FString FResponse_GetPlayerMatchesSelf::GetHttpResponseCodeDescription(EHttpResp
 	case 200:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -3179,7 +3279,7 @@ FString FResponse_GetPlayersMatches::GetHttpResponseCodeDescription(EHttpRespons
 	case 200:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -3465,8 +3565,12 @@ FString FResponse_PatchMatch::GetHttpResponseCodeDescription(EHttpResponseCodes:
 	{
 	case 200:
 		return TEXT("Successful Response");
+	case 400:
+		return TEXT("Bad Request");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 404:
+		return TEXT("Not Found");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -3488,7 +3592,11 @@ bool FResponse_PatchMatch::ParseHeaders()
 	{
 	case 200:
 		break;
+	case 400:
+		break;
 	case 403:
+		break;
+	case 404:
 		break;
 	case 422:
 		break;
@@ -3511,10 +3619,34 @@ bool FResponse_PatchMatch::TryGetContentFor200(FRHAPI_MatchWithPlayers& OutConte
 	return TryGetContent(OutContent);
 }
 
+bool FResponse_PatchMatch::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 400)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
 bool FResponse_PatchMatch::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_PatchMatch::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 404)
 	{
 		return false;
 	}
@@ -3551,7 +3683,27 @@ bool FResponse_PatchMatch::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 				ParsedContent.Set<FRHAPI_MatchWithPlayers>(Object);
 				break;
 			} 
+		case 400:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_HzApiErrorModel Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+				break;
+			} 
 		case 403:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_HzApiErrorModel Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+				break;
+			} 
+		case 404:
 			{
 				// parse into the structured data format from the json object
 				FRHAPI_HzApiErrorModel Object;
@@ -3754,7 +3906,9 @@ FString FResponse_PatchMatchPlayer::GetHttpResponseCodeDescription(EHttpResponse
 	case 200:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 404:
+		return TEXT("Not Found");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -3777,6 +3931,8 @@ bool FResponse_PatchMatchPlayer::ParseHeaders()
 	case 200:
 		break;
 	case 403:
+		break;
+	case 404:
 		break;
 	case 422:
 		break;
@@ -3803,6 +3959,18 @@ bool FResponse_PatchMatchPlayer::TryGetContentFor403(FRHAPI_HzApiErrorModel& Out
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_PatchMatchPlayer::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 404)
 	{
 		return false;
 	}
@@ -3840,6 +4008,16 @@ bool FResponse_PatchMatchPlayer::FromJson(const TSharedPtr<FJsonValue>& JsonValu
 				break;
 			} 
 		case 403:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_HzApiErrorModel Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+				break;
+			} 
+		case 404:
 			{
 				// parse into the structured data format from the json object
 				FRHAPI_HzApiErrorModel Object;
@@ -4042,7 +4220,9 @@ FString FResponse_PatchMatchSegment::GetHttpResponseCodeDescription(EHttpRespons
 	case 200:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 404:
+		return TEXT("Not Found");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -4065,6 +4245,8 @@ bool FResponse_PatchMatchSegment::ParseHeaders()
 	case 200:
 		break;
 	case 403:
+		break;
+	case 404:
 		break;
 	case 422:
 		break;
@@ -4091,6 +4273,18 @@ bool FResponse_PatchMatchSegment::TryGetContentFor403(FRHAPI_HzApiErrorModel& Ou
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_PatchMatchSegment::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 404)
 	{
 		return false;
 	}
@@ -4128,6 +4322,16 @@ bool FResponse_PatchMatchSegment::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 				break;
 			} 
 		case 403:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_HzApiErrorModel Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+				break;
+			} 
+		case 404:
 			{
 				// parse into the structured data format from the json object
 				FRHAPI_HzApiErrorModel Object;
@@ -4328,8 +4532,12 @@ FString FResponse_UpdateMatch::GetHttpResponseCodeDescription(EHttpResponseCodes
 	{
 	case 200:
 		return TEXT("Successful Response");
+	case 400:
+		return TEXT("Bad Request");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 404:
+		return TEXT("Not Found");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -4351,7 +4559,11 @@ bool FResponse_UpdateMatch::ParseHeaders()
 	{
 	case 200:
 		break;
+	case 400:
+		break;
 	case 403:
+		break;
+	case 404:
 		break;
 	case 422:
 		break;
@@ -4374,10 +4586,34 @@ bool FResponse_UpdateMatch::TryGetContentFor200(FRHAPI_MatchWithPlayers& OutCont
 	return TryGetContent(OutContent);
 }
 
+bool FResponse_UpdateMatch::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 400)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
 bool FResponse_UpdateMatch::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_UpdateMatch::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 404)
 	{
 		return false;
 	}
@@ -4414,7 +4650,27 @@ bool FResponse_UpdateMatch::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 				ParsedContent.Set<FRHAPI_MatchWithPlayers>(Object);
 				break;
 			} 
+		case 400:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_HzApiErrorModel Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+				break;
+			} 
 		case 403:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_HzApiErrorModel Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+				break;
+			} 
+		case 404:
 			{
 				// parse into the structured data format from the json object
 				FRHAPI_HzApiErrorModel Object;
@@ -4617,7 +4873,9 @@ FString FResponse_UpdateMatchPlayer::GetHttpResponseCodeDescription(EHttpRespons
 	case 200:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 404:
+		return TEXT("Not Found");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -4640,6 +4898,8 @@ bool FResponse_UpdateMatchPlayer::ParseHeaders()
 	case 200:
 		break;
 	case 403:
+		break;
+	case 404:
 		break;
 	case 422:
 		break;
@@ -4666,6 +4926,18 @@ bool FResponse_UpdateMatchPlayer::TryGetContentFor403(FRHAPI_HzApiErrorModel& Ou
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_UpdateMatchPlayer::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 404)
 	{
 		return false;
 	}
@@ -4703,6 +4975,16 @@ bool FResponse_UpdateMatchPlayer::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 				break;
 			} 
 		case 403:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_HzApiErrorModel Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+				break;
+			} 
+		case 404:
 			{
 				// parse into the structured data format from the json object
 				FRHAPI_HzApiErrorModel Object;
@@ -4905,7 +5187,9 @@ FString FResponse_UpdateMatchSegment::GetHttpResponseCodeDescription(EHttpRespon
 	case 200:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 404:
+		return TEXT("Not Found");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -4928,6 +5212,8 @@ bool FResponse_UpdateMatchSegment::ParseHeaders()
 	case 200:
 		break;
 	case 403:
+		break;
+	case 404:
 		break;
 	case 422:
 		break;
@@ -4954,6 +5240,18 @@ bool FResponse_UpdateMatchSegment::TryGetContentFor403(FRHAPI_HzApiErrorModel& O
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_UpdateMatchSegment::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 404)
 	{
 		return false;
 	}
@@ -4991,6 +5289,16 @@ bool FResponse_UpdateMatchSegment::FromJson(const TSharedPtr<FJsonValue>& JsonVa
 				break;
 			} 
 		case 403:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_HzApiErrorModel Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+				break;
+			} 
+		case 404:
 			{
 				// parse into the structured data format from the json object
 				FRHAPI_HzApiErrorModel Object;

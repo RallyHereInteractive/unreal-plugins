@@ -144,6 +144,10 @@ Private/LogoutRequest.cpp
 Private/LookupResults.cpp
 Private/Loot.cpp
 Private/LootEntitlement.cpp
+Private/LootPrice.cpp
+Private/LootPriceBreakpoint.cpp
+Private/LootPriceCurrencies.cpp
+Private/LootPriceCurrency.cpp
 Private/Loots.cpp
 Private/MMRGroupingMethod.cpp
 Private/MapConfig.cpp
@@ -520,6 +524,10 @@ Public/LogoutRequest.h
 Public/LookupResults.h
 Public/Loot.h
 Public/LootEntitlement.h
+Public/LootPrice.h
+Public/LootPriceBreakpoint.h
+Public/LootPriceCurrencies.h
+Public/LootPriceCurrency.h
 Public/Loots.h
 Public/MMRGroupingMethod.h
 Public/MapConfig.h

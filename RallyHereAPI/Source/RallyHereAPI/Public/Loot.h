@@ -14,6 +14,7 @@
 #include "InventoryOperation.h"
 #include "InventorySelector.h"
 #include "Item.h"
+#include "LootPrice.h"
 #include "QuantityType.h"
 #include "XpQuantityTransform.h"
 #include "Loot.generated.h"
@@ -1030,6 +1031,33 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	bool IsHardQuantityMaximumDefaultValue() const { return HardQuantityMaximum_IsSet && HardQuantityMaximum_Optional == 0; }
 	/** @brief Sets the value of HardQuantityMaximum_Optional to its default and also sets HardQuantityMaximum_IsSet to true */
 	void SetHardQuantityMaximumToDefault() { SetHardQuantityMaximum(0); }
+
+	/** @brief Current price that this loot can be purchased with */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FRHAPI_LootPrice Price_Optional{  };
+	/** @brief true if Price_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Price_IsSet{ false };
+	/** @brief Gets the value of Price_Optional, regardless of it having been set */
+	FRHAPI_LootPrice& GetPrice() { return Price_Optional; }
+	/** @brief Gets the value of Price_Optional, regardless of it having been set */
+	const FRHAPI_LootPrice& GetPrice() const { return Price_Optional; }
+	/** @brief Gets the value of Price_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FRHAPI_LootPrice& GetPrice(const FRHAPI_LootPrice& DefaultValue) const { if (Price_IsSet) return Price_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Price_Optional and returns true if it has been set, otherwise returns false */
+	bool GetPrice(FRHAPI_LootPrice& OutValue) const { if (Price_IsSet) OutValue = Price_Optional; return Price_IsSet; }
+	/** @brief Returns a pointer to Price_Optional, if it has been set, otherwise returns nullptr */
+	FRHAPI_LootPrice* GetPriceOrNull() { if (Price_IsSet) return (&Price_Optional); return nullptr; }
+	/** @brief Returns a pointer to Price_Optional, if it has been set, otherwise returns nullptr */
+	const FRHAPI_LootPrice* GetPriceOrNull() const { if (Price_IsSet) return (&Price_Optional); return nullptr; }
+	/** @brief Sets the value of Price_Optional and also sets Price_IsSet to true */
+	void SetPrice(const FRHAPI_LootPrice& NewValue) { Price_Optional = NewValue; Price_IsSet = true;  }
+	/** @brief Sets the value of Price_Optional and also sets Price_IsSet to true using move semantics */
+	void SetPrice(FRHAPI_LootPrice&& NewValue) { Price_Optional = NewValue; Price_IsSet = true;  }
+	/** @brief Clears the value of Price_Optional and sets Price_IsSet to false */
+	void ClearPrice() { Price_IsSet = false;  }
+	/** @brief Checks whether Price_Optional has been set */
+	bool IsPriceSet() const { return Price_IsSet; }
 };
 
 /** @} */
