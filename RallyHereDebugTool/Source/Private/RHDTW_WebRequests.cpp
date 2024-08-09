@@ -311,7 +311,7 @@ void FRHDTW_WebRequests::DoViewResponse(const FRH_WebResponse* WebResponse, cons
 		return;
 
 	ImGui::Text("Http Success : %d", WebResponse->ResponseSuccess);
-	ImGui::Text("Code : %d (%s)", WebResponse->ResponseCode, *EHttpResponseCodes::GetDescription(static_cast<EHttpResponseCodes::Type>(WebResponse->ResponseCode)).ToString());
+	ImGui::Text("Code : %d (%s)", WebResponse->ResponseCode, TCHAR_TO_UTF8(*EHttpResponseCodes::GetDescription(static_cast<EHttpResponseCodes::Type>(WebResponse->ResponseCode)).ToString()));
 	ImGuiDisplayCopyableValue(TEXT("Timestamp"), WebResponse->ReceivedTime);
 	if (WebRequest != nullptr)
 	{
