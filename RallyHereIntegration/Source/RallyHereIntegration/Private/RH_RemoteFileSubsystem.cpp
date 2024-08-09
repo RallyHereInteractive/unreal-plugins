@@ -36,6 +36,28 @@ void URH_RemoteFileSubsystem::UploadFromFile(const FRH_RemoteFileApiDirectory& D
 		Delegate.ExecuteIfBound(false, FRH_ErrorInfo());
 		return;
 	}
+
+	// if streaming the file, wrapper via the file streaming content flag on the request (this is handled after the request is created via callback), else set onto the file input object on the request to do an in memory upload
+	if (bStreamFile)
+	{
+		TSharedPtr<FArchive> FileReader = MakeShareable(IFileManager::Get().CreateFileReader(*LocalFilePath, EFileRead::FILEREAD_AllowWrite));
+		if (FileReader.IsValid())
+		{
+			// use a delegate wrapper to close the reader after the upload
+			FRH_GenericSuccessWithErrorDelegate CloseWrapper = FRH_GenericSuccessWithErrorDelegate::CreateLambda([FileReader, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				FileReader->Close();
+				Delegate.ExecuteIfBound(bSuccess, ErrorInfo);
+			});
+			UploadFromStream(Directory, RemoteFileName, FileReader.ToSharedRef(), CloseWrapper);
+		}
+		else
+		{
+			UE_LOG(LogRallyHereIntegration, Error, TEXT("Failed to create file reader %s for streaming upload"), *LocalFilePath);
+			Delegate.ExecuteIfBound(false, FRH_ErrorInfo());
+		}
+		return;
+	}
 	
 	typedef RallyHereAPI::Traits_CreateEntityDirectoryFile BaseType;
 
@@ -45,35 +67,16 @@ void URH_RemoteFileSubsystem::UploadFromFile(const FRH_RemoteFileApiDirectory& D
 	Request.EntityType = Directory.EntityType;
 	Request.EntityId = Directory.EntityId;
 	Request.FileName = RemoteFileName;
-
-	// if streaming the file, wrapper via the file streaming content flag on the request (this is handled after the request is created via callback), else set onto the file input object on the request to do an in memory upload
-	if (bStreamFile)
+	
+	RallyHereAPI::FHttpFileInput FileInput(*LocalFilePath);
+	
+	// if type autodetection failed, treat as a binary stream
+	if (FileInput.GetContentType() == TEXT("application/unknown"))
 	{
-		// disable reading the request content, as we are going to stream it
-		Request.SetDisableReadContent(true, false);
-
-		// modify the request after creation to override request handling to stream the file
-		Request.OnModifyRequest().AddLambda([LocalFilePath](const RallyHereAPI::FRequest& APIRequest, FHttpRequestRef HttpRequest)
-		{
-			// override upload type to octet-stream
-			HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("octet-stream"));
-				
-			// set the stream as the request body
-			HttpRequest->SetContentAsStreamedFile(*LocalFilePath);
-		});
+		FileInput.SetContentType(TEXT("application/octet-stream"));
 	}
-	else
-	{
-		RallyHereAPI::FHttpFileInput FileInput(*LocalFilePath);
-		
-		// if type autodetection failed, treat as a binary stream
-		if (FileInput.GetContentType() == TEXT("application/unknown"))
-		{
-			FileInput.SetContentType(TEXT("application/octet-stream"));
-		}
 
-		Request.File = FileInput;
-	}
+	Request.File = FileInput;
 
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateWeakLambda(this, [this, Directory, RemoteFileName, LocalFilePath](const BaseType::Response& Response)
