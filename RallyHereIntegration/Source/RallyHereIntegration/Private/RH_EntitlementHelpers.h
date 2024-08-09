@@ -513,7 +513,7 @@ protected:
 
 		// EOS subsystems redeem purchases inside of the FinalizeReceiptValidationInfo, which does not conform to the other subsystems.
 		// Skip that step for Epic, and proceed directly to processing the inventory so it can be redeemed on the RHAPI side
-		if (OSSData.SubsystemName == EOS_SUBSYSTEM || OSSData.SubsystemName == EOSPLUS_SUBSYSTEM)
+		if (RH_SkipEntitlementFinalization(OSSData.SubsystemName))
 		{
 			bShouldFinalize = false;
 		}
@@ -552,7 +552,7 @@ protected:
 		{
 			// PS4 and PS5 pass through auth token as the first token in a colon delimited string in the validation token.  Parse it out and use it as the auth token.
 			// this cannot be retrieved later, so we need to do it here
-			if (OSSData.SubsystemName == PS4_SUBSYSTEM || OSSData.SubsystemName == PS5_SUBSYSTEM)
+			if (RH_UsesSonyEntitlementTokens(OSSData.SubsystemName))
 			{
 				TArray<FString> ValidationTokens;
 				ValidationInfo.ParseIntoArray(ValidationTokens, TEXT(":"), false);
