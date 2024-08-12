@@ -131,6 +131,16 @@ bool RH_UseRecentPlayersFromOSSName(FName OSSName)
 	return RH_LookupBoolOSSOverride(OSSName, TEXT("UseRecentPlayersFromOSSName"));
 }
 
+bool RH_SkipEntitlementFinalization(FName OSSName)
+{
+	return RH_LookupBoolOSSOverride(OSSName, TEXT("SkipEntitlementFinalizationFromOSSName"));
+}
+
+bool RH_UsesSonyEntitlementTokens(FName OSSName)
+{
+	return RH_LookupBoolOSSOverride(OSSName, TEXT("RH_UsesSonyEntitlementTokensFromOSSName"));
+}
+
 FString RH_GetPlatformNameFromPlatformEnum(const ERHAPI_Platform Platform)
 {
 	FString PlatformName;

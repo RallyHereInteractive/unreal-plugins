@@ -178,7 +178,7 @@ void URH_LocalPlayerLoginSubsystem::PostResults(FRH_PendingLoginRequest& Req, co
         {
             const auto LoginOSS = GetLoginOSS();
 
-            if (LoginOSS != nullptr)
+            if (LoginOSS != nullptr && Req.OSSUniqueId.IsValid())
             {
                 // If this was a refresh token login that failed, then whatever refresh data we have is invalid.
                 // Clear that data, run a logout (so the user must login again), and run through the process again.
@@ -586,6 +586,18 @@ bool URH_LocalPlayerLoginSubsystem::OnOSSLoginComplete(int32 ControllerId,
 
     // For whatever reason, the OSS interface doesn't return a SharedPtr to the identity here, so we have to recreate it to forward.
     Req.*UniqueIdPtr = Identity->GetUniquePlayerId(ControllerId);
+
+	if (!(Req.*UniqueIdPtr).IsValid())
+	{
+		UE_LOG(LogRallyHereIntegration, Error,
+			TEXT("[%s] OSS Login Failed - user does not have a valid unique id"),
+			ANSI_TO_TCHAR(__FUNCTION__));
+		FRH_LoginResult Result = Req.CreateResult(ERHAPI_LoginResult::Fail_InvalidOSSUniqueNetId);
+		Result.OSSErrorMessage = ErrorMessage;
+		PostResults(Req, Result);
+		return false;
+	}
+	
     if (Identity->GetLoginStatus(*(Req.*UniqueIdPtr)) != ELoginStatus::LoggedIn)
     {
         UE_LOG(LogRallyHereIntegration, Error,
@@ -919,21 +931,27 @@ void URH_LocalPlayerLoginSubsystem::DoRallyHereLogin(FRH_PendingLoginRequest& Re
         Request.LoginRequestV1.SetGrantType(*GrantType);
         Request.LoginRequestV1.SetPortalAccessToken(AuthToken.TokenString);
         Request.LoginRequestV1.SetPortalDisplayName(NicknameIdentity->GetPlayerNickname(ControllerId));
-
-        UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s] Login Attempt (Login OSS '%s'/'%s': status '%s', id '%s', nick '%s')"),
-               ANSI_TO_TCHAR(__FUNCTION__),
-               *LoginOSS->GetInstanceName().ToString(),
-               *LoginOSS->GetSubsystemName().ToString(),
-               ToString(LoginIdentity->GetLoginStatus(ControllerId)),
-               *LoginIdentity->GetPlayerNickname(ControllerId),
-               *LoginIdentity->GetUniquePlayerId(ControllerId)->ToDebugString());
-        UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s] Login Attempt (Nickname OSS '%s'/'%s': status '%s', id '%s', nick '%s')"),
-               ANSI_TO_TCHAR(__FUNCTION__),
-               NicknameOSS ? *NicknameOSS->GetInstanceName().ToString() : *LoginOSS->GetInstanceName().ToString(),
-               NicknameOSS ? *NicknameOSS->GetSubsystemName().ToString() : *LoginOSS->GetSubsystemName().ToString(),
-               ToString(NicknameIdentity->GetLoginStatus(ControllerId)),
-               *NicknameIdentity->GetPlayerNickname(ControllerId),
-               *NicknameIdentity->GetUniquePlayerId(ControllerId)->ToDebugString());
+    	
+	    {
+        	const auto UniquePlayerId = LoginIdentity->GetUniquePlayerId(ControllerId);
+		    UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s] Login Attempt (Login OSS '%s'/'%s': status '%s', id '%s', nick '%s')"),
+				   ANSI_TO_TCHAR(__FUNCTION__),
+				   *LoginOSS->GetInstanceName().ToString(),
+				   *LoginOSS->GetSubsystemName().ToString(),
+				   ToString(LoginIdentity->GetLoginStatus(ControllerId)),
+				   *LoginIdentity->GetPlayerNickname(ControllerId),
+				   UniquePlayerId.IsValid() ? *UniquePlayerId->ToDebugString() : TEXT("Invalid"));
+	    }
+	    {
+        	const auto UniquePlayerId = NicknameIdentity->GetUniquePlayerId(ControllerId);
+		    UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s] Login Attempt (Nickname OSS '%s'/'%s': status '%s', id '%s', nick '%s')"),
+				   ANSI_TO_TCHAR(__FUNCTION__),
+				   NicknameOSS ? *NicknameOSS->GetInstanceName().ToString() : *LoginOSS->GetInstanceName().ToString(),
+				   NicknameOSS ? *NicknameOSS->GetSubsystemName().ToString() : *LoginOSS->GetSubsystemName().ToString(),
+				   ToString(NicknameIdentity->GetLoginStatus(ControllerId)),
+				   *NicknameIdentity->GetPlayerNickname(ControllerId),
+				   UniquePlayerId.IsValid() ? *UniquePlayerId->ToDebugString() : TEXT("Invalid"));
+	    }
     }
     else
     {
@@ -983,8 +1001,17 @@ void URH_LocalPlayerLoginSubsystem::RallyHereLoginComplete(const RallyHereAPI::F
     if (!AuthContext.IsValid())
     {
         UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] AuthContext is null"), ANSI_TO_TCHAR(__FUNCTION__));
+    	
+    	PostResults(Req, Req.CreateResult(ERHAPI_LoginResult::Fail_InvalidAuthContext));
         return;
     }
+	if (!Req.OSSUniqueId.IsValid())
+	{
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] OSSUniqueId is invalid"), ANSI_TO_TCHAR(__FUNCTION__));
+    	
+		PostResults(Req, Req.CreateResult(ERHAPI_LoginResult::Fail_InvalidOSSUniqueNetId));
+		return;
+	}
 
     AuthContext->ProcessLogin(Resp);
     if (Resp.GetHttpResponseCode() == EHttpResponseCodes::Ok)
@@ -1188,8 +1215,12 @@ void URH_LocalPlayerLoginSubsystem::HandleAppReactivatedGameThread()
 				{
 					if (URH_LocalPlayerSubsystem* LPSS = GetLocalPlayerSubsystem())
 					{
-						CheckCrossplayPrivilege(*LPSS->GetOSSUniqueId());
-						CheckCommunicationPrivilege(*LPSS->GetOSSUniqueId());
+						auto UniqueId = LPSS->GetOSSUniqueId();
+						if (UniqueId.IsValid())
+						{
+							CheckCrossplayPrivilege(*UniqueId);
+							CheckCommunicationPrivilege(*UniqueId);
+						}
 					}
 				}), 1.0f, false);
 		}
