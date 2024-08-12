@@ -117,7 +117,7 @@ void URH_RemoteFileSubsystem::UploadFromStream(const FRH_RemoteFileApiDirectory&
 	Request.OnModifyRequest().AddLambda([Stream](const RallyHereAPI::FRequest& APIRequest, FHttpRequestRef HttpRequest)
 	{
 		// override upload type to octet-stream
-		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("octet-stream"));
+		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/octet-stream"));
 		
 		// set the stream as the request body
 		HttpRequest->SetContentFromStream(Stream);
