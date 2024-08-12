@@ -54,6 +54,7 @@ struct RALLYHEREAPI_API FRequest_CreateEntityDirectoryFile : public FRequest
 	FString FileName;
 	ERHAPI_EntityType EntityType;
 	FString EntityId;
+	TOptional<FString> ContentType;
 	TOptional<FHttpFileInput> File;
 };
 
