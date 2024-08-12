@@ -40,11 +40,11 @@ namespace
 		}
 	}
 
-	void LogHeaders(const TArray<FString>& Headers)
+	void LogHeaders(const TArray<FString>& Headers, const FString& Prefix)
 	{
 		for (const FString& Header : Headers)
 		{
-			UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("Header: %s"), *Header);
+			UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("%s Header: %s"), *Prefix, *Header);
 		}
 	}
 
@@ -193,7 +193,7 @@ namespace
 	void LogHttpBase(IHttpBase& HttpBase, const FString& Prefix, const TArray<FString>& SensitiveHeaders = {}, const TArray<FString>& SensitiveFields = {})
 	{
 		const TArray<FString> Headers = SanitizeHeaders(HttpBase.GetAllHeaders(), SensitiveHeaders);
-		LogHeaders(Headers);
+		LogHeaders(Headers, Prefix);
 
 		const FUTF8ToTCHAR TCHARData(reinterpret_cast<const ANSICHAR*>(HttpBase.GetContent().GetData()), HttpBase.GetContent().Num());
 		const FString ContentTemp{ TCHARData.Length(), TCHARData.Get() };
@@ -499,7 +499,7 @@ void FRH_WebRequests::OnWebRequestCompleted_Log(const RallyHereAPI::FResponse& R
 
 	if (HttpResponse != nullptr)
 	{
-		LogHeaders(SanitizeHeaders(HttpResponse->GetAllHeaders(), GetSensitiveHeadersForResponse(Response.GetRequestMetadata())));
+		LogHeaders(SanitizeHeaders(HttpResponse->GetAllHeaders(), GetSensitiveHeadersForResponse(Response.GetRequestMetadata())), Prefix);
 	}
 
 	LogContent(ResponseContent, Prefix);
