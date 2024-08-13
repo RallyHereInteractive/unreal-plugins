@@ -31,6 +31,11 @@ void URH_LocalPlayerPresenceSubsystem::Deinitialize()
 
 void URH_LocalPlayerPresenceSubsystem::UpdatePlayerPresenceSelf(RallyHereAPI::FRequest_UpdatePlayerPresenceSelf& Request, const RallyHereAPI::FDelegate_UpdatePlayerPresenceSelf& Delegate)
 {
+	if (Poller.IsValid() && Poller->IsActive())
+	{
+		UE_LOG(LogRallyHereIntegration, Warning, TEXT("UpdatePlayerPresenceSelf called while poller is active.  This function does not change the desired state and will be overridden on the next poll loop."));
+	}
+	
 	if (!Request.AuthContext)
 	{
 		Request.AuthContext = GetAuthContext();
@@ -107,28 +112,7 @@ bool URH_LocalPlayerPresenceSubsystem::IsRefreshTimerActive(float& TimeRemaining
 
 void URH_LocalPlayerPresenceSubsystem::RefreshStatus()
 {
-	auto AuthContext = GetAuthContext();
-	if (AuthContext.IsValid() && AuthContext->IsLoggedIn())
-	{
-		typedef RallyHereAPI::Traits_UpdatePlayerPresenceSelf BaseType;
-		BaseType::Request Request;
-		Request.AuthContext = AuthContext;
-
-		Request.PlayerPresenceUpdateSelf.SetStatus(DesiredStatus);
-		Request.PlayerPresenceUpdateSelf.SetMessage(DesiredMessage);
-		Request.PlayerPresenceUpdateSelf.SetDoNotDisturb(DesiredDoNotDisturb);
-
-		BaseType::DoCall(RH_APIs::GetPresenceAPI(), Request,
-			RallyHereAPI::FDelegate_UpdatePlayerPresenceSelf::CreateWeakLambda(this, [this](const BaseType::Response& Resp)
-				{
-					if (Poller.IsValid())
-					{
-						Poller->DeferPollTimer();
-					}
-				}),
-			GetDefault<URH_IntegrationSettings>()->PresenceUpdatePriority
-		);
-	}
+	PollRefreshStatus(FRH_PollCompleteFunc());
 }
 
 void URH_LocalPlayerPresenceSubsystem::PollRefreshStatus(const FRH_PollCompleteFunc& Delegate)
@@ -144,24 +128,25 @@ void URH_LocalPlayerPresenceSubsystem::PollRefreshStatus(const FRH_PollCompleteF
 	BaseType::Request Request;
 	Request.AuthContext = AuthContext;
 
-	Request.PlayerPresenceUpdateSelf.SetStatus(DesiredStatus);
-	Request.PlayerPresenceUpdateSelf.SetMessage(DesiredMessage);
-	Request.PlayerPresenceUpdateSelf.SetDoNotDisturb(DesiredDoNotDisturb);
+	Request.PlayerPresenceUpdateSelf = DesiredPresenceState;
 
-	auto RequestPtr = BaseType::DoCall(RH_APIs::GetPresenceAPI(), Request,
-		RallyHereAPI::FDelegate_UpdatePlayerPresenceSelf::CreateWeakLambda(this, [this, Delegate](const BaseType::Response& Resp)
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate::CreateWeakLambda(this, [this, Delegate](const BaseType::Response& Resp)
 		{
-			Delegate.ExecuteIfBound(Resp.IsSuccessful(), true);
+			LastETag = Resp.TryGetDefaultHeaderAsOptional_ETag();
+		}),
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+		{
+			if (Poller.IsValid())
+			{
+				Poller->DeferPollTimer();
+			}
+			Delegate.ExecuteIfBound(bSuccess, true);
 		}),
 		GetDefault<URH_IntegrationSettings>()->PresenceUpdatePriority
 	);
 
-	// if we did not successfully make the request, but were otherwise valid, just restart timer
-	if (RequestPtr)
-	{
-		Delegate.ExecuteIfBound(false, true);
-		return;
-	}
+	Helper->Start(RH_APIs::GetPresenceAPI(), Request);
 }
 
 void URH_LocalPlayerPresenceSubsystem::OnUserChanged()

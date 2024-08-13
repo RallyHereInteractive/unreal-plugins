@@ -36,12 +36,7 @@ struct FRHDTW_Presence : public FRH_DebugToolWindow
 	* \defgroup Updating your presence
 	* @{
 	*/
-	int32 StatusInput{0};
-	std::string MessageInput{""};
-	bool DoNotDisturbInput{false};
-	FString LastUpdateResult;
-
-	void HandleUpdatePresenceSelf(const RallyHereAPI::FResponse_UpdatePlayerPresenceSelf& Resp, FGuid PlayerUuid);
+	FRHAPI_PlayerPresenceUpdateSelf EditablePresence;
 	/** @} */
 
 	FImGuiCustomDataStager CustomDataStager;
