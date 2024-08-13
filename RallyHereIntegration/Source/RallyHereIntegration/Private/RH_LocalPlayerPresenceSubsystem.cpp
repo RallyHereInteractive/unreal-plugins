@@ -167,7 +167,9 @@ void URH_LocalPlayerPresenceSubsystem::OnUserChanged()
 
 void URH_LocalPlayerPresenceSubsystem::InitPropertiesWithDefaultValues()
 {
-	SetDesiredStatus(ERHAPI_OnlineStatus::Online);
+	// do not use accessor, as that can dispatch updates
+	DesiredPresenceState = FRHAPI_PlayerPresenceUpdateSelf();
+	DesiredPresenceState.SetStatus(ERHAPI_OnlineStatus::Online);
 }
 
 void URH_LocalPlayerPresenceSubsystem::GetSettings(RallyHereAPI::FRequest_GetPresenceSettings& Request, const RallyHereAPI::FDelegate_GetPresenceSettings& Delegate)
