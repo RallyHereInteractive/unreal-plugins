@@ -930,6 +930,12 @@ void URH_TestPEXOwner::SubmitPEXClientSummary(FRHAPI_PexClientRequest&& Report) 
 	ClientReport = Report;
 }
 
+#if WITH_DEV_AUTOMATION_TESTS
+
+#include "RH_AutomationTests.h"
+#include "Misc/AutomationTest.h"
+#include "TimerManager.h"
+
 void URH_TestPEXOwner::ValidateReports(FAutomationTestBase* Test, const URH_PEXCollectorConfig* Config) const
 {
 	// if reports are disabled, verify none were generated
@@ -959,12 +965,6 @@ void URH_TestPEXOwner::ValidateReports(FAutomationTestBase* Test, const URH_PEXC
 		Test->AddError(TEXT("Was expecting a client report, but none was generated"));
 	}
 }
-
-#if WITH_DEV_AUTOMATION_TESTS
-
-#include "RH_AutomationTests.h"
-#include "Misc/AutomationTest.h"
-#include "TimerManager.h"
 
 BEGIN_DEFINE_SPEC(FRH_PEXCollectorTest, "RHAutomation.PEXCollector", EAutomationTestFlags::ClientContext | EAutomationTestFlags::ServerContext | EAutomationTestFlags::ProductFilter | EAutomationTestFlags::MediumPriority)
 END_DEFINE_SPEC(FRH_PEXCollectorTest)
@@ -1127,6 +1127,10 @@ void FRH_PEXCollectorTest::Define()
 	});
 }
 
+#else
+void URH_TestPEXOwner::ValidateReports(FAutomationTestBase* Test, const URH_PEXCollectorConfig* Config) const
+{
+}
 #endif // WITH_DEV_AUTOMATION_TESTS
 
 
