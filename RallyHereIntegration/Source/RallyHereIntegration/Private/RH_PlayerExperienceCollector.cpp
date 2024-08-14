@@ -890,7 +890,7 @@ void URH_TestPEXOwner::SubmitPEXClientSummary(FRHAPI_PexClientRequest&& Report) 
 			auto GameInstance = World->GetGameInstance();
 			if (GameInstance != nullptr)
 			{
-				auto RHGameInstance = Cast<URH_GameInstanceSubsystem>(GameInstance);
+				auto RHGameInstance = GameInstance->GetSubsystem<URH_GameInstanceSubsystem>();
 				if (RHGameInstance != nullptr)
 				{
 					typedef RallyHereAPI::Traits_CreatePexPlayer BaseType;
