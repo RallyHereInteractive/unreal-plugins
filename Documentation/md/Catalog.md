@@ -312,7 +312,9 @@ Gets all of the time frames from the catalog.
 Gets the vendors requested as well as their sub vendors.
 
 #### Parameters
-* `VendorRequest` The vendor request data for the call with list of vendors and callback on complete.
+* `VendorRequest` The vendor request data for the call with list of vendors and callback on complete. 
+
+* `bRecurseSubvendors` Whether to recursively request subvendors, DEPRECATED
 
 #### `public void `[`GetCatalogVendorsAll`](#classURH__CatalogSubsystem_1ab4903e2a1b6805d3e278b561882b09ad)`(const FRH_CatalogCallBlock & Delegate)` <a id="classURH__CatalogSubsystem_1ab4903e2a1b6805d3e278b561882b09ad"></a>
 
@@ -674,6 +676,8 @@ Vendor Request struct used to encapsulate a request to get a vendors and the cal
 --------------------------------|---------------------------------------------
 `public FRH_CatalogCallBlock `[`Delegate`](#structFRHVendorGetRequest_1ac3903422f9becf0ec9efbf01336b2e34) | Delegate callback when all vendors have been fetched.
 `public TArray< int32 > `[`VendorIds`](#structFRHVendorGetRequest_1ab2be5bbe02318acf5d90f7c90d4002d4) | Array of outstanding vendor requests to complete this vendor get.
+`public bool `[`bRecurseSubvendors`](#structFRHVendorGetRequest_1a6f729ac572de32c23ff55bd96cbeedac) | 
+`public bool `[`bSkipCachedVendors`](#structFRHVendorGetRequest_1a699a1c691f104b0cf02561646336ab79) | 
 `public inline  `[`FRHVendorGetRequest`](#structFRHVendorGetRequest_1a0a8a4ff4b74254933725968cb46869cb)`()` | Default Constructor.
 `public inline  `[`FRHVendorGetRequest`](#structFRHVendorGetRequest_1a3ae63c4382710be88bac03888a0a1471)`(const TArray< int32 > & InVendorIds)` | Constructor with vendor Id List.
 `public inline  `[`FRHVendorGetRequest`](#structFRHVendorGetRequest_1a3db335a857c4d1ead61bb82410e2b0a6)`(const FRH_CatalogCallBlock & InDelegate,const TArray< int32 > & InVendorIds)` | Constructor with vendor Id List and callback delegate.
@@ -687,6 +691,10 @@ Delegate callback when all vendors have been fetched.
 #### `public TArray< int32 > `[`VendorIds`](#structFRHVendorGetRequest_1ab2be5bbe02318acf5d90f7c90d4002d4) <a id="structFRHVendorGetRequest_1ab2be5bbe02318acf5d90f7c90d4002d4"></a>
 
 Array of outstanding vendor requests to complete this vendor get.
+
+#### `public bool `[`bRecurseSubvendors`](#structFRHVendorGetRequest_1a6f729ac572de32c23ff55bd96cbeedac) <a id="structFRHVendorGetRequest_1a6f729ac572de32c23ff55bd96cbeedac"></a>
+
+#### `public bool `[`bSkipCachedVendors`](#structFRHVendorGetRequest_1a699a1c691f104b0cf02561646336ab79) <a id="structFRHVendorGetRequest_1a699a1c691f104b0cf02561646336ab79"></a>
 
 #### `public inline  `[`FRHVendorGetRequest`](#structFRHVendorGetRequest_1a0a8a4ff4b74254933725968cb46869cb)`()` <a id="structFRHVendorGetRequest_1a0a8a4ff4b74254933725968cb46869cb"></a>
 
