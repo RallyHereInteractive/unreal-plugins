@@ -18,8 +18,11 @@ FRHDTW_Catalog::FRHDTW_Catalog()
 	DefaultPos = FVector2D(610, 20);
 	DefaultSize = FVector2D(800, 400);
 	ItemIdInput = 0;
-	VendorIdInput.SetNumZeroed(256);
 	PromoCodeInput.SetNumZeroed(256);
+
+	// legacy defaults
+	bVendorIdUseCache = false;
+	bVendorIdRecurseSubvendors = true;
 }
 
 FRHDTW_Catalog::~FRHDTW_Catalog()
@@ -311,24 +314,31 @@ void FRHDTW_Catalog::DoShowClaim(URH_CatalogSubsystem* catalog)
 
 void FRHDTW_Catalog::DoShowVendors(URH_CatalogSubsystem* catalog)
 {
-	ImGui::InputText("CSV Vendors", VendorIdInput.GetData(), VendorIdInput.Num());
+	ImGui::InputText("CSV Vendors", &VendorIdInput);
+	ImGui::SameLine();
+	ImGui::Checkbox("Recurse Subvendors", &bVendorIdRecurseSubvendors);
+	ImGui::SameLine();
+	ImGui::Checkbox("Use Cache", &bVendorIdUseCache);
 	ImGui::SameLine();
 	if (ImGui::Button("Request"))
 	{
 		TArray<int32> VendorIds;
-		const FString InputAsString = UTF8_TO_TCHAR(VendorIdInput.GetData());
 		TArray<FString> InputParts;
-		InputAsString.ParseIntoArray(InputParts, TEXT(","));
+		VendorIdInput.ParseIntoArray(InputParts, TEXT(","));
 
 		for (FString InputPart : InputParts)
 		{
 			VendorIds.Push(FCString::Atoi(*InputPart));
 		}
 
-		catalog->GetCatalogVendor(FRHVendorGetRequest(VendorIds));
+		FRHVendorGetRequest Request(VendorIds);
+		Request.bRecurseSubvendors = bVendorIdRecurseSubvendors;
+		Request.bSkipCachedVendors = bVendorIdUseCache;
+
+		catalog->GetCatalogVendor(Request);
 	}
 
-	if (ImGui::Button("Refresh All Vendors"))
+	if (ImGui::Button("Request All Vendors"))
 	{
 		catalog->GetCatalogVendorsAll();
 	}
@@ -339,6 +349,8 @@ void FRHDTW_Catalog::DoShowVendors(URH_CatalogSubsystem* catalog)
 	catalog->GetVendors().GetKeys(VendorKeys);
 	VendorKeys.Sort([](int32 A, int32 B) { return A < B; });
 
+	ImGui::Text("Vendor Count: %d", VendorKeys.Num());
+	
 	for (const auto& VendorKey : VendorKeys)
 	{
 		const auto& Vendor = catalog->GetVendors()[VendorKey];

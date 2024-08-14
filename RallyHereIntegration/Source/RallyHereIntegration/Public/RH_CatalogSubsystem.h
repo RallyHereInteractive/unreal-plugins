@@ -46,11 +46,18 @@ public:
 	UPROPERTY(BlueprintReadWrite, Transient, Category = "Catalog Subsystem | Vendor Get Request")
 	TArray<int32> VendorIds;
 
+	UPROPERTY(BlueprintReadWrite, Transient, Category = "Catalog Subsystem | Vendor Get Request")
+	bool bRecurseSubvendors;
+	UPROPERTY(BlueprintReadWrite, Transient, Category = "Catalog Subsystem | Vendor Get Request")
+	bool bSkipCachedVendors;
+	
 	/**
 	* @brief Default Constructor.
 	*/
 	FRHVendorGetRequest()
 		: Delegate(FRH_CatalogCallBlock())
+		, bRecurseSubvendors(true)
+		, bSkipCachedVendors(false)
 	{
 	}
 
@@ -60,6 +67,8 @@ public:
 	*/
 	FRHVendorGetRequest(const TArray<int32>& InVendorIds)
 		: Delegate(FRH_CatalogCallBlock())
+		, bRecurseSubvendors(true)
+		, bSkipCachedVendors(false)
 	{
 		VendorIds.Append(InVendorIds);
 	}
@@ -71,6 +80,8 @@ public:
 	*/
 	FRHVendorGetRequest(const FRH_CatalogCallBlock& InDelegate, const TArray<int32>& InVendorIds)
 		: Delegate(InDelegate)
+		, bRecurseSubvendors(true)
+		, bSkipCachedVendors(false)
 	{
 		VendorIds.Append(InVendorIds);
 	}
@@ -333,6 +344,7 @@ public:
 	/**
 	* @brief Gets the vendors requested as well as their sub vendors.
 	* @param [in] VendorRequest The vendor request data for the call with list of vendors and callback on complete.
+	* @param [in] bRecurseSubvendors Whether to recursively request subvendors, DEPRECATED
 	*/
 	void GetCatalogVendor(const FRHVendorGetRequest& VendorRequest);
 	/** @private */

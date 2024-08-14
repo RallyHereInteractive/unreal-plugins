@@ -25,7 +25,8 @@ struct FRHDTW_Catalog : public FRH_DebugToolWindow
 
 	bool GetCouponsForItem(URH_CatalogSubsystem* catalog, FRHAPI_Loot LootItem, TArray<URH_CatalogItem*>& Coupons);
 
-	TArray<ANSICHAR> VendorIdInput;
+	FString VendorIdInput;
+	bool bVendorIdUseCache, bVendorIdRecurseSubvendors;
 	TArray<ANSICHAR> PromoCodeInput;
 	int32 ItemIdInput;
 	int32 SelectedInventoryBucketRuleSet;

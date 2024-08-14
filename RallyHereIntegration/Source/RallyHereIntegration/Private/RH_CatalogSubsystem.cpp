@@ -333,19 +333,59 @@ bool URH_CatalogSubsystem::CanRulesetUsePlatformForBucket(const FString& Invento
 	return false;
 }
 
-void URH_CatalogSubsystem::GetCatalogVendor(const FRHVendorGetRequest& VendorRequest)
+void URH_CatalogSubsystem::GetCatalogVendor(const FRHVendorGetRequest& InVendorRequest)
 {
 	// If there were no requested vendors, fail the request.
-	if (VendorRequest.VendorIds.Num() == 0)
+	if (InVendorRequest.VendorIds.Num() == 0)
 	{
-		VendorRequest.Delegate.ExecuteIfBound(false);
+		InVendorRequest.Delegate.ExecuteIfBound(false);
 		return;
 	}
 
-	// Add the vendor request to the active list, and then enqueue the vendors to get
-	VendorRequests.Add(VendorRequest);
+	// remove any vendors from the list that are already cached, if desired
+	auto VendorRequest = InVendorRequest;
+	if (VendorRequest.bSkipCachedVendors)
+	{
+		if (VendorRequest.bRecurseSubvendors)
+		{
+			// need to check if subvendors are not cached as well, so add all known ones to the list before we check
+			for (auto i = 0; i < VendorRequest.VendorIds.Num(); ++i)
+			{
+				const auto VendorId = VendorRequest.VendorIds[i];
+				if (const auto& FindItem = CatalogVendors.Find(VendorId))
+				{
+					if (const auto* VendorItems = FindItem->GetLootOrNull())
+					{
+						for (const auto& VendorItem : (*VendorItems))
+						{
+							if (const auto& SubVendorId = VendorItem.Value.GetSubVendorIdOrNull())
+							{
+								VendorRequest.VendorIds.AddUnique(*SubVendorId);
+							}
+						}
+					}
+				}
+			}
+		}
 
-	for (auto const& VendorId : VendorRequest.VendorIds)
+		// remove all vendors that are already cached
+		VendorRequest.VendorIds.RemoveAll([&](const int32 VendorId)
+		{
+			return CatalogVendors.Contains(VendorId);
+		});
+
+		// if we removed all vendors, the request is complete
+		if (VendorRequest.VendorIds.Num() == 0)
+		{
+			VendorRequest.Delegate.ExecuteIfBound(true);
+			return;
+		}
+	}
+
+	// Add the vendor request to the active list, and then enqueue the vendors to get
+	auto Index = VendorRequests.Add(MoveTemp(VendorRequest));
+
+	for (auto const& VendorId : VendorRequests[Index].VendorIds)
 	{
 		GetCatalogVendorSingle(VendorId);
 	}
@@ -413,7 +453,8 @@ void URH_CatalogSubsystem::OnGetCatalogVendorResponse(const TGetCatalogVendor::R
 		}
 	}
 
-	TArray<int32> SubVendorsToRequest;
+	// parse data into local caches, and look for any listed subvendors
+	TArray<int32> SubVendors;
 	if (const auto* VendorItems = Vendor.GetLootOrNull())
 	{
 		for (const auto& VendorItem : (*VendorItems))
@@ -421,7 +462,7 @@ void URH_CatalogSubsystem::OnGetCatalogVendorResponse(const TGetCatalogVendor::R
 			// Request all sub vendors of the vendor we just got to update them as needed
 			if (const auto& SubVendorId = VendorItem.Value.GetSubVendorIdOrNull())
 			{
-				SubVendorsToRequest.AddUnique(*SubVendorId);
+				SubVendors.AddUnique(*SubVendorId);
 			}
 
 			if (const auto& FindItem = CatalogLootItems.Find(VendorItem.Value.GetLootId()))
@@ -445,19 +486,41 @@ void URH_CatalogSubsystem::OnGetCatalogVendorResponse(const TGetCatalogVendor::R
 		}
 	}
 
+	// keep track of any subvendors we need to request (that are newly added to any request, and thus were not already kicked off)
+	TArray<int32> SubVendorsToRequest;
+
+	// scan through requests, fulfilling them as needed
 	for (int32 i = VendorRequests.Num() - 1; i >= 0; i--)
 	{
+		auto& Request = VendorRequests[i];
+		
 		// Append any sub vendors to the vendor requests that were expecting this vendor, remove this vendor from the requests
-		if (VendorRequests[i].VendorIds.Contains(VendorId))
+		if (Request.VendorIds.Contains(VendorId))
 		{
-			for (int32 SubVendorId : SubVendorsToRequest)
+			if (Request.bRecurseSubvendors)
 			{
-				VendorRequests[i].VendorIds.AddUnique(SubVendorId);
+				for (int32 SubVendorId : SubVendors)
+				{
+					// If the subvendor is not already in the request, add it and mark it for request (any vendor id in a list is assumed to be in flight)
+					if (!Request.VendorIds.Contains(SubVendorId))
+					{
+						// if the request allows using cached vendors, we need to check if the subvendor is already cached, otherwise we need to add it and request it
+						if (!Request.bSkipCachedVendors || !CatalogVendors.Contains(SubVendorId))
+						{
+							Request.VendorIds.AddUnique(SubVendorId);
+
+							// at this point, the subvendor needs to be requested to fulfill the request
+							SubVendorsToRequest.AddUnique(SubVendorId);
+						}
+					}
+				}
 			}
-			VendorRequests[i].VendorIds.Remove(VendorId);
+			
+			// remove the vendor from the request, as it is now fulfilled
+			Request.VendorIds.Remove(VendorId);
 		}
 
-		// If the request is complete, execute the delegate and remove it
+		// If the request is complete (no more vendors remaining), execute the delegate and remove it
 		if (VendorRequests[i].VendorIds.Num() == 0)
 		{
 			VendorRequests[i].Delegate.ExecuteIfBound(true);
@@ -465,6 +528,7 @@ void URH_CatalogSubsystem::OnGetCatalogVendorResponse(const TGetCatalogVendor::R
 		}
 	}
 
+	// request any subvendors determined to be needed
 	for (int32 SubVendorId : SubVendorsToRequest)
 	{
 		GetCatalogVendorSingle(SubVendorId);
