@@ -57,7 +57,7 @@ public:
 	FRHVendorGetRequest()
 		: Delegate(FRH_CatalogCallBlock())
 		, bRecurseSubvendors(true)
-		, bSkipCachedVendors(false)
+		, bSkipCachedVendors(true)
 	{
 	}
 
@@ -68,7 +68,7 @@ public:
 	FRHVendorGetRequest(const TArray<int32>& InVendorIds)
 		: Delegate(FRH_CatalogCallBlock())
 		, bRecurseSubvendors(true)
-		, bSkipCachedVendors(false)
+		, bSkipCachedVendors(true)
 	{
 		VendorIds.Append(InVendorIds);
 	}
@@ -81,7 +81,7 @@ public:
 	FRHVendorGetRequest(const FRH_CatalogCallBlock& InDelegate, const TArray<int32>& InVendorIds)
 		: Delegate(InDelegate)
 		, bRecurseSubvendors(true)
-		, bSkipCachedVendors(false)
+		, bSkipCachedVendors(true)
 	{
 		VendorIds.Append(InVendorIds);
 	}
