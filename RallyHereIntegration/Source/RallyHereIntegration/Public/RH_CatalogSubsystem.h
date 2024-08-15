@@ -87,6 +87,96 @@ public:
 	}
 };
 
+
+/**
+* @brief Vendor Request struct used to encapsulate a request to get a vendors and the callback delegate
+*/
+USTRUCT(BlueprintType)
+struct FRH_VendorRequestState
+{
+	GENERATED_BODY()
+
+public:
+	TWeakObjectPtr<class URH_CatalogSubsystem> Catalog;
+	
+	/**
+	* @brief Array of outstanding vendor requests to complete this vendor get.
+	*/
+	UPROPERTY(BlueprintReadWrite, Transient, Category = "Catalog Subsystem | Vendor Get Request")
+	FRHVendorGetRequest Request;
+
+	/** @brief A list of vendors received since this request was made */
+	TArray<int32> VendorsReceived;
+	
+	/**
+	* @brief Default Constructor.
+	*/
+	FRH_VendorRequestState()
+		: Request()
+	{
+	}
+
+	/**
+	* @brief Constructor with a request and a subsystem
+	* @param [in] InCatalog The Catalog Subsystem to use.
+	* @param [in] InRequest The request to use.
+	*/
+	FRH_VendorRequestState(class URH_CatalogSubsystem* InCatalog, const FRHVendorGetRequest& InRequest)
+		: Catalog(InCatalog)
+		, Request(InRequest)
+	{
+	}
+
+	/**
+	 * @brief Notify that a vendor has been received.
+	 * @param [in] VendorId The VendorID received
+	 * @param [in] Vendor The Vendor data received
+	 */
+	void NotifyVendorReceived(int32 VendorId, const FRHAPI_Vendor& Vendor)
+	{
+		VendorsReceived.Add(VendorId);
+	}
+	/**
+	 * @brief Notify that a vendor has failed to be received.
+	 * @param [in] VendorId The VendorID that failed
+	 * @return Whether the vendor was awaited and the request should be completed
+	 */
+	bool NotifyVendorFailure(int32 VendorId)
+	{
+		if (GetAwaitedVendorIds().Contains(VendorId))
+		{
+			Request.Delegate.ExecuteIfBound(false);
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * @brief Get a list of all currently known vendors associated with this request
+	 */
+	TArray<int32> GetAllKnownVendorIds() const;
+	/**
+	 * @brief Get a list of all currently known vendors this request is waiting on
+	 */
+	TArray<int32> GetAwaitedVendorIds() const;
+	/**
+	 * @brief Check if all vendors have been received, and fire delegate if so
+	 * @param OutAwaitedVendors List of vendors that are still awaited
+	 * @return If all vendors have been received
+	 */
+	bool IsComplete(TArray<int32>& OutAwaitedVendors) const
+	{
+		OutAwaitedVendors = GetAwaitedVendorIds();
+		if (OutAwaitedVendors.Num() == 0)
+		{
+			Request.Delegate.ExecuteIfBound(true);
+			return true;
+		}
+		return false;
+	}
+};
+
 /**
  * @brief class used to define a Catalog Item.
  */
@@ -484,7 +574,7 @@ protected:
 	 * @brief Makes an API call for a single vendor Id.
 	 * @param [in] VendorId The Vendor to request.
 	 */
-	void GetCatalogVendorSingle(int32 VendorId);
+	void GetCatalogVendorSingle(int32 VendorId, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock());
 	/**
 	* @brief Handles the response to a Get Catalog Vendor call
 	* @param [in] Resp Response given for the call
@@ -492,6 +582,10 @@ protected:
 	* @param [in] VendorId The Vendor Id that was requested.
 	*/
 	virtual void OnGetCatalogVendorResponse(const TGetCatalogVendor::Response& Resp, int32 VendorId);
+	/**
+	 * @brief Processes the current vendor request list, kicking off any new requests that are needed, and completing existing requests that are done.
+	 */
+	virtual void ProcessVendorRequests();
 	/**
 	* @brief Handles the response to a Get Catalog Vendor All call
 	* @param [in] Resp Response given for the call
@@ -536,7 +630,9 @@ protected:
 	virtual void OnGetCatalogTimeFramesAllResponse(const TGetCatalogTimeFramesAll::Response& Resp, const FRH_CatalogCallBlock Delegate);
 	/** @brief Array of active vendor requests that are in flight and not responded ot yet. */
 	UPROPERTY(Transient)
-	TArray<FRHVendorGetRequest> VendorRequests;
+	TArray<FRH_VendorRequestState> VendorRequests;
+	/** Map of all vendor requests that are in flight */
+	TMap<int32, TWeakPtr<FRH_AsyncTaskHelper>> InFlightVendorRequests;
 	/** @brief Xp Table Id to Xp Table Map. */
 	UPROPERTY(Transient)
 	TMap<int32, FRHAPI_XpTable> XpTables;
