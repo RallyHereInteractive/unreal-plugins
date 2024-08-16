@@ -21,6 +21,8 @@ struct FRHAPI_PlayerDeserterStatus
 `public bool `[`DeserterStatus`](#structFRHAPI__PlayerDeserterStatus_1a0b9b6e02cc73cfcfb7e0ad3e54924d1e) | Flag of whether or not the player is a deserter.
 `public FDateTime `[`DeserterExpiration_Optional`](#structFRHAPI__PlayerDeserterStatus_1a634163e27e36eb0490e11b908a79e12a) | Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone.
 `public bool `[`DeserterExpiration_IsSet`](#structFRHAPI__PlayerDeserterStatus_1aec5ec90e840054b4a283fa5fd46998f6) | true if DeserterExpiration_Optional has been set to a value
+`public FDateTime `[`DeserterReset_Optional`](#structFRHAPI__PlayerDeserterStatus_1adcfe9f953c774807a2d357054a646b11) | Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone.
+`public bool `[`DeserterReset_IsSet`](#structFRHAPI__PlayerDeserterStatus_1a0337ce3e6912dd71f16d706d0d1a40cc) | true if DeserterReset_Optional has been set to a value
 `public int32 `[`DeserterCount_Optional`](#structFRHAPI__PlayerDeserterStatus_1a9c79cb405361439be29a9f04070d80e5) | The number of times a player has deserted before the expiration.
 `public bool `[`DeserterCount_IsSet`](#structFRHAPI__PlayerDeserterStatus_1ab71fa5d9d6aa151f80e62cf32c3602b4) | true if DeserterCount_Optional has been set to a value
 `public FDateTime `[`LastUpdated_Optional`](#structFRHAPI__PlayerDeserterStatus_1a67ff00c88097d7be61acf767910ecc03) | Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone.
@@ -49,6 +51,16 @@ struct FRHAPI_PlayerDeserterStatus
 `public inline void `[`SetDeserterExpiration`](#structFRHAPI__PlayerDeserterStatus_1a84b3bb6defd3dbe6e054cf67bd3050a5)`(FDateTime && NewValue)` | Sets the value of DeserterExpiration_Optional and also sets DeserterExpiration_IsSet to true using move semantics.
 `public inline void `[`ClearDeserterExpiration`](#structFRHAPI__PlayerDeserterStatus_1ad3dbbeafc82edc9873b439047a74c805)`()` | Clears the value of DeserterExpiration_Optional and sets DeserterExpiration_IsSet to false.
 `public inline bool `[`IsDeserterExpirationSet`](#structFRHAPI__PlayerDeserterStatus_1a47f854f54b33a5f8066de5598b77c072)`() const` | Checks whether DeserterExpiration_Optional has been set.
+`public inline FDateTime & `[`GetDeserterReset`](#structFRHAPI__PlayerDeserterStatus_1a1e0311f9a302e683de17a70e34eccba9)`()` | Gets the value of DeserterReset_Optional, regardless of it having been set.
+`public inline const FDateTime & `[`GetDeserterReset`](#structFRHAPI__PlayerDeserterStatus_1a391683934fa049ab2ff265ed5e221068)`() const` | Gets the value of DeserterReset_Optional, regardless of it having been set.
+`public inline const FDateTime & `[`GetDeserterReset`](#structFRHAPI__PlayerDeserterStatus_1a78bdd434b6f5b9e8da9a45dc5f4b1236)`(const FDateTime & DefaultValue) const` | Gets the value of DeserterReset_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetDeserterReset`](#structFRHAPI__PlayerDeserterStatus_1a291e214eaf7dedb62cce50ee1d49f6f1)`(FDateTime & OutValue) const` | Fills OutValue with the value of DeserterReset_Optional and returns true if it has been set, otherwise returns false.
+`public inline FDateTime * `[`GetDeserterResetOrNull`](#structFRHAPI__PlayerDeserterStatus_1ab1ebd03a077cc84cf89404ea492ac040)`()` | Returns a pointer to DeserterReset_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FDateTime * `[`GetDeserterResetOrNull`](#structFRHAPI__PlayerDeserterStatus_1ab58438fa6ee24fad1ae9291ecd60047a)`() const` | Returns a pointer to DeserterReset_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetDeserterReset`](#structFRHAPI__PlayerDeserterStatus_1a461c84d2256674e68a82e5dd7bc5a6df)`(const FDateTime & NewValue)` | Sets the value of DeserterReset_Optional and also sets DeserterReset_IsSet to true.
+`public inline void `[`SetDeserterReset`](#structFRHAPI__PlayerDeserterStatus_1ab87f50a273e88030537eaf9e4d24e7ca)`(FDateTime && NewValue)` | Sets the value of DeserterReset_Optional and also sets DeserterReset_IsSet to true using move semantics.
+`public inline void `[`ClearDeserterReset`](#structFRHAPI__PlayerDeserterStatus_1a52df775528e0a7ba9af986a5d3dffdde)`()` | Clears the value of DeserterReset_Optional and sets DeserterReset_IsSet to false.
+`public inline bool `[`IsDeserterResetSet`](#structFRHAPI__PlayerDeserterStatus_1a7f03bd1f7c3f54d11950e97e0268a7d3)`() const` | Checks whether DeserterReset_Optional has been set.
 `public inline int32 & `[`GetDeserterCount`](#structFRHAPI__PlayerDeserterStatus_1acb0e2db74dc731b8b4f55971c54d91c9)`()` | Gets the value of DeserterCount_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetDeserterCount`](#structFRHAPI__PlayerDeserterStatus_1aee17b26ad0fbc03ad2b0b670ce25788e)`() const` | Gets the value of DeserterCount_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetDeserterCount`](#structFRHAPI__PlayerDeserterStatus_1a10a7d266f06f3e1ce91257f5ea3e9eb5)`(const int32 & DefaultValue) const` | Gets the value of DeserterCount_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -99,6 +111,14 @@ Datetime that enforces that a timezone is given. Unix timestamps are allowed and
 #### `public bool `[`DeserterExpiration_IsSet`](#structFRHAPI__PlayerDeserterStatus_1aec5ec90e840054b4a283fa5fd46998f6) <a id="structFRHAPI__PlayerDeserterStatus_1aec5ec90e840054b4a283fa5fd46998f6"></a>
 
 true if DeserterExpiration_Optional has been set to a value
+
+#### `public FDateTime `[`DeserterReset_Optional`](#structFRHAPI__PlayerDeserterStatus_1adcfe9f953c774807a2d357054a646b11) <a id="structFRHAPI__PlayerDeserterStatus_1adcfe9f953c774807a2d357054a646b11"></a>
+
+Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone.
+
+#### `public bool `[`DeserterReset_IsSet`](#structFRHAPI__PlayerDeserterStatus_1a0337ce3e6912dd71f16d706d0d1a40cc) <a id="structFRHAPI__PlayerDeserterStatus_1a0337ce3e6912dd71f16d706d0d1a40cc"></a>
+
+true if DeserterReset_Optional has been set to a value
 
 #### `public int32 `[`DeserterCount_Optional`](#structFRHAPI__PlayerDeserterStatus_1a9c79cb405361439be29a9f04070d80e5) <a id="structFRHAPI__PlayerDeserterStatus_1a9c79cb405361439be29a9f04070d80e5"></a>
 
@@ -220,6 +240,46 @@ Clears the value of DeserterExpiration_Optional and sets DeserterExpiration_IsSe
 #### `public inline bool `[`IsDeserterExpirationSet`](#structFRHAPI__PlayerDeserterStatus_1a47f854f54b33a5f8066de5598b77c072)`() const` <a id="structFRHAPI__PlayerDeserterStatus_1a47f854f54b33a5f8066de5598b77c072"></a>
 
 Checks whether DeserterExpiration_Optional has been set.
+
+#### `public inline FDateTime & `[`GetDeserterReset`](#structFRHAPI__PlayerDeserterStatus_1a1e0311f9a302e683de17a70e34eccba9)`()` <a id="structFRHAPI__PlayerDeserterStatus_1a1e0311f9a302e683de17a70e34eccba9"></a>
+
+Gets the value of DeserterReset_Optional, regardless of it having been set.
+
+#### `public inline const FDateTime & `[`GetDeserterReset`](#structFRHAPI__PlayerDeserterStatus_1a391683934fa049ab2ff265ed5e221068)`() const` <a id="structFRHAPI__PlayerDeserterStatus_1a391683934fa049ab2ff265ed5e221068"></a>
+
+Gets the value of DeserterReset_Optional, regardless of it having been set.
+
+#### `public inline const FDateTime & `[`GetDeserterReset`](#structFRHAPI__PlayerDeserterStatus_1a78bdd434b6f5b9e8da9a45dc5f4b1236)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__PlayerDeserterStatus_1a78bdd434b6f5b9e8da9a45dc5f4b1236"></a>
+
+Gets the value of DeserterReset_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetDeserterReset`](#structFRHAPI__PlayerDeserterStatus_1a291e214eaf7dedb62cce50ee1d49f6f1)`(FDateTime & OutValue) const` <a id="structFRHAPI__PlayerDeserterStatus_1a291e214eaf7dedb62cce50ee1d49f6f1"></a>
+
+Fills OutValue with the value of DeserterReset_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline FDateTime * `[`GetDeserterResetOrNull`](#structFRHAPI__PlayerDeserterStatus_1ab1ebd03a077cc84cf89404ea492ac040)`()` <a id="structFRHAPI__PlayerDeserterStatus_1ab1ebd03a077cc84cf89404ea492ac040"></a>
+
+Returns a pointer to DeserterReset_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const FDateTime * `[`GetDeserterResetOrNull`](#structFRHAPI__PlayerDeserterStatus_1ab58438fa6ee24fad1ae9291ecd60047a)`() const` <a id="structFRHAPI__PlayerDeserterStatus_1ab58438fa6ee24fad1ae9291ecd60047a"></a>
+
+Returns a pointer to DeserterReset_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetDeserterReset`](#structFRHAPI__PlayerDeserterStatus_1a461c84d2256674e68a82e5dd7bc5a6df)`(const FDateTime & NewValue)` <a id="structFRHAPI__PlayerDeserterStatus_1a461c84d2256674e68a82e5dd7bc5a6df"></a>
+
+Sets the value of DeserterReset_Optional and also sets DeserterReset_IsSet to true.
+
+#### `public inline void `[`SetDeserterReset`](#structFRHAPI__PlayerDeserterStatus_1ab87f50a273e88030537eaf9e4d24e7ca)`(FDateTime && NewValue)` <a id="structFRHAPI__PlayerDeserterStatus_1ab87f50a273e88030537eaf9e4d24e7ca"></a>
+
+Sets the value of DeserterReset_Optional and also sets DeserterReset_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearDeserterReset`](#structFRHAPI__PlayerDeserterStatus_1a52df775528e0a7ba9af986a5d3dffdde)`()` <a id="structFRHAPI__PlayerDeserterStatus_1a52df775528e0a7ba9af986a5d3dffdde"></a>
+
+Clears the value of DeserterReset_Optional and sets DeserterReset_IsSet to false.
+
+#### `public inline bool `[`IsDeserterResetSet`](#structFRHAPI__PlayerDeserterStatus_1a7f03bd1f7c3f54d11950e97e0268a7d3)`() const` <a id="structFRHAPI__PlayerDeserterStatus_1a7f03bd1f7c3f54d11950e97e0268a7d3"></a>
+
+Checks whether DeserterReset_Optional has been set.
 
 #### `public inline int32 & `[`GetDeserterCount`](#structFRHAPI__PlayerDeserterStatus_1acb0e2db74dc731b8b4f55971c54d91c9)`()` <a id="structFRHAPI__PlayerDeserterStatus_1acb0e2db74dc731b8b4f55971c54d91c9"></a>
 

@@ -87,6 +87,8 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public bool `[`CacheInfo_IsSet`](#structFRHAPI__Loot_1aafb036901a2d16ef1337d520d808ec6b) | true if CacheInfo_Optional has been set to a value
 `public int32 `[`HardQuantityMaximum_Optional`](#structFRHAPI__Loot_1aa6a8b8fcd71d2911a55ea28b6be66cde) | Hard cap on quantity of an item this Loot can give. Disabled with 0.
 `public bool `[`HardQuantityMaximum_IsSet`](#structFRHAPI__Loot_1a7d6fe172fee6cd5f1545379d64367c01) | true if HardQuantityMaximum_Optional has been set to a value
+`public `[`FRHAPI_LootPrice`](RHAPI_LootPrice.md#structFRHAPI__LootPrice)` `[`Price_Optional`](#structFRHAPI__Loot_1a36a5fecbf4a8d2c8b5e8f51e35a93d4a) | Current price that this loot can be purchased with.
+`public bool `[`Price_IsSet`](#structFRHAPI__Loot_1a66c5f32e0c0754f897a016a1db80b0b6) | true if Price_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__Loot_1ae1fafb9905923f64a0753b812227f84b)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__Loot_1a221346eede3fffebad0d4576f67e422b)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Loot_1a0495d616eb651af6641ec2812b920f2e)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
@@ -463,6 +465,16 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public inline bool `[`IsHardQuantityMaximumSet`](#structFRHAPI__Loot_1ac77f90979a81dc8f0675a30189d97b6e)`() const` | Checks whether HardQuantityMaximum_Optional has been set.
 `public inline bool `[`IsHardQuantityMaximumDefaultValue`](#structFRHAPI__Loot_1a1dcf73ab36076f3fe98df72496ac7ae1)`() const` | Returns true if HardQuantityMaximum_Optional is set and matches the default value.
 `public inline void `[`SetHardQuantityMaximumToDefault`](#structFRHAPI__Loot_1ae75d4313ecf4e431d50d1a6defb18831)`()` | Sets the value of HardQuantityMaximum_Optional to its default and also sets HardQuantityMaximum_IsSet to true.
+`public inline `[`FRHAPI_LootPrice`](RHAPI_LootPrice.md#structFRHAPI__LootPrice)` & `[`GetPrice`](#structFRHAPI__Loot_1aab62c50e34a7fa5904e1ba4ee5622942)`()` | Gets the value of Price_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_LootPrice`](RHAPI_LootPrice.md#structFRHAPI__LootPrice)` & `[`GetPrice`](#structFRHAPI__Loot_1ae261ecfa7f6be701b065df043e9cc88d)`() const` | Gets the value of Price_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_LootPrice`](RHAPI_LootPrice.md#structFRHAPI__LootPrice)` & `[`GetPrice`](#structFRHAPI__Loot_1acb35ab84a139a9a8cf3e3283c9b9fdf4)`(const `[`FRHAPI_LootPrice`](RHAPI_LootPrice.md#structFRHAPI__LootPrice)` & DefaultValue) const` | Gets the value of Price_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetPrice`](#structFRHAPI__Loot_1affb5485eaced42454b3e4d92cfdbd723)`(`[`FRHAPI_LootPrice`](RHAPI_LootPrice.md#structFRHAPI__LootPrice)` & OutValue) const` | Fills OutValue with the value of Price_Optional and returns true if it has been set, otherwise returns false.
+`public inline `[`FRHAPI_LootPrice`](RHAPI_LootPrice.md#structFRHAPI__LootPrice)` * `[`GetPriceOrNull`](#structFRHAPI__Loot_1ae42c96b6ba66e02e7702af8c21f1e246)`()` | Returns a pointer to Price_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_LootPrice`](RHAPI_LootPrice.md#structFRHAPI__LootPrice)` * `[`GetPriceOrNull`](#structFRHAPI__Loot_1aa133096c6412d3200547540b341ea10f)`() const` | Returns a pointer to Price_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetPrice`](#structFRHAPI__Loot_1ac857eda13f1cb850f345bc83e2124af2)`(const `[`FRHAPI_LootPrice`](RHAPI_LootPrice.md#structFRHAPI__LootPrice)` & NewValue)` | Sets the value of Price_Optional and also sets Price_IsSet to true.
+`public inline void `[`SetPrice`](#structFRHAPI__Loot_1a099db48ed6f0814b19923f0559d85cf7)`(`[`FRHAPI_LootPrice`](RHAPI_LootPrice.md#structFRHAPI__LootPrice)` && NewValue)` | Sets the value of Price_Optional and also sets Price_IsSet to true using move semantics.
+`public inline void `[`ClearPrice`](#structFRHAPI__Loot_1ab1aa3a168ad71a2d2f93b5a7253f93d5)`()` | Clears the value of Price_Optional and sets Price_IsSet to false.
+`public inline bool `[`IsPriceSet`](#structFRHAPI__Loot_1aa63f6ad9f4db27c02a2bbe58bc825a7f)`() const` | Checks whether Price_Optional has been set.
 
 ### Members
 
@@ -733,6 +745,14 @@ Hard cap on quantity of an item this Loot can give. Disabled with 0.
 #### `public bool `[`HardQuantityMaximum_IsSet`](#structFRHAPI__Loot_1a7d6fe172fee6cd5f1545379d64367c01) <a id="structFRHAPI__Loot_1a7d6fe172fee6cd5f1545379d64367c01"></a>
 
 true if HardQuantityMaximum_Optional has been set to a value
+
+#### `public `[`FRHAPI_LootPrice`](RHAPI_LootPrice.md#structFRHAPI__LootPrice)` `[`Price_Optional`](#structFRHAPI__Loot_1a36a5fecbf4a8d2c8b5e8f51e35a93d4a) <a id="structFRHAPI__Loot_1a36a5fecbf4a8d2c8b5e8f51e35a93d4a"></a>
+
+Current price that this loot can be purchased with.
+
+#### `public bool `[`Price_IsSet`](#structFRHAPI__Loot_1a66c5f32e0c0754f897a016a1db80b0b6) <a id="structFRHAPI__Loot_1a66c5f32e0c0754f897a016a1db80b0b6"></a>
+
+true if Price_Optional has been set to a value
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__Loot_1ae1fafb9905923f64a0753b812227f84b)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__Loot_1ae1fafb9905923f64a0753b812227f84b"></a>
 
@@ -2246,4 +2266,44 @@ Returns true if HardQuantityMaximum_Optional is set and matches the default valu
 #### `public inline void `[`SetHardQuantityMaximumToDefault`](#structFRHAPI__Loot_1ae75d4313ecf4e431d50d1a6defb18831)`()` <a id="structFRHAPI__Loot_1ae75d4313ecf4e431d50d1a6defb18831"></a>
 
 Sets the value of HardQuantityMaximum_Optional to its default and also sets HardQuantityMaximum_IsSet to true.
+
+#### `public inline `[`FRHAPI_LootPrice`](RHAPI_LootPrice.md#structFRHAPI__LootPrice)` & `[`GetPrice`](#structFRHAPI__Loot_1aab62c50e34a7fa5904e1ba4ee5622942)`()` <a id="structFRHAPI__Loot_1aab62c50e34a7fa5904e1ba4ee5622942"></a>
+
+Gets the value of Price_Optional, regardless of it having been set.
+
+#### `public inline const `[`FRHAPI_LootPrice`](RHAPI_LootPrice.md#structFRHAPI__LootPrice)` & `[`GetPrice`](#structFRHAPI__Loot_1ae261ecfa7f6be701b065df043e9cc88d)`() const` <a id="structFRHAPI__Loot_1ae261ecfa7f6be701b065df043e9cc88d"></a>
+
+Gets the value of Price_Optional, regardless of it having been set.
+
+#### `public inline const `[`FRHAPI_LootPrice`](RHAPI_LootPrice.md#structFRHAPI__LootPrice)` & `[`GetPrice`](#structFRHAPI__Loot_1acb35ab84a139a9a8cf3e3283c9b9fdf4)`(const `[`FRHAPI_LootPrice`](RHAPI_LootPrice.md#structFRHAPI__LootPrice)` & DefaultValue) const` <a id="structFRHAPI__Loot_1acb35ab84a139a9a8cf3e3283c9b9fdf4"></a>
+
+Gets the value of Price_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetPrice`](#structFRHAPI__Loot_1affb5485eaced42454b3e4d92cfdbd723)`(`[`FRHAPI_LootPrice`](RHAPI_LootPrice.md#structFRHAPI__LootPrice)` & OutValue) const` <a id="structFRHAPI__Loot_1affb5485eaced42454b3e4d92cfdbd723"></a>
+
+Fills OutValue with the value of Price_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline `[`FRHAPI_LootPrice`](RHAPI_LootPrice.md#structFRHAPI__LootPrice)` * `[`GetPriceOrNull`](#structFRHAPI__Loot_1ae42c96b6ba66e02e7702af8c21f1e246)`()` <a id="structFRHAPI__Loot_1ae42c96b6ba66e02e7702af8c21f1e246"></a>
+
+Returns a pointer to Price_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const `[`FRHAPI_LootPrice`](RHAPI_LootPrice.md#structFRHAPI__LootPrice)` * `[`GetPriceOrNull`](#structFRHAPI__Loot_1aa133096c6412d3200547540b341ea10f)`() const` <a id="structFRHAPI__Loot_1aa133096c6412d3200547540b341ea10f"></a>
+
+Returns a pointer to Price_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetPrice`](#structFRHAPI__Loot_1ac857eda13f1cb850f345bc83e2124af2)`(const `[`FRHAPI_LootPrice`](RHAPI_LootPrice.md#structFRHAPI__LootPrice)` & NewValue)` <a id="structFRHAPI__Loot_1ac857eda13f1cb850f345bc83e2124af2"></a>
+
+Sets the value of Price_Optional and also sets Price_IsSet to true.
+
+#### `public inline void `[`SetPrice`](#structFRHAPI__Loot_1a099db48ed6f0814b19923f0559d85cf7)`(`[`FRHAPI_LootPrice`](RHAPI_LootPrice.md#structFRHAPI__LootPrice)` && NewValue)` <a id="structFRHAPI__Loot_1a099db48ed6f0814b19923f0559d85cf7"></a>
+
+Sets the value of Price_Optional and also sets Price_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearPrice`](#structFRHAPI__Loot_1ab1aa3a168ad71a2d2f93b5a7253f93d5)`()` <a id="structFRHAPI__Loot_1ab1aa3a168ad71a2d2f93b5a7253f93d5"></a>
+
+Clears the value of Price_Optional and sets Price_IsSet to false.
+
+#### `public inline bool `[`IsPriceSet`](#structFRHAPI__Loot_1aa63f6ad9f4db27c02a2bbe58bc825a7f)`() const` <a id="structFRHAPI__Loot_1aa63f6ad9f4db27c02a2bbe58bc825a7f"></a>
+
+Checks whether Price_Optional has been set.
 
