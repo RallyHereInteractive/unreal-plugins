@@ -129,10 +129,16 @@ FString FRequest_CreateEntityDirectoryFile::ComputePath() const
 
 bool FRequest_CreateEntityDirectoryFile::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-	static const TArray<FString> Consumes = { TEXT("multipart/form-data") };
+	static const TArray<FString> Consumes = { TEXT("multipart/form-data"), TEXT("application/octet-stream") };
 	//static const TArray<FString> Produces = { TEXT("application/json") };
 
 	HttpRequest->SetVerb(TEXT("PUT"));
+
+	// Header parameters
+	if (ContentType.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("content-type"), ContentType.GetValue());
+	}
 
 	if (!AuthContext && !bDisableAuthRequirement)
 	{
@@ -152,7 +158,10 @@ bool FRequest_CreateEntityDirectoryFile::SetupHttpRequest(const FHttpRequestRef&
 	else if (Consumes.Contains(TEXT("multipart/form-data")))
 	{
 		FHttpMultipartFormData FormData;
-		FormData.AddFilePart(TEXT("file"), File);
+		if(File.IsSet())
+		{
+			FormData.AddFilePart(TEXT("file"), File.GetValue());
+		}
 
 		FormData.SetupHttpRequest(HttpRequest);
 	}

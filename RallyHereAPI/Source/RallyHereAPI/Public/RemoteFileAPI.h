@@ -28,7 +28,9 @@ class FRemoteFileAPI;
 
 /**
  * @brief Create Entity Directory File
- * Upload a file to entity storage for provided entity_id
+ * Upload a file to entity storage for the provided entity_id. 
+ * This endpoint will accept a multipart/form-data by default when the request's content-type is not provided. 
+ * When a content-type is provided, the request body will be as raw bytes.
 */
 struct RALLYHEREAPI_API FRequest_CreateEntityDirectoryFile : public FRequest
 {
@@ -52,7 +54,8 @@ struct RALLYHEREAPI_API FRequest_CreateEntityDirectoryFile : public FRequest
 	FString FileName;
 	ERHAPI_EntityType EntityType;
 	FString EntityId;
-	FHttpFileInput File;
+	TOptional<FString> ContentType;
+	TOptional<FHttpFileInput> File;
 };
 
 /** The response type for FRequest_CreateEntityDirectoryFile */

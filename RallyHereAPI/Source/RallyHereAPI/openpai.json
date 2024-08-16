@@ -12231,6 +12231,64 @@
         ]
       }
     },
+    "/session/v1/player/me/deserter/{deserter_id}": {
+      "get": {
+        "tags": [
+          "Deserter"
+        ],
+        "summary": "Get Player Deserter Self",
+        "description": "Get currently authed player's deserter status",
+        "operationId": "get_player_deserter_self",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Deserter Id"
+            },
+            "name": "deserter_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerDeserterStatus"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
     "/session/v1/player/{player_uuid}/deserter/{deserter_id}": {
       "get": {
         "tags": [
@@ -21028,7 +21086,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_sig_invalid - Token Signature is invalid\n",
+            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21170,7 +21228,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_sig_invalid - Token Signature is invalid\n",
+            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21297,7 +21355,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_sig_invalid - Token Signature is invalid\n",
+            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21382,7 +21440,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_sig_invalid - Token Signature is invalid\n",
+            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21518,7 +21576,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_sig_invalid - Token Signature is invalid\n",
+            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21614,7 +21672,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_sig_invalid - Token Signature is invalid\n",
+            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21702,7 +21760,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_sig_invalid - Token Signature is invalid\n",
+            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21809,7 +21867,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_sig_invalid - Token Signature is invalid\n",
+            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -21952,7 +22010,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_sig_invalid - Token Signature is invalid\n",
+            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -22095,7 +22153,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_sig_invalid - Token Signature is invalid\n",
+            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -22222,7 +22280,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_sig_invalid - Token Signature is invalid\n",
+            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -22307,7 +22365,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_sig_invalid - Token Signature is invalid\n",
+            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -22444,7 +22502,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_sig_invalid - Token Signature is invalid\n",
+            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -22541,7 +22599,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_sig_invalid - Token Signature is invalid\n",
+            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -22629,7 +22687,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_sig_invalid - Token Signature is invalid\n",
+            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -22737,7 +22795,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_sig_invalid - Token Signature is invalid\n",
+            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -22889,7 +22947,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_sig_invalid - Token Signature is invalid\n",
+            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -23025,7 +23083,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_sig_invalid - Token Signature is invalid\n",
+            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -23121,7 +23179,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_sig_invalid - Token Signature is invalid\n",
+            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -23218,7 +23276,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- insufficient_permissions - Insufficient Permissions\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_expired - Token is expired\n- auth_token_format - Invalid Authorization - {}\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_not_jwt - Invalid Authorization\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_token_sig_invalid - Token Signature is invalid\n",
+            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_not_jwt - Invalid Authorization\n- auth_token_expired - Token is expired\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- insufficient_permissions - Insufficient Permissions\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_format - Invalid Authorization - {}\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -24934,7 +24992,7 @@
           "match"
         ],
         "summary": "Get Matches",
-        "description": "Get pages of matches",
+        "description": "Get pages of matches based on provided filters.\n\nRequired Permissions:\n\n- For any match any of: `match:*`, `match:match:any:read`",
         "operationId": "get_matches",
         "security": [
           {
@@ -25108,14 +25166,14 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -25134,7 +25192,7 @@
           "match"
         ],
         "summary": "Create Match",
-        "description": "Create match by match_id\n    \n    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`\n    \n    Or you have match:match:edit:authority and are the host of the match.",
+        "description": "Create match by match_id.\n\nRequired Permissions:\n\n- For any match any of: `match:*`, `match:match:edit:any`\n\n- For match if the player is the host any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority`",
         "operationId": "create_match",
         "security": [
           {
@@ -25163,14 +25221,14 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -25191,7 +25249,7 @@
           "match"
         ],
         "summary": "Get Match",
-        "description": "Get match by match_id\n    \n    Must be part of the match or have the following permissions: \n    any of: `match:*`, `match:match:any:read` match:match:player:read",
+        "description": "Get match segment by match_id.\n\nRequired Permissions:\n\n- For any match any of: `match:*`, `match:match:any:read`\n\n- For match if the player was in match any of: `match:*`, `match:match:player:read`",
         "operationId": "get_match",
         "security": [
           {
@@ -25221,14 +25279,14 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "404": {
             "content": {
@@ -25257,7 +25315,7 @@
           "match"
         ],
         "summary": "Update Match",
-        "description": "Update match by match_id\n    \n    Match must still be in a pending state.\n    \n    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`\n    \n    Or you have match:match:edit:authority and are the host of the match.",
+        "description": "Update match by match_id.\n\nMatch must be in pending state to be updated.\n\nRequired Permissions:\n\n- For any match any of: `match:*`, `match:match:edit:any`\n\n- For match if the player is the host any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority`",
         "operationId": "update_match",
         "security": [
           {
@@ -25296,7 +25354,7 @@
               }
             }
           },
-          "403": {
+          "400": {
             "content": {
               "application/json": {
                 "schema": {
@@ -25304,7 +25362,27 @@
                 }
               }
             },
-            "description": "Forbidden"
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Not Found"
           },
           "422": {
             "description": "Validation Error",
@@ -25323,7 +25401,7 @@
           "match"
         ],
         "summary": "Patch Match",
-        "description": "Update match by match_id only with provided fields\n    \n    Match must still be in a pending state.\n    \n    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`\n    \n    Or you have match:match:edit:authority and are the host of the match.",
+        "description": "Update match by match_id only with provided fields.\n\nMatch must be in pending state to be updated.\n\nRequired Permissions:\n\n- For any match any of: `match:*`, `match:match:edit:any`\n\n- For match if the player is the host any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority`",
         "operationId": "patch_match",
         "security": [
           {
@@ -25362,7 +25440,7 @@
               }
             }
           },
-          "403": {
+          "400": {
             "content": {
               "application/json": {
                 "schema": {
@@ -25370,7 +25448,27 @@
                 }
               }
             },
-            "description": "Forbidden"
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Not Found"
           },
           "422": {
             "description": "Validation Error",
@@ -25389,7 +25487,7 @@
           "match"
         ],
         "summary": "Delete Match",
-        "description": "Delete match by match_id\n    \n    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`",
+        "description": "Delete match by match_id\n\nRequired Permissions:\n\n- For any match any of: `match:*`, `match:match:edit:any`",
         "operationId": "delete_match",
         "security": [
           {
@@ -25408,10 +25506,20 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "Successful Response"
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
             "content": {
               "application/json": {
                 "schema": {
@@ -25419,7 +25527,7 @@
                 }
               }
             },
-            "description": "Forbidden"
+            "description": "Not Found"
           },
           "422": {
             "description": "Validation Error",
@@ -25440,7 +25548,7 @@
           "match"
         ],
         "summary": "Get Player Matches Self",
-        "description": "Get all matches for self. Only provides matches for the player_uuid in the provided token.\n    \n    Must be on your own behalf or have the following permissions: \n    any of: `match:*`, `match:match:player:read`, `match:player:any:read` : `match:player:self:read`",
+        "description": "Get all matches for self. Only provides matches for the player_uuid in the provided token.\n\nany of: `match:*`, `match:match:player:read`, `match:player:any:read` \n    \n: `match:player:self:read`",
         "operationId": "get_player_matches_self",
         "security": [
           {
@@ -25489,14 +25597,14 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -25517,7 +25625,7 @@
           "match"
         ],
         "summary": "Get Players Matches",
-        "description": "Get All matches for a provided player_uuid.\n    \n    Must be on your own behalf or have the following permissions: \n    any of: `match:*`, `match:match:player:read`, `match:player:any:read` : `match:player:self:read`",
+        "description": "Get All matches for a provided player_uuid.\n\nany of: `match:*`, `match:match:player:read`, `match:player:any:read` \n    \n: `match:player:self:read`",
         "operationId": "get_players_matches",
         "security": [
           {
@@ -25576,14 +25684,14 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -25604,7 +25712,7 @@
           "match"
         ],
         "summary": "Get Match Player",
-        "description": "Get a player match record for the provided player_uuid and match_id\n    \n    Must be on your own behalf or have the following permissions: \n    any of: `match:*`, `match:match:player:read`, `match:player:any:read` : `match:player:self:read`",
+        "description": "Get a player match record for the provided player_uuid and match_id\n\nany of: `match:*`, `match:match:player:read`, `match:player:any:read` \n    \n: `match:player:self:read`",
         "operationId": "get_match_player",
         "security": [
           {
@@ -25644,6 +25752,16 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
             "content": {
               "application/json": {
                 "schema": {
@@ -25651,7 +25769,7 @@
                 }
               }
             },
-            "description": "Forbidden"
+            "description": "Not Found"
           },
           "422": {
             "description": "Validation Error",
@@ -25670,7 +25788,7 @@
           "match"
         ],
         "summary": "Create Match Player",
-        "description": "Create player match record for the provided player_uuid and match_id\n    \n    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`\n    \n    Or you have match:match:edit:authority and are the host of the match.",
+        "description": "Create player match record for the provided player_uuid and match_id\n\nMust have one of the following permissions: any of: `match:*`, `match:match:edit:any`\n\nOr you have match:match:edit:authority and are the host of the match.",
         "operationId": "create_match_player",
         "security": [
           {
@@ -25720,6 +25838,16 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
             "content": {
               "application/json": {
                 "schema": {
@@ -25727,7 +25855,7 @@
                 }
               }
             },
-            "description": "Forbidden"
+            "description": "Not Found"
           },
           "422": {
             "description": "Validation Error",
@@ -25746,7 +25874,7 @@
           "match"
         ],
         "summary": "Update Match Player",
-        "description": "Update player match record for the provided player_uuid and match_id\n    \n    Match must still be in a pending state.\n    \n    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`\n    \n    Or you have match:match:edit:authority and are the host of the match.",
+        "description": "Update player match record for the provided player_uuid and match_id\n    \nMatch must be in pending state to be updated.\n    \nany of: `match:*`, `match:match:edit:any` - update any match.\n\nany of: `match:*`, `match:match:edit:any`, `match:match:edit:authority` - update match if the player is the host of the match.",
         "operationId": "update_match_player",
         "security": [
           {
@@ -25796,6 +25924,16 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
             "content": {
               "application/json": {
                 "schema": {
@@ -25803,7 +25941,7 @@
                 }
               }
             },
-            "description": "Forbidden"
+            "description": "Not Found"
           },
           "422": {
             "description": "Validation Error",
@@ -25822,7 +25960,7 @@
           "match"
         ],
         "summary": "Patch Match Player",
-        "description": "Update player match record for the provided player_uuid \" \"and match_id only with provided fields.\n    \n    Match must still be in a pending state.\n    \n    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`\n    \n    Or you have match:match:edit:authority and are the host of the match.",
+        "description": "Update player match record for the provided player_uuid \" \"and match_id only with provided fields.\n\nMatch must still be in a pending state.\n\nRequired Permissions:   \n\n- For any match any of: `match:*`, `match:match:edit:any`\n\n- For match if the player is the host any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority`",
         "operationId": "patch_match_player",
         "security": [
           {
@@ -25872,6 +26010,16 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
             "content": {
               "application/json": {
                 "schema": {
@@ -25879,7 +26027,7 @@
                 }
               }
             },
-            "description": "Forbidden"
+            "description": "Not Found"
           },
           "422": {
             "description": "Validation Error",
@@ -25898,7 +26046,7 @@
           "match"
         ],
         "summary": "Delete Match Player",
-        "description": "Delete player by player_uuid and match_id\n    \n    Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`",
+        "description": "Delete player by player_uuid and match_id\n\nRequired Permissions:\n\n- For any match any of: `match:*`, `match:match:edit:any`",
         "operationId": "delete_match_player",
         "security": [
           {
@@ -25927,10 +26075,20 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "Successful Response"
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
             "content": {
               "application/json": {
                 "schema": {
@@ -25938,7 +26096,7 @@
                 }
               }
             },
-            "description": "Forbidden"
+            "description": "Not Found"
           },
           "422": {
             "description": "Validation Error",
@@ -25959,7 +26117,7 @@
           "match"
         ],
         "summary": "Get Match Segment",
-        "description": "Get match segment by match_id and segment_id",
+        "description": "Get match segment by match_id and segment_id.\n\n- For any match any of: `match:*`, `match:match:any:read`\n\n- For match if the player was in match any of: `match:*`, `match:match:player:read`",
         "operationId": "get_match_segment",
         "security": [
           {
@@ -25998,14 +26156,14 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "404": {
             "content": {
@@ -26034,7 +26192,7 @@
           "match"
         ],
         "summary": "Update Match Segment",
-        "description": "Update match segment by match_id and segment_id",
+        "description": "Update match segment by match_id and segment_id.\n\nMatch must be in pending state to be updated.\n\nRequired Permissions:\n\n- For any match segment any of: `match:*`, `match:match:edit:any`\n\n- For match segment if the player is the host any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority`",
         "operationId": "update_match_segment",
         "security": [
           {
@@ -26083,6 +26241,16 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
             "content": {
               "application/json": {
                 "schema": {
@@ -26090,7 +26258,7 @@
                 }
               }
             },
-            "description": "Forbidden"
+            "description": "Not Found"
           },
           "422": {
             "description": "Validation Error",
@@ -26109,7 +26277,7 @@
           "match"
         ],
         "summary": "Patch Match Segment",
-        "description": "Update match segment by match_id and segment_id only with provided fields",
+        "description": "Update match segment by match_id and segment_id only with provided fields.\n\nMatch must be in pending state to be updated.\n\nRequired Permissions:\n\n- For any match segment any of: `match:*`, `match:match:edit:any`\n\n- For match segment if the player is the host any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority`",
         "operationId": "patch_match_segment",
         "security": [
           {
@@ -26158,6 +26326,16 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
             "content": {
               "application/json": {
                 "schema": {
@@ -26165,7 +26343,7 @@
                 }
               }
             },
-            "description": "Forbidden"
+            "description": "Not Found"
           },
           "422": {
             "description": "Validation Error",
@@ -26184,7 +26362,7 @@
           "match"
         ],
         "summary": "Delete Match Segment",
-        "description": "Delete match segment by match_id and segment_id",
+        "description": "Delete match segment by match_id and segment_id\n\nRequired Permissions:\n\n- For any match any of: `match:*`, `match:match:edit:any`",
         "operationId": "delete_match_segment",
         "security": [
           {
@@ -26212,10 +26390,20 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "Successful Response"
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
             "content": {
               "application/json": {
                 "schema": {
@@ -26223,7 +26411,7 @@
                 }
               }
             },
-            "description": "Forbidden"
+            "description": "Not Found"
           },
           "422": {
             "description": "Validation Error",
@@ -26244,7 +26432,7 @@
           "match"
         ],
         "summary": "Create Match Segment",
-        "description": "Create match segment by match_id",
+        "description": "Create match segment by match_id.\n\n- For any match segment any of: `match:*`, `match:match:edit:any`\n\n- For match segment if the player is the host any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority`",
         "operationId": "create_match_segment",
         "security": [
           {
@@ -26284,14 +26472,14 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -26312,7 +26500,7 @@
           "pex"
         ],
         "summary": "Get All Pex Host Raw By Filter",
-        "description": "Get pages of PEX host raw data based on provided filters\n            \n            Required Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:pex:read`",
+        "description": "Get pages of PEX host raw data based on provided filters\n\nRequired Permissions:\n\n- For any pex host any of: `match:*`, `match:pex:read`",
         "operationId": "get_all_pex_host_raw_by_filter",
         "security": [
           {
@@ -26704,7 +26892,7 @@
           "pex"
         ],
         "summary": "Get All Pex Host Scores By Filter",
-        "description": "Get pages of PEX host scores based on provided filters\n            \n            Required Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:pex:read`",
+        "description": "Get pages of PEX host scores based on provided filters\n\nRequired Permissions:\n\n- For any pex client any of: `match:*`, `match:pex:read`",
         "operationId": "get_all_pex_host_scores_by_filter",
         "security": [
           {
@@ -27086,7 +27274,7 @@
           "pex"
         ],
         "summary": "Get All Pex Client Raw By Filter",
-        "description": "Get pages of PEX client raw data based on provided filters\n\n            Required Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:pex:read`",
+        "description": "Get pages of PEX client raw data based on provided filters\n\nRequired Permissions:\n\n- For any pex client any of: `match:*`, `match:pex:read`",
         "operationId": "get_all_pex_client_raw_by_filter",
         "security": [
           {
@@ -27510,7 +27698,7 @@
           "pex"
         ],
         "summary": "Get All Pex Client Scores By Filter",
-        "description": "Get pages of PEX client score data based on provided filters\n\n            Required Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:pex:read`",
+        "description": "Get pages of PEX client score data based on provided filters\n\nRequired Permissions:\n\n- For any pex client any of: `match:*`, `match:pex:read`",
         "operationId": "get_all_pex_client_scores_by_filter",
         "security": [
           {
@@ -27924,7 +28112,7 @@
           "pex"
         ],
         "summary": "Create Pex Host",
-        "description": "Create PEX Host\n\n            Required Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:pex:host:write`",
+        "description": "Create PEX Host\n\nRequired Permissions:\n\n- For any pex host any of: `match:*`, `match:pex:host:write`",
         "operationId": "create_pex_host",
         "requestBody": {
           "content": {
@@ -27974,7 +28162,7 @@
           "pex"
         ],
         "summary": "Create Pex Player",
-        "description": "Create PEX Client\n\n           Required Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:pex:client:write`",
+        "description": "Create PEX Client\n\nRequired Permissions:\n\n- For any pex client any of: `match:*`, `match:pex:client:write`",
         "operationId": "create_pex_player",
         "requestBody": {
           "content": {
@@ -28612,7 +28800,7 @@
           "file"
         ],
         "summary": "Create Entity Directory File",
-        "description": "Upload a file to entity storage for provided entity_id",
+        "description": "Upload a file to entity storage for the provided entity_id. \nThis endpoint will accept a multipart/form-data by default when the request's content-type is not provided. \nWhen a content-type is provided, the request body will be as raw bytes.",
         "operationId": "create_entity_directory_file",
         "security": [
           {
@@ -28653,17 +28841,37 @@
               "type": "string",
               "title": "Entity Id"
             }
+          },
+          {
+            "name": "content-type",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Content-Type"
+            }
           }
         ],
         "requestBody": {
-          "required": true,
           "content": {
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/Body_create_entity_directory_file"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Body_create_entity_directory_file"
+                  }
+                ],
+                "title": "Body"
+              }
+            },
+            "application/octet-stream": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "204": {
@@ -29124,13 +29332,13 @@
         ],
         "title": "OpportunityAbortReason",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "CANCEL",
-          "OTHER"
-        ],
         "x-enum-descriptions": [
           "Ad was closed by the user",
           "Ad was closed from a misc cause"
+        ],
+        "x-enum-varnames": [
+          "CANCEL",
+          "OTHER"
         ]
       },
       "OpportunityState": {
@@ -29142,15 +29350,15 @@
         ],
         "title": "OpportunityState",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "START",
-          "COMPLETE",
-          "ABORT"
-        ],
         "x-enum-descriptions": [
           "User started watching the ad",
           "User finished watching the ad",
           "User stopped watching the ad partway through"
+        ],
+        "x-enum-varnames": [
+          "START",
+          "COMPLETE",
+          "ABORT"
         ]
       },
       "ValidationError": {
@@ -30404,24 +30612,6 @@
         ],
         "title": "Platform",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "ANON",
           "BASIC",
@@ -30439,6 +30629,24 @@
           "TWITCH",
           "RALLYHERE",
           "LEGACYNAME"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "PlatformIdentityLookupResults": {
@@ -32480,6 +32688,12 @@
             "title": "Time Zone Aware Datetime",
             "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone"
           },
+          "deserter_reset": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone"
+          },
           "deserter_count": {
             "type": "integer",
             "minimum": 0,
@@ -34079,6 +34293,12 @@
             "title": "Time Zone Aware Datetime",
             "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone"
           },
+          "deserter_reset": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone"
+          },
           "deserter_count": {
             "type": "integer",
             "minimum": 0,
@@ -35580,19 +35800,6 @@
         ],
         "title": "ClientType",
         "description": "Client type for Entitlements",
-        "x-enum-descriptions": [
-          "Unknown client type",
-          "Windows client type",
-          "Mac client type",
-          "XboxOne client type",
-          "Playstation 4 client type",
-          "Nintendo Switch client type",
-          "Android client type",
-          "iOS client type",
-          "Playstation 5 client type",
-          "Linux client type",
-          "XSX client type"
-        ],
         "x-enum-varnames": [
           "UNKNOWN",
           "WIN",
@@ -35605,6 +35812,19 @@
           "PS5",
           "LINUX",
           "XSX"
+        ],
+        "x-enum-descriptions": [
+          "Unknown client type",
+          "Windows client type",
+          "Mac client type",
+          "XboxOne client type",
+          "Playstation 4 client type",
+          "Nintendo Switch client type",
+          "Android client type",
+          "iOS client type",
+          "Playstation 5 client type",
+          "Linux client type",
+          "XSX client type"
         ]
       },
       "CreateInventoryRequest": {
@@ -35699,13 +35919,13 @@
         ],
         "title": "CreateInventoryType",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "Inventory that persists between Inventory Sessions.",
-          "Inventory that does not persist between Inventory Sessions."
-        ],
         "x-enum-varnames": [
           "PERSISTENT",
           "TRANSIENT"
+        ],
+        "x-enum-descriptions": [
+          "Inventory that persists between Inventory Sessions.",
+          "Inventory that does not persist between Inventory Sessions."
         ]
       },
       "EntitlementActionType": {
@@ -35718,17 +35938,17 @@
         ],
         "title": "EntitlementActionType",
         "description": "Action to take for the Entitlement on a user",
-        "x-enum-descriptions": [
-          "Event for granting an Entitlement to the user",
-          "Event for refunding an Entitlement to the user",
-          "Event for refunding an Entitlement to the user due to a chargeback to the original payment",
-          "Event for re-granting an Entitlement to the user after a chargeback was reversed"
-        ],
         "x-enum-varnames": [
           "grant",
           "refund",
           "chargeback",
           "chargeback_reversal"
+        ],
+        "x-enum-descriptions": [
+          "Event for granting an Entitlement to the user",
+          "Event for refunding an Entitlement to the user",
+          "Event for refunding an Entitlement to the user due to a chargeback to the original payment",
+          "Event for re-granting an Entitlement to the user after a chargeback was reversed"
         ]
       },
       "EntitlementErrorCode": {
@@ -35751,22 +35971,6 @@
         ],
         "title": "EntitlementErrorCode",
         "description": "Error codes for Entitlements",
-        "x-enum-descriptions": [
-          "No error occured",
-          "Failed to find or validate the auth token",
-          "Missing information in the request",
-          "Failed to consume the entitlement",
-          "No SKU found for this entitlement on the backend",
-          "Entitlement is defined with a different SKU type than the one provided",
-          "Durable entitlements are not allowed by this platform",
-          "Durable single use entitlements are not allowed by this platform",
-          "Consumable entitlements are not allowed by this platform",
-          "Unknown SKU type provided",
-          "Failed to submit the order to the backend",
-          "Durable single use entitlement has already been applied",
-          "Quantity was zero, nothing to apply",
-          "Entitlement was previously applied"
-        ],
         "x-enum-varnames": [
           "NONE",
           "AUTH_TOKEN_FAILURE",
@@ -35782,6 +35986,22 @@
           "ALREADY_APPLIED_DURABLE_SINGLE_USE",
           "QUANTITY_ZERO",
           "PREVIOUSLY_APPLIED"
+        ],
+        "x-enum-descriptions": [
+          "No error occured",
+          "Failed to find or validate the auth token",
+          "Missing information in the request",
+          "Failed to consume the entitlement",
+          "No SKU found for this entitlement on the backend",
+          "Entitlement is defined with a different SKU type than the one provided",
+          "Durable entitlements are not allowed by this platform",
+          "Durable single use entitlements are not allowed by this platform",
+          "Consumable entitlements are not allowed by this platform",
+          "Unknown SKU type provided",
+          "Failed to submit the order to the backend",
+          "Durable single use entitlement has already been applied",
+          "Quantity was zero, nothing to apply",
+          "Entitlement was previously applied"
         ]
       },
       "EntitlementEvent": {
@@ -36011,17 +36231,17 @@
         ],
         "title": "EntitlementEventStatus",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "The event was successful",
-          "The SKU was not found",
-          "The requested operation is not implemented yet",
-          "The player was not found"
-        ],
         "x-enum-varnames": [
           "success",
           "sku_not_found",
           "not_implemented",
           "player_not_found"
+        ],
+        "x-enum-descriptions": [
+          "The event was successful",
+          "The SKU was not found",
+          "The requested operation is not implemented yet",
+          "The player was not found"
         ]
       },
       "EntitlementStatus": {
@@ -36035,19 +36255,19 @@
         ],
         "title": "EntitlementStatus",
         "description": "Status of an Entitlement",
-        "x-enum-descriptions": [
-          "Entitlement status is unknown",
-          "Entitlement has been submitted to the backend",
-          "Entitlement has been fulfilled",
-          "Entitlement has failed, check error_code for more information",
-          "Entitlement was previously applied"
-        ],
         "x-enum-varnames": [
           "UNKNOWN",
           "SUBMITTED",
           "FULFILLED",
           "FAILED",
           "PREVIOUSLY_APPLIED"
+        ],
+        "x-enum-descriptions": [
+          "Entitlement status is unknown",
+          "Entitlement has been submitted to the backend",
+          "Entitlement has been fulfilled",
+          "Entitlement has failed, check error_code for more information",
+          "Entitlement was previously applied"
         ]
       },
       "EntitlementType": {
@@ -36059,15 +36279,15 @@
         ],
         "title": "EntitlementType",
         "description": "The method of granting a Platform Entitlement SKU",
-        "x-enum-descriptions": [
-          "Consumable entitlements are removed from the platform's record keeping system when used.",
-          "Durable entitlements stay in the platform's recorded keeping system and is granted to the Player each time entitlements are granted.",
-          "Durable single use entitlements stay in the platform's recorded keeping system and is granted to the Player only once."
-        ],
         "x-enum-varnames": [
           "consumable",
           "durable",
           "durable_single_use"
+        ],
+        "x-enum-descriptions": [
+          "Consumable entitlements are removed from the platform's record keeping system when used.",
+          "Durable entitlements stay in the platform's recorded keeping system and is granted to the Player each time entitlements are granted.",
+          "Durable single use entitlements stay in the platform's recorded keeping system and is granted to the Player only once."
         ]
       },
       "ExternalKeyEntitlement": {
@@ -36140,24 +36360,6 @@
         ],
         "title": "InventoryBucket",
         "description": "Grouping of Inventory Items. Inventory items are grouped into different buckets as each Platform that is supported has different requirements on how Inventory can be used on their Platform and other Platforms.",
-        "x-enum-descriptions": [
-          "Inventory given away for free.",
-          "Inventory earned by players through in game activities.",
-          "Inventory that doesn't belong to any known platform.",
-          "Inventory assigned to the anonymous platform.",
-          "Inventory assigned to the amazon platform.",
-          "Inventory assigned to the steam platform.",
-          "Inventory assigned to the playstation platform.",
-          "Inventory assigned to the Xbox platform.",
-          "Inventory assigned to the Google platform.",
-          "Inventory assigned to the Twitch platform.",
-          "Inventory assigned to the Nintendo Switch platform.",
-          "Inventory assigned to the Apple platform.",
-          "Inventory assigned to the Nintendo platform.",
-          "Inventory assigned to the Epic platform.",
-          "Inventory assigned to the Google Play platform.",
-          "Inventory assigned to the Nintendo PPID platform."
-        ],
         "x-enum-varnames": [
           "FREE",
           "SWEAT",
@@ -36175,6 +36377,24 @@
           "EPIC",
           "GOOGLE_PLAY",
           "NINTENDO_PPID"
+        ],
+        "x-enum-descriptions": [
+          "Inventory given away for free.",
+          "Inventory earned by players through in game activities.",
+          "Inventory that doesn't belong to any known platform.",
+          "Inventory assigned to the anonymous platform.",
+          "Inventory assigned to the amazon platform.",
+          "Inventory assigned to the steam platform.",
+          "Inventory assigned to the playstation platform.",
+          "Inventory assigned to the Xbox platform.",
+          "Inventory assigned to the Google platform.",
+          "Inventory assigned to the Twitch platform.",
+          "Inventory assigned to the Nintendo Switch platform.",
+          "Inventory assigned to the Apple platform.",
+          "Inventory assigned to the Nintendo platform.",
+          "Inventory assigned to the Epic platform.",
+          "Inventory assigned to the Google Play platform.",
+          "Inventory assigned to the Nintendo PPID platform."
         ]
       },
       "InventoryBucketUseRuleSet": {
@@ -36257,15 +36477,6 @@
         ],
         "title": "InventoryOperation",
         "description": "Determines how the Inventory Quantity will be acted upon and the sort order of Loot in a Vendor.\n\nSort Order:\n1. check_greater_then_or_equal/check_less_than\n2. check_greater_than_or_equal_and_subtract/subtract\n3. add/set",
-        "x-enum-descriptions": [
-          "Invalid Inventory Operation.",
-          "Add the quantity or expiration of the Inventory.",
-          "Subtract the quantity or expiration of the Inventory.",
-          "Set the quantity or expiration of the Inventory.",
-          "Check if the quantity or expiration of the Inventory is greater than or equal to the value.",
-          "Check if the quantity or expiration of the Inventory is less than the value.",
-          "Check if the quantity or expiration of the Inventory is greater than or equal to the value and subtract the value from the quantity or expiration."
-        ],
         "x-enum-varnames": [
           "invalid",
           "add",
@@ -36274,6 +36485,15 @@
           "check_greater_than_or_equal",
           "check_less_than",
           "check_greater_than_or_equal_and_subtract"
+        ],
+        "x-enum-descriptions": [
+          "Invalid Inventory Operation.",
+          "Add the quantity or expiration of the Inventory.",
+          "Subtract the quantity or expiration of the Inventory.",
+          "Set the quantity or expiration of the Inventory.",
+          "Check if the quantity or expiration of the Inventory is greater than or equal to the value.",
+          "Check if the quantity or expiration of the Inventory is less than the value.",
+          "Check if the quantity or expiration of the Inventory is greater than or equal to the value and subtract the value from the quantity or expiration."
         ]
       },
       "InventoryRecord": {
@@ -36355,14 +36575,6 @@
         ],
         "title": "InventorySelector",
         "description": "Determines way Inventory Selected and to be modified.",
-        "x-enum-descriptions": [
-          "Invalid Inventory Selector.",
-          "The Inventory will be stored across Inventory Sessions.",
-          "The Inventory will be stored across Inventory Sessions but will expire after a period of time. Quantity modification will modify the Inventory's expiration time.",
-          "The Inventory will be stored across Inventory Sessions by will expire after a period of time. Quantity modification will not modify the Inventory's expiration time but instead the quantity of the Inventory.",
-          "The Inventory will by fulfilled as transient Inventory and will not persist across Inventory Sessions.",
-          "Loot fulfilled will look for a parent Entitlement and then grant the Loot as transient Inventory with the rental expiration as the parent."
-        ],
         "x-enum-varnames": [
           "invalid",
           "own",
@@ -36370,6 +36582,14 @@
           "rent_timeframe_locked",
           "own_transient",
           "inherit_entitlement_inventory"
+        ],
+        "x-enum-descriptions": [
+          "Invalid Inventory Selector.",
+          "The Inventory will be stored across Inventory Sessions.",
+          "The Inventory will be stored across Inventory Sessions but will expire after a period of time. Quantity modification will modify the Inventory's expiration time.",
+          "The Inventory will be stored across Inventory Sessions by will expire after a period of time. Quantity modification will not modify the Inventory's expiration time but instead the quantity of the Inventory.",
+          "The Inventory will by fulfilled as transient Inventory and will not persist across Inventory Sessions.",
+          "Loot fulfilled will look for a parent Entitlement and then grant the Loot as transient Inventory with the rental expiration as the parent."
         ]
       },
       "InventorySession": {
@@ -36456,15 +36676,15 @@
         ],
         "title": "InventoryType",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "Inventory that persists between Inventory Sessions.",
-          "Stays around for the length of the Inventory Sessions.",
-          "Items that are given to all Players and cannot be modified."
-        ],
         "x-enum-varnames": [
           "PERSISTENT",
           "TRANSIENT",
           "ALWAYS_OWNED"
+        ],
+        "x-enum-descriptions": [
+          "Inventory that persists between Inventory Sessions.",
+          "Stays around for the length of the Inventory Sessions.",
+          "Items that are given to all Players and cannot be modified."
         ]
       },
       "Item": {
@@ -36658,19 +36878,19 @@
         ],
         "title": "ItemType",
         "description": "The type of item.",
-        "x-enum-descriptions": [
-          "An item that is stored in a player's inventory.",
-          "A Loot with the ItemType receipt will fulfill SubVendor Loot and will not stored in a player's inventory.",
-          "The same as `ItemType.recipe` but will reduce the price based on whether or not the player owns items in the SubVendor's Loot table.",
-          "An entitlement is a special item that is stored in a player's inventory and is fulfilled to the player each time an Inventory Session is created and when the Entitlement is fulfilled to the Player.",
-          "Not support at this time."
-        ],
         "x-enum-varnames": [
           "unit",
           "recipe",
           "recipe_with_price_reduction",
           "entitlement",
           "dynamic_bundle"
+        ],
+        "x-enum-descriptions": [
+          "An item that is stored in a player's inventory.",
+          "A Loot with the ItemType receipt will fulfill SubVendor Loot and will not stored in a player's inventory.",
+          "The same as `ItemType.recipe` but will reduce the price based on whether or not the player owns items in the SubVendor's Loot table.",
+          "An entitlement is a special item that is stored in a player's inventory and is fulfilled to the player each time an Inventory Session is created and when the Entitlement is fulfilled to the Player.",
+          "Not support at this time."
         ]
       },
       "Items": {
@@ -37019,6 +37239,15 @@
             "title": "Hard Quantity Maximum",
             "description": "Hard cap on quantity of an item this Loot can give. Disabled with 0",
             "default": 0
+          },
+          "price": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LootPrice"
+              }
+            ],
+            "title": "Price",
+            "description": "Current price that this loot can be purchased with"
           }
         },
         "type": "object",
@@ -37067,6 +37296,104 @@
         ],
         "title": "LootEntitlement",
         "description": "How a Platform SKU will be converted into Loot for a player"
+      },
+      "LootPrice": {
+        "properties": {
+          "breakpoints": {
+            "items": {
+              "$ref": "#/components/schemas/LootPriceBreakpoint"
+            },
+            "type": "array",
+            "title": "Breakpoints",
+            "description": "Breakpoints that the loot is available for purchase with",
+            "default": []
+          },
+          "strict_flag": {
+            "type": "boolean",
+            "title": "Strict Flag",
+            "description": "Does the number of units being purchased need to be an exact match to the quantity on a Price Breakpoint?",
+            "default": false
+          },
+          "cap_flag": {
+            "type": "boolean",
+            "title": "Cap Flag",
+            "description": "Can the number of units being purchased be higher than the highest quantity on the Price Breakpoints?",
+            "default": false
+          }
+        },
+        "type": "object",
+        "title": "LootPrice",
+        "description": "Price with current and original (pre-sale) price breakpoints"
+      },
+      "LootPriceBreakpoint": {
+        "properties": {
+          "quantity": {
+            "type": "integer",
+            "title": "Quantity",
+            "description": "Amount of units that must be purchased to use this price",
+            "default": 1
+          },
+          "prices": {
+            "items": {
+              "$ref": "#/components/schemas/LootPriceCurrencies"
+            },
+            "type": "array",
+            "title": "Prices",
+            "description": "List of all possible prices that this breakpoint can be purchased with.",
+            "default": []
+          }
+        },
+        "type": "object",
+        "title": "LootPriceBreakpoint",
+        "description": "Price Breakpoint for a specific quantity of units to purchase."
+      },
+      "LootPriceCurrencies": {
+        "properties": {
+          "currencies": {
+            "items": {
+              "$ref": "#/components/schemas/LootPriceCurrency"
+            },
+            "type": "array",
+            "title": "Currencies",
+            "description": "All required currencies to use this price for purchase.  All currencies in this list are spent together.",
+            "default": []
+          }
+        },
+        "type": "object",
+        "title": "LootPriceCurrencies",
+        "description": "Single price that the loot can be purchased with.  Note that all currencies of this list will be spent together."
+      },
+      "LootPriceCurrency": {
+        "properties": {
+          "price_item_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Price Item Id",
+            "description": "The Item used as the currency for the purchase."
+          },
+          "price_legacy_item_id": {
+            "type": "integer",
+            "title": "Price Legacy Item Id",
+            "description": "The Item used as the currency for the purchase."
+          },
+          "current_price": {
+            "type": "integer",
+            "title": "Current Price",
+            "description": "The current amount of the item needed to use this price currency"
+          },
+          "original_price": {
+            "type": "integer",
+            "title": "Original Price",
+            "description": "The amount of the item needed before the sale began"
+          }
+        },
+        "type": "object",
+        "required": [
+          "price_item_id",
+          "current_price"
+        ],
+        "title": "LootPriceCurrency",
+        "description": "One currency (of potentially multiple) that can be used for a purchase, and how much of that currency is required for the purchase."
       },
       "Loots": {
         "properties": {
@@ -37391,15 +37718,15 @@
         ],
         "title": "PlatformRegion",
         "description": "Region for Entitlements",
-        "x-enum-descriptions": [
-          "Unknown region",
-          "North America region",
-          "Europe Union region"
-        ],
         "x-enum-varnames": [
           "UNKNOWN",
           "NA",
           "EU"
+        ],
+        "x-enum-descriptions": [
+          "Unknown region",
+          "North America region",
+          "Europe Union region"
         ]
       },
       "PlatformSKU": {
@@ -37726,14 +38053,6 @@
         ],
         "title": "PlayerOrderDetailType",
         "description": "Player Order Detail Type.",
-        "x-enum-descriptions": [
-          "Unknown.",
-          "Inventory change.",
-          "Dynamic Bundle LTI.",
-          "Claim Promo Code.",
-          "Return Promo Code.",
-          "New Order."
-        ],
         "x-enum-varnames": [
           "UNKNOWN",
           "INVENTORY_CHANGE",
@@ -37741,6 +38060,14 @@
           "CLAIM_PROMO_CODE",
           "RETURN_PROMO_CODE",
           "NEW_ORDER"
+        ],
+        "x-enum-descriptions": [
+          "Unknown.",
+          "Inventory change.",
+          "Dynamic Bundle LTI.",
+          "Claim Promo Code.",
+          "Return Promo Code.",
+          "New Order."
         ]
       },
       "PlayerOrderEntry": {
@@ -38054,57 +38381,6 @@
         ],
         "title": "PlayerOrderEntryResult",
         "description": "Result of a Player Order Entry.",
-        "x-enum-descriptions": [
-          "The Order Entry was successful.",
-          "An internal error occurred when processing Order Entry.",
-          "Order Entry type is invalid.",
-          "Order Entry is not allowed on the current platform.",
-          "The Loot was not found.",
-          "The Loot was not active at the time of processing.",
-          "The Item was configured as the Price was not found.",
-          "The Price is not allowed for the given Loot.",
-          "The given Dynamic Bundle was invalid.",
-          "Too many requests were made in during the evaluation window.",
-          "Given Price does not match the expected Price.",
-          "Vendor version does not match the expected version.",
-          "Dynamic Bundle Loot does not match expected Loot.",
-          "Player cannot afford the given Price.",
-          "Player cannot afford the given Coupon.",
-          "Failed to spend the given Price.",
-          "Failed to spend the given Coupon.",
-          "The given Loot is not for sale with the given Price Item.",
-          "Coupons are disabled.",
-          "The Item configured for the Coupon was not found.",
-          "The Coupon Item is not active.",
-          "Coupon Item is not applicable for the given quantity.",
-          "Coupon Item is not applicable for the given Price Item.",
-          "Coupon Item is not applicable for the given Loot.",
-          "Quantity is not allowed for the given Loot.",
-          "Promotion has expired.",
-          "Promotion was not found.",
-          "Promotion has no uses left.",
-          "Promotion is not available.",
-          "Promotion has already been claimed.",
-          "Dynamic Bundles are not available.",
-          "Transient Single Loot has already been applied.",
-          "Loot is not claimable from the client.",
-          "Permission denied.",
-          "Failed to find any sub loot.",
-          "Failed to fill any sub loot.",
-          "Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.",
-          "Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.",
-          "Failed to consume the given Loot required.",
-          "Failed to submit a new order.",
-          "Failed to modify inventory.",
-          "Inventory was not found.",
-          "Item was not found.",
-          "Item is not active.",
-          "Too many inventory custom attributes provided.",
-          "Always owned inventory cannot be modified.",
-          "Available until is in the past.",
-          "Order Entry was successfully fulfilled, but was rolled back.",
-          "Order Entry fulfillment has not started."
-        ],
         "x-enum-varnames": [
           "SUCCESS",
           "INTERNAL_ERROR",
@@ -38155,6 +38431,57 @@
           "AVAILABLE_UNTIL_IS_IN_PAST",
           "ROLLBACK",
           "NOT_STARTED"
+        ],
+        "x-enum-descriptions": [
+          "The Order Entry was successful.",
+          "An internal error occurred when processing Order Entry.",
+          "Order Entry type is invalid.",
+          "Order Entry is not allowed on the current platform.",
+          "The Loot was not found.",
+          "The Loot was not active at the time of processing.",
+          "The Item was configured as the Price was not found.",
+          "The Price is not allowed for the given Loot.",
+          "The given Dynamic Bundle was invalid.",
+          "Too many requests were made in during the evaluation window.",
+          "Given Price does not match the expected Price.",
+          "Vendor version does not match the expected version.",
+          "Dynamic Bundle Loot does not match expected Loot.",
+          "Player cannot afford the given Price.",
+          "Player cannot afford the given Coupon.",
+          "Failed to spend the given Price.",
+          "Failed to spend the given Coupon.",
+          "The given Loot is not for sale with the given Price Item.",
+          "Coupons are disabled.",
+          "The Item configured for the Coupon was not found.",
+          "The Coupon Item is not active.",
+          "Coupon Item is not applicable for the given quantity.",
+          "Coupon Item is not applicable for the given Price Item.",
+          "Coupon Item is not applicable for the given Loot.",
+          "Quantity is not allowed for the given Loot.",
+          "Promotion has expired.",
+          "Promotion was not found.",
+          "Promotion has no uses left.",
+          "Promotion is not available.",
+          "Promotion has already been claimed.",
+          "Dynamic Bundles are not available.",
+          "Transient Single Loot has already been applied.",
+          "Loot is not claimable from the client.",
+          "Permission denied.",
+          "Failed to find any sub loot.",
+          "Failed to fill any sub loot.",
+          "Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.",
+          "Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.",
+          "Failed to consume the given Loot required.",
+          "Failed to submit a new order.",
+          "Failed to modify inventory.",
+          "Inventory was not found.",
+          "Item was not found.",
+          "Item is not active.",
+          "Too many inventory custom attributes provided.",
+          "Always owned inventory cannot be modified.",
+          "Available until is in the past.",
+          "Order Entry was successfully fulfilled, but was rolled back.",
+          "Order Entry fulfillment has not started."
         ]
       },
       "PlayerOrderEntryType": {
@@ -38174,19 +38501,6 @@
         ],
         "title": "PlayerOrderEntryType",
         "description": "Player Order Entry Type.",
-        "x-enum-descriptions": [
-          "Fill a loot item.",
-          "Purchase a loot item.",
-          "Purchase a dynamic bundle.",
-          "Claim a promotion code.",
-          "Fill a transient loot item.",
-          "Fill an loot entitlement.",
-          "Create persistent Inventory.",
-          "Deprecated. Use update_inventory instead.",
-          "Create transient Inventory.",
-          "Deprecated. Use update_inventory instead.",
-          "Update existing Inventory."
-        ],
         "x-enum-varnames": [
           "FILL_LOOT",
           "PURCHASE_LOOT",
@@ -38199,6 +38513,19 @@
           "CREATE_NEW_TRANSIENT_INVENTORY",
           "UPDATE_EXISTING_TRANSIENT_INVENTORY",
           "UPDATE_INVENTORY"
+        ],
+        "x-enum-descriptions": [
+          "Fill a loot item.",
+          "Purchase a loot item.",
+          "Purchase a dynamic bundle.",
+          "Claim a promotion code.",
+          "Fill a transient loot item.",
+          "Fill an loot entitlement.",
+          "Create persistent Inventory.",
+          "Deprecated. Use update_inventory instead.",
+          "Create transient Inventory.",
+          "Deprecated. Use update_inventory instead.",
+          "Update existing Inventory."
         ]
       },
       "PlayerOrdersResponse": {
@@ -38271,44 +38598,6 @@
         ],
         "title": "Portal",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "FREE",
           "SWEAT",
@@ -38346,6 +38635,44 @@
           "LUNA",
           "GOOGLE_PLAY",
           "NINTENDO_PPID"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "PortalUseRuleset": {
@@ -38407,6 +38734,12 @@
       },
       "PriceBreakPointCurrency": {
         "properties": {
+          "price_item_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Price Item Uuid",
+            "description": "The Item used as the currency for the purchase."
+          },
           "price_item_id": {
             "type": "integer",
             "title": "Price Item Id",
@@ -38420,6 +38753,7 @@
         },
         "type": "object",
         "required": [
+          "price_item_uuid",
           "price_item_id",
           "price"
         ],
@@ -38428,6 +38762,12 @@
       },
       "PriceBreakpoint": {
         "properties": {
+          "price_item_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Price Item Uuid",
+            "description": "The Item used as the currency for the purchase."
+          },
           "price_item_id": {
             "type": "integer",
             "title": "Price Item Id",
@@ -38606,13 +38946,13 @@
         ],
         "title": "QuantityType",
         "description": "Determines how the quantity is to be modified.\n\nRelative looks at the context in which is fulfilled; e.g. If Loot A has a quantity of 2 and 5 is being fulfill, the resulting quantity modification will be 10.\n\nAbsolute ignores the context in which it is fulfilled; e.g. If Loot B has a quantity of 3 and 5 is being fulfill 5, the resulting quantity modification will be 3.",
-        "x-enum-descriptions": [
-          "The quantity will be modified relative to the context in which it is fulfilled.",
-          "The quantity will be modified regardless of the context in which it is fulfilled."
-        ],
         "x-enum-varnames": [
           "relative",
           "absolute"
+        ],
+        "x-enum-descriptions": [
+          "The quantity will be modified relative to the context in which it is fulfilled.",
+          "The quantity will be modified regardless of the context in which it is fulfilled."
         ]
       },
       "SortOrder": {
@@ -38623,13 +38963,13 @@
         ],
         "title": "SortOrder",
         "description": "Determine the direction of the sort",
-        "x-enum-descriptions": [
-          "Sort in ascending order",
-          "Sort in descending order"
-        ],
         "x-enum-varnames": [
           "ASCENDING",
           "DESCENDING"
+        ],
+        "x-enum-descriptions": [
+          "Sort in ascending order",
+          "Sort in descending order"
         ]
       },
       "Source": {
@@ -38700,70 +39040,6 @@
         ],
         "title": "Source",
         "description": "The source of Player Orders.",
-        "x-enum-descriptions": [
-          "Unknown source.",
-          "Repair Order send from the Web to fix up Inventory mistakes.",
-          "Order granted in-game.",
-          "Order send from the Web site.",
-          "No sale.",
-          "Order granted by Support.",
-          "Order granted by an activity.",
-          "Order granted by a refund.",
-          "Order granted by the system.",
-          "Order granted by as a reward.",
-          "Order granted by Esports.",
-          "Order granted by Treasure.",
-          "Order granted by Console.",
-          "Order granted by Odyssey.",
-          "Order granted by Steam.",
-          "Order granted by a return.",
-          "Order granted by the JSON gate.",
-          "Order granted by sending a gift.",
-          "Order granted by receiving a gift.",
-          "Order granted by Steam DLC.",
-          "Order granted by hitting a Twitch milestone.",
-          "Order granted by Twitch Prime.",
-          "Order granted by PSN.",
-          "Order granted by Xbox.",
-          "Order granted by PTS.",
-          "Order granted by an instance.",
-          "Order granted by an account transfer.",
-          "Order granted by a promocode.",
-          "Order granted by the Triumph system.",
-          "Order granted by logging in.",
-          "Order granted by an uncapped EOM .",
-          "Order granted by a capped EOM reward.",
-          "Order granted by a Facebook drop.",
-          "Order granted by a database script.",
-          "Order granted by account linking.",
-          "Order granted by a clan.",
-          "Order granted by a conversion.",
-          "Order granted by Apple.",
-          "Order granted by Google.",
-          "Order granted by Google Play.",
-          "Order granted by a portal durable.",
-          "Order granted by a partner achievement.",
-          "Order granted by a Mixer drop.",
-          "Order granted by Nintendo.",
-          "Order granted by stream viewing progress.",
-          "Order granted by Discord.",
-          "Order granted by first login.",
-          "Order granted by Twitch Fuel.",
-          "Order granted by Discord DLC.",
-          "Order granted by NetEase.",
-          "Order granted by Epic Games.",
-          "Order granted by Forte.",
-          "Order granted by Facebook.",
-          "Order granted by Hi-Rez.",
-          "Order granted by a daily reward.",
-          "Order granted by adding an account email.",
-          "Order granted by a client claim.",
-          "Order granted by the client.",
-          "Order granted by entitlements.",
-          "Order granted by Amazon.",
-          "Order granted by Simulmedia.",
-          "Order granted by Luna."
-        ],
         "x-enum-varnames": [
           "UNKNOWN",
           "WEB_ORDER_REPAIR",
@@ -38827,6 +39103,70 @@
           "AMAZON",
           "SIMULMEDIA",
           "LUNA"
+        ],
+        "x-enum-descriptions": [
+          "Unknown source.",
+          "Repair Order send from the Web to fix up Inventory mistakes.",
+          "Order granted in-game.",
+          "Order send from the Web site.",
+          "No sale.",
+          "Order granted by Support.",
+          "Order granted by an activity.",
+          "Order granted by a refund.",
+          "Order granted by the system.",
+          "Order granted by as a reward.",
+          "Order granted by Esports.",
+          "Order granted by Treasure.",
+          "Order granted by Console.",
+          "Order granted by Odyssey.",
+          "Order granted by Steam.",
+          "Order granted by a return.",
+          "Order granted by the JSON gate.",
+          "Order granted by sending a gift.",
+          "Order granted by receiving a gift.",
+          "Order granted by Steam DLC.",
+          "Order granted by hitting a Twitch milestone.",
+          "Order granted by Twitch Prime.",
+          "Order granted by PSN.",
+          "Order granted by Xbox.",
+          "Order granted by PTS.",
+          "Order granted by an instance.",
+          "Order granted by an account transfer.",
+          "Order granted by a promocode.",
+          "Order granted by the Triumph system.",
+          "Order granted by logging in.",
+          "Order granted by an uncapped EOM .",
+          "Order granted by a capped EOM reward.",
+          "Order granted by a Facebook drop.",
+          "Order granted by a database script.",
+          "Order granted by account linking.",
+          "Order granted by a clan.",
+          "Order granted by a conversion.",
+          "Order granted by Apple.",
+          "Order granted by Google.",
+          "Order granted by Google Play.",
+          "Order granted by a portal durable.",
+          "Order granted by a partner achievement.",
+          "Order granted by a Mixer drop.",
+          "Order granted by Nintendo.",
+          "Order granted by stream viewing progress.",
+          "Order granted by Discord.",
+          "Order granted by first login.",
+          "Order granted by Twitch Fuel.",
+          "Order granted by Discord DLC.",
+          "Order granted by NetEase.",
+          "Order granted by Epic Games.",
+          "Order granted by Forte.",
+          "Order granted by Facebook.",
+          "Order granted by Hi-Rez.",
+          "Order granted by a daily reward.",
+          "Order granted by adding an account email.",
+          "Order granted by a client claim.",
+          "Order granted by the client.",
+          "Order granted by entitlements.",
+          "Order granted by Amazon.",
+          "Order granted by Simulmedia.",
+          "Order granted by Luna."
         ]
       },
       "TimeFrame": {
@@ -39124,13 +39464,13 @@
         ],
         "title": "VendorType",
         "description": "Determines how the Vendor fulfills the loot.",
-        "x-enum-descriptions": [
-          "A Vendor that will always drop all of the Loot in the Loot table.",
-          "A Vendor that will only fulfill one of the Loot in the Loot table based on the drop weights of the Loot."
-        ],
         "x-enum-varnames": [
           "recipe",
           "randomly_sampled"
+        ],
+        "x-enum-descriptions": [
+          "A Vendor that will always drop all of the Loot in the Loot table.",
+          "A Vendor that will only fulfill one of the Loot in the Loot table based on the drop weights of the Loot."
         ]
       },
       "Vendors": {
@@ -39161,17 +39501,17 @@
         ],
         "title": "XpQuantityTransform",
         "description": "Allows granting xp levels as Loot. If the player is already max level, the Loot will not be fulfilled. Requires the Item assigned to the Loot to have an XP Table ID.\n\nThe following examples assume the player is level 3 with 150 total xp. The quantity configured on the Loot being fulfilled is 1. The XP Table is configured like so:\n1: 20\n2: 50\n3: 100\n4: 200\n5: 400\n\nfrom_current_xp_to_target_additional_level_min_xp - The Loot will grant the player enough xp to reach min xp of the next level.\nExample 1: fulfill quantity 1\n    Player will be level 4 with 200 total xp.\nExample 2: fulfill quantity 2\n    Player will be level 5 with 400 total xp.\nExample 3: fulfill quantity 3\n    Player will be level 5 with 400 total xp.\n\nfrom_current_level_min_xp_to_target_additional_level_min_xp - The Loot will grant the player the amount of xp required to reach the min xp of the next level from the min xp of the current level.\nExample 1: fulfill quantity 1\n    Player will be level 4 with 250 total xp.\nExample 2: fulfill quantity 2\n    Player will be level 5 with 450 total xp.\nExample 3: fulfill quantity 3\n    Player will be level 5 with 450 total xp.\n\nfrom_zero_to_target_exact_level_min_xp - The Loot will grant the player the amount of xp required to reach the min xp of the target level from zero xp.\nExample 1: fulfill quantity 1\n    Player will be level 3 with 170 total xp.\nExample 2: fulfill quantity 2\n    Player will be level 4 with 200 total xp.\nExample 3: fulfill quantity 3\n    Player will be level 4 with 250 total xp.",
-        "x-enum-descriptions": [
-          "Quantity will be treated as XP and will not be transformed.",
-          "Quantity will be treated as level to fulfill and will be transformed to the amount of XP required to reach the min xp of the fulfilled levels.",
-          "Quantity will be treated as levels to fulfill and will be transformed to the amount of XP required to reach the min xp of the fulfilled levels from the min xp of the current level.",
-          "Quantity will be treated as levels to fulfill and will be transformed to the amount of XP required to reach the min xp of the fulfilled levels from zero xp."
-        ],
         "x-enum-varnames": [
           "none",
           "from_current_xp_to_target_additional_level_min_xp",
           "from_current_level_min_xp_to_target_additional_level_min_xp",
           "from_zero_to_target_exact_level_min_xp"
+        ],
+        "x-enum-descriptions": [
+          "Quantity will be treated as XP and will not be transformed.",
+          "Quantity will be treated as level to fulfill and will be transformed to the amount of XP required to reach the min xp of the fulfilled levels.",
+          "Quantity will be treated as levels to fulfill and will be transformed to the amount of XP required to reach the min xp of the fulfilled levels from the min xp of the current level.",
+          "Quantity will be treated as levels to fulfill and will be transformed to the amount of XP required to reach the min xp of the fulfilled levels from zero xp."
         ]
       },
       "XpTable": {
@@ -45182,9 +45522,6 @@
           }
         },
         "type": "object",
-        "required": [
-          "file"
-        ],
         "title": "Body_create_entity_directory_file"
       },
       "EntityType": {

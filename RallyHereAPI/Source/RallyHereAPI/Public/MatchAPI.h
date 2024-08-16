@@ -33,11 +33,13 @@ class FMatchAPI;
 
 /**
  * @brief Create Match
- * Create match by match_id
- *     
- *     Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
- *     
- *     Or you have match:match:edit:authority and are the host of the match.
+ * Create match by match_id.
+ * 
+ * Required Permissions:
+ * 
+ * - For any match any of: `match:*`, `match:match:edit:any`
+ * 
+ * - For match if the player is the host any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority`
 */
 struct RALLYHEREAPI_API FRequest_CreateMatch : public FRequest
 {
@@ -98,7 +100,7 @@ struct RALLYHEREAPI_API FResponse_CreateMatch : public FResponseAccessorTemplate
 	bool TryGetContentFor200(FRHAPI_MatchWithPlayers& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -140,10 +142,10 @@ struct RALLYHEREAPI_API Traits_CreateMatch
 /**
  * @brief Create Match Player
  * Create player match record for the provided player_uuid and match_id
- *     
- *     Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
- *     
- *     Or you have match:match:edit:authority and are the host of the match.
+ * 
+ * Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+ * 
+ * Or you have match:match:edit:authority and are the host of the match.
 */
 struct RALLYHEREAPI_API FRequest_CreateMatchPlayer : public FRequest
 {
@@ -206,9 +208,14 @@ struct RALLYHEREAPI_API FResponse_CreateMatchPlayer : public FResponseAccessorTe
 	bool TryGetContentFor200(FRHAPI_MatchPlayerWithMatch& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 422
 	Validation Error
@@ -247,7 +254,11 @@ struct RALLYHEREAPI_API Traits_CreateMatchPlayer
 
 /**
  * @brief Create Match Segment
- * Create match segment by match_id
+ * Create match segment by match_id.
+ * 
+ * - For any match segment any of: `match:*`, `match:match:edit:any`
+ * 
+ * - For match segment if the player is the host any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority`
 */
 struct RALLYHEREAPI_API FRequest_CreateMatchSegment : public FRequest
 {
@@ -309,7 +320,7 @@ struct RALLYHEREAPI_API FResponse_CreateMatchSegment : public FResponseAccessorT
 	bool TryGetContentFor200(FRHAPI_MatchSegmentWithPlayers& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -351,8 +362,10 @@ struct RALLYHEREAPI_API Traits_CreateMatchSegment
 /**
  * @brief Delete Match
  * Delete match by match_id
- *     
- *     Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+ * 
+ * Required Permissions:
+ * 
+ * - For any match any of: `match:*`, `match:match:edit:any`
 */
 struct RALLYHEREAPI_API FRequest_DeleteMatch : public FRequest
 {
@@ -396,14 +409,19 @@ struct RALLYHEREAPI_API FResponse_DeleteMatch : public FResponseAccessorTemplate
 
 
 	// Individual Response Helpers	
-	/* Response 200
+	/* Response 204
 	Successful Response
 	*/
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 422
 	Validation Error
@@ -443,8 +461,10 @@ struct RALLYHEREAPI_API Traits_DeleteMatch
 /**
  * @brief Delete Match Player
  * Delete player by player_uuid and match_id
- *     
- *     Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
+ * 
+ * Required Permissions:
+ * 
+ * - For any match any of: `match:*`, `match:match:edit:any`
 */
 struct RALLYHEREAPI_API FRequest_DeleteMatchPlayer : public FRequest
 {
@@ -489,14 +509,19 @@ struct RALLYHEREAPI_API FResponse_DeleteMatchPlayer : public FResponseAccessorTe
 
 
 	// Individual Response Helpers	
-	/* Response 200
+	/* Response 204
 	Successful Response
 	*/
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 422
 	Validation Error
@@ -536,6 +561,10 @@ struct RALLYHEREAPI_API Traits_DeleteMatchPlayer
 /**
  * @brief Delete Match Segment
  * Delete match segment by match_id and segment_id
+ * 
+ * Required Permissions:
+ * 
+ * - For any match any of: `match:*`, `match:match:edit:any`
 */
 struct RALLYHEREAPI_API FRequest_DeleteMatchSegment : public FRequest
 {
@@ -580,14 +609,19 @@ struct RALLYHEREAPI_API FResponse_DeleteMatchSegment : public FResponseAccessorT
 
 
 	// Individual Response Helpers	
-	/* Response 200
+	/* Response 204
 	Successful Response
 	*/
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 422
 	Validation Error
@@ -626,10 +660,13 @@ struct RALLYHEREAPI_API Traits_DeleteMatchSegment
 
 /**
  * @brief Get Match
- * Get match by match_id
- *     
- *     Must be part of the match or have the following permissions: 
- *     any of: `match:*`, `match:match:any:read` match:match:player:read
+ * Get match segment by match_id.
+ * 
+ * Required Permissions:
+ * 
+ * - For any match any of: `match:*`, `match:match:any:read`
+ * 
+ * - For match if the player was in match any of: `match:*`, `match:match:player:read`
 */
 struct RALLYHEREAPI_API FRequest_GetMatch : public FRequest
 {
@@ -690,7 +727,7 @@ struct RALLYHEREAPI_API FResponse_GetMatch : public FResponseAccessorTemplate<FR
 	bool TryGetContentFor200(FRHAPI_MatchWithPlayers& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -737,9 +774,10 @@ struct RALLYHEREAPI_API Traits_GetMatch
 /**
  * @brief Get Match Player
  * Get a player match record for the provided player_uuid and match_id
+ * 
+ * any of: `match:*`, `match:match:player:read`, `match:player:any:read` 
  *     
- *     Must be on your own behalf or have the following permissions: 
- *     any of: `match:*`, `match:match:player:read`, `match:player:any:read` : `match:player:self:read`
+ * : `match:player:self:read`
 */
 struct RALLYHEREAPI_API FRequest_GetMatchPlayer : public FRequest
 {
@@ -801,9 +839,14 @@ struct RALLYHEREAPI_API FResponse_GetMatchPlayer : public FResponseAccessorTempl
 	bool TryGetContentFor200(FRHAPI_MatchPlayerWithMatch& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 422
 	Validation Error
@@ -842,7 +885,11 @@ struct RALLYHEREAPI_API Traits_GetMatchPlayer
 
 /**
  * @brief Get Match Segment
- * Get match segment by match_id and segment_id
+ * Get match segment by match_id and segment_id.
+ * 
+ * - For any match any of: `match:*`, `match:match:any:read`
+ * 
+ * - For match if the player was in match any of: `match:*`, `match:match:player:read`
 */
 struct RALLYHEREAPI_API FRequest_GetMatchSegment : public FRequest
 {
@@ -904,7 +951,7 @@ struct RALLYHEREAPI_API FResponse_GetMatchSegment : public FResponseAccessorTemp
 	bool TryGetContentFor200(FRHAPI_MatchSegmentWithPlayers& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -950,7 +997,11 @@ struct RALLYHEREAPI_API Traits_GetMatchSegment
 
 /**
  * @brief Get Matches
- * Get pages of matches
+ * Get pages of matches based on provided filters.
+ * 
+ * Required Permissions:
+ * 
+ * - For any match any of: `match:*`, `match:match:any:read`
 */
 struct RALLYHEREAPI_API FRequest_GetMatches : public FRequest
 {
@@ -1021,7 +1072,7 @@ struct RALLYHEREAPI_API FResponse_GetMatches : public FResponseAccessorTemplate<
 	bool TryGetContentFor200(FRHAPI_PagedMatchResponse& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -1063,9 +1114,10 @@ struct RALLYHEREAPI_API Traits_GetMatches
 /**
  * @brief Get Player Matches Self
  * Get all matches for self. Only provides matches for the player_uuid in the provided token.
+ * 
+ * any of: `match:*`, `match:match:player:read`, `match:player:any:read` 
  *     
- *     Must be on your own behalf or have the following permissions: 
- *     any of: `match:*`, `match:match:player:read`, `match:player:any:read` : `match:player:self:read`
+ * : `match:player:self:read`
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerMatchesSelf : public FRequest
 {
@@ -1128,7 +1180,7 @@ struct RALLYHEREAPI_API FResponse_GetPlayerMatchesSelf : public FResponseAccesso
 	bool TryGetContentFor200(FRHAPI_PagedPlayerMatchResponse& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -1170,9 +1222,10 @@ struct RALLYHEREAPI_API Traits_GetPlayerMatchesSelf
 /**
  * @brief Get Players Matches
  * Get All matches for a provided player_uuid.
+ * 
+ * any of: `match:*`, `match:match:player:read`, `match:player:any:read` 
  *     
- *     Must be on your own behalf or have the following permissions: 
- *     any of: `match:*`, `match:match:player:read`, `match:player:any:read` : `match:player:self:read`
+ * : `match:player:self:read`
 */
 struct RALLYHEREAPI_API FRequest_GetPlayersMatches : public FRequest
 {
@@ -1236,7 +1289,7 @@ struct RALLYHEREAPI_API FResponse_GetPlayersMatches : public FResponseAccessorTe
 	bool TryGetContentFor200(FRHAPI_PagedPlayerMatchResponse& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -1277,13 +1330,15 @@ struct RALLYHEREAPI_API Traits_GetPlayersMatches
 
 /**
  * @brief Patch Match
- * Update match by match_id only with provided fields
- *     
- *     Match must still be in a pending state.
- *     
- *     Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
- *     
- *     Or you have match:match:edit:authority and are the host of the match.
+ * Update match by match_id only with provided fields.
+ * 
+ * Match must be in pending state to be updated.
+ * 
+ * Required Permissions:
+ * 
+ * - For any match any of: `match:*`, `match:match:edit:any`
+ * 
+ * - For match if the player is the host any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority`
 */
 struct RALLYHEREAPI_API FRequest_PatchMatch : public FRequest
 {
@@ -1344,10 +1399,20 @@ struct RALLYHEREAPI_API FResponse_PatchMatch : public FResponseAccessorTemplate<
 	*/
 	bool TryGetContentFor200(FRHAPI_MatchWithPlayers& OutContent) const;
 
+	/* Response 400
+	Bad Request
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 422
 	Validation Error
@@ -1387,12 +1452,14 @@ struct RALLYHEREAPI_API Traits_PatchMatch
 /**
  * @brief Patch Match Player
  * Update player match record for the provided player_uuid " "and match_id only with provided fields.
- *     
- *     Match must still be in a pending state.
- *     
- *     Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
- *     
- *     Or you have match:match:edit:authority and are the host of the match.
+ * 
+ * Match must still be in a pending state.
+ * 
+ * Required Permissions:   
+ * 
+ * - For any match any of: `match:*`, `match:match:edit:any`
+ * 
+ * - For match if the player is the host any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority`
 */
 struct RALLYHEREAPI_API FRequest_PatchMatchPlayer : public FRequest
 {
@@ -1455,9 +1522,14 @@ struct RALLYHEREAPI_API FResponse_PatchMatchPlayer : public FResponseAccessorTem
 	bool TryGetContentFor200(FRHAPI_MatchPlayerWithMatch& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 422
 	Validation Error
@@ -1496,7 +1568,15 @@ struct RALLYHEREAPI_API Traits_PatchMatchPlayer
 
 /**
  * @brief Patch Match Segment
- * Update match segment by match_id and segment_id only with provided fields
+ * Update match segment by match_id and segment_id only with provided fields.
+ * 
+ * Match must be in pending state to be updated.
+ * 
+ * Required Permissions:
+ * 
+ * - For any match segment any of: `match:*`, `match:match:edit:any`
+ * 
+ * - For match segment if the player is the host any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority`
 */
 struct RALLYHEREAPI_API FRequest_PatchMatchSegment : public FRequest
 {
@@ -1559,9 +1639,14 @@ struct RALLYHEREAPI_API FResponse_PatchMatchSegment : public FResponseAccessorTe
 	bool TryGetContentFor200(FRHAPI_MatchSegmentWithPlayers& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 422
 	Validation Error
@@ -1600,13 +1685,15 @@ struct RALLYHEREAPI_API Traits_PatchMatchSegment
 
 /**
  * @brief Update Match
- * Update match by match_id
- *     
- *     Match must still be in a pending state.
- *     
- *     Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
- *     
- *     Or you have match:match:edit:authority and are the host of the match.
+ * Update match by match_id.
+ * 
+ * Match must be in pending state to be updated.
+ * 
+ * Required Permissions:
+ * 
+ * - For any match any of: `match:*`, `match:match:edit:any`
+ * 
+ * - For match if the player is the host any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority`
 */
 struct RALLYHEREAPI_API FRequest_UpdateMatch : public FRequest
 {
@@ -1667,10 +1754,20 @@ struct RALLYHEREAPI_API FResponse_UpdateMatch : public FResponseAccessorTemplate
 	*/
 	bool TryGetContentFor200(FRHAPI_MatchWithPlayers& OutContent) const;
 
+	/* Response 400
+	Bad Request
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 422
 	Validation Error
@@ -1711,11 +1808,11 @@ struct RALLYHEREAPI_API Traits_UpdateMatch
  * @brief Update Match Player
  * Update player match record for the provided player_uuid and match_id
  *     
- *     Match must still be in a pending state.
+ * Match must be in pending state to be updated.
  *     
- *     Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
- *     
- *     Or you have match:match:edit:authority and are the host of the match.
+ * any of: `match:*`, `match:match:edit:any` - update any match.
+ * 
+ * any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority` - update match if the player is the host of the match.
 */
 struct RALLYHEREAPI_API FRequest_UpdateMatchPlayer : public FRequest
 {
@@ -1778,9 +1875,14 @@ struct RALLYHEREAPI_API FResponse_UpdateMatchPlayer : public FResponseAccessorTe
 	bool TryGetContentFor200(FRHAPI_MatchPlayerWithMatch& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 422
 	Validation Error
@@ -1819,7 +1921,15 @@ struct RALLYHEREAPI_API Traits_UpdateMatchPlayer
 
 /**
  * @brief Update Match Segment
- * Update match segment by match_id and segment_id
+ * Update match segment by match_id and segment_id.
+ * 
+ * Match must be in pending state to be updated.
+ * 
+ * Required Permissions:
+ * 
+ * - For any match segment any of: `match:*`, `match:match:edit:any`
+ * 
+ * - For match segment if the player is the host any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority`
 */
 struct RALLYHEREAPI_API FRequest_UpdateMatchSegment : public FRequest
 {
@@ -1882,9 +1992,14 @@ struct RALLYHEREAPI_API FResponse_UpdateMatchSegment : public FResponseAccessorT
 	bool TryGetContentFor200(FRHAPI_MatchSegmentWithPlayers& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 422
 	Validation Error
