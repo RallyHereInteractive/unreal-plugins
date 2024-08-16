@@ -40,6 +40,33 @@ struct RALLYHEREAPI_API FRHAPI_PriceBreakpoint : public FRHAPI_Model
 	*/
 	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+	/** @brief The Item used as the currency for the purchase. */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FGuid PriceItemUuid_Optional{  };
+	/** @brief true if PriceItemUuid_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool PriceItemUuid_IsSet{ false };
+	/** @brief Gets the value of PriceItemUuid_Optional, regardless of it having been set */
+	FGuid& GetPriceItemUuid() { return PriceItemUuid_Optional; }
+	/** @brief Gets the value of PriceItemUuid_Optional, regardless of it having been set */
+	const FGuid& GetPriceItemUuid() const { return PriceItemUuid_Optional; }
+	/** @brief Gets the value of PriceItemUuid_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FGuid& GetPriceItemUuid(const FGuid& DefaultValue) const { if (PriceItemUuid_IsSet) return PriceItemUuid_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of PriceItemUuid_Optional and returns true if it has been set, otherwise returns false */
+	bool GetPriceItemUuid(FGuid& OutValue) const { if (PriceItemUuid_IsSet) OutValue = PriceItemUuid_Optional; return PriceItemUuid_IsSet; }
+	/** @brief Returns a pointer to PriceItemUuid_Optional, if it has been set, otherwise returns nullptr */
+	FGuid* GetPriceItemUuidOrNull() { if (PriceItemUuid_IsSet) return (&PriceItemUuid_Optional); return nullptr; }
+	/** @brief Returns a pointer to PriceItemUuid_Optional, if it has been set, otherwise returns nullptr */
+	const FGuid* GetPriceItemUuidOrNull() const { if (PriceItemUuid_IsSet) return (&PriceItemUuid_Optional); return nullptr; }
+	/** @brief Sets the value of PriceItemUuid_Optional and also sets PriceItemUuid_IsSet to true */
+	void SetPriceItemUuid(const FGuid& NewValue) { PriceItemUuid_Optional = NewValue; PriceItemUuid_IsSet = true;  }
+	/** @brief Sets the value of PriceItemUuid_Optional and also sets PriceItemUuid_IsSet to true using move semantics */
+	void SetPriceItemUuid(FGuid&& NewValue) { PriceItemUuid_Optional = NewValue; PriceItemUuid_IsSet = true;  }
+	/** @brief Clears the value of PriceItemUuid_Optional and sets PriceItemUuid_IsSet to false */
+	void ClearPriceItemUuid() { PriceItemUuid_IsSet = false;  }
+	/** @brief Checks whether PriceItemUuid_Optional has been set */
+	bool IsPriceItemUuidSet() const { return PriceItemUuid_IsSet; }
+
 	/** @brief Deprecated. Use the currencies field instead. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 PriceItemId_Optional{  };

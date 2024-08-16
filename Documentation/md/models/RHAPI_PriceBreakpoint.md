@@ -19,6 +19,8 @@ Price based on quantity and the Item ID of the currency used.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
+`public FGuid `[`PriceItemUuid_Optional`](#structFRHAPI__PriceBreakpoint_1af184285e7dff0bd568aca23ea7161b57) | The Item used as the currency for the purchase.
+`public bool `[`PriceItemUuid_IsSet`](#structFRHAPI__PriceBreakpoint_1a9574a93f4436a160448bf3990cb6511e) | true if PriceItemUuid_Optional has been set to a value
 `public int32 `[`PriceItemId_Optional`](#structFRHAPI__PriceBreakpoint_1a1131fdc8e383058f5333759ad52d4de0) | Deprecated. Use the currencies field instead.
 `public bool `[`PriceItemId_IsSet`](#structFRHAPI__PriceBreakpoint_1a49eebd3358ca2ced281ee0082871901c) | true if PriceItemId_Optional has been set to a value
 `public int32 `[`Quantity`](#structFRHAPI__PriceBreakpoint_1a401fd3800a0d4d0700922958c887cb3f) | 
@@ -28,6 +30,16 @@ Price based on quantity and the Item ID of the currency used.
 `public bool `[`Currencies_IsSet`](#structFRHAPI__PriceBreakpoint_1a2113865e65946b4189b922f9ca63dcdd) | true if Currencies_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__PriceBreakpoint_1add9350ff002ae19fedd40fbeff689547)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PriceBreakpoint_1a96246188147be8371d814334240552fb)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline FGuid & `[`GetPriceItemUuid`](#structFRHAPI__PriceBreakpoint_1a6c3956920056ef1ab2dccac4f04ef932)`()` | Gets the value of PriceItemUuid_Optional, regardless of it having been set.
+`public inline const FGuid & `[`GetPriceItemUuid`](#structFRHAPI__PriceBreakpoint_1af4416a6cb597afbd7b7d2c9346d2824b)`() const` | Gets the value of PriceItemUuid_Optional, regardless of it having been set.
+`public inline const FGuid & `[`GetPriceItemUuid`](#structFRHAPI__PriceBreakpoint_1a426955102c35f69f589cf7dbf003d3d0)`(const FGuid & DefaultValue) const` | Gets the value of PriceItemUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetPriceItemUuid`](#structFRHAPI__PriceBreakpoint_1a3c1390ed226fbcf7c14f2dd16028fdf3)`(FGuid & OutValue) const` | Fills OutValue with the value of PriceItemUuid_Optional and returns true if it has been set, otherwise returns false.
+`public inline FGuid * `[`GetPriceItemUuidOrNull`](#structFRHAPI__PriceBreakpoint_1a0b596a4246d446beca127cae6081eefa)`()` | Returns a pointer to PriceItemUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FGuid * `[`GetPriceItemUuidOrNull`](#structFRHAPI__PriceBreakpoint_1a2b5b43cd5a1cb8e16971df0068cf3089)`() const` | Returns a pointer to PriceItemUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetPriceItemUuid`](#structFRHAPI__PriceBreakpoint_1a8122877bd9e5e87b197bb784de7f0479)`(const FGuid & NewValue)` | Sets the value of PriceItemUuid_Optional and also sets PriceItemUuid_IsSet to true.
+`public inline void `[`SetPriceItemUuid`](#structFRHAPI__PriceBreakpoint_1af7869b8368db1edf57cf4f15caddeb37)`(FGuid && NewValue)` | Sets the value of PriceItemUuid_Optional and also sets PriceItemUuid_IsSet to true using move semantics.
+`public inline void `[`ClearPriceItemUuid`](#structFRHAPI__PriceBreakpoint_1aa1c7e04814b665d4582f18f6c01ea39f)`()` | Clears the value of PriceItemUuid_Optional and sets PriceItemUuid_IsSet to false.
+`public inline bool `[`IsPriceItemUuidSet`](#structFRHAPI__PriceBreakpoint_1a89c2c5cef7d26c119994850ba2d4194d)`() const` | Checks whether PriceItemUuid_Optional has been set.
 `public inline int32 & `[`GetPriceItemId`](#structFRHAPI__PriceBreakpoint_1a6b13611738a078d0c65c7b54a06ff407)`()` | Gets the value of PriceItemId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetPriceItemId`](#structFRHAPI__PriceBreakpoint_1af54e7868d8cab16e798d938f8a0ed102)`() const` | Gets the value of PriceItemId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetPriceItemId`](#structFRHAPI__PriceBreakpoint_1a92dee548e2ec2dfffde2bbd249782f01)`(const int32 & DefaultValue) const` | Gets the value of PriceItemId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -71,6 +83,14 @@ Price based on quantity and the Item ID of the currency used.
 
 ### Members
 
+#### `public FGuid `[`PriceItemUuid_Optional`](#structFRHAPI__PriceBreakpoint_1af184285e7dff0bd568aca23ea7161b57) <a id="structFRHAPI__PriceBreakpoint_1af184285e7dff0bd568aca23ea7161b57"></a>
+
+The Item used as the currency for the purchase.
+
+#### `public bool `[`PriceItemUuid_IsSet`](#structFRHAPI__PriceBreakpoint_1a9574a93f4436a160448bf3990cb6511e) <a id="structFRHAPI__PriceBreakpoint_1a9574a93f4436a160448bf3990cb6511e"></a>
+
+true if PriceItemUuid_Optional has been set to a value
+
 #### `public int32 `[`PriceItemId_Optional`](#structFRHAPI__PriceBreakpoint_1a1131fdc8e383058f5333759ad52d4de0) <a id="structFRHAPI__PriceBreakpoint_1a1131fdc8e383058f5333759ad52d4de0"></a>
 
 Deprecated. Use the currencies field instead.
@@ -113,6 +133,46 @@ Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
+
+#### `public inline FGuid & `[`GetPriceItemUuid`](#structFRHAPI__PriceBreakpoint_1a6c3956920056ef1ab2dccac4f04ef932)`()` <a id="structFRHAPI__PriceBreakpoint_1a6c3956920056ef1ab2dccac4f04ef932"></a>
+
+Gets the value of PriceItemUuid_Optional, regardless of it having been set.
+
+#### `public inline const FGuid & `[`GetPriceItemUuid`](#structFRHAPI__PriceBreakpoint_1af4416a6cb597afbd7b7d2c9346d2824b)`() const` <a id="structFRHAPI__PriceBreakpoint_1af4416a6cb597afbd7b7d2c9346d2824b"></a>
+
+Gets the value of PriceItemUuid_Optional, regardless of it having been set.
+
+#### `public inline const FGuid & `[`GetPriceItemUuid`](#structFRHAPI__PriceBreakpoint_1a426955102c35f69f589cf7dbf003d3d0)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__PriceBreakpoint_1a426955102c35f69f589cf7dbf003d3d0"></a>
+
+Gets the value of PriceItemUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetPriceItemUuid`](#structFRHAPI__PriceBreakpoint_1a3c1390ed226fbcf7c14f2dd16028fdf3)`(FGuid & OutValue) const` <a id="structFRHAPI__PriceBreakpoint_1a3c1390ed226fbcf7c14f2dd16028fdf3"></a>
+
+Fills OutValue with the value of PriceItemUuid_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline FGuid * `[`GetPriceItemUuidOrNull`](#structFRHAPI__PriceBreakpoint_1a0b596a4246d446beca127cae6081eefa)`()` <a id="structFRHAPI__PriceBreakpoint_1a0b596a4246d446beca127cae6081eefa"></a>
+
+Returns a pointer to PriceItemUuid_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const FGuid * `[`GetPriceItemUuidOrNull`](#structFRHAPI__PriceBreakpoint_1a2b5b43cd5a1cb8e16971df0068cf3089)`() const` <a id="structFRHAPI__PriceBreakpoint_1a2b5b43cd5a1cb8e16971df0068cf3089"></a>
+
+Returns a pointer to PriceItemUuid_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetPriceItemUuid`](#structFRHAPI__PriceBreakpoint_1a8122877bd9e5e87b197bb784de7f0479)`(const FGuid & NewValue)` <a id="structFRHAPI__PriceBreakpoint_1a8122877bd9e5e87b197bb784de7f0479"></a>
+
+Sets the value of PriceItemUuid_Optional and also sets PriceItemUuid_IsSet to true.
+
+#### `public inline void `[`SetPriceItemUuid`](#structFRHAPI__PriceBreakpoint_1af7869b8368db1edf57cf4f15caddeb37)`(FGuid && NewValue)` <a id="structFRHAPI__PriceBreakpoint_1af7869b8368db1edf57cf4f15caddeb37"></a>
+
+Sets the value of PriceItemUuid_Optional and also sets PriceItemUuid_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearPriceItemUuid`](#structFRHAPI__PriceBreakpoint_1aa1c7e04814b665d4582f18f6c01ea39f)`()` <a id="structFRHAPI__PriceBreakpoint_1aa1c7e04814b665d4582f18f6c01ea39f"></a>
+
+Clears the value of PriceItemUuid_Optional and sets PriceItemUuid_IsSet to false.
+
+#### `public inline bool `[`IsPriceItemUuidSet`](#structFRHAPI__PriceBreakpoint_1a89c2c5cef7d26c119994850ba2d4194d)`() const` <a id="structFRHAPI__PriceBreakpoint_1a89c2c5cef7d26c119994850ba2d4194d"></a>
+
+Checks whether PriceItemUuid_Optional has been set.
 
 #### `public inline int32 & `[`GetPriceItemId`](#structFRHAPI__PriceBreakpoint_1a6b13611738a078d0c65c7b54a06ff407)`()` <a id="structFRHAPI__PriceBreakpoint_1a6b13611738a078d0c65c7b54a06ff407"></a>
 

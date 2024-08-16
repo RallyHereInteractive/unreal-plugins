@@ -51,6 +51,33 @@ struct RALLYHEREAPI_API FRHAPI_DeserterUpdateRequest : public FRHAPI_Model
 	/** @brief Sets the value of DeserterExpiration using move semantics */
 	void SetDeserterExpiration(FDateTime&& NewValue) { DeserterExpiration = NewValue;   }
 
+	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FDateTime DeserterReset_Optional{  };
+	/** @brief true if DeserterReset_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool DeserterReset_IsSet{ false };
+	/** @brief Gets the value of DeserterReset_Optional, regardless of it having been set */
+	FDateTime& GetDeserterReset() { return DeserterReset_Optional; }
+	/** @brief Gets the value of DeserterReset_Optional, regardless of it having been set */
+	const FDateTime& GetDeserterReset() const { return DeserterReset_Optional; }
+	/** @brief Gets the value of DeserterReset_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FDateTime& GetDeserterReset(const FDateTime& DefaultValue) const { if (DeserterReset_IsSet) return DeserterReset_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of DeserterReset_Optional and returns true if it has been set, otherwise returns false */
+	bool GetDeserterReset(FDateTime& OutValue) const { if (DeserterReset_IsSet) OutValue = DeserterReset_Optional; return DeserterReset_IsSet; }
+	/** @brief Returns a pointer to DeserterReset_Optional, if it has been set, otherwise returns nullptr */
+	FDateTime* GetDeserterResetOrNull() { if (DeserterReset_IsSet) return (&DeserterReset_Optional); return nullptr; }
+	/** @brief Returns a pointer to DeserterReset_Optional, if it has been set, otherwise returns nullptr */
+	const FDateTime* GetDeserterResetOrNull() const { if (DeserterReset_IsSet) return (&DeserterReset_Optional); return nullptr; }
+	/** @brief Sets the value of DeserterReset_Optional and also sets DeserterReset_IsSet to true */
+	void SetDeserterReset(const FDateTime& NewValue) { DeserterReset_Optional = NewValue; DeserterReset_IsSet = true;  }
+	/** @brief Sets the value of DeserterReset_Optional and also sets DeserterReset_IsSet to true using move semantics */
+	void SetDeserterReset(FDateTime&& NewValue) { DeserterReset_Optional = NewValue; DeserterReset_IsSet = true;  }
+	/** @brief Clears the value of DeserterReset_Optional and sets DeserterReset_IsSet to false */
+	void ClearDeserterReset() { DeserterReset_IsSet = false;  }
+	/** @brief Checks whether DeserterReset_Optional has been set */
+	bool IsDeserterResetSet() const { return DeserterReset_IsSet; }
+
 	/** @brief The number of times a player has deserted before the expiration */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 DeserterCount{ 0 };

@@ -41,6 +41,18 @@ struct RALLYHEREAPI_API FRHAPI_PriceBreakPointCurrency : public FRHAPI_Model
 
 	/** @brief The Item used as the currency for the purchase. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FGuid PriceItemUuid{  };
+	/** @brief Gets the value of PriceItemUuid */
+	FGuid& GetPriceItemUuid() { return PriceItemUuid; }
+	/** @brief Gets the value of PriceItemUuid */
+	const FGuid& GetPriceItemUuid() const { return PriceItemUuid; }
+	/** @brief Sets the value of PriceItemUuid */
+	void SetPriceItemUuid(const FGuid& NewValue) { PriceItemUuid = NewValue;   }
+	/** @brief Sets the value of PriceItemUuid using move semantics */
+	void SetPriceItemUuid(FGuid&& NewValue) { PriceItemUuid = NewValue;   }
+
+	/** @brief The Item used as the currency for the purchase. */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 PriceItemId{ 0 };
 	/** @brief Gets the value of PriceItemId */
 	int32& GetPriceItemId() { return PriceItemId; }

@@ -24,6 +24,11 @@ void FRHAPI_DeserterUpdateRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) 
 	Writer->WriteObjectStart();
 	Writer->WriteIdentifierPrefix(TEXT("deserter_expiration"));
 	RallyHereAPI::WriteJsonValue(Writer, DeserterExpiration);
+	if (DeserterReset_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("deserter_reset"));
+		RallyHereAPI::WriteJsonValue(Writer, DeserterReset_Optional);
+	}
 	Writer->WriteIdentifierPrefix(TEXT("deserter_count"));
 	RallyHereAPI::WriteJsonValue(Writer, DeserterCount);
 	if (CustomData_IsSet)
@@ -44,6 +49,12 @@ bool FRHAPI_DeserterUpdateRequest::FromJson(const TSharedPtr<FJsonValue>& JsonVa
 
 	const TSharedPtr<FJsonValue> JsonDeserterExpirationField = (*Object)->TryGetField(TEXT("deserter_expiration"));
 	ParseSuccess &= JsonDeserterExpirationField.IsValid() && (!JsonDeserterExpirationField->IsNull() &&  TryGetJsonValue(JsonDeserterExpirationField, DeserterExpiration));
+	const TSharedPtr<FJsonValue> JsonDeserterResetField = (*Object)->TryGetField(TEXT("deserter_reset"));
+	if (JsonDeserterResetField.IsValid())
+	{
+		DeserterReset_IsSet = TryGetJsonValue(JsonDeserterResetField, DeserterReset_Optional);
+		ParseSuccess &= DeserterReset_IsSet;
+	}
 	const TSharedPtr<FJsonValue> JsonDeserterCountField = (*Object)->TryGetField(TEXT("deserter_count"));
 	ParseSuccess &= JsonDeserterCountField.IsValid() && (!JsonDeserterCountField->IsNull() &&  TryGetJsonValue(JsonDeserterCountField, DeserterCount));
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
