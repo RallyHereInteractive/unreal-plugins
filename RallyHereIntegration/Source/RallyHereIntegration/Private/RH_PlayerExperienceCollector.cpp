@@ -194,6 +194,9 @@ bool URH_PEXCollector::InitWithConfig(IRH_PEXOwnerInterface* InOwner, const URH_
 	// flag as initialized, at this point we are committed to running
 	bHasBeenInitialized = true;
 
+	// mark that we are in the first interval, which will block the first interval from being recorded since it is partial and thus may record misleading data
+	bFirstInterval = true;
+
 	// register for end frame delegate so we can record per frame values
 	FCoreDelegates::OnEndFrame.AddUObject(this, &URH_PEXCollector::OnEndFrame);
 
