@@ -492,7 +492,7 @@ void URH_PEXPrimaryStats::CapturePerFrameStats(const TScriptInterface<IRH_PEXOwn
 	else
 	{
 		// on servers, we only have game thread time
-		Stats[FrameTime].CaptureValue(CYCLES_TO_MILLISECONDS(GameThreadTime));
+		Stats[FrameTime].CaptureValue(CYCLES_TO_MILLISECONDS(GGameThreadTime));
 	}
 
 	auto DeltaSeconds = FApp::GetDeltaTime();
