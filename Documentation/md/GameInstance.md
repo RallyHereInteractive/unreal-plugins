@@ -180,6 +180,7 @@ Server Bootstrapper for the Game Instance.
 `protected virtual void `[`CleanupAfterLogout`](#classURH__GameInstanceServerBootstrapper_1a7c5516a0f558c35e0200c0ec234499a8)`()` | Utility function to clean up state after a logout.
 `protected virtual void `[`CleanupAfterSessionUnsynced`](#classURH__GameInstanceServerBootstrapper_1a194646fe84a43b393f35ae0d6ed52b12)`()` | Utility function to clean up state after an the session became unsynced from the manager.
 `protected virtual void `[`CleanupAfterInstanceRemoval`](#classURH__GameInstanceServerBootstrapper_1a9aab21c5a300e982d5216e04acdbf6f4)`()` | Utility function to clean up state after an instance removal (or something else causing session data to become invalid). Handles unsyncing session state, etc.
+`protected virtual void `[`CleanupAfterUnallocatedSoftStop`](#classURH__GameInstanceServerBootstrapper_1a920de49ef6fa1ec6a5829ae05b28a282)`()` | Utility function to clean up state after receiving a soft stop request while unallocated.
 `protected virtual void `[`OnCleanupSessionSyncComplete`](#classURH__GameInstanceServerBootstrapper_1a38bf567f475e12b06eb5a16883165bb6)`(`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session,bool bSuccess,const FString & Error)` | Completion callback for session and instance cleanup, triggers [Cleanup()](GameInstance.md#classURH__GameInstanceServerBootstrapper_1a1a8ba04137895fb64e88b53959855601)
 `protected virtual void `[`Cleanup`](#classURH__GameInstanceServerBootstrapper_1a1a8ba04137895fb64e88b53959855601)`()` | Cleans up state, and prepares for a recycle if needed. Assumes session has already been unsynced.
 `protected virtual bool `[`ShouldRecycleAfterCleanup`](#classURH__GameInstanceServerBootstrapper_1a3841facd4998b2ceb4e4f48354c2f665)`() const` | Gets whether we should recycle the state after cleanup.
@@ -629,6 +630,10 @@ Utility function to clean up state after an the session became unsynced from the
 #### `protected virtual void `[`CleanupAfterInstanceRemoval`](#classURH__GameInstanceServerBootstrapper_1a9aab21c5a300e982d5216e04acdbf6f4)`()` <a id="classURH__GameInstanceServerBootstrapper_1a9aab21c5a300e982d5216e04acdbf6f4"></a>
 
 Utility function to clean up state after an instance removal (or something else causing session data to become invalid). Handles unsyncing session state, etc.
+
+#### `protected virtual void `[`CleanupAfterUnallocatedSoftStop`](#classURH__GameInstanceServerBootstrapper_1a920de49ef6fa1ec6a5829ae05b28a282)`()` <a id="classURH__GameInstanceServerBootstrapper_1a920de49ef6fa1ec6a5829ae05b28a282"></a>
+
+Utility function to clean up state after receiving a soft stop request while unallocated.
 
 #### `protected virtual void `[`OnCleanupSessionSyncComplete`](#classURH__GameInstanceServerBootstrapper_1a38bf567f475e12b06eb5a16883165bb6)`(`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session,bool bSuccess,const FString & Error)` <a id="classURH__GameInstanceServerBootstrapper_1a38bf567f475e12b06eb5a16883165bb6"></a>
 
