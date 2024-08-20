@@ -51,9 +51,9 @@ public:
 	UPROPERTY(Config)
 	int32 StatInterval;
 
-	/** Whether map loads should cause the current interval to be ignored for summary */
+	/** How many intervals to ignore for summary after a map load (to allow things like streaming to stablize) */
 	UPROPERTY(Config)
-	bool bIgnoreMapLoadsForSummary;
+	int32 NumIntervalsToIgnoreAfterMapLoadForSummary;
 
 	/** Prefix for timeline file name */
 	UPROPERTY(Config)
@@ -1006,6 +1006,8 @@ public:
 	virtual bool InitWithConfig(IRH_PEXOwnerInterface* InOwner, const URH_PEXCollectorConfig* InConfig);
 	/** @brief Tick the collector, updating per frame stats and potentially per second stats. */
     virtual void OnEndFrame();
+	/** @brief Notification that a map load has completed */
+	virtual void OnMapLoadComplete();
 
 	/** @brief Retrieve the config to use for this collector instance */
 	const URH_PEXCollectorConfig* GetConfig() const
@@ -1022,10 +1024,10 @@ public:
 		}
 	}
 
-	/** @brief Flags the current interval to be ignored for summary.  This is useful in cases of events that will generate bad behavior reports such as map loads */
-	void SetIgnoreCurrentIntervalForSummary()
+	/** @brief Flags the current interval (and potentially more) to be ignored for summary if it was not already.  This is useful in cases of events that will generate bad behavior reports such as map loads */
+	void SetIgnoreCurrentIntervalForSummary(int32 NumToIgnore = 1)
 	{
-		bIgnoreCurrentIntervalForSummary = true;
+		NumRemainingIntervalsToIgnore = FMath::Max(NumToIgnore, NumRemainingIntervalsToIgnore);
 	}
 
 	/** @brief Closes state, writes summary if needed, and uploads data if needed.  Can only be done once. */
@@ -1086,9 +1088,9 @@ protected:
 	UPROPERTY(BlueprintReadOnly, Category="PlayerExperience")
 	double TimeTracker;
 
-	/** Whether this is interval being captured should be ignored for summary */
+	/** Number of remaining intervals to ignore for summary (decremented at the end of each interval) */
 	UPROPERTY(BlueprintReadOnly, Category="PlayerExperience")
-	bool bIgnoreCurrentIntervalForSummary;
+	int32 NumRemainingIntervalsToIgnore;
 
 	UPROPERTY(BlueprintReadOnly, Transient, Category="PlayerExperience")
 	URH_PEXStatGroupsTopLevel* TopLevelStatGroup;

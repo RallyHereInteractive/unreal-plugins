@@ -352,6 +352,11 @@ public:
 	virtual void SubmitPEXHostSummary(FRHAPI_PexHostRequest&& Report) const override;
 	/** @brief Submit a PEX Client Summary report */
 	virtual void SubmitPEXClientSummary(FRHAPI_PexClientRequest&& Report) const override;
+	/** @brief A helper function to override the PEX data before submission */
+	virtual void ModifyPEXHostSummary(FRHAPI_PexHostRequest& Report) const;
+	/** @brief A helper function to override the PEX data before submission */
+	virtual void ModifyPEXClientSummary(FRHAPI_PexClientRequest& Report) const;
+	
 	
 protected:
 	/** @brief Session we want to sync to. */

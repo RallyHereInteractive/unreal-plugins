@@ -311,6 +311,7 @@ void PreparePexReportSessionData(T& Report, const FRHAPI_Session& SessionData)
 		Report.SetRegionId(*RegionId);
 	}
 
+	/*
 	if (SessionData.GetTeams().Num() > 0)
 	{
 		Report.SetExpectedTeamSize(SessionData.GetTeams()[0].GetMaxSize());
@@ -321,6 +322,7 @@ void PreparePexReportSessionData(T& Report, const FRHAPI_Session& SessionData)
 		}
 		Report.SetExpectedPlayerCount(TotalPlayers);
 	}
+	*/
 
 	if (auto AllocationId = InstanceData.GetAllocationIdOrNull())
 	{
@@ -343,10 +345,8 @@ void PreparePexReportSessionData(T& Report, const FRHAPI_Session& SessionData)
 	}
 }
 
-void URH_GameInstanceSessionSubsystem::SubmitPEXHostSummary(FRHAPI_PexHostRequest&& Report) const
+void URH_GameInstanceSessionSubsystem::ModifyPEXHostSummary(FRHAPI_PexHostRequest& Report) const
 {
-	// match id should have been set before calling this function!
-	check (Report.MatchId.Len() > 0);
 	if (ActiveSessionState.ActivationTime.GetTicks() > 0)
 	{
 		const auto Duration = FDateTime::UtcNow() - ActiveSessionState.ActivationTime;
@@ -356,6 +356,15 @@ void URH_GameInstanceSessionSubsystem::SubmitPEXHostSummary(FRHAPI_PexHostReques
 	}
 
 	PreparePexReportSessionData(Report, ActiveSessionState.ActivationSessionInfo);
+}
+
+void URH_GameInstanceSessionSubsystem::SubmitPEXHostSummary(FRHAPI_PexHostRequest&& Report) const
+{
+	// match id should have been set before calling this function!
+	check (Report.MatchId.Len() > 0);
+
+	// modify the report to add in the session data and other game level data
+	ModifyPEXHostSummary(Report);
 	
 	typedef RallyHereAPI::Traits_CreatePexHost BaseType;
 	BaseType::Request Request;
@@ -387,10 +396,9 @@ void URH_GameInstanceSessionSubsystem::SubmitPEXHostSummary(FRHAPI_PexHostReques
 	
 	Helper->Start(RH_APIs::GetAPIs().GetPex(), Request);
 }
-void URH_GameInstanceSessionSubsystem::SubmitPEXClientSummary(FRHAPI_PexClientRequest&& Report) const
+
+void URH_GameInstanceSessionSubsystem::ModifyPEXClientSummary(FRHAPI_PexClientRequest& Report) const
 {
-	// match id should have been set before calling this function!
-	check (Report.MatchId.Len() > 0);
 	if (ActiveSessionState.ActivationTime.GetTicks() > 0)
 	{
 		const auto Duration = FDateTime::UtcNow() - ActiveSessionState.ActivationTime;
@@ -400,6 +408,15 @@ void URH_GameInstanceSessionSubsystem::SubmitPEXClientSummary(FRHAPI_PexClientRe
 	}
 
 	PreparePexReportSessionData(Report, ActiveSessionState.ActivationSessionInfo);
+}
+
+void URH_GameInstanceSessionSubsystem::SubmitPEXClientSummary(FRHAPI_PexClientRequest&& Report) const
+{
+	// match id should have been set before calling this function!
+	check (Report.MatchId.Len() > 0);
+
+	// modify the report to add in the session data and other game level data
+	ModifyPEXClientSummary(Report);
 	
 	typedef RallyHereAPI::Traits_CreatePexPlayer BaseType;
 	BaseType::Request Request;

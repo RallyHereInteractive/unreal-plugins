@@ -56,7 +56,7 @@ URH_PEXCollectorConfig::URH_PEXCollectorConfig()
 	bUploadTimelineToFileAPI = false;
 		
 	StatInterval = 1;
-	bIgnoreMapLoadsForSummary = true;
+	NumIntervalsToIgnoreAfterMapLoadForSummary = 2;
 	TimelineFilePrefix = TEXT("PEX_Timeline");
 	SummaryFilePrefix = TEXT("PEX_Summary");
 
@@ -99,7 +99,7 @@ URH_PEXCollector::URH_PEXCollector()
 	, bHasBeenClosed(false)
 	, bHasWrittenSummary(false)
 	, TimeTracker(0.0f)
-	, bIgnoreCurrentIntervalForSummary(false)
+	, NumRemainingIntervalsToIgnore(0)
 	, TimelineFileCSV(nullptr)
 {
 	TopLevelStatGroup = CreateDefaultSubobject<URH_PEXStatGroupsTopLevel>(TEXT("TopLevelStats"));
@@ -266,18 +266,23 @@ bool URH_PEXCollector::InitWithConfig(IRH_PEXOwnerInterface* InOwner, const URH_
     IPerfCountersModule::Get().CreatePerformanceCounters();
 #endif
 
-	if (Config->bIgnoreMapLoadsForSummary)
+	FCoreUObjectDelegates::PostLoadMapWithWorld.AddWeakLambda(this, [this, WeakOwner = Owner](UWorld* World)
 	{
-		FCoreUObjectDelegates::PostLoadMapWithWorld.AddWeakLambda(this, [this, WeakOwner = Owner](UWorld* World)
+		if (World != nullptr && WeakOwner.IsValid() && World == WeakOwner->GetPEXWorld())
 		{
-			if (World != nullptr && WeakOwner.IsValid() && World == WeakOwner->GetPEXWorld())
-			{
-				SetIgnoreCurrentIntervalForSummary();
-			}
-		});
-	}
+			OnMapLoadComplete();
+		}
+	});
 	
     return true;
+}
+
+void URH_PEXCollector::OnMapLoadComplete()
+{
+	if (GetConfig()->NumIntervalsToIgnoreAfterMapLoadForSummary > 0)
+	{
+		SetIgnoreCurrentIntervalForSummary(GetConfig()->NumIntervalsToIgnoreAfterMapLoadForSummary); 
+	}
 }
 
 // ticked just after main engine tick!
@@ -321,8 +326,8 @@ void URH_PEXCollector::OnEndFrame()
     if (bIsInterval)
     {
     	// check if this was a partial interval
-    	const bool bIgnoreForSummary = bIgnoreCurrentIntervalForSummary;
-    	bIgnoreCurrentIntervalForSummary = false;
+    	const bool bIgnoreForSummary = NumRemainingIntervalsToIgnore > 0;
+    	NumRemainingIntervalsToIgnore = FMath::Max(0, NumRemainingIntervalsToIgnore - 1);
 
     	// record if this interval is ignored for summary
     	if (bIgnoreForSummary)
