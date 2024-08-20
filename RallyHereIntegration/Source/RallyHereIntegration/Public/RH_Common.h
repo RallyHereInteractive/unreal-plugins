@@ -475,7 +475,17 @@ public:
 		}
 		else
 		{
-			Failed(TEXT("Query Failed"));
+			FString FailureReason = FString::Printf(TEXT("Query Failed with Code: %d"), Resp.GetHttpResponseCode());
+			if (ErrorInfo.bIsRHCommonError)
+			{
+				FailureReason += TEXT(", ") +  FString::Printf(TEXT("Common Error: Code: %s, Desc: %s"), *ErrorInfo.RHCommonError.GetErrorCode(), *ErrorInfo.RHCommonError.GetDesc());
+			}
+			else if (ErrorInfo.bIsRHValidationError)
+			{
+				FailureReason += TEXT(", ") +  FString::Printf(TEXT("Validation Error: Type: %s, Msg: %s"), *ErrorInfo.RHValidationError.GetType(), *ErrorInfo.RHValidationError.GetMsg());
+			}
+			
+			Failed(FailureReason);
 		}
 	}
 

@@ -37,12 +37,13 @@ void URH_RemoteFileSubsystem::UploadFile(const FRH_RemoteFileApiDirectory& Direc
 	Request.EntityType = Directory.EntityType;
 	Request.EntityId = Directory.EntityId;
 	Request.FileName = RemoteFileName;
-	Request.File.SetFilePath(*LocalFilePath);
+	RallyHereAPI::FHttpFileInput FileInput(LocalFilePath);
 	// if type autodetection failed, treat as a binary stream
-	if (Request.File.GetContentType() == TEXT("application/unknown"))
+	if (FileInput.GetContentType() == TEXT("application/unknown"))
 	{
-		Request.File.SetContentType(TEXT("application/octet-stream"));
+		FileInput.SetContentType(TEXT("application/octet-stream"));
 	}
+	Request.File = FileInput;
 
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateWeakLambda(this, [this, Directory, RemoteFileName, LocalFilePath](const BaseType::Response& Response)

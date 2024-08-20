@@ -27,94 +27,94 @@ BEGIN_DEFINE_SPEC(FRH_RequesterThreading, "RHAutomation.HttpRequester.Threading"
 
 END_DEFINE_SPEC(FRH_RequesterThreading)
 
+struct FRH_RunningTasksTracker
+{
+	TAtomic<int32> RunningTasks, TasksStarted, SuccessfulTasks;
+
+	FAutomationTestBase* Test = nullptr;
+	FDoneDelegate AsyncDone;
+
+	void TaskStarted()
+	{
+		++RunningTasks;
+		++TasksStarted;
+	}
+
+	void TaskEnded(bool bSucesss)
+	{
+		auto NewTaskCount = --RunningTasks;
+		if (bSucesss)
+		{
+			++SuccessfulTasks;
+		}
+
+		if (NewTaskCount == 0)
+		{
+			Test->TestEqual(TEXT("All Tasks Successful"), SuccessfulTasks.Load(), TasksStarted.Load());
+
+			AsyncDone.Execute();
+		}
+	}
+
+	FRH_RunningTasksTracker(FAutomationTestBase* InTest, const FDoneDelegate& InDoneDelegate)
+		: RunningTasks(0), TasksStarted(0), SuccessfulTasks(0)
+		, Test(InTest)
+		, AsyncDone(InDoneDelegate)
+	{
+	}
+};
+
+struct FRH_TimeRequestTask : public FNonAbandonableTask
+{
+	FRH_TimeRequestTask(TSharedRef<FRH_RunningTasksTracker> InTasksTracker)
+		: TasksTracker(InTasksTracker)
+	{
+	}
+
+	/** Returns the stat id for this task */
+	FORCEINLINE TStatId GetStatId() const
+	{
+		RETURN_QUICK_DECLARE_CYCLE_STAT(FTimeRequestTask, STATGROUP_ThreadPoolAsyncTasks);
+	}
+
+	void DoWork()
+	{
+		TasksTracker->TaskStarted();
+
+		typedef RallyHereAPI::Traits_GetUtcTime BaseType;
+
+		BaseType::Request Request;
+
+		auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+			BaseType::Delegate(),
+			FRH_GenericSuccessWithErrorDelegate::CreateLambda([this](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+				{
+					TasksTracker->TaskEnded(bSuccess);
+				}),
+			GetDefault<URH_IntegrationSettings>()->FetchAppSettingsPriority);
+
+		Helper->Start(RH_APIs::GetAPIs().GetTime(), Request);
+	}
+
+	TSharedRef<FRH_RunningTasksTracker> TasksTracker;
+};
+
 void FRH_RequesterThreading::Define()
 {
 	Describe("Http Requester Threading", [this]()
 		{
 			LatentIt("should create a bunch of time requests in worker threads, then run them in parallel", [this](const FDoneDelegate& Done)
 				{					
-					const int32 NumTasks = 256;
-
-					struct FRunningTasksTracker
-					{
-						TAtomic<int32> RunningTasks, TasksStarted, SuccessfulTasks;
-
-						FAutomationTestBase* Test = nullptr;
-						FDoneDelegate AsyncDone;
-
-						void TaskStarted()
-						{
-							++RunningTasks;
-							++TasksStarted;
-						}
-
-						void TaskEnded(bool bSucesss)
-						{
-							auto NewTaskCount = --RunningTasks;
-							if (bSucesss)
-							{
-								++SuccessfulTasks;
-							}
-
-							if (NewTaskCount == 0)
-							{
-								Test->TestEqual(TEXT("All Tasks Successful"), SuccessfulTasks.Load(), TasksStarted.Load());
-
-								AsyncDone.Execute();
-							}
-						}
-
-						FRunningTasksTracker(FAutomationTestBase* InTest, const FDoneDelegate& InDoneDelegate)
-							: RunningTasks(0), TasksStarted(0), SuccessfulTasks(0)
-							, Test(InTest)
-							, AsyncDone(InDoneDelegate)
-						{
-						}
-					};
-
-					struct FTimeRequestTask : public FNonAbandonableTask
-					{
-						FTimeRequestTask(TSharedRef<FRunningTasksTracker> InTasksTracker)
-							: TasksTracker(InTasksTracker)
-						{
-						}
-
-						/** Returns the stat id for this task */
-						FORCEINLINE TStatId GetStatId() const
-						{
-							RETURN_QUICK_DECLARE_CYCLE_STAT(FTimeRequestTask, STATGROUP_ThreadPoolAsyncTasks);
-						}
-
-						void DoWork()
-						{
-							TasksTracker->TaskStarted();
-
-							typedef RallyHereAPI::Traits_GetUtcTime BaseType;
-
-							BaseType::Request Request;
-
-							auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
-								BaseType::Delegate(),
-								FRH_GenericSuccessWithErrorDelegate::CreateLambda([this](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
-									{
-										TasksTracker->TaskEnded(bSuccess);
-									}),
-								GetDefault<URH_IntegrationSettings>()->FetchAppSettingsPriority);
-
-							Helper->Start(RH_APIs::GetAPIs().GetTime(), Request);
-						}
-
-						TSharedRef<FRunningTasksTracker> TasksTracker;
-					};
-
 					// Create a bunch of tasks
-					TSharedRef<FRunningTasksTracker> RunningTasksTracker = MakeShared<FRunningTasksTracker>(this, Done);
-					TArray<FAsyncTask<FTimeRequestTask>*> Tasks;
+					TSharedRef<FRH_RunningTasksTracker> RunningTasksTracker = MakeShared<FRH_RunningTasksTracker>(this, Done);
+					TArray<FAsyncTask<FRH_TimeRequestTask>*> Tasks;
+
+					const int32 NumTasks = 256;
 					Tasks.Reserve(NumTasks);
 
 					for (int32 i = 0; i < NumTasks; ++i)
 					{
-						Tasks.Add(new FAsyncTask<FTimeRequestTask>(RunningTasksTracker));
+						Tasks.Add(new FAsyncTask<FRH_TimeRequestTask>(RunningTasksTracker));
 					}
 
 					// Start all the tasks

@@ -30,9 +30,9 @@ class FPexAPI;
  * @brief Create Pex Host
  * Create PEX Host
  * 
- *             Required Permissions:
+ * Required Permissions:
  * 
- * - For any player (including themselves) any of: `match:*`, `match:pex:host:write`
+ * - For any pex host any of: `match:*`, `match:pex:host:write`
 */
 struct RALLYHEREAPI_API FRequest_CreatePexHost : public FRequest
 {
@@ -124,9 +124,9 @@ struct RALLYHEREAPI_API Traits_CreatePexHost
  * @brief Create Pex Player
  * Create PEX Client
  * 
- *            Required Permissions:
+ * Required Permissions:
  * 
- * - For any player (including themselves) any of: `match:*`, `match:pex:client:write`
+ * - For any pex client any of: `match:*`, `match:pex:client:write`
 */
 struct RALLYHEREAPI_API FRequest_CreatePexPlayer : public FRequest
 {
@@ -218,9 +218,9 @@ struct RALLYHEREAPI_API Traits_CreatePexPlayer
  * @brief Get All Pex Client Raw By Filter
  * Get pages of PEX client raw data based on provided filters
  * 
- *             Required Permissions:
+ * Required Permissions:
  * 
- * - For any player (including themselves) any of: `match:*`, `match:pex:read`
+ * - For any pex client any of: `match:*`, `match:pex:read`
 */
 struct RALLYHEREAPI_API FRequest_GetAllPexClientRawByFilter : public FRequest
 {
@@ -351,9 +351,9 @@ struct RALLYHEREAPI_API Traits_GetAllPexClientRawByFilter
  * @brief Get All Pex Client Scores By Filter
  * Get pages of PEX client score data based on provided filters
  * 
- *             Required Permissions:
+ * Required Permissions:
  * 
- * - For any player (including themselves) any of: `match:*`, `match:pex:read`
+ * - For any pex client any of: `match:*`, `match:pex:read`
 */
 struct RALLYHEREAPI_API FRequest_GetAllPexClientScoresByFilter : public FRequest
 {
@@ -478,10 +478,10 @@ struct RALLYHEREAPI_API Traits_GetAllPexClientScoresByFilter
 /**
  * @brief Get All Pex Host Raw By Filter
  * Get pages of PEX host raw data based on provided filters
- *             
- *             Required Permissions:
  * 
- * - For any player (including themselves) any of: `match:*`, `match:pex:read`
+ * Required Permissions:
+ * 
+ * - For any pex host any of: `match:*`, `match:pex:read`
 */
 struct RALLYHEREAPI_API FRequest_GetAllPexHostRawByFilter : public FRequest
 {
@@ -609,10 +609,10 @@ struct RALLYHEREAPI_API Traits_GetAllPexHostRawByFilter
 /**
  * @brief Get All Pex Host Scores By Filter
  * Get pages of PEX host scores based on provided filters
- *             
- *             Required Permissions:
  * 
- * - For any player (including themselves) any of: `match:*`, `match:pex:read`
+ * Required Permissions:
+ * 
+ * - For any pex client any of: `match:*`, `match:pex:read`
 */
 struct RALLYHEREAPI_API FRequest_GetAllPexHostScoresByFilter : public FRequest
 {

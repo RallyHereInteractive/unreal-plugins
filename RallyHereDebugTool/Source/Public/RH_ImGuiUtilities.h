@@ -360,18 +360,8 @@ private:
 	void ConvertToJsonStringIfValid(TArray<ANSICHAR>& InString) const;
 };
 
-void ImGuiBeginEditableOptionalValue(const char* OptionalLabel, bool& IsSet)
-{
-	ImGui::Checkbox(OptionalLabel, &IsSet);
-	ImGui::SameLine();
-	ImGui::BeginDisabled(!IsSet);
-	ImGui::PushID(OptionalLabel);
-}
-void ImGuiEndEditableOptionalValue()
-{
-	ImGui::PopID();
-	ImGui::EndDisabled();
-}
+void RALLYHEREDEBUGTOOL_API ImGuiBeginEditableOptionalValue(const char* OptionalLabel, bool& IsSet);
+void RALLYHEREDEBUGTOOL_API ImGuiEndEditableOptionalValue();
 
 template<typename F>
 void ImGuiEditableOptionalValue(const char* OptionalLabel, bool& IsSet, const F& EditFunction)
