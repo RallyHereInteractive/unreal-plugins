@@ -68,7 +68,7 @@ class URH_PEXCollectorConfig
 `public bool `[`bWriteTimelineFile`](#classURH__PEXCollectorConfig_1a15127545a8061de7e387e3f85d51c9e7) | Whether to write timeline data to file
 `public bool `[`bUploadTimelineToFileAPI`](#classURH__PEXCollectorConfig_1a59f36ca17e694d1c182dfc63b401f0da) | Whether to send timeline data to the File API (Requires bWriteTimelineFile)
 `public int32 `[`StatInterval`](#classURH__PEXCollectorConfig_1a432154cb90daa7882de271e53bc816ff) | Interval of updating summary and writing timeline, in seconds
-`public bool `[`bIgnoreMapLoadsForSummary`](#classURH__PEXCollectorConfig_1a44ae898d0f447b3e819ae38d1b8c4e41) | Whether map loads should cause the current interval to be ignored for summary
+`public int32 `[`NumIntervalsToIgnoreAfterMapLoadForSummary`](#classURH__PEXCollectorConfig_1af497e32a21b7588e5eaa38fba7c9674e) | How many intervals to ignore for summary after a map load (to allow things like streaming to stablize)
 `public FString `[`TimelineFilePrefix`](#classURH__PEXCollectorConfig_1a85e4c4eb8c381adbf8e02b2f00911a1d) | Prefix for timeline file name
 `public FString `[`SummaryFilePrefix`](#classURH__PEXCollectorConfig_1aa5ad5eaa1723126934fb7335f20890bb) | Prefix for summary file name
 `public TSet< TSubclassOf< `[`URH_PEXStatGroup`](PlayerExperience.md#classURH__PEXStatGroup)` > > `[`StatGroupsToCapture`](#classURH__PEXCollectorConfig_1a15bb5fe15307798368d32729ef73bfb1) | Array of StatGroups to capture
@@ -107,9 +107,9 @@ Whether to send timeline data to the File API (Requires bWriteTimelineFile)
 
 Interval of updating summary and writing timeline, in seconds
 
-#### `public bool `[`bIgnoreMapLoadsForSummary`](#classURH__PEXCollectorConfig_1a44ae898d0f447b3e819ae38d1b8c4e41) <a id="classURH__PEXCollectorConfig_1a44ae898d0f447b3e819ae38d1b8c4e41"></a>
+#### `public int32 `[`NumIntervalsToIgnoreAfterMapLoadForSummary`](#classURH__PEXCollectorConfig_1af497e32a21b7588e5eaa38fba7c9674e) <a id="classURH__PEXCollectorConfig_1af497e32a21b7588e5eaa38fba7c9674e"></a>
 
-Whether map loads should cause the current interval to be ignored for summary
+How many intervals to ignore for summary after a map load (to allow things like streaming to stablize)
 
 #### `public FString `[`TimelineFilePrefix`](#classURH__PEXCollectorConfig_1a85e4c4eb8c381adbf8e02b2f00911a1d) <a id="classURH__PEXCollectorConfig_1a85e4c4eb8c381adbf8e02b2f00911a1d"></a>
 
@@ -416,9 +416,10 @@ PlayerExperience Collector class, responsible for collecting and tracking PEX da
 `public virtual bool `[`Init`](#classURH__PEXCollector_1a5976807cc07bb1aba1719f8949df42a2)`(`[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` * InOwner)` | Initialize the collector. Can only be done once.
 `public virtual bool `[`InitWithConfig`](#classURH__PEXCollector_1aa1ce8de7522accac1b9f80242be8a705)`(`[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` * InOwner,const `[`URH_PEXCollectorConfig`](PlayerExperience.md#classURH__PEXCollectorConfig)` * InConfig)` | Initialize the collector. Can only be done once.
 `public virtual void `[`OnEndFrame`](#classURH__PEXCollector_1a4aef02ed0ddba34d7b2f970537071d01)`()` | Tick the collector, updating per frame stats and potentially per second stats.
+`public virtual void `[`OnMapLoadComplete`](#classURH__PEXCollector_1a8b3c1c91454411f619c14daa65a7df69)`()` | Notification that a map load has completed.
 `public inline const `[`URH_PEXCollectorConfig`](PlayerExperience.md#classURH__PEXCollectorConfig)` * `[`GetConfig`](#classURH__PEXCollector_1a71bd22ee8057031fe4adbfb7c06bc48e)`() const` | Retrieve the config to use for this collector instance.
 `public inline void `[`ResetSummary`](#classURH__PEXCollector_1a73fa2f29acff15a77101afdf3ca6214a)`()` | Reset the summary state, which is useful if wanting to trim the front of the summary to when gameplay starts.
-`public inline void `[`SetIgnoreCurrentIntervalForSummary`](#classURH__PEXCollector_1ad4aacd7b937f536db5ca0b31e375c604)`()` | Flags the current interval to be ignored for summary. This is useful in cases of events that will generate bad behavior reports such as map loads.
+`public inline void `[`SetIgnoreCurrentIntervalForSummary`](#classURH__PEXCollector_1af974f89c7e353501a11d67184850186f)`(int32 NumToIgnore)` | Flags the current interval (and potentially more) to be ignored for summary if it was not already. This is useful in cases of events that will generate bad behavior reports such as map loads.
 `public void `[`Close`](#classURH__PEXCollector_1a29b53ef9f1777a3bb14cda202bc9e8a9)`()` | Closes state, writes summary if needed, and uploads data if needed. Can only be done once.
 `public void `[`WriteSummary`](#classURH__PEXCollector_1ad508ef615e45584a827b3aeb7bac96b6)`()` | Writes summary data to file and/or API, and uploads any data requested, can only be called once.
 `public inline FString `[`GetSummaryFilePath`](#classURH__PEXCollector_1a33d74feb6daa05f89c03fe93734dd1b4)`() const` | Get the file path for the summary file, if it was written.
@@ -434,7 +435,7 @@ PlayerExperience Collector class, responsible for collecting and tracking PEX da
 `protected bool `[`bHasBeenClosed`](#classURH__PEXCollector_1af11d6bd32f2abb6a738136cf6270ca93) | Whether the collector has been closed, to guard against it being closed multiple times.
 `protected bool `[`bHasWrittenSummary`](#classURH__PEXCollector_1abce5549764d70cb3b377353cdac3c74f) | Whether the summary data has been written, to guard against it being written multiple times.
 `protected double `[`TimeTracker`](#classURH__PEXCollector_1a351f5e98ee2ecdda2445f86ccf6b841f) | Time accumulator so that time is always monotonic
-`protected bool `[`bIgnoreCurrentIntervalForSummary`](#classURH__PEXCollector_1a6a2aee0c54cac9a825c8578e5053192d) | Whether this is interval being captured should be ignored for summary
+`protected int32 `[`NumRemainingIntervalsToIgnore`](#classURH__PEXCollector_1ab8b392ab1ba60819943ac70abbde81df) | Number of remaining intervals to ignore for summary (decremented at the end of each interval)
 `protected `[`URH_PEXStatGroupsTopLevel`](PlayerExperience.md#classURH__PEXStatGroupsTopLevel)` * `[`TopLevelStatGroup`](#classURH__PEXCollector_1a19bd2bcb0f8f408f9690f7161265ed93) | 
 `protected class FArchive * `[`TimelineFileCSV`](#classURH__PEXCollector_1a82fd95d78b4ec189504331f0e8c0ab9d) | Local file archive to write timeline data to
 `protected FString `[`TimelineFilePath`](#classURH__PEXCollector_1a1f032b2d4926fd92ab96ce7f68018fa5) | Cached file path for timeline file
@@ -459,6 +460,10 @@ Initialize the collector. Can only be done once.
 
 Tick the collector, updating per frame stats and potentially per second stats.
 
+#### `public virtual void `[`OnMapLoadComplete`](#classURH__PEXCollector_1a8b3c1c91454411f619c14daa65a7df69)`()` <a id="classURH__PEXCollector_1a8b3c1c91454411f619c14daa65a7df69"></a>
+
+Notification that a map load has completed.
+
 #### `public inline const `[`URH_PEXCollectorConfig`](PlayerExperience.md#classURH__PEXCollectorConfig)` * `[`GetConfig`](#classURH__PEXCollector_1a71bd22ee8057031fe4adbfb7c06bc48e)`() const` <a id="classURH__PEXCollector_1a71bd22ee8057031fe4adbfb7c06bc48e"></a>
 
 Retrieve the config to use for this collector instance.
@@ -467,9 +472,9 @@ Retrieve the config to use for this collector instance.
 
 Reset the summary state, which is useful if wanting to trim the front of the summary to when gameplay starts.
 
-#### `public inline void `[`SetIgnoreCurrentIntervalForSummary`](#classURH__PEXCollector_1ad4aacd7b937f536db5ca0b31e375c604)`()` <a id="classURH__PEXCollector_1ad4aacd7b937f536db5ca0b31e375c604"></a>
+#### `public inline void `[`SetIgnoreCurrentIntervalForSummary`](#classURH__PEXCollector_1af974f89c7e353501a11d67184850186f)`(int32 NumToIgnore)` <a id="classURH__PEXCollector_1af974f89c7e353501a11d67184850186f"></a>
 
-Flags the current interval to be ignored for summary. This is useful in cases of events that will generate bad behavior reports such as map loads.
+Flags the current interval (and potentially more) to be ignored for summary if it was not already. This is useful in cases of events that will generate bad behavior reports such as map loads.
 
 #### `public void `[`Close`](#classURH__PEXCollector_1a29b53ef9f1777a3bb14cda202bc9e8a9)`()` <a id="classURH__PEXCollector_1a29b53ef9f1777a3bb14cda202bc9e8a9"></a>
 
@@ -531,9 +536,9 @@ Whether the summary data has been written, to guard against it being written mul
 
 Time accumulator so that time is always monotonic
 
-#### `protected bool `[`bIgnoreCurrentIntervalForSummary`](#classURH__PEXCollector_1a6a2aee0c54cac9a825c8578e5053192d) <a id="classURH__PEXCollector_1a6a2aee0c54cac9a825c8578e5053192d"></a>
+#### `protected int32 `[`NumRemainingIntervalsToIgnore`](#classURH__PEXCollector_1ab8b392ab1ba60819943ac70abbde81df) <a id="classURH__PEXCollector_1ab8b392ab1ba60819943ac70abbde81df"></a>
 
-Whether this is interval being captured should be ignored for summary
+Number of remaining intervals to ignore for summary (decremented at the end of each interval)
 
 #### `protected `[`URH_PEXStatGroupsTopLevel`](PlayerExperience.md#classURH__PEXStatGroupsTopLevel)` * `[`TopLevelStatGroup`](#classURH__PEXCollector_1a19bd2bcb0f8f408f9690f7161265ed93) <a id="classURH__PEXCollector_1a19bd2bcb0f8f408f9690f7161265ed93"></a>
 
