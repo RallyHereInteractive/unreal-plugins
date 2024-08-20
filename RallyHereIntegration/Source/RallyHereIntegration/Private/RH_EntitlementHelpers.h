@@ -28,45 +28,31 @@ class URH_LocalPlayerSubsystem;
  */
 class FRH_EntitlementProcessor : public FRH_AsyncTaskHelper
 {
-public:
+public:	
 	/**
 	 * @brief Main Constructor for Entitlement Processor, used internally by the entitlement process calls.
 	 */
-	FRH_EntitlementProcessor(URH_EntitlementSubsystem* InEntitlementSubsystem,
-		IOnlineSubsystem* InOSS,
-		const IOnlinePurchasePtr& InPurchaseSubsystem,
-		int32 InLocalUserNum,
-		FUniqueNetIdWrapper InPlatformUserId,
-		FTimerManager& InTimerManager,
-		const FRH_ProcessEntitlementCompletedDelegate& InProcessorCompleteDelegate,
-		TOptional<ERHAPI_PlatformRegion> InRegion,
-		TOptional<ERHAPI_Platform> InOverridePlatform,
-		TSharedPtr<IAnalyticsProvider> InAnalyticsProvider)
-		: EntitlementSubsystem(InEntitlementSubsystem)
-		, OSS(InOSS)
-		, PurchaseSubsystem(InPurchaseSubsystem)
-		, LocalUserNum(InLocalUserNum)
-		, PlatformUserId(InPlatformUserId)
+	FRH_EntitlementProcessor(
+		  FAuthContextPtr InAuthContext
+		, URH_EntitlementSubsystem* InEntitlementSubsystem
+		, FTimerManager& InTimerManager
+		, const FRH_ProcessEntitlementCompletedDelegate& InProcessorCompleteDelegate
+		, TOptional<ERHAPI_PlatformRegion> InRegion
+		, TOptional<ERHAPI_Platform> InPlatform
+		, TOptional<ERHAPI_ClientType> InClientType
+		, TSharedPtr<IAnalyticsProvider> InAnalyticsProvider
+		)
+		: AuthContext(InAuthContext)
+		, EntitlementSubsystem(InEntitlementSubsystem)
 		, TimerManager(InTimerManager)
 		, EntitlementProcessorCompleteDelegate(InProcessorCompleteDelegate)
 		, Region(InRegion)
+		, Platform(InPlatform)
+		, ClientType(InClientType)
 		, AnalyticsProvider(InAnalyticsProvider)
 	{
-		if (InOverridePlatform.IsSet())
-		{
-			bIsOverride = true;
-			Platform = InOverridePlatform;
-		}
-		else
-		{
-			bIsOverride = false;
-			Platform = RH_GetPlatformFromOSSName(OSS->GetSubsystemName());
-		}
-		if (EntitlementSubsystem.IsValid())
-		{
-			AuthContext = EntitlementSubsystem->GetAuthContext();
-		}
 	}
+	
 	/**
 	 * @brief Start the Entitlement processing.
 	 */
@@ -93,186 +79,42 @@ public:
 			Failed(TEXT("No valid platform"));
 			return;
 		}
-		if (!bIsOverride && PurchaseSubsystem == nullptr)
-		{
-			Failed(TEXT("No Purchase Subsystem"));
-			return;
-		}
-		QueryEntitlements();
+
+		StartProcessor();
 	}
 
 protected:
-	/**
-	 * @brief Queries entitlements from the online subsystem.
-	 */
-	void QueryEntitlements()
+
+	/** @brief Start the processing workflow from the appropriate step */
+	virtual void StartProcessor()
 	{
-		if(PurchaseSubsystem != nullptr && !bIsOverride)
-		{
-			PurchaseSubsystem->QueryReceipts(*OSS->GetIdentityInterface()->GetUniquePlayerId(LocalUserNum), false,
-			FOnQueryReceiptsComplete::CreateSP(this, &FRH_EntitlementProcessor::QueryEntitlementsComplete, OSS));
-		}
-		else
-		{
-			RetrieveOSSAuthToken();
-		}
+		ProcessPlatformInventory(TEXT(""));
 	}
-	/**
-	 * @brief Response from the online subsystem query entitlements call.
-	 * @param [in] Result The result of the query.
-	 * @param [in] ProvidedOSS The OSS that provided the result.
-	 */
-	void QueryEntitlementsComplete(const FOnlineError& Result, IOnlineSubsystem* ProvidedOSS)
+	
+	/** @brief Create the RallyHereAPI based request */
+	virtual TOptional<RallyHereAPI::FRequest_ProcessPlatformEntitlementsByPlayerUuid> CreateRallyHereAPIEntitlementsRequest(const FString& PlatformAuthToken, const FGuid& PlayerUuid)
 	{
-		if (!Result.bSucceeded)
-		{
-			UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Error Processing Platform Entitlements - Error Code: [%s] - Error Message: [%s]"), ANSI_TO_TCHAR(__FUNCTION__), *Result.GetErrorCode(), *Result.GetErrorMessage().ToString());
-			Failed("Failed to query entitlements.");
-			return;
-		}
+		auto Request = RallyHereAPI::FRequest_ProcessPlatformEntitlementsByPlayerUuid();
+		Request.AuthContext = AuthContext;
+		Request.PlayerUuid = PlayerUuid;
+		
+		auto& entitlementRequest = Request.PlatformEntitlementProcessRequest;
 
-		PurchaseSubsystem->GetReceipts(*PlatformUserId, Receipts);
+		entitlementRequest.SetPlatformId(EnumToString(Platform.GetValue()));
 
-		ValidateEntitlementReceipts();
+		entitlementRequest.SetPlatformToken(PlatformAuthToken);
+		entitlementRequest.SetClientType(ClientType.Get(ERHAPI_ClientType::Unknown));
+
+		entitlementRequest.SetPlatformRegion(Region.Get(ERHAPI_PlatformRegion::Unknown));
+		entitlementRequest.SetTransactionId(ProcessEntitlementResult.TransactionId);
+
+		return Request;
 	}
-	/**
-	 * @brief Validates the entitlement receipts if needed by the platform.
-	 */
-	void ValidateEntitlementReceipts()
-	{
-		TArray<FString> ValidationInfos;
-
-		for (FPurchaseReceipt receipt: Receipts)
-		{
-			for (FPurchaseReceipt::FReceiptOfferEntry offerEntry: receipt.ReceiptOffers)
-			{
-				for (FPurchaseReceipt::FLineItemInfo lineItem: offerEntry.LineItems)
-				{
-					ValidationInfos.Add(lineItem.ValidationInfo);
-				}
-			}
-		}
-
-		ReceiptsToValidateCount = ValidationInfos.Num();
-
-		bool bShouldFinalize = ValidationInfos.Num() > 0;
-
-		// EOS subsystems redeem purchases inside of the FinalizeReceiptValidationInfo, which does not conform to the other subsystems.
-		// Skip that step for Epic, and proceed directly to processing the inventory so it can be redeemed on the RHAPI side
-		if (OSS != nullptr && (OSS->GetSubsystemName() == EOS_SUBSYSTEM || OSS->GetSubsystemName() == EOSPLUS_SUBSYSTEM))
-		{
-			bShouldFinalize = false;
-		}
-
-		if(bShouldFinalize)
-		{
-			for (FString validationInfo: ValidationInfos)
-			{
-				PurchaseSubsystem->FinalizeReceiptValidationInfo(*OSS->GetIdentityInterface()->GetUniquePlayerId(LocalUserNum),
-					validationInfo,
-					FOnFinalizeReceiptValidationInfoComplete::CreateSP(this, &FRH_EntitlementProcessor::OnReceiptValidationComplete));
-			}
-		}
-		else
-		{
-			RetrieveOSSAuthToken();
-		}
-	}
-	/**
-	 * @brief Response from the online subsystem validate entitlements call.
-	 * @param [in] Result The result of the query.
-	 * @param [in] ValidationInfo The validation info of the receipt.
-	 */
-	void OnReceiptValidationComplete(const FOnlineError& Result, const FString& ValidationInfo)
-	{
-		if (!Result.bSucceeded)
-		{
-			UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Error Validating Entitlement Receipts - Error Code: [%s] - Error Message: [%s]"), ANSI_TO_TCHAR(__FUNCTION__), *Result.GetErrorCode(), *Result.GetErrorMessage().ToString());
-			Failed("Failed validate receipts.");
-			return;
-		}
-
-		ReceiptsToValidateCount--;
-
-		if(ReceiptsToValidateCount == 0)
-		{
-			// PS4 and PS5 pass through auth token as the first token in a colon delimited string in the validation token.  Parse it out and use it as the auth token.
-			// this cannot be retrieved later, so we need to do it here
-			if (OSS != nullptr && (OSS->GetSubsystemName() == PS4_SUBSYSTEM || OSS->GetSubsystemName() == PS5_SUBSYSTEM))
-			{
-				TArray<FString> ValidationTokens;
-				ValidationInfo.ParseIntoArray(ValidationTokens, TEXT(":"), false);
-				check(ValidationTokens.Num() > 0);
-				FString AuthTokenString = ValidationTokens[0];
-				FExternalAuthToken AuthToken;
-				AuthToken.TokenString = AuthTokenString;
-
-				// additionally, automatically determine region if not specified
-				if (!Region.IsSet())
-				{
-					auto SonyContentId = OSS->GetAppId();
-					if (SonyContentId.StartsWith(TEXT("EP")))
-					{
-						Region = ERHAPI_PlatformRegion::Eu;
-					}
-					else if (SonyContentId.StartsWith(TEXT("UP")))
-					{
-						Region = ERHAPI_PlatformRegion::Na;
-					}
-				}
-
-				RetrieveOSSAuthTokenComplete(LocalUserNum, AuthToken.IsValid(), AuthToken);
-			}
-			else
-			{
-				RetrieveOSSAuthToken();
-			}
-		}
-	}
-
-	void RetrieveOSSAuthToken()
-	{
-		if (OSS != nullptr && OSS->GetIdentityInterface() != nullptr)
-		{
-			auto IdentityInterface = OSS->GetIdentityInterface();
-
-			if (RH_UseGetAuthTokenFallbackFromOSSName(OSS->GetSubsystemName()))
-			{
-				FExternalAuthToken AuthToken;
-				AuthToken.TokenString = IdentityInterface->GetAuthToken(LocalUserNum);
-				RetrieveOSSAuthTokenComplete(LocalUserNum, AuthToken.IsValid(), AuthToken);
-			}
-			else
-			{
-#if RH_FROM_ENGINE_VERSION(5,2)
-				IdentityInterface->GetLinkedAccountAuthToken(LocalUserNum, FString(), IOnlineIdentity::FOnGetLinkedAccountAuthTokenCompleteDelegate::CreateSP(this, &FRH_EntitlementProcessor::RetrieveOSSAuthTokenComplete));
-#else
-				IdentityInterface->GetLinkedAccountAuthToken(LocalUserNum, IOnlineIdentity::FOnGetLinkedAccountAuthTokenCompleteDelegate::CreateSP(this, &FRH_EntitlementProcessor::RetrieveOSSAuthTokenComplete));
-#endif
-			}
-		}
-		else
-		{
-			RetrieveOSSAuthTokenComplete(LocalUserNum, false, FExternalAuthToken());
-		}
-	}
-
-	void RetrieveOSSAuthTokenComplete(int32 InLocalUserNum, bool bWasSuccessful, const FExternalAuthToken& AuthToken)
-	{
-		if (bWasSuccessful)
-		{
-			ProcessPlatformInventory(AuthToken.TokenString);
-		}
-		else
-		{
-			ProcessPlatformInventory(TEXT(""));
-		}
-	}
-
+	
 	/**
 	 * @brief Processes the platform inventory and stores as cached responses.
 	 */
-	void ProcessPlatformInventory(FString PlatformAuthToken)
+	virtual void ProcessPlatformInventory(const FString& PlatformAuthToken)
 	{
 		UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] Submitting Process Platform Entitlements to RallyHere"), *GetName());
 
@@ -281,54 +123,6 @@ protected:
 			Failed(TEXT("No Entitlement Subsystem"));
 			return;
 		}
-
-		for (FPurchaseReceipt receipt: Receipts)
-		{
-			ProcessEntitlementResult.TransactionId = receipt.TransactionId;
-
-			for (FPurchaseReceipt::FReceiptOfferEntry offerEntry: receipt.ReceiptOffers)
-			{
-				if (offerEntry.Quantity > 0)
-				{
-					for (FPurchaseReceipt::FLineItemInfo lineItem: offerEntry.LineItems)
-					{
-						FRHAPI_PlatformEntitlement Entitlement;
-						Entitlement.SetQuantity(offerEntry.Quantity);
-						Entitlement.SetPlatformEntitlementId(lineItem.UniqueId);
-						Entitlement.SetPlatformSku(lineItem.ItemName);
-
-						UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] Ading Client Entitlement to Request - SKU: %s - Entitlement ID: %s - Quantity: %i"), *GetName(), *Entitlement.PlatformSku, *Entitlement.PlatformEntitlementId, Entitlement.GetQuantity(0));
-
-						ProcessEntitlementResult.GetClientEntitlements().Emplace(Entitlement);
-					}
-				}
-			}
-		}
-
-		ProcessEntitlementResult.SetStatus("SUBMITTED");
-		EntitlementSubsystem->GetEntitlementResults()->Emplace(TaskId, ProcessEntitlementResult);
-
-		FRHAPI_PlatformEntitlementProcessRequest entitlementRequest;
-		entitlementRequest.SetEntitlements(ProcessEntitlementResult.GetClientEntitlements());
-		entitlementRequest.SetPlatformId(EnumToString(Platform.GetValue()));
-
-		entitlementRequest.SetPlatformToken(PlatformAuthToken);
-		if (OSS != nullptr && !bIsOverride)
-		{
-			entitlementRequest.SetClientType(RH_GetClientTypeFromOSSName(OSS->GetSubsystemName()));
-		}
-		else if (bIsOverride && Platform.IsSet())
-		{
-			entitlementRequest.SetClientType(RH_GetClientTypeFromOSSName(EntitlementSubsystem->GetEntitlementOSSName())); // note - use entitlement OSS, as platform overrides are not OSS based
-		}
-		else
-		{
-			Failed(TEXT("No OSS, and not using a platform override"));
-			return;
-		}
-
-		entitlementRequest.PlatformRegion = Region.Get(ERHAPI_PlatformRegion::Unknown);
-		entitlementRequest.TransactionId = ProcessEntitlementResult.TransactionId;
 
 		FGuid PlayerUuid;
 		if (AuthContext->GetLoginResult().IsSet())
@@ -341,12 +135,18 @@ protected:
 			return;
 		}
 
-		auto Request = RallyHereAPI::FRequest_ProcessPlatformEntitlementsByPlayerUuid();
-		Request.AuthContext = AuthContext;
-		Request.PlayerUuid = PlayerUuid;
-		Request.PlatformEntitlementProcessRequest = entitlementRequest;
+		auto Request = CreateRallyHereAPIEntitlementsRequest(PlatformAuthToken, PlayerUuid);
 
-		const auto HttpPtr = RH_APIs::GetAPIs().GetEntitlements()->ProcessPlatformEntitlementsByPlayerUuid(Request,
+		if (!Request.IsSet())
+		{
+			Failed(TEXT("Could not create RallyHereAPI Entitlements Request"));
+			return;
+		}
+		
+		ProcessEntitlementResult.SetStatus("SUBMITTED");
+		EntitlementSubsystem->GetEntitlementResults()->Emplace(TaskId, ProcessEntitlementResult);
+		
+		const auto HttpPtr = RH_APIs::GetAPIs().GetEntitlements()->ProcessPlatformEntitlementsByPlayerUuid(Request.GetValue(),
 			RallyHereAPI::FDelegate_ProcessPlatformEntitlementsByPlayerUuid::CreateSP(this, &FRH_EntitlementProcessor::ProcessPlatformInventoryComplete), GetDefault<URH_IntegrationSettings>()->ProcessPlatformEntitlementsPriority);
 
 		if (!HttpPtr)
@@ -357,7 +157,7 @@ protected:
 	/**
 	 * @brief Returns if there are pending entitlement checks being processed in the online subsystem.
 	 */
-	bool CheckIfWeNeedToPoll()
+	virtual bool CheckIfWeNeedToPoll()
 	{
 		for (FRHAPI_PlatformEntitlement client_entitlement : ProcessEntitlementResult.GetClientEntitlements())
 		{
@@ -383,7 +183,7 @@ protected:
 	 * @brief Callback when the processing of platform inventory complets on the core.
 	 * @param [in] Resp The repsonse from the core.
 	 */
-	void ProcessPlatformInventoryComplete(const RallyHereAPI::FResponse_ProcessPlatformEntitlementsByPlayerUuid& Resp)
+	virtual void ProcessPlatformInventoryComplete(const RallyHereAPI::FResponse_ProcessPlatformEntitlementsByPlayerUuid& Resp)
 	{
 		if (Resp.IsSuccessful() && EntitlementSubsystem.IsValid() && Resp.TryGetDefaultContent(ProcessEntitlementResult))
 		{
@@ -415,7 +215,7 @@ protected:
 	 * @brief Polls for new entitlements.
 	 * @param [in] Delegate Delegate to callback when poll completes.
 	 */
-	void PollEntitlements(const FRH_PollCompleteFunc& Delegate)
+	virtual void PollEntitlements(const FRH_PollCompleteFunc& Delegate)
 	{
 		if (!AuthContext.IsValid() || !AuthContext->IsLoggedIn())
 		{
@@ -444,7 +244,7 @@ protected:
 	* @param [in] Resp Response given for the call.
 	* @param [in] Delegate Delegate passed in for original call to respond to when call completes.
 	*/
-	void PollEntitlementComplete(const RallyHereAPI::FResponse_RetrieveEntitlementRequestByPlayerUuid& Resp, FRH_PollCompleteFunc Delegate)
+	virtual void PollEntitlementComplete(const RallyHereAPI::FResponse_RetrieveEntitlementRequestByPlayerUuid& Resp, FRH_PollCompleteFunc Delegate)
 	{
 		bool bHadContent = Resp.TryGetDefaultContent(ProcessEntitlementResult);
 
@@ -469,7 +269,7 @@ protected:
 	/**
 	 * @brief Starts polling of entitlements.
 	 */
-	void StartPoll()
+	virtual void StartPoll()
 	{
 		UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 		static FName PollTimerName(TEXT("Entitlements"));
@@ -485,7 +285,7 @@ protected:
 	/**
 	 * @brief Stops polling of entitlements.
 	 */
-	void StopPoll()
+	virtual void StopPoll()
 	{
 		UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 		if (EntitlementsPoller.IsValid())
@@ -498,14 +298,8 @@ protected:
 	/**
 	 * @brief Finalizes a purchase from an online subsystem.
 	 */
-	void FinalizePurchase()
+	virtual void FinalizePurchase()
 	{
-		UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - Process Platform Entitlements was success, calling finalize purchase on Transaction Id: %s"), ANSI_TO_TCHAR(__FUNCTION__), *ProcessEntitlementResult.TransactionId);
-		if (PurchaseSubsystem != nullptr)
-		{
-			PurchaseSubsystem->FinalizePurchase(*OSS->GetIdentityInterface()->GetUniquePlayerId(LocalUserNum), *ProcessEntitlementResult.GetTransactionId());
-		}
-
 		Completed(true);
 	}
 
@@ -534,18 +328,11 @@ protected:
 
 		EntitlementProcessorCompleteDelegate.ExecuteIfBound(bSuccess, ProcessEntitlementResult);
 	}
+	
 	/** @brief Auth Context used by the entitlement subsystem. */
 	FAuthContextPtr AuthContext;
 	/** @brief Pointer back to the entitlement subsystem that owns this processor. */
 	TWeakObjectPtr<URH_EntitlementSubsystem> EntitlementSubsystem;
-	/** @brief Online Subsystem this processor is for. */
-	IOnlineSubsystem* OSS;
-	/** @brief Online Purchase Subsystem this processor is for. */
-	IOnlinePurchasePtr PurchaseSubsystem;
-	/** @brief Contorller Id of the user. */
-	int32 LocalUserNum;
-	/** @brief Platform User Id of the user. */
-	FUniqueNetIdWrapper PlatformUserId;
 	/** @brief The engines Timer Manager. */
 	FTimerManager& TimerManager;
 	/** @brief Delegate to fire when completed. */
@@ -554,26 +341,366 @@ protected:
 	TOptional<ERHAPI_PlatformRegion> Region;
 	/** @brief Platform the entitlements are for. */
 	TOptional<ERHAPI_Platform> Platform;
-	/** @brief If set, the platform is an override of the main connection platform. */
-	bool bIsOverride = false;
+	/** @brief ClientType the entitlements are for. */
+	TOptional<ERHAPI_ClientType> ClientType;
 	/** @brief Unique Id for the process task. */
 	const FString TaskId = FGuid::NewGuid().ToString();
 	/** @brief Result of the entitlement process. */
 	FRHAPI_PlatformEntitlementProcessResult ProcessEntitlementResult;
-	/** @brief Tracks how many reciepts are still needed to be validated. */
-	int32 ReceiptsToValidateCount = 0;
 	/** @brief Polling interval for entitlments. */
 	float fEntitlementCheckPollInterval;
 	/** @brief Handler for the polling timer. */
 	FTimerHandle EntitlementCheckPollTimerHandle;
 	/** @brief Auto poller for the entitlements. */
 	FRH_AutoPollerPtr EntitlementsPoller;
-	/** @brief Array of reciepts from the online subsystem entitlment check. */
-	TArray<FPurchaseReceipt> Receipts = TArray<FPurchaseReceipt>();
 	/** @brief Http Request for processing entitlements with the core. */
 	FHttpRequestPtr HttpRequest;
 	/** @brief Analytics provider to use for logging. */
 	TSharedPtr<IAnalyticsProvider> AnalyticsProvider;
+};
+
+
+/**
+ * @brief Processor class used to make entitlment process calls utilizing OSS Receipts.
+ */
+class FRH_EntitlementProcessorOSSPurchase : public FRH_EntitlementProcessor
+{
+public:
+	// wrapper containing asynchronous safe references to OSS interfaces and elements (since OSS pointer itself is not safe)
+	struct FEntitlementOSSData
+	{
+		FName SubsystemName;
+		IOnlineIdentityPtr Identity;
+		IOnlinePurchasePtr Purchase;
+		FString AppId;
+		FUniqueNetIdPtr UniqueNetId;
+		int32 LocalUserNum = 0;
+
+		FEntitlementOSSData() = default;
+		
+		FEntitlementOSSData(const IOnlineSubsystem* OSS, int32 InLocalUserNum) : FEntitlementOSSData()
+		{
+			if (OSS != nullptr)
+			{
+				SubsystemName = OSS->GetSubsystemName();
+				Identity = OSS->GetIdentityInterface();
+				Purchase = OSS->GetPurchaseInterface();
+				AppId = OSS->GetAppId();
+				UniqueNetId = Identity.IsValid() ? Identity->GetUniquePlayerId(InLocalUserNum) : nullptr;
+				LocalUserNum = InLocalUserNum;
+			}
+		}
+	};
+	
+	/**
+	 * @brief Main Constructor for Entitlement Processor, used internally by the entitlement process calls.
+	 */
+	FRH_EntitlementProcessorOSSPurchase(
+		  FAuthContextPtr InAuthContext
+		, URH_EntitlementSubsystem* InEntitlementSubsystem
+		, const FEntitlementOSSData& InOSSData
+		, FTimerManager& InTimerManager
+		, const FRH_ProcessEntitlementCompletedDelegate& InProcessorCompleteDelegate
+		, TOptional<ERHAPI_PlatformRegion> InRegion
+		, TSharedPtr<IAnalyticsProvider> InAnalyticsProvider
+		)
+		: FRH_EntitlementProcessor(InAuthContext, InEntitlementSubsystem, InTimerManager, InProcessorCompleteDelegate, InRegion, TOptional<ERHAPI_Platform>(), TOptional<ERHAPI_ClientType>(), InAnalyticsProvider)
+		, OSSData(InOSSData)
+	{
+		// set derived optional data from OSS
+		Platform = RH_GetPlatformFromOSSName(OSSData.SubsystemName);
+		ClientType = RH_GetClientTypeFromOSSName(OSSData.SubsystemName);
+		if (EntitlementSubsystem.IsValid())
+		{
+			AuthContext = EntitlementSubsystem->GetAuthContext();
+		}
+	}
+
+	/**
+	 * @brief Start the Entitlement processing.
+	 */
+	virtual void Start() override
+	{
+		// before the call, we cannot call Failed() since Started() has not been called
+		// after the call we cannot call anything because StartProcesor() has been called
+		FRH_EntitlementProcessor::Start();
+	}
+
+protected:
+	/** @brief Start the processing workflow from the appropriate step */
+	virtual void StartProcessor() override
+	{
+		// validate these all once.  After this call the shared pointers are assumed valid
+		
+		if (OSSData.LocalUserNum < 0 || OSSData.LocalUserNum >= MAX_LOCAL_PLAYERS)
+		{
+			Failed(TEXT("Invalid Local User Num"));
+			return;
+		}
+
+		if (!OSSData.UniqueNetId.IsValid()) // checks shared pointer
+		{
+			Failed(TEXT("No Unique Id"));
+			return;
+		}
+		else if (!OSSData.UniqueNetId->IsValid()) // checks the actual unique id
+		{
+			Failed(TEXT("Invalid Unique Id"));
+			return;
+		}
+		
+		if (!OSSData.Identity.IsValid())
+		{
+			Failed(TEXT("No Purchase Subsystem"));
+			return;
+		}
+		
+		if (!OSSData.Purchase.IsValid())
+		{
+			Failed(TEXT("No Purchase Subsystem"));
+			return;
+		}
+		
+		QueryEntitlements();
+	}
+	
+	/**
+	 * @brief Queries entitlements from the online subsystem.
+	 */
+	void QueryEntitlements()
+	{
+		OSSData.Purchase->QueryReceipts(*OSSData.UniqueNetId, false,
+		FOnQueryReceiptsComplete::CreateSP(this, &FRH_EntitlementProcessorOSSPurchase::QueryEntitlementsComplete));
+	}
+	/**
+	 * @brief Response from the online subsystem query entitlements call.
+	 * @param [in] Result The result of the query.
+	 */
+	void QueryEntitlementsComplete(const FOnlineError& Result)
+	{
+		if (!Result.bSucceeded)
+		{
+			UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Error Processing Platform Entitlements - Error Code: [%s] - Error Message: [%s]"), ANSI_TO_TCHAR(__FUNCTION__), *Result.GetErrorCode(), *Result.GetErrorMessage().ToString());
+			Failed("Failed to query entitlements.");
+			return;
+		}
+
+		OSSData.Purchase->GetReceipts(*OSSData.UniqueNetId, Receipts);
+
+		ValidateEntitlementReceipts();
+	}
+	/**
+	 * @brief Validates the entitlement receipts if needed by the platform.
+	 */
+	void ValidateEntitlementReceipts()
+	{
+		TArray<FString> ValidationInfos;
+
+		for (FPurchaseReceipt receipt: Receipts)
+		{
+			for (FPurchaseReceipt::FReceiptOfferEntry offerEntry: receipt.ReceiptOffers)
+			{
+				for (FPurchaseReceipt::FLineItemInfo lineItem: offerEntry.LineItems)
+				{
+					ValidationInfos.Add(lineItem.ValidationInfo);
+				}
+			}
+		}
+
+		ReceiptsToValidateCount = ValidationInfos.Num();
+
+		bool bShouldFinalize = ValidationInfos.Num() > 0;
+
+		// EOS subsystems redeem purchases inside of the FinalizeReceiptValidationInfo, which does not conform to the other subsystems.
+		// Skip that step for Epic, and proceed directly to processing the inventory so it can be redeemed on the RHAPI side
+		if (RH_SkipEntitlementFinalization(OSSData.SubsystemName))
+		{
+			bShouldFinalize = false;
+		}
+
+		if(bShouldFinalize)
+		{
+			for (FString validationInfo: ValidationInfos)
+			{
+				OSSData.Purchase->FinalizeReceiptValidationInfo(*OSSData.UniqueNetId,
+					validationInfo,
+					FOnFinalizeReceiptValidationInfoComplete::CreateSP(this, &FRH_EntitlementProcessorOSSPurchase::OnReceiptValidationComplete));
+			}
+		}
+		else
+		{
+			RetrieveOSSAuthToken();
+		}
+	}
+	/**
+	 * @brief Response from the online subsystem validate entitlements call.
+	 * @param [in] Result The result of the query.
+	 * @param [in] ValidationInfo The validation info of the receipt.
+	 */
+	void OnReceiptValidationComplete(const FOnlineError& Result, const FString& ValidationInfo)
+	{
+		if (!Result.bSucceeded)
+		{
+			UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Error Validating Entitlement Receipts - Error Code: [%s] - Error Message: [%s]"), ANSI_TO_TCHAR(__FUNCTION__), *Result.GetErrorCode(), *Result.GetErrorMessage().ToString());
+			Failed("Failed validate receipts.");
+			return;
+		}
+
+		ReceiptsToValidateCount--;
+
+		if(ReceiptsToValidateCount == 0)
+		{
+			// PS4 and PS5 pass through auth token as the first token in a colon delimited string in the validation token.  Parse it out and use it as the auth token.
+			// this cannot be retrieved later, so we need to do it here
+			if (RH_UsesSonyEntitlementTokens(OSSData.SubsystemName))
+			{
+				TArray<FString> ValidationTokens;
+				ValidationInfo.ParseIntoArray(ValidationTokens, TEXT(":"), false);
+				check(ValidationTokens.Num() > 0);
+				FString AuthTokenString = ValidationTokens[0];
+				FExternalAuthToken AuthToken;
+				AuthToken.TokenString = AuthTokenString;
+
+				// additionally, automatically determine region if not specified
+				if (!Region.IsSet())
+				{
+					auto SonyContentId = OSSData.AppId;
+					if (SonyContentId.StartsWith(TEXT("EP")))
+					{
+						Region = ERHAPI_PlatformRegion::Eu;
+					}
+					else if (SonyContentId.StartsWith(TEXT("UP")))
+					{
+						Region = ERHAPI_PlatformRegion::Na;
+					}
+				}
+
+				RetrieveOSSAuthTokenComplete(OSSData.LocalUserNum, AuthToken.IsValid(), AuthToken);
+			}
+			else
+			{
+				RetrieveOSSAuthToken();
+			}
+		}
+	}
+
+	void RetrieveOSSAuthToken()
+	{
+		if (RH_UseGetAuthTokenFallbackFromOSSName(OSSData.SubsystemName))
+		{
+			FExternalAuthToken AuthToken;
+			AuthToken.TokenString = OSSData.Identity->GetAuthToken(OSSData.LocalUserNum);
+			RetrieveOSSAuthTokenComplete(OSSData.LocalUserNum, AuthToken.IsValid(), AuthToken);
+		}
+		else
+		{
+#if RH_FROM_ENGINE_VERSION(5,2)
+			OSSData.Identity->GetLinkedAccountAuthToken(OSSData.LocalUserNum, FString(), IOnlineIdentity::FOnGetLinkedAccountAuthTokenCompleteDelegate::CreateSP(this, &FRH_EntitlementProcessorOSSPurchase::RetrieveOSSAuthTokenComplete));
+#else
+			IdentityInterface->GetLinkedAccountAuthToken(LocalUserNum, IOnlineIdentity::FOnGetLinkedAccountAuthTokenCompleteDelegate::CreateSP(this, &FRH_EntitlementProcessor::RetrieveOSSAuthTokenComplete));
+#endif
+		}
+	}
+
+	void RetrieveOSSAuthTokenComplete(int32 InLocalUserNum, bool bWasSuccessful, const FExternalAuthToken& AuthToken)
+	{
+		if (bWasSuccessful)
+		{
+			ProcessPlatformInventory(AuthToken.TokenString);
+		}
+		else
+		{
+			ProcessPlatformInventory(TEXT(""));
+		}
+	}
+
+	/** Create the RallyHereAPI based request */
+	virtual TOptional<RallyHereAPI::FRequest_ProcessPlatformEntitlementsByPlayerUuid> CreateRallyHereAPIEntitlementsRequest(const FString& PlatformAuthToken, const FGuid& PlayerUuid) override
+	{
+		auto RequestOptional = FRH_EntitlementProcessor::CreateRallyHereAPIEntitlementsRequest(PlatformAuthToken, PlayerUuid);
+
+		if (!RequestOptional.IsSet())
+		{
+			return RequestOptional;
+		}
+
+		auto& Request = RequestOptional.GetValue();
+		auto& entitlementRequest = Request.PlatformEntitlementProcessRequest;
+
+		// inject the OSS receipt data into the request
+		for (FPurchaseReceipt receipt: Receipts)
+		{
+			ProcessEntitlementResult.TransactionId = receipt.TransactionId;
+
+			for (FPurchaseReceipt::FReceiptOfferEntry offerEntry: receipt.ReceiptOffers)
+			{
+				if (offerEntry.Quantity > 0)
+				{
+					for (FPurchaseReceipt::FLineItemInfo lineItem: offerEntry.LineItems)
+					{
+						FRHAPI_PlatformEntitlement Entitlement;
+						Entitlement.SetQuantity(offerEntry.Quantity);
+						Entitlement.SetPlatformEntitlementId(lineItem.UniqueId);
+						Entitlement.SetPlatformSku(lineItem.ItemName);
+
+						UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] Ading Client Entitlement to Request - SKU: %s - Entitlement ID: %s - Quantity: %i"), *GetName(), *Entitlement.PlatformSku, *Entitlement.PlatformEntitlementId, Entitlement.GetQuantity(0));
+
+						ProcessEntitlementResult.GetClientEntitlements().Emplace(Entitlement);
+					}
+				}
+			}
+		}
+
+		Request.PlatformEntitlementProcessRequest.SetEntitlements(ProcessEntitlementResult.GetClientEntitlements());
+
+		return RequestOptional;
+	}
+	
+	/**
+	 * @brief Finalizes a purchase from an online subsystem.
+	 */
+	virtual void FinalizePurchase() override
+	{
+		UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - Process Platform Entitlements was success, calling finalize purchase on Transaction Id: %s"), ANSI_TO_TCHAR(__FUNCTION__), *ProcessEntitlementResult.TransactionId);
+		OSSData.Purchase->FinalizePurchase(*OSSData.UniqueNetId, *ProcessEntitlementResult.GetTransactionId());
+
+		FRH_EntitlementProcessor::FinalizePurchase();
+	}
+
+	/**
+	 * @brief Gets the name of the entitlement processor.
+	 */
+	virtual FString GetName() const override
+	{
+		static const FString Name(TEXT("FRH_EntitlementProcessorOSSPurchase"));
+		return Name;
+	}
+	/**
+	 * @brief Triggers the callback of the Entitlements Processor.
+	 * @param [in] bSuccess If true, the entitlement process was successful.
+	 */
+	virtual void ExecuteCallback(bool bSuccess) const override
+	{
+		if(bSuccess)
+		{
+			UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - Process OSS Based Entitlements completed successfully"), ANSI_TO_TCHAR(__FUNCTION__));
+		}
+		else
+		{
+			UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Failed to Process OSS Based Entitlements"), ANSI_TO_TCHAR(__FUNCTION__));
+		}
+
+		EntitlementProcessorCompleteDelegate.ExecuteIfBound(bSuccess, ProcessEntitlementResult);
+	}
+
+	/** @brief Online Subsystem this processor is for. */
+	FEntitlementOSSData OSSData;
+	
+	/** @brief Tracks how many reciepts are still needed to be validated. */
+	int32 ReceiptsToValidateCount = 0;
+
+	/** @brief Array of reciepts from the online subsystem entitlment check. */
+	TArray<FPurchaseReceipt> Receipts = TArray<FPurchaseReceipt>();
 };
 
 /** @} */

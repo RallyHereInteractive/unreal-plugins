@@ -68,33 +68,36 @@ void URH_EntitlementSubsystem::HandleNotification(const FRHAPI_Notification& Not
 
 void URH_EntitlementSubsystem::SubmitEntitlementsForLoggedInOSS(const FRH_ProcessEntitlementCompletedDelegate& EntitlementProcessorCompleteDelegate, TOptional<ERHAPI_PlatformRegion> Region)
 {
-	auto Helper = MakeShared<FRH_EntitlementProcessor>(this,
-			GetOSS(),
-			GetPurchaseSubsystem(),
-			GetRH_LocalPlayerSubsystem()->GetPlatformUserId(),
-			GetRH_LocalPlayerSubsystem()->GetOSSUniqueId().GetUniqueNetId(),
+	FRH_EntitlementProcessorOSSPurchase::FEntitlementOSSData EntitlementOSSData(GetOSS(), GetRH_LocalPlayerSubsystem()->GetPlatformUserId());;
+	
+	auto Helper = MakeShared<FRH_EntitlementProcessorOSSPurchase>(
+			GetAuthContext(),
+			this,
+			EntitlementOSSData,
 			GetTimerManager(),
 			EntitlementProcessorCompleteDelegate,
 			Region,
-			TOptional<ERHAPI_Platform>(),
 			GetRH_LocalPlayerSubsystem()->GetAnalyticsProvider()
 		);
+	
 	Helper->Start();
 }
 
 void URH_EntitlementSubsystem::SubmitEntitlementsForPlatform(ERHAPI_Platform Platform, const FRH_ProcessEntitlementCompletedDelegate& EntitlementProcessorCompleteDelegate, TOptional<ERHAPI_PlatformRegion> Region)
 {
-	auto Helper = MakeShared<FRH_EntitlementProcessor>(this,
-			nullptr,
-			GetPurchaseSubsystem(),
-			GetRH_LocalPlayerSubsystem()->GetPlatformUserId(),
-			GetRH_LocalPlayerSubsystem()->GetOSSUniqueId().GetUniqueNetId(),
+	auto ClientType = RH_GetClientTypeFromOSSName(GetEntitlementOSSName());
+
+	auto Helper = MakeShared<FRH_EntitlementProcessor>(
+			GetAuthContext(),
+			this,
 			GetTimerManager(),
 			EntitlementProcessorCompleteDelegate,
 			Region,
 			Platform,
+			ClientType,
 			GetRH_LocalPlayerSubsystem()->GetAnalyticsProvider()
 		);
+	
 	Helper->Start();
 }
 
@@ -144,13 +147,7 @@ IOnlineSubsystem* URH_EntitlementSubsystem::GetOSS() const
 			return nullptr;
 		}
 
-		IOnlineSubsystem* oss = LPSS->GetOSS(EntitlementOSSName);
-		if (oss == nullptr)
-		{
-			return nullptr;
-		}
-
-		return oss;
+		return LPSS->GetOSS(EntitlementOSSName);
 	}
 
 	return nullptr;
@@ -158,7 +155,8 @@ IOnlineSubsystem* URH_EntitlementSubsystem::GetOSS() const
 
 IOnlinePurchasePtr URH_EntitlementSubsystem::GetPurchaseSubsystem() const
 {
-	if (IOnlineSubsystem* OSS = GetOSS())
+	auto OSS = GetOSS();
+	if (OSS != nullptr)
 	{
 		IOnlinePurchasePtr purchase = OSS->GetPurchaseInterface();
 		return purchase;

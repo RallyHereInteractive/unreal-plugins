@@ -584,7 +584,7 @@ void URH_PlayerInfo::OnGetPlayerSettingsResponse(const GetSettings::Response& Re
 		if (bIsPartial)
 		{
 			// Update the local cache with the new settings (certain legacy setting types can affect multiple keys, so process all entries in the list)
-			auto SettingWrapper = PlayerSettingsByTypeId.FindOrAdd(SettingTypeId);
+			auto& SettingWrapper = PlayerSettingsByTypeId.FindOrAdd(SettingTypeId);
 
 			for (const auto& Key : OptionalKeys.GetValue())
 			{
@@ -731,7 +731,7 @@ void URH_PlayerInfo::SetPlayerSetting(const FString& SettingTypeId, const FStrin
 					UpdatedContent->Content = *Content;
 
 					// Update the local cache with the new settings (certain legacy setting types can affect multiple keys, so process all entries in the list)
-					auto SettingWrapper = PlayerSettingsByTypeId.FindOrAdd(SettingTypeId);
+					auto& SettingWrapper = PlayerSettingsByTypeId.FindOrAdd(SettingTypeId);
 
 					for (const auto& Pair : UpdatedContent->Content)
 					{

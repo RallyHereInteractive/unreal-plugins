@@ -40,11 +40,11 @@ namespace
 		}
 	}
 
-	void LogHeaders(const TArray<FString>& Headers)
+	void LogHeaders(const TArray<FString>& Headers, const FString& Prefix)
 	{
 		for (const FString& Header : Headers)
 		{
-			UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("Header: %s"), *Header);
+			UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("%s Header: %s"), *Prefix, *Header);
 		}
 	}
 
@@ -195,7 +195,7 @@ namespace
 		if (Headers != nullptr)
 		{
 			const TArray<FString> SanitizedHeaders = SanitizeHeaders(*Headers, SensitiveHeaders);
-			LogHeaders(SanitizedHeaders);
+			LogHeaders(SanitizedHeaders, Prefix);
 		}
 
 		if (Content != nullptr)
@@ -514,7 +514,7 @@ void FRH_WebRequests::OnWebRequestCompleted_Log(const RallyHereAPI::FResponse& R
 
 	if (HttpResponse != nullptr)
 	{
-		LogHeaders(SanitizeHeaders(HttpResponse->GetAllHeaders(), GetSensitiveHeadersForResponse(Response.GetRequestMetadata())));
+		LogHeaders(SanitizeHeaders(HttpResponse->GetAllHeaders(), GetSensitiveHeadersForResponse(Response.GetRequestMetadata())), Prefix);
 	}
 
 	LogContent(ResponseContent, Prefix);

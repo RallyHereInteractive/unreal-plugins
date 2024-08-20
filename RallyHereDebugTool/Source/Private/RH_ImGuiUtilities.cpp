@@ -629,3 +629,14 @@ void FImGuiCustomDataStager::SetDataFromMap(const TMap<FString, FString>& InMap)
 		Fields.Add(NewPair);
 	}
 }
+
+void ImGuiBeginEditableOptionalValue(const char* OptionalLabel, bool& IsSet)
+{
+	ImGui::Checkbox(OptionalLabel, &IsSet);
+	ImGui::SameLine();
+	ImGui::BeginDisabled(!IsSet);	
+}
+void ImGuiEndEditableOptionalValue()
+{
+	ImGui::EndDisabled();
+}

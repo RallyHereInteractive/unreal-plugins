@@ -83,6 +83,8 @@ TOptional<ERHAPI_GrantType> RALLYHEREINTEGRATION_API RH_GetGrantTypeFromOSSName(
 bool RALLYHEREINTEGRATION_API RH_UseGetAuthTokenFallbackFromOSSName(FName OSSName);
 bool RALLYHEREINTEGRATION_API RH_PlatformSessionsTypeIsCaseInsensitive(FName SessionType);
 bool RALLYHEREINTEGRATION_API RH_UseRecentPlayersFromOSSName(FName OSSName);
+bool RALLYHEREINTEGRATION_API RH_SkipEntitlementFinalization(FName OSSName);
+bool RALLYHEREINTEGRATION_API RH_UsesSonyEntitlementTokens(FName OSSName);
 FString RALLYHEREINTEGRATION_API RH_GetPlatformNameFromPlatformEnum(const ERHAPI_Platform Platform);
 
 ERHAPI_InventoryBucket RALLYHEREINTEGRATION_API RH_GetInventoryBucketFromPlatform(ERHAPI_Platform PlatformType);
@@ -473,7 +475,17 @@ public:
 		}
 		else
 		{
-			Failed(TEXT("Query Failed"));
+			FString FailureReason = FString::Printf(TEXT("Query Failed with Code: %d"), Resp.GetHttpResponseCode());
+			if (ErrorInfo.bIsRHCommonError)
+			{
+				FailureReason += TEXT(", ") +  FString::Printf(TEXT("Common Error: Code: %s, Desc: %s"), *ErrorInfo.RHCommonError.GetErrorCode(), *ErrorInfo.RHCommonError.GetDesc());
+			}
+			else if (ErrorInfo.bIsRHValidationError)
+			{
+				FailureReason += TEXT(", ") +  FString::Printf(TEXT("Validation Error: Type: %s, Msg: %s"), *ErrorInfo.RHValidationError.GetType(), *ErrorInfo.RHValidationError.GetMsg());
+			}
+			
+			Failed(FailureReason);
 		}
 	}
 

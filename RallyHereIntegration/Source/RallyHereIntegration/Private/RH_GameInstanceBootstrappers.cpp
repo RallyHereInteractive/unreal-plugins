@@ -571,7 +571,7 @@ void URH_GameInstanceServerBootstrapper::OnBootstrappingFailed(const FString& Fa
 			}
 			else
 			{
-				RequestEngineExit(TEXT("Server bootstrapper failed"));
+				FPlatformMisc::RequestExitWithStatus(false, 0x5);
 			}
 		};
 
