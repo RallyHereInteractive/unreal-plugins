@@ -634,9 +634,11 @@ void ImGuiBeginEditableOptionalValue(const char* OptionalLabel, bool& IsSet)
 {
 	ImGui::Checkbox(OptionalLabel, &IsSet);
 	ImGui::SameLine();
-	ImGui::BeginDisabled(!IsSet);	
+	ImGui::BeginDisabled(!IsSet);
+	ImGui::PushID(OptionalLabel);
 }
 void ImGuiEndEditableOptionalValue()
 {
+	ImGui::PopID();
 	ImGui::EndDisabled();
 }

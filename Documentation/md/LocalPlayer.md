@@ -626,23 +626,26 @@ Subsystem to manage the local players presence.
 --------------------------------|---------------------------------------------
 `public virtual void `[`Initialize`](#classURH__LocalPlayerPresenceSubsystem_1adff181e922e0327fa815a1c482058264)`()` | Initialize the subsystem.
 `public virtual void `[`Deinitialize`](#classURH__LocalPlayerPresenceSubsystem_1a6c5c5b743483e94ddce8383032cccabe)`()` | Safely tears down the subsystem.
-`public void `[`UpdatePlayerPresenceSelf`](#classURH__LocalPlayerPresenceSubsystem_1a83c721326ab8300a7bbd7c7e5137ca6c)`(RallyHereAPI::FRequest_UpdatePlayerPresenceSelf & Request,const RallyHereAPI::FDelegate_UpdatePlayerPresenceSelf & Delegate)` | Calls the Presence API to update a players personal presence information.
+`public void `[`UpdatePlayerPresenceSelf`](#classURH__LocalPlayerPresenceSubsystem_1a83c721326ab8300a7bbd7c7e5137ca6c)`(RallyHereAPI::FRequest_UpdatePlayerPresenceSelf & Request,const RallyHereAPI::FDelegate_UpdatePlayerPresenceSelf & Delegate)` | Calls the Presence API to update a players personal presence information directly, and does not update desired state. Will be overridden by the next poll.
 `public void `[`GetPlayerPresenceSelf`](#classURH__LocalPlayerPresenceSubsystem_1ab096cb0926b3e19efa5be81186292fce)`(RallyHereAPI::FRequest_GetPlayerPresenceSelf & Request,const RallyHereAPI::FDelegate_GetPlayerPresenceSelf & Delegate)` | Calls the Presence API to get your own player presence information.
 `public void `[`GetSettings`](#classURH__LocalPlayerPresenceSubsystem_1ad4ea4f754634f475f0dc22b2cff65ef0)`(RallyHereAPI::FRequest_GetPresenceSettings & Request,const RallyHereAPI::FDelegate_GetPresenceSettings & Delegate)` | Calls the Presence API to get the presence settings data.
 `public inline void `[`SetDesiredStatus`](#classURH__LocalPlayerPresenceSubsystem_1ab6e29c7025a2ba472476ed0ce806f746)`(ERHAPI_OnlineStatus NewStatus)` | Requests an update of your presence status to be set to the desired status.
 `public inline ERHAPI_OnlineStatus `[`GetDesiredStatus`](#classURH__LocalPlayerPresenceSubsystem_1a9a1748ca16136289f3764459ee8cae4e)`() const` | Gets the desired status that the player wants to be set to.
-`public inline void `[`SetDesiredMessage`](#classURH__LocalPlayerPresenceSubsystem_1a4317fe9af04ece94f342908b2eb84d08)`(FString NewMessage)` | Requests an update of your presence message to be set to the desired message.
+`public inline void `[`SetDesiredMessage`](#classURH__LocalPlayerPresenceSubsystem_1a9cea292e3dbfd0797b74c255eff518f8)`(FString NewMessage,bool bImmediateRefresh)` | Requests an update of your presence message to be set to the desired message.
 `public inline FString `[`GetDesiredMessage`](#classURH__LocalPlayerPresenceSubsystem_1af295bb46e499c2c8aa1f208a30f722d5)`() const` | Gets the desired message that the player wants to be set to.
 `public inline void `[`SetDesiredDoNotDisturb`](#classURH__LocalPlayerPresenceSubsystem_1a7f8a9a266c0ab29d1da24f836a3a58ba)`(bool NewDoNotDisturb)` | Requests an update of your presence do not disturb setting to be set to the desired setting.
 `public inline bool `[`GetDesiredDoNotDisturb`](#classURH__LocalPlayerPresenceSubsystem_1aec49acc65c1627bcfb9b95eb29b1c2dc)`() const` | Gets the desired do not disturb setting that the player wants to be set to.
+`public inline void `[`SetDesiredCustomData`](#classURH__LocalPlayerPresenceSubsystem_1af554c5a6e2f17be875c859f0e6503245)`(TMap< FString, FString > NewCustomData)` | Requests an update of your presence custom data to be set to the desired setting.
+`public inline const TMap< FString, FString > `[`GetDesiredCustomData`](#classURH__LocalPlayerPresenceSubsystem_1a44018e1ef4737b09d495eeca408c3016)`() const` | Gets the desired custom data that the player wants to be set to.
+`public inline void `[`SetDesiredPresence`](#classURH__LocalPlayerPresenceSubsystem_1a4ffc23a0a9185823907fff0c361e4045)`(`[`FRHAPI_PlayerPresenceUpdateSelf`](models/RHAPI_PlayerPresenceUpdateSelf.md#structFRHAPI__PlayerPresenceUpdateSelf)` NewPresenceState)` | Requests an update of your entire presence state to be set to the desired structure.
+`public inline const `[`FRHAPI_PlayerPresenceUpdateSelf`](models/RHAPI_PlayerPresenceUpdateSelf.md#structFRHAPI__PlayerPresenceUpdateSelf)` & `[`GetDesiredPresence`](#classURH__LocalPlayerPresenceSubsystem_1a0b762d8e59fc2ceeafafb5b77f3b1c6a)`() const` | Gets the desired custom data that the player wants to be set to.
 `public void `[`StartRefreshTimer`](#classURH__LocalPlayerPresenceSubsystem_1a32af15e5eafaf94bdea501e1dc02d90b)`()` | Starts polling to refresh the player's presence status.
 `public void `[`StopRefreshTimer`](#classURH__LocalPlayerPresenceSubsystem_1a95919d768be0b60ad1134052aff7ef2c)`()` | Stops polling to refresh the player's presence status.
 `public void `[`RefreshStatus`](#classURH__LocalPlayerPresenceSubsystem_1a409192cc26f0fb395231023cf4449fa7)`()` | Forces an update of the players presence with a status change.
 `public bool `[`IsRefreshTimerActive`](#classURH__LocalPlayerPresenceSubsystem_1ac786e4bb032fc9711ec196868c6c6b30)`(float & TimeRemaining) const` | Returns whether the refresh timer is active. param [in].
 `protected FRH_AutoPollerPtr `[`Poller`](#classURH__LocalPlayerPresenceSubsystem_1ab76093aeb1b7ae4313b979bfb5981f04) | Poller for the local presence.
-`protected ERHAPI_OnlineStatus `[`DesiredStatus`](#classURH__LocalPlayerPresenceSubsystem_1acf40e5a58f306238baf322baa860c101) | The Status that the local player is being changed to.
-`protected FString `[`DesiredMessage`](#classURH__LocalPlayerPresenceSubsystem_1afbd63003cbfa2accf1475d7af1146bae) | The presence message that the local player is being changed to.
-`protected bool `[`DesiredDoNotDisturb`](#classURH__LocalPlayerPresenceSubsystem_1a02b64db5884e0d75087d69e11d7ae4a2) | The do not disturb setting that the local player is being changed to.
+`protected `[`FRHAPI_PlayerPresenceUpdateSelf`](models/RHAPI_PlayerPresenceUpdateSelf.md#structFRHAPI__PlayerPresenceUpdateSelf)` `[`DesiredPresenceState`](#classURH__LocalPlayerPresenceSubsystem_1a005a96091c2add66fdfdf43b685247c9) | The Status that the local player is being changed to.
+`protected TOptional< FString > `[`LastETag`](#classURH__LocalPlayerPresenceSubsystem_1a8f9d559a2e3b544b53c55c2a1aebc640) | The last ETag from the last successful poll.
 `protected virtual void `[`OnUserChanged`](#classURH__LocalPlayerPresenceSubsystem_1a39281ccf81d020bce677a4687ac61d16)`()` | Callback that occurs whenever the local player this subsystem is associated with changes.
 `protected virtual void `[`InitPropertiesWithDefaultValues`](#classURH__LocalPlayerPresenceSubsystem_1a41e97dcb80554d54d25008f03d407e1f)`()` | Initializes the subsystem with defaults for its cached data.
 `protected void `[`PollRefreshStatus`](#classURH__LocalPlayerPresenceSubsystem_1a12037a7eca5aa1bd88eb909748cf1a8e)`(const FRH_PollCompleteFunc & Delegate)` | Polls the status of the players presence.
@@ -659,7 +662,7 @@ Safely tears down the subsystem.
 
 #### `public void `[`UpdatePlayerPresenceSelf`](#classURH__LocalPlayerPresenceSubsystem_1a83c721326ab8300a7bbd7c7e5137ca6c)`(RallyHereAPI::FRequest_UpdatePlayerPresenceSelf & Request,const RallyHereAPI::FDelegate_UpdatePlayerPresenceSelf & Delegate)` <a id="classURH__LocalPlayerPresenceSubsystem_1a83c721326ab8300a7bbd7c7e5137ca6c"></a>
 
-Calls the Presence API to update a players personal presence information.
+Calls the Presence API to update a players personal presence information directly, and does not update desired state. Will be overridden by the next poll.
 
 #### Parameters
 * `Request` Request object containing the information to update. 
@@ -695,7 +698,7 @@ Requests an update of your presence status to be set to the desired status.
 
 Gets the desired status that the player wants to be set to.
 
-#### `public inline void `[`SetDesiredMessage`](#classURH__LocalPlayerPresenceSubsystem_1a4317fe9af04ece94f342908b2eb84d08)`(FString NewMessage)` <a id="classURH__LocalPlayerPresenceSubsystem_1a4317fe9af04ece94f342908b2eb84d08"></a>
+#### `public inline void `[`SetDesiredMessage`](#classURH__LocalPlayerPresenceSubsystem_1a9cea292e3dbfd0797b74c255eff518f8)`(FString NewMessage,bool bImmediateRefresh)` <a id="classURH__LocalPlayerPresenceSubsystem_1a9cea292e3dbfd0797b74c255eff518f8"></a>
 
 Requests an update of your presence message to be set to the desired message.
 
@@ -717,6 +720,28 @@ Requests an update of your presence do not disturb setting to be set to the desi
 
 Gets the desired do not disturb setting that the player wants to be set to.
 
+#### `public inline void `[`SetDesiredCustomData`](#classURH__LocalPlayerPresenceSubsystem_1af554c5a6e2f17be875c859f0e6503245)`(TMap< FString, FString > NewCustomData)` <a id="classURH__LocalPlayerPresenceSubsystem_1af554c5a6e2f17be875c859f0e6503245"></a>
+
+Requests an update of your presence custom data to be set to the desired setting.
+
+#### Parameters
+* `NewCustomData` The new custom data desired.
+
+#### `public inline const TMap< FString, FString > `[`GetDesiredCustomData`](#classURH__LocalPlayerPresenceSubsystem_1a44018e1ef4737b09d495eeca408c3016)`() const` <a id="classURH__LocalPlayerPresenceSubsystem_1a44018e1ef4737b09d495eeca408c3016"></a>
+
+Gets the desired custom data that the player wants to be set to.
+
+#### `public inline void `[`SetDesiredPresence`](#classURH__LocalPlayerPresenceSubsystem_1a4ffc23a0a9185823907fff0c361e4045)`(`[`FRHAPI_PlayerPresenceUpdateSelf`](models/RHAPI_PlayerPresenceUpdateSelf.md#structFRHAPI__PlayerPresenceUpdateSelf)` NewPresenceState)` <a id="classURH__LocalPlayerPresenceSubsystem_1a4ffc23a0a9185823907fff0c361e4045"></a>
+
+Requests an update of your entire presence state to be set to the desired structure.
+
+#### Parameters
+* `NewPresenceState` The new custom data desired.
+
+#### `public inline const `[`FRHAPI_PlayerPresenceUpdateSelf`](models/RHAPI_PlayerPresenceUpdateSelf.md#structFRHAPI__PlayerPresenceUpdateSelf)` & `[`GetDesiredPresence`](#classURH__LocalPlayerPresenceSubsystem_1a0b762d8e59fc2ceeafafb5b77f3b1c6a)`() const` <a id="classURH__LocalPlayerPresenceSubsystem_1a0b762d8e59fc2ceeafafb5b77f3b1c6a"></a>
+
+Gets the desired custom data that the player wants to be set to.
+
 #### `public void `[`StartRefreshTimer`](#classURH__LocalPlayerPresenceSubsystem_1a32af15e5eafaf94bdea501e1dc02d90b)`()` <a id="classURH__LocalPlayerPresenceSubsystem_1a32af15e5eafaf94bdea501e1dc02d90b"></a>
 
 Starts polling to refresh the player's presence status.
@@ -737,17 +762,13 @@ Returns whether the refresh timer is active. param [in].
 
 Poller for the local presence.
 
-#### `protected ERHAPI_OnlineStatus `[`DesiredStatus`](#classURH__LocalPlayerPresenceSubsystem_1acf40e5a58f306238baf322baa860c101) <a id="classURH__LocalPlayerPresenceSubsystem_1acf40e5a58f306238baf322baa860c101"></a>
+#### `protected `[`FRHAPI_PlayerPresenceUpdateSelf`](models/RHAPI_PlayerPresenceUpdateSelf.md#structFRHAPI__PlayerPresenceUpdateSelf)` `[`DesiredPresenceState`](#classURH__LocalPlayerPresenceSubsystem_1a005a96091c2add66fdfdf43b685247c9) <a id="classURH__LocalPlayerPresenceSubsystem_1a005a96091c2add66fdfdf43b685247c9"></a>
 
 The Status that the local player is being changed to.
 
-#### `protected FString `[`DesiredMessage`](#classURH__LocalPlayerPresenceSubsystem_1afbd63003cbfa2accf1475d7af1146bae) <a id="classURH__LocalPlayerPresenceSubsystem_1afbd63003cbfa2accf1475d7af1146bae"></a>
+#### `protected TOptional< FString > `[`LastETag`](#classURH__LocalPlayerPresenceSubsystem_1a8f9d559a2e3b544b53c55c2a1aebc640) <a id="classURH__LocalPlayerPresenceSubsystem_1a8f9d559a2e3b544b53c55c2a1aebc640"></a>
 
-The presence message that the local player is being changed to.
-
-#### `protected bool `[`DesiredDoNotDisturb`](#classURH__LocalPlayerPresenceSubsystem_1a02b64db5884e0d75087d69e11d7ae4a2) <a id="classURH__LocalPlayerPresenceSubsystem_1a02b64db5884e0d75087d69e11d7ae4a2"></a>
-
-The do not disturb setting that the local player is being changed to.
+The last ETag from the last successful poll.
 
 #### `protected virtual void `[`OnUserChanged`](#classURH__LocalPlayerPresenceSubsystem_1a39281ccf81d020bce677a4687ac61d16)`()` <a id="classURH__LocalPlayerPresenceSubsystem_1a39281ccf81d020bce677a4687ac61d16"></a>
 
