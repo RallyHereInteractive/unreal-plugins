@@ -121,12 +121,17 @@ public:
 	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
 	bool bIsHost;
 
+	/** @brief Cached information for the session info at the time it was activated, in case it is changed or lost */
+	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
+	FRHAPI_Session ActivationSessionInfo;
+
 	FRH_ActiveSessionState()
 		: Session(nullptr)
 		, bIsBackfillTerminated(false)
 		, PlayerExperienceCollector(nullptr)
 		, ActivationTime()
 		, bIsHost(false)
+		, ActivationSessionInfo()
 	{
 	}
 
@@ -145,6 +150,7 @@ public:
 		}
 		ActivationTime = FDateTime();
 		bIsHost = false;
+		ActivationSessionInfo = FRHAPI_Session();
 	}
 };
 
@@ -346,6 +352,11 @@ public:
 	virtual void SubmitPEXHostSummary(FRHAPI_PexHostRequest&& Report) const override;
 	/** @brief Submit a PEX Client Summary report */
 	virtual void SubmitPEXClientSummary(FRHAPI_PexClientRequest&& Report) const override;
+	/** @brief A helper function to override the PEX data before submission */
+	virtual void ModifyPEXHostSummary(FRHAPI_PexHostRequest& Report) const;
+	/** @brief A helper function to override the PEX data before submission */
+	virtual void ModifyPEXClientSummary(FRHAPI_PexClientRequest& Report) const;
+	
 	
 protected:
 	/** @brief Session we want to sync to. */
