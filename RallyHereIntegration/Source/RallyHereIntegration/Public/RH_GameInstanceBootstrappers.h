@@ -387,6 +387,10 @@ protected:
 	*/
 	virtual void CleanupAfterInstanceRemoval();
 	/**
+	* @brief Utility function to clean up state after receiving a soft stop request while unallocated
+	*/
+	virtual void CleanupAfterUnallocatedSoftStop();
+	/**
 	* @brief Completion callback for session and instance cleanup, triggers Cleanup()
 	*/
 	virtual void OnCleanupSessionSyncComplete(URH_JoinedSession* Session, bool bSuccess, const FString& Error);
