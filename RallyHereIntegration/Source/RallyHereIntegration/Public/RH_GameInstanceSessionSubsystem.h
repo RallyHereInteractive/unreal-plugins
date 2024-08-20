@@ -121,12 +121,17 @@ public:
 	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
 	bool bIsHost;
 
+	/** @brief Cached information for the session info at the time it was activated, in case it is changed or lost */
+	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
+	FRHAPI_Session ActivationSessionInfo;
+
 	FRH_ActiveSessionState()
 		: Session(nullptr)
 		, bIsBackfillTerminated(false)
 		, PlayerExperienceCollector(nullptr)
 		, ActivationTime()
 		, bIsHost(false)
+		, ActivationSessionInfo()
 	{
 	}
 
@@ -145,6 +150,7 @@ public:
 		}
 		ActivationTime = FDateTime();
 		bIsHost = false;
+		ActivationSessionInfo = FRHAPI_Session();
 	}
 };
 
