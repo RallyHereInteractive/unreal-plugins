@@ -2,30 +2,30 @@
 	"FileVersion" : 3,
 
 	"FriendlyName" : "Online Subsystem Anon",
-	"Version" : 15,
-	"VersionName" : "17.0.0",
-	"CreatedBy": "Rally Here Interactive, Inc.",
-    "CreatedByURL": "rallyhere.gg",
-	"Description": "Access to Anon Service",
-	"Category": "RallyHere",
+	"Version" : 18,
+	"VersionName" : "18.0.0",
+	"CreatedBy" : "Rally Here Interactive, Inc.",
+    "CreatedByURL" : "rallyhere.gg",
+	"Description" : "Access to Anon Service",
+	"Category" : "RallyHere",
 	"EnabledByDefault" : true,
 
-    "Modules": [
+    "Modules" : [
         {
-            "Name": "OnlineSubsystemAnon",
-            "Type": "Runtime",
-            "LoadingPhase": "Default"
+            "Name" : "OnlineSubsystemAnon",
+            "Type" : "Runtime",
+            "LoadingPhase" : "Default"
         }
     ],
 
-    "Plugins": [
+    "Plugins" : [
         {
-            "Name": "OnlineSubsystem",
-            "Enabled": true
+            "Name" : "OnlineSubsystem",
+            "Enabled" : true
         },
         {
-            "Name": "OnlineSubsystemUtils",
-            "Enabled": true
+            "Name" : "OnlineSubsystemUtils",
+            "Enabled" : true
         }
     ]
 

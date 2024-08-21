@@ -2,38 +2,38 @@
 	"FileVersion" : 3,
 
 	"FriendlyName" : "RallyHere Debug Tool",
-	"Version" : 15,
-	"VersionName" : "17.0.0",
-    "CreatedBy": "Rally Here Interactive, Inc.",
-    "CreatedByURL": "rallyhere.gg",
-	"Description": "Contains tools for debugging the RallyHereIntegration plugin via a GUI implemented in Dear ImGui",
-	"Category": "RallyHere",
+	"Version" : 18,
+	"VersionName" : "18.0.0",
+    "CreatedBy" : "Rally Here Interactive, Inc.",
+    "CreatedByURL" : "rallyhere.gg",
+	"Description" : "Contains tools for debugging the RallyHereIntegration plugin via a GUI implemented in Dear ImGui",
+	"Category" : "RallyHere",
 	"EnabledByDefault" : true,
 
-    "Modules": [
+    "Modules" : [
         {
-            "Name": "RallyHereDebugTool",
-            "Type": "DeveloperTool",
-            "LoadingPhase": "Default"
+            "Name" : "RallyHereDebugTool",
+            "Type" : "DeveloperTool",
+            "LoadingPhase" : "Default"
         }
     ],
 
-	"Plugins": [
+	"Plugins" : [
         {
-            "Name": "RallyHereAPI",
-            "Enabled": true
+            "Name" : "RallyHereAPI",
+            "Enabled" : true
         },
         {
-            "Name": "RallyHereIntegration",
-            "Enabled": true
+            "Name" : "RallyHereIntegration",
+            "Enabled" : true
         },
 		{
-			"Name": "ImGui",
-			"Enabled": true
+			"Name" : "ImGui",
+			"Enabled" : true
 		},
 		{
-			"Name": "OnlineSubsystem",
-			"Enabled": true
+			"Name" : "OnlineSubsystem",
+			"Enabled" : true
 		}
     ]
 }

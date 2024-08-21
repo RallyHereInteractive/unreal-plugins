@@ -1,27 +1,27 @@
 {
-	"FileVersion": 3,
+	"FileVersion" : 3,
 
-	"FriendlyName": "Analytics RallyHere",
-	"Version": 15,
-	"VersionName": "17.0.0",
-	"CreatedBy": "Rally Here Interactive, Inc.",
-	"CreatedByURL": "rallyhere.gg",
-	"Description": "Analytics Provider for RallyHere",
-	"Category": "RallyHere",
-	"EnabledByDefault": true,
+	"FriendlyName" : "Analytics RallyHere",
+	"Version" : 18,
+	"VersionName" : "18.0.0",
+	"CreatedBy" : "Rally Here Interactive, Inc.",
+	"CreatedByURL" : "rallyhere.gg",
+	"Description" : "Analytics Provider for RallyHere",
+	"Category" : "RallyHere",
+	"EnabledByDefault" : true,
 
-	"Modules": [
+	"Modules" : [
 		{
-			"Name": "AnalyticsRallyHere",
-			"Type": "Runtime",
-			"LoadingPhase": "PreDefault"
+			"Name" : "AnalyticsRallyHere",
+			"Type" : "Runtime",
+			"LoadingPhase" : "PreDefault"
 		}
 	],
 
-	"Plugins": [
+	"Plugins" : [
 		{
-			"Name": "RallyHereIntegration",
-			"Enabled": true
+			"Name" : "RallyHereIntegration",
+			"Enabled" : true
 		}
 	]
 }
