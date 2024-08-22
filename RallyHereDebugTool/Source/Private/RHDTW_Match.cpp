@@ -118,14 +118,14 @@ void FRHDTW_Match::DoViewActiveMatch()
 	{
 		if (ImGui::Button("Refresh from API"))
 		{
-			pGIMatchSubsystem->GetMatchAsync(SearchMatchId, true);
+			pGIMatchSubsystem->GetMatchAsync(ActiveMatchId, true);
 		}
 	}
 	else
 	{
 		if (ImGui::Button("Lookup from API"))
 		{
-			pGIMatchSubsystem->GetMatchAsync(SearchMatchId, true);
+			pGIMatchSubsystem->GetMatchAsync(ActiveMatchId, true);
 		}
 	}
 

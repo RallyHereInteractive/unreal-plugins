@@ -1319,6 +1319,22 @@ void URH_GameInstanceServerBootstrapper::CleanupAfterInstanceRemoval()
 	}
 }
 
+void URH_GameInstanceServerBootstrapper::CleanupAfterUnallocatedSoftStop()
+{
+	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	if (GetBootstrapStep() == ERH_ServerBootstrapFlowStep::Cleanup)
+	{
+		UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] - already in cleanup, ignoring"), ANSI_TO_TCHAR(__FUNCTION__));
+		return;
+	}
+
+	UpdateBootstrapStep(ERH_ServerBootstrapFlowStep::Cleanup);
+	
+	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] - Soft stop request received while unallocated"), ANSI_TO_TCHAR(__FUNCTION__));
+	OnCleanupSessionSyncComplete(nullptr, true, TEXT("Soft stop while unallocated"));
+}
+
 void URH_GameInstanceServerBootstrapper::OnCleanupSessionSyncComplete(URH_JoinedSession* Session, bool bSuccess, const FString& Error)
 {
 	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] %s (%s - %s)"),
@@ -1495,8 +1511,9 @@ void URH_GameInstanceServerBootstrapper::Tick(float DeltaTime)
 		UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] Soft stop requested found while ticking and unallocated, running cleanup"), ANSI_TO_TCHAR(__FUNCTION__));
 		check(ShouldRecycleAfterCleanup() == false); // this is used by the next function, and must return false to properly spin down
 
-		// trigger instance removal cleanup (even if not quite true) to unsync us
-		OnCleanupSessionSyncComplete(RHSession, false, TEXT("Soft Stop Requested"));
+		// trigger cleanup
+		CleanupAfterUnallocatedSoftStop();
+		
 		return;
 	}
 

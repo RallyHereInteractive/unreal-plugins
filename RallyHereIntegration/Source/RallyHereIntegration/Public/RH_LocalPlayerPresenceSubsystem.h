@@ -35,10 +35,11 @@ public:
 	*/
 	virtual void Deinitialize() override;
 	/**
-	 * @brief Calls the Presence API to update a players personal presence information.
+	 * @brief Calls the Presence API to update a players personal presence information directly, and does not update desired state.  Will be overridden by the next poll.
 	 * @param [in] Request Request object containing the information to update.
 	 * @param [in] Delegate Callback delegate for if the request was successful or not.
 	 */
+	UE_DEPRECATED(5.0, "Please use SetDesiredPresenceState instead.")
 	void UpdatePlayerPresenceSelf(RallyHereAPI::FRequest_UpdatePlayerPresenceSelf& Request, const RallyHereAPI::FDelegate_UpdatePlayerPresenceSelf& Delegate);
 	/**
 	 * @brief Calls the Presence API to get your own player presence information.
@@ -56,35 +57,58 @@ public:
 	 * @brief Requests an update of your presence status to be set to the desired status.
 	 * @param [in] NewStatus The new status to set.
 	 */
-	UFUNCTION(BlueprintSetter, Category = "Presence")
-	void SetDesiredStatus(ERHAPI_OnlineStatus NewStatus) { DesiredStatus = NewStatus; RefreshStatus(); }
+	UFUNCTION(BlueprintCallable, Category = "Presence")
+	void SetDesiredStatus(ERHAPI_OnlineStatus NewStatus) { DesiredPresenceState.SetStatus(NewStatus); }
 	/**
 	 * @brief Gets the desired status that the player wants to be set to.
 	 */
-	UFUNCTION(BlueprintGetter, Category = "Presence")
-	ERHAPI_OnlineStatus GetDesiredStatus() const { return DesiredStatus; }
+	UFUNCTION(BlueprintPure, Category = "Presence")
+	ERHAPI_OnlineStatus GetDesiredStatus() const { return DesiredPresenceState.GetStatus(ERHAPI_OnlineStatus::Offline); }
 	/**
 	 * @brief Requests an update of your presence message to be set to the desired message.
 	 * @param [in] NewMessage The new message to set.
 	 */
-	UFUNCTION(BlueprintSetter, Category = "Presence")
-	void SetDesiredMessage(FString NewMessage) { DesiredMessage = NewMessage; RefreshStatus(); }
+	UFUNCTION(BlueprintCallable, Category = "Presence")
+	void SetDesiredMessage(FString NewMessage, bool bImmediateRefresh = true) { DesiredPresenceState.SetMessage(NewMessage); RefreshStatus(); }
 	/**
 	 * @brief Gets the desired message that the player wants to be set to.
 	 */
-	UFUNCTION(BlueprintGetter, Category = "Presence")
-	FString GetDesiredMessage() const { return DesiredMessage; }
+	UFUNCTION(BlueprintPure, Category = "Presence")
+	FString GetDesiredMessage() const { return DesiredPresenceState.GetMessage(FString()); }
 	/**
 	 * @brief Requests an update of your presence do not disturb setting to be set to the desired setting.
 	 * @param [in] NewDoNotDisturb The new do not disturb setting desired.
 	 */
-	UFUNCTION(BlueprintSetter, Category = "Presence")
-	void SetDesiredDoNotDisturb(bool NewDoNotDisturb) { DesiredDoNotDisturb = NewDoNotDisturb; RefreshStatus(); }
+	UFUNCTION(BlueprintCallable, Category = "Presence")
+	void SetDesiredDoNotDisturb(bool NewDoNotDisturb) { DesiredPresenceState.SetDoNotDisturb(NewDoNotDisturb); RefreshStatus(); }
 	/**
 	 * @brief Gets the desired do not disturb setting that the player wants to be set to.
 	 */
+	UFUNCTION(BlueprintPure, Category = "Presence")
+	bool GetDesiredDoNotDisturb() const { return DesiredPresenceState.GetDoNotDisturb(false); }
+	/**
+	 * @brief Requests an update of your presence custom data to be set to the desired setting.
+	 * @param [in] NewCustomData The new custom data desired.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Presence")
+	void SetDesiredCustomData(TMap<FString, FString> NewCustomData) { DesiredPresenceState.SetCustomData(NewCustomData); RefreshStatus(); }
+	/**
+	 * @brief Gets the desired custom data that the player wants to be set to.
+	 */
+	UFUNCTION(BlueprintPure, Category = "Presence")
+	const TMap<FString, FString> GetDesiredCustomData() const { return DesiredPresenceState.GetCustomData(TMap<FString, FString>()); }
+	/**
+	 * @brief Requests an update of your entire presence state to be set to the desired structure.
+	 * @param [in] NewPresenceState The new custom data desired.
+	 */
+	UFUNCTION(BlueprintSetter, Category = "Presence")
+	void SetDesiredPresence(FRHAPI_PlayerPresenceUpdateSelf NewPresenceState) { DesiredPresenceState = NewPresenceState; RefreshStatus(); }
+	/**
+	 * @brief Gets the desired custom data that the player wants to be set to.
+	 */
 	UFUNCTION(BlueprintGetter, Category = "Presence")
-	bool GetDesiredDoNotDisturb() const { return DesiredDoNotDisturb; }
+	const FRHAPI_PlayerPresenceUpdateSelf& GetDesiredPresence() const { return DesiredPresenceState; }
+	
 	/**
 	 * @brief Starts polling to refresh the player's presence status.
 	 */
@@ -119,15 +143,13 @@ protected:
 	void PollRefreshStatus(const FRH_PollCompleteFunc& Delegate);
 	/** @brief Poller for the local presence. */
 	FRH_AutoPollerPtr Poller;
+
 	/** @brief The Status that the local player is being changed to. */
-	UPROPERTY(BlueprintGetter = GetDesiredStatus, BlueprintSetter = SetDesiredStatus, Category = "Presence")
-	ERHAPI_OnlineStatus DesiredStatus;
-	/** @brief The presence message that the local player is being changed to. */
-	UPROPERTY(BlueprintGetter = GetDesiredMessage, BlueprintSetter = SetDesiredMessage, Category = "Presence")
-	FString DesiredMessage;
-	/** @brief The do not disturb setting that the local player is being changed to. */
-	UPROPERTY(BlueprintGetter = GetDesiredDoNotDisturb, BlueprintSetter = SetDesiredDoNotDisturb, Category = "Presence")
-	bool DesiredDoNotDisturb;
+	UPROPERTY(BlueprintGetter = GetDesiredPresence, BlueprintSetter = SetDesiredPresence, Category = "Presence")
+	FRHAPI_PlayerPresenceUpdateSelf DesiredPresenceState;
+
+	/** @brief The last ETag from the last successful poll. */
+	TOptional<FString> LastETag;
 };
 
 /** @} */

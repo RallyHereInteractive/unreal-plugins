@@ -51,6 +51,10 @@ public:
 	UPROPERTY(Config)
 	int32 StatInterval;
 
+	/** How many intervals to ignore for summary after a map load (to allow things like streaming to stablize) */
+	UPROPERTY(Config)
+	int32 NumIntervalsToIgnoreAfterMapLoadForSummary;
+
 	/** Prefix for timeline file name */
 	UPROPERTY(Config)
 	FString TimelineFilePrefix;
@@ -430,6 +434,150 @@ public:
 	}
 };
 
+
+/** @brief Simple counter that represents a captured statistic. Tracks current value, and tracks summary data. */
+USTRUCT(BlueprintType)
+struct RALLYHEREINTEGRATION_API FRH_StatCounter
+{
+	GENERATED_BODY()
+	
+public:
+	/** @brief Name of the stat */
+	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="PlayerExperience")
+	FName Name;
+
+	/** @brief State of the stat for the current capture */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="PlayerExperience")
+	float Current;
+	/** @brief State of the stat for the summary */
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="PlayerExperience")
+	FRH_PEXStatState SummaryState;
+
+	/** @brief Constructor */
+	FRH_StatCounter()
+		: Name(NAME_None)
+		, Current(0.0f)
+	{}
+	
+	/** @brief Constructor */
+	FRH_StatCounter(FName InName)
+		: Name(InName)
+		, Current(0.0f)
+	{}
+
+	/** @brief Reset the capture state */
+	void ResetCapture()
+	{
+		Current = 0.0f;
+	}
+	/** @brief Reset the summary state */
+	void ResetSummary()
+	{
+		SummaryState.Reset();
+	}
+
+	/** @brief Add a value to the accumulator */
+	void CaptureValue(float Value)
+	{
+		Current = Value;
+	}
+	/**
+	 * @brief Increment the capture state's current value by 1 and recapture
+	 * @param [in] IncrementBy The amount to increment the current value by (default is 1.0)
+	 */
+	void IncrementCaptureValue(float IncrementBy = 1.0f)
+	{
+		Current += IncrementBy;
+	}
+	/** @brief Capture the current value into the summary state */
+	void CaptureSummaryValue()
+	{
+		SummaryState.AddValue(Current);
+	}
+
+	/** @brief Get the name of the stat */
+	FName GetName() const
+	{
+		return Name;
+	}
+	/** @brief Get the value of the stat to be recorded in the timeline */
+	float GetTimelineValue() const
+	{
+		return Current;
+	}
+
+	// summary object field names
+	struct RALLYHEREINTEGRATION_API SummaryFields
+	{
+		static FString Name;
+		static FString Last;
+		static FString Min;
+		static FString Max;
+		static FString Avg;
+		static FString Sum;
+		static FString StdDev;
+		static FString Count;
+	};
+
+	/** @brief Get a JSON object representing the summary data */
+	TSharedPtr<FJsonObject> GetSummaryJson(bool bIncludeName) const
+	{
+		if (SummaryState.Count == 0)
+		{
+			return nullptr;
+		};
+		
+		TSharedPtr<FJsonObject> SummaryJson = MakeShared<FJsonObject>();
+		if (bIncludeName)
+		{
+			SummaryJson->SetStringField(SummaryFields::Name, Name.ToString());
+		}
+		SummaryJson->SetNumberField(SummaryFields::Last, SummaryState.Current);
+		SummaryJson->SetNumberField(SummaryFields::Min, SummaryState.Min);
+		SummaryJson->SetNumberField(SummaryFields::Max, SummaryState.Max);
+		SummaryJson->SetNumberField(SummaryFields::Avg, SummaryState.Avg);
+		SummaryJson->SetNumberField(SummaryFields::StdDev, FMath::Sqrt(FMath::Max(0.0f, SummaryState.Variance)));
+		SummaryJson->SetNumberField(SummaryFields::Sum, SummaryState.Sum);
+		SummaryJson->SetNumberField(SummaryFields::Count, SummaryState.Count);
+		return SummaryJson;
+	}
+
+	/** @brief Get a PexStat object representing the summary data */
+	bool GetPexStat(FRHAPI_PexStat& PexStat) const
+	{
+		if (SummaryState.Count == 0)
+		{
+			return false;
+		}
+		
+		PexStat.SetAvg(SummaryState.Avg);
+		PexStat.SetMin(SummaryState.Min);
+		PexStat.SetMax(SummaryState.Max);
+		PexStat.SetStddev(FMath::Sqrt(FMath::Max(0.0f, SummaryState.Variance)));
+
+		return true;
+	}
+};
+
+
+#define PEX_ADD_INDEXED_STAT_TO_REPORT(StatName, PexStatName) \
+{ \
+	FRHAPI_PexStat PexStat; \
+	if (GetCaptureStat(ECaptureStat::StatName).GetPexStat(PexStat)) \
+	{ \
+		Report.Set##PexStatName(PexStat); \
+	} \
+}
+
+#define PEX_ADD_INDEXED_COUNTER_TO_REPORT(StatName, PexStatName) \
+{ \
+	FRHAPI_PexStat PexStat; \
+	if (GetCaptureCounter(ECaptureCounter::StatName).GetPexStat(PexStat)) \
+	{ \
+		Report.Set##PexStatName(PexStat); \
+	} \
+}
+
 /** @brief Base class for a group of stats */
 UCLASS(BlueprintType)
 class RALLYHEREINTEGRATION_API URH_PEXStatGroup : public UObject
@@ -445,12 +593,12 @@ public:
 	}
 
 	/** @brief Initialize the stat group and any children.  May add non-dynamic groups and init them as well */
-	virtual void Init(const URH_PEXCollectorConfig* InConfig)
+	virtual void Init(const URH_PEXCollectorConfig* InConfig, const TScriptInterface<IRH_PEXOwnerInterface>& Owner)
 	{
 		// init any existing children
 		for (auto Child : Children)
 		{
-			Child->Init(InConfig);
+			Child->Init(InConfig, Owner);
 		}
 	}
 
@@ -460,6 +608,9 @@ public:
 	/** @brief Array of stats to track */
 	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="PlayerExperience")
 	TArray<FRH_StatAccumulator> Stats;
+	/** @brief Array of stats to track */
+	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="PlayerExperience")
+	TArray<FRH_StatCounter> Counters;
 	/** @brief Array of children stat groups to track */
 	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="PlayerExperience")
 	TArray<URH_PEXStatGroup*> Children;
@@ -498,13 +649,19 @@ public:
 	/** @brief Reset the capture state of all stats */
 	virtual void ResetCapture()
 	{
-		// reset summary on all stats
+		// reset capture on all stats
 		for (auto& Stat : Stats)
 		{
 			Stat.ResetCapture();
 		}
 
-		// reset summary on all children
+		// reset capture on all counters
+		for (auto& Counter : Counters)
+		{
+			Counter.ResetCapture();
+		}
+
+		// reset capture on all children
 		for (auto& Child : Children)
 		{
 			Child->ResetCapture();
@@ -517,6 +674,12 @@ public:
 		for (auto& Stat : Stats)
 		{
 			Stat.ResetSummary();
+		}
+		
+		// reset summary on all counters
+		for (auto& Counter : Counters)
+		{
+			Counter.ResetSummary();
 		}
 
 		// remove all null or dynamic children
@@ -541,10 +704,16 @@ public:
 	/** @brief Update the summary state of all stats */
 	virtual void UpdateSummary()
 	{
-		// reset summary on all stats
+		// update summary on all stats
 		for (auto& Stat : Stats)
 		{
 			Stat.CaptureSummaryValue();
+		}
+
+		// update summary on all counters
+		for (auto& Counter : Counters)
+		{
+			Counter.CaptureSummaryValue();
 		}
 
 		// reset summary on all children
@@ -582,11 +751,31 @@ public:
 					StatsJsonData->SetObjectField(StatName.ToString(), SummaryData);
 				}
 			}
-
+			
 			// if we have any stats, add the stats object to the document
 			if (StatsJsonData->Values.Num() > 0)
 			{
 				StatGroupJsonData->SetObjectField(SummaryFields::Stats, StatsJsonData);
+			}
+		}
+		{
+			auto CountersJsonData = MakeShared<FJsonObject>();
+			for (const auto& Counter : Counters)
+			{
+				const auto& CounterName = Counter.GetName();
+			
+				// if we have any summary data, add it to the stat group
+				auto SummaryData = Counter.GetSummaryJson(true);
+				if (SummaryData.IsValid() && SummaryData->Values.Num() > 0)
+				{
+					CountersJsonData->SetObjectField(CounterName.ToString(), SummaryData);
+				}
+			}
+			
+			// if we have any counters, add the counters object to the document
+			if (CountersJsonData->Values.Num() > 0)
+			{
+				StatGroupJsonData->SetObjectField(SummaryFields::Counters, CountersJsonData);
 			}
 		}
 
@@ -631,6 +820,15 @@ public:
 			}
 			HeaderString += Stat.GetName().ToString();
 		}
+		
+		for (const auto& Counter : Counters)
+		{
+			if (!HeaderString.IsEmpty())
+			{
+				HeaderString += TEXT(",");
+			}
+			HeaderString += Counter.GetName().ToString();
+		}
 
 		for (const auto& Child : Children)
 		{
@@ -663,6 +861,26 @@ public:
 
 			// if the value is close to an integer, round it
 			float Value = Stat.GetTimelineValue();
+			int Rounded = FMath::RoundToInt(Value);
+			if (FMath::IsNearlyZero(Value - Rounded))
+			{
+				ValueString += FString::Printf(TEXT("%d"), Rounded);
+			}
+			else
+			{
+				ValueString += FString::Printf(TEXT("%f"), Value);
+			}
+		}
+
+		for (const auto& Counter : Counters)
+		{
+			if (!ValueString.IsEmpty())
+			{
+				ValueString += TEXT(",");
+			}
+
+			// if the value is close to an integer, round it
+			float Value = Counter.GetTimelineValue();
 			int Rounded = FMath::RoundToInt(Value);
 			if (FMath::IsNearlyZero(Value - Rounded))
 			{
@@ -715,17 +933,61 @@ class RALLYHEREINTEGRATION_API URH_PEXStatGroupsTopLevel : public URH_PEXStatGro
 public:
 	URH_PEXStatGroupsTopLevel();
 	
-	virtual void Init(const URH_PEXCollectorConfig* InConfig) override;
-};
+	virtual void Init(const URH_PEXCollectorConfig* InConfig, const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
 
-#define PEX_ADD_INDEXED_STAT_TO_REPORT(StatName, PexStatName) \
-{ \
-	FRHAPI_PexStat PexStat; \
-	if (Stats[StatName].GetPexStat(PexStat)) \
-	{ \
-		Report.Set##PexStatName(PexStat); \
-	} \
-}
+	// top level stats are ones that affect the capture state as a whole
+	enum class ECaptureCounter : uint8
+	{
+		IgnoredForSummary,
+
+		Max
+	};
+	FORCEINLINE FRH_StatCounter& GetCaptureCounter(ECaptureCounter Counter) { return Counters[static_cast<uint8>(Counter)]; }
+	FORCEINLINE const FRH_StatCounter& GetCaptureCounter(ECaptureCounter Counter) const { return Counters[static_cast<uint8>(Counter)]; }
+
+	
+	virtual void SetIgnoredForSummary()
+	{
+		GetCaptureCounter(ECaptureCounter::IgnoredForSummary).IncrementCaptureValue();
+	}
+
+	/** @brief The timetamp for the last capture */
+	FDateTime LastCaptureTime;
+
+	virtual void CapturePerIntervalStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override
+	{
+		Super::CapturePerIntervalStats(Owner);
+		
+		LastCaptureTime = FDateTime::UtcNow();
+	}
+
+	/** @brief Reset the capture state of all stats */
+	virtual void ResetCapture() override
+	{
+		Super::ResetCapture();
+
+		LastCaptureTime = FDateTime();
+	}
+	
+	/** @brief Write the timeline data header to a CSV file for all stats */
+	virtual FString GetTimelineCSVHeader() const override
+	{
+		FString HeaderString = Super::GetTimelineCSVHeader();
+
+		HeaderString = TEXT("Timestamp,") + HeaderString;
+
+		return HeaderString;
+	}
+	/** @brief Write the timeline data values to a CSV file for all stats */
+	virtual FString GetTimelineCSVValues() const override
+	{
+		FString ValueString = Super::GetTimelineCSVValues();
+
+		ValueString = LastCaptureTime.ToIso8601() + TEXT(",") + ValueString;
+		
+		return ValueString;
+	}
+};
 
 /**
  * @brief PlayerExperience Collector class, responsible for collecting and tracking PEX data via PEX Stat Groups.
@@ -744,6 +1006,8 @@ public:
 	virtual bool InitWithConfig(IRH_PEXOwnerInterface* InOwner, const URH_PEXCollectorConfig* InConfig);
 	/** @brief Tick the collector, updating per frame stats and potentially per second stats. */
     virtual void OnEndFrame();
+	/** @brief Notification that a map load has completed */
+	virtual void OnMapLoadComplete();
 
 	/** @brief Retrieve the config to use for this collector instance */
 	const URH_PEXCollectorConfig* GetConfig() const
@@ -758,6 +1022,12 @@ public:
 		{
 			TopLevelStatGroup->ResetSummary();
 		}
+	}
+
+	/** @brief Flags the current interval (and potentially more) to be ignored for summary if it was not already.  This is useful in cases of events that will generate bad behavior reports such as map loads */
+	void SetIgnoreCurrentIntervalForSummary(int32 NumToIgnore = 1)
+	{
+		NumRemainingIntervalsToIgnore = FMath::Max(NumToIgnore, NumRemainingIntervalsToIgnore);
 	}
 
 	/** @brief Closes state, writes summary if needed, and uploads data if needed.  Can only be done once. */
@@ -818,9 +1088,9 @@ protected:
 	UPROPERTY(BlueprintReadOnly, Category="PlayerExperience")
 	double TimeTracker;
 
-	/** Whether this is the first interval being captured (will be ignored for summary as it is partial) */
+	/** Number of remaining intervals to ignore for summary (decremented at the end of each interval) */
 	UPROPERTY(BlueprintReadOnly, Category="PlayerExperience")
-	bool bFirstInterval;
+	int32 NumRemainingIntervalsToIgnore;
 
 	UPROPERTY(BlueprintReadOnly, Transient, Category="PlayerExperience")
 	URH_PEXStatGroupsTopLevel* TopLevelStatGroup;
@@ -849,7 +1119,7 @@ class URH_PEXPrimaryStats : public URH_PEXStatGroup
 	GENERATED_BODY()
 
 public:
-	enum ECaptureStat
+	enum class ECaptureStat : uint8
 	{
 		FrameTime,
 		GameThreadTime,
@@ -859,9 +1129,6 @@ public:
 		DeltaTime,
 		GameThreadWaitTime,
 		FlushLoadingTime,
-
-		TickCount,
-		DelayedTickCount,
 	
 		MemoryWS,
 		MemoryVB,
@@ -870,40 +1137,27 @@ public:
 
 		Max
 	};
+	FORCEINLINE FRH_StatAccumulator& GetCaptureStat(ECaptureStat Stat) { return Stats[static_cast<uint8>(Stat)]; }
+	FORCEINLINE const FRH_StatAccumulator& GetCaptureStat(ECaptureStat Stat) const { return Stats[static_cast<uint8>(Stat)]; }
+
+	enum class ECaptureCounter : uint8
+	{
+		TickCount,
+		DelayedTickCount,
+		LevelLoadCompleted,
+
+		Max
+	};
+	FORCEINLINE FRH_StatCounter& GetCaptureCounter(ECaptureCounter Counter) { return Counters[static_cast<uint8>(Counter)]; }
+	FORCEINLINE const FRH_StatCounter& GetCaptureCounter(ECaptureCounter Counter) const { return Counters[static_cast<uint8>(Counter)]; }
 
 	URH_PEXPrimaryStats();
 
-	/** @brief The timetamp for the last capture */
-	FDateTime LastCaptureTime;
+	/** @brief Initialize the stat group and any children.  May add non-dynamic groups and init them as well */
+	virtual void Init(const URH_PEXCollectorConfig* InConfig, const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
 	
 	virtual void CapturePerFrameStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
 	virtual void CapturePerIntervalStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner) override;
-	
-	/** @brief Reset the capture state of all stats */
-	virtual void ResetCapture() override
-	{
-		Super::ResetCapture();
-
-		LastCaptureTime = FDateTime();
-	}
-	/** @brief Write the timeline data header to a CSV file for all stats */
-	virtual FString GetTimelineCSVHeader() const override
-	{
-		FString HeaderString = Super::GetTimelineCSVHeader();
-
-		HeaderString = TEXT("Timestamp,") + HeaderString;
-
-		return HeaderString;
-	}
-	/** @brief Write the timeline data values to a CSV file for all stats */
-	virtual FString GetTimelineCSVValues() const override
-	{
-		FString ValueString = Super::GetTimelineCSVValues();
-
-		ValueString = LastCaptureTime.ToIso8601() + TEXT(",") + ValueString;
-		
-		return ValueString;
-	}
 
 	/** @brief Fill in a API PEX host summary report with the summary data */
 	virtual void GetPEXHostSummary(FRHAPI_PexHostRequest& Report) const
@@ -912,11 +1166,12 @@ public:
 		
 		PEX_ADD_INDEXED_STAT_TO_REPORT(FrameTime, FrameTime);
 		PEX_ADD_INDEXED_STAT_TO_REPORT(DeltaTime, DeltaTime);
-		PEX_ADD_INDEXED_STAT_TO_REPORT(TickCount, TickCount);
-		PEX_ADD_INDEXED_STAT_TO_REPORT(DelayedTickCount, DelayedTickCount);
 		PEX_ADD_INDEXED_STAT_TO_REPORT(MemoryWS, MemoryWs);
 		PEX_ADD_INDEXED_STAT_TO_REPORT(MemoryVB, MemoryVb);
 		PEX_ADD_INDEXED_STAT_TO_REPORT(CPUProcess, CpuProcess);
+		
+		PEX_ADD_INDEXED_COUNTER_TO_REPORT(TickCount, TickCount);
+		PEX_ADD_INDEXED_COUNTER_TO_REPORT(DelayedTickCount, DelayedTickCount);
 	}
 
 	/** @brief Fill in a API PEX client summary report with the summary data */
@@ -926,8 +1181,6 @@ public:
 		
 		PEX_ADD_INDEXED_STAT_TO_REPORT(FrameTime, FrameTime);
 		PEX_ADD_INDEXED_STAT_TO_REPORT(DeltaTime, DeltaTime);
-		PEX_ADD_INDEXED_STAT_TO_REPORT(TickCount, TickCount);
-		PEX_ADD_INDEXED_STAT_TO_REPORT(DelayedTickCount, DelayedTickCount);
 		PEX_ADD_INDEXED_STAT_TO_REPORT(MemoryWS, MemoryWs);
 		PEX_ADD_INDEXED_STAT_TO_REPORT(MemoryVB, MemoryVb);
 		PEX_ADD_INDEXED_STAT_TO_REPORT(CPUProcess, CpuProcess);
@@ -935,6 +1188,9 @@ public:
 		PEX_ADD_INDEXED_STAT_TO_REPORT(GameThreadTime, GameThreadTime);
 		PEX_ADD_INDEXED_STAT_TO_REPORT(RenderThreadTime, RenderThreadTime);
 		PEX_ADD_INDEXED_STAT_TO_REPORT(RHIThreadTime, GpuTime);
+		
+		PEX_ADD_INDEXED_COUNTER_TO_REPORT(TickCount, TickCount);
+        PEX_ADD_INDEXED_COUNTER_TO_REPORT(DelayedTickCount, DelayedTickCount);
 	}
 };
 
@@ -945,7 +1201,7 @@ class URH_PEXNetworkStats_Base : public URH_PEXStatGroup
 	GENERATED_BODY()
 
 public:
-	enum ECaptureStat
+	enum class ECaptureStat : uint8
 	{
 		ConnectionCount,
 		Ping,
@@ -961,6 +1217,8 @@ public:
 
 		Max
 	};
+	FORCEINLINE FRH_StatAccumulator& GetCaptureStat(ECaptureStat Stat) { return Stats[static_cast<uint8>(Stat)]; }
+    FORCEINLINE const FRH_StatAccumulator& GetCaptureStat(ECaptureStat Stat) const { return Stats[static_cast<uint8>(Stat)]; }
 
 	URH_PEXNetworkStats_Base();
 
@@ -1134,7 +1392,7 @@ class URH_PEXGameStats : public URH_PEXStatGroup
 	GENERATED_BODY()
 
 public:
-	enum ECaptureStat
+	enum class ECaptureStat : uint8
 	{
 		PlayerControllerCount,
 		AIControllerCount,
@@ -1142,6 +1400,8 @@ public:
 
 		Max
 	};
+	FORCEINLINE FRH_StatAccumulator& GetCaptureStat(ECaptureStat Stat) { return Stats[static_cast<uint8>(Stat)]; }
+	FORCEINLINE const FRH_StatAccumulator& GetCaptureStat(ECaptureStat Stat) const { return Stats[static_cast<uint8>(Stat)]; }
 
 	URH_PEXGameStats();
 	
@@ -1173,7 +1433,7 @@ public:
 	void BLUEPRINT_CapturePerSecondStats(const TScriptInterface<IRH_PEXOwnerInterface>& Owner);
 
 	UFUNCTION(BlueprintCallable, Category="PlayerExperience")
-	void CaptureValue(FName StatName, float Value)
+	void CaptureStatValue(FName StatName, float Value)
 	{
 		for (int i = 0; i < Stats.Num(); ++i)
 		{
@@ -1186,10 +1446,17 @@ public:
 	}
 
 	UFUNCTION(BlueprintCallable, Category="PlayerExperience")
-	static void CaptureStatValue(FRH_StatAccumulator& InStat, float Value)
+	void CaptureCounterValue(FName StatName, float Value)
 	{
-		InStat.CaptureValue(Value);
-	}
+		for (int i = 0; i < Counters.Num(); ++i)
+		{
+			if (Counters[i].GetName() == StatName)
+			{
+				Counters[i].CaptureValue(Value);
+				return;
+			}
+		}
+	}	
 };
 
 //////////////////////////////////////////////////////////////////////////////////////

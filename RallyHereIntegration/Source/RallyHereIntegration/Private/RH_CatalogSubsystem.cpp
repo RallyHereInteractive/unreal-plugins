@@ -333,25 +333,82 @@ bool URH_CatalogSubsystem::CanRulesetUsePlatformForBucket(const FString& Invento
 	return false;
 }
 
-void URH_CatalogSubsystem::GetCatalogVendor(const FRHVendorGetRequest& VendorRequest)
+TArray<int32> FRH_VendorRequestState::GetAllKnownVendorIds() const
+{
+	TArray<int32> KnownVendorIds = Request.VendorIds;
+
+	if(!Catalog.IsValid())
+	{
+		return KnownVendorIds;
+	}
+	
+	// need to check if subvendors are not cached as well, so add all known ones to the list before we check
+	for (auto i = 0; i < KnownVendorIds.Num(); ++i)
+	{
+		const auto VendorId = KnownVendorIds[i];
+		if (const auto& FindItem = Catalog->GetVendors().Find(VendorId))
+		{
+			if (const auto* VendorItems = FindItem->GetLootOrNull())
+			{
+				for (const auto& VendorItem : (*VendorItems))
+				{
+					if (const auto& SubVendorId = VendorItem.Value.GetSubVendorIdOrNull())
+					{
+						KnownVendorIds.AddUnique(*SubVendorId);
+					}
+				}
+			}
+		}
+	}
+
+	return KnownVendorIds;
+}
+
+TArray<int32> FRH_VendorRequestState::GetAwaitedVendorIds() const
+{	
+	const auto VendorIds = Request.bRecurseSubvendors ? GetAllKnownVendorIds() : Request.VendorIds;
+
+	TArray<int32> AwaitedVendorIds;
+
+	if(!Catalog.IsValid())
+	{
+		return AwaitedVendorIds;
+	}
+	
+	for (const auto VendorId : VendorIds)
+	{
+		// if the vendor is not cached, we are awaiting it
+		if (!Catalog->GetVendors().Contains(VendorId))
+		{
+			AwaitedVendorIds.Add(VendorId);
+		}
+		// if we are not checking the cache, and we have not yet received this vendor, we are awaiting it
+		else if (!Request.bSkipCachedVendors && !VendorsReceived.Contains(VendorId))
+		{
+			AwaitedVendorIds.Add(VendorId);
+		}
+	}
+
+	return AwaitedVendorIds;
+}
+
+void URH_CatalogSubsystem::GetCatalogVendor(const FRHVendorGetRequest& InVendorRequest)
 {
 	// If there were no requested vendors, fail the request.
-	if (VendorRequest.VendorIds.Num() == 0)
+	if (InVendorRequest.VendorIds.Num() == 0)
 	{
-		VendorRequest.Delegate.ExecuteIfBound(false);
+		InVendorRequest.Delegate.ExecuteIfBound(false);
 		return;
 	}
 
-	// Add the vendor request to the active list, and then enqueue the vendors to get
-	VendorRequests.Add(VendorRequest);
+	// remove any vendors from the list that are already cached, if desired
+	auto Request = VendorRequests.Add_GetRef(FRH_VendorRequestState(this, InVendorRequest));
 
-	for (auto const& VendorId : VendorRequest.VendorIds)
-	{
-		GetCatalogVendorSingle(VendorId);
-	}
+	// initiate processing
+	ProcessVendorRequests();	
 }
 
-void URH_CatalogSubsystem::GetCatalogVendorSingle(int32 VendorId)
+void URH_CatalogSubsystem::GetCatalogVendorSingle(int32 VendorId, const FRH_GenericSuccessWithErrorBlock& Delegate)
 {
 	auto Request = TGetCatalogVendor::Request();
 
@@ -372,58 +429,66 @@ void URH_CatalogSubsystem::GetCatalogVendorSingle(int32 VendorId)
 	Request.VendorId = VendorId;
 	Request.AuthContext = GetAuthContext();
 
-	if (!TGetCatalogVendor::DoCall(RH_APIs::GetCatalogAPI(), Request, TGetCatalogVendor::Delegate::CreateUObject(this, &URH_CatalogSubsystem::OnGetCatalogVendorResponse, VendorId), GetDefault<URH_IntegrationSettings>()->GetCatalogVendorPriority))
-	{
-		// Remove any vendor requests that were expecting this vendor and fail them as our call failed
-		for (int32 i = VendorRequests.Num() - 1; i >= 0; i--)
-		{
-			if (VendorRequests[i].VendorIds.Contains(VendorId))
-			{
-				VendorRequests[i].Delegate.ExecuteIfBound(false);
-				VendorRequests.RemoveAt(i);
-			}
-		}
-	}
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<TGetCatalogVendor>>(
+		TGetCatalogVendor::Delegate::CreateUObject(this, &URH_CatalogSubsystem::OnGetCatalogVendorResponse, VendorId),
+		Delegate,
+		GetDefault<URH_IntegrationSettings>()->GetCatalogVendorPriority
+	);
+
+	InFlightVendorRequests.Add(VendorId, Helper);
+
+	Helper->Start(RH_APIs::GetCatalogAPI(), Request);
 }
 
 void URH_CatalogSubsystem::OnGetCatalogVendorResponse(const TGetCatalogVendor::Response& Resp, int32 VendorId)
 {
-	FRHAPI_Vendor Vendor;
+	InFlightVendorRequests.Remove(VendorId);
 	
 	const auto Content = Resp.TryGetDefaultContentAsPointer();
 	if (Resp.IsSuccessful() && Content != nullptr)
 	{
-		// Find or create the Vendor we are updating
-		if (const auto& FindItem = CatalogVendors.Find(VendorId))
-		{
-			*FindItem = *Content;
-			Vendor = *FindItem;
-		}
-		else
-		{
-			Vendor = CatalogVendors.Add(VendorId, *Content);
-		}
+		CatalogVendors.Add(VendorId, *Content);
 	}
 	else if (Resp.GetHttpResponseCode() ==  EHttpResponseCodes::NotModified)
 	{
 		// Find the vendor we were requesting, as it hasn't changed since last time
-		if (const auto& FindItem = CatalogVendors.Find(VendorId))
+		const auto& FindItem = CatalogVendors.Find(VendorId);
+
+		if (!FindItem)
 		{
-			Vendor = *FindItem;
+			// vendor could not be retrieved but previously was, something changed while the request was in flight, so fail any requests that were expecting this vendor
+			for (int32 i = VendorRequests.Num() - 1; i >= 0; i--)
+			{
+				if (VendorRequests[i].NotifyVendorFailure(VendorId))
+				{
+					VendorRequests.RemoveAt(i);
+				}
+			}
+			return;
 		}
 	}
+	else
+	{
+		// vendor could not be retrieved, fail any requests that were expecting this vendor
+		for (int32 i = VendorRequests.Num() - 1; i >= 0; i--)
+		{
+			if (VendorRequests[i].NotifyVendorFailure(VendorId))
+			{
+				VendorRequests.RemoveAt(i);
+			}
+		}
+		return;
+	}
 
-	TArray<int32> SubVendorsToRequest;
+	// either we added the updated content, or we found the vendor and it was not modified.
+	const FRHAPI_Vendor& Vendor = CatalogVendors.FindRef(VendorId);
+
+	// parse data into local caches
+	TArray<int32> SubVendors;
 	if (const auto* VendorItems = Vendor.GetLootOrNull())
 	{
 		for (const auto& VendorItem : (*VendorItems))
 		{
-			// Request all sub vendors of the vendor we just got to update them as needed
-			if (const auto& SubVendorId = VendorItem.Value.GetSubVendorIdOrNull())
-			{
-				SubVendorsToRequest.AddUnique(*SubVendorId);
-			}
-
 			if (const auto& FindItem = CatalogLootItems.Find(VendorItem.Value.GetLootId()))
 			{
 				*FindItem = VendorItem.Value;
@@ -445,31 +510,54 @@ void URH_CatalogSubsystem::OnGetCatalogVendorResponse(const TGetCatalogVendor::R
 		}
 	}
 
+	// notify requests that the vendor was received
+	for (auto& Request : VendorRequests)
+	{
+		// let the request know that vendor data was received
+		Request.NotifyVendorReceived(VendorId, Vendor);
+	}
+	
+	// update the vendor request list state
+	ProcessVendorRequests();
+}
+
+void URH_CatalogSubsystem::ProcessVendorRequests()
+{
+	// keep track of any subvendors we need to request (that are newly added to any request, and thus were not already kicked off)
+	TArray<int32> VendorsToRequest;
+	
+	// scan through requests, fulfilling them as needed
 	for (int32 i = VendorRequests.Num() - 1; i >= 0; i--)
 	{
-		// Append any sub vendors to the vendor requests that were expecting this vendor, remove this vendor from the requests
-		if (VendorRequests[i].VendorIds.Contains(VendorId))
-		{
-			for (int32 SubVendorId : SubVendorsToRequest)
-			{
-				VendorRequests[i].VendorIds.AddUnique(SubVendorId);
-			}
-			VendorRequests[i].VendorIds.Remove(VendorId);
-		}
+		auto& Request = VendorRequests[i];
 
-		// If the request is complete, execute the delegate and remove it
-		if (VendorRequests[i].VendorIds.Num() == 0)
+		// check if the request is now complete
+		TArray<int32> AwaitedVendors;
+		if (Request.IsComplete(AwaitedVendors))
 		{
-			VendorRequests[i].Delegate.ExecuteIfBound(true);
 			VendorRequests.RemoveAt(i);
+		}
+		else
+		{
+			// if the request is not complete, make sure any awaited vendors are requested
+			for (int32 AwaitedVendorId : AwaitedVendors)
+			{
+				// if the awaited vendor is not already in flight, add it to the list of subvendors to request
+				if (!InFlightVendorRequests.Contains(AwaitedVendorId))
+				{
+					VendorsToRequest.Add(AwaitedVendorId);
+				}
+			}
 		}
 	}
 
-	for (int32 SubVendorId : SubVendorsToRequest)
+	// request any subvendors determined to be needed (they are requested via a recursion request and are not in flight)
+	for (int32 SubVendorId : VendorsToRequest)
 	{
 		GetCatalogVendorSingle(SubVendorId);
 	}
 }
+
 
 URH_CatalogItem* URH_CatalogSubsystem::ParseCatalogItem(const FRHAPI_Item& CatalogItem, int32 ItemId)
 {

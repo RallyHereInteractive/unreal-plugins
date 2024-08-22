@@ -8,6 +8,7 @@
 `class `[`URH_CatalogSubsystem`](#classURH__CatalogSubsystem) | Class used to help track and interact with the catalog to get Items, Vendors, and their data.
 `class `[`URH_CatalogBlueprintLibrary`](#classURH__CatalogBlueprintLibrary) | Catalog Blueprint Library with helper methods for API structs.
 `struct `[`FRHVendorGetRequest`](#structFRHVendorGetRequest) | Vendor Request struct used to encapsulate a request to get a vendors and the callback delegate.
+`struct `[`FRH_VendorRequestState`](#structFRH__VendorRequestState) | Vendor Request struct used to encapsulate a request to get a vendors and the callback delegate.
 
 ## class `URH_CatalogItem` <a id="classURH__CatalogItem"></a>
 
@@ -208,7 +209,8 @@ Class used to help track and interact with the catalog to get Items, Vendors, an
 `public inline const TMap< FString, `[`FRHAPI_InventoryBucketUseRuleSet`](models/RHAPI_InventoryBucketUseRuleSet.md#structFRHAPI__InventoryBucketUseRuleSet)` > & `[`GetInventoryBucketUseRuleSets`](#classURH__CatalogSubsystem_1a2657824ade5d1b5c06292e83b62d15e5)`() const` | Gets the cached inventory bucket rule sets.
 `public inline const TMap< FGuid, `[`FRHAPI_PricePoint`](models/RHAPI_PricePoint.md#structFRHAPI__PricePoint)` > & `[`GetPricePoints`](#classURH__CatalogSubsystem_1a0d8b46a9bb4e03b550fb96919281fe0f)`() const` | Gets the cached price points.
 `public inline const TMap< int32, `[`FRHAPI_TimeFrame`](models/RHAPI_TimeFrame.md#structFRHAPI__TimeFrame)` > & `[`GetTimeFrames`](#classURH__CatalogSubsystem_1a7742813d09d119e22df4a4d71aab73cc)`() const` | Gets the cached time frames.
-`protected TArray< `[`FRHVendorGetRequest`](Catalog.md#structFRHVendorGetRequest)` > `[`VendorRequests`](#classURH__CatalogSubsystem_1af7893f5433b745ff5b189b81167d71a9) | Array of active vendor requests that are in flight and not responded ot yet.
+`protected TArray< `[`FRH_VendorRequestState`](Catalog.md#structFRH__VendorRequestState)` > `[`VendorRequests`](#classURH__CatalogSubsystem_1a47050a4e6bd28f63daf5efa2879507cc) | Array of active vendor requests that are in flight and not responded ot yet.
+`protected TMap< int32, TWeakPtr< `[`FRH_AsyncTaskHelper`](Common.md#classFRH__AsyncTaskHelper)` > > `[`InFlightVendorRequests`](#classURH__CatalogSubsystem_1a38d97ecb70a4b341ec475ae2fabd6d15) | Map of all vendor requests that are in flight
 `protected TMap< int32, `[`FRHAPI_XpTable`](models/RHAPI_XpTable.md#structFRHAPI__XpTable)` > `[`XpTables`](#classURH__CatalogSubsystem_1a659700dd6e8da2c852227489dce93c2a) | Xp Table Id to Xp Table Map.
 `protected TMap< int32, `[`FRHAPI_Vendor`](models/RHAPI_Vendor.md#structFRHAPI__Vendor)` > `[`CatalogVendors`](#classURH__CatalogSubsystem_1ac2c9e75cab5a2282cd7eabcb76d206d7) | Vendor Id to Vendor Map.
 `protected TMap< int32, `[`URH_CatalogItem`](Catalog.md#classURH__CatalogItem)` * > `[`CatalogItems`](#classURH__CatalogSubsystem_1a4ef4e31b1427345e2d4cf252142eb7ce) | Item Id to Catalog Item Map.
@@ -224,8 +226,9 @@ Class used to help track and interact with the catalog to get Items, Vendors, an
 `protected TOptional< FString > `[`GetCatalogInventoryBucketUseRuleSetsAllETag`](#classURH__CatalogSubsystem_1ae959ddd04f62604ce6edab0396fa8312) | ETag of last GetCatalogInventoryBucketUseRuleSetsAll call response.
 `protected TMap< int32, TArray< FRH_CatalogCallBlock > > `[`PendingGetCatalogItemCalls`](#classURH__CatalogSubsystem_1a72a9e161cf234e6843e9b601e7bd925e) | Array of GetCatalogItemCalls yet to be sent to the API layer.
 `protected TMap< int32, TArray< FRH_CatalogCallBlock > > `[`SubmittedGetCatalogItemCalls`](#classURH__CatalogSubsystem_1a661262ecd1024e523d6ab788f8e5ce22) | Array of GetCatalogItemCalls yet being executed by the API layer at this time.
-`protected void `[`GetCatalogVendorSingle`](#classURH__CatalogSubsystem_1ac215132f09ff28de858ccaa71867e379)`(int32 VendorId)` | Makes an API call for a single vendor Id.
+`protected void `[`GetCatalogVendorSingle`](#classURH__CatalogSubsystem_1a4a686b1ffd6f371f6729e55046aeda94)`(int32 VendorId,const FRH_GenericSuccessWithErrorBlock & Delegate)` | Makes an API call for a single vendor Id.
 `protected virtual void `[`OnGetCatalogVendorResponse`](#classURH__CatalogSubsystem_1aa5b03bf7da3d901bd72292a524522683)`(const TGetCatalogVendor::Response & Resp,int32 VendorId)` | Handles the response to a Get Catalog Vendor call.
+`protected virtual void `[`ProcessVendorRequests`](#classURH__CatalogSubsystem_1affb7cb5f9008dc7a34273f3131981108)`()` | Processes the current vendor request list, kicking off any new requests that are needed, and completing existing requests that are done.
 `protected virtual void `[`OnGetCatalogVendorsAllResponse`](#classURH__CatalogSubsystem_1ac3c4b548a43cfc37012c4d87f48d841a)`(const TGetCatalogVendorsAll::Response & Resp,const FRH_CatalogCallBlock Delegate)` | Handles the response to a Get Catalog Vendor All call.
 `protected virtual void `[`OnGetCatalogAllResponse`](#classURH__CatalogSubsystem_1a4b7fa3b1e25ad75fa9b5746358606d8f)`(const TGetCatalogAll::Response & Resp,const FRH_CatalogCallBlock Delegate)` | Handles the response to a Get Catalog All call.
 `protected virtual void `[`OnGetCatalogXpAllResponse`](#classURH__CatalogSubsystem_1adb23a545351426a6803d6fbd9b21b6ef)`(const TGetCatalogXpAll::Response & Resp,const FRH_CatalogCallBlock Delegate)` | Handles the response to a Get Catalog Xp All call.
@@ -312,7 +315,9 @@ Gets all of the time frames from the catalog.
 Gets the vendors requested as well as their sub vendors.
 
 #### Parameters
-* `VendorRequest` The vendor request data for the call with list of vendors and callback on complete.
+* `VendorRequest` The vendor request data for the call with list of vendors and callback on complete. 
+
+* `bRecurseSubvendors` Whether to recursively request subvendors, DEPRECATED
 
 #### `public void `[`GetCatalogVendorsAll`](#classURH__CatalogSubsystem_1ab4903e2a1b6805d3e278b561882b09ad)`(const FRH_CatalogCallBlock & Delegate)` <a id="classURH__CatalogSubsystem_1ab4903e2a1b6805d3e278b561882b09ad"></a>
 
@@ -429,9 +434,13 @@ Gets the cached price points.
 
 Gets the cached time frames.
 
-#### `protected TArray< `[`FRHVendorGetRequest`](Catalog.md#structFRHVendorGetRequest)` > `[`VendorRequests`](#classURH__CatalogSubsystem_1af7893f5433b745ff5b189b81167d71a9) <a id="classURH__CatalogSubsystem_1af7893f5433b745ff5b189b81167d71a9"></a>
+#### `protected TArray< `[`FRH_VendorRequestState`](Catalog.md#structFRH__VendorRequestState)` > `[`VendorRequests`](#classURH__CatalogSubsystem_1a47050a4e6bd28f63daf5efa2879507cc) <a id="classURH__CatalogSubsystem_1a47050a4e6bd28f63daf5efa2879507cc"></a>
 
 Array of active vendor requests that are in flight and not responded ot yet.
+
+#### `protected TMap< int32, TWeakPtr< `[`FRH_AsyncTaskHelper`](Common.md#classFRH__AsyncTaskHelper)` > > `[`InFlightVendorRequests`](#classURH__CatalogSubsystem_1a38d97ecb70a4b341ec475ae2fabd6d15) <a id="classURH__CatalogSubsystem_1a38d97ecb70a4b341ec475ae2fabd6d15"></a>
+
+Map of all vendor requests that are in flight
 
 #### `protected TMap< int32, `[`FRHAPI_XpTable`](models/RHAPI_XpTable.md#structFRHAPI__XpTable)` > `[`XpTables`](#classURH__CatalogSubsystem_1a659700dd6e8da2c852227489dce93c2a) <a id="classURH__CatalogSubsystem_1a659700dd6e8da2c852227489dce93c2a"></a>
 
@@ -493,7 +502,7 @@ Array of GetCatalogItemCalls yet to be sent to the API layer.
 
 Array of GetCatalogItemCalls yet being executed by the API layer at this time.
 
-#### `protected void `[`GetCatalogVendorSingle`](#classURH__CatalogSubsystem_1ac215132f09ff28de858ccaa71867e379)`(int32 VendorId)` <a id="classURH__CatalogSubsystem_1ac215132f09ff28de858ccaa71867e379"></a>
+#### `protected void `[`GetCatalogVendorSingle`](#classURH__CatalogSubsystem_1a4a686b1ffd6f371f6729e55046aeda94)`(int32 VendorId,const FRH_GenericSuccessWithErrorBlock & Delegate)` <a id="classURH__CatalogSubsystem_1a4a686b1ffd6f371f6729e55046aeda94"></a>
 
 Makes an API call for a single vendor Id.
 
@@ -510,6 +519,10 @@ Handles the response to a Get Catalog Vendor call.
 * `Delegate` Delegate passed in for original call to respond to when call completes. 
 
 * `VendorId` The Vendor Id that was requested.
+
+#### `protected virtual void `[`ProcessVendorRequests`](#classURH__CatalogSubsystem_1affb7cb5f9008dc7a34273f3131981108)`()` <a id="classURH__CatalogSubsystem_1affb7cb5f9008dc7a34273f3131981108"></a>
+
+Processes the current vendor request list, kicking off any new requests that are needed, and completing existing requests that are done.
 
 #### `protected virtual void `[`OnGetCatalogVendorsAllResponse`](#classURH__CatalogSubsystem_1ac3c4b548a43cfc37012c4d87f48d841a)`(const TGetCatalogVendorsAll::Response & Resp,const FRH_CatalogCallBlock Delegate)` <a id="classURH__CatalogSubsystem_1ac3c4b548a43cfc37012c4d87f48d841a"></a>
 
@@ -674,6 +687,8 @@ Vendor Request struct used to encapsulate a request to get a vendors and the cal
 --------------------------------|---------------------------------------------
 `public FRH_CatalogCallBlock `[`Delegate`](#structFRHVendorGetRequest_1ac3903422f9becf0ec9efbf01336b2e34) | Delegate callback when all vendors have been fetched.
 `public TArray< int32 > `[`VendorIds`](#structFRHVendorGetRequest_1ab2be5bbe02318acf5d90f7c90d4002d4) | Array of outstanding vendor requests to complete this vendor get.
+`public bool `[`bRecurseSubvendors`](#structFRHVendorGetRequest_1a6f729ac572de32c23ff55bd96cbeedac) | 
+`public bool `[`bSkipCachedVendors`](#structFRHVendorGetRequest_1a699a1c691f104b0cf02561646336ab79) | 
 `public inline  `[`FRHVendorGetRequest`](#structFRHVendorGetRequest_1a0a8a4ff4b74254933725968cb46869cb)`()` | Default Constructor.
 `public inline  `[`FRHVendorGetRequest`](#structFRHVendorGetRequest_1a3ae63c4382710be88bac03888a0a1471)`(const TArray< int32 > & InVendorIds)` | Constructor with vendor Id List.
 `public inline  `[`FRHVendorGetRequest`](#structFRHVendorGetRequest_1a3db335a857c4d1ead61bb82410e2b0a6)`(const FRH_CatalogCallBlock & InDelegate,const TArray< int32 > & InVendorIds)` | Constructor with vendor Id List and callback delegate.
@@ -687,6 +702,10 @@ Delegate callback when all vendors have been fetched.
 #### `public TArray< int32 > `[`VendorIds`](#structFRHVendorGetRequest_1ab2be5bbe02318acf5d90f7c90d4002d4) <a id="structFRHVendorGetRequest_1ab2be5bbe02318acf5d90f7c90d4002d4"></a>
 
 Array of outstanding vendor requests to complete this vendor get.
+
+#### `public bool `[`bRecurseSubvendors`](#structFRHVendorGetRequest_1a6f729ac572de32c23ff55bd96cbeedac) <a id="structFRHVendorGetRequest_1a6f729ac572de32c23ff55bd96cbeedac"></a>
+
+#### `public bool `[`bSkipCachedVendors`](#structFRHVendorGetRequest_1a699a1c691f104b0cf02561646336ab79) <a id="structFRHVendorGetRequest_1a699a1c691f104b0cf02561646336ab79"></a>
 
 #### `public inline  `[`FRHVendorGetRequest`](#structFRHVendorGetRequest_1a0a8a4ff4b74254933725968cb46869cb)`()` <a id="structFRHVendorGetRequest_1a0a8a4ff4b74254933725968cb46869cb"></a>
 
@@ -707,4 +726,85 @@ Constructor with vendor Id List and callback delegate.
 * `InDelegate` Delegate to call when vendor fetch completes. 
 
 * `InVendorIds` List of vendor Ids to get.
+
+## struct `FRH_VendorRequestState` <a id="structFRH__VendorRequestState"></a>
+
+Vendor Request struct used to encapsulate a request to get a vendors and the callback delegate.
+
+### Summary
+
+ Members                        | Descriptions                                
+--------------------------------|---------------------------------------------
+`public TWeakObjectPtr< class `[`URH_CatalogSubsystem`](Catalog.md#classURH__CatalogSubsystem)` > `[`Catalog`](#structFRH__VendorRequestState_1a0a1f6bced6ff93a5bc2fe024d808692b) | 
+`public `[`FRHVendorGetRequest`](Catalog.md#structFRHVendorGetRequest)` `[`Request`](#structFRH__VendorRequestState_1a7a43cfaf8c7fc1549be0865758ba73e6) | Array of outstanding vendor requests to complete this vendor get.
+`public TArray< int32 > `[`VendorsReceived`](#structFRH__VendorRequestState_1aaca5a9f19792328506320e52dd8adf4c) | A list of vendors received since this request was made.
+`public inline  `[`FRH_VendorRequestState`](#structFRH__VendorRequestState_1a433024cb122241e730d7f74e089555c7)`()` | Default Constructor.
+`public inline  `[`FRH_VendorRequestState`](#structFRH__VendorRequestState_1ad105807265a74ba9fdd22a5b0dde609b)`(class `[`URH_CatalogSubsystem`](Catalog.md#classURH__CatalogSubsystem)` * InCatalog,const `[`FRHVendorGetRequest`](Catalog.md#structFRHVendorGetRequest)` & InRequest)` | Constructor with a request and a subsystem.
+`public inline void `[`NotifyVendorReceived`](#structFRH__VendorRequestState_1ac15f3cc597ad59ca9c4a8c9f0771d8dc)`(int32 VendorId,const `[`FRHAPI_Vendor`](models/RHAPI_Vendor.md#structFRHAPI__Vendor)` & Vendor)` | Notify that a vendor has been received.
+`public inline bool `[`NotifyVendorFailure`](#structFRH__VendorRequestState_1ab5f49e5f9ca93b57001c5f4e331bd607)`(int32 VendorId)` | Notify that a vendor has failed to be received.
+`public TArray< int32 > `[`GetAllKnownVendorIds`](#structFRH__VendorRequestState_1ab1bb3e584f61c7cbe90dd387516fdbad)`() const` | Get a list of all currently known vendors associated with this request.
+`public TArray< int32 > `[`GetAwaitedVendorIds`](#structFRH__VendorRequestState_1a38efdbbc0909db4fa0fa4cd94796b1e2)`() const` | Get a list of all currently known vendors this request is waiting on.
+`public inline bool `[`IsComplete`](#structFRH__VendorRequestState_1a3f383f30f310b24875dc6ed547cca620)`(TArray< int32 > & OutAwaitedVendors) const` | Check if all vendors have been received, and fire delegate if so.
+
+### Members
+
+#### `public TWeakObjectPtr< class `[`URH_CatalogSubsystem`](Catalog.md#classURH__CatalogSubsystem)` > `[`Catalog`](#structFRH__VendorRequestState_1a0a1f6bced6ff93a5bc2fe024d808692b) <a id="structFRH__VendorRequestState_1a0a1f6bced6ff93a5bc2fe024d808692b"></a>
+
+#### `public `[`FRHVendorGetRequest`](Catalog.md#structFRHVendorGetRequest)` `[`Request`](#structFRH__VendorRequestState_1a7a43cfaf8c7fc1549be0865758ba73e6) <a id="structFRH__VendorRequestState_1a7a43cfaf8c7fc1549be0865758ba73e6"></a>
+
+Array of outstanding vendor requests to complete this vendor get.
+
+#### `public TArray< int32 > `[`VendorsReceived`](#structFRH__VendorRequestState_1aaca5a9f19792328506320e52dd8adf4c) <a id="structFRH__VendorRequestState_1aaca5a9f19792328506320e52dd8adf4c"></a>
+
+A list of vendors received since this request was made.
+
+#### `public inline  `[`FRH_VendorRequestState`](#structFRH__VendorRequestState_1a433024cb122241e730d7f74e089555c7)`()` <a id="structFRH__VendorRequestState_1a433024cb122241e730d7f74e089555c7"></a>
+
+Default Constructor.
+
+#### `public inline  `[`FRH_VendorRequestState`](#structFRH__VendorRequestState_1ad105807265a74ba9fdd22a5b0dde609b)`(class `[`URH_CatalogSubsystem`](Catalog.md#classURH__CatalogSubsystem)` * InCatalog,const `[`FRHVendorGetRequest`](Catalog.md#structFRHVendorGetRequest)` & InRequest)` <a id="structFRH__VendorRequestState_1ad105807265a74ba9fdd22a5b0dde609b"></a>
+
+Constructor with a request and a subsystem.
+
+#### Parameters
+* `InCatalog` The Catalog Subsystem to use. 
+
+* `InRequest` The request to use.
+
+#### `public inline void `[`NotifyVendorReceived`](#structFRH__VendorRequestState_1ac15f3cc597ad59ca9c4a8c9f0771d8dc)`(int32 VendorId,const `[`FRHAPI_Vendor`](models/RHAPI_Vendor.md#structFRHAPI__Vendor)` & Vendor)` <a id="structFRH__VendorRequestState_1ac15f3cc597ad59ca9c4a8c9f0771d8dc"></a>
+
+Notify that a vendor has been received.
+
+#### Parameters
+* `VendorId` The VendorID received 
+
+* `Vendor` The Vendor data received
+
+#### `public inline bool `[`NotifyVendorFailure`](#structFRH__VendorRequestState_1ab5f49e5f9ca93b57001c5f4e331bd607)`(int32 VendorId)` <a id="structFRH__VendorRequestState_1ab5f49e5f9ca93b57001c5f4e331bd607"></a>
+
+Notify that a vendor has failed to be received.
+
+#### Parameters
+* `VendorId` The VendorID that failed 
+
+#### Returns
+Whether the vendor was awaited and the request should be completed
+
+#### `public TArray< int32 > `[`GetAllKnownVendorIds`](#structFRH__VendorRequestState_1ab1bb3e584f61c7cbe90dd387516fdbad)`() const` <a id="structFRH__VendorRequestState_1ab1bb3e584f61c7cbe90dd387516fdbad"></a>
+
+Get a list of all currently known vendors associated with this request.
+
+#### `public TArray< int32 > `[`GetAwaitedVendorIds`](#structFRH__VendorRequestState_1a38efdbbc0909db4fa0fa4cd94796b1e2)`() const` <a id="structFRH__VendorRequestState_1a38efdbbc0909db4fa0fa4cd94796b1e2"></a>
+
+Get a list of all currently known vendors this request is waiting on.
+
+#### `public inline bool `[`IsComplete`](#structFRH__VendorRequestState_1a3f383f30f310b24875dc6ed547cca620)`(TArray< int32 > & OutAwaitedVendors) const` <a id="structFRH__VendorRequestState_1a3f383f30f310b24875dc6ed547cca620"></a>
+
+Check if all vendors have been received, and fire delegate if so.
+
+#### Parameters
+* `OutAwaitedVendors` List of vendors that are still awaited 
+
+#### Returns
+If all vendors have been received
 

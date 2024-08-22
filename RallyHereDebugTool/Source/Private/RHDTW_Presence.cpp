@@ -20,7 +20,6 @@ FRHDTW_Presence::FRHDTW_Presence()
 {
 	DefaultPos = FVector2D(610, 20);
 	GetPresenceResult.Empty();
-	LastUpdateResult.Empty();
 	CustomDataStager.SetName("Presence Update");
 }
 
@@ -195,42 +194,33 @@ void FRHDTW_Presence::DoSelfTab()
 	}
 	ImGui::Text("For [%d] selected Local Players (with Controller Ids).", NumSelectedPlayers);
 
-	ImGui::Combo("Status", &StatusInput, "Online\0Away\0Invisible\0Offline\0", 4);
-	ImGui::InputText("Message", &MessageInput);
-	ImGui::Checkbox("Do Not Disturb", &DoNotDisturbInput);
-	CustomDataStager.DisplayCustomDataStager();
+	ImGuiEditableOptionalValue("##Status", EditablePresence.Status_IsSet,
+	[&]() { ImGuiDisplayEnumCombo("Status", EditablePresence.Status_Optional); });
 
-	if (!LastUpdateResult.IsEmpty())
-	{
-		if (ImGui::CollapsingHeader("Presence Update Result", RH_DefaultTreeFlagsDefaultOpen))
-		{
-			ImGui::Text("%s", TCHAR_TO_UTF8(*LastUpdateResult));
-		}
-	}
+	ImGuiEditableOptionalValue("##Message", EditablePresence.Message_IsSet,
+	[&]() { ImGui::InputText("Message", &EditablePresence.Message_Optional); });
+
+	ImGuiEditableOptionalValue("##Do Not Disturb", EditablePresence.DoNotDisturb_IsSet,
+	[&]() { ImGui::Checkbox("Do Not Disturb", &EditablePresence.DoNotDisturb_Optional); });
+	
+	ImGuiEditableOptionalValue("##CustomDataOptional", EditablePresence.CustomData_IsSet,
+	[&]() {
+		CustomDataStager.DisplayCustomDataStager(false);
+		CustomDataStager.GetCustomDataMap(EditablePresence.CustomData_Optional);
+	});
 
 	if (ImGui::Button("Update Self"))
 	{
-		LastUpdateResult.Empty();
-		auto req = RallyHereAPI::FRequest_UpdatePlayerPresenceSelf();
-		req.PlayerPresenceUpdateSelf.SetStatus(static_cast<ERHAPI_OnlineStatus>(StatusInput));
-		req.PlayerPresenceUpdateSelf.SetMessage(FString(MessageInput.c_str()));
-		req.PlayerPresenceUpdateSelf.SetDoNotDisturb(DoNotDisturbInput);
-		TMap<FString, FString> newCustomData;
-		CustomDataStager.GetCustomDataMap(newCustomData);
-		req.PlayerPresenceUpdateSelf.SetCustomData(newCustomData);
-
-		ForEachSelectedLocalRHPlayer(FRHDT_RHLPAction::CreateLambda([this, &req](URH_LocalPlayerSubsystem* LPSS)
+		ForEachSelectedLocalRHPlayer(FRHDT_RHLPAction::CreateLambda([this](URH_LocalPlayerSubsystem* LPSS)
 			{
 				if (LPSS)
 				{
 					if (URH_LocalPlayerPresenceSubsystem* LPPSS = LPSS->GetPresenceSubsystem())
 					{
-						LPPSS->UpdatePlayerPresenceSelf(req, RallyHereAPI::FDelegate_UpdatePlayerPresenceSelf::CreateSP(SharedThis(this), &FRHDTW_Presence::HandleUpdatePresenceSelf, LPSS->GetPlayerUuid()));
+						LPPSS->SetDesiredPresence(EditablePresence);
 					}
 				}
 			}));
-
-		// TODO - do not use a direct call as above, use subsystem calls
 	}
 
 	ImGui::Text("");
@@ -287,7 +277,7 @@ void FRHDTW_Presence::DoSelfTab()
 	}
 
 	ImGui::SameLine();
-	if (ImGui::Button("Refresh Status"))
+	if (ImGui::Button("Force Refresh Status"))
 	{
 		pRH_LocalPlayerPresenceSubsystem->RefreshStatus();
 	}
@@ -302,17 +292,5 @@ void FRHDTW_Presence::HandleGetPresence(bool bSuccess, URH_PlayerInfoSubobject* 
 	else
 	{
 		GetPresenceResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Get Player Presence failed.") LINE_TERMINATOR;
-	}
-}
-
-void FRHDTW_Presence::HandleUpdatePresenceSelf(const RallyHereAPI::FResponse_UpdatePlayerPresenceSelf& Resp, FGuid PlayerUuid)
-{
-	if (Resp.IsSuccessful())
-	{
-		LastUpdateResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Update Self successful.") LINE_TERMINATOR;
-	}
-	else
-	{
-		LastUpdateResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Update Self failed.") LINE_TERMINATOR;
 	}
 }
