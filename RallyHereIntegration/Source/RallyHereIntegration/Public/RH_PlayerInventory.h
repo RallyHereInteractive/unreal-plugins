@@ -44,8 +44,8 @@ DECLARE_DYNAMIC_DELEGATE_OneParam(FRH_GetInventoryStateDynamicDelegate, bool, Is
 DECLARE_DELEGATE_OneParam(FRH_GetInventoryStateDelegate, bool);
 DECLARE_RH_DELEGATE_BLOCK(FRH_GetInventoryStateBlock, FRH_GetInventoryStateDelegate, FRH_GetInventoryStateDynamicDelegate, bool)
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FRH_InventoryUpdatedDynamicDelegate, const TArray<int32>&, ItemIds);
-DECLARE_DELEGATE_TwoParams(FRH_InventoryUpdatedDelegate, const TArray<int32>&, URH_PlayerInfo*);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FRH_InventoryUpdatedDynamicDelegate, const TArray<int32>&, ItemIds, URH_PlayerInfo*, PlayerInfo);
+DECLARE_MULTICAST_DELEGATE_TwoParams(FRH_InventoryUpdatedDelegate, const TArray<int32>&, URH_PlayerInfo*);
 
 UDELEGATE()
 DECLARE_DYNAMIC_DELEGATE_OneParam(FRH_OnInventorySessionUpdateDynamicDelegate, bool, bSuccess);
@@ -276,7 +276,7 @@ public:
 	 * @brief List of delegates listening for order.
 	 */
 	TArray<FRH_OrderDetailsBlock> Delegates;
-
+	
 protected:
 	/**
 	* @brief Handles the response to a Get Player Order call.
@@ -1070,6 +1070,8 @@ public:
 protected:
 	/** @brief Inventory cache map of Item Id to inventory records. */
 	TMap<int32, TArray<FRH_ItemInventory>> InventoryCache;
+	/** Last time the full inventory has been retrieved since this watch was created. */
+	TOptional<FDateTime> LastFullInventoryTime;
 	/** @brief Array of inventory orders that have recently been parsed to prevent double parsing orders through normal polling. */
 	TArray<FString> ParsedInventoryOrders;
 	/** @brief Poller for inventory updates. */
@@ -1149,8 +1151,8 @@ protected:
 	void BroadcastOnInventoryCacheUpdated(const TArray<int32>& ItemIds)
 	{
 		SCOPED_NAMED_EVENT(RallyHere_BroadcastInventoryCacheUpdated, FColor::Purple);
-		OnInventoryCacheUpdated.ExecuteIfBound(ItemIds, PlayerInfo);
-		OnInventoryCacheUpdatedBP.Broadcast(ItemIds);
+		OnInventoryCacheUpdated.Broadcast(ItemIds, PlayerInfo);
+		OnInventoryCacheUpdatedBP.Broadcast(ItemIds, PlayerInfo);
 	}
 	/** @brief Callback that occurs whenever the local player this subsystem is associated with changes. */
 	void OnUserChanged();
