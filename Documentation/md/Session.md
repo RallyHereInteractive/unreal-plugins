@@ -512,7 +512,8 @@ Base class providing functionality for viewing session data and interacting with
 `public void `[`StopPolling`](#classURH__SessionView_1aa34ca34af04d8bcb3200d48395c242c2)`()` | Stops the polling for session updates.
 `public void `[`DeferPolling`](#classURH__SessionView_1a09c8faf3934af2d317d955cbd5da5ed3)`()` | Defers the polling for session updates (in case an out-of-band update was received)
 `public float `[`GetPollTimeRemaining`](#classURH__SessionView_1aa57cc3f86e075380283f9a7a22d07a06)`()` | Gets the current time remaining in the poll cycle in seconds. Returns -1.f if poll is inactive or is executing.
-`public void `[`ForcePollForUpdate`](#classURH__SessionView_1a3dcdea9537922b7c533929b05dc5c885)`(bool bClearETag)` | Forces a polling call even if the polling is waiting till next time to pulse.
+`public void `[`ForcePollForUpdate`](#classURH__SessionView_1ac5bdf41c0341c101e6be0d581a5d758d)`(bool bClearETag,const FRH_GenericSuccessWithErrorBlock & Delegate)` | Forces a polling call even if the polling is waiting till next time to pulse.
+`public inline void `[`BLUEPRINT_ForcePollForUpdate`](#classURH__SessionView_1a41cfdf1e6b4153b30a1751c4a93790b5)`(bool bClearETag,const FRH_GenericSuccessWithErrorDynamicDelegate & Delegate)` | Blueprint compatible version of ForcePollForUpdate.
 `public void `[`AddDeferredPoll`](#classURH__SessionView_1a7e207452f3a5b71dcf74642d7d15aa9e)`(const `[`FRH_DeferredSessionPoll`](Session.md#structFRH__DeferredSessionPoll)` & DeferredPoll)` | Add a deferred poll to the list of polls to run in sequence.
 `public void `[`CheckDeferredPolls`](#classURH__SessionView_1aaf1a897f37236897e788f33d2c34304a)`()` | Check and potentially kick off a deferred poll.
 `protected `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` `[`SessionData`](#classURH__SessionView_1a2323a589459ab11bb6ee7596d234d7df) | The Session Data with Etag.
@@ -724,12 +725,23 @@ Defers the polling for session updates (in case an out-of-band update was receiv
 
 Gets the current time remaining in the poll cycle in seconds. Returns -1.f if poll is inactive or is executing.
 
-#### `public void `[`ForcePollForUpdate`](#classURH__SessionView_1a3dcdea9537922b7c533929b05dc5c885)`(bool bClearETag)` <a id="classURH__SessionView_1a3dcdea9537922b7c533929b05dc5c885"></a>
+#### `public void `[`ForcePollForUpdate`](#classURH__SessionView_1ac5bdf41c0341c101e6be0d581a5d758d)`(bool bClearETag,const FRH_GenericSuccessWithErrorBlock & Delegate)` <a id="classURH__SessionView_1ac5bdf41c0341c101e6be0d581a5d758d"></a>
 
 Forces a polling call even if the polling is waiting till next time to pulse.
 
 #### Parameters
-* `bClearETag` If true, the ETag will be cleared before the poll.
+* `bClearETag` If true, the ETag will be cleared before the poll. 
+
+* `Delegate` Callback delegate for when the poll completes.
+
+#### `public inline void `[`BLUEPRINT_ForcePollForUpdate`](#classURH__SessionView_1a41cfdf1e6b4153b30a1751c4a93790b5)`(bool bClearETag,const FRH_GenericSuccessWithErrorDynamicDelegate & Delegate)` <a id="classURH__SessionView_1a41cfdf1e6b4153b30a1751c4a93790b5"></a>
+
+Blueprint compatible version of ForcePollForUpdate.
+
+#### Parameters
+* `bClearETag` If true, the ETag will be cleared before the poll. 
+
+* `Delegate` Callback delegate for when the poll completes.
 
 #### `public void `[`AddDeferredPoll`](#classURH__SessionView_1a7e207452f3a5b71dcf74642d7d15aa9e)`(const `[`FRH_DeferredSessionPoll`](Session.md#structFRH__DeferredSessionPoll)` & DeferredPoll)` <a id="classURH__SessionView_1a7e207452f3a5b71dcf74642d7d15aa9e"></a>
 
@@ -1634,20 +1646,26 @@ Poll for deferred sessions.
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public Type `[`PollType`](#structFRH__DeferredSessionPoll_1a1b6e4728b244a5a51a57a24f9b7980f7) | 
-`public FRH_PollCompleteFunc `[`Delegate`](#structFRH__DeferredSessionPoll_1a27e856ce05ca57fb9cf98762fd5ee931) | 
 `public TOptional< FString > `[`ETag`](#structFRH__DeferredSessionPoll_1a1cf5a6766199ca4c859b30dff02f99e9) | 
 `public inline  `[`FRH_DeferredSessionPoll`](#structFRH__DeferredSessionPoll_1af7f09aea5ebde9c12e52431272c8470b)`(Type InPollType,const FRH_PollCompleteFunc & InDelegate,const TOptional< FString > & InETag)` | 
+`public inline  `[`FRH_DeferredSessionPoll`](#structFRH__DeferredSessionPoll_1a14045ccc6de4f9a6b2b1092bcfe315ba)`(Type InPollType,const FRH_GenericSuccessWithErrorBlock & InDelegate,const TOptional< FString > & InETag)` | 
+`public inline bool `[`IsDelegateBound`](#structFRH__DeferredSessionPoll_1aa0f535c90428704ed1e261d1a8b28dfe)`() const` | 
+`public inline void `[`TriggerDelegates`](#structFRH__DeferredSessionPoll_1a2fed559c7d4800f9108a3d3b74cadcd7)`(bool bSuccess,bool bRepeatTimer,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` & ErrorInfo) const` | 
 `enum `[`Type`](#structFRH__DeferredSessionPoll_1aea2383ee336ab25c2f43466ea767a4b1) | 
 
 ### Members
 
 #### `public Type `[`PollType`](#structFRH__DeferredSessionPoll_1a1b6e4728b244a5a51a57a24f9b7980f7) <a id="structFRH__DeferredSessionPoll_1a1b6e4728b244a5a51a57a24f9b7980f7"></a>
 
-#### `public FRH_PollCompleteFunc `[`Delegate`](#structFRH__DeferredSessionPoll_1a27e856ce05ca57fb9cf98762fd5ee931) <a id="structFRH__DeferredSessionPoll_1a27e856ce05ca57fb9cf98762fd5ee931"></a>
-
 #### `public TOptional< FString > `[`ETag`](#structFRH__DeferredSessionPoll_1a1cf5a6766199ca4c859b30dff02f99e9) <a id="structFRH__DeferredSessionPoll_1a1cf5a6766199ca4c859b30dff02f99e9"></a>
 
 #### `public inline  `[`FRH_DeferredSessionPoll`](#structFRH__DeferredSessionPoll_1af7f09aea5ebde9c12e52431272c8470b)`(Type InPollType,const FRH_PollCompleteFunc & InDelegate,const TOptional< FString > & InETag)` <a id="structFRH__DeferredSessionPoll_1af7f09aea5ebde9c12e52431272c8470b"></a>
+
+#### `public inline  `[`FRH_DeferredSessionPoll`](#structFRH__DeferredSessionPoll_1a14045ccc6de4f9a6b2b1092bcfe315ba)`(Type InPollType,const FRH_GenericSuccessWithErrorBlock & InDelegate,const TOptional< FString > & InETag)` <a id="structFRH__DeferredSessionPoll_1a14045ccc6de4f9a6b2b1092bcfe315ba"></a>
+
+#### `public inline bool `[`IsDelegateBound`](#structFRH__DeferredSessionPoll_1aa0f535c90428704ed1e261d1a8b28dfe)`() const` <a id="structFRH__DeferredSessionPoll_1aa0f535c90428704ed1e261d1a8b28dfe"></a>
+
+#### `public inline void `[`TriggerDelegates`](#structFRH__DeferredSessionPoll_1a2fed559c7d4800f9108a3d3b74cadcd7)`(bool bSuccess,bool bRepeatTimer,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` & ErrorInfo) const` <a id="structFRH__DeferredSessionPoll_1a2fed559c7d4800f9108a3d3b74cadcd7"></a>
 
 #### `enum `[`Type`](#structFRH__DeferredSessionPoll_1aea2383ee336ab25c2f43466ea767a4b1) <a id="structFRH__DeferredSessionPoll_1aea2383ee336ab25c2f43466ea767a4b1"></a>
 
