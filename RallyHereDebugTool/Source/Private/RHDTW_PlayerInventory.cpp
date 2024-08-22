@@ -78,6 +78,12 @@ FRHDTW_PlayerInventory::FRHDTW_PlayerInventory()
 	InputExpires.SetNumZeroed(RH_STRINGENTRY_GUIDSIZE);
 	ModifyInventoryIdInput.SetNumZeroed(RH_STRINGENTRY_GUIDSIZE);
 
+	// bind orders block to an empty lambda, so it is valid
+	OrderDetailsBlock = FRH_OrderDetailsDelegate::CreateLambda([](const TArray<FRHAPI_PlayerOrder>& Orders)
+	{
+		
+	});
+
 	CustomDataStager.SetName(TEXT("Inventory Change"));
 }
 
