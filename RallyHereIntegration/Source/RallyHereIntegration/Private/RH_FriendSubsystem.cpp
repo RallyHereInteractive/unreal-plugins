@@ -928,19 +928,7 @@ void URH_FriendSubsystem::OnOSSBlockListChanged(int32 LocalUserNum, const FStrin
 			NewFriend->PlatformFriends.Add(PlatformFriend);
 			NewFriend->PlayerAndPlatformInfo.PlayerPlatformId = PlayerPlatformId;
 			Friends.Add(NewFriend);
-
-			if (const auto pRH_PlayerInfoSubsystem = GetRH_PlayerInfoSubsystem())
-			{
-				TWeakObjectPtr<URH_RHFriendAndPlatformFriend> WeakFriend = NewFriend;
-				pRH_PlayerInfoSubsystem->LookupPlayerByPlatformUserId(PlayerPlatformId, FRH_PlayerInfoLookupPlayerDelegate::CreateLambda([WeakFriend](bool bSuccess, const TArray<URH_PlayerInfo*>& PlayerInfos)
-					{
-						if (bSuccess && WeakFriend.IsValid() && PlayerInfos.IsValidIndex(0) && PlayerInfos[0] != nullptr)
-						{
-							WeakFriend->PlayerAndPlatformInfo.PlayerUuid = PlayerInfos[0]->GetRHPlayerUuid();
-						}
-					}));
-			}
-
+			
 			UpdatedFriends.Add(NewFriend);
 		}
 	}
@@ -2096,8 +2084,10 @@ void URH_RHFriendAndPlatformFriend::GetRHPlayerUuidAsync(const FRH_GetRHPlayerUu
 	auto* PlayerInfoSubsystem = GetFriendSubsystem()->GetRH_PlayerInfoSubsystem();
 	if (PlayerInfoSubsystem != nullptr)
 	{
-		PlayerInfoSubsystem->LookupPlayerByPlatformUserId(GetPlayerAndPlatformInfo().PlayerPlatformId, FRH_PlayerInfoLookupPlayerDelegate::CreateLambda([this, Delegate](bool bSuccess, const TArray<URH_PlayerInfo*>& PlayerInfos)
+		PlayerInfoSubsystem->LookupPlayerByPlatformUserId(GetPlayerAndPlatformInfo().PlayerPlatformId, FRH_PlayerInfoLookupPlayerDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, const TArray<URH_PlayerInfo*>& PlayerInfos)
 		{
+			auto FriendSubsystem = GetFriendSubsystem();
+			
 			if (bSuccess && PlayerInfos.IsValidIndex(0) && PlayerInfos[0] != nullptr)
 			{
 				const auto PlayerUuid = PlayerInfos[0]->GetRHPlayerUuid();
@@ -2105,7 +2095,11 @@ void URH_RHFriendAndPlatformFriend::GetRHPlayerUuidAsync(const FRH_GetRHPlayerUu
 				{
 					PlayerAndPlatformInfo.PlayerUuid = PlayerUuid;
 
-					SetPlayerInfoUpdateBindings();
+					// do not set up bindings for blocked players
+					if (!FriendSubsystem->IsPlayerBlocked(PlayerUuid))
+					{
+						SetPlayerInfoUpdateBindings();
+					}
 					
 					Delegate.ExecuteIfBound(true, PlayerUuid);
 				}
