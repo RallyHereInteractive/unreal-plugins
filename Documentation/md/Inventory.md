@@ -479,6 +479,7 @@ Inventory Subsystem created per player for tracking and updating player inventor
 `public void `[`ClearPendingOrder`](#classURH__PlayerInventory_1a1023ef83a9e1d7a88d3da06246aa7637)`(const `[`FRHAPI_PlayerOrder`](models/RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` & OrderResult)` | Used by the PendingOrder to clear itself from the pending order list when it completes.
 `public void `[`ParseOrderResult`](#classURH__PlayerInventory_1a0a3af764f187ffbd05955fb16a8bd5d7)`(const `[`FRHAPI_PlayerOrder`](models/RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` & Content)` | Parses a player order result API into a [URH_PlayerOrderEntry](Inventory.md#classURH__PlayerOrderEntry).
 `protected TMap< int32, TArray< `[`FRH_ItemInventory`](Inventory.md#structFRH__ItemInventory)` > > `[`InventoryCache`](#classURH__PlayerInventory_1a5d5179ccce89d685f086005d1b907ad8) | Inventory cache map of Item Id to inventory records.
+`protected TOptional< FDateTime > `[`LastFullInventoryTime`](#classURH__PlayerInventory_1aa0850ee414c71713fc6bfb385759aa83) | Last time the full inventory has been retrieved since this watch was created.
 `protected TArray< FString > `[`ParsedInventoryOrders`](#classURH__PlayerInventory_1a76a82d3bb8f00ae1427129887e83952b) | Array of inventory orders that have recently been parsed to prevent double parsing orders through normal polling.
 `protected FRH_AutoPollerPtr `[`InventoryPoller`](#classURH__PlayerInventory_1a9b073e90506714df4cff00f456168580) | Poller for inventory updates.
 `protected FRH_AutoPollerPtr `[`PendingInventoryPoller`](#classURH__PlayerInventory_1ad2760c4c21398d38fad0929a5ab3b9ff) | Polled for pending inventory.
@@ -809,6 +810,10 @@ Parses a player order result API into a [URH_PlayerOrderEntry](Inventory.md#clas
 #### `protected TMap< int32, TArray< `[`FRH_ItemInventory`](Inventory.md#structFRH__ItemInventory)` > > `[`InventoryCache`](#classURH__PlayerInventory_1a5d5179ccce89d685f086005d1b907ad8) <a id="classURH__PlayerInventory_1a5d5179ccce89d685f086005d1b907ad8"></a>
 
 Inventory cache map of Item Id to inventory records.
+
+#### `protected TOptional< FDateTime > `[`LastFullInventoryTime`](#classURH__PlayerInventory_1aa0850ee414c71713fc6bfb385759aa83) <a id="classURH__PlayerInventory_1aa0850ee414c71713fc6bfb385759aa83"></a>
+
+Last time the full inventory has been retrieved since this watch was created.
 
 #### `protected TArray< FString > `[`ParsedInventoryOrders`](#classURH__PlayerInventory_1a76a82d3bb8f00ae1427129887e83952b) <a id="classURH__PlayerInventory_1a76a82d3bb8f00ae1427129887e83952b"></a>
 
