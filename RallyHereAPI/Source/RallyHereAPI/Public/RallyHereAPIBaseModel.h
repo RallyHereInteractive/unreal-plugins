@@ -404,26 +404,26 @@ public:
 	 * @param [out] OutValue A string to store the header value to, if found
 	 * @return Whether or not the header was found
 	 */
-	bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue = FString(); return OutValuePtr != nullptr; }
+	FORCEINLINE bool TryGetHeader(const FString& Header, FString& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue = FString(); return OutValuePtr != nullptr; }
 	/**
 	 * @brief Attempt to fetch a header by name
 	 * @param [in] Header The name of the header to fetch
 	 * @param [out] OutValue A TOptional<FString> to store the header value to, if found
 	 * @return Whether or not the header was found
 	 */
-	bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
+	FORCEINLINE bool TryGetHeader(const FString& Header, TOptional<FString>& OutValue) const { const auto OutValuePtr = HeadersMap.Find(Header); if (OutValuePtr != nullptr) OutValue = *OutValuePtr; else OutValue.Reset(); return OutValuePtr != nullptr; }
 	/**
 	 * @brief Attempt to fetch a header by name
 	 * @param [in] Header The name of the header to fetch
 	 * @return A pointer to the header string value, if found.  The memory is owned by the response object!
 	 */
-	const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
+	FORCEINLINE const FString* TryGetHeaderAsPointer(const FString& Header) const { return HeadersMap.Find(Header); }
 	/**
 	 * @brief Attempt to fetch a header by name
 	 * @param [in] Header The name of the header to fetch
 	 * @return An optional string of the header string value, if found.  The memory is owned by the returned optional object, which contains a copy of the value if valid.
 	 */
-	const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
+	FORCEINLINE const TOptional<FString> TryGetHeaderAsOptional(const FString& Header) const { const auto Ptr = HeadersMap.Find(Header); return Ptr != nullptr ? *Ptr : TOptional<FString>(); }
 
 };
 
