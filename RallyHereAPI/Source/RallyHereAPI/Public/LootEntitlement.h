@@ -70,7 +70,7 @@ struct RALLYHEREAPI_API FRHAPI_LootEntitlement : public FRHAPI_Model
 
 	/** @brief The Loot ID that will be granted to the player when the SKU is refunded */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 RefundLootId_Optional{  };
+	int32 RefundLootId_Optional{ 0 };
 	/** @brief true if RefundLootId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool RefundLootId_IsSet{ false };
@@ -101,7 +101,7 @@ struct RALLYHEREAPI_API FRHAPI_LootEntitlement : public FRHAPI_Model
 
 	/** @brief The Loot ID that will be granted to the player when the SKU is charged back */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 ChargebackLootId_Optional{  };
+	int32 ChargebackLootId_Optional{ 0 };
 	/** @brief true if ChargebackLootId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ChargebackLootId_IsSet{ false };
@@ -132,7 +132,7 @@ struct RALLYHEREAPI_API FRHAPI_LootEntitlement : public FRHAPI_Model
 
 	/** @brief The Loot ID that will be granted to the player when the SKU is charged back is reversed */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 ChargebackReversalLootId_Optional{  };
+	int32 ChargebackReversalLootId_Optional{ 0 };
 	/** @brief true if ChargebackReversalLootId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ChargebackReversalLootId_IsSet{ false };

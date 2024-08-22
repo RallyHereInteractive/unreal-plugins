@@ -206,7 +206,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrder : public FRHAPI_Model
 
 	/** @brief If an order is a transaction, any failed entries will roll back changes from all other entries. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool IsTransaction_Optional{  };
+	bool IsTransaction_Optional{ false };
 	/** @brief true if IsTransaction_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool IsTransaction_IsSet{ false };

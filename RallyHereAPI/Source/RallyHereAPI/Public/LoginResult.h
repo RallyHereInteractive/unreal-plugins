@@ -125,7 +125,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
 
 	/** @brief Active player ID. *DEPRECATED* use `active_player_uuid` instead */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 ActivePlayerId_Optional{  };
+	int32 ActivePlayerId_Optional{ 0 };
 	/** @brief true if ActivePlayerId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ActivePlayerId_IsSet{ false };
@@ -210,7 +210,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
 
 	/** @brief Portal ID *DEPRECATED* use `platform` instead */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 PortalId_Optional{  };
+	int32 PortalId_Optional{ 0 };
 	/** @brief true if PortalId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PortalId_IsSet{ false };
@@ -295,7 +295,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
 
 	/** @brief Role ID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 RoleId_Optional{  };
+	int32 RoleId_Optional{ 0 };
 	/** @brief true if RoleId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool RoleId_IsSet{ false };
@@ -353,7 +353,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
 
 	/** @brief Access token that can be used for future requests */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FString AccessToken_Optional{  };
+	FString AccessToken_Optional{ TEXT("") };
 	/** @brief true if AccessToken_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool AccessToken_IsSet{ false };
@@ -483,7 +483,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
 
 	/** @brief Result access token expiration time in seconds */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 ExpiresIn_Optional{  };
+	int32 ExpiresIn_Optional{ 0 };
 	/** @brief true if ExpiresIn_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ExpiresIn_IsSet{ false };

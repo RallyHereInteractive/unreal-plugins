@@ -42,7 +42,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerInventoryChange : public FRHAPI_Model
 
 	/** @brief The Item ID of the Item before the change. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 BeforeItemId_Optional{  };
+	int32 BeforeItemId_Optional{ 0 };
 	/** @brief true if BeforeItemId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool BeforeItemId_IsSet{ false };
@@ -73,7 +73,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerInventoryChange : public FRHAPI_Model
 
 	/** @brief The Item ID of the Item after the change. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 AfterItemId_Optional{  };
+	int32 AfterItemId_Optional{ 0 };
 	/** @brief true if AfterItemId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool AfterItemId_IsSet{ false };

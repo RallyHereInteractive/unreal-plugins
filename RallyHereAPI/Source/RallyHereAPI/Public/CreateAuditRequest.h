@@ -157,7 +157,7 @@ struct RALLYHEREAPI_API FRHAPI_CreateAuditRequest : public FRHAPI_Model
 
 	/** @brief Whether or not the session is publicly joinable */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool Joinable_Optional{  };
+	bool Joinable_Optional{ false };
 	/** @brief true if Joinable_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Joinable_IsSet{ false };
@@ -269,7 +269,7 @@ struct RALLYHEREAPI_API FRHAPI_CreateAuditRequest : public FRHAPI_Model
 
 	/** @brief ID of the team being effected in this event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 TeamId_Optional{  };
+	int32 TeamId_Optional{ 0 };
 	/** @brief true if TeamId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool TeamId_IsSet{ false };

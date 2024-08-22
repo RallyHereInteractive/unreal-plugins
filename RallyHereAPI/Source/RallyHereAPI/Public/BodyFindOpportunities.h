@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_BodyFindOpportunities : public FRHAPI_Model
 
 	/** @brief Width of the screen in pixels */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 ScreenPixelWidth_Optional{  };
+	int32 ScreenPixelWidth_Optional{ 0 };
 	/** @brief true if ScreenPixelWidth_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ScreenPixelWidth_IsSet{ false };
@@ -72,7 +72,7 @@ struct RALLYHEREAPI_API FRHAPI_BodyFindOpportunities : public FRHAPI_Model
 
 	/** @brief Height of the screen in pixels */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 ScreenPixelHeight_Optional{  };
+	int32 ScreenPixelHeight_Optional{ 0 };
 	/** @brief true if ScreenPixelHeight_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ScreenPixelHeight_IsSet{ false };

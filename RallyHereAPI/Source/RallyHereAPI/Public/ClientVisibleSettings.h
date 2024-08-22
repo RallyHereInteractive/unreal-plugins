@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_ClientVisibleSettings : public FRHAPI_Model
 
 	/** @brief How frequently the client should tell this service that it's online. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 SelfPingIntervalSeconds_Optional{  };
+	int32 SelfPingIntervalSeconds_Optional{ 30 };
 	/** @brief true if SelfPingIntervalSeconds_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool SelfPingIntervalSeconds_IsSet{ false };
@@ -72,7 +72,7 @@ struct RALLYHEREAPI_API FRHAPI_ClientVisibleSettings : public FRHAPI_Model
 
 	/** @brief If a client hasn't said that it's online within this time period, it will be treated as offline when others query its presence. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 LastSeenAgeConsideredOfflineSeconds_Optional{  };
+	int32 LastSeenAgeConsideredOfflineSeconds_Optional{ 60 };
 	/** @brief true if LastSeenAgeConsideredOfflineSeconds_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool LastSeenAgeConsideredOfflineSeconds_IsSet{ false };

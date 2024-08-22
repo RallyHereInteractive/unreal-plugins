@@ -69,7 +69,7 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrame : public FRHAPI_Model
 
 	/** @brief Whether or not the Time Frame is active. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool Active_Optional{  };
+	bool Active_Optional{ false };
 	/** @brief true if Active_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Active_IsSet{ false };
@@ -99,7 +99,7 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrame : public FRHAPI_Model
 	void SetActiveToDefault() { SetActive(false); }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 Episode_Optional{  };
+	int32 Episode_Optional{ 0 };
 	/** @brief true if Episode_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Episode_IsSet{ false };
@@ -129,7 +129,7 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrame : public FRHAPI_Model
 	void SetEpisodeToDefault() { SetEpisode(0); }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 EpisodeType_Optional{  };
+	int32 EpisodeType_Optional{ 0 };
 	/** @brief true if EpisodeType_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool EpisodeType_IsSet{ false };
@@ -160,7 +160,7 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrame : public FRHAPI_Model
 
 	/** @brief Number of hours that this time frame lasts until restarting.0 interval means no repeating. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 HourInterval_Optional{  };
+	int32 HourInterval_Optional{ 0 };
 	/** @brief true if HourInterval_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool HourInterval_IsSet{ false };

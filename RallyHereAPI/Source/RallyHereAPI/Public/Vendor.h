@@ -124,7 +124,7 @@ struct RALLYHEREAPI_API FRHAPI_Vendor : public FRHAPI_Model
 	bool IsTypeSet() const { return Type_IsSet; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 LegacyType_Optional{  };
+	int32 LegacyType_Optional{ 0 };
 	/** @brief true if LegacyType_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool LegacyType_IsSet{ false };
@@ -154,7 +154,7 @@ struct RALLYHEREAPI_API FRHAPI_Vendor : public FRHAPI_Model
 	void SetLegacyTypeToDefault() { SetLegacyType(0); }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 LegacyConfigVersion_Optional{  };
+	int32 LegacyConfigVersion_Optional{ 0 };
 	/** @brief true if LegacyConfigVersion_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool LegacyConfigVersion_IsSet{ false };

@@ -97,7 +97,7 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
 
 	/** @brief Player ID of the host, if the host type is player */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 HostPlayerId_Optional{  };
+	int32 HostPlayerId_Optional{ 0 };
 	/** @brief true if HostPlayerId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool HostPlayerId_IsSet{ false };

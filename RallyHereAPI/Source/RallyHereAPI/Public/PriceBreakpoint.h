@@ -69,7 +69,7 @@ struct RALLYHEREAPI_API FRHAPI_PriceBreakpoint : public FRHAPI_Model
 
 	/** @brief Deprecated. Use the currencies field instead. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 PriceItemId_Optional{  };
+	int32 PriceItemId_Optional{ 0 };
 	/** @brief true if PriceItemId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PriceItemId_IsSet{ false };
@@ -115,7 +115,7 @@ struct RALLYHEREAPI_API FRHAPI_PriceBreakpoint : public FRHAPI_Model
 
 	/** @brief Deprecated. Use the currencies field instead. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 Price_Optional{  };
+	int32 Price_Optional{ 0 };
 	/** @brief true if Price_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Price_IsSet{ false };

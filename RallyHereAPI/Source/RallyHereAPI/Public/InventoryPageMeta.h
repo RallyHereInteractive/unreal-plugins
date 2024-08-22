@@ -123,7 +123,7 @@ struct RALLYHEREAPI_API FRHAPI_InventoryPageMeta : public FRHAPI_Model
 
 	/** @brief The number of Orders to return */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 Limit_Optional{  };
+	int32 Limit_Optional{ 10 };
 	/** @brief true if Limit_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Limit_IsSet{ false };

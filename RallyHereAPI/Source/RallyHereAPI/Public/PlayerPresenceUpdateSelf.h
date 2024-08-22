@@ -96,7 +96,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresenceUpdateSelf : public FRHAPI_Model
 
 	/** @brief Disables notifications and invites. Leaving this unset will not change the value. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool DoNotDisturb_Optional{  };
+	bool DoNotDisturb_Optional{ false };
 	/** @brief true if DoNotDisturb_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool DoNotDisturb_IsSet{ false };

@@ -97,7 +97,7 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
 
 	/** @brief Forces the quantity to be equal to a quantity on a Price Breakpoint. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool StrictFlag_Optional{  };
+	bool StrictFlag_Optional{ false };
 	/** @brief true if StrictFlag_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool StrictFlag_IsSet{ false };
@@ -128,7 +128,7 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
 
 	/** @brief Only allows quantity to be fulfilled up the highest quantity on the Price Breakpoints */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool CapFlag_Optional{  };
+	bool CapFlag_Optional{ false };
 	/** @brief true if CapFlag_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool CapFlag_IsSet{ false };

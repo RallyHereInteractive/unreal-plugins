@@ -70,7 +70,7 @@ struct RALLYHEREAPI_API FRHAPI_CreateInventoryRequest : public FRHAPI_Model
 
 	/** @brief Count for this Inventory Operation. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 Count_Optional{  };
+	int32 Count_Optional{ 1 };
 	/** @brief true if Count_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Count_IsSet{ false };

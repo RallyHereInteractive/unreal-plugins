@@ -52,7 +52,7 @@ struct RALLYHEREAPI_API FRHAPI_FriendRelationshipV1 : public FRHAPI_Model
 	void SetFriendsPlayerUuid(FGuid&& NewValue) { FriendsPlayerUuid = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 FriendsPlayerId_Optional{  };
+	int32 FriendsPlayerId_Optional{ 0 };
 	/** @brief true if FriendsPlayerId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool FriendsPlayerId_IsSet{ false };

@@ -54,7 +54,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
 
 	/** @brief Token or secret used to authenticate the provided grant type */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FString PortalAccessToken_Optional{  };
+	FString PortalAccessToken_Optional{ TEXT("") };
 	/** @brief true if PortalAccessToken_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PortalAccessToken_IsSet{ false };
@@ -85,7 +85,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
 
 	/** @brief Some grant types support client-provided names */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FString PortalDisplayName_Optional{  };
+	FString PortalDisplayName_Optional{ TEXT("") };
 	/** @brief true if PortalDisplayName_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PortalDisplayName_IsSet{ false };
@@ -116,7 +116,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
 
 	/** @brief Some grant types have 2 tier authentication and require a second token/secret */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FString PortalParentAccessToken_Optional{  };
+	FString PortalParentAccessToken_Optional{ TEXT("") };
 	/** @brief true if PortalParentAccessToken_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PortalParentAccessToken_IsSet{ false };
@@ -147,7 +147,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
 
 	/** @brief Some grant types have 2 tier authentication and support a second display name */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FString PortalParentDisplayName_Optional{  };
+	FString PortalParentDisplayName_Optional{ TEXT("") };
 	/** @brief true if PortalParentDisplayName_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PortalParentDisplayName_IsSet{ false };
@@ -178,7 +178,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
 
 	/** @brief Indicates if the client wants a refresh token returned */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool IncludeRefresh_Optional{  };
+	bool IncludeRefresh_Optional{ false };
 	/** @brief true if IncludeRefresh_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool IncludeRefresh_IsSet{ false };
@@ -209,7 +209,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
 
 	/** @brief If true, the user has accepted the EULA */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool AcceptEula_Optional{  };
+	bool AcceptEula_Optional{ false };
 	/** @brief true if AcceptEula_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool AcceptEula_IsSet{ false };
@@ -240,7 +240,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
 
 	/** @brief If true, the user has accepted the Terms of Service */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool AcceptTos_Optional{  };
+	bool AcceptTos_Optional{ false };
 	/** @brief true if AcceptTos_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool AcceptTos_IsSet{ false };
@@ -271,7 +271,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
 
 	/** @brief If true, the user has accepted the Privacy Policy */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool AcceptPrivacyPolicy_Optional{  };
+	bool AcceptPrivacyPolicy_Optional{ false };
 	/** @brief true if AcceptPrivacyPolicy_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool AcceptPrivacyPolicy_IsSet{ false };

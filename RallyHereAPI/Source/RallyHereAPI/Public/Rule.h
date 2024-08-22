@@ -55,7 +55,7 @@ struct RALLYHEREAPI_API FRHAPI_Rule : public FRHAPI_Model
 
 	/** @brief Id of the item we are comparing if this is an inventory rule */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 ItemId_Optional{  };
+	int32 ItemId_Optional{ 0 };
 	/** @brief true if ItemId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ItemId_IsSet{ false };

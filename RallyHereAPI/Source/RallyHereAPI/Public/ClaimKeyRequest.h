@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_ClaimKeyRequest : public FRHAPI_Model
 	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FString ExternalKeyType_Optional{  };
+	FString ExternalKeyType_Optional{ TEXT("Type of the External Key") };
 	/** @brief true if ExternalKeyType_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ExternalKeyType_IsSet{ false };
