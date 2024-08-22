@@ -174,15 +174,41 @@ struct FRH_DeferredSessionPoll
 	};
 
 	Type PollType;
-	FRH_PollCompleteFunc Delegate;
 	TOptional<FString> ETag;
 
+	// make delegates private to force using trigger function for consistency
+private:
+	FRH_PollCompleteFunc Delegate;
+	FRH_GenericSuccessWithErrorBlock DelegateWithError;
+public:
+	
 	FRH_DeferredSessionPoll(Type InPollType, const FRH_PollCompleteFunc& InDelegate, const TOptional<FString>& InETag = TOptional<FString>())
 		: PollType(InPollType)
-		, Delegate(InDelegate)
 		, ETag(InETag)
-
+		, Delegate(InDelegate)
 	{}
+	FRH_DeferredSessionPoll(Type InPollType, const FRH_GenericSuccessWithErrorBlock& InDelegate, const TOptional<FString>& InETag = TOptional<FString>())
+		: PollType(InPollType)
+		, ETag(InETag)
+		, DelegateWithError(InDelegate)
+	{}
+
+	bool IsDelegateBound() const
+	{
+		return Delegate.IsBound() || DelegateWithError.IsBound();
+	}
+	
+	void TriggerDelegates(bool bSuccess, bool bRepeatTimer, const FRH_ErrorInfo& ErrorInfo = FRH_ErrorInfo()) const
+	{
+		if (Delegate.IsBound())
+		{
+			Delegate.ExecuteIfBound(bSuccess, bRepeatTimer);
+		}
+		if (DelegateWithError.IsBound())
+		{
+			DelegateWithError.ExecuteIfBound(bSuccess, ErrorInfo);
+		}
+	}
 };
 
 // extensible namespace for wrappering custom data keys that are utilized for Session's CustomData object
@@ -482,9 +508,16 @@ public:
 	/**
 	 * @brief Forces a polling call even if the polling is waiting till next time to pulse.
 	 * @param [in] bClearETag If true, the ETag will be cleared before the poll.
+	 * @param [in] Delegate Callback delegate for when the poll completes.
 	 */
-	UFUNCTION(BlueprintCallable, Category = "Session")
-	void ForcePollForUpdate(bool bClearETag = false);
+	void ForcePollForUpdate(bool bClearETag = false, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock());
+	/**
+	 * @brief Blueprint compatible version of ForcePollForUpdate
+	 * @param [in] bClearETag If true, the ETag will be cleared before the poll.
+	 * @param [in] Delegate Callback delegate for when the poll completes.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Force Poll For Update", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_ForcePollForUpdate(bool bClearETag, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate) { ForcePollForUpdate(bClearETag, Delegate); }
 
 	/**
 	 * @brief Add a deferred poll to the list of polls to run in sequence
