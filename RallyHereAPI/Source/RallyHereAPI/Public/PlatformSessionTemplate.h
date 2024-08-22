@@ -79,7 +79,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSessionTemplate : public FRHAPI_Model
 
 	/** @brief The maximum number of players that can be a part of this platform session */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 MaxPlayers_Optional{  };
+	int32 MaxPlayers_Optional{ 0 };
 	/** @brief true if MaxPlayers_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool MaxPlayers_IsSet{ false };

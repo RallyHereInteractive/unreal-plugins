@@ -123,7 +123,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerDeserterStatus : public FRHAPI_Model
 
 	/** @brief The number of times a player has deserted before the expiration */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 DeserterCount_Optional{  };
+	int32 DeserterCount_Optional{ 0 };
 	/** @brief true if DeserterCount_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool DeserterCount_IsSet{ false };

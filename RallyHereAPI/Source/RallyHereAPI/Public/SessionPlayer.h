@@ -44,7 +44,7 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
 
 	/** @brief Legacy id for this player */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 PlayerId_Optional{  };
+	int32 PlayerId_Optional{ 0 };
 	/** @brief true if PlayerId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PlayerId_IsSet{ false };

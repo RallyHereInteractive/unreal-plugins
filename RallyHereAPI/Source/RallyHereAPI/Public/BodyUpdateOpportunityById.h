@@ -82,7 +82,7 @@ struct RALLYHEREAPI_API FRHAPI_BodyUpdateOpportunityById : public FRHAPI_Model
 
 	/** @brief Number of seconds into the video when the abort happened */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 AbortSeconds_Optional{  };
+	int32 AbortSeconds_Optional{ 0 };
 	/** @brief true if AbortSeconds_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool AbortSeconds_IsSet{ false };

@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_AgreementMessage : public FRHAPI_Model
 	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool AuthSuccess_Optional{  };
+	bool AuthSuccess_Optional{ true };
 	/** @brief true if AuthSuccess_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool AuthSuccess_IsSet{ false };
@@ -93,7 +93,7 @@ struct RALLYHEREAPI_API FRHAPI_AgreementMessage : public FRHAPI_Model
 
 	/** @brief Whether the user needs to accept the End User License Agreement */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool NeedsEula_Optional{  };
+	bool NeedsEula_Optional{ false };
 	/** @brief true if NeedsEula_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool NeedsEula_IsSet{ false };
@@ -124,7 +124,7 @@ struct RALLYHEREAPI_API FRHAPI_AgreementMessage : public FRHAPI_Model
 
 	/** @brief Whether the user needs to accept the Terms of Service */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool NeedsTos_Optional{  };
+	bool NeedsTos_Optional{ false };
 	/** @brief true if NeedsTos_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool NeedsTos_IsSet{ false };
@@ -155,7 +155,7 @@ struct RALLYHEREAPI_API FRHAPI_AgreementMessage : public FRHAPI_Model
 
 	/** @brief Whether the user needs to accept the Privacy Policy */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool NeedsPrivacyPolicy_Optional{  };
+	bool NeedsPrivacyPolicy_Optional{ false };
 	/** @brief true if NeedsPrivacyPolicy_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool NeedsPrivacyPolicy_IsSet{ false };

@@ -120,7 +120,7 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingProfileV2 : public FRHAPI_Model
 
 	/** @brief The number of sides a game in this profile will have (2 in a 1v1 and 3 in a 1v1v1 for example */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 NumSides_Optional{  };
+	int32 NumSides_Optional{ 0 };
 	/** @brief true if NumSides_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool NumSides_IsSet{ false };
@@ -151,7 +151,7 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingProfileV2 : public FRHAPI_Model
 
 	/** @brief The maximum number of players that can be on each team */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 MaxPlayersPerSide_Optional{  };
+	int32 MaxPlayersPerSide_Optional{ 0 };
 	/** @brief true if MaxPlayersPerSide_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool MaxPlayersPerSide_IsSet{ false };
@@ -182,7 +182,7 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingProfileV2 : public FRHAPI_Model
 
 	/** @brief The minimum number of players that can be on each team */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 MinPlayersPerSide_Optional{  };
+	int32 MinPlayersPerSide_Optional{ 0 };
 	/** @brief true if MinPlayersPerSide_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool MinPlayersPerSide_IsSet{ false };

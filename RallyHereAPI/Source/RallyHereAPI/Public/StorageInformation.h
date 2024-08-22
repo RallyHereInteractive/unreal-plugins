@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_StorageInformation : public FRHAPI_Model
 	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 TotalFiles_Optional{  };
+	int32 TotalFiles_Optional{ 0 };
 	/** @brief true if TotalFiles_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool TotalFiles_IsSet{ false };
@@ -70,7 +70,7 @@ struct RALLYHEREAPI_API FRHAPI_StorageInformation : public FRHAPI_Model
 	void SetTotalFilesToDefault() { SetTotalFiles(0); }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 TotalSizeBytes_Optional{  };
+	int32 TotalSizeBytes_Optional{ 0 };
 	/** @brief true if TotalSizeBytes_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool TotalSizeBytes_IsSet{ false };
@@ -100,7 +100,7 @@ struct RALLYHEREAPI_API FRHAPI_StorageInformation : public FRHAPI_Model
 	void SetTotalSizeBytesToDefault() { SetTotalSizeBytes(0); }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 TotalSizeMb_Optional{  };
+	int32 TotalSizeMb_Optional{ 0 };
 	/** @brief true if TotalSizeMb_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool TotalSizeMb_IsSet{ false };

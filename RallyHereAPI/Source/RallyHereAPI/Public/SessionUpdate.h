@@ -96,7 +96,7 @@ struct RALLYHEREAPI_API FRHAPI_SessionUpdate : public FRHAPI_Model
 
 	/** @brief Flag for if players can freely join this session without an invite */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool Joinable_Optional{  };
+	bool Joinable_Optional{ false };
 	/** @brief true if Joinable_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Joinable_IsSet{ false };

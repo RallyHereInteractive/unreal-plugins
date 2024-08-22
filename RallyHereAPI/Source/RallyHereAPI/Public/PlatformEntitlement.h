@@ -67,7 +67,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlement : public FRHAPI_Model
 
 	/** @brief number purchased */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 Quantity_Optional{  };
+	int32 Quantity_Optional{ 1 };
 	/** @brief true if Quantity_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Quantity_IsSet{ false };

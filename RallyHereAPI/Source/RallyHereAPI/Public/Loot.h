@@ -162,7 +162,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 
 	/** @brief The Item ID. Optional Item that will be granted to the player if Sub Vendor ID is not specified. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 ItemId_Optional{  };
+	int32 ItemId_Optional{ 0 };
 	/** @brief true if ItemId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ItemId_IsSet{ false };
@@ -247,7 +247,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 
 	/** @brief The Sub Vendor ID. Optional Vendor ID that will be used to fulfill the Loot instead of granting the Item. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 SubVendorId_Optional{  };
+	int32 SubVendorId_Optional{ 0 };
 	/** @brief true if SubVendorId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool SubVendorId_IsSet{ false };
@@ -305,7 +305,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 
 	/** @brief The quantity of the Item or Sub Vendor to fulfill. This will be multiplied by the quantity of fulfilled Loot and the parent Loot if quantity_type is relative. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 Quantity_Optional{  };
+	int32 Quantity_Optional{ 0 };
 	/** @brief true if Quantity_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Quantity_IsSet{ false };
@@ -390,7 +390,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 
 	/** @brief Determines if the Loot is active. Inactive Loot will not be fulfilled. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool Active_Optional{  };
+	bool Active_Optional{ false };
 	/** @brief true if Active_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Active_IsSet{ false };
@@ -421,7 +421,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 
 	/** @brief The sort order of the Loot. Lower sort order will be fulfilled first. Inventory Operation is used as a tie breaker when sort_order is the same. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 SortOrder_Optional{  };
+	int32 SortOrder_Optional{ 0 };
 	/** @brief true if SortOrder_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool SortOrder_IsSet{ false };
@@ -452,7 +452,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 
 	/** @brief The drop weight of the Loot. Higher drop weight will be more likely to be fulfilled. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 DropWeight_Optional{  };
+	int32 DropWeight_Optional{ 0 };
 	/** @brief true if DropWeight_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool DropWeight_IsSet{ false };
@@ -483,7 +483,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 
 	/** @brief When dropped in a randomly sampled vendor, will this create a new order or fill inline?. The primary use case for this is when you want the same loot to be dropped multiple times in a randomly sampled vendor. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool FillInNewOrder_Optional{  };
+	bool FillInNewOrder_Optional{ false };
 	/** @brief true if FillInNewOrder_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool FillInNewOrder_IsSet{ false };
@@ -514,7 +514,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 
 	/** @brief When dropped in a randomly sampled vendor, will the sub vendor allow dropping part of the the bundle?  False means it will only drop if the entire sub vendor can be given to the player */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool AllowPartialBundles_Optional{  };
+	bool AllowPartialBundles_Optional{ true };
 	/** @brief true if AllowPartialBundles_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool AllowPartialBundles_IsSet{ false };
@@ -545,7 +545,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 
 	/** @brief Item required to be owned/rented to drop this Loot in a randomly sampled vendor */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 RequiredItemId_Optional{  };
+	int32 RequiredItemId_Optional{ 0 };
 	/** @brief true if RequiredItemId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool RequiredItemId_IsSet{ false };
@@ -603,7 +603,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 
 	/** @brief Amount of the required_item_id to be owned/rented to drop this Loot in a randomly sampled vendor */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 RequiredItemCount_Optional{  };
+	int32 RequiredItemCount_Optional{ 0 };
 	/** @brief true if RequiredItemCount_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool RequiredItemCount_IsSet{ false };
@@ -634,7 +634,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 
 	/** @brief Amount of owned/rented of this Loot's item that will prevent this Loot from dropping in a randomly sampled vendor */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 StackLimit_Optional{  };
+	int32 StackLimit_Optional{ 0 };
 	/** @brief true if StackLimit_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool StackLimit_IsSet{ false };
@@ -664,7 +664,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 	void SetStackLimitToDefault() { SetStackLimit(0); }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 UiHint_Optional{  };
+	int32 UiHint_Optional{ 0 };
 	/** @brief true if UiHint_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool UiHint_IsSet{ false };
@@ -748,7 +748,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 
 	/** @brief When fulfilling Loot if this is set the quantity will be multiplied by the quantity of this Item in the Player's Inventory. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 QuantityMultInventoryItemId_Optional{  };
+	int32 QuantityMultInventoryItemId_Optional{ 0 };
 	/** @brief true if QuantityMultInventoryItemId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool QuantityMultInventoryItemId_IsSet{ false };
@@ -806,7 +806,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 
 	/** @brief Determines if the Loot can be claimed by the client. This is dangerous without the correct loot confiuration as a client could claim Loot multiple times. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool IsClaimableByClient_Optional{  };
+	bool IsClaimableByClient_Optional{ false };
 	/** @brief true if IsClaimableByClient_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool IsClaimableByClient_IsSet{ false };
@@ -837,7 +837,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 
 	/** @brief The Time Frame ID. Optional Time Frame ID that will be used the expiration of Loot when it is fulfilled. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 TimeFrameId_Optional{  };
+	int32 TimeFrameId_Optional{ 0 };
 	/** @brief true if TimeFrameId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool TimeFrameId_IsSet{ false };
@@ -1003,7 +1003,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
 
 	/** @brief Hard cap on quantity of an item this Loot can give. Disabled with 0 */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 HardQuantityMaximum_Optional{  };
+	int32 HardQuantityMaximum_Optional{ 0 };
 	/** @brief true if HardQuantityMaximum_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool HardQuantityMaximum_IsSet{ false };

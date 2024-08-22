@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSessionPlayer : public FRHAPI_Model
 
 	/** @brief Player ID representing the current player */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 PlayerId_Optional{  };
+	int32 PlayerId_Optional{ 0 };
 	/** @brief true if PlayerId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PlayerId_IsSet{ false };
@@ -84,7 +84,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSessionPlayer : public FRHAPI_Model
 
 	/** @brief Is this player the leader of the platform session?  When setting up the parent session, if all players are from the same platform session, leadership is coordinated */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool Leader_Optional{  };
+	bool Leader_Optional{ false };
 	/** @brief true if Leader_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Leader_IsSet{ false };

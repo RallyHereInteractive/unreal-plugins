@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_PexClientScores : public FRHAPI_Model
 	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool OverallMatchScore_Optional{  };
+	bool OverallMatchScore_Optional{ false };
 	/** @brief true if OverallMatchScore_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool OverallMatchScore_IsSet{ false };
@@ -77,7 +77,7 @@ struct RALLYHEREAPI_API FRHAPI_PexClientScores : public FRHAPI_Model
 	bool IsOverallMatchScoreNull() const { return OverallMatchScore_IsSet && OverallMatchScore_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool AppScore_Optional{  };
+	bool AppScore_Optional{ false };
 	/** @brief true if AppScore_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool AppScore_IsSet{ false };
@@ -114,7 +114,7 @@ struct RALLYHEREAPI_API FRHAPI_PexClientScores : public FRHAPI_Model
 	bool IsAppScoreNull() const { return AppScore_IsSet && AppScore_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool GameplayScore_Optional{  };
+	bool GameplayScore_Optional{ false };
 	/** @brief true if GameplayScore_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool GameplayScore_IsSet{ false };
@@ -151,7 +151,7 @@ struct RALLYHEREAPI_API FRHAPI_PexClientScores : public FRHAPI_Model
 	bool IsGameplayScoreNull() const { return GameplayScore_IsSet && GameplayScore_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool NetworkScore_Optional{  };
+	bool NetworkScore_Optional{ false };
 	/** @brief true if NetworkScore_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool NetworkScore_IsSet{ false };
@@ -188,7 +188,7 @@ struct RALLYHEREAPI_API FRHAPI_PexClientScores : public FRHAPI_Model
 	bool IsNetworkScoreNull() const { return NetworkScore_IsSet && NetworkScore_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool ConnectionCountScore_Optional{  };
+	bool ConnectionCountScore_Optional{ false };
 	/** @brief true if ConnectionCountScore_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ConnectionCountScore_IsSet{ false };
@@ -225,7 +225,7 @@ struct RALLYHEREAPI_API FRHAPI_PexClientScores : public FRHAPI_Model
 	bool IsConnectionCountScoreNull() const { return ConnectionCountScore_IsSet && ConnectionCountScore_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool FrameTimeScore_Optional{  };
+	bool FrameTimeScore_Optional{ false };
 	/** @brief true if FrameTimeScore_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool FrameTimeScore_IsSet{ false };
@@ -262,7 +262,7 @@ struct RALLYHEREAPI_API FRHAPI_PexClientScores : public FRHAPI_Model
 	bool IsFrameTimeScoreNull() const { return FrameTimeScore_IsSet && FrameTimeScore_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool DeltaTimeScore_Optional{  };
+	bool DeltaTimeScore_Optional{ false };
 	/** @brief true if DeltaTimeScore_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool DeltaTimeScore_IsSet{ false };
@@ -299,7 +299,7 @@ struct RALLYHEREAPI_API FRHAPI_PexClientScores : public FRHAPI_Model
 	bool IsDeltaTimeScoreNull() const { return DeltaTimeScore_IsSet && DeltaTimeScore_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool TickCountScore_Optional{  };
+	bool TickCountScore_Optional{ false };
 	/** @brief true if TickCountScore_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool TickCountScore_IsSet{ false };
@@ -336,7 +336,7 @@ struct RALLYHEREAPI_API FRHAPI_PexClientScores : public FRHAPI_Model
 	bool IsTickCountScoreNull() const { return TickCountScore_IsSet && TickCountScore_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool DelayedTickCountScore_Optional{  };
+	bool DelayedTickCountScore_Optional{ false };
 	/** @brief true if DelayedTickCountScore_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool DelayedTickCountScore_IsSet{ false };
@@ -373,7 +373,7 @@ struct RALLYHEREAPI_API FRHAPI_PexClientScores : public FRHAPI_Model
 	bool IsDelayedTickCountScoreNull() const { return DelayedTickCountScore_IsSet && DelayedTickCountScore_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool MemoryWsScore_Optional{  };
+	bool MemoryWsScore_Optional{ false };
 	/** @brief true if MemoryWsScore_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool MemoryWsScore_IsSet{ false };
@@ -410,7 +410,7 @@ struct RALLYHEREAPI_API FRHAPI_PexClientScores : public FRHAPI_Model
 	bool IsMemoryWsScoreNull() const { return MemoryWsScore_IsSet && MemoryWsScore_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool MemoryVbScore_Optional{  };
+	bool MemoryVbScore_Optional{ false };
 	/** @brief true if MemoryVbScore_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool MemoryVbScore_IsSet{ false };
@@ -447,7 +447,7 @@ struct RALLYHEREAPI_API FRHAPI_PexClientScores : public FRHAPI_Model
 	bool IsMemoryVbScoreNull() const { return MemoryVbScore_IsSet && MemoryVbScore_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool CpuProcessScore_Optional{  };
+	bool CpuProcessScore_Optional{ false };
 	/** @brief true if CpuProcessScore_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool CpuProcessScore_IsSet{ false };
@@ -484,7 +484,7 @@ struct RALLYHEREAPI_API FRHAPI_PexClientScores : public FRHAPI_Model
 	bool IsCpuProcessScoreNull() const { return CpuProcessScore_IsSet && CpuProcessScore_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool PingScore_Optional{  };
+	bool PingScore_Optional{ false };
 	/** @brief true if PingScore_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PingScore_IsSet{ false };
@@ -521,7 +521,7 @@ struct RALLYHEREAPI_API FRHAPI_PexClientScores : public FRHAPI_Model
 	bool IsPingScoreNull() const { return PingScore_IsSet && PingScore_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool InPacketLossScore_Optional{  };
+	bool InPacketLossScore_Optional{ false };
 	/** @brief true if InPacketLossScore_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool InPacketLossScore_IsSet{ false };
@@ -558,7 +558,7 @@ struct RALLYHEREAPI_API FRHAPI_PexClientScores : public FRHAPI_Model
 	bool IsInPacketLossScoreNull() const { return InPacketLossScore_IsSet && InPacketLossScore_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool OutPacketLossScore_Optional{  };
+	bool OutPacketLossScore_Optional{ false };
 	/** @brief true if OutPacketLossScore_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool OutPacketLossScore_IsSet{ false };
@@ -595,7 +595,7 @@ struct RALLYHEREAPI_API FRHAPI_PexClientScores : public FRHAPI_Model
 	bool IsOutPacketLossScoreNull() const { return OutPacketLossScore_IsSet && OutPacketLossScore_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool TotalDisconnectsScore_Optional{  };
+	bool TotalDisconnectsScore_Optional{ false };
 	/** @brief true if TotalDisconnectsScore_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool TotalDisconnectsScore_IsSet{ false };

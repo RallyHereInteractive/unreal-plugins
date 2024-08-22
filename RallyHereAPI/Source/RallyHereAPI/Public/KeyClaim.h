@@ -108,7 +108,7 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
 
 	/** @brief Whether the KeyClaim has been claimed */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool Claimed_Optional{  };
+	bool Claimed_Optional{ false };
 	/** @brief true if Claimed_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Claimed_IsSet{ false };

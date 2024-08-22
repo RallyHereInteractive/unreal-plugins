@@ -108,7 +108,7 @@ struct RALLYHEREAPI_API FRHAPI_QueueJoinRequest : public FRHAPI_Model
 
 	/** @brief Argument to artifcially add queue time to a ticket. Older tickets are considered for lower quaulity matches. This can be used to get faster matches at the expense of quality, or to restore a session's place in queue after a failure */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 PassedQueueTimeSeconds_Optional{  };
+	int32 PassedQueueTimeSeconds_Optional{ 0 };
 	/** @brief true if PassedQueueTimeSeconds_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PassedQueueTimeSeconds_IsSet{ false };

@@ -55,7 +55,7 @@ struct RALLYHEREAPI_API FRHAPI_Role : public FRHAPI_Model
 
 	/** @brief Legacy role ID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 LegacyRoleId_Optional{  };
+	int32 LegacyRoleId_Optional{ 0 };
 	/** @brief true if LegacyRoleId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool LegacyRoleId_IsSet{ false };

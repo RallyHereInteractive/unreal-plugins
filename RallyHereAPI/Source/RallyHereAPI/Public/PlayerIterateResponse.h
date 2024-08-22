@@ -69,7 +69,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerIterateResponse : public FRHAPI_Model
 
 	/** @brief Cursor to continue iteration */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FString Cursor_Optional{  };
+	FString Cursor_Optional{ TEXT("") };
 	/** @brief true if Cursor_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Cursor_IsSet{ false };

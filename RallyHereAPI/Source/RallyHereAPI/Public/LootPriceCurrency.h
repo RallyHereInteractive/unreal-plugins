@@ -53,7 +53,7 @@ struct RALLYHEREAPI_API FRHAPI_LootPriceCurrency : public FRHAPI_Model
 
 	/** @brief The Item used as the currency for the purchase. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 PriceLegacyItemId_Optional{  };
+	int32 PriceLegacyItemId_Optional{ 0 };
 	/** @brief true if PriceLegacyItemId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PriceLegacyItemId_IsSet{ false };
@@ -100,7 +100,7 @@ struct RALLYHEREAPI_API FRHAPI_LootPriceCurrency : public FRHAPI_Model
 
 	/** @brief The amount of the item needed before the sale began */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 OriginalPrice_Optional{  };
+	int32 OriginalPrice_Optional{ 0 };
 	/** @brief true if OriginalPrice_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool OriginalPrice_IsSet{ false };

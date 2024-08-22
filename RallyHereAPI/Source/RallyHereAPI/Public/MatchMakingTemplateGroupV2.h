@@ -94,7 +94,7 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplateGroupV2 : public FRHAPI_Model
 
 	/** @brief Whether or not the rulesets under this group will require us to query all players inventory, or just the leader's */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool RequiresAllPlayersItems_Optional{  };
+	bool RequiresAllPlayersItems_Optional{ false };
 	/** @brief true if RequiresAllPlayersItems_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool RequiresAllPlayersItems_IsSet{ false };

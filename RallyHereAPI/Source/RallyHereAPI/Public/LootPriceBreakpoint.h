@@ -42,7 +42,7 @@ struct RALLYHEREAPI_API FRHAPI_LootPriceBreakpoint : public FRHAPI_Model
 
 	/** @brief Amount of units that must be purchased to use this price */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 Quantity_Optional{  };
+	int32 Quantity_Optional{ 1 };
 	/** @brief true if Quantity_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Quantity_IsSet{ false };

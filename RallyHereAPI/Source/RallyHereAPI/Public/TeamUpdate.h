@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_TeamUpdate : public FRHAPI_Model
 
 	/** @brief Maximum number of players for this team */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 MaxSize_Optional{  };
+	int32 MaxSize_Optional{ 0 };
 	/** @brief true if MaxSize_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool MaxSize_IsSet{ false };

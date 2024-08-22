@@ -104,7 +104,7 @@ struct {{dllapi}} {{classname}} : public {{unrealModelPrefix}}Model
 	{{/isStripBlueprintCompatibility}}
 	{{/items.isContainer}}
 	{{/isContainer}}
-	{{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{datatype}}}{{/isEnum}} {{name}}{{^required}}_Optional{{/required}}{ {{#required}}{{#defaultValue}}{{{.}}}{{/defaultValue}}{{/required}} };
+	{{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{datatype}}}{{/isEnum}} {{name}}{{^required}}_Optional{{/required}}{ {{#defaultValue}}{{{.}}}{{/defaultValue}} };
 	{{^required}}
 	/** @brief true if {{name}}_Optional has been set to a value */
 	{{#isStripBlueprintCompatibility}}

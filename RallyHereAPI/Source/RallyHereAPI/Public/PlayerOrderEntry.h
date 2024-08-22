@@ -58,7 +58,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntry : public FRHAPI_Model
 
 	/** @brief Unique Identifier for the Loot */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 LootId_Optional{  };
+	int32 LootId_Optional{ 0 };
 	/** @brief true if LootId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool LootId_IsSet{ false };
@@ -105,7 +105,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntry : public FRHAPI_Model
 
 	/** @brief Legacy version for the vendor owning the loot_id.  Use `vendor_etag` instead. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int64 VendorVersion_Optional{  };
+	int64 VendorVersion_Optional{ 0 };
 	/** @brief true if VendorVersion_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool VendorVersion_IsSet{ false };
@@ -298,7 +298,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntry : public FRHAPI_Model
 
 	/** @brief Player Portal Event Id for the Order Entry. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int64 PlayerPortalEventId_Optional{  };
+	int64 PlayerPortalEventId_Optional{ 0 };
 	/** @brief true if PlayerPortalEventId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PlayerPortalEventId_IsSet{ false };
@@ -356,7 +356,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntry : public FRHAPI_Model
 
 	/** @brief Legacy Inventory Id. This is only used when type equals [UPDATE_EXISTING_PERSISTENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY] */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int64 LegacyInventoryId_Optional{  };
+	int64 LegacyInventoryId_Optional{ 0 };
 	/** @brief true if LegacyInventoryId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool LegacyInventoryId_IsSet{ false };
@@ -387,7 +387,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntry : public FRHAPI_Model
 
 	/** @brief Item Id used create or update Inventory directly. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY] */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 ItemId_Optional{  };
+	int32 ItemId_Optional{ 0 };
 	/** @brief true if ItemId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ItemId_IsSet{ false };

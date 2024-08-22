@@ -124,7 +124,7 @@ struct RALLYHEREAPI_API FRHAPI_UpdateInventoryRequest : public FRHAPI_Model
 
 	/** @brief Count for this Inventory Operation. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 Count_Optional{  };
+	int32 Count_Optional{ 1 };
 	/** @brief true if Count_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Count_IsSet{ false };
@@ -209,7 +209,7 @@ struct RALLYHEREAPI_API FRHAPI_UpdateInventoryRequest : public FRHAPI_Model
 
 	/** @brief Item ID for this Inventory Operation. If the Item ID is not set during an Update Inventory Request, then the Item ID will not be modified on the existing Inventory Record. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 ItemId_Optional{  };
+	int32 ItemId_Optional{ 0 };
 	/** @brief true if ItemId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ItemId_IsSet{ false };
