@@ -69,7 +69,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresence : public FRHAPI_Model
 
 	/** @brief Optional custom message to display alongside the user's online status */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FString Message_Optional{  };
+	FString Message_Optional{ TEXT("") };
 	/** @brief true if Message_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Message_IsSet{ false };
@@ -151,7 +151,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresence : public FRHAPI_Model
 
 	/** @brief Player ID for the player if it was provided as part of the request */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 PlayerId_Optional{  };
+	int32 PlayerId_Optional{ 0 };
 	/** @brief true if PlayerId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PlayerId_IsSet{ false };
@@ -194,7 +194,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresence : public FRHAPI_Model
 
 	/** @brief Disables notifications and invites. Only set for self or admin. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool DoNotDisturb_Optional{  };
+	bool DoNotDisturb_Optional{ false };
 	/** @brief true if DoNotDisturb_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool DoNotDisturb_IsSet{ false };

@@ -67,7 +67,7 @@ struct RALLYHEREAPI_API FRHAPI_InventoryRecord : public FRHAPI_Model
 
 	/** @brief Legacy Inventory ID. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int64 LegacyInventoryId_Optional{  };
+	int64 LegacyInventoryId_Optional{ 0 };
 	/** @brief true if LegacyInventoryId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool LegacyInventoryId_IsSet{ false };

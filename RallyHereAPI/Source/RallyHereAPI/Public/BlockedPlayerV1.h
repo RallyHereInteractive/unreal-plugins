@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_BlockedPlayerV1 : public FRHAPI_Model
 	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 BlockedPlayerId_Optional{  };
+	int32 BlockedPlayerId_Optional{ 0 };
 	/** @brief true if BlockedPlayerId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool BlockedPlayerId_IsSet{ false };

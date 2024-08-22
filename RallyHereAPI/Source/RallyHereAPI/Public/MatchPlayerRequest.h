@@ -132,7 +132,7 @@ struct RALLYHEREAPI_API FRHAPI_MatchPlayerRequest : public FRHAPI_Model
 	bool IsPartySessionIdNull() const { return PartySessionId_IsSet && PartySessionId_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 Placement_Optional{  };
+	int32 Placement_Optional{ 0 };
 	/** @brief true if Placement_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Placement_IsSet{ false };
@@ -237,7 +237,7 @@ struct RALLYHEREAPI_API FRHAPI_MatchPlayerRequest : public FRHAPI_Model
 	bool IsLeftMatchTimestampNull() const { return LeftMatchTimestamp_IsSet && LeftMatchTimestamp_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 DurationSeconds_Optional{  };
+	int32 DurationSeconds_Optional{ 0 };
 	/** @brief true if DurationSeconds_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool DurationSeconds_IsSet{ false };

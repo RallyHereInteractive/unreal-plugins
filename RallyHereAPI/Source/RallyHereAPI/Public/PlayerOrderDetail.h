@@ -56,7 +56,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderDetail : public FRHAPI_Model
 
 	/** @brief The Loot ID. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 LootId_Optional{  };
+	int32 LootId_Optional{ 0 };
 	/** @brief true if LootId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool LootId_IsSet{ false };

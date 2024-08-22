@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_HzApiErrorModel : public FRHAPI_Model
 	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool AuthSuccess_Optional{  };
+	bool AuthSuccess_Optional{ true };
 	/** @brief true if AuthSuccess_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool AuthSuccess_IsSet{ false };

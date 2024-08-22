@@ -119,7 +119,7 @@ struct RALLYHEREAPI_API FRHAPI_MatchmakingResults : public FRHAPI_Model
 
 	/** @brief Whether or not the tickets from these results have been assigned */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool TicketsAssigned_Optional{  };
+	bool TicketsAssigned_Optional{ false };
 	/** @brief true if TicketsAssigned_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool TicketsAssigned_IsSet{ false };

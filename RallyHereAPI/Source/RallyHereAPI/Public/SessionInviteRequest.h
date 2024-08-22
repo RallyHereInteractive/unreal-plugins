@@ -42,7 +42,7 @@ struct RALLYHEREAPI_API FRHAPI_SessionInviteRequest : public FRHAPI_Model
 
 	/** @brief Which team the players in the source session should be on */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 TeamId_Optional{  };
+	int32 TeamId_Optional{ 0 };
 	/** @brief true if TeamId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool TeamId_IsSet{ false };

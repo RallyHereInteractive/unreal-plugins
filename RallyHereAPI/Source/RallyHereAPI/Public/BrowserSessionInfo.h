@@ -53,7 +53,7 @@ struct RALLYHEREAPI_API FRHAPI_BrowserSessionInfo : public FRHAPI_Model
 
 	/** @brief Number of players actively in this session */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 PlayerCount_Optional{  };
+	int32 PlayerCount_Optional{ 0 };
 	/** @brief true if PlayerCount_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PlayerCount_IsSet{ false };
@@ -84,7 +84,7 @@ struct RALLYHEREAPI_API FRHAPI_BrowserSessionInfo : public FRHAPI_Model
 
 	/** @brief Maximum number of players that can be in this session */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 MaxPlayerCount_Optional{  };
+	int32 MaxPlayerCount_Optional{ 0 };
 	/** @brief true if MaxPlayerCount_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool MaxPlayerCount_IsSet{ false };

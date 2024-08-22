@@ -471,7 +471,7 @@ struct RALLYHEREAPI_API FRHAPI_PexClientQueryParams : public FRHAPI_Model
 	bool IsMatchmakingProfileIdNull() const { return MatchmakingProfileId_IsSet && MatchmakingProfileId_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 ExpectedTeamSize_Optional{  };
+	int32 ExpectedTeamSize_Optional{ 0 };
 	/** @brief true if ExpectedTeamSize_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ExpectedTeamSize_IsSet{ false };
@@ -508,7 +508,7 @@ struct RALLYHEREAPI_API FRHAPI_PexClientQueryParams : public FRHAPI_Model
 	bool IsExpectedTeamSizeNull() const { return ExpectedTeamSize_IsSet && ExpectedTeamSize_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 ExpectedPlayerCount_Optional{  };
+	int32 ExpectedPlayerCount_Optional{ 0 };
 	/** @brief true if ExpectedPlayerCount_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ExpectedPlayerCount_IsSet{ false };

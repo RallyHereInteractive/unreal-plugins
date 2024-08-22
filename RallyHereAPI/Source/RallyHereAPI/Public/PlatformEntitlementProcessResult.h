@@ -93,7 +93,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
 
 	/** @brief status of this result */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FString Status_Optional{  };
+	FString Status_Optional{ TEXT("SUBMITTED") };
 	/** @brief true if Status_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Status_IsSet{ false };
@@ -229,7 +229,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
 
 	/** @brief True if the server entitlements were skipped */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool SkippedServerEntitlements_Optional{  };
+	bool SkippedServerEntitlements_Optional{ false };
 	/** @brief true if SkippedServerEntitlements_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool SkippedServerEntitlements_IsSet{ false };

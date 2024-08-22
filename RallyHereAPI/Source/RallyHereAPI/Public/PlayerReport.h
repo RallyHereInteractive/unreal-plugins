@@ -86,7 +86,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerReport : public FRHAPI_Model
 	bool IsSourcePlayerUuidNull() const { return SourcePlayerUuid_IsSet && SourcePlayerUuid_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 SourcePlayerId_Optional{  };
+	int32 SourcePlayerId_Optional{ 0 };
 	/** @brief true if SourcePlayerId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool SourcePlayerId_IsSet{ false };
@@ -141,7 +141,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerReport : public FRHAPI_Model
 	bool IsTargetPlayerUuidNull() const { return  TargetPlayerUuid_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 TargetPlayerId_Optional{  };
+	int32 TargetPlayerId_Optional{ 0 };
 	/** @brief true if TargetPlayerId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool TargetPlayerId_IsSet{ false };

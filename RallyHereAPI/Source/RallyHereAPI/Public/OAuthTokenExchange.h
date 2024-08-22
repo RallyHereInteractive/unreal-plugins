@@ -66,7 +66,7 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenExchange : public FRHAPI_Model
 
 	/** @brief If true, the user has accepted the EULA. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool AcceptedEula_Optional{  };
+	bool AcceptedEula_Optional{ false };
 	/** @brief true if AcceptedEula_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool AcceptedEula_IsSet{ false };
@@ -97,7 +97,7 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenExchange : public FRHAPI_Model
 
 	/** @brief If true, the user has accepted the TOS. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool AcceptedTos_Optional{  };
+	bool AcceptedTos_Optional{ false };
 	/** @brief true if AcceptedTos_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool AcceptedTos_IsSet{ false };
@@ -128,7 +128,7 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenExchange : public FRHAPI_Model
 
 	/** @brief If true, the user has accepted the Privacy Policy. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool AcceptedPrivacyPolicy_Optional{  };
+	bool AcceptedPrivacyPolicy_Optional{ false };
 	/** @brief true if AcceptedPrivacyPolicy_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool AcceptedPrivacyPolicy_IsSet{ false };

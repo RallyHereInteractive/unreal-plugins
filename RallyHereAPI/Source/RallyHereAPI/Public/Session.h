@@ -356,7 +356,7 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
 
 	/** @brief Flag of whether or not this session was created by matchmaking or not */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool CreatedByMatchmaking_Optional{  };
+	bool CreatedByMatchmaking_Optional{ false };
 	/** @brief true if CreatedByMatchmaking_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool CreatedByMatchmaking_IsSet{ false };

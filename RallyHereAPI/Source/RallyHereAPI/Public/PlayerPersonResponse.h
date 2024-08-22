@@ -69,7 +69,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPersonResponse : public FRHAPI_Model
 
 	/** @brief *DEPRECATED* use `active_player_uuid` instead.  Active player ID, if the player has an active player. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 ActivePlayerId_Optional{  };
+	int32 ActivePlayerId_Optional{ 0 };
 	/** @brief true if ActivePlayerId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ActivePlayerId_IsSet{ false };

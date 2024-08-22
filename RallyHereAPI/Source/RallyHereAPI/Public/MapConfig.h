@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_MapConfig : public FRHAPI_Model
 
 	/** @brief ID to uniquely identify this map game */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 MapGameId_Optional{  };
+	int32 MapGameId_Optional{ 0 };
 	/** @brief true if MapGameId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool MapGameId_IsSet{ false };

@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_FriendsApiConfig : public FRHAPI_Model
 
 	/** @brief Maximum number of friends a user can have */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 FriendLimit_Optional{  };
+	int32 FriendLimit_Optional{ 10000 };
 	/** @brief true if FriendLimit_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool FriendLimit_IsSet{ false };
@@ -72,7 +72,7 @@ struct RALLYHEREAPI_API FRHAPI_FriendsApiConfig : public FRHAPI_Model
 
 	/** @brief Maximum number of blocked users a user can have */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 BlockLimit_Optional{  };
+	int32 BlockLimit_Optional{ 10000 };
 	/** @brief true if BlockLimit_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool BlockLimit_IsSet{ false };

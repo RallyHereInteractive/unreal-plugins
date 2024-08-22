@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_SettingTypeVersion : public FRHAPI_Model
 
 	/** @brief Are players allowed to set/update keys to this version of the setting type?  Does not affect getting or deleting existing settings. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool AllowUpdate_Optional{  };
+	bool AllowUpdate_Optional{ true };
 	/** @brief true if AllowUpdate_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool AllowUpdate_IsSet{ false };
@@ -72,7 +72,7 @@ struct RALLYHEREAPI_API FRHAPI_SettingTypeVersion : public FRHAPI_Model
 
 	/** @brief Regex that is used to verify keys at assignment time */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FString KeyRegex_Optional{  };
+	FString KeyRegex_Optional{ TEXT("^.+$") };
 	/** @brief true if KeyRegex_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool KeyRegex_IsSet{ false };
