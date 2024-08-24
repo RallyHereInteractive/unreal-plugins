@@ -165,8 +165,8 @@ public:
 
 	/**
 	* @brief Detects bursts in recent call counts (last 60s). The time and count thresholds for burst detection are specified by BurstCountThreshold and BurstTimeThreshold
-	* @param OutBurstMapByAPIName Pointer to output burst map by API name (API Name -> <Number of bursts, Largest burst>)
-	* @param OutBurstMapByURL Pointer to output burst map by Simplified Path (Simplified Path -> <Number of bursts, Largest burst>)
+	* @param OutBurstMapByAPIName Pointer to output burst map by API name (API Name -> NUMBER_OF_BURSTS, LARGEST_BURST)
+	* @param OutBurstMapByURL Pointer to output burst map by Simplified Path (Simplified Path -> NUMBER_OF_BURSTS, LARGEST_BURST)
 	*/
 	void DetectRecentBursts(TMap<FName, TTuple<int32, int32>>* OutBurstMapByAPIName, TMap<FName, TTuple<int32, int32>>* OutBurstMapByURL) const;
 
