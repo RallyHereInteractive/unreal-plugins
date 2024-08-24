@@ -155,9 +155,9 @@ Get the maps that track call counts in the last 60s.
 Detects bursts in recent call counts (last 60s). The time and count thresholds for burst detection are specified by BurstCountThreshold and BurstTimeThreshold.
 
 #### Parameters
-* `OutBurstMapByAPIName` Pointer to output burst map by API name (API Name -> <Number of bursts, Largest burst>) 
+* `OutBurstMapByAPIName` Pointer to output burst map by API name (API Name -> NUMBER_OF_BURSTS, LARGEST_BURST) 
 
-* `OutBurstMapByURL` Pointer to output burst map by Simplified Path (Simplified Path -> <Number of bursts, Largest burst>)
+* `OutBurstMapByURL` Pointer to output burst map by Simplified Path (Simplified Path -> NUMBER_OF_BURSTS, LARGEST_BURST)
 
 ## struct `FRH_WebResponse` <a id="structFRH__WebResponse"></a>
 
