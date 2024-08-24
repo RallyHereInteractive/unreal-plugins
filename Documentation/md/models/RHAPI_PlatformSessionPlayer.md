@@ -1,4 +1,6 @@
-# group `RHAPI_PlatformSessionPlayer` <a id="group__RHAPI__PlatformSessionPlayer"></a>
+---
+title: RHAPI_PlatformSessionPlayer
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlatformSessionPlayer`](#structFRHAPI__PlatformSessionPlayer) | A platform player resource in a platform session.
 
----
-title: FRHAPI_PlatformSessionPlayer
----
+## struct `FRHAPI_PlatformSessionPlayer` <a id="structFRHAPI__PlatformSessionPlayer"></a>
 
 ```
 struct FRHAPI_PlatformSessionPlayer

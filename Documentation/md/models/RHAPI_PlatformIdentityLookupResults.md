@@ -1,4 +1,6 @@
-# group `RHAPI_PlatformIdentityLookupResults` <a id="group__RHAPI__PlatformIdentityLookupResults"></a>
+---
+title: RHAPI_PlatformIdentityLookupResults
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlatformIdentityLookupResults`](#structFRHAPI__PlatformIdentityLookupResults) | Lookup results for a platform user id.
 
----
-title: FRHAPI_PlatformIdentityLookupResults
----
+## struct `FRHAPI_PlatformIdentityLookupResults` <a id="structFRHAPI__PlatformIdentityLookupResults"></a>
 
 ```
 struct FRHAPI_PlatformIdentityLookupResults

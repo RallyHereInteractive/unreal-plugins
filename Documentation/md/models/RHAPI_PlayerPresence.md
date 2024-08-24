@@ -1,4 +1,6 @@
-# group `RHAPI_PlayerPresence` <a id="group__RHAPI__PlayerPresence"></a>
+---
+title: RHAPI_PlayerPresence
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerPresence`](#structFRHAPI__PlayerPresence) | 
 
----
-title: FRHAPI_PlayerPresence
----
+## struct `FRHAPI_PlayerPresence` <a id="structFRHAPI__PlayerPresence"></a>
 
 ```
 struct FRHAPI_PlayerPresence

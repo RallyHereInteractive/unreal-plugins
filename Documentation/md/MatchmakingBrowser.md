@@ -1,4 +1,6 @@
-# group `MatchmakingBrowser` <a id="group__MatchmakingBrowser"></a>
+---
+title: MatchmakingBrowser
+---
 
 ## Summary
 
@@ -12,9 +14,7 @@
 `struct `[`FRH_QueueSearchParams`](#structFRH__QueueSearchParams) | Struct to define queue search parameters.
 `struct `[`FRH_QueueSearchResult`](#structFRH__QueueSearchResult) | Struct to define queue search results.
 
----
-title: URH_MatchmakingQueueInfo
----
+## class `URH_MatchmakingQueueInfo` <a id="classURH__MatchmakingQueueInfo"></a>
 
 ```
 class URH_MatchmakingQueueInfo
@@ -65,9 +65,7 @@ Imports queue info from an API call.
 
 Gets a description of the queue, display its id for debugging.
 
----
-title: URH_MatchmakingTemplateGroupInfo
----
+## class `URH_MatchmakingTemplateGroupInfo` <a id="classURH__MatchmakingTemplateGroupInfo"></a>
 
 ```
 class URH_MatchmakingTemplateGroupInfo
@@ -127,9 +125,7 @@ Imports template info from an API call.
 
 Gets a description of the template, display its id for debugging.
 
----
-title: URH_MatchmakingProfileInfo
----
+## class `URH_MatchmakingProfileInfo` <a id="classURH__MatchmakingProfileInfo"></a>
 
 ```
 class URH_MatchmakingProfileInfo
@@ -175,9 +171,7 @@ Imports profile info from an API call.
 
 Gets a description of the template, display its id for debugging.
 
----
-title: URH_InstanceRequestTemplate
----
+## class `URH_InstanceRequestTemplate` <a id="classURH__InstanceRequestTemplate"></a>
 
 ```
 class URH_InstanceRequestTemplate
@@ -228,9 +222,7 @@ Imports template info from an API call.
 
 Gets a description of the template, display its id for debugging.
 
----
-title: URH_MatchmakingBrowserCache
----
+## class `URH_MatchmakingBrowserCache` <a id="classURH__MatchmakingBrowserCache"></a>
 
 ```
 class URH_MatchmakingBrowserCache
@@ -443,9 +435,7 @@ Array of Regions.
 
 #### `protected int32 `[`LastRegionCursor`](#classURH__MatchmakingBrowserCache_1a34230345f419f688cb9cddcacd78376b) <a id="classURH__MatchmakingBrowserCache_1a34230345f419f688cb9cddcacd78376b"></a>
 
----
-title: FRH_QueueSearchParams
----
+## struct `FRH_QueueSearchParams` <a id="structFRH__QueueSearchParams"></a>
 
 Struct to define queue search parameters.
 
@@ -476,9 +466,7 @@ Defautl constructor.
 
 Gets a description of the search params for debugging.
 
----
-title: FRH_QueueSearchResult
----
+## struct `FRH_QueueSearchResult` <a id="structFRH__QueueSearchResult"></a>
 
 Struct to define queue search results.
 

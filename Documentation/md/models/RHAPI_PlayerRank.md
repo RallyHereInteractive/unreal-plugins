@@ -1,4 +1,6 @@
-# group `RHAPI_PlayerRank` <a id="group__RHAPI__PlayerRank"></a>
+---
+title: RHAPI_PlayerRank
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerRank`](#structFRHAPI__PlayerRank) | Rank data about a specific player.
 
----
-title: FRHAPI_PlayerRank
----
+## struct `FRHAPI_PlayerRank` <a id="structFRHAPI__PlayerRank"></a>
 
 ```
 struct FRHAPI_PlayerRank

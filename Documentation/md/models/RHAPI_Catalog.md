@@ -1,4 +1,6 @@
-# group `RHAPI_Catalog` <a id="group__RHAPI__Catalog"></a>
+---
+title: RHAPI_Catalog
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_Catalog`](#structFRHAPI__Catalog) | Full list of all loaded objects for the catalog. Organized in a normalized model.
 
----
-title: FRHAPI_Catalog
----
+## struct `FRHAPI_Catalog` <a id="structFRHAPI__Catalog"></a>
 
 ```
 struct FRHAPI_Catalog

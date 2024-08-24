@@ -1,4 +1,6 @@
-# group `RHAPI_UpdatePersonInfoRequest` <a id="group__RHAPI__UpdatePersonInfoRequest"></a>
+---
+title: RHAPI_UpdatePersonInfoRequest
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_UpdatePersonInfoRequest`](#structFRHAPI__UpdatePersonInfoRequest) | Request to update a person&#39;s info.
 
----
-title: FRHAPI_UpdatePersonInfoRequest
----
+## struct `FRHAPI_UpdatePersonInfoRequest` <a id="structFRHAPI__UpdatePersonInfoRequest"></a>
 
 ```
 struct FRHAPI_UpdatePersonInfoRequest

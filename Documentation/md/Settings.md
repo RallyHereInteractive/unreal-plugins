@@ -1,4 +1,6 @@
-# group `Settings` <a id="group__Settings"></a>
+---
+title: Settings
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `class `[`URH_SettingsSubsystem`](#classURH__SettingsSubsystem) | Settings Subsystem used for settings API calls.
 
----
-title: URH_SettingsSubsystem
----
+## class `URH_SettingsSubsystem` <a id="classURH__SettingsSubsystem"></a>
 
 ```
 class URH_SettingsSubsystem

@@ -1,4 +1,6 @@
-# group `RHAPI_PricePoints` <a id="group__RHAPI__PricePoints"></a>
+---
+title: RHAPI_PricePoints
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PricePoints`](#structFRHAPI__PricePoints) | A collection of Price Points by Price Point ID.
 
----
-title: FRHAPI_PricePoints
----
+## struct `FRHAPI_PricePoints` <a id="structFRHAPI__PricePoints"></a>
 
 ```
 struct FRHAPI_PricePoints

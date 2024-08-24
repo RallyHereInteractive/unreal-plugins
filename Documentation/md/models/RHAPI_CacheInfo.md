@@ -1,4 +1,6 @@
-# group `RHAPI_CacheInfo` <a id="group__RHAPI__CacheInfo"></a>
+---
+title: RHAPI_CacheInfo
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_CacheInfo`](#structFRHAPI__CacheInfo) | Cache information for the resource it is attached to. The etag value can be used with the If-None-Match and If-Match headers.
 
----
-title: FRHAPI_CacheInfo
----
+## struct `FRHAPI_CacheInfo` <a id="structFRHAPI__CacheInfo"></a>
 
 ```
 struct FRHAPI_CacheInfo

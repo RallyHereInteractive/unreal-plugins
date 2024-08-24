@@ -1,4 +1,6 @@
-# group `RHAPI_InventoryContextResponse` <a id="group__RHAPI__InventoryContextResponse"></a>
+---
+title: RHAPI_InventoryContextResponse
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_InventoryContextResponse`](#structFRHAPI__InventoryContextResponse) | Inventory Context for a Player.
 
----
-title: FRHAPI_InventoryContextResponse
----
+## struct `FRHAPI_InventoryContextResponse` <a id="structFRHAPI__InventoryContextResponse"></a>
 
 ```
 struct FRHAPI_InventoryContextResponse

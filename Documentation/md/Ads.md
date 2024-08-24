@@ -1,4 +1,6 @@
-# group `Ads` <a id="group__Ads"></a>
+---
+title: Ads
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `class `[`URH_AdSubsystem`](#classURH__AdSubsystem) | Ad Subsystem used for serving and responging to ad operrtunities for players.
 
----
-title: URH_AdSubsystem
----
+## class `URH_AdSubsystem` <a id="classURH__AdSubsystem"></a>
 
 ```
 class URH_AdSubsystem

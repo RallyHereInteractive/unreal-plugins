@@ -1,4 +1,6 @@
-# group `RHAPI_BrowserResponse` <a id="group__RHAPI__BrowserResponse"></a>
+---
+title: RHAPI_BrowserResponse
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_BrowserResponse`](#structFRHAPI__BrowserResponse) | A response with a list of browsers, and a cursor to continue iterating through them.
 
----
-title: FRHAPI_BrowserResponse
----
+## struct `FRHAPI_BrowserResponse` <a id="structFRHAPI__BrowserResponse"></a>
 
 ```
 struct FRHAPI_BrowserResponse

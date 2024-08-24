@@ -1,4 +1,6 @@
-# group `RHAPI_VoipTokenResponse` <a id="group__RHAPI__VoipTokenResponse"></a>
+---
+title: RHAPI_VoipTokenResponse
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_VoipTokenResponse`](#structFRHAPI__VoipTokenResponse) | 
 
----
-title: FRHAPI_VoipTokenResponse
----
+## struct `FRHAPI_VoipTokenResponse` <a id="structFRHAPI__VoipTokenResponse"></a>
 
 ```
 struct FRHAPI_VoipTokenResponse

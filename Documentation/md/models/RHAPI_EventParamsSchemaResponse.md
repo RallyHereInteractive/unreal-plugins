@@ -1,4 +1,6 @@
-# group `RHAPI_EventParamsSchemaResponse` <a id="group__RHAPI__EventParamsSchemaResponse"></a>
+---
+title: RHAPI_EventParamsSchemaResponse
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_EventParamsSchemaResponse`](#structFRHAPI__EventParamsSchemaResponse) | 
 
----
-title: FRHAPI_EventParamsSchemaResponse
----
+## struct `FRHAPI_EventParamsSchemaResponse` <a id="structFRHAPI__EventParamsSchemaResponse"></a>
 
 ```
 struct FRHAPI_EventParamsSchemaResponse

@@ -1,4 +1,6 @@
-# group `RHAPI_CrossplayPreferences` <a id="group__RHAPI__CrossplayPreferences"></a>
+---
+title: RHAPI_CrossplayPreferences
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_CrossplayPreferences`](#structFRHAPI__CrossplayPreferences) | A session&#39;s or player&#39;s preferences around crossplay platforms and inputs. Permitted platforms and inputs will be checked when new players attempt to join a session.
 
----
-title: FRHAPI_CrossplayPreferences
----
+## struct `FRHAPI_CrossplayPreferences` <a id="structFRHAPI__CrossplayPreferences"></a>
 
 ```
 struct FRHAPI_CrossplayPreferences

@@ -1,4 +1,6 @@
-# group `RHAPI_PlayerLinkedPortalsResponse` <a id="group__RHAPI__PlayerLinkedPortalsResponse"></a>
+---
+title: RHAPI_PlayerLinkedPortalsResponse
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerLinkedPortalsResponse`](#structFRHAPI__PlayerLinkedPortalsResponse) | Response for getting a player&#39;s linked portals.
 
----
-title: FRHAPI_PlayerLinkedPortalsResponse
----
+## struct `FRHAPI_PlayerLinkedPortalsResponse` <a id="structFRHAPI__PlayerLinkedPortalsResponse"></a>
 
 ```
 struct FRHAPI_PlayerLinkedPortalsResponse

@@ -1,4 +1,6 @@
-# group `RHAPI_PexHostScores` <a id="group__RHAPI__PexHostScores"></a>
+---
+title: RHAPI_PexHostScores
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PexHostScores`](#structFRHAPI__PexHostScores) | 
 
----
-title: FRHAPI_PexHostScores
----
+## struct `FRHAPI_PexHostScores` <a id="structFRHAPI__PexHostScores"></a>
 
 ```
 struct FRHAPI_PexHostScores

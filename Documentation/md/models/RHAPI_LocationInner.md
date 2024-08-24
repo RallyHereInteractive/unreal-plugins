@@ -1,4 +1,6 @@
-# group `RHAPI_LocationInner` <a id="group__RHAPI__LocationInner"></a>
+---
+title: RHAPI_LocationInner
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_LocationInner`](#structFRHAPI__LocationInner) | 
 
----
-title: FRHAPI_LocationInner
----
+## struct `FRHAPI_LocationInner` <a id="structFRHAPI__LocationInner"></a>
 
 ```
 struct FRHAPI_LocationInner

@@ -1,4 +1,6 @@
-# group `RHAPI_InstanceLaunchTemplate` <a id="group__RHAPI__InstanceLaunchTemplate"></a>
+---
+title: RHAPI_InstanceLaunchTemplate
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_InstanceLaunchTemplate`](#structFRHAPI__InstanceLaunchTemplate) | **DEPRECATED** Configuration about how an instance should behave when it&#39;s allocated
 
----
-title: FRHAPI_InstanceLaunchTemplate
----
+## struct `FRHAPI_InstanceLaunchTemplate` <a id="structFRHAPI__InstanceLaunchTemplate"></a>
 
 ```
 struct FRHAPI_InstanceLaunchTemplate

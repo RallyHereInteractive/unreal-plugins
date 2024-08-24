@@ -1,4 +1,6 @@
-# group `RHAPI_InventoryRecord` <a id="group__RHAPI__InventoryRecord"></a>
+---
+title: RHAPI_InventoryRecord
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_InventoryRecord`](#structFRHAPI__InventoryRecord) | Inventory Record for a Player.
 
----
-title: FRHAPI_InventoryRecord
----
+## struct `FRHAPI_InventoryRecord` <a id="structFRHAPI__InventoryRecord"></a>
 
 ```
 struct FRHAPI_InventoryRecord

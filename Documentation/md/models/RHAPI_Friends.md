@@ -1,4 +1,6 @@
-# group `RHAPI_Friends` <a id="group__RHAPI__Friends"></a>
+---
+title: RHAPI_Friends
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_Friends`](#structFRHAPI__Friends) | List of player_uuids to operate on.
 
----
-title: FRHAPI_Friends
----
+## struct `FRHAPI_Friends` <a id="structFRHAPI__Friends"></a>
 
 ```
 struct FRHAPI_Friends

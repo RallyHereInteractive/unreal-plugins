@@ -1,4 +1,6 @@
-# group `RHAPI_JoinParams` <a id="group__RHAPI__JoinParams"></a>
+---
+title: RHAPI_JoinParams
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_JoinParams`](#structFRHAPI__JoinParams) | Parameters provided by the allocation system or an instance on how to connect.
 
----
-title: FRHAPI_JoinParams
----
+## struct `FRHAPI_JoinParams` <a id="structFRHAPI__JoinParams"></a>
 
 ```
 struct FRHAPI_JoinParams

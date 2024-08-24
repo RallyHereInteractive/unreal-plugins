@@ -1,4 +1,6 @@
-# group `RHAPI_InventoryBucketUseRuleSet` <a id="group__RHAPI__InventoryBucketUseRuleSet"></a>
+---
+title: RHAPI_InventoryBucketUseRuleSet
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_InventoryBucketUseRuleSet`](#structFRHAPI__InventoryBucketUseRuleSet) | A collection of Inventory Bucket Use Rules.
 
----
-title: FRHAPI_InventoryBucketUseRuleSet
----
+## struct `FRHAPI_InventoryBucketUseRuleSet` <a id="structFRHAPI__InventoryBucketUseRuleSet"></a>
 
 ```
 struct FRHAPI_InventoryBucketUseRuleSet

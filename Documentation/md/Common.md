@@ -1,4 +1,6 @@
-# group `Common` <a id="group__Common"></a>
+---
+title: Common
+---
 
 ## Summary
 
@@ -139,9 +141,7 @@ Helper function to convert an [FRH_RemoteFileApiDirectory](Common.md#structFRH__
 #### Returns
 Semi-unique hash value for the given directory
 
----
-title: FRH_AsyncTaskHelper
----
+## class `FRH_AsyncTaskHelper` <a id="classFRH__AsyncTaskHelper"></a>
 
 ```
 class FRH_AsyncTaskHelper
@@ -239,9 +239,7 @@ Called when the asynchronous task has completed.
 #### Parameters
 * `bSuccess` Whether or not the task completed successfully.
 
----
-title: FRH_SimpleQueryHelper
----
+## class `FRH_SimpleQueryHelper` <a id="classFRH__SimpleQueryHelper"></a>
 
 ```
 class FRH_SimpleQueryHelper
@@ -327,9 +325,7 @@ The HTTP request object used to query the API.
 
 Error Information
 
----
-title: FRH_DelegateBlock
----
+## struct `FRH_DelegateBlock` <a id="structFRH__DelegateBlock"></a>
 
 Templated helper class defining a native and blueprint friendly delegate as a single object.
 
@@ -376,9 +372,7 @@ Executes both the native-only and blueprint friendly versions of the delegate, i
 
 #### `public inline bool `[`IsBoundToObject`](#structFRH__DelegateBlock_1a0a618d127583f1e21937af6196062c76)`(const void * Object) const` <a id="structFRH__DelegateBlock_1a0a618d127583f1e21937af6196062c76"></a>
 
----
-title: FRH_ErrorInfo
----
+## struct `FRH_ErrorInfo` <a id="structFRH__ErrorInfo"></a>
 
 Generic blueprint and native delegate used to report success or failure.
 
@@ -454,9 +448,7 @@ Parses The HTTP response into the error info.
 #### Parameters
 * `Response` The response to parse.
 
----
-title: FRH_CustomEndpointRequestWrapper
----
+## struct `FRH_CustomEndpointRequestWrapper` <a id="structFRH__CustomEndpointRequestWrapper"></a>
 
 Wrapper calls for custom endpoint requests.
 
@@ -490,9 +482,7 @@ Http Content Type
 
 #### `public inline  `[`FRH_CustomEndpointRequestWrapper`](#structFRH__CustomEndpointRequestWrapper_1a6334b30e571cdb5577794ea5ee1c9cb4)`()` <a id="structFRH__CustomEndpointRequestWrapper_1a6334b30e571cdb5577794ea5ee1c9cb4"></a>
 
----
-title: FRH_CustomEndpointResponseWrapper
----
+## struct `FRH_CustomEndpointResponseWrapper` <a id="structFRH__CustomEndpointResponseWrapper"></a>
 
 Wrapper calls for custom endpoint responses.
 
@@ -529,9 +519,7 @@ Parsed RallyHere error
 
 #### `public inline  `[`FRH_CustomEndpointResponseWrapper`](#structFRH__CustomEndpointResponseWrapper_1ad3707751b28f8cd4eaafc8d9cd4f8556)`(const RallyHereAPI::FResponse_CustomEndpointSend & Resp)` <a id="structFRH__CustomEndpointResponseWrapper_1ad3707751b28f8cd4eaafc8d9cd4f8556"></a>
 
----
-title: FRH_PlayerPlatformId
----
+## struct `FRH_PlayerPlatformId` <a id="structFRH__PlayerPlatformId"></a>
 
 Common structure for identifying players on any known platform.
 
@@ -572,9 +560,7 @@ Default constructor that leaves the user ID empty and sets the platform type to 
 
 Constructor for specifying user ID and platform type.
 
----
-title: FRH_RemoteFileApiDirectory
----
+## struct `FRH_RemoteFileApiDirectory` <a id="structFRH__RemoteFileApiDirectory"></a>
 
 A tuple specifying the directory of a file in the remote file storage.
 

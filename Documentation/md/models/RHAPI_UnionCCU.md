@@ -1,4 +1,6 @@
-# group `RHAPI_UnionCCU` <a id="group__RHAPI__UnionCCU"></a>
+---
+title: RHAPI_UnionCCU
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_UnionCCU`](#structFRHAPI__UnionCCU) | 
 
----
-title: FRHAPI_UnionCCU
----
+## struct `FRHAPI_UnionCCU` <a id="structFRHAPI__UnionCCU"></a>
 
 ```
 struct FRHAPI_UnionCCU

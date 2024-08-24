@@ -1,4 +1,6 @@
-# group `RHAPI_ClientVisibleSettings` <a id="group__RHAPI__ClientVisibleSettings"></a>
+---
+title: RHAPI_ClientVisibleSettings
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_ClientVisibleSettings`](#structFRHAPI__ClientVisibleSettings) | 
 
----
-title: FRHAPI_ClientVisibleSettings
----
+## struct `FRHAPI_ClientVisibleSettings` <a id="structFRHAPI__ClientVisibleSettings"></a>
 
 ```
 struct FRHAPI_ClientVisibleSettings

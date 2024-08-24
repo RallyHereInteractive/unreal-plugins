@@ -1,4 +1,6 @@
-# group `RHAPI_SelfSessionPlayerUpdateRequest` <a id="group__RHAPI__SelfSessionPlayerUpdateRequest"></a>
+---
+title: RHAPI_SelfSessionPlayerUpdateRequest
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_SelfSessionPlayerUpdateRequest`](#structFRHAPI__SelfSessionPlayerUpdateRequest) | A request body for a player updating information about themselves.
 
----
-title: FRHAPI_SelfSessionPlayerUpdateRequest
----
+## struct `FRHAPI_SelfSessionPlayerUpdateRequest` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest"></a>
 
 ```
 struct FRHAPI_SelfSessionPlayerUpdateRequest

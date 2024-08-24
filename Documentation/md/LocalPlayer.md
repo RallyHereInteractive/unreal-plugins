@@ -1,4 +1,6 @@
-# group `LocalPlayer` <a id="group__LocalPlayer"></a>
+---
+title: LocalPlayer
+---
 
 ## Summary
 
@@ -53,9 +55,7 @@ Nickname            | Uses the Nickname OSS.
 
 Login Online Subsystem Type.
 
----
-title: URH_LocalPlayerLoginSubsystem
----
+## class `URH_LocalPlayerLoginSubsystem` <a id="classURH__LocalPlayerLoginSubsystem"></a>
 
 ```
 class URH_LocalPlayerLoginSubsystem
@@ -613,9 +613,7 @@ Handles the app game thread being restored from being suspended.
 
 Type Define for logout calls.
 
----
-title: URH_LocalPlayerPresenceSubsystem
----
+## class `URH_LocalPlayerPresenceSubsystem` <a id="classURH__LocalPlayerPresenceSubsystem"></a>
 
 ```
 class URH_LocalPlayerPresenceSubsystem
@@ -789,9 +787,7 @@ Polls the status of the players presence.
 #### Parameters
 * `Delegate` Callback delegate when the poll completes.
 
----
-title: URH_LocalPlayerSessionSubsystem
----
+## class `URH_LocalPlayerSessionSubsystem` <a id="classURH__LocalPlayerSessionSubsystem"></a>
 
 ```
 class URH_LocalPlayerSessionSubsystem
@@ -1436,9 +1432,7 @@ Handles the response of polling all sessions.
 
 * `SessionIds` Session Ids updated from the polling.
 
----
-title: URH_LocalPlayerSubsystem
----
+## class `URH_LocalPlayerSubsystem` <a id="classURH__LocalPlayerSubsystem"></a>
 
 ```
 class URH_LocalPlayerSubsystem
@@ -1754,9 +1748,7 @@ Callback that occurs whenever the local player this subsystem is associated with
 
 Callback that occurs when the player's refresh token expires while logged in.
 
----
-title: FRH_LoginResult
----
+## struct `FRH_LoginResult` <a id="structFRH__LoginResult"></a>
 
 Struct for the login results.
 

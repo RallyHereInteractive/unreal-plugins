@@ -1,4 +1,6 @@
-# group `RHAPI_LoginRequestV1` <a id="group__RHAPI__LoginRequestV1"></a>
+---
+title: RHAPI_LoginRequestV1
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_LoginRequestV1`](#structFRHAPI__LoginRequestV1) | 
 
----
-title: FRHAPI_LoginRequestV1
----
+## struct `FRHAPI_LoginRequestV1` <a id="structFRHAPI__LoginRequestV1"></a>
 
 ```
 struct FRHAPI_LoginRequestV1

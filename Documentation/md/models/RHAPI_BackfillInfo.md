@@ -1,4 +1,6 @@
-# group `RHAPI_BackfillInfo` <a id="group__RHAPI__BackfillInfo"></a>
+---
+title: RHAPI_BackfillInfo
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_BackfillInfo`](#structFRHAPI__BackfillInfo) | Info about the open-match backfill object in a session.
 
----
-title: FRHAPI_BackfillInfo
----
+## struct `FRHAPI_BackfillInfo` <a id="structFRHAPI__BackfillInfo"></a>
 
 ```
 struct FRHAPI_BackfillInfo

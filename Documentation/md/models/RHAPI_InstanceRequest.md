@@ -1,4 +1,6 @@
-# group `RHAPI_InstanceRequest` <a id="group__RHAPI__InstanceRequest"></a>
+---
+title: RHAPI_InstanceRequest
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_InstanceRequest`](#structFRHAPI__InstanceRequest) | A request body to create an instance resource in a session.
 
----
-title: FRHAPI_InstanceRequest
----
+## struct `FRHAPI_InstanceRequest` <a id="structFRHAPI__InstanceRequest"></a>
 
 ```
 struct FRHAPI_InstanceRequest

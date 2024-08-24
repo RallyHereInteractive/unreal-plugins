@@ -1,4 +1,6 @@
-# group `RHAPI_PurgeResponse` <a id="group__RHAPI__PurgeResponse"></a>
+---
+title: RHAPI_PurgeResponse
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PurgeResponse`](#structFRHAPI__PurgeResponse) | Purge response from a purge request.
 
----
-title: FRHAPI_PurgeResponse
----
+## struct `FRHAPI_PurgeResponse` <a id="structFRHAPI__PurgeResponse"></a>
 
 ```
 struct FRHAPI_PurgeResponse

@@ -1,4 +1,6 @@
-# group `RHAPI_PlayerInventoryChange` <a id="group__RHAPI__PlayerInventoryChange"></a>
+---
+title: RHAPI_PlayerInventoryChange
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerInventoryChange`](#structFRHAPI__PlayerInventoryChange) | Represents the change that occurred to an entry in the Player&#39;s Inventory. The before fields contain the state before the change, after fields contain the state after the change.
 
----
-title: FRHAPI_PlayerInventoryChange
----
+## struct `FRHAPI_PlayerInventoryChange` <a id="structFRHAPI__PlayerInventoryChange"></a>
 
 ```
 struct FRHAPI_PlayerInventoryChange

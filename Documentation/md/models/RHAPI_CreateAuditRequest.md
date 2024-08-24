@@ -1,4 +1,6 @@
-# group `RHAPI_CreateAuditRequest` <a id="group__RHAPI__CreateAuditRequest"></a>
+---
+title: RHAPI_CreateAuditRequest
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_CreateAuditRequest`](#structFRHAPI__CreateAuditRequest) | 
 
----
-title: FRHAPI_CreateAuditRequest
----
+## struct `FRHAPI_CreateAuditRequest` <a id="structFRHAPI__CreateAuditRequest"></a>
 
 ```
 struct FRHAPI_CreateAuditRequest

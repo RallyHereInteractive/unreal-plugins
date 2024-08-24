@@ -1,4 +1,6 @@
-# group `RHAPI_PortalUserInfo` <a id="group__RHAPI__PortalUserInfo"></a>
+---
+title: RHAPI_PortalUserInfo
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PortalUserInfo`](#structFRHAPI__PortalUserInfo) | Portal user info.
 
----
-title: FRHAPI_PortalUserInfo
----
+## struct `FRHAPI_PortalUserInfo` <a id="structFRHAPI__PortalUserInfo"></a>
 
 ```
 struct FRHAPI_PortalUserInfo

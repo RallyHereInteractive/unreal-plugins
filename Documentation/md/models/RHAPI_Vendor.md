@@ -1,4 +1,6 @@
-# group `RHAPI_Vendor` <a id="group__RHAPI__Vendor"></a>
+---
+title: RHAPI_Vendor
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_Vendor`](#structFRHAPI__Vendor) | A collection of Loot and how to fulfill them.
 
----
-title: FRHAPI_Vendor
----
+## struct `FRHAPI_Vendor` <a id="structFRHAPI__Vendor"></a>
 
 ```
 struct FRHAPI_Vendor

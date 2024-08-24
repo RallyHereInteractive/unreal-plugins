@@ -1,4 +1,6 @@
-# group `RHAPI_RankUpdateRequest` <a id="group__RHAPI__RankUpdateRequest"></a>
+---
+title: RHAPI_RankUpdateRequest
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_RankUpdateRequest`](#structFRHAPI__RankUpdateRequest) | DEPRECATED A request body to calculate and update players&#39; ratings from a match.
 
----
-title: FRHAPI_RankUpdateRequest
----
+## struct `FRHAPI_RankUpdateRequest` <a id="structFRHAPI__RankUpdateRequest"></a>
 
 ```
 struct FRHAPI_RankUpdateRequest

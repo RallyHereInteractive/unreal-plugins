@@ -1,4 +1,6 @@
-# group `RHAPI_SetSinglePlayerSettingRequest` <a id="group__RHAPI__SetSinglePlayerSettingRequest"></a>
+---
+title: RHAPI_SetSinglePlayerSettingRequest
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_SetSinglePlayerSettingRequest`](#structFRHAPI__SetSinglePlayerSettingRequest) | Updatable contents of a setting for a player.
 
----
-title: FRHAPI_SetSinglePlayerSettingRequest
----
+## struct `FRHAPI_SetSinglePlayerSettingRequest` <a id="structFRHAPI__SetSinglePlayerSettingRequest"></a>
 
 ```
 struct FRHAPI_SetSinglePlayerSettingRequest

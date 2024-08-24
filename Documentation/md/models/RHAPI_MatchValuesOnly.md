@@ -1,4 +1,6 @@
-# group `RHAPI_MatchValuesOnly` <a id="group__RHAPI__MatchValuesOnly"></a>
+---
+title: RHAPI_MatchValuesOnly
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_MatchValuesOnly`](#structFRHAPI__MatchValuesOnly) | 
 
----
-title: FRHAPI_MatchValuesOnly
----
+## struct `FRHAPI_MatchValuesOnly` <a id="structFRHAPI__MatchValuesOnly"></a>
 
 ```
 struct FRHAPI_MatchValuesOnly

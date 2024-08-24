@@ -1,4 +1,6 @@
-# group `RHAPI_BaseModel` <a id="group__RHAPI__BaseModel"></a>
+---
+title: RHAPI_BaseModel
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_Model`](#structFRHAPI__Model) | Base class for all RallyHereAPI data models.
 
----
-title: FRHAPI_Model
----
+## struct `FRHAPI_Model` <a id="structFRHAPI__Model"></a>
 
 Base class for all RallyHereAPI data models.
 

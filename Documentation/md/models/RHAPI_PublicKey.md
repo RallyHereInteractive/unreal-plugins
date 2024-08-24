@@ -1,4 +1,6 @@
-# group `RHAPI_PublicKey` <a id="group__RHAPI__PublicKey"></a>
+---
+title: RHAPI_PublicKey
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PublicKey`](#structFRHAPI__PublicKey) | Public key for verifying Access Token JWTs This is in the JWK format as defined in [https://datatracker.ietf.org/doc/html/rfc7517#section-4](https://datatracker.ietf.org/doc/html/rfc7517#section-4).
 
----
-title: FRHAPI_PublicKey
----
+## struct `FRHAPI_PublicKey` <a id="structFRHAPI__PublicKey"></a>
 
 ```
 struct FRHAPI_PublicKey

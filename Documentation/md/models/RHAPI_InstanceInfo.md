@@ -1,4 +1,6 @@
-# group `RHAPI_InstanceInfo` <a id="group__RHAPI__InstanceInfo"></a>
+---
+title: RHAPI_InstanceInfo
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_InstanceInfo`](#structFRHAPI__InstanceInfo) | Information about the instance resource in a session.
 
----
-title: FRHAPI_InstanceInfo
----
+## struct `FRHAPI_InstanceInfo` <a id="structFRHAPI__InstanceInfo"></a>
 
 ```
 struct FRHAPI_InstanceInfo

@@ -1,4 +1,6 @@
-# group `RHAPI_MapSelectionList` <a id="group__RHAPI__MapSelectionList"></a>
+---
+title: RHAPI_MapSelectionList
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_MapSelectionList`](#structFRHAPI__MapSelectionList) | DEPRECATED A list of maps that can be chosen from when an instance is launching.
 
----
-title: FRHAPI_MapSelectionList
----
+## struct `FRHAPI_MapSelectionList` <a id="structFRHAPI__MapSelectionList"></a>
 
 ```
 struct FRHAPI_MapSelectionList

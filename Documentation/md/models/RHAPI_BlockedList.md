@@ -1,4 +1,6 @@
-# group `RHAPI_BlockedList` <a id="group__RHAPI__BlockedList"></a>
+---
+title: RHAPI_BlockedList
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_BlockedList`](#structFRHAPI__BlockedList) | The list of players that is blocked.
 
----
-title: FRHAPI_BlockedList
----
+## struct `FRHAPI_BlockedList` <a id="structFRHAPI__BlockedList"></a>
 
 ```
 struct FRHAPI_BlockedList

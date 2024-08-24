@@ -1,4 +1,6 @@
-# group `RHAPI_PurchasePrice` <a id="group__RHAPI__PurchasePrice"></a>
+---
+title: RHAPI_PurchasePrice
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PurchasePrice`](#structFRHAPI__PurchasePrice) | The purchase price of an Item.
 
----
-title: FRHAPI_PurchasePrice
----
+## struct `FRHAPI_PurchasePrice` <a id="structFRHAPI__PurchasePrice"></a>
 
 ```
 struct FRHAPI_PurchasePrice

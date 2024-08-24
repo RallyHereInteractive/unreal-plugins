@@ -1,4 +1,6 @@
-# group `RHAPI_FriendsApiConfig` <a id="group__RHAPI__FriendsApiConfig"></a>
+---
+title: RHAPI_FriendsApiConfig
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_FriendsApiConfig`](#structFRHAPI__FriendsApiConfig) | 
 
----
-title: FRHAPI_FriendsApiConfig
----
+## struct `FRHAPI_FriendsApiConfig` <a id="structFRHAPI__FriendsApiConfig"></a>
 
 ```
 struct FRHAPI_FriendsApiConfig

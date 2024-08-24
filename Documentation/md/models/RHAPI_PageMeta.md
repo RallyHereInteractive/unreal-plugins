@@ -1,4 +1,6 @@
-# group `RHAPI_PageMeta` <a id="group__RHAPI__PageMeta"></a>
+---
+title: RHAPI_PageMeta
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PageMeta`](#structFRHAPI__PageMeta) | 
 
----
-title: FRHAPI_PageMeta
----
+## struct `FRHAPI_PageMeta` <a id="structFRHAPI__PageMeta"></a>
 
 ```
 struct FRHAPI_PageMeta

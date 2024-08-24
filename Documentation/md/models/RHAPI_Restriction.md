@@ -1,4 +1,6 @@
-# group `RHAPI_Restriction` <a id="group__RHAPI__Restriction"></a>
+---
+title: RHAPI_Restriction
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_Restriction`](#structFRHAPI__Restriction) | Restriction applied to a player.
 
----
-title: FRHAPI_Restriction
----
+## struct `FRHAPI_Restriction` <a id="structFRHAPI__Restriction"></a>
 
 ```
 struct FRHAPI_Restriction

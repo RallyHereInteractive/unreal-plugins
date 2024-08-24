@@ -1,4 +1,6 @@
-# group `RHAPI_MapSelectionListV2` <a id="group__RHAPI__MapSelectionListV2"></a>
+---
+title: RHAPI_MapSelectionListV2
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_MapSelectionListV2`](#structFRHAPI__MapSelectionListV2) | 
 
----
-title: FRHAPI_MapSelectionListV2
----
+## struct `FRHAPI_MapSelectionListV2` <a id="structFRHAPI__MapSelectionListV2"></a>
 
 ```
 struct FRHAPI_MapSelectionListV2

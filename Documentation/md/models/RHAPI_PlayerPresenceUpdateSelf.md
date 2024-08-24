@@ -1,4 +1,6 @@
-# group `RHAPI_PlayerPresenceUpdateSelf` <a id="group__RHAPI__PlayerPresenceUpdateSelf"></a>
+---
+title: RHAPI_PlayerPresenceUpdateSelf
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerPresenceUpdateSelf`](#structFRHAPI__PlayerPresenceUpdateSelf) | 
 
----
-title: FRHAPI_PlayerPresenceUpdateSelf
----
+## struct `FRHAPI_PlayerPresenceUpdateSelf` <a id="structFRHAPI__PlayerPresenceUpdateSelf"></a>
 
 ```
 struct FRHAPI_PlayerPresenceUpdateSelf

@@ -1,4 +1,6 @@
-# group `RHAPI_Role` <a id="group__RHAPI__Role"></a>
+---
+title: RHAPI_Role
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_Role`](#structFRHAPI__Role) | Role object that is used to define a role for a player.
 
----
-title: FRHAPI_Role
----
+## struct `FRHAPI_Role` <a id="structFRHAPI__Role"></a>
 
 ```
 struct FRHAPI_Role

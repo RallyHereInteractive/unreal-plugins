@@ -1,4 +1,6 @@
-# group `RHAPI_PricePoint` <a id="group__RHAPI__PricePoint"></a>
+---
+title: RHAPI_PricePoint
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PricePoint`](#structFRHAPI__PricePoint) | A collection of Price Breakpoints (volume pricing).
 
----
-title: FRHAPI_PricePoint
----
+## struct `FRHAPI_PricePoint` <a id="structFRHAPI__PricePoint"></a>
 
 ```
 struct FRHAPI_PricePoint

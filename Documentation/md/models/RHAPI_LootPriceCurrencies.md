@@ -1,4 +1,6 @@
-# group `RHAPI_LootPriceCurrencies` <a id="group__RHAPI__LootPriceCurrencies"></a>
+---
+title: RHAPI_LootPriceCurrencies
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_LootPriceCurrencies`](#structFRHAPI__LootPriceCurrencies) | Single price that the loot can be purchased with. Note that all currencies of this list will be spent together.
 
----
-title: FRHAPI_LootPriceCurrencies
----
+## struct `FRHAPI_LootPriceCurrencies` <a id="structFRHAPI__LootPriceCurrencies"></a>
 
 ```
 struct FRHAPI_LootPriceCurrencies

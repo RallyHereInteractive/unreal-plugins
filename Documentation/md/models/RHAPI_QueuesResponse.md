@@ -1,4 +1,6 @@
-# group `RHAPI_QueuesResponse` <a id="group__RHAPI__QueuesResponse"></a>
+---
+title: RHAPI_QueuesResponse
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_QueuesResponse`](#structFRHAPI__QueuesResponse) | DEPRECATED - A list of configuration about queues.
 
----
-title: FRHAPI_QueuesResponse
----
+## struct `FRHAPI_QueuesResponse` <a id="structFRHAPI__QueuesResponse"></a>
 
 ```
 struct FRHAPI_QueuesResponse

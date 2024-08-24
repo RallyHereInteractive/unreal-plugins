@@ -1,4 +1,6 @@
-# group `RHAPI_InstanceInfoUpdate` <a id="group__RHAPI__InstanceInfoUpdate"></a>
+---
+title: RHAPI_InstanceInfoUpdate
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_InstanceInfoUpdate`](#structFRHAPI__InstanceInfoUpdate) | A request body to update the instance resource in a session.
 
----
-title: FRHAPI_InstanceInfoUpdate
----
+## struct `FRHAPI_InstanceInfoUpdate` <a id="structFRHAPI__InstanceInfoUpdate"></a>
 
 ```
 struct FRHAPI_InstanceInfoUpdate

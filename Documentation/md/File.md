@@ -1,4 +1,6 @@
-# group `File` <a id="group__File"></a>
+---
+title: File
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `class `[`URH_RemoteFileSubsystem`](#classURH__RemoteFileSubsystem) | File Subsystem used for file API calls.
 
----
-title: URH_RemoteFileSubsystem
----
+## class `URH_RemoteFileSubsystem` <a id="classURH__RemoteFileSubsystem"></a>
 
 ```
 class URH_RemoteFileSubsystem

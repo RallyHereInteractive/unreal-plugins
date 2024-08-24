@@ -1,4 +1,6 @@
-# group `RHAPI_ClientSettings` <a id="group__RHAPI__ClientSettings"></a>
+---
+title: RHAPI_ClientSettings
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_ClientSettings`](#structFRHAPI__ClientSettings) | A player&#39;s platform and input settings.
 
----
-title: FRHAPI_ClientSettings
----
+## struct `FRHAPI_ClientSettings` <a id="structFRHAPI__ClientSettings"></a>
 
 ```
 struct FRHAPI_ClientSettings

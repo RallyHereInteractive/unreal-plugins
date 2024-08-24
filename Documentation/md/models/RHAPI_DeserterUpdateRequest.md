@@ -1,4 +1,6 @@
-# group `RHAPI_DeserterUpdateRequest` <a id="group__RHAPI__DeserterUpdateRequest"></a>
+---
+title: RHAPI_DeserterUpdateRequest
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_DeserterUpdateRequest`](#structFRHAPI__DeserterUpdateRequest) | 
 
----
-title: FRHAPI_DeserterUpdateRequest
----
+## struct `FRHAPI_DeserterUpdateRequest` <a id="structFRHAPI__DeserterUpdateRequest"></a>
 
 ```
 struct FRHAPI_DeserterUpdateRequest

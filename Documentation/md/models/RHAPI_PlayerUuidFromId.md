@@ -1,4 +1,6 @@
-# group `RHAPI_PlayerUuidFromId` <a id="group__RHAPI__PlayerUuidFromId"></a>
+---
+title: RHAPI_PlayerUuidFromId
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerUuidFromId`](#structFRHAPI__PlayerUuidFromId) | Model for getting a player UUID from a player ID.
 
----
-title: FRHAPI_PlayerUuidFromId
----
+## struct `FRHAPI_PlayerUuidFromId` <a id="structFRHAPI__PlayerUuidFromId"></a>
 
 ```
 struct FRHAPI_PlayerUuidFromId

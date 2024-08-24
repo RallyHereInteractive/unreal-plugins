@@ -1,4 +1,6 @@
-# group `RHAPI_QueueJoinResponse` <a id="group__RHAPI__QueueJoinResponse"></a>
+---
+title: RHAPI_QueueJoinResponse
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_QueueJoinResponse`](#structFRHAPI__QueueJoinResponse) | A response for successfully joining a matchmaking queue.
 
----
-title: FRHAPI_QueueJoinResponse
----
+## struct `FRHAPI_QueueJoinResponse` <a id="structFRHAPI__QueueJoinResponse"></a>
 
 ```
 struct FRHAPI_QueueJoinResponse

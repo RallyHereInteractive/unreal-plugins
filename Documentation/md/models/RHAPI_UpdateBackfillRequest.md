@@ -1,4 +1,6 @@
-# group `RHAPI_UpdateBackfillRequest` <a id="group__RHAPI__UpdateBackfillRequest"></a>
+---
+title: RHAPI_UpdateBackfillRequest
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_UpdateBackfillRequest`](#structFRHAPI__UpdateBackfillRequest) | 
 
----
-title: FRHAPI_UpdateBackfillRequest
----
+## struct `FRHAPI_UpdateBackfillRequest` <a id="structFRHAPI__UpdateBackfillRequest"></a>
 
 ```
 struct FRHAPI_UpdateBackfillRequest

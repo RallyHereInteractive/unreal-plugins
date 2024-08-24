@@ -1,4 +1,6 @@
-# group `RHAPI_BackfillTeam` <a id="group__RHAPI__BackfillTeam"></a>
+---
+title: RHAPI_BackfillTeam
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_BackfillTeam`](#structFRHAPI__BackfillTeam) | 
 
----
-title: FRHAPI_BackfillTeam
----
+## struct `FRHAPI_BackfillTeam` <a id="structFRHAPI__BackfillTeam"></a>
 
 ```
 struct FRHAPI_BackfillTeam

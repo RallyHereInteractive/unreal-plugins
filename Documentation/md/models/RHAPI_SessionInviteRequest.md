@@ -1,4 +1,6 @@
-# group `RHAPI_SessionInviteRequest` <a id="group__RHAPI__SessionInviteRequest"></a>
+---
+title: RHAPI_SessionInviteRequest
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_SessionInviteRequest`](#structFRHAPI__SessionInviteRequest) | 
 
----
-title: FRHAPI_SessionInviteRequest
----
+## struct `FRHAPI_SessionInviteRequest` <a id="structFRHAPI__SessionInviteRequest"></a>
 
 ```
 struct FRHAPI_SessionInviteRequest

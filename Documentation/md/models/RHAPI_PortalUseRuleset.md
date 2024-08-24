@@ -1,4 +1,6 @@
-# group `RHAPI_PortalUseRuleset` <a id="group__RHAPI__PortalUseRuleset"></a>
+---
+title: RHAPI_PortalUseRuleset
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PortalUseRuleset`](#structFRHAPI__PortalUseRuleset) | A collection of Portal Use Rules.
 
----
-title: FRHAPI_PortalUseRuleset
----
+## struct `FRHAPI_PortalUseRuleset` <a id="structFRHAPI__PortalUseRuleset"></a>
 
 ```
 struct FRHAPI_PortalUseRuleset

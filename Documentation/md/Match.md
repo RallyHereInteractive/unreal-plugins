@@ -1,4 +1,6 @@
-# group `Match` <a id="group__Match"></a>
+---
+title: Match
+---
 
 ## Summary
 
@@ -46,9 +48,7 @@
 
 #### `public  `[`DECLARE_RH_DELEGATE_BLOCK`](#group__Match_1gadb89201c5ff064ef71a8fddb770c9343)`(FRH_OnMatchPlayerUpdateCompleteDelegateBlock,FRH_OnMatchPlayerUpdateCompleteDelegate,FRH_OnMatchPlayerUpdatedCompleteDynamicDelegate,bool,const `[`FRHAPI_MatchPlayerWithMatch`](models/RHAPI_MatchPlayerWithMatch.md#structFRHAPI__MatchPlayerWithMatch)` &,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` &)` <a id="group__Match_1gadb89201c5ff064ef71a8fddb770c9343"></a>
 
----
-title: URH_MatchSubsystem
----
+## class `URH_MatchSubsystem` <a id="classURH__MatchSubsystem"></a>
 
 ```
 class URH_MatchSubsystem
@@ -172,9 +172,7 @@ Update a specific match segment (PATCH w/ UPSERT)
 
 The last match created with bSetActive = true, for ease of use.
 
----
-title: FRH_MatchSearchParams
----
+## struct `FRH_MatchSearchParams` <a id="structFRH__MatchSearchParams"></a>
 
 ### Summary
 
@@ -249,9 +247,7 @@ Returns summary of params for tooling/logging.
 
 Converts the search params to an API request.
 
----
-title: FRH_MatchSearchResult
----
+## struct `FRH_MatchSearchResult` <a id="structFRH__MatchSearchResult"></a>
 
 Struct containint the results of a Session Browser search.
 

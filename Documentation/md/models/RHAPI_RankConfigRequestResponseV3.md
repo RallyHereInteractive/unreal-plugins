@@ -1,4 +1,6 @@
-# group `RHAPI_RankConfigRequestResponseV3` <a id="group__RHAPI__RankConfigRequestResponseV3"></a>
+---
+title: RHAPI_RankConfigRequestResponseV3
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_RankConfigRequestResponseV3`](#structFRHAPI__RankConfigRequestResponseV3) | Response to successfully requesting all rank config.
 
----
-title: FRHAPI_RankConfigRequestResponseV3
----
+## struct `FRHAPI_RankConfigRequestResponseV3` <a id="structFRHAPI__RankConfigRequestResponseV3"></a>
 
 ```
 struct FRHAPI_RankConfigRequestResponseV3

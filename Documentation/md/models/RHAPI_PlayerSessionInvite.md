@@ -1,4 +1,6 @@
-# group `RHAPI_PlayerSessionInvite` <a id="group__RHAPI__PlayerSessionInvite"></a>
+---
+title: RHAPI_PlayerSessionInvite
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerSessionInvite`](#structFRHAPI__PlayerSessionInvite) | Information about an invite to a session that a player received.
 
----
-title: FRHAPI_PlayerSessionInvite
----
+## struct `FRHAPI_PlayerSessionInvite` <a id="structFRHAPI__PlayerSessionInvite"></a>
 
 ```
 struct FRHAPI_PlayerSessionInvite

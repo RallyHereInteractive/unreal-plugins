@@ -1,4 +1,6 @@
-# group `RHAPI_MatchMakingProfile` <a id="group__RHAPI__MatchMakingProfile"></a>
+---
+title: RHAPI_MatchMakingProfile
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_MatchMakingProfile`](#structFRHAPI__MatchMakingProfile) | DEPRECATED A profile that describes what pools of players a session will be a part of when matchmaking.
 
----
-title: FRHAPI_MatchMakingProfile
----
+## struct `FRHAPI_MatchMakingProfile` <a id="structFRHAPI__MatchMakingProfile"></a>
 
 ```
 struct FRHAPI_MatchMakingProfile

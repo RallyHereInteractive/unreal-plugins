@@ -1,4 +1,6 @@
-# group `RHAPI_EntitlementEventList` <a id="group__RHAPI__EntitlementEventList"></a>
+---
+title: RHAPI_EntitlementEventList
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_EntitlementEventList`](#structFRHAPI__EntitlementEventList) | 
 
----
-title: FRHAPI_EntitlementEventList
----
+## struct `FRHAPI_EntitlementEventList` <a id="structFRHAPI__EntitlementEventList"></a>
 
 ```
 struct FRHAPI_EntitlementEventList

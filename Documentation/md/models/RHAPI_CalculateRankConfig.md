@@ -1,4 +1,6 @@
-# group `RHAPI_CalculateRankConfig` <a id="group__RHAPI__CalculateRankConfig"></a>
+---
+title: RHAPI_CalculateRankConfig
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_CalculateRankConfig`](#structFRHAPI__CalculateRankConfig) | Config about how to recalculate ranks.
 
----
-title: FRHAPI_CalculateRankConfig
----
+## struct `FRHAPI_CalculateRankConfig` <a id="structFRHAPI__CalculateRankConfig"></a>
 
 ```
 struct FRHAPI_CalculateRankConfig

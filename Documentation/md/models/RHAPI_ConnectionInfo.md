@@ -1,4 +1,6 @@
-# group `RHAPI_ConnectionInfo` <a id="group__RHAPI__ConnectionInfo"></a>
+---
+title: RHAPI_ConnectionInfo
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_ConnectionInfo`](#structFRHAPI__ConnectionInfo) | Connection info about the requesting client.
 
----
-title: FRHAPI_ConnectionInfo
----
+## struct `FRHAPI_ConnectionInfo` <a id="structFRHAPI__ConnectionInfo"></a>
 
 ```
 struct FRHAPI_ConnectionInfo

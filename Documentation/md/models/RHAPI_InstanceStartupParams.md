@@ -1,4 +1,6 @@
-# group `RHAPI_InstanceStartupParams` <a id="group__RHAPI__InstanceStartupParams"></a>
+---
+title: RHAPI_InstanceStartupParams
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_InstanceStartupParams`](#structFRHAPI__InstanceStartupParams) | Parameters given to an instance to change what map and mode it loads, and other gameplay behavior.
 
----
-title: FRHAPI_InstanceStartupParams
----
+## struct `FRHAPI_InstanceStartupParams` <a id="structFRHAPI__InstanceStartupParams"></a>
 
 ```
 struct FRHAPI_InstanceStartupParams

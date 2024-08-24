@@ -1,4 +1,6 @@
-# group `RHAPI_MatchAllocation` <a id="group__RHAPI__MatchAllocation"></a>
+---
+title: RHAPI_MatchAllocation
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_MatchAllocation`](#structFRHAPI__MatchAllocation) | 
 
----
-title: FRHAPI_MatchAllocation
----
+## struct `FRHAPI_MatchAllocation` <a id="structFRHAPI__MatchAllocation"></a>
 
 ```
 struct FRHAPI_MatchAllocation

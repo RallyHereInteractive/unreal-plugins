@@ -1,4 +1,6 @@
-# group `RHAPI_LoginHistoryPage` <a id="group__RHAPI__LoginHistoryPage"></a>
+---
+title: RHAPI_LoginHistoryPage
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_LoginHistoryPage`](#structFRHAPI__LoginHistoryPage) | 
 
----
-title: FRHAPI_LoginHistoryPage
----
+## struct `FRHAPI_LoginHistoryPage` <a id="structFRHAPI__LoginHistoryPage"></a>
 
 ```
 struct FRHAPI_LoginHistoryPage

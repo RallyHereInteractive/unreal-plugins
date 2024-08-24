@@ -1,4 +1,6 @@
-# group `RHAPI_PlayerOrderEntry` <a id="group__RHAPI__PlayerOrderEntry"></a>
+---
+title: RHAPI_PlayerOrderEntry
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerOrderEntry`](#structFRHAPI__PlayerOrderEntry) | Represents a line item in the Player Order and the results of the line item.
 
----
-title: FRHAPI_PlayerOrderEntry
----
+## struct `FRHAPI_PlayerOrderEntry` <a id="structFRHAPI__PlayerOrderEntry"></a>
 
 ```
 struct FRHAPI_PlayerOrderEntry

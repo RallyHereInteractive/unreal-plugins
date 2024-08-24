@@ -1,4 +1,6 @@
-# group `RHAPI_PlatformSession` <a id="group__RHAPI__PlatformSession"></a>
+---
+title: RHAPI_PlatformSession
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlatformSession`](#structFRHAPI__PlatformSession) | A platform session resource in a RallyHere session.
 
----
-title: FRHAPI_PlatformSession
----
+## struct `FRHAPI_PlatformSession` <a id="structFRHAPI__PlatformSession"></a>
 
 ```
 struct FRHAPI_PlatformSession

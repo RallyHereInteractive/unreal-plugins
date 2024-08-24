@@ -1,4 +1,6 @@
-# group `RHAPI_PlatformSKUs` <a id="group__RHAPI__PlatformSKUs"></a>
+---
+title: RHAPI_PlatformSKUs
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlatformSKUs`](#structFRHAPI__PlatformSKUs) | A collection of SKUs.
 
----
-title: FRHAPI_PlatformSKUs
----
+## struct `FRHAPI_PlatformSKUs` <a id="structFRHAPI__PlatformSKUs"></a>
 
 ```
 struct FRHAPI_PlatformSKUs

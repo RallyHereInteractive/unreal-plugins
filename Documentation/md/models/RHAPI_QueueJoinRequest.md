@@ -1,4 +1,6 @@
-# group `RHAPI_QueueJoinRequest` <a id="group__RHAPI__QueueJoinRequest"></a>
+---
+title: RHAPI_QueueJoinRequest
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_QueueJoinRequest`](#structFRHAPI__QueueJoinRequest) | A request body to enter into a matchmaking queue.
 
----
-title: FRHAPI_QueueJoinRequest
----
+## struct `FRHAPI_QueueJoinRequest` <a id="structFRHAPI__QueueJoinRequest"></a>
 
 ```
 struct FRHAPI_QueueJoinRequest

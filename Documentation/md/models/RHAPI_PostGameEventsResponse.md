@@ -1,4 +1,6 @@
-# group `RHAPI_PostGameEventsResponse` <a id="group__RHAPI__PostGameEventsResponse"></a>
+---
+title: RHAPI_PostGameEventsResponse
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PostGameEventsResponse`](#structFRHAPI__PostGameEventsResponse) | 
 
----
-title: FRHAPI_PostGameEventsResponse
----
+## struct `FRHAPI_PostGameEventsResponse` <a id="structFRHAPI__PostGameEventsResponse"></a>
 
 ```
 struct FRHAPI_PostGameEventsResponse

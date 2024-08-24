@@ -1,4 +1,6 @@
-# group `RHAPI_UserLinkHistory` <a id="group__RHAPI__UserLinkHistory"></a>
+---
+title: RHAPI_UserLinkHistory
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_UserLinkHistory`](#structFRHAPI__UserLinkHistory) | 
 
----
-title: FRHAPI_UserLinkHistory
----
+## struct `FRHAPI_UserLinkHistory` <a id="structFRHAPI__UserLinkHistory"></a>
 
 ```
 struct FRHAPI_UserLinkHistory

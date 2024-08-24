@@ -1,4 +1,6 @@
-# group `RHAPI_PortalTokenDetailsRequest` <a id="group__RHAPI__PortalTokenDetailsRequest"></a>
+---
+title: RHAPI_PortalTokenDetailsRequest
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PortalTokenDetailsRequest`](#structFRHAPI__PortalTokenDetailsRequest) | 
 
----
-title: FRHAPI_PortalTokenDetailsRequest
----
+## struct `FRHAPI_PortalTokenDetailsRequest` <a id="structFRHAPI__PortalTokenDetailsRequest"></a>
 
 ```
 struct FRHAPI_PortalTokenDetailsRequest

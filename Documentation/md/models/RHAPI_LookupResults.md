@@ -1,4 +1,6 @@
-# group `RHAPI_LookupResults` <a id="group__RHAPI__LookupResults"></a>
+---
+title: RHAPI_LookupResults
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_LookupResults`](#structFRHAPI__LookupResults) | Lookup results for a player query.
 
----
-title: FRHAPI_LookupResults
----
+## struct `FRHAPI_LookupResults` <a id="structFRHAPI__LookupResults"></a>
 
 ```
 struct FRHAPI_LookupResults

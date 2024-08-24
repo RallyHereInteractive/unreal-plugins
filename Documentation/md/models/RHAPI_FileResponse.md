@@ -1,4 +1,6 @@
-# group `RHAPI_FileResponse` <a id="group__RHAPI__FileResponse"></a>
+---
+title: RHAPI_FileResponse
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_FileResponse`](#structFRHAPI__FileResponse) | 
 
----
-title: FRHAPI_FileResponse
----
+## struct `FRHAPI_FileResponse` <a id="structFRHAPI__FileResponse"></a>
 
 ```
 struct FRHAPI_FileResponse

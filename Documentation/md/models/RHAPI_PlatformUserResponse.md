@@ -1,4 +1,6 @@
-# group `RHAPI_PlatformUserResponse` <a id="group__RHAPI__PlatformUserResponse"></a>
+---
+title: RHAPI_PlatformUserResponse
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlatformUserResponse`](#structFRHAPI__PlatformUserResponse) | Response for successfully creating a platform user.
 
----
-title: FRHAPI_PlatformUserResponse
----
+## struct `FRHAPI_PlatformUserResponse` <a id="structFRHAPI__PlatformUserResponse"></a>
 
 ```
 struct FRHAPI_PlatformUserResponse

@@ -1,4 +1,6 @@
-# group `RHAPI_Items` <a id="group__RHAPI__Items"></a>
+---
+title: RHAPI_Items
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_Items`](#structFRHAPI__Items) | A collections of Items by Item ID.
 
----
-title: FRHAPI_Items
----
+## struct `FRHAPI_Items` <a id="structFRHAPI__Items"></a>
 
 ```
 struct FRHAPI_Items

@@ -1,4 +1,6 @@
-# group `RHAPI_BrowserSessionInfo` <a id="group__RHAPI__BrowserSessionInfo"></a>
+---
+title: RHAPI_BrowserSessionInfo
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_BrowserSessionInfo`](#structFRHAPI__BrowserSessionInfo) | Information about a session listed in a browser.
 
----
-title: FRHAPI_BrowserSessionInfo
----
+## struct `FRHAPI_BrowserSessionInfo` <a id="structFRHAPI__BrowserSessionInfo"></a>
 
 ```
 struct FRHAPI_BrowserSessionInfo

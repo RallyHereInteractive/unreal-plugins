@@ -1,4 +1,6 @@
-# group `RHAPI_SettingData` <a id="group__RHAPI__SettingData"></a>
+---
+title: RHAPI_SettingData
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_SettingData`](#structFRHAPI__SettingData) | Setting version/value data from a specific setting type/key for a player.
 
----
-title: FRHAPI_SettingData
----
+## struct `FRHAPI_SettingData` <a id="structFRHAPI__SettingData"></a>
 
 ```
 struct FRHAPI_SettingData

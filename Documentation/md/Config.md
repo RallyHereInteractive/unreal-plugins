@@ -1,4 +1,6 @@
-# group `Config` <a id="group__Config"></a>
+---
+title: Config
+---
 
 ## Summary
 
@@ -7,9 +9,7 @@
 `class `[`URH_ConfigSubsystem`](#classURH__ConfigSubsystem) | Config Subsystem used for interfacing with configuration coming from the core servers.
 `struct `[`FRH_ServerTimeCache`](#structFRH__ServerTimeCache) | An object that caches information about server time and differences.
 
----
-title: URH_ConfigSubsystem
----
+## class `URH_ConfigSubsystem` <a id="classURH__ConfigSubsystem"></a>
 
 ```
 class URH_ConfigSubsystem
@@ -243,9 +243,7 @@ Handles the response to a FetchKVs call.
 
 #### `typedef `[`GetKVsAPIType`](#classURH__ConfigSubsystem_1abb6be8f99a9217fb5704e5e4ad9de8cb) <a id="classURH__ConfigSubsystem_1abb6be8f99a9217fb5704e5e4ad9de8cb"></a>
 
----
-title: FRH_ServerTimeCache
----
+## struct `FRH_ServerTimeCache` <a id="structFRH__ServerTimeCache"></a>
 
 An object that caches information about server time and differences.
 

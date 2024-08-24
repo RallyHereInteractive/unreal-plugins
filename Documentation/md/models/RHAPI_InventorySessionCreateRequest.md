@@ -1,4 +1,6 @@
-# group `RHAPI_InventorySessionCreateRequest` <a id="group__RHAPI__InventorySessionCreateRequest"></a>
+---
+title: RHAPI_InventorySessionCreateRequest
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_InventorySessionCreateRequest`](#structFRHAPI__InventorySessionCreateRequest) | Request body for creating a new Inventory Session.
 
----
-title: FRHAPI_InventorySessionCreateRequest
----
+## struct `FRHAPI_InventorySessionCreateRequest` <a id="structFRHAPI__InventorySessionCreateRequest"></a>
 
 ```
 struct FRHAPI_InventorySessionCreateRequest

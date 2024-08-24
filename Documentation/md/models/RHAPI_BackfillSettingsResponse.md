@@ -1,4 +1,6 @@
-# group `RHAPI_BackfillSettingsResponse` <a id="group__RHAPI__BackfillSettingsResponse"></a>
+---
+title: RHAPI_BackfillSettingsResponse
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_BackfillSettingsResponse`](#structFRHAPI__BackfillSettingsResponse) | 
 
----
-title: FRHAPI_BackfillSettingsResponse
----
+## struct `FRHAPI_BackfillSettingsResponse` <a id="structFRHAPI__BackfillSettingsResponse"></a>
 
 ```
 struct FRHAPI_BackfillSettingsResponse

@@ -1,4 +1,6 @@
-# group `RHAPI_MatchInfo` <a id="group__RHAPI__MatchInfo"></a>
+---
+title: RHAPI_MatchInfo
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_MatchInfo`](#structFRHAPI__MatchInfo) | DEPRECATED Information about a match.
 
----
-title: FRHAPI_MatchInfo
----
+## struct `FRHAPI_MatchInfo` <a id="structFRHAPI__MatchInfo"></a>
 
 ```
 struct FRHAPI_MatchInfo

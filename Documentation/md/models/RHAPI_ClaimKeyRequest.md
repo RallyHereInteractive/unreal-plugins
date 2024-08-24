@@ -1,4 +1,6 @@
-# group `RHAPI_ClaimKeyRequest` <a id="group__RHAPI__ClaimKeyRequest"></a>
+---
+title: RHAPI_ClaimKeyRequest
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_ClaimKeyRequest`](#structFRHAPI__ClaimKeyRequest) | Attempt to claim a Key Claim from a Marketing Campaign.
 
----
-title: FRHAPI_ClaimKeyRequest
----
+## struct `FRHAPI_ClaimKeyRequest` <a id="structFRHAPI__ClaimKeyRequest"></a>
 
 ```
 struct FRHAPI_ClaimKeyRequest

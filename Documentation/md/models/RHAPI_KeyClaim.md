@@ -1,4 +1,6 @@
-# group `RHAPI_KeyClaim` <a id="group__RHAPI__KeyClaim"></a>
+---
+title: RHAPI_KeyClaim
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_KeyClaim`](#structFRHAPI__KeyClaim) | A KeyClaim is a reward a player for fulfilling requirements of an eternal marketing campaign. Once the player has completed the requirements of the campaign and have been assigned a sku of the campaign by the Platform, invoke Process Key Entitlements to consume the sku from the Platform for a Key Claim.
 
----
-title: FRHAPI_KeyClaim
----
+## struct `FRHAPI_KeyClaim` <a id="structFRHAPI__KeyClaim"></a>
 
 ```
 struct FRHAPI_KeyClaim

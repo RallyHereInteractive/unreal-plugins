@@ -1,4 +1,6 @@
-# group `RHAPI_AuditEvent` <a id="group__RHAPI__AuditEvent"></a>
+---
+title: RHAPI_AuditEvent
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_AuditEvent`](#structFRHAPI__AuditEvent) | 
 
----
-title: FRHAPI_AuditEvent
----
+## struct `FRHAPI_AuditEvent` <a id="structFRHAPI__AuditEvent"></a>
 
 ```
 struct FRHAPI_AuditEvent

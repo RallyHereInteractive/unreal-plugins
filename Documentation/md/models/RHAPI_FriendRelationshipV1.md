@@ -1,4 +1,6 @@
-# group `RHAPI_FriendRelationshipV1` <a id="group__RHAPI__FriendRelationshipV1"></a>
+---
+title: RHAPI_FriendRelationshipV1
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_FriendRelationshipV1`](#structFRHAPI__FriendRelationshipV1) | Represents the relationship with a potential friend. V1 includes player_id and player_uuid.
 
----
-title: FRHAPI_FriendRelationshipV1
----
+## struct `FRHAPI_FriendRelationshipV1` <a id="structFRHAPI__FriendRelationshipV1"></a>
 
 ```
 struct FRHAPI_FriendRelationshipV1

@@ -1,4 +1,6 @@
-# group `RHAPI_MatchMakingSessionRequest` <a id="group__RHAPI__MatchMakingSessionRequest"></a>
+---
+title: RHAPI_MatchMakingSessionRequest
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_MatchMakingSessionRequest`](#structFRHAPI__MatchMakingSessionRequest) | A request body for a new matchmade session to be created.
 
----
-title: FRHAPI_MatchMakingSessionRequest
----
+## struct `FRHAPI_MatchMakingSessionRequest` <a id="structFRHAPI__MatchMakingSessionRequest"></a>
 
 ```
 struct FRHAPI_MatchMakingSessionRequest

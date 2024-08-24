@@ -1,4 +1,6 @@
-# group `RHAPI_PlayerIterateResponse` <a id="group__RHAPI__PlayerIterateResponse"></a>
+---
+title: RHAPI_PlayerIterateResponse
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerIterateResponse`](#structFRHAPI__PlayerIterateResponse) | Response from the player iteration API.
 
----
-title: FRHAPI_PlayerIterateResponse
----
+## struct `FRHAPI_PlayerIterateResponse` <a id="structFRHAPI__PlayerIterateResponse"></a>
 
 ```
 struct FRHAPI_PlayerIterateResponse

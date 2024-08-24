@@ -1,4 +1,6 @@
-# group `RHAPI_KVV1` <a id="group__RHAPI__KVV1"></a>
+---
+title: RHAPI_KVV1
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_KVV1`](#structFRHAPI__KVV1) | A key/value pair that represents a setting to be used by the client.
 
----
-title: FRHAPI_KVV1
----
+## struct `FRHAPI_KVV1` <a id="structFRHAPI__KVV1"></a>
 
 ```
 struct FRHAPI_KVV1

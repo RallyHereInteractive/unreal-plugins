@@ -1,4 +1,6 @@
-# group `Purge` <a id="group__Purge"></a>
+---
+title: Purge
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `class `[`URH_PurgeSubsystem`](#classURH__PurgeSubsystem) | Subsystem to manage purging a players account.
 
----
-title: URH_PurgeSubsystem
----
+## class `URH_PurgeSubsystem` <a id="classURH__PurgeSubsystem"></a>
 
 ```
 class URH_PurgeSubsystem

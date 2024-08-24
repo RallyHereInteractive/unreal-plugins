@@ -1,4 +1,6 @@
-# group `RHAPI_LootPriceBreakpoint` <a id="group__RHAPI__LootPriceBreakpoint"></a>
+---
+title: RHAPI_LootPriceBreakpoint
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_LootPriceBreakpoint`](#structFRHAPI__LootPriceBreakpoint) | Price Breakpoint for a specific quantity of units to purchase.
 
----
-title: FRHAPI_LootPriceBreakpoint
----
+## struct `FRHAPI_LootPriceBreakpoint` <a id="structFRHAPI__LootPriceBreakpoint"></a>
 
 ```
 struct FRHAPI_LootPriceBreakpoint

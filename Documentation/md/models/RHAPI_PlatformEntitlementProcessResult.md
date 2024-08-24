@@ -1,4 +1,6 @@
-# group `RHAPI_PlatformEntitlementProcessResult` <a id="group__RHAPI__PlatformEntitlementProcessResult"></a>
+---
+title: RHAPI_PlatformEntitlementProcessResult
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlatformEntitlementProcessResult`](#structFRHAPI__PlatformEntitlementProcessResult) | Result of processing a platform entitlement.
 
----
-title: FRHAPI_PlatformEntitlementProcessResult
----
+## struct `FRHAPI_PlatformEntitlementProcessResult` <a id="structFRHAPI__PlatformEntitlementProcessResult"></a>
 
 ```
 struct FRHAPI_PlatformEntitlementProcessResult

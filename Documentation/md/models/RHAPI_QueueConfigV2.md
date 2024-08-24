@@ -1,4 +1,6 @@
-# group `RHAPI_QueueConfigV2` <a id="group__RHAPI__QueueConfigV2"></a>
+---
+title: RHAPI_QueueConfigV2
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_QueueConfigV2`](#structFRHAPI__QueueConfigV2) | V2 Configuration about a specific queue.
 
----
-title: FRHAPI_QueueConfigV2
----
+## struct `FRHAPI_QueueConfigV2` <a id="structFRHAPI__QueueConfigV2"></a>
 
 ```
 struct FRHAPI_QueueConfigV2

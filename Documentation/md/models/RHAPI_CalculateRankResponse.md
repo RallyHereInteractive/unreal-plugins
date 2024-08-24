@@ -1,4 +1,6 @@
-# group `RHAPI_CalculateRankResponse` <a id="group__RHAPI__CalculateRankResponse"></a>
+---
+title: RHAPI_CalculateRankResponse
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_CalculateRankResponse`](#structFRHAPI__CalculateRankResponse) | A response to recalculating players&#39; ranks.
 
----
-title: FRHAPI_CalculateRankResponse
----
+## struct `FRHAPI_CalculateRankResponse` <a id="structFRHAPI__CalculateRankResponse"></a>
 
 ```
 struct FRHAPI_CalculateRankResponse

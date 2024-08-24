@@ -1,4 +1,6 @@
-# group `RHAPI_Rule` <a id="group__RHAPI__Rule"></a>
+---
+title: RHAPI_Rule
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_Rule`](#structFRHAPI__Rule) | A rule to determine which MatchMakingTemplate should be used on a session entering matchmaking.
 
----
-title: FRHAPI_Rule
----
+## struct `FRHAPI_Rule` <a id="structFRHAPI__Rule"></a>
 
 ```
 struct FRHAPI_Rule

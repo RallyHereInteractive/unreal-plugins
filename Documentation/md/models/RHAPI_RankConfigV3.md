@@ -1,4 +1,6 @@
-# group `RHAPI_RankConfigV3` <a id="group__RHAPI__RankConfigV3"></a>
+---
+title: RHAPI_RankConfigV3
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_RankConfigV3`](#structFRHAPI__RankConfigV3) | Configuration about a specific rank type.
 
----
-title: FRHAPI_RankConfigV3
----
+## struct `FRHAPI_RankConfigV3` <a id="structFRHAPI__RankConfigV3"></a>
 
 ```
 struct FRHAPI_RankConfigV3

@@ -1,4 +1,6 @@
-# group `RHAPI_RallyHereEvent` <a id="group__RHAPI__RallyHereEvent"></a>
+---
+title: RHAPI_RallyHereEvent
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_RallyHereEvent`](#structFRHAPI__RallyHereEvent) | 
 
----
-title: FRHAPI_RallyHereEvent
----
+## struct `FRHAPI_RallyHereEvent` <a id="structFRHAPI__RallyHereEvent"></a>
 
 ```
 struct FRHAPI_RallyHereEvent

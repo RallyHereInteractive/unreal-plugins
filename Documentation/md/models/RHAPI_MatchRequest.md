@@ -1,4 +1,6 @@
-# group `RHAPI_MatchRequest` <a id="group__RHAPI__MatchRequest"></a>
+---
+title: RHAPI_MatchRequest
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_MatchRequest`](#structFRHAPI__MatchRequest) | 
 
----
-title: FRHAPI_MatchRequest
----
+## struct `FRHAPI_MatchRequest` <a id="structFRHAPI__MatchRequest"></a>
 
 ```
 struct FRHAPI_MatchRequest

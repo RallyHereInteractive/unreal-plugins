@@ -1,4 +1,6 @@
-# group `RHAPI_BodyFindOpportunities` <a id="group__RHAPI__BodyFindOpportunities"></a>
+---
+title: RHAPI_BodyFindOpportunities
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_BodyFindOpportunities`](#structFRHAPI__BodyFindOpportunities) | 
 
----
-title: FRHAPI_BodyFindOpportunities
----
+## struct `FRHAPI_BodyFindOpportunities` <a id="structFRHAPI__BodyFindOpportunities"></a>
 
 ```
 struct FRHAPI_BodyFindOpportunities

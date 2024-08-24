@@ -1,4 +1,6 @@
-# group `RHAPI_LogoutRequest` <a id="group__RHAPI__LogoutRequest"></a>
+---
+title: RHAPI_LogoutRequest
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_LogoutRequest`](#structFRHAPI__LogoutRequest) | Logout request.
 
----
-title: FRHAPI_LogoutRequest
----
+## struct `FRHAPI_LogoutRequest` <a id="structFRHAPI__LogoutRequest"></a>
 
 ```
 struct FRHAPI_LogoutRequest

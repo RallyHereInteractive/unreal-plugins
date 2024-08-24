@@ -1,4 +1,6 @@
-# group `RHAPI_SessionInviteResponse` <a id="group__RHAPI__SessionInviteResponse"></a>
+---
+title: RHAPI_SessionInviteResponse
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_SessionInviteResponse`](#structFRHAPI__SessionInviteResponse) | Response to a request to update a session cohort.
 
----
-title: FRHAPI_SessionInviteResponse
----
+## struct `FRHAPI_SessionInviteResponse` <a id="structFRHAPI__SessionInviteResponse"></a>
 
 ```
 struct FRHAPI_SessionInviteResponse

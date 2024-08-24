@@ -1,4 +1,6 @@
-# group `Notifications` <a id="group__Notifications"></a>
+---
+title: Notifications
+---
 
 ## Summary
 
@@ -17,9 +19,7 @@ LongPoll            | Long Polling sends a web request to the server and the ser
 
 Enum to define how to poll for notifications.
 
----
-title: URH_PlayerNotifications
----
+## class `URH_PlayerNotifications` <a id="classURH__PlayerNotifications"></a>
 
 ```
 class URH_PlayerNotifications

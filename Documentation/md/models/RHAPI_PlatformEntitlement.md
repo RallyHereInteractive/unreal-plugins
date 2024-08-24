@@ -1,4 +1,6 @@
-# group `RHAPI_PlatformEntitlement` <a id="group__RHAPI__PlatformEntitlement"></a>
+---
+title: RHAPI_PlatformEntitlement
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlatformEntitlement`](#structFRHAPI__PlatformEntitlement) | Entitlement for a platform. This takes in a sku and platform entitlement id and checks to see if the user has the entitlement on the platform.
 
----
-title: FRHAPI_PlatformEntitlement
----
+## struct `FRHAPI_PlatformEntitlement` <a id="structFRHAPI__PlatformEntitlement"></a>
 
 ```
 struct FRHAPI_PlatformEntitlement

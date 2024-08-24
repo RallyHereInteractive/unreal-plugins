@@ -1,4 +1,6 @@
-# group `RHAPI_CalculatedRank` <a id="group__RHAPI__CalculatedRank"></a>
+---
+title: RHAPI_CalculatedRank
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_CalculatedRank`](#structFRHAPI__CalculatedRank) | Additional data about a specific player&#39;s rank and previous match in order to make rank calculations.
 
----
-title: FRHAPI_CalculatedRank
----
+## struct `FRHAPI_CalculatedRank` <a id="structFRHAPI__CalculatedRank"></a>
 
 ```
 struct FRHAPI_CalculatedRank

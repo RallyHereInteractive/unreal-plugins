@@ -1,4 +1,6 @@
-# group `RHAPI_OAuthTokenExchange` <a id="group__RHAPI__OAuthTokenExchange"></a>
+---
+title: RHAPI_OAuthTokenExchange
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_OAuthTokenExchange`](#structFRHAPI__OAuthTokenExchange) | OAuth token exchange request.
 
----
-title: FRHAPI_OAuthTokenExchange
----
+## struct `FRHAPI_OAuthTokenExchange` <a id="structFRHAPI__OAuthTokenExchange"></a>
 
 ```
 struct FRHAPI_OAuthTokenExchange

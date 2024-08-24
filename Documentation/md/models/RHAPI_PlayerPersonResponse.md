@@ -1,4 +1,6 @@
-# group `RHAPI_PlayerPersonResponse` <a id="group__RHAPI__PlayerPersonResponse"></a>
+---
+title: RHAPI_PlayerPersonResponse
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerPersonResponse`](#structFRHAPI__PlayerPersonResponse) | Response for getting a player&#39;s info.
 
----
-title: FRHAPI_PlayerPersonResponse
----
+## struct `FRHAPI_PlayerPersonResponse` <a id="structFRHAPI__PlayerPersonResponse"></a>
 
 ```
 struct FRHAPI_PlayerPersonResponse

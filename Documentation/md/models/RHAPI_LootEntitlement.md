@@ -1,4 +1,6 @@
-# group `RHAPI_LootEntitlement` <a id="group__RHAPI__LootEntitlement"></a>
+---
+title: RHAPI_LootEntitlement
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_LootEntitlement`](#structFRHAPI__LootEntitlement) | How a Platform SKU will be converted into Loot for a player.
 
----
-title: FRHAPI_LootEntitlement
----
+## struct `FRHAPI_LootEntitlement` <a id="structFRHAPI__LootEntitlement"></a>
 
 ```
 struct FRHAPI_LootEntitlement

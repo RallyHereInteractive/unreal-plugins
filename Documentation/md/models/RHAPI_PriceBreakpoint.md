@@ -1,4 +1,6 @@
-# group `RHAPI_PriceBreakpoint` <a id="group__RHAPI__PriceBreakpoint"></a>
+---
+title: RHAPI_PriceBreakpoint
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PriceBreakpoint`](#structFRHAPI__PriceBreakpoint) | Price based on quantity and the Item ID of the currency used.
 
----
-title: FRHAPI_PriceBreakpoint
----
+## struct `FRHAPI_PriceBreakpoint` <a id="structFRHAPI__PriceBreakpoint"></a>
 
 ```
 struct FRHAPI_PriceBreakpoint

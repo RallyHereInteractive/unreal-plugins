@@ -1,4 +1,6 @@
-# group `RHAPI_MatchMakingTemplateV2` <a id="group__RHAPI__MatchMakingTemplateV2"></a>
+---
+title: RHAPI_MatchMakingTemplateV2
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_MatchMakingTemplateV2`](#structFRHAPI__MatchMakingTemplateV2) | Configuration about what rules must be satisfied to use this template, and what matchmaking profiles the ticket will be a part of.
 
----
-title: FRHAPI_MatchMakingTemplateV2
----
+## struct `FRHAPI_MatchMakingTemplateV2` <a id="structFRHAPI__MatchMakingTemplateV2"></a>
 
 ```
 struct FRHAPI_MatchMakingTemplateV2

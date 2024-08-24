@@ -1,4 +1,6 @@
-# group `RHAPI_PlayerRankRequestResponseV2` <a id="group__RHAPI__PlayerRankRequestResponseV2"></a>
+---
+title: RHAPI_PlayerRankRequestResponseV2
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerRankRequestResponseV2`](#structFRHAPI__PlayerRankRequestResponseV2) | Response to successfully requesting all of a player&#39;s ranks.
 
----
-title: FRHAPI_PlayerRankRequestResponseV2
----
+## struct `FRHAPI_PlayerRankRequestResponseV2` <a id="structFRHAPI__PlayerRankRequestResponseV2"></a>
 
 ```
 struct FRHAPI_PlayerRankRequestResponseV2

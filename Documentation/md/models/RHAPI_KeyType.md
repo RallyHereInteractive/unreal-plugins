@@ -1,4 +1,6 @@
-# group `RHAPI_KeyType` <a id="group__RHAPI__KeyType"></a>
+---
+title: RHAPI_KeyType
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_KeyType`](#structFRHAPI__KeyType) | A Key Type is a type of key that can be claimed from a Marketing Campaign.
 
----
-title: FRHAPI_KeyType
----
+## struct `FRHAPI_KeyType` <a id="structFRHAPI__KeyType"></a>
 
 ```
 struct FRHAPI_KeyType

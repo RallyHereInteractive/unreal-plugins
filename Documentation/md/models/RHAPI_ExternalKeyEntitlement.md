@@ -1,4 +1,6 @@
-# group `RHAPI_ExternalKeyEntitlement` <a id="group__RHAPI__ExternalKeyEntitlement"></a>
+---
+title: RHAPI_ExternalKeyEntitlement
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_ExternalKeyEntitlement`](#structFRHAPI__ExternalKeyEntitlement) | 
 
----
-title: FRHAPI_ExternalKeyEntitlement
----
+## struct `FRHAPI_ExternalKeyEntitlement` <a id="structFRHAPI__ExternalKeyEntitlement"></a>
 
 ```
 struct FRHAPI_ExternalKeyEntitlement

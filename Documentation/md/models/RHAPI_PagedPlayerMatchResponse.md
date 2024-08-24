@@ -1,4 +1,6 @@
-# group `RHAPI_PagedPlayerMatchResponse` <a id="group__RHAPI__PagedPlayerMatchResponse"></a>
+---
+title: RHAPI_PagedPlayerMatchResponse
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PagedPlayerMatchResponse`](#structFRHAPI__PagedPlayerMatchResponse) | 
 
----
-title: FRHAPI_PagedPlayerMatchResponse
----
+## struct `FRHAPI_PagedPlayerMatchResponse` <a id="structFRHAPI__PagedPlayerMatchResponse"></a>
 
 ```
 struct FRHAPI_PagedPlayerMatchResponse

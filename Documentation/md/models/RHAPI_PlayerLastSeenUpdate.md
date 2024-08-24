@@ -1,4 +1,6 @@
-# group `RHAPI_PlayerLastSeenUpdate` <a id="group__RHAPI__PlayerLastSeenUpdate"></a>
+---
+title: RHAPI_PlayerLastSeenUpdate
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerLastSeenUpdate`](#structFRHAPI__PlayerLastSeenUpdate) | 
 
----
-title: FRHAPI_PlayerLastSeenUpdate
----
+## struct `FRHAPI_PlayerLastSeenUpdate` <a id="structFRHAPI__PlayerLastSeenUpdate"></a>
 
 ```
 struct FRHAPI_PlayerLastSeenUpdate

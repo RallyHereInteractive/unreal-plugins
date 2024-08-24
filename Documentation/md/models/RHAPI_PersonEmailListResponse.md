@@ -1,4 +1,6 @@
-# group `RHAPI_PersonEmailListResponse` <a id="group__RHAPI__PersonEmailListResponse"></a>
+---
+title: RHAPI_PersonEmailListResponse
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PersonEmailListResponse`](#structFRHAPI__PersonEmailListResponse) | Response for updating a person&#39;s email list subscriptions.
 
----
-title: FRHAPI_PersonEmailListResponse
----
+## struct `FRHAPI_PersonEmailListResponse` <a id="structFRHAPI__PersonEmailListResponse"></a>
 
 ```
 struct FRHAPI_PersonEmailListResponse

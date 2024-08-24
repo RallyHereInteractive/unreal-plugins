@@ -1,4 +1,6 @@
-# group `RHAPI_HTTPValidationError` <a id="group__RHAPI__HTTPValidationError"></a>
+---
+title: RHAPI_HTTPValidationError
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_HTTPValidationError`](#structFRHAPI__HTTPValidationError) | 
 
----
-title: FRHAPI_HTTPValidationError
----
+## struct `FRHAPI_HTTPValidationError` <a id="structFRHAPI__HTTPValidationError"></a>
 
 ```
 struct FRHAPI_HTTPValidationError

@@ -1,4 +1,6 @@
-# group `RHAPI_Notifications` <a id="group__RHAPI__Notifications"></a>
+---
+title: RHAPI_Notifications
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_Notifications`](#structFRHAPI__Notifications) | 
 
----
-title: FRHAPI_Notifications
----
+## struct `FRHAPI_Notifications` <a id="structFRHAPI__Notifications"></a>
 
 ```
 struct FRHAPI_Notifications

@@ -1,4 +1,6 @@
-# group `RHAPI_SessionTeam` <a id="group__RHAPI__SessionTeam"></a>
+---
+title: RHAPI_SessionTeam
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_SessionTeam`](#structFRHAPI__SessionTeam) | A team of SessionPlayers in a session.
 
----
-title: FRHAPI_SessionTeam
----
+## struct `FRHAPI_SessionTeam` <a id="structFRHAPI__SessionTeam"></a>
 
 ```
 struct FRHAPI_SessionTeam

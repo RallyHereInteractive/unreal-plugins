@@ -1,4 +1,6 @@
-# group `RHAPI_SettingType` <a id="group__RHAPI__SettingType"></a>
+---
+title: RHAPI_SettingType
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_SettingType`](#structFRHAPI__SettingType) | 
 
----
-title: FRHAPI_SettingType
----
+## struct `FRHAPI_SettingType` <a id="structFRHAPI__SettingType"></a>
 
 ```
 struct FRHAPI_SettingType

@@ -1,4 +1,6 @@
-# group `RHAPI_Region` <a id="group__RHAPI__Region"></a>
+---
+title: RHAPI_Region
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_Region`](#structFRHAPI__Region) | Information about a specific region.
 
----
-title: FRHAPI_Region
----
+## struct `FRHAPI_Region` <a id="structFRHAPI__Region"></a>
 
 ```
 struct FRHAPI_Region

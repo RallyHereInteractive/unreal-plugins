@@ -1,4 +1,6 @@
-# group `RHAPI_Notes` <a id="group__RHAPI__Notes"></a>
+---
+title: RHAPI_Notes
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_Notes`](#structFRHAPI__Notes) | Notes to set for the Player&#39;s friend. If you don&#39;t want to modify notes, no not include in body when adding a friend.
 
----
-title: FRHAPI_Notes
----
+## struct `FRHAPI_Notes` <a id="structFRHAPI__Notes"></a>
 
 ```
 struct FRHAPI_Notes

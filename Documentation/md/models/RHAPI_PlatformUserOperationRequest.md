@@ -1,4 +1,6 @@
-# group `RHAPI_PlatformUserOperationRequest` <a id="group__RHAPI__PlatformUserOperationRequest"></a>
+---
+title: RHAPI_PlatformUserOperationRequest
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlatformUserOperationRequest`](#structFRHAPI__PlatformUserOperationRequest) | Model for doing operations on a specific platform user. If platform/userid information is not provided, the information from the token claims will be used instead.
 
----
-title: FRHAPI_PlatformUserOperationRequest
----
+## struct `FRHAPI_PlatformUserOperationRequest` <a id="structFRHAPI__PlatformUserOperationRequest"></a>
 
 ```
 struct FRHAPI_PlatformUserOperationRequest

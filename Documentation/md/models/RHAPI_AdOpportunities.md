@@ -1,4 +1,6 @@
-# group `RHAPI_AdOpportunities` <a id="group__RHAPI__AdOpportunities"></a>
+---
+title: RHAPI_AdOpportunities
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_AdOpportunities`](#structFRHAPI__AdOpportunities) | 
 
----
-title: FRHAPI_AdOpportunities
----
+## struct `FRHAPI_AdOpportunities` <a id="structFRHAPI__AdOpportunities"></a>
 
 ```
 struct FRHAPI_AdOpportunities

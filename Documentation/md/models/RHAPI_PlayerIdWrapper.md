@@ -1,4 +1,6 @@
-# group `RHAPI_PlayerIdWrapper` <a id="group__RHAPI__PlayerIdWrapper"></a>
+---
+title: RHAPI_PlayerIdWrapper
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerIdWrapper`](#structFRHAPI__PlayerIdWrapper) | Model for getting a player ID from a player UUID.
 
----
-title: FRHAPI_PlayerIdWrapper
----
+## struct `FRHAPI_PlayerIdWrapper` <a id="structFRHAPI__PlayerIdWrapper"></a>
 
 ```
 struct FRHAPI_PlayerIdWrapper

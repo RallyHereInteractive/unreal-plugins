@@ -1,4 +1,6 @@
-# group `RHAPI_StorageInformation` <a id="group__RHAPI__StorageInformation"></a>
+---
+title: RHAPI_StorageInformation
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_StorageInformation`](#structFRHAPI__StorageInformation) | 
 
----
-title: FRHAPI_StorageInformation
----
+## struct `FRHAPI_StorageInformation` <a id="structFRHAPI__StorageInformation"></a>
 
 ```
 struct FRHAPI_StorageInformation

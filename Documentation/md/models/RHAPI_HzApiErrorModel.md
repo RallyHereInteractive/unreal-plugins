@@ -1,4 +1,6 @@
-# group `RHAPI_HzApiErrorModel` <a id="group__RHAPI__HzApiErrorModel"></a>
+---
+title: RHAPI_HzApiErrorModel
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_HzApiErrorModel`](#structFRHAPI__HzApiErrorModel) | 
 
----
-title: FRHAPI_HzApiErrorModel
----
+## struct `FRHAPI_HzApiErrorModel` <a id="structFRHAPI__HzApiErrorModel"></a>
 
 ```
 struct FRHAPI_HzApiErrorModel

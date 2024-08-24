@@ -1,4 +1,6 @@
-# group `RHAPI_LootPrice` <a id="group__RHAPI__LootPrice"></a>
+---
+title: RHAPI_LootPrice
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_LootPrice`](#structFRHAPI__LootPrice) | Price with current and original (pre-sale) price breakpoints.
 
----
-title: FRHAPI_LootPrice
----
+## struct `FRHAPI_LootPrice` <a id="structFRHAPI__LootPrice"></a>
 
 ```
 struct FRHAPI_LootPrice

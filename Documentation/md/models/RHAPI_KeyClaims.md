@@ -1,4 +1,6 @@
-# group `RHAPI_KeyClaims` <a id="group__RHAPI__KeyClaims"></a>
+---
+title: RHAPI_KeyClaims
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_KeyClaims`](#structFRHAPI__KeyClaims) | List of Key Claims available to the player.
 
----
-title: FRHAPI_KeyClaims
----
+## struct `FRHAPI_KeyClaims` <a id="structFRHAPI__KeyClaims"></a>
 
 ```
 struct FRHAPI_KeyClaims

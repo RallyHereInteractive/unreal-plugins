@@ -1,4 +1,6 @@
-# group `RHAPI_TimeFrames` <a id="group__RHAPI__TimeFrames"></a>
+---
+title: RHAPI_TimeFrames
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_TimeFrames`](#structFRHAPI__TimeFrames) | A collection of Time Frames by Time Frame ID.
 
----
-title: FRHAPI_TimeFrames
----
+## struct `FRHAPI_TimeFrames` <a id="structFRHAPI__TimeFrames"></a>
 
 ```
 struct FRHAPI_TimeFrames

@@ -1,4 +1,6 @@
-# group `RHAPI_PexClientQueryParams` <a id="group__RHAPI__PexClientQueryParams"></a>
+---
+title: RHAPI_PexClientQueryParams
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PexClientQueryParams`](#structFRHAPI__PexClientQueryParams) | 
 
----
-title: FRHAPI_PexClientQueryParams
----
+## struct `FRHAPI_PexClientQueryParams` <a id="structFRHAPI__PexClientQueryParams"></a>
 
 ```
 struct FRHAPI_PexClientQueryParams

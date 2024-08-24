@@ -1,4 +1,6 @@
-# group `RHAPI_TimeFrame` <a id="group__RHAPI__TimeFrame"></a>
+---
+title: RHAPI_TimeFrame
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_TimeFrame`](#structFRHAPI__TimeFrame) | Time Frames are used to calculate the expiration of Inventory.
 
----
-title: FRHAPI_TimeFrame
----
+## struct `FRHAPI_TimeFrame` <a id="structFRHAPI__TimeFrame"></a>
 
 ```
 struct FRHAPI_TimeFrame

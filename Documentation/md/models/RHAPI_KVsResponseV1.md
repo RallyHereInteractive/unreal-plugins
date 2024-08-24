@@ -1,4 +1,6 @@
-# group `RHAPI_KVsResponseV1` <a id="group__RHAPI__KVsResponseV1"></a>
+---
+title: RHAPI_KVsResponseV1
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_KVsResponseV1`](#structFRHAPI__KVsResponseV1) | 
 
----
-title: FRHAPI_KVsResponseV1
----
+## struct `FRHAPI_KVsResponseV1` <a id="structFRHAPI__KVsResponseV1"></a>
 
 ```
 struct FRHAPI_KVsResponseV1

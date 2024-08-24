@@ -1,4 +1,6 @@
-# group `Catalog` <a id="group__Catalog"></a>
+---
+title: Catalog
+---
 
 ## Summary
 
@@ -10,9 +12,7 @@
 `struct `[`FRHVendorGetRequest`](#structFRHVendorGetRequest) | Vendor Request struct used to encapsulate a request to get a vendors and the callback delegate.
 `struct `[`FRH_VendorRequestState`](#structFRH__VendorRequestState) | Vendor Request struct used to encapsulate a request to get a vendors and the callback delegate.
 
----
-title: URH_CatalogItem
----
+## class `URH_CatalogItem` <a id="classURH__CatalogItem"></a>
 
 ```
 class URH_CatalogItem
@@ -173,9 +173,7 @@ The inventory use ruleset this item uses.
 
 List of Loot Table Items this item can be used as a coupon for.
 
----
-title: URH_CatalogSubsystem
----
+## class `URH_CatalogSubsystem` <a id="classURH__CatalogSubsystem"></a>
 
 ```
 class URH_CatalogSubsystem
@@ -665,9 +663,7 @@ Type Define for Get Catalog Vendor All calls.
 
 Type Define for Get Catalog Item calls.
 
----
-title: URH_CatalogBlueprintLibrary
----
+## class `URH_CatalogBlueprintLibrary` <a id="classURH__CatalogBlueprintLibrary"></a>
 
 ```
 class URH_CatalogBlueprintLibrary
@@ -683,9 +679,7 @@ Catalog Blueprint Library with helper methods for API structs.
 
 ### Members
 
----
-title: FRHVendorGetRequest
----
+## struct `FRHVendorGetRequest` <a id="structFRHVendorGetRequest"></a>
 
 Vendor Request struct used to encapsulate a request to get a vendors and the callback delegate.
 
@@ -735,9 +729,7 @@ Constructor with vendor Id List and callback delegate.
 
 * `InVendorIds` List of vendor Ids to get.
 
----
-title: FRH_VendorRequestState
----
+## struct `FRH_VendorRequestState` <a id="structFRH__VendorRequestState"></a>
 
 Vendor Request struct used to encapsulate a request to get a vendors and the callback delegate.
 

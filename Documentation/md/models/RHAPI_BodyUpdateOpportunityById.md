@@ -1,4 +1,6 @@
-# group `RHAPI_BodyUpdateOpportunityById` <a id="group__RHAPI__BodyUpdateOpportunityById"></a>
+---
+title: RHAPI_BodyUpdateOpportunityById
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_BodyUpdateOpportunityById`](#structFRHAPI__BodyUpdateOpportunityById) | 
 
----
-title: FRHAPI_BodyUpdateOpportunityById
----
+## struct `FRHAPI_BodyUpdateOpportunityById` <a id="structFRHAPI__BodyUpdateOpportunityById"></a>
 
 ```
 struct FRHAPI_BodyUpdateOpportunityById

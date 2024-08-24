@@ -1,4 +1,6 @@
-# group `RHAPI_InstanceHealthStatusUpdate` <a id="group__RHAPI__InstanceHealthStatusUpdate"></a>
+---
+title: RHAPI_InstanceHealthStatusUpdate
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_InstanceHealthStatusUpdate`](#structFRHAPI__InstanceHealthStatusUpdate) | A request body for an instances health check.
 
----
-title: FRHAPI_InstanceHealthStatusUpdate
----
+## struct `FRHAPI_InstanceHealthStatusUpdate` <a id="structFRHAPI__InstanceHealthStatusUpdate"></a>
 
 ```
 struct FRHAPI_InstanceHealthStatusUpdate

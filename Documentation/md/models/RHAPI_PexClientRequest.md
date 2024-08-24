@@ -1,4 +1,6 @@
-# group `RHAPI_PexClientRequest` <a id="group__RHAPI__PexClientRequest"></a>
+---
+title: RHAPI_PexClientRequest
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PexClientRequest`](#structFRHAPI__PexClientRequest) | 
 
----
-title: FRHAPI_PexClientRequest
----
+## struct `FRHAPI_PexClientRequest` <a id="structFRHAPI__PexClientRequest"></a>
 
 ```
 struct FRHAPI_PexClientRequest

@@ -1,4 +1,6 @@
-# group `RHAPI_CreateInventoryRequest` <a id="group__RHAPI__CreateInventoryRequest"></a>
+---
+title: RHAPI_CreateInventoryRequest
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_CreateInventoryRequest`](#structFRHAPI__CreateInventoryRequest) | Request to Create a new Inventory.
 
----
-title: FRHAPI_CreateInventoryRequest
----
+## struct `FRHAPI_CreateInventoryRequest` <a id="structFRHAPI__CreateInventoryRequest"></a>
 
 ```
 struct FRHAPI_CreateInventoryRequest

@@ -1,4 +1,6 @@
-# group `RHAPI_XpTables` <a id="group__RHAPI__XpTables"></a>
+---
+title: RHAPI_XpTables
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_XpTables`](#structFRHAPI__XpTables) | A collection of XP Tables. Each table is a collection of XP Levels from 1 to N. Each level has a minimum XP value.
 
----
-title: FRHAPI_XpTables
----
+## struct `FRHAPI_XpTables` <a id="structFRHAPI__XpTables"></a>
 
 ```
 struct FRHAPI_XpTables

@@ -1,4 +1,6 @@
-# group `RHAPI_MarketingCampaigns` <a id="group__RHAPI__MarketingCampaigns"></a>
+---
+title: RHAPI_MarketingCampaigns
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_MarketingCampaigns`](#structFRHAPI__MarketingCampaigns) | List of external Marketing Campaigns.
 
----
-title: FRHAPI_MarketingCampaigns
----
+## struct `FRHAPI_MarketingCampaigns` <a id="structFRHAPI__MarketingCampaigns"></a>
 
 ```
 struct FRHAPI_MarketingCampaigns

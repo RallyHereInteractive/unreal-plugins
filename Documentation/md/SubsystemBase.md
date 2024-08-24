@@ -1,4 +1,6 @@
-# group `SubsystemBase` <a id="group__SubsystemBase"></a>
+---
+title: SubsystemBase
+---
 
 ## Summary
 
@@ -9,9 +11,7 @@
 `class `[`URH_GameInstanceSubsystemPlugin`](#classURH__GameInstanceSubsystemPlugin) | Game Instace Subsystem Plugin.
 `class `[`URH_SandboxedSubsystemPlugin`](#classURH__SandboxedSubsystemPlugin) | A plugin that can exist on the game instance as a global cache, or optionally on the local player as a sandboxed plugin.
 
----
-title: URH_SubsystemPluginBase
----
+## class `URH_SubsystemPluginBase` <a id="classURH__SubsystemPluginBase"></a>
 
 ```
 class URH_SubsystemPluginBase
@@ -42,9 +42,7 @@ Initialize the subsystem plugin.
 
 Safely tears down the subsystem plugin.
 
----
-title: URH_LocalPlayerSubsystemPlugin
----
+## class `URH_LocalPlayerSubsystemPlugin` <a id="classURH__LocalPlayerSubsystemPlugin"></a>
 
 ```
 class URH_LocalPlayerSubsystemPlugin
@@ -90,9 +88,7 @@ Base handling when the local user changes, override to provide functionality.
 
 * `OldLocalPlayerInfo` The old local player info.
 
----
-title: URH_GameInstanceSubsystemPlugin
----
+## class `URH_GameInstanceSubsystemPlugin` <a id="classURH__GameInstanceSubsystemPlugin"></a>
 
 ```
 class URH_GameInstanceSubsystemPlugin
@@ -118,9 +114,7 @@ Gets the game instance Auth Context.
 
 Get the Game Instance Subsystem.
 
----
-title: URH_SandboxedSubsystemPlugin
----
+## class `URH_SandboxedSubsystemPlugin` <a id="classURH__SandboxedSubsystemPlugin"></a>
 
 ```
 class URH_SandboxedSubsystemPlugin

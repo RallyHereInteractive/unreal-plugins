@@ -1,4 +1,6 @@
-# group `IntegrationBase` <a id="group__IntegrationBase"></a>
+---
+title: IntegrationBase
+---
 
 ## Summary
 
@@ -7,9 +9,7 @@
 `class `[`FRallyHereIntegrationModule`](#classFRallyHereIntegrationModule) | Module for the Rally Here Integration Layer.
 `class `[`FRH_Integration`](#classFRH__Integration) | Main integration layer handler.
 
----
-title: FRallyHereIntegrationModule
----
+## class `FRallyHereIntegrationModule` <a id="classFRallyHereIntegrationModule"></a>
 
 ```
 class FRallyHereIntegrationModule
@@ -45,9 +45,7 @@ Safely ends the module.
 
 Gets the Integration class fromt he module.
 
----
-title: FRH_Integration
----
+## class `FRH_Integration` <a id="classFRH__Integration"></a>
 
 Main integration layer handler.
 

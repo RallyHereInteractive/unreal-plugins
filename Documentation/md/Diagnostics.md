@@ -1,4 +1,6 @@
-# group `Diagnostics` <a id="group__Diagnostics"></a>
+---
+title: Diagnostics
+---
 
 ## Summary
 
@@ -21,9 +23,7 @@ Bindable delegate to modify custom metadata to add to diagnostic reports. Can be
 
 Bindable delegate to notify that a report generation is complete.
 
----
-title: FRH_DiagnosticReportGenerator
----
+## class `FRH_DiagnosticReportGenerator` <a id="classFRH__DiagnosticReportGenerator"></a>
 
 ```
 class FRH_DiagnosticReportGenerator
@@ -171,9 +171,7 @@ Complete            |
 
 Generation stage for report generation
 
----
-title: FRH_Diagnostics
----
+## class `FRH_Diagnostics` <a id="classFRH__Diagnostics"></a>
 
 ```
 class FRH_Diagnostics
@@ -260,9 +258,7 @@ Called when there is a travel failure to the instance map.
 
 * `ErrorString` The error string associated with the failure.
 
----
-title: URH_DiagnosticsBlueprintLibrary
----
+## class `URH_DiagnosticsBlueprintLibrary` <a id="classURH__DiagnosticsBlueprintLibrary"></a>
 
 ```
 class URH_DiagnosticsBlueprintLibrary
@@ -278,9 +274,7 @@ Wrapper library to generate diagnostic reports via blueprint.
 
 ### Members
 
----
-title: FRH_DiagnosticReportOptions
----
+## struct `FRH_DiagnosticReportOptions` <a id="structFRH__DiagnosticReportOptions"></a>
 
 Options for generating a diagnostic report.
 

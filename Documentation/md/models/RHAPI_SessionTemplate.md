@@ -1,4 +1,6 @@
-# group `RHAPI_SessionTemplate` <a id="group__RHAPI__SessionTemplate"></a>
+---
+title: RHAPI_SessionTemplate
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_SessionTemplate`](#structFRHAPI__SessionTemplate) | Template used to create new RallyHere sessions of a specific type. Configurable in the developer portal.
 
----
-title: FRHAPI_SessionTemplate
----
+## struct `FRHAPI_SessionTemplate` <a id="structFRHAPI__SessionTemplate"></a>
 
 ```
 struct FRHAPI_SessionTemplate

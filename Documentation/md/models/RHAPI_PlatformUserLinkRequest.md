@@ -1,4 +1,6 @@
-# group `RHAPI_PlatformUserLinkRequest` <a id="group__RHAPI__PlatformUserLinkRequest"></a>
+---
+title: RHAPI_PlatformUserLinkRequest
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlatformUserLinkRequest`](#structFRHAPI__PlatformUserLinkRequest) | Model for linking a platform user to the person of another platform user. This is used to determine the &quot;leader&quot; person_id that will be the assigned to a &quot;follower&quot; platform user. The Leader person is found using the following priority: 1. If the &#x60;leader_person_id&#x60; is provided directly 2. If the &#x60;leader_platform&#x60; and &#x60;leader_platform_user_id&#x60; are provided, the &#x60;person_id&#x60; of that platform user is used. 3. If the &#x60;scheme&#x60; and &#x60;credentials&#x60; are provided, the person_id of the platform user of credentials is used. The Follower platform user is found using the following priority: 1. If the &#x60;follower_platform&#x60; and &#x60;follower_platform_user_id&#x60; are provided directly. 2. If the Authorization header contains a user token, the platform and platform user id from the token are used.
 
----
-title: FRHAPI_PlatformUserLinkRequest
----
+## struct `FRHAPI_PlatformUserLinkRequest` <a id="structFRHAPI__PlatformUserLinkRequest"></a>
 
 ```
 struct FRHAPI_PlatformUserLinkRequest

@@ -1,4 +1,6 @@
-# group `RHAPI_FriendsList` <a id="group__RHAPI__FriendsList"></a>
+---
+title: RHAPI_FriendsList
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_FriendsList`](#structFRHAPI__FriendsList) | List of the player&#39;s friends. Includes sent friend requests and received friends requests.
 
----
-title: FRHAPI_FriendsList
----
+## struct `FRHAPI_FriendsList` <a id="structFRHAPI__FriendsList"></a>
 
 ```
 struct FRHAPI_FriendsList

@@ -1,4 +1,6 @@
-# group `RHAPI_AllPlayerDeserterStatuses` <a id="group__RHAPI__AllPlayerDeserterStatuses"></a>
+---
+title: RHAPI_AllPlayerDeserterStatuses
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_AllPlayerDeserterStatuses`](#structFRHAPI__AllPlayerDeserterStatuses) | 
 
----
-title: FRHAPI_AllPlayerDeserterStatuses
----
+## struct `FRHAPI_AllPlayerDeserterStatuses` <a id="structFRHAPI__AllPlayerDeserterStatuses"></a>
 
 ```
 struct FRHAPI_AllPlayerDeserterStatuses

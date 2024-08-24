@@ -1,4 +1,6 @@
-# group `RHAPI_LoginLootReward` <a id="group__RHAPI__LoginLootReward"></a>
+---
+title: RHAPI_LoginLootReward
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_LoginLootReward`](#structFRHAPI__LoginLootReward) | Login loot reward.
 
----
-title: FRHAPI_LoginLootReward
----
+## struct `FRHAPI_LoginLootReward` <a id="structFRHAPI__LoginLootReward"></a>
 
 ```
 struct FRHAPI_LoginLootReward

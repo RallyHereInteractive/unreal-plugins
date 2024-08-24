@@ -1,4 +1,6 @@
-# group `RHAPI_RegionsResponse` <a id="group__RHAPI__RegionsResponse"></a>
+---
+title: RHAPI_RegionsResponse
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_RegionsResponse`](#structFRHAPI__RegionsResponse) | A list of regions and a cursor to continue iterating.
 
----
-title: FRHAPI_RegionsResponse
----
+## struct `FRHAPI_RegionsResponse` <a id="structFRHAPI__RegionsResponse"></a>
 
 ```
 struct FRHAPI_RegionsResponse

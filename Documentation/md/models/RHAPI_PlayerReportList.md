@@ -1,4 +1,6 @@
-# group `RHAPI_PlayerReportList` <a id="group__RHAPI__PlayerReportList"></a>
+---
+title: RHAPI_PlayerReportList
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerReportList`](#structFRHAPI__PlayerReportList) | 
 
----
-title: FRHAPI_PlayerReportList
----
+## struct `FRHAPI_PlayerReportList` <a id="structFRHAPI__PlayerReportList"></a>
 
 ```
 struct FRHAPI_PlayerReportList

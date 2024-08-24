@@ -1,4 +1,6 @@
-# group `RHAPI_InstanceRequestTemplate` <a id="group__RHAPI__InstanceRequestTemplate"></a>
+---
+title: RHAPI_InstanceRequestTemplate
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_InstanceRequestTemplate`](#structFRHAPI__InstanceRequestTemplate) | Configuration about how an instance should behave when it&#39;s allocated.
 
----
-title: FRHAPI_InstanceRequestTemplate
----
+## struct `FRHAPI_InstanceRequestTemplate` <a id="structFRHAPI__InstanceRequestTemplate"></a>
 
 ```
 struct FRHAPI_InstanceRequestTemplate

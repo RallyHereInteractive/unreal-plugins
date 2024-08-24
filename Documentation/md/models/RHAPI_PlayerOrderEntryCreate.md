@@ -1,4 +1,6 @@
-# group `RHAPI_PlayerOrderEntryCreate` <a id="group__RHAPI__PlayerOrderEntryCreate"></a>
+---
+title: RHAPI_PlayerOrderEntryCreate
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerOrderEntryCreate`](#structFRHAPI__PlayerOrderEntryCreate) | Request to create a Player Order Entry.
 
----
-title: FRHAPI_PlayerOrderEntryCreate
----
+## struct `FRHAPI_PlayerOrderEntryCreate` <a id="structFRHAPI__PlayerOrderEntryCreate"></a>
 
 ```
 struct FRHAPI_PlayerOrderEntryCreate

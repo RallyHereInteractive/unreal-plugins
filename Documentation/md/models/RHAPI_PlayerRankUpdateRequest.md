@@ -1,4 +1,6 @@
-# group `RHAPI_PlayerRankUpdateRequest` <a id="group__RHAPI__PlayerRankUpdateRequest"></a>
+---
+title: RHAPI_PlayerRankUpdateRequest
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerRankUpdateRequest`](#structFRHAPI__PlayerRankUpdateRequest) | Request body to update generic rank data.
 
----
-title: FRHAPI_PlayerRankUpdateRequest
----
+## struct `FRHAPI_PlayerRankUpdateRequest` <a id="structFRHAPI__PlayerRankUpdateRequest"></a>
 
 ```
 struct FRHAPI_PlayerRankUpdateRequest

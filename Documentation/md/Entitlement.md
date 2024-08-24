@@ -1,4 +1,6 @@
-# group `Entitlement` <a id="group__Entitlement"></a>
+---
+title: Entitlement
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `class `[`URH_EntitlementSubsystem`](#classURH__EntitlementSubsystem) | Subsystem for handling requesting and processing entitlements from the online subsystem.
 
----
-title: URH_EntitlementSubsystem
----
+## class `URH_EntitlementSubsystem` <a id="classURH__EntitlementSubsystem"></a>
 
 ```
 class URH_EntitlementSubsystem

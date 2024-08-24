@@ -1,4 +1,6 @@
-# group `RHAPI_DeserterConfig` <a id="group__RHAPI__DeserterConfig"></a>
+---
+title: RHAPI_DeserterConfig
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_DeserterConfig`](#structFRHAPI__DeserterConfig) | 
 
----
-title: FRHAPI_DeserterConfig
----
+## struct `FRHAPI_DeserterConfig` <a id="structFRHAPI__DeserterConfig"></a>
 
 ```
 struct FRHAPI_DeserterConfig

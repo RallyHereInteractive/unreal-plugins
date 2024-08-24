@@ -1,4 +1,6 @@
-# group `RHAPI_UpdateInventoryRequests` <a id="group__RHAPI__UpdateInventoryRequests"></a>
+---
+title: RHAPI_UpdateInventoryRequests
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_UpdateInventoryRequests`](#structFRHAPI__UpdateInventoryRequests) | Collection of Update Inventory Requests. The Inventory referenced in the Update Inventory Requests must exist otherwise the request will fail. Each individual entry will be processed in the order they are specified in the collection. <b>Note: Partial success is possible as each request is processed individually.</b>.
 
----
-title: FRHAPI_UpdateInventoryRequests
----
+## struct `FRHAPI_UpdateInventoryRequests` <a id="structFRHAPI__UpdateInventoryRequests"></a>
 
 ```
 struct FRHAPI_UpdateInventoryRequests

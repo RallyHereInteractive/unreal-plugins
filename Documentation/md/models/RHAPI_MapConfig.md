@@ -1,4 +1,6 @@
-# group `RHAPI_MapConfig` <a id="group__RHAPI__MapConfig"></a>
+---
+title: RHAPI_MapConfig
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_MapConfig`](#structFRHAPI__MapConfig) | DEPRECATED Configuration about a specific map for an instance to load into.
 
----
-title: FRHAPI_MapConfig
----
+## struct `FRHAPI_MapConfig` <a id="structFRHAPI__MapConfig"></a>
 
 ```
 struct FRHAPI_MapConfig

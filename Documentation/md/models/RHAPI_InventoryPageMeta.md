@@ -1,4 +1,6 @@
-# group `RHAPI_InventoryPageMeta` <a id="group__RHAPI__InventoryPageMeta"></a>
+---
+title: RHAPI_InventoryPageMeta
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_InventoryPageMeta`](#structFRHAPI__InventoryPageMeta) | Metadata about the page of results.
 
----
-title: FRHAPI_InventoryPageMeta
----
+## struct `FRHAPI_InventoryPageMeta` <a id="structFRHAPI__InventoryPageMeta"></a>
 
 ```
 struct FRHAPI_InventoryPageMeta

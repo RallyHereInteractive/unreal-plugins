@@ -1,4 +1,6 @@
-# group `RHAPI_PlayerSessions` <a id="group__RHAPI__PlayerSessions"></a>
+---
+title: RHAPI_PlayerSessions
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerSessions`](#structFRHAPI__PlayerSessions) | Information about all sessions that a player is currently a member of, or invited to.
 
----
-title: FRHAPI_PlayerSessions
----
+## struct `FRHAPI_PlayerSessions` <a id="structFRHAPI__PlayerSessions"></a>
 
 ```
 struct FRHAPI_PlayerSessions

@@ -1,4 +1,6 @@
-# group `RHAPI_InventorySessionCreateResponse` <a id="group__RHAPI__InventorySessionCreateResponse"></a>
+---
+title: RHAPI_InventorySessionCreateResponse
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_InventorySessionCreateResponse`](#structFRHAPI__InventorySessionCreateResponse) | Response body for creating a new Inventory Session.
 
----
-title: FRHAPI_InventorySessionCreateResponse
----
+## struct `FRHAPI_InventorySessionCreateResponse` <a id="structFRHAPI__InventorySessionCreateResponse"></a>
 
 ```
 struct FRHAPI_InventorySessionCreateResponse

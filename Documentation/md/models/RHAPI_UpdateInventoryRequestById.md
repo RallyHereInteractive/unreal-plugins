@@ -1,4 +1,6 @@
-# group `RHAPI_UpdateInventoryRequestById` <a id="group__RHAPI__UpdateInventoryRequestById"></a>
+---
+title: RHAPI_UpdateInventoryRequestById
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_UpdateInventoryRequestById`](#structFRHAPI__UpdateInventoryRequestById) | Request to Update Inventory by an existing Inventory ID. If the Inventory entry does not exist, then the request will fail.
 
----
-title: FRHAPI_UpdateInventoryRequestById
----
+## struct `FRHAPI_UpdateInventoryRequestById` <a id="structFRHAPI__UpdateInventoryRequestById"></a>
 
 ```
 struct FRHAPI_UpdateInventoryRequestById

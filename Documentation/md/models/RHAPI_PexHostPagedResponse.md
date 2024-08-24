@@ -1,4 +1,6 @@
-# group `RHAPI_PexHostPagedResponse` <a id="group__RHAPI__PexHostPagedResponse"></a>
+---
+title: RHAPI_PexHostPagedResponse
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PexHostPagedResponse`](#structFRHAPI__PexHostPagedResponse) | 
 
----
-title: FRHAPI_PexHostPagedResponse
----
+## struct `FRHAPI_PexHostPagedResponse` <a id="structFRHAPI__PexHostPagedResponse"></a>
 
 ```
 struct FRHAPI_PexHostPagedResponse

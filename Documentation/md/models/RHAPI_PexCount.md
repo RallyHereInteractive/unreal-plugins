@@ -1,4 +1,6 @@
-# group `RHAPI_PexCount` <a id="group__RHAPI__PexCount"></a>
+---
+title: RHAPI_PexCount
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PexCount`](#structFRHAPI__PexCount) | 
 
----
-title: FRHAPI_PexCount
----
+## struct `FRHAPI_PexCount` <a id="structFRHAPI__PexCount"></a>
 
 ```
 struct FRHAPI_PexCount

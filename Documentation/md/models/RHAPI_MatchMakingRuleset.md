@@ -1,4 +1,6 @@
-# group `RHAPI_MatchMakingRuleset` <a id="group__RHAPI__MatchMakingRuleset"></a>
+---
+title: RHAPI_MatchMakingRuleset
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_MatchMakingRuleset`](#structFRHAPI__MatchMakingRuleset) | A collection of rules that are used to determine whether a MatchMakingTemplate should be used.
 
----
-title: FRHAPI_MatchMakingRuleset
----
+## struct `FRHAPI_MatchMakingRuleset` <a id="structFRHAPI__MatchMakingRuleset"></a>
 
 ```
 struct FRHAPI_MatchMakingRuleset

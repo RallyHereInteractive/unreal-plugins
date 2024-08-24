@@ -1,4 +1,6 @@
-# group `Session` <a id="group__Session"></a>
+---
+title: Session
+---
 
 ## Summary
 
@@ -17,9 +19,7 @@
 `struct `[`TRH_DataWithETagWrapper`](#structTRH__DataWithETagWrapper) | Utility struct to wrapper the tuple of a data typeand etag.
 `struct `[`FRH_DeferredSessionPoll`](#structFRH__DeferredSessionPoll) | Poll for deferred sessions.
 
----
-title: URH_PlatformSessionSyncer
----
+## class `URH_PlatformSessionSyncer` <a id="classURH__PlatformSessionSyncer"></a>
 
 ```
 class URH_PlatformSessionSyncer
@@ -308,9 +308,7 @@ Get the unique net id of the session owner.
 
 Get the online subsystem session interface for the platform session.
 
----
-title: URH_SessionBrowserCache
----
+## class `URH_SessionBrowserCache` <a id="classURH__SessionBrowserCache"></a>
 
 ```
 class URH_SessionBrowserCache
@@ -468,9 +466,7 @@ Gets the platform synchronization object using the rally here session id.
 
 Gets the platform synchronization object using the platform session id.
 
----
-title: URH_SessionView
----
+## class `URH_SessionView` <a id="classURH__SessionView"></a>
 
 ```
 class URH_SessionView
@@ -772,9 +768,7 @@ Triggers a poll for a session update, automatically called as part of the pollin
 #### Parameters
 * `Delegate` Callback delegate for when the poll completes.
 
----
-title: URH_InvitedSession
----
+## class `URH_InvitedSession` <a id="classURH__InvitedSession"></a>
 
 ```
 class URH_InvitedSession
@@ -819,9 +813,7 @@ Determines if the Inviter of this session is blocked by the player on their curr
 #### Parameters
 * `Delegate` The callback delegate for the results of querying if the inviter is blocked on the current platform
 
----
-title: URH_OfflineSession
----
+## class `URH_OfflineSession` <a id="classURH__OfflineSession"></a>
 
 ```
 class URH_OfflineSession
@@ -1005,9 +997,7 @@ Emit an event to the session audit log.
 
 #### `protected void `[`ImportSessionUpdateToAllPlayers`](#classURH__OfflineSession_1a662a10e6f117bb137f9d0d65b75171a8)`(const `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` & Update)` <a id="classURH__OfflineSession_1a662a10e6f117bb137f9d0d65b75171a8"></a>
 
----
-title: URH_OnlineSession
----
+## class `URH_OnlineSession` <a id="classURH__OnlineSession"></a>
 
 ```
 class URH_OnlineSession
@@ -1308,9 +1298,7 @@ Emit an event to the session audit log.
 
 * `Delegate` Callback delegate for the completion of the audit event
 
----
-title: URH_SessionOwnerInterface
----
+## class `URH_SessionOwnerInterface` <a id="classURH__SessionOwnerInterface"></a>
 
 ```
 class URH_SessionOwnerInterface
@@ -1326,9 +1314,7 @@ Session Owner Interface class.
 
 ### Members
 
----
-title: IRH_SessionOwnerInterface
----
+## class `IRH_SessionOwnerInterface` <a id="classIRH__SessionOwnerInterface"></a>
 
 Session Owner Interface.
 
@@ -1488,9 +1474,7 @@ Gets the session id this session owner is bound to, if any. Needed for some spec
 
 Gets the instance id this session owner is bound to, if any. Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view.
 
----
-title: FRH_SessionBrowserSearchParams
----
+## struct `FRH_SessionBrowserSearchParams` <a id="structFRH__SessionBrowserSearchParams"></a>
 
 Struct containing the search paramaters for Session Browsers.
 
@@ -1541,9 +1525,7 @@ Default constructor.
 
 Returns display of search params for toolings/logging.
 
----
-title: FRH_SessionMemberStatusState
----
+## struct `FRH_SessionMemberStatusState` <a id="structFRH__SessionMemberStatusState"></a>
 
 Utility struct to wrapper a player state for a player state update change.
 
@@ -1589,9 +1571,7 @@ Equivalence check used to determine if a notification should be dispatched.
 
 Inequivalence check used to determine if a notification should be dispatched.
 
----
-title: TRH_DataWithETagWrapper
----
+## struct `TRH_DataWithETagWrapper` <a id="structTRH__DataWithETagWrapper"></a>
 
 Utility struct to wrapper the tuple of a data typeand etag.
 
@@ -1647,9 +1627,7 @@ Various constructors for ease of use.
 
 Various constructors for ease of use.
 
----
-title: FRH_DeferredSessionPoll
----
+## struct `FRH_DeferredSessionPoll` <a id="structFRH__DeferredSessionPoll"></a>
 
 Poll for deferred sessions.
 

@@ -1,4 +1,6 @@
-# group `RHAPI_Vendors` <a id="group__RHAPI__Vendors"></a>
+---
+title: RHAPI_Vendors
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_Vendors`](#structFRHAPI__Vendors) | A collection of Vendors by Vendor ID.
 
----
-title: FRHAPI_Vendors
----
+## struct `FRHAPI_Vendors` <a id="structFRHAPI__Vendors"></a>
 
 ```
 struct FRHAPI_Vendors

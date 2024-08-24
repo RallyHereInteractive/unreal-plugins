@@ -1,4 +1,6 @@
-# group `RHAPI_PexHostQueryParams` <a id="group__RHAPI__PexHostQueryParams"></a>
+---
+title: RHAPI_PexHostQueryParams
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PexHostQueryParams`](#structFRHAPI__PexHostQueryParams) | 
 
----
-title: FRHAPI_PexHostQueryParams
----
+## struct `FRHAPI_PexHostQueryParams` <a id="structFRHAPI__PexHostQueryParams"></a>
 
 ```
 struct FRHAPI_PexHostQueryParams

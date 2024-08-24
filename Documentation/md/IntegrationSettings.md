@@ -1,4 +1,6 @@
-# group `IntegrationSettings` <a id="group__IntegrationSettings"></a>
+---
+title: IntegrationSettings
+---
 
 ## Summary
 
@@ -7,9 +9,7 @@
 `class `[`URH_IntegrationSettings`](#classURH__IntegrationSettings) | Main settings for the Integration.
 `struct `[`FRH_EnvironmentConfiguration`](#structFRH__EnvironmentConfiguration) | Settings for Environment Configuration. If set, these override the defaults when the EnvironmentId matches the specified environment id.
 
----
-title: URH_IntegrationSettings
----
+## class `URH_IntegrationSettings` <a id="classURH__IntegrationSettings"></a>
 
 ```
 class URH_IntegrationSettings
@@ -835,9 +835,7 @@ Sets the request priority of File Delete calls, lower number is higher priority.
 
 Helper to get the configuration for a given environment by EnvironmentId.
 
----
-title: FRH_EnvironmentConfiguration
----
+## struct `FRH_EnvironmentConfiguration` <a id="structFRH__EnvironmentConfiguration"></a>
 
 Settings for Environment Configuration. If set, these override the defaults when the EnvironmentId matches the specified environment id.
 

@@ -1,4 +1,6 @@
-# group `RHAPI_AdditionalJoinParams` <a id="group__RHAPI__AdditionalJoinParams"></a>
+---
+title: RHAPI_AdditionalJoinParams
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_AdditionalJoinParams`](#structFRHAPI__AdditionalJoinParams) | Additional parameters to apply to a matchmaking ticket.
 
----
-title: FRHAPI_AdditionalJoinParams
----
+## struct `FRHAPI_AdditionalJoinParams` <a id="structFRHAPI__AdditionalJoinParams"></a>
 
 ```
 struct FRHAPI_AdditionalJoinParams

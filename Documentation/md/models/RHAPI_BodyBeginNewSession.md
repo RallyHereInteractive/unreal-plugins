@@ -1,4 +1,6 @@
-# group `RHAPI_BodyBeginNewSession` <a id="group__RHAPI__BodyBeginNewSession"></a>
+---
+title: RHAPI_BodyBeginNewSession
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_BodyBeginNewSession`](#structFRHAPI__BodyBeginNewSession) | 
 
----
-title: FRHAPI_BodyBeginNewSession
----
+## struct `FRHAPI_BodyBeginNewSession` <a id="structFRHAPI__BodyBeginNewSession"></a>
 
 ```
 struct FRHAPI_BodyBeginNewSession

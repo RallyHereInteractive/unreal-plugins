@@ -1,4 +1,6 @@
-# group `RHAPI_InventorySession` <a id="group__RHAPI__InventorySession"></a>
+---
+title: RHAPI_InventorySession
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_InventorySession`](#structFRHAPI__InventorySession) | Inventory Session for a Player.
 
----
-title: FRHAPI_InventorySession
----
+## struct `FRHAPI_InventorySession` <a id="structFRHAPI__InventorySession"></a>
 
 ```
 struct FRHAPI_InventorySession

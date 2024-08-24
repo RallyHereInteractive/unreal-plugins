@@ -1,4 +1,6 @@
-# group `RHAPI_SessionUpdate` <a id="group__RHAPI__SessionUpdate"></a>
+---
+title: RHAPI_SessionUpdate
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_SessionUpdate`](#structFRHAPI__SessionUpdate) | A request body to update information about a session resource.
 
----
-title: FRHAPI_SessionUpdate
----
+## struct `FRHAPI_SessionUpdate` <a id="structFRHAPI__SessionUpdate"></a>
 
 ```
 struct FRHAPI_SessionUpdate

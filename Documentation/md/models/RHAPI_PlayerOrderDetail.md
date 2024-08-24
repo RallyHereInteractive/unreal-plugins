@@ -1,4 +1,6 @@
-# group `RHAPI_PlayerOrderDetail` <a id="group__RHAPI__PlayerOrderDetail"></a>
+---
+title: RHAPI_PlayerOrderDetail
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerOrderDetail`](#structFRHAPI__PlayerOrderDetail) | Represents details of what occurred in a Player Order Entry.
 
----
-title: FRHAPI_PlayerOrderDetail
----
+## struct `FRHAPI_PlayerOrderDetail` <a id="structFRHAPI__PlayerOrderDetail"></a>
 
 ```
 struct FRHAPI_PlayerOrderDetail

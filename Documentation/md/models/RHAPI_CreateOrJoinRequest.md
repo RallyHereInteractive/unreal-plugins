@@ -1,4 +1,6 @@
-# group `RHAPI_CreateOrJoinRequest` <a id="group__RHAPI__CreateOrJoinRequest"></a>
+---
+title: RHAPI_CreateOrJoinRequest
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_CreateOrJoinRequest`](#structFRHAPI__CreateOrJoinRequest) | A request body for a player to join a session.
 
----
-title: FRHAPI_CreateOrJoinRequest
----
+## struct `FRHAPI_CreateOrJoinRequest` <a id="structFRHAPI__CreateOrJoinRequest"></a>
 
 ```
 struct FRHAPI_CreateOrJoinRequest

@@ -1,4 +1,6 @@
-# group `RHAPI_RankedTeam` <a id="group__RHAPI__RankedTeam"></a>
+---
+title: RHAPI_RankedTeam
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_RankedTeam`](#structFRHAPI__RankedTeam) | One team of players from a match along with their placement in the match, and previous rank data about all of the players.
 
----
-title: FRHAPI_RankedTeam
----
+## struct `FRHAPI_RankedTeam` <a id="structFRHAPI__RankedTeam"></a>
 
 ```
 struct FRHAPI_RankedTeam

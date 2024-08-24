@@ -1,4 +1,6 @@
-# group `RHAPI_PlatformIndividualCCUs` <a id="group__RHAPI__PlatformIndividualCCUs"></a>
+---
+title: RHAPI_PlatformIndividualCCUs
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlatformIndividualCCUs`](#structFRHAPI__PlatformIndividualCCUs) | 
 
----
-title: FRHAPI_PlatformIndividualCCUs
----
+## struct `FRHAPI_PlatformIndividualCCUs` <a id="structFRHAPI__PlatformIndividualCCUs"></a>
 
 ```
 struct FRHAPI_PlatformIndividualCCUs

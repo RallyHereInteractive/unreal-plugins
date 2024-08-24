@@ -1,4 +1,6 @@
-# group `RHAPI_InstanceHealthSettingsResponse` <a id="group__RHAPI__InstanceHealthSettingsResponse"></a>
+---
+title: RHAPI_InstanceHealthSettingsResponse
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_InstanceHealthSettingsResponse`](#structFRHAPI__InstanceHealthSettingsResponse) | 
 
----
-title: FRHAPI_InstanceHealthSettingsResponse
----
+## struct `FRHAPI_InstanceHealthSettingsResponse` <a id="structFRHAPI__InstanceHealthSettingsResponse"></a>
 
 ```
 struct FRHAPI_InstanceHealthSettingsResponse

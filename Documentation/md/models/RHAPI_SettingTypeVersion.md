@@ -1,4 +1,6 @@
-# group `RHAPI_SettingTypeVersion` <a id="group__RHAPI__SettingTypeVersion"></a>
+---
+title: RHAPI_SettingTypeVersion
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_SettingTypeVersion`](#structFRHAPI__SettingTypeVersion) | 
 
----
-title: FRHAPI_SettingTypeVersion
----
+## struct `FRHAPI_SettingTypeVersion` <a id="structFRHAPI__SettingTypeVersion"></a>
 
 ```
 struct FRHAPI_SettingTypeVersion

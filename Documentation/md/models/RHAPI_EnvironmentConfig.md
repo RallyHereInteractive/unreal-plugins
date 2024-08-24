@@ -1,4 +1,6 @@
-# group `RHAPI_EnvironmentConfig` <a id="group__RHAPI__EnvironmentConfig"></a>
+---
+title: RHAPI_EnvironmentConfig
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_EnvironmentConfig`](#structFRHAPI__EnvironmentConfig) | 
 
----
-title: FRHAPI_EnvironmentConfig
----
+## struct `FRHAPI_EnvironmentConfig` <a id="structFRHAPI__EnvironmentConfig"></a>
 
 ```
 struct FRHAPI_EnvironmentConfig

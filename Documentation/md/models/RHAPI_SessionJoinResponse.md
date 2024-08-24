@@ -1,4 +1,6 @@
-# group `RHAPI_SessionJoinResponse` <a id="group__RHAPI__SessionJoinResponse"></a>
+---
+title: RHAPI_SessionJoinResponse
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_SessionJoinResponse`](#structFRHAPI__SessionJoinResponse) | Response when a player successfully joins a session.
 
----
-title: FRHAPI_SessionJoinResponse
----
+## struct `FRHAPI_SessionJoinResponse` <a id="structFRHAPI__SessionJoinResponse"></a>
 
 ```
 struct FRHAPI_SessionJoinResponse

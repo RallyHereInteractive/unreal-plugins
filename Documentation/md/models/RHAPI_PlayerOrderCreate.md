@@ -1,4 +1,6 @@
-# group `RHAPI_PlayerOrderCreate` <a id="group__RHAPI__PlayerOrderCreate"></a>
+---
+title: RHAPI_PlayerOrderCreate
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerOrderCreate`](#structFRHAPI__PlayerOrderCreate) | Create a new Player Order. <b>Note: &#x60;use_inventory_bucket&#x60; will be ignored on the PlayerOrderEntryCreate if the &#x60;source&#x60; equals &#x60;CLIENT&#x60;.</b>.
 
----
-title: FRHAPI_PlayerOrderCreate
----
+## struct `FRHAPI_PlayerOrderCreate` <a id="structFRHAPI__PlayerOrderCreate"></a>
 
 ```
 struct FRHAPI_PlayerOrderCreate

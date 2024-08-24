@@ -1,4 +1,6 @@
-# group `RHAPI_CreatePlatformUserRequest` <a id="group__RHAPI__CreatePlatformUserRequest"></a>
+---
+title: RHAPI_CreatePlatformUserRequest
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_CreatePlatformUserRequest`](#structFRHAPI__CreatePlatformUserRequest) | Request parameters to create a user exists.
 
----
-title: FRHAPI_CreatePlatformUserRequest
----
+## struct `FRHAPI_CreatePlatformUserRequest` <a id="structFRHAPI__CreatePlatformUserRequest"></a>
 
 ```
 struct FRHAPI_CreatePlatformUserRequest

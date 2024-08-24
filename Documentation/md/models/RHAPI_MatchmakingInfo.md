@@ -1,4 +1,6 @@
-# group `RHAPI_MatchmakingInfo` <a id="group__RHAPI__MatchmakingInfo"></a>
+---
+title: RHAPI_MatchmakingInfo
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_MatchmakingInfo`](#structFRHAPI__MatchmakingInfo) | Info about the matchmaking status in a session.
 
----
-title: FRHAPI_MatchmakingInfo
----
+## struct `FRHAPI_MatchmakingInfo` <a id="structFRHAPI__MatchmakingInfo"></a>
 
 ```
 struct FRHAPI_MatchmakingInfo

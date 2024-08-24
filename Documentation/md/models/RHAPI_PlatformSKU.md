@@ -1,4 +1,6 @@
-# group `RHAPI_PlatformSKU` <a id="group__RHAPI__PlatformSKU"></a>
+---
+title: RHAPI_PlatformSKU
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlatformSKU`](#structFRHAPI__PlatformSKU) | Platform SKU that can be converted to inventory or keys.
 
----
-title: FRHAPI_PlatformSKU
----
+## struct `FRHAPI_PlatformSKU` <a id="structFRHAPI__PlatformSKU"></a>
 
 ```
 struct FRHAPI_PlatformSKU

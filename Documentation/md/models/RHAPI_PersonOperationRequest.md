@@ -1,4 +1,6 @@
-# group `RHAPI_PersonOperationRequest` <a id="group__RHAPI__PersonOperationRequest"></a>
+---
+title: RHAPI_PersonOperationRequest
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PersonOperationRequest`](#structFRHAPI__PersonOperationRequest) | Model for doing operations on a specific person. If person information is not provided, the information from the token claims will be used instead. Priority for finding the person ID: 1. If the &#x60;person_id&#x60; is provided directly 2. If the &#x60;platform&#x60; and &#x60;platform_user_id&#x60; are provided, the &#x60;person_id&#x60; of that platform user is used. 3. If the Authorization header contains a user token, the platform and platform user id from the token are used to find the &#x60;person_id&#x60;.
 
----
-title: FRHAPI_PersonOperationRequest
----
+## struct `FRHAPI_PersonOperationRequest` <a id="structFRHAPI__PersonOperationRequest"></a>
 
 ```
 struct FRHAPI_PersonOperationRequest

@@ -1,4 +1,6 @@
-# group `RHAPI_Platforms` <a id="group__RHAPI__Platforms"></a>
+---
+title: RHAPI_Platforms
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_Platforms`](#structFRHAPI__Platforms) | 
 
----
-title: FRHAPI_Platforms
----
+## struct `FRHAPI_Platforms` <a id="structFRHAPI__Platforms"></a>
 
 ```
 struct FRHAPI_Platforms

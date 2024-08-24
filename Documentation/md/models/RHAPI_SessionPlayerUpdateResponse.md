@@ -1,4 +1,6 @@
-# group `RHAPI_SessionPlayerUpdateResponse` <a id="group__RHAPI__SessionPlayerUpdateResponse"></a>
+---
+title: RHAPI_SessionPlayerUpdateResponse
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_SessionPlayerUpdateResponse`](#structFRHAPI__SessionPlayerUpdateResponse) | Response to a request to update a player in a session.
 
----
-title: FRHAPI_SessionPlayerUpdateResponse
----
+## struct `FRHAPI_SessionPlayerUpdateResponse` <a id="structFRHAPI__SessionPlayerUpdateResponse"></a>
 
 ```
 struct FRHAPI_SessionPlayerUpdateResponse

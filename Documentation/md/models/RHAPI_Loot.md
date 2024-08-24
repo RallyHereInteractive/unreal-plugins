@@ -1,4 +1,6 @@
-# group `RHAPI_Loot` <a id="group__RHAPI__Loot"></a>
+---
+title: RHAPI_Loot
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_Loot`](#structFRHAPI__Loot) | Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is granted to the player or the Sub Vendor is fulfilled but not both.
 
----
-title: FRHAPI_Loot
----
+## struct `FRHAPI_Loot` <a id="structFRHAPI__Loot"></a>
 
 ```
 struct FRHAPI_Loot

@@ -1,4 +1,6 @@
-# group `RHAPI_LoginResult` <a id="group__RHAPI__LoginResult"></a>
+---
+title: RHAPI_LoginResult
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_LoginResult`](#structFRHAPI__LoginResult) | Login result.
 
----
-title: FRHAPI_LoginResult
----
+## struct `FRHAPI_LoginResult` <a id="structFRHAPI__LoginResult"></a>
 
 ```
 struct FRHAPI_LoginResult

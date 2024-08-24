@@ -1,4 +1,6 @@
-# group `RHAPI_MatchWithPlayers` <a id="group__RHAPI__MatchWithPlayers"></a>
+---
+title: RHAPI_MatchWithPlayers
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_MatchWithPlayers`](#structFRHAPI__MatchWithPlayers) | 
 
----
-title: FRHAPI_MatchWithPlayers
----
+## struct `FRHAPI_MatchWithPlayers` <a id="structFRHAPI__MatchWithPlayers"></a>
 
 ```
 struct FRHAPI_MatchWithPlayers

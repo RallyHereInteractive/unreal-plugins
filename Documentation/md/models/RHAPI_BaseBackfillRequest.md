@@ -1,4 +1,6 @@
-# group `RHAPI_BaseBackfillRequest` <a id="group__RHAPI__BaseBackfillRequest"></a>
+---
+title: RHAPI_BaseBackfillRequest
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_BaseBackfillRequest`](#structFRHAPI__BaseBackfillRequest) | 
 
----
-title: FRHAPI_BaseBackfillRequest
----
+## struct `FRHAPI_BaseBackfillRequest` <a id="structFRHAPI__BaseBackfillRequest"></a>
 
 ```
 struct FRHAPI_BaseBackfillRequest

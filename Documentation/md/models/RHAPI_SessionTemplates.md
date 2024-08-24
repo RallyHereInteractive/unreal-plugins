@@ -1,4 +1,6 @@
-# group `RHAPI_SessionTemplates` <a id="group__RHAPI__SessionTemplates"></a>
+---
+title: RHAPI_SessionTemplates
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_SessionTemplates`](#structFRHAPI__SessionTemplates) | A mapping of RallyHere session template types to the templates.
 
----
-title: FRHAPI_SessionTemplates
----
+## struct `FRHAPI_SessionTemplates` <a id="structFRHAPI__SessionTemplates"></a>
 
 ```
 struct FRHAPI_SessionTemplates

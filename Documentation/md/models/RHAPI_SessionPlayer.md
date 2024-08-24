@@ -1,4 +1,6 @@
-# group `RHAPI_SessionPlayer` <a id="group__RHAPI__SessionPlayer"></a>
+---
+title: RHAPI_SessionPlayer
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_SessionPlayer`](#structFRHAPI__SessionPlayer) | A player resource in a session.
 
----
-title: FRHAPI_SessionPlayer
----
+## struct `FRHAPI_SessionPlayer` <a id="structFRHAPI__SessionPlayer"></a>
 
 ```
 struct FRHAPI_SessionPlayer

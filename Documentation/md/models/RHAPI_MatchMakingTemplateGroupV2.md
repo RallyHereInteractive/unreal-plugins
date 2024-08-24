@@ -1,4 +1,6 @@
-# group `RHAPI_MatchMakingTemplateGroupV2` <a id="group__RHAPI__MatchMakingTemplateGroupV2"></a>
+---
+title: RHAPI_MatchMakingTemplateGroupV2
+---
 
 ## Summary
 
@@ -6,9 +8,7 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_MatchMakingTemplateGroupV2`](#structFRHAPI__MatchMakingTemplateGroupV2) | A collection of MatchMakingTemplates that may be used when a session enters a queue. The first template that satisfies the necessary rules will be used.
 
----
-title: FRHAPI_MatchMakingTemplateGroupV2
----
+## struct `FRHAPI_MatchMakingTemplateGroupV2` <a id="structFRHAPI__MatchMakingTemplateGroupV2"></a>
 
 ```
 struct FRHAPI_MatchMakingTemplateGroupV2
