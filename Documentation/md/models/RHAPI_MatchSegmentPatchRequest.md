@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_MatchSegmentPatchRequest`](#structFRHAPI__MatchSegmentPatchRequest) | 
 
-## struct `FRHAPI_MatchSegmentPatchRequest` <a id="structFRHAPI__MatchSegmentPatchRequest"></a>
+---
+title: FRHAPI_MatchSegmentPatchRequest
+---
 
 ```
 struct FRHAPI_MatchSegmentPatchRequest

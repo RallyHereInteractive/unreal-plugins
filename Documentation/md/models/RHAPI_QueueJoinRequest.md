@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_QueueJoinRequest`](#structFRHAPI__QueueJoinRequest) | A request body to enter into a matchmaking queue.
 
-## struct `FRHAPI_QueueJoinRequest` <a id="structFRHAPI__QueueJoinRequest"></a>
+---
+title: FRHAPI_QueueJoinRequest
+---
 
 ```
 struct FRHAPI_QueueJoinRequest

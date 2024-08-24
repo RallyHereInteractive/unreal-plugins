@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PexClientQueryParams`](#structFRHAPI__PexClientQueryParams) | 
 
-## struct `FRHAPI_PexClientQueryParams` <a id="structFRHAPI__PexClientQueryParams"></a>
+---
+title: FRHAPI_PexClientQueryParams
+---
 
 ```
 struct FRHAPI_PexClientQueryParams

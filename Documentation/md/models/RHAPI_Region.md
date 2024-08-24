@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_Region`](#structFRHAPI__Region) | Information about a specific region.
 
-## struct `FRHAPI_Region` <a id="structFRHAPI__Region"></a>
+---
+title: FRHAPI_Region
+---
 
 ```
 struct FRHAPI_Region

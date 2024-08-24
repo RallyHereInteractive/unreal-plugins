@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_EnvironmentConfig`](#structFRHAPI__EnvironmentConfig) | 
 
-## struct `FRHAPI_EnvironmentConfig` <a id="structFRHAPI__EnvironmentConfig"></a>
+---
+title: FRHAPI_EnvironmentConfig
+---
 
 ```
 struct FRHAPI_EnvironmentConfig

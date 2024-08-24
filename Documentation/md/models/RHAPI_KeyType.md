@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_KeyType`](#structFRHAPI__KeyType) | A Key Type is a type of key that can be claimed from a Marketing Campaign.
 
-## struct `FRHAPI_KeyType` <a id="structFRHAPI__KeyType"></a>
+---
+title: FRHAPI_KeyType
+---
 
 ```
 struct FRHAPI_KeyType

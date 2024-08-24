@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_FriendRelationship`](#structFRHAPI__FriendRelationship) | Represents the relationship with a potential friend.
 
-## struct `FRHAPI_FriendRelationship` <a id="structFRHAPI__FriendRelationship"></a>
+---
+title: FRHAPI_FriendRelationship
+---
 
 ```
 struct FRHAPI_FriendRelationship

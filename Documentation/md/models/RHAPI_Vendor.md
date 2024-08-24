@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_Vendor`](#structFRHAPI__Vendor) | A collection of Loot and how to fulfill them.
 
-## struct `FRHAPI_Vendor` <a id="structFRHAPI__Vendor"></a>
+---
+title: FRHAPI_Vendor
+---
 
 ```
 struct FRHAPI_Vendor

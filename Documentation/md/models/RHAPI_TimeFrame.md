@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_TimeFrame`](#structFRHAPI__TimeFrame) | Time Frames are used to calculate the expiration of Inventory.
 
-## struct `FRHAPI_TimeFrame` <a id="structFRHAPI__TimeFrame"></a>
+---
+title: FRHAPI_TimeFrame
+---
 
 ```
 struct FRHAPI_TimeFrame

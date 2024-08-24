@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_RankConfigRequestResponseV3`](#structFRHAPI__RankConfigRequestResponseV3) | Response to successfully requesting all rank config.
 
-## struct `FRHAPI_RankConfigRequestResponseV3` <a id="structFRHAPI__RankConfigRequestResponseV3"></a>
+---
+title: FRHAPI_RankConfigRequestResponseV3
+---
 
 ```
 struct FRHAPI_RankConfigRequestResponseV3

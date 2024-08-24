@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_FriendsApiConfig`](#structFRHAPI__FriendsApiConfig) | 
 
-## struct `FRHAPI_FriendsApiConfig` <a id="structFRHAPI__FriendsApiConfig"></a>
+---
+title: FRHAPI_FriendsApiConfig
+---
 
 ```
 struct FRHAPI_FriendsApiConfig

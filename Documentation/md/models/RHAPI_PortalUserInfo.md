@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PortalUserInfo`](#structFRHAPI__PortalUserInfo) | Portal user info.
 
-## struct `FRHAPI_PortalUserInfo` <a id="structFRHAPI__PortalUserInfo"></a>
+---
+title: FRHAPI_PortalUserInfo
+---
 
 ```
 struct FRHAPI_PortalUserInfo

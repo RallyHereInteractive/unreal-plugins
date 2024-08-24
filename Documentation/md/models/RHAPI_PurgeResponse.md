@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PurgeResponse`](#structFRHAPI__PurgeResponse) | Purge response from a purge request.
 
-## struct `FRHAPI_PurgeResponse` <a id="structFRHAPI__PurgeResponse"></a>
+---
+title: FRHAPI_PurgeResponse
+---
 
 ```
 struct FRHAPI_PurgeResponse

@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerIterateResponse`](#structFRHAPI__PlayerIterateResponse) | Response from the player iteration API.
 
-## struct `FRHAPI_PlayerIterateResponse` <a id="structFRHAPI__PlayerIterateResponse"></a>
+---
+title: FRHAPI_PlayerIterateResponse
+---
 
 ```
 struct FRHAPI_PlayerIterateResponse

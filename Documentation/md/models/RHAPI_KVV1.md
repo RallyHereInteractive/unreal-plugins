@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_KVV1`](#structFRHAPI__KVV1) | A key/value pair that represents a setting to be used by the client.
 
-## struct `FRHAPI_KVV1` <a id="structFRHAPI__KVV1"></a>
+---
+title: FRHAPI_KVV1
+---
 
 ```
 struct FRHAPI_KVV1

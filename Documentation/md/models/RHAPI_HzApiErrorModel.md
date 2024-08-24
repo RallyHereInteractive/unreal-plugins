@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_HzApiErrorModel`](#structFRHAPI__HzApiErrorModel) | 
 
-## struct `FRHAPI_HzApiErrorModel` <a id="structFRHAPI__HzApiErrorModel"></a>
+---
+title: FRHAPI_HzApiErrorModel
+---
 
 ```
 struct FRHAPI_HzApiErrorModel

@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_LootPrice`](#structFRHAPI__LootPrice) | Price with current and original (pre-sale) price breakpoints.
 
-## struct `FRHAPI_LootPrice` <a id="structFRHAPI__LootPrice"></a>
+---
+title: FRHAPI_LootPrice
+---
 
 ```
 struct FRHAPI_LootPrice

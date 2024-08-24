@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_InventoryPageMeta`](#structFRHAPI__InventoryPageMeta) | Metadata about the page of results.
 
-## struct `FRHAPI_InventoryPageMeta` <a id="structFRHAPI__InventoryPageMeta"></a>
+---
+title: FRHAPI_InventoryPageMeta
+---
 
 ```
 struct FRHAPI_InventoryPageMeta

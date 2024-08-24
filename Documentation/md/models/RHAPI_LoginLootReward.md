@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_LoginLootReward`](#structFRHAPI__LoginLootReward) | Login loot reward.
 
-## struct `FRHAPI_LoginLootReward` <a id="structFRHAPI__LoginLootReward"></a>
+---
+title: FRHAPI_LoginLootReward
+---
 
 ```
 struct FRHAPI_LoginLootReward

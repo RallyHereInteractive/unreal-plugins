@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_FriendsV1`](#structFRHAPI__FriendsV1) | List of player_ids to operate on.
 
-## struct `FRHAPI_FriendsV1` <a id="structFRHAPI__FriendsV1"></a>
+---
+title: FRHAPI_FriendsV1
+---
 
 ```
 struct FRHAPI_FriendsV1

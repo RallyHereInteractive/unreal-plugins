@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_InstanceRequest`](#structFRHAPI__InstanceRequest) | A request body to create an instance resource in a session.
 
-## struct `FRHAPI_InstanceRequest` <a id="structFRHAPI__InstanceRequest"></a>
+---
+title: FRHAPI_InstanceRequest
+---
 
 ```
 struct FRHAPI_InstanceRequest

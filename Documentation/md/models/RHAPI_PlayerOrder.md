@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerOrder`](#structFRHAPI__PlayerOrder) | Represents a Player Order.
 
-## struct `FRHAPI_PlayerOrder` <a id="structFRHAPI__PlayerOrder"></a>
+---
+title: FRHAPI_PlayerOrder
+---
 
 ```
 struct FRHAPI_PlayerOrder

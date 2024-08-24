@@ -19,7 +19,9 @@
 `struct `[`FRH_CreateInventory`](#structFRH__CreateInventory) | Create Inventory Operation struct for setting up data to Create an Inventory record.
 `struct `[`FRH_UpdateInventory`](#structFRH__UpdateInventory) | Update Inventory Operation struct for setting up data to Update an Inventory record.
 
-## class `URH_PendingOrder` <a id="classURH__PendingOrder"></a>
+---
+title: URH_PendingOrder
+---
 
 ```
 class URH_PendingOrder
@@ -77,7 +79,9 @@ Handles the response to a Get Player Order call.
 
 Gets the Player Inventory.
 
-## class `URH_PendingPromoCodeOrder` <a id="classURH__PendingPromoCodeOrder"></a>
+---
+title: URH_PendingPromoCodeOrder
+---
 
 ```
 class URH_PendingPromoCodeOrder
@@ -125,7 +129,9 @@ Triggers a broadcasts when the order is sucessfully processed.
 
 * `Content` The results of the order being processed.
 
-## class `URH_PendingInventoryUpdateOrder` <a id="classURH__PendingInventoryUpdateOrder"></a>
+---
+title: URH_PendingInventoryUpdateOrder
+---
 
 ```
 class URH_PendingInventoryUpdateOrder
@@ -166,7 +172,9 @@ Triggers a broadcasts when the order is sucessfully processed.
 
 * `Content` The results of the order being processed.
 
-## class `URH_PendingPlayerOrder` <a id="classURH__PendingPlayerOrder"></a>
+---
+title: URH_PendingPlayerOrder
+---
 
 ```
 class URH_PendingPlayerOrder
@@ -214,7 +222,9 @@ Triggers a broadcasts when the order is sucessfully processed.
 
 * `Content` The results of the order being processed.
 
-## class `URH_PendingOrderDetailsOrder` <a id="classURH__PendingOrderDetailsOrder"></a>
+---
+title: URH_PendingOrderDetailsOrder
+---
 
 ```
 class URH_PendingOrderDetailsOrder
@@ -255,7 +265,9 @@ Triggers a broadcasts when the order is sucessfully processed.
 
 * `Content` The results of the order being processed.
 
-## class `URH_PlayerOrderWatch` <a id="classURH__PlayerOrderWatch"></a>
+---
+title: URH_PlayerOrderWatch
+---
 
 ```
 class URH_PlayerOrderWatch
@@ -308,7 +320,9 @@ Handles the response to a Get Player Order call.
 
 Gets the Player Inventory.
 
-## class `URH_PlayerOrderEntry` <a id="classURH__PlayerOrderEntry"></a>
+---
+title: URH_PlayerOrderEntry
+---
 
 ```
 class URH_PlayerOrderEntry
@@ -429,7 +443,9 @@ Adds custom data to the order entry.
 
 * `Value` The value for the custom data.
 
-## class `URH_PlayerInventory` <a id="classURH__PlayerInventory"></a>
+---
+title: URH_PlayerInventory
+---
 
 ```
 class URH_PlayerInventory
@@ -1034,7 +1050,9 @@ Helper function to get Catalog Subsystem.
 
 #### `typedef `[`TCreateOrder`](#classURH__PlayerInventory_1a946da8328c5ead7256bcf01d73ba342c) <a id="classURH__PlayerInventory_1a946da8328c5ead7256bcf01d73ba342c"></a>
 
-## class `URH_InventoryBlueprintLibrary` <a id="classURH__InventoryBlueprintLibrary"></a>
+---
+title: URH_InventoryBlueprintLibrary
+---
 
 ```
 class URH_InventoryBlueprintLibrary
@@ -1050,7 +1068,9 @@ Inventory Blueprint Library with helper methods for inventory item struct.
 
 ### Members
 
-## struct `FRH_InventorySession` <a id="structFRH__InventorySession"></a>
+---
+title: FRH_InventorySession
+---
 
 Struct for tracking an inventory session.
 
@@ -1086,7 +1106,9 @@ Array of durable loot that was applied to the inventory by the session.
 
 Default constructor.
 
-## struct `FRH_ItemInventory` <a id="structFRH__ItemInventory"></a>
+---
+title: FRH_ItemInventory
+---
 
 Inventory Item struct for defining cached inventory items and making inventory write calls.
 
@@ -1189,7 +1211,9 @@ Initializes an inventory record from an Inventory Record API response.
 
 Equals operator override for comparison.
 
-## struct `FRH_BaseInventoryOperation` <a id="structFRH__BaseInventoryOperation"></a>
+---
+title: FRH_BaseInventoryOperation
+---
 
 Base Inventory Operation struct for defining shared input data for Inventory Modification API calls.
 
@@ -1243,7 +1267,9 @@ Initializes an inventory operation with the data from an Inventory Item. @params
 #### Returns
 If true, the operation was initialized successfully.
 
-## struct `FRH_CreateInventory` <a id="structFRH__CreateInventory"></a>
+---
+title: FRH_CreateInventory
+---
 
 ```
 struct FRH_CreateInventory
@@ -1277,7 +1303,9 @@ Initializes an inventory operation with the data from an Inventory Item. @params
 #### Returns
 If true, the operation was initialized successfully.
 
-## struct `FRH_UpdateInventory` <a id="structFRH__UpdateInventory"></a>
+---
+title: FRH_UpdateInventory
+---
 
 ```
 struct FRH_UpdateInventory

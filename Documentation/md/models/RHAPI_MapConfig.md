@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_MapConfig`](#structFRHAPI__MapConfig) | DEPRECATED Configuration about a specific map for an instance to load into.
 
-## struct `FRHAPI_MapConfig` <a id="structFRHAPI__MapConfig"></a>
+---
+title: FRHAPI_MapConfig
+---
 
 ```
 struct FRHAPI_MapConfig

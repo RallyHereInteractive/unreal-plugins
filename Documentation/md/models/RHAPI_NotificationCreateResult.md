@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_NotificationCreateResult`](#structFRHAPI__NotificationCreateResult) | 
 
-## struct `FRHAPI_NotificationCreateResult` <a id="structFRHAPI__NotificationCreateResult"></a>
+---
+title: FRHAPI_NotificationCreateResult
+---
 
 ```
 struct FRHAPI_NotificationCreateResult

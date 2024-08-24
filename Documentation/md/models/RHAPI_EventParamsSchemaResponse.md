@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_EventParamsSchemaResponse`](#structFRHAPI__EventParamsSchemaResponse) | 
 
-## struct `FRHAPI_EventParamsSchemaResponse` <a id="structFRHAPI__EventParamsSchemaResponse"></a>
+---
+title: FRHAPI_EventParamsSchemaResponse
+---
 
 ```
 struct FRHAPI_EventParamsSchemaResponse

@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PurchasePriceCurrency`](#structFRHAPI__PurchasePriceCurrency) | The purchase price currencies of an Item.
 
-## struct `FRHAPI_PurchasePriceCurrency` <a id="structFRHAPI__PurchasePriceCurrency"></a>
+---
+title: FRHAPI_PurchasePriceCurrency
+---
 
 ```
 struct FRHAPI_PurchasePriceCurrency

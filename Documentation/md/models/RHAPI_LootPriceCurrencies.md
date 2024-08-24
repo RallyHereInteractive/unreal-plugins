@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_LootPriceCurrencies`](#structFRHAPI__LootPriceCurrencies) | Single price that the loot can be purchased with. Note that all currencies of this list will be spent together.
 
-## struct `FRHAPI_LootPriceCurrencies` <a id="structFRHAPI__LootPriceCurrencies"></a>
+---
+title: FRHAPI_LootPriceCurrencies
+---
 
 ```
 struct FRHAPI_LootPriceCurrencies

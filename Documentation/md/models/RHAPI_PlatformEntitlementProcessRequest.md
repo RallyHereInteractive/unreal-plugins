@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlatformEntitlementProcessRequest`](#structFRHAPI__PlatformEntitlementProcessRequest) | Request to process a platform entitlement.
 
-## struct `FRHAPI_PlatformEntitlementProcessRequest` <a id="structFRHAPI__PlatformEntitlementProcessRequest"></a>
+---
+title: FRHAPI_PlatformEntitlementProcessRequest
+---
 
 ```
 struct FRHAPI_PlatformEntitlementProcessRequest

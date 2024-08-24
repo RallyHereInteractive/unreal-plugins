@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerOrderEntryCreate`](#structFRHAPI__PlayerOrderEntryCreate) | Request to create a Player Order Entry.
 
-## struct `FRHAPI_PlayerOrderEntryCreate` <a id="structFRHAPI__PlayerOrderEntryCreate"></a>
+---
+title: FRHAPI_PlayerOrderEntryCreate
+---
 
 ```
 struct FRHAPI_PlayerOrderEntryCreate

@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_BackfillInfo`](#structFRHAPI__BackfillInfo) | Info about the open-match backfill object in a session.
 
-## struct `FRHAPI_BackfillInfo` <a id="structFRHAPI__BackfillInfo"></a>
+---
+title: FRHAPI_BackfillInfo
+---
 
 ```
 struct FRHAPI_BackfillInfo

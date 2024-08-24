@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_Loots`](#structFRHAPI__Loots) | A collection of Loot by Loot ID.
 
-## struct `FRHAPI_Loots` <a id="structFRHAPI__Loots"></a>
+---
+title: FRHAPI_Loots
+---
 
 ```
 struct FRHAPI_Loots

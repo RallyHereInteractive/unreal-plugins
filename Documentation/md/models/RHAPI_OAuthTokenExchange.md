@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_OAuthTokenExchange`](#structFRHAPI__OAuthTokenExchange) | OAuth token exchange request.
 
-## struct `FRHAPI_OAuthTokenExchange` <a id="structFRHAPI__OAuthTokenExchange"></a>
+---
+title: FRHAPI_OAuthTokenExchange
+---
 
 ```
 struct FRHAPI_OAuthTokenExchange

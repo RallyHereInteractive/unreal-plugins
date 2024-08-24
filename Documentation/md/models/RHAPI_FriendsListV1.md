@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_FriendsListV1`](#structFRHAPI__FriendsListV1) | List of the player&#39;s friends. Includes sent friend requests and received friends requests.
 
-## struct `FRHAPI_FriendsListV1` <a id="structFRHAPI__FriendsListV1"></a>
+---
+title: FRHAPI_FriendsListV1
+---
 
 ```
 struct FRHAPI_FriendsListV1

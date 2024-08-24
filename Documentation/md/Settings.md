@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `class `[`URH_SettingsSubsystem`](#classURH__SettingsSubsystem) | Settings Subsystem used for settings API calls.
 
-## class `URH_SettingsSubsystem` <a id="classURH__SettingsSubsystem"></a>
+---
+title: URH_SettingsSubsystem
+---
 
 ```
 class URH_SettingsSubsystem

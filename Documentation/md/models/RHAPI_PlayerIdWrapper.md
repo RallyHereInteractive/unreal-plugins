@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerIdWrapper`](#structFRHAPI__PlayerIdWrapper) | Model for getting a player ID from a player UUID.
 
-## struct `FRHAPI_PlayerIdWrapper` <a id="structFRHAPI__PlayerIdWrapper"></a>
+---
+title: FRHAPI_PlayerIdWrapper
+---
 
 ```
 struct FRHAPI_PlayerIdWrapper

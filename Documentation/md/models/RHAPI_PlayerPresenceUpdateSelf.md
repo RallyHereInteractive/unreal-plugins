@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerPresenceUpdateSelf`](#structFRHAPI__PlayerPresenceUpdateSelf) | 
 
-## struct `FRHAPI_PlayerPresenceUpdateSelf` <a id="structFRHAPI__PlayerPresenceUpdateSelf"></a>
+---
+title: FRHAPI_PlayerPresenceUpdateSelf
+---
 
 ```
 struct FRHAPI_PlayerPresenceUpdateSelf

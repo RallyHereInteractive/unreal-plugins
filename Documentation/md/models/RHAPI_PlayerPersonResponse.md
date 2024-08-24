@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerPersonResponse`](#structFRHAPI__PlayerPersonResponse) | Response for getting a player&#39;s info.
 
-## struct `FRHAPI_PlayerPersonResponse` <a id="structFRHAPI__PlayerPersonResponse"></a>
+---
+title: FRHAPI_PlayerPersonResponse
+---
 
 ```
 struct FRHAPI_PlayerPersonResponse

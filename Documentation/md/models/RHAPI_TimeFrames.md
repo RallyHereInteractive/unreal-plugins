@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_TimeFrames`](#structFRHAPI__TimeFrames) | A collection of Time Frames by Time Frame ID.
 
-## struct `FRHAPI_TimeFrames` <a id="structFRHAPI__TimeFrames"></a>
+---
+title: FRHAPI_TimeFrames
+---
 
 ```
 struct FRHAPI_TimeFrames

@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_MatchMakingTemplateV2`](#structFRHAPI__MatchMakingTemplateV2) | Configuration about what rules must be satisfied to use this template, and what matchmaking profiles the ticket will be a part of.
 
-## struct `FRHAPI_MatchMakingTemplateV2` <a id="structFRHAPI__MatchMakingTemplateV2"></a>
+---
+title: FRHAPI_MatchMakingTemplateV2
+---
 
 ```
 struct FRHAPI_MatchMakingTemplateV2

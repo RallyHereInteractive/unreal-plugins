@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_UpdateInventoryRequestById`](#structFRHAPI__UpdateInventoryRequestById) | Request to Update Inventory by an existing Inventory ID. If the Inventory entry does not exist, then the request will fail.
 
-## struct `FRHAPI_UpdateInventoryRequestById` <a id="structFRHAPI__UpdateInventoryRequestById"></a>
+---
+title: FRHAPI_UpdateInventoryRequestById
+---
 
 ```
 struct FRHAPI_UpdateInventoryRequestById

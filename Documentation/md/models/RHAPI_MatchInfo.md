@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_MatchInfo`](#structFRHAPI__MatchInfo) | DEPRECATED Information about a match.
 
-## struct `FRHAPI_MatchInfo` <a id="structFRHAPI__MatchInfo"></a>
+---
+title: FRHAPI_MatchInfo
+---
 
 ```
 struct FRHAPI_MatchInfo

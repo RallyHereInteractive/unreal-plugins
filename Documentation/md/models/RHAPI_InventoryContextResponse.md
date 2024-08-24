@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_InventoryContextResponse`](#structFRHAPI__InventoryContextResponse) | Inventory Context for a Player.
 
-## struct `FRHAPI_InventoryContextResponse` <a id="structFRHAPI__InventoryContextResponse"></a>
+---
+title: FRHAPI_InventoryContextResponse
+---
 
 ```
 struct FRHAPI_InventoryContextResponse

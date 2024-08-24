@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_Role`](#structFRHAPI__Role) | Role object that is used to define a role for a player.
 
-## struct `FRHAPI_Role` <a id="structFRHAPI__Role"></a>
+---
+title: FRHAPI_Role
+---
 
 ```
 struct FRHAPI_Role

@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_MapSelectionListV2`](#structFRHAPI__MapSelectionListV2) | 
 
-## struct `FRHAPI_MapSelectionListV2` <a id="structFRHAPI__MapSelectionListV2"></a>
+---
+title: FRHAPI_MapSelectionListV2
+---
 
 ```
 struct FRHAPI_MapSelectionListV2

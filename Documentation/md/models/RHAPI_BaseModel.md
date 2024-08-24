@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_Model`](#structFRHAPI__Model) | Base class for all RallyHereAPI data models.
 
-## struct `FRHAPI_Model` <a id="structFRHAPI__Model"></a>
+---
+title: FRHAPI_Model
+---
 
 Base class for all RallyHereAPI data models.
 

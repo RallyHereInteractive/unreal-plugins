@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_ConnectionInfo`](#structFRHAPI__ConnectionInfo) | Connection info about the requesting client.
 
-## struct `FRHAPI_ConnectionInfo` <a id="structFRHAPI__ConnectionInfo"></a>
+---
+title: FRHAPI_ConnectionInfo
+---
 
 ```
 struct FRHAPI_ConnectionInfo

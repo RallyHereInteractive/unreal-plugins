@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_MatchMakingProfileV2`](#structFRHAPI__MatchMakingProfileV2) | A profile that describes what pools of players a session will be a part of when matchmaking.
 
-## struct `FRHAPI_MatchMakingProfileV2` <a id="structFRHAPI__MatchMakingProfileV2"></a>
+---
+title: FRHAPI_MatchMakingProfileV2
+---
 
 ```
 struct FRHAPI_MatchMakingProfileV2

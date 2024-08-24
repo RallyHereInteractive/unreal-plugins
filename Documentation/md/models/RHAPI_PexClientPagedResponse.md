@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PexClientPagedResponse`](#structFRHAPI__PexClientPagedResponse) | 
 
-## struct `FRHAPI_PexClientPagedResponse` <a id="structFRHAPI__PexClientPagedResponse"></a>
+---
+title: FRHAPI_PexClientPagedResponse
+---
 
 ```
 struct FRHAPI_PexClientPagedResponse

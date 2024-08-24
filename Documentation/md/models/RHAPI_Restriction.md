@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_Restriction`](#structFRHAPI__Restriction) | Restriction applied to a player.
 
-## struct `FRHAPI_Restriction` <a id="structFRHAPI__Restriction"></a>
+---
+title: FRHAPI_Restriction
+---
 
 ```
 struct FRHAPI_Restriction

@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerRank`](#structFRHAPI__PlayerRank) | Rank data about a specific player.
 
-## struct `FRHAPI_PlayerRank` <a id="structFRHAPI__PlayerRank"></a>
+---
+title: FRHAPI_PlayerRank
+---
 
 ```
 struct FRHAPI_PlayerRank

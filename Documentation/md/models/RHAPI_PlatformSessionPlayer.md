@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlatformSessionPlayer`](#structFRHAPI__PlatformSessionPlayer) | A platform player resource in a platform session.
 
-## struct `FRHAPI_PlatformSessionPlayer` <a id="structFRHAPI__PlatformSessionPlayer"></a>
+---
+title: FRHAPI_PlatformSessionPlayer
+---
 
 ```
 struct FRHAPI_PlatformSessionPlayer

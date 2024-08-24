@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_BodyUpdateOpportunityById`](#structFRHAPI__BodyUpdateOpportunityById) | 
 
-## struct `FRHAPI_BodyUpdateOpportunityById` <a id="structFRHAPI__BodyUpdateOpportunityById"></a>
+---
+title: FRHAPI_BodyUpdateOpportunityById
+---
 
 ```
 struct FRHAPI_BodyUpdateOpportunityById

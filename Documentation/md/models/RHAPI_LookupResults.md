@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_LookupResults`](#structFRHAPI__LookupResults) | Lookup results for a player query.
 
-## struct `FRHAPI_LookupResults` <a id="structFRHAPI__LookupResults"></a>
+---
+title: FRHAPI_LookupResults
+---
 
 ```
 struct FRHAPI_LookupResults

@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_Catalog`](#structFRHAPI__Catalog) | Full list of all loaded objects for the catalog. Organized in a normalized model.
 
-## struct `FRHAPI_Catalog` <a id="structFRHAPI__Catalog"></a>
+---
+title: FRHAPI_Catalog
+---
 
 ```
 struct FRHAPI_Catalog

@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_RankedTeam`](#structFRHAPI__RankedTeam) | One team of players from a match along with their placement in the match, and previous rank data about all of the players.
 
-## struct `FRHAPI_RankedTeam` <a id="structFRHAPI__RankedTeam"></a>
+---
+title: FRHAPI_RankedTeam
+---
 
 ```
 struct FRHAPI_RankedTeam

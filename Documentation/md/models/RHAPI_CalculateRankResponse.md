@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_CalculateRankResponse`](#structFRHAPI__CalculateRankResponse) | A response to recalculating players&#39; ranks.
 
-## struct `FRHAPI_CalculateRankResponse` <a id="structFRHAPI__CalculateRankResponse"></a>
+---
+title: FRHAPI_CalculateRankResponse
+---
 
 ```
 struct FRHAPI_CalculateRankResponse

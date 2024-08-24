@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_SessionPlayer`](#structFRHAPI__SessionPlayer) | A player resource in a session.
 
-## struct `FRHAPI_SessionPlayer` <a id="structFRHAPI__SessionPlayer"></a>
+---
+title: FRHAPI_SessionPlayer
+---
 
 ```
 struct FRHAPI_SessionPlayer

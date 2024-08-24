@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_HTTPValidationError`](#structFRHAPI__HTTPValidationError) | 
 
-## struct `FRHAPI_HTTPValidationError` <a id="structFRHAPI__HTTPValidationError"></a>
+---
+title: FRHAPI_HTTPValidationError
+---
 
 ```
 struct FRHAPI_HTTPValidationError

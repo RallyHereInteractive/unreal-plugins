@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_Vendors`](#structFRHAPI__Vendors) | A collection of Vendors by Vendor ID.
 
-## struct `FRHAPI_Vendors` <a id="structFRHAPI__Vendors"></a>
+---
+title: FRHAPI_Vendors
+---
 
 ```
 struct FRHAPI_Vendors

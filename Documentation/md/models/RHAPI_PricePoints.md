@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PricePoints`](#structFRHAPI__PricePoints) | A collection of Price Points by Price Point ID.
 
-## struct `FRHAPI_PricePoints` <a id="structFRHAPI__PricePoints"></a>
+---
+title: FRHAPI_PricePoints
+---
 
 ```
 struct FRHAPI_PricePoints

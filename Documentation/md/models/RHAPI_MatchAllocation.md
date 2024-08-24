@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_MatchAllocation`](#structFRHAPI__MatchAllocation) | 
 
-## struct `FRHAPI_MatchAllocation` <a id="structFRHAPI__MatchAllocation"></a>
+---
+title: FRHAPI_MatchAllocation
+---
 
 ```
 struct FRHAPI_MatchAllocation

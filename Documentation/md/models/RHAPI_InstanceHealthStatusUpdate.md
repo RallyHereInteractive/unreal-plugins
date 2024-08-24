@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_InstanceHealthStatusUpdate`](#structFRHAPI__InstanceHealthStatusUpdate) | A request body for an instances health check.
 
-## struct `FRHAPI_InstanceHealthStatusUpdate` <a id="structFRHAPI__InstanceHealthStatusUpdate"></a>
+---
+title: FRHAPI_InstanceHealthStatusUpdate
+---
 
 ```
 struct FRHAPI_InstanceHealthStatusUpdate

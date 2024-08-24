@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_EntitlementEventList`](#structFRHAPI__EntitlementEventList) | 
 
-## struct `FRHAPI_EntitlementEventList` <a id="structFRHAPI__EntitlementEventList"></a>
+---
+title: FRHAPI_EntitlementEventList
+---
 
 ```
 struct FRHAPI_EntitlementEventList

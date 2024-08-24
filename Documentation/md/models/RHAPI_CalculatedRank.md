@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_CalculatedRank`](#structFRHAPI__CalculatedRank) | Additional data about a specific player&#39;s rank and previous match in order to make rank calculations.
 
-## struct `FRHAPI_CalculatedRank` <a id="structFRHAPI__CalculatedRank"></a>
+---
+title: FRHAPI_CalculatedRank
+---
 
 ```
 struct FRHAPI_CalculatedRank

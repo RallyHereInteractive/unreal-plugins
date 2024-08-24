@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_MatchWithPlayers`](#structFRHAPI__MatchWithPlayers) | 
 
-## struct `FRHAPI_MatchWithPlayers` <a id="structFRHAPI__MatchWithPlayers"></a>
+---
+title: FRHAPI_MatchWithPlayers
+---
 
 ```
 struct FRHAPI_MatchWithPlayers

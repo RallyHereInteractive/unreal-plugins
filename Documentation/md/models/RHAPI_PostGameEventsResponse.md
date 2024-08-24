@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PostGameEventsResponse`](#structFRHAPI__PostGameEventsResponse) | 
 
-## struct `FRHAPI_PostGameEventsResponse` <a id="structFRHAPI__PostGameEventsResponse"></a>
+---
+title: FRHAPI_PostGameEventsResponse
+---
 
 ```
 struct FRHAPI_PostGameEventsResponse

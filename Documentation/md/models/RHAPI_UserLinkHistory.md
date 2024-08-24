@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_UserLinkHistory`](#structFRHAPI__UserLinkHistory) | 
 
-## struct `FRHAPI_UserLinkHistory` <a id="structFRHAPI__UserLinkHistory"></a>
+---
+title: FRHAPI_UserLinkHistory
+---
 
 ```
 struct FRHAPI_UserLinkHistory

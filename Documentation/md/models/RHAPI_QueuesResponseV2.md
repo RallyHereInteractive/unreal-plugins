@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_QueuesResponseV2`](#structFRHAPI__QueuesResponseV2) | A list of configuration about queues.
 
-## struct `FRHAPI_QueuesResponseV2` <a id="structFRHAPI__QueuesResponseV2"></a>
+---
+title: FRHAPI_QueuesResponseV2
+---
 
 ```
 struct FRHAPI_QueuesResponseV2

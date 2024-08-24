@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlatformUserOperationRequest`](#structFRHAPI__PlatformUserOperationRequest) | Model for doing operations on a specific platform user. If platform/userid information is not provided, the information from the token claims will be used instead.
 
-## struct `FRHAPI_PlatformUserOperationRequest` <a id="structFRHAPI__PlatformUserOperationRequest"></a>
+---
+title: FRHAPI_PlatformUserOperationRequest
+---
 
 ```
 struct FRHAPI_PlatformUserOperationRequest

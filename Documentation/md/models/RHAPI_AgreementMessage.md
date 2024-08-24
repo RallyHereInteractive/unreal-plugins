@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_AgreementMessage`](#structFRHAPI__AgreementMessage) | Error message for when a user has not agreed to the EULA, TOS, or Privacy Policy.
 
-## struct `FRHAPI_AgreementMessage` <a id="structFRHAPI__AgreementMessage"></a>
+---
+title: FRHAPI_AgreementMessage
+---
 
 ```
 struct FRHAPI_AgreementMessage

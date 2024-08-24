@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_InstanceHealthSettingsResponse`](#structFRHAPI__InstanceHealthSettingsResponse) | 
 
-## struct `FRHAPI_InstanceHealthSettingsResponse` <a id="structFRHAPI__InstanceHealthSettingsResponse"></a>
+---
+title: FRHAPI_InstanceHealthSettingsResponse
+---
 
 ```
 struct FRHAPI_InstanceHealthSettingsResponse

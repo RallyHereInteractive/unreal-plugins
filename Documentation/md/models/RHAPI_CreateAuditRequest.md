@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_CreateAuditRequest`](#structFRHAPI__CreateAuditRequest) | 
 
-## struct `FRHAPI_CreateAuditRequest` <a id="structFRHAPI__CreateAuditRequest"></a>
+---
+title: FRHAPI_CreateAuditRequest
+---
 
 ```
 struct FRHAPI_CreateAuditRequest

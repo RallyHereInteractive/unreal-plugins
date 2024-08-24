@@ -42,7 +42,9 @@ Cleanup            | Bootstrapping is cleaning up, and may potentially recycle
 
 An enum for the steps in the bootstrapping flow.
 
-## class `URH_BootstrappingSettings` <a id="classURH__BootstrappingSettings"></a>
+---
+title: URH_BootstrappingSettings
+---
 
 ```
 class URH_BootstrappingSettings
@@ -78,7 +80,9 @@ Maximum number of polls on the finalizer before it is determined to be a failure
 
 Default constructor.
 
-## class `URH_GameInstanceServerBootstrapper` <a id="classURH__GameInstanceServerBootstrapper"></a>
+---
+title: URH_GameInstanceServerBootstrapper
+---
 
 ```
 class URH_GameInstanceServerBootstrapper
@@ -659,7 +663,9 @@ Callback for when the server is logged out (effectively, authorization to the AP
 
 Callback for when a refresh token expires.
 
-## class `URH_GameInstanceClientBootstrapper` <a id="classURH__GameInstanceClientBootstrapper"></a>
+---
+title: URH_GameInstanceClientBootstrapper
+---
 
 ```
 class URH_GameInstanceClientBootstrapper
@@ -690,7 +696,9 @@ Deinitialize the bootstrapper.
 
 Utility function to create an offline session
 
-## class `URH_GameInstanceSubsystem` <a id="classURH__GameInstanceSubsystem"></a>
+---
+title: URH_GameInstanceSubsystem
+---
 
 ```
 class URH_GameInstanceSubsystem
@@ -974,7 +982,9 @@ Handle application deactivating (these involve the game shutting down and pausin
 
 Handle application reactivating (these involve the game shutting down and pausing (such as when a console is put to sleep)).
 
-## struct `FRH_BootstrappingResult` <a id="structFRH__BootstrappingResult"></a>
+---
+title: FRH_BootstrappingResult
+---
 
 An result object that contains the accumulated results for the bootstrapping flow.
 
@@ -1025,7 +1035,9 @@ Whether or not this result is valid (it has the required IDs to be finalized)
 
 Whether or not this result is complete (it has valid and matching session information)
 
-## struct `FRH_ActiveSessionStatePlayerContext` <a id="structFRH__ActiveSessionStatePlayerContext"></a>
+---
+title: FRH_ActiveSessionStatePlayerContext
+---
 
 ### Summary
 

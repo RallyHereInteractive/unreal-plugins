@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerOrdersResponse`](#structFRHAPI__PlayerOrdersResponse) | A collection of Player Orders.
 
-## struct `FRHAPI_PlayerOrdersResponse` <a id="structFRHAPI__PlayerOrdersResponse"></a>
+---
+title: FRHAPI_PlayerOrdersResponse
+---
 
 ```
 struct FRHAPI_PlayerOrdersResponse

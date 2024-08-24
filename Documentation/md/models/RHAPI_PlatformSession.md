@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlatformSession`](#structFRHAPI__PlatformSession) | A platform session resource in a RallyHere session.
 
-## struct `FRHAPI_PlatformSession` <a id="structFRHAPI__PlatformSession"></a>
+---
+title: FRHAPI_PlatformSession
+---
 
 ```
 struct FRHAPI_PlatformSession

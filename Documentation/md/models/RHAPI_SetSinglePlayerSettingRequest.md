@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_SetSinglePlayerSettingRequest`](#structFRHAPI__SetSinglePlayerSettingRequest) | Updatable contents of a setting for a player.
 
-## struct `FRHAPI_SetSinglePlayerSettingRequest` <a id="structFRHAPI__SetSinglePlayerSettingRequest"></a>
+---
+title: FRHAPI_SetSinglePlayerSettingRequest
+---
 
 ```
 struct FRHAPI_SetSinglePlayerSettingRequest

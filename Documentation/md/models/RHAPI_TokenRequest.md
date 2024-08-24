@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_TokenRequest`](#structFRHAPI__TokenRequest) | OAuth2 Token Request.
 
-## struct `FRHAPI_TokenRequest` <a id="structFRHAPI__TokenRequest"></a>
+---
+title: FRHAPI_TokenRequest
+---
 
 ```
 struct FRHAPI_TokenRequest

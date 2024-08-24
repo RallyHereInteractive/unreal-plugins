@@ -8,7 +8,9 @@
 `class `[`URH_RHFriendAndPlatformFriend`](#classURH__RHFriendAndPlatformFriend) | RH Friend and Platform Friend class that wraps a Rally Here Friend and Platform Friend together.
 `class `[`URH_FriendSubsystem`](#classURH__FriendSubsystem) | Friends Subsystem for handling a users relationships with other players.
 
-## class `URH_PlatformFriend` <a id="classURH__PlatformFriend"></a>
+---
+title: URH_PlatformFriend
+---
 
 ```
 class URH_PlatformFriend
@@ -202,7 +204,9 @@ If the player is requesting your friendship via platform.
 
 If the player has a pendinf friendship request via platform.
 
-## class `URH_RHFriendAndPlatformFriend` <a id="classURH__RHFriendAndPlatformFriend"></a>
+---
+title: URH_RHFriendAndPlatformFriend
+---
 
 ```
 class URH_RHFriendAndPlatformFriend
@@ -472,7 +476,9 @@ Clears the cached friendship status for the player.
 
 Clears cached data for the platform friends for this player.
 
-## class `URH_FriendSubsystem` <a id="classURH__FriendSubsystem"></a>
+---
+title: URH_FriendSubsystem
+---
 
 ```
 class URH_FriendSubsystem

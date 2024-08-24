@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_JoinParams`](#structFRHAPI__JoinParams) | Parameters provided by the allocation system or an instance on how to connect.
 
-## struct `FRHAPI_JoinParams` <a id="structFRHAPI__JoinParams"></a>
+---
+title: FRHAPI_JoinParams
+---
 
 ```
 struct FRHAPI_JoinParams

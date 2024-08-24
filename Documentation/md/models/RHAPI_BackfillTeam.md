@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_BackfillTeam`](#structFRHAPI__BackfillTeam) | 
 
-## struct `FRHAPI_BackfillTeam` <a id="structFRHAPI__BackfillTeam"></a>
+---
+title: FRHAPI_BackfillTeam
+---
 
 ```
 struct FRHAPI_BackfillTeam

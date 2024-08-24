@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_MatchMakingSessionRequest`](#structFRHAPI__MatchMakingSessionRequest) | A request body for a new matchmade session to be created.
 
-## struct `FRHAPI_MatchMakingSessionRequest` <a id="structFRHAPI__MatchMakingSessionRequest"></a>
+---
+title: FRHAPI_MatchMakingSessionRequest
+---
 
 ```
 struct FRHAPI_MatchMakingSessionRequest

@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_RankConfigV3`](#structFRHAPI__RankConfigV3) | Configuration about a specific rank type.
 
-## struct `FRHAPI_RankConfigV3` <a id="structFRHAPI__RankConfigV3"></a>
+---
+title: FRHAPI_RankConfigV3
+---
 
 ```
 struct FRHAPI_RankConfigV3

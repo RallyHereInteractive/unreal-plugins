@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_KVsResponseV2`](#structFRHAPI__KVsResponseV2) | 
 
-## struct `FRHAPI_KVsResponseV2` <a id="structFRHAPI__KVsResponseV2"></a>
+---
+title: FRHAPI_KVsResponseV2
+---
 
 ```
 struct FRHAPI_KVsResponseV2

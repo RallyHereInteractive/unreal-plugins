@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlatformUserResponse`](#structFRHAPI__PlatformUserResponse) | Response for successfully creating a platform user.
 
-## struct `FRHAPI_PlatformUserResponse` <a id="structFRHAPI__PlatformUserResponse"></a>
+---
+title: FRHAPI_PlatformUserResponse
+---
 
 ```
 struct FRHAPI_PlatformUserResponse

@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerSessionInvite`](#structFRHAPI__PlayerSessionInvite) | Information about an invite to a session that a player received.
 
-## struct `FRHAPI_PlayerSessionInvite` <a id="structFRHAPI__PlayerSessionInvite"></a>
+---
+title: FRHAPI_PlayerSessionInvite
+---
 
 ```
 struct FRHAPI_PlayerSessionInvite

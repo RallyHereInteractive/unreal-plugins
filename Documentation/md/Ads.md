@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `class `[`URH_AdSubsystem`](#classURH__AdSubsystem) | Ad Subsystem used for serving and responging to ad operrtunities for players.
 
-## class `URH_AdSubsystem` <a id="classURH__AdSubsystem"></a>
+---
+title: URH_AdSubsystem
+---
 
 ```
 class URH_AdSubsystem

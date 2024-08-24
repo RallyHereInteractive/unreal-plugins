@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_MarketingCampaigns`](#structFRHAPI__MarketingCampaigns) | List of external Marketing Campaigns.
 
-## struct `FRHAPI_MarketingCampaigns` <a id="structFRHAPI__MarketingCampaigns"></a>
+---
+title: FRHAPI_MarketingCampaigns
+---
 
 ```
 struct FRHAPI_MarketingCampaigns

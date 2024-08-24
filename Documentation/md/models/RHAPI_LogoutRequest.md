@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_LogoutRequest`](#structFRHAPI__LogoutRequest) | Logout request.
 
-## struct `FRHAPI_LogoutRequest` <a id="structFRHAPI__LogoutRequest"></a>
+---
+title: FRHAPI_LogoutRequest
+---
 
 ```
 struct FRHAPI_LogoutRequest

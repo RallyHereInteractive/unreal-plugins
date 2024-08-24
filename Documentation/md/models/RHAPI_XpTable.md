@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_XpTable`](#structFRHAPI__XpTable) | A collection of XP Levels from 1 to N. Each level has a minimum XP value.
 
-## struct `FRHAPI_XpTable` <a id="structFRHAPI__XpTable"></a>
+---
+title: FRHAPI_XpTable
+---
 
 ```
 struct FRHAPI_XpTable

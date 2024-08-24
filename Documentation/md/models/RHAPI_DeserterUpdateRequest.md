@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_DeserterUpdateRequest`](#structFRHAPI__DeserterUpdateRequest) | 
 
-## struct `FRHAPI_DeserterUpdateRequest` <a id="structFRHAPI__DeserterUpdateRequest"></a>
+---
+title: FRHAPI_DeserterUpdateRequest
+---
 
 ```
 struct FRHAPI_DeserterUpdateRequest

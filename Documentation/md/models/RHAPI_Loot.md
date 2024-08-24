@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_Loot`](#structFRHAPI__Loot) | Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is granted to the player or the Sub Vendor is fulfilled but not both.
 
-## struct `FRHAPI_Loot` <a id="structFRHAPI__Loot"></a>
+---
+title: FRHAPI_Loot
+---
 
 ```
 struct FRHAPI_Loot

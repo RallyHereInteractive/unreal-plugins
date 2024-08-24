@@ -32,7 +32,9 @@
 
 #### `public FORCEINLINE FJsonFragment `[`JsonValueToFragment`](#group__Events_1ga030389845523022e1934e67c81e62df9)`(const TSharedPtr< FJsonValue > & InJsonValue)` <a id="group__Events_1ga030389845523022e1934e67c81e62df9"></a>
 
-## struct `RHStandardEvents::FCorrelationStartEvent` <a id="structRHStandardEvents_1_1FCorrelationStartEvent"></a>
+---
+title: RHStandardEvents::FCorrelationStartEvent
+---
 
 Event that is triggered at the start of the application and when we have generated a correlation_id to track events.
 
@@ -101,7 +103,9 @@ custom data fields (will be auto-prefixed with custom data prefix)
 
 #### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FCorrelationStartEvent_1aa06c42ce5f4bb34ad9f481c14c2e806d)`(TSharedPtr< IAnalyticsProvider > Provider) const` <a id="structRHStandardEvents_1_1FCorrelationStartEvent_1aa06c42ce5f4bb34ad9f481c14c2e806d"></a>
 
-## struct `RHStandardEvents::FCorrelationEndEvent` <a id="structRHStandardEvents_1_1FCorrelationEndEvent"></a>
+---
+title: RHStandardEvents::FCorrelationEndEvent
+---
 
 This event is triggered to mark the end of tracking events. Typically triggered when the client gracefully is closed.
 
@@ -135,7 +139,9 @@ custom data fields (will be auto-prefixed with custom data prefix)
 
 #### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FCorrelationEndEvent_1acbe26340b20e312185ca15cb63410c52)`(TSharedPtr< IAnalyticsProvider > Provider) const` <a id="structRHStandardEvents_1_1FCorrelationEndEvent_1acbe26340b20e312185ca15cb63410c52"></a>
 
-## struct `RHStandardEvents::FClientDeviceEvent` <a id="structRHStandardEvents_1_1FClientDeviceEvent"></a>
+---
+title: RHStandardEvents::FClientDeviceEvent
+---
 
 Records the first time a user launches an app and when device information changes.
 
@@ -204,7 +210,9 @@ custom data fields (will be auto-prefixed with custom data prefix)
 
 #### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FClientDeviceEvent_1a54f90bffb25c8b36caf77e901b7f32ed)`(TSharedPtr< IAnalyticsProvider > Provider) const` <a id="structRHStandardEvents_1_1FClientDeviceEvent_1a54f90bffb25c8b36caf77e901b7f32ed"></a>
 
-## struct `RHStandardEvents::FInstanceJoinStartEvent` <a id="structRHStandardEvents_1_1FInstanceJoinStartEvent"></a>
+---
+title: RHStandardEvents::FInstanceJoinStartEvent
+---
 
 This event is triggered when the player / game client has an instance to connect to and has started the process to connect to it.
 
@@ -243,7 +251,9 @@ custom data fields (will be auto-prefixed with custom data prefix)
 
 #### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceJoinStartEvent_1a18aae3f8bfeeb923bfcf877511d26cc9)`(TSharedPtr< IAnalyticsProvider > Provider) const` <a id="structRHStandardEvents_1_1FInstanceJoinStartEvent_1a18aae3f8bfeeb923bfcf877511d26cc9"></a>
 
-## struct `RHStandardEvents::FInstanceJoinCompleteEvent` <a id="structRHStandardEvents_1_1FInstanceJoinCompleteEvent"></a>
+---
+title: RHStandardEvents::FInstanceJoinCompleteEvent
+---
 
 This event is triggered when the player / game client has attempted to connect to the instance.This event will capture both the success and the failure to connect to an instance.
 
@@ -287,7 +297,9 @@ custom data fields (will be auto-prefixed with custom data prefix)
 
 #### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceJoinCompleteEvent_1a2b9f43b23fb6ea4254f6cdb3dd5d03b0)`(TSharedPtr< IAnalyticsProvider > Provider) const` <a id="structRHStandardEvents_1_1FInstanceJoinCompleteEvent_1a2b9f43b23fb6ea4254f6cdb3dd5d03b0"></a>
 
-## struct `RHStandardEvents::FInstanceLeftEvent` <a id="structRHStandardEvents_1_1FInstanceLeftEvent"></a>
+---
+title: RHStandardEvents::FInstanceLeftEvent
+---
 
 This event is triggered when a player / game client has disconnected from the instance.
 
@@ -326,7 +338,9 @@ custom data fields (will be auto-prefixed with custom data prefix)
 
 #### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceLeftEvent_1adeafad021ed9b7fe7ea6c07237a4e5e0)`(TSharedPtr< IAnalyticsProvider > Provider) const` <a id="structRHStandardEvents_1_1FInstanceLeftEvent_1adeafad021ed9b7fe7ea6c07237a4e5e0"></a>
 
-## struct `RHStandardEvents::FInstanceHelloReceivedEvent` <a id="structRHStandardEvents_1_1FInstanceHelloReceivedEvent"></a>
+---
+title: RHStandardEvents::FInstanceHelloReceivedEvent
+---
 
 This event is triggered when the host detects a hello signal from a player / game client attempting to connect to it.
 
@@ -370,7 +384,9 @@ custom data fields (will be auto-prefixed with custom data prefix)
 
 #### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1acb3da06c8a8e2a674b37513cc8225f5c)`(TSharedPtr< IAnalyticsProvider > Provider) const` <a id="structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1acb3da06c8a8e2a674b37513cc8225f5c"></a>
 
-## struct `RHStandardEvents::FInstanceLoginReceivedEvent` <a id="structRHStandardEvents_1_1FInstanceLoginReceivedEvent"></a>
+---
+title: RHStandardEvents::FInstanceLoginReceivedEvent
+---
 
 This event is triggered when the host receives a login signal from a player / game client attempting to connect to it.
 
@@ -432,7 +448,9 @@ custom data fields (will be auto-prefixed with custom data prefix)
 
 #### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1a636bc78d31cc71600065a000f9ef4920)`(TSharedPtr< IAnalyticsProvider > Provider) const` <a id="structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1a636bc78d31cc71600065a000f9ef4920"></a>
 
-## struct `RHStandardEvents::FInstanceJoinReceivedEvent` <a id="structRHStandardEvents_1_1FInstanceJoinReceivedEvent"></a>
+---
+title: RHStandardEvents::FInstanceJoinReceivedEvent
+---
 
 This event is triggered when the host receives a join signal from a player / game client attempting to connect to it.
 
@@ -474,7 +492,9 @@ custom data fields (will be auto-prefixed with custom data prefix)
 
 #### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1a5346d8d8bfaf1197ead639cfe58ba231)`(TSharedPtr< IAnalyticsProvider > Provider) const` <a id="structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1a5346d8d8bfaf1197ead639cfe58ba231"></a>
 
-## struct `RHStandardEvents::FInstanceClientDisconnectEvent` <a id="structRHStandardEvents_1_1FInstanceClientDisconnectEvent"></a>
+---
+title: RHStandardEvents::FInstanceClientDisconnectEvent
+---
 
 This event is triggered when the host detects a client disconnection (either caused by it, or by the client).
 
@@ -518,7 +538,9 @@ custom data fields (will be auto-prefixed with custom data prefix)
 
 #### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1a518754aa3e41452b87a617ba74047d2f)`(TSharedPtr< IAnalyticsProvider > Provider) const` <a id="structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1a518754aa3e41452b87a617ba74047d2f"></a>
 
-## struct `RHStandardEvents::FLoginStartEvent` <a id="structRHStandardEvents_1_1FLoginStartEvent"></a>
+---
+title: RHStandardEvents::FLoginStartEvent
+---
 
 This event is triggered at the start of the client login process.
 
@@ -547,7 +569,9 @@ custom data fields (will be auto-prefixed with custom data prefix)
 
 #### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FLoginStartEvent_1af024329f3908140ea3739f1a21e6f968)`(TSharedPtr< IAnalyticsProvider > Provider) const` <a id="structRHStandardEvents_1_1FLoginStartEvent_1af024329f3908140ea3739f1a21e6f968"></a>
 
-## struct `RHStandardEvents::FLoginCompleteEvent` <a id="structRHStandardEvents_1_1FLoginCompleteEvent"></a>
+---
+title: RHStandardEvents::FLoginCompleteEvent
+---
 
 This event is triggered when the login process has completed.This event is meant to capture both successful and failed login attempts.
 
@@ -616,7 +640,9 @@ custom data fields (will be auto-prefixed with custom data prefix)
 
 #### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FLoginCompleteEvent_1abde8b2f4341c987eb3517d4886eb4a11)`(TSharedPtr< IAnalyticsProvider > Provider) const` <a id="structRHStandardEvents_1_1FLoginCompleteEvent_1abde8b2f4341c987eb3517d4886eb4a11"></a>
 
-## struct `RHStandardEvents::FObjectiveProgressEvent` <a id="structRHStandardEvents_1_1FObjectiveProgressEvent"></a>
+---
+title: RHStandardEvents::FObjectiveProgressEvent
+---
 
 This event is meant to be triggered when a player has earned progress on an objective.The RHIntegration Plugin will not automatically trigger this, but this event is something that RallyHere will process and have an understanding of the data.
 
@@ -715,7 +741,9 @@ custom data fields (will be auto-prefixed with custom data prefix)
 
 #### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FObjectiveProgressEvent_1a4d6366be8ce37f2622f2b4902051a58c)`(TSharedPtr< IAnalyticsProvider > Provider) const` <a id="structRHStandardEvents_1_1FObjectiveProgressEvent_1a4d6366be8ce37f2622f2b4902051a58c"></a>
 
-## struct `RHStandardEvents::FPlayerGameResultEvent` <a id="structRHStandardEvents_1_1FPlayerGameResultEvent"></a>
+---
+title: RHStandardEvents::FPlayerGameResultEvent
+---
 
 This event is meant to capture high level information about a completed match.
 
@@ -789,7 +817,9 @@ custom data fields (will be auto-prefixed with custom data prefix)
 
 #### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FPlayerGameResultEvent_1a6b9c96a90cfbbd0572315f8b80166868)`(TSharedPtr< IAnalyticsProvider > Provider) const` <a id="structRHStandardEvents_1_1FPlayerGameResultEvent_1a6b9c96a90cfbbd0572315f8b80166868"></a>
 
-## struct `RHStandardEvents::FPlatformPurchaseEvent` <a id="structRHStandardEvents_1_1FPlatformPurchaseEvent"></a>
+---
+title: RHStandardEvents::FPlatformPurchaseEvent
+---
 
 This event is triggered when processing of a real money purchase has been completed.
 
@@ -828,7 +858,9 @@ custom data fields (will be auto-prefixed with custom data prefix)
 
 #### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FPlatformPurchaseEvent_1ae736aa93ea8284152324d901169d459c)`(TSharedPtr< IAnalyticsProvider > Provider) const` <a id="structRHStandardEvents_1_1FPlatformPurchaseEvent_1ae736aa93ea8284152324d901169d459c"></a>
 
-## struct `RHStandardEvents::FCustomEvent` <a id="structRHStandardEvents_1_1FCustomEvent"></a>
+---
+title: RHStandardEvents::FCustomEvent
+---
 
 This is a wrapper for providing custom event data.
 

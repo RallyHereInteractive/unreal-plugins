@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `class `[`URH_RemoteFileSubsystem`](#classURH__RemoteFileSubsystem) | File Subsystem used for file API calls.
 
-## class `URH_RemoteFileSubsystem` <a id="classURH__RemoteFileSubsystem"></a>
+---
+title: URH_RemoteFileSubsystem
+---
 
 ```
 class URH_RemoteFileSubsystem

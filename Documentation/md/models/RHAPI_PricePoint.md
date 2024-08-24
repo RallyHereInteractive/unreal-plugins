@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PricePoint`](#structFRHAPI__PricePoint) | A collection of Price Breakpoints (volume pricing).
 
-## struct `FRHAPI_PricePoint` <a id="structFRHAPI__PricePoint"></a>
+---
+title: FRHAPI_PricePoint
+---
 
 ```
 struct FRHAPI_PricePoint

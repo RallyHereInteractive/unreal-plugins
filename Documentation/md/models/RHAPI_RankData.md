@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_RankData`](#structFRHAPI__RankData) | Ranked data about a player&#39;s skill and confidence levels.
 
-## struct `FRHAPI_RankData` <a id="structFRHAPI__RankData"></a>
+---
+title: FRHAPI_RankData
+---
 
 ```
 struct FRHAPI_RankData

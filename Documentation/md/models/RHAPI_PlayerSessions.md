@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerSessions`](#structFRHAPI__PlayerSessions) | Information about all sessions that a player is currently a member of, or invited to.
 
-## struct `FRHAPI_PlayerSessions` <a id="structFRHAPI__PlayerSessions"></a>
+---
+title: FRHAPI_PlayerSessions
+---
 
 ```
 struct FRHAPI_PlayerSessions

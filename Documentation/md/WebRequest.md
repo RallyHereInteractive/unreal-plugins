@@ -8,7 +8,9 @@
 `struct `[`FRH_WebResponse`](#structFRH__WebResponse) | Web call response data.
 `struct `[`FRH_WebRequest`](#structFRH__WebRequest) | Web call request data.
 
-## class `FRH_WebRequests` <a id="classFRH__WebRequests"></a>
+---
+title: FRH_WebRequests
+---
 
 ```
 class FRH_WebRequests
@@ -159,7 +161,9 @@ Detects bursts in recent call counts (last 60s). The time and count thresholds f
 
 * `OutBurstMapByURL` Pointer to output burst map by Simplified Path (Simplified Path -> NUMBER_OF_BURSTS, LARGEST_BURST)
 
-## struct `FRH_WebResponse` <a id="structFRH__WebResponse"></a>
+---
+title: FRH_WebResponse
+---
 
 Web call response data.
 
@@ -198,7 +202,9 @@ The tiem the response was received.
 
 #### `public inline  `[`FRH_WebResponse`](#structFRH__WebResponse_1a330ebd43596c9c11d0acd83bbe3cc34f)`()` <a id="structFRH__WebResponse_1a330ebd43596c9c11d0acd83bbe3cc34f"></a>
 
-## struct `FRH_WebRequest` <a id="structFRH__WebRequest"></a>
+---
+title: FRH_WebRequest
+---
 
 Web call request data.
 

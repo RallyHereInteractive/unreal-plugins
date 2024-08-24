@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_AcknowledgeBackfillRequest`](#structFRHAPI__AcknowledgeBackfillRequest) | 
 
-## struct `FRHAPI_AcknowledgeBackfillRequest` <a id="structFRHAPI__AcknowledgeBackfillRequest"></a>
+---
+title: FRHAPI_AcknowledgeBackfillRequest
+---
 
 ```
 struct FRHAPI_AcknowledgeBackfillRequest

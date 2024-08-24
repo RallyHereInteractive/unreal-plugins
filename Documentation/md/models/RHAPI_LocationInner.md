@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_LocationInner`](#structFRHAPI__LocationInner) | 
 
-## struct `FRHAPI_LocationInner` <a id="structFRHAPI__LocationInner"></a>
+---
+title: FRHAPI_LocationInner
+---
 
 ```
 struct FRHAPI_LocationInner

@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_BodyBeginNewSession`](#structFRHAPI__BodyBeginNewSession) | 
 
-## struct `FRHAPI_BodyBeginNewSession` <a id="structFRHAPI__BodyBeginNewSession"></a>
+---
+title: FRHAPI_BodyBeginNewSession
+---
 
 ```
 struct FRHAPI_BodyBeginNewSession

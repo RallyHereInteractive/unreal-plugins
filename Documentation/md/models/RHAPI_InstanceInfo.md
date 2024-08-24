@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_InstanceInfo`](#structFRHAPI__InstanceInfo) | Information about the instance resource in a session.
 
-## struct `FRHAPI_InstanceInfo` <a id="structFRHAPI__InstanceInfo"></a>
+---
+title: FRHAPI_InstanceInfo
+---
 
 ```
 struct FRHAPI_InstanceInfo

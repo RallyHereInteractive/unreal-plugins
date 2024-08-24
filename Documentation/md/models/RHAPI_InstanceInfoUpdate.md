@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_InstanceInfoUpdate`](#structFRHAPI__InstanceInfoUpdate) | A request body to update the instance resource in a session.
 
-## struct `FRHAPI_InstanceInfoUpdate` <a id="structFRHAPI__InstanceInfoUpdate"></a>
+---
+title: FRHAPI_InstanceInfoUpdate
+---
 
 ```
 struct FRHAPI_InstanceInfoUpdate

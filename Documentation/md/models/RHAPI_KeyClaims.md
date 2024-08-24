@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_KeyClaims`](#structFRHAPI__KeyClaims) | List of Key Claims available to the player.
 
-## struct `FRHAPI_KeyClaims` <a id="structFRHAPI__KeyClaims"></a>
+---
+title: FRHAPI_KeyClaims
+---
 
 ```
 struct FRHAPI_KeyClaims

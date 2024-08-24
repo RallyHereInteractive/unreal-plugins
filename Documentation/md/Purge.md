@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `class `[`URH_PurgeSubsystem`](#classURH__PurgeSubsystem) | Subsystem to manage purging a players account.
 
-## class `URH_PurgeSubsystem` <a id="classURH__PurgeSubsystem"></a>
+---
+title: URH_PurgeSubsystem
+---
 
 ```
 class URH_PurgeSubsystem

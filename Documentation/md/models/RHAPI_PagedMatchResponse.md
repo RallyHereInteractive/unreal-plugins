@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PagedMatchResponse`](#structFRHAPI__PagedMatchResponse) | 
 
-## struct `FRHAPI_PagedMatchResponse` <a id="structFRHAPI__PagedMatchResponse"></a>
+---
+title: FRHAPI_PagedMatchResponse
+---
 
 ```
 struct FRHAPI_PagedMatchResponse

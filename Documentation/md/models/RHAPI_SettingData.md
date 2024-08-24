@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_SettingData`](#structFRHAPI__SettingData) | Setting version/value data from a specific setting type/key for a player.
 
-## struct `FRHAPI_SettingData` <a id="structFRHAPI__SettingData"></a>
+---
+title: FRHAPI_SettingData
+---
 
 ```
 struct FRHAPI_SettingData

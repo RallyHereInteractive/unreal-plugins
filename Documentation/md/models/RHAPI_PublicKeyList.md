@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PublicKeyList`](#structFRHAPI__PublicKeyList) | List of public keys for verifying Access Token JWTs. This is in the JWK Set format as defined in [https://datatracker.ietf.org/doc/html/rfc7517#section-5](https://datatracker.ietf.org/doc/html/rfc7517#section-5).
 
-## struct `FRHAPI_PublicKeyList` <a id="structFRHAPI__PublicKeyList"></a>
+---
+title: FRHAPI_PublicKeyList
+---
 
 ```
 struct FRHAPI_PublicKeyList

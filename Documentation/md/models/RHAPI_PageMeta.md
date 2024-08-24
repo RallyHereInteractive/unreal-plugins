@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PageMeta`](#structFRHAPI__PageMeta) | 
 
-## struct `FRHAPI_PageMeta` <a id="structFRHAPI__PageMeta"></a>
+---
+title: FRHAPI_PageMeta
+---
 
 ```
 struct FRHAPI_PageMeta

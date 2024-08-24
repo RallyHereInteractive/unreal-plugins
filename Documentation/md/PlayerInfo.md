@@ -16,7 +16,9 @@
 `struct `[`FRH_PlayerSettingKeySetWrapper`](#structFRH__PlayerSettingKeySetWrapper) | Wrapper to help with setting keys for player settings.
 `struct `[`FRH_PlayerAndPlatformInfo`](#structFRH__PlayerAndPlatformInfo) | Wrapper to pair a players Unique Player Id and their current logged in Platform Id.
 
-## class `URH_PlayerInfoSubobject` <a id="classURH__PlayerInfoSubobject"></a>
+---
+title: URH_PlayerInfoSubobject
+---
 
 ```
 class URH_PlayerInfoSubobject
@@ -150,7 +152,9 @@ Handles executing any delegate listeners for the update.
 #### Parameters
 * `bSuccess` If the poll was successful.
 
-## class `URH_PlayerPresence` <a id="classURH__PlayerPresence"></a>
+---
+title: URH_PlayerPresence
+---
 
 ```
 class URH_PlayerPresence
@@ -210,7 +214,9 @@ Stores the response data from an API presence request.
 
 #### `typedef `[`GetPresenceType`](#classURH__PlayerPresence_1a08e8229618b324bafea2d8195b6b9214) <a id="classURH__PlayerPresence_1a08e8229618b324bafea2d8195b6b9214"></a>
 
-## class `URH_PlayerSessions` <a id="classURH__PlayerSessions"></a>
+---
+title: URH_PlayerSessions
+---
 
 ```
 class URH_PlayerSessions
@@ -250,7 +256,9 @@ Stores the response data from an API request.
 
 #### `typedef `[`GetSessionsType`](#classURH__PlayerSessions_1afa8a5657954ca5d686f07cea03b23b92) <a id="classURH__PlayerSessions_1afa8a5657954ca5d686f07cea03b23b92"></a>
 
-## class `URH_PlayerDeserter` <a id="classURH__PlayerDeserter"></a>
+---
+title: URH_PlayerDeserter
+---
 
 ```
 class URH_PlayerDeserter
@@ -329,7 +337,9 @@ Stores the response data from an API request.
 
 #### `typedef `[`ClearAllDeserterType`](#classURH__PlayerDeserter_1a381d7584a5c025924cfecf661c5b4a37) <a id="classURH__PlayerDeserter_1a381d7584a5c025924cfecf661c5b4a37"></a>
 
-## class `URH_PlayerMatches` <a id="classURH__PlayerMatches"></a>
+---
+title: URH_PlayerMatches
+---
 
 ```
 class URH_PlayerMatches
@@ -396,7 +406,9 @@ Stores the response data from an API presence request.
 
 #### `typedef `[`GetMatchesType`](#classURH__PlayerMatches_1a13c41a6b6f28555aa13c6536c706c8b9) <a id="classURH__PlayerMatches_1a13c41a6b6f28555aa13c6536c706c8b9"></a>
 
-## class `URH_PlayerReports` <a id="classURH__PlayerReports"></a>
+---
+title: URH_PlayerReports
+---
 
 ```
 class URH_PlayerReports
@@ -483,7 +495,9 @@ Create a new report for the target player with a specific auth context.
 
 #### `typedef `[`CreateReportType`](#classURH__PlayerReports_1a6b101fa42b9857a05a752b07cade837d) <a id="classURH__PlayerReports_1a6b101fa42b9857a05a752b07cade837d"></a>
 
-## class `URH_PlayerPlatformInfo` <a id="classURH__PlayerPlatformInfo"></a>
+---
+title: URH_PlayerPlatformInfo
+---
 
 ```
 class URH_PlayerPlatformInfo
@@ -541,7 +555,9 @@ Gets the display name stored the last time this player logged in to the Rally He
 #### Returns
 The players display name for the platform.
 
-## class `URH_PlayerInfo` <a id="classURH__PlayerInfo"></a>
+---
+title: URH_PlayerInfo
+---
 
 ```
 class URH_PlayerInfo
@@ -1039,7 +1055,9 @@ Handles the response to a Update Player Ranking call.
 
 #### `typedef `[`UpdateRanking`](#classURH__PlayerInfo_1a0dde72a36a43d91264f8dc89aafcd5de) <a id="classURH__PlayerInfo_1a0dde72a36a43d91264f8dc89aafcd5de"></a>
 
-## class `URH_PlayerInfoSubsystem` <a id="classURH__PlayerInfoSubsystem"></a>
+---
+title: URH_PlayerInfoSubsystem
+---
 
 ```
 class URH_PlayerInfoSubsystem
@@ -1240,7 +1258,9 @@ Handles the response to a Lookup Player By Platform User Id call.
 
 #### `typedef `[`TLookupPlayer`](#classURH__PlayerInfoSubsystem_1a221cacf49cc61a7df9b7e791befbb312) <a id="classURH__PlayerInfoSubsystem_1a221cacf49cc61a7df9b7e791befbb312"></a>
 
-## struct `FRH_PlayerSettingKeySetWrapper` <a id="structFRH__PlayerSettingKeySetWrapper"></a>
+---
+title: FRH_PlayerSettingKeySetWrapper
+---
 
 Wrapper to help with setting keys for player settings.
 
@@ -1261,7 +1281,9 @@ Set of keys being set by the settings update.
 
 Default constructor.
 
-## struct `FRH_PlayerAndPlatformInfo` <a id="structFRH__PlayerAndPlatformInfo"></a>
+---
+title: FRH_PlayerAndPlatformInfo
+---
 
 Wrapper to pair a players Unique Player Id and their current logged in Platform Id.
 

@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerDeserterStatus`](#structFRHAPI__PlayerDeserterStatus) | 
 
-## struct `FRHAPI_PlayerDeserterStatus` <a id="structFRHAPI__PlayerDeserterStatus"></a>
+---
+title: FRHAPI_PlayerDeserterStatus
+---
 
 ```
 struct FRHAPI_PlayerDeserterStatus

@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_InstanceRequestTemplate`](#structFRHAPI__InstanceRequestTemplate) | Configuration about how an instance should behave when it&#39;s allocated.
 
-## struct `FRHAPI_InstanceRequestTemplate` <a id="structFRHAPI__InstanceRequestTemplate"></a>
+---
+title: FRHAPI_InstanceRequestTemplate
+---
 
 ```
 struct FRHAPI_InstanceRequestTemplate

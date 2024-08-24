@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_DeserterConfig`](#structFRHAPI__DeserterConfig) | 
 
-## struct `FRHAPI_DeserterConfig` <a id="structFRHAPI__DeserterConfig"></a>
+---
+title: FRHAPI_DeserterConfig
+---
 
 ```
 struct FRHAPI_DeserterConfig

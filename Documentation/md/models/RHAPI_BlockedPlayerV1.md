@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_BlockedPlayerV1`](#structFRHAPI__BlockedPlayerV1) | The player that is being blocked. V1 includes player_id and player_uuid.
 
-## struct `FRHAPI_BlockedPlayerV1` <a id="structFRHAPI__BlockedPlayerV1"></a>
+---
+title: FRHAPI_BlockedPlayerV1
+---
 
 ```
 struct FRHAPI_BlockedPlayerV1

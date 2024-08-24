@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlatformIndividualCCUs`](#structFRHAPI__PlatformIndividualCCUs) | 
 
-## struct `FRHAPI_PlatformIndividualCCUs` <a id="structFRHAPI__PlatformIndividualCCUs"></a>
+---
+title: FRHAPI_PlatformIndividualCCUs
+---
 
 ```
 struct FRHAPI_PlatformIndividualCCUs

@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PortalTokenDetailsRequest`](#structFRHAPI__PortalTokenDetailsRequest) | 
 
-## struct `FRHAPI_PortalTokenDetailsRequest` <a id="structFRHAPI__PortalTokenDetailsRequest"></a>
+---
+title: FRHAPI_PortalTokenDetailsRequest
+---
 
 ```
 struct FRHAPI_PortalTokenDetailsRequest

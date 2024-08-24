@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_LootPriceCurrency`](#structFRHAPI__LootPriceCurrency) | One currency (of potentially multiple) that can be used for a purchase, and how much of that currency is required for the purchase.
 
-## struct `FRHAPI_LootPriceCurrency` <a id="structFRHAPI__LootPriceCurrency"></a>
+---
+title: FRHAPI_LootPriceCurrency
+---
 
 ```
 struct FRHAPI_LootPriceCurrency

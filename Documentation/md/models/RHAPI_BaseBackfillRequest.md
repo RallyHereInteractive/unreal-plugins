@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_BaseBackfillRequest`](#structFRHAPI__BaseBackfillRequest) | 
 
-## struct `FRHAPI_BaseBackfillRequest` <a id="structFRHAPI__BaseBackfillRequest"></a>
+---
+title: FRHAPI_BaseBackfillRequest
+---
 
 ```
 struct FRHAPI_BaseBackfillRequest

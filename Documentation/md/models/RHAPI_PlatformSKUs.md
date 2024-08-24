@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlatformSKUs`](#structFRHAPI__PlatformSKUs) | A collection of SKUs.
 
-## struct `FRHAPI_PlatformSKUs` <a id="structFRHAPI__PlatformSKUs"></a>
+---
+title: FRHAPI_PlatformSKUs
+---
 
 ```
 struct FRHAPI_PlatformSKUs

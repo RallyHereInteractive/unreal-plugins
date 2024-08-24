@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_MarketingCampaign`](#structFRHAPI__MarketingCampaign) | A Marketing Campaign is a set of external keys that can be claimed by players.The key claims are assigned to the player based on.
 
-## struct `FRHAPI_MarketingCampaign` <a id="structFRHAPI__MarketingCampaign"></a>
+---
+title: FRHAPI_MarketingCampaign
+---
 
 ```
 struct FRHAPI_MarketingCampaign

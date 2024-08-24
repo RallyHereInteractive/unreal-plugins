@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_CreateInventoryRequests`](#structFRHAPI__CreateInventoryRequests) | Collection of Create Inventory Requests. This will create new Inventory for each request. Each individual entry will be processed in the order they are specified in the collection. <b>Note: Partial success is possible as each request is processed individually.</b>.
 
-## struct `FRHAPI_CreateInventoryRequests` <a id="structFRHAPI__CreateInventoryRequests"></a>
+---
+title: FRHAPI_CreateInventoryRequests
+---
 
 ```
 struct FRHAPI_CreateInventoryRequests

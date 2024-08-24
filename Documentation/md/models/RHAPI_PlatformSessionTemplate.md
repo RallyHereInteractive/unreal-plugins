@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlatformSessionTemplate`](#structFRHAPI__PlatformSessionTemplate) | Template used to create new platform sessions for a specific type of platform. Configurable in the developer portal.
 
-## struct `FRHAPI_PlatformSessionTemplate` <a id="structFRHAPI__PlatformSessionTemplate"></a>
+---
+title: FRHAPI_PlatformSessionTemplate
+---
 
 ```
 struct FRHAPI_PlatformSessionTemplate

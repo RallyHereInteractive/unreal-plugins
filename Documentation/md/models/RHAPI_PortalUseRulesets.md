@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PortalUseRulesets`](#structFRHAPI__PortalUseRulesets) | A collection of Portal Use Rulesets. A ruleset determine how item can be used across portals.
 
-## struct `FRHAPI_PortalUseRulesets` <a id="structFRHAPI__PortalUseRulesets"></a>
+---
+title: FRHAPI_PortalUseRulesets
+---
 
 ```
 struct FRHAPI_PortalUseRulesets

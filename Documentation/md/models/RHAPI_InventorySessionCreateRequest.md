@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_InventorySessionCreateRequest`](#structFRHAPI__InventorySessionCreateRequest) | Request body for creating a new Inventory Session.
 
-## struct `FRHAPI_InventorySessionCreateRequest` <a id="structFRHAPI__InventorySessionCreateRequest"></a>
+---
+title: FRHAPI_InventorySessionCreateRequest
+---
 
 ```
 struct FRHAPI_InventorySessionCreateRequest

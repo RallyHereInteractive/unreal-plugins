@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_InstanceStartupParams`](#structFRHAPI__InstanceStartupParams) | Parameters given to an instance to change what map and mode it loads, and other gameplay behavior.
 
-## struct `FRHAPI_InstanceStartupParams` <a id="structFRHAPI__InstanceStartupParams"></a>
+---
+title: FRHAPI_InstanceStartupParams
+---
 
 ```
 struct FRHAPI_InstanceStartupParams

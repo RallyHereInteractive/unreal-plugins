@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_QueueConfig`](#structFRHAPI__QueueConfig) | DEPRECATED - V1 Configuration about a specific queue.
 
-## struct `FRHAPI_QueueConfig` <a id="structFRHAPI__QueueConfig"></a>
+---
+title: FRHAPI_QueueConfig
+---
 
 ```
 struct FRHAPI_QueueConfig

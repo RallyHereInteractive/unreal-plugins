@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PersonEmailListResponse`](#structFRHAPI__PersonEmailListResponse) | Response for updating a person&#39;s email list subscriptions.
 
-## struct `FRHAPI_PersonEmailListResponse` <a id="structFRHAPI__PersonEmailListResponse"></a>
+---
+title: FRHAPI_PersonEmailListResponse
+---
 
 ```
 struct FRHAPI_PersonEmailListResponse

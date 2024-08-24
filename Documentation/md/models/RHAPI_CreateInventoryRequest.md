@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_CreateInventoryRequest`](#structFRHAPI__CreateInventoryRequest) | Request to Create a new Inventory.
 
-## struct `FRHAPI_CreateInventoryRequest` <a id="structFRHAPI__CreateInventoryRequest"></a>
+---
+title: FRHAPI_CreateInventoryRequest
+---
 
 ```
 struct FRHAPI_CreateInventoryRequest

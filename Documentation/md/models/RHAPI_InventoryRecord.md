@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_InventoryRecord`](#structFRHAPI__InventoryRecord) | Inventory Record for a Player.
 
-## struct `FRHAPI_InventoryRecord` <a id="structFRHAPI__InventoryRecord"></a>
+---
+title: FRHAPI_InventoryRecord
+---
 
 ```
 struct FRHAPI_InventoryRecord

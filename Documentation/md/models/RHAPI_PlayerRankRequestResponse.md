@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerRankRequestResponse`](#structFRHAPI__PlayerRankRequestResponse) | DEPRECATED Response to successfully requesting all of a player&#39;s ranks.
 
-## struct `FRHAPI_PlayerRankRequestResponse` <a id="structFRHAPI__PlayerRankRequestResponse"></a>
+---
+title: FRHAPI_PlayerRankRequestResponse
+---
 
 ```
 struct FRHAPI_PlayerRankRequestResponse

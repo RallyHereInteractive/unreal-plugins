@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_LoginHistoryEntry`](#structFRHAPI__LoginHistoryEntry) | Entry in a users&#39;s login history. Some fields may be missing if the data is not available.
 
-## struct `FRHAPI_LoginHistoryEntry` <a id="structFRHAPI__LoginHistoryEntry"></a>
+---
+title: FRHAPI_LoginHistoryEntry
+---
 
 ```
 struct FRHAPI_LoginHistoryEntry

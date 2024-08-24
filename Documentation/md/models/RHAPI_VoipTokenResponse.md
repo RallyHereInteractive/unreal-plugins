@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_VoipTokenResponse`](#structFRHAPI__VoipTokenResponse) | 
 
-## struct `FRHAPI_VoipTokenResponse` <a id="structFRHAPI__VoipTokenResponse"></a>
+---
+title: FRHAPI_VoipTokenResponse
+---
 
 ```
 struct FRHAPI_VoipTokenResponse

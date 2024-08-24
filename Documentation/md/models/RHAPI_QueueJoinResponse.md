@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_QueueJoinResponse`](#structFRHAPI__QueueJoinResponse) | A response for successfully joining a matchmaking queue.
 
-## struct `FRHAPI_QueueJoinResponse` <a id="structFRHAPI__QueueJoinResponse"></a>
+---
+title: FRHAPI_QueueJoinResponse
+---
 
 ```
 struct FRHAPI_QueueJoinResponse

@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_SessionPlayerUpdateRequest`](#structFRHAPI__SessionPlayerUpdateRequest) | A request body to update information about a player in a session.
 
-## struct `FRHAPI_SessionPlayerUpdateRequest` <a id="structFRHAPI__SessionPlayerUpdateRequest"></a>
+---
+title: FRHAPI_SessionPlayerUpdateRequest
+---
 
 ```
 struct FRHAPI_SessionPlayerUpdateRequest

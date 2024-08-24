@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_LoginRequestV1`](#structFRHAPI__LoginRequestV1) | 
 
-## struct `FRHAPI_LoginRequestV1` <a id="structFRHAPI__LoginRequestV1"></a>
+---
+title: FRHAPI_LoginRequestV1
+---
 
 ```
 struct FRHAPI_LoginRequestV1

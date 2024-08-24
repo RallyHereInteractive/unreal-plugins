@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_OAuthTokenResponse`](#structFRHAPI__OAuthTokenResponse) | OAuth token exchange response. Successful response will contain an access_token and refresh_token. If the user has not accepted all required agreements, the response will contain the appropriate needs_* flags and a regenerated_code. The regenerated_code is an authorization_code that can be used after the user has accepted the required agreements.
 
-## struct `FRHAPI_OAuthTokenResponse` <a id="structFRHAPI__OAuthTokenResponse"></a>
+---
+title: FRHAPI_OAuthTokenResponse
+---
 
 ```
 struct FRHAPI_OAuthTokenResponse

@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_MatchMakingTemplate`](#structFRHAPI__MatchMakingTemplate) | DEPRECATED Configuration about what rules must be satisfied to use this template, and what matchmaking profiles the ticket will be a part of.
 
-## struct `FRHAPI_MatchMakingTemplate` <a id="structFRHAPI__MatchMakingTemplate"></a>
+---
+title: FRHAPI_MatchMakingTemplate
+---
 
 ```
 struct FRHAPI_MatchMakingTemplate

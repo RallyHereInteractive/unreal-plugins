@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_UnionCCU`](#structFRHAPI__UnionCCU) | 
 
-## struct `FRHAPI_UnionCCU` <a id="structFRHAPI__UnionCCU"></a>
+---
+title: FRHAPI_UnionCCU
+---
 
 ```
 struct FRHAPI_UnionCCU

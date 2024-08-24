@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_SessionInviteRequest`](#structFRHAPI__SessionInviteRequest) | 
 
-## struct `FRHAPI_SessionInviteRequest` <a id="structFRHAPI__SessionInviteRequest"></a>
+---
+title: FRHAPI_SessionInviteRequest
+---
 
 ```
 struct FRHAPI_SessionInviteRequest

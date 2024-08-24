@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerOrderDetail`](#structFRHAPI__PlayerOrderDetail) | Represents details of what occurred in a Player Order Entry.
 
-## struct `FRHAPI_PlayerOrderDetail` <a id="structFRHAPI__PlayerOrderDetail"></a>
+---
+title: FRHAPI_PlayerOrderDetail
+---
 
 ```
 struct FRHAPI_PlayerOrderDetail

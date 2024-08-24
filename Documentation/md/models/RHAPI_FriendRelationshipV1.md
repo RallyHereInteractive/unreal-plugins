@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_FriendRelationshipV1`](#structFRHAPI__FriendRelationshipV1) | Represents the relationship with a potential friend. V1 includes player_id and player_uuid.
 
-## struct `FRHAPI_FriendRelationshipV1` <a id="structFRHAPI__FriendRelationshipV1"></a>
+---
+title: FRHAPI_FriendRelationshipV1
+---
 
 ```
 struct FRHAPI_FriendRelationshipV1

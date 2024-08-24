@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `class `[`URH_EntitlementSubsystem`](#classURH__EntitlementSubsystem) | Subsystem for handling requesting and processing entitlements from the online subsystem.
 
-## class `URH_EntitlementSubsystem` <a id="classURH__EntitlementSubsystem"></a>
+---
+title: URH_EntitlementSubsystem
+---
 
 ```
 class URH_EntitlementSubsystem

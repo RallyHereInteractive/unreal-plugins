@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_ExternalKeyEntitlement`](#structFRHAPI__ExternalKeyEntitlement) | 
 
-## struct `FRHAPI_ExternalKeyEntitlement` <a id="structFRHAPI__ExternalKeyEntitlement"></a>
+---
+title: FRHAPI_ExternalKeyEntitlement
+---
 
 ```
 struct FRHAPI_ExternalKeyEntitlement

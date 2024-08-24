@@ -9,7 +9,9 @@
 `struct `[`FRH_PollControl`](#structFRH__PollControl) | Controller for the polling.
 `struct `[`FRH_AutoPoller`](#structFRH__AutoPoller) | Auto Poller to poll at a given interval for updates.
 
-## class `URH_PollingSettings` <a id="classURH__PollingSettings"></a>
+---
+title: URH_PollingSettings
+---
 
 ```
 class URH_PollingSettings
@@ -35,7 +37,9 @@ Array of all polling timers.
 
 Default polling time.
 
-## struct `FRH_PollTimerSetting` <a id="structFRH__PollTimerSetting"></a>
+---
+title: FRH_PollTimerSetting
+---
 
 Settings for polling timers.
 
@@ -76,7 +80,9 @@ How much jitter to add to the timer when started.
 
 Default constructor, 60 seconds timer.
 
-## struct `FRH_PollControl` <a id="structFRH__PollControl"></a>
+---
+title: FRH_PollControl
+---
 
 ```
 struct FRH_PollControl
@@ -273,7 +279,9 @@ Array of all polling timers (overrides PollingIntervals).
 
 Sorts the waiting pollers for by their next poll time.
 
-## struct `FRH_AutoPoller` <a id="structFRH__AutoPoller"></a>
+---
+title: FRH_AutoPoller
+---
 
 ```
 struct FRH_AutoPoller

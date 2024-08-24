@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_CreatePlatformUserRequest`](#structFRHAPI__CreatePlatformUserRequest) | Request parameters to create a user exists.
 
-## struct `FRHAPI_CreatePlatformUserRequest` <a id="structFRHAPI__CreatePlatformUserRequest"></a>
+---
+title: FRHAPI_CreatePlatformUserRequest
+---
 
 ```
 struct FRHAPI_CreatePlatformUserRequest

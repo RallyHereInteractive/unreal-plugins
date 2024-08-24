@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_ClientVisibleSettings`](#structFRHAPI__ClientVisibleSettings) | 
 
-## struct `FRHAPI_ClientVisibleSettings` <a id="structFRHAPI__ClientVisibleSettings"></a>
+---
+title: FRHAPI_ClientVisibleSettings
+---
 
 ```
 struct FRHAPI_ClientVisibleSettings

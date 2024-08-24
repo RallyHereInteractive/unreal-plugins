@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PortalUseRuleset`](#structFRHAPI__PortalUseRuleset) | A collection of Portal Use Rules.
 
-## struct `FRHAPI_PortalUseRuleset` <a id="structFRHAPI__PortalUseRuleset"></a>
+---
+title: FRHAPI_PortalUseRuleset
+---
 
 ```
 struct FRHAPI_PortalUseRuleset

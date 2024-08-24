@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_MapConfigV2`](#structFRHAPI__MapConfigV2) | Configuration about a specific map for an instance to load into.
 
-## struct `FRHAPI_MapConfigV2` <a id="structFRHAPI__MapConfigV2"></a>
+---
+title: FRHAPI_MapConfigV2
+---
 
 ```
 struct FRHAPI_MapConfigV2

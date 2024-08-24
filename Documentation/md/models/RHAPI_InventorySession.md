@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_InventorySession`](#structFRHAPI__InventorySession) | Inventory Session for a Player.
 
-## struct `FRHAPI_InventorySession` <a id="structFRHAPI__InventorySession"></a>
+---
+title: FRHAPI_InventorySession
+---
 
 ```
 struct FRHAPI_InventorySession

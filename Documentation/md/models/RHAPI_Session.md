@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_Session`](#structFRHAPI__Session) | A session resource.
 
-## struct `FRHAPI_Session` <a id="structFRHAPI__Session"></a>
+---
+title: FRHAPI_Session
+---
 
 ```
 struct FRHAPI_Session

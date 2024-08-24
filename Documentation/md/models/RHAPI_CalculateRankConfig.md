@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_CalculateRankConfig`](#structFRHAPI__CalculateRankConfig) | Config about how to recalculate ranks.
 
-## struct `FRHAPI_CalculateRankConfig` <a id="structFRHAPI__CalculateRankConfig"></a>
+---
+title: FRHAPI_CalculateRankConfig
+---
 
 ```
 struct FRHAPI_CalculateRankConfig

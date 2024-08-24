@@ -50,7 +50,9 @@ Count            |
 
 Enum representing what value should be recorded when only a single value is requested for display or logging.
 
-## class `URH_PEXCollectorConfig` <a id="classURH__PEXCollectorConfig"></a>
+---
+title: URH_PEXCollectorConfig
+---
 
 ```
 class URH_PEXCollectorConfig
@@ -137,7 +139,9 @@ Helper function for whether summary data should be tracked
 
 Helper function for whether timeline data should be tracked
 
-## class `URH_PEXCollectorConfig_Client` <a id="classURH__PEXCollectorConfig__Client"></a>
+---
+title: URH_PEXCollectorConfig_Client
+---
 
 ```
 class URH_PEXCollectorConfig_Client
@@ -154,7 +158,9 @@ class URH_PEXCollectorConfig_Client
 
 #### `public inline  `[`URH_PEXCollectorConfig_Client`](#classURH__PEXCollectorConfig__Client_1a030af3cf768404af72fcc80342001e1a)`()` <a id="classURH__PEXCollectorConfig__Client_1a030af3cf768404af72fcc80342001e1a"></a>
 
-## class `URH_PEXCollectorConfig_Host` <a id="classURH__PEXCollectorConfig__Host"></a>
+---
+title: URH_PEXCollectorConfig_Host
+---
 
 ```
 class URH_PEXCollectorConfig_Host
@@ -171,7 +177,9 @@ class URH_PEXCollectorConfig_Host
 
 #### `public inline  `[`URH_PEXCollectorConfig_Host`](#classURH__PEXCollectorConfig__Host_1aefc16da54956d0f7b7bdbe6b7f866c91)`()` <a id="classURH__PEXCollectorConfig__Host_1aefc16da54956d0f7b7bdbe6b7f866c91"></a>
 
-## class `URH_PEXCollectorConfig_DedicatedServer` <a id="classURH__PEXCollectorConfig__DedicatedServer"></a>
+---
+title: URH_PEXCollectorConfig_DedicatedServer
+---
 
 ```
 class URH_PEXCollectorConfig_DedicatedServer
@@ -188,7 +196,9 @@ class URH_PEXCollectorConfig_DedicatedServer
 
 #### `public inline  `[`URH_PEXCollectorConfig_DedicatedServer`](#classURH__PEXCollectorConfig__DedicatedServer_1a58f302d1fcb1c071021174aa219c566c)`()` <a id="classURH__PEXCollectorConfig__DedicatedServer_1a58f302d1fcb1c071021174aa219c566c"></a>
 
-## class `URH_PEXOwnerInterface` <a id="classURH__PEXOwnerInterface"></a>
+---
+title: URH_PEXOwnerInterface
+---
 
 ```
 class URH_PEXOwnerInterface
@@ -204,7 +214,9 @@ PlayerExperience Owner Interface class.
 
 ### Members
 
-## class `IRH_PEXOwnerInterface` <a id="classIRH__PEXOwnerInterface"></a>
+---
+title: IRH_PEXOwnerInterface
+---
 
 PlayerExperience Owner Interface.
 
@@ -215,7 +227,9 @@ PlayerExperience Owner Interface.
 
 ### Members
 
-## class `URH_PEXStatGroup` <a id="classURH__PEXStatGroup"></a>
+---
+title: URH_PEXStatGroup
+---
 
 ```
 class URH_PEXStatGroup
@@ -332,7 +346,9 @@ Fill in a API PEX host summary report with the summary data.
 
 Fill in a API PEX client summary report with the summary data.
 
-## class `URH_PEXStatGroupsTopLevel` <a id="classURH__PEXStatGroupsTopLevel"></a>
+---
+title: URH_PEXStatGroupsTopLevel
+---
 
 ```
 class URH_PEXStatGroupsTopLevel
@@ -398,7 +414,9 @@ Write the timeline data values to a CSV file for all stats.
 IgnoredForSummary            | 
 Max            | 
 
-## class `URH_PEXCollector` <a id="classURH__PEXCollector"></a>
+---
+title: URH_PEXCollector
+---
 
 ```
 class URH_PEXCollector
@@ -558,7 +576,9 @@ Cached file path for summary file
 
 Internal helper to upload a file to remote file storage
 
-## class `URH_PEXPrimaryStats` <a id="classURH__PEXPrimaryStats"></a>
+---
+title: URH_PEXPrimaryStats
+---
 
 ```
 class URH_PEXPrimaryStats
@@ -643,7 +663,9 @@ DelayedTickCount            |
 LevelLoadCompleted            | 
 Max            | 
 
-## class `URH_PEXNetworkStats_Base` <a id="classURH__PEXNetworkStats__Base"></a>
+---
+title: URH_PEXNetworkStats_Base
+---
 
 ```
 class URH_PEXNetworkStats_Base
@@ -696,7 +718,9 @@ OutPacketLossPct            |
 TotalPacketLossPct            | 
 Max            | 
 
-## class `URH_PEXNetworkStats_Global` <a id="classURH__PEXNetworkStats__Global"></a>
+---
+title: URH_PEXNetworkStats_Global
+---
 
 ```
 class URH_PEXNetworkStats_Global
@@ -720,7 +744,9 @@ Stat group for capturing global network stats.
 
 Capture once-per-second stats.
 
-## class `URH_PEXNetworkStats_Connection` <a id="classURH__PEXNetworkStats__Connection"></a>
+---
+title: URH_PEXNetworkStats_Connection
+---
 
 ```
 class URH_PEXNetworkStats_Connection
@@ -750,7 +776,9 @@ Stat group for capturing per-player network stats.
 
 Capture once-per-second stats.
 
-## class `URH_PEXNetworkStats_Host` <a id="classURH__PEXNetworkStats__Host"></a>
+---
+title: URH_PEXNetworkStats_Host
+---
 
 ```
 class URH_PEXNetworkStats_Host
@@ -807,7 +835,9 @@ Capture once-per-second stats.
 
 Capture once-per-interval stats.
 
-## class `URH_PEXNetworkStats_Client` <a id="classURH__PEXNetworkStats__Client"></a>
+---
+title: URH_PEXNetworkStats_Client
+---
 
 ```
 class URH_PEXNetworkStats_Client
@@ -844,7 +874,9 @@ Capture once-per-second stats.
 
 Capture once-per-interval stats.
 
-## class `URH_PEXNetworkStats` <a id="classURH__PEXNetworkStats"></a>
+---
+title: URH_PEXNetworkStats
+---
 
 ```
 class URH_PEXNetworkStats
@@ -878,7 +910,9 @@ Host's connection to clients, only used by summary
 
 #### `public  `[`URH_PEXNetworkStats`](#classURH__PEXNetworkStats_1a3354185befc3c15728f1362cc34f95e2)`()` <a id="classURH__PEXNetworkStats_1a3354185befc3c15728f1362cc34f95e2"></a>
 
-## class `URH_PEXGameStats` <a id="classURH__PEXGameStats"></a>
+---
+title: URH_PEXGameStats
+---
 
 ```
 class URH_PEXGameStats
@@ -918,7 +952,9 @@ AIControllerCount            |
 PawnCount            | 
 Max            | 
 
-## class `URH_PEXBlueprintableStats` <a id="classURH__PEXBlueprintableStats"></a>
+---
+title: URH_PEXBlueprintableStats
+---
 
 ```
 class URH_PEXBlueprintableStats
@@ -959,7 +995,9 @@ Capture once-per-interval stats.
 
 #### `public inline void `[`CaptureCounterValue`](#classURH__PEXBlueprintableStats_1a1c8225c5b33baa0f7b8ce98bede9a891)`(FName StatName,float Value)` <a id="classURH__PEXBlueprintableStats_1a1c8225c5b33baa0f7b8ce98bede9a891"></a>
 
-## class `URH_PEXCollectorConfig_Test` <a id="classURH__PEXCollectorConfig__Test"></a>
+---
+title: URH_PEXCollectorConfig_Test
+---
 
 ```
 class URH_PEXCollectorConfig_Test
@@ -973,7 +1011,9 @@ class URH_PEXCollectorConfig_Test
 
 ### Members
 
-## class `URH_TestPEXOwner` <a id="classURH__TestPEXOwner"></a>
+---
+title: URH_TestPEXOwner
+---
 
 ```
 class URH_TestPEXOwner
@@ -1033,7 +1073,9 @@ class URH_TestPEXOwner
 
 #### `public virtual void `[`ValidateReports`](#classURH__TestPEXOwner_1a85e7219ba356d999310e7244bc8ca205)`(FAutomationTestBase * Test,const `[`URH_PEXCollectorConfig`](PlayerExperience.md#classURH__PEXCollectorConfig)` * Config) const` <a id="classURH__TestPEXOwner_1a85e7219ba356d999310e7244bc8ca205"></a>
 
-## struct `FRH_PEXStatState` <a id="structFRH__PEXStatState"></a>
+---
+title: FRH_PEXStatState
+---
 
 State of the accumulated stat.
 
@@ -1102,7 +1144,9 @@ Add a value to the accumulator.
 
 Update the summary state with the current state.
 
-## struct `FRH_StatAccumulator` <a id="structFRH__StatAccumulator"></a>
+---
+title: FRH_StatAccumulator
+---
 
 Simple accumulator that represents a captured statistic. Tracks min, max, average, and other values internally without having to store all values.
 
@@ -1191,7 +1235,9 @@ Get a JSON object representing the summary data.
 
 Get a PexStat object representing the summary data.
 
-## struct `FRH_StatCounter` <a id="structFRH__StatCounter"></a>
+---
+title: FRH_StatCounter
+---
 
 Simple counter that represents a captured statistic. Tracks current value, and tracks summary data.
 

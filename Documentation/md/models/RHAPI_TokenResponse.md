@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_TokenResponse`](#structFRHAPI__TokenResponse) | OAuth2 Token Response.
 
-## struct `FRHAPI_TokenResponse` <a id="structFRHAPI__TokenResponse"></a>
+---
+title: FRHAPI_TokenResponse
+---
 
 ```
 struct FRHAPI_TokenResponse

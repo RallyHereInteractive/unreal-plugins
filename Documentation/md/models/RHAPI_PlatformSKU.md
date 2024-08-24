@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlatformSKU`](#structFRHAPI__PlatformSKU) | Platform SKU that can be converted to inventory or keys.
 
-## struct `FRHAPI_PlatformSKU` <a id="structFRHAPI__PlatformSKU"></a>
+---
+title: FRHAPI_PlatformSKU
+---
 
 ```
 struct FRHAPI_PlatformSKU

@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerUuidFromId`](#structFRHAPI__PlayerUuidFromId) | Model for getting a player UUID from a player ID.
 
-## struct `FRHAPI_PlayerUuidFromId` <a id="structFRHAPI__PlayerUuidFromId"></a>
+---
+title: FRHAPI_PlayerUuidFromId
+---
 
 ```
 struct FRHAPI_PlayerUuidFromId

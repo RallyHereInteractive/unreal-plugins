@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_ClientSettings`](#structFRHAPI__ClientSettings) | A player&#39;s platform and input settings.
 
-## struct `FRHAPI_ClientSettings` <a id="structFRHAPI__ClientSettings"></a>
+---
+title: FRHAPI_ClientSettings
+---
 
 ```
 struct FRHAPI_ClientSettings

@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_MatchValuesOnly`](#structFRHAPI__MatchValuesOnly) | 
 
-## struct `FRHAPI_MatchValuesOnly` <a id="structFRHAPI__MatchValuesOnly"></a>
+---
+title: FRHAPI_MatchValuesOnly
+---
 
 ```
 struct FRHAPI_MatchValuesOnly

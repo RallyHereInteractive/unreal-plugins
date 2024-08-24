@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlatformIdentityLookupResults`](#structFRHAPI__PlatformIdentityLookupResults) | Lookup results for a platform user id.
 
-## struct `FRHAPI_PlatformIdentityLookupResults` <a id="structFRHAPI__PlatformIdentityLookupResults"></a>
+---
+title: FRHAPI_PlatformIdentityLookupResults
+---
 
 ```
 struct FRHAPI_PlatformIdentityLookupResults

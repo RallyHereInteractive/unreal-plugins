@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_InstanceLaunchTemplate`](#structFRHAPI__InstanceLaunchTemplate) | **DEPRECATED** Configuration about how an instance should behave when it&#39;s allocated
 
-## struct `FRHAPI_InstanceLaunchTemplate` <a id="structFRHAPI__InstanceLaunchTemplate"></a>
+---
+title: FRHAPI_InstanceLaunchTemplate
+---
 
 ```
 struct FRHAPI_InstanceLaunchTemplate

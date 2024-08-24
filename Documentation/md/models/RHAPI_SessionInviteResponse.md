@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_SessionInviteResponse`](#structFRHAPI__SessionInviteResponse) | Response to a request to update a session cohort.
 
-## struct `FRHAPI_SessionInviteResponse` <a id="structFRHAPI__SessionInviteResponse"></a>
+---
+title: FRHAPI_SessionInviteResponse
+---
 
 ```
 struct FRHAPI_SessionInviteResponse

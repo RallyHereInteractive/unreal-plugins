@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_UpdatePersonInfoRequest`](#structFRHAPI__UpdatePersonInfoRequest) | Request to update a person&#39;s info.
 
-## struct `FRHAPI_UpdatePersonInfoRequest` <a id="structFRHAPI__UpdatePersonInfoRequest"></a>
+---
+title: FRHAPI_UpdatePersonInfoRequest
+---
 
 ```
 struct FRHAPI_UpdatePersonInfoRequest

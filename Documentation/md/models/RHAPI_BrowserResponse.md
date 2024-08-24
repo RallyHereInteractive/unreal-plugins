@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_BrowserResponse`](#structFRHAPI__BrowserResponse) | A response with a list of browsers, and a cursor to continue iterating through them.
 
-## struct `FRHAPI_BrowserResponse` <a id="structFRHAPI__BrowserResponse"></a>
+---
+title: FRHAPI_BrowserResponse
+---
 
 ```
 struct FRHAPI_BrowserResponse

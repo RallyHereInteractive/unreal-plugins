@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_CalculateRankRequest`](#structFRHAPI__CalculateRankRequest) | A request body to calculate players&#39; rankings, and return the results. Player ranks will not be updated.
 
-## struct `FRHAPI_CalculateRankRequest` <a id="structFRHAPI__CalculateRankRequest"></a>
+---
+title: FRHAPI_CalculateRankRequest
+---
 
 ```
 struct FRHAPI_CalculateRankRequest

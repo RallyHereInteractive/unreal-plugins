@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PlayerLastSeenUpdate`](#structFRHAPI__PlayerLastSeenUpdate) | 
 
-## struct `FRHAPI_PlayerLastSeenUpdate` <a id="structFRHAPI__PlayerLastSeenUpdate"></a>
+---
+title: FRHAPI_PlayerLastSeenUpdate
+---
 
 ```
 struct FRHAPI_PlayerLastSeenUpdate

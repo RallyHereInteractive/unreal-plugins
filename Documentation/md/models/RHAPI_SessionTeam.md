@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_SessionTeam`](#structFRHAPI__SessionTeam) | A team of SessionPlayers in a session.
 
-## struct `FRHAPI_SessionTeam` <a id="structFRHAPI__SessionTeam"></a>
+---
+title: FRHAPI_SessionTeam
+---
 
 ```
 struct FRHAPI_SessionTeam

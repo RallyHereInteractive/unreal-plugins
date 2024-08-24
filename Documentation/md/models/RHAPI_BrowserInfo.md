@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_BrowserInfo`](#structFRHAPI__BrowserInfo) | Information about the browser resource in a session.
 
-## struct `FRHAPI_BrowserInfo` <a id="structFRHAPI__BrowserInfo"></a>
+---
+title: FRHAPI_BrowserInfo
+---
 
 ```
 struct FRHAPI_BrowserInfo

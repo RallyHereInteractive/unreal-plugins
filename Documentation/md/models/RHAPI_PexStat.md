@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_PexStat`](#structFRHAPI__PexStat) | 
 
-## struct `FRHAPI_PexStat` <a id="structFRHAPI__PexStat"></a>
+---
+title: FRHAPI_PexStat
+---
 
 ```
 struct FRHAPI_PexStat

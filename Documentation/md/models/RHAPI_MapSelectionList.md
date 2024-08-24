@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_MapSelectionList`](#structFRHAPI__MapSelectionList) | DEPRECATED A list of maps that can be chosen from when an instance is launching.
 
-## struct `FRHAPI_MapSelectionList` <a id="structFRHAPI__MapSelectionList"></a>
+---
+title: FRHAPI_MapSelectionList
+---
 
 ```
 struct FRHAPI_MapSelectionList

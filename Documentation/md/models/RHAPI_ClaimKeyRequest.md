@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_ClaimKeyRequest`](#structFRHAPI__ClaimKeyRequest) | Attempt to claim a Key Claim from a Marketing Campaign.
 
-## struct `FRHAPI_ClaimKeyRequest` <a id="structFRHAPI__ClaimKeyRequest"></a>
+---
+title: FRHAPI_ClaimKeyRequest
+---
 
 ```
 struct FRHAPI_ClaimKeyRequest

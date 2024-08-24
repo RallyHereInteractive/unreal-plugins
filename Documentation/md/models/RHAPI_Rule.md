@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_Rule`](#structFRHAPI__Rule) | A rule to determine which MatchMakingTemplate should be used on a session entering matchmaking.
 
-## struct `FRHAPI_Rule` <a id="structFRHAPI__Rule"></a>
+---
+title: FRHAPI_Rule
+---
 
 ```
 struct FRHAPI_Rule

@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_TeamUpdate`](#structFRHAPI__TeamUpdate) | An update to a specific team&#39;s number of max players.
 
-## struct `FRHAPI_TeamUpdate` <a id="structFRHAPI__TeamUpdate"></a>
+---
+title: FRHAPI_TeamUpdate
+---
 
 ```
 struct FRHAPI_TeamUpdate

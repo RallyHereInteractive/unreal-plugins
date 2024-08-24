@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_SettingTypeVersion`](#structFRHAPI__SettingTypeVersion) | 
 
-## struct `FRHAPI_SettingTypeVersion` <a id="structFRHAPI__SettingTypeVersion"></a>
+---
+title: FRHAPI_SettingTypeVersion
+---
 
 ```
 struct FRHAPI_SettingTypeVersion

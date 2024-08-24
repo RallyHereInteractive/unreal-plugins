@@ -6,7 +6,9 @@
 --------------------------------|---------------------------------------------
 `struct `[`FRHAPI_RankUpdateRequestV2`](#structFRHAPI__RankUpdateRequestV2) | A request body to calculate and update players&#39; ratings from a match.
 
-## struct `FRHAPI_RankUpdateRequestV2` <a id="structFRHAPI__RankUpdateRequestV2"></a>
+---
+title: FRHAPI_RankUpdateRequestV2
+---
 
 ```
 struct FRHAPI_RankUpdateRequestV2

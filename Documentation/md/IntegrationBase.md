@@ -7,7 +7,9 @@
 `class `[`FRallyHereIntegrationModule`](#classFRallyHereIntegrationModule) | Module for the Rally Here Integration Layer.
 `class `[`FRH_Integration`](#classFRH__Integration) | Main integration layer handler.
 
-## class `FRallyHereIntegrationModule` <a id="classFRallyHereIntegrationModule"></a>
+---
+title: FRallyHereIntegrationModule
+---
 
 ```
 class FRallyHereIntegrationModule
@@ -43,7 +45,9 @@ Safely ends the module.
 
 Gets the Integration class fromt he module.
 
-## class `FRH_Integration` <a id="classFRH__Integration"></a>
+---
+title: FRH_Integration
+---
 
 Main integration layer handler.
 
