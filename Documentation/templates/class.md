@@ -1,6 +1,4 @@
----
-title: {{name}}
----
+## {{kind}} `{{name}}` {{anchor refid}}
 
 {{#if basecompoundref}}
 ```

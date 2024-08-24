@@ -1,4 +1,6 @@
-# {{kind}} `{{name}}` {{anchor refid}}
+---
+title: {{name}}
+---
 
 {{briefdescription}}
 
