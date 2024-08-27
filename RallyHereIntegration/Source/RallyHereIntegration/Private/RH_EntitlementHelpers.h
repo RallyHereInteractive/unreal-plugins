@@ -527,6 +527,13 @@ protected:
 					FOnFinalizeReceiptValidationInfoComplete::CreateSP(this, &FRH_EntitlementProcessorOSSPurchase::OnReceiptValidationComplete));
 			}
 		}
+		else if (RH_UsesSonyEntitlementTokens(OSSData.SubsystemName))
+		{
+			// sony platforms must have receipts to get one-time-use authorization tokens with the way the OSS is written (the GetAuthToken() call gets a cached token that has already been consumed via the login flow).
+			// However, we still want to hint to the API that something was attempting to redeem entitlements.
+			// Therefore, forward to the next step with an empty auth token, which would be the same as if the user had failed to retrieve an auth token
+			ProcessPlatformInventory(TEXT(""));
+		}
 		else
 		{
 			RetrieveOSSAuthToken();
