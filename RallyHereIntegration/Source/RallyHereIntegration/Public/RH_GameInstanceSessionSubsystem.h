@@ -427,7 +427,7 @@ protected:
 	/**
 	 * @brief Creates a match for a given session using the match subsystem
 	 */
-	virtual void CreateMatchForSession(const URH_JoinedSession* Session);
+	virtual void CreateMatchForSession(const URH_JoinedSession* Session, const FGuid& InMatchId = FGuid());
 	/**
 	 * @brief Creates a PlayerExperience (PEX) collector for the active session and match
 	 */
