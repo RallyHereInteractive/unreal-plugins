@@ -994,7 +994,7 @@ void URH_PlayerInventory::UpdateInventoryFromOrderDetails(const TArray<FRHAPI_Pl
 				if (const FRHAPI_InventoryRecord* BeforeRecordPtr = InventoryChange.GetBeforeOrNull())
 				{
 					TArray<FRH_ItemInventory>* InventoryForItem = InventoryCache.Find(*BeforeItemIdPtr);
-					const FRHAPI_InventoryRecord BeforeRecord = *BeforeRecordPtr;
+					const auto& BeforeRecord = *BeforeRecordPtr;
 
 					if (InventoryForItem != nullptr)
 					{
@@ -1028,6 +1028,8 @@ void URH_PlayerInventory::UpdateInventoryFromOrderDetails(const TArray<FRHAPI_Pl
 			{
 				if (const FRHAPI_InventoryRecord* AfterRecordPtr = InventoryChange.GetAfterOrNull())
 				{
+					const auto& AfterRecord = *AfterRecordPtr;
+					
 					// Note that this can add records with a count of 0.  This is intentional, as by design an empty record is considered equivalent to a count of 0.
 					// In the future, it is possible that the after record will instead be null in the case of a count being reduced to zero.
 					// Therefore, we try to preserve the API view as much as possible, so we have the maximum amount of future compatibility.
@@ -1039,6 +1041,20 @@ void URH_PlayerInventory::UpdateInventoryFromOrderDetails(const TArray<FRHAPI_Pl
 					// if we already have a listing for this item id, add the new record, otherwise create a new listing
 					if (InventoryForItem != nullptr)
 					{
+						// it is possible the inventory has already received this item through some other means (such as a full inventory update), so make sure we do not add duplicates
+						auto ModifiedCount = InventoryForItem->RemoveAll([AfterRecord](const FRH_ItemInventory& InventoryRecord)
+						{
+							if (InventoryRecord.InventoryId == AfterRecord.GetInventoryId())
+							{
+								return true;
+							}
+							return false;
+						});
+						if (ModifiedCount > 0)
+						{
+							UE_LOG(LogRallyHereIntegration, Warning, TEXT("Found an existing inventory record to update for item id %d with inventory id %s"), *AfterItemIdPtr, *AfterRecord.GetInventoryId().ToString(EGuidFormats::DigitsWithHyphens));
+						}
+						
 						InventoryForItem->Push(NewInventoryItem);
 					}
 					else
