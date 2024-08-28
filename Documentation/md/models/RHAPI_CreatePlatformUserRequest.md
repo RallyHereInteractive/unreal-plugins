@@ -1,4 +1,6 @@
-# group `RHAPI_CreatePlatformUserRequest` <a id="group__RHAPI__CreatePlatformUserRequest"></a>
+---
+title: RHAPI_CreatePlatformUserRequest
+---
 
 ## Summary
 

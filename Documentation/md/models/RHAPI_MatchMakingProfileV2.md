@@ -1,4 +1,6 @@
-# group `RHAPI_MatchMakingProfileV2` <a id="group__RHAPI__MatchMakingProfileV2"></a>
+---
+title: RHAPI_MatchMakingProfileV2
+---
 
 ## Summary
 

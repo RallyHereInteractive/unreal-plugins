@@ -1,4 +1,6 @@
-# group `PlayerInfo` <a id="group__PlayerInfo"></a>
+---
+title: PlayerInfo
+---
 
 ## Summary
 

@@ -1,4 +1,6 @@
-# group `Config` <a id="group__Config"></a>
+---
+title: Config
+---
 
 ## Summary
 

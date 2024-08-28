@@ -1,4 +1,6 @@
-# group `RHAPI_PagedPlayerMatchResponse` <a id="group__RHAPI__PagedPlayerMatchResponse"></a>
+---
+title: RHAPI_PagedPlayerMatchResponse
+---
 
 ## Summary
 

@@ -1,4 +1,6 @@
-# group `Ads` <a id="group__Ads"></a>
+---
+title: Ads
+---
 
 ## Summary
 

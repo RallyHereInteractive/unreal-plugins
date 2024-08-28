@@ -1,4 +1,6 @@
-# group `RHAPI_QueueJoinRequest` <a id="group__RHAPI__QueueJoinRequest"></a>
+---
+title: RHAPI_QueueJoinRequest
+---
 
 ## Summary
 

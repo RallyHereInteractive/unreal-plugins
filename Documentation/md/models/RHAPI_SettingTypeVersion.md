@@ -1,4 +1,6 @@
-# group `RHAPI_SettingTypeVersion` <a id="group__RHAPI__SettingTypeVersion"></a>
+---
+title: RHAPI_SettingTypeVersion
+---
 
 ## Summary
 

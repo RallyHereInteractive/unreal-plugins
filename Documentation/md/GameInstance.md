@@ -1,4 +1,6 @@
-# group `GameInstance` <a id="group__GameInstance"></a>
+---
+title: GameInstance
+---
 
 ## Summary
 

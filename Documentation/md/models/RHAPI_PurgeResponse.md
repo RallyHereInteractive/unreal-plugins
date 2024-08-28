@@ -1,4 +1,6 @@
-# group `RHAPI_PurgeResponse` <a id="group__RHAPI__PurgeResponse"></a>
+---
+title: RHAPI_PurgeResponse
+---
 
 ## Summary
 

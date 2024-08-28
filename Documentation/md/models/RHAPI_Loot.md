@@ -1,4 +1,6 @@
-# group `RHAPI_Loot` <a id="group__RHAPI__Loot"></a>
+---
+title: RHAPI_Loot
+---
 
 ## Summary
 

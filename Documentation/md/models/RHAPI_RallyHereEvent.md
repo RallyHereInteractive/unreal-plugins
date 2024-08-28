@@ -1,4 +1,6 @@
-# group `RHAPI_RallyHereEvent` <a id="group__RHAPI__RallyHereEvent"></a>
+---
+title: RHAPI_RallyHereEvent
+---
 
 ## Summary
 

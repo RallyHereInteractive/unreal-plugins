@@ -1,4 +1,6 @@
-# group `RHAPI_HzApiErrorModel` <a id="group__RHAPI__HzApiErrorModel"></a>
+---
+title: RHAPI_HzApiErrorModel
+---
 
 ## Summary
 

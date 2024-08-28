@@ -1,4 +1,6 @@
-# group `RHAPI_PlayerIdWrapper` <a id="group__RHAPI__PlayerIdWrapper"></a>
+---
+title: RHAPI_PlayerIdWrapper
+---
 
 ## Summary
 

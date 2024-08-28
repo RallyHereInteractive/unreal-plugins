@@ -1,4 +1,6 @@
-# group `RHAPI_MatchAllocation` <a id="group__RHAPI__MatchAllocation"></a>
+---
+title: RHAPI_MatchAllocation
+---
 
 ## Summary
 

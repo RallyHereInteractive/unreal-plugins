@@ -1,4 +1,6 @@
-# group `RHAPI_InventoryContextResponse` <a id="group__RHAPI__InventoryContextResponse"></a>
+---
+title: RHAPI_InventoryContextResponse
+---
 
 ## Summary
 

@@ -1,4 +1,6 @@
-# group `RHAPI_MatchSegmentPatchRequest` <a id="group__RHAPI__MatchSegmentPatchRequest"></a>
+---
+title: RHAPI_MatchSegmentPatchRequest
+---
 
 ## Summary
 

@@ -1,4 +1,6 @@
-# group `Friends` <a id="group__Friends"></a>
+---
+title: Friends
+---
 
 ## Summary
 

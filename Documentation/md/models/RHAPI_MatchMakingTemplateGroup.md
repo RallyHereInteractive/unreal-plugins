@@ -1,4 +1,6 @@
-# group `RHAPI_MatchMakingTemplateGroup` <a id="group__RHAPI__MatchMakingTemplateGroup"></a>
+---
+title: RHAPI_MatchMakingTemplateGroup
+---
 
 ## Summary
 

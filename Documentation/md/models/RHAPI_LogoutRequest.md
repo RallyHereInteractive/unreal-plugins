@@ -1,4 +1,6 @@
-# group `RHAPI_LogoutRequest` <a id="group__RHAPI__LogoutRequest"></a>
+---
+title: RHAPI_LogoutRequest
+---
 
 ## Summary
 

@@ -1,4 +1,6 @@
-# group `Purge` <a id="group__Purge"></a>
+---
+title: Purge
+---
 
 ## Summary
 

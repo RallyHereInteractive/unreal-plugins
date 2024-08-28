@@ -1,4 +1,6 @@
-# group `RHAPI_BrowserResponse` <a id="group__RHAPI__BrowserResponse"></a>
+---
+title: RHAPI_BrowserResponse
+---
 
 ## Summary
 

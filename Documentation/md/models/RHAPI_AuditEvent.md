@@ -1,4 +1,6 @@
-# group `RHAPI_AuditEvent` <a id="group__RHAPI__AuditEvent"></a>
+---
+title: RHAPI_AuditEvent
+---
 
 ## Summary
 

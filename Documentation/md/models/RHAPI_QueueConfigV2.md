@@ -1,4 +1,6 @@
-# group `RHAPI_QueueConfigV2` <a id="group__RHAPI__QueueConfigV2"></a>
+---
+title: RHAPI_QueueConfigV2
+---
 
 ## Summary
 

@@ -1,4 +1,6 @@
-# group `RHAPI_EventList` <a id="group__RHAPI__EventList"></a>
+---
+title: RHAPI_EventList
+---
 
 ## Summary
 

@@ -1,4 +1,6 @@
-# group `RHAPI_PlatformSessionPlayer` <a id="group__RHAPI__PlatformSessionPlayer"></a>
+---
+title: RHAPI_PlatformSessionPlayer
+---
 
 ## Summary
 

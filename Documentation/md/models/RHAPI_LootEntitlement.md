@@ -1,4 +1,6 @@
-# group `RHAPI_LootEntitlement` <a id="group__RHAPI__LootEntitlement"></a>
+---
+title: RHAPI_LootEntitlement
+---
 
 ## Summary
 

@@ -1,4 +1,6 @@
-# group `RHAPI_PlatformEntitlement` <a id="group__RHAPI__PlatformEntitlement"></a>
+---
+title: RHAPI_PlatformEntitlement
+---
 
 ## Summary
 

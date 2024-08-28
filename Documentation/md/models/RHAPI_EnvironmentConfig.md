@@ -1,4 +1,6 @@
-# group `RHAPI_EnvironmentConfig` <a id="group__RHAPI__EnvironmentConfig"></a>
+---
+title: RHAPI_EnvironmentConfig
+---
 
 ## Summary
 

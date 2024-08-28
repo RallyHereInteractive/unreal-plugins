@@ -1,4 +1,6 @@
-# group `RHAPI_PostGameEventsResponse` <a id="group__RHAPI__PostGameEventsResponse"></a>
+---
+title: RHAPI_PostGameEventsResponse
+---
 
 ## Summary
 

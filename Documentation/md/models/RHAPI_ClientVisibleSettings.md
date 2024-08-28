@@ -1,4 +1,6 @@
-# group `RHAPI_ClientVisibleSettings` <a id="group__RHAPI__ClientVisibleSettings"></a>
+---
+title: RHAPI_ClientVisibleSettings
+---
 
 ## Summary
 

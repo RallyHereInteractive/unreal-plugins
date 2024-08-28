@@ -1,4 +1,6 @@
-# group `RHAPI_InstanceStartupParams` <a id="group__RHAPI__InstanceStartupParams"></a>
+---
+title: RHAPI_InstanceStartupParams
+---
 
 ## Summary
 

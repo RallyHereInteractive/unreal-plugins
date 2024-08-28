@@ -1,4 +1,6 @@
-# group `RHAPI_FileResponse` <a id="group__RHAPI__FileResponse"></a>
+---
+title: RHAPI_FileResponse
+---
 
 ## Summary
 

@@ -1,4 +1,6 @@
-# group `RHAPI_PlayerReportList` <a id="group__RHAPI__PlayerReportList"></a>
+---
+title: RHAPI_PlayerReportList
+---
 
 ## Summary
 

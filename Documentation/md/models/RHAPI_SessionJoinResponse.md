@@ -1,4 +1,6 @@
-# group `RHAPI_SessionJoinResponse` <a id="group__RHAPI__SessionJoinResponse"></a>
+---
+title: RHAPI_SessionJoinResponse
+---
 
 ## Summary
 

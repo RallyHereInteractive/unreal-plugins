@@ -1,4 +1,6 @@
-# group `RHAPI_CacheInfo` <a id="group__RHAPI__CacheInfo"></a>
+---
+title: RHAPI_CacheInfo
+---
 
 ## Summary
 

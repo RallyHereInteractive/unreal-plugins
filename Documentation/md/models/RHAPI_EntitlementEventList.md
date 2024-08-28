@@ -1,4 +1,6 @@
-# group `RHAPI_EntitlementEventList` <a id="group__RHAPI__EntitlementEventList"></a>
+---
+title: RHAPI_EntitlementEventList
+---
 
 ## Summary
 

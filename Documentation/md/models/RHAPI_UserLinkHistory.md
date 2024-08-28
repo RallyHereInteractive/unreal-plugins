@@ -1,4 +1,6 @@
-# group `RHAPI_UserLinkHistory` <a id="group__RHAPI__UserLinkHistory"></a>
+---
+title: RHAPI_UserLinkHistory
+---
 
 ## Summary
 

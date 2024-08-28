@@ -1,4 +1,6 @@
-# group `RHAPI_PexHostQueryParams` <a id="group__RHAPI__PexHostQueryParams"></a>
+---
+title: RHAPI_PexHostQueryParams
+---
 
 ## Summary
 

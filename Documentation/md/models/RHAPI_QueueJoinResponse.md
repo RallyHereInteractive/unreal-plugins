@@ -1,4 +1,6 @@
-# group `RHAPI_QueueJoinResponse` <a id="group__RHAPI__QueueJoinResponse"></a>
+---
+title: RHAPI_QueueJoinResponse
+---
 
 ## Summary
 

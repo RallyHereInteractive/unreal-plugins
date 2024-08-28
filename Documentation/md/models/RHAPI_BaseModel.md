@@ -1,4 +1,6 @@
-# group `RHAPI_BaseModel` <a id="group__RHAPI__BaseModel"></a>
+---
+title: RHAPI_BaseModel
+---
 
 ## Summary
 

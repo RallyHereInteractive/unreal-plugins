@@ -1,4 +1,6 @@
-# group `RHAPI_LootPriceCurrency` <a id="group__RHAPI__LootPriceCurrency"></a>
+---
+title: RHAPI_LootPriceCurrency
+---
 
 ## Summary
 

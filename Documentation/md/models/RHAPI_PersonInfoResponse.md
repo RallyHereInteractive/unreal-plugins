@@ -1,4 +1,6 @@
-# group `RHAPI_PersonInfoResponse` <a id="group__RHAPI__PersonInfoResponse"></a>
+---
+title: RHAPI_PersonInfoResponse
+---
 
 ## Summary
 

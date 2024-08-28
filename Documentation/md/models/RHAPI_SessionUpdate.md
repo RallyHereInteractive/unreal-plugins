@@ -1,4 +1,6 @@
-# group `RHAPI_SessionUpdate` <a id="group__RHAPI__SessionUpdate"></a>
+---
+title: RHAPI_SessionUpdate
+---
 
 ## Summary
 

@@ -1,4 +1,6 @@
-# group `Catalog` <a id="group__Catalog"></a>
+---
+title: Catalog
+---
 
 ## Summary
 

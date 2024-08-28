@@ -1,4 +1,6 @@
-# group `RHAPI_PexHostPagedResponse` <a id="group__RHAPI__PexHostPagedResponse"></a>
+---
+title: RHAPI_PexHostPagedResponse
+---
 
 ## Summary
 

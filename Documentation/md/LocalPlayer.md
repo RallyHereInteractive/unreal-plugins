@@ -1,4 +1,6 @@
-# group `LocalPlayer` <a id="group__LocalPlayer"></a>
+---
+title: LocalPlayer
+---
 
 ## Summary
 

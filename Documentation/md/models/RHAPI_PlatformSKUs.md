@@ -1,4 +1,6 @@
-# group `RHAPI_PlatformSKUs` <a id="group__RHAPI__PlatformSKUs"></a>
+---
+title: RHAPI_PlatformSKUs
+---
 
 ## Summary
 

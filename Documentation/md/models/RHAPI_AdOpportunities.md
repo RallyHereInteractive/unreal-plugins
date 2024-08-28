@@ -1,4 +1,6 @@
-# group `RHAPI_AdOpportunities` <a id="group__RHAPI__AdOpportunities"></a>
+---
+title: RHAPI_AdOpportunities
+---
 
 ## Summary
 

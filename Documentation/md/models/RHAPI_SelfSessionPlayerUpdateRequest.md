@@ -1,4 +1,6 @@
-# group `RHAPI_SelfSessionPlayerUpdateRequest` <a id="group__RHAPI__SelfSessionPlayerUpdateRequest"></a>
+---
+title: RHAPI_SelfSessionPlayerUpdateRequest
+---
 
 ## Summary
 

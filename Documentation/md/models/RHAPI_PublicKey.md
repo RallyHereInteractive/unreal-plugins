@@ -1,4 +1,6 @@
-# group `RHAPI_PublicKey` <a id="group__RHAPI__PublicKey"></a>
+---
+title: RHAPI_PublicKey
+---
 
 ## Summary
 

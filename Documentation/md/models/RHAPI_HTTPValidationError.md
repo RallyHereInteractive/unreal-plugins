@@ -1,4 +1,6 @@
-# group `RHAPI_HTTPValidationError` <a id="group__RHAPI__HTTPValidationError"></a>
+---
+title: RHAPI_HTTPValidationError
+---
 
 ## Summary
 

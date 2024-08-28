@@ -1,4 +1,6 @@
-# group `RHAPI_BodyFindOpportunities` <a id="group__RHAPI__BodyFindOpportunities"></a>
+---
+title: RHAPI_BodyFindOpportunities
+---
 
 ## Summary
 

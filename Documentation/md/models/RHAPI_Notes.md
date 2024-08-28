@@ -1,4 +1,6 @@
-# group `RHAPI_Notes` <a id="group__RHAPI__Notes"></a>
+---
+title: RHAPI_Notes
+---
 
 ## Summary
 

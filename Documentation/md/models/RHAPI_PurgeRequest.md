@@ -1,4 +1,6 @@
-# group `RHAPI_PurgeRequest` <a id="group__RHAPI__PurgeRequest"></a>
+---
+title: RHAPI_PurgeRequest
+---
 
 ## Summary
 

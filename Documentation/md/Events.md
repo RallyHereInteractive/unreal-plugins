@@ -1,4 +1,6 @@
-# group `Events` <a id="group__Events"></a>
+---
+title: Events
+---
 
 ## Summary
 

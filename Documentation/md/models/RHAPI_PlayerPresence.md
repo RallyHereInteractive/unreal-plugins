@@ -1,4 +1,6 @@
-# group `RHAPI_PlayerPresence` <a id="group__RHAPI__PlayerPresence"></a>
+---
+title: RHAPI_PlayerPresence
+---
 
 ## Summary
 

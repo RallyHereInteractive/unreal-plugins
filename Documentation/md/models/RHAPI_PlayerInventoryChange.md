@@ -1,4 +1,6 @@
-# group `RHAPI_PlayerInventoryChange` <a id="group__RHAPI__PlayerInventoryChange"></a>
+---
+title: RHAPI_PlayerInventoryChange
+---
 
 ## Summary
 

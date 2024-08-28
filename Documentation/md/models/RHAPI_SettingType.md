@@ -1,4 +1,6 @@
-# group `RHAPI_SettingType` <a id="group__RHAPI__SettingType"></a>
+---
+title: RHAPI_SettingType
+---
 
 ## Summary
 

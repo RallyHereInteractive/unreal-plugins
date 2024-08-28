@@ -1,4 +1,6 @@
-# group `RHAPI_TimeFrames` <a id="group__RHAPI__TimeFrames"></a>
+---
+title: RHAPI_TimeFrames
+---
 
 ## Summary
 

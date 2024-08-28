@@ -1,4 +1,6 @@
-# group `RHAPI_Platforms` <a id="group__RHAPI__Platforms"></a>
+---
+title: RHAPI_Platforms
+---
 
 ## Summary
 
