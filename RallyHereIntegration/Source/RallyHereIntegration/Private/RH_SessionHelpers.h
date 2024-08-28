@@ -53,7 +53,7 @@ protected:
 				PolledSession->AddDeferredPoll(
 					FRH_DeferredSessionPoll(
 						FRH_DeferredSessionPoll::Type::Modification, 
-						FRH_PollCompleteFunc::CreateSP(this, &FRH_SessionPollHelper::OnSessionPollComplete),
+						FRH_GenericSuccessWithErrorDelegate::CreateSP(this, &FRH_SessionPollHelper::OnSessionPollComplete),
 						SessionLookupETag
 					)
 				);
@@ -69,8 +69,10 @@ protected:
 		}
 	}
 
-	virtual void OnSessionPollComplete(bool bSuccess, bool bResetTimer)
+	virtual void OnSessionPollComplete(bool bSuccess, const FRH_ErrorInfo& InErrorInfo)
 	{
+		ErrorInfo = InErrorInfo;
+		
 		if (bSuccess && SessionOwner.IsValid())
 		{
 			RHSession = SessionOwner->GetSessionById(SessionId);
@@ -250,7 +252,6 @@ protected:
 	FString SessionId;
 	TWeakObjectPtr<URH_SessionView> RHSession;
 	FRH_APISessionWithETag SessionCache;
-	FRH_ErrorInfo ErrorInfo;
 };
 
 
@@ -934,8 +935,10 @@ public:
 	{
 	}
 
-	virtual void OnSessionPollComplete(bool bSuccess, bool bResetTimer) override
+	virtual void OnSessionPollComplete(bool bSuccess, const FRH_ErrorInfo& InErrorInfo) override
 	{
+		ErrorInfo = InErrorInfo;
+		
 		// ignore success flag on the poll (it can succeed or fail depending on the session state, we just want to verify that it removed the session from the owner)
 		auto* Session = SessionOwner->GetSessionById(SessionId);
 		auto* InvitedSession = Cast<URH_InvitedSession>(Session);
