@@ -76,20 +76,21 @@ void URH_RemoteFileSubsystem::UploadFromFile(const FRH_RemoteFileApiDirectory& D
 		FileInput.SetContentType(TEXT("application/octet-stream"));
 	}
 	Request.File = FileInput;
-
+	
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
-		BaseType::Delegate::CreateWeakLambda(this, [this, Directory, RemoteFileName, LocalFilePath](const BaseType::Response& Response)
+		BaseType::Delegate(),
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [LocalFilePath, Directory, RemoteFileName, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+		{
+			if (bSuccess)
 			{
-				if (Response.IsSuccessful())
-				{
-					UE_LOG(LogRallyHereIntegration, Log, TEXT("File %s uploaded successfully to %s::%s"), *LocalFilePath, *Directory.ToDescriptionString(), *RemoteFileName);
-				}
-				else
-				{
-					UE_LOG(LogRallyHereIntegration, Error, TEXT("Failed to upload file %s to %s::%s"), *LocalFilePath, *Directory.ToDescriptionString(), *RemoteFileName);
-				}
-			}),
-		Delegate,
+				UE_LOG(LogRallyHereIntegration, Log, TEXT("Uploaded file %s to %s::%s"), *LocalFilePath, *Directory.ToDescriptionString(), *RemoteFileName);
+			}
+			else
+			{
+				UE_LOG(LogRallyHereIntegration, Error, TEXT("Failed to upload file %s to %s::%s"), *LocalFilePath, *Directory.ToDescriptionString(), *RemoteFileName);
+			}
+			Delegate.ExecuteIfBound(bSuccess, ErrorInfo);
+		}),
 		GetDefault<URH_IntegrationSettings>()->FileUploadPriority
 	);
 
@@ -228,12 +229,19 @@ void URH_RemoteFileSubsystem::DownloadToFile(const FRH_RemoteFileApiDirectory& D
 						UE_LOG(LogRallyHereIntegration, Error, TEXT("Successfully downloaded %s::%s, but type is unknown so cannot save to %s"), *Directory.ToDescriptionString(), *RemoteFileName, *LocalFilePath);
 					}
 				}
+			}),
+			FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [LocalFilePath, Directory, RemoteFileName, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				if (bSuccess)
+				{
+					//UE_LOG(LogRallyHereIntegration, Log, TEXT("Uploaded file %s to %s::%s"), *LocalFilePath, *Directory.ToDescriptionString(), *RemoteFileName);
+				}
 				else
 				{
 					UE_LOG(LogRallyHereIntegration, Error, TEXT("Failed to download file %s::%s to %s"), *Directory.ToDescriptionString(), *RemoteFileName, *LocalFilePath);
 				}
+				Delegate.ExecuteIfBound(bSuccess, ErrorInfo);
 			}),
-		Delegate,
 		GetDefault<URH_IntegrationSettings>()->FileDownloadPriority
 	);
 
