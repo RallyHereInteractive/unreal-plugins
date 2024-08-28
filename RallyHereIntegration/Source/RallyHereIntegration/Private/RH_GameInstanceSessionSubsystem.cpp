@@ -1078,25 +1078,33 @@ void URH_GameInstanceSessionSubsystem::GameModeLogoutEvent(class AGameModeBase* 
 	}
 }
 
-void URH_GameInstanceSessionSubsystem::CreateMatchForSession(const URH_JoinedSession* Session)
+void URH_GameInstanceSessionSubsystem::CreateMatchForSession(const URH_JoinedSession* Session, const FGuid& InMatchId)
 {
 	const auto* Settings = GetDefault<URH_IntegrationSettings>();
 	auto* pMatchSubsystem = GetGameInstanceSubsystem()->GetMatchSubsystem();
 
+	if (pMatchSubsystem == nullptr)
+	{
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("Match subsystem is not available, cannot create match"));
+		return;
+	}
+	else if (Session == nullptr)
+	{
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("Session is null, cannot create match"));
+		return;
+	}
+	
 	const auto* InstanceData = Session->GetInstanceData();
 
 	// create the match id we will use to track the match
-	const auto MatchId = FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens);
+	const auto MatchId = InMatchId.IsValid() ? InMatchId : FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens);
+
+	UE_LOG(LogRallyHereIntegration, Log, TEXT("Creating match for session %s with match id %s"), *Session->GetSessionId(), *MatchId);
 
 	// update the state object with the active match id, to lock it in (all future calls will use this value)
-	auto& State = ActiveSessionState;
-	if (State.Session != nullptr)
-	{
-		State.MatchId = MatchId;
-	}
+	ActiveSessionState.MatchId = MatchId;
 	
 	// Send a match create request to the match subsystem
-	if (pMatchSubsystem != nullptr)
 	{
 		// send an update with initial data satte
 		FRHAPI_MatchRequest UpdateRequest;
