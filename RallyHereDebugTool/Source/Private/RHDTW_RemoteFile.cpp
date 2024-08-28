@@ -175,7 +175,7 @@ void FRHDTW_RemoteFile::DoListFiles(URH_RemoteFileSubsystem* pRemoteFileSubsyste
 				ImGui::BeginDisabled(BrowseDownloadDirectory.IsEmpty());
 				if (ImGui::Button("Download"))
 				{
-					pRemoteFileSubsystem->DownloadFile(RemoteDirectory, File.GetName(), BrowseDownloadDirectory / File.GetName());
+					pRemoteFileSubsystem->DownloadToFile(RemoteDirectory, File.GetName(), BrowseDownloadDirectory / File.GetName());
 				}
 				ImGui::EndDisabled();
 				ImGui::SameLine();
@@ -207,7 +207,7 @@ void FRHDTW_RemoteFile::DoDownloadFile(URH_RemoteFileSubsystem* pRemoteFileSubsy
 	ImGui::BeginDisabled(!RemoteDirectory.IsValid() || DownloadRemoteFileName.IsEmpty() || DownloadLocalFilePath.IsEmpty());
 	if (ImGui::Button("Download"))
 	{
-		pRemoteFileSubsystem->DownloadFile(RemoteDirectory, DownloadRemoteFileName, DownloadLocalFilePath, FRH_GenericSuccessWithErrorDelegate::CreateLambda([this, WeakThis=AsWeak()](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+		pRemoteFileSubsystem->DownloadToFile(RemoteDirectory, DownloadRemoteFileName, DownloadLocalFilePath, true, FRH_GenericSuccessWithErrorDelegate::CreateLambda([this, WeakThis=AsWeak()](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 			{
 				// use weak pointer to validate this pointer is still valid (this is a workaround for some engine versions not having CreateLambdaSP())
 				auto StrongThis = WeakThis.Pin();
@@ -231,7 +231,7 @@ void FRHDTW_RemoteFile::DoUploadFile(URH_RemoteFileSubsystem* pRemoteFileSubsyst
 	ImGui::BeginDisabled(!RemoteDirectory.IsValid() || UploadLocalFilePath.IsEmpty() || UploadRemoteFileName.IsEmpty());
 	if (ImGui::Button("Upload"))
 	{
-		pRemoteFileSubsystem->UploadFile(RemoteDirectory, UploadRemoteFileName, UploadLocalFilePath, FRH_GenericSuccessWithErrorDelegate::CreateLambda([this, WeakThis=AsWeak()](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+		pRemoteFileSubsystem->UploadFromFile(RemoteDirectory, UploadRemoteFileName, UploadLocalFilePath, true, FRH_GenericSuccessWithErrorDelegate::CreateLambda([this, WeakThis=AsWeak()](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 			{
 				// use weak pointer to validate this pointer is still valid (this is a workaround for some engine versions not having CreateLambdaSP())
 				auto StrongThis = WeakThis.Pin();

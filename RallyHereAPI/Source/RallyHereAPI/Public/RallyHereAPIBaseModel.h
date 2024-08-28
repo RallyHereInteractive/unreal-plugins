@@ -192,17 +192,28 @@ struct RALLYHEREAPI_API FRequestMetadata
 	FDateTime CreateTimestamp, QueuedTimestamp, HttpQueuedTimestamp;
 
 	// custom handling override flags tracking
-	bool bDisableAuthRequirement;
-	bool bModifyRequestDelegateIsBound;
-	bool bDisableLoginRetryOnAuthorizationFailure;
+	struct FMetadataFlags
+	{
+		union 
+		{
+			struct {
+				uint32 bDisableAuthRequirement : 1;
+				uint32 bModifyRequestDelegateIsBound : 1;
+				uint32 bDisableLoginRetryOnAuthorizationFailure : 1;
+				uint32 bDisableReadRequestContent : 1;
+				uint32 bDisableReadResponseContent : 1;
+			};
+			uint32 Flags;
+		};
+
+		FMetadataFlags() : Flags(0) {}
+	};
+	FMetadataFlags Flags;
 
 	FRequestMetadata()
 		: Identifier(FGuid::NewGuid())
 		, RetryCount(0)
 		, CreateTimestamp(FDateTime::Now())
-		, bDisableAuthRequirement(false)
-		, bModifyRequestDelegateIsBound(false)
-		, bDisableLoginRetryOnAuthorizationFailure(false)
 	{}
 };
 
@@ -210,8 +221,6 @@ class RALLYHEREAPI_API FRequest
 {
 public:
 	FRequest()
-		: bDisableAuthRequirement(false)
-		, bDisableLoginRetryOnAuthorizationFailure(false)
 	{
 		// default to enabling retry
 		SetShouldRetry();
@@ -229,8 +238,9 @@ public:
 	void ClearShouldRetry() { RetryParams.Reset(); }
 	const TOptional<FHttpRetryParams>& GetRetryParams() const { return RetryParams; }
 
-	void SetDisableAuthRequirement(bool bInDisable) { bDisableAuthRequirement = bInDisable; }
-	void SetDisableLoginRetryOnAuthorizationFailure(bool bInDisable) { bDisableLoginRetryOnAuthorizationFailure = bInDisable; }
+	void SetDisableAuthRequirement(bool bInDisable) { PendingMetadataFlags.bDisableAuthRequirement = bInDisable; }
+	void SetDisableLoginRetryOnAuthorizationFailure(bool bInDisable) { PendingMetadataFlags.bDisableLoginRetryOnAuthorizationFailure = bInDisable; }
+	void SetDisableReadContent(bool bDisableReadRequest, bool bDisableReadResponse) { PendingMetadataFlags.bDisableReadRequestContent = bDisableReadRequest; PendingMetadataFlags.bDisableReadResponseContent = bDisableReadResponse; }
 
 	DECLARE_MULTICAST_DELEGATE_TwoParams(ModifyHttpRequestBeforeSubmit, const FRequest&, FHttpRequestRef);
 	ModifyHttpRequestBeforeSubmit& OnModifyRequest() { return OnModifyRequestDelegate; }
@@ -239,17 +249,15 @@ public:
 	/* Sets flags on the metadata based on the request at time it is sent (in case something modifies the metadata outside of this class) */
 	virtual void SetMetadataFlags(FRequestMetadata& Metadata) const
 	{
-		Metadata.bDisableAuthRequirement = bDisableAuthRequirement;
-		Metadata.bModifyRequestDelegateIsBound = OnModifyRequestDelegate.IsBound();
-		Metadata.bDisableLoginRetryOnAuthorizationFailure = bDisableLoginRetryOnAuthorizationFailure;
+		Metadata.Flags = PendingMetadataFlags;;
+		Metadata.Flags.bModifyRequestDelegateIsBound = PendingMetadataFlags.bModifyRequestDelegateIsBound || OnModifyRequestDelegate.IsBound();
 	}
 
 protected:
 	FRequestMetadata RequestMetadata;
 	TOptional<FHttpRetryParams> RetryParams;
 
-	bool bDisableAuthRequirement;
-	bool bDisableLoginRetryOnAuthorizationFailure;
+	FRequestMetadata::FMetadataFlags PendingMetadataFlags;
 	ModifyHttpRequestBeforeSubmit OnModifyRequestDelegate;
 };
 

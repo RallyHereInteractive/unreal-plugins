@@ -261,20 +261,21 @@ bool FRequest_{{operationIdCamelCase}}::SetupHttpRequest(const FHttpRequestRef& 
 	{{/headerParams.0}}
 	{{#authMethods.0}}
 
-	if (!AuthContext && !bDisableAuthRequirement)
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(Log{{unrealModuleName}}, Error, TEXT("FRequest_{{operationIdCamelCase}} - missing auth context"));
 		return false;
 	}
 	{{#isBasicBasic}}
-	if (AuthContext && !AuthContext->AddClientCredentials(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddClientCredentials(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(Log{{unrealModuleName}}, Error, TEXT("FRequest_{{operationIdCamelCase}} - failed to add client credentials"));
 		return false;
 	}
 	{{/isBasicBasic}}
 	{{#isBasicBearer}}
-	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !bDisableAuthRequirement)
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
 		UE_LOG(Log{{unrealModuleName}}, Error, TEXT("FRequest_{{operationIdCamelCase}} - failed to add bearer token"));
 		return false;

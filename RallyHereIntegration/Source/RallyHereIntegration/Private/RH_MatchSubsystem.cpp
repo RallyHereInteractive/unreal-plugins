@@ -749,7 +749,7 @@ void FRH_MatchCreateSimple::Define()
 							// upload the file
 							const auto RemoteFileDirectory = URH_MatchSubsystem::GetMatchFileDirectory(MatchId.GetValue());
 							const auto RemoteFileName = TEXT("TestFile.txt");
-							RemoteFileSubsystem->UploadFile(RemoteFileDirectory, RemoteFileName, TempFile,
+							RemoteFileSubsystem->UploadFromFile(RemoteFileDirectory, RemoteFileName, TempFile, true,
 								FRH_GenericSuccessWithErrorDelegate::CreateLambda([this, RemoteFileDirectory, RemoteFileName, TempFileContents, Done](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 								{
 									if (!TestTrue(TEXT("Success"), bSuccess))
@@ -781,7 +781,7 @@ void FRH_MatchCreateSimple::Define()
 									const FString DownloadMatchDir = FPaths::ProjectPersistentDownloadDir();
 									FString DestFile = DownloadMatchDir / FString::Printf(TEXT("Match_%s.txt"), *MatchId.GetValue());
 
-									RemoteFileSubsystem->DownloadFile(RemoteFileDirectory, RemoteFileName, DestFile, FRH_GenericSuccessWithErrorDelegate::CreateLambda([this, DestFile, TempFileContents, Done](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+									RemoteFileSubsystem->DownloadToFile(RemoteFileDirectory, RemoteFileName, DestFile, true, FRH_GenericSuccessWithErrorDelegate::CreateLambda([this, DestFile, TempFileContents, Done](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 										{
 											if (!TestTrue(TEXT("Success"), bSuccess))
 											{

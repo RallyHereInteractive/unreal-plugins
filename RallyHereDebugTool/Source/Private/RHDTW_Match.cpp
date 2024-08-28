@@ -517,12 +517,12 @@ void FRHDTW_Match::DoFilesBlock(const FString& MatchId, bool bDownload, bool bUp
 			{
 				if (ImGui::Button("Upload File"))
 				{
-					FileSubsystem->UploadFile(URH_MatchSubsystem::GetMatchFileDirectory(MatchId), UploadRemoteFileName, UploadFilePath);
+					FileSubsystem->UploadFromFile(URH_MatchSubsystem::GetMatchFileDirectory(MatchId), UploadRemoteFileName, UploadFilePath, true);
 				}
 				ImGui::SameLine();
 				if (ImGui::Button("Upload Developer File"))
 				{
-					FileSubsystem->UploadFile(URH_MatchSubsystem::GetMatchDeveloperFileDirectory(MatchId), UploadRemoteFileName, UploadFilePath);
+					FileSubsystem->UploadFromFile(URH_MatchSubsystem::GetMatchDeveloperFileDirectory(MatchId), UploadRemoteFileName, UploadFilePath, true);
 				}
 			}
 			ImGui::EndDisabled();

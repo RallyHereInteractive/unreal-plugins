@@ -166,8 +166,23 @@ void URH_GameInstanceServerBootstrapper::Initialize()
 		{
 			if (TraceType == FTraceAuxiliary::EConnectionType::File)
 			{
-				// upload the trace file
-				ConditionalAutoUploadTraceFile(TraceDestination);
+				if (IsEngineExitRequested())
+				{
+					// upload the trace file immediately if exiting, and hope it is complete by time processing occurs
+					ConditionalAutoUploadTraceFile(TraceDestination);
+				}
+				else
+				{
+					// this callback indicates the trace was stopped but the file write is not necessarily completed and flushed to disk when this call is made, so defer a frame to allow for some cleanup time
+					auto GameInstance = GetGameInstanceSubsystem()->GetGameInstance();
+					if (GameInstance != nullptr)
+					{
+						GameInstance->GetTimerManager().SetTimerForNextTick([this, TraceDestination]()
+							{
+								ConditionalAutoUploadTraceFile(TraceDestination);
+							});
+					}
+				}
 			};
 		});
 #endif
@@ -1793,7 +1808,7 @@ void URH_GameInstanceServerBootstrapper::ConditionalAutoUploadLogFile() const
 				Log->Flush();
 			}
 
-			return GISS->GetRemoteFileSubsystem()->UploadFile(Directory, LogFilename, LogSrcAbsolute);
+			return GISS->GetRemoteFileSubsystem()->UploadFromFile(Directory, LogFilename, LogSrcAbsolute, true);
 		}
 	}
 }
@@ -1808,7 +1823,7 @@ void URH_GameInstanceServerBootstrapper::ConditionalAutoUploadTraceFile(const FS
 		{
 			FString LogFilename = FPaths::GetCleanFilename(TraceFile);
 
-			return GISS->GetRemoteFileSubsystem()->UploadFile(Directory, LogFilename, TraceFile);
+			return GISS->GetRemoteFileSubsystem()->UploadFromFile(Directory, LogFilename, TraceFile, true);
 		}
 	}
 }

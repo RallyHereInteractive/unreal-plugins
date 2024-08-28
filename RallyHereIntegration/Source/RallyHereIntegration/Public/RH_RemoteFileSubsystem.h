@@ -48,7 +48,28 @@ public:
 	 * @param LocalFilePath The path of the file on the local storage to upload.
 	 * @param Delegate The delegate to call when the operation completes.
 	 */
-	virtual void UploadFile(const FRH_RemoteFileApiDirectory& Directory, const FString& RemoteFileName, const FString& LocalFilePath, const FRH_GenericSuccessWithErrorBlock Delegate = FRH_GenericSuccessWithErrorBlock());
+	UE_DEPRECATED(5.0, "Please use UploadFile instead")
+	virtual void UploadFile(const FRH_RemoteFileApiDirectory& Directory, const FString& RemoteFileName, const FString& LocalFilePath, const FRH_GenericSuccessWithErrorBlock Delegate = FRH_GenericSuccessWithErrorBlock())
+	{
+		UploadFromFile(Directory, RemoteFileName, LocalFilePath, true, Delegate);
+	}
+	/**
+	 * @brief Upload a local file to the remote file storage.
+	 * @param Directory The directory of the file on the remote storage.
+	 * @param RemoteFileName The name of the file on the remote storage.
+	 * @param LocalFilePath The path of the file on the local storage to upload.
+	 * @param bStreamFile If true, the file will be streamed from disk instead of loaded into memory before upload.
+	 * @param Delegate The delegate to call when the operation completes.
+	 */
+	virtual void UploadFromFile(const FRH_RemoteFileApiDirectory& Directory, const FString& RemoteFileName, const FString& LocalFilePath, bool bStreamFile = true, const FRH_GenericSuccessWithErrorBlock Delegate = FRH_GenericSuccessWithErrorBlock());
+	/**
+	 * @brief Upload a local file to the remote file storage.
+	 * @param Directory The directory of the file on the remote storage.
+	 * @param RemoteFileName The name of the file on the remote storage.
+	 * @param Stream An archive to stream the file from.  The stream is not closed after the operation completes.
+	 * @param Delegate The delegate to call when the operation completes.
+	 */
+	virtual void UploadFromStream(const FRH_RemoteFileApiDirectory& Directory, const FString& RemoteFileName, TSharedRef<FArchive, ESPMode::ThreadSafe> Stream, const FRH_GenericSuccessWithErrorBlock Delegate = FRH_GenericSuccessWithErrorBlock());
 	/**
 	 * @private
 	 * @brief Upload a local file to the remote file storage.
@@ -60,7 +81,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "File", meta=(DisplayName="Upload File", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_UploadFile(const FRH_RemoteFileApiDirectory& Directory, const FString& RemoteFileName, const FString& LocalFilePath, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate)
 	{
-		UploadFile(Directory, RemoteFileName, LocalFilePath, Delegate);
+		UploadFromFile(Directory, RemoteFileName, LocalFilePath, true, Delegate);
 	}
 
 	/**
@@ -90,14 +111,45 @@ public:
 	 * @param LocalFilePath The path of the file on the local storage to save to.
 	 * @param Delegate The delegate to call when the operation completes.
 	 */
-	virtual void DownloadFile(const FRH_RemoteFileApiDirectory& Directory, const FString& RemoteFileName, const FString& LocalFilePath, const FRH_GenericSuccessWithErrorBlock Delegate = FRH_GenericSuccessWithErrorBlock());
+	UE_DEPRECATED(5.0, "Please use DownloadToFile instead")
+	virtual void DownloadFile(const FRH_RemoteFileApiDirectory& Directory, const FString& RemoteFileName, const FString& LocalFilePath, const FRH_GenericSuccessWithErrorBlock Delegate = FRH_GenericSuccessWithErrorBlock())
+	{
+		DownloadToFile(Directory, RemoteFileName, LocalFilePath, true, Delegate);
+	}
 	/**
 	 * @brief Download a remote file to memory
 	 * @param Directory The directory of the file on the remote storage.
 	 * @param RemoteFileName The name of the file on the remote storage to download.
 	 * @param Delegate The delegate to call when the operation completes.
 	 */
-	virtual void DownloadFile(const FRH_RemoteFileApiDirectory& Directory, const FString& RemoteFileName, const FRH_FileDownloadDelegate Delegate);
+	UE_DEPRECATED(5.0, "Please use DownloadToMemory instead")
+	virtual void DownloadFile(const FRH_RemoteFileApiDirectory& Directory, const FString& RemoteFileName, const FRH_FileDownloadDelegate Delegate)
+	{
+		DownloadToMemory(Directory, RemoteFileName, Delegate);
+	}
+	/**
+	 * @brief Download a remote file to local file storage.
+	 * @param Directory The directory of the file on the remote storage.
+	 * @param RemoteFileName The name of the file on the remote storage to download.
+	 * @param LocalFilePath The path of the file on the local storage to save to.
+	 * @param Delegate The delegate to call when the operation completes.
+	 */
+	virtual void DownloadToFile(const FRH_RemoteFileApiDirectory& Directory, const FString& RemoteFileName, const FString& LocalFilePath, bool bStreamFile = true, const FRH_GenericSuccessWithErrorBlock Delegate = FRH_GenericSuccessWithErrorBlock());
+	/**
+	 * @brief Download a remote file to memory
+	 * @param Directory The directory of the file on the remote storage.
+	 * @param RemoteFileName The name of the file on the remote storage to download.
+	 * @param Delegate The delegate to call when the operation completes.
+	 */
+	virtual void DownloadToMemory(const FRH_RemoteFileApiDirectory& Directory, const FString& RemoteFileName, const FRH_FileDownloadDelegate Delegate);
+	/**
+	 * @brief Download a remote file to local file storage.
+	 * @param Directory The directory of the file on the remote storage.
+	 * @param RemoteFileName The name of the file on the remote storage to download.
+	 * @param Stream The stream to write to.  The stream is not closed after the operation completes.
+	 * @param Delegate The delegate to call when the operation completes.
+	 */
+	virtual void DownloadToStream(const FRH_RemoteFileApiDirectory& Directory, const FString& RemoteFileName, TSharedRef<FArchive> Stream, const FRH_GenericSuccessWithErrorBlock Delegate = FRH_GenericSuccessWithErrorBlock());
 	/**
 	 * @private
 	 * @brief Download a remote file to local file storage.
@@ -109,7 +161,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "File", meta = (DisplayName = "Download File", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_DownloadFile(const FRH_RemoteFileApiDirectory& Directory, const FString& RemoteFileName, const FString& LocalFilePath, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate)
 	{
-		DownloadFile(Directory, RemoteFileName, LocalFilePath, Delegate);
+		DownloadToFile(Directory, RemoteFileName, LocalFilePath, true, Delegate);
 	}
 
 	/**
