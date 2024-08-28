@@ -1078,7 +1078,7 @@ void URH_GameInstanceSessionSubsystem::GameModeLogoutEvent(class AGameModeBase* 
 	}
 }
 
-void URH_GameInstanceSessionSubsystem::CreateMatchForSession(const URH_JoinedSession* Session, const FGuid& InMatchId)
+void URH_GameInstanceSessionSubsystem::CreateMatchForSession(const URH_JoinedSession* Session, const FString& InMatchId)
 {
 	const auto* Settings = GetDefault<URH_IntegrationSettings>();
 	auto* pMatchSubsystem = GetGameInstanceSubsystem()->GetMatchSubsystem();
@@ -1097,7 +1097,7 @@ void URH_GameInstanceSessionSubsystem::CreateMatchForSession(const URH_JoinedSes
 	const auto* InstanceData = Session->GetInstanceData();
 
 	// create the match id we will use to track the match
-	const auto MatchId = InMatchId.IsValid() ? InMatchId : FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens);
+	const auto MatchId = InMatchId.Len() > 0 ? InMatchId : FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens);
 
 	UE_LOG(LogRallyHereIntegration, Log, TEXT("Creating match for session %s with match id %s"), *Session->GetSessionId(), *MatchId);
 
