@@ -920,7 +920,7 @@ public:
 	 * @param [in] Player Pointer to the friend representation of the player
 	 */
 	UFUNCTION(BlueprintPure, Category = "Friend Subsystem")
-	bool IsFriendPlatformBlocked(const URH_RHFriendAndPlatformFriend* Player) const
+	static bool IsFriendPlatformBlocked(const URH_RHFriendAndPlatformFriend* Player)
 	{
 		if (IsValid(Player))
 		{
