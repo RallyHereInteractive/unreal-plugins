@@ -982,7 +982,7 @@ void URH_PlayerInventory::UpdateInventoryFromOrderDetails(const TArray<FRHAPI_Pl
 				if (const FRHAPI_InventoryRecord* BeforeRecordPtr = InventoryChange.GetBeforeOrNull())
 				{
 					TArray<FRH_ItemInventory>* InventoryForItem = InventoryCache.Find(*BeforeItemIdPtr);
-					const FRHAPI_InventoryRecord BeforeRecord = *BeforeRecordPtr;
+					const auto& BeforeRecord = *BeforeRecordPtr;
 
 					if (InventoryForItem != nullptr)
 					{
@@ -1016,7 +1016,7 @@ void URH_PlayerInventory::UpdateInventoryFromOrderDetails(const TArray<FRHAPI_Pl
 			{
 				if (const FRHAPI_InventoryRecord* AfterRecordPtr = InventoryChange.GetAfterOrNull())
 				{
-					const FRHAPI_InventoryRecord AfterRecord = *AfterRecordPtr;
+					const auto& AfterRecord = *AfterRecordPtr;
 					
 					// Note that this can add records with a count of 0.  This is intentional, as by design an empty record is considered equivalent to a count of 0.
 					// In the future, it is possible that the after record will instead be null in the case of a count being reduced to zero.
