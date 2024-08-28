@@ -560,6 +560,18 @@ void URH_PlayerInventory::HandleGetInventory(const RallyHereAPI::FResponse_GetPl
 		}
 	}
 
+	// mark full inventory as being received, allowing it to then poll deltas
+	// if header has date time in it, use that as it is the proper server time.
+	FString HeaderDateTimeString;
+	if (Response.TryGetHeader(TEXT("Date"), HeaderDateTimeString))
+	{
+		FDateTime HeaderDateTime;
+		if (FDateTime::ParseHttpDate(HeaderDateTimeString, HeaderDateTime))
+		{
+			LastFullInventoryTime = HeaderDateTime;
+		}
+	}
+
 	BroadcastOnInventoryCacheUpdated(FullInventoryItemIds);
 	Delegate.ExecuteIfBound(true);
 }
@@ -1311,6 +1323,26 @@ bool URH_PlayerOrderWatch::RequestOrders(const FRH_GenericSuccessWithErrorBlock&
 		return false;
 	}
 
+	// if we have not yet requested the player's inventory, do so now and wait for completion
+	if (!PlayerInventory->LastFullInventoryTime.IsSet())
+	{
+		PlayerInventory->GetInventory(TArray<int32>(), FRH_OnInventoryUpdateDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess)
+			{
+				auto PlayerInventory = GetPlayerInventory(); 
+				if (bSuccess && PlayerInventory != nullptr && PlayerInventory->LastFullInventoryTime.IsSet())
+				{
+					// recall poll now that we have the inventory
+					RequestOrders(Delegate);
+				}
+				else
+				{
+					// if we failed to get the inventory, we should keep polling
+					Delegate.ExecuteIfBound(false, FRH_ErrorInfo());
+				}
+			}));
+		return true;
+	}
+	
 	auto Request = TGetOrders::Request();
 
 	Request.AuthContext = PlayerInventory->GetAuthContext();
@@ -1333,28 +1365,16 @@ bool URH_PlayerOrderWatch::RequestOrders(const FRH_GenericSuccessWithErrorBlock&
 	{
 		Request.StartingPosition = *LastStartingPosition;
 	}
-	// else we have not made a successful request yet, so start fresh with current time as starting position
-	else
+	// else we have not made a successful request yet, so start with the last time we pulled full inventory
+	else if (PlayerInventory->LastFullInventoryTime.IsSet())
 	{
 		// if we don't have a cursor or starting position, we are starting fresh
-
-		// we want to use the server adjusted time if we can, but if we can't, we will use the local time
-		Request.StartingPosition = FDateTime::UtcNow();
-
-		// try to use the current server time as a starting position
-		const auto Inventory = GetPlayerInventory();
-		if (Inventory != nullptr)
-		{
-			const auto GameInstanceSubsystem = Inventory->GetGameInstanceSubsystem();
-			if (GameInstanceSubsystem != nullptr && GameInstanceSubsystem->GetConfigSubsystem() != nullptr)
-			{
-				FDateTime ServerTime;
-				if (GameInstanceSubsystem->GetConfigSubsystem()->GetServerTime(ServerTime))
-				{
-					Request.StartingPosition = ServerTime;
-				}
-			}
-		}
+		Request.StartingPosition = PlayerInventory->LastFullInventoryTime.GetValue();		
+	}
+	else
+	{
+		// if we don't have a cursor or starting position from inventory retrieval, so we cannot do delta requests from orders
+		return false;
 	}
 
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<TGetOrders>>(
