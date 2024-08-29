@@ -167,13 +167,7 @@ public:
 	 */
 	bool IsComplete(TArray<int32>& OutAwaitedVendors) const
 	{
-		OutAwaitedVendors = GetAwaitedVendorIds();
-		if (OutAwaitedVendors.Num() == 0)
-		{
-			Request.Delegate.ExecuteIfBound(true);
-			return true;
-		}
-		return false;
+		return GetAwaitedVendorIds().Num() == 0;
 	}
 };
 

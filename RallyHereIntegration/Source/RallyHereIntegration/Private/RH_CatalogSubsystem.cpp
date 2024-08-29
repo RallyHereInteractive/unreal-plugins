@@ -535,7 +535,10 @@ void URH_CatalogSubsystem::ProcessVendorRequests()
 		TArray<int32> AwaitedVendors;
 		if (Request.IsComplete(AwaitedVendors))
 		{
+			// copy the delegate and remove the request (the request will be invalid once removed from the list)
+			auto Delegate = Request.Request.Delegate;
 			VendorRequests.RemoveAt(i);
+			Delegate.ExecuteIfBound(true);
 		}
 		else
 		{
