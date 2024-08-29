@@ -139,13 +139,12 @@ public:
 	/**
 	 * @brief Notify that a vendor has failed to be received.
 	 * @param [in] VendorId The VendorID that failed
-	 * @return Whether the vendor was awaited and the request should be completed
+	 * @return Whether the vendor was awaited and the request should be failed
 	 */
 	bool NotifyVendorFailure(int32 VendorId)
 	{
 		if (GetAwaitedVendorIds().Contains(VendorId))
 		{
-			Request.Delegate.ExecuteIfBound(false);
 			return true;
 		}
 
@@ -167,7 +166,8 @@ public:
 	 */
 	bool IsComplete(TArray<int32>& OutAwaitedVendors) const
 	{
-		return GetAwaitedVendorIds().Num() == 0;
+		OutAwaitedVendors = GetAwaitedVendorIds();
+		return OutAwaitedVendors.Num() == 0;
 	}
 };
 
