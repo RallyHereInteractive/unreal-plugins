@@ -790,7 +790,7 @@ Notify that a vendor has failed to be received.
 * `VendorId` The VendorID that failed 
 
 #### Returns
-Whether the vendor was awaited and the request should be completed
+Whether the vendor was awaited and the request should be failed
 
 #### `public TArray< int32 > `[`GetAllKnownVendorIds`](#structFRH__VendorRequestState_1ab1bb3e584f61c7cbe90dd387516fdbad)`() const` <a id="structFRH__VendorRequestState_1ab1bb3e584f61c7cbe90dd387516fdbad"></a>
 
