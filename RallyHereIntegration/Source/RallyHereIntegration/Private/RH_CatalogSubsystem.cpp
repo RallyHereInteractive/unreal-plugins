@@ -469,14 +469,24 @@ void URH_CatalogSubsystem::OnGetCatalogVendorResponse(const TGetCatalogVendor::R
 	}
 	else
 	{
+		TArray<FRH_CatalogCallBlock> CompletedRequestDelegates;
+		
 		// vendor could not be retrieved, fail any requests that were expecting this vendor
 		for (int32 i = VendorRequests.Num() - 1; i >= 0; i--)
 		{
 			if (VendorRequests[i].NotifyVendorFailure(VendorId))
 			{
+				CompletedRequestDelegates.Add(VendorRequests[i].Request.Delegate);
 				VendorRequests.RemoveAt(i);
 			}
 		}
+
+		// execute any completed request delegates (this happens last so that the processing state is complete before the delegates are executed)
+		for (const auto& Delegate : CompletedRequestDelegates)
+		{
+			Delegate.ExecuteIfBound(false);
+		}
+		
 		return;
 	}
 
@@ -525,6 +535,8 @@ void URH_CatalogSubsystem::ProcessVendorRequests()
 {
 	// keep track of any subvendors we need to request (that are newly added to any request, and thus were not already kicked off)
 	TArray<int32> VendorsToRequest;
+
+	TArray<FRH_CatalogCallBlock> CompletedRequestDelegates;
 	
 	// scan through requests, fulfilling them as needed
 	for (int32 i = VendorRequests.Num() - 1; i >= 0; i--)
@@ -535,6 +547,8 @@ void URH_CatalogSubsystem::ProcessVendorRequests()
 		TArray<int32> AwaitedVendors;
 		if (Request.IsComplete(AwaitedVendors))
 		{
+			// copy the delegate and remove the request (the request will be invalid once removed from the list)
+			CompletedRequestDelegates.Add(Request.Request.Delegate);
 			VendorRequests.RemoveAt(i);
 		}
 		else
@@ -555,6 +569,12 @@ void URH_CatalogSubsystem::ProcessVendorRequests()
 	for (int32 SubVendorId : VendorsToRequest)
 	{
 		GetCatalogVendorSingle(SubVendorId);
+	}
+
+	// finally, execute any completed request delegates (this happens last so that the processing state is complete before the delegates are executed)
+	for (const auto& Delegate : CompletedRequestDelegates)
+	{
+		Delegate.ExecuteIfBound(true);
 	}
 }
 
