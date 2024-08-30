@@ -158,7 +158,7 @@ bool URH_PlayerNotifications::CreateNotification(const FGuid& PlayerUuid,
 	Request.NotificationCreates.SetNotifications(creates);
 
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
-	const auto HttpPtr = FTraits::DoCall(RH_APIs::GetAPIs().GetPlayerNotification(), Request,
+	const auto HttpPtr = FTraits::DoCall(RH_APIs::GetNotificationAPI(), Request,
 	                                     FTraits::Delegate::CreateUObject(
 		                                     this, &URH_PlayerNotifications::OnNotificationCreated, Delegate),
 											 GetDefault<URH_IntegrationSettings>()->NotificationCreatePriority);

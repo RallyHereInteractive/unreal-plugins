@@ -10,6 +10,7 @@
 #include "CoreMinimal.h"
 #include "RallyHereAPIAuthContext.h"
 #include "RallyHereAPIHelpers.h"
+#include "EnvironmentConfig.h"
 #include "HTTPValidationError.h"
 #include "HzApiErrorModel.h"
 #include "KVV1.h"
@@ -409,6 +410,93 @@ struct RALLYHEREAPI_API Traits_GetAppSettingsServer
 };
 
 /**
+ * @brief Get Environment Id
+ * Returns the Environment configuration.
+*/
+struct RALLYHEREAPI_API FRequest_GetEnvironmentId : public FRequest
+{
+	FRequest_GetEnvironmentId();
+	virtual ~FRequest_GetEnvironmentId() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+
+};
+
+/** The response type for FRequest_GetEnvironmentId */
+struct RALLYHEREAPI_API FResponse_GetEnvironmentId : public FResponseAccessorTemplate<FRHAPI_EnvironmentConfig>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_EnvironmentConfig> Super;
+
+	FResponse_GetEnvironmentId(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetEnvironmentId() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_EnvironmentConfig Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_EnvironmentConfig& OutContent) const { return TryGetContent<FRHAPI_EnvironmentConfig>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_EnvironmentConfig>& OutContent) const { return TryGetContent<FRHAPI_EnvironmentConfig>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_EnvironmentConfig* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_EnvironmentConfig>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_EnvironmentConfig> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_EnvironmentConfig>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_EnvironmentConfig& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetEnvironmentId */
+DECLARE_DELEGATE_OneParam(FDelegate_GetEnvironmentId, const FResponse_GetEnvironmentId&);
+
+/** @brief A helper metadata object for GetEnvironmentId that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetEnvironmentId
+{
+	/** The request type */
+	typedef FRequest_GetEnvironmentId Request;
+	/** The response type */
+	typedef FResponse_GetEnvironmentId Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetEnvironmentId Delegate;
+	/** The API object that supports this API call */
+	typedef FConfigAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
  * @brief Get Kvs V2
  * Get All KVs and Secret KVs.  Regular KVs are always returned.
  * 
@@ -536,6 +624,93 @@ struct RALLYHEREAPI_API Traits_GetKvsV2
 	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
+/**
+ * @brief Get Utc Time
+ * Returns the current UTC time for use by the game client. Allows a game client with a incorrect local time to compare against the API's time and create a offset to act upon.
+*/
+struct RALLYHEREAPI_API FRequest_GetUtcTime : public FRequest
+{
+	FRequest_GetUtcTime();
+	virtual ~FRequest_GetUtcTime() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+
+};
+
+/** The response type for FRequest_GetUtcTime */
+struct RALLYHEREAPI_API FResponse_GetUtcTime : public FResponseAccessorTemplate<FDateTime>
+{
+	typedef FResponseAccessorTemplate<FDateTime> Super;
+
+	FResponse_GetUtcTime(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetUtcTime() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FDateTime Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FDateTime& OutContent) const { return TryGetContent<FDateTime>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FDateTime>& OutContent) const { return TryGetContent<FDateTime>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FDateTime* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FDateTime>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FDateTime> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FDateTime>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FDateTime& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetUtcTime */
+DECLARE_DELEGATE_OneParam(FDelegate_GetUtcTime, const FResponse_GetUtcTime&);
+
+/** @brief A helper metadata object for GetUtcTime that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetUtcTime
+{
+	/** The request type */
+	typedef FRequest_GetUtcTime Request;
+	/** The response type */
+	typedef FResponse_GetUtcTime Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetUtcTime Delegate;
+	/** The API object that supports this API call */
+	typedef FConfigAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
 
 /** The API class itself, which will handle calls to */
 class RALLYHEREAPI_API FConfigAPI : public FAPI
@@ -547,13 +722,17 @@ public:
 	FHttpRequestPtr GetAppSettingsAll(const FRequest_GetAppSettingsAll& Request, const FDelegate_GetAppSettingsAll& Delegate = FDelegate_GetAppSettingsAll(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr GetAppSettingsClient(const FRequest_GetAppSettingsClient& Request, const FDelegate_GetAppSettingsClient& Delegate = FDelegate_GetAppSettingsClient(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr GetAppSettingsServer(const FRequest_GetAppSettingsServer& Request, const FDelegate_GetAppSettingsServer& Delegate = FDelegate_GetAppSettingsServer(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetEnvironmentId(const FRequest_GetEnvironmentId& Request, const FDelegate_GetEnvironmentId& Delegate = FDelegate_GetEnvironmentId(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr GetKvsV2(const FRequest_GetKvsV2& Request, const FDelegate_GetKvsV2& Delegate = FDelegate_GetKvsV2(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetUtcTime(const FRequest_GetUtcTime& Request, const FDelegate_GetUtcTime& Delegate = FDelegate_GetUtcTime(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
 	void OnGetAppSettingsAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAppSettingsAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnGetAppSettingsClientResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAppSettingsClient Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnGetAppSettingsServerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAppSettingsServer Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetEnvironmentIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetEnvironmentId Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnGetKvsV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetKvsV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetUtcTimeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetUtcTime Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 

@@ -6,7 +6,6 @@
 #include "Containers/Map.h"
 #include "Delegates/Delegate.h"
 #include "ConfigAPI.h"
-#include "TimeAPI.h"
 #include "Engine/EngineTypes.h"
 #include "RH_Common.h"
 #include "RH_SubsystemPluginBase.h"

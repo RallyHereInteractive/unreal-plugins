@@ -10,6 +10,7 @@
 #include "CoreMinimal.h"
 #include "RallyHereAPIAuthContext.h"
 #include "RallyHereAPIHelpers.h"
+#include "MatchState.h"
 #include "HTTPValidationError.h"
 #include "HzApiErrorModel.h"
 #include "MatchPlayerRequest.h"
@@ -1030,6 +1031,8 @@ struct RALLYHEREAPI_API FRequest_GetMatches : public FRequest
 	TOptional<FString> HostPlayerUuid;
 	TOptional<FString> RegionId;
 	TOptional<FString> PlayerUuid;
+	TOptional<FString> Type;
+	TOptional<ERHAPI_MatchState> State;
 	TOptional<bool> IncludeSegments;
 	TOptional<bool> IncludePlayers;
 };

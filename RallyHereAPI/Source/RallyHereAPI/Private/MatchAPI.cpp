@@ -2650,6 +2650,14 @@ FString FRequest_GetMatches::ComputePath() const
 	{
 		QueryParams.Add(FString(TEXT("player_uuid=")) + ToUrlString(PlayerUuid.GetValue()));
 	}
+	if(Type.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("type=")) + ToUrlString(Type.GetValue()));
+	}
+	if(State.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("state=")) + ToUrlString(State.GetValue()));
+	}
 	if(IncludeSegments.IsSet())
 	{
 		QueryParams.Add(FString(TEXT("include_segments=")) + ToUrlString(IncludeSegments.GetValue()));

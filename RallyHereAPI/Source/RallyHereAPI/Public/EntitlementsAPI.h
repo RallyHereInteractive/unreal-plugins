@@ -10,6 +10,7 @@
 #include "CoreMinimal.h"
 #include "RallyHereAPIAuthContext.h"
 #include "RallyHereAPIHelpers.h"
+#include "Portal.h"
 #include "EntitlementEvent.h"
 #include "EntitlementEventList.h"
 #include "EntitlementEventRequest.h"
@@ -238,6 +239,436 @@ struct RALLYHEREAPI_API Traits_GetEntitlementEvents
 	typedef FResponse_GetEntitlementEvents Response;
 	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetEntitlementEvents Delegate;
+	/** The API object that supports this API call */
+	typedef FEntitlementsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Process Key Entitlements
+ * Process entitlements for the given player with the given portal. The end result will consume entitlements from the Platform and grant unclaimed Key Claims to the player.
+*/
+struct RALLYHEREAPI_API FRequest_ProcessKeyEntitlements : public FRequest
+{
+	FRequest_ProcessKeyEntitlements();
+	virtual ~FRequest_ProcessKeyEntitlements() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	int32 PlayerId = 0;
+	ERHAPI_Portal PortalId;
+};
+
+/** The response type for FRequest_ProcessKeyEntitlements */
+struct RALLYHEREAPI_API FResponse_ProcessKeyEntitlements : public FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_ProcessKeyEntitlements(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_ProcessKeyEntitlements() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_JsonValue Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_JsonValue& OutContent) const { return TryGetContent<FRHAPI_JsonValue>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_JsonValue>& OutContent) const { return TryGetContent<FRHAPI_JsonValue>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_JsonValue* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_JsonValue>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_JsonValue> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_JsonValue>(); }
+
+	// Individual Response Helpers	
+	/* Response 202
+	Successful Response
+	*/
+	bool TryGetContentFor202(FRHAPI_JsonValue& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 409
+	Conflict
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_ProcessKeyEntitlements */
+DECLARE_DELEGATE_OneParam(FDelegate_ProcessKeyEntitlements, const FResponse_ProcessKeyEntitlements&);
+
+/** @brief A helper metadata object for ProcessKeyEntitlements that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_ProcessKeyEntitlements
+{
+	/** The request type */
+	typedef FRequest_ProcessKeyEntitlements Request;
+	/** The response type */
+	typedef FResponse_ProcessKeyEntitlements Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_ProcessKeyEntitlements Delegate;
+	/** The API object that supports this API call */
+	typedef FEntitlementsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Process Key Entitlements Player Uuid
+ * Process entitlements for the given player with the given portal. The end result will consume entitlements from the Platform and grant unclaimed Key Claims to the player.
+*/
+struct RALLYHEREAPI_API FRequest_ProcessKeyEntitlementsPlayerUuid : public FRequest
+{
+	FRequest_ProcessKeyEntitlementsPlayerUuid();
+	virtual ~FRequest_ProcessKeyEntitlementsPlayerUuid() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PlayerUuid;
+	ERHAPI_Portal PortalId;
+};
+
+/** The response type for FRequest_ProcessKeyEntitlementsPlayerUuid */
+struct RALLYHEREAPI_API FResponse_ProcessKeyEntitlementsPlayerUuid : public FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_ProcessKeyEntitlementsPlayerUuid(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_ProcessKeyEntitlementsPlayerUuid() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_JsonValue Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_JsonValue& OutContent) const { return TryGetContent<FRHAPI_JsonValue>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_JsonValue>& OutContent) const { return TryGetContent<FRHAPI_JsonValue>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_JsonValue* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_JsonValue>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_JsonValue> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_JsonValue>(); }
+
+	// Individual Response Helpers	
+	/* Response 202
+	Successful Response
+	*/
+	bool TryGetContentFor202(FRHAPI_JsonValue& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 409
+	Conflict
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_ProcessKeyEntitlementsPlayerUuid */
+DECLARE_DELEGATE_OneParam(FDelegate_ProcessKeyEntitlementsPlayerUuid, const FResponse_ProcessKeyEntitlementsPlayerUuid&);
+
+/** @brief A helper metadata object for ProcessKeyEntitlementsPlayerUuid that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_ProcessKeyEntitlementsPlayerUuid
+{
+	/** The request type */
+	typedef FRequest_ProcessKeyEntitlementsPlayerUuid Request;
+	/** The response type */
+	typedef FResponse_ProcessKeyEntitlementsPlayerUuid Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_ProcessKeyEntitlementsPlayerUuid Delegate;
+	/** The API object that supports this API call */
+	typedef FEntitlementsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Process Key Entitlements Player Uuid Self
+ * Process entitlements for the current player with the given Platform. The end result will consume entitlements from the Platform and grant unclaimed Key Claims to the player.
+*/
+struct RALLYHEREAPI_API FRequest_ProcessKeyEntitlementsPlayerUuidSelf : public FRequest
+{
+	FRequest_ProcessKeyEntitlementsPlayerUuidSelf();
+	virtual ~FRequest_ProcessKeyEntitlementsPlayerUuidSelf() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	ERHAPI_Portal PortalId;
+};
+
+/** The response type for FRequest_ProcessKeyEntitlementsPlayerUuidSelf */
+struct RALLYHEREAPI_API FResponse_ProcessKeyEntitlementsPlayerUuidSelf : public FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_ProcessKeyEntitlementsPlayerUuidSelf(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_ProcessKeyEntitlementsPlayerUuidSelf() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_JsonValue Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_JsonValue& OutContent) const { return TryGetContent<FRHAPI_JsonValue>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_JsonValue>& OutContent) const { return TryGetContent<FRHAPI_JsonValue>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_JsonValue* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_JsonValue>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_JsonValue> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_JsonValue>(); }
+
+	// Individual Response Helpers	
+	/* Response 202
+	Successful Response
+	*/
+	bool TryGetContentFor202(FRHAPI_JsonValue& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 409
+	Conflict
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_ProcessKeyEntitlementsPlayerUuidSelf */
+DECLARE_DELEGATE_OneParam(FDelegate_ProcessKeyEntitlementsPlayerUuidSelf, const FResponse_ProcessKeyEntitlementsPlayerUuidSelf&);
+
+/** @brief A helper metadata object for ProcessKeyEntitlementsPlayerUuidSelf that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_ProcessKeyEntitlementsPlayerUuidSelf
+{
+	/** The request type */
+	typedef FRequest_ProcessKeyEntitlementsPlayerUuidSelf Request;
+	/** The response type */
+	typedef FResponse_ProcessKeyEntitlementsPlayerUuidSelf Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_ProcessKeyEntitlementsPlayerUuidSelf Delegate;
+	/** The API object that supports this API call */
+	typedef FEntitlementsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Process Key Entitlements Self
+ * Process entitlements for the given player with the given portal. The end result will consume entitlements from the Platform and grant unclaimed Key Claims to the player.
+*/
+struct RALLYHEREAPI_API FRequest_ProcessKeyEntitlementsSelf : public FRequest
+{
+	FRequest_ProcessKeyEntitlementsSelf();
+	virtual ~FRequest_ProcessKeyEntitlementsSelf() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	ERHAPI_Portal PortalId;
+};
+
+/** The response type for FRequest_ProcessKeyEntitlementsSelf */
+struct RALLYHEREAPI_API FResponse_ProcessKeyEntitlementsSelf : public FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_ProcessKeyEntitlementsSelf(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_ProcessKeyEntitlementsSelf() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_JsonValue Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_JsonValue& OutContent) const { return TryGetContent<FRHAPI_JsonValue>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_JsonValue>& OutContent) const { return TryGetContent<FRHAPI_JsonValue>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_JsonValue* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_JsonValue>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_JsonValue> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_JsonValue>(); }
+
+	// Individual Response Helpers	
+	/* Response 202
+	Successful Response
+	*/
+	bool TryGetContentFor202(FRHAPI_JsonValue& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 409
+	Conflict
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_ProcessKeyEntitlementsSelf */
+DECLARE_DELEGATE_OneParam(FDelegate_ProcessKeyEntitlementsSelf, const FResponse_ProcessKeyEntitlementsSelf&);
+
+/** @brief A helper metadata object for ProcessKeyEntitlementsSelf that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_ProcessKeyEntitlementsSelf
+{
+	/** The request type */
+	typedef FRequest_ProcessKeyEntitlementsSelf Request;
+	/** The response type */
+	typedef FResponse_ProcessKeyEntitlementsSelf Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_ProcessKeyEntitlementsSelf Delegate;
 	/** The API object that supports this API call */
 	typedef FEntitlementsAPI API;
 	/** A human readable name for this API call */
@@ -702,6 +1133,10 @@ public:
 
 	FHttpRequestPtr GenerateEntitlementEvent(const FRequest_GenerateEntitlementEvent& Request, const FDelegate_GenerateEntitlementEvent& Delegate = FDelegate_GenerateEntitlementEvent(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr GetEntitlementEvents(const FRequest_GetEntitlementEvents& Request, const FDelegate_GetEntitlementEvents& Delegate = FDelegate_GetEntitlementEvents(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr ProcessKeyEntitlements(const FRequest_ProcessKeyEntitlements& Request, const FDelegate_ProcessKeyEntitlements& Delegate = FDelegate_ProcessKeyEntitlements(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr ProcessKeyEntitlementsPlayerUuid(const FRequest_ProcessKeyEntitlementsPlayerUuid& Request, const FDelegate_ProcessKeyEntitlementsPlayerUuid& Delegate = FDelegate_ProcessKeyEntitlementsPlayerUuid(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr ProcessKeyEntitlementsPlayerUuidSelf(const FRequest_ProcessKeyEntitlementsPlayerUuidSelf& Request, const FDelegate_ProcessKeyEntitlementsPlayerUuidSelf& Delegate = FDelegate_ProcessKeyEntitlementsPlayerUuidSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr ProcessKeyEntitlementsSelf(const FRequest_ProcessKeyEntitlementsSelf& Request, const FDelegate_ProcessKeyEntitlementsSelf& Delegate = FDelegate_ProcessKeyEntitlementsSelf(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr ProcessPlatformEntitlementForMe(const FRequest_ProcessPlatformEntitlementForMe& Request, const FDelegate_ProcessPlatformEntitlementForMe& Delegate = FDelegate_ProcessPlatformEntitlementForMe(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr ProcessPlatformEntitlementsByPlayerUuid(const FRequest_ProcessPlatformEntitlementsByPlayerUuid& Request, const FDelegate_ProcessPlatformEntitlementsByPlayerUuid& Delegate = FDelegate_ProcessPlatformEntitlementsByPlayerUuid(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr RetrieveEntitlementRequestByPlayerUuid(const FRequest_RetrieveEntitlementRequestByPlayerUuid& Request, const FDelegate_RetrieveEntitlementRequestByPlayerUuid& Delegate = FDelegate_RetrieveEntitlementRequestByPlayerUuid(), int32 Priority = DefaultRallyHereAPIPriority);
@@ -710,6 +1145,10 @@ public:
 private:
 	void OnGenerateEntitlementEventResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GenerateEntitlementEvent Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnGetEntitlementEventsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetEntitlementEvents Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnProcessKeyEntitlementsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ProcessKeyEntitlements Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnProcessKeyEntitlementsPlayerUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ProcessKeyEntitlementsPlayerUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnProcessKeyEntitlementsPlayerUuidSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ProcessKeyEntitlementsPlayerUuidSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnProcessKeyEntitlementsSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ProcessKeyEntitlementsSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnProcessPlatformEntitlementForMeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ProcessPlatformEntitlementForMe Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnProcessPlatformEntitlementsByPlayerUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ProcessPlatformEntitlementsByPlayerUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnRetrieveEntitlementRequestByPlayerUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_RetrieveEntitlementRequestByPlayerUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);

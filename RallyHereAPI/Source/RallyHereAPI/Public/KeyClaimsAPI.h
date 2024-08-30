@@ -15,6 +15,7 @@
 #include "HzApiErrorModel.h"
 #include "KeyClaim.h"
 #include "KeyClaims.h"
+#include "MarketingCampaigns.h"
 
 namespace RallyHereAPI
 {
@@ -1029,6 +1030,112 @@ struct RALLYHEREAPI_API Traits_GetKeyClaimsForMyUuid
 };
 
 /**
+ * @brief Get Marketing Campaigns
+ * Get all marketing campaigns. There is currently no way to add Market Campaigns via API. Reach out to your Rally Here representative to add a new campaign.
+*/
+struct RALLYHEREAPI_API FRequest_GetMarketingCampaigns : public FRequest
+{
+	FRequest_GetMarketingCampaigns();
+	virtual ~FRequest_GetMarketingCampaigns() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+};
+
+/** The response type for FRequest_GetMarketingCampaigns */
+struct RALLYHEREAPI_API FResponse_GetMarketingCampaigns : public FResponseAccessorTemplate<FRHAPI_MarketingCampaigns, FRHAPI_HzApiErrorModel>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_MarketingCampaigns, FRHAPI_HzApiErrorModel> Super;
+
+	FResponse_GetMarketingCampaigns(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetMarketingCampaigns() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_MarketingCampaigns Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_MarketingCampaigns& OutContent) const { return TryGetContent<FRHAPI_MarketingCampaigns>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_MarketingCampaigns>& OutContent) const { return TryGetContent<FRHAPI_MarketingCampaigns>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_MarketingCampaigns* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_MarketingCampaigns>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_MarketingCampaigns> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_MarketingCampaigns>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_MarketingCampaigns& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 409
+	Conflict
+	*/
+	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 500
+	Internal Server Error
+	*/
+	bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetMarketingCampaigns */
+DECLARE_DELEGATE_OneParam(FDelegate_GetMarketingCampaigns, const FResponse_GetMarketingCampaigns&);
+
+/** @brief A helper metadata object for GetMarketingCampaigns that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetMarketingCampaigns
+{
+	/** The request type */
+	typedef FRequest_GetMarketingCampaigns Request;
+	/** The response type */
+	typedef FResponse_GetMarketingCampaigns Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetMarketingCampaigns Delegate;
+	/** The API object that supports this API call */
+	typedef FKeyClaimsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
  * @brief Get Player Uuid Key Claim
  * Get Key Claim by uuid for the given player.
 */
@@ -1382,6 +1489,7 @@ public:
 	FHttpRequestPtr GetKeyClaims(const FRequest_GetKeyClaims& Request, const FDelegate_GetKeyClaims& Delegate = FDelegate_GetKeyClaims(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr GetKeyClaimsForMe(const FRequest_GetKeyClaimsForMe& Request, const FDelegate_GetKeyClaimsForMe& Delegate = FDelegate_GetKeyClaimsForMe(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr GetKeyClaimsForMyUuid(const FRequest_GetKeyClaimsForMyUuid& Request, const FDelegate_GetKeyClaimsForMyUuid& Delegate = FDelegate_GetKeyClaimsForMyUuid(), int32 Priority = DefaultRallyHereAPIPriority);
+	FHttpRequestPtr GetMarketingCampaigns(const FRequest_GetMarketingCampaigns& Request, const FDelegate_GetMarketingCampaigns& Delegate = FDelegate_GetMarketingCampaigns(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr GetPlayerUuidKeyClaim(const FRequest_GetPlayerUuidKeyClaim& Request, const FDelegate_GetPlayerUuidKeyClaim& Delegate = FDelegate_GetPlayerUuidKeyClaim(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr GetPlayerUuidKeyClaimSelf(const FRequest_GetPlayerUuidKeyClaimSelf& Request, const FDelegate_GetPlayerUuidKeyClaimSelf& Delegate = FDelegate_GetPlayerUuidKeyClaimSelf(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr GetPlayerUuidKeyClaims(const FRequest_GetPlayerUuidKeyClaims& Request, const FDelegate_GetPlayerUuidKeyClaims& Delegate = FDelegate_GetPlayerUuidKeyClaims(), int32 Priority = DefaultRallyHereAPIPriority);
@@ -1396,6 +1504,7 @@ private:
 	void OnGetKeyClaimsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetKeyClaims Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnGetKeyClaimsForMeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetKeyClaimsForMe Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnGetKeyClaimsForMyUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetKeyClaimsForMyUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void OnGetMarketingCampaignsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMarketingCampaigns Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnGetPlayerUuidKeyClaimResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidKeyClaim Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnGetPlayerUuidKeyClaimSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidKeyClaimSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	void OnGetPlayerUuidKeyClaimsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidKeyClaims Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);

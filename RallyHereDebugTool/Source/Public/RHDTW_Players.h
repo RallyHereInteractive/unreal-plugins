@@ -2,11 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 #pragma once
 
-#include "FriendsV1API.h"
-#include "BlockedV1API.h"
 #include "RH_DebugToolWindow.h"
-#include "RH_PlayerInfoSubsystem.h"
-#include "RH_PlayerInventory.h"
 #include <string>
 
 struct FRHDTW_Players : public FRH_DebugToolWindow

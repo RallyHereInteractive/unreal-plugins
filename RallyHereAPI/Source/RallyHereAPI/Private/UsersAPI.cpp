@@ -5439,6 +5439,8 @@ FString FResponse_GetPlayerUuidFromPlayerIdForSelf::GetHttpResponseCodeDescripti
 	{
 	case 200:
 		return TEXT("Successful Response");
+	case 400:
+		return TEXT("Bad Request");
 	case 403:
 		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
@@ -5462,6 +5464,8 @@ bool FResponse_GetPlayerUuidFromPlayerIdForSelf::ParseHeaders()
 	{
 	case 200:
 		break;
+	case 400:
+		break;
 	case 403:
 		break;
 	case 404:
@@ -5477,6 +5481,18 @@ bool FResponse_GetPlayerUuidFromPlayerIdForSelf::TryGetContentFor200(FGuid& OutC
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 200)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_GetPlayerUuidFromPlayerIdForSelf::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 400)
 	{
 		return false;
 	}
@@ -5523,6 +5539,16 @@ bool FResponse_GetPlayerUuidFromPlayerIdForSelf::FromJson(const TSharedPtr<FJson
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<FGuid>(Object);
+				break;
+			} 
+		case 400:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_HzApiErrorModel Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
 			} 
 		case 403:
@@ -5710,6 +5736,8 @@ FString FResponse_GetPlayerUuidFromPlayerIdForSelfV2::GetHttpResponseCodeDescrip
 	{
 	case 200:
 		return TEXT("Successful Response");
+	case 400:
+		return TEXT("Bad Request");
 	case 403:
 		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
@@ -5733,6 +5761,8 @@ bool FResponse_GetPlayerUuidFromPlayerIdForSelfV2::ParseHeaders()
 	{
 	case 200:
 		break;
+	case 400:
+		break;
 	case 403:
 		break;
 	case 404:
@@ -5748,6 +5778,18 @@ bool FResponse_GetPlayerUuidFromPlayerIdForSelfV2::TryGetContentFor200(FRHAPI_Pl
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 200)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_GetPlayerUuidFromPlayerIdForSelfV2::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 400)
 	{
 		return false;
 	}
@@ -5794,6 +5836,16 @@ bool FResponse_GetPlayerUuidFromPlayerIdForSelfV2::FromJson(const TSharedPtr<FJs
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<FRHAPI_PlayerUuidFromId>(Object);
+				break;
+			} 
+		case 400:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_HzApiErrorModel Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
 			} 
 		case 403:

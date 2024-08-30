@@ -21,8 +21,6 @@
 #include "RH_GameInstanceSessionSubsystem.h"
 #include "RH_PlayerInfoSubsystem.h"
 
-#include "TimeAPI.h"
-
 BEGIN_DEFINE_SPEC(FRH_RequesterThreading, "RHAutomation.HttpRequester.Threading", EAutomationTestFlags::ClientContext | EAutomationTestFlags::ServerContext | EAutomationTestFlags::ProductFilter | EAutomationTestFlags::MediumPriority)
 
 END_DEFINE_SPEC(FRH_RequesterThreading)
@@ -93,7 +91,7 @@ struct FRH_TimeRequestTask : public FNonAbandonableTask
 				}),
 			GetDefault<URH_IntegrationSettings>()->FetchAppSettingsPriority);
 
-		Helper->Start(RH_APIs::GetAPIs().GetTime(), Request);
+		Helper->Start(RH_APIs::GetConfigAPI(), Request);
 	}
 
 	TSharedRef<FRH_RunningTasksTracker> TasksTracker;

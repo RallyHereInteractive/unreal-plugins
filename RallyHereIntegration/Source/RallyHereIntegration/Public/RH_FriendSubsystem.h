@@ -4,8 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
-#include "FriendsV2API.h"
-#include "BlockedV2API.h"
+#include "FriendsAPI.h"
 #include "Engine/EngineTypes.h"
 #include "RH_Common.h"
 #include "RH_PlayerInfoSubsystem.h"

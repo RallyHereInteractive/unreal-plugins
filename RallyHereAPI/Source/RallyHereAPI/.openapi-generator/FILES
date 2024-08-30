@@ -15,11 +15,7 @@ Private/BackfillSettingsResponse.cpp
 Private/BackfillTeam.cpp
 Private/BaseBackfillRequest.cpp
 Private/BlockedList.cpp
-Private/BlockedListV1.cpp
 Private/BlockedPlayer.cpp
-Private/BlockedPlayerV1.cpp
-Private/BlockedV1API.cpp
-Private/BlockedV2API.cpp
 Private/BodyBeginNewSession.cpp
 Private/BodyFindOpportunities.cpp
 Private/BodyUpdateOpportunityById.cpp
@@ -38,7 +34,6 @@ Private/ClientSettings.cpp
 Private/ClientType.cpp
 Private/ClientVisibleSettings.cpp
 Private/ConfigAPI.cpp
-Private/ConfigurationV1API.cpp
 Private/ConnectionInfo.cpp
 Private/CreateAuditRequest.cpp
 Private/CreateInventoryRequest.cpp
@@ -67,7 +62,6 @@ Private/EntitlementStatus.cpp
 Private/EntitlementType.cpp
 Private/EntitlementsAPI.cpp
 Private/EntityType.cpp
-Private/EnvironmentAPI.cpp
 Private/EnvironmentConfig.cpp
 Private/EventList.cpp
 Private/EventParamsSchemaResponse.cpp
@@ -78,14 +72,9 @@ Private/FileListResponse.cpp
 Private/FileResponse.cpp
 Private/FileType.cpp
 Private/FriendRelationship.cpp
-Private/FriendRelationshipV1.cpp
 Private/Friends.cpp
-Private/FriendsApiConfig.cpp
+Private/FriendsAPI.cpp
 Private/FriendsList.cpp
-Private/FriendsListV1.cpp
-Private/FriendsV1.cpp
-Private/FriendsV1API.cpp
-Private/FriendsV2API.cpp
 Private/FriendshipStatus.cpp
 Private/GrantType.cpp
 Private/HTTPValidationError.cpp
@@ -101,7 +90,6 @@ Private/InstanceInfo.cpp
 Private/InstanceInfoUpdate.cpp
 Private/InstanceJoinableStatus.cpp
 Private/InstanceLaunchTemplate.cpp
-Private/InstanceNotificationAPI.cpp
 Private/InstanceRequest.cpp
 Private/InstanceRequestTemplate.cpp
 Private/InstanceStartupParams.cpp
@@ -131,7 +119,6 @@ Private/KVsResponseV2.cpp
 Private/KeyClaim.cpp
 Private/KeyClaims.cpp
 Private/KeyClaimsAPI.cpp
-Private/KeyEntitlementsAPI.cpp
 Private/KeyType.cpp
 Private/LinkAction.cpp
 Private/LocationInner.cpp
@@ -154,7 +141,6 @@ Private/MapConfig.cpp
 Private/MapConfigV2.cpp
 Private/MapSelectionList.cpp
 Private/MapSelectionListV2.cpp
-Private/MarketingAPI.cpp
 Private/MarketingCampaign.cpp
 Private/MarketingCampaigns.cpp
 Private/MatchAPI.cpp
@@ -185,6 +171,7 @@ Private/MatchmakingInfo.cpp
 Private/MatchmakingResults.cpp
 Private/Notes.cpp
 Private/Notification.cpp
+Private/NotificationAPI.cpp
 Private/NotificationCreate.cpp
 Private/NotificationCreateResult.cpp
 Private/NotificationCreates.cpp
@@ -199,6 +186,7 @@ Private/OnlineStatus.cpp
 Private/Operation.cpp
 Private/OpportunityAbortReason.cpp
 Private/OpportunityState.cpp
+Private/PEXAPI.cpp
 Private/PageMeta.cpp
 Private/PagedMatchResponse.cpp
 Private/PagedPlayerMatchResponse.cpp
@@ -206,7 +194,6 @@ Private/PersonEmailListRequest.cpp
 Private/PersonEmailListResponse.cpp
 Private/PersonInfoResponse.cpp
 Private/PersonOperationRequest.cpp
-Private/PexAPI.cpp
 Private/PexClientPagedResponse.cpp
 Private/PexClientQueryParams.cpp
 Private/PexClientRequest.cpp
@@ -238,13 +225,11 @@ Private/PlatformUserOperationRequest.cpp
 Private/PlatformUserResponse.cpp
 Private/Platforms.cpp
 Private/PlayerDeserterStatus.cpp
-Private/PlayerIdNotificationAPI.cpp
 Private/PlayerIdWrapper.cpp
 Private/PlayerInventoryChange.cpp
 Private/PlayerIterateResponse.cpp
 Private/PlayerLastSeenUpdate.cpp
 Private/PlayerLinkedPortalsResponse.cpp
-Private/PlayerNotificationAPI.cpp
 Private/PlayerOrder.cpp
 Private/PlayerOrderCreate.cpp
 Private/PlayerOrderDetail.cpp
@@ -300,7 +285,6 @@ Private/QueueConfig.cpp
 Private/QueueConfigV2.cpp
 Private/QueueJoinRequest.cpp
 Private/QueueJoinResponse.cpp
-Private/QueuesAPI.cpp
 Private/QueuesResponse.cpp
 Private/QueuesResponseV2.cpp
 Private/RallyHereAPIAll.cpp
@@ -318,7 +302,6 @@ Private/RankUpdateRequest.cpp
 Private/RankUpdateRequestV2.cpp
 Private/RankedTeam.cpp
 Private/Region.cpp
-Private/RegionsAPI.cpp
 Private/RegionsResponse.cpp
 Private/RemoteFileAPI.cpp
 Private/ReportReason.cpp
@@ -331,7 +314,6 @@ Private/Rule.cpp
 Private/RuleType.cpp
 Private/SelfSessionPlayerUpdateRequest.cpp
 Private/Session.cpp
-Private/SessionAuditAPI.cpp
 Private/SessionInviteRequest.cpp
 Private/SessionInviteResponse.cpp
 Private/SessionJoinResponse.cpp
@@ -354,7 +336,6 @@ Private/Source.cpp
 Private/StorageInformation.cpp
 Private/TeamOverflowAction.cpp
 Private/TeamUpdate.cpp
-Private/TimeAPI.cpp
 Private/TimeFrame.cpp
 Private/TimeFrames.cpp
 Private/TokenRequest.cpp
@@ -368,7 +349,6 @@ Private/UpdatePersonInfoRequest.cpp
 Private/UserLinkHistory.cpp
 Private/UserLinkHistoryEntry.cpp
 Private/UsersAPI.cpp
-Private/VOIPAPI.cpp
 Private/ValidationError.cpp
 Private/Vendor.cpp
 Private/VendorType.cpp
@@ -395,11 +375,7 @@ Public/BackfillSettingsResponse.h
 Public/BackfillTeam.h
 Public/BaseBackfillRequest.h
 Public/BlockedList.h
-Public/BlockedListV1.h
 Public/BlockedPlayer.h
-Public/BlockedPlayerV1.h
-Public/BlockedV1API.h
-Public/BlockedV2API.h
 Public/BodyBeginNewSession.h
 Public/BodyFindOpportunities.h
 Public/BodyUpdateOpportunityById.h
@@ -418,7 +394,6 @@ Public/ClientSettings.h
 Public/ClientType.h
 Public/ClientVisibleSettings.h
 Public/ConfigAPI.h
-Public/ConfigurationV1API.h
 Public/ConnectionInfo.h
 Public/CreateAuditRequest.h
 Public/CreateInventoryRequest.h
@@ -447,7 +422,6 @@ Public/EntitlementStatus.h
 Public/EntitlementType.h
 Public/EntitlementsAPI.h
 Public/EntityType.h
-Public/EnvironmentAPI.h
 Public/EnvironmentConfig.h
 Public/EventList.h
 Public/EventParamsSchemaResponse.h
@@ -458,14 +432,9 @@ Public/FileListResponse.h
 Public/FileResponse.h
 Public/FileType.h
 Public/FriendRelationship.h
-Public/FriendRelationshipV1.h
 Public/Friends.h
-Public/FriendsApiConfig.h
+Public/FriendsAPI.h
 Public/FriendsList.h
-Public/FriendsListV1.h
-Public/FriendsV1.h
-Public/FriendsV1API.h
-Public/FriendsV2API.h
 Public/FriendshipStatus.h
 Public/GrantType.h
 Public/HTTPValidationError.h
@@ -481,7 +450,6 @@ Public/InstanceInfo.h
 Public/InstanceInfoUpdate.h
 Public/InstanceJoinableStatus.h
 Public/InstanceLaunchTemplate.h
-Public/InstanceNotificationAPI.h
 Public/InstanceRequest.h
 Public/InstanceRequestTemplate.h
 Public/InstanceStartupParams.h
@@ -511,7 +479,6 @@ Public/KVsResponseV2.h
 Public/KeyClaim.h
 Public/KeyClaims.h
 Public/KeyClaimsAPI.h
-Public/KeyEntitlementsAPI.h
 Public/KeyType.h
 Public/LinkAction.h
 Public/LocationInner.h
@@ -534,7 +501,6 @@ Public/MapConfig.h
 Public/MapConfigV2.h
 Public/MapSelectionList.h
 Public/MapSelectionListV2.h
-Public/MarketingAPI.h
 Public/MarketingCampaign.h
 Public/MarketingCampaigns.h
 Public/MatchAPI.h
@@ -565,6 +531,7 @@ Public/MatchmakingInfo.h
 Public/MatchmakingResults.h
 Public/Notes.h
 Public/Notification.h
+Public/NotificationAPI.h
 Public/NotificationCreate.h
 Public/NotificationCreateResult.h
 Public/NotificationCreates.h
@@ -579,6 +546,7 @@ Public/OnlineStatus.h
 Public/Operation.h
 Public/OpportunityAbortReason.h
 Public/OpportunityState.h
+Public/PEXAPI.h
 Public/PageMeta.h
 Public/PagedMatchResponse.h
 Public/PagedPlayerMatchResponse.h
@@ -586,7 +554,6 @@ Public/PersonEmailListRequest.h
 Public/PersonEmailListResponse.h
 Public/PersonInfoResponse.h
 Public/PersonOperationRequest.h
-Public/PexAPI.h
 Public/PexClientPagedResponse.h
 Public/PexClientQueryParams.h
 Public/PexClientRequest.h
@@ -618,13 +585,11 @@ Public/PlatformUserOperationRequest.h
 Public/PlatformUserResponse.h
 Public/Platforms.h
 Public/PlayerDeserterStatus.h
-Public/PlayerIdNotificationAPI.h
 Public/PlayerIdWrapper.h
 Public/PlayerInventoryChange.h
 Public/PlayerIterateResponse.h
 Public/PlayerLastSeenUpdate.h
 Public/PlayerLinkedPortalsResponse.h
-Public/PlayerNotificationAPI.h
 Public/PlayerOrder.h
 Public/PlayerOrderCreate.h
 Public/PlayerOrderDetail.h
@@ -680,7 +645,6 @@ Public/QueueConfig.h
 Public/QueueConfigV2.h
 Public/QueueJoinRequest.h
 Public/QueueJoinResponse.h
-Public/QueuesAPI.h
 Public/QueuesResponse.h
 Public/QueuesResponseV2.h
 Public/RallyHereAPIAll.h
@@ -698,7 +662,6 @@ Public/RankUpdateRequest.h
 Public/RankUpdateRequestV2.h
 Public/RankedTeam.h
 Public/Region.h
-Public/RegionsAPI.h
 Public/RegionsResponse.h
 Public/RemoteFileAPI.h
 Public/ReportReason.h
@@ -711,7 +674,6 @@ Public/Rule.h
 Public/RuleType.h
 Public/SelfSessionPlayerUpdateRequest.h
 Public/Session.h
-Public/SessionAuditAPI.h
 Public/SessionInviteRequest.h
 Public/SessionInviteResponse.h
 Public/SessionJoinResponse.h
@@ -734,7 +696,6 @@ Public/Source.h
 Public/StorageInformation.h
 Public/TeamOverflowAction.h
 Public/TeamUpdate.h
-Public/TimeAPI.h
 Public/TimeFrame.h
 Public/TimeFrames.h
 Public/TokenRequest.h
@@ -748,7 +709,6 @@ Public/UpdatePersonInfoRequest.h
 Public/UserLinkHistory.h
 Public/UserLinkHistoryEntry.h
 Public/UsersAPI.h
-Public/VOIPAPI.h
 Public/ValidationError.h
 Public/Vendor.h
 Public/VendorType.h

@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
 #include "RallyHereAPIAuthContext.h"
-#include "PlayerNotificationAPI.h"
+#include "NotificationAPI.h"
 #include "Notification.h"
 #include "Notifications.h"
 #include "RH_Common.h"

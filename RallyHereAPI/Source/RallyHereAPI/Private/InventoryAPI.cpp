@@ -4925,7 +4925,7 @@ bool FResponse_GetPlayerInventory::TryGetContentFor503(FRHAPI_HzApiErrorModel& O
 	return TryGetContent(OutContent);
 }
 
-/* Number of seconds after which to retry the request, when the server should have the resource available */
+/* Number of seconds after which to retry the request */
 TOptional<int32> FResponse_GetPlayerInventory::GetHeader503_RetryAfter() const
 {
 	if (HttpResponse)
@@ -5244,7 +5244,7 @@ bool FResponse_GetPlayerInventorySelf::TryGetContentFor503(FRHAPI_HzApiErrorMode
 	return TryGetContent(OutContent);
 }
 
-/* Number of seconds after which to retry the request, when the server should have the resource available */
+/* Number of seconds after which to retry the request */
 TOptional<int32> FResponse_GetPlayerInventorySelf::GetHeader503_RetryAfter() const
 {
 	if (HttpResponse)
@@ -5568,7 +5568,7 @@ bool FResponse_GetPlayerInventoryUuid::TryGetContentFor503(FRHAPI_HzApiErrorMode
 	return TryGetContent(OutContent);
 }
 
-/* Number of seconds after which to retry the request, when the server should have the resource available */
+/* Number of seconds after which to retry the request */
 TOptional<int32> FResponse_GetPlayerInventoryUuid::GetHeader503_RetryAfter() const
 {
 	if (HttpResponse)
@@ -5887,7 +5887,7 @@ bool FResponse_GetPlayerInventoryUuidSelf::TryGetContentFor503(FRHAPI_HzApiError
 	return TryGetContent(OutContent);
 }
 
-/* Number of seconds after which to retry the request, when the server should have the resource available */
+/* Number of seconds after which to retry the request */
 TOptional<int32> FResponse_GetPlayerInventoryUuidSelf::GetHeader503_RetryAfter() const
 {
 	if (HttpResponse)
