@@ -5,7 +5,7 @@
 // Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
-#include "PlayerIdNotificationAPI.h"
+#include "NotificationAPI.h"
 #include "RallyHereAPIModule.h"
 #include "RallyHereAPIAuthContext.h"
 #include "RallyHereAPIHttpRequester.h"
@@ -15,15 +15,15 @@
 namespace RallyHereAPI
 {
 
-FPlayerIdNotificationAPI::FPlayerIdNotificationAPI() : FAPI()
+FNotificationAPI::FNotificationAPI() : FAPI()
 {
 	Url = TEXT("https://demo.rally-here.io");
-	Name = FName(TEXT("PlayerIdNotification"));
+	Name = FName(TEXT("Notification"));
 }
 
-FPlayerIdNotificationAPI::~FPlayerIdNotificationAPI() {}
+FNotificationAPI::~FNotificationAPI() {}
 
-FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridCreateNotification(const FRequest_PlayeridCreateNotification& Request, const FDelegate_PlayeridCreateNotification& Delegate /*= FDelegate_PlayeridCreateNotification()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+FHttpRequestPtr FNotificationAPI::PlayerCreateNotification(const FRequest_PlayerCreateNotification& Request, const FDelegate_PlayerCreateNotification& Delegate /*= FDelegate_PlayerCreateNotification()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
 		return nullptr;
@@ -56,7 +56,7 @@ FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridCreateNotification(const FRequ
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FPlayerIdNotificationAPI::OnPlayeridCreateNotificationResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FNotificationAPI::OnPlayerCreateNotificationResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -68,7 +68,7 @@ FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridCreateNotification(const FRequ
 	return RequestData->HttpRequest;
 }
 
-void FPlayerIdNotificationAPI::OnPlayeridCreateNotificationResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridCreateNotification Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+void FNotificationAPI::OnPlayerCreateNotificationResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayerCreateNotification Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
 	FHttpRequestCompleteDelegate ResponseDelegate;
 
@@ -76,10 +76,10 @@ void FPlayerIdNotificationAPI::OnPlayeridCreateNotificationResponse(FHttpRequest
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FPlayerIdNotificationAPI::OnPlayeridCreateNotificationResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FNotificationAPI::OnPlayerCreateNotificationResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_PlayeridCreateNotification Response{ RequestMetadata };
+	FResponse_PlayerCreateNotification Response{ RequestMetadata };
 	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
 	{
@@ -94,37 +94,37 @@ void FPlayerIdNotificationAPI::OnPlayeridCreateNotificationResponse(FHttpRequest
 	}
 }
 
-FRequest_PlayeridCreateNotification::FRequest_PlayeridCreateNotification()
+FRequest_PlayerCreateNotification::FRequest_PlayerCreateNotification()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
-FName FRequest_PlayeridCreateNotification::GetSimplifiedPath() const
+FName FRequest_PlayerCreateNotification::GetSimplifiedPath() const
 {
-	static FName Path = FName(TEXT("/notification/v1/playerid/{player_id}/notification"));
+	static FName Path = FName(TEXT("/notification/v1/player/{player_uuid}/notification"));
 	return Path;
 }
 
-FName FRequest_PlayeridCreateNotification::GetSimplifiedPathWithVerb() const
+FName FRequest_PlayerCreateNotification::GetSimplifiedPathWithVerb() const
 {
 	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
 	return PathWithVerb;
 }
 
-FString FRequest_PlayeridCreateNotification::ComputePath() const
+FString FRequest_PlayerCreateNotification::ComputePath() const
 {
 	TMap<FString, FStringFormatArg> PathParams = { 
-		{ TEXT("player_id"), ToStringFormatArg(PlayerId) }
+		{ TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
 	};
 
-	FString Path = FString::Format(TEXT("/notification/v1/playerid/{player_id}/notification"), PathParams);
+	FString Path = FString::Format(TEXT("/notification/v1/player/{player_uuid}/notification"), PathParams);
 
 	return Path;
 }
 
-bool FRequest_PlayeridCreateNotification::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+bool FRequest_PlayerCreateNotification::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
 	static const TArray<FString> Consumes = { TEXT("application/json") };
 	//static const TArray<FString> Produces = { TEXT("application/json") };
@@ -134,12 +134,12 @@ bool FRequest_PlayeridCreateNotification::SetupHttpRequest(const FHttpRequestRef
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
 	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayeridCreateNotification - missing auth context"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayerCreateNotification - missing auth context"));
 		return false;
 	}
 	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayeridCreateNotification - failed to add bearer token"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayerCreateNotification - failed to add bearer token"));
 		return false;
 	}
 
@@ -157,22 +157,22 @@ bool FRequest_PlayeridCreateNotification::SetupHttpRequest(const FHttpRequestRef
 	}
 	else if (Consumes.Contains(TEXT("multipart/form-data")))
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayeridCreateNotification - Body parameter (FRHAPI_NotificationCreates) was ignored, not supported in multipart form"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayerCreateNotification - Body parameter (FRHAPI_NotificationCreates) was ignored, not supported in multipart form"));
 	}
 	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayeridCreateNotification - Body parameter (FRHAPI_NotificationCreates) was ignored, not supported in urlencoded requests"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayerCreateNotification - Body parameter (FRHAPI_NotificationCreates) was ignored, not supported in urlencoded requests"));
 	}
 	else
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayeridCreateNotification - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayerCreateNotification - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
 		return false;
 	}
 
 	return true;
 }
 
-FString FResponse_PlayeridCreateNotification::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+FString FResponse_PlayerCreateNotification::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
 	switch ((int)InHttpResponseCode)
 	{
@@ -181,7 +181,7 @@ FString FResponse_PlayeridCreateNotification::GetHttpResponseCodeDescription(EHt
 	case 400:
 		return TEXT(" Error Codes: - bad_id - Passed client id is not a valid id ");
 	case 403:
-		return TEXT(" Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_not_jwt - Invalid Authorization - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_format - Invalid Authorization - {} ");
+		return TEXT(" Error Codes: - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_format - Invalid Authorization - {} - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token ");
 	case 409:
 		return TEXT(" Error Codes: - too_many_listening_to_single_client - An enumeration. ");
 	case 422:
@@ -193,7 +193,7 @@ FString FResponse_PlayeridCreateNotification::GetHttpResponseCodeDescription(EHt
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
-bool FResponse_PlayeridCreateNotification::ParseHeaders()
+bool FResponse_PlayerCreateNotification::ParseHeaders()
 {
 	if (!Super::ParseHeaders())
 	{
@@ -224,7 +224,7 @@ bool FResponse_PlayeridCreateNotification::ParseHeaders()
 	return bParsedAllRequiredHeaders;
 }
 
-bool FResponse_PlayeridCreateNotification::TryGetContentFor200(FRHAPI_NotificationCreateResult& OutContent) const
+bool FResponse_PlayerCreateNotification::TryGetContentFor200(FRHAPI_NotificationCreateResult& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 200)
@@ -236,7 +236,7 @@ bool FResponse_PlayeridCreateNotification::TryGetContentFor200(FRHAPI_Notificati
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridCreateNotification::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerCreateNotification::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 400)
@@ -248,7 +248,7 @@ bool FResponse_PlayeridCreateNotification::TryGetContentFor400(FRHAPI_HzApiError
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridCreateNotification::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerCreateNotification::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
@@ -260,7 +260,7 @@ bool FResponse_PlayeridCreateNotification::TryGetContentFor403(FRHAPI_HzApiError
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridCreateNotification::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerCreateNotification::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 409)
@@ -272,7 +272,7 @@ bool FResponse_PlayeridCreateNotification::TryGetContentFor409(FRHAPI_HzApiError
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridCreateNotification::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_PlayerCreateNotification::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -284,7 +284,7 @@ bool FResponse_PlayeridCreateNotification::TryGetContentFor422(FRHAPI_HTTPValida
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridCreateNotification::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerCreateNotification::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 503)
@@ -296,7 +296,7 @@ bool FResponse_PlayeridCreateNotification::TryGetContentFor503(FRHAPI_HzApiError
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridCreateNotification::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FResponse_PlayerCreateNotification::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	bool bParsed = false;
 	// for non default responses, parse into a temporary object to validate the response can be parsed properly
@@ -376,19 +376,19 @@ bool FResponse_PlayeridCreateNotification::FromJson(const TSharedPtr<FJsonValue>
 	return bParsed;
 }
 
-FResponse_PlayeridCreateNotification::FResponse_PlayeridCreateNotification(FRequestMetadata InRequestMetadata)
+FResponse_PlayerCreateNotification::FResponse_PlayerCreateNotification(FRequestMetadata InRequestMetadata)
 	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
-FString Traits_PlayeridCreateNotification::Name = TEXT("PlayeridCreateNotification");
+FString Traits_PlayerCreateNotification::Name = TEXT("PlayerCreateNotification");
 
-FHttpRequestPtr Traits_PlayeridCreateNotification::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+FHttpRequestPtr Traits_PlayerCreateNotification::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
 {
-	return InAPI->PlayeridCreateNotification(InRequest, InDelegate, InPriority);
+	return InAPI->PlayerCreateNotification(InRequest, InDelegate, InPriority);
 }
 
-FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridCreateNotificationSelf(const FRequest_PlayeridCreateNotificationSelf& Request, const FDelegate_PlayeridCreateNotificationSelf& Delegate /*= FDelegate_PlayeridCreateNotificationSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+FHttpRequestPtr FNotificationAPI::PlayerCreateNotificationSelf(const FRequest_PlayerCreateNotificationSelf& Request, const FDelegate_PlayerCreateNotificationSelf& Delegate /*= FDelegate_PlayerCreateNotificationSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
 		return nullptr;
@@ -421,7 +421,7 @@ FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridCreateNotificationSelf(const F
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FPlayerIdNotificationAPI::OnPlayeridCreateNotificationSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FNotificationAPI::OnPlayerCreateNotificationSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -433,7 +433,7 @@ FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridCreateNotificationSelf(const F
 	return RequestData->HttpRequest;
 }
 
-void FPlayerIdNotificationAPI::OnPlayeridCreateNotificationSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridCreateNotificationSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+void FNotificationAPI::OnPlayerCreateNotificationSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayerCreateNotificationSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
 	FHttpRequestCompleteDelegate ResponseDelegate;
 
@@ -441,10 +441,10 @@ void FPlayerIdNotificationAPI::OnPlayeridCreateNotificationSelfResponse(FHttpReq
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FPlayerIdNotificationAPI::OnPlayeridCreateNotificationSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FNotificationAPI::OnPlayerCreateNotificationSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_PlayeridCreateNotificationSelf Response{ RequestMetadata };
+	FResponse_PlayerCreateNotificationSelf Response{ RequestMetadata };
 	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
 	{
@@ -459,32 +459,32 @@ void FPlayerIdNotificationAPI::OnPlayeridCreateNotificationSelfResponse(FHttpReq
 	}
 }
 
-FRequest_PlayeridCreateNotificationSelf::FRequest_PlayeridCreateNotificationSelf()
+FRequest_PlayerCreateNotificationSelf::FRequest_PlayerCreateNotificationSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
-FName FRequest_PlayeridCreateNotificationSelf::GetSimplifiedPath() const
+FName FRequest_PlayerCreateNotificationSelf::GetSimplifiedPath() const
 {
-	static FName Path = FName(TEXT("/notification/v1/playerid/me/notification"));
+	static FName Path = FName(TEXT("/notification/v1/player/me/notification"));
 	return Path;
 }
 
-FName FRequest_PlayeridCreateNotificationSelf::GetSimplifiedPathWithVerb() const
+FName FRequest_PlayerCreateNotificationSelf::GetSimplifiedPathWithVerb() const
 {
 	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
 	return PathWithVerb;
 }
 
-FString FRequest_PlayeridCreateNotificationSelf::ComputePath() const
+FString FRequest_PlayerCreateNotificationSelf::ComputePath() const
 {
 	FString Path = GetSimplifiedPath().ToString();
 	return Path;
 }
 
-bool FRequest_PlayeridCreateNotificationSelf::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+bool FRequest_PlayerCreateNotificationSelf::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
 	static const TArray<FString> Consumes = { TEXT("application/json") };
 	//static const TArray<FString> Produces = { TEXT("application/json") };
@@ -494,12 +494,12 @@ bool FRequest_PlayeridCreateNotificationSelf::SetupHttpRequest(const FHttpReques
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
 	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayeridCreateNotificationSelf - missing auth context"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayerCreateNotificationSelf - missing auth context"));
 		return false;
 	}
 	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayeridCreateNotificationSelf - failed to add bearer token"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayerCreateNotificationSelf - failed to add bearer token"));
 		return false;
 	}
 
@@ -517,22 +517,22 @@ bool FRequest_PlayeridCreateNotificationSelf::SetupHttpRequest(const FHttpReques
 	}
 	else if (Consumes.Contains(TEXT("multipart/form-data")))
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayeridCreateNotificationSelf - Body parameter (FRHAPI_NotificationCreates) was ignored, not supported in multipart form"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayerCreateNotificationSelf - Body parameter (FRHAPI_NotificationCreates) was ignored, not supported in multipart form"));
 	}
 	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayeridCreateNotificationSelf - Body parameter (FRHAPI_NotificationCreates) was ignored, not supported in urlencoded requests"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayerCreateNotificationSelf - Body parameter (FRHAPI_NotificationCreates) was ignored, not supported in urlencoded requests"));
 	}
 	else
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayeridCreateNotificationSelf - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayerCreateNotificationSelf - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
 		return false;
 	}
 
 	return true;
 }
 
-FString FResponse_PlayeridCreateNotificationSelf::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+FString FResponse_PlayerCreateNotificationSelf::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
 	switch ((int)InHttpResponseCode)
 	{
@@ -541,7 +541,7 @@ FString FResponse_PlayeridCreateNotificationSelf::GetHttpResponseCodeDescription
 	case 400:
 		return TEXT(" Error Codes: - bad_id - Passed client id is not a valid id ");
 	case 403:
-		return TEXT(" Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_not_jwt - Invalid Authorization - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_format - Invalid Authorization - {} ");
+		return TEXT(" Error Codes: - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_format - Invalid Authorization - {} - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token ");
 	case 409:
 		return TEXT(" Error Codes: - too_many_listening_to_single_client - An enumeration. ");
 	case 422:
@@ -553,7 +553,7 @@ FString FResponse_PlayeridCreateNotificationSelf::GetHttpResponseCodeDescription
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
-bool FResponse_PlayeridCreateNotificationSelf::ParseHeaders()
+bool FResponse_PlayerCreateNotificationSelf::ParseHeaders()
 {
 	if (!Super::ParseHeaders())
 	{
@@ -584,7 +584,7 @@ bool FResponse_PlayeridCreateNotificationSelf::ParseHeaders()
 	return bParsedAllRequiredHeaders;
 }
 
-bool FResponse_PlayeridCreateNotificationSelf::TryGetContentFor200(FRHAPI_NotificationCreateResult& OutContent) const
+bool FResponse_PlayerCreateNotificationSelf::TryGetContentFor200(FRHAPI_NotificationCreateResult& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 200)
@@ -596,7 +596,7 @@ bool FResponse_PlayeridCreateNotificationSelf::TryGetContentFor200(FRHAPI_Notifi
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridCreateNotificationSelf::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerCreateNotificationSelf::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 400)
@@ -608,7 +608,7 @@ bool FResponse_PlayeridCreateNotificationSelf::TryGetContentFor400(FRHAPI_HzApiE
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridCreateNotificationSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerCreateNotificationSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
@@ -620,7 +620,7 @@ bool FResponse_PlayeridCreateNotificationSelf::TryGetContentFor403(FRHAPI_HzApiE
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridCreateNotificationSelf::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerCreateNotificationSelf::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 409)
@@ -632,7 +632,7 @@ bool FResponse_PlayeridCreateNotificationSelf::TryGetContentFor409(FRHAPI_HzApiE
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridCreateNotificationSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_PlayerCreateNotificationSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -644,7 +644,7 @@ bool FResponse_PlayeridCreateNotificationSelf::TryGetContentFor422(FRHAPI_HTTPVa
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridCreateNotificationSelf::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerCreateNotificationSelf::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 503)
@@ -656,7 +656,7 @@ bool FResponse_PlayeridCreateNotificationSelf::TryGetContentFor503(FRHAPI_HzApiE
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridCreateNotificationSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FResponse_PlayerCreateNotificationSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	bool bParsed = false;
 	// for non default responses, parse into a temporary object to validate the response can be parsed properly
@@ -736,19 +736,19 @@ bool FResponse_PlayeridCreateNotificationSelf::FromJson(const TSharedPtr<FJsonVa
 	return bParsed;
 }
 
-FResponse_PlayeridCreateNotificationSelf::FResponse_PlayeridCreateNotificationSelf(FRequestMetadata InRequestMetadata)
+FResponse_PlayerCreateNotificationSelf::FResponse_PlayerCreateNotificationSelf(FRequestMetadata InRequestMetadata)
 	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
-FString Traits_PlayeridCreateNotificationSelf::Name = TEXT("PlayeridCreateNotificationSelf");
+FString Traits_PlayerCreateNotificationSelf::Name = TEXT("PlayerCreateNotificationSelf");
 
-FHttpRequestPtr Traits_PlayeridCreateNotificationSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+FHttpRequestPtr Traits_PlayerCreateNotificationSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
 {
-	return InAPI->PlayeridCreateNotificationSelf(InRequest, InDelegate, InPriority);
+	return InAPI->PlayerCreateNotificationSelf(InRequest, InDelegate, InPriority);
 }
 
-FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridGetNotificationById(const FRequest_PlayeridGetNotificationById& Request, const FDelegate_PlayeridGetNotificationById& Delegate /*= FDelegate_PlayeridGetNotificationById()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+FHttpRequestPtr FNotificationAPI::PlayerGetNotificationById(const FRequest_PlayerGetNotificationById& Request, const FDelegate_PlayerGetNotificationById& Delegate /*= FDelegate_PlayerGetNotificationById()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
 		return nullptr;
@@ -781,7 +781,7 @@ FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridGetNotificationById(const FReq
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FPlayerIdNotificationAPI::OnPlayeridGetNotificationByIdResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FNotificationAPI::OnPlayerGetNotificationByIdResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -793,7 +793,7 @@ FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridGetNotificationById(const FReq
 	return RequestData->HttpRequest;
 }
 
-void FPlayerIdNotificationAPI::OnPlayeridGetNotificationByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridGetNotificationById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+void FNotificationAPI::OnPlayerGetNotificationByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayerGetNotificationById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
 	FHttpRequestCompleteDelegate ResponseDelegate;
 
@@ -801,10 +801,10 @@ void FPlayerIdNotificationAPI::OnPlayeridGetNotificationByIdResponse(FHttpReques
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FPlayerIdNotificationAPI::OnPlayeridGetNotificationByIdResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FNotificationAPI::OnPlayerGetNotificationByIdResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_PlayeridGetNotificationById Response{ RequestMetadata };
+	FResponse_PlayerGetNotificationById Response{ RequestMetadata };
 	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
 	{
@@ -819,38 +819,38 @@ void FPlayerIdNotificationAPI::OnPlayeridGetNotificationByIdResponse(FHttpReques
 	}
 }
 
-FRequest_PlayeridGetNotificationById::FRequest_PlayeridGetNotificationById()
+FRequest_PlayerGetNotificationById::FRequest_PlayerGetNotificationById()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
-FName FRequest_PlayeridGetNotificationById::GetSimplifiedPath() const
+FName FRequest_PlayerGetNotificationById::GetSimplifiedPath() const
 {
-	static FName Path = FName(TEXT("/notification/v1/playerid/{player_id}/notification/{notification_id}"));
+	static FName Path = FName(TEXT("/notification/v1/player/{player_uuid}/notification/{notification_id}"));
 	return Path;
 }
 
-FName FRequest_PlayeridGetNotificationById::GetSimplifiedPathWithVerb() const
+FName FRequest_PlayerGetNotificationById::GetSimplifiedPathWithVerb() const
 {
 	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
 	return PathWithVerb;
 }
 
-FString FRequest_PlayeridGetNotificationById::ComputePath() const
+FString FRequest_PlayerGetNotificationById::ComputePath() const
 {
 	TMap<FString, FStringFormatArg> PathParams = { 
 		{ TEXT("notification_id"), ToStringFormatArg(NotificationId) },
-		{ TEXT("player_id"), ToStringFormatArg(PlayerId) }
+		{ TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
 	};
 
-	FString Path = FString::Format(TEXT("/notification/v1/playerid/{player_id}/notification/{notification_id}"), PathParams);
+	FString Path = FString::Format(TEXT("/notification/v1/player/{player_uuid}/notification/{notification_id}"), PathParams);
 
 	return Path;
 }
 
-bool FRequest_PlayeridGetNotificationById::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+bool FRequest_PlayerGetNotificationById::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
 	static const TArray<FString> Consumes = {  };
 	//static const TArray<FString> Produces = { TEXT("application/json") };
@@ -860,12 +860,12 @@ bool FRequest_PlayeridGetNotificationById::SetupHttpRequest(const FHttpRequestRe
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
 	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayeridGetNotificationById - missing auth context"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayerGetNotificationById - missing auth context"));
 		return false;
 	}
 	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayeridGetNotificationById - failed to add bearer token"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayerGetNotificationById - failed to add bearer token"));
 		return false;
 	}
 
@@ -880,14 +880,14 @@ bool FRequest_PlayeridGetNotificationById::SetupHttpRequest(const FHttpRequestRe
 	}
 	else
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayeridGetNotificationById - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayerGetNotificationById - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
 		return false;
 	}
 
 	return true;
 }
 
-FString FResponse_PlayeridGetNotificationById::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+FString FResponse_PlayerGetNotificationById::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
 	switch ((int)InHttpResponseCode)
 	{
@@ -896,7 +896,7 @@ FString FResponse_PlayeridGetNotificationById::GetHttpResponseCodeDescription(EH
 	case 400:
 		return TEXT(" Error Codes: - bad_id - Passed client id is not a valid id ");
 	case 403:
-		return TEXT(" Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_not_jwt - Invalid Authorization - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_format - Invalid Authorization - {} ");
+		return TEXT(" Error Codes: - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_format - Invalid Authorization - {} - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token ");
 	case 404:
 		return TEXT(" Error Codes: - resource_not_found - Notification could not be found ");
 	case 409:
@@ -910,7 +910,7 @@ FString FResponse_PlayeridGetNotificationById::GetHttpResponseCodeDescription(EH
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
-bool FResponse_PlayeridGetNotificationById::ParseHeaders()
+bool FResponse_PlayerGetNotificationById::ParseHeaders()
 {
 	if (!Super::ParseHeaders())
 	{
@@ -943,7 +943,7 @@ bool FResponse_PlayeridGetNotificationById::ParseHeaders()
 	return bParsedAllRequiredHeaders;
 }
 
-bool FResponse_PlayeridGetNotificationById::TryGetContentFor200(FRHAPI_Notification& OutContent) const
+bool FResponse_PlayerGetNotificationById::TryGetContentFor200(FRHAPI_Notification& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 200)
@@ -955,7 +955,7 @@ bool FResponse_PlayeridGetNotificationById::TryGetContentFor200(FRHAPI_Notificat
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridGetNotificationById::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerGetNotificationById::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 400)
@@ -967,7 +967,7 @@ bool FResponse_PlayeridGetNotificationById::TryGetContentFor400(FRHAPI_HzApiErro
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridGetNotificationById::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerGetNotificationById::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
@@ -979,7 +979,7 @@ bool FResponse_PlayeridGetNotificationById::TryGetContentFor403(FRHAPI_HzApiErro
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridGetNotificationById::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerGetNotificationById::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 404)
@@ -991,7 +991,7 @@ bool FResponse_PlayeridGetNotificationById::TryGetContentFor404(FRHAPI_HzApiErro
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridGetNotificationById::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerGetNotificationById::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 409)
@@ -1003,7 +1003,7 @@ bool FResponse_PlayeridGetNotificationById::TryGetContentFor409(FRHAPI_HzApiErro
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridGetNotificationById::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_PlayerGetNotificationById::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -1015,7 +1015,7 @@ bool FResponse_PlayeridGetNotificationById::TryGetContentFor422(FRHAPI_HTTPValid
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridGetNotificationById::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerGetNotificationById::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 503)
@@ -1027,7 +1027,7 @@ bool FResponse_PlayeridGetNotificationById::TryGetContentFor503(FRHAPI_HzApiErro
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridGetNotificationById::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FResponse_PlayerGetNotificationById::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	bool bParsed = false;
 	// for non default responses, parse into a temporary object to validate the response can be parsed properly
@@ -1117,19 +1117,19 @@ bool FResponse_PlayeridGetNotificationById::FromJson(const TSharedPtr<FJsonValue
 	return bParsed;
 }
 
-FResponse_PlayeridGetNotificationById::FResponse_PlayeridGetNotificationById(FRequestMetadata InRequestMetadata)
+FResponse_PlayerGetNotificationById::FResponse_PlayerGetNotificationById(FRequestMetadata InRequestMetadata)
 	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
-FString Traits_PlayeridGetNotificationById::Name = TEXT("PlayeridGetNotificationById");
+FString Traits_PlayerGetNotificationById::Name = TEXT("PlayerGetNotificationById");
 
-FHttpRequestPtr Traits_PlayeridGetNotificationById::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+FHttpRequestPtr Traits_PlayerGetNotificationById::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
 {
-	return InAPI->PlayeridGetNotificationById(InRequest, InDelegate, InPriority);
+	return InAPI->PlayerGetNotificationById(InRequest, InDelegate, InPriority);
 }
 
-FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridGetNotificationByIdSelf(const FRequest_PlayeridGetNotificationByIdSelf& Request, const FDelegate_PlayeridGetNotificationByIdSelf& Delegate /*= FDelegate_PlayeridGetNotificationByIdSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+FHttpRequestPtr FNotificationAPI::PlayerGetNotificationByIdSelf(const FRequest_PlayerGetNotificationByIdSelf& Request, const FDelegate_PlayerGetNotificationByIdSelf& Delegate /*= FDelegate_PlayerGetNotificationByIdSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
 		return nullptr;
@@ -1162,7 +1162,7 @@ FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridGetNotificationByIdSelf(const 
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FPlayerIdNotificationAPI::OnPlayeridGetNotificationByIdSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FNotificationAPI::OnPlayerGetNotificationByIdSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1174,7 +1174,7 @@ FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridGetNotificationByIdSelf(const 
 	return RequestData->HttpRequest;
 }
 
-void FPlayerIdNotificationAPI::OnPlayeridGetNotificationByIdSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridGetNotificationByIdSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+void FNotificationAPI::OnPlayerGetNotificationByIdSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayerGetNotificationByIdSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
 	FHttpRequestCompleteDelegate ResponseDelegate;
 
@@ -1182,10 +1182,10 @@ void FPlayerIdNotificationAPI::OnPlayeridGetNotificationByIdSelfResponse(FHttpRe
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FPlayerIdNotificationAPI::OnPlayeridGetNotificationByIdSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FNotificationAPI::OnPlayerGetNotificationByIdSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_PlayeridGetNotificationByIdSelf Response{ RequestMetadata };
+	FResponse_PlayerGetNotificationByIdSelf Response{ RequestMetadata };
 	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
 	{
@@ -1200,37 +1200,37 @@ void FPlayerIdNotificationAPI::OnPlayeridGetNotificationByIdSelfResponse(FHttpRe
 	}
 }
 
-FRequest_PlayeridGetNotificationByIdSelf::FRequest_PlayeridGetNotificationByIdSelf()
+FRequest_PlayerGetNotificationByIdSelf::FRequest_PlayerGetNotificationByIdSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
-FName FRequest_PlayeridGetNotificationByIdSelf::GetSimplifiedPath() const
+FName FRequest_PlayerGetNotificationByIdSelf::GetSimplifiedPath() const
 {
-	static FName Path = FName(TEXT("/notification/v1/playerid/me/notification/{notification_id}"));
+	static FName Path = FName(TEXT("/notification/v1/player/me/notification/{notification_id}"));
 	return Path;
 }
 
-FName FRequest_PlayeridGetNotificationByIdSelf::GetSimplifiedPathWithVerb() const
+FName FRequest_PlayerGetNotificationByIdSelf::GetSimplifiedPathWithVerb() const
 {
 	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
 	return PathWithVerb;
 }
 
-FString FRequest_PlayeridGetNotificationByIdSelf::ComputePath() const
+FString FRequest_PlayerGetNotificationByIdSelf::ComputePath() const
 {
 	TMap<FString, FStringFormatArg> PathParams = { 
 		{ TEXT("notification_id"), ToStringFormatArg(NotificationId) }
 	};
 
-	FString Path = FString::Format(TEXT("/notification/v1/playerid/me/notification/{notification_id}"), PathParams);
+	FString Path = FString::Format(TEXT("/notification/v1/player/me/notification/{notification_id}"), PathParams);
 
 	return Path;
 }
 
-bool FRequest_PlayeridGetNotificationByIdSelf::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+bool FRequest_PlayerGetNotificationByIdSelf::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
 	static const TArray<FString> Consumes = {  };
 	//static const TArray<FString> Produces = { TEXT("application/json") };
@@ -1240,12 +1240,12 @@ bool FRequest_PlayeridGetNotificationByIdSelf::SetupHttpRequest(const FHttpReque
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
 	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayeridGetNotificationByIdSelf - missing auth context"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayerGetNotificationByIdSelf - missing auth context"));
 		return false;
 	}
 	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayeridGetNotificationByIdSelf - failed to add bearer token"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayerGetNotificationByIdSelf - failed to add bearer token"));
 		return false;
 	}
 
@@ -1260,14 +1260,14 @@ bool FRequest_PlayeridGetNotificationByIdSelf::SetupHttpRequest(const FHttpReque
 	}
 	else
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayeridGetNotificationByIdSelf - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayerGetNotificationByIdSelf - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
 		return false;
 	}
 
 	return true;
 }
 
-FString FResponse_PlayeridGetNotificationByIdSelf::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+FString FResponse_PlayerGetNotificationByIdSelf::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
 	switch ((int)InHttpResponseCode)
 	{
@@ -1276,7 +1276,7 @@ FString FResponse_PlayeridGetNotificationByIdSelf::GetHttpResponseCodeDescriptio
 	case 400:
 		return TEXT(" Error Codes: - bad_id - Passed client id is not a valid id ");
 	case 403:
-		return TEXT(" Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_not_jwt - Invalid Authorization - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_format - Invalid Authorization - {} ");
+		return TEXT(" Error Codes: - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_format - Invalid Authorization - {} - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token ");
 	case 404:
 		return TEXT(" Error Codes: - resource_not_found - Notification could not be found ");
 	case 409:
@@ -1290,7 +1290,7 @@ FString FResponse_PlayeridGetNotificationByIdSelf::GetHttpResponseCodeDescriptio
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
-bool FResponse_PlayeridGetNotificationByIdSelf::ParseHeaders()
+bool FResponse_PlayerGetNotificationByIdSelf::ParseHeaders()
 {
 	if (!Super::ParseHeaders())
 	{
@@ -1323,7 +1323,7 @@ bool FResponse_PlayeridGetNotificationByIdSelf::ParseHeaders()
 	return bParsedAllRequiredHeaders;
 }
 
-bool FResponse_PlayeridGetNotificationByIdSelf::TryGetContentFor200(FRHAPI_Notification& OutContent) const
+bool FResponse_PlayerGetNotificationByIdSelf::TryGetContentFor200(FRHAPI_Notification& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 200)
@@ -1335,7 +1335,7 @@ bool FResponse_PlayeridGetNotificationByIdSelf::TryGetContentFor200(FRHAPI_Notif
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridGetNotificationByIdSelf::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerGetNotificationByIdSelf::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 400)
@@ -1347,7 +1347,7 @@ bool FResponse_PlayeridGetNotificationByIdSelf::TryGetContentFor400(FRHAPI_HzApi
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridGetNotificationByIdSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerGetNotificationByIdSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
@@ -1359,7 +1359,7 @@ bool FResponse_PlayeridGetNotificationByIdSelf::TryGetContentFor403(FRHAPI_HzApi
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridGetNotificationByIdSelf::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerGetNotificationByIdSelf::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 404)
@@ -1371,7 +1371,7 @@ bool FResponse_PlayeridGetNotificationByIdSelf::TryGetContentFor404(FRHAPI_HzApi
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridGetNotificationByIdSelf::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerGetNotificationByIdSelf::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 409)
@@ -1383,7 +1383,7 @@ bool FResponse_PlayeridGetNotificationByIdSelf::TryGetContentFor409(FRHAPI_HzApi
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridGetNotificationByIdSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_PlayerGetNotificationByIdSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -1395,7 +1395,7 @@ bool FResponse_PlayeridGetNotificationByIdSelf::TryGetContentFor422(FRHAPI_HTTPV
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridGetNotificationByIdSelf::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerGetNotificationByIdSelf::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 503)
@@ -1407,7 +1407,7 @@ bool FResponse_PlayeridGetNotificationByIdSelf::TryGetContentFor503(FRHAPI_HzApi
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridGetNotificationByIdSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FResponse_PlayerGetNotificationByIdSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	bool bParsed = false;
 	// for non default responses, parse into a temporary object to validate the response can be parsed properly
@@ -1497,19 +1497,19 @@ bool FResponse_PlayeridGetNotificationByIdSelf::FromJson(const TSharedPtr<FJsonV
 	return bParsed;
 }
 
-FResponse_PlayeridGetNotificationByIdSelf::FResponse_PlayeridGetNotificationByIdSelf(FRequestMetadata InRequestMetadata)
+FResponse_PlayerGetNotificationByIdSelf::FResponse_PlayerGetNotificationByIdSelf(FRequestMetadata InRequestMetadata)
 	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
-FString Traits_PlayeridGetNotificationByIdSelf::Name = TEXT("PlayeridGetNotificationByIdSelf");
+FString Traits_PlayerGetNotificationByIdSelf::Name = TEXT("PlayerGetNotificationByIdSelf");
 
-FHttpRequestPtr Traits_PlayeridGetNotificationByIdSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+FHttpRequestPtr Traits_PlayerGetNotificationByIdSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
 {
-	return InAPI->PlayeridGetNotificationByIdSelf(InRequest, InDelegate, InPriority);
+	return InAPI->PlayerGetNotificationByIdSelf(InRequest, InDelegate, InPriority);
 }
 
-FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridGetNotificationsPage(const FRequest_PlayeridGetNotificationsPage& Request, const FDelegate_PlayeridGetNotificationsPage& Delegate /*= FDelegate_PlayeridGetNotificationsPage()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+FHttpRequestPtr FNotificationAPI::PlayerGetNotificationsPage(const FRequest_PlayerGetNotificationsPage& Request, const FDelegate_PlayerGetNotificationsPage& Delegate /*= FDelegate_PlayerGetNotificationsPage()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
 		return nullptr;
@@ -1542,7 +1542,7 @@ FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridGetNotificationsPage(const FRe
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FPlayerIdNotificationAPI::OnPlayeridGetNotificationsPageResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FNotificationAPI::OnPlayerGetNotificationsPageResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1554,7 +1554,7 @@ FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridGetNotificationsPage(const FRe
 	return RequestData->HttpRequest;
 }
 
-void FPlayerIdNotificationAPI::OnPlayeridGetNotificationsPageResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridGetNotificationsPage Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+void FNotificationAPI::OnPlayerGetNotificationsPageResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayerGetNotificationsPage Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
 	FHttpRequestCompleteDelegate ResponseDelegate;
 
@@ -1562,10 +1562,10 @@ void FPlayerIdNotificationAPI::OnPlayeridGetNotificationsPageResponse(FHttpReque
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FPlayerIdNotificationAPI::OnPlayeridGetNotificationsPageResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FNotificationAPI::OnPlayerGetNotificationsPageResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_PlayeridGetNotificationsPage Response{ RequestMetadata };
+	FResponse_PlayerGetNotificationsPage Response{ RequestMetadata };
 	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
 	{
@@ -1580,32 +1580,32 @@ void FPlayerIdNotificationAPI::OnPlayeridGetNotificationsPageResponse(FHttpReque
 	}
 }
 
-FRequest_PlayeridGetNotificationsPage::FRequest_PlayeridGetNotificationsPage()
+FRequest_PlayerGetNotificationsPage::FRequest_PlayerGetNotificationsPage()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
-FName FRequest_PlayeridGetNotificationsPage::GetSimplifiedPath() const
+FName FRequest_PlayerGetNotificationsPage::GetSimplifiedPath() const
 {
-	static FName Path = FName(TEXT("/notification/v1/playerid/{player_id}/notification"));
+	static FName Path = FName(TEXT("/notification/v1/player/{player_uuid}/notification"));
 	return Path;
 }
 
-FName FRequest_PlayeridGetNotificationsPage::GetSimplifiedPathWithVerb() const
+FName FRequest_PlayerGetNotificationsPage::GetSimplifiedPathWithVerb() const
 {
 	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
 	return PathWithVerb;
 }
 
-FString FRequest_PlayeridGetNotificationsPage::ComputePath() const
+FString FRequest_PlayerGetNotificationsPage::ComputePath() const
 {
 	TMap<FString, FStringFormatArg> PathParams = { 
-		{ TEXT("player_id"), ToStringFormatArg(PlayerId) }
+		{ TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
 	};
 
-	FString Path = FString::Format(TEXT("/notification/v1/playerid/{player_id}/notification"), PathParams);
+	FString Path = FString::Format(TEXT("/notification/v1/player/{player_uuid}/notification"), PathParams);
 
 	TArray<FString> QueryParams;
 	if(PageSize.IsSet())
@@ -1626,7 +1626,7 @@ FString FRequest_PlayeridGetNotificationsPage::ComputePath() const
 	return Path;
 }
 
-bool FRequest_PlayeridGetNotificationsPage::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+bool FRequest_PlayerGetNotificationsPage::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
 	static const TArray<FString> Consumes = {  };
 	//static const TArray<FString> Produces = { TEXT("application/json") };
@@ -1642,12 +1642,12 @@ bool FRequest_PlayeridGetNotificationsPage::SetupHttpRequest(const FHttpRequestR
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
 	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayeridGetNotificationsPage - missing auth context"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayerGetNotificationsPage - missing auth context"));
 		return false;
 	}
 	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayeridGetNotificationsPage - failed to add bearer token"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayerGetNotificationsPage - failed to add bearer token"));
 		return false;
 	}
 
@@ -1662,14 +1662,14 @@ bool FRequest_PlayeridGetNotificationsPage::SetupHttpRequest(const FHttpRequestR
 	}
 	else
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayeridGetNotificationsPage - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayerGetNotificationsPage - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
 		return false;
 	}
 
 	return true;
 }
 
-FString FResponse_PlayeridGetNotificationsPage::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+FString FResponse_PlayerGetNotificationsPage::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
 	switch ((int)InHttpResponseCode)
 	{
@@ -1680,7 +1680,7 @@ FString FResponse_PlayeridGetNotificationsPage::GetHttpResponseCodeDescription(E
 	case 400:
 		return TEXT(" Error Codes: - bad_id - Passed client id is not a valid id ");
 	case 403:
-		return TEXT(" Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_not_jwt - Invalid Authorization - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_format - Invalid Authorization - {} ");
+		return TEXT(" Error Codes: - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_format - Invalid Authorization - {} - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token ");
 	case 409:
 		return TEXT(" Error Codes: - too_many_listening_to_single_client - An enumeration. ");
 	case 422:
@@ -1692,7 +1692,7 @@ FString FResponse_PlayeridGetNotificationsPage::GetHttpResponseCodeDescription(E
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
-bool FResponse_PlayeridGetNotificationsPage::ParseHeaders()
+bool FResponse_PlayerGetNotificationsPage::ParseHeaders()
 {
 	if (!Super::ParseHeaders())
 	{
@@ -1725,7 +1725,7 @@ bool FResponse_PlayeridGetNotificationsPage::ParseHeaders()
 	return bParsedAllRequiredHeaders;
 }
 
-bool FResponse_PlayeridGetNotificationsPage::TryGetContentFor200(FRHAPI_Notifications& OutContent) const
+bool FResponse_PlayerGetNotificationsPage::TryGetContentFor200(FRHAPI_Notifications& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 200)
@@ -1737,7 +1737,7 @@ bool FResponse_PlayeridGetNotificationsPage::TryGetContentFor200(FRHAPI_Notifica
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridGetNotificationsPage::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerGetNotificationsPage::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 400)
@@ -1749,7 +1749,7 @@ bool FResponse_PlayeridGetNotificationsPage::TryGetContentFor400(FRHAPI_HzApiErr
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridGetNotificationsPage::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerGetNotificationsPage::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
@@ -1761,7 +1761,7 @@ bool FResponse_PlayeridGetNotificationsPage::TryGetContentFor403(FRHAPI_HzApiErr
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridGetNotificationsPage::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerGetNotificationsPage::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 409)
@@ -1773,7 +1773,7 @@ bool FResponse_PlayeridGetNotificationsPage::TryGetContentFor409(FRHAPI_HzApiErr
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridGetNotificationsPage::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_PlayerGetNotificationsPage::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -1785,7 +1785,7 @@ bool FResponse_PlayeridGetNotificationsPage::TryGetContentFor422(FRHAPI_HTTPVali
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridGetNotificationsPage::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerGetNotificationsPage::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 503)
@@ -1797,7 +1797,7 @@ bool FResponse_PlayeridGetNotificationsPage::TryGetContentFor503(FRHAPI_HzApiErr
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridGetNotificationsPage::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FResponse_PlayerGetNotificationsPage::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	bool bParsed = false;
 	// for non default responses, parse into a temporary object to validate the response can be parsed properly
@@ -1877,19 +1877,19 @@ bool FResponse_PlayeridGetNotificationsPage::FromJson(const TSharedPtr<FJsonValu
 	return bParsed;
 }
 
-FResponse_PlayeridGetNotificationsPage::FResponse_PlayeridGetNotificationsPage(FRequestMetadata InRequestMetadata)
+FResponse_PlayerGetNotificationsPage::FResponse_PlayerGetNotificationsPage(FRequestMetadata InRequestMetadata)
 	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
-FString Traits_PlayeridGetNotificationsPage::Name = TEXT("PlayeridGetNotificationsPage");
+FString Traits_PlayerGetNotificationsPage::Name = TEXT("PlayerGetNotificationsPage");
 
-FHttpRequestPtr Traits_PlayeridGetNotificationsPage::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+FHttpRequestPtr Traits_PlayerGetNotificationsPage::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
 {
-	return InAPI->PlayeridGetNotificationsPage(InRequest, InDelegate, InPriority);
+	return InAPI->PlayerGetNotificationsPage(InRequest, InDelegate, InPriority);
 }
 
-FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridGetNotificationsPageSelf(const FRequest_PlayeridGetNotificationsPageSelf& Request, const FDelegate_PlayeridGetNotificationsPageSelf& Delegate /*= FDelegate_PlayeridGetNotificationsPageSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+FHttpRequestPtr FNotificationAPI::PlayerGetNotificationsPageSelf(const FRequest_PlayerGetNotificationsPageSelf& Request, const FDelegate_PlayerGetNotificationsPageSelf& Delegate /*= FDelegate_PlayerGetNotificationsPageSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
 		return nullptr;
@@ -1922,7 +1922,7 @@ FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridGetNotificationsPageSelf(const
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FPlayerIdNotificationAPI::OnPlayeridGetNotificationsPageSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FNotificationAPI::OnPlayerGetNotificationsPageSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1934,7 +1934,7 @@ FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridGetNotificationsPageSelf(const
 	return RequestData->HttpRequest;
 }
 
-void FPlayerIdNotificationAPI::OnPlayeridGetNotificationsPageSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridGetNotificationsPageSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+void FNotificationAPI::OnPlayerGetNotificationsPageSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayerGetNotificationsPageSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
 	FHttpRequestCompleteDelegate ResponseDelegate;
 
@@ -1942,10 +1942,10 @@ void FPlayerIdNotificationAPI::OnPlayeridGetNotificationsPageSelfResponse(FHttpR
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FPlayerIdNotificationAPI::OnPlayeridGetNotificationsPageSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FNotificationAPI::OnPlayerGetNotificationsPageSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_PlayeridGetNotificationsPageSelf Response{ RequestMetadata };
+	FResponse_PlayerGetNotificationsPageSelf Response{ RequestMetadata };
 	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
 	{
@@ -1960,26 +1960,26 @@ void FPlayerIdNotificationAPI::OnPlayeridGetNotificationsPageSelfResponse(FHttpR
 	}
 }
 
-FRequest_PlayeridGetNotificationsPageSelf::FRequest_PlayeridGetNotificationsPageSelf()
+FRequest_PlayerGetNotificationsPageSelf::FRequest_PlayerGetNotificationsPageSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
-FName FRequest_PlayeridGetNotificationsPageSelf::GetSimplifiedPath() const
+FName FRequest_PlayerGetNotificationsPageSelf::GetSimplifiedPath() const
 {
-	static FName Path = FName(TEXT("/notification/v1/playerid/me/notification"));
+	static FName Path = FName(TEXT("/notification/v1/player/me/notification"));
 	return Path;
 }
 
-FName FRequest_PlayeridGetNotificationsPageSelf::GetSimplifiedPathWithVerb() const
+FName FRequest_PlayerGetNotificationsPageSelf::GetSimplifiedPathWithVerb() const
 {
 	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
 	return PathWithVerb;
 }
 
-FString FRequest_PlayeridGetNotificationsPageSelf::ComputePath() const
+FString FRequest_PlayerGetNotificationsPageSelf::ComputePath() const
 {
 	FString Path = GetSimplifiedPath().ToString();
 	TArray<FString> QueryParams;
@@ -2001,7 +2001,7 @@ FString FRequest_PlayeridGetNotificationsPageSelf::ComputePath() const
 	return Path;
 }
 
-bool FRequest_PlayeridGetNotificationsPageSelf::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+bool FRequest_PlayerGetNotificationsPageSelf::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
 	static const TArray<FString> Consumes = {  };
 	//static const TArray<FString> Produces = { TEXT("application/json") };
@@ -2017,12 +2017,12 @@ bool FRequest_PlayeridGetNotificationsPageSelf::SetupHttpRequest(const FHttpRequ
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
 	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayeridGetNotificationsPageSelf - missing auth context"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayerGetNotificationsPageSelf - missing auth context"));
 		return false;
 	}
 	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayeridGetNotificationsPageSelf - failed to add bearer token"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayerGetNotificationsPageSelf - failed to add bearer token"));
 		return false;
 	}
 
@@ -2037,14 +2037,14 @@ bool FRequest_PlayeridGetNotificationsPageSelf::SetupHttpRequest(const FHttpRequ
 	}
 	else
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayeridGetNotificationsPageSelf - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayerGetNotificationsPageSelf - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
 		return false;
 	}
 
 	return true;
 }
 
-FString FResponse_PlayeridGetNotificationsPageSelf::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+FString FResponse_PlayerGetNotificationsPageSelf::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
 	switch ((int)InHttpResponseCode)
 	{
@@ -2055,7 +2055,7 @@ FString FResponse_PlayeridGetNotificationsPageSelf::GetHttpResponseCodeDescripti
 	case 400:
 		return TEXT(" Error Codes: - bad_id - Passed client id is not a valid id ");
 	case 403:
-		return TEXT(" Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_not_jwt - Invalid Authorization - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_format - Invalid Authorization - {} ");
+		return TEXT(" Error Codes: - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_format - Invalid Authorization - {} - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token ");
 	case 409:
 		return TEXT(" Error Codes: - too_many_listening_to_single_client - An enumeration. ");
 	case 422:
@@ -2067,7 +2067,7 @@ FString FResponse_PlayeridGetNotificationsPageSelf::GetHttpResponseCodeDescripti
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
-bool FResponse_PlayeridGetNotificationsPageSelf::ParseHeaders()
+bool FResponse_PlayerGetNotificationsPageSelf::ParseHeaders()
 {
 	if (!Super::ParseHeaders())
 	{
@@ -2100,7 +2100,7 @@ bool FResponse_PlayeridGetNotificationsPageSelf::ParseHeaders()
 	return bParsedAllRequiredHeaders;
 }
 
-bool FResponse_PlayeridGetNotificationsPageSelf::TryGetContentFor200(FRHAPI_Notifications& OutContent) const
+bool FResponse_PlayerGetNotificationsPageSelf::TryGetContentFor200(FRHAPI_Notifications& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 200)
@@ -2112,7 +2112,7 @@ bool FResponse_PlayeridGetNotificationsPageSelf::TryGetContentFor200(FRHAPI_Noti
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridGetNotificationsPageSelf::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerGetNotificationsPageSelf::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 400)
@@ -2124,7 +2124,7 @@ bool FResponse_PlayeridGetNotificationsPageSelf::TryGetContentFor400(FRHAPI_HzAp
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridGetNotificationsPageSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerGetNotificationsPageSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
@@ -2136,7 +2136,7 @@ bool FResponse_PlayeridGetNotificationsPageSelf::TryGetContentFor403(FRHAPI_HzAp
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridGetNotificationsPageSelf::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerGetNotificationsPageSelf::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 409)
@@ -2148,7 +2148,7 @@ bool FResponse_PlayeridGetNotificationsPageSelf::TryGetContentFor409(FRHAPI_HzAp
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridGetNotificationsPageSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_PlayerGetNotificationsPageSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -2160,7 +2160,7 @@ bool FResponse_PlayeridGetNotificationsPageSelf::TryGetContentFor422(FRHAPI_HTTP
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridGetNotificationsPageSelf::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerGetNotificationsPageSelf::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 503)
@@ -2172,7 +2172,7 @@ bool FResponse_PlayeridGetNotificationsPageSelf::TryGetContentFor503(FRHAPI_HzAp
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridGetNotificationsPageSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FResponse_PlayerGetNotificationsPageSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	bool bParsed = false;
 	// for non default responses, parse into a temporary object to validate the response can be parsed properly
@@ -2252,19 +2252,19 @@ bool FResponse_PlayeridGetNotificationsPageSelf::FromJson(const TSharedPtr<FJson
 	return bParsed;
 }
 
-FResponse_PlayeridGetNotificationsPageSelf::FResponse_PlayeridGetNotificationsPageSelf(FRequestMetadata InRequestMetadata)
+FResponse_PlayerGetNotificationsPageSelf::FResponse_PlayerGetNotificationsPageSelf(FRequestMetadata InRequestMetadata)
 	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
-FString Traits_PlayeridGetNotificationsPageSelf::Name = TEXT("PlayeridGetNotificationsPageSelf");
+FString Traits_PlayerGetNotificationsPageSelf::Name = TEXT("PlayerGetNotificationsPageSelf");
 
-FHttpRequestPtr Traits_PlayeridGetNotificationsPageSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+FHttpRequestPtr Traits_PlayerGetNotificationsPageSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
 {
-	return InAPI->PlayeridGetNotificationsPageSelf(InRequest, InDelegate, InPriority);
+	return InAPI->PlayerGetNotificationsPageSelf(InRequest, InDelegate, InPriority);
 }
 
-FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridLongPollForNotifications(const FRequest_PlayeridLongPollForNotifications& Request, const FDelegate_PlayeridLongPollForNotifications& Delegate /*= FDelegate_PlayeridLongPollForNotifications()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+FHttpRequestPtr FNotificationAPI::PlayerLongPollForNotifications(const FRequest_PlayerLongPollForNotifications& Request, const FDelegate_PlayerLongPollForNotifications& Delegate /*= FDelegate_PlayerLongPollForNotifications()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
 		return nullptr;
@@ -2297,7 +2297,7 @@ FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridLongPollForNotifications(const
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FPlayerIdNotificationAPI::OnPlayeridLongPollForNotificationsResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FNotificationAPI::OnPlayerLongPollForNotificationsResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -2309,7 +2309,7 @@ FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridLongPollForNotifications(const
 	return RequestData->HttpRequest;
 }
 
-void FPlayerIdNotificationAPI::OnPlayeridLongPollForNotificationsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridLongPollForNotifications Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+void FNotificationAPI::OnPlayerLongPollForNotificationsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayerLongPollForNotifications Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
 	FHttpRequestCompleteDelegate ResponseDelegate;
 
@@ -2317,10 +2317,10 @@ void FPlayerIdNotificationAPI::OnPlayeridLongPollForNotificationsResponse(FHttpR
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FPlayerIdNotificationAPI::OnPlayeridLongPollForNotificationsResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FNotificationAPI::OnPlayerLongPollForNotificationsResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_PlayeridLongPollForNotifications Response{ RequestMetadata };
+	FResponse_PlayerLongPollForNotifications Response{ RequestMetadata };
 	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
 	{
@@ -2335,32 +2335,32 @@ void FPlayerIdNotificationAPI::OnPlayeridLongPollForNotificationsResponse(FHttpR
 	}
 }
 
-FRequest_PlayeridLongPollForNotifications::FRequest_PlayeridLongPollForNotifications()
+FRequest_PlayerLongPollForNotifications::FRequest_PlayerLongPollForNotifications()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
-FName FRequest_PlayeridLongPollForNotifications::GetSimplifiedPath() const
+FName FRequest_PlayerLongPollForNotifications::GetSimplifiedPath() const
 {
-	static FName Path = FName(TEXT("/notification/v1/playerid/{player_id}/stream/notification/lp"));
+	static FName Path = FName(TEXT("/notification/v1/player/{player_uuid}/stream/notification/lp"));
 	return Path;
 }
 
-FName FRequest_PlayeridLongPollForNotifications::GetSimplifiedPathWithVerb() const
+FName FRequest_PlayerLongPollForNotifications::GetSimplifiedPathWithVerb() const
 {
 	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
 	return PathWithVerb;
 }
 
-FString FRequest_PlayeridLongPollForNotifications::ComputePath() const
+FString FRequest_PlayerLongPollForNotifications::ComputePath() const
 {
 	TMap<FString, FStringFormatArg> PathParams = { 
-		{ TEXT("player_id"), ToStringFormatArg(PlayerId) }
+		{ TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
 	};
 
-	FString Path = FString::Format(TEXT("/notification/v1/playerid/{player_id}/stream/notification/lp"), PathParams);
+	FString Path = FString::Format(TEXT("/notification/v1/player/{player_uuid}/stream/notification/lp"), PathParams);
 
 	TArray<FString> QueryParams;
 	if(MaxPageSize.IsSet())
@@ -2385,7 +2385,7 @@ FString FRequest_PlayeridLongPollForNotifications::ComputePath() const
 	return Path;
 }
 
-bool FRequest_PlayeridLongPollForNotifications::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+bool FRequest_PlayerLongPollForNotifications::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
 	static const TArray<FString> Consumes = {  };
 	//static const TArray<FString> Produces = { TEXT("application/json") };
@@ -2395,12 +2395,12 @@ bool FRequest_PlayeridLongPollForNotifications::SetupHttpRequest(const FHttpRequ
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
 	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayeridLongPollForNotifications - missing auth context"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayerLongPollForNotifications - missing auth context"));
 		return false;
 	}
 	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayeridLongPollForNotifications - failed to add bearer token"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayerLongPollForNotifications - failed to add bearer token"));
 		return false;
 	}
 
@@ -2415,14 +2415,14 @@ bool FRequest_PlayeridLongPollForNotifications::SetupHttpRequest(const FHttpRequ
 	}
 	else
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayeridLongPollForNotifications - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayerLongPollForNotifications - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
 		return false;
 	}
 
 	return true;
 }
 
-FString FResponse_PlayeridLongPollForNotifications::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+FString FResponse_PlayerLongPollForNotifications::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
 	switch ((int)InHttpResponseCode)
 	{
@@ -2431,7 +2431,7 @@ FString FResponse_PlayeridLongPollForNotifications::GetHttpResponseCodeDescripti
 	case 400:
 		return TEXT(" Error Codes: - bad_id - Passed client id is not a valid id ");
 	case 403:
-		return TEXT(" Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_not_jwt - Invalid Authorization - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_format - Invalid Authorization - {} ");
+		return TEXT(" Error Codes: - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_format - Invalid Authorization - {} - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token ");
 	case 409:
 		return TEXT(" Error Codes: - too_many_listening_to_single_client - An enumeration. ");
 	case 422:
@@ -2443,7 +2443,7 @@ FString FResponse_PlayeridLongPollForNotifications::GetHttpResponseCodeDescripti
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
-bool FResponse_PlayeridLongPollForNotifications::ParseHeaders()
+bool FResponse_PlayerLongPollForNotifications::ParseHeaders()
 {
 	if (!Super::ParseHeaders())
 	{
@@ -2474,7 +2474,7 @@ bool FResponse_PlayeridLongPollForNotifications::ParseHeaders()
 	return bParsedAllRequiredHeaders;
 }
 
-bool FResponse_PlayeridLongPollForNotifications::TryGetContentFor200(FRHAPI_Notifications& OutContent) const
+bool FResponse_PlayerLongPollForNotifications::TryGetContentFor200(FRHAPI_Notifications& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 200)
@@ -2486,7 +2486,7 @@ bool FResponse_PlayeridLongPollForNotifications::TryGetContentFor200(FRHAPI_Noti
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridLongPollForNotifications::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerLongPollForNotifications::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 400)
@@ -2498,7 +2498,7 @@ bool FResponse_PlayeridLongPollForNotifications::TryGetContentFor400(FRHAPI_HzAp
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridLongPollForNotifications::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerLongPollForNotifications::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
@@ -2510,7 +2510,7 @@ bool FResponse_PlayeridLongPollForNotifications::TryGetContentFor403(FRHAPI_HzAp
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridLongPollForNotifications::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerLongPollForNotifications::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 409)
@@ -2522,7 +2522,7 @@ bool FResponse_PlayeridLongPollForNotifications::TryGetContentFor409(FRHAPI_HzAp
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridLongPollForNotifications::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_PlayerLongPollForNotifications::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -2534,7 +2534,7 @@ bool FResponse_PlayeridLongPollForNotifications::TryGetContentFor422(FRHAPI_HTTP
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridLongPollForNotifications::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerLongPollForNotifications::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 503)
@@ -2546,7 +2546,7 @@ bool FResponse_PlayeridLongPollForNotifications::TryGetContentFor503(FRHAPI_HzAp
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridLongPollForNotifications::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FResponse_PlayerLongPollForNotifications::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	bool bParsed = false;
 	// for non default responses, parse into a temporary object to validate the response can be parsed properly
@@ -2626,19 +2626,19 @@ bool FResponse_PlayeridLongPollForNotifications::FromJson(const TSharedPtr<FJson
 	return bParsed;
 }
 
-FResponse_PlayeridLongPollForNotifications::FResponse_PlayeridLongPollForNotifications(FRequestMetadata InRequestMetadata)
+FResponse_PlayerLongPollForNotifications::FResponse_PlayerLongPollForNotifications(FRequestMetadata InRequestMetadata)
 	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
-FString Traits_PlayeridLongPollForNotifications::Name = TEXT("PlayeridLongPollForNotifications");
+FString Traits_PlayerLongPollForNotifications::Name = TEXT("PlayerLongPollForNotifications");
 
-FHttpRequestPtr Traits_PlayeridLongPollForNotifications::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+FHttpRequestPtr Traits_PlayerLongPollForNotifications::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
 {
-	return InAPI->PlayeridLongPollForNotifications(InRequest, InDelegate, InPriority);
+	return InAPI->PlayerLongPollForNotifications(InRequest, InDelegate, InPriority);
 }
 
-FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridLongPollForNotificationsSelf(const FRequest_PlayeridLongPollForNotificationsSelf& Request, const FDelegate_PlayeridLongPollForNotificationsSelf& Delegate /*= FDelegate_PlayeridLongPollForNotificationsSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+FHttpRequestPtr FNotificationAPI::PlayerLongPollForNotificationsSelf(const FRequest_PlayerLongPollForNotificationsSelf& Request, const FDelegate_PlayerLongPollForNotificationsSelf& Delegate /*= FDelegate_PlayerLongPollForNotificationsSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
 		return nullptr;
@@ -2671,7 +2671,7 @@ FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridLongPollForNotificationsSelf(c
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FPlayerIdNotificationAPI::OnPlayeridLongPollForNotificationsSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FNotificationAPI::OnPlayerLongPollForNotificationsSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -2683,7 +2683,7 @@ FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridLongPollForNotificationsSelf(c
 	return RequestData->HttpRequest;
 }
 
-void FPlayerIdNotificationAPI::OnPlayeridLongPollForNotificationsSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridLongPollForNotificationsSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+void FNotificationAPI::OnPlayerLongPollForNotificationsSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayerLongPollForNotificationsSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
 	FHttpRequestCompleteDelegate ResponseDelegate;
 
@@ -2691,10 +2691,10 @@ void FPlayerIdNotificationAPI::OnPlayeridLongPollForNotificationsSelfResponse(FH
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FPlayerIdNotificationAPI::OnPlayeridLongPollForNotificationsSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FNotificationAPI::OnPlayerLongPollForNotificationsSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_PlayeridLongPollForNotificationsSelf Response{ RequestMetadata };
+	FResponse_PlayerLongPollForNotificationsSelf Response{ RequestMetadata };
 	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
 	{
@@ -2709,26 +2709,26 @@ void FPlayerIdNotificationAPI::OnPlayeridLongPollForNotificationsSelfResponse(FH
 	}
 }
 
-FRequest_PlayeridLongPollForNotificationsSelf::FRequest_PlayeridLongPollForNotificationsSelf()
+FRequest_PlayerLongPollForNotificationsSelf::FRequest_PlayerLongPollForNotificationsSelf()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
-FName FRequest_PlayeridLongPollForNotificationsSelf::GetSimplifiedPath() const
+FName FRequest_PlayerLongPollForNotificationsSelf::GetSimplifiedPath() const
 {
-	static FName Path = FName(TEXT("/notification/v1/playerid/me/stream/notification/lp"));
+	static FName Path = FName(TEXT("/notification/v1/player/me/stream/notification/lp"));
 	return Path;
 }
 
-FName FRequest_PlayeridLongPollForNotificationsSelf::GetSimplifiedPathWithVerb() const
+FName FRequest_PlayerLongPollForNotificationsSelf::GetSimplifiedPathWithVerb() const
 {
 	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
 	return PathWithVerb;
 }
 
-FString FRequest_PlayeridLongPollForNotificationsSelf::ComputePath() const
+FString FRequest_PlayerLongPollForNotificationsSelf::ComputePath() const
 {
 	FString Path = GetSimplifiedPath().ToString();
 	TArray<FString> QueryParams;
@@ -2754,7 +2754,7 @@ FString FRequest_PlayeridLongPollForNotificationsSelf::ComputePath() const
 	return Path;
 }
 
-bool FRequest_PlayeridLongPollForNotificationsSelf::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+bool FRequest_PlayerLongPollForNotificationsSelf::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
 	static const TArray<FString> Consumes = {  };
 	//static const TArray<FString> Produces = { TEXT("application/json") };
@@ -2764,12 +2764,12 @@ bool FRequest_PlayeridLongPollForNotificationsSelf::SetupHttpRequest(const FHttp
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
 	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayeridLongPollForNotificationsSelf - missing auth context"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayerLongPollForNotificationsSelf - missing auth context"));
 		return false;
 	}
 	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayeridLongPollForNotificationsSelf - failed to add bearer token"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayerLongPollForNotificationsSelf - failed to add bearer token"));
 		return false;
 	}
 
@@ -2784,14 +2784,14 @@ bool FRequest_PlayeridLongPollForNotificationsSelf::SetupHttpRequest(const FHttp
 	}
 	else
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayeridLongPollForNotificationsSelf - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayerLongPollForNotificationsSelf - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
 		return false;
 	}
 
 	return true;
 }
 
-FString FResponse_PlayeridLongPollForNotificationsSelf::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+FString FResponse_PlayerLongPollForNotificationsSelf::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
 	switch ((int)InHttpResponseCode)
 	{
@@ -2800,7 +2800,7 @@ FString FResponse_PlayeridLongPollForNotificationsSelf::GetHttpResponseCodeDescr
 	case 400:
 		return TEXT(" Error Codes: - bad_id - Passed client id is not a valid id ");
 	case 403:
-		return TEXT(" Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_not_jwt - Invalid Authorization - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_format - Invalid Authorization - {} ");
+		return TEXT(" Error Codes: - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_format - Invalid Authorization - {} - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token ");
 	case 409:
 		return TEXT(" Error Codes: - too_many_listening_to_single_client - An enumeration. ");
 	case 422:
@@ -2812,7 +2812,7 @@ FString FResponse_PlayeridLongPollForNotificationsSelf::GetHttpResponseCodeDescr
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
-bool FResponse_PlayeridLongPollForNotificationsSelf::ParseHeaders()
+bool FResponse_PlayerLongPollForNotificationsSelf::ParseHeaders()
 {
 	if (!Super::ParseHeaders())
 	{
@@ -2843,7 +2843,7 @@ bool FResponse_PlayeridLongPollForNotificationsSelf::ParseHeaders()
 	return bParsedAllRequiredHeaders;
 }
 
-bool FResponse_PlayeridLongPollForNotificationsSelf::TryGetContentFor200(FRHAPI_Notifications& OutContent) const
+bool FResponse_PlayerLongPollForNotificationsSelf::TryGetContentFor200(FRHAPI_Notifications& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 200)
@@ -2855,7 +2855,7 @@ bool FResponse_PlayeridLongPollForNotificationsSelf::TryGetContentFor200(FRHAPI_
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridLongPollForNotificationsSelf::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerLongPollForNotificationsSelf::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 400)
@@ -2867,7 +2867,7 @@ bool FResponse_PlayeridLongPollForNotificationsSelf::TryGetContentFor400(FRHAPI_
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridLongPollForNotificationsSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerLongPollForNotificationsSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
@@ -2879,7 +2879,7 @@ bool FResponse_PlayeridLongPollForNotificationsSelf::TryGetContentFor403(FRHAPI_
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridLongPollForNotificationsSelf::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerLongPollForNotificationsSelf::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 409)
@@ -2891,7 +2891,7 @@ bool FResponse_PlayeridLongPollForNotificationsSelf::TryGetContentFor409(FRHAPI_
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridLongPollForNotificationsSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_PlayerLongPollForNotificationsSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -2903,7 +2903,7 @@ bool FResponse_PlayeridLongPollForNotificationsSelf::TryGetContentFor422(FRHAPI_
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridLongPollForNotificationsSelf::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_PlayerLongPollForNotificationsSelf::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 503)
@@ -2915,7 +2915,7 @@ bool FResponse_PlayeridLongPollForNotificationsSelf::TryGetContentFor503(FRHAPI_
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PlayeridLongPollForNotificationsSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FResponse_PlayerLongPollForNotificationsSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	bool bParsed = false;
 	// for non default responses, parse into a temporary object to validate the response can be parsed properly
@@ -2995,16 +2995,16 @@ bool FResponse_PlayeridLongPollForNotificationsSelf::FromJson(const TSharedPtr<F
 	return bParsed;
 }
 
-FResponse_PlayeridLongPollForNotificationsSelf::FResponse_PlayeridLongPollForNotificationsSelf(FRequestMetadata InRequestMetadata)
+FResponse_PlayerLongPollForNotificationsSelf::FResponse_PlayerLongPollForNotificationsSelf(FRequestMetadata InRequestMetadata)
 	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
-FString Traits_PlayeridLongPollForNotificationsSelf::Name = TEXT("PlayeridLongPollForNotificationsSelf");
+FString Traits_PlayerLongPollForNotificationsSelf::Name = TEXT("PlayerLongPollForNotificationsSelf");
 
-FHttpRequestPtr Traits_PlayeridLongPollForNotificationsSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+FHttpRequestPtr Traits_PlayerLongPollForNotificationsSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
 {
-	return InAPI->PlayeridLongPollForNotificationsSelf(InRequest, InDelegate, InPriority);
+	return InAPI->PlayerLongPollForNotificationsSelf(InRequest, InDelegate, InPriority);
 }
 
 

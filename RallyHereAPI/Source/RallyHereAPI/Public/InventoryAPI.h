@@ -1784,7 +1784,7 @@ struct RALLYHEREAPI_API FResponse_GetPlayerInventory : public FResponseAccessorT
 	Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
 	*/
 	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
-	/* Number of seconds after which to retry the request, when the server should have the resource available */
+	/* Number of seconds after which to retry the request */
 	TOptional<int32> GetHeader503_RetryAfter() const;
 
 };
@@ -1893,7 +1893,7 @@ struct RALLYHEREAPI_API FResponse_GetPlayerInventorySelf : public FResponseAcces
 	Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
 	*/
 	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
-	/* Number of seconds after which to retry the request, when the server should have the resource available */
+	/* Number of seconds after which to retry the request */
 	TOptional<int32> GetHeader503_RetryAfter() const;
 
 };
@@ -2003,7 +2003,7 @@ struct RALLYHEREAPI_API FResponse_GetPlayerInventoryUuid : public FResponseAcces
 	Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
 	*/
 	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
-	/* Number of seconds after which to retry the request, when the server should have the resource available */
+	/* Number of seconds after which to retry the request */
 	TOptional<int32> GetHeader503_RetryAfter() const;
 
 };
@@ -2112,7 +2112,7 @@ struct RALLYHEREAPI_API FResponse_GetPlayerInventoryUuidSelf : public FResponseA
 	Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
 	*/
 	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
-	/* Number of seconds after which to retry the request, when the server should have the resource available */
+	/* Number of seconds after which to retry the request */
 	TOptional<int32> GetHeader503_RetryAfter() const;
 
 };

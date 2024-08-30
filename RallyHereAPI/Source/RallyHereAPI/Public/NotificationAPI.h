@@ -25,7 +25,7 @@ using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
 // forward declaration
-class FPlayerNotificationAPI;
+class FNotificationAPI;
 
 /**
  * @brief Create Notification
@@ -102,7 +102,7 @@ struct RALLYHEREAPI_API FResponse_PlayerCreateNotification : public FResponseAcc
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_not_jwt - Invalid Authorization - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_format - Invalid Authorization - {} 
+	 Error Codes: - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_format - Invalid Authorization - {} - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -136,7 +136,7 @@ struct RALLYHEREAPI_API Traits_PlayerCreateNotification
 	/** The delegate type, triggered by the response */
 	typedef FDelegate_PlayerCreateNotification Delegate;
 	/** The API object that supports this API call */
-	typedef FPlayerNotificationAPI API;
+	typedef FNotificationAPI API;
 	/** A human readable name for this API call */
 	static FString Name;
 
@@ -222,7 +222,7 @@ struct RALLYHEREAPI_API FResponse_PlayerCreateNotificationSelf : public FRespons
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_not_jwt - Invalid Authorization - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_format - Invalid Authorization - {} 
+	 Error Codes: - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_format - Invalid Authorization - {} - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -256,7 +256,7 @@ struct RALLYHEREAPI_API Traits_PlayerCreateNotificationSelf
 	/** The delegate type, triggered by the response */
 	typedef FDelegate_PlayerCreateNotificationSelf Delegate;
 	/** The API object that supports this API call */
-	typedef FPlayerNotificationAPI API;
+	typedef FNotificationAPI API;
 	/** A human readable name for this API call */
 	static FString Name;
 
@@ -348,7 +348,7 @@ struct RALLYHEREAPI_API FResponse_PlayerGetNotificationById : public FResponseAc
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_not_jwt - Invalid Authorization - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_format - Invalid Authorization - {} 
+	 Error Codes: - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_format - Invalid Authorization - {} - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -387,7 +387,7 @@ struct RALLYHEREAPI_API Traits_PlayerGetNotificationById
 	/** The delegate type, triggered by the response */
 	typedef FDelegate_PlayerGetNotificationById Delegate;
 	/** The API object that supports this API call */
-	typedef FPlayerNotificationAPI API;
+	typedef FNotificationAPI API;
 	/** A human readable name for this API call */
 	static FString Name;
 
@@ -474,7 +474,7 @@ struct RALLYHEREAPI_API FResponse_PlayerGetNotificationByIdSelf : public FRespon
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_not_jwt - Invalid Authorization - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_format - Invalid Authorization - {} 
+	 Error Codes: - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_format - Invalid Authorization - {} - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -513,7 +513,7 @@ struct RALLYHEREAPI_API Traits_PlayerGetNotificationByIdSelf
 	/** The delegate type, triggered by the response */
 	typedef FDelegate_PlayerGetNotificationByIdSelf Delegate;
 	/** The API object that supports this API call */
-	typedef FPlayerNotificationAPI API;
+	typedef FNotificationAPI API;
 	/** A human readable name for this API call */
 	static FString Name;
 
@@ -624,7 +624,7 @@ struct RALLYHEREAPI_API FResponse_PlayerGetNotificationsPage : public FResponseA
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_not_jwt - Invalid Authorization - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_format - Invalid Authorization - {} 
+	 Error Codes: - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_format - Invalid Authorization - {} - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -658,7 +658,7 @@ struct RALLYHEREAPI_API Traits_PlayerGetNotificationsPage
 	/** The delegate type, triggered by the response */
 	typedef FDelegate_PlayerGetNotificationsPage Delegate;
 	/** The API object that supports this API call */
-	typedef FPlayerNotificationAPI API;
+	typedef FNotificationAPI API;
 	/** A human readable name for this API call */
 	static FString Name;
 
@@ -764,7 +764,7 @@ struct RALLYHEREAPI_API FResponse_PlayerGetNotificationsPageSelf : public FRespo
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_not_jwt - Invalid Authorization - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_format - Invalid Authorization - {} 
+	 Error Codes: - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_format - Invalid Authorization - {} - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -798,7 +798,7 @@ struct RALLYHEREAPI_API Traits_PlayerGetNotificationsPageSelf
 	/** The delegate type, triggered by the response */
 	typedef FDelegate_PlayerGetNotificationsPageSelf Delegate;
 	/** The API object that supports this API call */
-	typedef FPlayerNotificationAPI API;
+	typedef FNotificationAPI API;
 	/** A human readable name for this API call */
 	static FString Name;
 
@@ -903,7 +903,7 @@ struct RALLYHEREAPI_API FResponse_PlayerLongPollForNotifications : public FRespo
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_not_jwt - Invalid Authorization - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_format - Invalid Authorization - {} 
+	 Error Codes: - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_format - Invalid Authorization - {} - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -937,7 +937,7 @@ struct RALLYHEREAPI_API Traits_PlayerLongPollForNotifications
 	/** The delegate type, triggered by the response */
 	typedef FDelegate_PlayerLongPollForNotifications Delegate;
 	/** The API object that supports this API call */
-	typedef FPlayerNotificationAPI API;
+	typedef FNotificationAPI API;
 	/** A human readable name for this API call */
 	static FString Name;
 
@@ -1037,7 +1037,7 @@ struct RALLYHEREAPI_API FResponse_PlayerLongPollForNotificationsSelf : public FR
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_not_jwt - Invalid Authorization - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_format - Invalid Authorization - {} 
+	 Error Codes: - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_format - Invalid Authorization - {} - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -1071,7 +1071,7 @@ struct RALLYHEREAPI_API Traits_PlayerLongPollForNotificationsSelf
 	/** The delegate type, triggered by the response */
 	typedef FDelegate_PlayerLongPollForNotificationsSelf Delegate;
 	/** The API object that supports this API call */
-	typedef FPlayerNotificationAPI API;
+	typedef FNotificationAPI API;
 	/** A human readable name for this API call */
 	static FString Name;
 
@@ -1088,11 +1088,11 @@ struct RALLYHEREAPI_API Traits_PlayerLongPollForNotificationsSelf
 
 
 /** The API class itself, which will handle calls to */
-class RALLYHEREAPI_API FPlayerNotificationAPI : public FAPI
+class RALLYHEREAPI_API FNotificationAPI : public FAPI
 {
 public:
-	FPlayerNotificationAPI();
-	virtual ~FPlayerNotificationAPI();
+	FNotificationAPI();
+	virtual ~FNotificationAPI();
 
 	FHttpRequestPtr PlayerCreateNotification(const FRequest_PlayerCreateNotification& Request, const FDelegate_PlayerCreateNotification& Delegate = FDelegate_PlayerCreateNotification(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr PlayerCreateNotificationSelf(const FRequest_PlayerCreateNotificationSelf& Request, const FDelegate_PlayerCreateNotificationSelf& Delegate = FDelegate_PlayerCreateNotificationSelf(), int32 Priority = DefaultRallyHereAPIPriority);

@@ -24,7 +24,7 @@ using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
 // forward declaration
-class FPexAPI;
+class FPEXAPI;
 
 /**
  * @brief Create Pex Host
@@ -105,7 +105,7 @@ struct RALLYHEREAPI_API Traits_CreatePexHost
 	/** The delegate type, triggered by the response */
 	typedef FDelegate_CreatePexHost Delegate;
 	/** The API object that supports this API call */
-	typedef FPexAPI API;
+	typedef FPEXAPI API;
 	/** A human readable name for this API call */
 	static FString Name;
 
@@ -199,7 +199,7 @@ struct RALLYHEREAPI_API Traits_CreatePexPlayer
 	/** The delegate type, triggered by the response */
 	typedef FDelegate_CreatePexPlayer Delegate;
 	/** The API object that supports this API call */
-	typedef FPexAPI API;
+	typedef FPEXAPI API;
 	/** A human readable name for this API call */
 	static FString Name;
 
@@ -332,7 +332,7 @@ struct RALLYHEREAPI_API Traits_GetAllPexClientRawByFilter
 	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetAllPexClientRawByFilter Delegate;
 	/** The API object that supports this API call */
-	typedef FPexAPI API;
+	typedef FPEXAPI API;
 	/** A human readable name for this API call */
 	static FString Name;
 
@@ -460,7 +460,7 @@ struct RALLYHEREAPI_API Traits_GetAllPexClientScoresByFilter
 	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetAllPexClientScoresByFilter Delegate;
 	/** The API object that supports this API call */
-	typedef FPexAPI API;
+	typedef FPEXAPI API;
 	/** A human readable name for this API call */
 	static FString Name;
 
@@ -591,7 +591,7 @@ struct RALLYHEREAPI_API Traits_GetAllPexHostRawByFilter
 	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetAllPexHostRawByFilter Delegate;
 	/** The API object that supports this API call */
-	typedef FPexAPI API;
+	typedef FPEXAPI API;
 	/** A human readable name for this API call */
 	static FString Name;
 
@@ -717,7 +717,7 @@ struct RALLYHEREAPI_API Traits_GetAllPexHostScoresByFilter
 	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetAllPexHostScoresByFilter Delegate;
 	/** The API object that supports this API call */
-	typedef FPexAPI API;
+	typedef FPEXAPI API;
 	/** A human readable name for this API call */
 	static FString Name;
 
@@ -734,11 +734,11 @@ struct RALLYHEREAPI_API Traits_GetAllPexHostScoresByFilter
 
 
 /** The API class itself, which will handle calls to */
-class RALLYHEREAPI_API FPexAPI : public FAPI
+class RALLYHEREAPI_API FPEXAPI : public FAPI
 {
 public:
-	FPexAPI();
-	virtual ~FPexAPI();
+	FPEXAPI();
+	virtual ~FPEXAPI();
 
 	FHttpRequestPtr CreatePexHost(const FRequest_CreatePexHost& Request, const FDelegate_CreatePexHost& Delegate = FDelegate_CreatePexHost(), int32 Priority = DefaultRallyHereAPIPriority);
 	FHttpRequestPtr CreatePexPlayer(const FRequest_CreatePexPlayer& Request, const FDelegate_CreatePexPlayer& Delegate = FDelegate_CreatePexPlayer(), int32 Priority = DefaultRallyHereAPIPriority);
