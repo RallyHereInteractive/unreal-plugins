@@ -1390,7 +1390,7 @@ void URH_OnlineSession::GenerateVoipLoginToken(const FRH_OnSessionGetVoipTokenDe
 		}),
 		GetDefault<URH_IntegrationSettings>()->SessionVoipLoginTokenPriority);
 
-	Helper->Start(RH_APIs::GetAPIs().GetVOIP(), Request);
+	Helper->Start(RH_APIs::GetSessionsAPI(), Request);
 }
 
 void URH_OnlineSession::GenerateVoipActionToken(ERHAPI_VivoxSessionActionSingle VivoxAction, ERHAPI_VoipSessionType VoipSessionType, const FRH_OnSessionGetVoipTokenDelegateBlock& Delegate)
@@ -1428,7 +1428,7 @@ void URH_OnlineSession::GenerateVoipActionToken(ERHAPI_VivoxSessionActionSingle 
 			}),
 		GetDefault<URH_IntegrationSettings>()->SessionVoipActionTokenPriority);
 
-	Helper->Start(RH_APIs::GetAPIs().GetVOIP(), Request);
+	Helper->Start(RH_APIs::GetSessionsAPI(), Request);
 }
 
 void URH_OnlineSession::UpdateSessionInfo(const FRHAPI_SessionUpdate& Update, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
@@ -1586,7 +1586,7 @@ void URH_OnlineSession::EmitAuditEvent(const FRHAPI_CreateAuditRequest& AuditEve
 
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(BaseType::Delegate(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionAuditPriority);
 
-	Helper->Start(RH_APIs::GetSessionAuditAPI(), Request);
+	Helper->Start(RH_APIs::GetSessionsAPI(), Request);
 }
 
 

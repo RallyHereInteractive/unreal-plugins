@@ -5,12 +5,11 @@
 #include "CoreMinimal.h"
 #include "RH_Common.h"
 #include "Notifications.h"
-#include "PlayerNotificationAPI.h"
+#include "NotificationAPI.h"
 #include "RallyHereIntegrationModule.h"
 #include "RH_PlayerNotifications.h"
 #include "Tickable.h"
 #include "HttpModule.h"
-#include "RH_PlayerNotifications.h"
 
 class FRH_NotificationStreamingLongPollHelper : public FRH_AsyncTaskHelper
 {
@@ -75,7 +74,7 @@ protected:
 			Request.PlayerUuid = PlayerUuid;
 
 			UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
-			HttpRequest = LongPollTraits::DoCall(RH_APIs::GetAPIs().GetPlayerNotification(), Request,
+			HttpRequest = LongPollTraits::DoCall(RH_APIs::GetNotificationAPI(), Request,
 				LongPollTraits::Delegate::CreateSP(this, &FRH_NotificationStreamingLongPollHelper::LongPollComplete),
 				GetDefault<URH_IntegrationSettings>()->NotificationPollSelfPriority);
 		}
@@ -87,7 +86,7 @@ protected:
 			Request.OffsetResetStrategy = ERHAPI_OffsetReset::Latest;
 
 			UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
-			HttpRequest = LongPollTraitsSelf::DoCall(RH_APIs::GetAPIs().GetPlayerNotification(), Request,
+			HttpRequest = LongPollTraitsSelf::DoCall(RH_APIs::GetNotificationAPI(), Request,
 				LongPollTraitsSelf::Delegate::CreateSP(this, &FRH_NotificationStreamingLongPollHelper::LongPollCompleteSelf),
 				GetDefault<URH_IntegrationSettings>()->NotificationPollOtherPriority);
 		}

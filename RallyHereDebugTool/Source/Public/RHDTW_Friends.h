@@ -2,8 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 #pragma once
 
-#include "FriendsV2API.h"
-#include "BlockedV2API.h"
+#include "FriendsAPI.h"
 #include "RH_DebugToolWindow.h"
 #include "RH_FriendSubsystem.h"
 #include <string>

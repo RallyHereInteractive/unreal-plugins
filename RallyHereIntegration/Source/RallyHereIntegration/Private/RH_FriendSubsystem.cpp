@@ -141,7 +141,7 @@ bool URH_FriendSubsystem::FetchFriendsList(const FRH_GenericFriendBlock& Delegat
 		return false;
 	}
 
-	if (!GetFriendsListType::DoCall(RH_APIs::GetFriendsV2API(), Request, GetFriendsListType::Delegate::CreateUObject(this, &URH_FriendSubsystem::OnFetchFriendsListResponse, Delegate), GetDefault<URH_IntegrationSettings>()->FetchFriendListPriority))
+	if (!GetFriendsListType::DoCall(RH_APIs::GetFriendsAPI(), Request, GetFriendsListType::Delegate::CreateUObject(this, &URH_FriendSubsystem::OnFetchFriendsListResponse, Delegate), GetDefault<URH_IntegrationSettings>()->FetchFriendListPriority))
 	{
 		Delegate.ExecuteIfBound(false);
 		return false;
@@ -269,7 +269,7 @@ bool URH_FriendSubsystem::FetchFriend(const FGuid& PlayerUuid, const FRH_Generic
 		return false;
 	}
 
-	if (!GetFriendRelationshipType::DoCall(RH_APIs::GetFriendsV2API(), Request, GetFriendRelationshipType::Delegate::CreateUObject(this, &URH_FriendSubsystem::OnFetchFriendResponse, Delegate), GetDefault<URH_IntegrationSettings>()->FetchFriendPriority))
+	if (!GetFriendRelationshipType::DoCall(RH_APIs::GetFriendsAPI(), Request, GetFriendRelationshipType::Delegate::CreateUObject(this, &URH_FriendSubsystem::OnFetchFriendResponse, Delegate), GetDefault<URH_IntegrationSettings>()->FetchFriendPriority))
 	{
 		Delegate.ExecuteIfBound(false, FGuid());
 		return false;
@@ -393,7 +393,7 @@ bool URH_FriendSubsystem::AddFriend(const FGuid& PlayerUuid, const FRH_AddFriend
 		GetRequest.OtherPlayerUuid = Request.OtherPlayerUuid;
 		SetDefaultParamsForGetFriendRequest(GetRequest);
 
-		if (GetFriendRelationshipType::DoCall(RH_APIs::GetFriendsV2API(), GetRequest, GetFriendRelationshipType::Delegate::CreateUObject(this, &URH_FriendSubsystem::OnFetchFriendForAdd,
+		if (GetFriendRelationshipType::DoCall(RH_APIs::GetFriendsAPI(), GetRequest, GetFriendRelationshipType::Delegate::CreateUObject(this, &URH_FriendSubsystem::OnFetchFriendForAdd,
 			Delegate, Request, 0), GetDefault<URH_IntegrationSettings>()->AddFriendPriority))
 		{
 			return true;
@@ -405,7 +405,7 @@ bool URH_FriendSubsystem::AddFriend(const FGuid& PlayerUuid, const FRH_AddFriend
 	}
 	Request.IfMatch.Emplace(Friend->Etag);
 
-	if (!AddFriendType::DoCall(RH_APIs::GetFriendsV2API(), Request, AddFriendType::Delegate::CreateUObject(this, &URH_FriendSubsystem::OnAddFriendResponse,
+	if (!AddFriendType::DoCall(RH_APIs::GetFriendsAPI(), Request, AddFriendType::Delegate::CreateUObject(this, &URH_FriendSubsystem::OnAddFriendResponse,
 		Delegate, Request, 1), GetDefault<URH_IntegrationSettings>()->AddFriendPriority))
 	{
 		Delegate.ExecuteIfBound(false, FGuid(), ERHAPI_FriendshipStatus::None);
@@ -440,7 +440,7 @@ void URH_FriendSubsystem::OnAddFriendResponse(const AddFriendType::Response& Res
 		GetRequest.OtherPlayerUuid = Request.OtherPlayerUuid;
 		SetDefaultParamsForGetFriendRequest(GetRequest);
 
-		GetFriendRelationshipType::DoCall(RH_APIs::GetFriendsV2API(), GetRequest, GetFriendRelationshipType::Delegate::CreateUObject(
+		GetFriendRelationshipType::DoCall(RH_APIs::GetFriendsAPI(), GetRequest, GetFriendRelationshipType::Delegate::CreateUObject(
 			this, &URH_FriendSubsystem::OnFetchFriendForAdd,
 			Delegate, Request, NewRetryCount), GetDefault<URH_IntegrationSettings>()->AddFriendPriority);
 		return;
@@ -488,7 +488,7 @@ bool URH_FriendSubsystem::RemoveFriend(const FGuid& PlayerUuid, const FRH_Generi
 		GetRequest.OtherPlayerUuid = Request.OtherPlayerUuid;
 		SetDefaultParamsForGetFriendRequest(GetRequest);
 
-		if (GetFriendRelationshipType::DoCall(RH_APIs::GetFriendsV2API(), GetRequest, GetFriendRelationshipType::Delegate::CreateUObject(
+		if (GetFriendRelationshipType::DoCall(RH_APIs::GetFriendsAPI(), GetRequest, GetFriendRelationshipType::Delegate::CreateUObject(
 			this, &URH_FriendSubsystem::OnFetchFriendForRemove,
 			Delegate, Request, 0), GetDefault<URH_IntegrationSettings>()->RemoveFriendPriority))
 		{
@@ -501,7 +501,7 @@ bool URH_FriendSubsystem::RemoveFriend(const FGuid& PlayerUuid, const FRH_Generi
 	}
 	Request.IfMatch.Emplace(Friend->Etag);
 
-	if (!DeleteFriendType::DoCall(RH_APIs::GetFriendsV2API(), Request, DeleteFriendType::Delegate::CreateUObject(this,
+	if (!DeleteFriendType::DoCall(RH_APIs::GetFriendsAPI(), Request, DeleteFriendType::Delegate::CreateUObject(this,
 		&URH_FriendSubsystem::OnRemoveFriendResponse,
 		Delegate, Request, 1), GetDefault<URH_IntegrationSettings>()->RemoveFriendPriority))
 	{
@@ -551,7 +551,7 @@ void URH_FriendSubsystem::OnRemoveFriendResponse(const DeleteFriendType::Respons
 		GetRequest.OtherPlayerUuid = Request.OtherPlayerUuid;
 		SetDefaultParamsForGetFriendRequest(GetRequest);
 
-		GetFriendRelationshipType::DoCall(RH_APIs::GetFriendsV2API(), GetRequest, GetFriendRelationshipType::Delegate::CreateUObject(
+		GetFriendRelationshipType::DoCall(RH_APIs::GetFriendsAPI(), GetRequest, GetFriendRelationshipType::Delegate::CreateUObject(
 			this, &URH_FriendSubsystem::OnFetchFriendForRemove,
 			Delegate, Request, NewRetryCount), GetDefault<URH_IntegrationSettings>()->RemoveFriendPriority);
 		return;
@@ -597,7 +597,7 @@ bool URH_FriendSubsystem::AddNotes(const FGuid& PlayerUuid, const FString& Notes
 		GetRequest.OtherPlayerUuid = Request.OtherPlayerUuid;
 		SetDefaultParamsForGetFriendRequest(GetRequest);
 
-		if (GetFriendRelationshipType::DoCall(RH_APIs::GetFriendsV2API(), GetRequest, GetFriendRelationshipType::Delegate::CreateUObject(
+		if (GetFriendRelationshipType::DoCall(RH_APIs::GetFriendsAPI(), GetRequest, GetFriendRelationshipType::Delegate::CreateUObject(
 			this, &URH_FriendSubsystem::OnFetchFriendForAddNote,
 			Delegate, Request, 0), GetDefault<URH_IntegrationSettings>()->AddFriendNotesPriority))
 		{
@@ -610,7 +610,7 @@ bool URH_FriendSubsystem::AddNotes(const FGuid& PlayerUuid, const FString& Notes
 	}
 	Request.IfMatch.Emplace(Friend->Etag);
 
-	if (!AddNotesType::DoCall(RH_APIs::GetFriendsV2API(), Request, AddNotesType::Delegate::CreateUObject(
+	if (!AddNotesType::DoCall(RH_APIs::GetFriendsAPI(), Request, AddNotesType::Delegate::CreateUObject(
 		this, &URH_FriendSubsystem::OnAddNotesResponse,
 		Delegate, Request, 1), GetDefault<URH_IntegrationSettings>()->AddFriendNotesPriority))
 	{
@@ -655,7 +655,7 @@ void URH_FriendSubsystem::OnAddNotesResponse(const AddNotesType::Response& Resp,
 		GetRequest.OtherPlayerUuid = Request.OtherPlayerUuid;
 		SetDefaultParamsForGetFriendRequest(GetRequest);
 
-		GetFriendRelationshipType::DoCall(RH_APIs::GetFriendsV2API(), GetRequest, GetFriendRelationshipType::Delegate::CreateUObject(
+		GetFriendRelationshipType::DoCall(RH_APIs::GetFriendsAPI(), GetRequest, GetFriendRelationshipType::Delegate::CreateUObject(
 			this, &URH_FriendSubsystem::OnFetchFriendForAddNote,
 			Delegate, Request, NewRetryCount), GetDefault<URH_IntegrationSettings>()->AddFriendNotesPriority);
 		return;
@@ -703,7 +703,7 @@ bool URH_FriendSubsystem::DeleteNotes(const FGuid& PlayerUuid, const FRH_Generic
 		GetRequest.OtherPlayerUuid = Request.OtherPlayerUuid;
 		SetDefaultParamsForGetFriendRequest(GetRequest);
 
-		if (GetFriendRelationshipType::DoCall(RH_APIs::GetFriendsV2API(), GetRequest, GetFriendRelationshipType::Delegate::CreateUObject(
+		if (GetFriendRelationshipType::DoCall(RH_APIs::GetFriendsAPI(), GetRequest, GetFriendRelationshipType::Delegate::CreateUObject(
 			this, &URH_FriendSubsystem::OnFetchFriendForDeleteNote,
 			Delegate, Request, 0), GetDefault<URH_IntegrationSettings>()->DeleteFriendNotesPriority))
 		{
@@ -716,7 +716,7 @@ bool URH_FriendSubsystem::DeleteNotes(const FGuid& PlayerUuid, const FRH_Generic
 	}
 	Request.IfMatch.Emplace(Friend->Etag);
 
-	if (!DeleteNotesType::DoCall(RH_APIs::GetFriendsV2API(), Request, DeleteNotesType::Delegate::CreateUObject(
+	if (!DeleteNotesType::DoCall(RH_APIs::GetFriendsAPI(), Request, DeleteNotesType::Delegate::CreateUObject(
 		this, &URH_FriendSubsystem::OnDeleteNotesResponse,
 		Delegate, Request, 1), GetDefault<URH_IntegrationSettings>()->DeleteFriendNotesPriority))
 	{
@@ -752,7 +752,7 @@ void URH_FriendSubsystem::OnDeleteNotesResponse(const DeleteNotesType::Response&
 		GetRequest.OtherPlayerUuid = Request.OtherPlayerUuid;
 		SetDefaultParamsForGetFriendRequest(GetRequest);
 
-		GetFriendRelationshipType::DoCall(RH_APIs::GetFriendsV2API(), GetRequest, GetFriendRelationshipType::Delegate::CreateUObject(
+		GetFriendRelationshipType::DoCall(RH_APIs::GetFriendsAPI(), GetRequest, GetFriendRelationshipType::Delegate::CreateUObject(
 			this, &URH_FriendSubsystem::OnFetchFriendForDeleteNote,
 			Delegate, Request, NewRetryCount), GetDefault<URH_IntegrationSettings>()->DeleteFriendNotesPriority);
 		return;
@@ -1277,7 +1277,7 @@ void URH_FriendSubsystem::OnFetchFriendForAdd(const GetFriendRelationshipType::R
 		Request.IfMatch.Reset();
 	}
 
-	AddFriendType::DoCall(RH_APIs::GetFriendsV2API(), Request, AddFriendType::Delegate::CreateUObject(
+	AddFriendType::DoCall(RH_APIs::GetFriendsAPI(), Request, AddFriendType::Delegate::CreateUObject(
 		this, &URH_FriendSubsystem::OnAddFriendResponse,
 		Delegate, Request, RetryEtagFailureCount), GetDefault<URH_IntegrationSettings>()->AddFriendPriority);
 }
@@ -1296,7 +1296,7 @@ void URH_FriendSubsystem::OnFetchFriendForRemove(const GetFriendRelationshipType
 		Request.IfMatch.Reset();
 	}
 
-	DeleteFriendType::DoCall(RH_APIs::GetFriendsV2API(), Request, DeleteFriendType::Delegate::CreateUObject(
+	DeleteFriendType::DoCall(RH_APIs::GetFriendsAPI(), Request, DeleteFriendType::Delegate::CreateUObject(
 			this, &URH_FriendSubsystem::OnRemoveFriendResponse,
 			Delegate, Request, RetryEtagFailureCount), GetDefault<URH_IntegrationSettings>()->RemoveFriendPriority);
 }
@@ -1315,7 +1315,7 @@ void URH_FriendSubsystem::OnFetchFriendForAddNote(const GetFriendRelationshipTyp
 		Request.IfMatch.Reset();
 	}
 
-	AddNotesType::DoCall(RH_APIs::GetFriendsV2API(), Request, AddNotesType::Delegate::CreateUObject(
+	AddNotesType::DoCall(RH_APIs::GetFriendsAPI(), Request, AddNotesType::Delegate::CreateUObject(
 			this, &URH_FriendSubsystem::OnAddNotesResponse,
 			Delegate, Request, RetryEtagFailureCount), GetDefault<URH_IntegrationSettings>()->AddFriendNotesPriority);
 }
@@ -1334,7 +1334,7 @@ void URH_FriendSubsystem::OnFetchFriendForDeleteNote(const GetFriendRelationship
 		Request.IfMatch.Reset();
 	}
 
-	DeleteNotesType::DoCall(RH_APIs::GetFriendsV2API(), Request, DeleteNotesType::Delegate::CreateUObject(
+	DeleteNotesType::DoCall(RH_APIs::GetFriendsAPI(), Request, DeleteNotesType::Delegate::CreateUObject(
 		this, &URH_FriendSubsystem::OnDeleteNotesResponse,
 		Delegate, Request, RetryEtagFailureCount), GetDefault<URH_IntegrationSettings>()->DeleteFriendNotesPriority);
 }
@@ -1406,7 +1406,7 @@ bool URH_FriendSubsystem::FetchBlockedList(const FRH_GenericFriendBlock& Delegat
 		return false;
 	}
 
-	if (!GetBlockedListType::DoCall(RH_APIs::GetBlockedV2API(), Request, GetBlockedListType::Delegate::CreateUObject(
+	if (!GetBlockedListType::DoCall(RH_APIs::GetFriendsAPI(), Request, GetBlockedListType::Delegate::CreateUObject(
 		this, &URH_FriendSubsystem::OnFetchBlockedListResponse,
 		Delegate), GetDefault<URH_IntegrationSettings>()->FetchBlockedListPriority))
 	{
@@ -1498,7 +1498,7 @@ bool URH_FriendSubsystem::FetchBlockedPlayer(const FGuid& PlayerUUID, const FRH_
 		return false;
 	}
 
-	if (!GetBlockedType::DoCall(RH_APIs::GetBlockedV2API(), Request, GetBlockedType::Delegate::CreateUObject(this, &URH_FriendSubsystem::OnFetchBlockedPlayerResponse, Delegate, Request.OtherPlayerUuid), GetDefault<URH_IntegrationSettings>()->FetchBlockedPlayerPriority))
+	if (!GetBlockedType::DoCall(RH_APIs::GetFriendsAPI(), Request, GetBlockedType::Delegate::CreateUObject(this, &URH_FriendSubsystem::OnFetchBlockedPlayerResponse, Delegate, Request.OtherPlayerUuid), GetDefault<URH_IntegrationSettings>()->FetchBlockedPlayerPriority))
 	{
 		Delegate.ExecuteIfBound(false, FGuid());
 		return false;
@@ -1544,7 +1544,7 @@ bool URH_FriendSubsystem::BlockPlayer(const FGuid& PlayerUuid, const FRH_Generic
 		return false;
 	}
 
-	if (!BlockType::DoCall(RH_APIs::GetBlockedV2API(), Request, BlockType::Delegate::CreateUObject(
+	if (!BlockType::DoCall(RH_APIs::GetFriendsAPI(), Request, BlockType::Delegate::CreateUObject(
 		this, &URH_FriendSubsystem::OnBlockPlayerResponse,
 		Delegate, Request.OtherPlayerUuid), GetDefault<URH_IntegrationSettings>()->BlockUnblockPlayerPriority))
 	{
@@ -1599,7 +1599,7 @@ bool URH_FriendSubsystem::UnblockPlayer(const FGuid& PlayerUuid, const FRH_Gener
 		return false;
 	}
 
-	if (!UnblockType::DoCall(RH_APIs::GetBlockedV2API(), Request, UnblockType::Delegate::CreateUObject(
+	if (!UnblockType::DoCall(RH_APIs::GetFriendsAPI(), Request, UnblockType::Delegate::CreateUObject(
 		this,
 		&URH_FriendSubsystem::OnUnblockPlayerResponse,
 		Delegate, Request.OtherPlayerUuid), GetDefault<URH_IntegrationSettings>()->BlockUnblockPlayerPriority))

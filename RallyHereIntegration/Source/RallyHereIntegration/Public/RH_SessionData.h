@@ -11,8 +11,6 @@
 #include "Templates/SharedPointer.h"
 #include "UObject/WeakInterfacePtr.h"
 #include "SessionsAPI.h"
-#include "VOIPAPI.h"
-#include "SessionAuditAPI.h"
 #include "Misc/EngineVersion.h"
 
 #include "RH_Common.h"

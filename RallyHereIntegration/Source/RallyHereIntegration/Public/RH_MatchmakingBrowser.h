@@ -11,8 +11,6 @@
 
 #include "RH_Common.h"
 #include "RH_SubsystemPluginBase.h"
-#include "QueuesAPI.h"
-#include "RegionsAPI.h"
 
 #include "RH_MatchmakingBrowser.generated.h"
 

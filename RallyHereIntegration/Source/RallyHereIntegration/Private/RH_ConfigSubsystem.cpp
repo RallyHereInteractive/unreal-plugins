@@ -207,7 +207,7 @@ void URH_ConfigSubsystem::RefreshServerTimeCache(const FRH_GenericSuccessWithErr
 		Delegate,
 		GetDefault<URH_IntegrationSettings>()->FetchAppSettingsPriority);
 
-	Helper->Start(RH_APIs::GetAPIs().GetTime(), Request);
+	Helper->Start(RH_APIs::GetConfigAPI(), Request);
 }
 
 void URH_ConfigSubsystem::TriggerHotfixProcessing()

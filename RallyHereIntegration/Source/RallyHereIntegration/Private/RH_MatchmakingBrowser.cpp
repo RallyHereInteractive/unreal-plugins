@@ -3,7 +3,7 @@
 #include "RH_MatchmakingBrowser.h"
 #include "RallyHereIntegrationModule.h"
 #include "RH_OnlineSubsystemNames.h"
-#include "QueuesAPI.h"
+#include "SessionsAPI.h"
 
 
 URH_MatchmakingBrowserCache::URH_MatchmakingBrowserCache()
@@ -49,7 +49,7 @@ void URH_MatchmakingBrowserCache::SearchQueues(const FRH_QueueSearchParams& para
 	Request.PageSize = params.PageSize;
 	// todo: etag
 
-	Helper->Start(RH_APIs::GetQueuesAPI(), Request);
+	Helper->Start(RH_APIs::GetSessionsAPI(), Request);
 }
 
 void URH_MatchmakingBrowserCache::ImportAPIQueue(const FRHAPI_QueueConfigV2& APIQueue, const FString& ETag)
@@ -102,7 +102,7 @@ void URH_MatchmakingBrowserCache::SearchMatchmakingTemplateGroup(const FGuid& Te
 		}
 	}
 
-	Helper->Start(RH_APIs::GetQueuesAPI(), Request);
+	Helper->Start(RH_APIs::GetSessionsAPI(), Request);
 }
 
 void URH_MatchmakingBrowserCache::ImportAPIMatchmakingTemplateGroup(const FRHAPI_MatchMakingTemplateGroupV2& APITemplate, const FString& ETag)
@@ -164,7 +164,7 @@ void URH_MatchmakingBrowserCache::SearchMatchmakingProfile(const FString& Profil
 		}
 	}
 
-	Helper->Start(RH_APIs::GetQueuesAPI(), Request);
+	Helper->Start(RH_APIs::GetSessionsAPI(), Request);
 }
 
 void URH_MatchmakingBrowserCache::ImportAPIMatchmakingProfile(const FRHAPI_MatchMakingProfileV2& APIProfile, const FString& ETag)
@@ -217,7 +217,7 @@ void URH_MatchmakingBrowserCache::SearchInstanceRequestTemplate(const FGuid& Tem
 		}
 	}
 
-	Helper->Start(RH_APIs::GetQueuesAPI(), Request);
+	Helper->Start(RH_APIs::GetSessionsAPI(), Request);
 }
 
 void URH_MatchmakingBrowserCache::ImportAPIInstanceRequestTemplate(const FRHAPI_InstanceRequestTemplate& APITemplate, const FString& ETag)
@@ -279,7 +279,7 @@ void URH_MatchmakingBrowserCache::SearchRegions(int32 Cursor, const FRH_OnRegion
 		GetDefault<URH_IntegrationSettings>()->GetRegionsPriority
 	);
 
-	Helper->Start(RH_APIs::GetAPIs().GetRegions(), Request);
+	Helper->Start(RH_APIs::GetSessionsAPI(), Request);
 }
 
 void URH_MatchmakingBrowserCache::ImportAPIRegion(const FRHAPI_Region& APIRegion)

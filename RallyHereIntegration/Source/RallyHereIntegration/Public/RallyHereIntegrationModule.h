@@ -58,14 +58,12 @@ namespace RH_APIs
 	FORCEINLINE static TSharedRef<RallyHereAPI::FAdAPI> GetAdAPI() { return GetAPIs().GetAd(); }
 	FORCEINLINE static TSharedRef<RallyHereAPI::FConfigAPI> GetConfigAPI() { return GetAPIs().GetConfig(); }
 	FORCEINLINE static TSharedRef<RallyHereAPI::FAuthAPI> GetAuthAPI() { return GetAPIs().GetAuth(); }
-	FORCEINLINE static TSharedRef<RallyHereAPI::FFriendsV2API> GetFriendsV2API() { return GetAPIs().GetFriendsV2(); }
-	FORCEINLINE static TSharedRef<RallyHereAPI::FBlockedV2API> GetBlockedV2API() { return GetAPIs().GetBlockedV2(); }
+	FORCEINLINE static TSharedRef<RallyHereAPI::FFriendsAPI> GetFriendsAPI() { return GetAPIs().GetFriends(); }
 	FORCEINLINE static TSharedRef<RallyHereAPI::FSessionsAPI> GetSessionsAPI() { return GetAPIs().GetSessions(); }
-	FORCEINLINE static TSharedRef<RallyHereAPI::FSessionAuditAPI> GetSessionAuditAPI() { return GetAPIs().GetSessionAudit(); }
+	FORCEINLINE static TSharedRef<RallyHereAPI::FNotificationAPI> GetNotificationAPI() { return GetAPIs().GetNotification(); }
 	FORCEINLINE static TSharedRef<RallyHereAPI::FMatchAPI> GetMatchAPI() { return GetAPIs().GetMatch(); }
 	FORCEINLINE static TSharedRef<RallyHereAPI::FReportsAPI> GetReportsAPI() { return GetAPIs().GetReports(); }
 	FORCEINLINE static TSharedRef<RallyHereAPI::FRankAPI> GetRankAPI() { return GetAPIs().GetRank(); }
-	FORCEINLINE static TSharedRef<RallyHereAPI::FQueuesAPI> GetQueuesAPI() { return GetAPIs().GetQueues(); }
 	FORCEINLINE static TSharedRef<RallyHereAPI::FPresenceAPI> GetPresenceAPI() { return GetAPIs().GetPresence(); }
 	FORCEINLINE static TSharedRef<RallyHereAPI::FUsersAPI> GetUsersAPI() { return GetAPIs().GetUsers(); }
 	FORCEINLINE static TSharedRef<RallyHereAPI::FSettingsAPI> GetSettingsAPI() { return GetAPIs().GetSettings(); }
