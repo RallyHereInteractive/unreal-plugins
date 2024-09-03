@@ -1,4 +1,6 @@
-# group `RHAPI_MatchSegmentWithPlayers` <a id="group__RHAPI__MatchSegmentWithPlayers"></a>
+---
+title: RHAPI_MatchSegmentWithPlayers
+---
 
 ## Summary
 

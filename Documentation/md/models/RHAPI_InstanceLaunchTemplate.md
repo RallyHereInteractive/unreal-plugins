@@ -1,4 +1,6 @@
-# group `RHAPI_InstanceLaunchTemplate` <a id="group__RHAPI__InstanceLaunchTemplate"></a>
+---
+title: RHAPI_InstanceLaunchTemplate
+---
 
 ## Summary
 

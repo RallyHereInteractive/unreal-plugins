@@ -1,4 +1,6 @@
-# group `Inventory` <a id="group__Inventory"></a>
+---
+title: Inventory
+---
 
 ## Summary
 

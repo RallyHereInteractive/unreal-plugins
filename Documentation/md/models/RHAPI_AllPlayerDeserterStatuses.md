@@ -1,4 +1,6 @@
-# group `RHAPI_AllPlayerDeserterStatuses` <a id="group__RHAPI__AllPlayerDeserterStatuses"></a>
+---
+title: RHAPI_AllPlayerDeserterStatuses
+---
 
 ## Summary
 

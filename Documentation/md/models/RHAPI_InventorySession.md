@@ -1,4 +1,6 @@
-# group `RHAPI_InventorySession` <a id="group__RHAPI__InventorySession"></a>
+---
+title: RHAPI_InventorySession
+---
 
 ## Summary
 

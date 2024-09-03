@@ -1,4 +1,6 @@
-# group `RHAPI_AuditResponse` <a id="group__RHAPI__AuditResponse"></a>
+---
+title: RHAPI_AuditResponse
+---
 
 ## Summary
 

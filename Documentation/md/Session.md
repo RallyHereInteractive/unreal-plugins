@@ -1,4 +1,6 @@
-# group `Session` <a id="group__Session"></a>
+---
+title: Session
+---
 
 ## Summary
 

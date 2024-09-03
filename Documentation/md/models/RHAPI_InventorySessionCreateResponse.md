@@ -1,4 +1,6 @@
-# group `RHAPI_InventorySessionCreateResponse` <a id="group__RHAPI__InventorySessionCreateResponse"></a>
+---
+title: RHAPI_InventorySessionCreateResponse
+---
 
 ## Summary
 

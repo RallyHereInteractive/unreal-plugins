@@ -1,4 +1,6 @@
-# group `IntegrationBase` <a id="group__IntegrationBase"></a>
+---
+title: IntegrationBase
+---
 
 ## Summary
 

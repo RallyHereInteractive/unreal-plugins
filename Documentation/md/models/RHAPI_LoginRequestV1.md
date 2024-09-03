@@ -1,4 +1,6 @@
-# group `RHAPI_LoginRequestV1` <a id="group__RHAPI__LoginRequestV1"></a>
+---
+title: RHAPI_LoginRequestV1
+---
 
 ## Summary
 

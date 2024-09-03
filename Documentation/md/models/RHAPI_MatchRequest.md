@@ -1,4 +1,6 @@
-# group `RHAPI_MatchRequest` <a id="group__RHAPI__MatchRequest"></a>
+---
+title: RHAPI_MatchRequest
+---
 
 ## Summary
 

@@ -1,4 +1,6 @@
-# group `RHAPI_MarketingCampaigns` <a id="group__RHAPI__MarketingCampaigns"></a>
+---
+title: RHAPI_MarketingCampaigns
+---
 
 ## Summary
 

@@ -1,4 +1,6 @@
-# group `PlayerExperience` <a id="group__PlayerExperience"></a>
+---
+title: PlayerExperience
+---
 
 ## Summary
 

@@ -1,4 +1,6 @@
-# group `RHAPI_KVsResponseV1` <a id="group__RHAPI__KVsResponseV1"></a>
+---
+title: RHAPI_KVsResponseV1
+---
 
 ## Summary
 

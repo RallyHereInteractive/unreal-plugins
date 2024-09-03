@@ -1,4 +1,6 @@
-# group `Diagnostics` <a id="group__Diagnostics"></a>
+---
+title: Diagnostics
+---
 
 ## Summary
 

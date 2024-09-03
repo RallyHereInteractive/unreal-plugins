@@ -1,4 +1,6 @@
-# group `RHAPI_ClaimKeyRequest` <a id="group__RHAPI__ClaimKeyRequest"></a>
+---
+title: RHAPI_ClaimKeyRequest
+---
 
 ## Summary
 

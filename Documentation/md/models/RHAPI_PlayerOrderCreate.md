@@ -1,4 +1,6 @@
-# group `RHAPI_PlayerOrderCreate` <a id="group__RHAPI__PlayerOrderCreate"></a>
+---
+title: RHAPI_PlayerOrderCreate
+---
 
 ## Summary
 

@@ -1,4 +1,6 @@
-# group `Polling` <a id="group__Polling"></a>
+---
+title: Polling
+---
 
 ## Summary
 

@@ -1,4 +1,6 @@
-# group `RHAPI_PlayerRankResponse` <a id="group__RHAPI__PlayerRankResponse"></a>
+---
+title: RHAPI_PlayerRankResponse
+---
 
 ## Summary
 

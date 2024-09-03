@@ -1,4 +1,6 @@
-# group `RHAPI_SessionInviteResponse` <a id="group__RHAPI__SessionInviteResponse"></a>
+---
+title: RHAPI_SessionInviteResponse
+---
 
 ## Summary
 

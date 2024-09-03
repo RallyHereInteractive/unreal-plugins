@@ -1,4 +1,6 @@
-# group `RHAPI_RankConfigRequestResponseV3` <a id="group__RHAPI__RankConfigRequestResponseV3"></a>
+---
+title: RHAPI_RankConfigRequestResponseV3
+---
 
 ## Summary
 

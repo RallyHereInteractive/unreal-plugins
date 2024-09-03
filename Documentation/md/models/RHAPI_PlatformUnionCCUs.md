@@ -1,4 +1,6 @@
-# group `RHAPI_PlatformUnionCCUs` <a id="group__RHAPI__PlatformUnionCCUs"></a>
+---
+title: RHAPI_PlatformUnionCCUs
+---
 
 ## Summary
 

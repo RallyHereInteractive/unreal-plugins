@@ -1,4 +1,6 @@
-# group `RHAPI_CalculateRankRequest` <a id="group__RHAPI__CalculateRankRequest"></a>
+---
+title: RHAPI_CalculateRankRequest
+---
 
 ## Summary
 

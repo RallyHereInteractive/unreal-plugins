@@ -1,4 +1,6 @@
-# group `RHAPI_PexClientScores` <a id="group__RHAPI__PexClientScores"></a>
+---
+title: RHAPI_PexClientScores
+---
 
 ## Summary
 

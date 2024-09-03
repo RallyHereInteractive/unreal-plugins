@@ -1,4 +1,6 @@
-# group `RHAPI_Rule` <a id="group__RHAPI__Rule"></a>
+---
+title: RHAPI_Rule
+---
 
 ## Summary
 

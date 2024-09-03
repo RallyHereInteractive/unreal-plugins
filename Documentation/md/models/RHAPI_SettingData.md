@@ -1,4 +1,6 @@
-# group `RHAPI_SettingData` <a id="group__RHAPI__SettingData"></a>
+---
+title: RHAPI_SettingData
+---
 
 ## Summary
 

@@ -1,4 +1,6 @@
-# group `RHAPI_Notification` <a id="group__RHAPI__Notification"></a>
+---
+title: RHAPI_Notification
+---
 
 ## Summary
 

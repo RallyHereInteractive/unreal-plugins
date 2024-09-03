@@ -1,4 +1,6 @@
-# group `RHAPI_PlayerPresenceUpdateSelf` <a id="group__RHAPI__PlayerPresenceUpdateSelf"></a>
+---
+title: RHAPI_PlayerPresenceUpdateSelf
+---
 
 ## Summary
 

@@ -1,4 +1,6 @@
-# group `RHAPI_InventoryBucketUseRuleSet` <a id="group__RHAPI__InventoryBucketUseRuleSet"></a>
+---
+title: RHAPI_InventoryBucketUseRuleSet
+---
 
 ## Summary
 

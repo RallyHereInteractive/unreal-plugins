@@ -1,4 +1,6 @@
-# group `RHAPI_NotificationCreateResult` <a id="group__RHAPI__NotificationCreateResult"></a>
+---
+title: RHAPI_NotificationCreateResult
+---
 
 ## Summary
 

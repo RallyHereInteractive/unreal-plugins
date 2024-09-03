@@ -1,4 +1,6 @@
-# group `IntegrationSettings` <a id="group__IntegrationSettings"></a>
+---
+title: IntegrationSettings
+---
 
 ## Summary
 

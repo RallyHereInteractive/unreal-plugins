@@ -1,4 +1,6 @@
-# group `RHAPI_AcknowledgeBackfillRequest` <a id="group__RHAPI__AcknowledgeBackfillRequest"></a>
+---
+title: RHAPI_AcknowledgeBackfillRequest
+---
 
 ## Summary
 

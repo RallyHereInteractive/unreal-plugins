@@ -1,4 +1,6 @@
-# group `RHAPI_TeamUpdate` <a id="group__RHAPI__TeamUpdate"></a>
+---
+title: RHAPI_TeamUpdate
+---
 
 ## Summary
 

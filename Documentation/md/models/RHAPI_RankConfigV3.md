@@ -1,4 +1,6 @@
-# group `RHAPI_RankConfigV3` <a id="group__RHAPI__RankConfigV3"></a>
+---
+title: RHAPI_RankConfigV3
+---
 
 ## Summary
 

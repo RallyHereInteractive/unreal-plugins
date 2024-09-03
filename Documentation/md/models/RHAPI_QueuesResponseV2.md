@@ -1,4 +1,6 @@
-# group `RHAPI_QueuesResponseV2` <a id="group__RHAPI__QueuesResponseV2"></a>
+---
+title: RHAPI_QueuesResponseV2
+---
 
 ## Summary
 

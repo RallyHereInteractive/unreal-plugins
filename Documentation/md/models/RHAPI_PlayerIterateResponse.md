@@ -1,4 +1,6 @@
-# group `RHAPI_PlayerIterateResponse` <a id="group__RHAPI__PlayerIterateResponse"></a>
+---
+title: RHAPI_PlayerIterateResponse
+---
 
 ## Summary
 

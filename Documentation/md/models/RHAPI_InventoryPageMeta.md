@@ -1,4 +1,6 @@
-# group `RHAPI_InventoryPageMeta` <a id="group__RHAPI__InventoryPageMeta"></a>
+---
+title: RHAPI_InventoryPageMeta
+---
 
 ## Summary
 

@@ -1,4 +1,6 @@
-# group `RHAPI_SetSinglePlayerSettingRequest` <a id="group__RHAPI__SetSinglePlayerSettingRequest"></a>
+---
+title: RHAPI_SetSinglePlayerSettingRequest
+---
 
 ## Summary
 

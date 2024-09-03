@@ -1,4 +1,6 @@
-# group `RHAPI_FriendsListV1` <a id="group__RHAPI__FriendsListV1"></a>
+---
+title: RHAPI_FriendsListV1
+---
 
 ## Summary
 

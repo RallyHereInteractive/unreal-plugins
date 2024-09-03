@@ -1,4 +1,6 @@
-# group `RHAPI_CreateInventoryRequest` <a id="group__RHAPI__CreateInventoryRequest"></a>
+---
+title: RHAPI_CreateInventoryRequest
+---
 
 ## Summary
 

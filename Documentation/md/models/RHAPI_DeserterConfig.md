@@ -1,4 +1,6 @@
-# group `RHAPI_DeserterConfig` <a id="group__RHAPI__DeserterConfig"></a>
+---
+title: RHAPI_DeserterConfig
+---
 
 ## Summary
 

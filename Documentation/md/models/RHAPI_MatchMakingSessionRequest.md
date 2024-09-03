@@ -1,4 +1,6 @@
-# group `RHAPI_MatchMakingSessionRequest` <a id="group__RHAPI__MatchMakingSessionRequest"></a>
+---
+title: RHAPI_MatchMakingSessionRequest
+---
 
 ## Summary
 

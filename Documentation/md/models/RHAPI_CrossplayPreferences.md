@@ -1,4 +1,6 @@
-# group `RHAPI_CrossplayPreferences` <a id="group__RHAPI__CrossplayPreferences"></a>
+---
+title: RHAPI_CrossplayPreferences
+---
 
 ## Summary
 

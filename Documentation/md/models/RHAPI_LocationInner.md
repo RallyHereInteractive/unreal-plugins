@@ -1,4 +1,6 @@
-# group `RHAPI_LocationInner` <a id="group__RHAPI__LocationInner"></a>
+---
+title: RHAPI_LocationInner
+---
 
 ## Summary
 

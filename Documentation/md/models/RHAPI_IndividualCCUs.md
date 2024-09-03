@@ -1,4 +1,6 @@
-# group `RHAPI_IndividualCCUs` <a id="group__RHAPI__IndividualCCUs"></a>
+---
+title: RHAPI_IndividualCCUs
+---
 
 ## Summary
 

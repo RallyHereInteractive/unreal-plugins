@@ -1,4 +1,6 @@
-# group `RHAPI_FriendsApiConfig` <a id="group__RHAPI__FriendsApiConfig"></a>
+---
+title: RHAPI_FriendsApiConfig
+---
 
 ## Summary
 

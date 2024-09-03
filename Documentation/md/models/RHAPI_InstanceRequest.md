@@ -1,4 +1,6 @@
-# group `RHAPI_InstanceRequest` <a id="group__RHAPI__InstanceRequest"></a>
+---
+title: RHAPI_InstanceRequest
+---
 
 ## Summary
 

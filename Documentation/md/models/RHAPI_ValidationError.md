@@ -1,4 +1,6 @@
-# group `RHAPI_ValidationError` <a id="group__RHAPI__ValidationError"></a>
+---
+title: RHAPI_ValidationError
+---
 
 ## Summary
 

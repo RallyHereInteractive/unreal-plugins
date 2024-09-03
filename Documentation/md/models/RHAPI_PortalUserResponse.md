@@ -1,4 +1,6 @@
-# group `RHAPI_PortalUserResponse` <a id="group__RHAPI__PortalUserResponse"></a>
+---
+title: RHAPI_PortalUserResponse
+---
 
 ## Summary
 

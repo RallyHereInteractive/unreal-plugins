@@ -1,4 +1,6 @@
-# group `RHAPI_StorageInformation` <a id="group__RHAPI__StorageInformation"></a>
+---
+title: RHAPI_StorageInformation
+---
 
 ## Summary
 

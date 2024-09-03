@@ -1,4 +1,6 @@
-# group `RHAPI_XpTables` <a id="group__RHAPI__XpTables"></a>
+---
+title: RHAPI_XpTables
+---
 
 ## Summary
 

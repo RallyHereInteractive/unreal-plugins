@@ -1,4 +1,6 @@
-# group `RHAPI_BrowserInfo` <a id="group__RHAPI__BrowserInfo"></a>
+---
+title: RHAPI_BrowserInfo
+---
 
 ## Summary
 

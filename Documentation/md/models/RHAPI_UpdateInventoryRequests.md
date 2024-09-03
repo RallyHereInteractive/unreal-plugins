@@ -1,4 +1,6 @@
-# group `RHAPI_UpdateInventoryRequests` <a id="group__RHAPI__UpdateInventoryRequests"></a>
+---
+title: RHAPI_UpdateInventoryRequests
+---
 
 ## Summary
 

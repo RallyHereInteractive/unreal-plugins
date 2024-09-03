@@ -1,4 +1,6 @@
-# group `RHAPI_InstanceInfo` <a id="group__RHAPI__InstanceInfo"></a>
+---
+title: RHAPI_InstanceInfo
+---
 
 ## Summary
 

@@ -1,4 +1,6 @@
-# group `RHAPI_MatchMakingRuleset` <a id="group__RHAPI__MatchMakingRuleset"></a>
+---
+title: RHAPI_MatchMakingRuleset
+---
 
 ## Summary
 

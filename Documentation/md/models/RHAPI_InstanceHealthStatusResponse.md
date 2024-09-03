@@ -1,4 +1,6 @@
-# group `RHAPI_InstanceHealthStatusResponse` <a id="group__RHAPI__InstanceHealthStatusResponse"></a>
+---
+title: RHAPI_InstanceHealthStatusResponse
+---
 
 ## Summary
 

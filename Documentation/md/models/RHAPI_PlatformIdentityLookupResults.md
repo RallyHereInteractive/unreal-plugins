@@ -1,4 +1,6 @@
-# group `RHAPI_PlatformIdentityLookupResults` <a id="group__RHAPI__PlatformIdentityLookupResults"></a>
+---
+title: RHAPI_PlatformIdentityLookupResults
+---
 
 ## Summary
 

@@ -1,4 +1,6 @@
-# group `RHAPI_PlayerLastSeenUpdate` <a id="group__RHAPI__PlayerLastSeenUpdate"></a>
+---
+title: RHAPI_PlayerLastSeenUpdate
+---
 
 ## Summary
 

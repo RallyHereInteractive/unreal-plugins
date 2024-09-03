@@ -1,4 +1,6 @@
-# group `RHAPI_LoginResult` <a id="group__RHAPI__LoginResult"></a>
+---
+title: RHAPI_LoginResult
+---
 
 ## Summary
 

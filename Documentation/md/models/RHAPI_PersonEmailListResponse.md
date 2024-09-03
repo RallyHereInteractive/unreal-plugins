@@ -1,4 +1,6 @@
-# group `RHAPI_PersonEmailListResponse` <a id="group__RHAPI__PersonEmailListResponse"></a>
+---
+title: RHAPI_PersonEmailListResponse
+---
 
 ## Summary
 

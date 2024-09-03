@@ -1,4 +1,6 @@
-# group `RHAPI_RankUpdateRequestV2` <a id="group__RHAPI__RankUpdateRequestV2"></a>
+---
+title: RHAPI_RankUpdateRequestV2
+---
 
 ## Summary
 

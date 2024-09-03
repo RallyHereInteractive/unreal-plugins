@@ -1,4 +1,6 @@
-# group `RHAPI_TokenRequest` <a id="group__RHAPI__TokenRequest"></a>
+---
+title: RHAPI_TokenRequest
+---
 
 ## Summary
 

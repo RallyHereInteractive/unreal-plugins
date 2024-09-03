@@ -1,4 +1,6 @@
-# group `Common` <a id="group__Common"></a>
+---
+title: Common
+---
 
 ## Summary
 

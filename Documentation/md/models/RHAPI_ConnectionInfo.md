@@ -1,4 +1,6 @@
-# group `RHAPI_ConnectionInfo` <a id="group__RHAPI__ConnectionInfo"></a>
+---
+title: RHAPI_ConnectionInfo
+---
 
 ## Summary
 
