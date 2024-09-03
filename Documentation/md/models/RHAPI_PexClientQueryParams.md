@@ -1,4 +1,6 @@
-# group `RHAPI_PexClientQueryParams` <a id="group__RHAPI__PexClientQueryParams"></a>
+---
+title: RHAPI_PexClientQueryParams
+---
 
 ## Summary
 

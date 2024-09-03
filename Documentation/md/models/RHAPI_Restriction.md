@@ -1,4 +1,6 @@
-# group `RHAPI_Restriction` <a id="group__RHAPI__Restriction"></a>
+---
+title: RHAPI_Restriction
+---
 
 ## Summary
 

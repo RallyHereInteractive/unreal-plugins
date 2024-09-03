@@ -1,4 +1,6 @@
-# group `RHAPI_PriceBreakpoint` <a id="group__RHAPI__PriceBreakpoint"></a>
+---
+title: RHAPI_PriceBreakpoint
+---
 
 ## Summary
 

@@ -1,4 +1,6 @@
-# group `RHAPI_JoinParams` <a id="group__RHAPI__JoinParams"></a>
+---
+title: RHAPI_JoinParams
+---
 
 ## Summary
 

@@ -1,4 +1,6 @@
-# group `RHAPI_VoipTokenResponse` <a id="group__RHAPI__VoipTokenResponse"></a>
+---
+title: RHAPI_VoipTokenResponse
+---
 
 ## Summary
 

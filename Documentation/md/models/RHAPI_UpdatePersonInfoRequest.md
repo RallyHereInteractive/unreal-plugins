@@ -1,4 +1,6 @@
-# group `RHAPI_UpdatePersonInfoRequest` <a id="group__RHAPI__UpdatePersonInfoRequest"></a>
+---
+title: RHAPI_UpdatePersonInfoRequest
+---
 
 ## Summary
 

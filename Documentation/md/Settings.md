@@ -1,4 +1,6 @@
-# group `Settings` <a id="group__Settings"></a>
+---
+title: Settings
+---
 
 ## Summary
 

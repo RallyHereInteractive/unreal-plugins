@@ -1,4 +1,6 @@
-# group `RHAPI_EventParamsSchemaResponse` <a id="group__RHAPI__EventParamsSchemaResponse"></a>
+---
+title: RHAPI_EventParamsSchemaResponse
+---
 
 ## Summary
 

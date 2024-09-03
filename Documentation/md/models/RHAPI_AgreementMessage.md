@@ -1,4 +1,6 @@
-# group `RHAPI_AgreementMessage` <a id="group__RHAPI__AgreementMessage"></a>
+---
+title: RHAPI_AgreementMessage
+---
 
 ## Summary
 

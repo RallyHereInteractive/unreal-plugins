@@ -1,4 +1,6 @@
-# group `RHAPI_PlatformUserOperationRequest` <a id="group__RHAPI__PlatformUserOperationRequest"></a>
+---
+title: RHAPI_PlatformUserOperationRequest
+---
 
 ## Summary
 

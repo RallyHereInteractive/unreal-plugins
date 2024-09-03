@@ -1,4 +1,6 @@
-# group `RHAPI_BodyUpdateOpportunityById` <a id="group__RHAPI__BodyUpdateOpportunityById"></a>
+---
+title: RHAPI_BodyUpdateOpportunityById
+---
 
 ## Summary
 

@@ -1,4 +1,6 @@
-# group `RHAPI_InventoryRecord` <a id="group__RHAPI__InventoryRecord"></a>
+---
+title: RHAPI_InventoryRecord
+---
 
 ## Summary
 

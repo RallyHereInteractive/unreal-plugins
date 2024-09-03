@@ -1,4 +1,6 @@
-# group `RHAPI_LookupResults` <a id="group__RHAPI__LookupResults"></a>
+---
+title: RHAPI_LookupResults
+---
 
 ## Summary
 

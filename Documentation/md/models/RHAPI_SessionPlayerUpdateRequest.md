@@ -1,4 +1,6 @@
-# group `RHAPI_SessionPlayerUpdateRequest` <a id="group__RHAPI__SessionPlayerUpdateRequest"></a>
+---
+title: RHAPI_SessionPlayerUpdateRequest
+---
 
 ## Summary
 

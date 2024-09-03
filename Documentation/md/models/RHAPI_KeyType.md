@@ -1,4 +1,6 @@
-# group `RHAPI_KeyType` <a id="group__RHAPI__KeyType"></a>
+---
+title: RHAPI_KeyType
+---
 
 ## Summary
 

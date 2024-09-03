@@ -1,4 +1,6 @@
-# group `RHAPI_PlayerSessions` <a id="group__RHAPI__PlayerSessions"></a>
+---
+title: RHAPI_PlayerSessions
+---
 
 ## Summary
 

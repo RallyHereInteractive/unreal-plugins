@@ -1,4 +1,6 @@
-# group `RHAPI_RegionsResponse` <a id="group__RHAPI__RegionsResponse"></a>
+---
+title: RHAPI_RegionsResponse
+---
 
 ## Summary
 

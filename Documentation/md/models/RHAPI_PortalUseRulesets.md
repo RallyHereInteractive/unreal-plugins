@@ -1,4 +1,6 @@
-# group `RHAPI_PortalUseRulesets` <a id="group__RHAPI__PortalUseRulesets"></a>
+---
+title: RHAPI_PortalUseRulesets
+---
 
 ## Summary
 

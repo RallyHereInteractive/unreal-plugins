@@ -1,4 +1,6 @@
-# group `RHAPI_Region` <a id="group__RHAPI__Region"></a>
+---
+title: RHAPI_Region
+---
 
 ## Summary
 

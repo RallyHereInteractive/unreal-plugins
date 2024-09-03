@@ -1,4 +1,6 @@
-# group `WebRequest` <a id="group__WebRequest"></a>
+---
+title: WebRequest
+---
 
 ## Summary
 

@@ -1,4 +1,6 @@
-# group `RHAPI_SessionTemplates` <a id="group__RHAPI__SessionTemplates"></a>
+---
+title: RHAPI_SessionTemplates
+---
 
 ## Summary
 

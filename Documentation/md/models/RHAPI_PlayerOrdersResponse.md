@@ -1,4 +1,6 @@
-# group `RHAPI_PlayerOrdersResponse` <a id="group__RHAPI__PlayerOrdersResponse"></a>
+---
+title: RHAPI_PlayerOrdersResponse
+---
 
 ## Summary
 

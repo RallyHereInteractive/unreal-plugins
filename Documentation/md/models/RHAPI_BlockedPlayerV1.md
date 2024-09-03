@@ -1,4 +1,6 @@
-# group `RHAPI_BlockedPlayerV1` <a id="group__RHAPI__BlockedPlayerV1"></a>
+---
+title: RHAPI_BlockedPlayerV1
+---
 
 ## Summary
 

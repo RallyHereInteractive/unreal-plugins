@@ -1,4 +1,6 @@
-# group `RHAPI_CreateAuditRequest` <a id="group__RHAPI__CreateAuditRequest"></a>
+---
+title: RHAPI_CreateAuditRequest
+---
 
 ## Summary
 

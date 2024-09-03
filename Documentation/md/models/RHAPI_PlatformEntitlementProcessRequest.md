@@ -1,4 +1,6 @@
-# group `RHAPI_PlatformEntitlementProcessRequest` <a id="group__RHAPI__PlatformEntitlementProcessRequest"></a>
+---
+title: RHAPI_PlatformEntitlementProcessRequest
+---
 
 ## Summary
 

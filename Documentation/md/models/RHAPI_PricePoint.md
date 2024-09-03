@@ -1,4 +1,6 @@
-# group `RHAPI_PricePoint` <a id="group__RHAPI__PricePoint"></a>
+---
+title: RHAPI_PricePoint
+---
 
 ## Summary
 

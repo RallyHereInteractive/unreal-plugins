@@ -1,4 +1,6 @@
-# group `RHAPI_MatchPlayerRequest` <a id="group__RHAPI__MatchPlayerRequest"></a>
+---
+title: RHAPI_MatchPlayerRequest
+---
 
 ## Summary
 

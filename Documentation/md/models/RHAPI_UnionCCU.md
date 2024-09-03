@@ -1,4 +1,6 @@
-# group `RHAPI_UnionCCU` <a id="group__RHAPI__UnionCCU"></a>
+---
+title: RHAPI_UnionCCU
+---
 
 ## Summary
 

@@ -1,4 +1,6 @@
-# group `RHAPI_OAuthTokenResponse` <a id="group__RHAPI__OAuthTokenResponse"></a>
+---
+title: RHAPI_OAuthTokenResponse
+---
 
 ## Summary
 

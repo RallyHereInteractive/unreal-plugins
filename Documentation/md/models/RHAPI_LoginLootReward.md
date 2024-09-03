@@ -1,4 +1,6 @@
-# group `RHAPI_LoginLootReward` <a id="group__RHAPI__LoginLootReward"></a>
+---
+title: RHAPI_LoginLootReward
+---
 
 ## Summary
 

@@ -1,4 +1,6 @@
-# group `SubsystemBase` <a id="group__SubsystemBase"></a>
+---
+title: SubsystemBase
+---
 
 ## Summary
 

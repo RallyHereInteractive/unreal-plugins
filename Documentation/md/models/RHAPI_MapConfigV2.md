@@ -1,4 +1,6 @@
-# group `RHAPI_MapConfigV2` <a id="group__RHAPI__MapConfigV2"></a>
+---
+title: RHAPI_MapConfigV2
+---
 
 ## Summary
 

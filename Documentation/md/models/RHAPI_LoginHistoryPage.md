@@ -1,4 +1,6 @@
-# group `RHAPI_LoginHistoryPage` <a id="group__RHAPI__LoginHistoryPage"></a>
+---
+title: RHAPI_LoginHistoryPage
+---
 
 ## Summary
 

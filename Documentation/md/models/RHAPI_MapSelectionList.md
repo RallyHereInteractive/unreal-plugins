@@ -1,4 +1,6 @@
-# group `RHAPI_MapSelectionList` <a id="group__RHAPI__MapSelectionList"></a>
+---
+title: RHAPI_MapSelectionList
+---
 
 ## Summary
 

@@ -1,4 +1,6 @@
-# group `RHAPI_DeserterConfigResponse` <a id="group__RHAPI__DeserterConfigResponse"></a>
+---
+title: RHAPI_DeserterConfigResponse
+---
 
 ## Summary
 

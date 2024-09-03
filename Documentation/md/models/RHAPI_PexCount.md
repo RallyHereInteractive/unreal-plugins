@@ -1,4 +1,6 @@
-# group `RHAPI_PexCount` <a id="group__RHAPI__PexCount"></a>
+---
+title: RHAPI_PexCount
+---
 
 ## Summary
 

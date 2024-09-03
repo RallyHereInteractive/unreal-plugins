@@ -1,4 +1,6 @@
-# group `RHAPI_BodyBeginNewSession` <a id="group__RHAPI__BodyBeginNewSession"></a>
+---
+title: RHAPI_BodyBeginNewSession
+---
 
 ## Summary
 

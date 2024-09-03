@@ -1,4 +1,6 @@
-# group `RHAPI_PlatformUserLinkRequest` <a id="group__RHAPI__PlatformUserLinkRequest"></a>
+---
+title: RHAPI_PlatformUserLinkRequest
+---
 
 ## Summary
 

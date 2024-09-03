@@ -1,4 +1,6 @@
-# group `Entitlement` <a id="group__Entitlement"></a>
+---
+title: Entitlement
+---
 
 ## Summary
 

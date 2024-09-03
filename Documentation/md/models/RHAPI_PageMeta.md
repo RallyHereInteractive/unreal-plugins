@@ -1,4 +1,6 @@
-# group `RHAPI_PageMeta` <a id="group__RHAPI__PageMeta"></a>
+---
+title: RHAPI_PageMeta
+---
 
 ## Summary
 

@@ -1,4 +1,6 @@
-# group `RHAPI_PlayerLinkedPortalsResponse` <a id="group__RHAPI__PlayerLinkedPortalsResponse"></a>
+---
+title: RHAPI_PlayerLinkedPortalsResponse
+---
 
 ## Summary
 

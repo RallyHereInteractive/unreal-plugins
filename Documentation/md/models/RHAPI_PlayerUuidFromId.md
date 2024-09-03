@@ -1,4 +1,6 @@
-# group `RHAPI_PlayerUuidFromId` <a id="group__RHAPI__PlayerUuidFromId"></a>
+---
+title: RHAPI_PlayerUuidFromId
+---
 
 ## Summary
 

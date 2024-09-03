@@ -1,4 +1,6 @@
-# group `RHAPI_PurchasePriceCurrency` <a id="group__RHAPI__PurchasePriceCurrency"></a>
+---
+title: RHAPI_PurchasePriceCurrency
+---
 
 ## Summary
 

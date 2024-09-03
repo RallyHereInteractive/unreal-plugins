@@ -1,4 +1,6 @@
-# group `RHAPI_ClientSettings` <a id="group__RHAPI__ClientSettings"></a>
+---
+title: RHAPI_ClientSettings
+---
 
 ## Summary
 

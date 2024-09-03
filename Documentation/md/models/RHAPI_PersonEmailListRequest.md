@@ -1,4 +1,6 @@
-# group `RHAPI_PersonEmailListRequest` <a id="group__RHAPI__PersonEmailListRequest"></a>
+---
+title: RHAPI_PersonEmailListRequest
+---
 
 ## Summary
 

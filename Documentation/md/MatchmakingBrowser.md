@@ -1,4 +1,6 @@
-# group `MatchmakingBrowser` <a id="group__MatchmakingBrowser"></a>
+---
+title: MatchmakingBrowser
+---
 
 ## Summary
 

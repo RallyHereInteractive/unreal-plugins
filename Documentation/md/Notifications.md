@@ -1,4 +1,6 @@
-# group `Notifications` <a id="group__Notifications"></a>
+---
+title: Notifications
+---
 
 ## Summary
 

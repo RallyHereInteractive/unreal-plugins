@@ -1,4 +1,6 @@
-# group `RHAPI_BrowserSessionInfo` <a id="group__RHAPI__BrowserSessionInfo"></a>
+---
+title: RHAPI_BrowserSessionInfo
+---
 
 ## Summary
 

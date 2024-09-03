@@ -1,4 +1,6 @@
-# group `RHAPI_CreateOrJoinRequest` <a id="group__RHAPI__CreateOrJoinRequest"></a>
+---
+title: RHAPI_CreateOrJoinRequest
+---
 
 ## Summary
 

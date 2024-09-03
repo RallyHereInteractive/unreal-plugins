@@ -1,4 +1,6 @@
-# group `RHAPI_CalculatedRank` <a id="group__RHAPI__CalculatedRank"></a>
+---
+title: RHAPI_CalculatedRank
+---
 
 ## Summary
 

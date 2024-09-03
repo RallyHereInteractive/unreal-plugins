@@ -1,4 +1,6 @@
-# group `RHAPI_SessionTeam` <a id="group__RHAPI__SessionTeam"></a>
+---
+title: RHAPI_SessionTeam
+---
 
 ## Summary
 

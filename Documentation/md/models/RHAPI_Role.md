@@ -1,4 +1,6 @@
-# group `RHAPI_Role` <a id="group__RHAPI__Role"></a>
+---
+title: RHAPI_Role
+---
 
 ## Summary
 

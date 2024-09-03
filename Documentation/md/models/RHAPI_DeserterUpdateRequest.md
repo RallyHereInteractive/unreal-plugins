@@ -1,4 +1,6 @@
-# group `RHAPI_DeserterUpdateRequest` <a id="group__RHAPI__DeserterUpdateRequest"></a>
+---
+title: RHAPI_DeserterUpdateRequest
+---
 
 ## Summary
 

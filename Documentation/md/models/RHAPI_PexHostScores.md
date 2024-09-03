@@ -1,4 +1,6 @@
-# group `RHAPI_PexHostScores` <a id="group__RHAPI__PexHostScores"></a>
+---
+title: RHAPI_PexHostScores
+---
 
 ## Summary
 

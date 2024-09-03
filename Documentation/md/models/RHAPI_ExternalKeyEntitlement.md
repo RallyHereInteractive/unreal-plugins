@@ -1,4 +1,6 @@
-# group `RHAPI_ExternalKeyEntitlement` <a id="group__RHAPI__ExternalKeyEntitlement"></a>
+---
+title: RHAPI_ExternalKeyEntitlement
+---
 
 ## Summary
 

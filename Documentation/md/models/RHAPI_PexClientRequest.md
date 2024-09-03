@@ -1,4 +1,6 @@
-# group `RHAPI_PexClientRequest` <a id="group__RHAPI__PexClientRequest"></a>
+---
+title: RHAPI_PexClientRequest
+---
 
 ## Summary
 

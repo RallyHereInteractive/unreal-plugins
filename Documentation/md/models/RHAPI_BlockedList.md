@@ -1,4 +1,6 @@
-# group `RHAPI_BlockedList` <a id="group__RHAPI__BlockedList"></a>
+---
+title: RHAPI_BlockedList
+---
 
 ## Summary
 

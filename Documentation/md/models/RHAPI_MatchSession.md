@@ -1,4 +1,6 @@
-# group `RHAPI_MatchSession` <a id="group__RHAPI__MatchSession"></a>
+---
+title: RHAPI_MatchSession
+---
 
 ## Summary
 
