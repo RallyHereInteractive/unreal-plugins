@@ -78,7 +78,7 @@ java -cp \
     --additional-properties="$ADDITIONAL_PROPERTIES"
 
 # Move the reference spec files to the output directory
-mv openapi_converted.json "$OUTPUT_DIR/openpai_converted.json"
-mv openapi.json "$OUTPUT_DIR/openpai.json"
+mv openapi_converted.json "$OUTPUT_DIR/openapi_converted.json"
+mv openapi.json "$OUTPUT_DIR/openapi.json"
 
 popd
