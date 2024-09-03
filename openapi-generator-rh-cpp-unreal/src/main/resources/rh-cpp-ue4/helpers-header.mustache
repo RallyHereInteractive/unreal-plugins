@@ -260,7 +260,7 @@ public:
 	static {{unrealModelPrefix}}JsonObject AsObject(const {{unrealModelPrefix}}JsonValue& Value) { return Value.AsObject(); }
 
 	UFUNCTION(BlueprintPure, Category = "RallyHere|Json")
-	ERHAPI_JsonValueType GetType(const {{unrealModelPrefix}}JsonValue& Value) { return Value.GetType(); }
+	{{unrealEnumPrefix}}JsonValueType GetType(const {{unrealModelPrefix}}JsonValue& Value) { return Value.GetType(); }
 
 	UFUNCTION(BlueprintPure, Category = "RallyHere|Json")
 	static bool TryGetNumber(const {{unrealModelPrefix}}JsonValue& Value, float& OutNumber) { return Value.TryGetNumber(OutNumber); }
