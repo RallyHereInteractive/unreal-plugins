@@ -527,6 +527,8 @@ protected:
 
 		HttpRequest = nullptr;
 
+		ErrorInfo = Resp;
+
 		// handle the response from the auth context
 		AuthContext->ProcessLogin(Resp);
 
