@@ -542,7 +542,7 @@ protected:
 
 	virtual FString GetName() const override
 	{
-		static const FString Name(TEXT("FRH_SessionBootstrappingFinalizer"));
+		static const FString Name(TEXT("FRH_ServerLoginHelper"));
 		return Name;
 	}
 
