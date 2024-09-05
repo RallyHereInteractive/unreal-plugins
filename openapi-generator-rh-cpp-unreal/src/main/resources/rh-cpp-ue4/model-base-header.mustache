@@ -28,7 +28,9 @@ limitations under the License.
 #include "Misc/EngineVersionComparison.h"
 #include "Misc/Guid.h"
 #include "Misc/TVariant.h"
+{{#isStripBlueprintCompatibility}}
 #include "{{unrealModuleName}}BaseModel.generated.h"
+{{/isStripBlueprintCompatibility}}
 
 #define RHAPI_BELOW_ENGINE_VERSION(Major, Minor)  (ENGINE_MAJOR_VERSION < (Major) || (ENGINE_MAJOR_VERSION == (Major) && ENGINE_MINOR_VERSION < (Minor)))
 #define RHAPI_FROM_ENGINE_VERSION(Major, Minor)   !RHAPI_BELOW_ENGINE_VERSION(Major, Minor)
@@ -40,10 +42,14 @@ limitations under the License.
 /**
  * @brief Base class for all RallyHereAPI data models
  */
+ {{#isStripBlueprintCompatibility}}
 USTRUCT(BlueprintType)
+{{/isStripBlueprintCompatibility}}
 struct {{dllapi}} {{unrealModelPrefix}}Model
 {
+{{#isStripBlueprintCompatibility}}
 	GENERATED_BODY(WithNoDestructor);
+{{/isStripBlueprintCompatibility}}
 	virtual ~{{unrealModelPrefix}}Model() {}
 
 	/**

@@ -180,6 +180,7 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
         typeMapping.put("file", "FHttpFileInput");
         typeMapping.put("UUID", "FGuid");
         typeMapping.put("variant", "TVariant");
+		typeMapping.put("URI", "FString");
 
         importMapping = new HashMap<>();
         importMapping.put("TSet", "#include \"Containers/Set.h\"");
@@ -347,19 +348,66 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
 
     @Override
     public String toModelImport(String name) {
+		String folder = outputDir;
+        if (!folder.isEmpty())
+            folder += File.separator;
+		
+		
         if (namespaces.containsKey(name)) {
             return "using " + namespaces.get(name) + ";";
         } else if (systemIncludes.contains(name)) {
             return "#include <" + name + ">";
         } else if (name.contains("TVariant"))
         {
-            return "#include \"Misc/TVariant.h\"";
+            String VariantInclude = "#include \"Misc/TVariant.h\"";
+			
+			// break the variant type back into pieces, and inject additional includes
+			String VariantCommaSeparatedList = name.substring(9, name.length() - 1); // remove the "TVariant<" prefix and ">" suffix
+			String[] partsArr = VariantCommaSeparatedList.split(",");
+			LinkedList<String> parts = new LinkedList<String>(Arrays.asList(partsArr));
+
+			// remove any entries that are whitespace only, or which are language primitives
+			for (int y = parts.size() - 1; y >= 0; --y)
+			{
+				if (parts.get(y).trim().length() == 0)
+				{
+					parts.remove(y);
+				}
+				else if (languageSpecificPrimitives.contains(parts.get(y).trim()))
+				{
+					parts.remove(y);
+				}
+			}
+
+			// search for any duplicates entries and remove them
+			for (int x = 0; x < parts.size(); ++x)
+			{
+				for (int y = parts.size() - 1; y > x; --y)
+				{
+					if (parts.get(x).equals(parts.get(y)))
+					{
+						parts.remove(y);
+					}
+				}
+			}
+			
+			// create include entries
+			for (int x = 0; x < parts.size(); ++x)
+			{
+				//System.out.println("adding import for " + parts.get(x).trim());
+				
+				String filename = parts.get(x).trim();
+				if (filename.startsWith(unrealEnumPrefix)) {
+					filename = filename.substring(unrealEnumPrefix.length());
+				} else if (filename.startsWith(unrealModelPrefix)) {
+					filename = filename.substring(unrealModelPrefix.length());
+				}
+
+				VariantInclude += "\n#include \"" + folder + this.modelNamePrefix + filename + ".h\"";
+			}
+			return VariantInclude;
         }
 
-
-        String folder = outputDir;
-        if (!folder.isEmpty())
-            folder += File.separator;
 
         String filename = name.substring(1);
         if (name.startsWith(unrealEnumPrefix)) {
@@ -488,7 +536,7 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
             } else {
                 return null;
             }
-        } else if (ModelUtils.isStringSchema(p)) {
+        } else if (ModelUtils.isStringSchema(p) || ModelUtils.isURISchema(p)) {
             if (p.getDefault() != null) {
                 return "TEXT(\"" + p.getDefault().toString() + "\")";
             } else {

@@ -23,7 +23,9 @@ limitations under the License.
 {{/imports}}
 {{#models}}
 {{#model}}
+{{#isStripBlueprintCompatibility}}
 #include "{{classFilename}}.generated.h"
+{{/isStripBlueprintCompatibility}}
 
 {{^isEnum}}
 /** @defgroup RHAPI_{{classFilename}} RallyHere API Model {{classFilename}}
@@ -51,10 +53,14 @@ enum class {{{classname}}} : uint8
 {{dllapi}} bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, {{classname}}& Value);
 {{/isEnum}}
 {{^isEnum}}
+{{#isStripBlueprintCompatibility}}
 USTRUCT(BlueprintType)
-struct {{dllapi}} {{classname}} : public {{unrealModelPrefix}}Model
+{{/isStripBlueprintCompatibility}}
+struct {{dllapi}} {{{classname}}} : public {{unrealModelPrefix}}Model
 {
+{{#isStripBlueprintCompatibility}}
 	GENERATED_BODY()
+{{/isStripBlueprintCompatibility}}
 
 	/**
 	* @brief Fills this object with data from the passed in JSON
