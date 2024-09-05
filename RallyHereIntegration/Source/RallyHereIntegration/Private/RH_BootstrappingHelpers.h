@@ -527,6 +527,8 @@ protected:
 
 		HttpRequest = nullptr;
 
+		ErrorInfo = Resp;
+
 		// handle the response from the auth context
 		AuthContext->ProcessLogin(Resp);
 
@@ -542,7 +544,7 @@ protected:
 
 	virtual FString GetName() const override
 	{
-		static const FString Name(TEXT("FRH_SessionBootstrappingFinalizer"));
+		static const FString Name(TEXT("FRH_ServerLoginHelper"));
 		return Name;
 	}
 
