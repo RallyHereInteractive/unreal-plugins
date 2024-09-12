@@ -433,7 +433,7 @@ void FRHDTW_WebRequests::DoViewMetadata(const FRH_WebRequest* WebRequest)
 			ImGui::TableNextColumn();
 			ImGuiDisplayCopyableValue("Flags", StringFlags, ECopyMode::Key);
 			ImGui::TableNextColumn();
-			ImGui::Text(TCHAR_TO_UTF8(*StringFlags));
+			ImGui::Text("%s", TCHAR_TO_UTF8(*StringFlags));
 		}
 		
 

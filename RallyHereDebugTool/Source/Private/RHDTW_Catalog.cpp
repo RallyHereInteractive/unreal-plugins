@@ -445,7 +445,7 @@ void FRHDTW_Catalog::DoShowVendors(URH_CatalogSubsystem* catalog)
 												TArray<FRHAPI_PurchasePriceCurrency> DisplayPrices;
 												int32 SelectedCouponItemId = 0;
 												
-												for (const auto PriceCurrency : BreakpointPrice.GetCurrencies())
+												for (const auto& PriceCurrency : BreakpointPrice.GetCurrencies())
 												{
 													int32 DisplayPrice = PriceCurrency.GetCurrentPrice();
 

@@ -8,6 +8,7 @@
 #include "Templates/SharedPointer.h"
 #include "Delegates/Delegate.h"
 #include "Delegates/DelegateCombinations.h"
+#include "SessionsAPI.h"
 
 #include "RH_Common.h"
 #include "RH_SubsystemPluginBase.h"
