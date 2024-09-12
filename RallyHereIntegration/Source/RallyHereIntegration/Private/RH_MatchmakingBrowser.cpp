@@ -2,8 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 #include "RH_MatchmakingBrowser.h"
 #include "RallyHereIntegrationModule.h"
-#include "RH_OnlineSubsystemNames.h"
-#include "SessionsAPI.h"
 
 
 URH_MatchmakingBrowserCache::URH_MatchmakingBrowserCache()

@@ -8,7 +8,7 @@
 #include "Engine/GameEngine.h"
 #include "UObject/WeakInterfacePtr.h"
 #include "RH_Common.h"
-#include "PexAPI.h"
+#include "PEXAPI.h"
 
 #include "RH_PlayerExperienceCollector.generated.h"
 
