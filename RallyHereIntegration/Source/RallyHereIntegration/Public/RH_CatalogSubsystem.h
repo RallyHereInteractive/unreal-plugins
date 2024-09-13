@@ -570,13 +570,13 @@ protected:
 	 */
 	void GetCatalogVendorSingle(int32 VendorId, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock());
 	/**
-	* @brief Handles the response to a Get Catalog Vendor call
+	* @brief Handles the response to a successful Get Catalog Vendor call, updates local cache
 	* @param [in] Resp Response given for the call
 	* @param [in] VendorId The Vendor Id that was requested.
 	*/
 	virtual void OnGetCatalogVendorResponseUpdate(const TGetCatalogVendor::Response& Resp, int32 VendorId);
 	/**
-	* @brief Handles the response to a Get Catalog Vendor call
+	* @brief Handles the response to a Get Catalog Vendor call, handles completion and processing of any followup requests.
 	* @param [in] bSuccess If the call was successful.
 	* @param [in] ErrorInfo The error information if the call failed.
 	* @param [in] VendorId The Vendor Id that was requested.
