@@ -570,12 +570,19 @@ protected:
 	 */
 	void GetCatalogVendorSingle(int32 VendorId, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock());
 	/**
-	* @brief Handles the response to a Get Catalog Vendor call
+	* @brief Handles the response to a successful Get Catalog Vendor call, updates local cache
 	* @param [in] Resp Response given for the call
-	* @param [in] Delegate Delegate passed in for original call to respond to when call completes.
 	* @param [in] VendorId The Vendor Id that was requested.
 	*/
-	virtual void OnGetCatalogVendorResponse(const TGetCatalogVendor::Response& Resp, int32 VendorId);
+	virtual void OnGetCatalogVendorResponseUpdate(const TGetCatalogVendor::Response& Resp, int32 VendorId);
+	/**
+	* @brief Handles the response to a Get Catalog Vendor call, handles completion and processing of any followup requests.
+	* @param [in] bSuccess If the call was successful.
+	* @param [in] ErrorInfo The error information if the call failed.
+	* @param [in] VendorId The Vendor Id that was requested.
+	* @param [in] Delegate Delegate passed in for original call to respond to when call completes.
+	*/
+	virtual void OnGetCatalogVendorResponseComplete(bool bSuccess, const FRH_ErrorInfo& ErrorInfo, int32 VendorId, FRH_GenericSuccessWithErrorBlock Delegate);
 	/**
 	 * @brief Processes the current vendor request list, kicking off any new requests that are needed, and completing existing requests that are done.
 	 */

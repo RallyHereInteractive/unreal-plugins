@@ -430,8 +430,8 @@ void URH_CatalogSubsystem::GetCatalogVendorSingle(int32 VendorId, const FRH_Gene
 	Request.AuthContext = GetAuthContext();
 
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<TGetCatalogVendor>>(
-		TGetCatalogVendor::Delegate::CreateUObject(this, &URH_CatalogSubsystem::OnGetCatalogVendorResponse, VendorId),
-		Delegate,
+		TGetCatalogVendor::Delegate::CreateUObject(this, &URH_CatalogSubsystem::OnGetCatalogVendorResponseUpdate, VendorId),
+		FRH_GenericSuccessWithErrorDelegate::CreateUObject(this, &URH_CatalogSubsystem::OnGetCatalogVendorResponseComplete, VendorId, Delegate),
 		GetDefault<URH_IntegrationSettings>()->GetCatalogVendorPriority
 	);
 
@@ -440,58 +440,14 @@ void URH_CatalogSubsystem::GetCatalogVendorSingle(int32 VendorId, const FRH_Gene
 	Helper->Start(RH_APIs::GetCatalogAPI(), Request);
 }
 
-void URH_CatalogSubsystem::OnGetCatalogVendorResponse(const TGetCatalogVendor::Response& Resp, int32 VendorId)
+void URH_CatalogSubsystem::OnGetCatalogVendorResponseUpdate(const TGetCatalogVendor::Response& Resp, int32 VendorId)
 {
-	InFlightVendorRequests.Remove(VendorId);
-	
+	// this functon is only called on a successful vendor request, and is responsible for updating the cache with the new vendor data
+	check(Resp.IsSuccessful());
 	const auto Content = Resp.TryGetDefaultContentAsPointer();
-	if (Resp.IsSuccessful() && Content != nullptr)
-	{
-		CatalogVendors.Add(VendorId, *Content);
-	}
-	else if (Resp.GetHttpResponseCode() ==  EHttpResponseCodes::NotModified)
-	{
-		// Find the vendor we were requesting, as it hasn't changed since last time
-		const auto& FindItem = CatalogVendors.Find(VendorId);
+	check(Content != nullptr);
 
-		if (!FindItem)
-		{
-			// vendor could not be retrieved but previously was, something changed while the request was in flight, so fail any requests that were expecting this vendor
-			for (int32 i = VendorRequests.Num() - 1; i >= 0; i--)
-			{
-				if (VendorRequests[i].NotifyVendorFailure(VendorId))
-				{
-					VendorRequests.RemoveAt(i);
-				}
-			}
-			return;
-		}
-	}
-	else
-	{
-		TArray<FRH_CatalogCallBlock> CompletedRequestDelegates;
-		
-		// vendor could not be retrieved, fail any requests that were expecting this vendor
-		for (int32 i = VendorRequests.Num() - 1; i >= 0; i--)
-		{
-			if (VendorRequests[i].NotifyVendorFailure(VendorId))
-			{
-				CompletedRequestDelegates.Add(VendorRequests[i].Request.Delegate);
-				VendorRequests.RemoveAt(i);
-			}
-		}
-
-		// execute any completed request delegates (this happens last so that the processing state is complete before the delegates are executed)
-		for (const auto& Delegate : CompletedRequestDelegates)
-		{
-			Delegate.ExecuteIfBound(false);
-		}
-		
-		return;
-	}
-
-	// either we added the updated content, or we found the vendor and it was not modified.
-	const FRHAPI_Vendor& Vendor = CatalogVendors.FindRef(VendorId);
+	const auto& Vendor = CatalogVendors.Add(VendorId, *Content);
 
 	// parse data into local caches
 	TArray<int32> SubVendors;
@@ -519,16 +475,55 @@ void URH_CatalogSubsystem::OnGetCatalogVendorResponse(const TGetCatalogVendor::R
 			}
 		}
 	}
+}
 
-	// notify requests that the vendor was received
-	for (auto& Request : VendorRequests)
+void URH_CatalogSubsystem::OnGetCatalogVendorResponseComplete(bool bSuccess, const FRH_ErrorInfo& ErrorInfo, int32 VendorId, FRH_GenericSuccessWithErrorBlock Delegate)
+{
+	// remove from in flight list
+	InFlightVendorRequests.Remove(VendorId);
+
+	// forward on single vendor fetch delegate, as it is now complete
+	Delegate.ExecuteIfBound(bSuccess, ErrorInfo);
+
+	// update in flight requests with status of this vendor if they are interested in it.
 	{
-		// let the request know that vendor data was received
-		Request.NotifyVendorReceived(VendorId, Vendor);
+		const auto Vendor = CatalogVendors.Find(VendorId);
+		if (bSuccess && Vendor != nullptr)
+		{
+			// notify requests that the vendor was received
+			for (auto& Request : VendorRequests)
+			{
+				// let the request know that vendor data was received
+				Request.NotifyVendorReceived(VendorId, *Vendor);
+			}
+
+			// request completion success is handled in the processing function, which determines if any work remains to be done for the request and kicks off new work if needed
+		}
+		else
+		{
+			// vendor failed to be retrieved, or was retrieved but did not make it into the cache, treat both as failures
+			TArray<FRH_CatalogCallBlock> CompletedRequestDelegates;
+			
+			// vendor could not be retrieved, fail any requests that were expecting this vendor
+			for (int32 i = VendorRequests.Num() - 1; i >= 0; i--)
+			{
+				if (VendorRequests[i].NotifyVendorFailure(VendorId))
+				{
+					CompletedRequestDelegates.Add(VendorRequests[i].Request.Delegate);
+					VendorRequests.RemoveAt(i);
+				}
+			}
+
+			// execute any completed request delegates to propagate the failure (this happens last so that the processing state is complete before the delegates are executed)
+			for (const auto& CompletionDelegate : CompletedRequestDelegates)
+			{
+				CompletionDelegate.ExecuteIfBound(false);
+			}
+		}
+
+		// kick any new requests as needed
+		ProcessVendorRequests();
 	}
-	
-	// update the vendor request list state
-	ProcessVendorRequests();
 }
 
 void URH_CatalogSubsystem::ProcessVendorRequests()
