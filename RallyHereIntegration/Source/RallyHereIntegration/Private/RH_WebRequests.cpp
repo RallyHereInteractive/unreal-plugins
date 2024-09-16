@@ -127,8 +127,18 @@ namespace
 	}
 
 	// Sanitize the content of a json value, hiding sensitive fields, and modify the input
-	void SanitizeJsonContentMutable(TSharedPtr<FJsonValue> JsonValue, const TArray<FString>& SensitiveFields, FString* OutString = nullptr)
+	void SanitizeJsonContentMutable(TSharedPtr<FJsonValue> JsonValue, const TArray<FString>& SensitiveFields, FString* OutString = nullptr, int64 ContentLengthHint = 0)
 	{
+		if (ContentLengthHint > GetMaximumSanitizedContentLength())
+		{
+			static FString SensitiveFieldsBlanked(TEXT("****** Content too long to sanitize, hiding all content ******"));
+			if (OutString != nullptr)
+			{
+				*OutString = SensitiveFieldsBlanked;
+			}
+			return;
+		}
+		
 		// if there are no sensitive fields to check, just return input
 		if (SensitiveFields.Num() > 0)
 		{
@@ -155,11 +165,17 @@ namespace
 	}
 
 	// Sanitize the content of a json value, hiding sensitive fields, and do not modify the input, returns sanitized value as a string
-	FString SanitizeJsonContent(const TSharedPtr<FJsonValue>& JsonValue, const TArray<FString>& SensitiveFields)
+	FString SanitizeJsonContent(const TSharedPtr<FJsonValue>& JsonValue, const TArray<FString>& SensitiveFields, int64 ContentLengthHint = 0)
 	{
+		if (ContentLengthHint > GetMaximumSanitizedContentLength())
+		{
+			static FString SensitiveFieldsBlanked(TEXT("****** Content too long to sanitize, hiding all content ******"));
+			return SensitiveFieldsBlanked;
+		}
+		
 		FString OutputString;
 		auto JsonValueCopy = RHJsonUtilities::Duplicate(JsonValue);
-		SanitizeJsonContentMutable(JsonValueCopy, SensitiveFields, &OutputString);
+		SanitizeJsonContentMutable(JsonValueCopy, SensitiveFields, &OutputString, ContentLengthHint);
 		return OutputString;
 	}
 
@@ -439,7 +455,7 @@ void FRH_WebRequests::OnWebRequestCompleted_Track(const RallyHereAPI::FResponse&
 	else if (Payload.IsType<RallyHereAPI::FResponse::JsonPayloadType>())
 	{
 		const auto JsonContent = Payload.Get<RallyHereAPI::FResponse::JsonPayloadType>();
-		TrackedResponse.Content = SanitizeJsonContent(JsonContent, GetSensitiveFieldsForResponse(Response.GetRequestMetadata()));
+		TrackedResponse.Content = SanitizeJsonContent(JsonContent, GetSensitiveFieldsForResponse(Response.GetRequestMetadata()), HttpResponse ? HttpResponse->GetContentLength() : 0);
 	}
 	else if (Payload.IsType<RallyHereAPI::FResponse::EmptyPayloadType>())
 	{
@@ -501,7 +517,7 @@ void FRH_WebRequests::OnWebRequestCompleted_Log(const RallyHereAPI::FResponse& R
 	else if (Payload.IsType<RallyHereAPI::FResponse::JsonPayloadType>())
 	{
 		const auto JsonContent = Payload.Get<RallyHereAPI::FResponse::JsonPayloadType>();
-		ResponseContent = SanitizeJsonContent(JsonContent, GetSensitiveFieldsForResponse(Response.GetRequestMetadata()));
+		ResponseContent = SanitizeJsonContent(JsonContent, GetSensitiveFieldsForResponse(Response.GetRequestMetadata()), HttpResponse ? HttpResponse->GetContentLength() : 0);
 	}
 	else if (Payload.IsType<RallyHereAPI::FResponse::EmptyPayloadType>())
 	{
