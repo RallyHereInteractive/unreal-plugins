@@ -99,29 +99,33 @@ bool FResponse::ParseJsonTypeContent()
 	ClearPayload();
 
 	TSharedPtr<FJsonValue>
-		JsonValue;
-		const FString ContentAsString = HttpResponse->GetContentAsString();
+	JsonValue;
+	const FString ContentAsString = HttpResponse->GetContentAsString();
 
-		if (ContentAsString.Len() == 0 || ContentAsString.TrimStart().Len() == 0)
-		{
+	if (ContentAsString.Len() == 0 || ContentAsString.TrimStart().Len() == 0)
+	{
 		// if the response was empty or all whitespace, do not create a json object, but return as non-error
 		return true;
-		}
+	}
 
-		auto Reader = TJsonReaderFactory<>::Create(ContentAsString);
+	auto Reader = TJsonReaderFactory<>::Create(ContentAsString);
 
+	{
+		SCOPED_NAMED_EVENT(RallyHere_DeserializeJsonContent, FColor::Purple);
+		
 		if (!FJsonSerializer::Deserialize(Reader, JsonValue))
 		{
-		if (Reader->GetErrorMessage().StartsWith(TEXT("Open Curly or Square Brace token expected, but not found")))
-		{
-		FString ContentArrayWrapper = TEXT("[") + ContentAsString + TEXT("]");
-		Reader = TJsonReaderFactory<>::Create(ContentArrayWrapper);
-		if (FJsonSerializer::Deserialize(Reader, JsonValue) && JsonValue.IsValid())
-		{
-		TArray<TSharedPtr<FJsonValue>>* OutArray;
-				if (JsonValue->TryGetArray(OutArray) && OutArray != nullptr && OutArray->Num() > 0)
+			if (Reader->GetErrorMessage().StartsWith(TEXT("Open Curly or Square Brace token expected, but not found")))
+			{
+				FString ContentArrayWrapper = TEXT("[") + ContentAsString + TEXT("]");
+				Reader = TJsonReaderFactory<>::Create(ContentArrayWrapper);
+				if (FJsonSerializer::Deserialize(Reader, JsonValue) && JsonValue.IsValid())
 				{
-					JsonValue = (*OutArray).Last();
+					TArray<TSharedPtr<FJsonValue>>* OutArray;
+					if (JsonValue->TryGetArray(OutArray) && OutArray != nullptr && OutArray->Num() > 0)
+					{
+						JsonValue = (*OutArray).Last();
+					}
 				}
 			}
 		}
@@ -129,6 +133,7 @@ bool FResponse::ParseJsonTypeContent()
 
 	if (JsonValue.IsValid())
 	{
+		SCOPED_NAMED_EVENT(RallyHere_ParseJsonContent, FColor::Purple);
 		SetPayload<JsonPayloadType>(JsonValue);
 
 		// attempt to parse the json with the response object (for successful responses, this will fill in the Content subobject)
