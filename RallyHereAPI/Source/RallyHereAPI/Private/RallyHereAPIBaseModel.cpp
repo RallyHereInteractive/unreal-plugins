@@ -88,13 +88,12 @@ bool FResponse::ParseStringTypeContent()
 {
 	check(HttpResponse != nullptr);
 
-	SetPayload<StringPayloadType>
-	(HttpResponse->GetContentAsString());
+	SetPayload<StringPayloadType>(HttpResponse->GetContentAsString());
 	return true; // Successfully parsed
-	}
+}
 
-	bool FResponse::ParseJsonTypeContent()
-	{
+bool FResponse::ParseJsonTypeContent()
+{
 	check(HttpResponse != nullptr);
 
 	ClearPayload();

@@ -645,18 +645,16 @@ public:
 	virtual ~FRemoteFileAPI();
 
 	FHttpRequestPtr CreateEntityDirectoryFile(const FRequest_CreateEntityDirectoryFile& Request, const FDelegate_CreateEntityDirectoryFile& Delegate = FDelegate_CreateEntityDirectoryFile(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr DeleteEntityDirectory(const FRequest_DeleteEntityDirectory& Request, const FDelegate_DeleteEntityDirectory& Delegate = FDelegate_DeleteEntityDirectory(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr DeleteEntityDirectoryFile(const FRequest_DeleteEntityDirectoryFile& Request, const FDelegate_DeleteEntityDirectoryFile& Delegate = FDelegate_DeleteEntityDirectoryFile(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr DownloadEntityDirectoryFile(const FRequest_DownloadEntityDirectoryFile& Request, const FDelegate_DownloadEntityDirectoryFile& Delegate = FDelegate_DownloadEntityDirectoryFile(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetEntityDirectoryInformation(const FRequest_GetEntityDirectoryInformation& Request, const FDelegate_GetEntityDirectoryInformation& Delegate = FDelegate_GetEntityDirectoryInformation(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr ListEntityDirectoryFiles(const FRequest_ListEntityDirectoryFiles& Request, const FDelegate_ListEntityDirectoryFiles& Delegate = FDelegate_ListEntityDirectoryFiles(), int32 Priority = DefaultRallyHereAPIPriority);
-
-private:
 	void OnCreateEntityDirectoryFileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateEntityDirectoryFile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr DeleteEntityDirectory(const FRequest_DeleteEntityDirectory& Request, const FDelegate_DeleteEntityDirectory& Delegate = FDelegate_DeleteEntityDirectory(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnDeleteEntityDirectoryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteEntityDirectory Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr DeleteEntityDirectoryFile(const FRequest_DeleteEntityDirectoryFile& Request, const FDelegate_DeleteEntityDirectoryFile& Delegate = FDelegate_DeleteEntityDirectoryFile(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnDeleteEntityDirectoryFileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteEntityDirectoryFile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr DownloadEntityDirectoryFile(const FRequest_DownloadEntityDirectoryFile& Request, const FDelegate_DownloadEntityDirectoryFile& Delegate = FDelegate_DownloadEntityDirectoryFile(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnDownloadEntityDirectoryFileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DownloadEntityDirectoryFile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetEntityDirectoryInformation(const FRequest_GetEntityDirectoryInformation& Request, const FDelegate_GetEntityDirectoryInformation& Delegate = FDelegate_GetEntityDirectoryInformation(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetEntityDirectoryInformationResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetEntityDirectoryInformation Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr ListEntityDirectoryFiles(const FRequest_ListEntityDirectoryFiles& Request, const FDelegate_ListEntityDirectoryFiles& Delegate = FDelegate_ListEntityDirectoryFiles(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnListEntityDirectoryFilesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ListEntityDirectoryFiles Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };

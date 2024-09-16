@@ -1095,22 +1095,20 @@ public:
 	virtual ~FNotificationAPI();
 
 	FHttpRequestPtr PlayerCreateNotification(const FRequest_PlayerCreateNotification& Request, const FDelegate_PlayerCreateNotification& Delegate = FDelegate_PlayerCreateNotification(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr PlayerCreateNotificationSelf(const FRequest_PlayerCreateNotificationSelf& Request, const FDelegate_PlayerCreateNotificationSelf& Delegate = FDelegate_PlayerCreateNotificationSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr PlayerGetNotificationById(const FRequest_PlayerGetNotificationById& Request, const FDelegate_PlayerGetNotificationById& Delegate = FDelegate_PlayerGetNotificationById(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr PlayerGetNotificationByIdSelf(const FRequest_PlayerGetNotificationByIdSelf& Request, const FDelegate_PlayerGetNotificationByIdSelf& Delegate = FDelegate_PlayerGetNotificationByIdSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr PlayerGetNotificationsPage(const FRequest_PlayerGetNotificationsPage& Request, const FDelegate_PlayerGetNotificationsPage& Delegate = FDelegate_PlayerGetNotificationsPage(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr PlayerGetNotificationsPageSelf(const FRequest_PlayerGetNotificationsPageSelf& Request, const FDelegate_PlayerGetNotificationsPageSelf& Delegate = FDelegate_PlayerGetNotificationsPageSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr PlayerLongPollForNotifications(const FRequest_PlayerLongPollForNotifications& Request, const FDelegate_PlayerLongPollForNotifications& Delegate = FDelegate_PlayerLongPollForNotifications(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr PlayerLongPollForNotificationsSelf(const FRequest_PlayerLongPollForNotificationsSelf& Request, const FDelegate_PlayerLongPollForNotificationsSelf& Delegate = FDelegate_PlayerLongPollForNotificationsSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-
-private:
 	void OnPlayerCreateNotificationResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayerCreateNotification Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr PlayerCreateNotificationSelf(const FRequest_PlayerCreateNotificationSelf& Request, const FDelegate_PlayerCreateNotificationSelf& Delegate = FDelegate_PlayerCreateNotificationSelf(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnPlayerCreateNotificationSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayerCreateNotificationSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr PlayerGetNotificationById(const FRequest_PlayerGetNotificationById& Request, const FDelegate_PlayerGetNotificationById& Delegate = FDelegate_PlayerGetNotificationById(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnPlayerGetNotificationByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayerGetNotificationById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr PlayerGetNotificationByIdSelf(const FRequest_PlayerGetNotificationByIdSelf& Request, const FDelegate_PlayerGetNotificationByIdSelf& Delegate = FDelegate_PlayerGetNotificationByIdSelf(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnPlayerGetNotificationByIdSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayerGetNotificationByIdSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr PlayerGetNotificationsPage(const FRequest_PlayerGetNotificationsPage& Request, const FDelegate_PlayerGetNotificationsPage& Delegate = FDelegate_PlayerGetNotificationsPage(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnPlayerGetNotificationsPageResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayerGetNotificationsPage Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr PlayerGetNotificationsPageSelf(const FRequest_PlayerGetNotificationsPageSelf& Request, const FDelegate_PlayerGetNotificationsPageSelf& Delegate = FDelegate_PlayerGetNotificationsPageSelf(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnPlayerGetNotificationsPageSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayerGetNotificationsPageSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr PlayerLongPollForNotifications(const FRequest_PlayerLongPollForNotifications& Request, const FDelegate_PlayerLongPollForNotifications& Delegate = FDelegate_PlayerLongPollForNotifications(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnPlayerLongPollForNotificationsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayerLongPollForNotifications Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr PlayerLongPollForNotificationsSelf(const FRequest_PlayerLongPollForNotificationsSelf& Request, const FDelegate_PlayerLongPollForNotificationsSelf& Delegate = FDelegate_PlayerLongPollForNotificationsSelf(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnPlayerLongPollForNotificationsSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayerLongPollForNotificationsSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };

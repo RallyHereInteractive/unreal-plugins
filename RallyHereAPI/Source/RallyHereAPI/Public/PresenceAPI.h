@@ -613,16 +613,14 @@ public:
 	virtual ~FPresenceAPI();
 
 	FHttpRequestPtr GetPlayerPresencePublicById(const FRequest_GetPlayerPresencePublicById& Request, const FDelegate_GetPlayerPresencePublicById& Delegate = FDelegate_GetPlayerPresencePublicById(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetPlayerPresencePublicByUuid(const FRequest_GetPlayerPresencePublicByUuid& Request, const FDelegate_GetPlayerPresencePublicByUuid& Delegate = FDelegate_GetPlayerPresencePublicByUuid(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetPlayerPresenceSelf(const FRequest_GetPlayerPresenceSelf& Request, const FDelegate_GetPlayerPresenceSelf& Delegate = FDelegate_GetPlayerPresenceSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetPresenceSettings(const FRequest_GetPresenceSettings& Request, const FDelegate_GetPresenceSettings& Delegate = FDelegate_GetPresenceSettings(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr UpdatePlayerPresenceSelf(const FRequest_UpdatePlayerPresenceSelf& Request, const FDelegate_UpdatePlayerPresenceSelf& Delegate = FDelegate_UpdatePlayerPresenceSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-
-private:
 	void OnGetPlayerPresencePublicByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerPresencePublicById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetPlayerPresencePublicByUuid(const FRequest_GetPlayerPresencePublicByUuid& Request, const FDelegate_GetPlayerPresencePublicByUuid& Delegate = FDelegate_GetPlayerPresencePublicByUuid(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetPlayerPresencePublicByUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerPresencePublicByUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetPlayerPresenceSelf(const FRequest_GetPlayerPresenceSelf& Request, const FDelegate_GetPlayerPresenceSelf& Delegate = FDelegate_GetPlayerPresenceSelf(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetPlayerPresenceSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerPresenceSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetPresenceSettings(const FRequest_GetPresenceSettings& Request, const FDelegate_GetPresenceSettings& Delegate = FDelegate_GetPresenceSettings(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetPresenceSettingsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPresenceSettings Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr UpdatePlayerPresenceSelf(const FRequest_UpdatePlayerPresenceSelf& Request, const FDelegate_UpdatePlayerPresenceSelf& Delegate = FDelegate_UpdatePlayerPresenceSelf(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnUpdatePlayerPresenceSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdatePlayerPresenceSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };

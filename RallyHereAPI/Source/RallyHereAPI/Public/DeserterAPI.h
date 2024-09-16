@@ -898,24 +898,22 @@ public:
 	virtual ~FDeserterAPI();
 
 	FHttpRequestPtr ClearAllDeserter(const FRequest_ClearAllDeserter& Request, const FDelegate_ClearAllDeserter& Delegate = FDelegate_ClearAllDeserter(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr ClearSpecificDeserter(const FRequest_ClearSpecificDeserter& Request, const FDelegate_ClearSpecificDeserter& Delegate = FDelegate_ClearSpecificDeserter(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr DeleteAllPlayerDeserter(const FRequest_DeleteAllPlayerDeserter& Request, const FDelegate_DeleteAllPlayerDeserter& Delegate = FDelegate_DeleteAllPlayerDeserter(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr DeletePlayerDeserter(const FRequest_DeletePlayerDeserter& Request, const FDelegate_DeletePlayerDeserter& Delegate = FDelegate_DeletePlayerDeserter(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetAllDeserterConfigs(const FRequest_GetAllDeserterConfigs& Request, const FDelegate_GetAllDeserterConfigs& Delegate = FDelegate_GetAllDeserterConfigs(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetAllPlayerDeserters(const FRequest_GetAllPlayerDeserters& Request, const FDelegate_GetAllPlayerDeserters& Delegate = FDelegate_GetAllPlayerDeserters(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetPlayerDeserter(const FRequest_GetPlayerDeserter& Request, const FDelegate_GetPlayerDeserter& Delegate = FDelegate_GetPlayerDeserter(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetSpecificDeserterConfig(const FRequest_GetSpecificDeserterConfig& Request, const FDelegate_GetSpecificDeserterConfig& Delegate = FDelegate_GetSpecificDeserterConfig(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr PutPlayerDeserter(const FRequest_PutPlayerDeserter& Request, const FDelegate_PutPlayerDeserter& Delegate = FDelegate_PutPlayerDeserter(), int32 Priority = DefaultRallyHereAPIPriority);
-
-private:
 	void OnClearAllDeserterResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ClearAllDeserter Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr ClearSpecificDeserter(const FRequest_ClearSpecificDeserter& Request, const FDelegate_ClearSpecificDeserter& Delegate = FDelegate_ClearSpecificDeserter(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnClearSpecificDeserterResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ClearSpecificDeserter Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr DeleteAllPlayerDeserter(const FRequest_DeleteAllPlayerDeserter& Request, const FDelegate_DeleteAllPlayerDeserter& Delegate = FDelegate_DeleteAllPlayerDeserter(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnDeleteAllPlayerDeserterResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteAllPlayerDeserter Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr DeletePlayerDeserter(const FRequest_DeletePlayerDeserter& Request, const FDelegate_DeletePlayerDeserter& Delegate = FDelegate_DeletePlayerDeserter(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnDeletePlayerDeserterResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeletePlayerDeserter Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetAllDeserterConfigs(const FRequest_GetAllDeserterConfigs& Request, const FDelegate_GetAllDeserterConfigs& Delegate = FDelegate_GetAllDeserterConfigs(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetAllDeserterConfigsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllDeserterConfigs Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetAllPlayerDeserters(const FRequest_GetAllPlayerDeserters& Request, const FDelegate_GetAllPlayerDeserters& Delegate = FDelegate_GetAllPlayerDeserters(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetAllPlayerDesertersResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPlayerDeserters Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetPlayerDeserter(const FRequest_GetPlayerDeserter& Request, const FDelegate_GetPlayerDeserter& Delegate = FDelegate_GetPlayerDeserter(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetPlayerDeserterResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerDeserter Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetSpecificDeserterConfig(const FRequest_GetSpecificDeserterConfig& Request, const FDelegate_GetSpecificDeserterConfig& Delegate = FDelegate_GetSpecificDeserterConfig(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetSpecificDeserterConfigResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSpecificDeserterConfig Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr PutPlayerDeserter(const FRequest_PutPlayerDeserter& Request, const FDelegate_PutPlayerDeserter& Delegate = FDelegate_PutPlayerDeserter(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnPutPlayerDeserterResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PutPlayerDeserter Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };

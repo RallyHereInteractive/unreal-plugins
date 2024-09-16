@@ -741,18 +741,16 @@ public:
 	virtual ~FPEXAPI();
 
 	FHttpRequestPtr CreatePexHost(const FRequest_CreatePexHost& Request, const FDelegate_CreatePexHost& Delegate = FDelegate_CreatePexHost(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr CreatePexPlayer(const FRequest_CreatePexPlayer& Request, const FDelegate_CreatePexPlayer& Delegate = FDelegate_CreatePexPlayer(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetAllPexClientRawByFilter(const FRequest_GetAllPexClientRawByFilter& Request, const FDelegate_GetAllPexClientRawByFilter& Delegate = FDelegate_GetAllPexClientRawByFilter(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetAllPexClientScoresByFilter(const FRequest_GetAllPexClientScoresByFilter& Request, const FDelegate_GetAllPexClientScoresByFilter& Delegate = FDelegate_GetAllPexClientScoresByFilter(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetAllPexHostRawByFilter(const FRequest_GetAllPexHostRawByFilter& Request, const FDelegate_GetAllPexHostRawByFilter& Delegate = FDelegate_GetAllPexHostRawByFilter(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetAllPexHostScoresByFilter(const FRequest_GetAllPexHostScoresByFilter& Request, const FDelegate_GetAllPexHostScoresByFilter& Delegate = FDelegate_GetAllPexHostScoresByFilter(), int32 Priority = DefaultRallyHereAPIPriority);
-
-private:
 	void OnCreatePexHostResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreatePexHost Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr CreatePexPlayer(const FRequest_CreatePexPlayer& Request, const FDelegate_CreatePexPlayer& Delegate = FDelegate_CreatePexPlayer(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnCreatePexPlayerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreatePexPlayer Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetAllPexClientRawByFilter(const FRequest_GetAllPexClientRawByFilter& Request, const FDelegate_GetAllPexClientRawByFilter& Delegate = FDelegate_GetAllPexClientRawByFilter(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetAllPexClientRawByFilterResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPexClientRawByFilter Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetAllPexClientScoresByFilter(const FRequest_GetAllPexClientScoresByFilter& Request, const FDelegate_GetAllPexClientScoresByFilter& Delegate = FDelegate_GetAllPexClientScoresByFilter(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetAllPexClientScoresByFilterResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPexClientScoresByFilter Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetAllPexHostRawByFilter(const FRequest_GetAllPexHostRawByFilter& Request, const FDelegate_GetAllPexHostRawByFilter& Delegate = FDelegate_GetAllPexHostRawByFilter(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetAllPexHostRawByFilterResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPexHostRawByFilter Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetAllPexHostScoresByFilter(const FRequest_GetAllPexHostScoresByFilter& Request, const FDelegate_GetAllPexHostScoresByFilter& Delegate = FDelegate_GetAllPexHostScoresByFilter(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetAllPexHostScoresByFilterResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPexHostScoresByFilter Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };

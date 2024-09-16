@@ -737,6 +737,228 @@ void URH_CatalogSubsystem::OnGetCatalogTimeFramesAllResponse(const TGetCatalogTi
 	Delegate.ExecuteIfBound(Resp.IsSuccessful() || Resp.GetHttpResponseCode() == EHttpResponseCodes::NotModified);
 }
 
+
+class FRH_HttpResponseSerializable : public IHttpResponse
+{
+public:
+	FRH_HttpResponseSerializable()
+	{}
+	
+	FRH_HttpResponseSerializable(const FHttpResponsePtr& InHttpResponse)
+	{
+		check(InHttpResponse.IsValid());
+		ResponseCode = InHttpResponse->GetResponseCode();
+		URL = InHttpResponse->GetURL();
+		ContentLength = InHttpResponse->GetContentLength();
+		ContentType = InHttpResponse->GetContentType();
+		Headers = InHttpResponse->GetAllHeaders();
+		Content = InHttpResponse->GetContent();
+	}
+
+	bool ExportToFile(const FString& FilePath)
+	{
+		TArray<FString> FileContents;
+		FileContents.Add(FString::Printf(TEXT("%d"), ResponseCode)); // FileContents[0]
+		FileContents.Add(URL); // FileContents[1]
+		FileContents.Add(FString::Printf(TEXT("%lld"), ContentLength)); // FileContents[2]
+		FileContents.Add(ContentType); // FileContents[3]
+
+		FileContents.Append(Headers); // FileContents[4] to FileContents[n-1]
+		
+		FileContents.Add(FBase64::Encode(Content.GetData(), Content.Num())); // // FileContents[n]
+		
+		FFileHelper::SaveStringArrayToFile(FileContents, *FilePath);
+
+		return true;
+	}
+
+	bool ImportFromFile(const FString& FilePath)
+	{
+		TArray<FString> FileContents;
+		if (!FFileHelper::LoadFileToStringArray(FileContents, *FilePath))
+		{
+			return false;
+		}
+
+		if (FileContents.Num() < 4) // must at least have basics (headers and content not required)
+		{
+			return false;
+		}
+
+		ResponseCode = FCString::Atoi(*FileContents[0]);
+		URL = FileContents[1];
+		ContentLength = FCString::Atoi64(*FileContents[2]);
+		ContentType = FileContents[3];
+
+		for (int i=4; i < FileContents.Num() - 1; ++i)
+		{
+			Headers.Add(FileContents[i]);
+		}
+		
+		FBase64::Decode(FileContents[FileContents.Num() - 1], Content);
+
+		return true;
+	}
+
+	int32 ResponseCode = 0;
+	/**
+	 * Gets the response code returned by the requested server.
+	 * See EHttpResponseCodes for known response codes
+	 *
+	 * @return the response code.
+	 */
+	virtual int32 GetResponseCode() const override { return ResponseCode; }
+
+	/**
+	 * Returns the payload as a string, assuming the payload is UTF8.
+	 *
+	 * @return the payload as a string.
+	 */
+	virtual FString GetContentAsString() const override
+	{
+		// Content is NOT null-terminated; we need to specify lengths here
+		FUTF8ToTCHAR TCHARData(reinterpret_cast<const ANSICHAR*>(Content.GetData()), Content.Num());
+		return FString(TCHARData.Length(), TCHARData.Get());
+	}
+
+	FString URL;	
+	/**
+	 * Get the URL used to send the request.
+	 *
+	 * @return the URL string.
+	 */
+	virtual FString GetURL() const override { return URL; }
+
+	TMap<FString, FString> URLParameters;
+	/** 
+	 * Gets an URL parameter.
+	 * expected format is ?Key=Value&Key=Value...
+	 * If that format is not used, this function will not work.
+	 * 
+	 * @param ParameterName - the parameter to request.
+	 * @return the parameter value string.
+	 */
+	virtual FString GetURLParameter(const FString& ParameterName) const override { return URLParameters.FindRef(ParameterName); };
+
+	TArray<FString> Headers;
+	/** 
+	 * Gets the value of a header, or empty string if not found. 
+	 * 
+	 * @param HeaderName - name of the header to set.
+	 */
+	virtual FString GetHeader(const FString& HeaderName) const override
+	{
+		FString Prefix = HeaderName + ": ";
+		const auto HeaderIdx = Headers.FindLastByPredicate([Prefix](const FString& Header) { return Header.StartsWith(Prefix); });
+		if (HeaderIdx != INDEX_NONE)
+		{
+			return Headers[HeaderIdx].RightChop(Prefix.Len());
+		}
+		return TEXT("");
+	}
+
+	/**
+	 * Return all headers in an array in "Name: Value" format.
+	 *
+	 * @return the header array of strings
+	 */
+	virtual TArray<FString> GetAllHeaders() const override { return Headers; }
+
+	FString ContentType = TEXT("");
+	/**
+	 * Shortcut to get the Content-Type header value (if available)
+	 *
+	 * @return the content type.
+	 */
+	virtual FString GetContentType() const override { return ContentType; }
+
+	int64 ContentLength = 0;
+	/**
+	 * Shortcut to get the Content-Length header value. Will not always return non-zero.
+	 * If you want the real length of the payload, get the payload and check it's length.
+	 *
+	 * @return the content length (if available)
+	 */
+	virtual uint64 GetContentLength() const override { return ContentLength; }
+
+	TArray<uint8> Content;
+	/**
+	 * Get the content payload of the request or response.
+	 *
+	 * @param Content - array that will be filled with the content.
+	 */
+	virtual const TArray<uint8>& GetContent() const override { return Content; }
+
+	static RallyHereAPI::FRequestMetadata GetSerializableResponseMetadata()
+	{
+		RallyHereAPI::FRequestMetadata Metadata;
+		Metadata.Flags.bDisableAuthRequirement = true;
+		Metadata.Flags.bDisableReadRequestContent = true;
+		Metadata.Flags.bDisableLoginRetryOnAuthorizationFailure = true;
+		return Metadata;
+	}
+};
+
+void URH_CatalogSubsystem::ExportCatalogToFile(const FString& FilePath, const FRH_GenericSuccessWithErrorBlock& Delegate) const
+{
+	FString Path = FilePath.Len() > 0 ? FilePath : GetDefaultCatalogFileExportPath();
+
+	auto Request = TGetCatalogAll::Request();
+	
+	Request.AuthContext = GetAuthContext();
+
+	struct FCallContext
+	{
+		FString Path;
+		bool bWrittenToFile = false;
+	};
+	TSharedPtr<FCallContext> Context = MakeShared<FCallContext>();
+	Context->Path = Path;
+	
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<TGetCatalogAll>>(
+		TGetCatalogAll::Delegate::CreateWeakLambda(this, [this, Context, Path](const TGetCatalogAll::Response& Resp)
+		{
+			// if the request was successful, write the data to the file
+			FRH_HttpResponseSerializable SerializableResponse(Resp.GetHttpResponse());
+			Context->bWrittenToFile = SerializableResponse.ExportToFile(Context->Path);
+		}),
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [Delegate, Context](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+		{
+			if (!bSuccess)
+			{
+				Delegate.ExecuteIfBound(bSuccess, ErrorInfo);
+			}
+			else
+			{
+				// todo - adjust error info?
+				Delegate.ExecuteIfBound(Context->bWrittenToFile, ErrorInfo);
+			}
+		}),
+		GetDefault<URH_IntegrationSettings>()->GetCatalogAllPriority
+	);
+
+	Helper->Start(RH_APIs::GetCatalogAPI(), Request);
+}
+void URH_CatalogSubsystem::ImportCatalogFromFile(const FString& FilePath, const FRH_CatalogCallBlock& Delegate)
+{
+	FString Path = FilePath.Len() > 0 ? FilePath : GetDefaultCatalogFileExportPath();
+
+	TSharedRef<FRH_HttpResponseSerializable> Response = MakeShareable(new FRH_HttpResponseSerializable());
+	auto HttpResponsePtr = Response;
+	if(Response->ImportFromFile(Path))
+	{
+		auto InnerDelegate = TGetCatalogAll::Delegate::CreateUObject(this, &URH_CatalogSubsystem::OnGetCatalogAllResponse, Delegate);
+		RallyHereAPI::FRequestMetadata Metadata = FRH_HttpResponseSerializable::GetSerializableResponseMetadata();
+
+		// inject response into the catalog API
+		RH_APIs::GetCatalogAPI()->OnGetCatalogAllResponse(nullptr, HttpResponsePtr, true, InnerDelegate, Metadata, nullptr, GetDefault<URH_IntegrationSettings>()->GetCatalogAllPriority);
+	}
+	else
+	{
+		Delegate.ExecuteIfBound(false);
+	}
+}
+
 ///
 
 TArray<FRHAPI_PriceBreakPointCurrency> URH_CatalogBlueprintLibrary::GetUnitPrices(const TArray<FRHAPI_PriceBreakpoint>& PriceBreakpoints, const TArray<int32>& CurrencyIds, int32 Quantity)

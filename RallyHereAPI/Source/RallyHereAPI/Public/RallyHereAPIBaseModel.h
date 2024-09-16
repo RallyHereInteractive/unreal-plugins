@@ -298,7 +298,7 @@ public:
 	void SetHttpResponse(const FHttpResponsePtr& InHttpResponse) { HttpResponse = InHttpResponse; }
 	const FHttpResponsePtr& GetHttpResponse() const { return HttpResponse; }
 
-	const FRequestMetadata GetRequestMetadata() const { return RequestMetadata; }
+	const FRequestMetadata& GetRequestMetadata() const { return RequestMetadata; }
 
 	template<typename T>
 	void SetPayload(const T& InPayload) { Payload.Set<T>(InPayload); }

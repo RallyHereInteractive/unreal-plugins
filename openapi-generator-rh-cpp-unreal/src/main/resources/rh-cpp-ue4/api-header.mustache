@@ -199,9 +199,7 @@ public:
 
 {{#operations}}{{#operation}}{{#description}}	/* {{{.}}} */
 {{/description}}	FHttpRequestPtr {{operationIdCamelCase}}(const FRequest_{{operationIdCamelCase}}& Request, const FDelegate_{{operationIdCamelCase}}& Delegate = FDelegate_{{operationIdCamelCase}}(), int32 Priority = Default{{unrealModuleName}}Priority);
-{{/operation}}{{/operations}}
-private:
-{{#operations}}{{#operation}}	void On{{operationIdCamelCase}}Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_{{operationIdCamelCase}} Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	void On{{operationIdCamelCase}}Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_{{operationIdCamelCase}} Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 {{/operation}}{{/operations}}
 };
 

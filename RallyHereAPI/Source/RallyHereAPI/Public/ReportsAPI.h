@@ -620,16 +620,14 @@ public:
 	virtual ~FReportsAPI();
 
 	FHttpRequestPtr CreateReportForTargetPlayerUuid(const FRequest_CreateReportForTargetPlayerUuid& Request, const FDelegate_CreateReportForTargetPlayerUuid& Delegate = FDelegate_CreateReportForTargetPlayerUuid(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetReportsForTargetPlayerUuid(const FRequest_GetReportsForTargetPlayerUuid& Request, const FDelegate_GetReportsForTargetPlayerUuid& Delegate = FDelegate_GetReportsForTargetPlayerUuid(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetReportsForTargetPlayerUuidSelf(const FRequest_GetReportsForTargetPlayerUuidSelf& Request, const FDelegate_GetReportsForTargetPlayerUuidSelf& Delegate = FDelegate_GetReportsForTargetPlayerUuidSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetReportsFromSourcePlayerUuid(const FRequest_GetReportsFromSourcePlayerUuid& Request, const FDelegate_GetReportsFromSourcePlayerUuid& Delegate = FDelegate_GetReportsFromSourcePlayerUuid(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetReportsFromSourcePlayerUuidSelf(const FRequest_GetReportsFromSourcePlayerUuidSelf& Request, const FDelegate_GetReportsFromSourcePlayerUuidSelf& Delegate = FDelegate_GetReportsFromSourcePlayerUuidSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-
-private:
 	void OnCreateReportForTargetPlayerUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateReportForTargetPlayerUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetReportsForTargetPlayerUuid(const FRequest_GetReportsForTargetPlayerUuid& Request, const FDelegate_GetReportsForTargetPlayerUuid& Delegate = FDelegate_GetReportsForTargetPlayerUuid(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetReportsForTargetPlayerUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetReportsForTargetPlayerUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetReportsForTargetPlayerUuidSelf(const FRequest_GetReportsForTargetPlayerUuidSelf& Request, const FDelegate_GetReportsForTargetPlayerUuidSelf& Delegate = FDelegate_GetReportsForTargetPlayerUuidSelf(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetReportsForTargetPlayerUuidSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetReportsForTargetPlayerUuidSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetReportsFromSourcePlayerUuid(const FRequest_GetReportsFromSourcePlayerUuid& Request, const FDelegate_GetReportsFromSourcePlayerUuid& Delegate = FDelegate_GetReportsFromSourcePlayerUuid(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetReportsFromSourcePlayerUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetReportsFromSourcePlayerUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetReportsFromSourcePlayerUuidSelf(const FRequest_GetReportsFromSourcePlayerUuidSelf& Request, const FDelegate_GetReportsFromSourcePlayerUuidSelf& Delegate = FDelegate_GetReportsFromSourcePlayerUuidSelf(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetReportsFromSourcePlayerUuidSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetReportsFromSourcePlayerUuidSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };

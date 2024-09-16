@@ -75,6 +75,18 @@ void FRHDTW_Catalog::Do()
 		pRH_CatalogSubsystem->GetCatalogTimeFramesAll();
 	}
 
+	ImGui::SameLine();
+	if (ImGui::Button("Export"))
+	{
+		pRH_CatalogSubsystem->ExportCatalogToFile();
+	}
+	
+	ImGui::SameLine();
+	if (ImGui::Button("Import"))
+	{
+		pRH_CatalogSubsystem->ImportCatalogFromFile();
+	}
+
 	static ImGuiTabBarFlags tab_bar_flags =
 		ImGuiTabBarFlags_AutoSelectNewTabs | ImGuiTabBarFlags_FittingPolicyResizeDown | ImGuiTabBarFlags_FittingPolicyScroll;
 	if (ImGui::BeginTabBar("CatalogTabs", tab_bar_flags))
