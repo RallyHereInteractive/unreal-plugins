@@ -15,26 +15,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 }}
 {{>licenseInfo}}
-using System;
-using System.IO;
-using UnrealBuildTool;
+#include "{{unrealModuleName}}Settings.h"
 
-public class {{unrealModuleName}} : ModuleRules
+U{{unrealModuleName}}Settings::U{{unrealModuleName}}Settings(const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer)
 {
-	public {{unrealModuleName}}(ReadOnlyTargetRules Target) : base(Target)
-	{
-		PublicDependencyModuleNames.AddRange(
-			new string[]
-			{
-				"Core",
-				"CoreUObject",
-				"HTTP",
-				"Json",
-				"Engine",
-				"DeveloperSettings",
-			}
-		);
-		
-		PublicDefinitions.Add("ALLOW_LEGACY_RESPONSE_CONTENT=1");
-	}
+	CategoryName = TEXT("Plugins");
+	SectionName = TEXT("{{unrealModuleName}} Settings");
 }
+

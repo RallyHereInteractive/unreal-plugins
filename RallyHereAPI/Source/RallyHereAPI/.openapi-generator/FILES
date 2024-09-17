@@ -293,6 +293,7 @@ Private/RallyHereAPIBaseModel.cpp
 Private/RallyHereAPIHelpers.cpp
 Private/RallyHereAPIHttpRequester.cpp
 Private/RallyHereAPIModule.cpp
+Private/RallyHereAPISettings.cpp
 Private/RallyHereEvent.cpp
 Private/RankAPI.cpp
 Private/RankConfigRequestResponseV3.cpp
@@ -653,6 +654,7 @@ Public/RallyHereAPIBaseModel.h
 Public/RallyHereAPIHelpers.h
 Public/RallyHereAPIHttpRequester.h
 Public/RallyHereAPIModule.h
+Public/RallyHereAPISettings.h
 Public/RallyHereEvent.h
 Public/RankAPI.h
 Public/RankConfigRequestResponseV3.h

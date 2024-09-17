@@ -79,19 +79,15 @@ void FEntitlementsAPI::OnGenerateEntitlementEventResponse(FHttpRequestPtr HttpRe
 		ResponseDelegate.BindSP(this, &FEntitlementsAPI::OnGenerateEntitlementEventResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_GenerateEntitlementEvent Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_GenerateEntitlementEvent> Response = MakeShared<FResponse_GenerateEntitlementEvent>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_GenerateEntitlementEvent::FRequest_GenerateEntitlementEvent()
@@ -413,19 +409,15 @@ void FEntitlementsAPI::OnGetEntitlementEventsResponse(FHttpRequestPtr HttpReques
 		ResponseDelegate.BindSP(this, &FEntitlementsAPI::OnGetEntitlementEventsResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_GetEntitlementEvents Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_GetEntitlementEvents> Response = MakeShared<FResponse_GetEntitlementEvents>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_GetEntitlementEvents::FRequest_GetEntitlementEvents()
@@ -700,19 +692,15 @@ void FEntitlementsAPI::OnProcessKeyEntitlementsResponse(FHttpRequestPtr HttpRequ
 		ResponseDelegate.BindSP(this, &FEntitlementsAPI::OnProcessKeyEntitlementsResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_ProcessKeyEntitlements Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_ProcessKeyEntitlements> Response = MakeShared<FResponse_ProcessKeyEntitlements>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_ProcessKeyEntitlements::FRequest_ProcessKeyEntitlements()
@@ -1003,19 +991,15 @@ void FEntitlementsAPI::OnProcessKeyEntitlementsPlayerUuidResponse(FHttpRequestPt
 		ResponseDelegate.BindSP(this, &FEntitlementsAPI::OnProcessKeyEntitlementsPlayerUuidResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_ProcessKeyEntitlementsPlayerUuid Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_ProcessKeyEntitlementsPlayerUuid> Response = MakeShared<FResponse_ProcessKeyEntitlementsPlayerUuid>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_ProcessKeyEntitlementsPlayerUuid::FRequest_ProcessKeyEntitlementsPlayerUuid()
@@ -1306,19 +1290,15 @@ void FEntitlementsAPI::OnProcessKeyEntitlementsPlayerUuidSelfResponse(FHttpReque
 		ResponseDelegate.BindSP(this, &FEntitlementsAPI::OnProcessKeyEntitlementsPlayerUuidSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_ProcessKeyEntitlementsPlayerUuidSelf Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_ProcessKeyEntitlementsPlayerUuidSelf> Response = MakeShared<FResponse_ProcessKeyEntitlementsPlayerUuidSelf>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_ProcessKeyEntitlementsPlayerUuidSelf::FRequest_ProcessKeyEntitlementsPlayerUuidSelf()
@@ -1608,19 +1588,15 @@ void FEntitlementsAPI::OnProcessKeyEntitlementsSelfResponse(FHttpRequestPtr Http
 		ResponseDelegate.BindSP(this, &FEntitlementsAPI::OnProcessKeyEntitlementsSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_ProcessKeyEntitlementsSelf Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_ProcessKeyEntitlementsSelf> Response = MakeShared<FResponse_ProcessKeyEntitlementsSelf>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_ProcessKeyEntitlementsSelf::FRequest_ProcessKeyEntitlementsSelf()
@@ -1910,19 +1886,15 @@ void FEntitlementsAPI::OnProcessPlatformEntitlementForMeResponse(FHttpRequestPtr
 		ResponseDelegate.BindSP(this, &FEntitlementsAPI::OnProcessPlatformEntitlementForMeResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_ProcessPlatformEntitlementForMe Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_ProcessPlatformEntitlementForMe> Response = MakeShared<FResponse_ProcessPlatformEntitlementForMe>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_ProcessPlatformEntitlementForMe::FRequest_ProcessPlatformEntitlementForMe()
@@ -2192,19 +2164,15 @@ void FEntitlementsAPI::OnProcessPlatformEntitlementsByPlayerUuidResponse(FHttpRe
 		ResponseDelegate.BindSP(this, &FEntitlementsAPI::OnProcessPlatformEntitlementsByPlayerUuidResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_ProcessPlatformEntitlementsByPlayerUuid Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_ProcessPlatformEntitlementsByPlayerUuid> Response = MakeShared<FResponse_ProcessPlatformEntitlementsByPlayerUuid>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_ProcessPlatformEntitlementsByPlayerUuid::FRequest_ProcessPlatformEntitlementsByPlayerUuid()
@@ -2479,19 +2447,15 @@ void FEntitlementsAPI::OnRetrieveEntitlementRequestByPlayerUuidResponse(FHttpReq
 		ResponseDelegate.BindSP(this, &FEntitlementsAPI::OnRetrieveEntitlementRequestByPlayerUuidResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_RetrieveEntitlementRequestByPlayerUuid Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_RetrieveEntitlementRequestByPlayerUuid> Response = MakeShared<FResponse_RetrieveEntitlementRequestByPlayerUuid>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_RetrieveEntitlementRequestByPlayerUuid::FRequest_RetrieveEntitlementRequestByPlayerUuid()
@@ -2756,19 +2720,15 @@ void FEntitlementsAPI::OnRetrieveEntitlementRequestForMeResponse(FHttpRequestPtr
 		ResponseDelegate.BindSP(this, &FEntitlementsAPI::OnRetrieveEntitlementRequestForMeResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_RetrieveEntitlementRequestForMe Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_RetrieveEntitlementRequestForMe> Response = MakeShared<FResponse_RetrieveEntitlementRequestForMe>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_RetrieveEntitlementRequestForMe::FRequest_RetrieveEntitlementRequestForMe()

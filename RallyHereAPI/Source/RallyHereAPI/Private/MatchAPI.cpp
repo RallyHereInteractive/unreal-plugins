@@ -79,19 +79,15 @@ void FMatchAPI::OnCreateMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponse
 		ResponseDelegate.BindSP(this, &FMatchAPI::OnCreateMatchResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_CreateMatch Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_CreateMatch> Response = MakeShared<FResponse_CreateMatch>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_CreateMatch::FRequest_CreateMatch()
@@ -361,19 +357,15 @@ void FMatchAPI::OnCreateMatchPlayerResponse(FHttpRequestPtr HttpRequest, FHttpRe
 		ResponseDelegate.BindSP(this, &FMatchAPI::OnCreateMatchPlayerResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_CreateMatchPlayer Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_CreateMatchPlayer> Response = MakeShared<FResponse_CreateMatchPlayer>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_CreateMatchPlayer::FRequest_CreateMatchPlayer()
@@ -675,19 +667,15 @@ void FMatchAPI::OnCreateMatchSegmentResponse(FHttpRequestPtr HttpRequest, FHttpR
 		ResponseDelegate.BindSP(this, &FMatchAPI::OnCreateMatchSegmentResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_CreateMatchSegment Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_CreateMatchSegment> Response = MakeShared<FResponse_CreateMatchSegment>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_CreateMatchSegment::FRequest_CreateMatchSegment()
@@ -962,19 +950,15 @@ void FMatchAPI::OnDeleteMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponse
 		ResponseDelegate.BindSP(this, &FMatchAPI::OnDeleteMatchResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_DeleteMatch Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_DeleteMatch> Response = MakeShared<FResponse_DeleteMatch>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_DeleteMatch::FRequest_DeleteMatch()
@@ -1198,19 +1182,15 @@ void FMatchAPI::OnDeleteMatchPlayerResponse(FHttpRequestPtr HttpRequest, FHttpRe
 		ResponseDelegate.BindSP(this, &FMatchAPI::OnDeleteMatchPlayerResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_DeleteMatchPlayer Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_DeleteMatchPlayer> Response = MakeShared<FResponse_DeleteMatchPlayer>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_DeleteMatchPlayer::FRequest_DeleteMatchPlayer()
@@ -1435,19 +1415,15 @@ void FMatchAPI::OnDeleteMatchSegmentResponse(FHttpRequestPtr HttpRequest, FHttpR
 		ResponseDelegate.BindSP(this, &FMatchAPI::OnDeleteMatchSegmentResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_DeleteMatchSegment Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_DeleteMatchSegment> Response = MakeShared<FResponse_DeleteMatchSegment>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_DeleteMatchSegment::FRequest_DeleteMatchSegment()
@@ -1672,19 +1648,15 @@ void FMatchAPI::OnGetMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr
 		ResponseDelegate.BindSP(this, &FMatchAPI::OnGetMatchResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_GetMatch Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_GetMatch> Response = MakeShared<FResponse_GetMatch>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_GetMatch::FRequest_GetMatch()
@@ -1974,19 +1946,15 @@ void FMatchAPI::OnGetMatchPlayerResponse(FHttpRequestPtr HttpRequest, FHttpRespo
 		ResponseDelegate.BindSP(this, &FMatchAPI::OnGetMatchPlayerResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_GetMatchPlayer Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_GetMatchPlayer> Response = MakeShared<FResponse_GetMatchPlayer>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_GetMatchPlayer::FRequest_GetMatchPlayer()
@@ -2277,19 +2245,15 @@ void FMatchAPI::OnGetMatchSegmentResponse(FHttpRequestPtr HttpRequest, FHttpResp
 		ResponseDelegate.BindSP(this, &FMatchAPI::OnGetMatchSegmentResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_GetMatchSegment Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_GetMatchSegment> Response = MakeShared<FResponse_GetMatchSegment>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_GetMatchSegment::FRequest_GetMatchSegment()
@@ -2580,19 +2544,15 @@ void FMatchAPI::OnGetMatchesResponse(FHttpRequestPtr HttpRequest, FHttpResponseP
 		ResponseDelegate.BindSP(this, &FMatchAPI::OnGetMatchesResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_GetMatches Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_GetMatches> Response = MakeShared<FResponse_GetMatches>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_GetMatches::FRequest_GetMatches()
@@ -2903,19 +2863,15 @@ void FMatchAPI::OnGetPlayerMatchesSelfResponse(FHttpRequestPtr HttpRequest, FHtt
 		ResponseDelegate.BindSP(this, &FMatchAPI::OnGetPlayerMatchesSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_GetPlayerMatchesSelf Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_GetPlayerMatchesSelf> Response = MakeShared<FResponse_GetPlayerMatchesSelf>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_GetPlayerMatchesSelf::FRequest_GetPlayerMatchesSelf()
@@ -3186,19 +3142,15 @@ void FMatchAPI::OnGetPlayersMatchesResponse(FHttpRequestPtr HttpRequest, FHttpRe
 		ResponseDelegate.BindSP(this, &FMatchAPI::OnGetPlayersMatchesResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_GetPlayersMatches Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_GetPlayersMatches> Response = MakeShared<FResponse_GetPlayersMatches>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_GetPlayersMatches::FRequest_GetPlayersMatches()
@@ -3474,19 +3426,15 @@ void FMatchAPI::OnPatchMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponseP
 		ResponseDelegate.BindSP(this, &FMatchAPI::OnPatchMatchResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_PatchMatch Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_PatchMatch> Response = MakeShared<FResponse_PatchMatch>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_PatchMatch::FRequest_PatchMatch()
@@ -3813,19 +3761,15 @@ void FMatchAPI::OnPatchMatchPlayerResponse(FHttpRequestPtr HttpRequest, FHttpRes
 		ResponseDelegate.BindSP(this, &FMatchAPI::OnPatchMatchPlayerResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_PatchMatchPlayer Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_PatchMatchPlayer> Response = MakeShared<FResponse_PatchMatchPlayer>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_PatchMatchPlayer::FRequest_PatchMatchPlayer()
@@ -4127,19 +4071,15 @@ void FMatchAPI::OnPatchMatchSegmentResponse(FHttpRequestPtr HttpRequest, FHttpRe
 		ResponseDelegate.BindSP(this, &FMatchAPI::OnPatchMatchSegmentResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_PatchMatchSegment Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_PatchMatchSegment> Response = MakeShared<FResponse_PatchMatchSegment>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_PatchMatchSegment::FRequest_PatchMatchSegment()
@@ -4441,19 +4381,15 @@ void FMatchAPI::OnUpdateMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponse
 		ResponseDelegate.BindSP(this, &FMatchAPI::OnUpdateMatchResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_UpdateMatch Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_UpdateMatch> Response = MakeShared<FResponse_UpdateMatch>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_UpdateMatch::FRequest_UpdateMatch()
@@ -4780,19 +4716,15 @@ void FMatchAPI::OnUpdateMatchPlayerResponse(FHttpRequestPtr HttpRequest, FHttpRe
 		ResponseDelegate.BindSP(this, &FMatchAPI::OnUpdateMatchPlayerResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_UpdateMatchPlayer Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_UpdateMatchPlayer> Response = MakeShared<FResponse_UpdateMatchPlayer>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_UpdateMatchPlayer::FRequest_UpdateMatchPlayer()
@@ -5094,19 +5026,15 @@ void FMatchAPI::OnUpdateMatchSegmentResponse(FHttpRequestPtr HttpRequest, FHttpR
 		ResponseDelegate.BindSP(this, &FMatchAPI::OnUpdateMatchSegmentResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_UpdateMatchSegment Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_UpdateMatchSegment> Response = MakeShared<FResponse_UpdateMatchSegment>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_UpdateMatchSegment::FRequest_UpdateMatchSegment()

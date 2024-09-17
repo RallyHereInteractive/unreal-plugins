@@ -79,19 +79,15 @@ void FCustomAPI::OnCustomEndpointSendResponse(FHttpRequestPtr HttpRequest, FHttp
 		ResponseDelegate.BindSP(this, &FCustomAPI::OnCustomEndpointSendResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_CustomEndpointSend Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_CustomEndpointSend> Response = MakeShared<FResponse_CustomEndpointSend>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_CustomEndpointSend::FRequest_CustomEndpointSend()

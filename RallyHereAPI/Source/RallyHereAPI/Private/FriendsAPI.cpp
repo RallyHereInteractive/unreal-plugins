@@ -79,19 +79,15 @@ void FFriendsAPI::OnAddFriendV2Response(FHttpRequestPtr HttpRequest, FHttpRespon
 		ResponseDelegate.BindSP(this, &FFriendsAPI::OnAddFriendV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_AddFriendV2 Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_AddFriendV2> Response = MakeShared<FResponse_AddFriendV2>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_AddFriendV2::FRequest_AddFriendV2()
@@ -456,19 +452,15 @@ void FFriendsAPI::OnAddNotesV2Response(FHttpRequestPtr HttpRequest, FHttpRespons
 		ResponseDelegate.BindSP(this, &FFriendsAPI::OnAddNotesV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_AddNotesV2 Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_AddNotesV2> Response = MakeShared<FResponse_AddNotesV2>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_AddNotesV2::FRequest_AddNotesV2()
@@ -826,19 +818,15 @@ void FFriendsAPI::OnBlockV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePt
 		ResponseDelegate.BindSP(this, &FFriendsAPI::OnBlockV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_BlockV2 Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_BlockV2> Response = MakeShared<FResponse_BlockV2>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_BlockV2::FRequest_BlockV2()
@@ -1155,19 +1143,15 @@ void FFriendsAPI::OnDeleteFriendV2Response(FHttpRequestPtr HttpRequest, FHttpRes
 		ResponseDelegate.BindSP(this, &FFriendsAPI::OnDeleteFriendV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_DeleteFriendV2 Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_DeleteFriendV2> Response = MakeShared<FResponse_DeleteFriendV2>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_DeleteFriendV2::FRequest_DeleteFriendV2()
@@ -1442,19 +1426,15 @@ void FFriendsAPI::OnDeleteFriendsV2Response(FHttpRequestPtr HttpRequest, FHttpRe
 		ResponseDelegate.BindSP(this, &FFriendsAPI::OnDeleteFriendsV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_DeleteFriendsV2 Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_DeleteFriendsV2> Response = MakeShared<FResponse_DeleteFriendsV2>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_DeleteFriendsV2::FRequest_DeleteFriendsV2()
@@ -1705,19 +1685,15 @@ void FFriendsAPI::OnDeleteNotesV2Response(FHttpRequestPtr HttpRequest, FHttpResp
 		ResponseDelegate.BindSP(this, &FFriendsAPI::OnDeleteNotesV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_DeleteNotesV2 Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_DeleteNotesV2> Response = MakeShared<FResponse_DeleteNotesV2>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_DeleteNotesV2::FRequest_DeleteNotesV2()
@@ -1964,19 +1940,15 @@ void FFriendsAPI::OnGetBlockedListForPlayerV2Response(FHttpRequestPtr HttpReques
 		ResponseDelegate.BindSP(this, &FFriendsAPI::OnGetBlockedListForPlayerV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_GetBlockedListForPlayerV2 Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_GetBlockedListForPlayerV2> Response = MakeShared<FResponse_GetBlockedListForPlayerV2>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_GetBlockedListForPlayerV2::FRequest_GetBlockedListForPlayerV2()
@@ -2338,19 +2310,15 @@ void FFriendsAPI::OnGetBlockedV2Response(FHttpRequestPtr HttpRequest, FHttpRespo
 		ResponseDelegate.BindSP(this, &FFriendsAPI::OnGetBlockedV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_GetBlockedV2 Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_GetBlockedV2> Response = MakeShared<FResponse_GetBlockedV2>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_GetBlockedV2::FRequest_GetBlockedV2()
@@ -2667,19 +2635,15 @@ void FFriendsAPI::OnGetFriendRelationshipV2Response(FHttpRequestPtr HttpRequest,
 		ResponseDelegate.BindSP(this, &FFriendsAPI::OnGetFriendRelationshipV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_GetFriendRelationshipV2 Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_GetFriendRelationshipV2> Response = MakeShared<FResponse_GetFriendRelationshipV2>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_GetFriendRelationshipV2::FRequest_GetFriendRelationshipV2()
@@ -3030,19 +2994,15 @@ void FFriendsAPI::OnGetFriendsListForPlayerV2Response(FHttpRequestPtr HttpReques
 		ResponseDelegate.BindSP(this, &FFriendsAPI::OnGetFriendsListForPlayerV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_GetFriendsListForPlayerV2 Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_GetFriendsListForPlayerV2> Response = MakeShared<FResponse_GetFriendsListForPlayerV2>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_GetFriendsListForPlayerV2::FRequest_GetFriendsListForPlayerV2()
@@ -3404,19 +3364,15 @@ void FFriendsAPI::OnUnblockV2Response(FHttpRequestPtr HttpRequest, FHttpResponse
 		ResponseDelegate.BindSP(this, &FFriendsAPI::OnUnblockV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_UnblockV2 Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_UnblockV2> Response = MakeShared<FResponse_UnblockV2>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_UnblockV2::FRequest_UnblockV2()

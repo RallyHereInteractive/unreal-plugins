@@ -79,19 +79,15 @@ void FRankAPI::OnCalculateV2RanksResponse(FHttpRequestPtr HttpRequest, FHttpResp
 		ResponseDelegate.BindSP(this, &FRankAPI::OnCalculateV2RanksResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_CalculateV2Ranks Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_CalculateV2Ranks> Response = MakeShared<FResponse_CalculateV2Ranks>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_CalculateV2Ranks::FRequest_CalculateV2Ranks()
@@ -361,19 +357,15 @@ void FRankAPI::OnCalculateV3RanksResponse(FHttpRequestPtr HttpRequest, FHttpResp
 		ResponseDelegate.BindSP(this, &FRankAPI::OnCalculateV3RanksResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_CalculateV3Ranks Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_CalculateV3Ranks> Response = MakeShared<FResponse_CalculateV3Ranks>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_CalculateV3Ranks::FRequest_CalculateV3Ranks()
@@ -643,19 +635,15 @@ void FRankAPI::OnGetAllPlayerUuidRanksResponse(FHttpRequestPtr HttpRequest, FHtt
 		ResponseDelegate.BindSP(this, &FRankAPI::OnGetAllPlayerUuidRanksResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_GetAllPlayerUuidRanks Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_GetAllPlayerUuidRanks> Response = MakeShared<FResponse_GetAllPlayerUuidRanks>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_GetAllPlayerUuidRanks::FRequest_GetAllPlayerUuidRanks()
@@ -919,19 +907,15 @@ void FRankAPI::OnGetAllPlayerUuidRanksSelfResponse(FHttpRequestPtr HttpRequest, 
 		ResponseDelegate.BindSP(this, &FRankAPI::OnGetAllPlayerUuidRanksSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_GetAllPlayerUuidRanksSelf Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_GetAllPlayerUuidRanksSelf> Response = MakeShared<FResponse_GetAllPlayerUuidRanksSelf>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_GetAllPlayerUuidRanksSelf::FRequest_GetAllPlayerUuidRanksSelf()
@@ -1164,19 +1148,15 @@ void FRankAPI::OnGetAllPlayerUuidRanksSelfV2Response(FHttpRequestPtr HttpRequest
 		ResponseDelegate.BindSP(this, &FRankAPI::OnGetAllPlayerUuidRanksSelfV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_GetAllPlayerUuidRanksSelfV2 Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_GetAllPlayerUuidRanksSelfV2> Response = MakeShared<FResponse_GetAllPlayerUuidRanksSelfV2>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_GetAllPlayerUuidRanksSelfV2::FRequest_GetAllPlayerUuidRanksSelfV2()
@@ -1409,19 +1389,15 @@ void FRankAPI::OnGetAllPlayerUuidRanksV2Response(FHttpRequestPtr HttpRequest, FH
 		ResponseDelegate.BindSP(this, &FRankAPI::OnGetAllPlayerUuidRanksV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_GetAllPlayerUuidRanksV2 Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_GetAllPlayerUuidRanksV2> Response = MakeShared<FResponse_GetAllPlayerUuidRanksV2>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_GetAllPlayerUuidRanksV2::FRequest_GetAllPlayerUuidRanksV2()
@@ -1685,19 +1661,15 @@ void FRankAPI::OnGetAllRankConfigV3Response(FHttpRequestPtr HttpRequest, FHttpRe
 		ResponseDelegate.BindSP(this, &FRankAPI::OnGetAllRankConfigV3Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_GetAllRankConfigV3 Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_GetAllRankConfigV3> Response = MakeShared<FResponse_GetAllRankConfigV3>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_GetAllRankConfigV3::FRequest_GetAllRankConfigV3()
@@ -1930,19 +1902,15 @@ void FRankAPI::OnGetPlayerUuidRankResponse(FHttpRequestPtr HttpRequest, FHttpRes
 		ResponseDelegate.BindSP(this, &FRankAPI::OnGetPlayerUuidRankResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_GetPlayerUuidRank Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_GetPlayerUuidRank> Response = MakeShared<FResponse_GetPlayerUuidRank>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_GetPlayerUuidRank::FRequest_GetPlayerUuidRank()
@@ -2207,19 +2175,15 @@ void FRankAPI::OnGetPlayerUuidRankSelfResponse(FHttpRequestPtr HttpRequest, FHtt
 		ResponseDelegate.BindSP(this, &FRankAPI::OnGetPlayerUuidRankSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_GetPlayerUuidRankSelf Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_GetPlayerUuidRankSelf> Response = MakeShared<FResponse_GetPlayerUuidRankSelf>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_GetPlayerUuidRankSelf::FRequest_GetPlayerUuidRankSelf()
@@ -2483,19 +2447,15 @@ void FRankAPI::OnGetPlayerUuidRankSelfV2Response(FHttpRequestPtr HttpRequest, FH
 		ResponseDelegate.BindSP(this, &FRankAPI::OnGetPlayerUuidRankSelfV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_GetPlayerUuidRankSelfV2 Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_GetPlayerUuidRankSelfV2> Response = MakeShared<FResponse_GetPlayerUuidRankSelfV2>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_GetPlayerUuidRankSelfV2::FRequest_GetPlayerUuidRankSelfV2()
@@ -2759,19 +2719,15 @@ void FRankAPI::OnGetPlayerUuidRankV2Response(FHttpRequestPtr HttpRequest, FHttpR
 		ResponseDelegate.BindSP(this, &FRankAPI::OnGetPlayerUuidRankV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_GetPlayerUuidRankV2 Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_GetPlayerUuidRankV2> Response = MakeShared<FResponse_GetPlayerUuidRankV2>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_GetPlayerUuidRankV2::FRequest_GetPlayerUuidRankV2()
@@ -3036,19 +2992,15 @@ void FRankAPI::OnGetRankConfigV3Response(FHttpRequestPtr HttpRequest, FHttpRespo
 		ResponseDelegate.BindSP(this, &FRankAPI::OnGetRankConfigV3Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_GetRankConfigV3 Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_GetRankConfigV3> Response = MakeShared<FResponse_GetRankConfigV3>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_GetRankConfigV3::FRequest_GetRankConfigV3()
@@ -3312,19 +3264,15 @@ void FRankAPI::OnUpdatePlayerUuidRankResponse(FHttpRequestPtr HttpRequest, FHttp
 		ResponseDelegate.BindSP(this, &FRankAPI::OnUpdatePlayerUuidRankResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_UpdatePlayerUuidRank Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_UpdatePlayerUuidRank> Response = MakeShared<FResponse_UpdatePlayerUuidRank>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_UpdatePlayerUuidRank::FRequest_UpdatePlayerUuidRank()
@@ -3600,19 +3548,15 @@ void FRankAPI::OnUpdatePlayerUuidRankSelfResponse(FHttpRequestPtr HttpRequest, F
 		ResponseDelegate.BindSP(this, &FRankAPI::OnUpdatePlayerUuidRankSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_UpdatePlayerUuidRankSelf Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_UpdatePlayerUuidRankSelf> Response = MakeShared<FResponse_UpdatePlayerUuidRankSelf>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_UpdatePlayerUuidRankSelf::FRequest_UpdatePlayerUuidRankSelf()
@@ -3887,19 +3831,15 @@ void FRankAPI::OnUpdatePlayerUuidRankSelfV2Response(FHttpRequestPtr HttpRequest,
 		ResponseDelegate.BindSP(this, &FRankAPI::OnUpdatePlayerUuidRankSelfV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_UpdatePlayerUuidRankSelfV2 Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_UpdatePlayerUuidRankSelfV2> Response = MakeShared<FResponse_UpdatePlayerUuidRankSelfV2>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_UpdatePlayerUuidRankSelfV2::FRequest_UpdatePlayerUuidRankSelfV2()
@@ -4174,19 +4114,15 @@ void FRankAPI::OnUpdatePlayerUuidRankV2Response(FHttpRequestPtr HttpRequest, FHt
 		ResponseDelegate.BindSP(this, &FRankAPI::OnUpdatePlayerUuidRankV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_UpdatePlayerUuidRankV2 Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_UpdatePlayerUuidRankV2> Response = MakeShared<FResponse_UpdatePlayerUuidRankV2>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_UpdatePlayerUuidRankV2::FRequest_UpdatePlayerUuidRankV2()
@@ -4462,19 +4398,15 @@ void FRankAPI::OnUpdateRankingsV1Response(FHttpRequestPtr HttpRequest, FHttpResp
 		ResponseDelegate.BindSP(this, &FRankAPI::OnUpdateRankingsV1Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	FResponse_UpdateRankingsV1 Response{ RequestMetadata };
-	const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-		OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-	}
-
-	if (!bWillRetryWithRefreshedAuth)
+	TSharedRef<FResponse_UpdateRankingsV1> Response = MakeShared<FResponse_UpdateRankingsV1>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-		Delegate.ExecuteIfBound(Response);
-	}
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
 FRequest_UpdateRankingsV1::FRequest_UpdateRankingsV1()
