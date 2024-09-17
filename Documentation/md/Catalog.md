@@ -211,6 +211,9 @@ Class used to help track and interact with the catalog to get Items, Vendors, an
 `public inline const TMap< FString, `[`FRHAPI_InventoryBucketUseRuleSet`](models/RHAPI_InventoryBucketUseRuleSet.md#structFRHAPI__InventoryBucketUseRuleSet)` > & `[`GetInventoryBucketUseRuleSets`](#classURH__CatalogSubsystem_1a2657824ade5d1b5c06292e83b62d15e5)`() const` | Gets the cached inventory bucket rule sets.
 `public inline const TMap< FGuid, `[`FRHAPI_PricePoint`](models/RHAPI_PricePoint.md#structFRHAPI__PricePoint)` > & `[`GetPricePoints`](#classURH__CatalogSubsystem_1a0d8b46a9bb4e03b550fb96919281fe0f)`() const` | Gets the cached price points.
 `public inline const TMap< int32, `[`FRHAPI_TimeFrame`](models/RHAPI_TimeFrame.md#structFRHAPI__TimeFrame)` > & `[`GetTimeFrames`](#classURH__CatalogSubsystem_1a7742813d09d119e22df4a4d71aab73cc)`() const` | Gets the cached time frames.
+`public inline virtual FString `[`GetDefaultCatalogFileExportPath`](#classURH__CatalogSubsystem_1a23932307af9e67376c78fc0452318e2d)`() const` | 
+`public void `[`ExportCatalogToFile`](#classURH__CatalogSubsystem_1ac3af3d8cf0c669fd7b0f0b24d6641575)`(const FString & FilePath,const FRH_GenericSuccessWithErrorBlock & Delegate) const` | Retrieve all catalog data and save it to a file.
+`public void `[`ImportCatalogFromFile`](#classURH__CatalogSubsystem_1ade8cc078f3c2a8a26737f4eca9b294e7)`(const FString & FilePath,const FRH_CatalogCallBlock & Delegate)` | Retrieve all catalog data from a file and load it into the catalog.
 `protected TArray< `[`FRH_VendorRequestState`](Catalog.md#structFRH__VendorRequestState)` > `[`VendorRequests`](#classURH__CatalogSubsystem_1a47050a4e6bd28f63daf5efa2879507cc) | Array of active vendor requests that are in flight and not responded ot yet.
 `protected TMap< int32, TWeakPtr< `[`FRH_AsyncTaskHelper`](Common.md#classFRH__AsyncTaskHelper)` > > `[`InFlightVendorRequests`](#classURH__CatalogSubsystem_1a38d97ecb70a4b341ec475ae2fabd6d15) | Map of all vendor requests that are in flight
 `protected TMap< int32, `[`FRHAPI_XpTable`](models/RHAPI_XpTable.md#structFRHAPI__XpTable)` > `[`XpTables`](#classURH__CatalogSubsystem_1a659700dd6e8da2c852227489dce93c2a) | Xp Table Id to Xp Table Map.
@@ -436,6 +439,26 @@ Gets the cached price points.
 #### `public inline const TMap< int32, `[`FRHAPI_TimeFrame`](models/RHAPI_TimeFrame.md#structFRHAPI__TimeFrame)` > & `[`GetTimeFrames`](#classURH__CatalogSubsystem_1a7742813d09d119e22df4a4d71aab73cc)`() const` <a id="classURH__CatalogSubsystem_1a7742813d09d119e22df4a4d71aab73cc"></a>
 
 Gets the cached time frames.
+
+#### `public inline virtual FString `[`GetDefaultCatalogFileExportPath`](#classURH__CatalogSubsystem_1a23932307af9e67376c78fc0452318e2d)`() const` <a id="classURH__CatalogSubsystem_1a23932307af9e67376c78fc0452318e2d"></a>
+
+#### `public void `[`ExportCatalogToFile`](#classURH__CatalogSubsystem_1ac3af3d8cf0c669fd7b0f0b24d6641575)`(const FString & FilePath,const FRH_GenericSuccessWithErrorBlock & Delegate) const` <a id="classURH__CatalogSubsystem_1ac3af3d8cf0c669fd7b0f0b24d6641575"></a>
+
+Retrieve all catalog data and save it to a file.
+
+#### Parameters
+* `FilePath` The file path to save the catalog data to. 
+
+* `Delegate` Callback when the API call is complete and the file is written.
+
+#### `public void `[`ImportCatalogFromFile`](#classURH__CatalogSubsystem_1ade8cc078f3c2a8a26737f4eca9b294e7)`(const FString & FilePath,const FRH_CatalogCallBlock & Delegate)` <a id="classURH__CatalogSubsystem_1ade8cc078f3c2a8a26737f4eca9b294e7"></a>
+
+Retrieve all catalog data from a file and load it into the catalog.
+
+#### Parameters
+* `FilePath` The file path to load the catalog data from. 
+
+* `Delegate` Callback when the API call is complete and the file is read.
 
 #### `protected TArray< `[`FRH_VendorRequestState`](Catalog.md#structFRH__VendorRequestState)` > `[`VendorRequests`](#classURH__CatalogSubsystem_1a47050a4e6bd28f63daf5efa2879507cc) <a id="classURH__CatalogSubsystem_1a47050a4e6bd28f63daf5efa2879507cc"></a>
 
