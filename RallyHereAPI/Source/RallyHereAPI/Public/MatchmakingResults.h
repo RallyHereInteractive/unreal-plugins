@@ -9,6 +9,7 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
+#include "MatchMakingProfileV2.h"
 #include "MatchmakingResults.generated.h"
 
 /** @defgroup RHAPI_MatchmakingResults RallyHere API Model MatchmakingResults
@@ -147,6 +148,18 @@ struct RALLYHEREAPI_API FRHAPI_MatchmakingResults : public FRHAPI_Model
 	bool IsTicketsAssignedDefaultValue() const { return TicketsAssigned_IsSet && TicketsAssigned_Optional == false; }
 	/** @brief Sets the value of TicketsAssigned_Optional to its default and also sets TicketsAssigned_IsSet to true */
 	void SetTicketsAssignedToDefault() { SetTicketsAssigned(false); }
+
+	/** @brief The profile used to create this match */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FRHAPI_MatchMakingProfileV2 Profile{  };
+	/** @brief Gets the value of Profile */
+	FRHAPI_MatchMakingProfileV2& GetProfile() { return Profile; }
+	/** @brief Gets the value of Profile */
+	const FRHAPI_MatchMakingProfileV2& GetProfile() const { return Profile; }
+	/** @brief Sets the value of Profile */
+	void SetProfile(const FRHAPI_MatchMakingProfileV2& NewValue) { Profile = NewValue;   }
+	/** @brief Sets the value of Profile using move semantics */
+	void SetProfile(FRHAPI_MatchMakingProfileV2&& NewValue) { Profile = NewValue;   }
 };
 
 /** @} */

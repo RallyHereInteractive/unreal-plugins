@@ -56,6 +56,12 @@ struct RALLYHEREAPI_API FRequest_DeleteAllPlayerIdSettingsForSettingType : publi
 	TSharedPtr<FAuthContext> AuthContext;
 	int32 PlayerId = 0;
 	FString SettingTypeId;
+	/* Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information */
+	TOptional<FString> IfMatch;
+	/* Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.    See https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information */
+	TOptional<FString> IfNoneMatch;
+	/* Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information */
+	TOptional<FString> IfUnmodifiedSince;
 };
 
 /** The response type for FRequest_DeleteAllPlayerIdSettingsForSettingType */
@@ -109,6 +115,10 @@ struct RALLYHEREAPI_API FResponse_DeleteAllPlayerIdSettingsForSettingType : publ
 	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 412
+	The resource does not meet the provided preconditions.
+	*/
 
 	/* Response 422
 	Validation Error
@@ -177,6 +187,12 @@ struct RALLYHEREAPI_API FRequest_DeleteAllPlayerUuidSettingsForSettingType : pub
 	FGuid PlayerUuid;
 	/* Setting Type to delete settings for.  Must be one of the known setting types */
 	FString SettingTypeId;
+	/* Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information */
+	TOptional<FString> IfMatch;
+	/* Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.    See https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information */
+	TOptional<FString> IfNoneMatch;
+	/* Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information */
+	TOptional<FString> IfUnmodifiedSince;
 };
 
 /** The response type for FRequest_DeleteAllPlayerUuidSettingsForSettingType */
@@ -230,6 +246,10 @@ struct RALLYHEREAPI_API FResponse_DeleteAllPlayerUuidSettingsForSettingType : pu
 	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 412
+	The resource does not meet the provided preconditions.
+	*/
 
 	/* Response 422
 	Validation Error
@@ -296,6 +316,12 @@ struct RALLYHEREAPI_API FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf :
 	TSharedPtr<FAuthContext> AuthContext;
 	/* Setting Type to delete settings for.  Must be one of the known setting types */
 	FString SettingTypeId;
+	/* Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information */
+	TOptional<FString> IfMatch;
+	/* Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.    See https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information */
+	TOptional<FString> IfNoneMatch;
+	/* Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information */
+	TOptional<FString> IfUnmodifiedSince;
 };
 
 /** The response type for FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf */
@@ -349,6 +375,10 @@ struct RALLYHEREAPI_API FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf 
 	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 412
+	The resource does not meet the provided preconditions.
+	*/
 
 	/* Response 422
 	Validation Error
@@ -419,6 +449,12 @@ struct RALLYHEREAPI_API FRequest_DeleteSinglePlayerIdSetting : public FRequest
 	FString SettingTypeId;
 	/* Setting Key to delete setting for */
 	FString Key;
+	/* Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information */
+	TOptional<FString> IfMatch;
+	/* Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.    See https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information */
+	TOptional<FString> IfNoneMatch;
+	/* Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information */
+	TOptional<FString> IfUnmodifiedSince;
 };
 
 /** The response type for FRequest_DeleteSinglePlayerIdSetting */
@@ -472,6 +508,10 @@ struct RALLYHEREAPI_API FResponse_DeleteSinglePlayerIdSetting : public FResponse
 	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 412
+	The resource does not meet the provided preconditions.
+	*/
 
 	/* Response 422
 	Validation Error
@@ -542,6 +582,12 @@ struct RALLYHEREAPI_API FRequest_DeleteSinglePlayerUuidSetting : public FRequest
 	FString SettingTypeId;
 	/* Setting Key to delete setting for */
 	FString Key;
+	/* Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information */
+	TOptional<FString> IfMatch;
+	/* Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.    See https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information */
+	TOptional<FString> IfNoneMatch;
+	/* Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information */
+	TOptional<FString> IfUnmodifiedSince;
 };
 
 /** The response type for FRequest_DeleteSinglePlayerUuidSetting */
@@ -595,6 +641,10 @@ struct RALLYHEREAPI_API FResponse_DeleteSinglePlayerUuidSetting : public FRespon
 	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 412
+	The resource does not meet the provided preconditions.
+	*/
 
 	/* Response 422
 	Validation Error
@@ -663,6 +713,12 @@ struct RALLYHEREAPI_API FRequest_DeleteSinglePlayerUuidSettingSelf : public FReq
 	FString SettingTypeId;
 	/* Setting Key to delete setting for */
 	FString Key;
+	/* Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information */
+	TOptional<FString> IfMatch;
+	/* Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.    See https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information */
+	TOptional<FString> IfNoneMatch;
+	/* Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information */
+	TOptional<FString> IfUnmodifiedSince;
 };
 
 /** The response type for FRequest_DeleteSinglePlayerUuidSettingSelf */
@@ -716,6 +772,10 @@ struct RALLYHEREAPI_API FResponse_DeleteSinglePlayerUuidSettingSelf : public FRe
 	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 412
+	The resource does not meet the provided preconditions.
+	*/
 
 	/* Response 422
 	Validation Error
@@ -786,6 +846,14 @@ struct RALLYHEREAPI_API FRequest_GetAllPlayerIdSettingsForSettingType : public F
 	FString SettingTypeId;
 	/* Setting Key to get settings for. If not specified, all settings for the setting type will be returned */
 	TOptional<TArray<FString>> Key;
+	/* Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information */
+	TOptional<FString> IfMatch;
+	/* Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.    See https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information */
+	TOptional<FString> IfNoneMatch;
+	/* Precondition check if the resource's Last-Modified date is newer than the provided date.  Ignored if the If-None-Match header is provided.  Only valid for GET/HEAD endpoints.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-modified-since for more information */
+	TOptional<FString> IfModifiedSince;
+	/* Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information */
+	TOptional<FString> IfUnmodifiedSince;
 };
 
 /** The response type for FRequest_GetAllPlayerIdSettingsForSettingType */
@@ -807,6 +875,13 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerIdSettingsForSettingType : public 
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	TMap<FString, FRHAPI_SettingData> Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FDateTime> LastModified;
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -818,12 +893,42 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerIdSettingsForSettingType : public 
 	const TMap<FString, FRHAPI_SettingData>* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<TMap<FString, FRHAPI_SettingData>>(); }
 	/** @brief Attempt to retrieve the content in the default response */
 	TOptional<TMap<FString, FRHAPI_SettingData>> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<TMap<FString, FRHAPI_SettingData>>(); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(FString& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_ETag() const { return TryGetHeaderAsPointer(TEXT("ETag")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_ETag() const { return TryGetHeaderAsOptional(TEXT("ETag")); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_LastModified(FString& OutValue) const { return TryGetHeader(TEXT("Last-Modified"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_LastModified(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("Last-Modified"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_LastModified() const { return TryGetHeaderAsPointer(TEXT("Last-Modified")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_LastModified() const { return TryGetHeaderAsOptional(TEXT("Last-Modified")); }
 
 	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
 	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	TOptional<FDateTime> GetHeader200_LastModified() const;
+
+	/* Response 304
+	The resource has not been modified from the provided preconditions.
+	*/
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader304_ETag() const;
+	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	TOptional<FDateTime> GetHeader304_LastModified() const;
 
 	/* Response 400
 	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
@@ -839,6 +944,10 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerIdSettingsForSettingType : public 
 	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found         
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 412
+	The resource does not meet the provided preconditions.
+	*/
 
 	/* Response 422
 	Validation Error
@@ -909,6 +1018,14 @@ struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidSettingsForSettingType : public
 	FString SettingTypeId;
 	/* Setting Key to get settings for. If not specified, all settings for the setting type will be returned */
 	TOptional<TArray<FString>> Key;
+	/* Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information */
+	TOptional<FString> IfMatch;
+	/* Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.    See https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information */
+	TOptional<FString> IfNoneMatch;
+	/* Precondition check if the resource's Last-Modified date is newer than the provided date.  Ignored if the If-None-Match header is provided.  Only valid for GET/HEAD endpoints.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-modified-since for more information */
+	TOptional<FString> IfModifiedSince;
+	/* Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information */
+	TOptional<FString> IfUnmodifiedSince;
 };
 
 /** The response type for FRequest_GetAllPlayerUuidSettingsForSettingType */
@@ -930,6 +1047,13 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidSettingsForSettingType : publi
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	TMap<FString, FRHAPI_SettingData> Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FDateTime> LastModified;
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -941,12 +1065,42 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidSettingsForSettingType : publi
 	const TMap<FString, FRHAPI_SettingData>* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<TMap<FString, FRHAPI_SettingData>>(); }
 	/** @brief Attempt to retrieve the content in the default response */
 	TOptional<TMap<FString, FRHAPI_SettingData>> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<TMap<FString, FRHAPI_SettingData>>(); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(FString& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_ETag() const { return TryGetHeaderAsPointer(TEXT("ETag")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_ETag() const { return TryGetHeaderAsOptional(TEXT("ETag")); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_LastModified(FString& OutValue) const { return TryGetHeader(TEXT("Last-Modified"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_LastModified(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("Last-Modified"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_LastModified() const { return TryGetHeaderAsPointer(TEXT("Last-Modified")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_LastModified() const { return TryGetHeaderAsOptional(TEXT("Last-Modified")); }
 
 	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
 	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	TOptional<FDateTime> GetHeader200_LastModified() const;
+
+	/* Response 304
+	The resource has not been modified from the provided preconditions.
+	*/
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader304_ETag() const;
+	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	TOptional<FDateTime> GetHeader304_LastModified() const;
 
 	/* Response 400
 	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
@@ -962,6 +1116,10 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidSettingsForSettingType : publi
 	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found         
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 412
+	The resource does not meet the provided preconditions.
+	*/
 
 	/* Response 422
 	Validation Error
@@ -1030,6 +1188,14 @@ struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf : pu
 	FString SettingTypeId;
 	/* Setting Key to get settings for. If not specified, all settings for the setting type will be returned */
 	TOptional<TArray<FString>> Key;
+	/* Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information */
+	TOptional<FString> IfMatch;
+	/* Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.    See https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information */
+	TOptional<FString> IfNoneMatch;
+	/* Precondition check if the resource's Last-Modified date is newer than the provided date.  Ignored if the If-None-Match header is provided.  Only valid for GET/HEAD endpoints.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-modified-since for more information */
+	TOptional<FString> IfModifiedSince;
+	/* Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information */
+	TOptional<FString> IfUnmodifiedSince;
 };
 
 /** The response type for FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf */
@@ -1051,6 +1217,13 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf : p
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	TMap<FString, FRHAPI_SettingData> Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FDateTime> LastModified;
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -1062,12 +1235,42 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf : p
 	const TMap<FString, FRHAPI_SettingData>* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<TMap<FString, FRHAPI_SettingData>>(); }
 	/** @brief Attempt to retrieve the content in the default response */
 	TOptional<TMap<FString, FRHAPI_SettingData>> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<TMap<FString, FRHAPI_SettingData>>(); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(FString& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_ETag() const { return TryGetHeaderAsPointer(TEXT("ETag")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_ETag() const { return TryGetHeaderAsOptional(TEXT("ETag")); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_LastModified(FString& OutValue) const { return TryGetHeader(TEXT("Last-Modified"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_LastModified(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("Last-Modified"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_LastModified() const { return TryGetHeaderAsPointer(TEXT("Last-Modified")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_LastModified() const { return TryGetHeaderAsOptional(TEXT("Last-Modified")); }
 
 	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
 	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	TOptional<FDateTime> GetHeader200_LastModified() const;
+
+	/* Response 304
+	The resource has not been modified from the provided preconditions.
+	*/
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader304_ETag() const;
+	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	TOptional<FDateTime> GetHeader304_LastModified() const;
 
 	/* Response 400
 	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
@@ -1083,6 +1286,10 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf : p
 	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found         
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 412
+	The resource does not meet the provided preconditions.
+	*/
 
 	/* Response 422
 	Validation Error
@@ -1145,12 +1352,20 @@ struct RALLYHEREAPI_API FRequest_GetConfigForAllSettingTypes : public FRequest
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
+	/* Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information */
+	TOptional<FString> IfMatch;
+	/* Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.    See https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information */
+	TOptional<FString> IfNoneMatch;
+	/* Precondition check if the resource's Last-Modified date is newer than the provided date.  Ignored if the If-None-Match header is provided.  Only valid for GET/HEAD endpoints.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-modified-since for more information */
+	TOptional<FString> IfModifiedSince;
+	/* Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information */
+	TOptional<FString> IfUnmodifiedSince;
 };
 
 /** The response type for FRequest_GetConfigForAllSettingTypes */
-struct RALLYHEREAPI_API FResponse_GetConfigForAllSettingTypes : public FResponseAccessorTemplate<TMap<FString, FRHAPI_SettingType>, FRHAPI_HzApiErrorModel>
+struct RALLYHEREAPI_API FResponse_GetConfigForAllSettingTypes : public FResponseAccessorTemplate<TMap<FString, FRHAPI_SettingType>, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<TMap<FString, FRHAPI_SettingType>, FRHAPI_HzApiErrorModel> Super;
+	typedef FResponseAccessorTemplate<TMap<FString, FRHAPI_SettingType>, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_GetConfigForAllSettingTypes(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetConfigForAllSettingTypes() = default;
@@ -1166,6 +1381,13 @@ struct RALLYHEREAPI_API FResponse_GetConfigForAllSettingTypes : public FResponse
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	TMap<FString, FRHAPI_SettingType> Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FDateTime> LastModified;
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -1177,17 +1399,56 @@ struct RALLYHEREAPI_API FResponse_GetConfigForAllSettingTypes : public FResponse
 	const TMap<FString, FRHAPI_SettingType>* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<TMap<FString, FRHAPI_SettingType>>(); }
 	/** @brief Attempt to retrieve the content in the default response */
 	TOptional<TMap<FString, FRHAPI_SettingType>> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<TMap<FString, FRHAPI_SettingType>>(); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(FString& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_ETag() const { return TryGetHeaderAsPointer(TEXT("ETag")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_ETag() const { return TryGetHeaderAsOptional(TEXT("ETag")); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_LastModified(FString& OutValue) const { return TryGetHeader(TEXT("Last-Modified"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_LastModified(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("Last-Modified"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_LastModified() const { return TryGetHeaderAsPointer(TEXT("Last-Modified")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_LastModified() const { return TryGetHeaderAsOptional(TEXT("Last-Modified")); }
 
 	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
 	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingType>& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	TOptional<FDateTime> GetHeader200_LastModified() const;
+
+	/* Response 304
+	The resource has not been modified from the provided preconditions.
+	*/
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader304_ETag() const;
+	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	TOptional<FDateTime> GetHeader304_LastModified() const;
 
 	/* Response 403
 	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 412
+	The resource does not meet the provided preconditions.
+	*/
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
@@ -1246,6 +1507,14 @@ struct RALLYHEREAPI_API FRequest_GetConfigForSingleSettingTypeAllVersions : publ
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FString SettingTypeId;
+	/* Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information */
+	TOptional<FString> IfMatch;
+	/* Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.    See https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information */
+	TOptional<FString> IfNoneMatch;
+	/* Precondition check if the resource's Last-Modified date is newer than the provided date.  Ignored if the If-None-Match header is provided.  Only valid for GET/HEAD endpoints.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-modified-since for more information */
+	TOptional<FString> IfModifiedSince;
+	/* Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information */
+	TOptional<FString> IfUnmodifiedSince;
 };
 
 /** The response type for FRequest_GetConfigForSingleSettingTypeAllVersions */
@@ -1267,6 +1536,13 @@ struct RALLYHEREAPI_API FResponse_GetConfigForSingleSettingTypeAllVersions : pub
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	TMap<FString, FRHAPI_SettingTypeVersion> Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FDateTime> LastModified;
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -1278,12 +1554,42 @@ struct RALLYHEREAPI_API FResponse_GetConfigForSingleSettingTypeAllVersions : pub
 	const TMap<FString, FRHAPI_SettingTypeVersion>* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<TMap<FString, FRHAPI_SettingTypeVersion>>(); }
 	/** @brief Attempt to retrieve the content in the default response */
 	TOptional<TMap<FString, FRHAPI_SettingTypeVersion>> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<TMap<FString, FRHAPI_SettingTypeVersion>>(); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(FString& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_ETag() const { return TryGetHeaderAsPointer(TEXT("ETag")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_ETag() const { return TryGetHeaderAsOptional(TEXT("ETag")); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_LastModified(FString& OutValue) const { return TryGetHeader(TEXT("Last-Modified"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_LastModified(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("Last-Modified"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_LastModified() const { return TryGetHeaderAsPointer(TEXT("Last-Modified")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_LastModified() const { return TryGetHeaderAsOptional(TEXT("Last-Modified")); }
 
 	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
 	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingTypeVersion>& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	TOptional<FDateTime> GetHeader200_LastModified() const;
+
+	/* Response 304
+	The resource has not been modified from the provided preconditions.
+	*/
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader304_ETag() const;
+	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	TOptional<FDateTime> GetHeader304_LastModified() const;
 
 	/* Response 403
 	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
@@ -1291,9 +1597,13 @@ struct RALLYHEREAPI_API FResponse_GetConfigForSingleSettingTypeAllVersions : pub
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 404
-	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found         
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found 
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 412
+	The resource does not meet the provided preconditions.
+	*/
 
 	/* Response 422
 	Validation Error
@@ -1358,6 +1668,14 @@ struct RALLYHEREAPI_API FRequest_GetConfigForSingleSettingTypeAndVersion : publi
 	TSharedPtr<FAuthContext> AuthContext;
 	FString SettingTypeId;
 	int32 SettingVersionId = 0;
+	/* Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information */
+	TOptional<FString> IfMatch;
+	/* Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.    See https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information */
+	TOptional<FString> IfNoneMatch;
+	/* Precondition check if the resource's Last-Modified date is newer than the provided date.  Ignored if the If-None-Match header is provided.  Only valid for GET/HEAD endpoints.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-modified-since for more information */
+	TOptional<FString> IfModifiedSince;
+	/* Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information */
+	TOptional<FString> IfUnmodifiedSince;
 };
 
 /** The response type for FRequest_GetConfigForSingleSettingTypeAndVersion */
@@ -1379,6 +1697,13 @@ struct RALLYHEREAPI_API FResponse_GetConfigForSingleSettingTypeAndVersion : publ
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_SettingTypeVersion Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FDateTime> LastModified;
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -1390,12 +1715,42 @@ struct RALLYHEREAPI_API FResponse_GetConfigForSingleSettingTypeAndVersion : publ
 	const FRHAPI_SettingTypeVersion* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_SettingTypeVersion>(); }
 	/** @brief Attempt to retrieve the content in the default response */
 	TOptional<FRHAPI_SettingTypeVersion> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_SettingTypeVersion>(); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(FString& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_ETag() const { return TryGetHeaderAsPointer(TEXT("ETag")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_ETag() const { return TryGetHeaderAsOptional(TEXT("ETag")); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_LastModified(FString& OutValue) const { return TryGetHeader(TEXT("Last-Modified"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_LastModified(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("Last-Modified"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_LastModified() const { return TryGetHeaderAsPointer(TEXT("Last-Modified")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_LastModified() const { return TryGetHeaderAsOptional(TEXT("Last-Modified")); }
 
 	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
 	bool TryGetContentFor200(FRHAPI_SettingTypeVersion& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	TOptional<FDateTime> GetHeader200_LastModified() const;
+
+	/* Response 304
+	The resource has not been modified from the provided preconditions.
+	*/
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader304_ETag() const;
+	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	TOptional<FDateTime> GetHeader304_LastModified() const;
 
 	/* Response 403
 	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
@@ -1403,9 +1758,13 @@ struct RALLYHEREAPI_API FResponse_GetConfigForSingleSettingTypeAndVersion : publ
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 404
-	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `setting_version_id_not_found` - The setting Version was not found for that type         
+	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `setting_version_id_not_found` - The setting Version was not found for that type 
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 412
+	The resource does not meet the provided preconditions.
+	*/
 
 	/* Response 422
 	Validation Error
@@ -1476,6 +1835,14 @@ struct RALLYHEREAPI_API FRequest_GetSinglePlayerIdSetting : public FRequest
 	FString SettingTypeId;
 	/* Setting Key to get settings for */
 	FString Key;
+	/* Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information */
+	TOptional<FString> IfMatch;
+	/* Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.    See https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information */
+	TOptional<FString> IfNoneMatch;
+	/* Precondition check if the resource's Last-Modified date is newer than the provided date.  Ignored if the If-None-Match header is provided.  Only valid for GET/HEAD endpoints.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-modified-since for more information */
+	TOptional<FString> IfModifiedSince;
+	/* Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information */
+	TOptional<FString> IfUnmodifiedSince;
 };
 
 /** The response type for FRequest_GetSinglePlayerIdSetting */
@@ -1497,6 +1864,13 @@ struct RALLYHEREAPI_API FResponse_GetSinglePlayerIdSetting : public FResponseAcc
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_SettingData Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FDateTime> LastModified;
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -1508,12 +1882,42 @@ struct RALLYHEREAPI_API FResponse_GetSinglePlayerIdSetting : public FResponseAcc
 	const FRHAPI_SettingData* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_SettingData>(); }
 	/** @brief Attempt to retrieve the content in the default response */
 	TOptional<FRHAPI_SettingData> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_SettingData>(); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(FString& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_ETag() const { return TryGetHeaderAsPointer(TEXT("ETag")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_ETag() const { return TryGetHeaderAsOptional(TEXT("ETag")); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_LastModified(FString& OutValue) const { return TryGetHeader(TEXT("Last-Modified"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_LastModified(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("Last-Modified"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_LastModified() const { return TryGetHeaderAsPointer(TEXT("Last-Modified")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_LastModified() const { return TryGetHeaderAsOptional(TEXT("Last-Modified")); }
 
 	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
 	bool TryGetContentFor200(FRHAPI_SettingData& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	TOptional<FDateTime> GetHeader200_LastModified() const;
+
+	/* Response 304
+	The resource has not been modified from the provided preconditions.
+	*/
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader304_ETag() const;
+	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	TOptional<FDateTime> GetHeader304_LastModified() const;
 
 	/* Response 400
 	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
@@ -1529,6 +1933,10 @@ struct RALLYHEREAPI_API FResponse_GetSinglePlayerIdSetting : public FResponseAcc
 	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `not_found` - The setting key was not found         
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 412
+	The resource does not meet the provided preconditions.
+	*/
 
 	/* Response 422
 	Validation Error
@@ -1599,6 +2007,14 @@ struct RALLYHEREAPI_API FRequest_GetSinglePlayerUuidSetting : public FRequest
 	FString SettingTypeId;
 	/* Setting Key to get settings for */
 	FString Key;
+	/* Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information */
+	TOptional<FString> IfMatch;
+	/* Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.    See https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information */
+	TOptional<FString> IfNoneMatch;
+	/* Precondition check if the resource's Last-Modified date is newer than the provided date.  Ignored if the If-None-Match header is provided.  Only valid for GET/HEAD endpoints.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-modified-since for more information */
+	TOptional<FString> IfModifiedSince;
+	/* Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information */
+	TOptional<FString> IfUnmodifiedSince;
 };
 
 /** The response type for FRequest_GetSinglePlayerUuidSetting */
@@ -1620,6 +2036,13 @@ struct RALLYHEREAPI_API FResponse_GetSinglePlayerUuidSetting : public FResponseA
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_SettingData Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FDateTime> LastModified;
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -1631,12 +2054,42 @@ struct RALLYHEREAPI_API FResponse_GetSinglePlayerUuidSetting : public FResponseA
 	const FRHAPI_SettingData* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_SettingData>(); }
 	/** @brief Attempt to retrieve the content in the default response */
 	TOptional<FRHAPI_SettingData> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_SettingData>(); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(FString& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_ETag() const { return TryGetHeaderAsPointer(TEXT("ETag")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_ETag() const { return TryGetHeaderAsOptional(TEXT("ETag")); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_LastModified(FString& OutValue) const { return TryGetHeader(TEXT("Last-Modified"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_LastModified(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("Last-Modified"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_LastModified() const { return TryGetHeaderAsPointer(TEXT("Last-Modified")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_LastModified() const { return TryGetHeaderAsOptional(TEXT("Last-Modified")); }
 
 	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
 	bool TryGetContentFor200(FRHAPI_SettingData& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	TOptional<FDateTime> GetHeader200_LastModified() const;
+
+	/* Response 304
+	The resource has not been modified from the provided preconditions.
+	*/
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader304_ETag() const;
+	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	TOptional<FDateTime> GetHeader304_LastModified() const;
 
 	/* Response 400
 	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
@@ -1652,6 +2105,10 @@ struct RALLYHEREAPI_API FResponse_GetSinglePlayerUuidSetting : public FResponseA
 	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `not_found` - The setting key was not found         
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 412
+	The resource does not meet the provided preconditions.
+	*/
 
 	/* Response 422
 	Validation Error
@@ -1720,6 +2177,14 @@ struct RALLYHEREAPI_API FRequest_GetSinglePlayerUuidSettingSelf : public FReques
 	FString SettingTypeId;
 	/* Setting Key to get settings for */
 	FString Key;
+	/* Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information */
+	TOptional<FString> IfMatch;
+	/* Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.    See https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information */
+	TOptional<FString> IfNoneMatch;
+	/* Precondition check if the resource's Last-Modified date is newer than the provided date.  Ignored if the If-None-Match header is provided.  Only valid for GET/HEAD endpoints.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-modified-since for more information */
+	TOptional<FString> IfModifiedSince;
+	/* Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information */
+	TOptional<FString> IfUnmodifiedSince;
 };
 
 /** The response type for FRequest_GetSinglePlayerUuidSettingSelf */
@@ -1741,6 +2206,13 @@ struct RALLYHEREAPI_API FResponse_GetSinglePlayerUuidSettingSelf : public FRespo
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_SettingData Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FDateTime> LastModified;
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -1752,12 +2224,42 @@ struct RALLYHEREAPI_API FResponse_GetSinglePlayerUuidSettingSelf : public FRespo
 	const FRHAPI_SettingData* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_SettingData>(); }
 	/** @brief Attempt to retrieve the content in the default response */
 	TOptional<FRHAPI_SettingData> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_SettingData>(); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(FString& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_ETag() const { return TryGetHeaderAsPointer(TEXT("ETag")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_ETag() const { return TryGetHeaderAsOptional(TEXT("ETag")); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_LastModified(FString& OutValue) const { return TryGetHeader(TEXT("Last-Modified"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_LastModified(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("Last-Modified"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_LastModified() const { return TryGetHeaderAsPointer(TEXT("Last-Modified")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_LastModified() const { return TryGetHeaderAsOptional(TEXT("Last-Modified")); }
 
 	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
 	bool TryGetContentFor200(FRHAPI_SettingData& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	TOptional<FDateTime> GetHeader200_LastModified() const;
+
+	/* Response 304
+	The resource has not been modified from the provided preconditions.
+	*/
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader304_ETag() const;
+	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	TOptional<FDateTime> GetHeader304_LastModified() const;
 
 	/* Response 400
 	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
@@ -1773,6 +2275,10 @@ struct RALLYHEREAPI_API FResponse_GetSinglePlayerUuidSettingSelf : public FRespo
 	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `not_found` - The setting key was not found         
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 412
+	The resource does not meet the provided preconditions.
+	*/
 
 	/* Response 422
 	Validation Error
@@ -1851,6 +2357,12 @@ struct RALLYHEREAPI_API FRequest_SetSinglePlayerIdSetting : public FRequest
 	/* Setting Key to update setting for.  Must conform to the setting type key format */
 	FString Key;
 	FRHAPI_SetSinglePlayerSettingRequest SetSinglePlayerSettingRequest;
+	/* Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information */
+	TOptional<FString> IfMatch;
+	/* Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.    See https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information */
+	TOptional<FString> IfNoneMatch;
+	/* Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information */
+	TOptional<FString> IfUnmodifiedSince;
 };
 
 /** The response type for FRequest_SetSinglePlayerIdSetting */
@@ -1872,6 +2384,13 @@ struct RALLYHEREAPI_API FResponse_SetSinglePlayerIdSetting : public FResponseAcc
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	TMap<FString, FRHAPI_SettingData> Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FDateTime> LastModified;
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -1883,37 +2402,56 @@ struct RALLYHEREAPI_API FResponse_SetSinglePlayerIdSetting : public FResponseAcc
 	const TMap<FString, FRHAPI_SettingData>* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<TMap<FString, FRHAPI_SettingData>>(); }
 	/** @brief Attempt to retrieve the content in the default response */
 	TOptional<TMap<FString, FRHAPI_SettingData>> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<TMap<FString, FRHAPI_SettingData>>(); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(FString& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_ETag() const { return TryGetHeaderAsPointer(TEXT("ETag")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_ETag() const { return TryGetHeaderAsOptional(TEXT("ETag")); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_LastModified(FString& OutValue) const { return TryGetHeader(TEXT("Last-Modified"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_LastModified(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("Last-Modified"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_LastModified() const { return TryGetHeaderAsPointer(TEXT("Last-Modified")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_LastModified() const { return TryGetHeaderAsOptional(TEXT("Last-Modified")); }
 
 	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
 	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	TOptional<FDateTime> GetHeader200_LastModified() const;
 
-	/* Response 400
-	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator - `setting_version_invalid` - Setting Version is not valid for the provided type - `update_not_enabled` - Setting Type Version has updates disabled - `setting_key_invalid` - Setting Key does not meet requirements for that type/version - `setting_value_invalid` - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details 
+	/* Response 304
+	The resource has not been modified from the provided preconditions.
 	*/
-	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader304_ETag() const;
+	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	TOptional<FDateTime> GetHeader304_LastModified() const;
 
 	/* Response 403
 	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-	/* Response 404
-	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist - This will only occur for legacy setting types.         
+	/* Response 412
+	The resource does not meet the provided preconditions.
 	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 422
 	Validation Error
 	*/
 	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-	/* Response 500
-	 Error Codes: - `setting_type_version_schema_invalid` - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.         
-	*/
-	bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
 
 };
 
@@ -1987,6 +2525,12 @@ struct RALLYHEREAPI_API FRequest_SetSinglePlayerUuidSetting : public FRequest
 	/* Setting Key to update setting for.  Must conform to the setting type key format */
 	FString Key;
 	FRHAPI_SetSinglePlayerSettingRequest SetSinglePlayerSettingRequest;
+	/* Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information */
+	TOptional<FString> IfMatch;
+	/* Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.    See https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information */
+	TOptional<FString> IfNoneMatch;
+	/* Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information */
+	TOptional<FString> IfUnmodifiedSince;
 };
 
 /** The response type for FRequest_SetSinglePlayerUuidSetting */
@@ -2008,6 +2552,13 @@ struct RALLYHEREAPI_API FResponse_SetSinglePlayerUuidSetting : public FResponseA
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	TMap<FString, FRHAPI_SettingData> Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FDateTime> LastModified;
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -2019,37 +2570,56 @@ struct RALLYHEREAPI_API FResponse_SetSinglePlayerUuidSetting : public FResponseA
 	const TMap<FString, FRHAPI_SettingData>* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<TMap<FString, FRHAPI_SettingData>>(); }
 	/** @brief Attempt to retrieve the content in the default response */
 	TOptional<TMap<FString, FRHAPI_SettingData>> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<TMap<FString, FRHAPI_SettingData>>(); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(FString& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_ETag() const { return TryGetHeaderAsPointer(TEXT("ETag")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_ETag() const { return TryGetHeaderAsOptional(TEXT("ETag")); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_LastModified(FString& OutValue) const { return TryGetHeader(TEXT("Last-Modified"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_LastModified(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("Last-Modified"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_LastModified() const { return TryGetHeaderAsPointer(TEXT("Last-Modified")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_LastModified() const { return TryGetHeaderAsOptional(TEXT("Last-Modified")); }
 
 	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
 	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	TOptional<FDateTime> GetHeader200_LastModified() const;
 
-	/* Response 400
-	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator - `setting_version_invalid` - Setting Version is not valid for the provided type - `update_not_enabled` - Setting Type Version has updates disabled - `setting_key_invalid` - Setting Key does not meet requirements for that type/version - `setting_value_invalid` - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details 
+	/* Response 304
+	The resource has not been modified from the provided preconditions.
 	*/
-	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader304_ETag() const;
+	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	TOptional<FDateTime> GetHeader304_LastModified() const;
 
 	/* Response 403
 	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-	/* Response 404
-	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist - This will only occur for legacy setting types.         
+	/* Response 412
+	The resource does not meet the provided preconditions.
 	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 422
 	Validation Error
 	*/
 	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-	/* Response 500
-	 Error Codes: - `setting_type_version_schema_invalid` - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.         
-	*/
-	bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
 
 };
 
@@ -2121,6 +2691,12 @@ struct RALLYHEREAPI_API FRequest_SetSinglePlayerUuidSettingSelf : public FReques
 	/* Setting Key to update setting for.  Must conform to the setting type key format */
 	FString Key;
 	FRHAPI_SetSinglePlayerSettingRequest SetSinglePlayerSettingRequest;
+	/* Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information */
+	TOptional<FString> IfMatch;
+	/* Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.    See https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information */
+	TOptional<FString> IfNoneMatch;
+	/* Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information */
+	TOptional<FString> IfUnmodifiedSince;
 };
 
 /** The response type for FRequest_SetSinglePlayerUuidSettingSelf */
@@ -2142,6 +2718,13 @@ struct RALLYHEREAPI_API FResponse_SetSinglePlayerUuidSettingSelf : public FRespo
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	TMap<FString, FRHAPI_SettingData> Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FDateTime> LastModified;
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -2153,37 +2736,56 @@ struct RALLYHEREAPI_API FResponse_SetSinglePlayerUuidSettingSelf : public FRespo
 	const TMap<FString, FRHAPI_SettingData>* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<TMap<FString, FRHAPI_SettingData>>(); }
 	/** @brief Attempt to retrieve the content in the default response */
 	TOptional<TMap<FString, FRHAPI_SettingData>> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<TMap<FString, FRHAPI_SettingData>>(); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(FString& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_ETag() const { return TryGetHeaderAsPointer(TEXT("ETag")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_ETag() const { return TryGetHeaderAsOptional(TEXT("ETag")); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_LastModified(FString& OutValue) const { return TryGetHeader(TEXT("Last-Modified"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_LastModified(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("Last-Modified"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_LastModified() const { return TryGetHeaderAsPointer(TEXT("Last-Modified")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_LastModified() const { return TryGetHeaderAsOptional(TEXT("Last-Modified")); }
 
 	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
 	bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	TOptional<FDateTime> GetHeader200_LastModified() const;
 
-	/* Response 400
-	 Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator - `setting_version_invalid` - Setting Version is not valid for the provided type - `update_not_enabled` - Setting Type Version has updates disabled - `setting_key_invalid` - Setting Key does not meet requirements for that type/version - `setting_value_invalid` - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details 
+	/* Response 304
+	The resource has not been modified from the provided preconditions.
 	*/
-	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader304_ETag() const;
+	/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+	TOptional<FDateTime> GetHeader304_LastModified() const;
 
 	/* Response 403
 	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
-	/* Response 404
-	 Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist - This will only occur for legacy setting types.         
+	/* Response 412
+	The resource does not meet the provided preconditions.
 	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 422
 	Validation Error
 	*/
 	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-	/* Response 500
-	 Error Codes: - `setting_type_version_schema_invalid` - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.         
-	*/
-	bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
 
 };
 

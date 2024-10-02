@@ -844,10 +844,6 @@ bool FRequest_Login::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 	{
 		HttpRequest->SetHeader(TEXT("user-agent"), UserAgent.GetValue());
 	}
-	if (XForwardedFor.IsSet())
-	{
-		HttpRequest->SetHeader(TEXT("x-forwarded-for"), XForwardedFor.GetValue());
-	}
 
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
 	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
@@ -1439,10 +1435,6 @@ bool FRequest_OauthLogin::SetupHttpRequest(const FHttpRequestRef& HttpRequest) c
 	{
 		HttpRequest->SetHeader(TEXT("user-agent"), UserAgent.GetValue());
 	}
-	if (XForwardedFor.IsSet())
-	{
-		HttpRequest->SetHeader(TEXT("x-forwarded-for"), XForwardedFor.GetValue());
-	}
 
 	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
 	{
@@ -1486,10 +1478,10 @@ bool FResponse_OauthLogin::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("location")))
-	{
-		Location = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("location")))
+    {
+        Location = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -1673,10 +1665,6 @@ bool FRequest_OauthResponse::SetupHttpRequest(const FHttpRequestRef& HttpRequest
 	{
 		HttpRequest->SetHeader(TEXT("user-agent"), UserAgent.GetValue());
 	}
-	if (XForwardedFor.IsSet())
-	{
-		HttpRequest->SetHeader(TEXT("x-forwarded-for"), XForwardedFor.GetValue());
-	}
 
 	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
 	{
@@ -1720,10 +1708,10 @@ bool FResponse_OauthResponse::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("location")))
-	{
-		Location = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("location")))
+    {
+        Location = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -1889,10 +1877,6 @@ bool FRequest_OauthTokenExchange::SetupHttpRequest(const FHttpRequestRef& HttpRe
 	if (UserAgent.IsSet())
 	{
 		HttpRequest->SetHeader(TEXT("user-agent"), UserAgent.GetValue());
-	}
-	if (XForwardedFor.IsSet())
-	{
-		HttpRequest->SetHeader(TEXT("x-forwarded-for"), XForwardedFor.GetValue());
 	}
 
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
@@ -2177,10 +2161,6 @@ bool FRequest_Token::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 	if (UserAgent.IsSet())
 	{
 		HttpRequest->SetHeader(TEXT("user-agent"), UserAgent.GetValue());
-	}
-	if (XForwardedFor.IsSet())
-	{
-		HttpRequest->SetHeader(TEXT("x-forwarded-for"), XForwardedFor.GetValue());
 	}
 
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)

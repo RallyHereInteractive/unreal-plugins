@@ -9,6 +9,7 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
+#include "InstanceHealthStatus.h"
 #include "BrowserSessionInfo.generated.h"
 
 /** @defgroup RHAPI_BrowserSessionInfo RallyHere API Model BrowserSessionInfo
@@ -50,6 +51,33 @@ struct RALLYHEREAPI_API FRHAPI_BrowserSessionInfo : public FRHAPI_Model
 	void SetSessionId(const FString& NewValue) { SessionId = NewValue;   }
 	/** @brief Sets the value of SessionId using move semantics */
 	void SetSessionId(FString&& NewValue) { SessionId = NewValue;   }
+
+	/** @brief The health status of the instance if it exists */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	ERHAPI_InstanceHealthStatus InstanceHealth_Optional{  };
+	/** @brief true if InstanceHealth_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool InstanceHealth_IsSet{ false };
+	/** @brief Gets the value of InstanceHealth_Optional, regardless of it having been set */
+	ERHAPI_InstanceHealthStatus& GetInstanceHealth() { return InstanceHealth_Optional; }
+	/** @brief Gets the value of InstanceHealth_Optional, regardless of it having been set */
+	const ERHAPI_InstanceHealthStatus& GetInstanceHealth() const { return InstanceHealth_Optional; }
+	/** @brief Gets the value of InstanceHealth_Optional, if it has been set, otherwise it returns DefaultValue */
+	const ERHAPI_InstanceHealthStatus& GetInstanceHealth(const ERHAPI_InstanceHealthStatus& DefaultValue) const { if (InstanceHealth_IsSet) return InstanceHealth_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of InstanceHealth_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInstanceHealth(ERHAPI_InstanceHealthStatus& OutValue) const { if (InstanceHealth_IsSet) OutValue = InstanceHealth_Optional; return InstanceHealth_IsSet; }
+	/** @brief Returns a pointer to InstanceHealth_Optional, if it has been set, otherwise returns nullptr */
+	ERHAPI_InstanceHealthStatus* GetInstanceHealthOrNull() { if (InstanceHealth_IsSet) return (&InstanceHealth_Optional); return nullptr; }
+	/** @brief Returns a pointer to InstanceHealth_Optional, if it has been set, otherwise returns nullptr */
+	const ERHAPI_InstanceHealthStatus* GetInstanceHealthOrNull() const { if (InstanceHealth_IsSet) return (&InstanceHealth_Optional); return nullptr; }
+	/** @brief Sets the value of InstanceHealth_Optional and also sets InstanceHealth_IsSet to true */
+	void SetInstanceHealth(const ERHAPI_InstanceHealthStatus& NewValue) { InstanceHealth_Optional = NewValue; InstanceHealth_IsSet = true;  }
+	/** @brief Sets the value of InstanceHealth_Optional and also sets InstanceHealth_IsSet to true using move semantics */
+	void SetInstanceHealth(ERHAPI_InstanceHealthStatus&& NewValue) { InstanceHealth_Optional = NewValue; InstanceHealth_IsSet = true;  }
+	/** @brief Clears the value of InstanceHealth_Optional and sets InstanceHealth_IsSet to false */
+	void ClearInstanceHealth() { InstanceHealth_IsSet = false;  }
+	/** @brief Checks whether InstanceHealth_Optional has been set */
+	bool IsInstanceHealthSet() const { return InstanceHealth_IsSet; }
 
 	/** @brief Number of players actively in this session */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

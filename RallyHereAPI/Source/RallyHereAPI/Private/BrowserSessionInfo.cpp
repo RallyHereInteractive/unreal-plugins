@@ -24,6 +24,11 @@ void FRHAPI_BrowserSessionInfo::WriteJson(TSharedRef<TJsonWriter<>>& Writer) con
 	Writer->WriteObjectStart();
 	Writer->WriteIdentifierPrefix(TEXT("session_id"));
 	RallyHereAPI::WriteJsonValue(Writer, SessionId);
+	if (InstanceHealth_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("instance_health"));
+		RallyHereAPI::WriteJsonValue(Writer, EnumToString(InstanceHealth_Optional));
+	}
 	if (PlayerCount_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("player_count"));
@@ -52,6 +57,12 @@ bool FRHAPI_BrowserSessionInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 
 	const TSharedPtr<FJsonValue> JsonSessionIdField = (*Object)->TryGetField(TEXT("session_id"));
 	ParseSuccess &= JsonSessionIdField.IsValid() && (!JsonSessionIdField->IsNull() &&  TryGetJsonValue(JsonSessionIdField, SessionId));
+	const TSharedPtr<FJsonValue> JsonInstanceHealthField = (*Object)->TryGetField(TEXT("instance_health"));
+	if (JsonInstanceHealthField.IsValid())
+	{
+		InstanceHealth_IsSet = TryGetJsonValue(JsonInstanceHealthField, InstanceHealth_Optional);
+		ParseSuccess &= InstanceHealth_IsSet;
+	}
 	const TSharedPtr<FJsonValue> JsonPlayerCountField = (*Object)->TryGetField(TEXT("player_count"));
 	if (JsonPlayerCountField.IsValid())
 	{

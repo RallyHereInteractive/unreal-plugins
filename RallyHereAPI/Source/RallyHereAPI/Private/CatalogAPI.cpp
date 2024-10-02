@@ -188,10 +188,10 @@ bool FResponse_GetCatalogAll::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -521,10 +521,10 @@ bool FResponse_GetCatalogEntitlementSku::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -848,10 +848,10 @@ bool FResponse_GetCatalogEntitlementSkuAll::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -1180,10 +1180,10 @@ bool FResponse_GetCatalogInventoryBucketUseRuleSet::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -1507,10 +1507,10 @@ bool FResponse_GetCatalogInventoryBucketUseRuleSetsAll::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -1839,10 +1839,10 @@ bool FResponse_GetCatalogItem::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -2166,10 +2166,10 @@ bool FResponse_GetCatalogItemsAll::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -2498,10 +2498,10 @@ bool FResponse_GetCatalogLoot::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -2825,10 +2825,10 @@ bool FResponse_GetCatalogLootsAll::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -3157,10 +3157,10 @@ bool FResponse_GetCatalogPortalUseRuleset::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -3484,10 +3484,10 @@ bool FResponse_GetCatalogPortalUseRulesetsAll::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -3816,10 +3816,10 @@ bool FResponse_GetCatalogPricePoint::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -4143,10 +4143,10 @@ bool FResponse_GetCatalogPricePointsAll::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -4475,10 +4475,10 @@ bool FResponse_GetCatalogTimeFrame::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -4802,10 +4802,10 @@ bool FResponse_GetCatalogTimeFramesAll::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -5134,10 +5134,10 @@ bool FResponse_GetCatalogVendor::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -5461,10 +5461,10 @@ bool FResponse_GetCatalogVendorsAll::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -5788,10 +5788,10 @@ bool FResponse_GetCatalogXpAll::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -6120,10 +6120,10 @@ bool FResponse_GetCatalogXpTable::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 

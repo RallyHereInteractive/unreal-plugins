@@ -102,7 +102,7 @@ struct RALLYHEREAPI_API FResponse_PlayerCreateNotification : public FResponseAcc
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_format - Invalid Authorization - {} - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token 
+	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_expired - Token is expired - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -222,7 +222,7 @@ struct RALLYHEREAPI_API FResponse_PlayerCreateNotificationSelf : public FRespons
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_format - Invalid Authorization - {} - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token 
+	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_expired - Token is expired - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -348,7 +348,7 @@ struct RALLYHEREAPI_API FResponse_PlayerGetNotificationById : public FResponseAc
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_format - Invalid Authorization - {} - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token 
+	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_expired - Token is expired - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -474,7 +474,7 @@ struct RALLYHEREAPI_API FResponse_PlayerGetNotificationByIdSelf : public FRespon
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_format - Invalid Authorization - {} - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token 
+	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_expired - Token is expired - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -624,7 +624,7 @@ struct RALLYHEREAPI_API FResponse_PlayerGetNotificationsPage : public FResponseA
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_format - Invalid Authorization - {} - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token 
+	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_expired - Token is expired - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -764,7 +764,7 @@ struct RALLYHEREAPI_API FResponse_PlayerGetNotificationsPageSelf : public FRespo
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_format - Invalid Authorization - {} - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token 
+	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_expired - Token is expired - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -903,7 +903,7 @@ struct RALLYHEREAPI_API FResponse_PlayerLongPollForNotifications : public FRespo
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_format - Invalid Authorization - {} - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token 
+	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_expired - Token is expired - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -1037,7 +1037,7 @@ struct RALLYHEREAPI_API FResponse_PlayerLongPollForNotificationsSelf : public FR
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_not_jwt - Invalid Authorization - auth_token_format - Invalid Authorization - {} - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token 
+	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_expired - Token is expired - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 

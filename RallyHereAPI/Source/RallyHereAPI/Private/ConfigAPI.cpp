@@ -198,10 +198,10 @@ bool FResponse_GetAppSettingsAll::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -469,10 +469,10 @@ bool FResponse_GetAppSettingsClient::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -754,10 +754,10 @@ bool FResponse_GetAppSettingsServer::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -1272,10 +1272,10 @@ bool FResponse_GetKvsV2::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
