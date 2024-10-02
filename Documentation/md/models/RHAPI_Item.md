@@ -47,7 +47,7 @@ An Item. Item come in a couple of different flavors; determined by the &#x60;typ
 `public bool `[`LevelVendorUuid_IsSet`](#structFRHAPI__Item_1a2b83904f2221e90ebc9d8da3c9020ba2) | true if LevelVendorUuid_Optional has been set to a value
 `public int32 `[`LevelVendorId_Optional`](#structFRHAPI__Item_1a76aba527b53bb5846856feb9303acf9e) | The Vendor that is used filfill level up rewards for this item. The level of the Player is used as the index into the Vendor's Loot table. This is only valid for an unit Item.
 `public bool `[`LevelVendorId_IsSet`](#structFRHAPI__Item_1a8e31f620f2509aa5edb703e7bf2f7387) | true if LevelVendorId_Optional has been set to a value
-`public int32 `[`CouponDiscountCurrencyItemUuid_Optional`](#structFRHAPI__Item_1a5b085eb28301de72e1fcb58de98f0880) | The item of the currency used by this coupon. This is only valid for an unit Item.
+`public FGuid `[`CouponDiscountCurrencyItemUuid_Optional`](#structFRHAPI__Item_1aeff374c8804054ba04ab0eba08ea990b) | The item of the currency used by this coupon. This is only valid for an unit Item.
 `public bool `[`CouponDiscountCurrencyItemUuid_IsSet`](#structFRHAPI__Item_1a1e52daf9baa1a3f8e08e674d61d057f2) | true if CouponDiscountCurrencyItemUuid_Optional has been set to a value
 `public int32 `[`CouponDiscountCurrencyItemId_Optional`](#structFRHAPI__Item_1aac9de3a09ab34aa9feabf22202daae80) | The item of the currency used by this coupon. This is only valid for an unit Item.
 `public bool `[`CouponDiscountCurrencyItemId_IsSet`](#structFRHAPI__Item_1a0809de18d707f4af24019793672bbd25) | true if CouponDiscountCurrencyItemId_Optional has been set to a value
@@ -211,18 +211,16 @@ An Item. Item come in a couple of different flavors; determined by the &#x60;typ
 `public inline bool `[`IsLevelVendorIdSet`](#structFRHAPI__Item_1a70dd0dabebfb683fb9b450808b5e6606)`() const` | Checks whether LevelVendorId_Optional has been set.
 `public inline bool `[`IsLevelVendorIdDefaultValue`](#structFRHAPI__Item_1a6142502c0d3ecc38bc20254af3cffc22)`() const` | Returns true if LevelVendorId_Optional is set and matches the default value.
 `public inline void `[`SetLevelVendorIdToDefault`](#structFRHAPI__Item_1ad31d4c1ae0420e87716468dccbc6cb44)`()` | Sets the value of LevelVendorId_Optional to its default and also sets LevelVendorId_IsSet to true.
-`public inline int32 & `[`GetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1a21d177502f2693c43b07ea21472e1bc4)`()` | Gets the value of CouponDiscountCurrencyItemUuid_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1aef4c21885e73412e415747d20fa3113d)`() const` | Gets the value of CouponDiscountCurrencyItemUuid_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1a5776bca152d0b005fa2b3ed9c32400aa)`(const int32 & DefaultValue) const` | Gets the value of CouponDiscountCurrencyItemUuid_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1a0bae44ba24eced7bea897feb2bbb3ce4)`(int32 & OutValue) const` | Fills OutValue with the value of CouponDiscountCurrencyItemUuid_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetCouponDiscountCurrencyItemUuidOrNull`](#structFRHAPI__Item_1a04d7e0c434f7e3e7800742b7e96fe93a)`()` | Returns a pointer to CouponDiscountCurrencyItemUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetCouponDiscountCurrencyItemUuidOrNull`](#structFRHAPI__Item_1aeb9ee7e13d6e598095a46c31e572ba21)`() const` | Returns a pointer to CouponDiscountCurrencyItemUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1a617afd30ace10ae605d0cb2639e626d0)`(const int32 & NewValue)` | Sets the value of CouponDiscountCurrencyItemUuid_Optional and also sets CouponDiscountCurrencyItemUuid_IsSet to true.
-`public inline void `[`SetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1a34877b25a43951c0e442c6ebc03e6d0b)`(int32 && NewValue)` | Sets the value of CouponDiscountCurrencyItemUuid_Optional and also sets CouponDiscountCurrencyItemUuid_IsSet to true using move semantics.
+`public inline FGuid & `[`GetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1ad94b448528071355d40ba3e97d58f50a)`()` | Gets the value of CouponDiscountCurrencyItemUuid_Optional, regardless of it having been set.
+`public inline const FGuid & `[`GetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1ad6b4ea524dd311f23ab6ad9f116069cd)`() const` | Gets the value of CouponDiscountCurrencyItemUuid_Optional, regardless of it having been set.
+`public inline const FGuid & `[`GetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1a84ffd1477f88e770ee1515cc05782ba2)`(const FGuid & DefaultValue) const` | Gets the value of CouponDiscountCurrencyItemUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1abc7fdc2c9ec76e9bb02c0574e34ba141)`(FGuid & OutValue) const` | Fills OutValue with the value of CouponDiscountCurrencyItemUuid_Optional and returns true if it has been set, otherwise returns false.
+`public inline FGuid * `[`GetCouponDiscountCurrencyItemUuidOrNull`](#structFRHAPI__Item_1a6131ab4bfba77ed6b0ea0d476cda6ca9)`()` | Returns a pointer to CouponDiscountCurrencyItemUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FGuid * `[`GetCouponDiscountCurrencyItemUuidOrNull`](#structFRHAPI__Item_1ae7de08e6647a5f4c4f1350db81810c8c)`() const` | Returns a pointer to CouponDiscountCurrencyItemUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1af6b1428a71bab1c0999b8e097f9bb4de)`(const FGuid & NewValue)` | Sets the value of CouponDiscountCurrencyItemUuid_Optional and also sets CouponDiscountCurrencyItemUuid_IsSet to true.
+`public inline void `[`SetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1afa57506fd183e4e65cd8ad955e588242)`(FGuid && NewValue)` | Sets the value of CouponDiscountCurrencyItemUuid_Optional and also sets CouponDiscountCurrencyItemUuid_IsSet to true using move semantics.
 `public inline void `[`ClearCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1aad2f0040ddc2e9e4f217aed5358cd17b)`()` | Clears the value of CouponDiscountCurrencyItemUuid_Optional and sets CouponDiscountCurrencyItemUuid_IsSet to false.
 `public inline bool `[`IsCouponDiscountCurrencyItemUuidSet`](#structFRHAPI__Item_1af9580809322a553ee79f764eaff8b15b)`() const` | Checks whether CouponDiscountCurrencyItemUuid_Optional has been set.
-`public inline bool `[`IsCouponDiscountCurrencyItemUuidDefaultValue`](#structFRHAPI__Item_1a6a225b37958e3f2df003cae32fa27492)`() const` | Returns true if CouponDiscountCurrencyItemUuid_Optional is set and matches the default value.
-`public inline void `[`SetCouponDiscountCurrencyItemUuidToDefault`](#structFRHAPI__Item_1a10137e11a87a4618acf04cf57b051dd0)`()` | Sets the value of CouponDiscountCurrencyItemUuid_Optional to its default and also sets CouponDiscountCurrencyItemUuid_IsSet to true.
 `public inline int32 & `[`GetCouponDiscountCurrencyItemId`](#structFRHAPI__Item_1abe691e103c37e8ea19820f713eb37bc5)`()` | Gets the value of CouponDiscountCurrencyItemId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetCouponDiscountCurrencyItemId`](#structFRHAPI__Item_1ad395eb7249ce6232d7655bebbf96321c)`() const` | Gets the value of CouponDiscountCurrencyItemId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetCouponDiscountCurrencyItemId`](#structFRHAPI__Item_1aa8af0136a73257d951a2518bfd139e66)`(const int32 & DefaultValue) const` | Gets the value of CouponDiscountCurrencyItemId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -408,7 +406,7 @@ The Vendor that is used filfill level up rewards for this item. The level of the
 
 true if LevelVendorId_Optional has been set to a value
 
-#### `public int32 `[`CouponDiscountCurrencyItemUuid_Optional`](#structFRHAPI__Item_1a5b085eb28301de72e1fcb58de98f0880) <a id="structFRHAPI__Item_1a5b085eb28301de72e1fcb58de98f0880"></a>
+#### `public FGuid `[`CouponDiscountCurrencyItemUuid_Optional`](#structFRHAPI__Item_1aeff374c8804054ba04ab0eba08ea990b) <a id="structFRHAPI__Item_1aeff374c8804054ba04ab0eba08ea990b"></a>
 
 The item of the currency used by this coupon. This is only valid for an unit Item.
 
@@ -1071,35 +1069,35 @@ Returns true if LevelVendorId_Optional is set and matches the default value.
 
 Sets the value of LevelVendorId_Optional to its default and also sets LevelVendorId_IsSet to true.
 
-#### `public inline int32 & `[`GetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1a21d177502f2693c43b07ea21472e1bc4)`()` <a id="structFRHAPI__Item_1a21d177502f2693c43b07ea21472e1bc4"></a>
+#### `public inline FGuid & `[`GetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1ad94b448528071355d40ba3e97d58f50a)`()` <a id="structFRHAPI__Item_1ad94b448528071355d40ba3e97d58f50a"></a>
 
 Gets the value of CouponDiscountCurrencyItemUuid_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1aef4c21885e73412e415747d20fa3113d)`() const` <a id="structFRHAPI__Item_1aef4c21885e73412e415747d20fa3113d"></a>
+#### `public inline const FGuid & `[`GetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1ad6b4ea524dd311f23ab6ad9f116069cd)`() const` <a id="structFRHAPI__Item_1ad6b4ea524dd311f23ab6ad9f116069cd"></a>
 
 Gets the value of CouponDiscountCurrencyItemUuid_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1a5776bca152d0b005fa2b3ed9c32400aa)`(const int32 & DefaultValue) const` <a id="structFRHAPI__Item_1a5776bca152d0b005fa2b3ed9c32400aa"></a>
+#### `public inline const FGuid & `[`GetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1a84ffd1477f88e770ee1515cc05782ba2)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__Item_1a84ffd1477f88e770ee1515cc05782ba2"></a>
 
 Gets the value of CouponDiscountCurrencyItemUuid_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1a0bae44ba24eced7bea897feb2bbb3ce4)`(int32 & OutValue) const` <a id="structFRHAPI__Item_1a0bae44ba24eced7bea897feb2bbb3ce4"></a>
+#### `public inline bool `[`GetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1abc7fdc2c9ec76e9bb02c0574e34ba141)`(FGuid & OutValue) const` <a id="structFRHAPI__Item_1abc7fdc2c9ec76e9bb02c0574e34ba141"></a>
 
 Fills OutValue with the value of CouponDiscountCurrencyItemUuid_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetCouponDiscountCurrencyItemUuidOrNull`](#structFRHAPI__Item_1a04d7e0c434f7e3e7800742b7e96fe93a)`()` <a id="structFRHAPI__Item_1a04d7e0c434f7e3e7800742b7e96fe93a"></a>
+#### `public inline FGuid * `[`GetCouponDiscountCurrencyItemUuidOrNull`](#structFRHAPI__Item_1a6131ab4bfba77ed6b0ea0d476cda6ca9)`()` <a id="structFRHAPI__Item_1a6131ab4bfba77ed6b0ea0d476cda6ca9"></a>
 
 Returns a pointer to CouponDiscountCurrencyItemUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetCouponDiscountCurrencyItemUuidOrNull`](#structFRHAPI__Item_1aeb9ee7e13d6e598095a46c31e572ba21)`() const` <a id="structFRHAPI__Item_1aeb9ee7e13d6e598095a46c31e572ba21"></a>
+#### `public inline const FGuid * `[`GetCouponDiscountCurrencyItemUuidOrNull`](#structFRHAPI__Item_1ae7de08e6647a5f4c4f1350db81810c8c)`() const` <a id="structFRHAPI__Item_1ae7de08e6647a5f4c4f1350db81810c8c"></a>
 
 Returns a pointer to CouponDiscountCurrencyItemUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1a617afd30ace10ae605d0cb2639e626d0)`(const int32 & NewValue)` <a id="structFRHAPI__Item_1a617afd30ace10ae605d0cb2639e626d0"></a>
+#### `public inline void `[`SetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1af6b1428a71bab1c0999b8e097f9bb4de)`(const FGuid & NewValue)` <a id="structFRHAPI__Item_1af6b1428a71bab1c0999b8e097f9bb4de"></a>
 
 Sets the value of CouponDiscountCurrencyItemUuid_Optional and also sets CouponDiscountCurrencyItemUuid_IsSet to true.
 
-#### `public inline void `[`SetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1a34877b25a43951c0e442c6ebc03e6d0b)`(int32 && NewValue)` <a id="structFRHAPI__Item_1a34877b25a43951c0e442c6ebc03e6d0b"></a>
+#### `public inline void `[`SetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1afa57506fd183e4e65cd8ad955e588242)`(FGuid && NewValue)` <a id="structFRHAPI__Item_1afa57506fd183e4e65cd8ad955e588242"></a>
 
 Sets the value of CouponDiscountCurrencyItemUuid_Optional and also sets CouponDiscountCurrencyItemUuid_IsSet to true using move semantics.
 
@@ -1110,14 +1108,6 @@ Clears the value of CouponDiscountCurrencyItemUuid_Optional and sets CouponDisco
 #### `public inline bool `[`IsCouponDiscountCurrencyItemUuidSet`](#structFRHAPI__Item_1af9580809322a553ee79f764eaff8b15b)`() const` <a id="structFRHAPI__Item_1af9580809322a553ee79f764eaff8b15b"></a>
 
 Checks whether CouponDiscountCurrencyItemUuid_Optional has been set.
-
-#### `public inline bool `[`IsCouponDiscountCurrencyItemUuidDefaultValue`](#structFRHAPI__Item_1a6a225b37958e3f2df003cae32fa27492)`() const` <a id="structFRHAPI__Item_1a6a225b37958e3f2df003cae32fa27492"></a>
-
-Returns true if CouponDiscountCurrencyItemUuid_Optional is set and matches the default value.
-
-#### `public inline void `[`SetCouponDiscountCurrencyItemUuidToDefault`](#structFRHAPI__Item_1a10137e11a87a4618acf04cf57b051dd0)`()` <a id="structFRHAPI__Item_1a10137e11a87a4618acf04cf57b051dd0"></a>
-
-Sets the value of CouponDiscountCurrencyItemUuid_Optional to its default and also sets CouponDiscountCurrencyItemUuid_IsSet to true.
 
 #### `public inline int32 & `[`GetCouponDiscountCurrencyItemId`](#structFRHAPI__Item_1abe691e103c37e8ea19820f713eb37bc5)`()` <a id="structFRHAPI__Item_1abe691e103c37e8ea19820f713eb37bc5"></a>
 

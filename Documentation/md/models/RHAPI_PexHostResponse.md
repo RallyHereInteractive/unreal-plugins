@@ -19,8 +19,6 @@ struct FRHAPI_PexHostResponse
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public FDateTime `[`LastModifiedTimestamp_Optional`](#structFRHAPI__PexHostResponse_1acce259abbada0c27eec89704452d736c) | Timestamp of when the resource was last modified.
-`public bool `[`LastModifiedTimestamp_IsSet`](#structFRHAPI__PexHostResponse_1a581ede9a9c4437bb2dadc550f8db3610) | true if LastModifiedTimestamp_Optional has been set to a value
 `public FDateTime `[`CreatedTimestamp_Optional`](#structFRHAPI__PexHostResponse_1af99f7e56b310300a89b519d632987a8b) | Timestamp of when the resource was created.
 `public bool `[`CreatedTimestamp_IsSet`](#structFRHAPI__PexHostResponse_1a427ee1909e0565c7c64fd4445604bcb0) | true if CreatedTimestamp_Optional has been set to a value
 `public `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` `[`FrameTime_Optional`](#structFRHAPI__PexHostResponse_1a029b06828c5b690e4084ee279e1d01c7) | 
@@ -137,16 +135,6 @@ struct FRHAPI_PexHostResponse
 `public bool `[`MachineClass_IsNull`](#structFRHAPI__PexHostResponse_1ad31d7675cc8aac50ec520b6f8735c2e1) | true if MachineClass_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__PexHostResponse_1a9e12efdec54dacef7cbfdabf4902842c)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PexHostResponse_1a4862fcb3204b154cc0f24a74aa69d974)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FDateTime & `[`GetLastModifiedTimestamp`](#structFRHAPI__PexHostResponse_1a678c913961890b87009183a044168fb5)`()` | Gets the value of LastModifiedTimestamp_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetLastModifiedTimestamp`](#structFRHAPI__PexHostResponse_1a3138ff1907c2add252292e14b1588d8b)`() const` | Gets the value of LastModifiedTimestamp_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetLastModifiedTimestamp`](#structFRHAPI__PexHostResponse_1a430c731139761f2f7c9ef69866619fd0)`(const FDateTime & DefaultValue) const` | Gets the value of LastModifiedTimestamp_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetLastModifiedTimestamp`](#structFRHAPI__PexHostResponse_1a285914a6c12bb2b9f0f93c10bfba72d0)`(FDateTime & OutValue) const` | Fills OutValue with the value of LastModifiedTimestamp_Optional and returns true if it has been set, otherwise returns false.
-`public inline FDateTime * `[`GetLastModifiedTimestampOrNull`](#structFRHAPI__PexHostResponse_1aa4fefcb7770869b534fadc2478161a2e)`()` | Returns a pointer to LastModifiedTimestamp_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FDateTime * `[`GetLastModifiedTimestampOrNull`](#structFRHAPI__PexHostResponse_1abec72f3131faf29821a7c701b39f470a)`() const` | Returns a pointer to LastModifiedTimestamp_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLastModifiedTimestamp`](#structFRHAPI__PexHostResponse_1ab934cf2301b819346c53c5444064dd80)`(const FDateTime & NewValue)` | Sets the value of LastModifiedTimestamp_Optional and also sets LastModifiedTimestamp_IsSet to true.
-`public inline void `[`SetLastModifiedTimestamp`](#structFRHAPI__PexHostResponse_1a82dce9dd8240fb0d2587d6060b7e965c)`(FDateTime && NewValue)` | Sets the value of LastModifiedTimestamp_Optional and also sets LastModifiedTimestamp_IsSet to true using move semantics.
-`public inline void `[`ClearLastModifiedTimestamp`](#structFRHAPI__PexHostResponse_1a8d45eb26b020e17f81017919b38c20a0)`()` | Clears the value of LastModifiedTimestamp_Optional and sets LastModifiedTimestamp_IsSet to false.
-`public inline bool `[`IsLastModifiedTimestampSet`](#structFRHAPI__PexHostResponse_1a34808da7bb3f561dc35ca150240f5420)`() const` | Checks whether LastModifiedTimestamp_Optional has been set.
 `public inline FDateTime & `[`GetCreatedTimestamp`](#structFRHAPI__PexHostResponse_1a660943c4a4075e493f4ddba77d66fdb4)`()` | Gets the value of CreatedTimestamp_Optional, regardless of it having been set.
 `public inline const FDateTime & `[`GetCreatedTimestamp`](#structFRHAPI__PexHostResponse_1a1765e3e2c94cc306793f453a9bf9124b)`() const` | Gets the value of CreatedTimestamp_Optional, regardless of it having been set.
 `public inline const FDateTime & `[`GetCreatedTimestamp`](#structFRHAPI__PexHostResponse_1ab9f4ab633e0ba201b139a8dce2ee05b2)`(const FDateTime & DefaultValue) const` | Gets the value of CreatedTimestamp_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -612,14 +600,6 @@ struct FRHAPI_PexHostResponse
 
 ### Members
 
-#### `public FDateTime `[`LastModifiedTimestamp_Optional`](#structFRHAPI__PexHostResponse_1acce259abbada0c27eec89704452d736c) <a id="structFRHAPI__PexHostResponse_1acce259abbada0c27eec89704452d736c"></a>
-
-Timestamp of when the resource was last modified.
-
-#### `public bool `[`LastModifiedTimestamp_IsSet`](#structFRHAPI__PexHostResponse_1a581ede9a9c4437bb2dadc550f8db3610) <a id="structFRHAPI__PexHostResponse_1a581ede9a9c4437bb2dadc550f8db3610"></a>
-
-true if LastModifiedTimestamp_Optional has been set to a value
-
 #### `public FDateTime `[`CreatedTimestamp_Optional`](#structFRHAPI__PexHostResponse_1af99f7e56b310300a89b519d632987a8b) <a id="structFRHAPI__PexHostResponse_1af99f7e56b310300a89b519d632987a8b"></a>
 
 Timestamp of when the resource was created.
@@ -1018,46 +998,6 @@ Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
-
-#### `public inline FDateTime & `[`GetLastModifiedTimestamp`](#structFRHAPI__PexHostResponse_1a678c913961890b87009183a044168fb5)`()` <a id="structFRHAPI__PexHostResponse_1a678c913961890b87009183a044168fb5"></a>
-
-Gets the value of LastModifiedTimestamp_Optional, regardless of it having been set.
-
-#### `public inline const FDateTime & `[`GetLastModifiedTimestamp`](#structFRHAPI__PexHostResponse_1a3138ff1907c2add252292e14b1588d8b)`() const` <a id="structFRHAPI__PexHostResponse_1a3138ff1907c2add252292e14b1588d8b"></a>
-
-Gets the value of LastModifiedTimestamp_Optional, regardless of it having been set.
-
-#### `public inline const FDateTime & `[`GetLastModifiedTimestamp`](#structFRHAPI__PexHostResponse_1a430c731139761f2f7c9ef69866619fd0)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__PexHostResponse_1a430c731139761f2f7c9ef69866619fd0"></a>
-
-Gets the value of LastModifiedTimestamp_Optional, if it has been set, otherwise it returns DefaultValue.
-
-#### `public inline bool `[`GetLastModifiedTimestamp`](#structFRHAPI__PexHostResponse_1a285914a6c12bb2b9f0f93c10bfba72d0)`(FDateTime & OutValue) const` <a id="structFRHAPI__PexHostResponse_1a285914a6c12bb2b9f0f93c10bfba72d0"></a>
-
-Fills OutValue with the value of LastModifiedTimestamp_Optional and returns true if it has been set, otherwise returns false.
-
-#### `public inline FDateTime * `[`GetLastModifiedTimestampOrNull`](#structFRHAPI__PexHostResponse_1aa4fefcb7770869b534fadc2478161a2e)`()` <a id="structFRHAPI__PexHostResponse_1aa4fefcb7770869b534fadc2478161a2e"></a>
-
-Returns a pointer to LastModifiedTimestamp_Optional, if it has been set, otherwise returns nullptr.
-
-#### `public inline const FDateTime * `[`GetLastModifiedTimestampOrNull`](#structFRHAPI__PexHostResponse_1abec72f3131faf29821a7c701b39f470a)`() const` <a id="structFRHAPI__PexHostResponse_1abec72f3131faf29821a7c701b39f470a"></a>
-
-Returns a pointer to LastModifiedTimestamp_Optional, if it has been set, otherwise returns nullptr.
-
-#### `public inline void `[`SetLastModifiedTimestamp`](#structFRHAPI__PexHostResponse_1ab934cf2301b819346c53c5444064dd80)`(const FDateTime & NewValue)` <a id="structFRHAPI__PexHostResponse_1ab934cf2301b819346c53c5444064dd80"></a>
-
-Sets the value of LastModifiedTimestamp_Optional and also sets LastModifiedTimestamp_IsSet to true.
-
-#### `public inline void `[`SetLastModifiedTimestamp`](#structFRHAPI__PexHostResponse_1a82dce9dd8240fb0d2587d6060b7e965c)`(FDateTime && NewValue)` <a id="structFRHAPI__PexHostResponse_1a82dce9dd8240fb0d2587d6060b7e965c"></a>
-
-Sets the value of LastModifiedTimestamp_Optional and also sets LastModifiedTimestamp_IsSet to true using move semantics.
-
-#### `public inline void `[`ClearLastModifiedTimestamp`](#structFRHAPI__PexHostResponse_1a8d45eb26b020e17f81017919b38c20a0)`()` <a id="structFRHAPI__PexHostResponse_1a8d45eb26b020e17f81017919b38c20a0"></a>
-
-Clears the value of LastModifiedTimestamp_Optional and sets LastModifiedTimestamp_IsSet to false.
-
-#### `public inline bool `[`IsLastModifiedTimestampSet`](#structFRHAPI__PexHostResponse_1a34808da7bb3f561dc35ca150240f5420)`() const` <a id="structFRHAPI__PexHostResponse_1a34808da7bb3f561dc35ca150240f5420"></a>
-
-Checks whether LastModifiedTimestamp_Optional has been set.
 
 #### `public inline FDateTime & `[`GetCreatedTimestamp`](#structFRHAPI__PexHostResponse_1a660943c4a4075e493f4ddba77d66fdb4)`()` <a id="structFRHAPI__PexHostResponse_1a660943c4a4075e493f4ddba77d66fdb4"></a>
 
