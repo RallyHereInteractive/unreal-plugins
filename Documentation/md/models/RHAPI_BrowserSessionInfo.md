@@ -22,6 +22,8 @@ Information about a session listed in a browser.
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public FString `[`SessionId`](#structFRHAPI__BrowserSessionInfo_1ad214b73d6e909c822c0cf69983c4f24a) | ID for the session.
+`public ERHAPI_InstanceHealthStatus `[`InstanceHealth_Optional`](#structFRHAPI__BrowserSessionInfo_1a9b244a44128f4afa69fa46611e9626b9) | The health status of the instance if it exists.
+`public bool `[`InstanceHealth_IsSet`](#structFRHAPI__BrowserSessionInfo_1aecc2dc452b7e409ee677311c216529df) | true if InstanceHealth_Optional has been set to a value
 `public int32 `[`PlayerCount_Optional`](#structFRHAPI__BrowserSessionInfo_1a394a9ae56121734e12456e180a022249) | Number of players actively in this session.
 `public bool `[`PlayerCount_IsSet`](#structFRHAPI__BrowserSessionInfo_1a0715bead5854464147ab41802a5d01e8) | true if PlayerCount_Optional has been set to a value
 `public int32 `[`MaxPlayerCount_Optional`](#structFRHAPI__BrowserSessionInfo_1aa47977c3e27f935d503c0333d38c61c0) | Maximum number of players that can be in this session.
@@ -34,6 +36,16 @@ Information about a session listed in a browser.
 `public inline const FString & `[`GetSessionId`](#structFRHAPI__BrowserSessionInfo_1a44f80f96d99f79dd995d4f8ea92d6fc3)`() const` | Gets the value of SessionId.
 `public inline void `[`SetSessionId`](#structFRHAPI__BrowserSessionInfo_1af9bd395ee6c2e2a117e199292f31d937)`(const FString & NewValue)` | Sets the value of SessionId.
 `public inline void `[`SetSessionId`](#structFRHAPI__BrowserSessionInfo_1a0288e14c2a5669ce9fbd7cca6d35e13e)`(FString && NewValue)` | Sets the value of SessionId using move semantics.
+`public inline ERHAPI_InstanceHealthStatus & `[`GetInstanceHealth`](#structFRHAPI__BrowserSessionInfo_1a7867727d3289db399cca8d2693a0b528)`()` | Gets the value of InstanceHealth_Optional, regardless of it having been set.
+`public inline const ERHAPI_InstanceHealthStatus & `[`GetInstanceHealth`](#structFRHAPI__BrowserSessionInfo_1a58d8f56a149dc64ce55f2d41bda73bf6)`() const` | Gets the value of InstanceHealth_Optional, regardless of it having been set.
+`public inline const ERHAPI_InstanceHealthStatus & `[`GetInstanceHealth`](#structFRHAPI__BrowserSessionInfo_1affea3d4193185ee1e033870ac73d985d)`(const ERHAPI_InstanceHealthStatus & DefaultValue) const` | Gets the value of InstanceHealth_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetInstanceHealth`](#structFRHAPI__BrowserSessionInfo_1a9915d762a1789b442ffadf2e624c3c20)`(ERHAPI_InstanceHealthStatus & OutValue) const` | Fills OutValue with the value of InstanceHealth_Optional and returns true if it has been set, otherwise returns false.
+`public inline ERHAPI_InstanceHealthStatus * `[`GetInstanceHealthOrNull`](#structFRHAPI__BrowserSessionInfo_1a48c4f745258bd159a06478bff04d95a6)`()` | Returns a pointer to InstanceHealth_Optional, if it has been set, otherwise returns nullptr.
+`public inline const ERHAPI_InstanceHealthStatus * `[`GetInstanceHealthOrNull`](#structFRHAPI__BrowserSessionInfo_1a2d85a34682b39ee5f212e2ac11caa07f)`() const` | Returns a pointer to InstanceHealth_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetInstanceHealth`](#structFRHAPI__BrowserSessionInfo_1aa6f545593348ba2d2a0c91a9f170479b)`(const ERHAPI_InstanceHealthStatus & NewValue)` | Sets the value of InstanceHealth_Optional and also sets InstanceHealth_IsSet to true.
+`public inline void `[`SetInstanceHealth`](#structFRHAPI__BrowserSessionInfo_1a120bf0fde861741b0ad6a235b9fb337e)`(ERHAPI_InstanceHealthStatus && NewValue)` | Sets the value of InstanceHealth_Optional and also sets InstanceHealth_IsSet to true using move semantics.
+`public inline void `[`ClearInstanceHealth`](#structFRHAPI__BrowserSessionInfo_1a0d3512081896025e79e4f1e9cc1b8945)`()` | Clears the value of InstanceHealth_Optional and sets InstanceHealth_IsSet to false.
+`public inline bool `[`IsInstanceHealthSet`](#structFRHAPI__BrowserSessionInfo_1ae2538914116046218ef894e3abe6f072)`() const` | Checks whether InstanceHealth_Optional has been set.
 `public inline int32 & `[`GetPlayerCount`](#structFRHAPI__BrowserSessionInfo_1aca0c832a46ad32204ccbcf099766277b)`()` | Gets the value of PlayerCount_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetPlayerCount`](#structFRHAPI__BrowserSessionInfo_1a6982b9b28572dba09338420bc24e1bf9)`() const` | Gets the value of PlayerCount_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetPlayerCount`](#structFRHAPI__BrowserSessionInfo_1a1eaefc617051b03ab5e71e14fa48b55a)`(const int32 & DefaultValue) const` | Gets the value of PlayerCount_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -74,6 +86,14 @@ Information about a session listed in a browser.
 #### `public FString `[`SessionId`](#structFRHAPI__BrowserSessionInfo_1ad214b73d6e909c822c0cf69983c4f24a) <a id="structFRHAPI__BrowserSessionInfo_1ad214b73d6e909c822c0cf69983c4f24a"></a>
 
 ID for the session.
+
+#### `public ERHAPI_InstanceHealthStatus `[`InstanceHealth_Optional`](#structFRHAPI__BrowserSessionInfo_1a9b244a44128f4afa69fa46611e9626b9) <a id="structFRHAPI__BrowserSessionInfo_1a9b244a44128f4afa69fa46611e9626b9"></a>
+
+The health status of the instance if it exists.
+
+#### `public bool `[`InstanceHealth_IsSet`](#structFRHAPI__BrowserSessionInfo_1aecc2dc452b7e409ee677311c216529df) <a id="structFRHAPI__BrowserSessionInfo_1aecc2dc452b7e409ee677311c216529df"></a>
+
+true if InstanceHealth_Optional has been set to a value
 
 #### `public int32 `[`PlayerCount_Optional`](#structFRHAPI__BrowserSessionInfo_1a394a9ae56121734e12456e180a022249) <a id="structFRHAPI__BrowserSessionInfo_1a394a9ae56121734e12456e180a022249"></a>
 
@@ -131,6 +151,46 @@ Sets the value of SessionId.
 #### `public inline void `[`SetSessionId`](#structFRHAPI__BrowserSessionInfo_1a0288e14c2a5669ce9fbd7cca6d35e13e)`(FString && NewValue)` <a id="structFRHAPI__BrowserSessionInfo_1a0288e14c2a5669ce9fbd7cca6d35e13e"></a>
 
 Sets the value of SessionId using move semantics.
+
+#### `public inline ERHAPI_InstanceHealthStatus & `[`GetInstanceHealth`](#structFRHAPI__BrowserSessionInfo_1a7867727d3289db399cca8d2693a0b528)`()` <a id="structFRHAPI__BrowserSessionInfo_1a7867727d3289db399cca8d2693a0b528"></a>
+
+Gets the value of InstanceHealth_Optional, regardless of it having been set.
+
+#### `public inline const ERHAPI_InstanceHealthStatus & `[`GetInstanceHealth`](#structFRHAPI__BrowserSessionInfo_1a58d8f56a149dc64ce55f2d41bda73bf6)`() const` <a id="structFRHAPI__BrowserSessionInfo_1a58d8f56a149dc64ce55f2d41bda73bf6"></a>
+
+Gets the value of InstanceHealth_Optional, regardless of it having been set.
+
+#### `public inline const ERHAPI_InstanceHealthStatus & `[`GetInstanceHealth`](#structFRHAPI__BrowserSessionInfo_1affea3d4193185ee1e033870ac73d985d)`(const ERHAPI_InstanceHealthStatus & DefaultValue) const` <a id="structFRHAPI__BrowserSessionInfo_1affea3d4193185ee1e033870ac73d985d"></a>
+
+Gets the value of InstanceHealth_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetInstanceHealth`](#structFRHAPI__BrowserSessionInfo_1a9915d762a1789b442ffadf2e624c3c20)`(ERHAPI_InstanceHealthStatus & OutValue) const` <a id="structFRHAPI__BrowserSessionInfo_1a9915d762a1789b442ffadf2e624c3c20"></a>
+
+Fills OutValue with the value of InstanceHealth_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline ERHAPI_InstanceHealthStatus * `[`GetInstanceHealthOrNull`](#structFRHAPI__BrowserSessionInfo_1a48c4f745258bd159a06478bff04d95a6)`()` <a id="structFRHAPI__BrowserSessionInfo_1a48c4f745258bd159a06478bff04d95a6"></a>
+
+Returns a pointer to InstanceHealth_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const ERHAPI_InstanceHealthStatus * `[`GetInstanceHealthOrNull`](#structFRHAPI__BrowserSessionInfo_1a2d85a34682b39ee5f212e2ac11caa07f)`() const` <a id="structFRHAPI__BrowserSessionInfo_1a2d85a34682b39ee5f212e2ac11caa07f"></a>
+
+Returns a pointer to InstanceHealth_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetInstanceHealth`](#structFRHAPI__BrowserSessionInfo_1aa6f545593348ba2d2a0c91a9f170479b)`(const ERHAPI_InstanceHealthStatus & NewValue)` <a id="structFRHAPI__BrowserSessionInfo_1aa6f545593348ba2d2a0c91a9f170479b"></a>
+
+Sets the value of InstanceHealth_Optional and also sets InstanceHealth_IsSet to true.
+
+#### `public inline void `[`SetInstanceHealth`](#structFRHAPI__BrowserSessionInfo_1a120bf0fde861741b0ad6a235b9fb337e)`(ERHAPI_InstanceHealthStatus && NewValue)` <a id="structFRHAPI__BrowserSessionInfo_1a120bf0fde861741b0ad6a235b9fb337e"></a>
+
+Sets the value of InstanceHealth_Optional and also sets InstanceHealth_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearInstanceHealth`](#structFRHAPI__BrowserSessionInfo_1a0d3512081896025e79e4f1e9cc1b8945)`()` <a id="structFRHAPI__BrowserSessionInfo_1a0d3512081896025e79e4f1e9cc1b8945"></a>
+
+Clears the value of InstanceHealth_Optional and sets InstanceHealth_IsSet to false.
+
+#### `public inline bool `[`IsInstanceHealthSet`](#structFRHAPI__BrowserSessionInfo_1ae2538914116046218ef894e3abe6f072)`() const` <a id="structFRHAPI__BrowserSessionInfo_1ae2538914116046218ef894e3abe6f072"></a>
+
+Checks whether InstanceHealth_Optional has been set.
 
 #### `public inline int32 & `[`GetPlayerCount`](#structFRHAPI__BrowserSessionInfo_1aca0c832a46ad32204ccbcf099766277b)`()` <a id="structFRHAPI__BrowserSessionInfo_1aca0c832a46ad32204ccbcf099766277b"></a>
 

@@ -74,7 +74,7 @@ enum class ERHAPI_Source : uint8
 	Hirez UMETA(ToolTip="Order granted by Hi-Rez."),
 	DailyReward UMETA(ToolTip="Order granted by a daily reward."),
 	AddAccountEmailReward UMETA(ToolTip="Order granted by adding an account email."),
-	ClientClaim UMETA(ToolTip="Order granted by a client claim."),
+	ClientClaim UMETA(ToolTip="DEPRECATED - use the &#x60;Client&#x60; source instead."),
 	Client UMETA(ToolTip="Order granted by the client."),
 	Entitlements UMETA(ToolTip="Order granted by entitlements."),
 	Amazon UMETA(ToolTip="Order granted by Amazon."),

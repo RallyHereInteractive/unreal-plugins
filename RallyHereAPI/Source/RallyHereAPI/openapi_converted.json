@@ -78,11 +78,11 @@
       "description": "Operations on file-api"
     },
     {
-      "name": "presence",
+      "name": "Presence",
       "description": "RallyHere Presence API\n\nThis API is intended to generally store presence information and be used in order to track the concurrent users for the game as a whole.\n\n## Basic Usage\n\nOn login, a client should go through the following steps.\n\n1. Get any existing current presence data and store that locally using GET `/v1/player/me/presence`.\n2. Mark online by patching their own presence with an empty update using PATCH `/v1/player/presence`.\n3. Request the client visible settings using GET `/v1/settings` and store them.\n4. Every `self_ping_interval_seconds` the client should mark online again by patching their own presence with an empty update using PATCH `/v1/player/presence`\n\n## Setting Presence\n\nWhen updating your presence the `display_name` and `platform` are not set directly. They are instead derived from the JWT provided by the users-api.\n\nThe presence you set is considered public, so do not set any values that should be considered private data in either the `status_message` or the\n`custom_data`.\n\n## Fetching Presence\n\nYou may fetch the presence of another user by either their `player_id` or `player_uuid`. You should prefer the `player_uuid` whenever it is available\nas the `player_id` is deprecated.\n\n\n## Private Presence Data\n\n`last_seen` is only available when requesting presence for yourself or as an admin.\n\n## Concurrent Users Updates\nIt's expected that users of this API will regularly patch their own presence with an empty update. This will signal that they are still online without\nchanging any of their presence information. This should be done on a cycle based on the `self_ping_interval_setting` settings provided by the API on\nthe `/v1/settings` endpoint conforming to the `ClientVisibleSettings` schema.\n\nIf a client takes longer than the `last_seen_age_considered_offline_seconds` setting to perform this update they will be considered offline by other\nclients. This setting is provided by the API on the `/v1/settings` endpoint conforming to the `ClientVisibleSettings` schema.\n"
     },
     {
-      "name": "presence-admin",
+      "name": "Presence Admin",
       "description": "RallyHere Presence Admin API\n\nThis API is only available to administrators. It provides access to CCU data and to set specific values for presence that aren't available to\nunprivileged clients.\n\nEach time a user interacts with this API their uuid is added to a time-keyed HyperLogLog. This enables us to track the number of users stochastically\nrather than having to create a complete entry for every interaction. Their uuid is also added to a HyperLogLog keyed by both time and the platform the\nuser authenticated on.\n\nThe three actions CCU tracks are total, updating, and requesting. Comparing the numbers between the three will help identify if there are users who are\nscanning the API rather than using it for normal presence operations.\n\nWhen requesting the CCU you generally have two major options: Combined and Individual.\n\nThe Combined methods count up the number of users internally and therefor handle duplicates correctly.\n\nThe Individual methods return the individual counts for each timestamp. This data can be useful, but can't be summed up directly unless you're okay\nwith counting players multiple times.\n\nFor example, if you want to know the 24-hour CCU you should *not* get the Individual CCUs and add them up yourself. You should request the Combined\nCCU over that time period.\n"
     },
     {
@@ -162,15 +162,6 @@
               "title": "User-Agent"
             },
             "name": "user-agent",
-            "in": "header"
-          },
-          {
-            "required": false,
-            "schema": {
-              "type": "string",
-              "title": "X-Forwarded-For"
-            },
-            "name": "x-forwarded-for",
             "in": "header"
           }
         ],
@@ -2139,15 +2130,6 @@
             },
             "name": "user-agent",
             "in": "header"
-          },
-          {
-            "required": false,
-            "schema": {
-              "type": "string",
-              "title": "X-Forwarded-For"
-            },
-            "name": "x-forwarded-for",
-            "in": "header"
           }
         ],
         "responses": {
@@ -2230,15 +2212,6 @@
             },
             "name": "user-agent",
             "in": "header"
-          },
-          {
-            "required": false,
-            "schema": {
-              "type": "string",
-              "title": "X-Forwarded-For"
-            },
-            "name": "x-forwarded-for",
-            "in": "header"
           }
         ],
         "responses": {
@@ -2282,15 +2255,6 @@
               "title": "User-Agent"
             },
             "name": "user-agent",
-            "in": "header"
-          },
-          {
-            "required": false,
-            "schema": {
-              "type": "string",
-              "title": "X-Forwarded-For"
-            },
-            "name": "x-forwarded-for",
             "in": "header"
           }
         ],
@@ -2359,15 +2323,6 @@
               "title": "User-Agent"
             },
             "name": "user-agent",
-            "in": "header"
-          },
-          {
-            "required": false,
-            "schema": {
-              "type": "string",
-              "title": "X-Forwarded-For"
-            },
-            "name": "x-forwarded-for",
             "in": "header"
           }
         ],
@@ -2961,15 +2916,14 @@
         ]
       }
     },
-    "/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key": {
+    "/settings/v1/setting_type": {
       "get": {
         "tags": [
           "Settings"
         ],
-        "summary": "Get All Player Id Settings For Setting Type",
-        "description": "**DEPRECATED** - Use v2 instead.  Get a list of all player setting documents for a specific Setting Type.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:read`\n\n- For the player themselves : `setting:read:self`",
-        "operationId": "get_all_player_id_settings_for_setting_type",
-        "deprecated": true,
+        "summary": "Get Config For All Setting Types",
+        "description": "Get all setting types and their configuration.\n    \nRequired Permissions:\n\n- For any player (including themselves) any of: `setting-config:read`, `setting:*:*`",
+        "operationId": "get_config_for_all_setting_types",
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -2977,42 +2931,76 @@
         ],
         "parameters": [
           {
-            "name": "player_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "description": "Player to get settings for",
-              "title": "Player Id"
-            },
-            "description": "Player to get settings for"
-          },
-          {
-            "name": "setting_type_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "description": "Setting Type to get settings for. Must be one of the known setting types",
-              "title": "Setting Type Id"
-            },
-            "description": "Setting Type to get settings for. Must be one of the known setting types"
-          },
-          {
-            "name": "key",
-            "in": "query",
+            "name": "if-match",
+            "in": "header",
             "required": false,
             "schema": {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 256
-              },
-              "description": "Setting Key to get settings for. If not specified, all settings for the setting type will be returned",
-              "title": "Key"
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information",
+              "title": "If-Match"
             },
-            "description": "Setting Key to get settings for. If not specified, all settings for the setting type will be returned"
+            "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information"
+          },
+          {
+            "name": "if-none-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information",
+              "title": "If-None-Match"
+            },
+            "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information"
+          },
+          {
+            "name": "if-modified-since",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's Last-Modified date is newer than the provided date.  Ignored if the If-None-Match header is provided.  Only valid for GET/HEAD endpoints.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-modified-since for more information",
+              "title": "If-Modified-Since"
+            },
+            "description": "Precondition check if the resource's Last-Modified date is newer than the provided date.  Ignored if the If-None-Match header is provided.  Only valid for GET/HEAD endpoints.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-modified-since for more information"
+          },
+          {
+            "name": "if-unmodified-since",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information",
+              "title": "If-Unmodified-Since"
+            },
+            "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information"
           }
         ],
         "responses": {
@@ -3023,20 +3011,43 @@
                 "schema": {
                   "type": "object",
                   "additionalProperties": {
-                    "$ref": "#/components/schemas/SettingData"
+                    "$ref": "#/components/schemas/SettingType"
                   },
-                  "title": "Response Get All Player Id Settings For Setting Type"
+                  "title": "Response Get Config For All Setting Types"
                 }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The ETag for the resource.  Used for caching and preconditions."
+              },
+              "Last-Modified": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "description": "The Last-Modified date for the resource.  Used for caching and preconditions."
               }
             }
           },
-          "400": {
-            "description": "\nError Codes:\n- `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator\n",
-            "content": {
-              "application/json": {
+          "304": {
+            "description": "The resource has not been modified from the provided preconditions.",
+            "headers": {
+              "ETag": {
                 "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
+                  "type": "string"
+                },
+                "description": "The ETag for the resource.  Used for caching and preconditions."
+              },
+              "Last-Modified": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "description": "The Last-Modified date for the resource.  Used for caching and preconditions."
               }
             }
           },
@@ -3050,15 +3061,8 @@
               }
             }
           },
-          "404": {
-            "description": "\nError Codes:\n- `setting_type_id_not_found` - The setting type ID was not found\n        ",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
+          "412": {
+            "description": "The resource does not meet the provided preconditions."
           },
           "422": {
             "description": "Validation Error",
@@ -3071,30 +3075,22 @@
             }
           }
         }
-      },
-      "delete": {
+      }
+    },
+    "/settings/v1/setting_type/{setting_type_id}/v": {
+      "get": {
         "tags": [
           "Settings"
         ],
-        "summary": "Delete All Player Id Settings For Setting Type",
-        "description": "**DEPRECATED** - Use v2 instead. Delete all player setting documents for a specific type\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`",
-        "operationId": "delete_all_player_id_settings_for_setting_type",
-        "deprecated": true,
+        "summary": "Get Config For Single Setting Type All Versions",
+        "description": "Get a configuration and all versions for a given setting type ID.\n    \nRequired Permissions:\n\n- For any player (including themselves) any of: `setting-config:read`, `setting:*:*`",
+        "operationId": "get_config_for_single_setting_type_all_versions",
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
           }
         ],
         "parameters": [
-          {
-            "name": "player_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "title": "Player Id"
-            }
-          },
           {
             "name": "setting_type_id",
             "in": "path",
@@ -3103,6 +3099,78 @@
               "type": "string",
               "title": "Setting Type Id"
             }
+          },
+          {
+            "name": "if-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information",
+              "title": "If-Match"
+            },
+            "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information"
+          },
+          {
+            "name": "if-none-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information",
+              "title": "If-None-Match"
+            },
+            "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information"
+          },
+          {
+            "name": "if-modified-since",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's Last-Modified date is newer than the provided date.  Ignored if the If-None-Match header is provided.  Only valid for GET/HEAD endpoints.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-modified-since for more information",
+              "title": "If-Modified-Since"
+            },
+            "description": "Precondition check if the resource's Last-Modified date is newer than the provided date.  Ignored if the If-None-Match header is provided.  Only valid for GET/HEAD endpoints.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-modified-since for more information"
+          },
+          {
+            "name": "if-unmodified-since",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information",
+              "title": "If-Unmodified-Since"
+            },
+            "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information"
           }
         ],
         "responses": {
@@ -3110,17 +3178,46 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/SettingTypeVersion"
+                  },
+                  "title": "Response Get Config For Single Setting Type All Versions"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The ETag for the resource.  Used for caching and preconditions."
+              },
+              "Last-Modified": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "description": "The Last-Modified date for the resource.  Used for caching and preconditions."
               }
             }
           },
-          "400": {
-            "description": "\nError Codes:\n- `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator\n",
-            "content": {
-              "application/json": {
+          "304": {
+            "description": "The resource has not been modified from the provided preconditions.",
+            "headers": {
+              "ETag": {
                 "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
+                  "type": "string"
+                },
+                "description": "The ETag for the resource.  Used for caching and preconditions."
+              },
+              "Last-Modified": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "description": "The Last-Modified date for the resource.  Used for caching and preconditions."
               }
             }
           },
@@ -3135,7 +3232,7 @@
             }
           },
           "404": {
-            "description": "\nError Codes:\n- `setting_type_id_not_found` - The setting type ID was not found\n- `does_not_exist` - Setting Key(s) do not exist\n        ",
+            "description": "\nError Codes:\n- `setting_type_id_not_found` - The setting type ID was not found\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -3143,6 +3240,194 @@
                 }
               }
             }
+          },
+          "412": {
+            "description": "The resource does not meet the provided preconditions."
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/settings/v1/setting_type/{setting_type_id}/v/{setting_version_id}": {
+      "get": {
+        "tags": [
+          "Settings"
+        ],
+        "summary": "Get Config For Single Setting Type And Version",
+        "description": "Get a specific version of a specific setting type.\n    \nRequired Permissions:\n\n- For any player (including themselves) any of: `setting-config:read`, `setting:*:*`",
+        "operationId": "get_config_for_single_setting_type_and_version",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "setting_type_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Setting Type Id"
+            }
+          },
+          {
+            "name": "setting_version_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Setting Version Id"
+            }
+          },
+          {
+            "name": "if-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information",
+              "title": "If-Match"
+            },
+            "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information"
+          },
+          {
+            "name": "if-none-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information",
+              "title": "If-None-Match"
+            },
+            "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information"
+          },
+          {
+            "name": "if-modified-since",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's Last-Modified date is newer than the provided date.  Ignored if the If-None-Match header is provided.  Only valid for GET/HEAD endpoints.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-modified-since for more information",
+              "title": "If-Modified-Since"
+            },
+            "description": "Precondition check if the resource's Last-Modified date is newer than the provided date.  Ignored if the If-None-Match header is provided.  Only valid for GET/HEAD endpoints.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-modified-since for more information"
+          },
+          {
+            "name": "if-unmodified-since",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information",
+              "title": "If-Unmodified-Since"
+            },
+            "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SettingTypeVersion"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The ETag for the resource.  Used for caching and preconditions."
+              },
+              "Last-Modified": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "description": "The Last-Modified date for the resource.  Used for caching and preconditions."
+              }
+            }
+          },
+          "304": {
+            "description": "The resource has not been modified from the provided preconditions.",
+            "headers": {
+              "ETag": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The ETag for the resource.  Used for caching and preconditions."
+              },
+              "Last-Modified": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "description": "The Last-Modified date for the resource.  Used for caching and preconditions."
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "\nError Codes:\n- `setting_type_id_not_found` - The setting type ID was not found\n- `setting_version_id_not_found` - The setting Version was not found for that type\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "The resource does not meet the provided preconditions."
           },
           "422": {
             "description": "Validation Error",
@@ -3197,6 +3482,78 @@
               "title": "Key"
             },
             "description": "Setting Key to get settings for. If not specified, all settings for the setting type will be returned"
+          },
+          {
+            "name": "if-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information",
+              "title": "If-Match"
+            },
+            "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information"
+          },
+          {
+            "name": "if-none-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information",
+              "title": "If-None-Match"
+            },
+            "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information"
+          },
+          {
+            "name": "if-modified-since",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's Last-Modified date is newer than the provided date.  Ignored if the If-None-Match header is provided.  Only valid for GET/HEAD endpoints.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-modified-since for more information",
+              "title": "If-Modified-Since"
+            },
+            "description": "Precondition check if the resource's Last-Modified date is newer than the provided date.  Ignored if the If-None-Match header is provided.  Only valid for GET/HEAD endpoints.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-modified-since for more information"
+          },
+          {
+            "name": "if-unmodified-since",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information",
+              "title": "If-Unmodified-Since"
+            },
+            "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information"
           }
         ],
         "responses": {
@@ -3211,6 +3568,39 @@
                   },
                   "title": "Response Get All Player Uuid Settings For Setting Type Self"
                 }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The ETag for the resource.  Used for caching and preconditions."
+              },
+              "Last-Modified": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "description": "The Last-Modified date for the resource.  Used for caching and preconditions."
+              }
+            }
+          },
+          "304": {
+            "description": "The resource has not been modified from the provided preconditions.",
+            "headers": {
+              "ETag": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The ETag for the resource.  Used for caching and preconditions."
+              },
+              "Last-Modified": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "description": "The Last-Modified date for the resource.  Used for caching and preconditions."
               }
             }
           },
@@ -3243,6 +3633,9 @@
                 }
               }
             }
+          },
+          "412": {
+            "description": "The resource does not meet the provided preconditions."
           },
           "422": {
             "description": "Validation Error",
@@ -3279,6 +3672,60 @@
               "title": "Setting Type Id"
             },
             "description": "Setting Type to delete settings for.  Must be one of the known setting types"
+          },
+          {
+            "name": "if-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information",
+              "title": "If-Match"
+            },
+            "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information"
+          },
+          {
+            "name": "if-none-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information",
+              "title": "If-None-Match"
+            },
+            "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information"
+          },
+          {
+            "name": "if-unmodified-since",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information",
+              "title": "If-Unmodified-Since"
+            },
+            "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information"
           }
         ],
         "responses": {
@@ -3319,6 +3766,9 @@
                 }
               }
             }
+          },
+          "412": {
+            "description": "The resource does not meet the provided preconditions."
           },
           "422": {
             "description": "Validation Error",
@@ -3385,6 +3835,78 @@
               "title": "Key"
             },
             "description": "Setting Key to get settings for. If not specified, all settings for the setting type will be returned"
+          },
+          {
+            "name": "if-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information",
+              "title": "If-Match"
+            },
+            "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information"
+          },
+          {
+            "name": "if-none-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information",
+              "title": "If-None-Match"
+            },
+            "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information"
+          },
+          {
+            "name": "if-modified-since",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's Last-Modified date is newer than the provided date.  Ignored if the If-None-Match header is provided.  Only valid for GET/HEAD endpoints.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-modified-since for more information",
+              "title": "If-Modified-Since"
+            },
+            "description": "Precondition check if the resource's Last-Modified date is newer than the provided date.  Ignored if the If-None-Match header is provided.  Only valid for GET/HEAD endpoints.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-modified-since for more information"
+          },
+          {
+            "name": "if-unmodified-since",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information",
+              "title": "If-Unmodified-Since"
+            },
+            "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information"
           }
         ],
         "responses": {
@@ -3399,6 +3921,39 @@
                   },
                   "title": "Response Get All Player Uuid Settings For Setting Type"
                 }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The ETag for the resource.  Used for caching and preconditions."
+              },
+              "Last-Modified": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "description": "The Last-Modified date for the resource.  Used for caching and preconditions."
+              }
+            }
+          },
+          "304": {
+            "description": "The resource has not been modified from the provided preconditions.",
+            "headers": {
+              "ETag": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The ETag for the resource.  Used for caching and preconditions."
+              },
+              "Last-Modified": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "description": "The Last-Modified date for the resource.  Used for caching and preconditions."
               }
             }
           },
@@ -3431,6 +3986,9 @@
                 }
               }
             }
+          },
+          "412": {
+            "description": "The resource does not meet the provided preconditions."
           },
           "422": {
             "description": "Validation Error",
@@ -3479,6 +4037,60 @@
               "title": "Setting Type Id"
             },
             "description": "Setting Type to delete settings for.  Must be one of the known setting types"
+          },
+          {
+            "name": "if-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information",
+              "title": "If-Match"
+            },
+            "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information"
+          },
+          {
+            "name": "if-none-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information",
+              "title": "If-None-Match"
+            },
+            "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information"
+          },
+          {
+            "name": "if-unmodified-since",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information",
+              "title": "If-Unmodified-Since"
+            },
+            "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information"
           }
         ],
         "responses": {
@@ -3519,6 +4131,9 @@
                 }
               }
             }
+          },
+          "412": {
+            "description": "The resource does not meet the provided preconditions."
           },
           "422": {
             "description": "Validation Error",
@@ -3568,6 +4183,78 @@
               "title": "Key"
             },
             "description": "Setting Key to get settings for"
+          },
+          {
+            "name": "if-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information",
+              "title": "If-Match"
+            },
+            "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information"
+          },
+          {
+            "name": "if-none-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information",
+              "title": "If-None-Match"
+            },
+            "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information"
+          },
+          {
+            "name": "if-modified-since",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's Last-Modified date is newer than the provided date.  Ignored if the If-None-Match header is provided.  Only valid for GET/HEAD endpoints.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-modified-since for more information",
+              "title": "If-Modified-Since"
+            },
+            "description": "Precondition check if the resource's Last-Modified date is newer than the provided date.  Ignored if the If-None-Match header is provided.  Only valid for GET/HEAD endpoints.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-modified-since for more information"
+          },
+          {
+            "name": "if-unmodified-since",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information",
+              "title": "If-Unmodified-Since"
+            },
+            "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information"
           }
         ],
         "responses": {
@@ -3578,6 +4265,39 @@
                 "schema": {
                   "$ref": "#/components/schemas/SettingData"
                 }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The ETag for the resource.  Used for caching and preconditions."
+              },
+              "Last-Modified": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "description": "The Last-Modified date for the resource.  Used for caching and preconditions."
+              }
+            }
+          },
+          "304": {
+            "description": "The resource has not been modified from the provided preconditions.",
+            "headers": {
+              "ETag": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The ETag for the resource.  Used for caching and preconditions."
+              },
+              "Last-Modified": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "description": "The Last-Modified date for the resource.  Used for caching and preconditions."
               }
             }
           },
@@ -3610,6 +4330,9 @@
                 }
               }
             }
+          },
+          "412": {
+            "description": "The resource does not meet the provided preconditions."
           },
           "422": {
             "description": "Validation Error",
@@ -3657,6 +4380,60 @@
               "title": "Key"
             },
             "description": "Setting Key to update setting for.  Must conform to the setting type key format"
+          },
+          {
+            "name": "if-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information",
+              "title": "If-Match"
+            },
+            "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information"
+          },
+          {
+            "name": "if-none-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information",
+              "title": "If-None-Match"
+            },
+            "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information"
+          },
+          {
+            "name": "if-unmodified-since",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information",
+              "title": "If-Unmodified-Since"
+            },
+            "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information"
           }
         ],
         "requestBody": {
@@ -3682,15 +4459,38 @@
                   "title": "Response Set Single Player Uuid Setting Self"
                 }
               }
+            },
+            "headers": {
+              "ETag": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The ETag for the resource.  Used for caching and preconditions."
+              },
+              "Last-Modified": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "description": "The Last-Modified date for the resource.  Used for caching and preconditions."
+              }
             }
           },
-          "400": {
-            "description": "\nError Codes:\n- `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator\n- `setting_version_invalid` - Setting Version is not valid for the provided type\n- `update_not_enabled` - Setting Type Version has updates disabled\n- `setting_key_invalid` - Setting Key does not meet requirements for that type/version\n- `setting_value_invalid` - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details\n",
-            "content": {
-              "application/json": {
+          "304": {
+            "description": "The resource has not been modified from the provided preconditions.",
+            "headers": {
+              "ETag": {
                 "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
+                  "type": "string"
+                },
+                "description": "The ETag for the resource.  Used for caching and preconditions."
+              },
+              "Last-Modified": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "description": "The Last-Modified date for the resource.  Used for caching and preconditions."
               }
             }
           },
@@ -3704,15 +4504,8 @@
               }
             }
           },
-          "404": {
-            "description": "\nError Codes:\n- `setting_type_id_not_found` - The setting type ID was not found\n- `does_not_exist` - Setting Key(s) do not exist - This will only occur for legacy setting types.\n        ",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
+          "412": {
+            "description": "The resource does not meet the provided preconditions."
           },
           "422": {
             "description": "Validation Error",
@@ -3720,16 +4513,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "\nError Codes:\n- `setting_type_version_schema_invalid` - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.\n        ",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -3770,6 +4553,60 @@
               "title": "Key"
             },
             "description": "Setting Key to delete setting for"
+          },
+          {
+            "name": "if-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information",
+              "title": "If-Match"
+            },
+            "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information"
+          },
+          {
+            "name": "if-none-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information",
+              "title": "If-None-Match"
+            },
+            "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information"
+          },
+          {
+            "name": "if-unmodified-since",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information",
+              "title": "If-Unmodified-Since"
+            },
+            "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information"
           }
         ],
         "responses": {
@@ -3810,6 +4647,9 @@
                 }
               }
             }
+          },
+          "412": {
+            "description": "The resource does not meet the provided preconditions."
           },
           "422": {
             "description": "Validation Error",
@@ -3871,6 +4711,78 @@
               "title": "Key"
             },
             "description": "Setting Key to get settings for"
+          },
+          {
+            "name": "if-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information",
+              "title": "If-Match"
+            },
+            "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information"
+          },
+          {
+            "name": "if-none-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information",
+              "title": "If-None-Match"
+            },
+            "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information"
+          },
+          {
+            "name": "if-modified-since",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's Last-Modified date is newer than the provided date.  Ignored if the If-None-Match header is provided.  Only valid for GET/HEAD endpoints.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-modified-since for more information",
+              "title": "If-Modified-Since"
+            },
+            "description": "Precondition check if the resource's Last-Modified date is newer than the provided date.  Ignored if the If-None-Match header is provided.  Only valid for GET/HEAD endpoints.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-modified-since for more information"
+          },
+          {
+            "name": "if-unmodified-since",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information",
+              "title": "If-Unmodified-Since"
+            },
+            "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information"
           }
         ],
         "responses": {
@@ -3881,6 +4793,39 @@
                 "schema": {
                   "$ref": "#/components/schemas/SettingData"
                 }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The ETag for the resource.  Used for caching and preconditions."
+              },
+              "Last-Modified": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "description": "The Last-Modified date for the resource.  Used for caching and preconditions."
+              }
+            }
+          },
+          "304": {
+            "description": "The resource has not been modified from the provided preconditions.",
+            "headers": {
+              "ETag": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The ETag for the resource.  Used for caching and preconditions."
+              },
+              "Last-Modified": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "description": "The Last-Modified date for the resource.  Used for caching and preconditions."
               }
             }
           },
@@ -3913,6 +4858,9 @@
                 }
               }
             }
+          },
+          "412": {
+            "description": "The resource does not meet the provided preconditions."
           },
           "422": {
             "description": "Validation Error",
@@ -3972,6 +4920,60 @@
               "title": "Key"
             },
             "description": "Setting Key to update setting for.  Must conform to the setting type key format"
+          },
+          {
+            "name": "if-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information",
+              "title": "If-Match"
+            },
+            "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information"
+          },
+          {
+            "name": "if-none-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information",
+              "title": "If-None-Match"
+            },
+            "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information"
+          },
+          {
+            "name": "if-unmodified-since",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information",
+              "title": "If-Unmodified-Since"
+            },
+            "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information"
           }
         ],
         "requestBody": {
@@ -3997,15 +4999,38 @@
                   "title": "Response Set Single Player Uuid Setting"
                 }
               }
+            },
+            "headers": {
+              "ETag": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The ETag for the resource.  Used for caching and preconditions."
+              },
+              "Last-Modified": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "description": "The Last-Modified date for the resource.  Used for caching and preconditions."
+              }
             }
           },
-          "400": {
-            "description": "\nError Codes:\n- `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator\n- `setting_version_invalid` - Setting Version is not valid for the provided type\n- `update_not_enabled` - Setting Type Version has updates disabled\n- `setting_key_invalid` - Setting Key does not meet requirements for that type/version\n- `setting_value_invalid` - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details\n",
-            "content": {
-              "application/json": {
+          "304": {
+            "description": "The resource has not been modified from the provided preconditions.",
+            "headers": {
+              "ETag": {
                 "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
+                  "type": "string"
+                },
+                "description": "The ETag for the resource.  Used for caching and preconditions."
+              },
+              "Last-Modified": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "description": "The Last-Modified date for the resource.  Used for caching and preconditions."
               }
             }
           },
@@ -4019,15 +5044,8 @@
               }
             }
           },
-          "404": {
-            "description": "\nError Codes:\n- `setting_type_id_not_found` - The setting type ID was not found\n- `does_not_exist` - Setting Key(s) do not exist - This will only occur for legacy setting types.\n        ",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
+          "412": {
+            "description": "The resource does not meet the provided preconditions."
           },
           "422": {
             "description": "Validation Error",
@@ -4035,16 +5053,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "\nError Codes:\n- `setting_type_version_schema_invalid` - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.\n        ",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -4097,6 +5105,60 @@
               "title": "Key"
             },
             "description": "Setting Key to delete setting for"
+          },
+          {
+            "name": "if-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information",
+              "title": "If-Match"
+            },
+            "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information"
+          },
+          {
+            "name": "if-none-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information",
+              "title": "If-None-Match"
+            },
+            "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information"
+          },
+          {
+            "name": "if-unmodified-since",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information",
+              "title": "If-Unmodified-Since"
+            },
+            "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information"
           }
         ],
         "responses": {
@@ -4137,6 +5199,9 @@
                 }
               }
             }
+          },
+          "412": {
+            "description": "The resource does not meet the provided preconditions."
           },
           "422": {
             "description": "Validation Error",
@@ -4198,6 +5263,78 @@
               "title": "Key"
             },
             "description": "Setting Key to get settings for"
+          },
+          {
+            "name": "if-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information",
+              "title": "If-Match"
+            },
+            "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information"
+          },
+          {
+            "name": "if-none-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information",
+              "title": "If-None-Match"
+            },
+            "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information"
+          },
+          {
+            "name": "if-modified-since",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's Last-Modified date is newer than the provided date.  Ignored if the If-None-Match header is provided.  Only valid for GET/HEAD endpoints.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-modified-since for more information",
+              "title": "If-Modified-Since"
+            },
+            "description": "Precondition check if the resource's Last-Modified date is newer than the provided date.  Ignored if the If-None-Match header is provided.  Only valid for GET/HEAD endpoints.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-modified-since for more information"
+          },
+          {
+            "name": "if-unmodified-since",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information",
+              "title": "If-Unmodified-Since"
+            },
+            "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information"
           }
         ],
         "responses": {
@@ -4208,6 +5345,39 @@
                 "schema": {
                   "$ref": "#/components/schemas/SettingData"
                 }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The ETag for the resource.  Used for caching and preconditions."
+              },
+              "Last-Modified": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "description": "The Last-Modified date for the resource.  Used for caching and preconditions."
+              }
+            }
+          },
+          "304": {
+            "description": "The resource has not been modified from the provided preconditions.",
+            "headers": {
+              "ETag": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The ETag for the resource.  Used for caching and preconditions."
+              },
+              "Last-Modified": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "description": "The Last-Modified date for the resource.  Used for caching and preconditions."
               }
             }
           },
@@ -4240,6 +5410,9 @@
                 }
               }
             }
+          },
+          "412": {
+            "description": "The resource does not meet the provided preconditions."
           },
           "422": {
             "description": "Validation Error",
@@ -4299,6 +5472,60 @@
               "title": "Key"
             },
             "description": "Setting Key to update setting for.  Must conform to the setting type key format"
+          },
+          {
+            "name": "if-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information",
+              "title": "If-Match"
+            },
+            "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information"
+          },
+          {
+            "name": "if-none-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information",
+              "title": "If-None-Match"
+            },
+            "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information"
+          },
+          {
+            "name": "if-unmodified-since",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information",
+              "title": "If-Unmodified-Since"
+            },
+            "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information"
           }
         ],
         "requestBody": {
@@ -4324,15 +5551,38 @@
                   "title": "Response Set Single Player Id Setting"
                 }
               }
+            },
+            "headers": {
+              "ETag": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The ETag for the resource.  Used for caching and preconditions."
+              },
+              "Last-Modified": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "description": "The Last-Modified date for the resource.  Used for caching and preconditions."
+              }
             }
           },
-          "400": {
-            "description": "\nError Codes:\n- `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator\n- `setting_version_invalid` - Setting Version is not valid for the provided type\n- `update_not_enabled` - Setting Type Version has updates disabled\n- `setting_key_invalid` - Setting Key does not meet requirements for that type/version\n- `setting_value_invalid` - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details\n",
-            "content": {
-              "application/json": {
+          "304": {
+            "description": "The resource has not been modified from the provided preconditions.",
+            "headers": {
+              "ETag": {
                 "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
+                  "type": "string"
+                },
+                "description": "The ETag for the resource.  Used for caching and preconditions."
+              },
+              "Last-Modified": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "description": "The Last-Modified date for the resource.  Used for caching and preconditions."
               }
             }
           },
@@ -4346,15 +5596,8 @@
               }
             }
           },
-          "404": {
-            "description": "\nError Codes:\n- `setting_type_id_not_found` - The setting type ID was not found\n- `does_not_exist` - Setting Key(s) do not exist - This will only occur for legacy setting types.\n        ",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
+          "412": {
+            "description": "The resource does not meet the provided preconditions."
           },
           "422": {
             "description": "Validation Error",
@@ -4362,16 +5605,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "\nError Codes:\n- `setting_type_version_schema_invalid` - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.\n        ",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -4424,6 +5657,60 @@
               "title": "Key"
             },
             "description": "Setting Key to delete setting for"
+          },
+          {
+            "name": "if-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information",
+              "title": "If-Match"
+            },
+            "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information"
+          },
+          {
+            "name": "if-none-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information",
+              "title": "If-None-Match"
+            },
+            "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information"
+          },
+          {
+            "name": "if-unmodified-since",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information",
+              "title": "If-Unmodified-Since"
+            },
+            "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information"
           }
         ],
         "responses": {
@@ -4465,6 +5752,9 @@
               }
             }
           },
+          "412": {
+            "description": "The resource does not meet the provided preconditions."
+          },
           "422": {
             "description": "Validation Error",
             "content": {
@@ -4478,55 +5768,15 @@
         }
       }
     },
-    "/settings/v1/setting_type": {
+    "/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key": {
       "get": {
         "tags": [
           "Settings"
         ],
-        "summary": "Get Config For All Setting Types",
-        "description": "Get all setting types and their configuration.\n    \nRequired Permissions:\n\n- For any player (including themselves) any of: `setting-config:read`, `setting:*:*`",
-        "operationId": "get_config_for_all_setting_types",
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "additionalProperties": {
-                    "$ref": "#/components/schemas/SettingType"
-                  },
-                  "type": "object",
-                  "title": "Response Get Config For All Setting Types"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
-      }
-    },
-    "/settings/v1/setting_type/{setting_type_id}/v": {
-      "get": {
-        "tags": [
-          "Settings"
-        ],
-        "summary": "Get Config For Single Setting Type All Versions",
-        "description": "Get a configuration and all versions for a given setting type ID.\n    \nRequired Permissions:\n\n- For any player (including themselves) any of: `setting-config:read`, `setting:*:*`",
-        "operationId": "get_config_for_single_setting_type_all_versions",
+        "summary": "Get All Player Id Settings For Setting Type",
+        "description": "**DEPRECATED** - Use v2 instead.  Get a list of all player setting documents for a specific Setting Type.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:read`\n\n- For the player themselves : `setting:read:self`",
+        "operationId": "get_all_player_id_settings_for_setting_type",
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -4534,13 +5784,114 @@
         ],
         "parameters": [
           {
+            "name": "player_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "Player to get settings for",
+              "title": "Player Id"
+            },
+            "description": "Player to get settings for"
+          },
+          {
             "name": "setting_type_id",
             "in": "path",
             "required": true,
             "schema": {
               "type": "string",
+              "description": "Setting Type to get settings for. Must be one of the known setting types",
               "title": "Setting Type Id"
-            }
+            },
+            "description": "Setting Type to get settings for. Must be one of the known setting types"
+          },
+          {
+            "name": "key",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256
+              },
+              "description": "Setting Key to get settings for. If not specified, all settings for the setting type will be returned",
+              "title": "Key"
+            },
+            "description": "Setting Key to get settings for. If not specified, all settings for the setting type will be returned"
+          },
+          {
+            "name": "if-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information",
+              "title": "If-Match"
+            },
+            "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information"
+          },
+          {
+            "name": "if-none-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information",
+              "title": "If-None-Match"
+            },
+            "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information"
+          },
+          {
+            "name": "if-modified-since",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's Last-Modified date is newer than the provided date.  Ignored if the If-None-Match header is provided.  Only valid for GET/HEAD endpoints.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-modified-since for more information",
+              "title": "If-Modified-Since"
+            },
+            "description": "Precondition check if the resource's Last-Modified date is newer than the provided date.  Ignored if the If-None-Match header is provided.  Only valid for GET/HEAD endpoints.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-modified-since for more information"
+          },
+          {
+            "name": "if-unmodified-since",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information",
+              "title": "If-Unmodified-Since"
+            },
+            "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information"
           }
         ],
         "responses": {
@@ -4551,9 +5902,52 @@
                 "schema": {
                   "type": "object",
                   "additionalProperties": {
-                    "$ref": "#/components/schemas/SettingTypeVersion"
+                    "$ref": "#/components/schemas/SettingData"
                   },
-                  "title": "Response Get Config For Single Setting Type All Versions"
+                  "title": "Response Get All Player Id Settings For Setting Type"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The ETag for the resource.  Used for caching and preconditions."
+              },
+              "Last-Modified": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "description": "The Last-Modified date for the resource.  Used for caching and preconditions."
+              }
+            }
+          },
+          "304": {
+            "description": "The resource has not been modified from the provided preconditions.",
+            "headers": {
+              "ETag": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The ETag for the resource.  Used for caching and preconditions."
+              },
+              "Last-Modified": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "description": "The Last-Modified date for the resource.  Used for caching and preconditions."
+              }
+            }
+          },
+          "400": {
+            "description": "\nError Codes:\n- `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -4578,6 +5972,9 @@
               }
             }
           },
+          "412": {
+            "description": "The resource does not meet the provided preconditions."
+          },
           "422": {
             "description": "Validation Error",
             "content": {
@@ -4589,22 +5986,30 @@
             }
           }
         }
-      }
-    },
-    "/settings/v1/setting_type/{setting_type_id}/v/{setting_version_id}": {
-      "get": {
+      },
+      "delete": {
         "tags": [
           "Settings"
         ],
-        "summary": "Get Config For Single Setting Type And Version",
-        "description": "Get a specific version of a specific setting type.\n    \nRequired Permissions:\n\n- For any player (including themselves) any of: `setting-config:read`, `setting:*:*`",
-        "operationId": "get_config_for_single_setting_type_and_version",
+        "summary": "Delete All Player Id Settings For Setting Type",
+        "description": "**DEPRECATED** - Use v2 instead. Delete all player setting documents for a specific type\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`",
+        "operationId": "delete_all_player_id_settings_for_setting_type",
+        "deprecated": true,
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
           }
         ],
         "parameters": [
+          {
+            "name": "player_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Player Id"
+            }
+          },
           {
             "name": "setting_type_id",
             "in": "path",
@@ -4615,13 +6020,58 @@
             }
           },
           {
-            "name": "setting_version_id",
-            "in": "path",
-            "required": true,
+            "name": "if-match",
+            "in": "header",
+            "required": false,
             "schema": {
-              "type": "integer",
-              "title": "Setting Version Id"
-            }
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information",
+              "title": "If-Match"
+            },
+            "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information"
+          },
+          {
+            "name": "if-none-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information",
+              "title": "If-None-Match"
+            },
+            "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information"
+          },
+          {
+            "name": "if-unmodified-since",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information",
+              "title": "If-Unmodified-Since"
+            },
+            "description": "Precondition check if the resource's Last-Modified date is older than the provided date.  Ignored if the If-Match header is provided.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-unmodified-since for more information"
           }
         ],
         "responses": {
@@ -4629,8 +6079,16 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "\nError Codes:\n- `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator\n",
+            "content": {
+              "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SettingTypeVersion"
+                  "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
             }
@@ -4646,7 +6104,7 @@
             }
           },
           "404": {
-            "description": "\nError Codes:\n- `setting_type_id_not_found` - The setting type ID was not found\n- `setting_version_id_not_found` - The setting Version was not found for that type\n        ",
+            "description": "\nError Codes:\n- `setting_type_id_not_found` - The setting type ID was not found\n- `does_not_exist` - Setting Key(s) do not exist\n        ",
             "content": {
               "application/json": {
                 "schema": {
@@ -4654,6 +6112,9 @@
                 }
               }
             }
+          },
+          "412": {
+            "description": "The resource does not meet the provided preconditions."
           },
           "422": {
             "description": "Validation Error",
@@ -16669,6 +18130,64 @@
         ]
       }
     },
+    "/session/v1/player/me/deserter/{deserter_id}": {
+      "get": {
+        "tags": [
+          "Deserter"
+        ],
+        "summary": "Get Player Deserter Self",
+        "description": "Get currently authed player's deserter status",
+        "operationId": "get_player_deserter_self",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Deserter Id"
+            },
+            "name": "deserter_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerDeserterStatus"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
     "/session/v1/player/{player_uuid}/deserter/{deserter_id}": {
       "get": {
         "tags": [
@@ -21795,7 +23314,7 @@
     "/presence/v1/player/me/presence": {
       "get": {
         "tags": [
-          "presence"
+          "Presence"
         ],
         "summary": "Get Player Presence Self",
         "description": "Get the player's presence information. The status reflects the true value and is not modified before it\nis returned.",
@@ -21860,7 +23379,7 @@
       },
       "patch": {
         "tags": [
-          "presence"
+          "Presence"
         ],
         "summary": "Update Player Presence Self",
         "description": "Update the player's online status and other presence data.\nIf the player reports their online status as online or away, their \"last_seen\" presence info is updated.\nPlayer clients are expected to send requests to this endpoint on an interval of self_ping_interval_seconds.\nOtherwise they will be considered offline.",
@@ -21940,7 +23459,7 @@
     "/presence/v1/player/uuid/{player_uuid}/presence": {
       "get": {
         "tags": [
-          "presence"
+          "Presence"
         ],
         "summary": "Get Player Presence Public By Uuid",
         "description": "Get the player's presence information. The status will be modified based on the following rules:\n- A status of invisible will be reported as offline\n- The status will become offline if older than the configured age",
@@ -22040,7 +23559,7 @@
     "/presence/v1/player/id/{player_id}/presence": {
       "get": {
         "tags": [
-          "presence"
+          "Presence"
         ],
         "summary": "Get Player Presence Public By Id",
         "description": "Get the player's presence information. The status will be modified based on the following rules:\n- A status of invisible will be reported as offline\n- The status will become offline if older than the configured age",
@@ -22139,7 +23658,7 @@
     "/presence/v1/settings": {
       "get": {
         "tags": [
-          "presence"
+          "Presence"
         ],
         "summary": "Get Presence Settings",
         "description": "Settings which help tell the client how it should interact with this service.",
@@ -22161,7 +23680,7 @@
     "/presence/v1/admin/player/uuid/{player_uuid}/last_seen": {
       "patch": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Update Player Last Seen",
         "description": "Forcibly update the player's last_seen with the specified values. This enables an admin to set the last_seen time\nto something specific for testing.",
@@ -22253,7 +23772,7 @@
     "/presence/v1/admin/player/id/{player_id}/last_seen": {
       "patch": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Update Player Last Seen Id",
         "description": "Forcibly update the player's last_seen with the specified values. This enables an admin to set the last_seen time\nto something specific for testing.",
@@ -22344,7 +23863,7 @@
     "/presence/v1/admin/player/uuid/{player_uuid}/presence": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Player Presence",
         "description": "Get the player's presence information. The status reflects the true value and is not modified before it\nis returned.",
@@ -22425,7 +23944,7 @@
     "/presence/v1/admin/player/id/{player_id}/presence": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Player Presence Id",
         "description": "Get the player's presence information. The status reflects the true value and is not modified before it\nis returned.",
@@ -22505,7 +24024,7 @@
     "/presence/v1/admin/ccu/total/combined": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Total Ccu",
         "description": "Get the combined CCU over the requested time period. This call results in one number which should exclude most duplicates across the given time\nperiod. This stands in contrast to the individual request endpoint.\n\nFor example, if you request the CCU over an hour you'll receive one number in which players that were around over that time period will only be\ncounted once.",
@@ -22586,7 +24105,7 @@
     "/presence/v1/admin/ccu/total/individual": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Total Ccu Individual",
         "description": "Get the individual CCU counts over the requested time period. This call results in a count per time period within the requested range. These\nvalues should not be combined directly unless you've accounted for duplicates in some other way. The combined endpoint allows you to combine\nthe values within a time range without counting the same player multiple times.",
@@ -22667,7 +24186,7 @@
     "/presence/v1/admin/ccu/requesting/combined": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Requesting Ccu",
         "description": "Get the combined CCU for requesters over the requested time period. This call results in one number which should exclude most duplicates across\nthe given time period. This stands in contrast to the individual request endpoint.\n\nFor example, if you request the CCU over an hour you'll receive one number in which players that were around over that time period will only be\ncounted once.",
@@ -22748,7 +24267,7 @@
     "/presence/v1/admin/ccu/requesting/individual": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Requesting Ccu Individual",
         "description": "Get the individual CCU counts for requesters over the requested time period. This call results in a count per time period within the requested\nrange. These values should not be combined directly unless you've accounted for duplicates in some other way. The combined endpoint allows you to\ncombine the values within a time range without counting the same player multiple times.",
@@ -22829,7 +24348,7 @@
     "/presence/v1/admin/ccu/updating/combined": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Updating Ccu",
         "description": "Get the combined CCU for updaters over the requested time period. This call results in one number which should exclude most duplicates across\nthe given time period. This stands in contrast to the individual request endpoint.\n\nFor example, if you request the CCU over an hour you'll receive one number in which players that were around over that time period will only be\ncounted once.",
@@ -22910,7 +24429,7 @@
     "/presence/v1/admin/ccu/updating/individual": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Updating Ccu Individual",
         "description": "Get the individual CCU counts for updaters over the requested time period. This call results in a count per time period within the requested\nrange. These values should not be combined directly unless you've accounted for duplicates in some other way. The combined endpoint allows you to\ncombine the values within a time range without counting the same player multiple times.",
@@ -22991,7 +24510,7 @@
     "/presence/v1/admin/ccu/platforms": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Known Platforms",
         "description": "Get all of the platforms that presence has been told about by players updating their presence",
@@ -23050,7 +24569,7 @@
     "/presence/v1/admin/ccu/total/allplatforms/individual": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Total Ccu All Platform Individual",
         "operationId": "admin_get_total_ccu_all_platform_individual",
@@ -23130,7 +24649,7 @@
     "/presence/v1/admin/ccu/total/allplatforms/combined": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Total Ccu All Platform Combined",
         "operationId": "admin_get_total_ccu_all_platform_combined",
@@ -23210,7 +24729,7 @@
     "/presence/v1/admin/ccu/requesting/allplatforms/individual": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Requesting Ccu All Platform Individual",
         "operationId": "admin_get_requesting_ccu_all_platform_individual",
@@ -23290,7 +24809,7 @@
     "/presence/v1/admin/ccu/requesting/allplatforms/combined": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Requesting Ccu All Platform Combined",
         "operationId": "admin_get_requesting_ccu_all_platform_combined",
@@ -23370,7 +24889,7 @@
     "/presence/v1/admin/ccu/updating/allplatforms/individual": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Updating Ccu All Platform Individual",
         "operationId": "admin_get_updating_ccu_all_platform_individual",
@@ -23450,7 +24969,7 @@
     "/presence/v1/admin/ccu/updating/allplatforms/combined": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Updating Ccu All Platform Combined",
         "operationId": "admin_get_updating_ccu_all_platform_combined",
@@ -23530,7 +25049,7 @@
     "/presence/v1/admin/ccu/total/platform/{platform}/individual": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Total Ccu Platform Individual",
         "operationId": "admin_get_total_ccu_platform_individual",
@@ -23619,7 +25138,7 @@
     "/presence/v1/admin/ccu/total/platform/{platform}/combined": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Total Ccu Platform Combined",
         "operationId": "admin_get_total_ccu_platform_combined",
@@ -23708,7 +25227,7 @@
     "/presence/v1/admin/ccu/requesting/platform/{platform}/individual": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Requesting Ccu Platform Individual",
         "operationId": "admin_get_requesting_ccu_platform_individual",
@@ -23797,7 +25316,7 @@
     "/presence/v1/admin/ccu/requesting/platform/{platform}/combined": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Requesting Ccu Platform Combined",
         "operationId": "admin_get_requesting_ccu_platform_combined",
@@ -23886,7 +25405,7 @@
     "/presence/v1/admin/ccu/updating/platform/{platform}/individual": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Updating Ccu Platform Individual",
         "operationId": "admin_get_updating_ccu_platform_individual",
@@ -23975,7 +25494,7 @@
     "/presence/v1/admin/ccu/updating/platform/{platform}/combined": {
       "get": {
         "tags": [
-          "presence-admin"
+          "Presence Admin"
         ],
         "summary": "Admin Get Updating Ccu Platform Combined",
         "operationId": "admin_get_updating_ccu_platform_combined",
@@ -24067,7 +25586,7 @@
           "Reports"
         ],
         "summary": "Create Report For Target Player Uuid",
-        "description": "Create a new report for a target player\nRequired Permissions:\nIf `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:*`, `sanction:report:create:any`, `sanction:report:create:self`\nOtherwise: any of: `sanction:*`, `sanction:report:create:any`",
+        "description": "Create a new report for a target player\nRequired Permissions:\nIf `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:any`, `sanction:report:create:self`, `sanction:*`\nOtherwise: any of: `sanction:report:create:any`, `sanction:*`",
         "operationId": "create_report_for_target_player_uuid",
         "security": [
           {
@@ -24610,7 +26129,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_format - Invalid Authorization - {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
+            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_expired - Token is expired\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -24753,7 +26272,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_format - Invalid Authorization - {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
+            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_expired - Token is expired\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -24880,7 +26399,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_format - Invalid Authorization - {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
+            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_expired - Token is expired\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -24965,7 +26484,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_format - Invalid Authorization - {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
+            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_expired - Token is expired\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -25102,7 +26621,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_format - Invalid Authorization - {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
+            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_expired - Token is expired\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -25199,7 +26718,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_format - Invalid Authorization - {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
+            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_expired - Token is expired\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -25287,7 +26806,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_format - Invalid Authorization - {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
+            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_expired - Token is expired\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -25395,7 +26914,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_expired - Token is expired\n- auth_invalid_version - Invalid Authorization - version\n- insufficient_permissions - Insufficient Permissions\n- auth_not_jwt - Invalid Authorization\n- auth_token_format - Invalid Authorization - {}\n- auth_token_unknown - Failed to parse token\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n",
+            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_expired - Token is expired\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26650,23 +28169,6 @@
         ],
         "title": "GrantType",
         "description": "Supported grant types for V1 Login Flow",
-        "x-enum-varnames": [
-          "ANON",
-          "GOOGLE",
-          "APPLE",
-          "REFRESH",
-          "EPIC",
-          "XBOXLIVE",
-          "PS4_V1",
-          "PS4_V3",
-          "PS5_V3",
-          "NINTENDO",
-          "NINTENDO_SWITCH",
-          "STEAM",
-          "BASIC",
-          "RALLYHERE",
-          "CLIENT_CREDENTIALS"
-        ],
         "x-enum-descriptions": [
           "Anonymous authentication",
           "Google authentication",
@@ -26683,6 +28185,23 @@
           "Basic Username/Password authentication",
           "RallyHere Developer authentication",
           "Authentication that doesn't require user credentials, only a Client ID/Secret in the Authorization header."
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "GOOGLE",
+          "APPLE",
+          "REFRESH",
+          "EPIC",
+          "XBOXLIVE",
+          "PS4_V1",
+          "PS4_V3",
+          "PS5_V3",
+          "NINTENDO",
+          "NINTENDO_SWITCH",
+          "STEAM",
+          "BASIC",
+          "RALLYHERE",
+          "CLIENT_CREDENTIALS"
         ]
       },
       "HTTPValidationError": {
@@ -26732,19 +28251,19 @@
         ],
         "title": "LinkAction",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "link",
-          "unlink",
-          "new_person",
-          "xprog_enable",
-          "xprog_disable"
-        ],
         "x-enum-descriptions": [
           "Linked a player to an existing person",
           "Unlinked a player from a person",
           "Player was associated with a new person",
           "Active player was set for person, enabling cross-progression for all of the person's players",
           "Active player was cleared for person, disabling cross-progression for all of the person's players"
+        ],
+        "x-enum-varnames": [
+          "link",
+          "unlink",
+          "new_person",
+          "xprog_enable",
+          "xprog_disable"
         ]
       },
       "LoginHistoryEntry": {
@@ -27121,11 +28640,11 @@
         ],
         "title": "OAuthGrantType",
         "description": "Supported OAuth2 grant types",
-        "x-enum-varnames": [
-          "CLIENT_CREDENTIALS"
-        ],
         "x-enum-descriptions": [
           "The OAuth2 client credentials grant type"
+        ],
+        "x-enum-varnames": [
+          "CLIENT_CREDENTIALS"
         ]
       },
       "OAuthPortal": {
@@ -27143,17 +28662,6 @@
         ],
         "title": "OAuthPortal",
         "description": "Supported OAuth portals for V1 Login Flow",
-        "x-enum-varnames": [
-          "GOOGLE",
-          "APPLE",
-          "EPIC",
-          "XBOX",
-          "PSN",
-          "NINTENDO",
-          "STEAM",
-          "AMAZON",
-          "TWITCH"
-        ],
         "x-enum-descriptions": [
           "Google OAuth Portal",
           "Apple OAuth Portal",
@@ -27164,6 +28672,17 @@
           "Steam OAuth Portal",
           "Amazon OAuth Portal",
           "Twitch OAuth Portal"
+        ],
+        "x-enum-varnames": [
+          "GOOGLE",
+          "APPLE",
+          "EPIC",
+          "XBOX",
+          "PSN",
+          "NINTENDO",
+          "STEAM",
+          "AMAZON",
+          "TWITCH"
         ]
       },
       "OAuthTokenEchangeGrantType": {
@@ -27173,11 +28692,11 @@
         ],
         "title": "OAuthTokenEchangeGrantType",
         "description": "Supported grant types for OAuth Token Exchange process",
-        "x-enum-varnames": [
-          "authorization_code"
-        ],
         "x-enum-descriptions": [
           "Authorization code grant type for OAuth token exchange."
+        ],
+        "x-enum-varnames": [
+          "authorization_code"
         ]
       },
       "OAuthTokenExchange": {
@@ -27722,15 +29241,15 @@
         ],
         "title": "PortalTokenDetailsGrantType",
         "description": "The grant type used to authenticate the portal tokens",
-        "x-enum-varnames": [
-          "PS4_V1",
-          "PS4_V3",
-          "PS5_V3"
-        ],
         "x-enum-descriptions": [
           "Playstation Network v1 auth token validated using the configured PS4 credentials",
           "Playstation Network v3 auth token validated using the configured PS4 credentials",
           "Playstation Network v3 auth token validated using the configured PS5 credentials"
+        ],
+        "x-enum-varnames": [
+          "PS4_V1",
+          "PS4_V3",
+          "PS5_V3"
         ]
       },
       "PortalTokenDetailsRequest": {
@@ -27985,17 +29504,17 @@
         ],
         "title": "RestrictionType",
         "description": "Restrictions that can be applied to a player. Resitrictions are applied to a player by an admin and often types indicates that the player is banned.",
-        "x-enum-varnames": [
-          "ACCOUNT_BAN",
-          "ACCOUNT_LOCKOUT",
-          "ACCOUNT_PENDING_DELETION",
-          "ACCOUNT_DENY_AUTH"
-        ],
         "x-enum-descriptions": [
           "Account is banned",
           "Account is locked out",
           "Account is pending deletion and will be deleted in the future",
           "Account has been banned from authentication"
+        ],
+        "x-enum-varnames": [
+          "ACCOUNT_BAN",
+          "ACCOUNT_LOCKOUT",
+          "ACCOUNT_PENDING_DELETION",
+          "ACCOUNT_DENY_AUTH"
         ]
       },
       "Role": {
@@ -28052,15 +29571,15 @@
         ],
         "title": "RoleAuthBypass",
         "description": "Role auth bypass options",
-        "x-enum-varnames": [
-          "NONE",
-          "LIMITED",
-          "LOCKED"
-        ],
         "x-enum-descriptions": [
           "Does not bypass any auth states",
           "Allow bypass of the limited auth state",
           "Auth bypass for the limited and locked auth states"
+        ],
+        "x-enum-varnames": [
+          "NONE",
+          "LIMITED",
+          "LOCKED"
         ]
       },
       "TokenRequest": {
@@ -28264,23 +29783,6 @@
         ],
         "title": "Portal",
         "description": "Portals a.k.a platforms that a player can be linked/authenticated with",
-        "x-enum-varnames": [
-          "ANON",
-          "AMAZON",
-          "STEAM",
-          "PSN",
-          "XBOXLIVE",
-          "BASIC",
-          "GOOGLE",
-          "RALLYHERE",
-          "TWITCH",
-          "NINTENDO_SWITCH",
-          "APPLE",
-          "NINTENDO",
-          "LEGACYNAME",
-          "EPIC",
-          "NINTENDO_PPID"
-        ],
         "x-enum-descriptions": [
           "Anonymous portal used for testing. This is not intended to be used by real players.",
           "Amazon portal",
@@ -28297,6 +29799,23 @@
           "Legacy name portal",
           "Epic portal",
           "Nintendo PPID portal"
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "AMAZON",
+          "STEAM",
+          "PSN",
+          "XBOXLIVE",
+          "BASIC",
+          "GOOGLE",
+          "RALLYHERE",
+          "TWITCH",
+          "NINTENDO_SWITCH",
+          "APPLE",
+          "NINTENDO",
+          "LEGACYNAME",
+          "EPIC",
+          "NINTENDO_PPID"
         ]
       },
       "fastapicommon__platforms__Portal": {
@@ -28341,44 +29860,6 @@
         ],
         "title": "Portal",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "FREE",
-          "SWEAT",
-          "UNKNOWN",
-          "STANDARD",
-          "ANON",
-          "KONGREGATE",
-          "AMAZON",
-          "STEAM",
-          "TCLS",
-          "LEVELUP_LATAM",
-          "LEVELUP_BRA",
-          "PSN",
-          "XBOX_LIVE",
-          "BASIC",
-          "FACEBOOK",
-          "GOOGLE",
-          "RALLYHERE",
-          "RIVALS_MOBILE",
-          "TWITCH",
-          "PALADINS_STRIKE",
-          "SMITE_BLITZ",
-          "FACEBOOK_SMITE",
-          "FACEBOOK_PALADINS",
-          "FACEBOOK_HOTG",
-          "NINTENDO_SWITCH",
-          "TUNE",
-          "APPLE",
-          "DISCORD",
-          "NINTENDO",
-          "LEGACYNAME",
-          "EPIC",
-          "FORTE",
-          "SIMULMEDIA",
-          "LUNA",
-          "GOOGLE_PLAY",
-          "NINTENDO_PPID"
-        ],
         "x-enum-descriptions": [
           "An enumeration.",
           "An enumeration.",
@@ -28416,6 +29897,44 @@
           "An enumeration.",
           "An enumeration.",
           "An enumeration."
+        ],
+        "x-enum-varnames": [
+          "FREE",
+          "SWEAT",
+          "UNKNOWN",
+          "STANDARD",
+          "ANON",
+          "KONGREGATE",
+          "AMAZON",
+          "STEAM",
+          "TCLS",
+          "LEVELUP_LATAM",
+          "LEVELUP_BRA",
+          "PSN",
+          "XBOX_LIVE",
+          "BASIC",
+          "FACEBOOK",
+          "GOOGLE",
+          "RALLYHERE",
+          "RIVALS_MOBILE",
+          "TWITCH",
+          "PALADINS_STRIKE",
+          "SMITE_BLITZ",
+          "FACEBOOK_SMITE",
+          "FACEBOOK_PALADINS",
+          "FACEBOOK_HOTG",
+          "NINTENDO_SWITCH",
+          "TUNE",
+          "APPLE",
+          "DISCORD",
+          "NINTENDO",
+          "LEGACYNAME",
+          "EPIC",
+          "FORTE",
+          "SIMULMEDIA",
+          "LUNA",
+          "GOOGLE_PLAY",
+          "NINTENDO_PPID"
         ]
       },
       "SetSinglePlayerSettingRequest": {
@@ -29807,7 +31326,8 @@
             "default": 0
           },
           "coupon_discount_currency_item_uuid": {
-            "type": "integer",
+            "type": "string",
+            "format": "uuid",
             "title": "Coupon Discount Currency Item Uuid",
             "description": "The item of the currency used by this coupon. This is only valid for an unit Item."
           },
@@ -32194,7 +33714,7 @@
           "Order granted by Hi-Rez.",
           "Order granted by a daily reward.",
           "Order granted by adding an account email.",
-          "Order granted by a client claim.",
+          "DEPRECATED - use the `Client` source instead.",
           "Order granted by the client.",
           "Order granted by entitlements.",
           "Order granted by Amazon.",
@@ -32626,6 +34146,13 @@
             ],
             "description": "How to handle backfills that return too many players for a team",
             "default": "fail"
+          },
+          "styles": {
+            "items": {
+              "$ref": "#/components/schemas/BackfillStyle"
+            },
+            "type": "array",
+            "description": "The styles of backfill to acknowledge. Can provide multiple for backwards compatibility."
           }
         },
         "type": "object",
@@ -33035,6 +34562,23 @@
         ],
         "title": "BackfillSettingsResponse"
       },
+      "BackfillStyle": {
+        "type": "string",
+        "enum": [
+          "team_request",
+          "composition"
+        ],
+        "title": "BackfillStyle",
+        "description": "An enumeration.",
+        "x-enum-varnames": [
+          "TEAM_REQUEST",
+          "COMPOSITION"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration."
+        ]
+      },
       "BackfillTeam": {
         "properties": {
           "players_required": {
@@ -33124,6 +34668,14 @@
             "minLength": 1,
             "title": "Session Id",
             "description": "ID for the session"
+          },
+          "instance_health": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InstanceHealthStatus"
+              }
+            ],
+            "description": "The health status of the instance if it exists"
           },
           "player_count": {
             "type": "integer",
@@ -35032,12 +36584,22 @@
             "title": "Tickets Assigned",
             "description": "Whether or not the tickets from these results have been assigned",
             "default": false
+          },
+          "profile": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MatchMakingProfileV2"
+              }
+            ],
+            "title": "Profile",
+            "description": "The profile used to create this match"
           }
         },
         "type": "object",
         "required": [
           "match_making_id",
-          "created"
+          "created",
+          "profile"
         ],
         "title": "MatchmakingResults"
       },
@@ -37221,6 +38783,8 @@
         "properties": {
           "allocation_id": {
             "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
             "title": "Allocation Id",
             "description": "Allocation ID"
           }
@@ -37234,14 +38798,9 @@
       "MatchInstance": {
         "properties": {
           "instance_id": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
             "title": "Instance Id",
             "description": "Instance ID"
           },
@@ -37319,6 +38878,9 @@
           }
         },
         "type": "object",
+        "required": [
+          "instance_id"
+        ],
         "title": "MatchInstance"
       },
       "MatchPlayerRequest": {
@@ -38323,6 +39885,8 @@
           },
           "match_id": {
             "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
             "title": "Match Id"
           },
           "players": {
@@ -38345,6 +39909,8 @@
         "properties": {
           "session_id": {
             "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
             "title": "Session Id",
             "description": "Session ID"
           },
@@ -38515,6 +40081,8 @@
           },
           "match_id": {
             "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
             "title": "Match Id"
           }
         },
@@ -38660,6 +40228,8 @@
           },
           "match_id": {
             "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
             "title": "Match Id"
           },
           "segments": {
@@ -39471,13 +41041,6 @@
       },
       "PexClientResponse": {
         "properties": {
-          "last_modified_timestamp": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Time Zone Aware Datetime",
-            "description": "Timestamp of when the resource was last modified",
-            "example": "2023-01-23T21:07:02.000000+00:00"
-          },
           "created_timestamp": {
             "type": "string",
             "format": "date-time",
@@ -40848,13 +42411,6 @@
       },
       "PexHostResponse": {
         "properties": {
-          "last_modified_timestamp": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Time Zone Aware Datetime",
-            "description": "Timestamp of when the resource was last modified",
-            "example": "2023-01-23T21:07:02.000000+00:00"
-          },
           "created_timestamp": {
             "type": "string",
             "format": "date-time",
@@ -42395,13 +43951,13 @@
         ],
         "title": "OffsetReset",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration."
-        ],
         "x-enum-varnames": [
           "latest",
           "earliest"
+        ],
+        "x-enum-descriptions": [
+          "An enumeration.",
+          "An enumeration."
         ]
       },
       "EnvironmentConfig": {
@@ -42819,13 +44375,13 @@
         ],
         "title": "OpportunityAbortReason",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "Ad was closed by the user",
-          "Ad was closed from a misc cause"
-        ],
         "x-enum-varnames": [
           "CANCEL",
           "OTHER"
+        ],
+        "x-enum-descriptions": [
+          "Ad was closed by the user",
+          "Ad was closed from a misc cause"
         ]
       },
       "OpportunityState": {
@@ -42837,15 +44393,15 @@
         ],
         "title": "OpportunityState",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "User started watching the ad",
-          "User finished watching the ad",
-          "User stopped watching the ad partway through"
-        ],
         "x-enum-varnames": [
           "START",
           "COMPLETE",
           "ABORT"
+        ],
+        "x-enum-descriptions": [
+          "User started watching the ad",
+          "User finished watching the ad",
+          "User stopped watching the ad partway through"
         ]
       }
     }

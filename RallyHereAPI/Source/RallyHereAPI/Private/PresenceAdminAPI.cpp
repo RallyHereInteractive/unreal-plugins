@@ -6107,10 +6107,10 @@ bool FResponse_AdminUpdatePlayerLastSeen::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -6382,10 +6382,10 @@ bool FResponse_AdminUpdatePlayerLastSeenId::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 

@@ -19,9 +19,7 @@ struct FRHAPI_MatchInstance
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public FString `[`InstanceId_Optional`](#structFRHAPI__MatchInstance_1a377ab6c8dae9f8665a729d42723f1fb3) | 
-`public bool `[`InstanceId_IsSet`](#structFRHAPI__MatchInstance_1aa44b4f2c34a03a74b5d273384228ab86) | true if InstanceId_Optional has been set to a value
-`public bool `[`InstanceId_IsNull`](#structFRHAPI__MatchInstance_1a2bcec77b74782072bfab7e62917c09b1) | true if InstanceId_Optional has been explicitly set to null
+`public FString `[`InstanceId`](#structFRHAPI__MatchInstance_1a29c5d5ed6808009b1d642ffda136587e) | Instance ID.
 `public FGuid `[`HostPlayerUuid_Optional`](#structFRHAPI__MatchInstance_1a9258739c332368588ecad94e589f1e12) | 
 `public bool `[`HostPlayerUuid_IsSet`](#structFRHAPI__MatchInstance_1a5c6aac7f5779fa2094378925f7a3ba5f) | true if HostPlayerUuid_Optional has been set to a value
 `public bool `[`HostPlayerUuid_IsNull`](#structFRHAPI__MatchInstance_1a6cf39f9871bd8f56020df660efe22997) | true if HostPlayerUuid_Optional has been explicitly set to null
@@ -42,18 +40,10 @@ struct FRHAPI_MatchInstance
 `public bool `[`HostType_IsNull`](#structFRHAPI__MatchInstance_1a2985071b896bf4d1c2598ce2fe7591e1) | true if HostType_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__MatchInstance_1ad02f6609665b292c649c06305e493bb1)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__MatchInstance_1abef8b80ec1a5aed98908b8e671496dc7)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetInstanceId`](#structFRHAPI__MatchInstance_1a84072238e951562d613fea4f132e8c04)`()` | Gets the value of InstanceId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetInstanceId`](#structFRHAPI__MatchInstance_1a3e2296368144ea55ed5829ccb4fdc909)`() const` | Gets the value of InstanceId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetInstanceId`](#structFRHAPI__MatchInstance_1a429d4dac490610aa04a602bf9b7c3874)`(const FString & DefaultValue) const` | Gets the value of InstanceId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetInstanceId`](#structFRHAPI__MatchInstance_1a8e416e3ace8afc5386e9c56e138ab836)`(FString & OutValue) const` | Fills OutValue with the value of InstanceId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetInstanceIdOrNull`](#structFRHAPI__MatchInstance_1abcd2163d733a644851feeb44ce4335ed)`()` | Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetInstanceIdOrNull`](#structFRHAPI__MatchInstance_1aeed7702808462c4e70dcbdf38df9961b)`() const` | Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetInstanceId`](#structFRHAPI__MatchInstance_1a1e6f5239480f81856b1be9eed7417971)`(const FString & NewValue)` | Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true.
-`public inline void `[`SetInstanceId`](#structFRHAPI__MatchInstance_1ad62c3b0aa84a2b000105c6498598d32e)`(FString && NewValue)` | Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true using move semantics.
-`public inline void `[`ClearInstanceId`](#structFRHAPI__MatchInstance_1aa75a1740116118e11efcaba067009ffd)`()` | Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false.
-`public inline bool `[`IsInstanceIdSet`](#structFRHAPI__MatchInstance_1a5f49b03acaa557b358da7a467e6e4799)`() const` | Checks whether InstanceId_Optional has been set.
-`public inline void `[`SetInstanceIdToNull`](#structFRHAPI__MatchInstance_1ae57a80ce1e4642ac9bf3dc016ecf7b30)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsInstanceIdNull`](#structFRHAPI__MatchInstance_1a5a8d1ef1d2668070a816e28e71d32192)`() const` | Checks whether InstanceId_Optional is set to null.
+`public inline FString & `[`GetInstanceId`](#structFRHAPI__MatchInstance_1a84072238e951562d613fea4f132e8c04)`()` | Gets the value of InstanceId.
+`public inline const FString & `[`GetInstanceId`](#structFRHAPI__MatchInstance_1a3e2296368144ea55ed5829ccb4fdc909)`() const` | Gets the value of InstanceId.
+`public inline void `[`SetInstanceId`](#structFRHAPI__MatchInstance_1a1e6f5239480f81856b1be9eed7417971)`(const FString & NewValue)` | Sets the value of InstanceId.
+`public inline void `[`SetInstanceId`](#structFRHAPI__MatchInstance_1ad62c3b0aa84a2b000105c6498598d32e)`(FString && NewValue)` | Sets the value of InstanceId using move semantics.
 `public inline FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__MatchInstance_1a7812185b9151fb35c7ea62938291b1d0)`()` | Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
 `public inline const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__MatchInstance_1acdb1458c769686fe3d41c942af1c31da)`() const` | Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
 `public inline const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__MatchInstance_1a67e28841c901856a5989cd008f8d5935)`(const FGuid & DefaultValue) const` | Gets the value of HostPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -129,15 +119,9 @@ struct FRHAPI_MatchInstance
 
 ### Members
 
-#### `public FString `[`InstanceId_Optional`](#structFRHAPI__MatchInstance_1a377ab6c8dae9f8665a729d42723f1fb3) <a id="structFRHAPI__MatchInstance_1a377ab6c8dae9f8665a729d42723f1fb3"></a>
+#### `public FString `[`InstanceId`](#structFRHAPI__MatchInstance_1a29c5d5ed6808009b1d642ffda136587e) <a id="structFRHAPI__MatchInstance_1a29c5d5ed6808009b1d642ffda136587e"></a>
 
-#### `public bool `[`InstanceId_IsSet`](#structFRHAPI__MatchInstance_1aa44b4f2c34a03a74b5d273384228ab86) <a id="structFRHAPI__MatchInstance_1aa44b4f2c34a03a74b5d273384228ab86"></a>
-
-true if InstanceId_Optional has been set to a value
-
-#### `public bool `[`InstanceId_IsNull`](#structFRHAPI__MatchInstance_1a2bcec77b74782072bfab7e62917c09b1) <a id="structFRHAPI__MatchInstance_1a2bcec77b74782072bfab7e62917c09b1"></a>
-
-true if InstanceId_Optional has been explicitly set to null
+Instance ID.
 
 #### `public FGuid `[`HostPlayerUuid_Optional`](#structFRHAPI__MatchInstance_1a9258739c332368588ecad94e589f1e12) <a id="structFRHAPI__MatchInstance_1a9258739c332368588ecad94e589f1e12"></a>
 
@@ -218,51 +202,19 @@ Writes the data from this object into the specified JSON Writer stream.
 
 #### `public inline FString & `[`GetInstanceId`](#structFRHAPI__MatchInstance_1a84072238e951562d613fea4f132e8c04)`()` <a id="structFRHAPI__MatchInstance_1a84072238e951562d613fea4f132e8c04"></a>
 
-Gets the value of InstanceId_Optional, regardless of it having been set.
+Gets the value of InstanceId.
 
 #### `public inline const FString & `[`GetInstanceId`](#structFRHAPI__MatchInstance_1a3e2296368144ea55ed5829ccb4fdc909)`() const` <a id="structFRHAPI__MatchInstance_1a3e2296368144ea55ed5829ccb4fdc909"></a>
 
-Gets the value of InstanceId_Optional, regardless of it having been set.
-
-#### `public inline const FString & `[`GetInstanceId`](#structFRHAPI__MatchInstance_1a429d4dac490610aa04a602bf9b7c3874)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchInstance_1a429d4dac490610aa04a602bf9b7c3874"></a>
-
-Gets the value of InstanceId_Optional, if it has been set, otherwise it returns DefaultValue.
-
-#### `public inline bool `[`GetInstanceId`](#structFRHAPI__MatchInstance_1a8e416e3ace8afc5386e9c56e138ab836)`(FString & OutValue) const` <a id="structFRHAPI__MatchInstance_1a8e416e3ace8afc5386e9c56e138ab836"></a>
-
-Fills OutValue with the value of InstanceId_Optional and returns true if it has been set, otherwise returns false.
-
-#### `public inline FString * `[`GetInstanceIdOrNull`](#structFRHAPI__MatchInstance_1abcd2163d733a644851feeb44ce4335ed)`()` <a id="structFRHAPI__MatchInstance_1abcd2163d733a644851feeb44ce4335ed"></a>
-
-Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
-
-#### `public inline const FString * `[`GetInstanceIdOrNull`](#structFRHAPI__MatchInstance_1aeed7702808462c4e70dcbdf38df9961b)`() const` <a id="structFRHAPI__MatchInstance_1aeed7702808462c4e70dcbdf38df9961b"></a>
-
-Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
+Gets the value of InstanceId.
 
 #### `public inline void `[`SetInstanceId`](#structFRHAPI__MatchInstance_1a1e6f5239480f81856b1be9eed7417971)`(const FString & NewValue)` <a id="structFRHAPI__MatchInstance_1a1e6f5239480f81856b1be9eed7417971"></a>
 
-Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true.
+Sets the value of InstanceId.
 
 #### `public inline void `[`SetInstanceId`](#structFRHAPI__MatchInstance_1ad62c3b0aa84a2b000105c6498598d32e)`(FString && NewValue)` <a id="structFRHAPI__MatchInstance_1ad62c3b0aa84a2b000105c6498598d32e"></a>
 
-Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true using move semantics.
-
-#### `public inline void `[`ClearInstanceId`](#structFRHAPI__MatchInstance_1aa75a1740116118e11efcaba067009ffd)`()` <a id="structFRHAPI__MatchInstance_1aa75a1740116118e11efcaba067009ffd"></a>
-
-Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false.
-
-#### `public inline bool `[`IsInstanceIdSet`](#structFRHAPI__MatchInstance_1a5f49b03acaa557b358da7a467e6e4799)`() const` <a id="structFRHAPI__MatchInstance_1a5f49b03acaa557b358da7a467e6e4799"></a>
-
-Checks whether InstanceId_Optional has been set.
-
-#### `public inline void `[`SetInstanceIdToNull`](#structFRHAPI__MatchInstance_1ae57a80ce1e4642ac9bf3dc016ecf7b30)`()` <a id="structFRHAPI__MatchInstance_1ae57a80ce1e4642ac9bf3dc016ecf7b30"></a>
-
-Sets the value explicitly to be treated as null.
-
-#### `public inline bool `[`IsInstanceIdNull`](#structFRHAPI__MatchInstance_1a5a8d1ef1d2668070a816e28e71d32192)`() const` <a id="structFRHAPI__MatchInstance_1a5a8d1ef1d2668070a816e28e71d32192"></a>
-
-Checks whether InstanceId_Optional is set to null.
+Sets the value of InstanceId using move semantics.
 
 #### `public inline FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__MatchInstance_1a7812185b9151fb35c7ea62938291b1d0)`()` <a id="structFRHAPI__MatchInstance_1a7812185b9151fb35c7ea62938291b1d0"></a>
 

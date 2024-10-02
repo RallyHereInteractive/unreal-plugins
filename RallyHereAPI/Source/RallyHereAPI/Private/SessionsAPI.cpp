@@ -514,10 +514,10 @@ bool FResponse_AddPlatformSessionToRallyHereSession::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -3047,10 +3047,10 @@ bool FResponse_EndInstance::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -3293,10 +3293,10 @@ bool FResponse_GetAllMapGameInfo::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -3602,10 +3602,10 @@ bool FResponse_GetAllQueueInfo::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -3911,10 +3911,10 @@ bool FResponse_GetAllQueueInfoV2::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -4487,10 +4487,10 @@ bool FResponse_GetAllSessionTemplates::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -4795,10 +4795,10 @@ bool FResponse_GetBrowserSessionsByType::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -5370,10 +5370,10 @@ bool FResponse_GetInstanceRequestTemplate::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -5672,10 +5672,10 @@ bool FResponse_GetMatchMakingProfile::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -5974,10 +5974,10 @@ bool FResponse_GetMatchMakingProfileV2::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -6276,10 +6276,10 @@ bool FResponse_GetMatchMakingTemplates::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -6578,10 +6578,10 @@ bool FResponse_GetMatchMakingTemplatesV2::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -6883,10 +6883,10 @@ bool FResponse_GetPlatformSessionInfo::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -7481,10 +7481,10 @@ bool FResponse_GetPlayerSessionsByUuid::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -7783,10 +7783,10 @@ bool FResponse_GetPlayerSessionsByUuidV2::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -8080,10 +8080,10 @@ bool FResponse_GetPlayerSessionsSelf::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -8677,10 +8677,10 @@ bool FResponse_GetSessionByAllocationId::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -8987,10 +8987,10 @@ bool FResponse_GetSessionById::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -9289,10 +9289,10 @@ bool FResponse_GetSessionTemplateByType::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -10929,10 +10929,10 @@ bool FResponse_InviteSessionToSession::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -11545,10 +11545,10 @@ bool FResponse_JoinSessionByIdSelf::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -11890,10 +11890,10 @@ bool FResponse_JoinSessionByPlatformSessionByUuid::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -12264,10 +12264,10 @@ bool FResponse_JoinSessionByPlatformSessionIdSelf::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -12858,10 +12858,10 @@ bool FResponse_KickPlayerFromSessionByUuid::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -13115,10 +13115,10 @@ bool FResponse_KickPlayerFromSessionByUuidV2::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -15724,10 +15724,10 @@ bool FResponse_UpdateSessionById::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -16344,10 +16344,10 @@ bool FResponse_UpdateSessionPlayerByUuid::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -16678,10 +16678,10 @@ bool FResponse_UpdateSessionPlayerByUuidV2::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 
@@ -17018,10 +17018,10 @@ bool FResponse_UpdateTeamById::ParseHeaders()
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
-	if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
-	{
-		ETag = *Val;
-	}
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 

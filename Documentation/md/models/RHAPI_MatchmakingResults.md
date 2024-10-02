@@ -27,6 +27,7 @@ struct FRHAPI_MatchmakingResults
 `public bool `[`TicketIds_IsSet`](#structFRHAPI__MatchmakingResults_1aa41fe3fd301f36e2524791a3fc68edec) | true if TicketIds_Optional has been set to a value
 `public bool `[`TicketsAssigned_Optional`](#structFRHAPI__MatchmakingResults_1a5d7305f61c2b585c05d45f82217a4205) | Whether or not the tickets from these results have been assigned.
 `public bool `[`TicketsAssigned_IsSet`](#structFRHAPI__MatchmakingResults_1ab4f3027f46dce15e66c0768271866b4d) | true if TicketsAssigned_Optional has been set to a value
+`public `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` `[`Profile`](#structFRHAPI__MatchmakingResults_1a84a959b21ac8866d1ec2fdb111b22ed1) | The profile used to create this match.
 `public virtual bool `[`FromJson`](#structFRHAPI__MatchmakingResults_1a26df787de6a29043c515a062e2aba6e3)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__MatchmakingResults_1a9515f4d751b5e663c5ebbf5a361f34b3)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetMatchMakingId`](#structFRHAPI__MatchmakingResults_1a3eec9da01abb85f14e2852770df849af)`()` | Gets the value of MatchMakingId.
@@ -69,6 +70,10 @@ struct FRHAPI_MatchmakingResults
 `public inline bool `[`IsTicketsAssignedSet`](#structFRHAPI__MatchmakingResults_1ac3f0fedf829dc09f21c6563ce54e6305)`() const` | Checks whether TicketsAssigned_Optional has been set.
 `public inline bool `[`IsTicketsAssignedDefaultValue`](#structFRHAPI__MatchmakingResults_1a5c8749120aa46ca1db37523cbd44a784)`() const` | Returns true if TicketsAssigned_Optional is set and matches the default value.
 `public inline void `[`SetTicketsAssignedToDefault`](#structFRHAPI__MatchmakingResults_1a9d944457f3d11276df11f7ae3deba0ce)`()` | Sets the value of TicketsAssigned_Optional to its default and also sets TicketsAssigned_IsSet to true.
+`public inline `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` & `[`GetProfile`](#structFRHAPI__MatchmakingResults_1ab688180c0ea9e3a5461f9edea2ceccc0)`()` | Gets the value of Profile.
+`public inline const `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` & `[`GetProfile`](#structFRHAPI__MatchmakingResults_1adc0296d5c3ba34fe201500f8cd947a01)`() const` | Gets the value of Profile.
+`public inline void `[`SetProfile`](#structFRHAPI__MatchmakingResults_1ab6e990b135d9c91e71631bf30a95bb32)`(const `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` & NewValue)` | Sets the value of Profile.
+`public inline void `[`SetProfile`](#structFRHAPI__MatchmakingResults_1ae30f1e8fe77b206f49983f550de6124b)`(`[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` && NewValue)` | Sets the value of Profile using move semantics.
 
 ### Members
 
@@ -103,6 +108,10 @@ Whether or not the tickets from these results have been assigned.
 #### `public bool `[`TicketsAssigned_IsSet`](#structFRHAPI__MatchmakingResults_1ab4f3027f46dce15e66c0768271866b4d) <a id="structFRHAPI__MatchmakingResults_1ab4f3027f46dce15e66c0768271866b4d"></a>
 
 true if TicketsAssigned_Optional has been set to a value
+
+#### `public `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` `[`Profile`](#structFRHAPI__MatchmakingResults_1a84a959b21ac8866d1ec2fdb111b22ed1) <a id="structFRHAPI__MatchmakingResults_1a84a959b21ac8866d1ec2fdb111b22ed1"></a>
+
+The profile used to create this match.
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__MatchmakingResults_1a26df787de6a29043c515a062e2aba6e3)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__MatchmakingResults_1a26df787de6a29043c515a062e2aba6e3"></a>
 
@@ -280,4 +289,20 @@ Returns true if TicketsAssigned_Optional is set and matches the default value.
 #### `public inline void `[`SetTicketsAssignedToDefault`](#structFRHAPI__MatchmakingResults_1a9d944457f3d11276df11f7ae3deba0ce)`()` <a id="structFRHAPI__MatchmakingResults_1a9d944457f3d11276df11f7ae3deba0ce"></a>
 
 Sets the value of TicketsAssigned_Optional to its default and also sets TicketsAssigned_IsSet to true.
+
+#### `public inline `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` & `[`GetProfile`](#structFRHAPI__MatchmakingResults_1ab688180c0ea9e3a5461f9edea2ceccc0)`()` <a id="structFRHAPI__MatchmakingResults_1ab688180c0ea9e3a5461f9edea2ceccc0"></a>
+
+Gets the value of Profile.
+
+#### `public inline const `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` & `[`GetProfile`](#structFRHAPI__MatchmakingResults_1adc0296d5c3ba34fe201500f8cd947a01)`() const` <a id="structFRHAPI__MatchmakingResults_1adc0296d5c3ba34fe201500f8cd947a01"></a>
+
+Gets the value of Profile.
+
+#### `public inline void `[`SetProfile`](#structFRHAPI__MatchmakingResults_1ab6e990b135d9c91e71631bf30a95bb32)`(const `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` & NewValue)` <a id="structFRHAPI__MatchmakingResults_1ab6e990b135d9c91e71631bf30a95bb32"></a>
+
+Sets the value of Profile.
+
+#### `public inline void `[`SetProfile`](#structFRHAPI__MatchmakingResults_1ae30f1e8fe77b206f49983f550de6124b)`(`[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` && NewValue)` <a id="structFRHAPI__MatchmakingResults_1ae30f1e8fe77b206f49983f550de6124b"></a>
+
+Sets the value of Profile using move semantics.
 

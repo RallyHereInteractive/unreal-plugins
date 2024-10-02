@@ -42,33 +42,6 @@ struct RALLYHEREAPI_API FRHAPI_PexHostResponse : public FRHAPI_Model
 	*/
 	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-	/** @brief Timestamp of when the resource was last modified */
-	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FDateTime LastModifiedTimestamp_Optional{  };
-	/** @brief true if LastModifiedTimestamp_Optional has been set to a value */
-	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool LastModifiedTimestamp_IsSet{ false };
-	/** @brief Gets the value of LastModifiedTimestamp_Optional, regardless of it having been set */
-	FDateTime& GetLastModifiedTimestamp() { return LastModifiedTimestamp_Optional; }
-	/** @brief Gets the value of LastModifiedTimestamp_Optional, regardless of it having been set */
-	const FDateTime& GetLastModifiedTimestamp() const { return LastModifiedTimestamp_Optional; }
-	/** @brief Gets the value of LastModifiedTimestamp_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FDateTime& GetLastModifiedTimestamp(const FDateTime& DefaultValue) const { if (LastModifiedTimestamp_IsSet) return LastModifiedTimestamp_Optional; return DefaultValue; }
-	/** @brief Fills OutValue with the value of LastModifiedTimestamp_Optional and returns true if it has been set, otherwise returns false */
-	bool GetLastModifiedTimestamp(FDateTime& OutValue) const { if (LastModifiedTimestamp_IsSet) OutValue = LastModifiedTimestamp_Optional; return LastModifiedTimestamp_IsSet; }
-	/** @brief Returns a pointer to LastModifiedTimestamp_Optional, if it has been set, otherwise returns nullptr */
-	FDateTime* GetLastModifiedTimestampOrNull() { if (LastModifiedTimestamp_IsSet) return (&LastModifiedTimestamp_Optional); return nullptr; }
-	/** @brief Returns a pointer to LastModifiedTimestamp_Optional, if it has been set, otherwise returns nullptr */
-	const FDateTime* GetLastModifiedTimestampOrNull() const { if (LastModifiedTimestamp_IsSet) return (&LastModifiedTimestamp_Optional); return nullptr; }
-	/** @brief Sets the value of LastModifiedTimestamp_Optional and also sets LastModifiedTimestamp_IsSet to true */
-	void SetLastModifiedTimestamp(const FDateTime& NewValue) { LastModifiedTimestamp_Optional = NewValue; LastModifiedTimestamp_IsSet = true;  }
-	/** @brief Sets the value of LastModifiedTimestamp_Optional and also sets LastModifiedTimestamp_IsSet to true using move semantics */
-	void SetLastModifiedTimestamp(FDateTime&& NewValue) { LastModifiedTimestamp_Optional = NewValue; LastModifiedTimestamp_IsSet = true;  }
-	/** @brief Clears the value of LastModifiedTimestamp_Optional and sets LastModifiedTimestamp_IsSet to false */
-	void ClearLastModifiedTimestamp() { LastModifiedTimestamp_IsSet = false;  }
-	/** @brief Checks whether LastModifiedTimestamp_Optional has been set */
-	bool IsLastModifiedTimestampSet() const { return LastModifiedTimestamp_IsSet; }
-
 	/** @brief Timestamp of when the resource was created */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FDateTime CreatedTimestamp_Optional{  };

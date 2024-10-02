@@ -12,6 +12,7 @@ Private/AuditResponse.cpp
 Private/AuthAPI.cpp
 Private/BackfillInfo.cpp
 Private/BackfillSettingsResponse.cpp
+Private/BackfillStyle.cpp
 Private/BackfillTeam.cpp
 Private/BaseBackfillRequest.cpp
 Private/BlockedList.cpp
@@ -373,6 +374,7 @@ Public/AuditResponse.h
 Public/AuthAPI.h
 Public/BackfillInfo.h
 Public/BackfillSettingsResponse.h
+Public/BackfillStyle.h
 Public/BackfillTeam.h
 Public/BaseBackfillRequest.h
 Public/BlockedList.h

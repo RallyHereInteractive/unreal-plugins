@@ -128,6 +128,20 @@ bool FRequest_DeleteAllPlayerIdSettingsForSettingType::SetupHttpRequest(const FH
 
 	HttpRequest->SetVerb(TEXT("DELETE"));
 
+	// Header parameters
+	if (IfMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-match"), IfMatch.GetValue());
+	}
+	if (IfNoneMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
+	}
+	if (IfUnmodifiedSince.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-unmodified-since"), IfUnmodifiedSince.GetValue());
+	}
+
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
 	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
@@ -170,6 +184,8 @@ FString FResponse_DeleteAllPlayerIdSettingsForSettingType::GetHttpResponseCodeDe
 		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         ");
+	case 412:
+		return TEXT("The resource does not meet the provided preconditions.");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -196,6 +212,8 @@ bool FResponse_DeleteAllPlayerIdSettingsForSettingType::ParseHeaders()
 	case 403:
 		break;
 	case 404:
+		break;
+	case 412:
 		break;
 	case 422:
 		break;
@@ -311,7 +329,7 @@ bool FResponse_DeleteAllPlayerIdSettingsForSettingType::FromJson(const TSharedPt
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
-			} 
+			}  
 		case 422:
 			{
 				// parse into the structured data format from the json object
@@ -453,6 +471,20 @@ bool FRequest_DeleteAllPlayerUuidSettingsForSettingType::SetupHttpRequest(const 
 
 	HttpRequest->SetVerb(TEXT("DELETE"));
 
+	// Header parameters
+	if (IfMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-match"), IfMatch.GetValue());
+	}
+	if (IfNoneMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
+	}
+	if (IfUnmodifiedSince.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-unmodified-since"), IfUnmodifiedSince.GetValue());
+	}
+
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
 	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
@@ -495,6 +527,8 @@ FString FResponse_DeleteAllPlayerUuidSettingsForSettingType::GetHttpResponseCode
 		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         ");
+	case 412:
+		return TEXT("The resource does not meet the provided preconditions.");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -521,6 +555,8 @@ bool FResponse_DeleteAllPlayerUuidSettingsForSettingType::ParseHeaders()
 	case 403:
 		break;
 	case 404:
+		break;
+	case 412:
 		break;
 	case 422:
 		break;
@@ -636,7 +672,7 @@ bool FResponse_DeleteAllPlayerUuidSettingsForSettingType::FromJson(const TShared
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
-			} 
+			}  
 		case 422:
 			{
 				// parse into the structured data format from the json object
@@ -777,6 +813,20 @@ bool FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf::SetupHttpRequest(co
 
 	HttpRequest->SetVerb(TEXT("DELETE"));
 
+	// Header parameters
+	if (IfMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-match"), IfMatch.GetValue());
+	}
+	if (IfNoneMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
+	}
+	if (IfUnmodifiedSince.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-unmodified-since"), IfUnmodifiedSince.GetValue());
+	}
+
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
 	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
@@ -819,6 +869,8 @@ FString FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf::GetHttpResponse
 		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         ");
+	case 412:
+		return TEXT("The resource does not meet the provided preconditions.");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -845,6 +897,8 @@ bool FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf::ParseHeaders()
 	case 403:
 		break;
 	case 404:
+		break;
+	case 412:
 		break;
 	case 422:
 		break;
@@ -960,7 +1014,7 @@ bool FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf::FromJson(const TSh
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
-			} 
+			}  
 		case 422:
 			{
 				// parse into the structured data format from the json object
@@ -1103,6 +1157,20 @@ bool FRequest_DeleteSinglePlayerIdSetting::SetupHttpRequest(const FHttpRequestRe
 
 	HttpRequest->SetVerb(TEXT("DELETE"));
 
+	// Header parameters
+	if (IfMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-match"), IfMatch.GetValue());
+	}
+	if (IfNoneMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
+	}
+	if (IfUnmodifiedSince.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-unmodified-since"), IfUnmodifiedSince.GetValue());
+	}
+
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
 	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
@@ -1145,6 +1213,8 @@ FString FResponse_DeleteSinglePlayerIdSetting::GetHttpResponseCodeDescription(EH
 		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         ");
+	case 412:
+		return TEXT("The resource does not meet the provided preconditions.");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -1171,6 +1241,8 @@ bool FResponse_DeleteSinglePlayerIdSetting::ParseHeaders()
 	case 403:
 		break;
 	case 404:
+		break;
+	case 412:
 		break;
 	case 422:
 		break;
@@ -1286,7 +1358,7 @@ bool FResponse_DeleteSinglePlayerIdSetting::FromJson(const TSharedPtr<FJsonValue
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
-			} 
+			}  
 		case 422:
 			{
 				// parse into the structured data format from the json object
@@ -1429,6 +1501,20 @@ bool FRequest_DeleteSinglePlayerUuidSetting::SetupHttpRequest(const FHttpRequest
 
 	HttpRequest->SetVerb(TEXT("DELETE"));
 
+	// Header parameters
+	if (IfMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-match"), IfMatch.GetValue());
+	}
+	if (IfNoneMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
+	}
+	if (IfUnmodifiedSince.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-unmodified-since"), IfUnmodifiedSince.GetValue());
+	}
+
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
 	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
@@ -1471,6 +1557,8 @@ FString FResponse_DeleteSinglePlayerUuidSetting::GetHttpResponseCodeDescription(
 		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         ");
+	case 412:
+		return TEXT("The resource does not meet the provided preconditions.");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -1497,6 +1585,8 @@ bool FResponse_DeleteSinglePlayerUuidSetting::ParseHeaders()
 	case 403:
 		break;
 	case 404:
+		break;
+	case 412:
 		break;
 	case 422:
 		break;
@@ -1612,7 +1702,7 @@ bool FResponse_DeleteSinglePlayerUuidSetting::FromJson(const TSharedPtr<FJsonVal
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
-			} 
+			}  
 		case 422:
 			{
 				// parse into the structured data format from the json object
@@ -1754,6 +1844,20 @@ bool FRequest_DeleteSinglePlayerUuidSettingSelf::SetupHttpRequest(const FHttpReq
 
 	HttpRequest->SetVerb(TEXT("DELETE"));
 
+	// Header parameters
+	if (IfMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-match"), IfMatch.GetValue());
+	}
+	if (IfNoneMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
+	}
+	if (IfUnmodifiedSince.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-unmodified-since"), IfUnmodifiedSince.GetValue());
+	}
+
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
 	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
@@ -1796,6 +1900,8 @@ FString FResponse_DeleteSinglePlayerUuidSettingSelf::GetHttpResponseCodeDescript
 		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist         ");
+	case 412:
+		return TEXT("The resource does not meet the provided preconditions.");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -1822,6 +1928,8 @@ bool FResponse_DeleteSinglePlayerUuidSettingSelf::ParseHeaders()
 	case 403:
 		break;
 	case 404:
+		break;
+	case 412:
 		break;
 	case 422:
 		break;
@@ -1937,7 +2045,7 @@ bool FResponse_DeleteSinglePlayerUuidSettingSelf::FromJson(const TSharedPtr<FJso
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
-			} 
+			}  
 		case 422:
 			{
 				// parse into the structured data format from the json object
@@ -2087,6 +2195,24 @@ bool FRequest_GetAllPlayerIdSettingsForSettingType::SetupHttpRequest(const FHttp
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
+	// Header parameters
+	if (IfMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-match"), IfMatch.GetValue());
+	}
+	if (IfNoneMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
+	}
+	if (IfModifiedSince.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-modified-since"), IfModifiedSince.GetValue());
+	}
+	if (IfUnmodifiedSince.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-unmodified-since"), IfUnmodifiedSince.GetValue());
+	}
+
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
 	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
@@ -2123,12 +2249,16 @@ FString FResponse_GetAllPlayerIdSettingsForSettingType::GetHttpResponseCodeDescr
 	{
 	case 200:
 		return TEXT("Successful Response");
+	case 304:
+		return TEXT("The resource has not been modified from the provided preconditions.");
 	case 400:
 		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator ");
 	case 403:
 		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found         ");
+	case 412:
+		return TEXT("The resource does not meet the provided preconditions.");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -2144,17 +2274,35 @@ bool FResponse_GetAllPlayerIdSettingsForSettingType::ParseHeaders()
 	}
 
 
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+	// parse into default header storage
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
+    if (const FString* Val = HeadersMap.Find(TEXT("Last-Modified")))
+    {
+        LastModified = FromHeaderString<FDateTime>(*Val);
+    }
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+#endif
+
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	switch ((int)GetHttpResponseCode())
 	{
 	case 200:
 		break;
+	case 304:
+		break;
 	case 400:
 		break;
 	case 403:
 		break;
 	case 404:
+		break;
+	case 412:
 		break;
 	case 422:
 		break;
@@ -2175,6 +2323,62 @@ bool FResponse_GetAllPlayerIdSettingsForSettingType::TryGetContentFor200(TMap<FS
 
 	// forward on to type only handler
 	return TryGetContent(OutContent);
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetAllPlayerIdSettingsForSettingType::GetHeader200_ETag() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FString>(HeaderVal);
+		}
+	}
+	return TOptional<FString>{};
+}
+
+/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+TOptional<FDateTime> FResponse_GetAllPlayerIdSettingsForSettingType::GetHeader200_LastModified() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("Last-Modified"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FDateTime>(HeaderVal);
+		}
+	}
+	return TOptional<FDateTime>{};
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetAllPlayerIdSettingsForSettingType::GetHeader304_ETag() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FString>(HeaderVal);
+		}
+	}
+	return TOptional<FString>{};
+}
+
+/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+TOptional<FDateTime> FResponse_GetAllPlayerIdSettingsForSettingType::GetHeader304_LastModified() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("Last-Modified"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FDateTime>(HeaderVal);
+		}
+	}
+	return TOptional<FDateTime>{};
 }
 
 bool FResponse_GetAllPlayerIdSettingsForSettingType::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
@@ -2240,7 +2444,7 @@ bool FResponse_GetAllPlayerIdSettingsForSettingType::FromJson(const TSharedPtr<F
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<TMap<FString, FRHAPI_SettingData>>(Object);
 				break;
-			} 
+			}  
 		case 400:
 			{
 				// parse into the structured data format from the json object
@@ -2270,7 +2474,7 @@ bool FResponse_GetAllPlayerIdSettingsForSettingType::FromJson(const TSharedPtr<F
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
-			} 
+			}  
 		case 422:
 			{
 				// parse into the structured data format from the json object
@@ -2420,6 +2624,24 @@ bool FRequest_GetAllPlayerUuidSettingsForSettingType::SetupHttpRequest(const FHt
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
+	// Header parameters
+	if (IfMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-match"), IfMatch.GetValue());
+	}
+	if (IfNoneMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
+	}
+	if (IfModifiedSince.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-modified-since"), IfModifiedSince.GetValue());
+	}
+	if (IfUnmodifiedSince.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-unmodified-since"), IfUnmodifiedSince.GetValue());
+	}
+
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
 	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
@@ -2456,12 +2678,16 @@ FString FResponse_GetAllPlayerUuidSettingsForSettingType::GetHttpResponseCodeDes
 	{
 	case 200:
 		return TEXT("Successful Response");
+	case 304:
+		return TEXT("The resource has not been modified from the provided preconditions.");
 	case 400:
 		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator ");
 	case 403:
 		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found         ");
+	case 412:
+		return TEXT("The resource does not meet the provided preconditions.");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -2477,17 +2703,35 @@ bool FResponse_GetAllPlayerUuidSettingsForSettingType::ParseHeaders()
 	}
 
 
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+	// parse into default header storage
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
+    if (const FString* Val = HeadersMap.Find(TEXT("Last-Modified")))
+    {
+        LastModified = FromHeaderString<FDateTime>(*Val);
+    }
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+#endif
+
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	switch ((int)GetHttpResponseCode())
 	{
 	case 200:
 		break;
+	case 304:
+		break;
 	case 400:
 		break;
 	case 403:
 		break;
 	case 404:
+		break;
+	case 412:
 		break;
 	case 422:
 		break;
@@ -2508,6 +2752,62 @@ bool FResponse_GetAllPlayerUuidSettingsForSettingType::TryGetContentFor200(TMap<
 
 	// forward on to type only handler
 	return TryGetContent(OutContent);
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetAllPlayerUuidSettingsForSettingType::GetHeader200_ETag() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FString>(HeaderVal);
+		}
+	}
+	return TOptional<FString>{};
+}
+
+/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+TOptional<FDateTime> FResponse_GetAllPlayerUuidSettingsForSettingType::GetHeader200_LastModified() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("Last-Modified"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FDateTime>(HeaderVal);
+		}
+	}
+	return TOptional<FDateTime>{};
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetAllPlayerUuidSettingsForSettingType::GetHeader304_ETag() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FString>(HeaderVal);
+		}
+	}
+	return TOptional<FString>{};
+}
+
+/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+TOptional<FDateTime> FResponse_GetAllPlayerUuidSettingsForSettingType::GetHeader304_LastModified() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("Last-Modified"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FDateTime>(HeaderVal);
+		}
+	}
+	return TOptional<FDateTime>{};
 }
 
 bool FResponse_GetAllPlayerUuidSettingsForSettingType::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
@@ -2573,7 +2873,7 @@ bool FResponse_GetAllPlayerUuidSettingsForSettingType::FromJson(const TSharedPtr
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<TMap<FString, FRHAPI_SettingData>>(Object);
 				break;
-			} 
+			}  
 		case 400:
 			{
 				// parse into the structured data format from the json object
@@ -2603,7 +2903,7 @@ bool FResponse_GetAllPlayerUuidSettingsForSettingType::FromJson(const TSharedPtr
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
-			} 
+			}  
 		case 422:
 			{
 				// parse into the structured data format from the json object
@@ -2752,6 +3052,24 @@ bool FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf::SetupHttpRequest(const
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
+	// Header parameters
+	if (IfMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-match"), IfMatch.GetValue());
+	}
+	if (IfNoneMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
+	}
+	if (IfModifiedSince.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-modified-since"), IfModifiedSince.GetValue());
+	}
+	if (IfUnmodifiedSince.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-unmodified-since"), IfUnmodifiedSince.GetValue());
+	}
+
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
 	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
@@ -2788,12 +3106,16 @@ FString FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::GetHttpResponseCod
 	{
 	case 200:
 		return TEXT("Successful Response");
+	case 304:
+		return TEXT("The resource has not been modified from the provided preconditions.");
 	case 400:
 		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator ");
 	case 403:
 		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found         ");
+	case 412:
+		return TEXT("The resource does not meet the provided preconditions.");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -2809,17 +3131,35 @@ bool FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::ParseHeaders()
 	}
 
 
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+	// parse into default header storage
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
+    if (const FString* Val = HeadersMap.Find(TEXT("Last-Modified")))
+    {
+        LastModified = FromHeaderString<FDateTime>(*Val);
+    }
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+#endif
+
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	switch ((int)GetHttpResponseCode())
 	{
 	case 200:
 		break;
+	case 304:
+		break;
 	case 400:
 		break;
 	case 403:
 		break;
 	case 404:
+		break;
+	case 412:
 		break;
 	case 422:
 		break;
@@ -2840,6 +3180,62 @@ bool FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::TryGetContentFor200(T
 
 	// forward on to type only handler
 	return TryGetContent(OutContent);
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::GetHeader200_ETag() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FString>(HeaderVal);
+		}
+	}
+	return TOptional<FString>{};
+}
+
+/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+TOptional<FDateTime> FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::GetHeader200_LastModified() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("Last-Modified"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FDateTime>(HeaderVal);
+		}
+	}
+	return TOptional<FDateTime>{};
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::GetHeader304_ETag() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FString>(HeaderVal);
+		}
+	}
+	return TOptional<FString>{};
+}
+
+/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+TOptional<FDateTime> FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::GetHeader304_LastModified() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("Last-Modified"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FDateTime>(HeaderVal);
+		}
+	}
+	return TOptional<FDateTime>{};
 }
 
 bool FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
@@ -2905,7 +3301,7 @@ bool FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::FromJson(const TShare
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<TMap<FString, FRHAPI_SettingData>>(Object);
 				break;
-			} 
+			}  
 		case 400:
 			{
 				// parse into the structured data format from the json object
@@ -2935,7 +3331,7 @@ bool FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf::FromJson(const TShare
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
-			} 
+			}  
 		case 422:
 			{
 				// parse into the structured data format from the json object
@@ -3071,6 +3467,24 @@ bool FRequest_GetConfigForAllSettingTypes::SetupHttpRequest(const FHttpRequestRe
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
+	// Header parameters
+	if (IfMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-match"), IfMatch.GetValue());
+	}
+	if (IfNoneMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
+	}
+	if (IfModifiedSince.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-modified-since"), IfModifiedSince.GetValue());
+	}
+	if (IfUnmodifiedSince.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-unmodified-since"), IfUnmodifiedSince.GetValue());
+	}
+
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
 	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
@@ -3107,8 +3521,14 @@ FString FResponse_GetConfigForAllSettingTypes::GetHttpResponseCodeDescription(EH
 	{
 	case 200:
 		return TEXT("Successful Response");
+	case 304:
+		return TEXT("The resource has not been modified from the provided preconditions.");
 	case 403:
 		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 412:
+		return TEXT("The resource does not meet the provided preconditions.");
+	case 422:
+		return TEXT("Validation Error");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -3122,13 +3542,33 @@ bool FResponse_GetConfigForAllSettingTypes::ParseHeaders()
 	}
 
 
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+	// parse into default header storage
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
+    if (const FString* Val = HeadersMap.Find(TEXT("Last-Modified")))
+    {
+        LastModified = FromHeaderString<FDateTime>(*Val);
+    }
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+#endif
+
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	switch ((int)GetHttpResponseCode())
 	{
 	case 200:
 		break;
+	case 304:
+		break;
 	case 403:
+		break;
+	case 412:
+		break;
+	case 422:
 		break;
 	default:
 		break;
@@ -3149,10 +3589,78 @@ bool FResponse_GetConfigForAllSettingTypes::TryGetContentFor200(TMap<FString, FR
 	return TryGetContent(OutContent);
 }
 
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetConfigForAllSettingTypes::GetHeader200_ETag() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FString>(HeaderVal);
+		}
+	}
+	return TOptional<FString>{};
+}
+
+/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+TOptional<FDateTime> FResponse_GetConfigForAllSettingTypes::GetHeader200_LastModified() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("Last-Modified"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FDateTime>(HeaderVal);
+		}
+	}
+	return TOptional<FDateTime>{};
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetConfigForAllSettingTypes::GetHeader304_ETag() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FString>(HeaderVal);
+		}
+	}
+	return TOptional<FString>{};
+}
+
+/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+TOptional<FDateTime> FResponse_GetConfigForAllSettingTypes::GetHeader304_LastModified() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("Last-Modified"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FDateTime>(HeaderVal);
+		}
+	}
+	return TOptional<FDateTime>{};
+}
+
 bool FResponse_GetConfigForAllSettingTypes::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_GetConfigForAllSettingTypes::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 422)
 	{
 		return false;
 	}
@@ -3176,7 +3684,7 @@ bool FResponse_GetConfigForAllSettingTypes::FromJson(const TSharedPtr<FJsonValue
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<TMap<FString, FRHAPI_SettingType>>(Object);
 				break;
-			} 
+			}  
 		case 403:
 			{
 				// parse into the structured data format from the json object
@@ -3185,6 +3693,16 @@ bool FResponse_GetConfigForAllSettingTypes::FromJson(const TSharedPtr<FJsonValue
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+				break;
+			}  
+		case 422:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_HTTPValidationError Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -3317,6 +3835,24 @@ bool FRequest_GetConfigForSingleSettingTypeAllVersions::SetupHttpRequest(const F
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
+	// Header parameters
+	if (IfMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-match"), IfMatch.GetValue());
+	}
+	if (IfNoneMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
+	}
+	if (IfModifiedSince.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-modified-since"), IfModifiedSince.GetValue());
+	}
+	if (IfUnmodifiedSince.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-unmodified-since"), IfUnmodifiedSince.GetValue());
+	}
+
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
 	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
@@ -3353,10 +3889,14 @@ FString FResponse_GetConfigForSingleSettingTypeAllVersions::GetHttpResponseCodeD
 	{
 	case 200:
 		return TEXT("Successful Response");
+	case 304:
+		return TEXT("The resource has not been modified from the provided preconditions.");
 	case 403:
 		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
-		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found         ");
+		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found ");
+	case 412:
+		return TEXT("The resource does not meet the provided preconditions.");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -3372,15 +3912,33 @@ bool FResponse_GetConfigForSingleSettingTypeAllVersions::ParseHeaders()
 	}
 
 
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+	// parse into default header storage
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
+    if (const FString* Val = HeadersMap.Find(TEXT("Last-Modified")))
+    {
+        LastModified = FromHeaderString<FDateTime>(*Val);
+    }
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+#endif
+
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	switch ((int)GetHttpResponseCode())
 	{
 	case 200:
 		break;
+	case 304:
+		break;
 	case 403:
 		break;
 	case 404:
+		break;
+	case 412:
 		break;
 	case 422:
 		break;
@@ -3401,6 +3959,62 @@ bool FResponse_GetConfigForSingleSettingTypeAllVersions::TryGetContentFor200(TMa
 
 	// forward on to type only handler
 	return TryGetContent(OutContent);
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetConfigForSingleSettingTypeAllVersions::GetHeader200_ETag() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FString>(HeaderVal);
+		}
+	}
+	return TOptional<FString>{};
+}
+
+/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+TOptional<FDateTime> FResponse_GetConfigForSingleSettingTypeAllVersions::GetHeader200_LastModified() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("Last-Modified"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FDateTime>(HeaderVal);
+		}
+	}
+	return TOptional<FDateTime>{};
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetConfigForSingleSettingTypeAllVersions::GetHeader304_ETag() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FString>(HeaderVal);
+		}
+	}
+	return TOptional<FString>{};
+}
+
+/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+TOptional<FDateTime> FResponse_GetConfigForSingleSettingTypeAllVersions::GetHeader304_LastModified() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("Last-Modified"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FDateTime>(HeaderVal);
+		}
+	}
+	return TOptional<FDateTime>{};
 }
 
 bool FResponse_GetConfigForSingleSettingTypeAllVersions::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
@@ -3454,7 +4068,7 @@ bool FResponse_GetConfigForSingleSettingTypeAllVersions::FromJson(const TSharedP
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<TMap<FString, FRHAPI_SettingTypeVersion>>(Object);
 				break;
-			} 
+			}  
 		case 403:
 			{
 				// parse into the structured data format from the json object
@@ -3474,7 +4088,7 @@ bool FResponse_GetConfigForSingleSettingTypeAllVersions::FromJson(const TSharedP
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
-			} 
+			}  
 		case 422:
 			{
 				// parse into the structured data format from the json object
@@ -3616,6 +4230,24 @@ bool FRequest_GetConfigForSingleSettingTypeAndVersion::SetupHttpRequest(const FH
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
+	// Header parameters
+	if (IfMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-match"), IfMatch.GetValue());
+	}
+	if (IfNoneMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
+	}
+	if (IfModifiedSince.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-modified-since"), IfModifiedSince.GetValue());
+	}
+	if (IfUnmodifiedSince.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-unmodified-since"), IfUnmodifiedSince.GetValue());
+	}
+
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
 	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
@@ -3652,10 +4284,14 @@ FString FResponse_GetConfigForSingleSettingTypeAndVersion::GetHttpResponseCodeDe
 	{
 	case 200:
 		return TEXT("Successful Response");
+	case 304:
+		return TEXT("The resource has not been modified from the provided preconditions.");
 	case 403:
 		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
-		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;setting_version_id_not_found&#x60; - The setting Version was not found for that type         ");
+		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;setting_version_id_not_found&#x60; - The setting Version was not found for that type ");
+	case 412:
+		return TEXT("The resource does not meet the provided preconditions.");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -3671,15 +4307,33 @@ bool FResponse_GetConfigForSingleSettingTypeAndVersion::ParseHeaders()
 	}
 
 
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+	// parse into default header storage
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
+    if (const FString* Val = HeadersMap.Find(TEXT("Last-Modified")))
+    {
+        LastModified = FromHeaderString<FDateTime>(*Val);
+    }
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+#endif
+
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	switch ((int)GetHttpResponseCode())
 	{
 	case 200:
 		break;
+	case 304:
+		break;
 	case 403:
 		break;
 	case 404:
+		break;
+	case 412:
 		break;
 	case 422:
 		break;
@@ -3700,6 +4354,62 @@ bool FResponse_GetConfigForSingleSettingTypeAndVersion::TryGetContentFor200(FRHA
 
 	// forward on to type only handler
 	return TryGetContent(OutContent);
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetConfigForSingleSettingTypeAndVersion::GetHeader200_ETag() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FString>(HeaderVal);
+		}
+	}
+	return TOptional<FString>{};
+}
+
+/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+TOptional<FDateTime> FResponse_GetConfigForSingleSettingTypeAndVersion::GetHeader200_LastModified() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("Last-Modified"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FDateTime>(HeaderVal);
+		}
+	}
+	return TOptional<FDateTime>{};
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetConfigForSingleSettingTypeAndVersion::GetHeader304_ETag() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FString>(HeaderVal);
+		}
+	}
+	return TOptional<FString>{};
+}
+
+/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+TOptional<FDateTime> FResponse_GetConfigForSingleSettingTypeAndVersion::GetHeader304_LastModified() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("Last-Modified"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FDateTime>(HeaderVal);
+		}
+	}
+	return TOptional<FDateTime>{};
 }
 
 bool FResponse_GetConfigForSingleSettingTypeAndVersion::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
@@ -3753,7 +4463,7 @@ bool FResponse_GetConfigForSingleSettingTypeAndVersion::FromJson(const TSharedPt
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<FRHAPI_SettingTypeVersion>(Object);
 				break;
-			} 
+			}  
 		case 403:
 			{
 				// parse into the structured data format from the json object
@@ -3773,7 +4483,7 @@ bool FResponse_GetConfigForSingleSettingTypeAndVersion::FromJson(const TSharedPt
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
-			} 
+			}  
 		case 422:
 			{
 				// parse into the structured data format from the json object
@@ -3916,6 +4626,24 @@ bool FRequest_GetSinglePlayerIdSetting::SetupHttpRequest(const FHttpRequestRef& 
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
+	// Header parameters
+	if (IfMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-match"), IfMatch.GetValue());
+	}
+	if (IfNoneMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
+	}
+	if (IfModifiedSince.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-modified-since"), IfModifiedSince.GetValue());
+	}
+	if (IfUnmodifiedSince.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-unmodified-since"), IfUnmodifiedSince.GetValue());
+	}
+
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
 	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
@@ -3952,12 +4680,16 @@ FString FResponse_GetSinglePlayerIdSetting::GetHttpResponseCodeDescription(EHttp
 	{
 	case 200:
 		return TEXT("Successful Response");
+	case 304:
+		return TEXT("The resource has not been modified from the provided preconditions.");
 	case 400:
 		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator ");
 	case 403:
 		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;not_found&#x60; - The setting key was not found         ");
+	case 412:
+		return TEXT("The resource does not meet the provided preconditions.");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -3973,17 +4705,35 @@ bool FResponse_GetSinglePlayerIdSetting::ParseHeaders()
 	}
 
 
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+	// parse into default header storage
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
+    if (const FString* Val = HeadersMap.Find(TEXT("Last-Modified")))
+    {
+        LastModified = FromHeaderString<FDateTime>(*Val);
+    }
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+#endif
+
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	switch ((int)GetHttpResponseCode())
 	{
 	case 200:
 		break;
+	case 304:
+		break;
 	case 400:
 		break;
 	case 403:
 		break;
 	case 404:
+		break;
+	case 412:
 		break;
 	case 422:
 		break;
@@ -4004,6 +4754,62 @@ bool FResponse_GetSinglePlayerIdSetting::TryGetContentFor200(FRHAPI_SettingData&
 
 	// forward on to type only handler
 	return TryGetContent(OutContent);
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetSinglePlayerIdSetting::GetHeader200_ETag() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FString>(HeaderVal);
+		}
+	}
+	return TOptional<FString>{};
+}
+
+/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+TOptional<FDateTime> FResponse_GetSinglePlayerIdSetting::GetHeader200_LastModified() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("Last-Modified"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FDateTime>(HeaderVal);
+		}
+	}
+	return TOptional<FDateTime>{};
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetSinglePlayerIdSetting::GetHeader304_ETag() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FString>(HeaderVal);
+		}
+	}
+	return TOptional<FString>{};
+}
+
+/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+TOptional<FDateTime> FResponse_GetSinglePlayerIdSetting::GetHeader304_LastModified() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("Last-Modified"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FDateTime>(HeaderVal);
+		}
+	}
+	return TOptional<FDateTime>{};
 }
 
 bool FResponse_GetSinglePlayerIdSetting::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
@@ -4069,7 +4875,7 @@ bool FResponse_GetSinglePlayerIdSetting::FromJson(const TSharedPtr<FJsonValue>& 
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<FRHAPI_SettingData>(Object);
 				break;
-			} 
+			}  
 		case 400:
 			{
 				// parse into the structured data format from the json object
@@ -4099,7 +4905,7 @@ bool FResponse_GetSinglePlayerIdSetting::FromJson(const TSharedPtr<FJsonValue>& 
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
-			} 
+			}  
 		case 422:
 			{
 				// parse into the structured data format from the json object
@@ -4242,6 +5048,24 @@ bool FRequest_GetSinglePlayerUuidSetting::SetupHttpRequest(const FHttpRequestRef
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
+	// Header parameters
+	if (IfMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-match"), IfMatch.GetValue());
+	}
+	if (IfNoneMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
+	}
+	if (IfModifiedSince.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-modified-since"), IfModifiedSince.GetValue());
+	}
+	if (IfUnmodifiedSince.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-unmodified-since"), IfUnmodifiedSince.GetValue());
+	}
+
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
 	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
@@ -4278,12 +5102,16 @@ FString FResponse_GetSinglePlayerUuidSetting::GetHttpResponseCodeDescription(EHt
 	{
 	case 200:
 		return TEXT("Successful Response");
+	case 304:
+		return TEXT("The resource has not been modified from the provided preconditions.");
 	case 400:
 		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator ");
 	case 403:
 		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;not_found&#x60; - The setting key was not found         ");
+	case 412:
+		return TEXT("The resource does not meet the provided preconditions.");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -4299,17 +5127,35 @@ bool FResponse_GetSinglePlayerUuidSetting::ParseHeaders()
 	}
 
 
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+	// parse into default header storage
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
+    if (const FString* Val = HeadersMap.Find(TEXT("Last-Modified")))
+    {
+        LastModified = FromHeaderString<FDateTime>(*Val);
+    }
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+#endif
+
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	switch ((int)GetHttpResponseCode())
 	{
 	case 200:
 		break;
+	case 304:
+		break;
 	case 400:
 		break;
 	case 403:
 		break;
 	case 404:
+		break;
+	case 412:
 		break;
 	case 422:
 		break;
@@ -4330,6 +5176,62 @@ bool FResponse_GetSinglePlayerUuidSetting::TryGetContentFor200(FRHAPI_SettingDat
 
 	// forward on to type only handler
 	return TryGetContent(OutContent);
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetSinglePlayerUuidSetting::GetHeader200_ETag() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FString>(HeaderVal);
+		}
+	}
+	return TOptional<FString>{};
+}
+
+/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+TOptional<FDateTime> FResponse_GetSinglePlayerUuidSetting::GetHeader200_LastModified() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("Last-Modified"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FDateTime>(HeaderVal);
+		}
+	}
+	return TOptional<FDateTime>{};
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetSinglePlayerUuidSetting::GetHeader304_ETag() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FString>(HeaderVal);
+		}
+	}
+	return TOptional<FString>{};
+}
+
+/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+TOptional<FDateTime> FResponse_GetSinglePlayerUuidSetting::GetHeader304_LastModified() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("Last-Modified"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FDateTime>(HeaderVal);
+		}
+	}
+	return TOptional<FDateTime>{};
 }
 
 bool FResponse_GetSinglePlayerUuidSetting::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
@@ -4395,7 +5297,7 @@ bool FResponse_GetSinglePlayerUuidSetting::FromJson(const TSharedPtr<FJsonValue>
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<FRHAPI_SettingData>(Object);
 				break;
-			} 
+			}  
 		case 400:
 			{
 				// parse into the structured data format from the json object
@@ -4425,7 +5327,7 @@ bool FResponse_GetSinglePlayerUuidSetting::FromJson(const TSharedPtr<FJsonValue>
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
-			} 
+			}  
 		case 422:
 			{
 				// parse into the structured data format from the json object
@@ -4567,6 +5469,24 @@ bool FRequest_GetSinglePlayerUuidSettingSelf::SetupHttpRequest(const FHttpReques
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
+	// Header parameters
+	if (IfMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-match"), IfMatch.GetValue());
+	}
+	if (IfNoneMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
+	}
+	if (IfModifiedSince.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-modified-since"), IfModifiedSince.GetValue());
+	}
+	if (IfUnmodifiedSince.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-unmodified-since"), IfUnmodifiedSince.GetValue());
+	}
+
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
 	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
@@ -4603,12 +5523,16 @@ FString FResponse_GetSinglePlayerUuidSettingSelf::GetHttpResponseCodeDescription
 	{
 	case 200:
 		return TEXT("Successful Response");
+	case 304:
+		return TEXT("The resource has not been modified from the provided preconditions.");
 	case 400:
 		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator ");
 	case 403:
 		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
 		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;not_found&#x60; - The setting key was not found         ");
+	case 412:
+		return TEXT("The resource does not meet the provided preconditions.");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -4624,17 +5548,35 @@ bool FResponse_GetSinglePlayerUuidSettingSelf::ParseHeaders()
 	}
 
 
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+	// parse into default header storage
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
+    if (const FString* Val = HeadersMap.Find(TEXT("Last-Modified")))
+    {
+        LastModified = FromHeaderString<FDateTime>(*Val);
+    }
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+#endif
+
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	switch ((int)GetHttpResponseCode())
 	{
 	case 200:
 		break;
+	case 304:
+		break;
 	case 400:
 		break;
 	case 403:
 		break;
 	case 404:
+		break;
+	case 412:
 		break;
 	case 422:
 		break;
@@ -4655,6 +5597,62 @@ bool FResponse_GetSinglePlayerUuidSettingSelf::TryGetContentFor200(FRHAPI_Settin
 
 	// forward on to type only handler
 	return TryGetContent(OutContent);
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetSinglePlayerUuidSettingSelf::GetHeader200_ETag() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FString>(HeaderVal);
+		}
+	}
+	return TOptional<FString>{};
+}
+
+/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+TOptional<FDateTime> FResponse_GetSinglePlayerUuidSettingSelf::GetHeader200_LastModified() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("Last-Modified"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FDateTime>(HeaderVal);
+		}
+	}
+	return TOptional<FDateTime>{};
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetSinglePlayerUuidSettingSelf::GetHeader304_ETag() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FString>(HeaderVal);
+		}
+	}
+	return TOptional<FString>{};
+}
+
+/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+TOptional<FDateTime> FResponse_GetSinglePlayerUuidSettingSelf::GetHeader304_LastModified() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("Last-Modified"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FDateTime>(HeaderVal);
+		}
+	}
+	return TOptional<FDateTime>{};
 }
 
 bool FResponse_GetSinglePlayerUuidSettingSelf::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
@@ -4720,7 +5718,7 @@ bool FResponse_GetSinglePlayerUuidSettingSelf::FromJson(const TSharedPtr<FJsonVa
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<FRHAPI_SettingData>(Object);
 				break;
-			} 
+			}  
 		case 400:
 			{
 				// parse into the structured data format from the json object
@@ -4750,7 +5748,7 @@ bool FResponse_GetSinglePlayerUuidSettingSelf::FromJson(const TSharedPtr<FJsonVa
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
-			} 
+			}  
 		case 422:
 			{
 				// parse into the structured data format from the json object
@@ -4893,6 +5891,20 @@ bool FRequest_SetSinglePlayerIdSetting::SetupHttpRequest(const FHttpRequestRef& 
 
 	HttpRequest->SetVerb(TEXT("PUT"));
 
+	// Header parameters
+	if (IfMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-match"), IfMatch.GetValue());
+	}
+	if (IfNoneMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
+	}
+	if (IfUnmodifiedSince.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-unmodified-since"), IfUnmodifiedSince.GetValue());
+	}
+
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
 	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
@@ -4940,16 +5952,14 @@ FString FResponse_SetSinglePlayerIdSetting::GetHttpResponseCodeDescription(EHttp
 	{
 	case 200:
 		return TEXT("Successful Response");
-	case 400:
-		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator - &#x60;setting_version_invalid&#x60; - Setting Version is not valid for the provided type - &#x60;update_not_enabled&#x60; - Setting Type Version has updates disabled - &#x60;setting_key_invalid&#x60; - Setting Key does not meet requirements for that type/version - &#x60;setting_value_invalid&#x60; - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details ");
+	case 304:
+		return TEXT("The resource has not been modified from the provided preconditions.");
 	case 403:
 		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
-	case 404:
-		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist - This will only occur for legacy setting types.         ");
+	case 412:
+		return TEXT("The resource does not meet the provided preconditions.");
 	case 422:
 		return TEXT("Validation Error");
-	case 500:
-		return TEXT(" Error Codes: - &#x60;setting_type_version_schema_invalid&#x60; - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.         ");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -4963,21 +5973,33 @@ bool FResponse_SetSinglePlayerIdSetting::ParseHeaders()
 	}
 
 
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+	// parse into default header storage
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
+    if (const FString* Val = HeadersMap.Find(TEXT("Last-Modified")))
+    {
+        LastModified = FromHeaderString<FDateTime>(*Val);
+    }
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+#endif
+
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	switch ((int)GetHttpResponseCode())
 	{
 	case 200:
 		break;
-	case 400:
+	case 304:
 		break;
 	case 403:
 		break;
-	case 404:
+	case 412:
 		break;
 	case 422:
-		break;
-	case 500:
 		break;
 	default:
 		break;
@@ -4998,16 +6020,60 @@ bool FResponse_SetSinglePlayerIdSetting::TryGetContentFor200(TMap<FString, FRHAP
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_SetSinglePlayerIdSetting::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_SetSinglePlayerIdSetting::GetHeader200_ETag() const
 {
-	// if this is not the correct response code, fail quickly.
-	if ((int)GetHttpResponseCode() != 400)
+	if (HttpResponse)
 	{
-		return false;
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FString>(HeaderVal);
+		}
 	}
+	return TOptional<FString>{};
+}
 
-	// forward on to type only handler
-	return TryGetContent(OutContent);
+/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+TOptional<FDateTime> FResponse_SetSinglePlayerIdSetting::GetHeader200_LastModified() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("Last-Modified"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FDateTime>(HeaderVal);
+		}
+	}
+	return TOptional<FDateTime>{};
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_SetSinglePlayerIdSetting::GetHeader304_ETag() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FString>(HeaderVal);
+		}
+	}
+	return TOptional<FString>{};
+}
+
+/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+TOptional<FDateTime> FResponse_SetSinglePlayerIdSetting::GetHeader304_LastModified() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("Last-Modified"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FDateTime>(HeaderVal);
+		}
+	}
+	return TOptional<FDateTime>{};
 }
 
 bool FResponse_SetSinglePlayerIdSetting::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
@@ -5022,34 +6088,10 @@ bool FResponse_SetSinglePlayerIdSetting::TryGetContentFor403(FRHAPI_HzApiErrorMo
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_SetSinglePlayerIdSetting::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
-{
-	// if this is not the correct response code, fail quickly.
-	if ((int)GetHttpResponseCode() != 404)
-	{
-		return false;
-	}
-
-	// forward on to type only handler
-	return TryGetContent(OutContent);
-}
-
 bool FResponse_SetSinglePlayerIdSetting::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
-	{
-		return false;
-	}
-
-	// forward on to type only handler
-	return TryGetContent(OutContent);
-}
-
-bool FResponse_SetSinglePlayerIdSetting::TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const
-{
-	// if this is not the correct response code, fail quickly.
-	if ((int)GetHttpResponseCode() != 500)
 	{
 		return false;
 	}
@@ -5073,17 +6115,7 @@ bool FResponse_SetSinglePlayerIdSetting::FromJson(const TSharedPtr<FJsonValue>& 
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<TMap<FString, FRHAPI_SettingData>>(Object);
 				break;
-			} 
-		case 400:
-			{
-				// parse into the structured data format from the json object
-				FRHAPI_HzApiErrorModel Object;
-				bParsed = TryGetJsonValue(JsonValue, Object);
-				
-				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
-				break;
-			} 
+			}  
 		case 403:
 			{
 				// parse into the structured data format from the json object
@@ -5093,17 +6125,7 @@ bool FResponse_SetSinglePlayerIdSetting::FromJson(const TSharedPtr<FJsonValue>& 
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
-			} 
-		case 404:
-			{
-				// parse into the structured data format from the json object
-				FRHAPI_HzApiErrorModel Object;
-				bParsed = TryGetJsonValue(JsonValue, Object);
-				
-				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
-				break;
-			} 
+			}  
 		case 422:
 			{
 				// parse into the structured data format from the json object
@@ -5112,16 +6134,6 @@ bool FResponse_SetSinglePlayerIdSetting::FromJson(const TSharedPtr<FJsonValue>& 
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
-				break;
-			} 
-		case 500:
-			{
-				// parse into the structured data format from the json object
-				FRHAPI_HzApiErrorModel Object;
-				bParsed = TryGetJsonValue(JsonValue, Object);
-				
-				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
 			}
 		default:
@@ -5256,6 +6268,20 @@ bool FRequest_SetSinglePlayerUuidSetting::SetupHttpRequest(const FHttpRequestRef
 
 	HttpRequest->SetVerb(TEXT("PUT"));
 
+	// Header parameters
+	if (IfMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-match"), IfMatch.GetValue());
+	}
+	if (IfNoneMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
+	}
+	if (IfUnmodifiedSince.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-unmodified-since"), IfUnmodifiedSince.GetValue());
+	}
+
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
 	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
@@ -5303,16 +6329,14 @@ FString FResponse_SetSinglePlayerUuidSetting::GetHttpResponseCodeDescription(EHt
 	{
 	case 200:
 		return TEXT("Successful Response");
-	case 400:
-		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator - &#x60;setting_version_invalid&#x60; - Setting Version is not valid for the provided type - &#x60;update_not_enabled&#x60; - Setting Type Version has updates disabled - &#x60;setting_key_invalid&#x60; - Setting Key does not meet requirements for that type/version - &#x60;setting_value_invalid&#x60; - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details ");
+	case 304:
+		return TEXT("The resource has not been modified from the provided preconditions.");
 	case 403:
 		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
-	case 404:
-		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist - This will only occur for legacy setting types.         ");
+	case 412:
+		return TEXT("The resource does not meet the provided preconditions.");
 	case 422:
 		return TEXT("Validation Error");
-	case 500:
-		return TEXT(" Error Codes: - &#x60;setting_type_version_schema_invalid&#x60; - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.         ");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -5326,21 +6350,33 @@ bool FResponse_SetSinglePlayerUuidSetting::ParseHeaders()
 	}
 
 
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+	// parse into default header storage
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
+    if (const FString* Val = HeadersMap.Find(TEXT("Last-Modified")))
+    {
+        LastModified = FromHeaderString<FDateTime>(*Val);
+    }
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+#endif
+
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	switch ((int)GetHttpResponseCode())
 	{
 	case 200:
 		break;
-	case 400:
+	case 304:
 		break;
 	case 403:
 		break;
-	case 404:
+	case 412:
 		break;
 	case 422:
-		break;
-	case 500:
 		break;
 	default:
 		break;
@@ -5361,16 +6397,60 @@ bool FResponse_SetSinglePlayerUuidSetting::TryGetContentFor200(TMap<FString, FRH
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_SetSinglePlayerUuidSetting::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_SetSinglePlayerUuidSetting::GetHeader200_ETag() const
 {
-	// if this is not the correct response code, fail quickly.
-	if ((int)GetHttpResponseCode() != 400)
+	if (HttpResponse)
 	{
-		return false;
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FString>(HeaderVal);
+		}
 	}
+	return TOptional<FString>{};
+}
 
-	// forward on to type only handler
-	return TryGetContent(OutContent);
+/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+TOptional<FDateTime> FResponse_SetSinglePlayerUuidSetting::GetHeader200_LastModified() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("Last-Modified"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FDateTime>(HeaderVal);
+		}
+	}
+	return TOptional<FDateTime>{};
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_SetSinglePlayerUuidSetting::GetHeader304_ETag() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FString>(HeaderVal);
+		}
+	}
+	return TOptional<FString>{};
+}
+
+/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+TOptional<FDateTime> FResponse_SetSinglePlayerUuidSetting::GetHeader304_LastModified() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("Last-Modified"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FDateTime>(HeaderVal);
+		}
+	}
+	return TOptional<FDateTime>{};
 }
 
 bool FResponse_SetSinglePlayerUuidSetting::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
@@ -5385,34 +6465,10 @@ bool FResponse_SetSinglePlayerUuidSetting::TryGetContentFor403(FRHAPI_HzApiError
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_SetSinglePlayerUuidSetting::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
-{
-	// if this is not the correct response code, fail quickly.
-	if ((int)GetHttpResponseCode() != 404)
-	{
-		return false;
-	}
-
-	// forward on to type only handler
-	return TryGetContent(OutContent);
-}
-
 bool FResponse_SetSinglePlayerUuidSetting::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
-	{
-		return false;
-	}
-
-	// forward on to type only handler
-	return TryGetContent(OutContent);
-}
-
-bool FResponse_SetSinglePlayerUuidSetting::TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const
-{
-	// if this is not the correct response code, fail quickly.
-	if ((int)GetHttpResponseCode() != 500)
 	{
 		return false;
 	}
@@ -5436,17 +6492,7 @@ bool FResponse_SetSinglePlayerUuidSetting::FromJson(const TSharedPtr<FJsonValue>
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<TMap<FString, FRHAPI_SettingData>>(Object);
 				break;
-			} 
-		case 400:
-			{
-				// parse into the structured data format from the json object
-				FRHAPI_HzApiErrorModel Object;
-				bParsed = TryGetJsonValue(JsonValue, Object);
-				
-				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
-				break;
-			} 
+			}  
 		case 403:
 			{
 				// parse into the structured data format from the json object
@@ -5456,17 +6502,7 @@ bool FResponse_SetSinglePlayerUuidSetting::FromJson(const TSharedPtr<FJsonValue>
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
-			} 
-		case 404:
-			{
-				// parse into the structured data format from the json object
-				FRHAPI_HzApiErrorModel Object;
-				bParsed = TryGetJsonValue(JsonValue, Object);
-				
-				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
-				break;
-			} 
+			}  
 		case 422:
 			{
 				// parse into the structured data format from the json object
@@ -5475,16 +6511,6 @@ bool FResponse_SetSinglePlayerUuidSetting::FromJson(const TSharedPtr<FJsonValue>
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
-				break;
-			} 
-		case 500:
-			{
-				// parse into the structured data format from the json object
-				FRHAPI_HzApiErrorModel Object;
-				bParsed = TryGetJsonValue(JsonValue, Object);
-				
-				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
 			}
 		default:
@@ -5618,6 +6644,20 @@ bool FRequest_SetSinglePlayerUuidSettingSelf::SetupHttpRequest(const FHttpReques
 
 	HttpRequest->SetVerb(TEXT("PUT"));
 
+	// Header parameters
+	if (IfMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-match"), IfMatch.GetValue());
+	}
+	if (IfNoneMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
+	}
+	if (IfUnmodifiedSince.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-unmodified-since"), IfUnmodifiedSince.GetValue());
+	}
+
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
 	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
@@ -5665,16 +6705,14 @@ FString FResponse_SetSinglePlayerUuidSettingSelf::GetHttpResponseCodeDescription
 	{
 	case 200:
 		return TEXT("Successful Response");
-	case 400:
-		return TEXT(" Error Codes: - &#x60;setting_type_not_supported&#x60; - The setting type is not supported at this time.  Contact an administrator - &#x60;setting_version_invalid&#x60; - Setting Version is not valid for the provided type - &#x60;update_not_enabled&#x60; - Setting Type Version has updates disabled - &#x60;setting_key_invalid&#x60; - Setting Key does not meet requirements for that type/version - &#x60;setting_value_invalid&#x60; - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details ");
+	case 304:
+		return TEXT("The resource has not been modified from the provided preconditions.");
 	case 403:
 		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
-	case 404:
-		return TEXT(" Error Codes: - &#x60;setting_type_id_not_found&#x60; - The setting type ID was not found - &#x60;does_not_exist&#x60; - Setting Key(s) do not exist - This will only occur for legacy setting types.         ");
+	case 412:
+		return TEXT("The resource does not meet the provided preconditions.");
 	case 422:
 		return TEXT("Validation Error");
-	case 500:
-		return TEXT(" Error Codes: - &#x60;setting_type_version_schema_invalid&#x60; - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.         ");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -5688,21 +6726,33 @@ bool FResponse_SetSinglePlayerUuidSettingSelf::ParseHeaders()
 	}
 
 
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+	// parse into default header storage
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
+    if (const FString* Val = HeadersMap.Find(TEXT("Last-Modified")))
+    {
+        LastModified = FromHeaderString<FDateTime>(*Val);
+    }
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+#endif
+
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	switch ((int)GetHttpResponseCode())
 	{
 	case 200:
 		break;
-	case 400:
+	case 304:
 		break;
 	case 403:
 		break;
-	case 404:
+	case 412:
 		break;
 	case 422:
-		break;
-	case 500:
 		break;
 	default:
 		break;
@@ -5723,16 +6773,60 @@ bool FResponse_SetSinglePlayerUuidSettingSelf::TryGetContentFor200(TMap<FString,
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_SetSinglePlayerUuidSettingSelf::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_SetSinglePlayerUuidSettingSelf::GetHeader200_ETag() const
 {
-	// if this is not the correct response code, fail quickly.
-	if ((int)GetHttpResponseCode() != 400)
+	if (HttpResponse)
 	{
-		return false;
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FString>(HeaderVal);
+		}
 	}
+	return TOptional<FString>{};
+}
 
-	// forward on to type only handler
-	return TryGetContent(OutContent);
+/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+TOptional<FDateTime> FResponse_SetSinglePlayerUuidSettingSelf::GetHeader200_LastModified() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("Last-Modified"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FDateTime>(HeaderVal);
+		}
+	}
+	return TOptional<FDateTime>{};
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_SetSinglePlayerUuidSettingSelf::GetHeader304_ETag() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FString>(HeaderVal);
+		}
+	}
+	return TOptional<FString>{};
+}
+
+/* The Last-Modified date for the resource.  Used for caching and preconditions. */
+TOptional<FDateTime> FResponse_SetSinglePlayerUuidSettingSelf::GetHeader304_LastModified() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("Last-Modified"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FDateTime>(HeaderVal);
+		}
+	}
+	return TOptional<FDateTime>{};
 }
 
 bool FResponse_SetSinglePlayerUuidSettingSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
@@ -5747,34 +6841,10 @@ bool FResponse_SetSinglePlayerUuidSettingSelf::TryGetContentFor403(FRHAPI_HzApiE
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_SetSinglePlayerUuidSettingSelf::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
-{
-	// if this is not the correct response code, fail quickly.
-	if ((int)GetHttpResponseCode() != 404)
-	{
-		return false;
-	}
-
-	// forward on to type only handler
-	return TryGetContent(OutContent);
-}
-
 bool FResponse_SetSinglePlayerUuidSettingSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
-	{
-		return false;
-	}
-
-	// forward on to type only handler
-	return TryGetContent(OutContent);
-}
-
-bool FResponse_SetSinglePlayerUuidSettingSelf::TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const
-{
-	// if this is not the correct response code, fail quickly.
-	if ((int)GetHttpResponseCode() != 500)
 	{
 		return false;
 	}
@@ -5798,17 +6868,7 @@ bool FResponse_SetSinglePlayerUuidSettingSelf::FromJson(const TSharedPtr<FJsonVa
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<TMap<FString, FRHAPI_SettingData>>(Object);
 				break;
-			} 
-		case 400:
-			{
-				// parse into the structured data format from the json object
-				FRHAPI_HzApiErrorModel Object;
-				bParsed = TryGetJsonValue(JsonValue, Object);
-				
-				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
-				break;
-			} 
+			}  
 		case 403:
 			{
 				// parse into the structured data format from the json object
@@ -5818,17 +6878,7 @@ bool FResponse_SetSinglePlayerUuidSettingSelf::FromJson(const TSharedPtr<FJsonVa
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
-			} 
-		case 404:
-			{
-				// parse into the structured data format from the json object
-				FRHAPI_HzApiErrorModel Object;
-				bParsed = TryGetJsonValue(JsonValue, Object);
-				
-				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
-				break;
-			} 
+			}  
 		case 422:
 			{
 				// parse into the structured data format from the json object
@@ -5837,16 +6887,6 @@ bool FResponse_SetSinglePlayerUuidSettingSelf::FromJson(const TSharedPtr<FJsonVa
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
-				break;
-			} 
-		case 500:
-			{
-				// parse into the structured data format from the json object
-				FRHAPI_HzApiErrorModel Object;
-				bParsed = TryGetJsonValue(JsonValue, Object);
-				
-				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
 			}
 		default:

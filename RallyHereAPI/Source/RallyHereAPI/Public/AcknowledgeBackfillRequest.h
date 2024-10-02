@@ -9,6 +9,7 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
+#include "BackfillStyle.h"
 #include "TeamOverflowAction.h"
 #include "AcknowledgeBackfillRequest.generated.h"
 
@@ -105,6 +106,33 @@ struct RALLYHEREAPI_API FRHAPI_AcknowledgeBackfillRequest : public FRHAPI_Model
 	void ClearOverflowAction() { OverflowAction_IsSet = false;  }
 	/** @brief Checks whether OverflowAction_Optional has been set */
 	bool IsOverflowActionSet() const { return OverflowAction_IsSet; }
+
+	/** @brief The styles of backfill to acknowledge. Can provide multiple for backwards compatibility. */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TArray<ERHAPI_BackfillStyle> Styles_Optional{  };
+	/** @brief true if Styles_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Styles_IsSet{ false };
+	/** @brief Gets the value of Styles_Optional, regardless of it having been set */
+	TArray<ERHAPI_BackfillStyle>& GetStyles() { return Styles_Optional; }
+	/** @brief Gets the value of Styles_Optional, regardless of it having been set */
+	const TArray<ERHAPI_BackfillStyle>& GetStyles() const { return Styles_Optional; }
+	/** @brief Gets the value of Styles_Optional, if it has been set, otherwise it returns DefaultValue */
+	const TArray<ERHAPI_BackfillStyle>& GetStyles(const TArray<ERHAPI_BackfillStyle>& DefaultValue) const { if (Styles_IsSet) return Styles_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Styles_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStyles(TArray<ERHAPI_BackfillStyle>& OutValue) const { if (Styles_IsSet) OutValue = Styles_Optional; return Styles_IsSet; }
+	/** @brief Returns a pointer to Styles_Optional, if it has been set, otherwise returns nullptr */
+	TArray<ERHAPI_BackfillStyle>* GetStylesOrNull() { if (Styles_IsSet) return (&Styles_Optional); return nullptr; }
+	/** @brief Returns a pointer to Styles_Optional, if it has been set, otherwise returns nullptr */
+	const TArray<ERHAPI_BackfillStyle>* GetStylesOrNull() const { if (Styles_IsSet) return (&Styles_Optional); return nullptr; }
+	/** @brief Sets the value of Styles_Optional and also sets Styles_IsSet to true */
+	void SetStyles(const TArray<ERHAPI_BackfillStyle>& NewValue) { Styles_Optional = NewValue; Styles_IsSet = true;  }
+	/** @brief Sets the value of Styles_Optional and also sets Styles_IsSet to true using move semantics */
+	void SetStyles(TArray<ERHAPI_BackfillStyle>&& NewValue) { Styles_Optional = NewValue; Styles_IsSet = true;  }
+	/** @brief Clears the value of Styles_Optional and sets Styles_IsSet to false */
+	void ClearStyles() { Styles_IsSet = false;  }
+	/** @brief Checks whether Styles_Optional has been set */
+	bool IsStylesSet() const { return Styles_IsSet; }
 };
 
 /** @} */

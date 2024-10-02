@@ -418,34 +418,30 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
 
 	/** @brief The item of the currency used by this coupon. This is only valid for an unit Item. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 CouponDiscountCurrencyItemUuid_Optional{ 0 };
+	FGuid CouponDiscountCurrencyItemUuid_Optional{  };
 	/** @brief true if CouponDiscountCurrencyItemUuid_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool CouponDiscountCurrencyItemUuid_IsSet{ false };
 	/** @brief Gets the value of CouponDiscountCurrencyItemUuid_Optional, regardless of it having been set */
-	int32& GetCouponDiscountCurrencyItemUuid() { return CouponDiscountCurrencyItemUuid_Optional; }
+	FGuid& GetCouponDiscountCurrencyItemUuid() { return CouponDiscountCurrencyItemUuid_Optional; }
 	/** @brief Gets the value of CouponDiscountCurrencyItemUuid_Optional, regardless of it having been set */
-	const int32& GetCouponDiscountCurrencyItemUuid() const { return CouponDiscountCurrencyItemUuid_Optional; }
+	const FGuid& GetCouponDiscountCurrencyItemUuid() const { return CouponDiscountCurrencyItemUuid_Optional; }
 	/** @brief Gets the value of CouponDiscountCurrencyItemUuid_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetCouponDiscountCurrencyItemUuid(const int32& DefaultValue) const { if (CouponDiscountCurrencyItemUuid_IsSet) return CouponDiscountCurrencyItemUuid_Optional; return DefaultValue; }
+	const FGuid& GetCouponDiscountCurrencyItemUuid(const FGuid& DefaultValue) const { if (CouponDiscountCurrencyItemUuid_IsSet) return CouponDiscountCurrencyItemUuid_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of CouponDiscountCurrencyItemUuid_Optional and returns true if it has been set, otherwise returns false */
-	bool GetCouponDiscountCurrencyItemUuid(int32& OutValue) const { if (CouponDiscountCurrencyItemUuid_IsSet) OutValue = CouponDiscountCurrencyItemUuid_Optional; return CouponDiscountCurrencyItemUuid_IsSet; }
+	bool GetCouponDiscountCurrencyItemUuid(FGuid& OutValue) const { if (CouponDiscountCurrencyItemUuid_IsSet) OutValue = CouponDiscountCurrencyItemUuid_Optional; return CouponDiscountCurrencyItemUuid_IsSet; }
 	/** @brief Returns a pointer to CouponDiscountCurrencyItemUuid_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetCouponDiscountCurrencyItemUuidOrNull() { if (CouponDiscountCurrencyItemUuid_IsSet) return (&CouponDiscountCurrencyItemUuid_Optional); return nullptr; }
+	FGuid* GetCouponDiscountCurrencyItemUuidOrNull() { if (CouponDiscountCurrencyItemUuid_IsSet) return (&CouponDiscountCurrencyItemUuid_Optional); return nullptr; }
 	/** @brief Returns a pointer to CouponDiscountCurrencyItemUuid_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetCouponDiscountCurrencyItemUuidOrNull() const { if (CouponDiscountCurrencyItemUuid_IsSet) return (&CouponDiscountCurrencyItemUuid_Optional); return nullptr; }
+	const FGuid* GetCouponDiscountCurrencyItemUuidOrNull() const { if (CouponDiscountCurrencyItemUuid_IsSet) return (&CouponDiscountCurrencyItemUuid_Optional); return nullptr; }
 	/** @brief Sets the value of CouponDiscountCurrencyItemUuid_Optional and also sets CouponDiscountCurrencyItemUuid_IsSet to true */
-	void SetCouponDiscountCurrencyItemUuid(const int32& NewValue) { CouponDiscountCurrencyItemUuid_Optional = NewValue; CouponDiscountCurrencyItemUuid_IsSet = true;  }
+	void SetCouponDiscountCurrencyItemUuid(const FGuid& NewValue) { CouponDiscountCurrencyItemUuid_Optional = NewValue; CouponDiscountCurrencyItemUuid_IsSet = true;  }
 	/** @brief Sets the value of CouponDiscountCurrencyItemUuid_Optional and also sets CouponDiscountCurrencyItemUuid_IsSet to true using move semantics */
-	void SetCouponDiscountCurrencyItemUuid(int32&& NewValue) { CouponDiscountCurrencyItemUuid_Optional = NewValue; CouponDiscountCurrencyItemUuid_IsSet = true;  }
+	void SetCouponDiscountCurrencyItemUuid(FGuid&& NewValue) { CouponDiscountCurrencyItemUuid_Optional = NewValue; CouponDiscountCurrencyItemUuid_IsSet = true;  }
 	/** @brief Clears the value of CouponDiscountCurrencyItemUuid_Optional and sets CouponDiscountCurrencyItemUuid_IsSet to false */
-	void ClearCouponDiscountCurrencyItemUuid() { CouponDiscountCurrencyItemUuid_Optional = 0; CouponDiscountCurrencyItemUuid_IsSet = false;  }
+	void ClearCouponDiscountCurrencyItemUuid() { CouponDiscountCurrencyItemUuid_IsSet = false;  }
 	/** @brief Checks whether CouponDiscountCurrencyItemUuid_Optional has been set */
 	bool IsCouponDiscountCurrencyItemUuidSet() const { return CouponDiscountCurrencyItemUuid_IsSet; }
-	/** @brief Returns true if CouponDiscountCurrencyItemUuid_Optional is set and matches the default value */
-	bool IsCouponDiscountCurrencyItemUuidDefaultValue() const { return CouponDiscountCurrencyItemUuid_IsSet && CouponDiscountCurrencyItemUuid_Optional == 0; }
-	/** @brief Sets the value of CouponDiscountCurrencyItemUuid_Optional to its default and also sets CouponDiscountCurrencyItemUuid_IsSet to true */
-	void SetCouponDiscountCurrencyItemUuidToDefault() { SetCouponDiscountCurrencyItemUuid(0); }
 
 	/** @brief The item of the currency used by this coupon. This is only valid for an unit Item. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

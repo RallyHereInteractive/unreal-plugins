@@ -22,11 +22,6 @@ using RallyHereAPI::TryGetJsonValue;
 void FRHAPI_PexClientResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
 	Writer->WriteObjectStart();
-	if (LastModifiedTimestamp_IsSet)
-	{
-		Writer->WriteIdentifierPrefix(TEXT("last_modified_timestamp"));
-		RallyHereAPI::WriteJsonValue(Writer, LastModifiedTimestamp_Optional);
-	}
 	if (CreatedTimestamp_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("created_timestamp"));
@@ -351,12 +346,6 @@ bool FRHAPI_PexClientResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
 	bool ParseSuccess = true;
 
-	const TSharedPtr<FJsonValue> JsonLastModifiedTimestampField = (*Object)->TryGetField(TEXT("last_modified_timestamp"));
-	if (JsonLastModifiedTimestampField.IsValid())
-	{
-		LastModifiedTimestamp_IsSet = TryGetJsonValue(JsonLastModifiedTimestampField, LastModifiedTimestamp_Optional);
-		ParseSuccess &= LastModifiedTimestamp_IsSet;
-	}
 	const TSharedPtr<FJsonValue> JsonCreatedTimestampField = (*Object)->TryGetField(TEXT("created_timestamp"));
 	if (JsonCreatedTimestampField.IsValid())
 	{

@@ -514,6 +514,13 @@ inline double FromHeaderString<double>(const FString& Value)
 	return FCString::Atod(*Value);
 }
 
+template<>
+inline FDateTime FromHeaderString<FDateTime>(const FString& Value)
+{
+	FDateTime DateTime;
+	return FDateTime::ParseHttpDate(Value, DateTime) ? DateTime : FDateTime();
+}
+
 //////////////////////////////////////////////////////////////////////////
 
 inline void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const TSharedPtr<FJsonValue>& Value)

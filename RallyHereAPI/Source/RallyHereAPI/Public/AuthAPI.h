@@ -342,7 +342,6 @@ struct RALLYHEREAPI_API FRequest_Login : public FRequest
 	TSharedPtr<FAuthContext> AuthContext;
 	FRHAPI_LoginRequestV1 LoginRequestV1;
 	TOptional<FString> UserAgent;
-	TOptional<FString> XForwardedFor;
 };
 
 /** The response type for FRequest_Login */
@@ -552,7 +551,6 @@ struct RALLYHEREAPI_API FRequest_OauthLogin : public FRequest
 	/* The URI to redirect to after the OAuth flow is complete. If not provided, or does not match one of the preconfigured redirect URIs, the first configured redirect URI will be used. */
 	TOptional<FString> RedirectUri;
 	TOptional<FString> UserAgent;
-	TOptional<FString> XForwardedFor;
 };
 
 /** The response type for FRequest_OauthLogin */
@@ -656,7 +654,6 @@ struct RALLYHEREAPI_API FRequest_OauthResponse : public FRequest
 	/* The state value sent to the platform provider that is used to continue with the oauth request. */
 	TOptional<FString> State;
 	TOptional<FString> UserAgent;
-	TOptional<FString> XForwardedFor;
 };
 
 /** The response type for FRequest_OauthResponse */
@@ -759,7 +756,6 @@ struct RALLYHEREAPI_API FRequest_OauthTokenExchange : public FRequest
 	TSharedPtr<FAuthContext> AuthContext;
 	FRHAPI_OAuthTokenExchange OAuthTokenExchange;
 	TOptional<FString> UserAgent;
-	TOptional<FString> XForwardedFor;
 };
 
 /** The response type for FRequest_OauthTokenExchange */
@@ -863,7 +859,6 @@ struct RALLYHEREAPI_API FRequest_Token : public FRequest
 	TSharedPtr<FAuthContext> AuthContext;
 	FRHAPI_TokenRequest TokenRequest;
 	TOptional<FString> UserAgent;
-	TOptional<FString> XForwardedFor;
 };
 
 /** The response type for FRequest_Token */

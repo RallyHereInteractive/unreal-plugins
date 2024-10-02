@@ -429,10 +429,11 @@ bool FResponse_{{operationIdCamelCase}}::ParseHeaders()
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	// parse into default header storage
 	{{#headers}}
-	if (const FString* Val = HeadersMap.Find(TEXT("{{baseName}}")))
-	{
-		{{name}} = *Val;
-	}{{/headers}}
+    if (const FString* Val = HeadersMap.Find(TEXT("{{baseName}}")))
+    {
+        {{name}} = FromHeaderString<{{{dataType}}}>(*Val);
+    }
+    {{/headers}}
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 {{/headers.0}}{{/responses.0}}
