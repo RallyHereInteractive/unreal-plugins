@@ -562,7 +562,21 @@ public:
 	 * @brief Delegate that fires whenever a catalog item is added to the cashed catalog items.
 	 */
 	FRH_CatalogItemUpdatedDelegate OnCatalogItemAdded;
-
+	
+	virtual FString GetDefaultCatalogFileExportPath() const { return FPaths::ProjectConfigDir() / TEXT("catalog_data.json"); }
+	/**
+	 * @brief Retrieve all catalog data and save it to a file.
+	 * @param [in] FilePath The file path to save the catalog data to. 
+	 * @param [in] Delegate Callback when the API call is complete and the file is written. 
+	 */
+	void ExportCatalogToFile(const FString& FilePath = FString(), const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock()) const;
+	/**
+	 * @brief Retrieve all catalog data from a file and load it into the catalog.
+	 * @param [in] FilePath The file path to load the catalog data from.
+	 * @param [in] Delegate Callback when the API call is complete and the file is read.
+	 */
+	void ImportCatalogFromFile(const FString& FilePath = FString(), const FRH_CatalogCallBlock& Delegate = FRH_CatalogCallBlock());
+	
 protected:
 	/**
 	 * @brief Makes an API call for a single vendor Id.

@@ -10,6 +10,7 @@
 #include "RallyHereAPIHttpRequester.h"
 #include "RallyHereAPIAuthContext.h"
 #include "RallyHereAPIModule.h"
+#include "RallyHereAPISettings.h"
 #include "Serialization/JsonReader.h"
 #include "Serialization/JsonSerializer.h"
 #include "HttpModule.h"
@@ -88,41 +89,44 @@ bool FResponse::ParseStringTypeContent()
 {
 	check(HttpResponse != nullptr);
 
-	SetPayload<StringPayloadType>
-	(HttpResponse->GetContentAsString());
+	SetPayload<StringPayloadType>(HttpResponse->GetContentAsString());
 	return true; // Successfully parsed
-	}
+}
 
-	bool FResponse::ParseJsonTypeContent()
-	{
+bool FResponse::ParseJsonTypeContent()
+{
 	check(HttpResponse != nullptr);
 
 	ClearPayload();
 
 	TSharedPtr<FJsonValue>
-		JsonValue;
-		const FString ContentAsString = HttpResponse->GetContentAsString();
+	JsonValue;
+	const FString ContentAsString = HttpResponse->GetContentAsString();
 
-		if (ContentAsString.Len() == 0 || ContentAsString.TrimStart().Len() == 0)
-		{
+	if (ContentAsString.Len() == 0 || ContentAsString.TrimStart().Len() == 0)
+	{
 		// if the response was empty or all whitespace, do not create a json object, but return as non-error
 		return true;
-		}
+	}
 
-		auto Reader = TJsonReaderFactory<>::Create(ContentAsString);
+	auto Reader = TJsonReaderFactory<>::Create(ContentAsString);
 
+	{
+		SCOPED_NAMED_EVENT(RallyHere_DeserializeJsonContent, FColor::Purple);
+		
 		if (!FJsonSerializer::Deserialize(Reader, JsonValue))
 		{
-		if (Reader->GetErrorMessage().StartsWith(TEXT("Open Curly or Square Brace token expected, but not found")))
-		{
-		FString ContentArrayWrapper = TEXT("[") + ContentAsString + TEXT("]");
-		Reader = TJsonReaderFactory<>::Create(ContentArrayWrapper);
-		if (FJsonSerializer::Deserialize(Reader, JsonValue) && JsonValue.IsValid())
-		{
-		TArray<TSharedPtr<FJsonValue>>* OutArray;
-				if (JsonValue->TryGetArray(OutArray) && OutArray != nullptr && OutArray->Num() > 0)
+			if (Reader->GetErrorMessage().StartsWith(TEXT("Open Curly or Square Brace token expected, but not found")))
+			{
+				FString ContentArrayWrapper = TEXT("[") + ContentAsString + TEXT("]");
+				Reader = TJsonReaderFactory<>::Create(ContentArrayWrapper);
+				if (FJsonSerializer::Deserialize(Reader, JsonValue) && JsonValue.IsValid())
 				{
-					JsonValue = (*OutArray).Last();
+					TArray<TSharedPtr<FJsonValue>>* OutArray;
+					if (JsonValue->TryGetArray(OutArray) && OutArray != nullptr && OutArray->Num() > 0)
+					{
+						JsonValue = (*OutArray).Last();
+					}
 				}
 			}
 		}
@@ -130,6 +134,7 @@ bool FResponse::ParseStringTypeContent()
 
 	if (JsonValue.IsValid())
 	{
+		SCOPED_NAMED_EVENT(RallyHere_ParseJsonContent, FColor::Purple);
 		SetPayload<JsonPayloadType>(JsonValue);
 
 		// attempt to parse the json with the response object (for successful responses, this will fill in the Content subobject)
@@ -244,66 +249,170 @@ FHttpRequestRef FAPI::CreateHttpRequest(const FRequest& Request) const
 	return HttpRequest;
 }
 
-bool FAPI::HandleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, TSharedPtr<FAuthContext> AuthContext, FResponse &InOutResponse, const FHttpRequestCompleteDelegate& ResponseDelegate, const FRequestMetadata& RequestMetadata, int32 Priority)
+
+struct FHandleResponseParseAsyncTask : public FNonAbandonableTask
 {
-	InOutResponse.SetHttpResponse(HttpResponse);
-	InOutResponse.SetSuccessful(bSucceeded);
-
-	if (bSucceeded && HttpResponse.IsValid())
+	FHandleResponseParseAsyncTask(const TSharedRef<FResponse>& InResponse, const FAPI_OnHandleResponseAsyncComplete& InDelegate)
+		: StoredResponse(InResponse)
+		, StoredDelegate(InDelegate)
 	{
-		InOutResponse.SetHttpResponseCode((EHttpResponseCodes::Type)HttpResponse->GetResponseCode());
+	}
 
+	/** Returns the stat id for this task */
+	FORCEINLINE TStatId GetStatId() const
+	{
+		RETURN_QUICK_DECLARE_CYCLE_STAT(FHandleResponseParseAsyncTask, STATGROUP_ThreadPoolAsyncTasks);
+	}
+
+	void DoWork()
+	{
+		ParseResponse(StoredResponse, StoredDelegate);
+	}
+	
+	
+	static void ParseResponse(TSharedRef<FResponse> Response, FAPI_OnHandleResponseAsyncComplete Delegate)
+	{
 		bool bParsedHeaders = false;
 		bool bParsedContent = false;
-		bool bNeedsReauth = false;
-
-		InOutResponse.ParseResponse(bParsedHeaders, bParsedContent);
+		
+		{
+			SCOPED_NAMED_EVENT(RallyHere_ParseResponse, FColor::Purple);
+			Response->ParseResponse(bParsedHeaders, bParsedContent);
+		}
 
 		if (!bParsedHeaders)
 		{
 			// Report the parse error but do not mark the request as unsuccessful. Data could be partial or malformed, but the request succeeded.
 			UE_LOG(LogRallyHereAPI, Error, TEXT("Failed to parse Http response headers"));
-			return false;
 		}
 
 		if (!bParsedContent)
 		{
 			// Report the parse error but do not mark the request as unsuccessful. Data could be partial or malformed, but the request succeeded.
 			UE_LOG(LogRallyHereAPI, Warning, TEXT("Failed to parse Http response content"));
-			return false;
 		}
-
-		// attempt reauth for certain error codes if an auth context was provided
-		if (AuthContext.IsValid())
+		
+		// if already in the game thread, dispatch immediately, else dispatch on game thread via deferral
+		bool bSuccess = bParsedHeaders && bParsedContent;
+		if (IsInGameThread())
 		{
-			if (InOutResponse.GetHttpResponseCode() == EHttpResponseCodes::Denied
-				|| InOutResponse.GetHttpResponseCode() == EHttpResponseCodes::Forbidden) // some consoles forcibly retry 401 errors with a modified body, which can generate 403 errors, so check those for an auth success flag
-			{
-				auto Retry = MakeShared<FRequestPendingAuthRetry>();
-				Retry->HttpRequest = HttpRequest;
-				Retry->AuthContext = AuthContext;
-
-				// set a callback handle
-				Retry->Handle = AuthContext->OnLoginComplete().AddSP(this, &FAPI::RetryRequestAfterAuth, Retry, ResponseDelegate, RequestMetadata, Priority);
-
-				if (AuthContext->ConditionalRefreshOnFailedResponse(InOutResponse, RequestMetadata))
-				{
-					return true; // Don't submit the response for this request, we are going to retry it.
-				}
-
-				// failed to conditionally refresh, so remove the handle, and return completion
-				AuthContext->OnLoginComplete().Remove(Retry->Handle);
-				return false;
-			}
+			Delegate.ExecuteIfBound(bSuccess);
 		}
-
-		// successfully parsed content
-		return false;
+		else
+		{
+			DECLARE_CYCLE_STAT(TEXT("FHandleResponseParseAsyncTask Callback"), FHandleResponseParseAsyncTask_Callback, STATGROUP_TaskGraphTasks);
+		
+			const FGraphEventRef Task = FSimpleDelegateGraphTask::CreateAndDispatchWhenReady(
+				FSimpleDelegateGraphTask::FDelegate::CreateLambda([Delegate, bSuccess]()
+					{
+						Delegate.ExecuteIfBound(bSuccess);
+					}),
+				GET_STATID(FHandleResponseParseAsyncTask_Callback),
+				nullptr,
+				ENamedThreads::GameThread);
+		}
+		
 	}
 
-	// By default, assume we failed to establish connection
-	InOutResponse.SetHttpResponseCode(EHttpResponseCodes::RequestTimeout);
-	return false;
+	TSharedRef<FResponse> StoredResponse;
+	FAPI_OnHandleResponseAsyncComplete StoredDelegate;
+};
+
+
+void FAPI::HandleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, TSharedPtr<FAuthContext> AuthContext, TSharedRef<FResponse> InOutResponse, const FHttpRequestCompleteDelegate& ResponseDelegate, const FSimpleDelegate& CompletionDelegate, const FRequestMetadata& RequestMetadata, int32 Priority)
+{
+	SCOPED_NAMED_EVENT(RallyHere_HandleResponse, FColor::Purple);
+
+	InOutResponse->SetHttpResponse(HttpResponse);
+	InOutResponse->SetSuccessful(bSucceeded);
+	
+	// set up a lambda for things we want to run regardless of how completion happens
+	auto AlwaysRunOnComplete = [HttpRequest, HttpResponse, bSucceeded, AuthContext, InOutResponse, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority, API = AsShared()](bool bWillRetryWithRefreshedAuth)
+	{
+		{
+			SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+			API->OnRequestCompleted().Broadcast(InOutResponse.Get(), HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+		}
+
+		if (!bWillRetryWithRefreshedAuth)
+		{
+			CompletionDelegate.ExecuteIfBound();
+		}
+	};
+	
+	if (!bSucceeded || !HttpResponse.IsValid())
+	{
+		AlwaysRunOnComplete(false);
+		
+		return;
+	}
+
+	InOutResponse->SetHttpResponseCode((EHttpResponseCodes::Type)HttpResponse->GetResponseCode());
+	
+	// set up a delegate to run on completion
+	auto OnAsyncParseComplete = FAPI_OnHandleResponseAsyncComplete::CreateLambda([AlwaysRunOnComplete, HttpRequest, HttpResponse, bSucceeded, AuthContext, InOutResponse, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority, API = AsShared()](bool bSuccessfullyParsed)
+	{
+		bool bWillRetryWithRefreshedAuth = false;
+		if (bSuccessfullyParsed)
+		{
+			bWillRetryWithRefreshedAuth = API->OnHandleResponseAsyncComplete(HttpRequest, HttpResponse, bSucceeded, AuthContext, InOutResponse, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
+		}
+		
+		AlwaysRunOnComplete(bWillRetryWithRefreshedAuth);
+	});
+	
+	// create an async task, which will potentially be run synchronously
+	auto Task = new FAsyncTask<FHandleResponseParseAsyncTask>(InOutResponse, OnAsyncParseComplete);
+	
+	// parse the response asynchronously
+	const auto MaxContentLength = GetDefault<URallyHereAPISettings>()->InlineJsonParseMaximumSize;
+	const auto ContentLength = HttpResponse.IsValid() ? HttpResponse->GetContentLength() : 0;
+	bool bParseAsync = MaxContentLength > 0 && ContentLength >= MaxContentLength;
+	if (!bParseAsync)
+	{
+		// process in line
+		Task->StartSynchronousTask();
+	}
+	else
+	{
+		// todo: kick off a background worker
+		Task->StartBackgroundTask();
+	}
+}
+
+
+bool FAPI::OnHandleResponseAsyncComplete(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, TSharedPtr<FAuthContext> AuthContext, TSharedRef<FResponse> InOutResponse, const FHttpRequestCompleteDelegate& ResponseDelegate, const FSimpleDelegate& CompletionDelegate, const FRequestMetadata& RequestMetadata, int32 Priority)
+{
+	SCOPED_NAMED_EVENT(RallyHere_OnHandleResponseAsyncComplete, FColor::Purple);
+	bool bWillRetryWithRefreshedAuth = false;
+
+	// attempt reauth for certain error codes if an auth context was provided
+	if (AuthContext.IsValid())
+	{
+		if (InOutResponse->GetHttpResponseCode() == EHttpResponseCodes::Denied
+			|| InOutResponse->GetHttpResponseCode() == EHttpResponseCodes::Forbidden) // some consoles forcibly retry 401 errors with a modified body, which can generate 403 errors, so check those for an auth success flag
+		{
+			auto Retry = MakeShared<FRequestPendingAuthRetry>();
+			Retry->HttpRequest = HttpRequest;
+			Retry->AuthContext = AuthContext;
+
+			// set a callback handle
+			Retry->Handle = AuthContext->OnLoginComplete().AddSP(this, &FAPI::RetryRequestAfterAuth, Retry, ResponseDelegate, RequestMetadata, Priority);
+
+			if (AuthContext->ConditionalRefreshOnFailedResponse(InOutResponse.Get(), RequestMetadata))
+			{
+				// Don't submit the response for this request, we are going to retry it.
+				bWillRetryWithRefreshedAuth = true;
+			}
+			else
+			{
+				// failed to conditionally refresh, so remove the handle, and return completion
+				AuthContext->OnLoginComplete().Remove(Retry->Handle);
+			}
+		}
+	}
+
+	return bWillRetryWithRefreshedAuth;
 }
 
 void FAPI::RetryRequestAfterAuth(bool bAuthSuccess, TSharedRef<FRequestPendingAuthRetry> Request, FHttpRequestCompleteDelegate ResponseDelegate, FRequestMetadata RequestMetadata, int32 Priority)

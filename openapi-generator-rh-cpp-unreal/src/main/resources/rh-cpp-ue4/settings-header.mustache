@@ -1,0 +1,40 @@
+{{!
+Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
+Copyright 2022-2023 RallyHere Interactive
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+	https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+}}
+{{>licenseInfo}}
+#pragma once
+
+
+#include "CoreMinimal.h"
+#include "UObject/Object.h"
+
+#include "Engine/DeveloperSettings.h"
+
+#include "{{unrealModuleName}}Settings.generated.h"
+
+/**
+ * @brief Main settings for the Integration.
+ */
+UCLASS(Config = RallyHereIntegration, DefaultConfig, meta = (DisplayName = "{{unrealModuleName}} Settings"))
+class {{dllapi}} U{{unrealModuleName}}Settings : public UDeveloperSettings
+{
+	GENERATED_UCLASS_BODY()
+	
+public:
+	/** @brief The maximum size for which to parse json data inline. Json data larger than this will be parsed in a different thread, but incurs a delay. If zero, always parse inline. */
+	UPROPERTY(EditAnywhere, Config, Category = "Config|Polling")
+	uint64 InlineJsonParseMaximumSize = 1024 * 32;
+};

@@ -229,10 +229,8 @@ public:
 	virtual ~FEventsAPI();
 
 	FHttpRequestPtr GetAllEventSchema(const FRequest_GetAllEventSchema& Request, const FDelegate_GetAllEventSchema& Delegate = FDelegate_GetAllEventSchema(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr ReceiveEventsV1(const FRequest_ReceiveEventsV1& Request, const FDelegate_ReceiveEventsV1& Delegate = FDelegate_ReceiveEventsV1(), int32 Priority = DefaultRallyHereAPIPriority);
-
-private:
 	void OnGetAllEventSchemaResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllEventSchema Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr ReceiveEventsV1(const FRequest_ReceiveEventsV1& Request, const FDelegate_ReceiveEventsV1& Delegate = FDelegate_ReceiveEventsV1(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnReceiveEventsV1Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ReceiveEventsV1 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };

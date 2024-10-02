@@ -298,7 +298,7 @@ public:
 	void SetHttpResponse(const FHttpResponsePtr& InHttpResponse) { HttpResponse = InHttpResponse; }
 	const FHttpResponsePtr& GetHttpResponse() const { return HttpResponse; }
 
-	const FRequestMetadata GetRequestMetadata() const { return RequestMetadata; }
+	const FRequestMetadata& GetRequestMetadata() const { return RequestMetadata; }
 
 	template<typename T>
 	void SetPayload(const T& InPayload) { Payload.Set<T>(InPayload); }
@@ -438,6 +438,8 @@ public:
 DECLARE_MULTICAST_DELEGATE_TwoParams(FAPI_RequestStarted, const FRequestMetadata&, FHttpRequestRef);
 DECLARE_MULTICAST_DELEGATE_FiveParams(FAPI_RequestCompleted, const FResponse&, FHttpRequestPtr, FHttpResponsePtr, bool /* success */, bool /* willRetryWithAuth */);
 
+DECLARE_DELEGATE_OneParam(FAPI_OnHandleResponseAsyncComplete, bool);
+
 class RALLYHEREAPI_API FAPI : public TSharedFromThis<FAPI>
 {
 public:
@@ -476,7 +478,10 @@ protected:
 		TSharedPtr<FAuthContext> AuthContext;
 		FDelegateHandle Handle;
 	};
-	bool HandleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, TSharedPtr<FAuthContext> AuthContext, FResponse& InOutResponse, const FHttpRequestCompleteDelegate& ResponseDelegate, const FRequestMetadata& RequestMetadata, int32 Priority);
+
+	void HandleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, TSharedPtr<FAuthContext> AuthContext, TSharedRef<FResponse> InOutResponse, const FHttpRequestCompleteDelegate& ResponseDelegate, const FSimpleDelegate& CompletionDelegate, const FRequestMetadata& RequestMetadata, int32 Priority);
+	bool OnHandleResponseAsyncComplete(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, TSharedPtr<FAuthContext> AuthContext, TSharedRef<FResponse> InOutResponse, const FHttpRequestCompleteDelegate& ResponseDelegate, const FSimpleDelegate& CompletionDelegate, const FRequestMetadata& RequestMetadata, int32 Priority);
+
 	void RetryRequestAfterAuth(bool bAuthSuccess, TSharedRef<FRequestPendingAuthRetry> Request, FHttpRequestCompleteDelegate ResponseDelegate, FRequestMetadata RequestMetadata, int32 Priority);
 
 	FString Url;

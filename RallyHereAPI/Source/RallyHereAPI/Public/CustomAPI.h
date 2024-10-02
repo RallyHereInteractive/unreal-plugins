@@ -141,8 +141,6 @@ public:
 	virtual ~FCustomAPI();
 
 	FHttpRequestPtr CustomEndpointSend(const FRequest_CustomEndpointSend& Request, const FDelegate_CustomEndpointSend& Delegate = FDelegate_CustomEndpointSend(), int32 Priority = DefaultRallyHereAPIPriority);
-
-private:
 	void OnCustomEndpointSendResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CustomEndpointSend Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };

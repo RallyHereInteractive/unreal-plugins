@@ -616,16 +616,14 @@ public:
 	virtual ~FAdAPI();
 
 	FHttpRequestPtr BeginNewSession(const FRequest_BeginNewSession& Request, const FDelegate_BeginNewSession& Delegate = FDelegate_BeginNewSession(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr FindOpportunities(const FRequest_FindOpportunities& Request, const FDelegate_FindOpportunities& Delegate = FDelegate_FindOpportunities(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr UnityAdWatched(const FRequest_UnityAdWatched& Request, const FDelegate_UnityAdWatched& Delegate = FDelegate_UnityAdWatched(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr UnityMediationAdWatched(const FRequest_UnityMediationAdWatched& Request, const FDelegate_UnityMediationAdWatched& Delegate = FDelegate_UnityMediationAdWatched(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr UpdateOpportunityById(const FRequest_UpdateOpportunityById& Request, const FDelegate_UpdateOpportunityById& Delegate = FDelegate_UpdateOpportunityById(), int32 Priority = DefaultRallyHereAPIPriority);
-
-private:
 	void OnBeginNewSessionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_BeginNewSession Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr FindOpportunities(const FRequest_FindOpportunities& Request, const FDelegate_FindOpportunities& Delegate = FDelegate_FindOpportunities(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnFindOpportunitiesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_FindOpportunities Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr UnityAdWatched(const FRequest_UnityAdWatched& Request, const FDelegate_UnityAdWatched& Delegate = FDelegate_UnityAdWatched(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnUnityAdWatchedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UnityAdWatched Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr UnityMediationAdWatched(const FRequest_UnityMediationAdWatched& Request, const FDelegate_UnityMediationAdWatched& Delegate = FDelegate_UnityMediationAdWatched(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnUnityMediationAdWatchedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UnityMediationAdWatched Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr UpdateOpportunityById(const FRequest_UpdateOpportunityById& Request, const FDelegate_UpdateOpportunityById& Delegate = FDelegate_UpdateOpportunityById(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnUpdateOpportunityByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateOpportunityById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };

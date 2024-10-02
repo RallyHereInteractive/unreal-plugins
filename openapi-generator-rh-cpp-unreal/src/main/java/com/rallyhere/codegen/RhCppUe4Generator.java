@@ -311,6 +311,8 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
         supportingFiles.add(new SupportingFile("module-source.mustache", privateOutDir + unrealModuleName + "Module.cpp"));
         supportingFiles.add(new SupportingFile("http-requester-header.mustache", publicOutDir + unrealModuleName + "HttpRequester.h"));
         supportingFiles.add(new SupportingFile("http-requester-source.mustache", privateOutDir + unrealModuleName + "HttpRequester.cpp"));
+		supportingFiles.add(new SupportingFile("settings-header.mustache", publicOutDir + unrealModuleName + "Settings.h"));
+        supportingFiles.add(new SupportingFile("settings-source.mustache", privateOutDir + unrealModuleName + "Settings.cpp"));
     }
 
     /**

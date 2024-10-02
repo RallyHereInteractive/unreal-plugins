@@ -1043,26 +1043,24 @@ public:
 	virtual ~FAuthAPI();
 
 	FHttpRequestPtr GetAllPublicKeys(const FRequest_GetAllPublicKeys& Request, const FDelegate_GetAllPublicKeys& Delegate = FDelegate_GetAllPublicKeys(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetPortalTokenDetails(const FRequest_GetPortalTokenDetails& Request, const FDelegate_GetPortalTokenDetails& Delegate = FDelegate_GetPortalTokenDetails(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr GetPublicKeyById(const FRequest_GetPublicKeyById& Request, const FDelegate_GetPublicKeyById& Delegate = FDelegate_GetPublicKeyById(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr Login(const FRequest_Login& Request, const FDelegate_Login& Delegate = FDelegate_Login(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr Logout(const FRequest_Logout& Request, const FDelegate_Logout& Delegate = FDelegate_Logout(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr OauthLogin(const FRequest_OauthLogin& Request, const FDelegate_OauthLogin& Delegate = FDelegate_OauthLogin(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr OauthResponse(const FRequest_OauthResponse& Request, const FDelegate_OauthResponse& Delegate = FDelegate_OauthResponse(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr OauthTokenExchange(const FRequest_OauthTokenExchange& Request, const FDelegate_OauthTokenExchange& Delegate = FDelegate_OauthTokenExchange(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr Token(const FRequest_Token& Request, const FDelegate_Token& Delegate = FDelegate_Token(), int32 Priority = DefaultRallyHereAPIPriority);
-	FHttpRequestPtr Verify(const FRequest_Verify& Request, const FDelegate_Verify& Delegate = FDelegate_Verify(), int32 Priority = DefaultRallyHereAPIPriority);
-
-private:
 	void OnGetAllPublicKeysResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPublicKeys Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetPortalTokenDetails(const FRequest_GetPortalTokenDetails& Request, const FDelegate_GetPortalTokenDetails& Delegate = FDelegate_GetPortalTokenDetails(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetPortalTokenDetailsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPortalTokenDetails Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetPublicKeyById(const FRequest_GetPublicKeyById& Request, const FDelegate_GetPublicKeyById& Delegate = FDelegate_GetPublicKeyById(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetPublicKeyByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPublicKeyById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr Login(const FRequest_Login& Request, const FDelegate_Login& Delegate = FDelegate_Login(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnLoginResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Login Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr Logout(const FRequest_Logout& Request, const FDelegate_Logout& Delegate = FDelegate_Logout(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnLogoutResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Logout Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr OauthLogin(const FRequest_OauthLogin& Request, const FDelegate_OauthLogin& Delegate = FDelegate_OauthLogin(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnOauthLoginResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OauthLogin Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr OauthResponse(const FRequest_OauthResponse& Request, const FDelegate_OauthResponse& Delegate = FDelegate_OauthResponse(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnOauthResponseResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OauthResponse Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr OauthTokenExchange(const FRequest_OauthTokenExchange& Request, const FDelegate_OauthTokenExchange& Delegate = FDelegate_OauthTokenExchange(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnOauthTokenExchangeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OauthTokenExchange Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr Token(const FRequest_Token& Request, const FDelegate_Token& Delegate = FDelegate_Token(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnTokenResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Token Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr Verify(const FRequest_Verify& Request, const FDelegate_Verify& Delegate = FDelegate_Verify(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnVerifyResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Verify Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };

@@ -21,6 +21,7 @@ public class RallyHereAPI : ModuleRules
 				"HTTP",
 				"Json",
 				"Engine",
+				"DeveloperSettings",
 			}
 		);
 		
