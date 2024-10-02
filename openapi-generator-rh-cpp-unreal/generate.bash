@@ -56,29 +56,42 @@ java -cp "target/rh-cpp-ue4-openapi-generator-1.0.0.jar;bin/openapi-generator-cl
 
 ########################################
 # Download and convert the OpenAPI spec, or copy from local path
+
+# make a temporary directory to work in
+TEMP_DIR=temp
+rm -rf $TEMP_DIR
+mkdir $TEMP_DIR
+
+# download or copy the spec to our working directory
 if [[ $OPENAPI_SPEC_LOCATION == http* ]]; then
-    curl "$OPENAPI_SPEC_LOCATION" -o openapi.json
+    curl "$OPENAPI_SPEC_LOCATION" -o $TEMP_DIR/openapi.json
 else
-    cp "$OPENAPI_SPEC_LOCATION" openapi.json
+    cp "$OPENAPI_SPEC_LOCATION" $TEMP_DIR/openapi.json
 fi
-jq '.openapi = "3.0.3"' openapi.json > openapi_converted.json
-OPENAPI_SPEC_LOCATION="openapi_converted.json"
+jq '.openapi = "3.0.3"' $TEMP_DIR/openapi.json > $TEMP_DIR/openapi_converted.json
 
 # Clean the output directory
-rm -rf "$OUTPUT_DIR"
+TEMP_OUTPUT_DIR=$TEMP_DIR/output
+rm -rf "$TEMP_OUTPUT_DIR"
+mkdir "$TEMP_OUTPUT_DIR"
 
 # Generate the RH-UE4 Client
 java -cp \
     "target/rh-cpp-ue4-openapi-generator-1.0.0.jar:bin/openapi-generator-cli.jar" \
     org.openapitools.codegen.OpenAPIGenerator \
     generate \
-    -i "$OPENAPI_SPEC_LOCATION" \
+    -i "$TEMP_DIR/openapi_converted.json" \
     --generator-name="rh-cpp-ue4" \
-    --output="$OUTPUT_DIR" \
+    --output="$TEMP_OUTPUT_DIR" \
     --additional-properties="$ADDITIONAL_PROPERTIES"
 
 # Move the reference spec files to the output directory
-mv openapi_converted.json "$OUTPUT_DIR/openapi_converted.json"
-mv openapi.json "$OUTPUT_DIR/openapi.json"
+mv $TEMP_DIR/openapi.json "$TEMP_OUTPUT_DIR"
+mv $TEMP_DIR/openapi_converted.json "$TEMP_OUTPUT_DIR"
+
+# Copy over and sync the final output directory, and delete extraneous files
+rsync -ah "$TEMP_OUTPUT_DIR/" "$OUTPUT_DIR/" --delete
+
+#rm -rf $TEMP_DIR
 
 popd
