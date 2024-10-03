@@ -203,7 +203,7 @@ bool {{unrealModelPrefix}}JsonObject::TryGetObjectField(const FString& FieldName
 		return false;
 	}
 
-	OutObject.SetObject(Obj);
+	OutObject.SetObject(*UnrealObj);
 	return true;
 }
 

@@ -193,7 +193,7 @@ bool FRHAPI_JsonObject::TryGetObjectField(const FString& FieldName, FRHAPI_JsonO
 		return false;
 	}
 
-	OutObject.SetObject(Obj);
+	OutObject.SetObject(*UnrealObj);
 	return true;
 }
 
