@@ -59,17 +59,24 @@ void FRHDTW_PlayerSettings::DoViewSettings()
 		ImGui::Text("Please select a player with a Player UUID in Player Repository.");
 		return;
 	}
+	auto Settings = ActivePlayerInfo->GetSettings();
+	if (Settings == nullptr)
+	{
+		ImGui::Text("Settings not available for selected Player.");
+		return;
+	}
 	ImGui::Text("For first selected player with UUID %s", TCHAR_TO_UTF8(*ActivePlayerInfo->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphens)));
 
-	ImGui::InputText("Settings Id", &SettingsIdInput);
+	ImGui::InputText("Settings Id", &FetchSettingsIdInput);
+	ImGui::InputText("Key", &FetchSettingsKeyInput);
 
-	if (ImGui::Button("Get Settings Data"))
+	if (ImGui::Button("Get Setting Data"))
 	{
-		ActivePlayerInfo->GetPlayerSettings(SettingsIdInput, FTimespan(), true, FRH_PlayerInfoGetPlayerSettingsBlock());
+		Settings->GetPlayerSetting(FetchSettingsIdInput, FetchSettingsKeyInput, FTimespan(), true, FRH_PlayerInfoGetPlayerSettingsBlock());
 	}
 	ImGui::Separator();
 
-	for (const auto& Pair : ActivePlayerInfo->GetAllStoredPlayerSettings())
+	for (const auto& Pair : Settings->GetAllStoredPlayerSettings())
 	{
 		if (Pair.Value.Content.Num() > 0)
 		{
@@ -135,10 +142,10 @@ void FRHDTW_PlayerSettings::DoModifySettings()
 		ForEachSelectedRHPlayer(FRHDT_RHPAction::CreateLambda([this, SettingData](URH_PlayerInfo* PlayerInfo)
 			{
 				SetPlayerSettingActionResult.Empty();
-				if (PlayerInfo)
+				if (PlayerInfo && PlayerInfo->GetSettings())
 				{
 					auto Delegate = FRH_PlayerInfoSetPlayerSettingDelegate::CreateSP(SharedThis(this), &FRHDTW_PlayerSettings::HandleSetPlayerSettingResponse, PlayerInfo->GetRHPlayerUuid());
-					PlayerInfo->SetPlayerSetting(ModifySettingsIdInput, ModifySettingsKeyInput, SettingData, MoveTemp(Delegate));
+					PlayerInfo->GetSettings()->SetPlayerSetting(ModifySettingsIdInput, ModifySettingsKeyInput, SettingData, MoveTemp(Delegate));
 				}
 			}));
 	}
@@ -147,10 +154,10 @@ void FRHDTW_PlayerSettings::DoModifySettings()
 		ForEachSelectedRHPlayer(FRHDT_RHPAction::CreateLambda([this](URH_PlayerInfo* PlayerInfo)
 			{
 				SetPlayerSettingActionResult.Empty();
-				if (PlayerInfo)
+				if (PlayerInfo && PlayerInfo->GetSettings())
 				{
 					auto Delegate = FRH_GenericSuccessWithErrorDelegate::CreateSP(SharedThis(this), &FRHDTW_PlayerSettings::HandleDeletePlayerSettingResponse, PlayerInfo->GetRHPlayerUuid());
-					PlayerInfo->DeletePlayerSetting(ModifySettingsIdInput, ModifySettingsKeyInput, MoveTemp(Delegate));
+					PlayerInfo->GetSettings()->DeletePlayerSetting(ModifySettingsIdInput, ModifySettingsKeyInput, MoveTemp(Delegate));
 				}
 			}));
 	}
