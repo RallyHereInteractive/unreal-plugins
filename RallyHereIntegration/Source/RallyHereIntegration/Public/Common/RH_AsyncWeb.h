@@ -13,7 +13,9 @@
 
 #include "RH_AsyncWeb.generated.h"
 
-/** @ingroup Common RallyHere Common
+/**
+ *	@ingroup Common
+ *  @addtogroup Common
  *  @{
  */
 

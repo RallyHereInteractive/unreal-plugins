@@ -79,7 +79,9 @@ FString RALLYHEREINTEGRATION_API RH_GetPlatformNameFromPlatformEnum(const ERHAPI
 
 ERHAPI_InventoryBucket RALLYHEREINTEGRATION_API RH_GetInventoryBucketFromPlatform(ERHAPI_Platform PlatformType);
 
-/** @defgroup Common RallyHere Common
+/**
+ *	@defgroup Common RallyHere Common
+ *	@addtogroup Common
  *  @{
  */
 

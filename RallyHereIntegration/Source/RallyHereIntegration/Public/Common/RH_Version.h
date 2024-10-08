@@ -12,7 +12,9 @@
 #define RH_BELOW_ENGINE_VERSION(Major, Minor)  (ENGINE_MAJOR_VERSION < (Major) || (ENGINE_MAJOR_VERSION == (Major) && ENGINE_MINOR_VERSION < (Minor)))
 #define RH_FROM_ENGINE_VERSION(Major, Minor)   !RH_BELOW_ENGINE_VERSION(Major, Minor)
 
-/** @ingroup Common RallyHere Common
+/**
+ *	@ingroup Common
+ *  @addtogroup Common
  *  @{
  */
 
