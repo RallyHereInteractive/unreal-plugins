@@ -1652,7 +1652,7 @@ Poll for deferred sessions.
 `public inline  `[`FRH_DeferredSessionPoll`](#structFRH__DeferredSessionPoll_1af7f09aea5ebde9c12e52431272c8470b)`(Type InPollType,const FRH_PollCompleteFunc & InDelegate,const TOptional< FString > & InETag)` | 
 `public inline  `[`FRH_DeferredSessionPoll`](#structFRH__DeferredSessionPoll_1a14045ccc6de4f9a6b2b1092bcfe315ba)`(Type InPollType,const FRH_GenericSuccessWithErrorBlock & InDelegate,const TOptional< FString > & InETag)` | 
 `public inline bool `[`IsDelegateBound`](#structFRH__DeferredSessionPoll_1aa0f535c90428704ed1e261d1a8b28dfe)`() const` | 
-`public inline void `[`TriggerDelegates`](#structFRH__DeferredSessionPoll_1a2fed559c7d4800f9108a3d3b74cadcd7)`(bool bSuccess,bool bRepeatTimer,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` & ErrorInfo) const` | 
+`public inline void `[`TriggerDelegates`](#structFRH__DeferredSessionPoll_1a2fed559c7d4800f9108a3d3b74cadcd7)`(bool bSuccess,bool bRepeatTimer,const FRH_ErrorInfo & ErrorInfo) const` | 
 `enum `[`Type`](#structFRH__DeferredSessionPoll_1aea2383ee336ab25c2f43466ea767a4b1) | 
 
 ### Members
@@ -1667,7 +1667,7 @@ Poll for deferred sessions.
 
 #### `public inline bool `[`IsDelegateBound`](#structFRH__DeferredSessionPoll_1aa0f535c90428704ed1e261d1a8b28dfe)`() const` <a id="structFRH__DeferredSessionPoll_1aa0f535c90428704ed1e261d1a8b28dfe"></a>
 
-#### `public inline void `[`TriggerDelegates`](#structFRH__DeferredSessionPoll_1a2fed559c7d4800f9108a3d3b74cadcd7)`(bool bSuccess,bool bRepeatTimer,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` & ErrorInfo) const` <a id="structFRH__DeferredSessionPoll_1a2fed559c7d4800f9108a3d3b74cadcd7"></a>
+#### `public inline void `[`TriggerDelegates`](#structFRH__DeferredSessionPoll_1a2fed559c7d4800f9108a3d3b74cadcd7)`(bool bSuccess,bool bRepeatTimer,const FRH_ErrorInfo & ErrorInfo) const` <a id="structFRH__DeferredSessionPoll_1a2fed559c7d4800f9108a3d3b74cadcd7"></a>
 
 #### `enum `[`Type`](#structFRH__DeferredSessionPoll_1aea2383ee336ab25c2f43466ea767a4b1) <a id="structFRH__DeferredSessionPoll_1aea2383ee336ab25c2f43466ea767a4b1"></a>
 
