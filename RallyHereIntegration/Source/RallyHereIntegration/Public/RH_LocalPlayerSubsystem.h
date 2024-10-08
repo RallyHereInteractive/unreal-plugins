@@ -61,11 +61,6 @@ public:
 	/**
 	* @brief Gets the platform type for the player if logged in.
 	*/
-	UE_DEPRECATED(5.0, "This function has been deprecated, use GetLoggedInPlatform")
-	ERHAPI_PlatformTypes_DEPRECATED GetLoggedInPlatformType() const;
-	/**
-	* @brief Gets the platform type for the player if logged in.
-	*/
 	virtual TOptional<ERHAPI_Platform> GetLoggedInPlatform() const;
 	/**
 	* @brief Gets the player's OSS unique id.
