@@ -1470,8 +1470,8 @@ Subsystem to manage the local player.
 `public inline FORCEINLINE `[`URH_EntitlementSubsystem`](Entitlement.md#classURH__EntitlementSubsystem)` * `[`GetEntitlementSubsystem`](#classURH__LocalPlayerSubsystem_1a3553f6723f3c694a2bf15f3bfd647774)`() const` | Gets the player's entitlement subsystem.
 `public virtual `[`URH_PlayerNotifications`](Notifications.md#classURH__PlayerNotifications)` * `[`GetPlayerNotifications`](#classURH__LocalPlayerSubsystem_1a013ac5a0ad7a13bfe1c5e615d15ea8fd)`() const` | Gets the player's notification subsystem.
 `public virtual `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__LocalPlayerSubsystem_1a395c248cddf85f98ea9a993b4155ab58)`() const` | Gets the player's player info.
-`public virtual void `[`CustomEndpoint`](#classURH__LocalPlayerSubsystem_1a4b55e59b8d1f8dddbd2d91a8845e12dd)`(const `[`FRH_CustomEndpointRequestWrapper`](undefined.md#structFRH__CustomEndpointRequestWrapper)` & Request,const RallyHereAPI::FDelegate_CustomEndpointSend & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
-`public virtual void `[`CustomEndpoint`](#classURH__LocalPlayerSubsystem_1ad82004afa264f46a22441f80c6d27554)`(const `[`FRH_CustomEndpointRequestWrapper`](undefined.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDelegateBlock & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
+`public virtual void `[`CustomEndpoint`](#classURH__LocalPlayerSubsystem_1a4b55e59b8d1f8dddbd2d91a8845e12dd)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const RallyHereAPI::FDelegate_CustomEndpointSend & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
+`public virtual void `[`CustomEndpoint`](#classURH__LocalPlayerSubsystem_1ad82004afa264f46a22441f80c6d27554)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDelegateBlock & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
 `protected TArray< `[`URH_LocalPlayerSubsystemPlugin`](SubsystemBase.md#classURH__LocalPlayerSubsystemPlugin)` * > `[`SubsystemPlugins`](#classURH__LocalPlayerSubsystem_1aa1e0f18bd03b9082f4dfa3b87e294111) | Array of plugins for the Local Player Subsystem.
 `protected TArray< `[`URH_SandboxedSubsystemPlugin`](SubsystemBase.md#classURH__SandboxedSubsystemPlugin)` * > `[`SandboxedSubsystemPlugins`](#classURH__LocalPlayerSubsystem_1a17f7feb3081a6a9ddd60220806af4101) | Array of sandboxed plugins for the Local Player Subsystem.
 `protected `[`URH_LocalPlayerLoginSubsystem`](LocalPlayer.md#classURH__LocalPlayerLoginSubsystem)` * `[`LoginSubsystem`](#classURH__LocalPlayerSubsystem_1a4c91f163e0d3ce122ff5945e94fbfd42) | The Login Subsystem for the player.
@@ -1599,21 +1599,21 @@ Gets the player's notification subsystem.
 
 Gets the player's player info.
 
-#### `public virtual void `[`CustomEndpoint`](#classURH__LocalPlayerSubsystem_1a4b55e59b8d1f8dddbd2d91a8845e12dd)`(const `[`FRH_CustomEndpointRequestWrapper`](undefined.md#structFRH__CustomEndpointRequestWrapper)` & Request,const RallyHereAPI::FDelegate_CustomEndpointSend & Delegate)` <a id="classURH__LocalPlayerSubsystem_1a4b55e59b8d1f8dddbd2d91a8845e12dd"></a>
+#### `public virtual void `[`CustomEndpoint`](#classURH__LocalPlayerSubsystem_1a4b55e59b8d1f8dddbd2d91a8845e12dd)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const RallyHereAPI::FDelegate_CustomEndpointSend & Delegate)` <a id="classURH__LocalPlayerSubsystem_1a4b55e59b8d1f8dddbd2d91a8845e12dd"></a>
 
 Custom Endpoint wrapper (for custom endpoints that require authentication)
 
 #### Parameters
-* `[FRH_CustomEndpointRequestWrapper](undefined.md#structFRH__CustomEndpointRequestWrapper)` Wrapper struct containing call information 
+* `[FRH_CustomEndpointRequestWrapper](Common.md#structFRH__CustomEndpointRequestWrapper)` Wrapper struct containing call information 
 
 * `Delegate` The delegate to call when the call is complete (contains raw response)
 
-#### `public virtual void `[`CustomEndpoint`](#classURH__LocalPlayerSubsystem_1ad82004afa264f46a22441f80c6d27554)`(const `[`FRH_CustomEndpointRequestWrapper`](undefined.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDelegateBlock & Delegate)` <a id="classURH__LocalPlayerSubsystem_1ad82004afa264f46a22441f80c6d27554"></a>
+#### `public virtual void `[`CustomEndpoint`](#classURH__LocalPlayerSubsystem_1ad82004afa264f46a22441f80c6d27554)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDelegateBlock & Delegate)` <a id="classURH__LocalPlayerSubsystem_1ad82004afa264f46a22441f80c6d27554"></a>
 
 Custom Endpoint wrapper (for custom endpoints that require authentication)
 
 #### Parameters
-* `[FRH_CustomEndpointRequestWrapper](undefined.md#structFRH__CustomEndpointRequestWrapper)` Wrapper struct containing call information 
+* `[FRH_CustomEndpointRequestWrapper](Common.md#structFRH__CustomEndpointRequestWrapper)` Wrapper struct containing call information 
 
 * `Delegate` The delegate to call when the call is complete
 

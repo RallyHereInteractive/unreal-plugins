@@ -233,7 +233,7 @@ Class used to help track and interact with the catalog to get Items, Vendors, an
 `protected TMap< int32, TArray< FRH_CatalogCallBlock > > `[`SubmittedGetCatalogItemCalls`](#classURH__CatalogSubsystem_1a661262ecd1024e523d6ab788f8e5ce22) | Array of GetCatalogItemCalls yet being executed by the API layer at this time.
 `protected void `[`GetCatalogVendorSingle`](#classURH__CatalogSubsystem_1a4a686b1ffd6f371f6729e55046aeda94)`(int32 VendorId,const FRH_GenericSuccessWithErrorBlock & Delegate)` | Makes an API call for a single vendor Id.
 `protected virtual void `[`OnGetCatalogVendorResponseUpdate`](#classURH__CatalogSubsystem_1aae9b116d796903410f650fae153a9653)`(const TGetCatalogVendor::Response & Resp,int32 VendorId)` | Handles the response to a successful Get Catalog Vendor call, updates local cache.
-`protected virtual void `[`OnGetCatalogVendorResponseComplete`](#classURH__CatalogSubsystem_1aa39b048866d0ca14be929c57def620d3)`(bool bSuccess,const `[`FRH_ErrorInfo`](undefined.md#structFRH__ErrorInfo)` & ErrorInfo,int32 VendorId,FRH_GenericSuccessWithErrorBlock Delegate)` | Handles the response to a Get Catalog Vendor call, handles completion and processing of any followup requests.
+`protected virtual void `[`OnGetCatalogVendorResponseComplete`](#classURH__CatalogSubsystem_1aa39b048866d0ca14be929c57def620d3)`(bool bSuccess,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` & ErrorInfo,int32 VendorId,FRH_GenericSuccessWithErrorBlock Delegate)` | Handles the response to a Get Catalog Vendor call, handles completion and processing of any followup requests.
 `protected virtual void `[`ProcessVendorRequests`](#classURH__CatalogSubsystem_1affb7cb5f9008dc7a34273f3131981108)`()` | Processes the current vendor request list, kicking off any new requests that are needed, and completing existing requests that are done.
 `protected virtual void `[`OnGetCatalogVendorsAllResponse`](#classURH__CatalogSubsystem_1ac3c4b548a43cfc37012c4d87f48d841a)`(const TGetCatalogVendorsAll::Response & Resp,const FRH_CatalogCallBlock Delegate)` | Handles the response to a Get Catalog Vendor All call.
 `protected virtual void `[`OnGetCatalogAllResponse`](#classURH__CatalogSubsystem_1a4b7fa3b1e25ad75fa9b5746358606d8f)`(const TGetCatalogAll::Response & Resp,const FRH_CatalogCallBlock Delegate)` | Handles the response to a Get Catalog All call.
@@ -544,7 +544,7 @@ Handles the response to a successful Get Catalog Vendor call, updates local cach
 
 * `VendorId` The Vendor Id that was requested.
 
-#### `protected virtual void `[`OnGetCatalogVendorResponseComplete`](#classURH__CatalogSubsystem_1aa39b048866d0ca14be929c57def620d3)`(bool bSuccess,const `[`FRH_ErrorInfo`](undefined.md#structFRH__ErrorInfo)` & ErrorInfo,int32 VendorId,FRH_GenericSuccessWithErrorBlock Delegate)` <a id="classURH__CatalogSubsystem_1aa39b048866d0ca14be929c57def620d3"></a>
+#### `protected virtual void `[`OnGetCatalogVendorResponseComplete`](#classURH__CatalogSubsystem_1aa39b048866d0ca14be929c57def620d3)`(bool bSuccess,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` & ErrorInfo,int32 VendorId,FRH_GenericSuccessWithErrorBlock Delegate)` <a id="classURH__CatalogSubsystem_1aa39b048866d0ca14be929c57def620d3"></a>
 
 Handles the response to a Get Catalog Vendor call, handles completion and processing of any followup requests.
 
