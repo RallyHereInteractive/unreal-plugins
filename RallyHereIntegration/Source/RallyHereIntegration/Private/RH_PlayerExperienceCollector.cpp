@@ -706,6 +706,22 @@ void URH_PEXNetworkStats_Host::CapturePerIntervalStats(const TScriptInterface<IR
 {
 	EnsureConnectionTrackersExist(Owner);
 	Super::CapturePerIntervalStats(Owner);
+
+	// generate captures of all the connection stats into our local stat tracking
+	for (auto PlayerNetworkStat : PlayerNetworkStats)
+	{
+		auto Child = PlayerNetworkStat.Value;
+		
+		for (int32 StatId = 0; StatId < static_cast<int32>(ECaptureStat::Max); ++StatId)
+		{
+			const auto StatEnum = static_cast<ECaptureStat>(StatId); 
+			auto& ChildStat = Child->GetCaptureStat(StatEnum);
+			auto& LocalStat = GetCaptureStat(StatEnum);
+
+			// use the update summary call, as it will merge in a target capture state
+			LocalStat.CaptureState.UpdateSummary(ChildStat.CaptureState);
+		}
+	}
 }
 
 void URH_PEXNetworkStats_Host::GetOrCreatePlayerNetworkStats(const UNetConnection* Connection, URH_PEXNetworkStats_Connection*& OutPlayerNetworkStats)

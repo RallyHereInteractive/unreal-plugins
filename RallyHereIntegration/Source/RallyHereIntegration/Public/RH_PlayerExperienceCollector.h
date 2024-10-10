@@ -1329,7 +1329,8 @@ public:
 	virtual void GetPEXHostSummary(FRHAPI_PexHostRequest& Report) const
 	{
 		Super::GetPEXHostSummary(Report);
-		
+
+		// inject player count into the summary
 		{
 			FRHAPI_PexCount PexCount;
 			PexCount.SetCount(PlayerNetworkStats.Num());
