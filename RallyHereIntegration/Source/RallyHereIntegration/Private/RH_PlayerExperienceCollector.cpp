@@ -707,21 +707,51 @@ void URH_PEXNetworkStats_Host::CapturePerIntervalStats(const TScriptInterface<IR
 	EnsureConnectionTrackersExist(Owner);
 	Super::CapturePerIntervalStats(Owner);
 
-	// generate captures of all the connection stats into our local stat tracking
-	for (auto PlayerNetworkStat : PlayerNetworkStats)
+	// connection count is across all children, so handle it specifically
+	const auto World = Owner->GetPEXWorld();
+	if (World != nullptr && World->GetNetDriver() != nullptr)
 	{
-		auto Child = PlayerNetworkStat.Value;
-		
-		for (int32 StatId = 0; StatId < static_cast<int32>(ECaptureStat::Max); ++StatId)
-		{
-			const auto StatEnum = static_cast<ECaptureStat>(StatId); 
-			auto& ChildStat = Child->GetCaptureStat(StatEnum);
-			auto& LocalStat = GetCaptureStat(StatEnum);
+		const auto NetDriver = World->GetNetDriver();
 
-			// use the update summary call, as it will merge in a target capture state
-			LocalStat.CaptureState.UpdateSummary(ChildStat.CaptureState);
+		if (NetDriver != nullptr && NetDriver->ClientConnections.Num() > 0)
+		{
+			GetCaptureStat(ECaptureStat::ConnectionCount).CaptureValue(NetDriver->ClientConnections.Num());
+
+			for (auto Connection : NetDriver->ClientConnections)
+			{
+				URH_PEXNetworkStats_Connection* PlayerTracker = nullptr;
+				GetOrCreatePlayerNetworkStats(Connection, PlayerTracker);
+
+				if (PlayerTracker != nullptr)
+				{
+					// merge the client connection stats together
+					auto MergeChildStat = [&](ECaptureStat StatEnum)
+					{
+						auto& LocalStat = GetCaptureStat(StatEnum);
+						auto& ChildStat = PlayerTracker->GetCaptureStat(StatEnum);
+						LocalStat.CaptureState.MergeAddValue(ChildStat.CaptureState);
+						LocalStat.CaptureState.Current = 0; // reset the child current value, as adding it may cause confusion
+					};
+				
+					MergeChildStat(ECaptureStat::Ping);
+	
+					MergeChildStat(ECaptureStat::InPackets);
+					MergeChildStat(ECaptureStat::OutPackets);
+					MergeChildStat(ECaptureStat::TotalPackets);
+	
+					MergeChildStat(ECaptureStat::InPacketsLost);
+					MergeChildStat(ECaptureStat::OutPacketsLost);
+					MergeChildStat(ECaptureStat::TotalPacketsLost);
+
+					MergeChildStat(ECaptureStat::InPacketLossPct);
+					MergeChildStat(ECaptureStat::OutPacketLossPct);
+					MergeChildStat(ECaptureStat::TotalPacketLossPct);
+				}
+			}
 		}
 	}
+
+
 }
 
 void URH_PEXNetworkStats_Host::GetOrCreatePlayerNetworkStats(const UNetConnection* Connection, URH_PEXNetworkStats_Connection*& OutPlayerNetworkStats)

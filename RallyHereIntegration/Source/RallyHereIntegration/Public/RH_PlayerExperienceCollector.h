@@ -262,6 +262,28 @@ struct RALLYHEREINTEGRATION_API FRH_PEXStatState
 			Variance = 0.0f;
 		}
 	}
+	
+	/** @brief Merge another stat state into this one */
+	void MergeAddValue(const FRH_PEXStatState& Other)
+	{
+		Current += Other.Current;
+		Min = FMath::Min(Min, Other.Min);
+		Max = FMath::Max(Max, Other.Max);
+		Sum += Other.Sum;
+		SumOfSquares += Other.SumOfSquares;
+		Count += Other.Count;
+
+		if (Count > 0)
+		{
+			Avg = Sum / Count;
+			Variance = (SumOfSquares / Count) - (Avg * Avg);
+		}
+		else
+		{
+			Avg = 0.0f;
+			Variance = 0.0f;
+		}
+	}
 
 	/** @brief Update the summary state with the current state */
 	void UpdateSummary(const FRH_PEXStatState& CurrentState)
@@ -1384,6 +1406,24 @@ public:
 	/** Host's connection to clients, only used by summary */
 	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="PlayerExperience")
 	URH_PEXNetworkStats_Host* HostNetworkStats;
+
+	/** @brief Fill in a API PEX host summary report with the summary data */
+	virtual void GetPEXHostSummary(FRHAPI_PexHostRequest& Report) const
+	{
+		// Super::GetPEXHostSummary(Report);
+
+		// the host reports the host network state from the host capture to the host capture summary
+		HostNetworkStats->GetPEXHostSummary(Report);
+	}
+
+	/** @brief Fill in a API PEX client summary report with the summary data */
+	virtual void GetPEXClientSummary(FRHAPI_PexClientRequest& Report) const
+	{
+		// Super::GetPEXClientSummary(Report);
+
+		// the client reports the client network state from the client capture to the client capture summary
+		ClientNetworkStats->GetPEXClientSummary(Report);
+	}
 };
 
 /** @brief Stat group for capturing game stats */
