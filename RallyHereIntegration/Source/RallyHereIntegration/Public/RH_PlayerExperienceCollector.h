@@ -266,45 +266,42 @@ struct RALLYHEREINTEGRATION_API FRH_PEXStatState
 	/** @brief Merge another stat state into this one */
 	void MergeAddValue(const FRH_PEXStatState& Other)
 	{
-		Current += Other.Current;
-		Min = FMath::Min(Min, Other.Min);
-		Max = FMath::Max(Max, Other.Max);
-		Sum += Other.Sum;
-		SumOfSquares += Other.SumOfSquares;
-		Count += Other.Count;
-
-		if (Count > 0)
+		if (Other.Count <= 0)
 		{
-			Avg = Sum / Count;
-			Variance = (SumOfSquares / Count) - (Avg * Avg);
+			// if no data is available to merge, do not merge anything
+		}
+		else if (Count <= 0)
+		{
+			// if we have no data locally, accept the new data as-is
+			*this = Other;
 		}
 		else
 		{
-			Avg = 0.0f;
-			Variance = 0.0f;
+			// merge the values
+			Current = Other.Current; // just take the current value from the other state, adding generally does not make sense
+			Min = FMath::Min(Min, Other.Min);
+			Max = FMath::Max(Max, Other.Max);
+			Sum += Other.Sum;
+			SumOfSquares += Other.SumOfSquares;
+			Count += Other.Count;
+
+			if (Count > 0)
+			{
+				Avg = Sum / Count;
+				Variance = (SumOfSquares / Count) - (Avg * Avg);
+			}
+			else
+			{
+				Avg = 0.0f;
+				Variance = 0.0f;
+			}
 		}
 	}
 
 	/** @brief Update the summary state with the current state */
 	void UpdateSummary(const FRH_PEXStatState& CurrentState)
 	{
-		Current = CurrentState.Current;
-		Min = FMath::Min(Min, CurrentState.Min);
-		Max = FMath::Max(Max, CurrentState.Max);
-		Sum += CurrentState.Sum;
-		SumOfSquares += CurrentState.SumOfSquares;
-		Count += CurrentState.Count;
-
-		if (Count > 0)
-		{
-			Avg = Sum / Count;
-			Variance = (SumOfSquares / Count) - (Avg * Avg);
-		}
-		else
-		{
-			Avg = 0.0f;
-			Variance = 0.0f;
-		}
+		MergeAddValue(CurrentState);
 	}
 };
 
