@@ -863,6 +863,8 @@ Stat group for capturing local whole-state network stats, plus per-player stats.
 `public `[`URH_PEXNetworkStats_Client`](PlayerExperience.md#classURH__PEXNetworkStats__Client)` * `[`ClientNetworkStats`](#classURH__PEXNetworkStats_1a212cb988d8d7039c901932789fe54318) | Client's connection to host, only used by summary
 `public `[`URH_PEXNetworkStats_Host`](PlayerExperience.md#classURH__PEXNetworkStats__Host)` * `[`HostNetworkStats`](#classURH__PEXNetworkStats_1a0b98f24749d884e7ee921ef93b213c97) | Host's connection to clients, only used by summary
 `public  `[`URH_PEXNetworkStats`](#classURH__PEXNetworkStats_1a3354185befc3c15728f1362cc34f95e2)`()` | 
+`public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXNetworkStats_1a18a03108cbe2dcb94d6dc97dd4f1a229)`(`[`FRHAPI_PexHostRequest`](models/RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` | Fill in a API PEX host summary report with the summary data.
+`public inline virtual void `[`GetPEXClientSummary`](#classURH__PEXNetworkStats_1aa53c887acc51913905a8081079263e88)`(`[`FRHAPI_PexClientRequest`](models/RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` & Report) const` | Fill in a API PEX client summary report with the summary data.
 
 ### Members
 
@@ -879,6 +881,14 @@ Client's connection to host, only used by summary
 Host's connection to clients, only used by summary
 
 #### `public  `[`URH_PEXNetworkStats`](#classURH__PEXNetworkStats_1a3354185befc3c15728f1362cc34f95e2)`()` <a id="classURH__PEXNetworkStats_1a3354185befc3c15728f1362cc34f95e2"></a>
+
+#### `public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXNetworkStats_1a18a03108cbe2dcb94d6dc97dd4f1a229)`(`[`FRHAPI_PexHostRequest`](models/RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` <a id="classURH__PEXNetworkStats_1a18a03108cbe2dcb94d6dc97dd4f1a229"></a>
+
+Fill in a API PEX host summary report with the summary data.
+
+#### `public inline virtual void `[`GetPEXClientSummary`](#classURH__PEXNetworkStats_1aa53c887acc51913905a8081079263e88)`(`[`FRHAPI_PexClientRequest`](models/RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` & Report) const` <a id="classURH__PEXNetworkStats_1aa53c887acc51913905a8081079263e88"></a>
+
+Fill in a API PEX client summary report with the summary data.
 
 ## class `URH_PEXGameStats` <a id="classURH__PEXGameStats"></a>
 
@@ -1054,6 +1064,7 @@ State of the accumulated stat.
 `public inline  `[`FRH_PEXStatState`](#structFRH__PEXStatState_1afbf06852851c62d7e57acfe36a7f15d0)`()` | 
 `public inline void `[`Reset`](#structFRH__PEXStatState_1a640b7389adc87774e29b2d4a6971629c)`()` | Reset the state to defaults.
 `public inline void `[`AddValue`](#structFRH__PEXStatState_1a0c07fc5f97ff5396f0073d21ce756f5a)`(float Value)` | Add a value to the accumulator.
+`public inline void `[`MergeAddValue`](#structFRH__PEXStatState_1ab7ff73a43515fc4ad23e8588759f8db5)`(const `[`FRH_PEXStatState`](#structFRH__PEXStatState)` & Other)` | Merge another stat state into this one.
 `public inline void `[`UpdateSummary`](#structFRH__PEXStatState_1a0a6f5e8339d76333b329d7a284de6a18)`(const `[`FRH_PEXStatState`](#structFRH__PEXStatState)` & CurrentState)` | Update the summary state with the current state.
 
 ### Members
@@ -1099,6 +1110,10 @@ Reset the state to defaults.
 #### `public inline void `[`AddValue`](#structFRH__PEXStatState_1a0c07fc5f97ff5396f0073d21ce756f5a)`(float Value)` <a id="structFRH__PEXStatState_1a0c07fc5f97ff5396f0073d21ce756f5a"></a>
 
 Add a value to the accumulator.
+
+#### `public inline void `[`MergeAddValue`](#structFRH__PEXStatState_1ab7ff73a43515fc4ad23e8588759f8db5)`(const `[`FRH_PEXStatState`](#structFRH__PEXStatState)` & Other)` <a id="structFRH__PEXStatState_1ab7ff73a43515fc4ad23e8588759f8db5"></a>
+
+Merge another stat state into this one.
 
 #### `public inline void `[`UpdateSummary`](#structFRH__PEXStatState_1a0a6f5e8339d76333b329d7a284de6a18)`(const `[`FRH_PEXStatState`](#structFRH__PEXStatState)` & CurrentState)` <a id="structFRH__PEXStatState_1a0a6f5e8339d76333b329d7a284de6a18"></a>
 
