@@ -848,6 +848,7 @@ Subsystem to manage sessions for the local player.
 `public void `[`PollForUpdate`](#classURH__LocalPlayerSessionSubsystem_1a1a13b1d7c4f1993e553f95ec10966c5b)`(const FRH_PollCompleteFunc & Delegate)` | Poll function for use with [FRH_AutoPoller](Polling.md#structFRH__AutoPoller).
 `public void `[`ForcePollForUpdate`](#classURH__LocalPlayerSessionSubsystem_1a6f7a77ff7630f1beb1aa58e3943adda1)`(bool bClearETag)` | Force an immediate poll.
 `public float `[`GetPollTimeRemaining`](#classURH__LocalPlayerSessionSubsystem_1a27ce3d0bc063b3466f74c6b5e735696c)`() const` | Get the current time remaining on poll cycle, or -1.f if not polling.
+`public inline virtual bool `[`HasInitialSessionData`](#classURH__LocalPlayerSessionSubsystem_1a066058a5f0658733d0e27f7ce447b4bd)`() const` | Get whether initial session data has been polled successfully (which may not include any sessions)
 `protected FRH_AutoPollerPtr `[`Poller`](#classURH__LocalPlayerSessionSubsystem_1a042e9dee585644aa339fd3b3b8e6ad12) | Poller for sessions.
 `protected TMap< FString, `[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > `[`Templates`](#classURH__LocalPlayerSessionSubsystem_1a78953314d26e12a0aa43abd5828fe912) | Map of Template Ids to Session Templates.
 `protected TOptional< FString > `[`AllSessionsETag`](#classURH__LocalPlayerSessionSubsystem_1a3b99704446608834a66a9def184c133b) | ETag of last QueryAllSessions call response.
@@ -1184,6 +1185,10 @@ Force an immediate poll.
 #### `public float `[`GetPollTimeRemaining`](#classURH__LocalPlayerSessionSubsystem_1a27ce3d0bc063b3466f74c6b5e735696c)`() const` <a id="classURH__LocalPlayerSessionSubsystem_1a27ce3d0bc063b3466f74c6b5e735696c"></a>
 
 Get the current time remaining on poll cycle, or -1.f if not polling.
+
+#### `public inline virtual bool `[`HasInitialSessionData`](#classURH__LocalPlayerSessionSubsystem_1a066058a5f0658733d0e27f7ce447b4bd)`() const` <a id="classURH__LocalPlayerSessionSubsystem_1a066058a5f0658733d0e27f7ce447b4bd"></a>
+
+Get whether initial session data has been polled successfully (which may not include any sessions)
 
 #### `protected FRH_AutoPollerPtr `[`Poller`](#classURH__LocalPlayerSessionSubsystem_1a042e9dee585644aa339fd3b3b8e6ad12) <a id="classURH__LocalPlayerSessionSubsystem_1a042e9dee585644aa339fd3b3b8e6ad12"></a>
 

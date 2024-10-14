@@ -362,7 +362,12 @@ public:
 	*/
 	UFUNCTION(BlueprintPure, Category = "Session")
 	float GetPollTimeRemaining() const;
-
+	/**
+	 * @brief Get whether initial session data has been polled successfully (which may not include any sessions)
+	 */
+	UFUNCTION(BlueprintPure, Category = "Session")
+	virtual bool HasInitialSessionData() const { return AllSessionsETag.IsSet(); }
+	
 	/**
 	* @private
 	* @brief Multicast delegate triggered when a session managed by this subsystem is updated
