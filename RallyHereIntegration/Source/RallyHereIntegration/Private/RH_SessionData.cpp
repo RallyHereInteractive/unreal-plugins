@@ -1148,8 +1148,14 @@ void URH_OnlineSession::CreateOrJoinByType(const FRHAPI_CreateOrJoinRequest& Cre
 
 	auto CreateParamsCopy = CreateParams;
 
-	CreateParamsCopy.SetClientVersion(GetClientVersionForSession());
-	CreateParamsCopy.ClientSettings.SetPlatform(RH_GetPlatformFromOSSName(OSS ? OSS->GetSubsystemName() : NAME_None).Get(ERHAPI_Platform::Anon));
+	if (CreateParamsCopy.GetClientVersion().IsEmpty())
+	{
+		CreateParamsCopy.SetClientVersion(GetClientVersionForSession());
+	}
+	if (CreateParamsCopy.ClientSettings.IsPlatformSet())
+	{
+		CreateParamsCopy.ClientSettings.SetPlatform(RH_GetPlatformFromOSSName(OSS ? OSS->GetSubsystemName() : NAME_None).Get(ERHAPI_Platform::Anon));
+	}
 	CreateParamsCopy.ClientSettings.SetInput(GetClientInputTypeForSession());
 
 	auto Helper = MakeShared<FRH_SessionCreateOrJoinByTypeHelper>(MakeWeakInterface(SessionOwner), CreateParamsCopy, Delegate, GetDefault<URH_IntegrationSettings>()->SessionJoinPriority);
