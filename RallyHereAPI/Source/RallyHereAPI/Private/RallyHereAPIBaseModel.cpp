@@ -14,6 +14,7 @@
 #include "Serialization/JsonReader.h"
 #include "Serialization/JsonSerializer.h"
 #include "HttpModule.h"
+#include "Async/AsyncWork.h"
 
 namespace RallyHereAPI
 {

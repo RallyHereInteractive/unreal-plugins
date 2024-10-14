@@ -439,15 +439,6 @@ FGuid URH_LocalPlayerSubsystem::GetPlayerUuid() const
 	return FGuid();
 }
 
-ERHAPI_PlatformTypes_DEPRECATED URH_LocalPlayerSubsystem::GetLoggedInPlatformType() const
-{
-	if (IsLoggedIn() && AuthContext->GetLoginResult().IsSet())
-	{
-		return ERHAPI_PlatformTypes_DEPRECATED(AuthContext->GetLoginResult()->GetPortalId());
-	}
-	return ERHAPI_PlatformTypes_DEPRECATED::PT_UNKNOWN;
-}
-
 TOptional<ERHAPI_Platform> URH_LocalPlayerSubsystem::GetLoggedInPlatform() const
 {
 	if (IsLoggedIn() && AuthContext->GetLoginResult().IsSet())

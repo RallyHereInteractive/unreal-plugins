@@ -7,7 +7,6 @@ title: Common
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `define `[`DECLARE_RH_DELEGATE_BLOCK`](#group__Common_1ga125475056bb12c20ac1044a4d6ce1cdd)            | Helper for declaring [FRH_DelegateBlock](Common.md#structFRH__DelegateBlock) types.
-`enum `[`ERHAPI_PlatformTypes_DEPRECATED`](#group__Common_1ga8d2aa1d87e398a5548531751e8cea759)            | Generic blueprint and native delegate used to report success or failure.
 `public  `[`DECLARE_DYNAMIC_DELEGATE_OneParam`](#group__Common_1gaf762e5da533f56e4052da1ceead76038)`(FRH_GenericSuccessDynamicDelegate,bool,bSuccess)`            | Generic blueprint friendly delegate used to report success or failure.
 `public  `[`DECLARE_DELEGATE_OneParam`](#group__Common_1ga4f9a9dad692ff89dfce417fb9d5be258)`(FRH_GenericSuccessDelegate,bool)`            | Generic native-only delegate used to report success or failure.
 `public  `[`DECLARE_DYNAMIC_DELEGATE_TwoParams`](#group__Common_1gac075c01ed93280f69479e554a3d9871b)`(FRH_GenericSuccessWithErrorDynamicDelegate,bool,bSuccess,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` &,ErrorInfo)`            | Generic blueprint friendly delegate used to report success or failure with error info.
@@ -15,11 +14,12 @@ title: Common
 `public FORCEINLINE FRH_GenericSuccessWithErrorBlock `[`RH_ConvertGenericSucessDelegateBlock`](#group__Common_1ga1334d6dc0c562398f47369cb2dda495d)`(const FRH_GenericSuccessBlock & InDelegate)`            | Generic blueprint and native delegate used to report success or failure.
 `public  `[`DECLARE_DYNAMIC_DELEGATE_OneParam`](#group__Common_1ga66c37330911c8fe234a7074cef68dd80)`(FRH_CustomEndpointDynamicDelegate,const `[`FRH_CustomEndpointResponseWrapper`](Common.md#structFRH__CustomEndpointResponseWrapper)` &,CustomResponseWrapper)`            | Dynamic delegate used for custom endpoint calls.
 `public  `[`DECLARE_DELEGATE_OneParam`](#group__Common_1ga5bba8beab7e3653c4bfa887eaec48a87)`(FRH_CustomEndpointDelegate,const `[`FRH_CustomEndpointResponseWrapper`](Common.md#structFRH__CustomEndpointResponseWrapper)` &)`            | Native delegate used for custom endpoint calls.
+`public static bool `[`RH_BreakApartURL`](#group__Common_1ga98aea8d69558cf3580e89e65d73256dd)`(const FString & URL,const FString & BaseURL,FString & APIName,TArray< FString > & APIParams)`            | Generic blueprint and native delegate used to report success or failure.
 `public FORCEINLINE uint32 `[`GetTypeHash`](#group__Common_1ga51b3d76527de2fccacb53501f14c7991)`(const `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` & PlatformId)`            | Helper function to convert an [FRH_PlayerPlatformId](Common.md#structFRH__PlayerPlatformId) into a hash value.
-`public static bool `[`RH_BreakApartURL`](#group__Common_1ga98aea8d69558cf3580e89e65d73256dd)`(const FString & URL,const FString & BaseURL,FString & APIName,TArray< FString > & APIParams)`            | Helper function to break a fully qualified URL into a base URL, API name, and an array of API parameters.
 `public FORCEINLINE uint32 `[`GetTypeHash`](#group__Common_1ga1f0dd0b6ea1d38b6a21ee6e7e87e9947)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory)`            | Helper function to convert an [FRH_RemoteFileApiDirectory](Common.md#structFRH__RemoteFileApiDirectory) into a hash value.
 `class `[`FRH_AsyncTaskHelper`](#classFRH__AsyncTaskHelper) | Base helper class for asynchronous RallyHere tasks.
 `class `[`FRH_SimpleQueryHelper`](#classFRH__SimpleQueryHelper) | Templated helper class for asynchronously executing basic RallyHere API queries.
+`class `[`FRH_HttpResponseSerializable`](#classFRH__HttpResponseSerializable) | 
 `struct `[`FRH_DelegateBlock`](#structFRH__DelegateBlock) | Templated helper class defining a native and blueprint friendly delegate as a single object.
 `struct `[`FRH_ErrorInfo`](#structFRH__ErrorInfo) | Generic blueprint and native delegate used to report success or failure.
 `struct `[`FRH_CustomEndpointRequestWrapper`](#structFRH__CustomEndpointRequestWrapper) | Wrapper calls for custom endpoint requests.
@@ -32,50 +32,6 @@ title: Common
 #### `define `[`DECLARE_RH_DELEGATE_BLOCK`](#group__Common_1ga125475056bb12c20ac1044a4d6ce1cdd) <a id="group__Common_1ga125475056bb12c20ac1044a4d6ce1cdd"></a>
 
 Helper for declaring [FRH_DelegateBlock](Common.md#structFRH__DelegateBlock) types.
-
-#### `enum `[`ERHAPI_PlatformTypes_DEPRECATED`](#group__Common_1ga8d2aa1d87e398a5548531751e8cea759) <a id="group__Common_1ga8d2aa1d87e398a5548531751e8cea759"></a>
-
- Values                         | Descriptions                                
---------------------------------|---------------------------------------------
-PT_UNKNOWN            | Platform not specified
-PT_UNUSED_1            | Unused platform [DEPRECATED]
-PT_ANON            | RallyHere "anonymous" account platform
-PT_UNUSED_3            | Unused platform [DEPRECATED]
-PT_AMAZON            | Amazon Prime
-PT_STEAM            | Steam
-PT_UNUSED_6            | Unused platform [DEPRECATED]
-PT_UNUSED_7            | Unused platform [DEPRECATED]
-PT_UNUSED_8            | Unused platform [DEPRECATED]
-PT_PSN            | Sony PlayStation
-PT_XBOX_LIVE            | Microsoft Xbox
-PT_BASIC            | Username and Password login
-PT_FACEBOOK            | Facebook
-PT_GOOGLE            | Google (not Google Play)
-PT_UNUSED_14            | Unused platform [DEPRECATED]
-PT_UNUSED_15            | Unused platform [DEPRECATED]
-PT_TWITCH            | Twitch
-PT_UNUSED_17            | Unused platform [DEPRECATED]
-PT_UNUSED_18            | Unused platform [DEPRECATED]
-PT_UNUSED_19            | Unused platform [DEPRECATED]
-PT_UNUSED_20            | Unused platform [DEPRECATED]
-PT_UNUSED_21            | Unused platform [DEPRECATED]
-PT_NINTENDO_SWITCH            | Nintendo Service Account ID (NSAID)
-PT_UNUSED_23            | Unused platform [DEPRECATED]
-PT_APPLE            | Apple
-PT_DISCORD            | Discord
-PT_NINTENDO            | Nintendo Legacy Account ID (NAID)
-PT_UNUSED_27            | Unused platform [DEPRECATED]
-PT_EPIC            | Epic Online Services
-PT_UNUSED_29            | Unused platform [DEPRECATED]
-PT_SIMULMEDIA            | Simulmedia Ad System
-PT_UNUSED_31            | Unused platform [DEPRECATED]
-PT_GOOGLE_PLAY            | Google Play
-PT_NINTENDO_PPID            | Nintendo Pairwise Pseudonymous ID (PPID)
-PT_MAX_COUNT            | Total number of support platforms
-
-Generic blueprint and native delegate used to report success or failure.
-
-All known platforms (some no longer supported), deprecated
 
 #### `public  `[`DECLARE_DYNAMIC_DELEGATE_OneParam`](#group__Common_1gaf762e5da533f56e4052da1ceead76038)`(FRH_GenericSuccessDynamicDelegate,bool,bSuccess)` <a id="group__Common_1gaf762e5da533f56e4052da1ceead76038"></a>
 
@@ -105,20 +61,11 @@ Dynamic delegate used for custom endpoint calls.
 
 Native delegate used for custom endpoint calls.
 
-#### `public FORCEINLINE uint32 `[`GetTypeHash`](#group__Common_1ga51b3d76527de2fccacb53501f14c7991)`(const `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` & PlatformId)` <a id="group__Common_1ga51b3d76527de2fccacb53501f14c7991"></a>
-
-Helper function to convert an [FRH_PlayerPlatformId](Common.md#structFRH__PlayerPlatformId) into a hash value.
-
-#### Parameters
-* `PlatformId` The platform id to generate a hash for 
-
-#### Returns
-Semi-unique hash value for the given platform id
-
 #### `public static bool `[`RH_BreakApartURL`](#group__Common_1ga98aea8d69558cf3580e89e65d73256dd)`(const FString & URL,const FString & BaseURL,FString & APIName,TArray< FString > & APIParams)` <a id="group__Common_1ga98aea8d69558cf3580e89e65d73256dd"></a>
 
-Helper function to break a fully qualified URL into a base URL, API name, and an array of API parameters.
+Generic blueprint and native delegate used to report success or failure.
 
+Helper function to break a fully qualified URL into a base URL, API name, and an array of API parameters 
 #### Parameters
 * `URL` The fully qualified URL that we want to break apart 
 
@@ -127,6 +74,16 @@ Helper function to break a fully qualified URL into a base URL, API name, and an
 * `APIName` The name of the API the URL is hitting 
 
 * `APIParams` The array of API parameters from the URL 
+
+#### Returns
+Semi-unique hash value for the given platform id
+
+#### `public FORCEINLINE uint32 `[`GetTypeHash`](#group__Common_1ga51b3d76527de2fccacb53501f14c7991)`(const `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` & PlatformId)` <a id="group__Common_1ga51b3d76527de2fccacb53501f14c7991"></a>
+
+Helper function to convert an [FRH_PlayerPlatformId](Common.md#structFRH__PlayerPlatformId) into a hash value.
+
+#### Parameters
+* `PlatformId` The platform id to generate a hash for 
 
 #### Returns
 Semi-unique hash value for the given platform id
@@ -324,6 +281,162 @@ The HTTP request object used to query the API.
 #### `protected `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` `[`ErrorInfo`](#classFRH__SimpleQueryHelper_1a33843e0102515af8f9576f1115d6911f) <a id="classFRH__SimpleQueryHelper_1a33843e0102515af8f9576f1115d6911f"></a>
 
 Error Information
+
+## class `FRH_HttpResponseSerializable` <a id="classFRH__HttpResponseSerializable"></a>
+
+```
+class FRH_HttpResponseSerializable
+  : public IHttpResponse
+```
+
+### Summary
+
+ Members                        | Descriptions                                
+--------------------------------|---------------------------------------------
+`public inline  `[`FRH_HttpResponseSerializable`](#classFRH__HttpResponseSerializable_1a3e3fdeb6daa9393df1522ce131aa3b44)`()` | Default constructor.
+`public inline  `[`FRH_HttpResponseSerializable`](#classFRH__HttpResponseSerializable_1a43e36325c864bb823cb171f005578351)`(const FHttpResponsePtr & InHttpResponse)` | Constructor that takes a response pointer to serialize.
+`public virtual bool `[`ExportToFile`](#classFRH__HttpResponseSerializable_1a3f3fe81e4375462220974f8355ecd2a8)`(const FString & FilePath)` | Exports the contents of the response to a file.
+`public virtual bool `[`ImportFromFile`](#classFRH__HttpResponseSerializable_1a761fe72cbace3f161d69c9ef86bf41d2)`(const FString & FilePath)` | Imports the contents of the response from a file.
+`public inline virtual int32 `[`GetResponseCode`](#classFRH__HttpResponseSerializable_1ad0c48c1e60b06e4c7693730a92c7f403)`() const` | Gets the response code returned by the requested server. See EHttpResponseCodes for known response codes.
+`public inline virtual FString `[`GetContentAsString`](#classFRH__HttpResponseSerializable_1aec46f5e9c742c58e9168b5e45c082414)`() const` | Returns the payload as a string, assuming the payload is UTF8.
+`public inline virtual FString `[`GetURL`](#classFRH__HttpResponseSerializable_1a8bbd59b07e2418ff8491ff9fec4db46c)`() const` | Get the URL used to send the request.
+`public inline virtual FString `[`GetURLParameter`](#classFRH__HttpResponseSerializable_1a85c1cea844dcefbfcd4b1c7fff2d423a)`(const FString & ParameterName) const` | Gets an URL parameter. expected format is ?Key=Value&Key=Value... If that format is not used, this function will not work.
+`public inline virtual FString `[`GetHeader`](#classFRH__HttpResponseSerializable_1aa76e506d231aa42097c34d2e03dbc8ea)`(const FString & HeaderName) const` | Gets the value of a header, or empty string if not found.
+`public inline virtual TArray< FString > `[`GetAllHeaders`](#classFRH__HttpResponseSerializable_1aa1c8580d6fdef29f315eed78ac5ee625)`() const` | Return all headers in an array in "Name: Value" format.
+`public inline virtual FString `[`GetContentType`](#classFRH__HttpResponseSerializable_1a069d0192e6ed8cd119f51bcfa399e140)`() const` | Shortcut to get the Content-Type header value (if available)
+`public inline virtual uint64 `[`GetContentLength`](#classFRH__HttpResponseSerializable_1a87eb6b183a194faa8575eb96b242807f)`() const` | Shortcut to get the Content-Length header value. Will not always return non-zero. If you want the real length of the payload, get the payload and check it's length.
+`public inline virtual const TArray< uint8 > & `[`GetContent`](#classFRH__HttpResponseSerializable_1aafa53c53adb52fff11b057a50332b648)`() const` | Get the content payload of the request or response.
+`protected int32 `[`ResponseCode`](#classFRH__HttpResponseSerializable_1a683c80f16031c7964a8dc727a320ffa4) | The http response code.
+`protected FString `[`URL`](#classFRH__HttpResponseSerializable_1ab2971457cd7442e9a5b05a9f8d69b381) | The URL used to send the request.
+`protected TMap< FString, FString > `[`URLParameters`](#classFRH__HttpResponseSerializable_1ab1253ad3493ed1b0b5d9e8af87085668) | The URL parameters for the request.
+`protected int64 `[`ContentLength`](#classFRH__HttpResponseSerializable_1a19c15a4c6da5e26be64608fdf594c3e5) | The content length of the response.
+`protected FString `[`ContentType`](#classFRH__HttpResponseSerializable_1a93d88eeacc43e895425418dd06bbef67) | The content type of the response.
+`protected TArray< FString > `[`Headers`](#classFRH__HttpResponseSerializable_1a574dbca13e18d4064212f20e4aa94859) | The headers of the response.
+`protected TArray< uint8 > `[`Content`](#classFRH__HttpResponseSerializable_1a799cf2b14aebbc109c6aaf6248b81e8a) | The content of the response.
+
+### Members
+
+#### `public inline  `[`FRH_HttpResponseSerializable`](#classFRH__HttpResponseSerializable_1a3e3fdeb6daa9393df1522ce131aa3b44)`()` <a id="classFRH__HttpResponseSerializable_1a3e3fdeb6daa9393df1522ce131aa3b44"></a>
+
+Default constructor.
+
+#### `public inline  `[`FRH_HttpResponseSerializable`](#classFRH__HttpResponseSerializable_1a43e36325c864bb823cb171f005578351)`(const FHttpResponsePtr & InHttpResponse)` <a id="classFRH__HttpResponseSerializable_1a43e36325c864bb823cb171f005578351"></a>
+
+Constructor that takes a response pointer to serialize.
+
+#### Parameters
+* `InHttpResponse` The response pointer to use.
+
+#### `public virtual bool `[`ExportToFile`](#classFRH__HttpResponseSerializable_1a3f3fe81e4375462220974f8355ecd2a8)`(const FString & FilePath)` <a id="classFRH__HttpResponseSerializable_1a3f3fe81e4375462220974f8355ecd2a8"></a>
+
+Exports the contents of the response to a file.
+
+#### Parameters
+* `FilePath` The file path to export the response to. 
+
+#### Returns
+Whether the export was successful.
+
+#### `public virtual bool `[`ImportFromFile`](#classFRH__HttpResponseSerializable_1a761fe72cbace3f161d69c9ef86bf41d2)`(const FString & FilePath)` <a id="classFRH__HttpResponseSerializable_1a761fe72cbace3f161d69c9ef86bf41d2"></a>
+
+Imports the contents of the response from a file.
+
+#### Parameters
+* `FilePath` The file path to import the response from. 
+
+#### Returns
+Whether the import was successful.
+
+#### `public inline virtual int32 `[`GetResponseCode`](#classFRH__HttpResponseSerializable_1ad0c48c1e60b06e4c7693730a92c7f403)`() const` <a id="classFRH__HttpResponseSerializable_1ad0c48c1e60b06e4c7693730a92c7f403"></a>
+
+Gets the response code returned by the requested server. See EHttpResponseCodes for known response codes.
+
+#### Returns
+the response code.
+
+#### `public inline virtual FString `[`GetContentAsString`](#classFRH__HttpResponseSerializable_1aec46f5e9c742c58e9168b5e45c082414)`() const` <a id="classFRH__HttpResponseSerializable_1aec46f5e9c742c58e9168b5e45c082414"></a>
+
+Returns the payload as a string, assuming the payload is UTF8.
+
+#### Returns
+the payload as a string.
+
+#### `public inline virtual FString `[`GetURL`](#classFRH__HttpResponseSerializable_1a8bbd59b07e2418ff8491ff9fec4db46c)`() const` <a id="classFRH__HttpResponseSerializable_1a8bbd59b07e2418ff8491ff9fec4db46c"></a>
+
+Get the URL used to send the request.
+
+#### Returns
+the URL string.
+
+#### `public inline virtual FString `[`GetURLParameter`](#classFRH__HttpResponseSerializable_1a85c1cea844dcefbfcd4b1c7fff2d423a)`(const FString & ParameterName) const` <a id="classFRH__HttpResponseSerializable_1a85c1cea844dcefbfcd4b1c7fff2d423a"></a>
+
+Gets an URL parameter. expected format is ?Key=Value&Key=Value... If that format is not used, this function will not work.
+
+#### Parameters
+* `ParameterName` - the parameter to request. 
+
+#### Returns
+the parameter value string.
+
+#### `public inline virtual FString `[`GetHeader`](#classFRH__HttpResponseSerializable_1aa76e506d231aa42097c34d2e03dbc8ea)`(const FString & HeaderName) const` <a id="classFRH__HttpResponseSerializable_1aa76e506d231aa42097c34d2e03dbc8ea"></a>
+
+Gets the value of a header, or empty string if not found.
+
+#### Parameters
+* `HeaderName` - name of the header to set.
+
+#### `public inline virtual TArray< FString > `[`GetAllHeaders`](#classFRH__HttpResponseSerializable_1aa1c8580d6fdef29f315eed78ac5ee625)`() const` <a id="classFRH__HttpResponseSerializable_1aa1c8580d6fdef29f315eed78ac5ee625"></a>
+
+Return all headers in an array in "Name: Value" format.
+
+#### Returns
+the header array of strings
+
+#### `public inline virtual FString `[`GetContentType`](#classFRH__HttpResponseSerializable_1a069d0192e6ed8cd119f51bcfa399e140)`() const` <a id="classFRH__HttpResponseSerializable_1a069d0192e6ed8cd119f51bcfa399e140"></a>
+
+Shortcut to get the Content-Type header value (if available)
+
+#### Returns
+the content type.
+
+#### `public inline virtual uint64 `[`GetContentLength`](#classFRH__HttpResponseSerializable_1a87eb6b183a194faa8575eb96b242807f)`() const` <a id="classFRH__HttpResponseSerializable_1a87eb6b183a194faa8575eb96b242807f"></a>
+
+Shortcut to get the Content-Length header value. Will not always return non-zero. If you want the real length of the payload, get the payload and check it's length.
+
+#### Returns
+the content length (if available)
+
+#### `public inline virtual const TArray< uint8 > & `[`GetContent`](#classFRH__HttpResponseSerializable_1aafa53c53adb52fff11b057a50332b648)`() const` <a id="classFRH__HttpResponseSerializable_1aafa53c53adb52fff11b057a50332b648"></a>
+
+Get the content payload of the request or response.
+
+#### `protected int32 `[`ResponseCode`](#classFRH__HttpResponseSerializable_1a683c80f16031c7964a8dc727a320ffa4) <a id="classFRH__HttpResponseSerializable_1a683c80f16031c7964a8dc727a320ffa4"></a>
+
+The http response code.
+
+#### `protected FString `[`URL`](#classFRH__HttpResponseSerializable_1ab2971457cd7442e9a5b05a9f8d69b381) <a id="classFRH__HttpResponseSerializable_1ab2971457cd7442e9a5b05a9f8d69b381"></a>
+
+The URL used to send the request.
+
+#### `protected TMap< FString, FString > `[`URLParameters`](#classFRH__HttpResponseSerializable_1ab1253ad3493ed1b0b5d9e8af87085668) <a id="classFRH__HttpResponseSerializable_1ab1253ad3493ed1b0b5d9e8af87085668"></a>
+
+The URL parameters for the request.
+
+#### `protected int64 `[`ContentLength`](#classFRH__HttpResponseSerializable_1a19c15a4c6da5e26be64608fdf594c3e5) <a id="classFRH__HttpResponseSerializable_1a19c15a4c6da5e26be64608fdf594c3e5"></a>
+
+The content length of the response.
+
+#### `protected FString `[`ContentType`](#classFRH__HttpResponseSerializable_1a93d88eeacc43e895425418dd06bbef67) <a id="classFRH__HttpResponseSerializable_1a93d88eeacc43e895425418dd06bbef67"></a>
+
+The content type of the response.
+
+#### `protected TArray< FString > `[`Headers`](#classFRH__HttpResponseSerializable_1a574dbca13e18d4064212f20e4aa94859) <a id="classFRH__HttpResponseSerializable_1a574dbca13e18d4064212f20e4aa94859"></a>
+
+The headers of the response.
+
+#### `protected TArray< uint8 > `[`Content`](#classFRH__HttpResponseSerializable_1a799cf2b14aebbc109c6aaf6248b81e8a) <a id="classFRH__HttpResponseSerializable_1a799cf2b14aebbc109c6aaf6248b81e8a"></a>
+
+The content of the response.
 
 ## struct `FRH_DelegateBlock` <a id="structFRH__DelegateBlock"></a>
 

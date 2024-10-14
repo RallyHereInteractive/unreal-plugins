@@ -407,19 +407,6 @@ void URH_LocalPlayerLoginSubsystem::NicknameOSSLoginUIClosed(TSharedPtr<const FU
 
 void URH_LocalPlayerLoginSubsystem::DoLoginOSSLogin(FRH_PendingLoginRequest& Req)
 {
-#if WITH_HIREZ_ENGINE
-    if (!bLoginDuringPartialInstall)
-    {
-        IPlatformChunkInstall* pChunkInstall = FPlatformMisc::GetPlatformChunkInstall();
-        if (pChunkInstall != nullptr && !pChunkInstall->AreAllChunksInstalled())
-        {
-            UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Installation incomplete"), ANSI_TO_TCHAR(__FUNCTION__));
-            PostResults(Req, Req.CreateResult(ERHAPI_LoginResult::Fail_PartialInstall));
-            return;
-        }
-    }
-#endif
-
 	auto OSS = GetLoginOSS();
 	if (OSSCannotRelogin(OSS->GetSubsystemName()))
 	{

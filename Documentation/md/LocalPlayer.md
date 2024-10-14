@@ -1452,7 +1452,6 @@ Subsystem to manage the local player.
 `public virtual void `[`Deinitialize`](#classURH__LocalPlayerSubsystem_1adfc8060ee2b1815d85009c5d9c61fb10)`()` | Safely tears down the subsystem.
 `public virtual bool `[`IsLoggedIn`](#classURH__LocalPlayerSubsystem_1aa87f996f6200f58e7bb5b1e76af85f78)`() const` | Gets if the player is currently logged in.
 `public virtual FGuid `[`GetPlayerUuid`](#classURH__LocalPlayerSubsystem_1a639688a2978cc465ad6576e100daffe4)`() const` | Gets the player's unique player id.
-`public `[`ERHAPI_PlatformTypes_DEPRECATED`](undefined.md#group__Common_1ga8d2aa1d87e398a5548531751e8cea759)` `[`GetLoggedInPlatformType`](#classURH__LocalPlayerSubsystem_1a42fa36a5163bc8f1000945c19f5efeb7)`() const` | Gets the platform type for the player if logged in.
 `public virtual TOptional< ERHAPI_Platform > `[`GetLoggedInPlatform`](#classURH__LocalPlayerSubsystem_1afe833d0afadea6cd3e526c5feb86a6e6)`() const` | Gets the platform type for the player if logged in.
 `public virtual FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classURH__LocalPlayerSubsystem_1a4c35e09b4d1d7b9c2b1994ba26519509)`() const` | Gets the player's OSS unique id.
 `public virtual int32 `[`GetPlatformUserId`](#classURH__LocalPlayerSubsystem_1a67201c7ebaba8d4b7f72bb55064f518c)`() const` | Gets the player's platform id.
@@ -1527,10 +1526,6 @@ Gets if the player is currently logged in.
 #### `public virtual FGuid `[`GetPlayerUuid`](#classURH__LocalPlayerSubsystem_1a639688a2978cc465ad6576e100daffe4)`() const` <a id="classURH__LocalPlayerSubsystem_1a639688a2978cc465ad6576e100daffe4"></a>
 
 Gets the player's unique player id.
-
-#### `public `[`ERHAPI_PlatformTypes_DEPRECATED`](undefined.md#group__Common_1ga8d2aa1d87e398a5548531751e8cea759)` `[`GetLoggedInPlatformType`](#classURH__LocalPlayerSubsystem_1a42fa36a5163bc8f1000945c19f5efeb7)`() const` <a id="classURH__LocalPlayerSubsystem_1a42fa36a5163bc8f1000945c19f5efeb7"></a>
-
-Gets the platform type for the player if logged in.
 
 #### `public virtual TOptional< ERHAPI_Platform > `[`GetLoggedInPlatform`](#classURH__LocalPlayerSubsystem_1afe833d0afadea6cd3e526c5feb86a6e6)`() const` <a id="classURH__LocalPlayerSubsystem_1afe833d0afadea6cd3e526c5feb86a6e6"></a>
 
