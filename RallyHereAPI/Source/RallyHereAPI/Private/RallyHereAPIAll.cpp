@@ -19,7 +19,7 @@ FRallyHereAPIAll::FRallyHereAPIAll()
 	, KeyClaims(MakeShareable(new FKeyClaimsAPI()))
 	, Match(MakeShareable(new FMatchAPI()))
 	, Notification(MakeShareable(new FNotificationAPI()))
-	, PEX(MakeShareable(new FPEXAPI()))
+	, PlayerExperience(MakeShareable(new FPlayerExperienceAPI()))
 	, Presence(MakeShareable(new FPresenceAPI()))
 	, PresenceAdmin(MakeShareable(new FPresenceAdminAPI()))
 	, Rank(MakeShareable(new FRankAPI()))
@@ -43,7 +43,7 @@ FRallyHereAPIAll::FRallyHereAPIAll()
 	AllAPIs.Add(KeyClaims);
 	AllAPIs.Add(Match);
 	AllAPIs.Add(Notification);
-	AllAPIs.Add(PEX);
+	AllAPIs.Add(PlayerExperience);
 	AllAPIs.Add(Presence);
 	AllAPIs.Add(PresenceAdmin);
 	AllAPIs.Add(Rank);
@@ -198,14 +198,14 @@ const TSharedRef<FNotificationAPI> FRallyHereAPIAll::GetNotification() const
 	return Notification;
 }
 
-TSharedRef<FPEXAPI> FRallyHereAPIAll::GetPEX()
+TSharedRef<FPlayerExperienceAPI> FRallyHereAPIAll::GetPlayerExperience()
 {
-	return PEX;
+	return PlayerExperience;
 }
 
-const TSharedRef<FPEXAPI> FRallyHereAPIAll::GetPEX() const
+const TSharedRef<FPlayerExperienceAPI> FRallyHereAPIAll::GetPlayerExperience() const
 {
-	return PEX;
+	return PlayerExperience;
 }
 
 TSharedRef<FPresenceAPI> FRallyHereAPIAll::GetPresence()

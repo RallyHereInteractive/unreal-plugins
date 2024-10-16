@@ -18,11 +18,11 @@
 UENUM(BlueprintType)
 enum class ERHAPI_VivoxSessionActionSingle : uint8
 {
-	Join UMETA(ToolTip="An enumeration."),
-	JoinMuted UMETA(ToolTip="An enumeration."),
-	Kick UMETA(ToolTip="An enumeration."),
-	Mute UMETA(ToolTip="An enumeration."),
-	Transcribe UMETA(ToolTip="An enumeration."),
+	Join UMETA(ToolTip=""),
+	JoinMuted UMETA(ToolTip=""),
+	Kick UMETA(ToolTip=""),
+	Mute UMETA(ToolTip=""),
+	Transcribe UMETA(ToolTip=""),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_VivoxSessionActionSingle& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_VivoxSessionActionSingle& EnumValue);

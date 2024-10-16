@@ -212,6 +212,39 @@ struct RALLYHEREAPI_API FRHAPI_RallyHereEvent : public FRHAPI_Model
 	void SetCorrelationIdToNull() { CorrelationId_IsSet = true; CorrelationId_IsNull = true; }
 	/** @brief Checks whether CorrelationId_Optional is set to null */
 	bool IsCorrelationIdNull() const { return CorrelationId_IsSet && CorrelationId_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString ClientIp_Optional{  };
+	/** @brief true if ClientIp_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool ClientIp_IsSet{ false };
+	/** @brief true if ClientIp_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool ClientIp_IsNull{ false };
+	/** @brief Gets the value of ClientIp_Optional, regardless of it having been set */
+	FString& GetClientIp() { return ClientIp_Optional; }
+	/** @brief Gets the value of ClientIp_Optional, regardless of it having been set */
+	const FString& GetClientIp() const { return ClientIp_Optional; }
+	/** @brief Gets the value of ClientIp_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetClientIp(const FString& DefaultValue) const { if (ClientIp_IsSet) return ClientIp_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of ClientIp_Optional and returns true if it has been set, otherwise returns false */
+	bool GetClientIp(FString& OutValue) const { if (ClientIp_IsSet && !ClientIp_IsNull) OutValue = ClientIp_Optional; return ClientIp_IsSet; }
+	/** @brief Returns a pointer to ClientIp_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetClientIpOrNull() { if (ClientIp_IsSet) return (ClientIp_IsNull ? nullptr : &ClientIp_Optional); return nullptr; }
+	/** @brief Returns a pointer to ClientIp_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetClientIpOrNull() const { if (ClientIp_IsSet) return (ClientIp_IsNull ? nullptr : &ClientIp_Optional); return nullptr; }
+	/** @brief Sets the value of ClientIp_Optional and also sets ClientIp_IsSet to true */
+	void SetClientIp(const FString& NewValue) { ClientIp_Optional = NewValue; ClientIp_IsSet = true; ClientIp_IsNull = false; }
+	/** @brief Sets the value of ClientIp_Optional and also sets ClientIp_IsSet to true using move semantics */
+	void SetClientIp(FString&& NewValue) { ClientIp_Optional = NewValue; ClientIp_IsSet = true; ClientIp_IsNull = false; }
+	/** @brief Clears the value of ClientIp_Optional and sets ClientIp_IsSet to false */
+	void ClearClientIp() { ClientIp_IsSet = false; ClientIp_IsNull = false; }
+	/** @brief Checks whether ClientIp_Optional has been set */
+	bool IsClientIpSet() const { return ClientIp_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetClientIpToNull() { ClientIp_IsSet = true; ClientIp_IsNull = true; }
+	/** @brief Checks whether ClientIp_Optional is set to null */
+	bool IsClientIpNull() const { return ClientIp_IsSet && ClientIp_IsNull; }
 };
 
 /** @} */

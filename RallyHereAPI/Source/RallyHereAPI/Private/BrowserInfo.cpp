@@ -27,6 +27,11 @@ void FRHAPI_BrowserInfo::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		Writer->WriteIdentifierPrefix(TEXT("custom_data"));
 		RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
 	}
+	if (CreatedTimestamp_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("created_timestamp"));
+		RallyHereAPI::WriteJsonValue(Writer, CreatedTimestamp_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -43,6 +48,12 @@ bool FRHAPI_BrowserInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonCreatedTimestampField = (*Object)->TryGetField(TEXT("created_timestamp"));
+	if (JsonCreatedTimestampField.IsValid())
+	{
+		CreatedTimestamp_IsSet = TryGetJsonValue(JsonCreatedTimestampField, CreatedTimestamp_Optional);
+		ParseSuccess &= CreatedTimestamp_IsSet;
 	}
 
 	return ParseSuccess;

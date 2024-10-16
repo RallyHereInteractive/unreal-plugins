@@ -151,15 +151,30 @@ struct RALLYHEREAPI_API FRHAPI_MatchmakingResults : public FRHAPI_Model
 
 	/** @brief The profile used to create this match */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FRHAPI_MatchMakingProfileV2 Profile{  };
-	/** @brief Gets the value of Profile */
-	FRHAPI_MatchMakingProfileV2& GetProfile() { return Profile; }
-	/** @brief Gets the value of Profile */
-	const FRHAPI_MatchMakingProfileV2& GetProfile() const { return Profile; }
-	/** @brief Sets the value of Profile */
-	void SetProfile(const FRHAPI_MatchMakingProfileV2& NewValue) { Profile = NewValue;   }
-	/** @brief Sets the value of Profile using move semantics */
-	void SetProfile(FRHAPI_MatchMakingProfileV2&& NewValue) { Profile = NewValue;   }
+	FRHAPI_MatchMakingProfileV2 Profile_Optional{  };
+	/** @brief true if Profile_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Profile_IsSet{ false };
+	/** @brief Gets the value of Profile_Optional, regardless of it having been set */
+	FRHAPI_MatchMakingProfileV2& GetProfile() { return Profile_Optional; }
+	/** @brief Gets the value of Profile_Optional, regardless of it having been set */
+	const FRHAPI_MatchMakingProfileV2& GetProfile() const { return Profile_Optional; }
+	/** @brief Gets the value of Profile_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FRHAPI_MatchMakingProfileV2& GetProfile(const FRHAPI_MatchMakingProfileV2& DefaultValue) const { if (Profile_IsSet) return Profile_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Profile_Optional and returns true if it has been set, otherwise returns false */
+	bool GetProfile(FRHAPI_MatchMakingProfileV2& OutValue) const { if (Profile_IsSet) OutValue = Profile_Optional; return Profile_IsSet; }
+	/** @brief Returns a pointer to Profile_Optional, if it has been set, otherwise returns nullptr */
+	FRHAPI_MatchMakingProfileV2* GetProfileOrNull() { if (Profile_IsSet) return (&Profile_Optional); return nullptr; }
+	/** @brief Returns a pointer to Profile_Optional, if it has been set, otherwise returns nullptr */
+	const FRHAPI_MatchMakingProfileV2* GetProfileOrNull() const { if (Profile_IsSet) return (&Profile_Optional); return nullptr; }
+	/** @brief Sets the value of Profile_Optional and also sets Profile_IsSet to true */
+	void SetProfile(const FRHAPI_MatchMakingProfileV2& NewValue) { Profile_Optional = NewValue; Profile_IsSet = true;  }
+	/** @brief Sets the value of Profile_Optional and also sets Profile_IsSet to true using move semantics */
+	void SetProfile(FRHAPI_MatchMakingProfileV2&& NewValue) { Profile_Optional = NewValue; Profile_IsSet = true;  }
+	/** @brief Clears the value of Profile_Optional and sets Profile_IsSet to false */
+	void ClearProfile() { Profile_IsSet = false;  }
+	/** @brief Checks whether Profile_Optional has been set */
+	bool IsProfileSet() const { return Profile_IsSet; }
 };
 
 /** @} */

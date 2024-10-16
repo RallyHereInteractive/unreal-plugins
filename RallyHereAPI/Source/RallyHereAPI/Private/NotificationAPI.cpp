@@ -175,15 +175,15 @@ FString FResponse_PlayerCreateNotification::GetHttpResponseCodeDescription(EHttp
 	case 200:
 		return TEXT("Successful Response");
 	case 400:
-		return TEXT(" Error Codes: - bad_id - Passed client id is not a valid id ");
+		return TEXT(" Error Codes: - &#x60;bad_id&#x60; - Passed client id is not a valid id ");
 	case 403:
-		return TEXT(" Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_expired - Token is expired - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization ");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 409:
-		return TEXT(" Error Codes: - too_many_listening_to_single_client - An enumeration. ");
+		return TEXT(" Error Codes: - &#x60;too_many_listening_to_single_client&#x60; - An enumeration. ");
 	case 422:
 		return TEXT("Validation Error");
 	case 503:
-		return TEXT(" Error Codes: - connection_limit_reached - An enumeration. ");
+		return TEXT(" Error Codes: - &#x60;connection_limit_reached&#x60; - An enumeration. ");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -531,15 +531,15 @@ FString FResponse_PlayerCreateNotificationSelf::GetHttpResponseCodeDescription(E
 	case 200:
 		return TEXT("Successful Response");
 	case 400:
-		return TEXT(" Error Codes: - bad_id - Passed client id is not a valid id ");
+		return TEXT(" Error Codes: - &#x60;bad_id&#x60; - Passed client id is not a valid id ");
 	case 403:
-		return TEXT(" Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_expired - Token is expired - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization ");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 409:
-		return TEXT(" Error Codes: - too_many_listening_to_single_client - An enumeration. ");
+		return TEXT(" Error Codes: - &#x60;too_many_listening_to_single_client&#x60; - An enumeration. ");
 	case 422:
 		return TEXT("Validation Error");
 	case 503:
-		return TEXT(" Error Codes: - connection_limit_reached - An enumeration. ");
+		return TEXT(" Error Codes: - &#x60;connection_limit_reached&#x60; - An enumeration. ");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -882,17 +882,17 @@ FString FResponse_PlayerGetNotificationById::GetHttpResponseCodeDescription(EHtt
 	case 200:
 		return TEXT("Successful Response");
 	case 400:
-		return TEXT(" Error Codes: - bad_id - Passed client id is not a valid id ");
+		return TEXT(" Error Codes: - &#x60;bad_id&#x60; - Passed client id is not a valid id ");
 	case 403:
-		return TEXT(" Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_expired - Token is expired - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization ");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
-		return TEXT(" Error Codes: - resource_not_found - Notification could not be found ");
+		return TEXT(" Error Codes: - &#x60;resource_not_found&#x60; - Notification could not be found ");
 	case 409:
-		return TEXT(" Error Codes: - too_many_listening_to_single_client - An enumeration. ");
+		return TEXT(" Error Codes: - &#x60;too_many_listening_to_single_client&#x60; - An enumeration. ");
 	case 422:
 		return TEXT("Validation Error");
 	case 503:
-		return TEXT(" Error Codes: - connection_limit_reached - An enumeration. ");
+		return TEXT(" Error Codes: - &#x60;connection_limit_reached&#x60; - An enumeration. ");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -1258,17 +1258,17 @@ FString FResponse_PlayerGetNotificationByIdSelf::GetHttpResponseCodeDescription(
 	case 200:
 		return TEXT("Successful Response");
 	case 400:
-		return TEXT(" Error Codes: - bad_id - Passed client id is not a valid id ");
+		return TEXT(" Error Codes: - &#x60;bad_id&#x60; - Passed client id is not a valid id ");
 	case 403:
-		return TEXT(" Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_expired - Token is expired - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization ");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
-		return TEXT(" Error Codes: - resource_not_found - Notification could not be found ");
+		return TEXT(" Error Codes: - &#x60;resource_not_found&#x60; - Notification could not be found ");
 	case 409:
-		return TEXT(" Error Codes: - too_many_listening_to_single_client - An enumeration. ");
+		return TEXT(" Error Codes: - &#x60;too_many_listening_to_single_client&#x60; - An enumeration. ");
 	case 422:
 		return TEXT("Validation Error");
 	case 503:
-		return TEXT(" Error Codes: - connection_limit_reached - An enumeration. ");
+		return TEXT(" Error Codes: - &#x60;connection_limit_reached&#x60; - An enumeration. ");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -1658,15 +1658,15 @@ FString FResponse_PlayerGetNotificationsPage::GetHttpResponseCodeDescription(EHt
 	case 304:
 		return TEXT("Not Modified");
 	case 400:
-		return TEXT(" Error Codes: - bad_id - Passed client id is not a valid id ");
+		return TEXT(" Error Codes: - &#x60;bad_id&#x60; - Passed client id is not a valid id ");
 	case 403:
-		return TEXT(" Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_expired - Token is expired - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization ");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 409:
-		return TEXT(" Error Codes: - too_many_listening_to_single_client - An enumeration. ");
+		return TEXT(" Error Codes: - &#x60;too_many_listening_to_single_client&#x60; - An enumeration. ");
 	case 422:
 		return TEXT("Validation Error");
 	case 503:
-		return TEXT(" Error Codes: - connection_limit_reached - An enumeration. ");
+		return TEXT(" Error Codes: - &#x60;connection_limit_reached&#x60; - An enumeration. ");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -2029,15 +2029,15 @@ FString FResponse_PlayerGetNotificationsPageSelf::GetHttpResponseCodeDescription
 	case 304:
 		return TEXT("Not Modified");
 	case 400:
-		return TEXT(" Error Codes: - bad_id - Passed client id is not a valid id ");
+		return TEXT(" Error Codes: - &#x60;bad_id&#x60; - Passed client id is not a valid id ");
 	case 403:
-		return TEXT(" Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_expired - Token is expired - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization ");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 409:
-		return TEXT(" Error Codes: - too_many_listening_to_single_client - An enumeration. ");
+		return TEXT(" Error Codes: - &#x60;too_many_listening_to_single_client&#x60; - An enumeration. ");
 	case 422:
 		return TEXT("Validation Error");
 	case 503:
-		return TEXT(" Error Codes: - connection_limit_reached - An enumeration. ");
+		return TEXT(" Error Codes: - &#x60;connection_limit_reached&#x60; - An enumeration. ");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -2401,15 +2401,15 @@ FString FResponse_PlayerLongPollForNotifications::GetHttpResponseCodeDescription
 	case 200:
 		return TEXT("Successful Response");
 	case 400:
-		return TEXT(" Error Codes: - bad_id - Passed client id is not a valid id ");
+		return TEXT(" Error Codes: - &#x60;bad_id&#x60; - Passed client id is not a valid id ");
 	case 403:
-		return TEXT(" Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_expired - Token is expired - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization ");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 409:
-		return TEXT(" Error Codes: - too_many_listening_to_single_client - An enumeration. ");
+		return TEXT(" Error Codes: - &#x60;too_many_listening_to_single_client&#x60; - An enumeration. ");
 	case 422:
 		return TEXT("Validation Error");
 	case 503:
-		return TEXT(" Error Codes: - connection_limit_reached - An enumeration. ");
+		return TEXT(" Error Codes: - &#x60;connection_limit_reached&#x60; - An enumeration. ");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -2766,15 +2766,15 @@ FString FResponse_PlayerLongPollForNotificationsSelf::GetHttpResponseCodeDescrip
 	case 200:
 		return TEXT("Successful Response");
 	case 400:
-		return TEXT(" Error Codes: - bad_id - Passed client id is not a valid id ");
+		return TEXT(" Error Codes: - &#x60;bad_id&#x60; - Passed client id is not a valid id ");
 	case 403:
-		return TEXT(" Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_expired - Token is expired - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization ");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 409:
-		return TEXT(" Error Codes: - too_many_listening_to_single_client - An enumeration. ");
+		return TEXT(" Error Codes: - &#x60;too_many_listening_to_single_client&#x60; - An enumeration. ");
 	case 422:
 		return TEXT("Validation Error");
 	case 503:
-		return TEXT(" Error Codes: - connection_limit_reached - An enumeration. ");
+		return TEXT(" Error Codes: - &#x60;connection_limit_reached&#x60; - An enumeration. ");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);

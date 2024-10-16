@@ -18,8 +18,8 @@
 UENUM(BlueprintType)
 enum class ERHAPI_VoipSessionType : uint8
 {
-	Session UMETA(ToolTip="An enumeration."),
-	Team UMETA(ToolTip="An enumeration."),
+	Session UMETA(ToolTip=""),
+	Team UMETA(ToolTip=""),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_VoipSessionType& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_VoipSessionType& EnumValue);

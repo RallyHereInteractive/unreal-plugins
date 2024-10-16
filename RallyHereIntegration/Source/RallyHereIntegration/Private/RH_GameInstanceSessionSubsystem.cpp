@@ -394,7 +394,7 @@ void URH_GameInstanceSessionSubsystem::SubmitPEXHostSummary(FRHAPI_PexHostReques
 		GetDefault<URH_IntegrationSettings>()->PexReportPriority
 	);
 	
-	Helper->Start(RH_APIs::GetAPIs().GetPEX(), Request);
+	Helper->Start(RH_APIs::GetAPIs().GetPlayerExperience(), Request);
 }
 
 void URH_GameInstanceSessionSubsystem::ModifyPEXClientSummary(FRHAPI_PexClientRequest& Report) const
@@ -446,7 +446,7 @@ void URH_GameInstanceSessionSubsystem::SubmitPEXClientSummary(FRHAPI_PexClientRe
 		GetDefault<URH_IntegrationSettings>()->PexReportPriority
 	);
 	
-	Helper->Start(RH_APIs::GetAPIs().GetPEX(), Request);
+	Helper->Start(RH_APIs::GetAPIs().GetPlayerExperience(), Request);
 }
 
 void URH_GameInstanceSessionSubsystem::OnNetworkFailure(UWorld* World, UNetDriver* NetDriver, ENetworkFailure::Type FailureType, const FString& ErrorString)

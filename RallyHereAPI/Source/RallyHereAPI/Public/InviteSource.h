@@ -18,9 +18,9 @@
 UENUM(BlueprintType)
 enum class ERHAPI_InviteSource : uint8
 {
-	Backfill UMETA(ToolTip="An enumeration."),
-	Matchmaking UMETA(ToolTip="An enumeration."),
-	Player UMETA(ToolTip="An enumeration."),
+	Backfill UMETA(ToolTip=""),
+	Matchmaking UMETA(ToolTip=""),
+	Player UMETA(ToolTip=""),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_InviteSource& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_InviteSource& EnumValue);

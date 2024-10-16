@@ -100,6 +100,8 @@ Private/InventoryBucket.cpp
 Private/InventoryBucketUseRuleSet.cpp
 Private/InventoryBucketUseRuleSets.cpp
 Private/InventoryContextResponse.cpp
+Private/InventoryLevel.cpp
+Private/InventoryLevels.cpp
 Private/InventoryOperation.cpp
 Private/InventoryPageMeta.cpp
 Private/InventoryRecord.cpp
@@ -187,7 +189,6 @@ Private/OnlineStatus.cpp
 Private/Operation.cpp
 Private/OpportunityAbortReason.cpp
 Private/OpportunityState.cpp
-Private/PEXAPI.cpp
 Private/PageMeta.cpp
 Private/PagedMatchResponse.cpp
 Private/PagedPlayerMatchResponse.cpp
@@ -226,6 +227,7 @@ Private/PlatformUserOperationRequest.cpp
 Private/PlatformUserResponse.cpp
 Private/Platforms.cpp
 Private/PlayerDeserterStatus.cpp
+Private/PlayerExperienceAPI.cpp
 Private/PlayerIdWrapper.cpp
 Private/PlayerInventoryChange.cpp
 Private/PlayerIterateResponse.cpp
@@ -258,6 +260,7 @@ Private/PlayerResponse.cpp
 Private/PlayerSession.cpp
 Private/PlayerSessionInvite.cpp
 Private/PlayerSessions.cpp
+Private/PlayerStatsResponse.cpp
 Private/PlayerUuidFromId.cpp
 Private/PlayersToValidate.cpp
 Private/Portal.cpp
@@ -351,6 +354,7 @@ Private/UpdatePersonInfoRequest.cpp
 Private/UserLinkHistory.cpp
 Private/UserLinkHistoryEntry.cpp
 Private/UsersAPI.cpp
+Private/ValidateEventResponse.cpp
 Private/ValidationError.cpp
 Private/Vendor.cpp
 Private/VendorType.cpp
@@ -462,6 +466,8 @@ Public/InventoryBucket.h
 Public/InventoryBucketUseRuleSet.h
 Public/InventoryBucketUseRuleSets.h
 Public/InventoryContextResponse.h
+Public/InventoryLevel.h
+Public/InventoryLevels.h
 Public/InventoryOperation.h
 Public/InventoryPageMeta.h
 Public/InventoryRecord.h
@@ -549,7 +555,6 @@ Public/OnlineStatus.h
 Public/Operation.h
 Public/OpportunityAbortReason.h
 Public/OpportunityState.h
-Public/PEXAPI.h
 Public/PageMeta.h
 Public/PagedMatchResponse.h
 Public/PagedPlayerMatchResponse.h
@@ -588,6 +593,7 @@ Public/PlatformUserOperationRequest.h
 Public/PlatformUserResponse.h
 Public/Platforms.h
 Public/PlayerDeserterStatus.h
+Public/PlayerExperienceAPI.h
 Public/PlayerIdWrapper.h
 Public/PlayerInventoryChange.h
 Public/PlayerIterateResponse.h
@@ -620,6 +626,7 @@ Public/PlayerResponse.h
 Public/PlayerSession.h
 Public/PlayerSessionInvite.h
 Public/PlayerSessions.h
+Public/PlayerStatsResponse.h
 Public/PlayerUuidFromId.h
 Public/PlayersToValidate.h
 Public/Portal.h
@@ -713,6 +720,7 @@ Public/UpdatePersonInfoRequest.h
 Public/UserLinkHistory.h
 Public/UserLinkHistoryEntry.h
 Public/UsersAPI.h
+Public/ValidateEventResponse.h
 Public/ValidationError.h
 Public/Vendor.h
 Public/VendorType.h

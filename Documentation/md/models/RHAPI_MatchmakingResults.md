@@ -27,7 +27,8 @@ struct FRHAPI_MatchmakingResults
 `public bool `[`TicketIds_IsSet`](#structFRHAPI__MatchmakingResults_1aa41fe3fd301f36e2524791a3fc68edec) | true if TicketIds_Optional has been set to a value
 `public bool `[`TicketsAssigned_Optional`](#structFRHAPI__MatchmakingResults_1a5d7305f61c2b585c05d45f82217a4205) | Whether or not the tickets from these results have been assigned.
 `public bool `[`TicketsAssigned_IsSet`](#structFRHAPI__MatchmakingResults_1ab4f3027f46dce15e66c0768271866b4d) | true if TicketsAssigned_Optional has been set to a value
-`public `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` `[`Profile`](#structFRHAPI__MatchmakingResults_1a84a959b21ac8866d1ec2fdb111b22ed1) | The profile used to create this match.
+`public `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` `[`Profile_Optional`](#structFRHAPI__MatchmakingResults_1adbc0997e7831f29ac0822a7b23236308) | The profile used to create this match.
+`public bool `[`Profile_IsSet`](#structFRHAPI__MatchmakingResults_1ad08c04e9a461a5845f7539dfb5a397c5) | true if Profile_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__MatchmakingResults_1a26df787de6a29043c515a062e2aba6e3)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__MatchmakingResults_1a9515f4d751b5e663c5ebbf5a361f34b3)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetMatchMakingId`](#structFRHAPI__MatchmakingResults_1a3eec9da01abb85f14e2852770df849af)`()` | Gets the value of MatchMakingId.
@@ -70,10 +71,16 @@ struct FRHAPI_MatchmakingResults
 `public inline bool `[`IsTicketsAssignedSet`](#structFRHAPI__MatchmakingResults_1ac3f0fedf829dc09f21c6563ce54e6305)`() const` | Checks whether TicketsAssigned_Optional has been set.
 `public inline bool `[`IsTicketsAssignedDefaultValue`](#structFRHAPI__MatchmakingResults_1a5c8749120aa46ca1db37523cbd44a784)`() const` | Returns true if TicketsAssigned_Optional is set and matches the default value.
 `public inline void `[`SetTicketsAssignedToDefault`](#structFRHAPI__MatchmakingResults_1a9d944457f3d11276df11f7ae3deba0ce)`()` | Sets the value of TicketsAssigned_Optional to its default and also sets TicketsAssigned_IsSet to true.
-`public inline `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` & `[`GetProfile`](#structFRHAPI__MatchmakingResults_1ab688180c0ea9e3a5461f9edea2ceccc0)`()` | Gets the value of Profile.
-`public inline const `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` & `[`GetProfile`](#structFRHAPI__MatchmakingResults_1adc0296d5c3ba34fe201500f8cd947a01)`() const` | Gets the value of Profile.
-`public inline void `[`SetProfile`](#structFRHAPI__MatchmakingResults_1ab6e990b135d9c91e71631bf30a95bb32)`(const `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` & NewValue)` | Sets the value of Profile.
-`public inline void `[`SetProfile`](#structFRHAPI__MatchmakingResults_1ae30f1e8fe77b206f49983f550de6124b)`(`[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` && NewValue)` | Sets the value of Profile using move semantics.
+`public inline `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` & `[`GetProfile`](#structFRHAPI__MatchmakingResults_1ab688180c0ea9e3a5461f9edea2ceccc0)`()` | Gets the value of Profile_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` & `[`GetProfile`](#structFRHAPI__MatchmakingResults_1adc0296d5c3ba34fe201500f8cd947a01)`() const` | Gets the value of Profile_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` & `[`GetProfile`](#structFRHAPI__MatchmakingResults_1ac70f0a314d4d5d503ab00404eea50c00)`(const `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` & DefaultValue) const` | Gets the value of Profile_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetProfile`](#structFRHAPI__MatchmakingResults_1a5bfd246a5dd021f3824009d18361468a)`(`[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` & OutValue) const` | Fills OutValue with the value of Profile_Optional and returns true if it has been set, otherwise returns false.
+`public inline `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` * `[`GetProfileOrNull`](#structFRHAPI__MatchmakingResults_1ab5de64566b4d07a46b6f17e59bd4d19e)`()` | Returns a pointer to Profile_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` * `[`GetProfileOrNull`](#structFRHAPI__MatchmakingResults_1a4abfd6f883b525fdba61e55b10a9213a)`() const` | Returns a pointer to Profile_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetProfile`](#structFRHAPI__MatchmakingResults_1ab6e990b135d9c91e71631bf30a95bb32)`(const `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` & NewValue)` | Sets the value of Profile_Optional and also sets Profile_IsSet to true.
+`public inline void `[`SetProfile`](#structFRHAPI__MatchmakingResults_1ae30f1e8fe77b206f49983f550de6124b)`(`[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` && NewValue)` | Sets the value of Profile_Optional and also sets Profile_IsSet to true using move semantics.
+`public inline void `[`ClearProfile`](#structFRHAPI__MatchmakingResults_1ad5e14ca03c0e29c1c7d402ff5acd13ec)`()` | Clears the value of Profile_Optional and sets Profile_IsSet to false.
+`public inline bool `[`IsProfileSet`](#structFRHAPI__MatchmakingResults_1a0a0a25ecb4e5e4382f15a3810d9f7d41)`() const` | Checks whether Profile_Optional has been set.
 
 ### Members
 
@@ -109,9 +116,13 @@ Whether or not the tickets from these results have been assigned.
 
 true if TicketsAssigned_Optional has been set to a value
 
-#### `public `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` `[`Profile`](#structFRHAPI__MatchmakingResults_1a84a959b21ac8866d1ec2fdb111b22ed1) <a id="structFRHAPI__MatchmakingResults_1a84a959b21ac8866d1ec2fdb111b22ed1"></a>
+#### `public `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` `[`Profile_Optional`](#structFRHAPI__MatchmakingResults_1adbc0997e7831f29ac0822a7b23236308) <a id="structFRHAPI__MatchmakingResults_1adbc0997e7831f29ac0822a7b23236308"></a>
 
 The profile used to create this match.
+
+#### `public bool `[`Profile_IsSet`](#structFRHAPI__MatchmakingResults_1ad08c04e9a461a5845f7539dfb5a397c5) <a id="structFRHAPI__MatchmakingResults_1ad08c04e9a461a5845f7539dfb5a397c5"></a>
+
+true if Profile_Optional has been set to a value
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__MatchmakingResults_1a26df787de6a29043c515a062e2aba6e3)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__MatchmakingResults_1a26df787de6a29043c515a062e2aba6e3"></a>
 
@@ -292,17 +303,41 @@ Sets the value of TicketsAssigned_Optional to its default and also sets TicketsA
 
 #### `public inline `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` & `[`GetProfile`](#structFRHAPI__MatchmakingResults_1ab688180c0ea9e3a5461f9edea2ceccc0)`()` <a id="structFRHAPI__MatchmakingResults_1ab688180c0ea9e3a5461f9edea2ceccc0"></a>
 
-Gets the value of Profile.
+Gets the value of Profile_Optional, regardless of it having been set.
 
 #### `public inline const `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` & `[`GetProfile`](#structFRHAPI__MatchmakingResults_1adc0296d5c3ba34fe201500f8cd947a01)`() const` <a id="structFRHAPI__MatchmakingResults_1adc0296d5c3ba34fe201500f8cd947a01"></a>
 
-Gets the value of Profile.
+Gets the value of Profile_Optional, regardless of it having been set.
+
+#### `public inline const `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` & `[`GetProfile`](#structFRHAPI__MatchmakingResults_1ac70f0a314d4d5d503ab00404eea50c00)`(const `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` & DefaultValue) const` <a id="structFRHAPI__MatchmakingResults_1ac70f0a314d4d5d503ab00404eea50c00"></a>
+
+Gets the value of Profile_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetProfile`](#structFRHAPI__MatchmakingResults_1a5bfd246a5dd021f3824009d18361468a)`(`[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` & OutValue) const` <a id="structFRHAPI__MatchmakingResults_1a5bfd246a5dd021f3824009d18361468a"></a>
+
+Fills OutValue with the value of Profile_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` * `[`GetProfileOrNull`](#structFRHAPI__MatchmakingResults_1ab5de64566b4d07a46b6f17e59bd4d19e)`()` <a id="structFRHAPI__MatchmakingResults_1ab5de64566b4d07a46b6f17e59bd4d19e"></a>
+
+Returns a pointer to Profile_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` * `[`GetProfileOrNull`](#structFRHAPI__MatchmakingResults_1a4abfd6f883b525fdba61e55b10a9213a)`() const` <a id="structFRHAPI__MatchmakingResults_1a4abfd6f883b525fdba61e55b10a9213a"></a>
+
+Returns a pointer to Profile_Optional, if it has been set, otherwise returns nullptr.
 
 #### `public inline void `[`SetProfile`](#structFRHAPI__MatchmakingResults_1ab6e990b135d9c91e71631bf30a95bb32)`(const `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` & NewValue)` <a id="structFRHAPI__MatchmakingResults_1ab6e990b135d9c91e71631bf30a95bb32"></a>
 
-Sets the value of Profile.
+Sets the value of Profile_Optional and also sets Profile_IsSet to true.
 
 #### `public inline void `[`SetProfile`](#structFRHAPI__MatchmakingResults_1ae30f1e8fe77b206f49983f550de6124b)`(`[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` && NewValue)` <a id="structFRHAPI__MatchmakingResults_1ae30f1e8fe77b206f49983f550de6124b"></a>
 
-Sets the value of Profile using move semantics.
+Sets the value of Profile_Optional and also sets Profile_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearProfile`](#structFRHAPI__MatchmakingResults_1ad5e14ca03c0e29c1c7d402ff5acd13ec)`()` <a id="structFRHAPI__MatchmakingResults_1ad5e14ca03c0e29c1c7d402ff5acd13ec"></a>
+
+Clears the value of Profile_Optional and sets Profile_IsSet to false.
+
+#### `public inline bool `[`IsProfileSet`](#structFRHAPI__MatchmakingResults_1a0a0a25ecb4e5e4382f15a3810d9f7d41)`() const` <a id="structFRHAPI__MatchmakingResults_1a0a0a25ecb4e5e4382f15a3810d9f7d41"></a>
+
+Checks whether Profile_Optional has been set.
 

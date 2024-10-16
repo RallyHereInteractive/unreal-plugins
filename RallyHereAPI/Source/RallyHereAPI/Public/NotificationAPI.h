@@ -97,17 +97,17 @@ struct RALLYHEREAPI_API FResponse_PlayerCreateNotification : public FResponseAcc
 	bool TryGetContentFor200(FRHAPI_NotificationCreateResult& OutContent) const;
 
 	/* Response 400
-	 Error Codes: - bad_id - Passed client id is not a valid id 
+	 Error Codes: - `bad_id` - Passed client id is not a valid id 
 	*/
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_expired - Token is expired - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 409
-	 Error Codes: - too_many_listening_to_single_client - An enumeration. 
+	 Error Codes: - `too_many_listening_to_single_client` - An enumeration. 
 	*/
 	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -117,7 +117,7 @@ struct RALLYHEREAPI_API FResponse_PlayerCreateNotification : public FResponseAcc
 	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 	/* Response 503
-	 Error Codes: - connection_limit_reached - An enumeration. 
+	 Error Codes: - `connection_limit_reached` - An enumeration. 
 	*/
 	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -217,17 +217,17 @@ struct RALLYHEREAPI_API FResponse_PlayerCreateNotificationSelf : public FRespons
 	bool TryGetContentFor200(FRHAPI_NotificationCreateResult& OutContent) const;
 
 	/* Response 400
-	 Error Codes: - bad_id - Passed client id is not a valid id 
+	 Error Codes: - `bad_id` - Passed client id is not a valid id 
 	*/
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_expired - Token is expired - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 409
-	 Error Codes: - too_many_listening_to_single_client - An enumeration. 
+	 Error Codes: - `too_many_listening_to_single_client` - An enumeration. 
 	*/
 	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -237,7 +237,7 @@ struct RALLYHEREAPI_API FResponse_PlayerCreateNotificationSelf : public FRespons
 	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 	/* Response 503
-	 Error Codes: - connection_limit_reached - An enumeration. 
+	 Error Codes: - `connection_limit_reached` - An enumeration. 
 	*/
 	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -343,22 +343,22 @@ struct RALLYHEREAPI_API FResponse_PlayerGetNotificationById : public FResponseAc
 	bool TryGetContentFor200(FRHAPI_Notification& OutContent) const;
 
 	/* Response 400
-	 Error Codes: - bad_id - Passed client id is not a valid id 
+	 Error Codes: - `bad_id` - Passed client id is not a valid id 
 	*/
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_expired - Token is expired - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 404
-	 Error Codes: - resource_not_found - Notification could not be found 
+	 Error Codes: - `resource_not_found` - Notification could not be found 
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 409
-	 Error Codes: - too_many_listening_to_single_client - An enumeration. 
+	 Error Codes: - `too_many_listening_to_single_client` - An enumeration. 
 	*/
 	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -368,7 +368,7 @@ struct RALLYHEREAPI_API FResponse_PlayerGetNotificationById : public FResponseAc
 	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 	/* Response 503
-	 Error Codes: - connection_limit_reached - An enumeration. 
+	 Error Codes: - `connection_limit_reached` - An enumeration. 
 	*/
 	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -469,22 +469,22 @@ struct RALLYHEREAPI_API FResponse_PlayerGetNotificationByIdSelf : public FRespon
 	bool TryGetContentFor200(FRHAPI_Notification& OutContent) const;
 
 	/* Response 400
-	 Error Codes: - bad_id - Passed client id is not a valid id 
+	 Error Codes: - `bad_id` - Passed client id is not a valid id 
 	*/
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_expired - Token is expired - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 404
-	 Error Codes: - resource_not_found - Notification could not be found 
+	 Error Codes: - `resource_not_found` - Notification could not be found 
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 409
-	 Error Codes: - too_many_listening_to_single_client - An enumeration. 
+	 Error Codes: - `too_many_listening_to_single_client` - An enumeration. 
 	*/
 	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -494,7 +494,7 @@ struct RALLYHEREAPI_API FResponse_PlayerGetNotificationByIdSelf : public FRespon
 	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 	/* Response 503
-	 Error Codes: - connection_limit_reached - An enumeration. 
+	 Error Codes: - `connection_limit_reached` - An enumeration. 
 	*/
 	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -619,17 +619,17 @@ struct RALLYHEREAPI_API FResponse_PlayerGetNotificationsPage : public FResponseA
 	*/
 
 	/* Response 400
-	 Error Codes: - bad_id - Passed client id is not a valid id 
+	 Error Codes: - `bad_id` - Passed client id is not a valid id 
 	*/
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_expired - Token is expired - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 409
-	 Error Codes: - too_many_listening_to_single_client - An enumeration. 
+	 Error Codes: - `too_many_listening_to_single_client` - An enumeration. 
 	*/
 	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -639,7 +639,7 @@ struct RALLYHEREAPI_API FResponse_PlayerGetNotificationsPage : public FResponseA
 	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 	/* Response 503
-	 Error Codes: - connection_limit_reached - An enumeration. 
+	 Error Codes: - `connection_limit_reached` - An enumeration. 
 	*/
 	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -759,17 +759,17 @@ struct RALLYHEREAPI_API FResponse_PlayerGetNotificationsPageSelf : public FRespo
 	*/
 
 	/* Response 400
-	 Error Codes: - bad_id - Passed client id is not a valid id 
+	 Error Codes: - `bad_id` - Passed client id is not a valid id 
 	*/
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_expired - Token is expired - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 409
-	 Error Codes: - too_many_listening_to_single_client - An enumeration. 
+	 Error Codes: - `too_many_listening_to_single_client` - An enumeration. 
 	*/
 	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -779,7 +779,7 @@ struct RALLYHEREAPI_API FResponse_PlayerGetNotificationsPageSelf : public FRespo
 	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 	/* Response 503
-	 Error Codes: - connection_limit_reached - An enumeration. 
+	 Error Codes: - `connection_limit_reached` - An enumeration. 
 	*/
 	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -898,17 +898,17 @@ struct RALLYHEREAPI_API FResponse_PlayerLongPollForNotifications : public FRespo
 	bool TryGetContentFor200(FRHAPI_Notifications& OutContent) const;
 
 	/* Response 400
-	 Error Codes: - bad_id - Passed client id is not a valid id 
+	 Error Codes: - `bad_id` - Passed client id is not a valid id 
 	*/
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_expired - Token is expired - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 409
-	 Error Codes: - too_many_listening_to_single_client - An enumeration. 
+	 Error Codes: - `too_many_listening_to_single_client` - An enumeration. 
 	*/
 	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -918,7 +918,7 @@ struct RALLYHEREAPI_API FResponse_PlayerLongPollForNotifications : public FRespo
 	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 	/* Response 503
-	 Error Codes: - connection_limit_reached - An enumeration. 
+	 Error Codes: - `connection_limit_reached` - An enumeration. 
 	*/
 	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -1032,17 +1032,17 @@ struct RALLYHEREAPI_API FResponse_PlayerLongPollForNotificationsSelf : public FR
 	bool TryGetContentFor200(FRHAPI_Notifications& OutContent) const;
 
 	/* Response 400
-	 Error Codes: - bad_id - Passed client id is not a valid id 
+	 Error Codes: - `bad_id` - Passed client id is not a valid id 
 	*/
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_type - Invalid Authorization - Invalid Token Type - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_expired - Token is expired - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization 
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 409
-	 Error Codes: - too_many_listening_to_single_client - An enumeration. 
+	 Error Codes: - `too_many_listening_to_single_client` - An enumeration. 
 	*/
 	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -1052,7 +1052,7 @@ struct RALLYHEREAPI_API FResponse_PlayerLongPollForNotificationsSelf : public FR
 	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 	/* Response 503
-	 Error Codes: - connection_limit_reached - An enumeration. 
+	 Error Codes: - `connection_limit_reached` - An enumeration. 
 	*/
 	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
 
