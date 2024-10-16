@@ -5,7 +5,7 @@
 // Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
-#include "PEXAPI.h"
+#include "PlayerExperienceAPI.h"
 #include "RallyHereAPIModule.h"
 #include "RallyHereAPIAuthContext.h"
 #include "RallyHereAPIHttpRequester.h"
@@ -15,15 +15,15 @@
 namespace RallyHereAPI
 {
 
-FPEXAPI::FPEXAPI() : FAPI()
+FPlayerExperienceAPI::FPlayerExperienceAPI() : FAPI()
 {
 	Url = TEXT("https://demo.rally-here.io");
-	Name = FName(TEXT("PEX"));
+	Name = FName(TEXT("PlayerExperience"));
 }
 
-FPEXAPI::~FPEXAPI() {}
+FPlayerExperienceAPI::~FPlayerExperienceAPI() {}
 
-FHttpRequestPtr FPEXAPI::CreatePexHost(const FRequest_CreatePexHost& Request, const FDelegate_CreatePexHost& Delegate /*= FDelegate_CreatePexHost()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+FHttpRequestPtr FPlayerExperienceAPI::CreatePexHost(const FRequest_CreatePexHost& Request, const FDelegate_CreatePexHost& Delegate /*= FDelegate_CreatePexHost()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
 		return nullptr;
@@ -56,7 +56,7 @@ FHttpRequestPtr FPEXAPI::CreatePexHost(const FRequest_CreatePexHost& Request, co
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FPEXAPI::OnCreatePexHostResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FPlayerExperienceAPI::OnCreatePexHostResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -68,7 +68,7 @@ FHttpRequestPtr FPEXAPI::CreatePexHost(const FRequest_CreatePexHost& Request, co
 	return RequestData->HttpRequest;
 }
 
-void FPEXAPI::OnCreatePexHostResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreatePexHost Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+void FPlayerExperienceAPI::OnCreatePexHostResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreatePexHost Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
 	FHttpRequestCompleteDelegate ResponseDelegate;
 
@@ -76,7 +76,7 @@ void FPEXAPI::OnCreatePexHostResponse(FHttpRequestPtr HttpRequest, FHttpResponse
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FPEXAPI::OnCreatePexHostResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FPlayerExperienceAPI::OnCreatePexHostResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	TSharedRef<FResponse_CreatePexHost> Response = MakeShared<FResponse_CreatePexHost>(RequestMetadata);
@@ -245,7 +245,7 @@ FHttpRequestPtr Traits_CreatePexHost::DoCall(TSharedRef<API> InAPI, const Reques
 	return InAPI->CreatePexHost(InRequest, InDelegate, InPriority);
 }
 
-FHttpRequestPtr FPEXAPI::CreatePexPlayer(const FRequest_CreatePexPlayer& Request, const FDelegate_CreatePexPlayer& Delegate /*= FDelegate_CreatePexPlayer()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+FHttpRequestPtr FPlayerExperienceAPI::CreatePexPlayer(const FRequest_CreatePexPlayer& Request, const FDelegate_CreatePexPlayer& Delegate /*= FDelegate_CreatePexPlayer()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
 		return nullptr;
@@ -278,7 +278,7 @@ FHttpRequestPtr FPEXAPI::CreatePexPlayer(const FRequest_CreatePexPlayer& Request
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FPEXAPI::OnCreatePexPlayerResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FPlayerExperienceAPI::OnCreatePexPlayerResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -290,7 +290,7 @@ FHttpRequestPtr FPEXAPI::CreatePexPlayer(const FRequest_CreatePexPlayer& Request
 	return RequestData->HttpRequest;
 }
 
-void FPEXAPI::OnCreatePexPlayerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreatePexPlayer Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+void FPlayerExperienceAPI::OnCreatePexPlayerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreatePexPlayer Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
 	FHttpRequestCompleteDelegate ResponseDelegate;
 
@@ -298,7 +298,7 @@ void FPEXAPI::OnCreatePexPlayerResponse(FHttpRequestPtr HttpRequest, FHttpRespon
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FPEXAPI::OnCreatePexPlayerResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FPlayerExperienceAPI::OnCreatePexPlayerResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	TSharedRef<FResponse_CreatePexPlayer> Response = MakeShared<FResponse_CreatePexPlayer>(RequestMetadata);
@@ -467,7 +467,7 @@ FHttpRequestPtr Traits_CreatePexPlayer::DoCall(TSharedRef<API> InAPI, const Requ
 	return InAPI->CreatePexPlayer(InRequest, InDelegate, InPriority);
 }
 
-FHttpRequestPtr FPEXAPI::GetAllPexClientRawByFilter(const FRequest_GetAllPexClientRawByFilter& Request, const FDelegate_GetAllPexClientRawByFilter& Delegate /*= FDelegate_GetAllPexClientRawByFilter()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+FHttpRequestPtr FPlayerExperienceAPI::GetAllPexClientRawByFilter(const FRequest_GetAllPexClientRawByFilter& Request, const FDelegate_GetAllPexClientRawByFilter& Delegate /*= FDelegate_GetAllPexClientRawByFilter()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
 		return nullptr;
@@ -500,7 +500,7 @@ FHttpRequestPtr FPEXAPI::GetAllPexClientRawByFilter(const FRequest_GetAllPexClie
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FPEXAPI::OnGetAllPexClientRawByFilterResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FPlayerExperienceAPI::OnGetAllPexClientRawByFilterResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -512,7 +512,7 @@ FHttpRequestPtr FPEXAPI::GetAllPexClientRawByFilter(const FRequest_GetAllPexClie
 	return RequestData->HttpRequest;
 }
 
-void FPEXAPI::OnGetAllPexClientRawByFilterResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPexClientRawByFilter Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+void FPlayerExperienceAPI::OnGetAllPexClientRawByFilterResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPexClientRawByFilter Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
 	FHttpRequestCompleteDelegate ResponseDelegate;
 
@@ -520,7 +520,7 @@ void FPEXAPI::OnGetAllPexClientRawByFilterResponse(FHttpRequestPtr HttpRequest, 
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FPEXAPI::OnGetAllPexClientRawByFilterResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FPlayerExperienceAPI::OnGetAllPexClientRawByFilterResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	TSharedRef<FResponse_GetAllPexClientRawByFilter> Response = MakeShared<FResponse_GetAllPexClientRawByFilter>(RequestMetadata);
@@ -852,7 +852,7 @@ FHttpRequestPtr Traits_GetAllPexClientRawByFilter::DoCall(TSharedRef<API> InAPI,
 	return InAPI->GetAllPexClientRawByFilter(InRequest, InDelegate, InPriority);
 }
 
-FHttpRequestPtr FPEXAPI::GetAllPexClientScoresByFilter(const FRequest_GetAllPexClientScoresByFilter& Request, const FDelegate_GetAllPexClientScoresByFilter& Delegate /*= FDelegate_GetAllPexClientScoresByFilter()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+FHttpRequestPtr FPlayerExperienceAPI::GetAllPexClientScoresByFilter(const FRequest_GetAllPexClientScoresByFilter& Request, const FDelegate_GetAllPexClientScoresByFilter& Delegate /*= FDelegate_GetAllPexClientScoresByFilter()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
 		return nullptr;
@@ -885,7 +885,7 @@ FHttpRequestPtr FPEXAPI::GetAllPexClientScoresByFilter(const FRequest_GetAllPexC
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FPEXAPI::OnGetAllPexClientScoresByFilterResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FPlayerExperienceAPI::OnGetAllPexClientScoresByFilterResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -897,7 +897,7 @@ FHttpRequestPtr FPEXAPI::GetAllPexClientScoresByFilter(const FRequest_GetAllPexC
 	return RequestData->HttpRequest;
 }
 
-void FPEXAPI::OnGetAllPexClientScoresByFilterResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPexClientScoresByFilter Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+void FPlayerExperienceAPI::OnGetAllPexClientScoresByFilterResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPexClientScoresByFilter Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
 	FHttpRequestCompleteDelegate ResponseDelegate;
 
@@ -905,7 +905,7 @@ void FPEXAPI::OnGetAllPexClientScoresByFilterResponse(FHttpRequestPtr HttpReques
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FPEXAPI::OnGetAllPexClientScoresByFilterResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FPlayerExperienceAPI::OnGetAllPexClientScoresByFilterResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	TSharedRef<FResponse_GetAllPexClientScoresByFilter> Response = MakeShared<FResponse_GetAllPexClientScoresByFilter>(RequestMetadata);
@@ -1211,7 +1211,7 @@ FHttpRequestPtr Traits_GetAllPexClientScoresByFilter::DoCall(TSharedRef<API> InA
 	return InAPI->GetAllPexClientScoresByFilter(InRequest, InDelegate, InPriority);
 }
 
-FHttpRequestPtr FPEXAPI::GetAllPexHostRawByFilter(const FRequest_GetAllPexHostRawByFilter& Request, const FDelegate_GetAllPexHostRawByFilter& Delegate /*= FDelegate_GetAllPexHostRawByFilter()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+FHttpRequestPtr FPlayerExperienceAPI::GetAllPexHostRawByFilter(const FRequest_GetAllPexHostRawByFilter& Request, const FDelegate_GetAllPexHostRawByFilter& Delegate /*= FDelegate_GetAllPexHostRawByFilter()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
 		return nullptr;
@@ -1244,7 +1244,7 @@ FHttpRequestPtr FPEXAPI::GetAllPexHostRawByFilter(const FRequest_GetAllPexHostRa
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FPEXAPI::OnGetAllPexHostRawByFilterResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FPlayerExperienceAPI::OnGetAllPexHostRawByFilterResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1256,7 +1256,7 @@ FHttpRequestPtr FPEXAPI::GetAllPexHostRawByFilter(const FRequest_GetAllPexHostRa
 	return RequestData->HttpRequest;
 }
 
-void FPEXAPI::OnGetAllPexHostRawByFilterResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPexHostRawByFilter Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+void FPlayerExperienceAPI::OnGetAllPexHostRawByFilterResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPexHostRawByFilter Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
 	FHttpRequestCompleteDelegate ResponseDelegate;
 
@@ -1264,7 +1264,7 @@ void FPEXAPI::OnGetAllPexHostRawByFilterResponse(FHttpRequestPtr HttpRequest, FH
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FPEXAPI::OnGetAllPexHostRawByFilterResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FPlayerExperienceAPI::OnGetAllPexHostRawByFilterResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	TSharedRef<FResponse_GetAllPexHostRawByFilter> Response = MakeShared<FResponse_GetAllPexHostRawByFilter>(RequestMetadata);
@@ -1588,7 +1588,7 @@ FHttpRequestPtr Traits_GetAllPexHostRawByFilter::DoCall(TSharedRef<API> InAPI, c
 	return InAPI->GetAllPexHostRawByFilter(InRequest, InDelegate, InPriority);
 }
 
-FHttpRequestPtr FPEXAPI::GetAllPexHostScoresByFilter(const FRequest_GetAllPexHostScoresByFilter& Request, const FDelegate_GetAllPexHostScoresByFilter& Delegate /*= FDelegate_GetAllPexHostScoresByFilter()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+FHttpRequestPtr FPlayerExperienceAPI::GetAllPexHostScoresByFilter(const FRequest_GetAllPexHostScoresByFilter& Request, const FDelegate_GetAllPexHostScoresByFilter& Delegate /*= FDelegate_GetAllPexHostScoresByFilter()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
 		return nullptr;
@@ -1621,7 +1621,7 @@ FHttpRequestPtr FPEXAPI::GetAllPexHostScoresByFilter(const FRequest_GetAllPexHos
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FPEXAPI::OnGetAllPexHostScoresByFilterResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FPlayerExperienceAPI::OnGetAllPexHostScoresByFilterResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -1633,7 +1633,7 @@ FHttpRequestPtr FPEXAPI::GetAllPexHostScoresByFilter(const FRequest_GetAllPexHos
 	return RequestData->HttpRequest;
 }
 
-void FPEXAPI::OnGetAllPexHostScoresByFilterResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPexHostScoresByFilter Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+void FPlayerExperienceAPI::OnGetAllPexHostScoresByFilterResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPexHostScoresByFilter Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
 	FHttpRequestCompleteDelegate ResponseDelegate;
 
@@ -1641,7 +1641,7 @@ void FPEXAPI::OnGetAllPexHostScoresByFilterResponse(FHttpRequestPtr HttpRequest,
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FPEXAPI::OnGetAllPexHostScoresByFilterResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FPlayerExperienceAPI::OnGetAllPexHostScoresByFilterResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
 	TSharedRef<FResponse_GetAllPexHostScoresByFilter> Response = MakeShared<FResponse_GetAllPexHostScoresByFilter>(RequestMetadata);

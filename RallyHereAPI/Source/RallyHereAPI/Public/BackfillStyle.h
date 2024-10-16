@@ -18,8 +18,8 @@
 UENUM(BlueprintType)
 enum class ERHAPI_BackfillStyle : uint8
 {
-	TeamRequest UMETA(ToolTip="An enumeration."),
-	Composition UMETA(ToolTip="An enumeration."),
+	TeamRequest UMETA(ToolTip=""),
+	Composition UMETA(ToolTip=""),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_BackfillStyle& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_BackfillStyle& EnumValue);

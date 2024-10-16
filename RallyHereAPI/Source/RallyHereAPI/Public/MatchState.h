@@ -18,8 +18,8 @@
 UENUM(BlueprintType)
 enum class ERHAPI_MatchState : uint8
 {
-	Pending UMETA(ToolTip=""),
-	Closed UMETA(ToolTip=""),
+	Pending UMETA(ToolTip="The match is in a pending state."),
+	Closed UMETA(ToolTip="The match has been closed."),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_MatchState& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_MatchState& EnumValue);

@@ -18,7 +18,7 @@
   ],
   "externalDocs": {
     "description": "RallyHere Documentation",
-    "url": "https://www.rallyhere.gg/docs"
+    "url": "https://docs.rallyhere.gg"
   },
   "tags": [
     {
@@ -70,7 +70,7 @@
       "description": "Match data is meant to store historical match information - including players, and related metadata.\n\nMatches are searchable on the Support Portal, and there are endpoints to query a player's matches or all matches in the system.\n\nEach match can also contain many Match Segments - which are sub-components of the overall match.  They contain the same fields as the match.  Common usage of Match Segments would be laps of a race to record player positions, minute intervals to record the state of the game partway through, rounds of play, or minigames within a larger match.\n"
     },
     {
-      "name": "PEX",
+      "name": "Player Experience",
       "description": "Player Experience (PEX) is a system for Clients/Hosts to post metrics to for top-level analysis."
     },
     {
@@ -9788,6 +9788,387 @@
           }
         },
         "deprecated": true,
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/inventory/v1/player/me/inventory-level": {
+      "get": {
+        "tags": [
+          "Inventory"
+        ],
+        "summary": "Get Player Inventory Level Self",
+        "description": "***DEPRECATED, use /v2/player/me/player-level instead.  Get the levels for items in a player's inventory\n    \nRequired Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:read_inv:any`\n\n- For the player themselves : `inv:read_inv:self`",
+        "operationId": "get_player_inventory_level_self",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "items": {
+                "type": "integer"
+              },
+              "type": "array",
+              "title": "Item Ids",
+              "default": []
+            },
+            "name": "item_ids",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InventoryLevels"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified player was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds after which to retry the request, when the server should have the resource available",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true,
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/inventory/v1/player/{player_id}/inventory-level": {
+      "get": {
+        "tags": [
+          "Inventory"
+        ],
+        "summary": "Get Player Inventory Level",
+        "description": "***DEPRECATED, use /v2/player/{player_uuid}/player-level instead.  Get the levels for items in a player's inventory\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:read_inv:any`\n\n- For the player themselves : `inv:read_inv:self`",
+        "operationId": "get_player_inventory_level",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Player Id"
+            },
+            "name": "player_id",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "items": {
+                "type": "integer"
+              },
+              "type": "array",
+              "title": "Item Ids",
+              "default": []
+            },
+            "name": "item_ids",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InventoryLevels"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified player was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds after which to retry the request, when the server should have the resource available",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true,
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/inventory/v2/player/me/inventory-level": {
+      "get": {
+        "tags": [
+          "Inventory"
+        ],
+        "summary": "Get Player Uuid Inventory Level Self",
+        "description": "Get the levels for items in a player's inventory\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:read_inv:any`\n\n- For the player themselves : `inv:read_inv:self`",
+        "operationId": "get_player_uuid_inventory_level_self",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "items": {
+                "type": "integer"
+              },
+              "type": "array",
+              "title": "Item Ids",
+              "default": []
+            },
+            "name": "item_ids",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InventoryLevels"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified player was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds after which to retry the request, when the server should have the resource available",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/inventory/v2/player/{player_uuid}/inventory-level": {
+      "get": {
+        "tags": [
+          "Inventory"
+        ],
+        "summary": "Get Player Uuid Inventory Level",
+        "description": "Get the levels for items in a player's inventory\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:read_inv:any`\n\n- For the player themselves : `inv:read_inv:self`",
+        "operationId": "get_player_uuid_inventory_level",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "items": {
+                "type": "integer"
+              },
+              "type": "array",
+              "title": "Item Ids",
+              "default": []
+            },
+            "name": "item_ids",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InventoryLevels"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified player was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds after which to retry the request, when the server should have the resource available",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          }
+        },
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -20257,6 +20638,75 @@
         }
       }
     },
+    "/match/v1/player/{player_uuid}/stats": {
+      "get": {
+        "tags": [
+          "Match"
+        ],
+        "summary": "Get Player Stats",
+        "description": "Get player stats for the provided player_uuid,.\n\nany of: `match:*`, `match:match:player:read`, `match:player:any:read` \n    \n: `match:player:self:read`",
+        "operationId": "get_player_stats",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "player_uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerStatsResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/match/v1/player/{player_uuid}/match": {
       "get": {
         "tags": [
@@ -21135,7 +21585,7 @@
     "/match/v1/pex/host/raw": {
       "get": {
         "tags": [
-          "PEX"
+          "Player Experience"
         ],
         "summary": "Get All Pex Host Raw By Filter",
         "description": "Get pages of PEX host raw data based on provided filters\n\nRequired Permissions:\n\n- For any pex host any of: `match:*`, `match:pex:read`",
@@ -21527,7 +21977,7 @@
     "/match/v1/pex/host/score": {
       "get": {
         "tags": [
-          "PEX"
+          "Player Experience"
         ],
         "summary": "Get All Pex Host Scores By Filter",
         "description": "Get pages of PEX host scores based on provided filters\n\nRequired Permissions:\n\n- For any pex client any of: `match:*`, `match:pex:read`",
@@ -21909,7 +22359,7 @@
     "/match/v1/pex/client/raw": {
       "get": {
         "tags": [
-          "PEX"
+          "Player Experience"
         ],
         "summary": "Get All Pex Client Raw By Filter",
         "description": "Get pages of PEX client raw data based on provided filters\n\nRequired Permissions:\n\n- For any pex client any of: `match:*`, `match:pex:read`",
@@ -22333,7 +22783,7 @@
     "/match/v1/pex/client/score": {
       "get": {
         "tags": [
-          "PEX"
+          "Player Experience"
         ],
         "summary": "Get All Pex Client Scores By Filter",
         "description": "Get pages of PEX client score data based on provided filters\n\nRequired Permissions:\n\n- For any pex client any of: `match:*`, `match:pex:read`",
@@ -22747,7 +23197,7 @@
     "/match/v1/pex/host": {
       "post": {
         "tags": [
-          "PEX"
+          "Player Experience"
         ],
         "summary": "Create Pex Host",
         "description": "Create PEX Host\n\nRequired Permissions:\n\n- For any pex host any of: `match:*`, `match:pex:host:write`",
@@ -22797,7 +23247,7 @@
     "/match/v1/pex/client": {
       "post": {
         "tags": [
-          "PEX"
+          "Player Experience"
         ],
         "summary": "Create Pex Player",
         "description": "Create PEX Client\n\nRequired Permissions:\n\n- For any pex client any of: `match:*`, `match:pex:client:write`",
@@ -26119,7 +26569,7 @@
             }
           },
           "400": {
-            "description": "\nError Codes:\n- bad_id - Passed client id is not a valid id\n",
+            "description": "\nError Codes:\n- `bad_id` - Passed client id is not a valid id\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26129,7 +26579,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_expired - Token is expired\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26139,7 +26589,7 @@
             }
           },
           "409": {
-            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
+            "description": "\nError Codes:\n- `too_many_listening_to_single_client` - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26159,7 +26609,7 @@
             }
           },
           "503": {
-            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "description": "\nError Codes:\n- `connection_limit_reached` - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26262,7 +26712,7 @@
             }
           },
           "400": {
-            "description": "\nError Codes:\n- bad_id - Passed client id is not a valid id\n",
+            "description": "\nError Codes:\n- `bad_id` - Passed client id is not a valid id\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26272,7 +26722,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_expired - Token is expired\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26282,7 +26732,7 @@
             }
           },
           "409": {
-            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
+            "description": "\nError Codes:\n- `too_many_listening_to_single_client` - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26302,7 +26752,7 @@
             }
           },
           "503": {
-            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "description": "\nError Codes:\n- `connection_limit_reached` - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26389,7 +26839,7 @@
             "description": "Not Modified"
           },
           "400": {
-            "description": "\nError Codes:\n- bad_id - Passed client id is not a valid id\n",
+            "description": "\nError Codes:\n- `bad_id` - Passed client id is not a valid id\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26399,7 +26849,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_expired - Token is expired\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26409,7 +26859,7 @@
             }
           },
           "409": {
-            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
+            "description": "\nError Codes:\n- `too_many_listening_to_single_client` - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26429,7 +26879,7 @@
             }
           },
           "503": {
-            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "description": "\nError Codes:\n- `connection_limit_reached` - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26474,7 +26924,7 @@
             }
           },
           "400": {
-            "description": "\nError Codes:\n- bad_id - Passed client id is not a valid id\n",
+            "description": "\nError Codes:\n- `bad_id` - Passed client id is not a valid id\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26484,7 +26934,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_expired - Token is expired\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26494,7 +26944,7 @@
             }
           },
           "409": {
-            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
+            "description": "\nError Codes:\n- `too_many_listening_to_single_client` - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26514,7 +26964,7 @@
             }
           },
           "503": {
-            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "description": "\nError Codes:\n- `connection_limit_reached` - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26611,7 +27061,7 @@
             "description": "Not Modified"
           },
           "400": {
-            "description": "\nError Codes:\n- bad_id - Passed client id is not a valid id\n",
+            "description": "\nError Codes:\n- `bad_id` - Passed client id is not a valid id\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26621,7 +27071,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_expired - Token is expired\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26631,7 +27081,7 @@
             }
           },
           "409": {
-            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
+            "description": "\nError Codes:\n- `too_many_listening_to_single_client` - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26651,7 +27101,7 @@
             }
           },
           "503": {
-            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "description": "\nError Codes:\n- `connection_limit_reached` - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26708,7 +27158,7 @@
             }
           },
           "400": {
-            "description": "\nError Codes:\n- bad_id - Passed client id is not a valid id\n",
+            "description": "\nError Codes:\n- `bad_id` - Passed client id is not a valid id\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26718,7 +27168,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_expired - Token is expired\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26728,7 +27178,7 @@
             }
           },
           "409": {
-            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
+            "description": "\nError Codes:\n- `too_many_listening_to_single_client` - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26748,7 +27198,7 @@
             }
           },
           "503": {
-            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "description": "\nError Codes:\n- `connection_limit_reached` - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26796,7 +27246,7 @@
             }
           },
           "400": {
-            "description": "\nError Codes:\n- bad_id - Passed client id is not a valid id\n",
+            "description": "\nError Codes:\n- `bad_id` - Passed client id is not a valid id\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26806,7 +27256,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_expired - Token is expired\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26816,7 +27266,7 @@
             }
           },
           "404": {
-            "description": "\nError Codes:\n- resource_not_found - Notification could not be found\n",
+            "description": "\nError Codes:\n- `resource_not_found` - Notification could not be found\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26826,7 +27276,7 @@
             }
           },
           "409": {
-            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
+            "description": "\nError Codes:\n- `too_many_listening_to_single_client` - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26846,7 +27296,7 @@
             }
           },
           "503": {
-            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "description": "\nError Codes:\n- `connection_limit_reached` - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26904,7 +27354,7 @@
             }
           },
           "400": {
-            "description": "\nError Codes:\n- bad_id - Passed client id is not a valid id\n",
+            "description": "\nError Codes:\n- `bad_id` - Passed client id is not a valid id\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26914,7 +27364,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- auth_invalid_version - Invalid Authorization - version\n- auth_token_invalid_type - Invalid Authorization - Invalid Token Type\n- insufficient_permissions - Insufficient Permissions\n- auth_token_sig_invalid - Token Signature is invalid\n- auth_token_invalid_claim - Token contained invalid claim value: {}\n- auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token\n- auth_token_expired - Token is expired\n- auth_malformed_access - Invalid Authorization - malformed access token\n- auth_token_unknown - Failed to parse token\n- auth_token_format - Invalid Authorization - {}\n- auth_not_jwt - Invalid Authorization\n",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26924,7 +27374,7 @@
             }
           },
           "404": {
-            "description": "\nError Codes:\n- resource_not_found - Notification could not be found\n",
+            "description": "\nError Codes:\n- `resource_not_found` - Notification could not be found\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26934,7 +27384,7 @@
             }
           },
           "409": {
-            "description": "\nError Codes:\n- too_many_listening_to_single_client - An enumeration.\n",
+            "description": "\nError Codes:\n- `too_many_listening_to_single_client` - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -26954,7 +27404,7 @@
             }
           },
           "503": {
-            "description": "\nError Codes:\n- connection_limit_reached - An enumeration.\n",
+            "description": "\nError Codes:\n- `connection_limit_reached` - An enumeration.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -27439,15 +27889,36 @@
         "summary": "Receive Events V1",
         "description": "Post game events, return number of events being posted to Event Hub",
         "operationId": "receive_events_v1",
+        "parameters": [
+          {
+            "name": "x-rh-client-addr",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 32
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "IP Address hint",
+              "title": "X-Rh-Client-Addr"
+            },
+            "description": "IP Address hint"
+          }
+        ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/EventList"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -27518,6 +27989,69 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/EventParamsSchemaResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/events/v1/validate": {
+      "post": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Validate Event V1",
+        "description": "Validate a single event, return validation result and the event json will be posted to Kafka",
+        "operationId": "validate_event_v1",
+        "parameters": [
+          {
+            "name": "x-rh-client-addr",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 32
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "IP Address hint",
+              "title": "X-Rh-Client-Addr"
+            },
+            "description": "IP Address hint"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RallyHereEvent"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidateEventResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
                 }
               }
             }
@@ -28912,22 +29446,22 @@
           "LEGACYNAME"
         ],
         "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       "PlatformIdentityLookupResults": {
@@ -30352,19 +30886,6 @@
         ],
         "title": "ClientType",
         "description": "Client type for Entitlements",
-        "x-enum-varnames": [
-          "UNKNOWN",
-          "WIN",
-          "MAC",
-          "XBOXONE",
-          "PS4",
-          "SWITCH",
-          "ANDROID",
-          "IOS",
-          "PS5",
-          "LINUX",
-          "XSX"
-        ],
         "x-enum-descriptions": [
           "Unknown client type",
           "Windows client type",
@@ -30377,6 +30898,19 @@
           "Playstation 5 client type",
           "Linux client type",
           "XSX client type"
+        ],
+        "x-enum-varnames": [
+          "UNKNOWN",
+          "WIN",
+          "MAC",
+          "XBOXONE",
+          "PS4",
+          "SWITCH",
+          "ANDROID",
+          "IOS",
+          "PS5",
+          "LINUX",
+          "XSX"
         ]
       },
       "CreateInventoryRequest": {
@@ -30471,13 +31005,13 @@
         ],
         "title": "CreateInventoryType",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "PERSISTENT",
-          "TRANSIENT"
-        ],
         "x-enum-descriptions": [
           "Inventory that persists between Inventory Sessions.",
           "Inventory that does not persist between Inventory Sessions."
+        ],
+        "x-enum-varnames": [
+          "PERSISTENT",
+          "TRANSIENT"
         ]
       },
       "EntitlementActionType": {
@@ -30490,17 +31024,17 @@
         ],
         "title": "EntitlementActionType",
         "description": "Action to take for the Entitlement on a user",
-        "x-enum-varnames": [
-          "grant",
-          "refund",
-          "chargeback",
-          "chargeback_reversal"
-        ],
         "x-enum-descriptions": [
           "Event for granting an Entitlement to the user",
           "Event for refunding an Entitlement to the user",
           "Event for refunding an Entitlement to the user due to a chargeback to the original payment",
           "Event for re-granting an Entitlement to the user after a chargeback was reversed"
+        ],
+        "x-enum-varnames": [
+          "grant",
+          "refund",
+          "chargeback",
+          "chargeback_reversal"
         ]
       },
       "EntitlementErrorCode": {
@@ -30523,22 +31057,6 @@
         ],
         "title": "EntitlementErrorCode",
         "description": "Error codes for Entitlements",
-        "x-enum-varnames": [
-          "NONE",
-          "AUTH_TOKEN_FAILURE",
-          "MISSING_INFORMATION",
-          "FAILED_TO_CONSUME",
-          "NO_SKU_FOUND",
-          "WRONG_SKU_TYPE_PROVIDED",
-          "DURABLE_AUTHORITY_TYPE_NOT_VALID",
-          "DURABLE_SINGLE_USE_AUTHORITY_TYPE_NOT_VALID",
-          "CONSUMABLE_AUTHORITY_TYPE_NOT_VALID",
-          "UNKNOWN_SKU_TYPE_PROVIDED",
-          "FAILED_TO_SUBMIT_ORDER",
-          "ALREADY_APPLIED_DURABLE_SINGLE_USE",
-          "QUANTITY_ZERO",
-          "PREVIOUSLY_APPLIED"
-        ],
         "x-enum-descriptions": [
           "No error occured",
           "Failed to find or validate the auth token",
@@ -30554,6 +31072,22 @@
           "Durable single use entitlement has already been applied",
           "Quantity was zero, nothing to apply",
           "Entitlement was previously applied"
+        ],
+        "x-enum-varnames": [
+          "NONE",
+          "AUTH_TOKEN_FAILURE",
+          "MISSING_INFORMATION",
+          "FAILED_TO_CONSUME",
+          "NO_SKU_FOUND",
+          "WRONG_SKU_TYPE_PROVIDED",
+          "DURABLE_AUTHORITY_TYPE_NOT_VALID",
+          "DURABLE_SINGLE_USE_AUTHORITY_TYPE_NOT_VALID",
+          "CONSUMABLE_AUTHORITY_TYPE_NOT_VALID",
+          "UNKNOWN_SKU_TYPE_PROVIDED",
+          "FAILED_TO_SUBMIT_ORDER",
+          "ALREADY_APPLIED_DURABLE_SINGLE_USE",
+          "QUANTITY_ZERO",
+          "PREVIOUSLY_APPLIED"
         ]
       },
       "EntitlementEvent": {
@@ -30783,17 +31317,17 @@
         ],
         "title": "EntitlementEventStatus",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "success",
-          "sku_not_found",
-          "not_implemented",
-          "player_not_found"
-        ],
         "x-enum-descriptions": [
           "The event was successful",
           "The SKU was not found",
           "The requested operation is not implemented yet",
           "The player was not found"
+        ],
+        "x-enum-varnames": [
+          "success",
+          "sku_not_found",
+          "not_implemented",
+          "player_not_found"
         ]
       },
       "EntitlementStatus": {
@@ -30807,19 +31341,19 @@
         ],
         "title": "EntitlementStatus",
         "description": "Status of an Entitlement",
-        "x-enum-varnames": [
-          "UNKNOWN",
-          "SUBMITTED",
-          "FULFILLED",
-          "FAILED",
-          "PREVIOUSLY_APPLIED"
-        ],
         "x-enum-descriptions": [
           "Entitlement status is unknown",
           "Entitlement has been submitted to the backend",
           "Entitlement has been fulfilled",
           "Entitlement has failed, check error_code for more information",
           "Entitlement was previously applied"
+        ],
+        "x-enum-varnames": [
+          "UNKNOWN",
+          "SUBMITTED",
+          "FULFILLED",
+          "FAILED",
+          "PREVIOUSLY_APPLIED"
         ]
       },
       "EntitlementType": {
@@ -30831,15 +31365,15 @@
         ],
         "title": "EntitlementType",
         "description": "The method of granting a Platform Entitlement SKU",
-        "x-enum-varnames": [
-          "consumable",
-          "durable",
-          "durable_single_use"
-        ],
         "x-enum-descriptions": [
           "Consumable entitlements are removed from the platform's record keeping system when used.",
           "Durable entitlements stay in the platform's recorded keeping system and is granted to the Player each time entitlements are granted.",
           "Durable single use entitlements stay in the platform's recorded keeping system and is granted to the Player only once."
+        ],
+        "x-enum-varnames": [
+          "consumable",
+          "durable",
+          "durable_single_use"
         ]
       },
       "ExternalKeyEntitlement": {
@@ -30912,24 +31446,6 @@
         ],
         "title": "InventoryBucket",
         "description": "Grouping of Inventory Items. Inventory items are grouped into different buckets as each Platform that is supported has different requirements on how Inventory can be used on their Platform and other Platforms.",
-        "x-enum-varnames": [
-          "FREE",
-          "SWEAT",
-          "NONE",
-          "ANON",
-          "AMAZON",
-          "STEAM",
-          "PSN",
-          "XBOX_LIVE",
-          "GOOGLE",
-          "TWITCH",
-          "NINTENDO_SWITCH",
-          "APPLE",
-          "NINTENDO",
-          "EPIC",
-          "GOOGLE_PLAY",
-          "NINTENDO_PPID"
-        ],
         "x-enum-descriptions": [
           "Inventory given away for free.",
           "Inventory earned by players through in game activities.",
@@ -30947,6 +31463,24 @@
           "Inventory assigned to the Epic platform.",
           "Inventory assigned to the Google Play platform.",
           "Inventory assigned to the Nintendo PPID platform."
+        ],
+        "x-enum-varnames": [
+          "FREE",
+          "SWEAT",
+          "NONE",
+          "ANON",
+          "AMAZON",
+          "STEAM",
+          "PSN",
+          "XBOX_LIVE",
+          "GOOGLE",
+          "TWITCH",
+          "NINTENDO_SWITCH",
+          "APPLE",
+          "NINTENDO",
+          "EPIC",
+          "GOOGLE_PLAY",
+          "NINTENDO_PPID"
         ]
       },
       "InventoryBucketUseRuleSet": {
@@ -31016,6 +31550,60 @@
         "title": "InventoryContextResponse",
         "description": "Inventory Context for a Player."
       },
+      "InventoryLevel": {
+        "properties": {
+          "item_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Item Uuid",
+            "description": "Item UUID for this Inventory Level."
+          },
+          "item_id": {
+            "type": "integer",
+            "title": "Item Id",
+            "description": "Item ID for this Inventory Level."
+          },
+          "level": {
+            "type": "integer",
+            "title": "Level",
+            "description": "Current Level"
+          },
+          "count": {
+            "type": "integer",
+            "title": "Count",
+            "description": "Current quantity"
+          },
+          "count_for_next_level": {
+            "type": "integer",
+            "title": "Count For Next Level",
+            "description": "Quantity required for the next level."
+          }
+        },
+        "type": "object",
+        "required": [
+          "item_uuid",
+          "level",
+          "count",
+          "count_for_next_level"
+        ],
+        "title": "InventoryLevel"
+      },
+      "InventoryLevels": {
+        "properties": {
+          "levels": {
+            "items": {
+              "$ref": "#/components/schemas/InventoryLevel"
+            },
+            "type": "array",
+            "title": "Levels",
+            "description": "Inventory Levels for a Player.",
+            "default": []
+          }
+        },
+        "type": "object",
+        "title": "InventoryLevels",
+        "description": "Inventory Levels for a Player."
+      },
       "InventoryOperation": {
         "type": "string",
         "enum": [
@@ -31029,15 +31617,6 @@
         ],
         "title": "InventoryOperation",
         "description": "Determines how the Inventory Quantity will be acted upon and the sort order of Loot in a Vendor.\n\nSort Order:\n1. check_greater_then_or_equal/check_less_than\n2. check_greater_than_or_equal_and_subtract/subtract\n3. add/set",
-        "x-enum-varnames": [
-          "invalid",
-          "add",
-          "subtract",
-          "set",
-          "check_greater_than_or_equal",
-          "check_less_than",
-          "check_greater_than_or_equal_and_subtract"
-        ],
         "x-enum-descriptions": [
           "Invalid Inventory Operation.",
           "Add the quantity or expiration of the Inventory.",
@@ -31046,6 +31625,15 @@
           "Check if the quantity or expiration of the Inventory is greater than or equal to the value.",
           "Check if the quantity or expiration of the Inventory is less than the value.",
           "Check if the quantity or expiration of the Inventory is greater than or equal to the value and subtract the value from the quantity or expiration."
+        ],
+        "x-enum-varnames": [
+          "invalid",
+          "add",
+          "subtract",
+          "set",
+          "check_greater_than_or_equal",
+          "check_less_than",
+          "check_greater_than_or_equal_and_subtract"
         ]
       },
       "InventoryRecord": {
@@ -31127,14 +31715,6 @@
         ],
         "title": "InventorySelector",
         "description": "Determines way Inventory Selected and to be modified.",
-        "x-enum-varnames": [
-          "invalid",
-          "own",
-          "rent",
-          "rent_timeframe_locked",
-          "own_transient",
-          "inherit_entitlement_inventory"
-        ],
         "x-enum-descriptions": [
           "Invalid Inventory Selector.",
           "The Inventory will be stored across Inventory Sessions.",
@@ -31142,6 +31722,14 @@
           "The Inventory will be stored across Inventory Sessions by will expire after a period of time. Quantity modification will not modify the Inventory's expiration time but instead the quantity of the Inventory.",
           "The Inventory will by fulfilled as transient Inventory and will not persist across Inventory Sessions.",
           "Loot fulfilled will look for a parent Entitlement and then grant the Loot as transient Inventory with the rental expiration as the parent."
+        ],
+        "x-enum-varnames": [
+          "invalid",
+          "own",
+          "rent",
+          "rent_timeframe_locked",
+          "own_transient",
+          "inherit_entitlement_inventory"
         ]
       },
       "InventorySession": {
@@ -31228,15 +31816,15 @@
         ],
         "title": "InventoryType",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "PERSISTENT",
-          "TRANSIENT",
-          "ALWAYS_OWNED"
-        ],
         "x-enum-descriptions": [
           "Inventory that persists between Inventory Sessions.",
           "Stays around for the length of the Inventory Sessions.",
           "Items that are given to all Players and cannot be modified."
+        ],
+        "x-enum-varnames": [
+          "PERSISTENT",
+          "TRANSIENT",
+          "ALWAYS_OWNED"
         ]
       },
       "Item": {
@@ -31431,19 +32019,19 @@
         ],
         "title": "ItemType",
         "description": "The type of item.",
-        "x-enum-varnames": [
-          "unit",
-          "recipe",
-          "recipe_with_price_reduction",
-          "entitlement",
-          "dynamic_bundle"
-        ],
         "x-enum-descriptions": [
           "An item that is stored in a player's inventory.",
           "A Loot with the ItemType receipt will fulfill SubVendor Loot and will not stored in a player's inventory.",
           "The same as `ItemType.recipe` but will reduce the price based on whether or not the player owns items in the SubVendor's Loot table.",
           "An entitlement is a special item that is stored in a player's inventory and is fulfilled to the player each time an Inventory Session is created and when the Entitlement is fulfilled to the Player.",
           "Not support at this time."
+        ],
+        "x-enum-varnames": [
+          "unit",
+          "recipe",
+          "recipe_with_price_reduction",
+          "entitlement",
+          "dynamic_bundle"
         ]
       },
       "Items": {
@@ -32271,15 +32859,15 @@
         ],
         "title": "PlatformRegion",
         "description": "Region for Entitlements",
-        "x-enum-varnames": [
-          "UNKNOWN",
-          "NA",
-          "EU"
-        ],
         "x-enum-descriptions": [
           "Unknown region",
           "North America region",
           "Europe Union region"
+        ],
+        "x-enum-varnames": [
+          "UNKNOWN",
+          "NA",
+          "EU"
         ]
       },
       "PlatformSKU": {
@@ -32606,14 +33194,6 @@
         ],
         "title": "PlayerOrderDetailType",
         "description": "Player Order Detail Type.",
-        "x-enum-varnames": [
-          "UNKNOWN",
-          "INVENTORY_CHANGE",
-          "DYNAMIC_BUNDLE_LTI",
-          "CLAIM_PROMO_CODE",
-          "RETURN_PROMO_CODE",
-          "NEW_ORDER"
-        ],
         "x-enum-descriptions": [
           "Unknown.",
           "Inventory change.",
@@ -32621,6 +33201,14 @@
           "Claim Promo Code.",
           "Return Promo Code.",
           "New Order."
+        ],
+        "x-enum-varnames": [
+          "UNKNOWN",
+          "INVENTORY_CHANGE",
+          "DYNAMIC_BUNDLE_LTI",
+          "CLAIM_PROMO_CODE",
+          "RETURN_PROMO_CODE",
+          "NEW_ORDER"
         ]
       },
       "PlayerOrderEntry": {
@@ -32934,57 +33522,6 @@
         ],
         "title": "PlayerOrderEntryResult",
         "description": "Result of a Player Order Entry.",
-        "x-enum-varnames": [
-          "SUCCESS",
-          "INTERNAL_ERROR",
-          "INVALID_ENTRY_TYPE",
-          "NOT_ALLOWED_ON_CURRENT_PORTAL",
-          "LOOT_NOT_FOUND",
-          "LOOT_NOT_ACTIVE",
-          "PRICE_ITEM_NOT_FOUND",
-          "PRICE_NOT_ALLOWED",
-          "DYNAMIC_BUNDLE_INVALID",
-          "TOO_MANY_REQUESTS",
-          "PRICE_DOES_NOT_MATCH",
-          "VENDOR_VERSION_DOES_NOT_MATCH",
-          "DYNAMIC_BUNDLE_LTIS_DO_NOT_MATCH",
-          "CANNOT_AFFORD_PRICE",
-          "CANNOT_AFFORD_COUPON",
-          "FAILED_TO_SPEND_PRICE",
-          "FAILED_TO_SPEND_COUPON",
-          "LOOT_NOT_FOR_SALE_WITH_PRICE_ITEM",
-          "COUPONS_DISABLED",
-          "COUPON_ITEM_NOT_FOUND",
-          "COUPON_ITEM_NOT_ACTIVE",
-          "COUPON_ITEM_NOT_APPLICABLE_FOR_QUANTITY",
-          "COUPON_ITEM_NOT_APPLICABLE_FOR_PRICE_ITEM",
-          "COUPON_ITEM_NOT_APPLICABLE_FOR_LOOT",
-          "QUANTITY_NOT_ALLOWED",
-          "PROMOTION_EXPIRED",
-          "PROMOTION_NOT_FOUND",
-          "PROMOTION_NO_USES_LEFT",
-          "PROMOTION_NOT_AVAILABLE",
-          "PROMOTION_CLAIMED_ALREADY",
-          "DYNAMIC_BUNDLES_NOT_AVAILABLE",
-          "TRANSIENT_SINGLE_LOOT_ALREADY_APPLIED",
-          "LOOT_NOT_FILLABLE_FROM_CLIENT",
-          "PERMISSION_DENIED",
-          "FAILED_TO_FIND_ANY_SUB_LOOT",
-          "FAILED_TO_FILL_ANY_SUB_LOOT",
-          "CANNOT_MEET_LOOT_BLOCKER",
-          "CANNOT_MEET_LOOT_REQUIRED",
-          "FAILED_TO_CONSUME_LOOT_REQUIRED",
-          "FAILED_TO_SUBMIT_NEW_ORDER",
-          "FAILED_TO_MODIFY_INVENTORY",
-          "INVENTORY_NOT_FOUND",
-          "ITEM_NOT_FOUND",
-          "ITEM_NOT_ACTIVE",
-          "TOO_MANY_INV_CUSTOM_ATTRIBUTES",
-          "ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED",
-          "AVAILABLE_UNTIL_IS_IN_PAST",
-          "ROLLBACK",
-          "NOT_STARTED"
-        ],
         "x-enum-descriptions": [
           "The Order Entry was successful.",
           "An internal error occurred when processing Order Entry.",
@@ -33035,6 +33572,57 @@
           "Available until is in the past.",
           "Order Entry was successfully fulfilled, but was rolled back.",
           "Order Entry fulfillment has not started."
+        ],
+        "x-enum-varnames": [
+          "SUCCESS",
+          "INTERNAL_ERROR",
+          "INVALID_ENTRY_TYPE",
+          "NOT_ALLOWED_ON_CURRENT_PORTAL",
+          "LOOT_NOT_FOUND",
+          "LOOT_NOT_ACTIVE",
+          "PRICE_ITEM_NOT_FOUND",
+          "PRICE_NOT_ALLOWED",
+          "DYNAMIC_BUNDLE_INVALID",
+          "TOO_MANY_REQUESTS",
+          "PRICE_DOES_NOT_MATCH",
+          "VENDOR_VERSION_DOES_NOT_MATCH",
+          "DYNAMIC_BUNDLE_LTIS_DO_NOT_MATCH",
+          "CANNOT_AFFORD_PRICE",
+          "CANNOT_AFFORD_COUPON",
+          "FAILED_TO_SPEND_PRICE",
+          "FAILED_TO_SPEND_COUPON",
+          "LOOT_NOT_FOR_SALE_WITH_PRICE_ITEM",
+          "COUPONS_DISABLED",
+          "COUPON_ITEM_NOT_FOUND",
+          "COUPON_ITEM_NOT_ACTIVE",
+          "COUPON_ITEM_NOT_APPLICABLE_FOR_QUANTITY",
+          "COUPON_ITEM_NOT_APPLICABLE_FOR_PRICE_ITEM",
+          "COUPON_ITEM_NOT_APPLICABLE_FOR_LOOT",
+          "QUANTITY_NOT_ALLOWED",
+          "PROMOTION_EXPIRED",
+          "PROMOTION_NOT_FOUND",
+          "PROMOTION_NO_USES_LEFT",
+          "PROMOTION_NOT_AVAILABLE",
+          "PROMOTION_CLAIMED_ALREADY",
+          "DYNAMIC_BUNDLES_NOT_AVAILABLE",
+          "TRANSIENT_SINGLE_LOOT_ALREADY_APPLIED",
+          "LOOT_NOT_FILLABLE_FROM_CLIENT",
+          "PERMISSION_DENIED",
+          "FAILED_TO_FIND_ANY_SUB_LOOT",
+          "FAILED_TO_FILL_ANY_SUB_LOOT",
+          "CANNOT_MEET_LOOT_BLOCKER",
+          "CANNOT_MEET_LOOT_REQUIRED",
+          "FAILED_TO_CONSUME_LOOT_REQUIRED",
+          "FAILED_TO_SUBMIT_NEW_ORDER",
+          "FAILED_TO_MODIFY_INVENTORY",
+          "INVENTORY_NOT_FOUND",
+          "ITEM_NOT_FOUND",
+          "ITEM_NOT_ACTIVE",
+          "TOO_MANY_INV_CUSTOM_ATTRIBUTES",
+          "ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED",
+          "AVAILABLE_UNTIL_IS_IN_PAST",
+          "ROLLBACK",
+          "NOT_STARTED"
         ]
       },
       "PlayerOrderEntryType": {
@@ -33054,19 +33642,6 @@
         ],
         "title": "PlayerOrderEntryType",
         "description": "Player Order Entry Type.",
-        "x-enum-varnames": [
-          "FILL_LOOT",
-          "PURCHASE_LOOT",
-          "PURCHASE_DYNAMIC_BUNDLE",
-          "PROMOTION_CODE",
-          "FILL_LOOT_SINGLE_TRANSIENT",
-          "FILL_ENTITLED_LOOT",
-          "CREATE_NEW_PERSISTENT_INVENTORY",
-          "UPDATE_EXISTING_PERSISTENT_INVENTORY",
-          "CREATE_NEW_TRANSIENT_INVENTORY",
-          "UPDATE_EXISTING_TRANSIENT_INVENTORY",
-          "UPDATE_INVENTORY"
-        ],
         "x-enum-descriptions": [
           "Fill a loot item.",
           "Purchase a loot item.",
@@ -33079,6 +33654,19 @@
           "Create transient Inventory.",
           "Deprecated. Use update_inventory instead.",
           "Update existing Inventory."
+        ],
+        "x-enum-varnames": [
+          "FILL_LOOT",
+          "PURCHASE_LOOT",
+          "PURCHASE_DYNAMIC_BUNDLE",
+          "PROMOTION_CODE",
+          "FILL_LOOT_SINGLE_TRANSIENT",
+          "FILL_ENTITLED_LOOT",
+          "CREATE_NEW_PERSISTENT_INVENTORY",
+          "UPDATE_EXISTING_PERSISTENT_INVENTORY",
+          "CREATE_NEW_TRANSIENT_INVENTORY",
+          "UPDATE_EXISTING_TRANSIENT_INVENTORY",
+          "UPDATE_INVENTORY"
         ]
       },
       "PlayerOrdersResponse": {
@@ -33151,6 +33739,44 @@
         ],
         "title": "Portal",
         "description": "An enumeration.",
+        "x-enum-descriptions": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
         "x-enum-varnames": [
           "FREE",
           "SWEAT",
@@ -33188,44 +33814,6 @@
           "LUNA",
           "GOOGLE_PLAY",
           "NINTENDO_PPID"
-        ],
-        "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
         ]
       },
       "PortalUseRuleset": {
@@ -33499,13 +34087,13 @@
         ],
         "title": "QuantityType",
         "description": "Determines how the quantity is to be modified.\n\nRelative looks at the context in which is fulfilled; e.g. If Loot A has a quantity of 2 and 5 is being fulfill, the resulting quantity modification will be 10.\n\nAbsolute ignores the context in which it is fulfilled; e.g. If Loot B has a quantity of 3 and 5 is being fulfill 5, the resulting quantity modification will be 3.",
-        "x-enum-varnames": [
-          "relative",
-          "absolute"
-        ],
         "x-enum-descriptions": [
           "The quantity will be modified relative to the context in which it is fulfilled.",
           "The quantity will be modified regardless of the context in which it is fulfilled."
+        ],
+        "x-enum-varnames": [
+          "relative",
+          "absolute"
         ]
       },
       "SortOrder": {
@@ -33516,13 +34104,13 @@
         ],
         "title": "SortOrder",
         "description": "Determine the direction of the sort",
-        "x-enum-varnames": [
-          "ASCENDING",
-          "DESCENDING"
-        ],
         "x-enum-descriptions": [
           "Sort in ascending order",
           "Sort in descending order"
+        ],
+        "x-enum-varnames": [
+          "ASCENDING",
+          "DESCENDING"
         ]
       },
       "Source": {
@@ -33593,70 +34181,6 @@
         ],
         "title": "Source",
         "description": "The source of Player Orders.",
-        "x-enum-varnames": [
-          "UNKNOWN",
-          "WEB_ORDER_REPAIR",
-          "IN_GAME",
-          "WEB_SITE",
-          "NO_SALE",
-          "SUPPORT",
-          "ACTIVITY",
-          "REFUND",
-          "SYSTEM",
-          "REWARDS",
-          "ESPORTS",
-          "TREASURE",
-          "CONSOLE",
-          "ODYSSEY",
-          "STEAM",
-          "RETURN",
-          "JSON_GATE",
-          "SEND_GIFT",
-          "RECEIVE_GIFT",
-          "STEAM_DLC",
-          "TWITCH_MILESTONE",
-          "TWITCH_PRIME",
-          "PSN",
-          "XBOX",
-          "PTS_GRANT",
-          "INSTANCE",
-          "ACCOUNT_TRANSFER",
-          "PROMOCODE",
-          "TRIUMPH_SYSTEM",
-          "LOGIN_GRANT",
-          "EOM_UNCAPPED",
-          "EOM_CAPPED",
-          "FACEBOOK_DROP",
-          "DATABASE_SCRIPT",
-          "ACCOUNT_LINKING",
-          "CLAN",
-          "CONVERSION",
-          "APPLE",
-          "GOOGLE",
-          "GOOGLE_PLAY",
-          "PORTAL_DURABLE",
-          "PARTNER_ACHIEVEMENT",
-          "MIXER_DROP",
-          "NINTENDO",
-          "STREAM_VIEWING_PROGRESS",
-          "DISCORD",
-          "FIRST_LOGIN_GRANT",
-          "TWITCH_FUEL",
-          "DISCORD_DLC",
-          "NETEASE",
-          "EPIC_GAMES",
-          "FORTE",
-          "FACEBOOK",
-          "HIREZ",
-          "DAILY_REWARD",
-          "ADD_ACCOUNT_EMAIL_REWARD",
-          "CLIENT_CLAIM",
-          "CLIENT",
-          "ENTITLEMENTS",
-          "AMAZON",
-          "SIMULMEDIA",
-          "LUNA"
-        ],
         "x-enum-descriptions": [
           "Unknown source.",
           "Repair Order send from the Web to fix up Inventory mistakes.",
@@ -33720,6 +34244,70 @@
           "Order granted by Amazon.",
           "Order granted by Simulmedia.",
           "Order granted by Luna."
+        ],
+        "x-enum-varnames": [
+          "UNKNOWN",
+          "WEB_ORDER_REPAIR",
+          "IN_GAME",
+          "WEB_SITE",
+          "NO_SALE",
+          "SUPPORT",
+          "ACTIVITY",
+          "REFUND",
+          "SYSTEM",
+          "REWARDS",
+          "ESPORTS",
+          "TREASURE",
+          "CONSOLE",
+          "ODYSSEY",
+          "STEAM",
+          "RETURN",
+          "JSON_GATE",
+          "SEND_GIFT",
+          "RECEIVE_GIFT",
+          "STEAM_DLC",
+          "TWITCH_MILESTONE",
+          "TWITCH_PRIME",
+          "PSN",
+          "XBOX",
+          "PTS_GRANT",
+          "INSTANCE",
+          "ACCOUNT_TRANSFER",
+          "PROMOCODE",
+          "TRIUMPH_SYSTEM",
+          "LOGIN_GRANT",
+          "EOM_UNCAPPED",
+          "EOM_CAPPED",
+          "FACEBOOK_DROP",
+          "DATABASE_SCRIPT",
+          "ACCOUNT_LINKING",
+          "CLAN",
+          "CONVERSION",
+          "APPLE",
+          "GOOGLE",
+          "GOOGLE_PLAY",
+          "PORTAL_DURABLE",
+          "PARTNER_ACHIEVEMENT",
+          "MIXER_DROP",
+          "NINTENDO",
+          "STREAM_VIEWING_PROGRESS",
+          "DISCORD",
+          "FIRST_LOGIN_GRANT",
+          "TWITCH_FUEL",
+          "DISCORD_DLC",
+          "NETEASE",
+          "EPIC_GAMES",
+          "FORTE",
+          "FACEBOOK",
+          "HIREZ",
+          "DAILY_REWARD",
+          "ADD_ACCOUNT_EMAIL_REWARD",
+          "CLIENT_CLAIM",
+          "CLIENT",
+          "ENTITLEMENTS",
+          "AMAZON",
+          "SIMULMEDIA",
+          "LUNA"
         ]
       },
       "TimeFrame": {
@@ -34017,13 +34605,13 @@
         ],
         "title": "VendorType",
         "description": "Determines how the Vendor fulfills the loot.",
-        "x-enum-varnames": [
-          "recipe",
-          "randomly_sampled"
-        ],
         "x-enum-descriptions": [
           "A Vendor that will always drop all of the Loot in the Loot table.",
           "A Vendor that will only fulfill one of the Loot in the Loot table based on the drop weights of the Loot."
+        ],
+        "x-enum-varnames": [
+          "recipe",
+          "randomly_sampled"
         ]
       },
       "Vendors": {
@@ -34054,17 +34642,17 @@
         ],
         "title": "XpQuantityTransform",
         "description": "Allows granting xp levels as Loot. If the player is already max level, the Loot will not be fulfilled. Requires the Item assigned to the Loot to have an XP Table ID.\n\nThe following examples assume the player is level 3 with 150 total xp. The quantity configured on the Loot being fulfilled is 1. The XP Table is configured like so:\n1: 20\n2: 50\n3: 100\n4: 200\n5: 400\n\nfrom_current_xp_to_target_additional_level_min_xp - The Loot will grant the player enough xp to reach min xp of the next level.\nExample 1: fulfill quantity 1\n    Player will be level 4 with 200 total xp.\nExample 2: fulfill quantity 2\n    Player will be level 5 with 400 total xp.\nExample 3: fulfill quantity 3\n    Player will be level 5 with 400 total xp.\n\nfrom_current_level_min_xp_to_target_additional_level_min_xp - The Loot will grant the player the amount of xp required to reach the min xp of the next level from the min xp of the current level.\nExample 1: fulfill quantity 1\n    Player will be level 4 with 250 total xp.\nExample 2: fulfill quantity 2\n    Player will be level 5 with 450 total xp.\nExample 3: fulfill quantity 3\n    Player will be level 5 with 450 total xp.\n\nfrom_zero_to_target_exact_level_min_xp - The Loot will grant the player the amount of xp required to reach the min xp of the target level from zero xp.\nExample 1: fulfill quantity 1\n    Player will be level 3 with 170 total xp.\nExample 2: fulfill quantity 2\n    Player will be level 4 with 200 total xp.\nExample 3: fulfill quantity 3\n    Player will be level 4 with 250 total xp.",
-        "x-enum-varnames": [
-          "none",
-          "from_current_xp_to_target_additional_level_min_xp",
-          "from_current_level_min_xp_to_target_additional_level_min_xp",
-          "from_zero_to_target_exact_level_min_xp"
-        ],
         "x-enum-descriptions": [
           "Quantity will be treated as XP and will not be transformed.",
           "Quantity will be treated as level to fulfill and will be transformed to the amount of XP required to reach the min xp of the fulfilled levels.",
           "Quantity will be treated as levels to fulfill and will be transformed to the amount of XP required to reach the min xp of the fulfilled levels from the min xp of the current level.",
           "Quantity will be treated as levels to fulfill and will be transformed to the amount of XP required to reach the min xp of the fulfilled levels from zero xp."
+        ],
+        "x-enum-varnames": [
+          "none",
+          "from_current_xp_to_target_additional_level_min_xp",
+          "from_current_level_min_xp_to_target_additional_level_min_xp",
+          "from_zero_to_target_exact_level_min_xp"
         ]
       },
       "XpTable": {
@@ -34575,8 +35163,8 @@
           "COMPOSITION"
         ],
         "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration."
+          "",
+          ""
         ]
       },
       "BackfillTeam": {
@@ -34629,6 +35217,12 @@
             "title": "Custom Data",
             "description": "Custom data with the listing of the instance in the Session browser",
             "default": {}
+          },
+          "created_timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone"
           }
         },
         "type": "object",
@@ -35163,11 +35757,11 @@
           "party_changed"
         ],
         "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       "DeserterConfig": {
@@ -35816,9 +36410,9 @@
           "PLAYER"
         ],
         "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
+          "",
+          "",
+          ""
         ]
       },
       "JoinParams": {
@@ -36598,8 +37192,7 @@
         "type": "object",
         "required": [
           "match_making_id",
-          "created",
-          "profile"
+          "created"
         ],
         "title": "MatchmakingResults"
       },
@@ -38137,11 +38730,11 @@
           "TRANSCRIBE"
         ],
         "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration.",
-          "An enumeration."
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       "VoipSessionType": {
@@ -38157,8 +38750,8 @@
           "TEAM"
         ],
         "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration."
+          "",
+          ""
         ]
       },
       "VoipTokenResponse": {
@@ -38777,7 +39370,15 @@
           "player"
         ],
         "title": "HostType",
-        "description": "Whether the host is another player, or a dedicated instance"
+        "description": "Whether the host is another player, or a dedicated instance",
+        "x-enum-descriptions": [
+          "",
+          ""
+        ],
+        "x-enum-varnames": [
+          "dedicated",
+          "player"
+        ]
       },
       "MatchAllocation": {
         "properties": {
@@ -39298,11 +39899,7 @@
             "description": "Custom data for the player"
           },
           "match": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/MatchValuesOnly"
-              }
-            ],
+            "$ref": "#/components/schemas/MatchValuesOnly",
             "description": "Match the player was in"
           }
         },
@@ -39940,7 +40537,15 @@
           "closed"
         ],
         "title": "MatchState",
-        "description": "Match States."
+        "description": "Match States.",
+        "x-enum-descriptions": [
+          "The match is in a pending state.",
+          "The match has been closed."
+        ],
+        "x-enum-varnames": [
+          "pending",
+          "closed"
+        ]
       },
       "MatchValuesOnly": {
         "properties": {
@@ -40332,11 +40937,7 @@
             "description": "Base64 encoded json that contains the filters and cursor position"
           },
           "filters": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PexClientQueryParams"
-              }
-            ]
+            "$ref": "#/components/schemas/PexClientQueryParams"
           }
         },
         "type": "object",
@@ -41742,11 +42343,7 @@
             "description": "Base64 encoded json that contains the filters and cursor position"
           },
           "filters": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PexHostQueryParams"
-              }
-            ]
+            "$ref": "#/components/schemas/PexHostQueryParams"
           }
         },
         "type": "object",
@@ -43118,6 +43715,17 @@
         "type": "object",
         "title": "PexStat"
       },
+      "PlayerStatsResponse": {
+        "properties": {
+          "total_matches_played": {
+            "type": "integer",
+            "title": "Total Matches Played",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "title": "PlayerStatsResponse"
+      },
       "Body_create_entity_directory_file": {
         "properties": {
           "file": {
@@ -43956,8 +44564,8 @@
           "earliest"
         ],
         "x-enum-descriptions": [
-          "An enumeration.",
-          "An enumeration."
+          "",
+          ""
         ]
       },
       "EnvironmentConfig": {
@@ -44216,6 +44824,20 @@
             ],
             "title": "Correlation Id",
             "description": "Correlation ID to associate the event with"
+          },
+          "client_ip": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Client Ip",
+            "description": "Client IP associated with the event"
           }
         },
         "additionalProperties": false,
@@ -44227,6 +44849,56 @@
           "event_params"
         ],
         "title": "RallyHereEvent"
+      },
+      "ValidateEventResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "title": "Success",
+            "description": "Is event data valid against JsonSchema?"
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Code",
+            "description": "Validation error code"
+          },
+          "context": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Context",
+            "description": "Detailed validation error context"
+          },
+          "output_event": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Output Event",
+            "description": "Event json string that will be sent to Kafka topic"
+          }
+        },
+        "type": "object",
+        "required": [
+          "success"
+        ],
+        "title": "ValidateEventResponse"
       },
       "AdOpportunities": {
         "properties": {

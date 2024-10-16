@@ -23,7 +23,7 @@
 #include "KeyClaimsAPI.h"
 #include "MatchAPI.h"
 #include "NotificationAPI.h"
-#include "PEXAPI.h"
+#include "PlayerExperienceAPI.h"
 #include "PresenceAPI.h"
 #include "PresenceAdminAPI.h"
 #include "RankAPI.h"
@@ -87,8 +87,8 @@ public:
 	TSharedRef<FNotificationAPI> GetNotification();
 	const TSharedRef<FNotificationAPI> GetNotification() const;
 
-	TSharedRef<FPEXAPI> GetPEX();
-	const TSharedRef<FPEXAPI> GetPEX() const;
+	TSharedRef<FPlayerExperienceAPI> GetPlayerExperience();
+	const TSharedRef<FPlayerExperienceAPI> GetPlayerExperience() const;
 
 	TSharedRef<FPresenceAPI> GetPresence();
 	const TSharedRef<FPresenceAPI> GetPresence() const;
@@ -127,7 +127,7 @@ private:
 	TSharedRef<FKeyClaimsAPI> KeyClaims;
 	TSharedRef<FMatchAPI> Match;
 	TSharedRef<FNotificationAPI> Notification;
-	TSharedRef<FPEXAPI> PEX;
+	TSharedRef<FPlayerExperienceAPI> PlayerExperience;
 	TSharedRef<FPresenceAPI> Presence;
 	TSharedRef<FPresenceAdminAPI> PresenceAdmin;
 	TSharedRef<FRankAPI> Rank;

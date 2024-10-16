@@ -427,7 +427,6 @@ struct RALLYHEREAPI_API FRHAPI_MatchPlayerWithMatch : public FRHAPI_Model
 	/** @brief Checks whether CustomData_Optional is set to null */
 	bool IsCustomDataNull() const { return CustomData_IsSet && CustomData_IsNull; }
 
-	/** @brief Match the player was in */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_MatchValuesOnly Match{  };
 	/** @brief Gets the value of Match */

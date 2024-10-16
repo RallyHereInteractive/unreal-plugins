@@ -65,6 +65,33 @@ struct RALLYHEREAPI_API FRHAPI_BrowserInfo : public FRHAPI_Model
 	void ClearCustomData() { CustomData_IsSet = false;  }
 	/** @brief Checks whether CustomData_Optional has been set */
 	bool IsCustomDataSet() const { return CustomData_IsSet; }
+
+	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FDateTime CreatedTimestamp_Optional{  };
+	/** @brief true if CreatedTimestamp_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool CreatedTimestamp_IsSet{ false };
+	/** @brief Gets the value of CreatedTimestamp_Optional, regardless of it having been set */
+	FDateTime& GetCreatedTimestamp() { return CreatedTimestamp_Optional; }
+	/** @brief Gets the value of CreatedTimestamp_Optional, regardless of it having been set */
+	const FDateTime& GetCreatedTimestamp() const { return CreatedTimestamp_Optional; }
+	/** @brief Gets the value of CreatedTimestamp_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FDateTime& GetCreatedTimestamp(const FDateTime& DefaultValue) const { if (CreatedTimestamp_IsSet) return CreatedTimestamp_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of CreatedTimestamp_Optional and returns true if it has been set, otherwise returns false */
+	bool GetCreatedTimestamp(FDateTime& OutValue) const { if (CreatedTimestamp_IsSet) OutValue = CreatedTimestamp_Optional; return CreatedTimestamp_IsSet; }
+	/** @brief Returns a pointer to CreatedTimestamp_Optional, if it has been set, otherwise returns nullptr */
+	FDateTime* GetCreatedTimestampOrNull() { if (CreatedTimestamp_IsSet) return (&CreatedTimestamp_Optional); return nullptr; }
+	/** @brief Returns a pointer to CreatedTimestamp_Optional, if it has been set, otherwise returns nullptr */
+	const FDateTime* GetCreatedTimestampOrNull() const { if (CreatedTimestamp_IsSet) return (&CreatedTimestamp_Optional); return nullptr; }
+	/** @brief Sets the value of CreatedTimestamp_Optional and also sets CreatedTimestamp_IsSet to true */
+	void SetCreatedTimestamp(const FDateTime& NewValue) { CreatedTimestamp_Optional = NewValue; CreatedTimestamp_IsSet = true;  }
+	/** @brief Sets the value of CreatedTimestamp_Optional and also sets CreatedTimestamp_IsSet to true using move semantics */
+	void SetCreatedTimestamp(FDateTime&& NewValue) { CreatedTimestamp_Optional = NewValue; CreatedTimestamp_IsSet = true;  }
+	/** @brief Clears the value of CreatedTimestamp_Optional and sets CreatedTimestamp_IsSet to false */
+	void ClearCreatedTimestamp() { CreatedTimestamp_IsSet = false;  }
+	/** @brief Checks whether CreatedTimestamp_Optional has been set */
+	bool IsCreatedTimestampSet() const { return CreatedTimestamp_IsSet; }
 };
 
 /** @} */

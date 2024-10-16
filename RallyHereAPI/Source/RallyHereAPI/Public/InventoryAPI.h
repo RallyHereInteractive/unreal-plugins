@@ -15,6 +15,7 @@
 #include "HTTPValidationError.h"
 #include "HzApiErrorModel.h"
 #include "InventoryContextResponse.h"
+#include "InventoryLevels.h"
 #include "InventorySession.h"
 #include "InventorySessionCreateRequest.h"
 #include "InventorySessionCreateResponse.h"
@@ -1818,6 +1819,247 @@ struct RALLYHEREAPI_API Traits_GetPlayerInventory
 };
 
 /**
+ * @brief Get Player Inventory Level
+ * ***DEPRECATED, use /v2/player/{player_uuid}/player-level instead.  Get the levels for items in a player's inventory
+ * 
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `inv:*`, `inv:read_inv:any`
+ * 
+ * - For the player themselves : `inv:read_inv:self`
+*/
+struct RALLYHEREAPI_API FRequest_GetPlayerInventoryLevel : public FRequest
+{
+	FRequest_GetPlayerInventoryLevel();
+	virtual ~FRequest_GetPlayerInventoryLevel() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	int32 PlayerId = 0;
+	TOptional<TArray<int32>> ItemIds;
+};
+
+/** The response type for FRequest_GetPlayerInventoryLevel */
+struct RALLYHEREAPI_API FResponse_GetPlayerInventoryLevel : public FResponseAccessorTemplate<FRHAPI_InventoryLevels, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_InventoryLevels, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_GetPlayerInventoryLevel(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetPlayerInventoryLevel() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_InventoryLevels Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_InventoryLevels& OutContent) const { return TryGetContent<FRHAPI_InventoryLevels>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_InventoryLevels>& OutContent) const { return TryGetContent<FRHAPI_InventoryLevels>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_InventoryLevels* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_InventoryLevels>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_InventoryLevels> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_InventoryLevels>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_InventoryLevels& OutContent) const;
+
+	/* Response 403
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	The specified player was not found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+	/* Response 503
+	Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
+	*/
+	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Number of seconds after which to retry the request */
+	TOptional<int32> GetHeader503_RetryAfter() const;
+
+};
+
+/** The delegate class for FRequest_GetPlayerInventoryLevel */
+DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerInventoryLevel, const FResponse_GetPlayerInventoryLevel&);
+
+/** @brief A helper metadata object for GetPlayerInventoryLevel that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetPlayerInventoryLevel
+{
+	/** The request type */
+	typedef FRequest_GetPlayerInventoryLevel Request;
+	/** The response type */
+	typedef FResponse_GetPlayerInventoryLevel Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetPlayerInventoryLevel Delegate;
+	/** The API object that supports this API call */
+	typedef FInventoryAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Player Inventory Level Self
+ * ***DEPRECATED, use /v2/player/me/player-level instead.  Get the levels for items in a player's inventory
+ *     
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `inv:*`, `inv:read_inv:any`
+ * 
+ * - For the player themselves : `inv:read_inv:self`
+*/
+struct RALLYHEREAPI_API FRequest_GetPlayerInventoryLevelSelf : public FRequest
+{
+	FRequest_GetPlayerInventoryLevelSelf();
+	virtual ~FRequest_GetPlayerInventoryLevelSelf() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	TOptional<TArray<int32>> ItemIds;
+};
+
+/** The response type for FRequest_GetPlayerInventoryLevelSelf */
+struct RALLYHEREAPI_API FResponse_GetPlayerInventoryLevelSelf : public FResponseAccessorTemplate<FRHAPI_InventoryLevels, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_InventoryLevels, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_GetPlayerInventoryLevelSelf(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetPlayerInventoryLevelSelf() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_InventoryLevels Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_InventoryLevels& OutContent) const { return TryGetContent<FRHAPI_InventoryLevels>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_InventoryLevels>& OutContent) const { return TryGetContent<FRHAPI_InventoryLevels>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_InventoryLevels* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_InventoryLevels>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_InventoryLevels> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_InventoryLevels>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_InventoryLevels& OutContent) const;
+
+	/* Response 403
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	The specified player was not found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+	/* Response 503
+	Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
+	*/
+	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Number of seconds after which to retry the request */
+	TOptional<int32> GetHeader503_RetryAfter() const;
+
+};
+
+/** The delegate class for FRequest_GetPlayerInventoryLevelSelf */
+DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerInventoryLevelSelf, const FResponse_GetPlayerInventoryLevelSelf&);
+
+/** @brief A helper metadata object for GetPlayerInventoryLevelSelf that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetPlayerInventoryLevelSelf
+{
+	/** The request type */
+	typedef FRequest_GetPlayerInventoryLevelSelf Request;
+	/** The response type */
+	typedef FResponse_GetPlayerInventoryLevelSelf Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetPlayerInventoryLevelSelf Delegate;
+	/** The API object that supports this API call */
+	typedef FInventoryAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
  * @brief Get Player Inventory Self
  * Get the Inventory for the currently authenticated player.
 */
@@ -2563,6 +2805,247 @@ struct RALLYHEREAPI_API Traits_GetPlayerOrdersSelf
 	typedef FResponse_GetPlayerOrdersSelf Response;
 	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetPlayerOrdersSelf Delegate;
+	/** The API object that supports this API call */
+	typedef FInventoryAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Player Uuid Inventory Level
+ * Get the levels for items in a player's inventory
+ * 
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `inv:*`, `inv:read_inv:any`
+ * 
+ * - For the player themselves : `inv:read_inv:self`
+*/
+struct RALLYHEREAPI_API FRequest_GetPlayerUuidInventoryLevel : public FRequest
+{
+	FRequest_GetPlayerUuidInventoryLevel();
+	virtual ~FRequest_GetPlayerUuidInventoryLevel() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PlayerUuid;
+	TOptional<TArray<int32>> ItemIds;
+};
+
+/** The response type for FRequest_GetPlayerUuidInventoryLevel */
+struct RALLYHEREAPI_API FResponse_GetPlayerUuidInventoryLevel : public FResponseAccessorTemplate<FRHAPI_InventoryLevels, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_InventoryLevels, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_GetPlayerUuidInventoryLevel(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetPlayerUuidInventoryLevel() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_InventoryLevels Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_InventoryLevels& OutContent) const { return TryGetContent<FRHAPI_InventoryLevels>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_InventoryLevels>& OutContent) const { return TryGetContent<FRHAPI_InventoryLevels>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_InventoryLevels* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_InventoryLevels>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_InventoryLevels> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_InventoryLevels>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_InventoryLevels& OutContent) const;
+
+	/* Response 403
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	The specified player was not found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+	/* Response 503
+	Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
+	*/
+	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Number of seconds after which to retry the request */
+	TOptional<int32> GetHeader503_RetryAfter() const;
+
+};
+
+/** The delegate class for FRequest_GetPlayerUuidInventoryLevel */
+DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerUuidInventoryLevel, const FResponse_GetPlayerUuidInventoryLevel&);
+
+/** @brief A helper metadata object for GetPlayerUuidInventoryLevel that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetPlayerUuidInventoryLevel
+{
+	/** The request type */
+	typedef FRequest_GetPlayerUuidInventoryLevel Request;
+	/** The response type */
+	typedef FResponse_GetPlayerUuidInventoryLevel Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetPlayerUuidInventoryLevel Delegate;
+	/** The API object that supports this API call */
+	typedef FInventoryAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Player Uuid Inventory Level Self
+ * Get the levels for items in a player's inventory
+ * 
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `inv:*`, `inv:read_inv:any`
+ * 
+ * - For the player themselves : `inv:read_inv:self`
+*/
+struct RALLYHEREAPI_API FRequest_GetPlayerUuidInventoryLevelSelf : public FRequest
+{
+	FRequest_GetPlayerUuidInventoryLevelSelf();
+	virtual ~FRequest_GetPlayerUuidInventoryLevelSelf() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	TOptional<TArray<int32>> ItemIds;
+};
+
+/** The response type for FRequest_GetPlayerUuidInventoryLevelSelf */
+struct RALLYHEREAPI_API FResponse_GetPlayerUuidInventoryLevelSelf : public FResponseAccessorTemplate<FRHAPI_InventoryLevels, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_InventoryLevels, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_GetPlayerUuidInventoryLevelSelf(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetPlayerUuidInventoryLevelSelf() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_InventoryLevels Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_InventoryLevels& OutContent) const { return TryGetContent<FRHAPI_InventoryLevels>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_InventoryLevels>& OutContent) const { return TryGetContent<FRHAPI_InventoryLevels>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_InventoryLevels* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_InventoryLevels>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_InventoryLevels> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_InventoryLevels>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_InventoryLevels& OutContent) const;
+
+	/* Response 403
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	The specified player was not found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+	/* Response 503
+	Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
+	*/
+	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Number of seconds after which to retry the request */
+	TOptional<int32> GetHeader503_RetryAfter() const;
+
+};
+
+/** The delegate class for FRequest_GetPlayerUuidInventoryLevelSelf */
+DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerUuidInventoryLevelSelf, const FResponse_GetPlayerUuidInventoryLevelSelf&);
+
+/** @brief A helper metadata object for GetPlayerUuidInventoryLevelSelf that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetPlayerUuidInventoryLevelSelf
+{
+	/** The request type */
+	typedef FRequest_GetPlayerUuidInventoryLevelSelf Request;
+	/** The response type */
+	typedef FResponse_GetPlayerUuidInventoryLevelSelf Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetPlayerUuidInventoryLevelSelf Delegate;
 	/** The API object that supports this API call */
 	typedef FInventoryAPI API;
 	/** A human readable name for this API call */
@@ -3919,6 +4402,10 @@ public:
 	void OnGetInventorySessionInfoSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetInventorySessionInfoSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr GetPlayerInventory(const FRequest_GetPlayerInventory& Request, const FDelegate_GetPlayerInventory& Delegate = FDelegate_GetPlayerInventory(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetPlayerInventoryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerInventory Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetPlayerInventoryLevel(const FRequest_GetPlayerInventoryLevel& Request, const FDelegate_GetPlayerInventoryLevel& Delegate = FDelegate_GetPlayerInventoryLevel(), int32 Priority = DefaultRallyHereAPIPriority);
+	void OnGetPlayerInventoryLevelResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerInventoryLevel Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetPlayerInventoryLevelSelf(const FRequest_GetPlayerInventoryLevelSelf& Request, const FDelegate_GetPlayerInventoryLevelSelf& Delegate = FDelegate_GetPlayerInventoryLevelSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+	void OnGetPlayerInventoryLevelSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerInventoryLevelSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr GetPlayerInventorySelf(const FRequest_GetPlayerInventorySelf& Request, const FDelegate_GetPlayerInventorySelf& Delegate = FDelegate_GetPlayerInventorySelf(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetPlayerInventorySelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerInventorySelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr GetPlayerInventoryUuid(const FRequest_GetPlayerInventoryUuid& Request, const FDelegate_GetPlayerInventoryUuid& Delegate = FDelegate_GetPlayerInventoryUuid(), int32 Priority = DefaultRallyHereAPIPriority);
@@ -3933,6 +4420,10 @@ public:
 	void OnGetPlayerOrdersResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerOrders Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr GetPlayerOrdersSelf(const FRequest_GetPlayerOrdersSelf& Request, const FDelegate_GetPlayerOrdersSelf& Delegate = FDelegate_GetPlayerOrdersSelf(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetPlayerOrdersSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerOrdersSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetPlayerUuidInventoryLevel(const FRequest_GetPlayerUuidInventoryLevel& Request, const FDelegate_GetPlayerUuidInventoryLevel& Delegate = FDelegate_GetPlayerUuidInventoryLevel(), int32 Priority = DefaultRallyHereAPIPriority);
+	void OnGetPlayerUuidInventoryLevelResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidInventoryLevel Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetPlayerUuidInventoryLevelSelf(const FRequest_GetPlayerUuidInventoryLevelSelf& Request, const FDelegate_GetPlayerUuidInventoryLevelSelf& Delegate = FDelegate_GetPlayerUuidInventoryLevelSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+	void OnGetPlayerUuidInventoryLevelSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidInventoryLevelSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr GetPlayerUuidOrderById(const FRequest_GetPlayerUuidOrderById& Request, const FDelegate_GetPlayerUuidOrderById& Delegate = FDelegate_GetPlayerUuidOrderById(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetPlayerUuidOrderByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidOrderById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr GetPlayerUuidOrderByIdSelf(const FRequest_GetPlayerUuidOrderByIdSelf& Request, const FDelegate_GetPlayerUuidOrderByIdSelf& Delegate = FDelegate_GetPlayerUuidOrderByIdSelf(), int32 Priority = DefaultRallyHereAPIPriority);

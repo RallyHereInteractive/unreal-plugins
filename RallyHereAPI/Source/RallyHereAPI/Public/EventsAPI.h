@@ -15,6 +15,8 @@
 #include "HTTPValidationError.h"
 #include "HzApiErrorModel.h"
 #include "PostGameEventsResponse.h"
+#include "RallyHereEvent.h"
+#include "ValidateEventResponse.h"
 
 namespace RallyHereAPI
 {
@@ -131,6 +133,8 @@ struct RALLYHEREAPI_API FRequest_ReceiveEventsV1 : public FRequest
 	FName GetSimplifiedPathWithVerb() const override;
 
 	FRHAPI_EventList EventList;
+	/* IP Address hint */
+	TOptional<FString> XRhClientAddr;
 };
 
 /** The response type for FRequest_ReceiveEventsV1 */
@@ -220,6 +224,101 @@ struct RALLYHEREAPI_API Traits_ReceiveEventsV1
 	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
 };
 
+/**
+ * @brief Validate Event V1
+ * Validate a single event, return validation result and the event json will be posted to Kafka
+*/
+struct RALLYHEREAPI_API FRequest_ValidateEventV1 : public FRequest
+{
+	FRequest_ValidateEventV1();
+	virtual ~FRequest_ValidateEventV1() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+
+	FRHAPI_RallyHereEvent RallyHereEvent;
+	/* IP Address hint */
+	TOptional<FString> XRhClientAddr;
+};
+
+/** The response type for FRequest_ValidateEventV1 */
+struct RALLYHEREAPI_API FResponse_ValidateEventV1 : public FResponseAccessorTemplate<FRHAPI_ValidateEventResponse, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_ValidateEventResponse, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_ValidateEventV1(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_ValidateEventV1() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_ValidateEventResponse Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_ValidateEventResponse& OutContent) const { return TryGetContent<FRHAPI_ValidateEventResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_ValidateEventResponse>& OutContent) const { return TryGetContent<FRHAPI_ValidateEventResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_ValidateEventResponse* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_ValidateEventResponse>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_ValidateEventResponse> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_ValidateEventResponse>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_ValidateEventResponse& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_ValidateEventV1 */
+DECLARE_DELEGATE_OneParam(FDelegate_ValidateEventV1, const FResponse_ValidateEventV1&);
+
+/** @brief A helper metadata object for ValidateEventV1 that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_ValidateEventV1
+{
+	/** The request type */
+	typedef FRequest_ValidateEventV1 Request;
+	/** The response type */
+	typedef FResponse_ValidateEventV1 Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_ValidateEventV1 Delegate;
+	/** The API object that supports this API call */
+	typedef FEventsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
 
 /** The API class itself, which will handle calls to */
 class RALLYHEREAPI_API FEventsAPI : public FAPI
@@ -232,6 +331,8 @@ public:
 	void OnGetAllEventSchemaResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllEventSchema Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr ReceiveEventsV1(const FRequest_ReceiveEventsV1& Request, const FDelegate_ReceiveEventsV1& Delegate = FDelegate_ReceiveEventsV1(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnReceiveEventsV1Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ReceiveEventsV1 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr ValidateEventV1(const FRequest_ValidateEventV1& Request, const FDelegate_ValidateEventV1& Delegate = FDelegate_ValidateEventV1(), int32 Priority = DefaultRallyHereAPIPriority);
+	void OnValidateEventV1Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ValidateEventV1 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 

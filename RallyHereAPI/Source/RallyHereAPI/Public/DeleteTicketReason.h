@@ -18,11 +18,11 @@
 UENUM(BlueprintType)
 enum class ERHAPI_DeleteTicketReason : uint8
 {
-	Assigned UMETA(ToolTip="An enumeration."),
-	Backfilled UMETA(ToolTip="An enumeration."),
-	LeftQueue UMETA(ToolTip="An enumeration."),
-	Timeout UMETA(ToolTip="An enumeration."),
-	PartyChanged UMETA(ToolTip="An enumeration."),
+	Assigned UMETA(ToolTip=""),
+	Backfilled UMETA(ToolTip=""),
+	LeftQueue UMETA(ToolTip=""),
+	Timeout UMETA(ToolTip=""),
+	PartyChanged UMETA(ToolTip=""),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_DeleteTicketReason& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_DeleteTicketReason& EnumValue);

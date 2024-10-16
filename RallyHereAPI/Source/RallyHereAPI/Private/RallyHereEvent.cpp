@@ -59,6 +59,14 @@ void FRHAPI_RallyHereEvent::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		else
 		RallyHereAPI::WriteJsonValue(Writer, CorrelationId_Optional);
 	}
+	if (ClientIp_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("client_ip"));
+		if (ClientIp_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, ClientIp_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -104,6 +112,13 @@ bool FRHAPI_RallyHereEvent::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		CorrelationId_IsNull = JsonCorrelationIdField->IsNull();
 		CorrelationId_IsSet = CorrelationId_IsNull || TryGetJsonValue(JsonCorrelationIdField, CorrelationId_Optional);
 		ParseSuccess &= CorrelationId_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonClientIpField = (*Object)->TryGetField(TEXT("client_ip"));
+	if (JsonClientIpField.IsValid())
+	{
+		ClientIp_IsNull = JsonClientIpField->IsNull();
+		ClientIp_IsSet = ClientIp_IsNull || TryGetJsonValue(JsonClientIpField, ClientIp_Optional);
+		ParseSuccess &= ClientIp_IsSet;
 	}
 
 	return ParseSuccess;
