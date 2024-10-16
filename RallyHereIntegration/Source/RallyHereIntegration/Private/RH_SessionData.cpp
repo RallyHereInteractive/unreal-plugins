@@ -795,9 +795,11 @@ void URH_OfflineSession::ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, c
 	for (int i=0; i < Update.Teams.Num(); ++i)
 	{
 		auto& SessionTeam = Update.Teams[i];
-		for (auto& TeamPlayer : SessionTeam.Players)
+		const auto PlayerList = SessionTeam.GetPlayers();
+		for (int j = 0; j < PlayerList.Num(); ++j)
 		{
-			if (TeamPlayer.PlayerUuid == PlayerUuid)
+			const auto& TeamPlayer = PlayerList[j];
+			if (TeamPlayer.GetPlayerUuid() == PlayerUuid)
 			{
 				if (Team == i)
 				{
@@ -810,7 +812,8 @@ void URH_OfflineSession::ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, c
 					bFoundPlayer = true;
 					// copy data to stack so we can insert it later
 					Player = TeamPlayer;
-					SessionTeam.Players.RemoveAtSwap(i);
+					// remove the player from the team
+					SessionTeam.GetPlayers().RemoveAtSwap(j);
 
 					break;
 				}
@@ -826,7 +829,9 @@ void URH_OfflineSession::ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, c
 			Update.Teams.AddDefaulted(Team - Update.Teams.Num() + 1);
 		}
 		// insert them into their new team
-		Update.Teams[Team].Players.Add(Player);
+		auto PlayersList = Update.Teams[Team].GetPlayers();
+		PlayersList.Add(Player);
+		Update.Teams[Team].SetPlayers(PlayersList);		
 	}
 
 	ImportSessionUpdateToAllPlayers(UpdateWrapper);
@@ -894,11 +899,11 @@ void URH_OfflineSession::RequestInstance(const FRHAPI_InstanceRequest& InstanceR
 				Instance.SetInstanceId(*InstanceId);
 			}
 			/* Type of the host */
-			Instance.HostType = ERHAPI_HostType::Player;
+			Instance.SetHostType(ERHAPI_HostType::Player);
 			/* Player UUID of the host, if the host is not a dedicated server */
 			Instance.SetHostPlayerUuid(pLPSubsystem->GetLocalPlayerSubsystem()->GetPlayerUuid());
 			/* Is the instance joinable at this time? */
-			Instance.JoinStatus = ERHAPI_InstanceJoinableStatus::Pending;
+			Instance.SetJoinStatus(ERHAPI_InstanceJoinableStatus::Pending);
 			/* Parameters to join the instance */
 			//Instance.JoinParams;
 			/* Parameters used by the instance to startup.  For UE5 this will contain the map and gamemode */
@@ -910,7 +915,7 @@ void URH_OfflineSession::RequestInstance(const FRHAPI_InstanceRequest& InstanceR
 			/* Product Client Version number.  Used for compatibility checking with players */
 			Instance.SetVersion(URH_JoinedSession::GetClientVersionForSession());
 			/* Time the Instance was created, in UTC */
-			Instance.Created = FDateTime::UtcNow();
+			Instance.SetCreated(FDateTime::UtcNow());
 			/* instance-defined custom data */
 			if (const auto* CustomData = InstanceRequest.GetCustomDataOrNull())
 			{
@@ -1011,7 +1016,9 @@ void URH_OfflineSession::UpdateInstanceInfo(const FRHAPI_InstanceInfoUpdate& Ins
 
 	{
 		Update.Instance_IsSet = true;
-		InstanceInfoUpdate.GetJoinStatus(Update.GetInstance().JoinStatus);
+		auto& Instance = Update.Instance_Optional;
+		
+		InstanceInfoUpdate.GetJoinStatus(Instance.JoinStatus);
 		if (InstanceInfoUpdate.GetJoinParams(Update.GetInstance().GetJoinParams()))
 		{
 			Update.GetInstance().JoinParams_IsSet = true;
