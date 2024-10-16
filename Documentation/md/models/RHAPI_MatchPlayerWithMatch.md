@@ -52,7 +52,7 @@ struct FRHAPI_MatchPlayerWithMatch
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__MatchPlayerWithMatch_1a9236a7a919027385f751990607ef828d) | 
 `public bool `[`CustomData_IsSet`](#structFRHAPI__MatchPlayerWithMatch_1a1d6bdbf177397a5d6c436d159aa0cd98) | true if CustomData_Optional has been set to a value
 `public bool `[`CustomData_IsNull`](#structFRHAPI__MatchPlayerWithMatch_1a229e6efbe70354ef6f1ca7d62f2479c9) | true if CustomData_Optional has been explicitly set to null
-`public `[`FRHAPI_MatchValuesOnly`](RHAPI_MatchValuesOnly.md#structFRHAPI__MatchValuesOnly)` `[`Match`](#structFRHAPI__MatchPlayerWithMatch_1ade22f8275e0227e90087168e4c044507) | Match the player was in.
+`public `[`FRHAPI_MatchValuesOnly`](RHAPI_MatchValuesOnly.md#structFRHAPI__MatchValuesOnly)` `[`Match`](#structFRHAPI__MatchPlayerWithMatch_1ade22f8275e0227e90087168e4c044507) | 
 `public virtual bool `[`FromJson`](#structFRHAPI__MatchPlayerWithMatch_1a73baa52cc061a63b165b01d05b144e33)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__MatchPlayerWithMatch_1a5fcdd7fa43a813c275c07c92e435cd64)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FDateTime & `[`GetLastModifiedTimestamp`](#structFRHAPI__MatchPlayerWithMatch_1aa8f81ebc62eb89a7421f89ac7cfaeae9)`()` | Gets the value of LastModifiedTimestamp_Optional, regardless of it having been set.
@@ -321,8 +321,6 @@ true if CustomData_Optional has been set to a value
 true if CustomData_Optional has been explicitly set to null
 
 #### `public `[`FRHAPI_MatchValuesOnly`](RHAPI_MatchValuesOnly.md#structFRHAPI__MatchValuesOnly)` `[`Match`](#structFRHAPI__MatchPlayerWithMatch_1ade22f8275e0227e90087168e4c044507) <a id="structFRHAPI__MatchPlayerWithMatch_1ade22f8275e0227e90087168e4c044507"></a>
-
-Match the player was in.
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__MatchPlayerWithMatch_1a73baa52cc061a63b165b01d05b144e33)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__MatchPlayerWithMatch_1a73baa52cc061a63b165b01d05b144e33"></a>
 

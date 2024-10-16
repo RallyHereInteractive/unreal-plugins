@@ -34,6 +34,9 @@ struct FRHAPI_RallyHereEvent
 `public FString `[`CorrelationId_Optional`](#structFRHAPI__RallyHereEvent_1aa6fc132726228aa208b2cf3758dbcce3) | 
 `public bool `[`CorrelationId_IsSet`](#structFRHAPI__RallyHereEvent_1adbc7c013cc9349f1695bc00ecc4eeea4) | true if CorrelationId_Optional has been set to a value
 `public bool `[`CorrelationId_IsNull`](#structFRHAPI__RallyHereEvent_1a0871d9dce43255044ff55f9e5ed05b75) | true if CorrelationId_Optional has been explicitly set to null
+`public FString `[`ClientIp_Optional`](#structFRHAPI__RallyHereEvent_1a08d6185f310da2a8196ed0ade628dc55) | 
+`public bool `[`ClientIp_IsSet`](#structFRHAPI__RallyHereEvent_1a56c3da0774a79d8919fc56bfcb305e08) | true if ClientIp_Optional has been set to a value
+`public bool `[`ClientIp_IsNull`](#structFRHAPI__RallyHereEvent_1a1ddee9fd54f98d09813fbe9684689a54) | true if ClientIp_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__RallyHereEvent_1a765da0cc13e868c1d18fabf26f80a2e6)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__RallyHereEvent_1a9c95a2faa708fbe1466a82082c00622f)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FGuid & `[`GetEventUuid`](#structFRHAPI__RallyHereEvent_1a5aed540af10d37a0ca89ffbb27772a6a)`()` | Gets the value of EventUuid.
@@ -98,6 +101,18 @@ struct FRHAPI_RallyHereEvent
 `public inline bool `[`IsCorrelationIdSet`](#structFRHAPI__RallyHereEvent_1a175d498d357284e7e2cb3c83c842c564)`() const` | Checks whether CorrelationId_Optional has been set.
 `public inline void `[`SetCorrelationIdToNull`](#structFRHAPI__RallyHereEvent_1a9dae87001a2578ddf64e05b6954a17ed)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsCorrelationIdNull`](#structFRHAPI__RallyHereEvent_1a006272d7943c80e0cf9a0cb01c0e165d)`() const` | Checks whether CorrelationId_Optional is set to null.
+`public inline FString & `[`GetClientIp`](#structFRHAPI__RallyHereEvent_1ac092f2a6fe334c99c042bdce2b1f73dd)`()` | Gets the value of ClientIp_Optional, regardless of it having been set.
+`public inline const FString & `[`GetClientIp`](#structFRHAPI__RallyHereEvent_1ab507263c9320e21325d8a0e718cb5a3c)`() const` | Gets the value of ClientIp_Optional, regardless of it having been set.
+`public inline const FString & `[`GetClientIp`](#structFRHAPI__RallyHereEvent_1abbaafa7232b64ca1e2f63ca8e406dfe4)`(const FString & DefaultValue) const` | Gets the value of ClientIp_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetClientIp`](#structFRHAPI__RallyHereEvent_1a3ac76a980db707dbffed5ced7e7e861f)`(FString & OutValue) const` | Fills OutValue with the value of ClientIp_Optional and returns true if it has been set, otherwise returns false.
+`public inline FString * `[`GetClientIpOrNull`](#structFRHAPI__RallyHereEvent_1ac0994db43ac4773ffd423a363674d079)`()` | Returns a pointer to ClientIp_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetClientIpOrNull`](#structFRHAPI__RallyHereEvent_1a230028ef3a4f98e62042fea3a052bbb7)`() const` | Returns a pointer to ClientIp_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetClientIp`](#structFRHAPI__RallyHereEvent_1aaad8a4f0a0e033905c5a93ca91ce94fe)`(const FString & NewValue)` | Sets the value of ClientIp_Optional and also sets ClientIp_IsSet to true.
+`public inline void `[`SetClientIp`](#structFRHAPI__RallyHereEvent_1afa179a3782f6f417f8e8b1d2e45c3fde)`(FString && NewValue)` | Sets the value of ClientIp_Optional and also sets ClientIp_IsSet to true using move semantics.
+`public inline void `[`ClearClientIp`](#structFRHAPI__RallyHereEvent_1ae43d7fc176c0915100c8b39747953477)`()` | Clears the value of ClientIp_Optional and sets ClientIp_IsSet to false.
+`public inline bool `[`IsClientIpSet`](#structFRHAPI__RallyHereEvent_1aaf30a1bfe95b31e2c14ed7809041ddcd)`() const` | Checks whether ClientIp_Optional has been set.
+`public inline void `[`SetClientIpToNull`](#structFRHAPI__RallyHereEvent_1a2e083729b750963884b930eddc697fda)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsClientIpNull`](#structFRHAPI__RallyHereEvent_1afeea074a648c1f1c9647633ce01d47ba)`() const` | Checks whether ClientIp_Optional is set to null.
 
 ### Members
 
@@ -154,6 +169,16 @@ true if CorrelationId_Optional has been set to a value
 #### `public bool `[`CorrelationId_IsNull`](#structFRHAPI__RallyHereEvent_1a0871d9dce43255044ff55f9e5ed05b75) <a id="structFRHAPI__RallyHereEvent_1a0871d9dce43255044ff55f9e5ed05b75"></a>
 
 true if CorrelationId_Optional has been explicitly set to null
+
+#### `public FString `[`ClientIp_Optional`](#structFRHAPI__RallyHereEvent_1a08d6185f310da2a8196ed0ade628dc55) <a id="structFRHAPI__RallyHereEvent_1a08d6185f310da2a8196ed0ade628dc55"></a>
+
+#### `public bool `[`ClientIp_IsSet`](#structFRHAPI__RallyHereEvent_1a56c3da0774a79d8919fc56bfcb305e08) <a id="structFRHAPI__RallyHereEvent_1a56c3da0774a79d8919fc56bfcb305e08"></a>
+
+true if ClientIp_Optional has been set to a value
+
+#### `public bool `[`ClientIp_IsNull`](#structFRHAPI__RallyHereEvent_1a1ddee9fd54f98d09813fbe9684689a54) <a id="structFRHAPI__RallyHereEvent_1a1ddee9fd54f98d09813fbe9684689a54"></a>
+
+true if ClientIp_Optional has been explicitly set to null
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__RallyHereEvent_1a765da0cc13e868c1d18fabf26f80a2e6)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__RallyHereEvent_1a765da0cc13e868c1d18fabf26f80a2e6"></a>
 
@@ -419,4 +444,52 @@ Sets the value explicitly to be treated as null.
 #### `public inline bool `[`IsCorrelationIdNull`](#structFRHAPI__RallyHereEvent_1a006272d7943c80e0cf9a0cb01c0e165d)`() const` <a id="structFRHAPI__RallyHereEvent_1a006272d7943c80e0cf9a0cb01c0e165d"></a>
 
 Checks whether CorrelationId_Optional is set to null.
+
+#### `public inline FString & `[`GetClientIp`](#structFRHAPI__RallyHereEvent_1ac092f2a6fe334c99c042bdce2b1f73dd)`()` <a id="structFRHAPI__RallyHereEvent_1ac092f2a6fe334c99c042bdce2b1f73dd"></a>
+
+Gets the value of ClientIp_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetClientIp`](#structFRHAPI__RallyHereEvent_1ab507263c9320e21325d8a0e718cb5a3c)`() const` <a id="structFRHAPI__RallyHereEvent_1ab507263c9320e21325d8a0e718cb5a3c"></a>
+
+Gets the value of ClientIp_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetClientIp`](#structFRHAPI__RallyHereEvent_1abbaafa7232b64ca1e2f63ca8e406dfe4)`(const FString & DefaultValue) const` <a id="structFRHAPI__RallyHereEvent_1abbaafa7232b64ca1e2f63ca8e406dfe4"></a>
+
+Gets the value of ClientIp_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetClientIp`](#structFRHAPI__RallyHereEvent_1a3ac76a980db707dbffed5ced7e7e861f)`(FString & OutValue) const` <a id="structFRHAPI__RallyHereEvent_1a3ac76a980db707dbffed5ced7e7e861f"></a>
+
+Fills OutValue with the value of ClientIp_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline FString * `[`GetClientIpOrNull`](#structFRHAPI__RallyHereEvent_1ac0994db43ac4773ffd423a363674d079)`()` <a id="structFRHAPI__RallyHereEvent_1ac0994db43ac4773ffd423a363674d079"></a>
+
+Returns a pointer to ClientIp_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const FString * `[`GetClientIpOrNull`](#structFRHAPI__RallyHereEvent_1a230028ef3a4f98e62042fea3a052bbb7)`() const` <a id="structFRHAPI__RallyHereEvent_1a230028ef3a4f98e62042fea3a052bbb7"></a>
+
+Returns a pointer to ClientIp_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetClientIp`](#structFRHAPI__RallyHereEvent_1aaad8a4f0a0e033905c5a93ca91ce94fe)`(const FString & NewValue)` <a id="structFRHAPI__RallyHereEvent_1aaad8a4f0a0e033905c5a93ca91ce94fe"></a>
+
+Sets the value of ClientIp_Optional and also sets ClientIp_IsSet to true.
+
+#### `public inline void `[`SetClientIp`](#structFRHAPI__RallyHereEvent_1afa179a3782f6f417f8e8b1d2e45c3fde)`(FString && NewValue)` <a id="structFRHAPI__RallyHereEvent_1afa179a3782f6f417f8e8b1d2e45c3fde"></a>
+
+Sets the value of ClientIp_Optional and also sets ClientIp_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearClientIp`](#structFRHAPI__RallyHereEvent_1ae43d7fc176c0915100c8b39747953477)`()` <a id="structFRHAPI__RallyHereEvent_1ae43d7fc176c0915100c8b39747953477"></a>
+
+Clears the value of ClientIp_Optional and sets ClientIp_IsSet to false.
+
+#### `public inline bool `[`IsClientIpSet`](#structFRHAPI__RallyHereEvent_1aaf30a1bfe95b31e2c14ed7809041ddcd)`() const` <a id="structFRHAPI__RallyHereEvent_1aaf30a1bfe95b31e2c14ed7809041ddcd"></a>
+
+Checks whether ClientIp_Optional has been set.
+
+#### `public inline void `[`SetClientIpToNull`](#structFRHAPI__RallyHereEvent_1a2e083729b750963884b930eddc697fda)`()` <a id="structFRHAPI__RallyHereEvent_1a2e083729b750963884b930eddc697fda"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsClientIpNull`](#structFRHAPI__RallyHereEvent_1afeea074a648c1f1c9647633ce01d47ba)`() const` <a id="structFRHAPI__RallyHereEvent_1afeea074a648c1f1c9647633ce01d47ba"></a>
+
+Checks whether ClientIp_Optional is set to null.
 
