@@ -951,7 +951,7 @@ void URH_TestPEXOwner::SubmitPEXHostSummary(FRHAPI_PexHostRequest&& Report) cons
 						GetDefault<URH_IntegrationSettings>()->PexReportPriority
 					);
 			
-					Helper->Start(RH_APIs::GetAPIs().GetPEX(), Request);
+					Helper->Start(RH_APIs::GetAPIs().GetPlayerExperience(), Request);
 				}
 			}
 		}
@@ -1012,7 +1012,7 @@ void URH_TestPEXOwner::SubmitPEXClientSummary(FRHAPI_PexClientRequest&& Report) 
 						GetDefault<URH_IntegrationSettings>()->PexReportPriority
 					);
 				
-					Helper->Start(RH_APIs::GetAPIs().GetPEX(), Request);
+					Helper->Start(RH_APIs::GetAPIs().GetPlayerExperience(), Request);
 				}
 			}
 		}

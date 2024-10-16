@@ -7,7 +7,7 @@
 #include "Misc/Guid.h"
 #include "Templates/SharedPointer.h"
 #include "SessionsAPI.h"
-#include "PEXAPI.h"
+#include "PlayerExperienceAPI.h"
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "RH_SubsystemPluginBase.h"
 #include "RH_PlayerExperienceCollector.h"
