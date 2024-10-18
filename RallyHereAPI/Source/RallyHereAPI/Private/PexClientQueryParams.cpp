@@ -166,14 +166,6 @@ void FRHAPI_PexClientQueryParams::WriteJson(TSharedRef<TJsonWriter<>>& Writer) c
 		else
 		RallyHereAPI::WriteJsonValue(Writer, Version_Optional);
 	}
-	if (PlayerUuid_IsSet)
-	{
-		Writer->WriteIdentifierPrefix(TEXT("player_uuid"));
-		if (PlayerUuid_IsNull)
-			WriteJsonValue(Writer, nullptr);
-		else
-		RallyHereAPI::WriteJsonValue(Writer, PlayerUuid_Optional);
-	}
 	if (DeviceInfo_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("device_info"));
@@ -181,6 +173,14 @@ void FRHAPI_PexClientQueryParams::WriteJson(TSharedRef<TJsonWriter<>>& Writer) c
 			WriteJsonValue(Writer, nullptr);
 		else
 		RallyHereAPI::WriteJsonValue(Writer, DeviceInfo_Optional);
+	}
+	if (PlayerUuid_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("player_uuid"));
+		if (PlayerUuid_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, PlayerUuid_Optional);
 	}
 	Writer->WriteObjectEnd();
 }
@@ -319,19 +319,19 @@ bool FRHAPI_PexClientQueryParams::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 		Version_IsSet = Version_IsNull || TryGetJsonValue(JsonVersionField, Version_Optional);
 		ParseSuccess &= Version_IsSet;
 	}
-	const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
-	if (JsonPlayerUuidField.IsValid())
-	{
-		PlayerUuid_IsNull = JsonPlayerUuidField->IsNull();
-		PlayerUuid_IsSet = PlayerUuid_IsNull || TryGetJsonValue(JsonPlayerUuidField, PlayerUuid_Optional);
-		ParseSuccess &= PlayerUuid_IsSet;
-	}
 	const TSharedPtr<FJsonValue> JsonDeviceInfoField = (*Object)->TryGetField(TEXT("device_info"));
 	if (JsonDeviceInfoField.IsValid())
 	{
 		DeviceInfo_IsNull = JsonDeviceInfoField->IsNull();
 		DeviceInfo_IsSet = DeviceInfo_IsNull || TryGetJsonValue(JsonDeviceInfoField, DeviceInfo_Optional);
 		ParseSuccess &= DeviceInfo_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
+	if (JsonPlayerUuidField.IsValid())
+	{
+		PlayerUuid_IsNull = JsonPlayerUuidField->IsNull();
+		PlayerUuid_IsSet = PlayerUuid_IsNull || TryGetJsonValue(JsonPlayerUuidField, PlayerUuid_Optional);
+		ParseSuccess &= PlayerUuid_IsSet;
 	}
 
 	return ParseSuccess;

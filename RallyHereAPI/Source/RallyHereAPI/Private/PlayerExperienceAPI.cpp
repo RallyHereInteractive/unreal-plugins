@@ -637,13 +637,13 @@ FString FRequest_GetAllPexClientRawByFilter::ComputePath() const
 	{
 		QueryParams.Add(FString(TEXT("version=")) + ToUrlString(Version.GetValue()));
 	}
-	if(PlayerUuid.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("player_uuid=")) + ToUrlString(PlayerUuid.GetValue()));
-	}
 	if(DeviceInfo.IsSet())
 	{
 		QueryParams.Add(FString(TEXT("device_info=")) + ToUrlString(DeviceInfo.GetValue()));
+	}
+	if(PlayerUuid.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("player_uuid=")) + ToUrlString(PlayerUuid.GetValue()));
 	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));
@@ -1022,13 +1022,13 @@ FString FRequest_GetAllPexClientScoresByFilter::ComputePath() const
 	{
 		QueryParams.Add(FString(TEXT("version=")) + ToUrlString(Version.GetValue()));
 	}
-	if(PlayerUuid.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("player_uuid=")) + ToUrlString(PlayerUuid.GetValue()));
-	}
 	if(DeviceInfo.IsSet())
 	{
 		QueryParams.Add(FString(TEXT("device_info=")) + ToUrlString(DeviceInfo.GetValue()));
+	}
+	if(PlayerUuid.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("player_uuid=")) + ToUrlString(PlayerUuid.GetValue()));
 	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));
@@ -1380,6 +1380,10 @@ FString FRequest_GetAllPexHostRawByFilter::ComputePath() const
 	if(Version.IsSet())
 	{
 		QueryParams.Add(FString(TEXT("version=")) + ToUrlString(Version.GetValue()));
+	}
+	if(DeviceInfo.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("device_info=")) + ToUrlString(DeviceInfo.GetValue()));
 	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));
@@ -1757,6 +1761,10 @@ FString FRequest_GetAllPexHostScoresByFilter::ComputePath() const
 	if(Version.IsSet())
 	{
 		QueryParams.Add(FString(TEXT("version=")) + ToUrlString(Version.GetValue()));
+	}
+	if(DeviceInfo.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("device_info=")) + ToUrlString(DeviceInfo.GetValue()));
 	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));

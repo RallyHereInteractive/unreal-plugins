@@ -261,8 +261,8 @@ struct RALLYHEREAPI_API FRequest_GetAllPexClientRawByFilter : public FRequest
 	TOptional<FString> HostPlayerUuid;
 	TOptional<FString> OwningPlayerUuid;
 	TOptional<FString> Version;
-	TOptional<FString> PlayerUuid;
 	TOptional<FString> DeviceInfo;
+	TOptional<FString> PlayerUuid;
 };
 
 /** The response type for FRequest_GetAllPexClientRawByFilter */
@@ -394,8 +394,8 @@ struct RALLYHEREAPI_API FRequest_GetAllPexClientScoresByFilter : public FRequest
 	TOptional<FString> HostPlayerUuid;
 	TOptional<FString> OwningPlayerUuid;
 	TOptional<FString> Version;
-	TOptional<FString> PlayerUuid;
 	TOptional<FString> DeviceInfo;
+	TOptional<FString> PlayerUuid;
 };
 
 /** The response type for FRequest_GetAllPexClientScoresByFilter */
@@ -522,6 +522,7 @@ struct RALLYHEREAPI_API FRequest_GetAllPexHostRawByFilter : public FRequest
 	TOptional<FString> HostPlayerUuid;
 	TOptional<FString> OwningPlayerUuid;
 	TOptional<FString> Version;
+	TOptional<FString> DeviceInfo;
 };
 
 /** The response type for FRequest_GetAllPexHostRawByFilter */
@@ -653,6 +654,7 @@ struct RALLYHEREAPI_API FRequest_GetAllPexHostScoresByFilter : public FRequest
 	TOptional<FString> HostPlayerUuid;
 	TOptional<FString> OwningPlayerUuid;
 	TOptional<FString> Version;
+	TOptional<FString> DeviceInfo;
 };
 
 /** The response type for FRequest_GetAllPexHostScoresByFilter */
