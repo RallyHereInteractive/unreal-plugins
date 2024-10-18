@@ -1159,7 +1159,7 @@ void URH_OnlineSession::CreateOrJoinByType(const FRHAPI_CreateOrJoinRequest& Cre
 	{
 		CreateParamsCopy.SetClientVersion(GetClientVersionForSession());
 	}
-	if (CreateParamsCopy.ClientSettings.IsPlatformSet())
+	if (!CreateParamsCopy.ClientSettings.IsPlatformSet())
 	{
 		CreateParamsCopy.ClientSettings.SetPlatform(RH_GetPlatformFromOSSName(OSS ? OSS->GetSubsystemName() : NAME_None).Get(ERHAPI_Platform::Anon));
 	}
