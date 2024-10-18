@@ -76,8 +76,8 @@ void URH_CatalogSubsystem::GetCatalogAll(const FRH_CatalogCallBlock& Delegate)
 {
 	auto Request = TGetCatalogAll::Request();
 
-	Request.IfNoneMatch = GetCatalogAllETag;
 	Request.AuthContext = GetAuthContext();
+	FRH_ObjectVersionCheck::ApplyDefaultGetBehavior(Request, GetCatalogAllETag);
 
 	if (!TGetCatalogAll::DoCall(RH_APIs::GetCatalogAPI(), Request, TGetCatalogAll::Delegate::CreateUObject(this, &URH_CatalogSubsystem::OnGetCatalogAllResponse, Delegate), GetDefault<URH_IntegrationSettings>()->GetCatalogAllPriority))
 	{
@@ -171,7 +171,7 @@ void URH_CatalogSubsystem::GetCatalogXpAll(const FRH_CatalogCallBlock& Delegate)
 	auto Request = TGetCatalogXpAll::Request();
 	
 	Request.AuthContext = GetAuthContext();
-	Request.IfNoneMatch = GetCatalogXpAllETag;
+	FRH_ObjectVersionCheck::ApplyDefaultGetBehavior(Request, GetCatalogXpAllETag);
 
 	if (!TGetCatalogXpAll::DoCall(RH_APIs::GetCatalogAPI(), Request, TGetCatalogXpAll::Delegate::CreateUObject(this, &URH_CatalogSubsystem::OnGetCatalogXpAllResponse, Delegate), GetDefault<URH_IntegrationSettings>()->GetCatalogXpAllPriority))
 	{
@@ -259,7 +259,7 @@ void URH_CatalogSubsystem::GetCatalogInventoryBucketUseRuleSetsAll(const FRH_Cat
 	auto Request = TGetCatalogInventoryBucketUseRuleSetsAll::Request();
 
 	Request.AuthContext = GetAuthContext();
-	Request.IfNoneMatch = GetCatalogInventoryBucketUseRuleSetsAllETag;
+	FRH_ObjectVersionCheck::ApplyDefaultGetBehavior(Request, GetCatalogInventoryBucketUseRuleSetsAllETag);
 
 	if (!TGetCatalogInventoryBucketUseRuleSetsAll::DoCall(RH_APIs::GetCatalogAPI(), Request, TGetCatalogInventoryBucketUseRuleSetsAll::Delegate::CreateUObject(this, &URH_CatalogSubsystem::OnGetCatalogInventoryBucketUseRuleSetsAllResponse, Delegate), GetDefault<URH_IntegrationSettings>()->GetCatalogInventoryBucketUseRuleSetsAllPriority))
 	{
@@ -420,7 +420,7 @@ void URH_CatalogSubsystem::GetCatalogVendorSingle(int32 VendorId, const FRH_Gene
 			{
 				if (!CacheInfo->GetEtag().IsEmpty())
 				{
-					Request.IfNoneMatch.Emplace(CacheInfo->GetEtag());
+					FRH_ObjectVersionCheck::ApplyDefaultGetBehavior(Request, CacheInfo->GetEtag());
 				}
 			}
 		}
@@ -621,7 +621,7 @@ void URH_CatalogSubsystem::GetCatalogVendorsAll(const FRH_CatalogCallBlock& Dele
 	auto Request = TGetCatalogVendorsAll::Request();
 
 	Request.AuthContext = GetAuthContext();
-	Request.IfNoneMatch = GetCatalogVendorsAllETag;
+	FRH_ObjectVersionCheck::ApplyDefaultGetBehavior(Request, GetCatalogVendorsAllETag);
 
 	if (!TGetCatalogVendorsAll::DoCall(RH_APIs::GetCatalogAPI(), Request, TGetCatalogVendorsAll::Delegate::CreateUObject(this, &URH_CatalogSubsystem::OnGetCatalogVendorsAllResponse, Delegate), GetDefault<URH_IntegrationSettings>()->GetCatalogVendorsAllPriority))
 	{
@@ -674,7 +674,7 @@ void URH_CatalogSubsystem::GetCatalogPricePointsAll(const FRH_CatalogCallBlock& 
 	auto Request = TGetCatalogPricePointsAll::Request();
 	
 	Request.AuthContext = GetAuthContext();
-	Request.IfNoneMatch = GetCatalogPricePointsAllETag;
+	FRH_ObjectVersionCheck::ApplyDefaultGetBehavior(Request, GetCatalogPricePointsAllETag);
 
 	if (!TGetCatalogPricePointsAll::DoCall(RH_APIs::GetCatalogAPI(), Request, TGetCatalogPricePointsAll::Delegate::CreateUObject(this, &URH_CatalogSubsystem::OnGetCatalogPricePointsAllResponse, Delegate), GetDefault<URH_IntegrationSettings>()->GetCatalogPricePointsAllPriority))
 	{
@@ -708,7 +708,7 @@ void URH_CatalogSubsystem::GetCatalogTimeFramesAll(const FRH_CatalogCallBlock& D
 	auto Request = TGetCatalogTimeFramesAll::Request();
 
 	Request.AuthContext = GetAuthContext();
-	Request.IfNoneMatch = GetCatalogTimeFramesAllETag;
+	FRH_ObjectVersionCheck::ApplyDefaultGetBehavior(Request, GetCatalogTimeFramesAllETag);
 
 	if (!TGetCatalogTimeFramesAll::DoCall(RH_APIs::GetCatalogAPI(), Request, TGetCatalogTimeFramesAll::Delegate::CreateUObject(this, &URH_CatalogSubsystem::OnGetCatalogTimeFramesAllResponse, Delegate), GetDefault<URH_IntegrationSettings>()->GetCatalogTimeFramesAllPriority))
 	{

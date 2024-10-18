@@ -128,7 +128,7 @@ bool URH_FriendSubsystem::FetchFriendsList(const FRH_GenericFriendBlock& Delegat
 	Request.Page.Emplace(0);
 	Request.Limit.Emplace(10000);
 	Request.AuthContext = AuthContext;
-	Request.IfNoneMatch.Emplace(FriendsETag);
+	FRH_ObjectVersionCheck::ApplyDefaultGetBehavior(Request, FriendsETag);
 
 	FGuid ActivePlayerUuid;
 	if (AuthContext->GetLoginResult().IsSet() && AuthContext->GetLoginResult()->GetActivePlayerUuid(ActivePlayerUuid) && ActivePlayerUuid.IsValid())
@@ -343,7 +343,7 @@ bool URH_FriendSubsystem::SetDefaultParamsForGetFriendRequest(GetFriendRelations
 	{
 		if (const auto Friend = GetFriendByUuid(Request.OtherPlayerUuid))
 		{
-			Request.IfNoneMatch.Emplace(Friend->Etag);
+			FRH_ObjectVersionCheck::ApplyDefaultGetBehavior(Request, Friend->Etag);
 		}
 	}
 
@@ -1394,7 +1394,7 @@ bool URH_FriendSubsystem::FetchBlockedList(const FRH_GenericFriendBlock& Delegat
 	Request.Page.Emplace(0);
 	Request.Limit.Emplace(10000);
 	Request.AuthContext = AuthContext;
-	Request.IfNoneMatch.Emplace(BlockedPlayersETag);
+	FRH_ObjectVersionCheck::ApplyDefaultGetBehavior(Request, BlockedPlayersETag);
 
 	FGuid ActivePlayerUuid;
 	if (AuthContext->GetLoginResult().IsSet() && AuthContext->GetLoginResult()->GetActivePlayerUuid(ActivePlayerUuid) && ActivePlayerUuid.IsValid())

@@ -85,7 +85,6 @@ void URH_MatchSubsystem::GetMatchAsync(const FString& MatchId, bool bIgnoreCache
 	BaseType::Request Request;
 	Request.AuthContext = GetAuthContext();
 	Request.MatchId = MatchId;
-	//Request.IfNoneMatch = bCached ? CachedMatch.ETag : FString();
 
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateWeakLambda(this, [this](const BaseType::Response& Resp)

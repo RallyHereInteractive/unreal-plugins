@@ -72,8 +72,8 @@ void URH_ConfigSubsystem::FetchKVs(const FRH_GenericSuccessWithErrorBlock& Deleg
 	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
 	GetKVsAPIType::Request Request;
-	Request.IfNoneMatch = KVsETag;
 	Request.AuthContext = GetAuthContext();
+	FRH_ObjectVersionCheck::ApplyDefaultGetBehavior(Request, KVsETag);
 	Request.SetDisableAuthRequirement(true);	// auth is optional for this request, but not passing a valid auth context will cause it to fail client side without this flag
 
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<GetKVsAPIType>>(

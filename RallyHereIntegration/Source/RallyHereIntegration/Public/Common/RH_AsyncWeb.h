@@ -712,5 +712,109 @@ static bool RH_BreakApartURL(const FString& URL, const FString& BaseURL, FString
 
 
 /**
+ * @brief An helper object that will take in an desired version check behavior and apply it to a request
+ */
+USTRUCT(BlueprintType)
+struct FRH_ObjectVersionCheck
+{
+	GENERATED_USTRUCT_BODY();
+
+	/** The value to be passed in the IfMatch header */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString IfMatchHeader;
+	/** The value to be passed in the IfNoneMatch header */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString IfNoneMatchHeader;
+	/** The value to be passed in the IfModifiedSince header, must be in HttpDate format (see FDateTime::ToHttpDate()) */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString IfModifiedSinceHeader;
+	/** The value to be passed in the IfUnmodifiedSince header, must be in HttpDate format (see FDateTime::ToHttpDate()) */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString IfNotModifiedSinceHeader;
+
+	// by default, no checking is done
+	FRH_ObjectVersionCheck(const FString& InIfMatchHeader = FString(), const FString& InIfNoneMatchHeader = FString(), const FString& InIfModifiedSinceHeader = FString(), const FString& InIfNotModifiedSinceHeader = FString())
+		: IfMatchHeader(InIfMatchHeader)
+		, IfNoneMatchHeader(InIfNoneMatchHeader)
+		, IfModifiedSinceHeader(InIfModifiedSinceHeader)
+		, IfNotModifiedSinceHeader(InIfNotModifiedSinceHeader)
+	{
+	}
+
+	// This macro creates a pair of function overrides that are conditionally called based on if the Request type has the specified ValueName (and the type matches ValueType)
+	// This way this handler does not have to know about each type and its subclasses, as long as the version checking values are consistently defined in the subclasses
+#define DECLARE_POTENTIALLY_EXISTING_VALUE_HANDLER(ValueType, ValueName, MUST_BE_EMPTY) \
+	template <typename, typename = void> \
+	struct has_##ValueName : std::false_type {}; /* this is the default implementation of the template, with a default value of false */ \
+	\
+	template <typename T> \
+	struct has_##ValueName<T, std::void_t<decltype(&T::ValueName)>> : std::is_same<ValueType, decltype(std::declval<T>().ValueName)> {}; /* this is the specialization of the template, that determines if the ValueName exists in the type T */ \
+	\
+	template <typename T, typename std::enable_if<has_##ValueName<T>::value, T>::type* = nullptr> \
+	static void SetRequest##ValueName(T& Request, const FString& InValue) { Request.MUST_BE_EMPTY##ValueName = InValue; }; /* this is the first function override, which is called if the ValueName exists in the type T */ \
+	\
+	template <typename T, typename std::enable_if<!has_##ValueName<T>::value, T>::type* = nullptr> \
+	static void SetRequest##ValueName(T& Request, const FString& InValue) { UE_LOG(LogRallyHereIntegration, Warning, TEXT("Attempted to set header %s on a request that does not support it"), #ValueName); }; /* this is the second function override, which is called if the ValueName does not exist in the type T */
+
+	/*
+	template <typename, typename = void>
+	struct has_IfNoneMatch : std::false_type {};
+	
+	template <typename T>
+	struct has_IfNoneMatch<T, std::void_t<decltype(&T::ValueName)>> : std::is_same<TOptional<FString>, decltype(std::declval<T>().ValueName)> {};
+	
+	template <typename T, typename std::enable_if<has_IfNoneMatch<T>::value, T>::type* = nullptr> 
+	static void SetRequestIfNoneMatch(T& Request, const FString& InValue) { Request.ValueName = InValue; };
+	
+	template <typename T, typename std::enable_if<!has_IfNoneMatch<T>::value, T>::type* = nullptr>
+	static void SetRequestIfNoneMatch(T& Request, const FString& InValue) { UE_LOG(LogRallyHereIntegration, Warning, TEXT("Attempted to set header %s on a request that does not support it"), "IfNoneMatch"); };
+	*/
+	
+	DECLARE_POTENTIALLY_EXISTING_VALUE_HANDLER(TOptional<FString>, IfMatch, )
+	DECLARE_POTENTIALLY_EXISTING_VALUE_HANDLER(TOptional<FString>, IfNoneMatch, )
+	DECLARE_POTENTIALLY_EXISTING_VALUE_HANDLER(TOptional<FString>, IfModifiedSince, )
+	DECLARE_POTENTIALLY_EXISTING_VALUE_HANDLER(TOptional<FString>, IfNotModifiedSince, )
+
+	/** @brief Apply the version check behavior to a request */
+	template<typename T, typename TEnableIf<TIsDerivedFrom<T, RallyHereAPI::FRequest>::Value, bool>::Type = true>
+	void ApplyToRequest(T& InRequest) const
+	{
+		if (IfMatchHeader.Len() > 0)
+		{
+			SetRequestIfMatch(InRequest, IfMatchHeader);
+		}
+		if (IfNoneMatchHeader.Len() > 0)
+		{
+			SetRequestIfNoneMatch(InRequest, IfNoneMatchHeader);
+		}
+		if (IfModifiedSinceHeader.Len() > 0)
+		{
+			SetRequestIfModifiedSince(InRequest, IfModifiedSinceHeader);
+		}
+		if (IfNotModifiedSinceHeader.Len() > 0)
+		{
+			SetRequestIfNotModifiedSince(InRequest, IfNotModifiedSinceHeader);
+		}
+	}
+
+	/** @brief Apply the default GET optimization version checking behavior to a request */
+	template<typename T>
+	static void ApplyDefaultGetBehavior(T& Request, const FString& ExistingETag)
+	{
+		FRH_ObjectVersionCheck( FString(), ExistingETag).ApplyToRequest(Request);
+	}
+	/** @brief Apply the default GET optimization version checking behavior to a request */
+	template<typename T>
+	static void ApplyDefaultGetBehavior(T& Request, const TOptional<FString>& ExistingETag)
+	{
+		if (ExistingETag.IsSet())
+		{
+			FRH_ObjectVersionCheck(FString(), ExistingETag.GetValue()).ApplyToRequest(Request);
+		}
+	}
+	
+};
+
+/**
  *  @}
  */

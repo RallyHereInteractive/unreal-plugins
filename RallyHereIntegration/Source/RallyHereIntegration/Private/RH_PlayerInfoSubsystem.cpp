@@ -702,7 +702,7 @@ void URH_PlayerPresence::Poll(const FRH_PollCompleteFunc& Delegate)
 
 	Request.PlayerUuid = GetPlayerInfo()->GetRHPlayerUuid();
 	Request.AuthContext = GetPlayerInfo()->GetAuthContext();
-	Request.IfNoneMatch = ETag;
+	FRH_ObjectVersionCheck::ApplyDefaultGetBehavior(Request, ETag);
 
 	const auto Helper = MakeShared<FRH_SimpleQueryHelper<GetPresenceType>>(
 		GetPresenceType::Delegate::CreateUObject(this, &URH_PlayerPresence::Update),
@@ -733,7 +733,7 @@ void URH_PlayerSessions::Poll(const FRH_PollCompleteFunc& Delegate)
 
 	Request.PlayerUuid = GetPlayerInfo()->GetRHPlayerUuid();
 	Request.AuthContext = GetPlayerInfo()->GetAuthContext();
-	Request.IfNoneMatch = ETag;
+	FRH_ObjectVersionCheck::ApplyDefaultGetBehavior(Request, ETag);
 
 	const auto Helper = MakeShared<FRH_SimpleQueryHelper<GetSessionsType>>(
 		GetSessionsType::Delegate::CreateUObject(this, &URH_PlayerSessions::Update),
@@ -757,13 +757,16 @@ URH_PlayerSettings::URH_PlayerSettings(const FObjectInitializer& ObjectInitializ
 
 void URH_PlayerSettings::GetPlayerSetting(const FString& SettingTypeId, const FString& Key, const FTimespan& StaleThreshold /* = FTimespan()*/, bool bForceRefresh /*= false*/, const FRH_PlayerInfoGetPlayerSettingsBlock& Delegate /*= FRH_PlayerInfoGetPlayerSettingsBlock()*/)
 {
-	if (auto FoundLastRequested = LastRequestSettingsByTypeId.Find(SettingTypeId))
+	auto Existing = PlayerSettingsByTypeId.Find(SettingTypeId);
+
+	if (Existing != nullptr)
 	{
+		const FDateTime& Then = Existing->LastMultiFetchTime;
 		FDateTime Now = FDateTime::UtcNow();
-		if (FoundLastRequested->GetTicks() != 0 && !bForceRefresh)
+		if (Then.GetTicks() != 0 && !bForceRefresh)
 		{
 			// check if we are in the stale threshold, or if it is not set (in which case, always prefer the cache)
-			if ((*FoundLastRequested) + StaleThreshold < Now || StaleThreshold.IsZero())
+			if ((Then + StaleThreshold) < Now || StaleThreshold.IsZero())
 			{
 				// for specific settings requests, we need to check if we have all the keys we need
 				if (auto FoundSettings = PlayerSettingsByTypeId.Find(SettingTypeId))
@@ -817,13 +820,16 @@ void URH_PlayerSettings::OnGetPlayerSettingResponse(const GetSingleSettingType::
 
 void URH_PlayerSettings::GetPlayerSettingsForKeys(const FString& SettingTypeId, const TArray<FString>& Keys, const FTimespan& StaleThreshold /* = FTimespan()*/, bool bForceRefresh /*= false*/, const FRH_PlayerInfoGetPlayerSettingsBlock& Delegate /*= FRH_PlayerInfoGetPlayerSettingsBlock()*/)
 {
-	if (auto FoundLastRequested = LastRequestSettingsByTypeId.Find(SettingTypeId))
+	auto Existing = PlayerSettingsByTypeId.Find(SettingTypeId);
+
+	if (Existing != nullptr)
 	{
+		const FDateTime& Then = Existing->LastMultiFetchTime;
 		FDateTime Now = FDateTime::UtcNow();
-		if (FoundLastRequested->GetTicks() != 0 && !bForceRefresh)
+		if (Then.GetTicks() != 0 && !bForceRefresh)
 		{
 			// check if we are in the stale threshold, or if it is not set (in which case, always prefer the cache)
-			if ((*FoundLastRequested) + StaleThreshold < Now || StaleThreshold.IsZero())
+			if ((Then + StaleThreshold) < Now || StaleThreshold.IsZero())
 			{
 				// for specific settings requests, we need to check if we have all the keys we need
 				if (auto FoundSettings = PlayerSettingsByTypeId.Find(SettingTypeId))
@@ -854,7 +860,7 @@ void URH_PlayerSettings::GetPlayerSettingsForKeys(const FString& SettingTypeId, 
 		}
 	}
 
-	auto Request = GetSettingsType::Request();
+	auto Request = GetSettingsForKeysType::Request();
 	Request.PlayerUuid = GetPlayerInfo()->GetRHPlayerUuid();
 	Request.AuthContext = GetPlayerInfo()->GetAuthContext();
 	Request.SettingTypeId = SettingTypeId;
@@ -862,16 +868,17 @@ void URH_PlayerSettings::GetPlayerSettingsForKeys(const FString& SettingTypeId, 
 	{
 		Request.Key = Keys;
 	}
-	if (!GetSettingsType::DoCall(RH_APIs::GetSettingsAPI(), Request, GetSettingsType::Delegate::CreateUObject(this, &URH_PlayerSettings::OnGetPlayerSettingsResponse, Delegate, SettingTypeId, Request.Key), GetDefault<URH_IntegrationSettings>()->SettingsGetPriority))
+	if (!GetSettingsForKeysType::DoCall(RH_APIs::GetSettingsAPI(), Request, GetSettingsForKeysType::Delegate::CreateUObject(this, &URH_PlayerSettings::OnGetPlayerSettingsResponse, Delegate, SettingTypeId, Request.Key), GetDefault<URH_IntegrationSettings>()->SettingsGetPriority))
 	{
 		FRH_PlayerSettingsDataWrapper EmptyWrapper;
 		Delegate.ExecuteIfBound(false, EmptyWrapper);
 	}
 }
 
-void URH_PlayerSettings::OnGetPlayerSettingsResponse(const GetSettingsType::Response& Response, FRH_PlayerInfoGetPlayerSettingsBlock Delegate, const FString SettingTypeId, TOptional<TArray<FString>> OptionalKeys)
+void URH_PlayerSettings::OnGetPlayerSettingsResponse(const GetSettingsForKeysType::Response& Response, FRH_PlayerInfoGetPlayerSettingsBlock Delegate, const FString SettingTypeId, TOptional<TArray<FString>> OptionalKeys)
 {
 	FRH_PlayerSettingsDataWrapper ResponseWrapper;
+	ResponseWrapper.LastMultiFetchTime = FDateTime::UtcNow();
 
 	const auto Content = Response.TryGetDefaultContentAsPointer();
 	if (Response.IsSuccessful() && Content != nullptr)
@@ -901,24 +908,20 @@ void URH_PlayerSettings::OnGetPlayerSettingsResponse(const GetSettingsType::Resp
 					SettingWrapper.Content.Remove(Key);
 				}
 			}
+
+			SettingWrapper.LastMultiFetchTime = ResponseWrapper.LastMultiFetchTime;
 		}
 		else
 		{
 			// Update the local cache with the new settings (can just use the response wrapper, as it contains a full and complete set)
 			PlayerSettingsByTypeId.Add(SettingTypeId, ResponseWrapper);
-
-			// Update the last request time only if not a partial request, since partial requests are not guaranteed to have all the keys
-			if (!bIsPartial)
-			{
-				LastRequestSettingsByTypeId.Add(SettingTypeId, FDateTime::UtcNow());
-			}
 		}
 	}
 
 	Delegate.ExecuteIfBound(Response.IsSuccessful(), ResponseWrapper);
 }
 
-void URH_PlayerSettings::SetPlayerSetting(const FString& SettingTypeId, const FString& Key, const FRHAPI_SetSinglePlayerSettingRequest& SettingDocument, const FRH_PlayerInfoSetPlayerSettingBlock& Delegate /*= FRH_PlayerInfoSetPlayerSettingsBlock()*/)
+void URH_PlayerSettings::SetPlayerSetting(const FString& SettingTypeId, const FString& Key, const FRHAPI_SetSinglePlayerSettingRequest& SettingDocument, const FRH_PlayerInfoSetPlayerSettingBlock& Delegate /*= FRH_PlayerInfoSetPlayerSettingsBlock()*/, const FRH_ObjectVersionCheck& VersionCheck)
 {
 	auto Request = SetSettingType::Request();
 	Request.PlayerUuid = GetPlayerInfo()->GetRHPlayerUuid();
@@ -926,6 +929,7 @@ void URH_PlayerSettings::SetPlayerSetting(const FString& SettingTypeId, const FS
 	Request.SettingTypeId = SettingTypeId;
 	Request.Key = Key;
 	Request.SetSinglePlayerSettingRequest = SettingDocument;
+	VersionCheck.ApplyToRequest(Request);
 
 	auto UpdatedContent = MakeShared<FRH_PlayerSettingsDataWrapper>();
 
@@ -999,7 +1003,6 @@ void URH_PlayerDeserter::Poll(const FRH_PollCompleteFunc& Delegate)
 
 	Request.PlayerUuid = GetPlayerInfo()->GetRHPlayerUuid();
 	Request.AuthContext = GetPlayerInfo()->GetAuthContext();
-	//Request.IfNoneMatch = ETag;
 
 	const auto Helper = MakeShared<FRH_SimpleQueryHelper<GetDeserterAllType>>(
 		GetDeserterAllType::Delegate::CreateUObject(this, &URH_PlayerDeserter::Update),
@@ -1023,7 +1026,6 @@ void URH_PlayerDeserter::SetDeserterStatus(const FString& DeserterId, const FRHA
 	Request.AuthContext = GetPlayerInfo()->GetAuthContext();
 	Request.DeserterId = DeserterId;
 	Request.DeserterUpdateRequest = NewDeserterStatus;
-	//Request.IfNoneMatch = ETag;
 
 	const auto Helper = MakeShared<FRH_SimpleQueryHelper<SetDeserterType>>(
 		SetDeserterType::Delegate::CreateWeakLambda(this, [this, Delegate](const SetDeserterType::Response& Response)
@@ -1053,8 +1055,6 @@ void URH_PlayerDeserter::ClearDeserterStatus(const FString& DeserterId, const FR
 	Request.PlayerUuid = GetPlayerInfo()->GetRHPlayerUuid();
 	Request.AuthContext = GetPlayerInfo()->GetAuthContext();
 	Request.DeserterId = DeserterId;
-	
-	//Request.IfNoneMatch = ETag;
 
 	const auto Helper = MakeShared<FRH_SimpleQueryHelper<ClearDeserterType>>(
 		ClearDeserterType::Delegate::CreateWeakLambda(this, [this, DeserterId, Delegate](const ClearDeserterType::Response& Response)
@@ -1076,8 +1076,6 @@ void URH_PlayerDeserter::ClearAllDeserterStatus(const FRH_GenericSuccessWithErro
 
 	Request.PlayerUuid = GetPlayerInfo()->GetRHPlayerUuid();
 	Request.AuthContext = GetPlayerInfo()->GetAuthContext();
-	
-	//Request.IfNoneMatch = ETag;
 
 	const auto Helper = MakeShared<FRH_SimpleQueryHelper<ClearAllDeserterType>>(
 		ClearAllDeserterType::Delegate::CreateWeakLambda(this, [this, Delegate](const ClearAllDeserterType::Response& Response)
@@ -1128,7 +1126,7 @@ void URH_PlayerMatches::PollNextPage(const FRH_PollCompleteFunc & Delegate, TSha
 
 	Request.PlayerUuid = GetPlayerInfo()->GetRHPlayerUuid();
 	Request.AuthContext = GetPlayerInfo()->GetAuthContext();
-	//Request.IfNoneMatch = ETag;
+	
 	if (Context.IsValid())
 	{
 		if (!Context->Cursor.IsEmpty())
