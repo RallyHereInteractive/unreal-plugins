@@ -16,7 +16,7 @@
  */
 
 /**
- * @brief Setting version/value data from a specific setting type/key for a player
+ * @brief Setting version/value document from a specific setting type/key for a player
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_SettingData : public FRHAPI_Model
@@ -39,7 +39,7 @@ struct RALLYHEREAPI_API FRHAPI_SettingData : public FRHAPI_Model
 	*/
 	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-	/** @brief Setting Version */
+	/** @brief Version of the Setting Type schema that was used to validate the value document. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 V{ 0 };
 	/** @brief Gets the value of V */
@@ -73,6 +73,73 @@ struct RALLYHEREAPI_API FRHAPI_SettingData : public FRHAPI_Model
 	void SetValueToNull() { Value_IsNull = true; }
 	/** @brief Checks whether Value is set to null */
 	bool IsValueNull() const { return  Value_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Etag_Optional{  };
+	/** @brief true if Etag_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Etag_IsSet{ false };
+	/** @brief true if Etag_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Etag_IsNull{ false };
+	/** @brief Gets the value of Etag_Optional, regardless of it having been set */
+	FString& GetEtag() { return Etag_Optional; }
+	/** @brief Gets the value of Etag_Optional, regardless of it having been set */
+	const FString& GetEtag() const { return Etag_Optional; }
+	/** @brief Gets the value of Etag_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetEtag(const FString& DefaultValue) const { if (Etag_IsSet) return Etag_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Etag_Optional and returns true if it has been set, otherwise returns false */
+	bool GetEtag(FString& OutValue) const { if (Etag_IsSet && !Etag_IsNull) OutValue = Etag_Optional; return Etag_IsSet; }
+	/** @brief Returns a pointer to Etag_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetEtagOrNull() { if (Etag_IsSet) return (Etag_IsNull ? nullptr : &Etag_Optional); return nullptr; }
+	/** @brief Returns a pointer to Etag_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetEtagOrNull() const { if (Etag_IsSet) return (Etag_IsNull ? nullptr : &Etag_Optional); return nullptr; }
+	/** @brief Sets the value of Etag_Optional and also sets Etag_IsSet to true */
+	void SetEtag(const FString& NewValue) { Etag_Optional = NewValue; Etag_IsSet = true; Etag_IsNull = false; }
+	/** @brief Sets the value of Etag_Optional and also sets Etag_IsSet to true using move semantics */
+	void SetEtag(FString&& NewValue) { Etag_Optional = NewValue; Etag_IsSet = true; Etag_IsNull = false; }
+	/** @brief Clears the value of Etag_Optional and sets Etag_IsSet to false */
+	void ClearEtag() { Etag_IsSet = false; Etag_IsNull = false; }
+	/** @brief Checks whether Etag_Optional has been set */
+	bool IsEtagSet() const { return Etag_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetEtagToNull() { Etag_IsSet = true; Etag_IsNull = true; }
+	/** @brief Checks whether Etag_Optional is set to null */
+	bool IsEtagNull() const { return Etag_IsSet && Etag_IsNull; }
+
+	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FDateTime LastModified_Optional{  };
+	/** @brief true if LastModified_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool LastModified_IsSet{ false };
+	/** @brief true if LastModified_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool LastModified_IsNull{ false };
+	/** @brief Gets the value of LastModified_Optional, regardless of it having been set */
+	FDateTime& GetLastModified() { return LastModified_Optional; }
+	/** @brief Gets the value of LastModified_Optional, regardless of it having been set */
+	const FDateTime& GetLastModified() const { return LastModified_Optional; }
+	/** @brief Gets the value of LastModified_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FDateTime& GetLastModified(const FDateTime& DefaultValue) const { if (LastModified_IsSet) return LastModified_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of LastModified_Optional and returns true if it has been set, otherwise returns false */
+	bool GetLastModified(FDateTime& OutValue) const { if (LastModified_IsSet && !LastModified_IsNull) OutValue = LastModified_Optional; return LastModified_IsSet; }
+	/** @brief Returns a pointer to LastModified_Optional, if it has been set, otherwise returns nullptr */
+	FDateTime* GetLastModifiedOrNull() { if (LastModified_IsSet) return (LastModified_IsNull ? nullptr : &LastModified_Optional); return nullptr; }
+	/** @brief Returns a pointer to LastModified_Optional, if it has been set, otherwise returns nullptr */
+	const FDateTime* GetLastModifiedOrNull() const { if (LastModified_IsSet) return (LastModified_IsNull ? nullptr : &LastModified_Optional); return nullptr; }
+	/** @brief Sets the value of LastModified_Optional and also sets LastModified_IsSet to true */
+	void SetLastModified(const FDateTime& NewValue) { LastModified_Optional = NewValue; LastModified_IsSet = true; LastModified_IsNull = false; }
+	/** @brief Sets the value of LastModified_Optional and also sets LastModified_IsSet to true using move semantics */
+	void SetLastModified(FDateTime&& NewValue) { LastModified_Optional = NewValue; LastModified_IsSet = true; LastModified_IsNull = false; }
+	/** @brief Clears the value of LastModified_Optional and sets LastModified_IsSet to false */
+	void ClearLastModified() { LastModified_IsSet = false; LastModified_IsNull = false; }
+	/** @brief Checks whether LastModified_Optional has been set */
+	bool IsLastModifiedSet() const { return LastModified_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetLastModifiedToNull() { LastModified_IsSet = true; LastModified_IsNull = true; }
+	/** @brief Checks whether LastModified_Optional is set to null */
+	bool IsLastModifiedNull() const { return LastModified_IsSet && LastModified_IsNull; }
 };
 
 /** @} */

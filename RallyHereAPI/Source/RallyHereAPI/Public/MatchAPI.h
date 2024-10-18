@@ -147,7 +147,7 @@ struct RALLYHEREAPI_API Traits_CreateMatch
  * 
  * Must have one of the following permissions: any of: `match:*`, `match:match:edit:any`
  * 
- * Or you have match:match:edit:authority and are the host of the match.
+ * Or you have AuthPermissions.MATCH_MATCH_EDIT_AUTHORITY and are the host of the match.
 */
 struct RALLYHEREAPI_API FRequest_CreateMatchPlayer : public FRequest
 {

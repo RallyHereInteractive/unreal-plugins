@@ -642,6 +642,39 @@ struct RALLYHEREAPI_API FRHAPI_PexHostQueryParams : public FRHAPI_Model
 	void SetVersionToNull() { Version_IsSet = true; Version_IsNull = true; }
 	/** @brief Checks whether Version_Optional is set to null */
 	bool IsVersionNull() const { return Version_IsSet && Version_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString DeviceInfo_Optional{  };
+	/** @brief true if DeviceInfo_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool DeviceInfo_IsSet{ false };
+	/** @brief true if DeviceInfo_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool DeviceInfo_IsNull{ false };
+	/** @brief Gets the value of DeviceInfo_Optional, regardless of it having been set */
+	FString& GetDeviceInfo() { return DeviceInfo_Optional; }
+	/** @brief Gets the value of DeviceInfo_Optional, regardless of it having been set */
+	const FString& GetDeviceInfo() const { return DeviceInfo_Optional; }
+	/** @brief Gets the value of DeviceInfo_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetDeviceInfo(const FString& DefaultValue) const { if (DeviceInfo_IsSet) return DeviceInfo_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of DeviceInfo_Optional and returns true if it has been set, otherwise returns false */
+	bool GetDeviceInfo(FString& OutValue) const { if (DeviceInfo_IsSet && !DeviceInfo_IsNull) OutValue = DeviceInfo_Optional; return DeviceInfo_IsSet; }
+	/** @brief Returns a pointer to DeviceInfo_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetDeviceInfoOrNull() { if (DeviceInfo_IsSet) return (DeviceInfo_IsNull ? nullptr : &DeviceInfo_Optional); return nullptr; }
+	/** @brief Returns a pointer to DeviceInfo_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetDeviceInfoOrNull() const { if (DeviceInfo_IsSet) return (DeviceInfo_IsNull ? nullptr : &DeviceInfo_Optional); return nullptr; }
+	/** @brief Sets the value of DeviceInfo_Optional and also sets DeviceInfo_IsSet to true */
+	void SetDeviceInfo(const FString& NewValue) { DeviceInfo_Optional = NewValue; DeviceInfo_IsSet = true; DeviceInfo_IsNull = false; }
+	/** @brief Sets the value of DeviceInfo_Optional and also sets DeviceInfo_IsSet to true using move semantics */
+	void SetDeviceInfo(FString&& NewValue) { DeviceInfo_Optional = NewValue; DeviceInfo_IsSet = true; DeviceInfo_IsNull = false; }
+	/** @brief Clears the value of DeviceInfo_Optional and sets DeviceInfo_IsSet to false */
+	void ClearDeviceInfo() { DeviceInfo_IsSet = false; DeviceInfo_IsNull = false; }
+	/** @brief Checks whether DeviceInfo_Optional has been set */
+	bool IsDeviceInfoSet() const { return DeviceInfo_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetDeviceInfoToNull() { DeviceInfo_IsSet = true; DeviceInfo_IsNull = true; }
+	/** @brief Checks whether DeviceInfo_Optional is set to null */
+	bool IsDeviceInfoNull() const { return DeviceInfo_IsSet && DeviceInfo_IsNull; }
 };
 
 /** @} */

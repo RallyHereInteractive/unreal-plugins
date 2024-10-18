@@ -644,39 +644,6 @@ struct RALLYHEREAPI_API FRHAPI_PexClientQueryParams : public FRHAPI_Model
 	bool IsVersionNull() const { return Version_IsSet && Version_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FString PlayerUuid_Optional{  };
-	/** @brief true if PlayerUuid_Optional has been set to a value */
-	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool PlayerUuid_IsSet{ false };
-	/** @brief true if PlayerUuid_Optional has been explicitly set to null */
-	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool PlayerUuid_IsNull{ false };
-	/** @brief Gets the value of PlayerUuid_Optional, regardless of it having been set */
-	FString& GetPlayerUuid() { return PlayerUuid_Optional; }
-	/** @brief Gets the value of PlayerUuid_Optional, regardless of it having been set */
-	const FString& GetPlayerUuid() const { return PlayerUuid_Optional; }
-	/** @brief Gets the value of PlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetPlayerUuid(const FString& DefaultValue) const { if (PlayerUuid_IsSet) return PlayerUuid_Optional; return DefaultValue; }
-	/** @brief Fills OutValue with the value of PlayerUuid_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPlayerUuid(FString& OutValue) const { if (PlayerUuid_IsSet && !PlayerUuid_IsNull) OutValue = PlayerUuid_Optional; return PlayerUuid_IsSet; }
-	/** @brief Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetPlayerUuidOrNull() { if (PlayerUuid_IsSet) return (PlayerUuid_IsNull ? nullptr : &PlayerUuid_Optional); return nullptr; }
-	/** @brief Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetPlayerUuidOrNull() const { if (PlayerUuid_IsSet) return (PlayerUuid_IsNull ? nullptr : &PlayerUuid_Optional); return nullptr; }
-	/** @brief Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true */
-	void SetPlayerUuid(const FString& NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true; PlayerUuid_IsNull = false; }
-	/** @brief Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true using move semantics */
-	void SetPlayerUuid(FString&& NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true; PlayerUuid_IsNull = false; }
-	/** @brief Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false */
-	void ClearPlayerUuid() { PlayerUuid_IsSet = false; PlayerUuid_IsNull = false; }
-	/** @brief Checks whether PlayerUuid_Optional has been set */
-	bool IsPlayerUuidSet() const { return PlayerUuid_IsSet; }
-	/** @brief Sets the value explicitly to be treated as null */
-	void SetPlayerUuidToNull() { PlayerUuid_IsSet = true; PlayerUuid_IsNull = true; }
-	/** @brief Checks whether PlayerUuid_Optional is set to null */
-	bool IsPlayerUuidNull() const { return PlayerUuid_IsSet && PlayerUuid_IsNull; }
-
-	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString DeviceInfo_Optional{  };
 	/** @brief true if DeviceInfo_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -708,6 +675,39 @@ struct RALLYHEREAPI_API FRHAPI_PexClientQueryParams : public FRHAPI_Model
 	void SetDeviceInfoToNull() { DeviceInfo_IsSet = true; DeviceInfo_IsNull = true; }
 	/** @brief Checks whether DeviceInfo_Optional is set to null */
 	bool IsDeviceInfoNull() const { return DeviceInfo_IsSet && DeviceInfo_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString PlayerUuid_Optional{  };
+	/** @brief true if PlayerUuid_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool PlayerUuid_IsSet{ false };
+	/** @brief true if PlayerUuid_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool PlayerUuid_IsNull{ false };
+	/** @brief Gets the value of PlayerUuid_Optional, regardless of it having been set */
+	FString& GetPlayerUuid() { return PlayerUuid_Optional; }
+	/** @brief Gets the value of PlayerUuid_Optional, regardless of it having been set */
+	const FString& GetPlayerUuid() const { return PlayerUuid_Optional; }
+	/** @brief Gets the value of PlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetPlayerUuid(const FString& DefaultValue) const { if (PlayerUuid_IsSet) return PlayerUuid_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of PlayerUuid_Optional and returns true if it has been set, otherwise returns false */
+	bool GetPlayerUuid(FString& OutValue) const { if (PlayerUuid_IsSet && !PlayerUuid_IsNull) OutValue = PlayerUuid_Optional; return PlayerUuid_IsSet; }
+	/** @brief Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetPlayerUuidOrNull() { if (PlayerUuid_IsSet) return (PlayerUuid_IsNull ? nullptr : &PlayerUuid_Optional); return nullptr; }
+	/** @brief Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetPlayerUuidOrNull() const { if (PlayerUuid_IsSet) return (PlayerUuid_IsNull ? nullptr : &PlayerUuid_Optional); return nullptr; }
+	/** @brief Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true */
+	void SetPlayerUuid(const FString& NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true; PlayerUuid_IsNull = false; }
+	/** @brief Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true using move semantics */
+	void SetPlayerUuid(FString&& NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true; PlayerUuid_IsNull = false; }
+	/** @brief Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false */
+	void ClearPlayerUuid() { PlayerUuid_IsSet = false; PlayerUuid_IsNull = false; }
+	/** @brief Checks whether PlayerUuid_Optional has been set */
+	bool IsPlayerUuidSet() const { return PlayerUuid_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetPlayerUuidToNull() { PlayerUuid_IsSet = true; PlayerUuid_IsNull = true; }
+	/** @brief Checks whether PlayerUuid_Optional is set to null */
+	bool IsPlayerUuidNull() const { return PlayerUuid_IsSet && PlayerUuid_IsNull; }
 };
 
 /** @} */

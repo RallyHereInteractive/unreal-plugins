@@ -844,6 +844,10 @@ bool FRequest_Login::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 	{
 		HttpRequest->SetHeader(TEXT("user-agent"), UserAgent.GetValue());
 	}
+	if (XRhClientAddr.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("x-rh-client-addr"), XRhClientAddr.GetValue());
+	}
 
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
 	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
@@ -1435,6 +1439,10 @@ bool FRequest_OauthLogin::SetupHttpRequest(const FHttpRequestRef& HttpRequest) c
 	{
 		HttpRequest->SetHeader(TEXT("user-agent"), UserAgent.GetValue());
 	}
+	if (XRhClientAddr.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("x-rh-client-addr"), XRhClientAddr.GetValue());
+	}
 
 	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
 	{
@@ -1665,6 +1673,10 @@ bool FRequest_OauthResponse::SetupHttpRequest(const FHttpRequestRef& HttpRequest
 	{
 		HttpRequest->SetHeader(TEXT("user-agent"), UserAgent.GetValue());
 	}
+	if (XRhClientAddr.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("x-rh-client-addr"), XRhClientAddr.GetValue());
+	}
 
 	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
 	{
@@ -1877,6 +1889,10 @@ bool FRequest_OauthTokenExchange::SetupHttpRequest(const FHttpRequestRef& HttpRe
 	if (UserAgent.IsSet())
 	{
 		HttpRequest->SetHeader(TEXT("user-agent"), UserAgent.GetValue());
+	}
+	if (XRhClientAddr.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("x-rh-client-addr"), XRhClientAddr.GetValue());
 	}
 
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
@@ -2161,6 +2177,10 @@ bool FRequest_Token::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 	if (UserAgent.IsSet())
 	{
 		HttpRequest->SetHeader(TEXT("user-agent"), UserAgent.GetValue());
+	}
+	if (XRhClientAddr.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("x-rh-client-addr"), XRhClientAddr.GetValue());
 	}
 
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
@@ -2452,7 +2472,7 @@ FString FResponse_Verify::GetHttpResponseCodeDescription(EHttpResponseCodes::Typ
 	case 200:
 		return TEXT("Successful Response");
 	case 403:
-		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);

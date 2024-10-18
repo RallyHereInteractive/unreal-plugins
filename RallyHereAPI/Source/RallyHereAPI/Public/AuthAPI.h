@@ -342,6 +342,8 @@ struct RALLYHEREAPI_API FRequest_Login : public FRequest
 	TSharedPtr<FAuthContext> AuthContext;
 	FRHAPI_LoginRequestV1 LoginRequestV1;
 	TOptional<FString> UserAgent;
+	/* IP Address hint */
+	TOptional<FString> XRhClientAddr;
 };
 
 /** The response type for FRequest_Login */
@@ -551,6 +553,8 @@ struct RALLYHEREAPI_API FRequest_OauthLogin : public FRequest
 	/* The URI to redirect to after the OAuth flow is complete. If not provided, or does not match one of the preconfigured redirect URIs, the first configured redirect URI will be used. */
 	TOptional<FString> RedirectUri;
 	TOptional<FString> UserAgent;
+	/* IP Address hint */
+	TOptional<FString> XRhClientAddr;
 };
 
 /** The response type for FRequest_OauthLogin */
@@ -654,6 +658,8 @@ struct RALLYHEREAPI_API FRequest_OauthResponse : public FRequest
 	/* The state value sent to the platform provider that is used to continue with the oauth request. */
 	TOptional<FString> State;
 	TOptional<FString> UserAgent;
+	/* IP Address hint */
+	TOptional<FString> XRhClientAddr;
 };
 
 /** The response type for FRequest_OauthResponse */
@@ -756,6 +762,8 @@ struct RALLYHEREAPI_API FRequest_OauthTokenExchange : public FRequest
 	TSharedPtr<FAuthContext> AuthContext;
 	FRHAPI_OAuthTokenExchange OAuthTokenExchange;
 	TOptional<FString> UserAgent;
+	/* IP Address hint */
+	TOptional<FString> XRhClientAddr;
 };
 
 /** The response type for FRequest_OauthTokenExchange */
@@ -859,6 +867,8 @@ struct RALLYHEREAPI_API FRequest_Token : public FRequest
 	TSharedPtr<FAuthContext> AuthContext;
 	FRHAPI_TokenRequest TokenRequest;
 	TOptional<FString> UserAgent;
+	/* IP Address hint */
+	TOptional<FString> XRhClientAddr;
 };
 
 /** The response type for FRequest_Token */
@@ -995,7 +1005,7 @@ struct RALLYHEREAPI_API FResponse_Verify : public FResponseAccessorTemplate<FRHA
 	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
 	/* Response 403
-	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
