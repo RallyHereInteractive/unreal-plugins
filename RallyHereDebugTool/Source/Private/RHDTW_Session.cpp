@@ -889,7 +889,7 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 				// session to session invites
 				ImGui::InputText("Target Session Id", InviteSessionString.GetData(), InviteSessionString.Num());
 				ImGui::SameLine();
-				if (ImGui::Button(TCHAR_TO_UTF8(*FString::Printf(TEXT("Invite Whole Session"), NumTargetedPlayers))))
+				if (ImGui::Button("Invite Whole Session"))
 				{
 					TMap<FString, FString> CustomData;
 					InvitePlayerCustomDataStager.GetCustomDataMap(CustomData);
