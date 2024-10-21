@@ -945,6 +945,7 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 					{
 						ImGui::Text("No Local Platform Session");
 					}
+					ImGui::Text("Local Player Is Scout: %s", Syncer->IsLocalPlayerScout() ? "true" : "false");
 				}
 			}
 
