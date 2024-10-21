@@ -196,29 +196,49 @@ bool URH_PlatformSessionSyncer::IsLocalPlayerScout() const
 	}
 
 	FGuid FirstGuidOnPlatform;
+	FDateTime FirstJoinTime = FDateTime::MaxValue();
 
 	for (const auto& Team : RHSession->GetSessionData().GetTeams())
 	{
 		for (const auto& Player : Team.GetPlayers())
 		{
+			const auto& PlayerUuid = Player.GetPlayerUuid();
+			
+			// only consider players that have joined
+			auto JoinedTime = Player.GetJoinedOrNull();
+			if (JoinedTime == nullptr || JoinedTime->GetTicks() == 0)
+			{
+				continue;
+			}
+
+			// retrieve the joining platform from client settings, and only consider if it matches the current platform
 			const auto* ClientSettings = Player.GetClientSettingsOrNull();
 			if (ClientSettings == nullptr)
 			{
 				continue;
 			}
 			const auto* Platform = ClientSettings->GetPlatformOrNull();
-			if (Platform == nullptr)
+			if (Platform == nullptr || *Platform != RHPlatform)
 			{
 				continue;
 			}
 
-			if (*Platform == RHPlatform)
+			// if we have not encountered any matching players yet, use this player
+			if (!FirstGuidOnPlatform.IsValid())
 			{
-				const auto& PlayerUuid = Player.GetPlayerUuid();
-				if (!FirstGuidOnPlatform.IsValid() || PlayerUuid < FirstGuidOnPlatform)
-				{
-					FirstGuidOnPlatform = PlayerUuid;
-				}
+				FirstGuidOnPlatform = PlayerUuid;
+				FirstJoinTime = *JoinedTime;
+			}
+			// if this player joined first, use them as this reduces chances of a later player joining that has a lower uuid
+			else if (*JoinedTime < FirstJoinTime)
+			{
+				FirstGuidOnPlatform = PlayerUuid;
+				FirstJoinTime = *JoinedTime;
+			}
+			// if this player joined at the same time, use the one with the lowest uuid
+			else if (*JoinedTime == FirstJoinTime && PlayerUuid < FirstGuidOnPlatform)
+			{
+				FirstGuidOnPlatform = PlayerUuid;
 			}
 		}
 	}
