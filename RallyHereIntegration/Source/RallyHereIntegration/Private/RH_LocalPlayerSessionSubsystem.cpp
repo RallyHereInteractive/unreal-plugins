@@ -983,19 +983,18 @@ void URH_LocalPlayerSessionSubsystem::OnPlatformSessionDestroyed(FName SessionNa
 
 void URH_LocalPlayerSessionSubsystem::OnPlatformSessionParticipantsChanged(FName SessionName, const FUniqueNetId& UniqueNetId, bool bJoined)
 {
-	if (!bJoined)
+	if (!bJoined && FilterOSSCallbackUser(UniqueNetId))
 	{
+		// it is possible this was triggered by the platform session syncer leaving a platform session in order to join a new one within a single RH session, if so, we do not want to leave the RH session
+		// otherwise, leave the RH session so that we can mirror the OSS session state
 		const auto* Syncer = GetPlatformSyncerByRHSessionId(SessionName.ToString());
-		if (Syncer != nullptr)
+		if (Syncer != nullptr && Syncer->GetCurrentSyncActionState() != ESyncActionState::LeavePlatformSession)
 		{
-			if (FilterOSSCallbackUser(UniqueNetId))
+			// the local user left a OSS session, update the RH Session
+			const auto RHSession = Syncer->GetRHSession();
+			if (RHSession != nullptr)
 			{
-				// the local user left a OSS session, update the RH Session
-				const auto RHSession = Syncer->GetRHSession();
-				if (RHSession != nullptr)
-				{
-					RHSession->Leave(true);
-				}
+				RHSession->Leave(true);
 			}
 		}
 	}
