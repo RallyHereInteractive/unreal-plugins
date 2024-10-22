@@ -721,23 +721,23 @@ struct FRH_ObjectVersionCheck
 
 	/** The value to be passed in the IfMatch header */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FString IfMatchHeader;
+	FString IfMatch;
 	/** The value to be passed in the IfNoneMatch header */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FString IfNoneMatchHeader;
+	FString IfNoneMatch;
 	/** The value to be passed in the IfModifiedSince header, must be in HttpDate format (see FDateTime::ToHttpDate()) */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FString IfModifiedSinceHeader;
+	FString IfModifiedSince;
 	/** The value to be passed in the IfUnmodifiedSince header, must be in HttpDate format (see FDateTime::ToHttpDate()) */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FString IfNotModifiedSinceHeader;
+	FString IfNotModifiedSince;
 
 	// by default, no checking is done
-	FRH_ObjectVersionCheck(const FString& InIfMatchHeader = FString(), const FString& InIfNoneMatchHeader = FString(), const FString& InIfModifiedSinceHeader = FString(), const FString& InIfNotModifiedSinceHeader = FString())
-		: IfMatchHeader(InIfMatchHeader)
-		, IfNoneMatchHeader(InIfNoneMatchHeader)
-		, IfModifiedSinceHeader(InIfModifiedSinceHeader)
-		, IfNotModifiedSinceHeader(InIfNotModifiedSinceHeader)
+	FRH_ObjectVersionCheck(const FString& InIfMatch = FString(), const FString& InIfNoneMatch = FString(), const FString& InIfModifiedSince = FString(), const FString& InIfNotModifiedSince = FString())
+		: IfMatch(InIfMatch)
+		, IfNoneMatch(InIfNoneMatch)
+		, IfModifiedSince(InIfModifiedSince)
+		, IfNotModifiedSince(InIfNotModifiedSince)
 	{
 	}
 
@@ -779,21 +779,21 @@ struct FRH_ObjectVersionCheck
 	template<typename T, typename TEnableIf<TIsDerivedFrom<T, RallyHereAPI::FRequest>::Value, bool>::Type = true>
 	void ApplyToRequest(T& InRequest) const
 	{
-		if (IfMatchHeader.Len() > 0)
+		if (IfMatch.Len() > 0)
 		{
-			SetRequestIfMatch(InRequest, IfMatchHeader);
+			SetRequestIfMatch(InRequest, IfMatch);
 		}
-		if (IfNoneMatchHeader.Len() > 0)
+		if (IfNoneMatch.Len() > 0)
 		{
-			SetRequestIfNoneMatch(InRequest, IfNoneMatchHeader);
+			SetRequestIfNoneMatch(InRequest, IfNoneMatch);
 		}
-		if (IfModifiedSinceHeader.Len() > 0)
+		if (IfModifiedSince.Len() > 0)
 		{
-			SetRequestIfModifiedSince(InRequest, IfModifiedSinceHeader);
+			SetRequestIfModifiedSince(InRequest, IfModifiedSince);
 		}
-		if (IfNotModifiedSinceHeader.Len() > 0)
+		if (IfNotModifiedSince.Len() > 0)
 		{
-			SetRequestIfNotModifiedSince(InRequest, IfNotModifiedSinceHeader);
+			SetRequestIfNotModifiedSince(InRequest, IfNotModifiedSince);
 		}
 	}
 
