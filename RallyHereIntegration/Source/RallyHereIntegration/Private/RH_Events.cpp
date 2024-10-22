@@ -99,48 +99,10 @@ namespace RHStandardEvents
 			ClientDeviceEvent.RamTotal = MemoryStats.TotalPhysicalGB;
 			ClientDeviceEvent.RamAvailable = ((float)MemoryStats.AvailablePhysical) / (1024.f * 1024.f * 1024.f);
 		}
-
-		//ClientDeviceEvent.Ip;
+		
 		ClientDeviceEvent.DeviceType = FPlatformProperties::PlatformName();
 
-		const auto& IntegrationSettings = GetDefault<URH_IntegrationSettings>();
-		if (IntegrationSettings->ClientDeviceIpEndpoint.Len() > 0)
-		{
-			if (ensure(FModuleManager::Get().IsModuleLoaded("HTTP")))
-			{
-				// use the custom API's retry manager
-				auto HttpRetryManager = RH_APIs::GetAPIs().GetCustom()->GetHttpRetryManager();
-
-				// Create/send Http request for an event
-				TSharedRef<IHttpRequest, ESPMode::ThreadSafe> HttpRequest = HttpRetryManager->CreateRequest(FHttpRetrySystem::FRetryLimitCountSetting(),
-					FHttpRetrySystem::FRetryTimeoutRelativeSecondsSetting(),
-					FHttpRetrySystem::FRetryResponseCodes(),
-					FHttpRetrySystem::FRetryVerbs(),
-					FHttpRetrySystem::FRetryDomainsPtr()
-				);
-
-				HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-				HttpRequest->SetURL(IntegrationSettings->ClientDeviceIpEndpoint);
-				HttpRequest->SetVerb(TEXT("GET"));
-
-				HttpRequest->OnProcessRequestComplete().BindLambda([ClientDeviceEvent, Provider](FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bProcessedSuccess) mutable
-					{
-						if (bProcessedSuccess && HttpResponse != nullptr && EHttpResponseCodes::IsOk(HttpResponse->GetResponseCode()))
-						{
-							ClientDeviceEvent.Ip = HttpResponse->GetContentAsString().TrimStartAndEnd();
-						}
-
-						// emit the event regardless of success
-						ClientDeviceEvent.EmitTo(Provider);
-					});
-
-				HttpRequest->ProcessRequest();
-			}
-		}
-		else
-		{
-			ClientDeviceEvent.EmitTo(Provider);
-		}
+		ClientDeviceEvent.EmitTo(Provider);
 
 	}
 

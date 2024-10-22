@@ -179,6 +179,18 @@ public:
 	 * @brief Gets the Diagnostic Reporter.
 	 */
 	FRH_Diagnostics* GetDiagnostics() const { return Diagnostics.Get(); }
+	
+	/**
+	 * @brief Gets a last-known IP address for use with reporting (this is a secondary global cache of the value on the RH_GameInstanceSubsystem)
+	 * @return The last-known IP address, if known, empty otherwise
+	 */
+	FString GetLastKnownIPAddress() const { return LastKnownIPAddress; }
+	/**
+	 * @brief Sets a last-known IP address for use with reporting
+	 * @param [in] InAddress The last-known IP address to set
+	 */
+	void SetLastKnownIPAddress(const FString& InAddress) { LastKnownIPAddress = InAddress; }
+	
 private:
     RallyHereAPI::FRallyHereAPIAll APIs;
     HttpRetryManagerPtr RetryManager;
@@ -208,6 +220,9 @@ private:
 
 	// Diagnostic tracker and reporter
 	TSharedPtr<FRH_Diagnostics> Diagnostics;
+
+	// The last known IP address
+	FString LastKnownIPAddress;
 };
 
 /** @} */

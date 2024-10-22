@@ -545,8 +545,16 @@ protected:
 	/**
 	 * @brief Start the login to Rally Here.
 	 * @param [in] Req The pending login request.
+	 * @param [in] AuthToken The auth token to use for the login.
 	 */
     virtual void DoRallyHereLogin(FRH_PendingLoginRequest& Req, const FExternalAuthToken& AuthToken);
+	/**
+	 * @brief Start the login to Rally Here.
+	 * @param [in] Req The pending login request.
+	 * @param [in] AuthToken The auth token to use for the login.
+	 * @param [in] IpAddress The IP address of the player logging in. 
+	 */
+	virtual void DoRallyHereLoginWithIpAddress(FRH_PendingLoginRequest& Req, const FExternalAuthToken& AuthToken, const FString& IpAddress);
 	/**
 	 * @brief Handle the response from the login to Rally Here.
 	 * @param [in] Resp Response from the login to Rally Here.

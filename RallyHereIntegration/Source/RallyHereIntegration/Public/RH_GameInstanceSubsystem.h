@@ -165,6 +165,27 @@ public:
 		CustomEndpoint(Request, Delegate);
 	}
 
+	/**
+	 * @brief Gets a last-known IP address for use with reporting
+	 * @return The last-known IP address, if known, empty otherwise
+	 */
+	UFUNCTION(BlueprintPure, Category = "RallyHere|LocalPlayerSubsystem", meta = (DisplayName = "Get Last Known IP Address"))
+	FString GetLastKnownIPAddress() const { return LastKnownIPAddress; }
+
+	/**
+	 * @brief Gets a delegate triggered if the last-known IP address is updated
+	 * @return The delegate
+	 */
+	UFUNCTION(BlueprintPure, Category = "RallyHere|LocalPlayerSubsystem", meta = (DisplayName = "Get Last Known IP Address Update Delegate"))
+	FSimpleMulticastDelegate& GetOnLastKnownIpAddressUpdated() { return OnLastKnownIpAddressUpdated; }
+
+	/**
+	 * @brief Attempts to update the IP address
+	 * @param [in] bForce If true, forces the query to occur even if one is already in progress or has already completed
+	 * @param [in] Delegate The delegate to call when the call is complete
+	 */
+	virtual void QueryIpAddressIfNeeded(bool bForce = false, FSimpleDelegate Delegate = FSimpleDelegate());
+
 protected:
 	/** @brief Auth context used by the Game Instance Subsystem. */
 	FAuthContextPtr AuthContext;
@@ -236,7 +257,22 @@ protected:
 	/** @brief The File Subsystem */
 	UPROPERTY(VisibleInstanceOnly, BlueprintGetter = GetRemoteFileSubsystem, Category = "Match")
 	URH_RemoteFileSubsystem* RemoteFileSubsystem;
-
+	
+	UPROPERTY(VisibleInstanceOnly, BlueprintGetter = GetLastKnownIPAddress, Category = "Match")
+	FString LastKnownIPAddress;
+	
+	enum IpQueryState
+	{
+		IP_QUERY_STATE_NONE,
+		IP_QUERY_STATE_IN_PROGRESS,
+		IP_QUERY_STATE_COMPLETE_SUCCESS,
+		IP_QUERY_STATE_COMPLETE_FAILURE
+	};
+	IpQueryState LastKnownIPAddressQueryState = IP_QUERY_STATE_NONE;
+	
+	FSimpleMulticastDelegate OnLastKnownIpAddressUpdated;
+	TArray<FSimpleDelegate> LastKnownIpAddressUpdateDelegates;
+	
 	// control flags
 	/** @brief If the Game Instance Subsystem is enabled. */
 	UPROPERTY(config)

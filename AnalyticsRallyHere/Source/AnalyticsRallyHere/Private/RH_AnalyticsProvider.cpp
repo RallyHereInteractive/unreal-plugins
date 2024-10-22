@@ -233,6 +233,8 @@ void FRH_AnalyticsProvider::FlushEventsOnce()
 
 	if(ensure(FModuleManager::Get().IsModuleLoaded("RallyHereIntegration")))
 	{
+		Request.XRhClientAddr = FRallyHereIntegrationModule::Get().GetLastKnownIPAddress();
+		
 		// grab event API, then compute the endpoint from a test event
 		auto EventsAPI = RH_APIs::GetEventsAPI();
 
