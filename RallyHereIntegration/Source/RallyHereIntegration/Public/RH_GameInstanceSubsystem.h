@@ -176,7 +176,6 @@ public:
 	 * @brief Gets a delegate triggered if the last-known IP address is updated
 	 * @return The delegate
 	 */
-	UFUNCTION(BlueprintPure, Category = "RallyHere|LocalPlayerSubsystem", meta = (DisplayName = "Get Last Known IP Address Update Delegate"))
 	FSimpleMulticastDelegate& GetOnLastKnownIpAddressUpdated() { return OnLastKnownIpAddressUpdated; }
 
 	/**

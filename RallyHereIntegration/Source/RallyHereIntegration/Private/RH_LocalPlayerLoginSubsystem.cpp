@@ -864,7 +864,7 @@ void URH_LocalPlayerLoginSubsystem::DoRallyHereLogin(FRH_PendingLoginRequest& Re
 	}
 	
 	// query the address if needed, and on callback continue with the login regardless of the result
-	GISS->QueryIpAddressIfNeeded(false, FSimpleDelegate::CreateWeakLambda(this, [this, Req, AuthToken]()
+	GISS->QueryIpAddressIfNeeded(false, FSimpleDelegate::CreateWeakLambda(this, [this, Req, AuthToken]() mutable
 		{
 			auto GISS = GetGameInstanceSubsystem();
 			DoRallyHereLoginWithIpAddress(Req, AuthToken, GISS->GetLastKnownIPAddress());
