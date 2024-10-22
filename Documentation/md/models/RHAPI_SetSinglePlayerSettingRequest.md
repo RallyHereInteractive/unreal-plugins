@@ -6,7 +6,7 @@ title: RHAPI_SetSinglePlayerSettingRequest
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_SetSinglePlayerSettingRequest`](#structFRHAPI__SetSinglePlayerSettingRequest) | Updatable contents of a setting for a player.
+`struct `[`FRHAPI_SetSinglePlayerSettingRequest`](#structFRHAPI__SetSinglePlayerSettingRequest) | Updatable contents of a setting document for a player.
 
 ## struct `FRHAPI_SetSinglePlayerSettingRequest` <a id="structFRHAPI__SetSinglePlayerSettingRequest"></a>
 
@@ -15,14 +15,14 @@ struct FRHAPI_SetSinglePlayerSettingRequest
   : public FRHAPI_Model
 ```
 
-Updatable contents of a setting for a player.
+Updatable contents of a setting document for a player.
 
 ### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public int32 `[`V`](#structFRHAPI__SetSinglePlayerSettingRequest_1ac1b3bbda4460108115c091b7c069ec5d) | Setting Type Version to update setting for. Must be a valid version for the setting type.
-`public `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` `[`Value`](#structFRHAPI__SetSinglePlayerSettingRequest_1af0bd1ebe29d05a508641c4964a2c1c9f) | New value for the setting. Must conform to the jsonschema defined for the setting type+version.
+`public `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` `[`Value`](#structFRHAPI__SetSinglePlayerSettingRequest_1af0bd1ebe29d05a508641c4964a2c1c9f) | New value document for the setting. Must conform to the jsonschema defined for the setting type+version.
 `public bool `[`Value_IsNull`](#structFRHAPI__SetSinglePlayerSettingRequest_1a35d886d8ff5310bf5af477992d279b95) | true if Value has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__SetSinglePlayerSettingRequest_1aa6e79bf5b65d5492bd0d4c3a007ce742)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__SetSinglePlayerSettingRequest_1ab56db8c087056eff44b57274d4c06448)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
@@ -47,7 +47,7 @@ Setting Type Version to update setting for. Must be a valid version for the sett
 
 #### `public `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` `[`Value`](#structFRHAPI__SetSinglePlayerSettingRequest_1af0bd1ebe29d05a508641c4964a2c1c9f) <a id="structFRHAPI__SetSinglePlayerSettingRequest_1af0bd1ebe29d05a508641c4964a2c1c9f"></a>
 
-New value for the setting. Must conform to the jsonschema defined for the setting type+version.
+New value document for the setting. Must conform to the jsonschema defined for the setting type+version.
 
 #### `public bool `[`Value_IsNull`](#structFRHAPI__SetSinglePlayerSettingRequest_1a35d886d8ff5310bf5af477992d279b95) <a id="structFRHAPI__SetSinglePlayerSettingRequest_1a35d886d8ff5310bf5af477992d279b95"></a>
 

@@ -76,6 +76,8 @@ Main integration layer handler.
 `public inline void `[`LockClientSecret`](#classFRH__Integration_1aeb750cd617fad0b3ade042b7a7c1d54a)`(bool bLocked)` | Updates the locked status of the Client Secret.
 `public inline `[`FRH_WebRequests`](WebRequest.md#classFRH__WebRequests)` * `[`GetWebRequestTracker`](#classFRH__Integration_1a3b54823f537913d46a2266f9a4875a16)`() const` | Gets the Web Request Tracker.
 `public inline `[`FRH_Diagnostics`](Diagnostics.md#classFRH__Diagnostics)` * `[`GetDiagnostics`](#classFRH__Integration_1a0f7dc5599a89b010715dba506bb16288)`() const` | Gets the Diagnostic Reporter.
+`public inline FString `[`GetLastKnownIPAddress`](#classFRH__Integration_1ac4d8a9cc9069b4e33bf47138e913980d)`() const` | Gets a last-known IP address for use with reporting (this is a secondary global cache of the value on the RH_GameInstanceSubsystem)
+`public inline void `[`SetLastKnownIPAddress`](#classFRH__Integration_1a1f502f4e83c3d9025a724e66c1260205)`(const FString & InAddress)` | Sets a last-known IP address for use with reporting.
 
 ### Members
 
@@ -230,4 +232,18 @@ Gets the Web Request Tracker.
 #### `public inline `[`FRH_Diagnostics`](Diagnostics.md#classFRH__Diagnostics)` * `[`GetDiagnostics`](#classFRH__Integration_1a0f7dc5599a89b010715dba506bb16288)`() const` <a id="classFRH__Integration_1a0f7dc5599a89b010715dba506bb16288"></a>
 
 Gets the Diagnostic Reporter.
+
+#### `public inline FString `[`GetLastKnownIPAddress`](#classFRH__Integration_1ac4d8a9cc9069b4e33bf47138e913980d)`() const` <a id="classFRH__Integration_1ac4d8a9cc9069b4e33bf47138e913980d"></a>
+
+Gets a last-known IP address for use with reporting (this is a secondary global cache of the value on the RH_GameInstanceSubsystem)
+
+#### Returns
+The last-known IP address, if known, empty otherwise
+
+#### `public inline void `[`SetLastKnownIPAddress`](#classFRH__Integration_1a1f502f4e83c3d9025a724e66c1260205)`(const FString & InAddress)` <a id="classFRH__Integration_1a1f502f4e83c3d9025a724e66c1260205"></a>
+
+Sets a last-known IP address for use with reporting.
+
+#### Parameters
+* `InAddress` The last-known IP address to set
 
