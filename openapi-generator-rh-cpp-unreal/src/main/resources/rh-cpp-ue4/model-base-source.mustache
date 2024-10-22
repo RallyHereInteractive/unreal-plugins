@@ -112,8 +112,7 @@ bool FResponse::ParseJsonTypeContent()
 
 	ClearPayload();
 
-	TSharedPtr<FJsonValue>
-	JsonValue;
+	TSharedPtr<FJsonValue> JsonValue;
 	const FString ContentAsString = HttpResponse->GetContentAsString();
 
 	if (ContentAsString.Len() == 0 || ContentAsString.TrimStart().Len() == 0)
