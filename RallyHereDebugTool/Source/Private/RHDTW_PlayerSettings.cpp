@@ -15,6 +15,7 @@ FRHDTW_PlayerSettings::FRHDTW_PlayerSettings()
 	DefaultPos = FVector2D(610, 20);
 
 	SettingVersionNum = 0;
+	bModifySettingOnlyIfMatch = false;
 }
 
 FRHDTW_PlayerSettings::~FRHDTW_PlayerSettings()
@@ -72,7 +73,28 @@ void FRHDTW_PlayerSettings::DoViewSettings()
 
 	if (ImGui::Button("Get Setting Data"))
 	{
-		Settings->GetPlayerSetting(FetchSettingsIdInput, FetchSettingsKeyInput, FTimespan(), true, FRH_PlayerInfoGetPlayerSettingsBlock());
+		const auto TrimmedKeyList = FetchSettingsKeyInput.TrimStartAndEnd();
+		if (TrimmedKeyList.Len() > 0)
+		{
+			TArray<FString> KeyList;
+			TrimmedKeyList.ParseIntoArray(KeyList, TEXT(","), true);
+
+			// if only one key, fetch that key specifically via a single fetch, else do a multi key fetch
+			if (KeyList.Num() == 1)
+			{
+				Settings->GetPlayerSetting(FetchSettingsIdInput, KeyList.Last(), FTimespan(), true, FRH_PlayerInfoGetPlayerSettingsBlock());
+			}
+			else
+			{
+				Settings->GetPlayerSettingsForKeys(FetchSettingsIdInput, KeyList, FTimespan(), true, FRH_PlayerInfoGetPlayerSettingsBlock());
+			}
+		}
+		else
+		{
+			// an empty key field means to fetch all keys
+			Settings->GetPlayerSettingsForKeys(FetchSettingsIdInput, TArray<FString>(), FTimespan(), true, FRH_PlayerInfoGetPlayerSettingsBlock());
+		}
+		
 	}
 	ImGui::Separator();
 
@@ -86,12 +108,16 @@ void FRHDTW_PlayerSettings::DoViewSettings()
 			{
 				if (ImGui::CollapsingHeader(TCHAR_TO_UTF8(*(Pair.Key + " - " + contentPair.Key))))
 				{
+					ImGuiDisplayCopyableValue(TEXT("ETag"), contentPair.Value.GetEtagOrNull());
+					ImGuiDisplayCopyableValue(TEXT("LastModified"), contentPair.Value.GetLastModifiedOrNull());
+					
 					const FRHAPI_JsonValue& FRHAPIJsonValue = contentPair.Value.GetValue();
 					FString PrettyJson;
 
 					if (FJsonSerializer::Serialize(FRHAPIJsonValue.GetValue(), TEXT(""), TJsonWriterFactory<>::Create(&PrettyJson)))
 					{
 						ImGui::Text("%s", TCHAR_TO_UTF8(*PrettyJson));
+						ImGuiDisplayCopyButton(TEXT("Json"), PrettyJson);
 					}
 				}
 			}
@@ -117,6 +143,7 @@ void FRHDTW_PlayerSettings::DoModifySettings()
 	ImGui::InputText("Settings Id", &ModifySettingsIdInput);
 	ImGui::InputText("Key", &ModifySettingsKeyInput);
 	ImGui::InputInt("Schema Version", &SettingVersionNum);
+	ImGui::Checkbox("Check If Current", &bModifySettingOnlyIfMatch);
 	ImGui::InputTextMultiline("Json Document", &ModifySettingsJsonInput);
 
 	if (!SetPlayerSettingActionResult.IsEmpty())
@@ -144,8 +171,31 @@ void FRHDTW_PlayerSettings::DoModifySettings()
 				SetPlayerSettingActionResult.Empty();
 				if (PlayerInfo && PlayerInfo->GetSettings())
 				{
+					auto Settings = PlayerInfo->GetSettings();
+					FRH_ObjectVersionCheck ObjectVersionCheck;
+
+					// if using string matching, get the current etag and set it in the request
+					if (bModifySettingOnlyIfMatch)
+					{
+						const auto& SettingsMap = Settings->GetAllStoredPlayerSettings();
+						const auto SettingKeyData = SettingsMap.Find(ModifySettingsIdInput);
+						const auto SettingValueData = SettingKeyData ? SettingKeyData->Content.Find(ModifySettingsKeyInput) : nullptr;
+						const auto ExistingEtag = SettingValueData ? SettingValueData->GetEtag(TEXT("")) : TEXT("");
+
+						if (!ExistingEtag.IsEmpty())
+						{
+							ObjectVersionCheck.IfMatch = ExistingEtag;
+						}
+						else
+						{
+							// if no etag, fail the request and add an error.  Do not call API as we we are not in a valid state based on the options to not modify the data if it does not match
+							SetPlayerSettingActionResult += TEXT("[") + GetShortUuid(PlayerInfo->GetRHPlayerUuid()) + TEXT("] Modifying setting failed - No ETag to match against.") LINE_TERMINATOR;
+							return;
+						}							
+					}
+					
 					auto Delegate = FRH_PlayerInfoSetPlayerSettingDelegate::CreateSP(SharedThis(this), &FRHDTW_PlayerSettings::HandleSetPlayerSettingResponse, PlayerInfo->GetRHPlayerUuid());
-					PlayerInfo->GetSettings()->SetPlayerSetting(ModifySettingsIdInput, ModifySettingsKeyInput, SettingData, MoveTemp(Delegate));
+					Settings->SetPlayerSetting(ModifySettingsIdInput, ModifySettingsKeyInput, SettingData, MoveTemp(Delegate), ObjectVersionCheck);
 				}
 			}));
 	}

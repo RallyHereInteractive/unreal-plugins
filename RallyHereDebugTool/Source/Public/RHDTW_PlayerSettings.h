@@ -24,6 +24,7 @@ struct FRHDTW_PlayerSettings : public FRH_DebugToolWindow
 	FString ModifySettingsIdInput;
 	FString ModifySettingsKeyInput;
 	FString ModifySettingsJsonInput;
+	bool bModifySettingOnlyIfMatch;
 
 private:
 	FString SetPlayerSettingActionResult;
