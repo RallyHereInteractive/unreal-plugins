@@ -41,7 +41,10 @@ struct FRH_EnvironmentConfiguration
 /**
  * @brief Main settings for the Integration.
  */
-UCLASS(Config = RallyHereIntegration, DefaultConfig, meta = (DisplayName = "Rally Here Integration Settings"))
+UCLASS(Config = RallyHereIntegration, DefaultConfig, meta = (
+	DisplayName = "Rally Here Integration Settings",
+	Tooltip = "Settings for RallyHere Integration.\nIf this is your first time here, please visit https://docs.rallyhere.gg/ and follow the Unreal Quickstart Guide to walk you through your initial setup."
+	))
 class RALLYHEREINTEGRATION_API URH_IntegrationSettings : public UDeveloperSettings
 {
     GENERATED_UCLASS_BODY()
