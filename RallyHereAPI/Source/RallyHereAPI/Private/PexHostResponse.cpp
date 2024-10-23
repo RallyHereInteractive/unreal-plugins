@@ -325,6 +325,14 @@ void FRHAPI_PexHostResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		else
 		RallyHereAPI::WriteJsonValue(Writer, DeviceInfo_Optional);
 	}
+	if (PlatformId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("platform_id"));
+		if (PlatformId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, EnumToString(PlatformId_Optional));
+	}
 	if (CustomData_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("custom_data"));
@@ -618,6 +626,13 @@ bool FRHAPI_PexHostResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		DeviceInfo_IsNull = JsonDeviceInfoField->IsNull();
 		DeviceInfo_IsSet = DeviceInfo_IsNull || TryGetJsonValue(JsonDeviceInfoField, DeviceInfo_Optional);
 		ParseSuccess &= DeviceInfo_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonPlatformIdField = (*Object)->TryGetField(TEXT("platform_id"));
+	if (JsonPlatformIdField.IsValid())
+	{
+		PlatformId_IsNull = JsonPlatformIdField->IsNull();
+		PlatformId_IsSet = PlatformId_IsNull || TryGetJsonValue(JsonPlatformIdField, PlatformId_Optional);
+		ParseSuccess &= PlatformId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
 	if (JsonCustomDataField.IsValid())

@@ -9,6 +9,7 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
+#include "MatchPlatform.h"
 #include "PexClientQueryParams.generated.h"
 
 /** @defgroup RHAPI_PexClientQueryParams RallyHere API Model PexClientQueryParams
@@ -644,37 +645,37 @@ struct RALLYHEREAPI_API FRHAPI_PexClientQueryParams : public FRHAPI_Model
 	bool IsVersionNull() const { return Version_IsSet && Version_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FString DeviceInfo_Optional{  };
-	/** @brief true if DeviceInfo_Optional has been set to a value */
+	ERHAPI_MatchPlatform PlatformId_Optional{  };
+	/** @brief true if PlatformId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool DeviceInfo_IsSet{ false };
-	/** @brief true if DeviceInfo_Optional has been explicitly set to null */
+	bool PlatformId_IsSet{ false };
+	/** @brief true if PlatformId_Optional has been explicitly set to null */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool DeviceInfo_IsNull{ false };
-	/** @brief Gets the value of DeviceInfo_Optional, regardless of it having been set */
-	FString& GetDeviceInfo() { return DeviceInfo_Optional; }
-	/** @brief Gets the value of DeviceInfo_Optional, regardless of it having been set */
-	const FString& GetDeviceInfo() const { return DeviceInfo_Optional; }
-	/** @brief Gets the value of DeviceInfo_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetDeviceInfo(const FString& DefaultValue) const { if (DeviceInfo_IsSet) return DeviceInfo_Optional; return DefaultValue; }
-	/** @brief Fills OutValue with the value of DeviceInfo_Optional and returns true if it has been set, otherwise returns false */
-	bool GetDeviceInfo(FString& OutValue) const { if (DeviceInfo_IsSet && !DeviceInfo_IsNull) OutValue = DeviceInfo_Optional; return DeviceInfo_IsSet; }
-	/** @brief Returns a pointer to DeviceInfo_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetDeviceInfoOrNull() { if (DeviceInfo_IsSet) return (DeviceInfo_IsNull ? nullptr : &DeviceInfo_Optional); return nullptr; }
-	/** @brief Returns a pointer to DeviceInfo_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetDeviceInfoOrNull() const { if (DeviceInfo_IsSet) return (DeviceInfo_IsNull ? nullptr : &DeviceInfo_Optional); return nullptr; }
-	/** @brief Sets the value of DeviceInfo_Optional and also sets DeviceInfo_IsSet to true */
-	void SetDeviceInfo(const FString& NewValue) { DeviceInfo_Optional = NewValue; DeviceInfo_IsSet = true; DeviceInfo_IsNull = false; }
-	/** @brief Sets the value of DeviceInfo_Optional and also sets DeviceInfo_IsSet to true using move semantics */
-	void SetDeviceInfo(FString&& NewValue) { DeviceInfo_Optional = NewValue; DeviceInfo_IsSet = true; DeviceInfo_IsNull = false; }
-	/** @brief Clears the value of DeviceInfo_Optional and sets DeviceInfo_IsSet to false */
-	void ClearDeviceInfo() { DeviceInfo_IsSet = false; DeviceInfo_IsNull = false; }
-	/** @brief Checks whether DeviceInfo_Optional has been set */
-	bool IsDeviceInfoSet() const { return DeviceInfo_IsSet; }
+	bool PlatformId_IsNull{ false };
+	/** @brief Gets the value of PlatformId_Optional, regardless of it having been set */
+	ERHAPI_MatchPlatform& GetPlatformId() { return PlatformId_Optional; }
+	/** @brief Gets the value of PlatformId_Optional, regardless of it having been set */
+	const ERHAPI_MatchPlatform& GetPlatformId() const { return PlatformId_Optional; }
+	/** @brief Gets the value of PlatformId_Optional, if it has been set, otherwise it returns DefaultValue */
+	const ERHAPI_MatchPlatform& GetPlatformId(const ERHAPI_MatchPlatform& DefaultValue) const { if (PlatformId_IsSet) return PlatformId_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of PlatformId_Optional and returns true if it has been set, otherwise returns false */
+	bool GetPlatformId(ERHAPI_MatchPlatform& OutValue) const { if (PlatformId_IsSet && !PlatformId_IsNull) OutValue = PlatformId_Optional; return PlatformId_IsSet; }
+	/** @brief Returns a pointer to PlatformId_Optional, if it has been set, otherwise returns nullptr */
+	ERHAPI_MatchPlatform* GetPlatformIdOrNull() { if (PlatformId_IsSet) return (PlatformId_IsNull ? nullptr : &PlatformId_Optional); return nullptr; }
+	/** @brief Returns a pointer to PlatformId_Optional, if it has been set, otherwise returns nullptr */
+	const ERHAPI_MatchPlatform* GetPlatformIdOrNull() const { if (PlatformId_IsSet) return (PlatformId_IsNull ? nullptr : &PlatformId_Optional); return nullptr; }
+	/** @brief Sets the value of PlatformId_Optional and also sets PlatformId_IsSet to true */
+	void SetPlatformId(const ERHAPI_MatchPlatform& NewValue) { PlatformId_Optional = NewValue; PlatformId_IsSet = true; PlatformId_IsNull = false; }
+	/** @brief Sets the value of PlatformId_Optional and also sets PlatformId_IsSet to true using move semantics */
+	void SetPlatformId(ERHAPI_MatchPlatform&& NewValue) { PlatformId_Optional = NewValue; PlatformId_IsSet = true; PlatformId_IsNull = false; }
+	/** @brief Clears the value of PlatformId_Optional and sets PlatformId_IsSet to false */
+	void ClearPlatformId() { PlatformId_IsSet = false; PlatformId_IsNull = false; }
+	/** @brief Checks whether PlatformId_Optional has been set */
+	bool IsPlatformIdSet() const { return PlatformId_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetDeviceInfoToNull() { DeviceInfo_IsSet = true; DeviceInfo_IsNull = true; }
-	/** @brief Checks whether DeviceInfo_Optional is set to null */
-	bool IsDeviceInfoNull() const { return DeviceInfo_IsSet && DeviceInfo_IsNull; }
+	void SetPlatformIdToNull() { PlatformId_IsSet = true; PlatformId_IsNull = true; }
+	/** @brief Checks whether PlatformId_Optional is set to null */
+	bool IsPlatformIdNull() const { return PlatformId_IsSet && PlatformId_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString PlayerUuid_Optional{  };

@@ -20936,7 +20936,7 @@
           "Match"
         ],
         "summary": "Create Match Player",
-        "description": "Create player match record for the provided player_uuid and match_id\n\nMust have one of the following permissions: any of: `match:*`, `match:match:edit:any`\n\nOr you have AuthPermissions.MATCH_MATCH_EDIT_AUTHORITY and are the host of the match.",
+        "description": "Create player match record for the provided player_uuid and match_id\n\nMust have one of the following permissions: any of: `match:*`, `match:match:edit:any`\n\nOr you have any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority` and are the host of the match.",
         "operationId": "create_match_player",
         "security": [
           {
@@ -21990,19 +21990,19 @@
             }
           },
           {
-            "name": "device_info",
+            "name": "platform_id",
             "in": "query",
             "required": false,
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "$ref": "#/components/schemas/MatchPlatform"
                 },
                 {
                   "type": "null"
                 }
               ],
-              "title": "Device Info"
+              "title": "Platform Id"
             }
           }
         ],
@@ -22398,19 +22398,19 @@
             }
           },
           {
-            "name": "device_info",
+            "name": "platform_id",
             "in": "query",
             "required": false,
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "$ref": "#/components/schemas/MatchPlatform"
                 },
                 {
                   "type": "null"
                 }
               ],
-              "title": "Device Info"
+              "title": "Platform Id"
             }
           }
         ],
@@ -22796,19 +22796,19 @@
             }
           },
           {
-            "name": "device_info",
+            "name": "platform_id",
             "in": "query",
             "required": false,
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "$ref": "#/components/schemas/MatchPlatform"
                 },
                 {
                   "type": "null"
                 }
               ],
-              "title": "Device Info"
+              "title": "Platform Id"
             }
           },
           {
@@ -23220,19 +23220,19 @@
             }
           },
           {
-            "name": "device_info",
+            "name": "platform_id",
             "in": "query",
             "required": false,
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "$ref": "#/components/schemas/MatchPlatform"
                 },
                 {
                   "type": "null"
                 }
               ],
-              "title": "Device Info"
+              "title": "Platform Id"
             }
           },
           {
@@ -26128,7 +26128,7 @@
           "Reports"
         ],
         "summary": "Create Report For Target Player Uuid",
-        "description": "Create a new report for a target player\nRequired Permissions:\nIf `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:*`, `sanction:report:create:any`, `sanction:report:create:self`\nOtherwise: any of: `sanction:*`, `sanction:report:create:any`",
+        "description": "Create a new report for a target player\nRequired Permissions:\nIf `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:any`, `sanction:*`, `sanction:report:create:self`\nOtherwise: any of: `sanction:report:create:any`, `sanction:*`",
         "operationId": "create_report_for_target_player_uuid",
         "security": [
           {
@@ -28774,6 +28774,29 @@
         "title": "CreatePlatformUserRequest",
         "description": "Request parameters to create a user exists"
       },
+      "DeviceType": {
+        "type": "string",
+        "enum": [
+          "pc",
+          "xbox_series",
+          "xbox_one",
+          "web"
+        ],
+        "title": "DeviceType",
+        "description": "An enumeration.",
+        "x-enum-descriptions": [
+          "",
+          "",
+          "",
+          ""
+        ],
+        "x-enum-varnames": [
+          "pc",
+          "xbox_series",
+          "xbox_one",
+          "web"
+        ]
+      },
       "GrantType": {
         "type": "string",
         "enum": [
@@ -28795,23 +28818,6 @@
         ],
         "title": "GrantType",
         "description": "Supported grant types for V1 Login Flow",
-        "x-enum-varnames": [
-          "ANON",
-          "GOOGLE",
-          "APPLE",
-          "REFRESH",
-          "EPIC",
-          "XBOXLIVE",
-          "PS4_V1",
-          "PS4_V3",
-          "PS5_V3",
-          "NINTENDO",
-          "NINTENDO_SWITCH",
-          "STEAM",
-          "BASIC",
-          "RALLYHERE",
-          "CLIENT_CREDENTIALS"
-        ],
         "x-enum-descriptions": [
           "Anonymous authentication",
           "Google authentication",
@@ -28828,6 +28834,23 @@
           "Basic Username/Password authentication",
           "RallyHere Developer authentication",
           "Authentication that doesn't require user credentials, only a Client ID/Secret in the Authorization header."
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "GOOGLE",
+          "APPLE",
+          "REFRESH",
+          "EPIC",
+          "XBOXLIVE",
+          "PS4_V1",
+          "PS4_V3",
+          "PS5_V3",
+          "NINTENDO",
+          "NINTENDO_SWITCH",
+          "STEAM",
+          "BASIC",
+          "RALLYHERE",
+          "CLIENT_CREDENTIALS"
         ]
       },
       "HTTPValidationError": {
@@ -28877,19 +28900,19 @@
         ],
         "title": "LinkAction",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "link",
-          "unlink",
-          "new_person",
-          "xprog_enable",
-          "xprog_disable"
-        ],
         "x-enum-descriptions": [
           "Linked a player to an existing person",
           "Unlinked a player from a person",
           "Player was associated with a new person",
           "Active player was set for person, enabling cross-progression for all of the person's players",
           "Active player was cleared for person, disabling cross-progression for all of the person's players"
+        ],
+        "x-enum-varnames": [
+          "link",
+          "unlink",
+          "new_person",
+          "xprog_enable",
+          "xprog_disable"
         ]
       },
       "LoginHistoryEntry": {
@@ -29266,11 +29289,11 @@
         ],
         "title": "OAuthGrantType",
         "description": "Supported OAuth2 grant types",
-        "x-enum-varnames": [
-          "CLIENT_CREDENTIALS"
-        ],
         "x-enum-descriptions": [
           "The OAuth2 client credentials grant type"
+        ],
+        "x-enum-varnames": [
+          "CLIENT_CREDENTIALS"
         ]
       },
       "OAuthPortal": {
@@ -29288,17 +29311,6 @@
         ],
         "title": "OAuthPortal",
         "description": "Supported OAuth portals for V1 Login Flow",
-        "x-enum-varnames": [
-          "GOOGLE",
-          "APPLE",
-          "EPIC",
-          "XBOX",
-          "PSN",
-          "NINTENDO",
-          "STEAM",
-          "AMAZON",
-          "TWITCH"
-        ],
         "x-enum-descriptions": [
           "Google OAuth Portal",
           "Apple OAuth Portal",
@@ -29309,6 +29321,17 @@
           "Steam OAuth Portal",
           "Amazon OAuth Portal",
           "Twitch OAuth Portal"
+        ],
+        "x-enum-varnames": [
+          "GOOGLE",
+          "APPLE",
+          "EPIC",
+          "XBOX",
+          "PSN",
+          "NINTENDO",
+          "STEAM",
+          "AMAZON",
+          "TWITCH"
         ]
       },
       "OAuthTokenEchangeGrantType": {
@@ -29318,11 +29341,11 @@
         ],
         "title": "OAuthTokenEchangeGrantType",
         "description": "Supported grant types for OAuth Token Exchange process",
-        "x-enum-varnames": [
-          "authorization_code"
-        ],
         "x-enum-descriptions": [
           "Authorization code grant type for OAuth token exchange."
+        ],
+        "x-enum-varnames": [
+          "authorization_code"
         ]
       },
       "OAuthTokenExchange": {
@@ -29519,24 +29542,6 @@
         ],
         "title": "Platform",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "ANON",
-          "BASIC",
-          "XBOX_LIVE",
-          "PSN",
-          "NINTENDO_NAID",
-          "NINTENDO_SWITCH",
-          "NINTENDO_PPID",
-          "GOOGLE",
-          "GOOGLE_PLAY",
-          "APPLE",
-          "EPIC",
-          "STEAM",
-          "AMAZON",
-          "TWITCH",
-          "RALLYHERE",
-          "LEGACYNAME"
-        ],
         "x-enum-descriptions": [
           "",
           "",
@@ -29554,6 +29559,24 @@
           "",
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "BASIC",
+          "XBOX_LIVE",
+          "PSN",
+          "NINTENDO_NAID",
+          "NINTENDO_SWITCH",
+          "NINTENDO_PPID",
+          "GOOGLE",
+          "GOOGLE_PLAY",
+          "APPLE",
+          "EPIC",
+          "STEAM",
+          "AMAZON",
+          "TWITCH",
+          "RALLYHERE",
+          "LEGACYNAME"
         ]
       },
       "PlatformIdentityLookupResults": {
@@ -29867,15 +29890,15 @@
         ],
         "title": "PortalTokenDetailsGrantType",
         "description": "The grant type used to authenticate the portal tokens",
-        "x-enum-varnames": [
-          "PS4_V1",
-          "PS4_V3",
-          "PS5_V3"
-        ],
         "x-enum-descriptions": [
           "Playstation Network v1 auth token validated using the configured PS4 credentials",
           "Playstation Network v3 auth token validated using the configured PS4 credentials",
           "Playstation Network v3 auth token validated using the configured PS5 credentials"
+        ],
+        "x-enum-varnames": [
+          "PS4_V1",
+          "PS4_V3",
+          "PS5_V3"
         ]
       },
       "PortalTokenDetailsRequest": {
@@ -29924,6 +29947,14 @@
             "type": "string",
             "title": "Display Name",
             "description": "Display name"
+          },
+          "device_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DeviceType"
+              }
+            ],
+            "description": "Platform-verified device type of the login"
           }
         },
         "type": "object",
@@ -30130,17 +30161,17 @@
         ],
         "title": "RestrictionType",
         "description": "Restrictions that can be applied to a player. Resitrictions are applied to a player by an admin and often types indicates that the player is banned.",
-        "x-enum-varnames": [
-          "ACCOUNT_BAN",
-          "ACCOUNT_LOCKOUT",
-          "ACCOUNT_PENDING_DELETION",
-          "ACCOUNT_DENY_AUTH"
-        ],
         "x-enum-descriptions": [
           "Account is banned",
           "Account is locked out",
           "Account is pending deletion and will be deleted in the future",
           "Account has been banned from authentication"
+        ],
+        "x-enum-varnames": [
+          "ACCOUNT_BAN",
+          "ACCOUNT_LOCKOUT",
+          "ACCOUNT_PENDING_DELETION",
+          "ACCOUNT_DENY_AUTH"
         ]
       },
       "Role": {
@@ -30197,15 +30228,15 @@
         ],
         "title": "RoleAuthBypass",
         "description": "Role auth bypass options",
-        "x-enum-varnames": [
-          "NONE",
-          "LIMITED",
-          "LOCKED"
-        ],
         "x-enum-descriptions": [
           "Does not bypass any auth states",
           "Allow bypass of the limited auth state",
           "Auth bypass for the limited and locked auth states"
+        ],
+        "x-enum-varnames": [
+          "NONE",
+          "LIMITED",
+          "LOCKED"
         ]
       },
       "TokenRequest": {
@@ -30409,23 +30440,6 @@
         ],
         "title": "Portal",
         "description": "Portals a.k.a platforms that a player can be linked/authenticated with",
-        "x-enum-varnames": [
-          "ANON",
-          "AMAZON",
-          "STEAM",
-          "PSN",
-          "XBOXLIVE",
-          "BASIC",
-          "GOOGLE",
-          "RALLYHERE",
-          "TWITCH",
-          "NINTENDO_SWITCH",
-          "APPLE",
-          "NINTENDO",
-          "LEGACYNAME",
-          "EPIC",
-          "NINTENDO_PPID"
-        ],
         "x-enum-descriptions": [
           "Anonymous portal used for testing. This is not intended to be used by real players.",
           "Amazon portal",
@@ -30442,6 +30456,23 @@
           "Legacy name portal",
           "Epic portal",
           "Nintendo PPID portal"
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "AMAZON",
+          "STEAM",
+          "PSN",
+          "XBOXLIVE",
+          "BASIC",
+          "GOOGLE",
+          "RALLYHERE",
+          "TWITCH",
+          "NINTENDO_SWITCH",
+          "APPLE",
+          "NINTENDO",
+          "LEGACYNAME",
+          "EPIC",
+          "NINTENDO_PPID"
         ]
       },
       "fastapicommon__platforms__Portal": {
@@ -30486,44 +30517,6 @@
         ],
         "title": "Portal",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "FREE",
-          "SWEAT",
-          "UNKNOWN",
-          "STANDARD",
-          "ANON",
-          "KONGREGATE",
-          "AMAZON",
-          "STEAM",
-          "TCLS",
-          "LEVELUP_LATAM",
-          "LEVELUP_BRA",
-          "PSN",
-          "XBOX_LIVE",
-          "BASIC",
-          "FACEBOOK",
-          "GOOGLE",
-          "RALLYHERE",
-          "RIVALS_MOBILE",
-          "TWITCH",
-          "PALADINS_STRIKE",
-          "SMITE_BLITZ",
-          "FACEBOOK_SMITE",
-          "FACEBOOK_PALADINS",
-          "FACEBOOK_HOTG",
-          "NINTENDO_SWITCH",
-          "TUNE",
-          "APPLE",
-          "DISCORD",
-          "NINTENDO",
-          "LEGACYNAME",
-          "EPIC",
-          "FORTE",
-          "SIMULMEDIA",
-          "LUNA",
-          "GOOGLE_PLAY",
-          "NINTENDO_PPID"
-        ],
         "x-enum-descriptions": [
           "",
           "",
@@ -30561,6 +30554,44 @@
           "",
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "FREE",
+          "SWEAT",
+          "UNKNOWN",
+          "STANDARD",
+          "ANON",
+          "KONGREGATE",
+          "AMAZON",
+          "STEAM",
+          "TCLS",
+          "LEVELUP_LATAM",
+          "LEVELUP_BRA",
+          "PSN",
+          "XBOX_LIVE",
+          "BASIC",
+          "FACEBOOK",
+          "GOOGLE",
+          "RALLYHERE",
+          "RIVALS_MOBILE",
+          "TWITCH",
+          "PALADINS_STRIKE",
+          "SMITE_BLITZ",
+          "FACEBOOK_SMITE",
+          "FACEBOOK_PALADINS",
+          "FACEBOOK_HOTG",
+          "NINTENDO_SWITCH",
+          "TUNE",
+          "APPLE",
+          "DISCORD",
+          "NINTENDO",
+          "LEGACYNAME",
+          "EPIC",
+          "FORTE",
+          "SIMULMEDIA",
+          "LUNA",
+          "GOOGLE_PLAY",
+          "NINTENDO_PPID"
         ]
       },
       "SetSinglePlayerSettingRequest": {
@@ -31006,19 +31037,6 @@
         ],
         "title": "ClientType",
         "description": "Client type for Entitlements",
-        "x-enum-descriptions": [
-          "Unknown client type",
-          "Windows client type",
-          "Mac client type",
-          "XboxOne client type",
-          "Playstation 4 client type",
-          "Nintendo Switch client type",
-          "Android client type",
-          "iOS client type",
-          "Playstation 5 client type",
-          "Linux client type",
-          "XSX client type"
-        ],
         "x-enum-varnames": [
           "UNKNOWN",
           "WIN",
@@ -31031,6 +31049,19 @@
           "PS5",
           "LINUX",
           "XSX"
+        ],
+        "x-enum-descriptions": [
+          "Unknown client type",
+          "Windows client type",
+          "Mac client type",
+          "XboxOne client type",
+          "Playstation 4 client type",
+          "Nintendo Switch client type",
+          "Android client type",
+          "iOS client type",
+          "Playstation 5 client type",
+          "Linux client type",
+          "XSX client type"
         ]
       },
       "CreateInventoryRequest": {
@@ -31125,13 +31156,13 @@
         ],
         "title": "CreateInventoryType",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "Inventory that persists between Inventory Sessions.",
-          "Inventory that does not persist between Inventory Sessions."
-        ],
         "x-enum-varnames": [
           "PERSISTENT",
           "TRANSIENT"
+        ],
+        "x-enum-descriptions": [
+          "Inventory that persists between Inventory Sessions.",
+          "Inventory that does not persist between Inventory Sessions."
         ]
       },
       "EntitlementActionType": {
@@ -31144,17 +31175,17 @@
         ],
         "title": "EntitlementActionType",
         "description": "Action to take for the Entitlement on a user",
-        "x-enum-descriptions": [
-          "Event for granting an Entitlement to the user",
-          "Event for refunding an Entitlement to the user",
-          "Event for refunding an Entitlement to the user due to a chargeback to the original payment",
-          "Event for re-granting an Entitlement to the user after a chargeback was reversed"
-        ],
         "x-enum-varnames": [
           "grant",
           "refund",
           "chargeback",
           "chargeback_reversal"
+        ],
+        "x-enum-descriptions": [
+          "Event for granting an Entitlement to the user",
+          "Event for refunding an Entitlement to the user",
+          "Event for refunding an Entitlement to the user due to a chargeback to the original payment",
+          "Event for re-granting an Entitlement to the user after a chargeback was reversed"
         ]
       },
       "EntitlementErrorCode": {
@@ -31177,22 +31208,6 @@
         ],
         "title": "EntitlementErrorCode",
         "description": "Error codes for Entitlements",
-        "x-enum-descriptions": [
-          "No error occured",
-          "Failed to find or validate the auth token",
-          "Missing information in the request",
-          "Failed to consume the entitlement",
-          "No SKU found for this entitlement on the backend",
-          "Entitlement is defined with a different SKU type than the one provided",
-          "Durable entitlements are not allowed by this platform",
-          "Durable single use entitlements are not allowed by this platform",
-          "Consumable entitlements are not allowed by this platform",
-          "Unknown SKU type provided",
-          "Failed to submit the order to the backend",
-          "Durable single use entitlement has already been applied",
-          "Quantity was zero, nothing to apply",
-          "Entitlement was previously applied"
-        ],
         "x-enum-varnames": [
           "NONE",
           "AUTH_TOKEN_FAILURE",
@@ -31208,6 +31223,22 @@
           "ALREADY_APPLIED_DURABLE_SINGLE_USE",
           "QUANTITY_ZERO",
           "PREVIOUSLY_APPLIED"
+        ],
+        "x-enum-descriptions": [
+          "No error occured",
+          "Failed to find or validate the auth token",
+          "Missing information in the request",
+          "Failed to consume the entitlement",
+          "No SKU found for this entitlement on the backend",
+          "Entitlement is defined with a different SKU type than the one provided",
+          "Durable entitlements are not allowed by this platform",
+          "Durable single use entitlements are not allowed by this platform",
+          "Consumable entitlements are not allowed by this platform",
+          "Unknown SKU type provided",
+          "Failed to submit the order to the backend",
+          "Durable single use entitlement has already been applied",
+          "Quantity was zero, nothing to apply",
+          "Entitlement was previously applied"
         ]
       },
       "EntitlementEvent": {
@@ -31437,17 +31468,17 @@
         ],
         "title": "EntitlementEventStatus",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "The event was successful",
-          "The SKU was not found",
-          "The requested operation is not implemented yet",
-          "The player was not found"
-        ],
         "x-enum-varnames": [
           "success",
           "sku_not_found",
           "not_implemented",
           "player_not_found"
+        ],
+        "x-enum-descriptions": [
+          "The event was successful",
+          "The SKU was not found",
+          "The requested operation is not implemented yet",
+          "The player was not found"
         ]
       },
       "EntitlementStatus": {
@@ -31461,19 +31492,19 @@
         ],
         "title": "EntitlementStatus",
         "description": "Status of an Entitlement",
-        "x-enum-descriptions": [
-          "Entitlement status is unknown",
-          "Entitlement has been submitted to the backend",
-          "Entitlement has been fulfilled",
-          "Entitlement has failed, check error_code for more information",
-          "Entitlement was previously applied"
-        ],
         "x-enum-varnames": [
           "UNKNOWN",
           "SUBMITTED",
           "FULFILLED",
           "FAILED",
           "PREVIOUSLY_APPLIED"
+        ],
+        "x-enum-descriptions": [
+          "Entitlement status is unknown",
+          "Entitlement has been submitted to the backend",
+          "Entitlement has been fulfilled",
+          "Entitlement has failed, check error_code for more information",
+          "Entitlement was previously applied"
         ]
       },
       "EntitlementType": {
@@ -31485,15 +31516,15 @@
         ],
         "title": "EntitlementType",
         "description": "The method of granting a Platform Entitlement SKU",
-        "x-enum-descriptions": [
-          "Consumable entitlements are removed from the platform's record keeping system when used.",
-          "Durable entitlements stay in the platform's recorded keeping system and is granted to the Player each time entitlements are granted.",
-          "Durable single use entitlements stay in the platform's recorded keeping system and is granted to the Player only once."
-        ],
         "x-enum-varnames": [
           "consumable",
           "durable",
           "durable_single_use"
+        ],
+        "x-enum-descriptions": [
+          "Consumable entitlements are removed from the platform's record keeping system when used.",
+          "Durable entitlements stay in the platform's recorded keeping system and is granted to the Player each time entitlements are granted.",
+          "Durable single use entitlements stay in the platform's recorded keeping system and is granted to the Player only once."
         ]
       },
       "ExternalKeyEntitlement": {
@@ -31566,24 +31597,6 @@
         ],
         "title": "InventoryBucket",
         "description": "Grouping of Inventory Items. Inventory items are grouped into different buckets as each Platform that is supported has different requirements on how Inventory can be used on their Platform and other Platforms.",
-        "x-enum-descriptions": [
-          "Inventory given away for free.",
-          "Inventory earned by players through in game activities.",
-          "Inventory that doesn't belong to any known platform.",
-          "Inventory assigned to the anonymous platform.",
-          "Inventory assigned to the amazon platform.",
-          "Inventory assigned to the steam platform.",
-          "Inventory assigned to the playstation platform.",
-          "Inventory assigned to the Xbox platform.",
-          "Inventory assigned to the Google platform.",
-          "Inventory assigned to the Twitch platform.",
-          "Inventory assigned to the Nintendo Switch platform.",
-          "Inventory assigned to the Apple platform.",
-          "Inventory assigned to the Nintendo platform.",
-          "Inventory assigned to the Epic platform.",
-          "Inventory assigned to the Google Play platform.",
-          "Inventory assigned to the Nintendo PPID platform."
-        ],
         "x-enum-varnames": [
           "FREE",
           "SWEAT",
@@ -31601,6 +31614,24 @@
           "EPIC",
           "GOOGLE_PLAY",
           "NINTENDO_PPID"
+        ],
+        "x-enum-descriptions": [
+          "Inventory given away for free.",
+          "Inventory earned by players through in game activities.",
+          "Inventory that doesn't belong to any known platform.",
+          "Inventory assigned to the anonymous platform.",
+          "Inventory assigned to the amazon platform.",
+          "Inventory assigned to the steam platform.",
+          "Inventory assigned to the playstation platform.",
+          "Inventory assigned to the Xbox platform.",
+          "Inventory assigned to the Google platform.",
+          "Inventory assigned to the Twitch platform.",
+          "Inventory assigned to the Nintendo Switch platform.",
+          "Inventory assigned to the Apple platform.",
+          "Inventory assigned to the Nintendo platform.",
+          "Inventory assigned to the Epic platform.",
+          "Inventory assigned to the Google Play platform.",
+          "Inventory assigned to the Nintendo PPID platform."
         ]
       },
       "InventoryBucketUseRuleSet": {
@@ -31737,15 +31768,6 @@
         ],
         "title": "InventoryOperation",
         "description": "Determines how the Inventory Quantity will be acted upon and the sort order of Loot in a Vendor.\n\nSort Order:\n1. check_greater_then_or_equal/check_less_than\n2. check_greater_than_or_equal_and_subtract/subtract\n3. add/set",
-        "x-enum-descriptions": [
-          "Invalid Inventory Operation.",
-          "Add the quantity or expiration of the Inventory.",
-          "Subtract the quantity or expiration of the Inventory.",
-          "Set the quantity or expiration of the Inventory.",
-          "Check if the quantity or expiration of the Inventory is greater than or equal to the value.",
-          "Check if the quantity or expiration of the Inventory is less than the value.",
-          "Check if the quantity or expiration of the Inventory is greater than or equal to the value and subtract the value from the quantity or expiration."
-        ],
         "x-enum-varnames": [
           "invalid",
           "add",
@@ -31754,6 +31776,15 @@
           "check_greater_than_or_equal",
           "check_less_than",
           "check_greater_than_or_equal_and_subtract"
+        ],
+        "x-enum-descriptions": [
+          "Invalid Inventory Operation.",
+          "Add the quantity or expiration of the Inventory.",
+          "Subtract the quantity or expiration of the Inventory.",
+          "Set the quantity or expiration of the Inventory.",
+          "Check if the quantity or expiration of the Inventory is greater than or equal to the value.",
+          "Check if the quantity or expiration of the Inventory is less than the value.",
+          "Check if the quantity or expiration of the Inventory is greater than or equal to the value and subtract the value from the quantity or expiration."
         ]
       },
       "InventoryRecord": {
@@ -31835,14 +31866,6 @@
         ],
         "title": "InventorySelector",
         "description": "Determines way Inventory Selected and to be modified.",
-        "x-enum-descriptions": [
-          "Invalid Inventory Selector.",
-          "The Inventory will be stored across Inventory Sessions.",
-          "The Inventory will be stored across Inventory Sessions but will expire after a period of time. Quantity modification will modify the Inventory's expiration time.",
-          "The Inventory will be stored across Inventory Sessions by will expire after a period of time. Quantity modification will not modify the Inventory's expiration time but instead the quantity of the Inventory.",
-          "The Inventory will by fulfilled as transient Inventory and will not persist across Inventory Sessions.",
-          "Loot fulfilled will look for a parent Entitlement and then grant the Loot as transient Inventory with the rental expiration as the parent."
-        ],
         "x-enum-varnames": [
           "invalid",
           "own",
@@ -31850,6 +31873,14 @@
           "rent_timeframe_locked",
           "own_transient",
           "inherit_entitlement_inventory"
+        ],
+        "x-enum-descriptions": [
+          "Invalid Inventory Selector.",
+          "The Inventory will be stored across Inventory Sessions.",
+          "The Inventory will be stored across Inventory Sessions but will expire after a period of time. Quantity modification will modify the Inventory's expiration time.",
+          "The Inventory will be stored across Inventory Sessions by will expire after a period of time. Quantity modification will not modify the Inventory's expiration time but instead the quantity of the Inventory.",
+          "The Inventory will by fulfilled as transient Inventory and will not persist across Inventory Sessions.",
+          "Loot fulfilled will look for a parent Entitlement and then grant the Loot as transient Inventory with the rental expiration as the parent."
         ]
       },
       "InventorySession": {
@@ -31936,15 +31967,15 @@
         ],
         "title": "InventoryType",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "Inventory that persists between Inventory Sessions.",
-          "Stays around for the length of the Inventory Sessions.",
-          "Items that are given to all Players and cannot be modified."
-        ],
         "x-enum-varnames": [
           "PERSISTENT",
           "TRANSIENT",
           "ALWAYS_OWNED"
+        ],
+        "x-enum-descriptions": [
+          "Inventory that persists between Inventory Sessions.",
+          "Stays around for the length of the Inventory Sessions.",
+          "Items that are given to all Players and cannot be modified."
         ]
       },
       "Item": {
@@ -32139,19 +32170,19 @@
         ],
         "title": "ItemType",
         "description": "The type of item.",
-        "x-enum-descriptions": [
-          "An item that is stored in a player's inventory.",
-          "A Loot with the ItemType receipt will fulfill SubVendor Loot and will not stored in a player's inventory.",
-          "The same as `ItemType.recipe` but will reduce the price based on whether or not the player owns items in the SubVendor's Loot table.",
-          "An entitlement is a special item that is stored in a player's inventory and is fulfilled to the player each time an Inventory Session is created and when the Entitlement is fulfilled to the Player.",
-          "Not support at this time."
-        ],
         "x-enum-varnames": [
           "unit",
           "recipe",
           "recipe_with_price_reduction",
           "entitlement",
           "dynamic_bundle"
+        ],
+        "x-enum-descriptions": [
+          "An item that is stored in a player's inventory.",
+          "A Loot with the ItemType receipt will fulfill SubVendor Loot and will not stored in a player's inventory.",
+          "The same as `ItemType.recipe` but will reduce the price based on whether or not the player owns items in the SubVendor's Loot table.",
+          "An entitlement is a special item that is stored in a player's inventory and is fulfilled to the player each time an Inventory Session is created and when the Entitlement is fulfilled to the Player.",
+          "Not support at this time."
         ]
       },
       "Items": {
@@ -32979,15 +33010,15 @@
         ],
         "title": "PlatformRegion",
         "description": "Region for Entitlements",
-        "x-enum-descriptions": [
-          "Unknown region",
-          "North America region",
-          "Europe Union region"
-        ],
         "x-enum-varnames": [
           "UNKNOWN",
           "NA",
           "EU"
+        ],
+        "x-enum-descriptions": [
+          "Unknown region",
+          "North America region",
+          "Europe Union region"
         ]
       },
       "PlatformSKU": {
@@ -33314,14 +33345,6 @@
         ],
         "title": "PlayerOrderDetailType",
         "description": "Player Order Detail Type.",
-        "x-enum-descriptions": [
-          "Unknown.",
-          "Inventory change.",
-          "Dynamic Bundle LTI.",
-          "Claim Promo Code.",
-          "Return Promo Code.",
-          "New Order."
-        ],
         "x-enum-varnames": [
           "UNKNOWN",
           "INVENTORY_CHANGE",
@@ -33329,6 +33352,14 @@
           "CLAIM_PROMO_CODE",
           "RETURN_PROMO_CODE",
           "NEW_ORDER"
+        ],
+        "x-enum-descriptions": [
+          "Unknown.",
+          "Inventory change.",
+          "Dynamic Bundle LTI.",
+          "Claim Promo Code.",
+          "Return Promo Code.",
+          "New Order."
         ]
       },
       "PlayerOrderEntry": {
@@ -33642,57 +33673,6 @@
         ],
         "title": "PlayerOrderEntryResult",
         "description": "Result of a Player Order Entry.",
-        "x-enum-descriptions": [
-          "The Order Entry was successful.",
-          "An internal error occurred when processing Order Entry.",
-          "Order Entry type is invalid.",
-          "Order Entry is not allowed on the current platform.",
-          "The Loot was not found.",
-          "The Loot was not active at the time of processing.",
-          "The Item was configured as the Price was not found.",
-          "The Price is not allowed for the given Loot.",
-          "The given Dynamic Bundle was invalid.",
-          "Too many requests were made in during the evaluation window.",
-          "Given Price does not match the expected Price.",
-          "Vendor version does not match the expected version.",
-          "Dynamic Bundle Loot does not match expected Loot.",
-          "Player cannot afford the given Price.",
-          "Player cannot afford the given Coupon.",
-          "Failed to spend the given Price.",
-          "Failed to spend the given Coupon.",
-          "The given Loot is not for sale with the given Price Item.",
-          "Coupons are disabled.",
-          "The Item configured for the Coupon was not found.",
-          "The Coupon Item is not active.",
-          "Coupon Item is not applicable for the given quantity.",
-          "Coupon Item is not applicable for the given Price Item.",
-          "Coupon Item is not applicable for the given Loot.",
-          "Quantity is not allowed for the given Loot.",
-          "Promotion has expired.",
-          "Promotion was not found.",
-          "Promotion has no uses left.",
-          "Promotion is not available.",
-          "Promotion has already been claimed.",
-          "Dynamic Bundles are not available.",
-          "Transient Single Loot has already been applied.",
-          "Loot is not claimable from the client.",
-          "Permission denied.",
-          "Failed to find any sub loot.",
-          "Failed to fill any sub loot.",
-          "Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.",
-          "Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.",
-          "Failed to consume the given Loot required.",
-          "Failed to submit a new order.",
-          "Failed to modify inventory.",
-          "Inventory was not found.",
-          "Item was not found.",
-          "Item is not active.",
-          "Too many inventory custom attributes provided.",
-          "Always owned inventory cannot be modified.",
-          "Available until is in the past.",
-          "Order Entry was successfully fulfilled, but was rolled back.",
-          "Order Entry fulfillment has not started."
-        ],
         "x-enum-varnames": [
           "SUCCESS",
           "INTERNAL_ERROR",
@@ -33743,6 +33723,57 @@
           "AVAILABLE_UNTIL_IS_IN_PAST",
           "ROLLBACK",
           "NOT_STARTED"
+        ],
+        "x-enum-descriptions": [
+          "The Order Entry was successful.",
+          "An internal error occurred when processing Order Entry.",
+          "Order Entry type is invalid.",
+          "Order Entry is not allowed on the current platform.",
+          "The Loot was not found.",
+          "The Loot was not active at the time of processing.",
+          "The Item was configured as the Price was not found.",
+          "The Price is not allowed for the given Loot.",
+          "The given Dynamic Bundle was invalid.",
+          "Too many requests were made in during the evaluation window.",
+          "Given Price does not match the expected Price.",
+          "Vendor version does not match the expected version.",
+          "Dynamic Bundle Loot does not match expected Loot.",
+          "Player cannot afford the given Price.",
+          "Player cannot afford the given Coupon.",
+          "Failed to spend the given Price.",
+          "Failed to spend the given Coupon.",
+          "The given Loot is not for sale with the given Price Item.",
+          "Coupons are disabled.",
+          "The Item configured for the Coupon was not found.",
+          "The Coupon Item is not active.",
+          "Coupon Item is not applicable for the given quantity.",
+          "Coupon Item is not applicable for the given Price Item.",
+          "Coupon Item is not applicable for the given Loot.",
+          "Quantity is not allowed for the given Loot.",
+          "Promotion has expired.",
+          "Promotion was not found.",
+          "Promotion has no uses left.",
+          "Promotion is not available.",
+          "Promotion has already been claimed.",
+          "Dynamic Bundles are not available.",
+          "Transient Single Loot has already been applied.",
+          "Loot is not claimable from the client.",
+          "Permission denied.",
+          "Failed to find any sub loot.",
+          "Failed to fill any sub loot.",
+          "Loot fulfillment failed because the player failed a `check_less_than` Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot's quantity.",
+          "Loot fulfillment failed because the player failed a `check_greater_than_or_equal` or `check_greater_than_or_equal_and_subtract` Inventory Operation. This means the player has less than the Loot's required quantity.",
+          "Failed to consume the given Loot required.",
+          "Failed to submit a new order.",
+          "Failed to modify inventory.",
+          "Inventory was not found.",
+          "Item was not found.",
+          "Item is not active.",
+          "Too many inventory custom attributes provided.",
+          "Always owned inventory cannot be modified.",
+          "Available until is in the past.",
+          "Order Entry was successfully fulfilled, but was rolled back.",
+          "Order Entry fulfillment has not started."
         ]
       },
       "PlayerOrderEntryType": {
@@ -33762,19 +33793,6 @@
         ],
         "title": "PlayerOrderEntryType",
         "description": "Player Order Entry Type.",
-        "x-enum-descriptions": [
-          "Fill a loot item.",
-          "Purchase a loot item.",
-          "Purchase a dynamic bundle.",
-          "Claim a promotion code.",
-          "Fill a transient loot item.",
-          "Fill an loot entitlement.",
-          "Create persistent Inventory.",
-          "Deprecated. Use update_inventory instead.",
-          "Create transient Inventory.",
-          "Deprecated. Use update_inventory instead.",
-          "Update existing Inventory."
-        ],
         "x-enum-varnames": [
           "FILL_LOOT",
           "PURCHASE_LOOT",
@@ -33787,6 +33805,19 @@
           "CREATE_NEW_TRANSIENT_INVENTORY",
           "UPDATE_EXISTING_TRANSIENT_INVENTORY",
           "UPDATE_INVENTORY"
+        ],
+        "x-enum-descriptions": [
+          "Fill a loot item.",
+          "Purchase a loot item.",
+          "Purchase a dynamic bundle.",
+          "Claim a promotion code.",
+          "Fill a transient loot item.",
+          "Fill an loot entitlement.",
+          "Create persistent Inventory.",
+          "Deprecated. Use update_inventory instead.",
+          "Create transient Inventory.",
+          "Deprecated. Use update_inventory instead.",
+          "Update existing Inventory."
         ]
       },
       "PlayerOrdersResponse": {
@@ -33859,44 +33890,6 @@
         ],
         "title": "Portal",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
         "x-enum-varnames": [
           "FREE",
           "SWEAT",
@@ -33934,6 +33927,44 @@
           "LUNA",
           "GOOGLE_PLAY",
           "NINTENDO_PPID"
+        ],
+        "x-enum-descriptions": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       "PortalUseRuleset": {
@@ -34207,13 +34238,13 @@
         ],
         "title": "QuantityType",
         "description": "Determines how the quantity is to be modified.\n\nRelative looks at the context in which is fulfilled; e.g. If Loot A has a quantity of 2 and 5 is being fulfill, the resulting quantity modification will be 10.\n\nAbsolute ignores the context in which it is fulfilled; e.g. If Loot B has a quantity of 3 and 5 is being fulfill 5, the resulting quantity modification will be 3.",
-        "x-enum-descriptions": [
-          "The quantity will be modified relative to the context in which it is fulfilled.",
-          "The quantity will be modified regardless of the context in which it is fulfilled."
-        ],
         "x-enum-varnames": [
           "relative",
           "absolute"
+        ],
+        "x-enum-descriptions": [
+          "The quantity will be modified relative to the context in which it is fulfilled.",
+          "The quantity will be modified regardless of the context in which it is fulfilled."
         ]
       },
       "SortOrder": {
@@ -34224,13 +34255,13 @@
         ],
         "title": "SortOrder",
         "description": "Determine the direction of the sort",
-        "x-enum-descriptions": [
-          "Sort in ascending order",
-          "Sort in descending order"
-        ],
         "x-enum-varnames": [
           "ASCENDING",
           "DESCENDING"
+        ],
+        "x-enum-descriptions": [
+          "Sort in ascending order",
+          "Sort in descending order"
         ]
       },
       "Source": {
@@ -34301,70 +34332,6 @@
         ],
         "title": "Source",
         "description": "The source of Player Orders.",
-        "x-enum-descriptions": [
-          "Unknown source.",
-          "Repair Order send from the Web to fix up Inventory mistakes.",
-          "Order granted in-game.",
-          "Order send from the Web site.",
-          "No sale.",
-          "Order granted by Support.",
-          "Order granted by an activity.",
-          "Order granted by a refund.",
-          "Order granted by the system.",
-          "Order granted by as a reward.",
-          "Order granted by Esports.",
-          "Order granted by Treasure.",
-          "Order granted by Console.",
-          "Order granted by Odyssey.",
-          "Order granted by Steam.",
-          "Order granted by a return.",
-          "Order granted by the JSON gate.",
-          "Order granted by sending a gift.",
-          "Order granted by receiving a gift.",
-          "Order granted by Steam DLC.",
-          "Order granted by hitting a Twitch milestone.",
-          "Order granted by Twitch Prime.",
-          "Order granted by PSN.",
-          "Order granted by Xbox.",
-          "Order granted by PTS.",
-          "Order granted by an instance.",
-          "Order granted by an account transfer.",
-          "Order granted by a promocode.",
-          "Order granted by the Triumph system.",
-          "Order granted by logging in.",
-          "Order granted by an uncapped EOM .",
-          "Order granted by a capped EOM reward.",
-          "Order granted by a Facebook drop.",
-          "Order granted by a database script.",
-          "Order granted by account linking.",
-          "Order granted by a clan.",
-          "Order granted by a conversion.",
-          "Order granted by Apple.",
-          "Order granted by Google.",
-          "Order granted by Google Play.",
-          "Order granted by a portal durable.",
-          "Order granted by a partner achievement.",
-          "Order granted by a Mixer drop.",
-          "Order granted by Nintendo.",
-          "Order granted by stream viewing progress.",
-          "Order granted by Discord.",
-          "Order granted by first login.",
-          "Order granted by Twitch Fuel.",
-          "Order granted by Discord DLC.",
-          "Order granted by NetEase.",
-          "Order granted by Epic Games.",
-          "Order granted by Forte.",
-          "Order granted by Facebook.",
-          "Order granted by Hi-Rez.",
-          "Order granted by a daily reward.",
-          "Order granted by adding an account email.",
-          "DEPRECATED - use the `Client` source instead.",
-          "Order granted by the client.",
-          "Order granted by entitlements.",
-          "Order granted by Amazon.",
-          "Order granted by Simulmedia.",
-          "Order granted by Luna."
-        ],
         "x-enum-varnames": [
           "UNKNOWN",
           "WEB_ORDER_REPAIR",
@@ -34428,6 +34395,70 @@
           "AMAZON",
           "SIMULMEDIA",
           "LUNA"
+        ],
+        "x-enum-descriptions": [
+          "Unknown source.",
+          "Repair Order send from the Web to fix up Inventory mistakes.",
+          "Order granted in-game.",
+          "Order send from the Web site.",
+          "No sale.",
+          "Order granted by Support.",
+          "Order granted by an activity.",
+          "Order granted by a refund.",
+          "Order granted by the system.",
+          "Order granted by as a reward.",
+          "Order granted by Esports.",
+          "Order granted by Treasure.",
+          "Order granted by Console.",
+          "Order granted by Odyssey.",
+          "Order granted by Steam.",
+          "Order granted by a return.",
+          "Order granted by the JSON gate.",
+          "Order granted by sending a gift.",
+          "Order granted by receiving a gift.",
+          "Order granted by Steam DLC.",
+          "Order granted by hitting a Twitch milestone.",
+          "Order granted by Twitch Prime.",
+          "Order granted by PSN.",
+          "Order granted by Xbox.",
+          "Order granted by PTS.",
+          "Order granted by an instance.",
+          "Order granted by an account transfer.",
+          "Order granted by a promocode.",
+          "Order granted by the Triumph system.",
+          "Order granted by logging in.",
+          "Order granted by an uncapped EOM .",
+          "Order granted by a capped EOM reward.",
+          "Order granted by a Facebook drop.",
+          "Order granted by a database script.",
+          "Order granted by account linking.",
+          "Order granted by a clan.",
+          "Order granted by a conversion.",
+          "Order granted by Apple.",
+          "Order granted by Google.",
+          "Order granted by Google Play.",
+          "Order granted by a portal durable.",
+          "Order granted by a partner achievement.",
+          "Order granted by a Mixer drop.",
+          "Order granted by Nintendo.",
+          "Order granted by stream viewing progress.",
+          "Order granted by Discord.",
+          "Order granted by first login.",
+          "Order granted by Twitch Fuel.",
+          "Order granted by Discord DLC.",
+          "Order granted by NetEase.",
+          "Order granted by Epic Games.",
+          "Order granted by Forte.",
+          "Order granted by Facebook.",
+          "Order granted by Hi-Rez.",
+          "Order granted by a daily reward.",
+          "Order granted by adding an account email.",
+          "DEPRECATED - use the `Client` source instead.",
+          "Order granted by the client.",
+          "Order granted by entitlements.",
+          "Order granted by Amazon.",
+          "Order granted by Simulmedia.",
+          "Order granted by Luna."
         ]
       },
       "TimeFrame": {
@@ -34725,13 +34756,13 @@
         ],
         "title": "VendorType",
         "description": "Determines how the Vendor fulfills the loot.",
-        "x-enum-descriptions": [
-          "A Vendor that will always drop all of the Loot in the Loot table.",
-          "A Vendor that will only fulfill one of the Loot in the Loot table based on the drop weights of the Loot."
-        ],
         "x-enum-varnames": [
           "recipe",
           "randomly_sampled"
+        ],
+        "x-enum-descriptions": [
+          "A Vendor that will always drop all of the Loot in the Loot table.",
+          "A Vendor that will only fulfill one of the Loot in the Loot table based on the drop weights of the Loot."
         ]
       },
       "Vendors": {
@@ -34762,17 +34793,17 @@
         ],
         "title": "XpQuantityTransform",
         "description": "Allows granting xp levels as Loot. If the player is already max level, the Loot will not be fulfilled. Requires the Item assigned to the Loot to have an XP Table ID.\n\nThe following examples assume the player is level 3 with 150 total xp. The quantity configured on the Loot being fulfilled is 1. The XP Table is configured like so:\n1: 20\n2: 50\n3: 100\n4: 200\n5: 400\n\nfrom_current_xp_to_target_additional_level_min_xp - The Loot will grant the player enough xp to reach min xp of the next level.\nExample 1: fulfill quantity 1\n    Player will be level 4 with 200 total xp.\nExample 2: fulfill quantity 2\n    Player will be level 5 with 400 total xp.\nExample 3: fulfill quantity 3\n    Player will be level 5 with 400 total xp.\n\nfrom_current_level_min_xp_to_target_additional_level_min_xp - The Loot will grant the player the amount of xp required to reach the min xp of the next level from the min xp of the current level.\nExample 1: fulfill quantity 1\n    Player will be level 4 with 250 total xp.\nExample 2: fulfill quantity 2\n    Player will be level 5 with 450 total xp.\nExample 3: fulfill quantity 3\n    Player will be level 5 with 450 total xp.\n\nfrom_zero_to_target_exact_level_min_xp - The Loot will grant the player the amount of xp required to reach the min xp of the target level from zero xp.\nExample 1: fulfill quantity 1\n    Player will be level 3 with 170 total xp.\nExample 2: fulfill quantity 2\n    Player will be level 4 with 200 total xp.\nExample 3: fulfill quantity 3\n    Player will be level 4 with 250 total xp.",
-        "x-enum-descriptions": [
-          "Quantity will be treated as XP and will not be transformed.",
-          "Quantity will be treated as level to fulfill and will be transformed to the amount of XP required to reach the min xp of the fulfilled levels.",
-          "Quantity will be treated as levels to fulfill and will be transformed to the amount of XP required to reach the min xp of the fulfilled levels from the min xp of the current level.",
-          "Quantity will be treated as levels to fulfill and will be transformed to the amount of XP required to reach the min xp of the fulfilled levels from zero xp."
-        ],
         "x-enum-varnames": [
           "none",
           "from_current_xp_to_target_additional_level_min_xp",
           "from_current_level_min_xp_to_target_additional_level_min_xp",
           "from_zero_to_target_exact_level_min_xp"
+        ],
+        "x-enum-descriptions": [
+          "Quantity will be treated as XP and will not be transformed.",
+          "Quantity will be treated as level to fulfill and will be transformed to the amount of XP required to reach the min xp of the fulfilled levels.",
+          "Quantity will be treated as levels to fulfill and will be transformed to the amount of XP required to reach the min xp of the fulfilled levels from the min xp of the current level.",
+          "Quantity will be treated as levels to fulfill and will be transformed to the amount of XP required to reach the min xp of the fulfilled levels from zero xp."
         ]
       },
       "XpTable": {
@@ -35278,13 +35309,13 @@
         ],
         "title": "BackfillStyle",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "TEAM_REQUEST",
-          "COMPOSITION"
-        ],
         "x-enum-descriptions": [
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "TEAM_REQUEST",
+          "COMPOSITION"
         ]
       },
       "BackfillTeam": {
@@ -35798,17 +35829,17 @@
         ],
         "title": "CrossplayInput",
         "description": "Crossplay input preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches",
-        "x-enum-varnames": [
-          "ANY",
-          "KBM",
-          "GAMEPAD",
-          "TOUCH"
-        ],
         "x-enum-descriptions": [
           "No crossplay input preferences. Can play with players using any input",
           "Can only play with players using a keyboard and mouse",
           "Can only player with players using a gamepad/controller",
           "Can only player with players using a touch screen"
+        ],
+        "x-enum-varnames": [
+          "ANY",
+          "KBM",
+          "GAMEPAD",
+          "TOUCH"
         ]
       },
       "CrossplayPlatform": {
@@ -35820,15 +35851,15 @@
         ],
         "title": "CrossplayPlatform",
         "description": "Crossplay platform preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches",
-        "x-enum-varnames": [
-          "ANY",
-          "XBOX",
-          "PLAYSTATION"
-        ],
         "x-enum-descriptions": [
           "No crossplay platform preferences. Can play with players any platforms",
           "Can only play with players on xbox-like platforms (xbox-one, xsx etc.)",
           "Can only play with players on playstation-like platform (ps4, ps5 etc.)"
+        ],
+        "x-enum-varnames": [
+          "ANY",
+          "XBOX",
+          "PLAYSTATION"
         ]
       },
       "CrossplayPreferences": {
@@ -35869,19 +35900,19 @@
         ],
         "title": "DeleteTicketReason",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "assigned",
-          "backfilled",
-          "left_queue",
-          "timeout",
-          "party_changed"
-        ],
         "x-enum-descriptions": [
           "",
           "",
           "",
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "assigned",
+          "backfilled",
+          "left_queue",
+          "timeout",
+          "party_changed"
         ]
       },
       "DeserterConfig": {
@@ -35970,17 +36001,17 @@
         ],
         "title": "Determiner",
         "description": "Determiner for how many rules must be satisfied in order to satisfy the ruleset",
-        "x-enum-varnames": [
-          "ALL",
-          "ANY",
-          "ONE",
-          "NONE"
-        ],
         "x-enum-descriptions": [
           "All rules must be satisfied",
           "At least one rule must be satisfied",
           "Exactly one rule must be satisfied",
           "All rules must not be satisfied"
+        ],
+        "x-enum-varnames": [
+          "ALL",
+          "ANY",
+          "ONE",
+          "NONE"
         ]
       },
       "HostType": {
@@ -35992,15 +36023,15 @@
         ],
         "title": "HostType",
         "description": "Whether the host is another player, or a dedicated instance",
-        "x-enum-varnames": [
-          "dedicated",
-          "player",
-          "preallocated"
-        ],
         "x-enum-descriptions": [
           "A dedicated, standalone instance",
           "A player hosted instance",
           "A preallocated instance that isn't player owned"
+        ],
+        "x-enum-varnames": [
+          "dedicated",
+          "player",
+          "preallocated"
         ]
       },
       "Input": {
@@ -36012,15 +36043,15 @@
         ],
         "title": "Input",
         "description": "The different input types that players can use",
-        "x-enum-varnames": [
-          "KBM",
-          "GAMEPAD",
-          "TOUCH"
-        ],
         "x-enum-descriptions": [
           "Input for players using a keyboard and mouse",
           "Input for players using a gamepad/controller",
           "Input for players using a touch screen"
+        ],
+        "x-enum-varnames": [
+          "KBM",
+          "GAMEPAD",
+          "TOUCH"
         ]
       },
       "InstanceHealthSettingsResponse": {
@@ -36065,17 +36096,17 @@
         ],
         "title": "InstanceHealthStatus",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "HEALTHY",
-          "UNHEALTHY",
-          "DEGRADED",
-          "UNKNOWN"
-        ],
         "x-enum-descriptions": [
           "Instance is in a healthy state",
           "Instance is in an unhealthy state and cannot handle connections",
           "Instance performance is degraded, and may be unable to handle new or existing connections",
           "Instance health checks have stopped, and instance status is unknown"
+        ],
+        "x-enum-varnames": [
+          "HEALTHY",
+          "UNHEALTHY",
+          "DEGRADED",
+          "UNKNOWN"
         ]
       },
       "InstanceHealthStatusResponse": {
@@ -36314,14 +36345,6 @@
         ],
         "title": "InstanceJoinableStatus",
         "description": "What state the instance is currently in",
-        "x-enum-varnames": [
-          "requested",
-          "allocated",
-          "pending",
-          "joinable",
-          "unjoinable",
-          "closed"
-        ],
         "x-enum-descriptions": [
           "Searching for a host",
           "Host has been found, and is loading its session information",
@@ -36329,6 +36352,14 @@
           "Host is ready to accept players",
           "Host has marked itself as no longer ready to accept players, but may transition back to joinable",
           "Host has left, been timed out, or could not be found"
+        ],
+        "x-enum-varnames": [
+          "requested",
+          "allocated",
+          "pending",
+          "joinable",
+          "unjoinable",
+          "closed"
         ]
       },
       "InstanceLaunchTemplate": {
@@ -36524,15 +36555,15 @@
         ],
         "title": "InviteSource",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "BACKFILL",
-          "MATCHMAKING",
-          "PLAYER"
-        ],
         "x-enum-descriptions": [
           "",
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "BACKFILL",
+          "MATCHMAKING",
+          "PLAYER"
         ]
       },
       "JoinParams": {
@@ -36577,17 +36608,17 @@
         ],
         "title": "MMRGroupingMethod",
         "description": "What method should be used to determine a linking's group MMR based on the individuals",
-        "x-enum-varnames": [
-          "WORST",
-          "BEST",
-          "AVERAGE_BY_VARIANCE",
-          "AVERAGE"
-        ],
         "x-enum-descriptions": [
           "Use the lowest MMR of any player in the linking",
           "Use the highest MMR of any player in the linking",
           "Use the arithmetic mean of the players' skill multiplied by their variance. This is the sum of each player's skill times variance divided by the number of players",
           "Use the arithmetic mean of the players' skill. This is the sum of each player's skill divided by the number of players"
+        ],
+        "x-enum-varnames": [
+          "WORST",
+          "BEST",
+          "AVERAGE_BY_VARIANCE",
+          "AVERAGE"
         ]
       },
       "MapConfig": {
@@ -37328,14 +37359,6 @@
         ],
         "title": "Operation",
         "description": "What comparison operation should be used when evaluating a rule",
-        "x-enum-varnames": [
-          "EQUAL",
-          "NOT_EQUAL",
-          "LESS_THAN",
-          "LESS_THAN_EQUAL",
-          "GREATER_THAN",
-          "GREATER_THAN_EQUAL"
-        ],
         "x-enum-descriptions": [
           "The two values must be equal",
           "The two values must not be equal",
@@ -37343,6 +37366,14 @@
           "Value A must be less than or equal to value B",
           "Value A must be greater than value B",
           "Value A must be greater than or equal to value B"
+        ],
+        "x-enum-varnames": [
+          "EQUAL",
+          "NOT_EQUAL",
+          "LESS_THAN",
+          "LESS_THAN_EQUAL",
+          "GREATER_THAN",
+          "GREATER_THAN_EQUAL"
         ]
       },
       "PlatformID": {
@@ -37363,20 +37394,6 @@
         ],
         "title": "PlatformID",
         "description": "DEPRECATED. Use Platform instead. Unique ids for different client platforms",
-        "x-enum-varnames": [
-          "ANON",
-          "AMAZON",
-          "STEAM",
-          "PSN",
-          "XBOX_LIVE",
-          "BASIC",
-          "GOOGLE",
-          "TWITCH",
-          "NINTENDO_SWITCH",
-          "APPLE",
-          "NINTENDO",
-          "EPIC"
-        ],
         "x-enum-descriptions": [
           "DEPRECATED. Use platform instead. ID for the platform Anon",
           "DEPRECATED. Use platform instead. ID for the platform Amazon",
@@ -37390,6 +37407,20 @@
           "DEPRECATED. Use platform instead. ID for the platform Apple",
           "DEPRECATED. Use platform instead. ID for the platform NintendoNAID",
           "DEPRECATED. Use platform instead. ID for the platform Epic"
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "AMAZON",
+          "STEAM",
+          "PSN",
+          "XBOX_LIVE",
+          "BASIC",
+          "GOOGLE",
+          "TWITCH",
+          "NINTENDO_SWITCH",
+          "APPLE",
+          "NINTENDO",
+          "EPIC"
         ]
       },
       "PlatformSession": {
@@ -37683,15 +37714,15 @@
         ],
         "title": "PlayersToValidate",
         "description": "Which subset of players in a session need to satisfy a ruleset for it to be considered valid",
-        "x-enum-varnames": [
-          "LEADER",
-          "ALL_MEMBERS",
-          "ANY_MEMBER"
-        ],
         "x-enum-descriptions": [
           "Only the leader must be validated",
           "All members of a session must be validated",
           "Any single member must be validated"
+        ],
+        "x-enum-varnames": [
+          "LEADER",
+          "ALL_MEMBERS",
+          "ANY_MEMBER"
         ]
       },
       "ProfileJoinMode": {
@@ -37703,15 +37734,15 @@
         ],
         "title": "ProfileJoinMode",
         "description": "Mode that determines what types of match requests the ticket will appear in",
-        "x-enum-varnames": [
-          "NORMAL",
-          "BACKFILL",
-          "CREATED_BEFORE"
-        ],
         "x-enum-descriptions": [
           "Ticket will be used to fulfill normal requests (players joining queue regularly to find games)",
           "Ticket will be used to fulfill backfill requests",
           "Ticket will be used in normal requests only after a specified amount of time. This makes tickets wait before having their linkings considered"
+        ],
+        "x-enum-varnames": [
+          "NORMAL",
+          "BACKFILL",
+          "CREATED_BEFORE"
         ]
       },
       "QueueConfig": {
@@ -38023,15 +38054,15 @@
         ],
         "title": "RuleType",
         "description": "What type of rule is being evaluated",
-        "x-enum-varnames": [
-          "INVENTORY",
-          "LINKING_SIZE",
-          "JOINING_SESSION_SIZE"
-        ],
         "x-enum-descriptions": [
           "Comparing the count of a specific item that a player owns",
           "Comparing the size of the linking (the number of players) in the session to be queued",
           "Comparing the size of the linking (the number of players) in the session to be queued"
+        ],
+        "x-enum-varnames": [
+          "INVENTORY",
+          "LINKING_SIZE",
+          "JOINING_SESSION_SIZE"
         ]
       },
       "SelfSessionPlayerUpdateRequest": {
@@ -38396,17 +38427,17 @@
         ],
         "title": "SessionPlayerStatus",
         "description": "What membership state players have in a session",
-        "x-enum-varnames": [
-          "leader",
-          "member",
-          "invited",
-          "reserved"
-        ],
         "x-enum-descriptions": [
           "Player is the leader of the session. Is allowed to perform admin actions on the session",
           "Player is an active member of the session. Is allowed basic actions on the session",
           "Player has been invited to the session, but has not accepted or declined",
           "Player's spot has been reserved on the session, but the player has not yet been notified"
+        ],
+        "x-enum-varnames": [
+          "leader",
+          "member",
+          "invited",
+          "reserved"
         ]
       },
       "SessionPlayerUpdateRequest": {
@@ -38758,19 +38789,19 @@
         ],
         "title": "TeamOverflowAction",
         "description": "How too many players being invited to a single team should be handled",
-        "x-enum-varnames": [
-          "fail",
-          "allow_overflow",
-          "partial_with_overflow",
-          "partial_without_overflow",
-          "overfill"
-        ],
         "x-enum-descriptions": [
           "Raise an error when too many players are invited to the same team",
           "Attempt to fill other teams when too many players are invited to one team. Will return an error if there is not enough room for all players",
           "Invite as many players as possible, and allow them to overflow onto other teams if necessary. Some players may not get invited. Will return an error if no players are invited",
           "Invite as many players as possible to the chosen team, and do not allow them to overflow. Some players may not get invited. Will return an error if no players are invited",
           "Overfill the specific team (ex. allow 6 players on a team that normally only allows 5)"
+        ],
+        "x-enum-varnames": [
+          "fail",
+          "allow_overflow",
+          "partial_with_overflow",
+          "partial_without_overflow",
+          "overfill"
         ]
       },
       "TeamUpdate": {
@@ -38842,19 +38873,19 @@
         ],
         "title": "VivoxSessionActionSingle",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "JOIN",
-          "JOIN_MUTED",
-          "KICK",
-          "MUTE",
-          "TRANSCRIBE"
-        ],
         "x-enum-descriptions": [
           "",
           "",
           "",
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "JOIN",
+          "JOIN_MUTED",
+          "KICK",
+          "MUTE",
+          "TRANSCRIBE"
         ]
       },
       "VoipSessionType": {
@@ -38865,13 +38896,13 @@
         ],
         "title": "VoipSessionType",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "SESSION",
-          "TEAM"
-        ],
         "x-enum-descriptions": [
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "SESSION",
+          "TEAM"
         ]
       },
       "VoipTokenResponse": {
@@ -41289,17 +41320,16 @@
             "title": "Version",
             "description": "Version"
           },
-          "device_info": {
+          "platform_id": {
             "anyOf": [
               {
-                "type": "string"
+                "$ref": "#/components/schemas/MatchPlatform"
               },
               {
                 "type": "null"
               }
             ],
-            "title": "Device Info",
-            "description": "Device info"
+            "description": "Platform ID"
           },
           "player_uuid": {
             "anyOf": [
@@ -41746,6 +41776,17 @@
             ],
             "title": "Device Info",
             "description": "Device info"
+          },
+          "platform_id": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MatchPlatform"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Platform ID"
           },
           "custom_data": {
             "anyOf": [
@@ -42224,6 +42265,17 @@
             ],
             "title": "Device Info",
             "description": "Device info"
+          },
+          "platform_id": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MatchPlatform"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Platform ID"
           },
           "custom_data": {
             "anyOf": [
@@ -42726,17 +42778,16 @@
             "title": "Version",
             "description": "Version"
           },
-          "device_info": {
+          "platform_id": {
             "anyOf": [
               {
-                "type": "string"
+                "$ref": "#/components/schemas/MatchPlatform"
               },
               {
                 "type": "null"
               }
             ],
-            "title": "Device Info",
-            "description": "Device info"
+            "description": "Platform ID"
           }
         },
         "type": "object",
@@ -43161,6 +43212,17 @@
             ],
             "title": "Device Info",
             "description": "Device info"
+          },
+          "platform_id": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MatchPlatform"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Platform ID"
           },
           "custom_data": {
             "anyOf": [
@@ -43634,6 +43696,17 @@
             "title": "Device Info",
             "description": "Device info"
           },
+          "platform_id": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MatchPlatform"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Platform ID"
+          },
           "custom_data": {
             "anyOf": [
               {
@@ -43932,6 +44005,64 @@
         "type": "object",
         "title": "PexStat"
       },
+      "MatchPlatform": {
+        "type": "string",
+        "enum": [
+          "Anon",
+          "Basic",
+          "XboxLive",
+          "PSN",
+          "NintendoNAID",
+          "NintendoSwitch",
+          "NintendoPPID",
+          "Google",
+          "GooglePlay",
+          "Apple",
+          "Epic",
+          "Steam",
+          "Amazon",
+          "Twitch",
+          "RallyHere",
+          "LegacyName"
+        ],
+        "title": "Platform",
+        "x-enum-descriptions": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "BASIC",
+          "XBOX_LIVE",
+          "PSN",
+          "NINTENDO_NAID",
+          "NINTENDO_SWITCH",
+          "NINTENDO_PPID",
+          "GOOGLE",
+          "GOOGLE_PLAY",
+          "APPLE",
+          "EPIC",
+          "STEAM",
+          "AMAZON",
+          "TWITCH",
+          "RALLYHERE",
+          "LEGACYNAME"
+        ]
+      },
       "PlayerStatsResponse": {
         "properties": {
           "total_matches_played": {
@@ -44082,17 +44213,17 @@
         ],
         "title": "OnlineStatus",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "online",
-          "away",
-          "invisible",
-          "offline"
-        ],
         "x-enum-descriptions": [
           "Player is current online",
           "Player is current online, but away.  Functionally identical to online",
           "Player will appear offline to other players",
           "Player is offline"
+        ],
+        "x-enum-varnames": [
+          "online",
+          "away",
+          "invisible",
+          "offline"
         ]
       },
       "PlatformIndividualCCUs": {
@@ -44776,13 +44907,13 @@
         ],
         "title": "OffsetReset",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "latest",
-          "earliest"
-        ],
         "x-enum-descriptions": [
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "latest",
+          "earliest"
         ]
       },
       "EnvironmentConfig": {

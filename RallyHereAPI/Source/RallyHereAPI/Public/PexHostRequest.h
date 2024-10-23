@@ -9,6 +9,7 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
+#include "MatchPlatform.h"
 #include "PexCount.h"
 #include "PexStat.h"
 #include "PexHostRequest.generated.h"
@@ -1248,6 +1249,39 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	void SetDeviceInfoToNull() { DeviceInfo_IsSet = true; DeviceInfo_IsNull = true; }
 	/** @brief Checks whether DeviceInfo_Optional is set to null */
 	bool IsDeviceInfoNull() const { return DeviceInfo_IsSet && DeviceInfo_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	ERHAPI_MatchPlatform PlatformId_Optional{  };
+	/** @brief true if PlatformId_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool PlatformId_IsSet{ false };
+	/** @brief true if PlatformId_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool PlatformId_IsNull{ false };
+	/** @brief Gets the value of PlatformId_Optional, regardless of it having been set */
+	ERHAPI_MatchPlatform& GetPlatformId() { return PlatformId_Optional; }
+	/** @brief Gets the value of PlatformId_Optional, regardless of it having been set */
+	const ERHAPI_MatchPlatform& GetPlatformId() const { return PlatformId_Optional; }
+	/** @brief Gets the value of PlatformId_Optional, if it has been set, otherwise it returns DefaultValue */
+	const ERHAPI_MatchPlatform& GetPlatformId(const ERHAPI_MatchPlatform& DefaultValue) const { if (PlatformId_IsSet) return PlatformId_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of PlatformId_Optional and returns true if it has been set, otherwise returns false */
+	bool GetPlatformId(ERHAPI_MatchPlatform& OutValue) const { if (PlatformId_IsSet && !PlatformId_IsNull) OutValue = PlatformId_Optional; return PlatformId_IsSet; }
+	/** @brief Returns a pointer to PlatformId_Optional, if it has been set, otherwise returns nullptr */
+	ERHAPI_MatchPlatform* GetPlatformIdOrNull() { if (PlatformId_IsSet) return (PlatformId_IsNull ? nullptr : &PlatformId_Optional); return nullptr; }
+	/** @brief Returns a pointer to PlatformId_Optional, if it has been set, otherwise returns nullptr */
+	const ERHAPI_MatchPlatform* GetPlatformIdOrNull() const { if (PlatformId_IsSet) return (PlatformId_IsNull ? nullptr : &PlatformId_Optional); return nullptr; }
+	/** @brief Sets the value of PlatformId_Optional and also sets PlatformId_IsSet to true */
+	void SetPlatformId(const ERHAPI_MatchPlatform& NewValue) { PlatformId_Optional = NewValue; PlatformId_IsSet = true; PlatformId_IsNull = false; }
+	/** @brief Sets the value of PlatformId_Optional and also sets PlatformId_IsSet to true using move semantics */
+	void SetPlatformId(ERHAPI_MatchPlatform&& NewValue) { PlatformId_Optional = NewValue; PlatformId_IsSet = true; PlatformId_IsNull = false; }
+	/** @brief Clears the value of PlatformId_Optional and sets PlatformId_IsSet to false */
+	void ClearPlatformId() { PlatformId_IsSet = false; PlatformId_IsNull = false; }
+	/** @brief Checks whether PlatformId_Optional has been set */
+	bool IsPlatformIdSet() const { return PlatformId_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetPlatformIdToNull() { PlatformId_IsSet = true; PlatformId_IsNull = true; }
+	/** @brief Checks whether PlatformId_Optional is set to null */
+	bool IsPlatformIdNull() const { return PlatformId_IsSet && PlatformId_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TMap<FString, FString> CustomData_Optional{  };

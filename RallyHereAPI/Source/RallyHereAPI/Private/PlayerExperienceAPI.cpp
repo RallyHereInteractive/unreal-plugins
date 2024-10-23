@@ -637,9 +637,9 @@ FString FRequest_GetAllPexClientRawByFilter::ComputePath() const
 	{
 		QueryParams.Add(FString(TEXT("version=")) + ToUrlString(Version.GetValue()));
 	}
-	if(DeviceInfo.IsSet())
+	if(PlatformId.IsSet())
 	{
-		QueryParams.Add(FString(TEXT("device_info=")) + ToUrlString(DeviceInfo.GetValue()));
+		QueryParams.Add(FString(TEXT("platform_id=")) + ToUrlString(PlatformId.GetValue()));
 	}
 	if(PlayerUuid.IsSet())
 	{
@@ -1022,9 +1022,9 @@ FString FRequest_GetAllPexClientScoresByFilter::ComputePath() const
 	{
 		QueryParams.Add(FString(TEXT("version=")) + ToUrlString(Version.GetValue()));
 	}
-	if(DeviceInfo.IsSet())
+	if(PlatformId.IsSet())
 	{
-		QueryParams.Add(FString(TEXT("device_info=")) + ToUrlString(DeviceInfo.GetValue()));
+		QueryParams.Add(FString(TEXT("platform_id=")) + ToUrlString(PlatformId.GetValue()));
 	}
 	if(PlayerUuid.IsSet())
 	{
@@ -1381,9 +1381,9 @@ FString FRequest_GetAllPexHostRawByFilter::ComputePath() const
 	{
 		QueryParams.Add(FString(TEXT("version=")) + ToUrlString(Version.GetValue()));
 	}
-	if(DeviceInfo.IsSet())
+	if(PlatformId.IsSet())
 	{
-		QueryParams.Add(FString(TEXT("device_info=")) + ToUrlString(DeviceInfo.GetValue()));
+		QueryParams.Add(FString(TEXT("platform_id=")) + ToUrlString(PlatformId.GetValue()));
 	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));
@@ -1762,9 +1762,9 @@ FString FRequest_GetAllPexHostScoresByFilter::ComputePath() const
 	{
 		QueryParams.Add(FString(TEXT("version=")) + ToUrlString(Version.GetValue()));
 	}
-	if(DeviceInfo.IsSet())
+	if(PlatformId.IsSet())
 	{
-		QueryParams.Add(FString(TEXT("device_info=")) + ToUrlString(DeviceInfo.GetValue()));
+		QueryParams.Add(FString(TEXT("platform_id=")) + ToUrlString(PlatformId.GetValue()));
 	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));
