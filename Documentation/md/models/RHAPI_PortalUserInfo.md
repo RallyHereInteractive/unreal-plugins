@@ -25,6 +25,8 @@ Portal user info.
 `public ERHAPI_DependenciesSchemasPortal `[`PortalId`](#structFRHAPI__PortalUserInfo_1af0233dbd7f509062dcf36313611ea286) | Portal ID. *DEPRECATED* use `platform` instead.
 `public FString `[`PortalUserId`](#structFRHAPI__PortalUserInfo_1a6733dd0ddc41200cf750f32de0b83dab) | Platform User ID.
 `public FString `[`DisplayName`](#structFRHAPI__PortalUserInfo_1a0ba620f7ad0e76fa03651b52221672d0) | Display name.
+`public ERHAPI_DeviceType `[`DeviceType_Optional`](#structFRHAPI__PortalUserInfo_1aa45110e5fcd50bfaf310fcec1caa6a77) | Platform-verified device type of the login.
+`public bool `[`DeviceType_IsSet`](#structFRHAPI__PortalUserInfo_1a9048188b2de7d1fd40a98a21f30e99d4) | true if DeviceType_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__PortalUserInfo_1a0ca5098c9ceb1d32639907161ac5dc8c)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PortalUserInfo_1aa48113211a257428d7a48cdcd56424eb)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PortalUserInfo_1a3f453744df9708c61b8d4cbc145eb71a)`()` | Gets the value of Platform.
@@ -43,6 +45,16 @@ Portal user info.
 `public inline const FString & `[`GetDisplayName`](#structFRHAPI__PortalUserInfo_1a3748a4f9b1fe44030fc16bce07e5f092)`() const` | Gets the value of DisplayName.
 `public inline void `[`SetDisplayName`](#structFRHAPI__PortalUserInfo_1a576242ed5ef69ebd695b8d16224de5e3)`(const FString & NewValue)` | Sets the value of DisplayName.
 `public inline void `[`SetDisplayName`](#structFRHAPI__PortalUserInfo_1a081355b13257ab48967dfe0c9ab8f3c2)`(FString && NewValue)` | Sets the value of DisplayName using move semantics.
+`public inline ERHAPI_DeviceType & `[`GetDeviceType`](#structFRHAPI__PortalUserInfo_1a4d9ccac590f43fd64811b0a4956f3708)`()` | Gets the value of DeviceType_Optional, regardless of it having been set.
+`public inline const ERHAPI_DeviceType & `[`GetDeviceType`](#structFRHAPI__PortalUserInfo_1ad79f3c27099d3377ba79514a4cf51a71)`() const` | Gets the value of DeviceType_Optional, regardless of it having been set.
+`public inline const ERHAPI_DeviceType & `[`GetDeviceType`](#structFRHAPI__PortalUserInfo_1a5a940953bb12bc57e913331c1d39f556)`(const ERHAPI_DeviceType & DefaultValue) const` | Gets the value of DeviceType_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetDeviceType`](#structFRHAPI__PortalUserInfo_1a576b999330fe1e647e976301d1a112fd)`(ERHAPI_DeviceType & OutValue) const` | Fills OutValue with the value of DeviceType_Optional and returns true if it has been set, otherwise returns false.
+`public inline ERHAPI_DeviceType * `[`GetDeviceTypeOrNull`](#structFRHAPI__PortalUserInfo_1a9e95e02f876a25e6f6765f9d87aeddc4)`()` | Returns a pointer to DeviceType_Optional, if it has been set, otherwise returns nullptr.
+`public inline const ERHAPI_DeviceType * `[`GetDeviceTypeOrNull`](#structFRHAPI__PortalUserInfo_1a645020c0bf04dee502647b74c1b3d1ca)`() const` | Returns a pointer to DeviceType_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetDeviceType`](#structFRHAPI__PortalUserInfo_1adeaa2b041d684be51b2115c4ca9cc2d2)`(const ERHAPI_DeviceType & NewValue)` | Sets the value of DeviceType_Optional and also sets DeviceType_IsSet to true.
+`public inline void `[`SetDeviceType`](#structFRHAPI__PortalUserInfo_1ada255c5a642eecefb1681dc8957bc847)`(ERHAPI_DeviceType && NewValue)` | Sets the value of DeviceType_Optional and also sets DeviceType_IsSet to true using move semantics.
+`public inline void `[`ClearDeviceType`](#structFRHAPI__PortalUserInfo_1a80537c78f0e6df5473eb5d852fe03c20)`()` | Clears the value of DeviceType_Optional and sets DeviceType_IsSet to false.
+`public inline bool `[`IsDeviceTypeSet`](#structFRHAPI__PortalUserInfo_1a54ed343449be7733cd8e8f396be8de37)`() const` | Checks whether DeviceType_Optional has been set.
 
 ### Members
 
@@ -61,6 +73,14 @@ Platform User ID.
 #### `public FString `[`DisplayName`](#structFRHAPI__PortalUserInfo_1a0ba620f7ad0e76fa03651b52221672d0) <a id="structFRHAPI__PortalUserInfo_1a0ba620f7ad0e76fa03651b52221672d0"></a>
 
 Display name.
+
+#### `public ERHAPI_DeviceType `[`DeviceType_Optional`](#structFRHAPI__PortalUserInfo_1aa45110e5fcd50bfaf310fcec1caa6a77) <a id="structFRHAPI__PortalUserInfo_1aa45110e5fcd50bfaf310fcec1caa6a77"></a>
+
+Platform-verified device type of the login.
+
+#### `public bool `[`DeviceType_IsSet`](#structFRHAPI__PortalUserInfo_1a9048188b2de7d1fd40a98a21f30e99d4) <a id="structFRHAPI__PortalUserInfo_1a9048188b2de7d1fd40a98a21f30e99d4"></a>
+
+true if DeviceType_Optional has been set to a value
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__PortalUserInfo_1a0ca5098c9ceb1d32639907161ac5dc8c)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PortalUserInfo_1a0ca5098c9ceb1d32639907161ac5dc8c"></a>
 
@@ -142,4 +162,44 @@ Sets the value of DisplayName.
 #### `public inline void `[`SetDisplayName`](#structFRHAPI__PortalUserInfo_1a081355b13257ab48967dfe0c9ab8f3c2)`(FString && NewValue)` <a id="structFRHAPI__PortalUserInfo_1a081355b13257ab48967dfe0c9ab8f3c2"></a>
 
 Sets the value of DisplayName using move semantics.
+
+#### `public inline ERHAPI_DeviceType & `[`GetDeviceType`](#structFRHAPI__PortalUserInfo_1a4d9ccac590f43fd64811b0a4956f3708)`()` <a id="structFRHAPI__PortalUserInfo_1a4d9ccac590f43fd64811b0a4956f3708"></a>
+
+Gets the value of DeviceType_Optional, regardless of it having been set.
+
+#### `public inline const ERHAPI_DeviceType & `[`GetDeviceType`](#structFRHAPI__PortalUserInfo_1ad79f3c27099d3377ba79514a4cf51a71)`() const` <a id="structFRHAPI__PortalUserInfo_1ad79f3c27099d3377ba79514a4cf51a71"></a>
+
+Gets the value of DeviceType_Optional, regardless of it having been set.
+
+#### `public inline const ERHAPI_DeviceType & `[`GetDeviceType`](#structFRHAPI__PortalUserInfo_1a5a940953bb12bc57e913331c1d39f556)`(const ERHAPI_DeviceType & DefaultValue) const` <a id="structFRHAPI__PortalUserInfo_1a5a940953bb12bc57e913331c1d39f556"></a>
+
+Gets the value of DeviceType_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetDeviceType`](#structFRHAPI__PortalUserInfo_1a576b999330fe1e647e976301d1a112fd)`(ERHAPI_DeviceType & OutValue) const` <a id="structFRHAPI__PortalUserInfo_1a576b999330fe1e647e976301d1a112fd"></a>
+
+Fills OutValue with the value of DeviceType_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline ERHAPI_DeviceType * `[`GetDeviceTypeOrNull`](#structFRHAPI__PortalUserInfo_1a9e95e02f876a25e6f6765f9d87aeddc4)`()` <a id="structFRHAPI__PortalUserInfo_1a9e95e02f876a25e6f6765f9d87aeddc4"></a>
+
+Returns a pointer to DeviceType_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const ERHAPI_DeviceType * `[`GetDeviceTypeOrNull`](#structFRHAPI__PortalUserInfo_1a645020c0bf04dee502647b74c1b3d1ca)`() const` <a id="structFRHAPI__PortalUserInfo_1a645020c0bf04dee502647b74c1b3d1ca"></a>
+
+Returns a pointer to DeviceType_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetDeviceType`](#structFRHAPI__PortalUserInfo_1adeaa2b041d684be51b2115c4ca9cc2d2)`(const ERHAPI_DeviceType & NewValue)` <a id="structFRHAPI__PortalUserInfo_1adeaa2b041d684be51b2115c4ca9cc2d2"></a>
+
+Sets the value of DeviceType_Optional and also sets DeviceType_IsSet to true.
+
+#### `public inline void `[`SetDeviceType`](#structFRHAPI__PortalUserInfo_1ada255c5a642eecefb1681dc8957bc847)`(ERHAPI_DeviceType && NewValue)` <a id="structFRHAPI__PortalUserInfo_1ada255c5a642eecefb1681dc8957bc847"></a>
+
+Sets the value of DeviceType_Optional and also sets DeviceType_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearDeviceType`](#structFRHAPI__PortalUserInfo_1a80537c78f0e6df5473eb5d852fe03c20)`()` <a id="structFRHAPI__PortalUserInfo_1a80537c78f0e6df5473eb5d852fe03c20"></a>
+
+Clears the value of DeviceType_Optional and sets DeviceType_IsSet to false.
+
+#### `public inline bool `[`IsDeviceTypeSet`](#structFRHAPI__PortalUserInfo_1a54ed343449be7733cd8e8f396be8de37)`() const` <a id="structFRHAPI__PortalUserInfo_1a54ed343449be7733cd8e8f396be8de37"></a>
+
+Checks whether DeviceType_Optional has been set.
 

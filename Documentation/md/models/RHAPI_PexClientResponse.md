@@ -136,6 +136,9 @@ struct FRHAPI_PexClientResponse
 `public FString `[`DeviceInfo_Optional`](#structFRHAPI__PexClientResponse_1aa582ef85226e8ecb88440f7cd7e0f233) | 
 `public bool `[`DeviceInfo_IsSet`](#structFRHAPI__PexClientResponse_1aea10fc93b211e19076993f01a7b08d11) | true if DeviceInfo_Optional has been set to a value
 `public bool `[`DeviceInfo_IsNull`](#structFRHAPI__PexClientResponse_1a46e6db005cdca30b7139a168a3772495) | true if DeviceInfo_Optional has been explicitly set to null
+`public ERHAPI_MatchPlatform `[`PlatformId_Optional`](#structFRHAPI__PexClientResponse_1ac2fe99b462c472a581319c5636879260) | 
+`public bool `[`PlatformId_IsSet`](#structFRHAPI__PexClientResponse_1aaa2d6850711147c7cb0f4ab36dea4f39) | true if PlatformId_Optional has been set to a value
+`public bool `[`PlatformId_IsNull`](#structFRHAPI__PexClientResponse_1a1b5fafba9599cc3074a18d1043d48765) | true if PlatformId_Optional has been explicitly set to null
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__PexClientResponse_1a4ed413400a19dcf1252e98e396a2c4bf) | 
 `public bool `[`CustomData_IsSet`](#structFRHAPI__PexClientResponse_1ab3e7c6c4aaf0bee055e35b6882117967) | true if CustomData_Optional has been set to a value
 `public bool `[`CustomData_IsNull`](#structFRHAPI__PexClientResponse_1ab655ba2cbcea9863e354294f7baa743f) | true if CustomData_Optional has been explicitly set to null
@@ -616,6 +619,18 @@ struct FRHAPI_PexClientResponse
 `public inline bool `[`IsDeviceInfoSet`](#structFRHAPI__PexClientResponse_1a123710c11dc6f9e4defa3942672a2349)`() const` | Checks whether DeviceInfo_Optional has been set.
 `public inline void `[`SetDeviceInfoToNull`](#structFRHAPI__PexClientResponse_1adb9005a08bbf04c576738d387dd5b396)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsDeviceInfoNull`](#structFRHAPI__PexClientResponse_1af5d274c9ef518cc96420eca984e5ea15)`() const` | Checks whether DeviceInfo_Optional is set to null.
+`public inline ERHAPI_MatchPlatform & `[`GetPlatformId`](#structFRHAPI__PexClientResponse_1a266ecfeb4ad1f4fcd2a14f16095c0b2c)`()` | Gets the value of PlatformId_Optional, regardless of it having been set.
+`public inline const ERHAPI_MatchPlatform & `[`GetPlatformId`](#structFRHAPI__PexClientResponse_1abac6767276de4f7f023348be008b93d1)`() const` | Gets the value of PlatformId_Optional, regardless of it having been set.
+`public inline const ERHAPI_MatchPlatform & `[`GetPlatformId`](#structFRHAPI__PexClientResponse_1aef246f2c30a5c28b56b80d9f4effd5c7)`(const ERHAPI_MatchPlatform & DefaultValue) const` | Gets the value of PlatformId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetPlatformId`](#structFRHAPI__PexClientResponse_1a3ea8d7c8a8592cd52e01eb09fb812448)`(ERHAPI_MatchPlatform & OutValue) const` | Fills OutValue with the value of PlatformId_Optional and returns true if it has been set, otherwise returns false.
+`public inline ERHAPI_MatchPlatform * `[`GetPlatformIdOrNull`](#structFRHAPI__PexClientResponse_1a3b8c98a950acdc23bd6abaf9b3ec029d)`()` | Returns a pointer to PlatformId_Optional, if it has been set, otherwise returns nullptr.
+`public inline const ERHAPI_MatchPlatform * `[`GetPlatformIdOrNull`](#structFRHAPI__PexClientResponse_1ade1dbed777a0ae45d3a67d23b0f2aa0a)`() const` | Returns a pointer to PlatformId_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetPlatformId`](#structFRHAPI__PexClientResponse_1a67b38ba7ca2a28919666307ba5d16e5f)`(const ERHAPI_MatchPlatform & NewValue)` | Sets the value of PlatformId_Optional and also sets PlatformId_IsSet to true.
+`public inline void `[`SetPlatformId`](#structFRHAPI__PexClientResponse_1a8dec249ff37aa1310176fbd25d41ed92)`(ERHAPI_MatchPlatform && NewValue)` | Sets the value of PlatformId_Optional and also sets PlatformId_IsSet to true using move semantics.
+`public inline void `[`ClearPlatformId`](#structFRHAPI__PexClientResponse_1a8d38ca9308b6e069939fcfbb42255ea2)`()` | Clears the value of PlatformId_Optional and sets PlatformId_IsSet to false.
+`public inline bool `[`IsPlatformIdSet`](#structFRHAPI__PexClientResponse_1ad8b8d5cb23df31fe054d0726ab236f0d)`() const` | Checks whether PlatformId_Optional has been set.
+`public inline void `[`SetPlatformIdToNull`](#structFRHAPI__PexClientResponse_1aae2ff0826d0f65fbcefa53debcbfcb5b)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsPlatformIdNull`](#structFRHAPI__PexClientResponse_1ace77ba8e91ebb820b84d465c20c5a6f7)`() const` | Checks whether PlatformId_Optional is set to null.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PexClientResponse_1aa15f8d1c77458661c526104eb99465d0)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PexClientResponse_1ab357cdfc6c40c457af0f7d57232f5032)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PexClientResponse_1a782072886f7437cdbf5874deb150d276)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -1026,6 +1041,16 @@ true if DeviceInfo_Optional has been set to a value
 #### `public bool `[`DeviceInfo_IsNull`](#structFRHAPI__PexClientResponse_1a46e6db005cdca30b7139a168a3772495) <a id="structFRHAPI__PexClientResponse_1a46e6db005cdca30b7139a168a3772495"></a>
 
 true if DeviceInfo_Optional has been explicitly set to null
+
+#### `public ERHAPI_MatchPlatform `[`PlatformId_Optional`](#structFRHAPI__PexClientResponse_1ac2fe99b462c472a581319c5636879260) <a id="structFRHAPI__PexClientResponse_1ac2fe99b462c472a581319c5636879260"></a>
+
+#### `public bool `[`PlatformId_IsSet`](#structFRHAPI__PexClientResponse_1aaa2d6850711147c7cb0f4ab36dea4f39) <a id="structFRHAPI__PexClientResponse_1aaa2d6850711147c7cb0f4ab36dea4f39"></a>
+
+true if PlatformId_Optional has been set to a value
+
+#### `public bool `[`PlatformId_IsNull`](#structFRHAPI__PexClientResponse_1a1b5fafba9599cc3074a18d1043d48765) <a id="structFRHAPI__PexClientResponse_1a1b5fafba9599cc3074a18d1043d48765"></a>
+
+true if PlatformId_Optional has been explicitly set to null
 
 #### `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__PexClientResponse_1a4ed413400a19dcf1252e98e396a2c4bf) <a id="structFRHAPI__PexClientResponse_1a4ed413400a19dcf1252e98e396a2c4bf"></a>
 
@@ -2953,6 +2978,54 @@ Sets the value explicitly to be treated as null.
 #### `public inline bool `[`IsDeviceInfoNull`](#structFRHAPI__PexClientResponse_1af5d274c9ef518cc96420eca984e5ea15)`() const` <a id="structFRHAPI__PexClientResponse_1af5d274c9ef518cc96420eca984e5ea15"></a>
 
 Checks whether DeviceInfo_Optional is set to null.
+
+#### `public inline ERHAPI_MatchPlatform & `[`GetPlatformId`](#structFRHAPI__PexClientResponse_1a266ecfeb4ad1f4fcd2a14f16095c0b2c)`()` <a id="structFRHAPI__PexClientResponse_1a266ecfeb4ad1f4fcd2a14f16095c0b2c"></a>
+
+Gets the value of PlatformId_Optional, regardless of it having been set.
+
+#### `public inline const ERHAPI_MatchPlatform & `[`GetPlatformId`](#structFRHAPI__PexClientResponse_1abac6767276de4f7f023348be008b93d1)`() const` <a id="structFRHAPI__PexClientResponse_1abac6767276de4f7f023348be008b93d1"></a>
+
+Gets the value of PlatformId_Optional, regardless of it having been set.
+
+#### `public inline const ERHAPI_MatchPlatform & `[`GetPlatformId`](#structFRHAPI__PexClientResponse_1aef246f2c30a5c28b56b80d9f4effd5c7)`(const ERHAPI_MatchPlatform & DefaultValue) const` <a id="structFRHAPI__PexClientResponse_1aef246f2c30a5c28b56b80d9f4effd5c7"></a>
+
+Gets the value of PlatformId_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetPlatformId`](#structFRHAPI__PexClientResponse_1a3ea8d7c8a8592cd52e01eb09fb812448)`(ERHAPI_MatchPlatform & OutValue) const` <a id="structFRHAPI__PexClientResponse_1a3ea8d7c8a8592cd52e01eb09fb812448"></a>
+
+Fills OutValue with the value of PlatformId_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline ERHAPI_MatchPlatform * `[`GetPlatformIdOrNull`](#structFRHAPI__PexClientResponse_1a3b8c98a950acdc23bd6abaf9b3ec029d)`()` <a id="structFRHAPI__PexClientResponse_1a3b8c98a950acdc23bd6abaf9b3ec029d"></a>
+
+Returns a pointer to PlatformId_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const ERHAPI_MatchPlatform * `[`GetPlatformIdOrNull`](#structFRHAPI__PexClientResponse_1ade1dbed777a0ae45d3a67d23b0f2aa0a)`() const` <a id="structFRHAPI__PexClientResponse_1ade1dbed777a0ae45d3a67d23b0f2aa0a"></a>
+
+Returns a pointer to PlatformId_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetPlatformId`](#structFRHAPI__PexClientResponse_1a67b38ba7ca2a28919666307ba5d16e5f)`(const ERHAPI_MatchPlatform & NewValue)` <a id="structFRHAPI__PexClientResponse_1a67b38ba7ca2a28919666307ba5d16e5f"></a>
+
+Sets the value of PlatformId_Optional and also sets PlatformId_IsSet to true.
+
+#### `public inline void `[`SetPlatformId`](#structFRHAPI__PexClientResponse_1a8dec249ff37aa1310176fbd25d41ed92)`(ERHAPI_MatchPlatform && NewValue)` <a id="structFRHAPI__PexClientResponse_1a8dec249ff37aa1310176fbd25d41ed92"></a>
+
+Sets the value of PlatformId_Optional and also sets PlatformId_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearPlatformId`](#structFRHAPI__PexClientResponse_1a8d38ca9308b6e069939fcfbb42255ea2)`()` <a id="structFRHAPI__PexClientResponse_1a8d38ca9308b6e069939fcfbb42255ea2"></a>
+
+Clears the value of PlatformId_Optional and sets PlatformId_IsSet to false.
+
+#### `public inline bool `[`IsPlatformIdSet`](#structFRHAPI__PexClientResponse_1ad8b8d5cb23df31fe054d0726ab236f0d)`() const` <a id="structFRHAPI__PexClientResponse_1ad8b8d5cb23df31fe054d0726ab236f0d"></a>
+
+Checks whether PlatformId_Optional has been set.
+
+#### `public inline void `[`SetPlatformIdToNull`](#structFRHAPI__PexClientResponse_1aae2ff0826d0f65fbcefa53debcbfcb5b)`()` <a id="structFRHAPI__PexClientResponse_1aae2ff0826d0f65fbcefa53debcbfcb5b"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsPlatformIdNull`](#structFRHAPI__PexClientResponse_1ace77ba8e91ebb820b84d465c20c5a6f7)`() const` <a id="structFRHAPI__PexClientResponse_1ace77ba8e91ebb820b84d465c20c5a6f7"></a>
+
+Checks whether PlatformId_Optional is set to null.
 
 #### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PexClientResponse_1aa15f8d1c77458661c526104eb99465d0)`()` <a id="structFRHAPI__PexClientResponse_1aa15f8d1c77458661c526104eb99465d0"></a>
 
