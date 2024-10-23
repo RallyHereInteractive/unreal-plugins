@@ -119,7 +119,7 @@ protected:
 		RallyHereAPI::Traits_GetSessionById::Request Request;
 		Request.AuthContext = GetAuthContext();
 		Request.SessionId = SessionId;
-		Request.IfNoneMatch = SessionOwner->GetETagForSession(SessionId);
+		FRH_ObjectVersionCheck::ApplyDefaultGetBehavior(Request, SessionOwner->GetETagForSession(SessionId));
 		Request.RefreshTtl = true; // always refresh the session ttl when polling all via this helper
 
 		auto HttpRequest = RallyHereAPI::Traits_GetSessionById::DoCall(RH_APIs::GetSessionsAPI(), Request, RallyHereAPI::Traits_GetSessionById::Delegate::CreateSP(this, &FRH_SessionLookupHelper::OnSessionLookup), TaskPriority);
@@ -422,7 +422,7 @@ protected:
 		// Read template data
 		RallyHereAPI::Traits_GetAllSessionTemplates::Request Request;
 		Request.AuthContext = GetAuthContext();
-		Request.IfNoneMatch = SessionOwner->GetETagForAllTemplatesPoll();
+		FRH_ObjectVersionCheck::ApplyDefaultGetBehavior(Request, SessionOwner->GetETagForAllTemplatesPoll());
 
 		HttpRequest = RallyHereAPI::Traits_GetAllSessionTemplates::DoCall(RH_APIs::GetSessionsAPI(), Request, RallyHereAPI::Traits_GetAllSessionTemplates::Delegate::CreateSP(this, &FRH_SessionPollAllHelper::OnQueryAllTemplates), TaskPriority);
 		if (!HttpRequest)
@@ -494,7 +494,7 @@ protected:
 		RallyHereAPI::Traits_GetPlayerSessionsSelf::Request Request;
 		Request.AuthContext = GetAuthContext();
 		// for now - do not use ETag here, as we do not have a convenient way to get the list of sessions to poll for.  Since we want to poll all those sessions for updates, we need the full list to poll
-		Request.IfNoneMatch = SessionOwner->GetETagForAllSessionsPoll();
+		FRH_ObjectVersionCheck::ApplyDefaultGetBehavior(Request, SessionOwner->GetETagForAllSessionsPoll());
 
 		HttpRequest = RallyHereAPI::Traits_GetPlayerSessionsSelf::DoCall(RH_APIs::GetSessionsAPI(), Request, RallyHereAPI::Traits_GetPlayerSessionsSelf::Delegate::CreateSP(this, &FRH_SessionPollAllHelper::OnQueryAllSessions), TaskPriority);
 		if (!HttpRequest)
@@ -617,7 +617,7 @@ protected:
 		SessionLookupType::Request Request;
 		Request.AuthContext = GetAuthContext();
 		Request.SessionId = SessionId;
-		Request.IfNoneMatch = SessionOwner->GetETagForSession(SessionId);
+		FRH_ObjectVersionCheck::ApplyDefaultGetBehavior(Request, SessionOwner->GetETagForSession(SessionId));
 		Request.RefreshTtl = true; // always refresh the session ttl when polling all
 
 		LastSessionLookupId = SessionId;

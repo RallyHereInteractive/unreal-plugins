@@ -221,7 +221,7 @@ bool {{classname}}::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> Json{{name}}Field = (*Object)->TryGetField(TEXT("{{baseName}}"));
 	{{#required}}
 	{{#isNullable}}
-	{{name}}_IsNull = Json{{name}}Field->IsNull();
+	{{name}}_IsNull = Json{{name}}Field != nullptr && Json{{name}}Field->IsNull();
 	{{/isNullable}}
 	{{^isWriteOnly}}ParseSuccess &= {{/isWriteOnly}}Json{{name}}Field.IsValid() && ({{^isNullable}}!Json{{name}}Field->IsNull() && {{/isNullable}}{{#isNullable}}{{name}}_IsNull ||{{/isNullable}} TryGetJsonValue(Json{{name}}Field, {{name}}));
 	{{/required}}

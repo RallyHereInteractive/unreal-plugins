@@ -19,10 +19,12 @@ struct FRHDTW_PlayerSettings : public FRH_DebugToolWindow
 	void DoSettingsTypes();
 
 	int32 SettingVersionNum;
-	FString SettingsIdInput;
+	FString FetchSettingsIdInput;
+	FString FetchSettingsKeyInput;
 	FString ModifySettingsIdInput;
 	FString ModifySettingsKeyInput;
 	FString ModifySettingsJsonInput;
+	bool bModifySettingOnlyIfMatch;
 
 private:
 	FString SetPlayerSettingActionResult;

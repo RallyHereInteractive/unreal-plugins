@@ -24,6 +24,7 @@ title: Common
 `struct `[`FRH_ErrorInfo`](#structFRH__ErrorInfo) | Generic blueprint and native delegate used to report success or failure.
 `struct `[`FRH_CustomEndpointRequestWrapper`](#structFRH__CustomEndpointRequestWrapper) | Wrapper calls for custom endpoint requests.
 `struct `[`FRH_CustomEndpointResponseWrapper`](#structFRH__CustomEndpointResponseWrapper) | Wrapper calls for custom endpoint responses.
+`struct `[`FRH_ObjectVersionCheck`](#structFRH__ObjectVersionCheck) | An helper object that will take in an desired version check behavior and apply it to a request.
 `struct `[`FRH_PlayerPlatformId`](#structFRH__PlayerPlatformId) | Common structure for identifying players on any known platform.
 `struct `[`FRH_RemoteFileApiDirectory`](#structFRH__RemoteFileApiDirectory) | A tuple specifying the directory of a file in the remote file storage.
 
@@ -631,6 +632,48 @@ Parsed RallyHere error
 #### `public inline  `[`FRH_CustomEndpointResponseWrapper`](#structFRH__CustomEndpointResponseWrapper_1aa44901d30ba89511ec625f6bfe297aa0)`()` <a id="structFRH__CustomEndpointResponseWrapper_1aa44901d30ba89511ec625f6bfe297aa0"></a>
 
 #### `public inline  `[`FRH_CustomEndpointResponseWrapper`](#structFRH__CustomEndpointResponseWrapper_1ad3707751b28f8cd4eaafc8d9cd4f8556)`(const RallyHereAPI::FResponse_CustomEndpointSend & Resp)` <a id="structFRH__CustomEndpointResponseWrapper_1ad3707751b28f8cd4eaafc8d9cd4f8556"></a>
+
+## struct `FRH_ObjectVersionCheck` <a id="structFRH__ObjectVersionCheck"></a>
+
+An helper object that will take in an desired version check behavior and apply it to a request.
+
+### Summary
+
+ Members                        | Descriptions                                
+--------------------------------|---------------------------------------------
+`public FString `[`IfMatch`](#structFRH__ObjectVersionCheck_1a23f36f3c677cb0164e1b899e7dcae7eb) | The value to be passed in the IfMatch header
+`public FString `[`IfNoneMatch`](#structFRH__ObjectVersionCheck_1a3fcf08f52d066f1073b309e0d6aa1cb3) | The value to be passed in the IfNoneMatch header
+`public FString `[`IfModifiedSince`](#structFRH__ObjectVersionCheck_1ad1a70184d4fc5f715174813cac82c574) | The value to be passed in the IfModifiedSince header, must be in HttpDate format (see FDateTime::ToHttpDate())
+`public FString `[`IfNotModifiedSince`](#structFRH__ObjectVersionCheck_1a7066325910c5f7e1fe330acbf9388032) | The value to be passed in the IfUnmodifiedSince header, must be in HttpDate format (see FDateTime::ToHttpDate())
+`public  `[`GENERATED_USTRUCT_BODY`](#structFRH__ObjectVersionCheck_1a9740569803d27f650d530a56da72f8f7)`()` | 
+`public inline  `[`FRH_ObjectVersionCheck`](#structFRH__ObjectVersionCheck_1a70ed07e58712c37d8c69200339326c85)`(const FString & InIfMatch,const FString & InIfNoneMatch,const FString & InIfModifiedSince,const FString & InIfNotModifiedSince)` | 
+`public template<>`  <br/>`inline void `[`ApplyToRequest`](#structFRH__ObjectVersionCheck_1a42af1dc8f3569b4ea5b56224ce7c8df2)`(T & InRequest) const` | Apply the version check behavior to a request.
+
+### Members
+
+#### `public FString `[`IfMatch`](#structFRH__ObjectVersionCheck_1a23f36f3c677cb0164e1b899e7dcae7eb) <a id="structFRH__ObjectVersionCheck_1a23f36f3c677cb0164e1b899e7dcae7eb"></a>
+
+The value to be passed in the IfMatch header
+
+#### `public FString `[`IfNoneMatch`](#structFRH__ObjectVersionCheck_1a3fcf08f52d066f1073b309e0d6aa1cb3) <a id="structFRH__ObjectVersionCheck_1a3fcf08f52d066f1073b309e0d6aa1cb3"></a>
+
+The value to be passed in the IfNoneMatch header
+
+#### `public FString `[`IfModifiedSince`](#structFRH__ObjectVersionCheck_1ad1a70184d4fc5f715174813cac82c574) <a id="structFRH__ObjectVersionCheck_1ad1a70184d4fc5f715174813cac82c574"></a>
+
+The value to be passed in the IfModifiedSince header, must be in HttpDate format (see FDateTime::ToHttpDate())
+
+#### `public FString `[`IfNotModifiedSince`](#structFRH__ObjectVersionCheck_1a7066325910c5f7e1fe330acbf9388032) <a id="structFRH__ObjectVersionCheck_1a7066325910c5f7e1fe330acbf9388032"></a>
+
+The value to be passed in the IfUnmodifiedSince header, must be in HttpDate format (see FDateTime::ToHttpDate())
+
+#### `public  `[`GENERATED_USTRUCT_BODY`](#structFRH__ObjectVersionCheck_1a9740569803d27f650d530a56da72f8f7)`()` <a id="structFRH__ObjectVersionCheck_1a9740569803d27f650d530a56da72f8f7"></a>
+
+#### `public inline  `[`FRH_ObjectVersionCheck`](#structFRH__ObjectVersionCheck_1a70ed07e58712c37d8c69200339326c85)`(const FString & InIfMatch,const FString & InIfNoneMatch,const FString & InIfModifiedSince,const FString & InIfNotModifiedSince)` <a id="structFRH__ObjectVersionCheck_1a70ed07e58712c37d8c69200339326c85"></a>
+
+#### `public template<>`  <br/>`inline void `[`ApplyToRequest`](#structFRH__ObjectVersionCheck_1a42af1dc8f3569b4ea5b56224ce7c8df2)`(T & InRequest) const` <a id="structFRH__ObjectVersionCheck_1a42af1dc8f3569b4ea5b56224ce7c8df2"></a>
+
+Apply the version check behavior to a request.
 
 ## struct `FRH_PlayerPlatformId` <a id="structFRH__PlayerPlatformId"></a>
 

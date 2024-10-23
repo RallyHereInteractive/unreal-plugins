@@ -29,12 +29,20 @@ struct FRH_PlayerSettingsDataWrapper
 	GENERATED_USTRUCT_BODY()
 
 public:
+	/** A map of a setting key to its data value */
 	UPROPERTY(Transient, BlueprintReadWrite, Category = "Player Info Subsystem | Player Settings Data Wrapper")
 	TMap<FString, FRHAPI_SettingData> Content;
-
+	
+	/** The last local time when this setting type was requested via a multi-key fetch. */
+	UPROPERTY(Transient, BlueprintReadWrite, Category = "Player Info Subsystem | Player Settings Data Wrapper")
+	FDateTime LastMultiFetchTime;
+	
+	/** The last ETag when this setting type was requested via a multi-key fetch. */
+	UPROPERTY(Transient, BlueprintReadWrite, Category = "Player Info Subsystem | Player Settings Data Wrapper")
+	FDateTime LastMultiFetchETag;
+	
 	FRH_PlayerSettingsDataWrapper()
 	{
-		Content.Empty();
 	}
 };
 
@@ -228,7 +236,8 @@ protected:
 		bInitialized = true;
 	}
 	/**
-	 * @brief Starts a poll of the object data
+	 * @brief Poll completion function that forwards completion callbacks
+	 * @param bSuccess If the poll was successful.
 	 * @param Delegate Callback delegate for the poll.
 	 */
 	virtual void PollComplete(bool bSuccess, const FRH_PollCompleteFunc& Delegate)
@@ -310,6 +319,100 @@ protected:
 	}
 };
 
+
+/**
+ * @brief Player Settings class used to store player settings data.
+ */
+UCLASS(Config = RallyHereIntegration, DefaultConfig)
+class RALLYHEREINTEGRATION_API URH_PlayerSettings : public URH_PlayerInfoSubobject
+{
+	GENERATED_UCLASS_BODY()
+
+public:
+	typedef RallyHereAPI::Traits_GetSinglePlayerUuidSetting GetSingleSettingType;
+	typedef RallyHereAPI::Traits_GetAllPlayerUuidSettingsForSettingType GetSettingsForKeysType;
+	typedef RallyHereAPI::Traits_SetSinglePlayerUuidSetting SetSettingType;
+	typedef RallyHereAPI::Traits_DeleteSinglePlayerUuidSetting DeleteSettingType;
+
+	/**
+	* @brief Gets the players settings information for a given type.
+	* @param [in] SettingTypeId The setting type requested.
+	* @param [in] Key The setting key being requested within the type
+    * @param [in] StaleThreshold If set, will force a re-request of the players information if the last updated time was more than the threshold.
+	* @param [in] bForceRefresh If true, will force a re-request of the players information.
+	* @param [in] Delegate Callback with the players settings for the given type.
+	*/
+	virtual void GetPlayerSetting(const FString& SettingTypeId, const FString& Key, const FTimespan& StaleThreshold = FTimespan(), bool bForceRefresh = false, const FRH_PlayerInfoGetPlayerSettingsBlock& Delegate = FRH_PlayerInfoGetPlayerSettingsBlock());
+	/** @private */
+	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Settings", meta = (DisplayName = "Get Player Setting (Single)", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_GetPlayerSetting(const FString& SettingTypeId, const FString& Key, const FTimespan& StaleThreshold, bool bForceRefresh, const FRH_PlayerInfoGetPlayerSettingsDynamicDelegate& Delegate) { GetPlayerSetting(SettingTypeId, Key, StaleThreshold, bForceRefresh, Delegate); }
+
+	/**
+	* @brief Gets the players settings information for a given type, restricted to a list of keys.
+	* @param [in] SettingTypeId The setting type requested.
+	* @param [in] Keys The list of keys to request.  If empty, all keys are requested
+	* @param [in] StaleThreshold If set, will force a re-request of the players information if the last updated time was more than the threshold.
+	* @param [in] bForceRefresh If true, will force a re-request of the players information.
+	* @param [in] Delegate Callback with the players settings for the given type.
+	*/
+	virtual void GetPlayerSettingsForKeys(const FString& SettingTypeId, const TArray<FString>& Keys, const FTimespan& StaleThreshold = FTimespan(), bool bForceRefresh = false, const FRH_PlayerInfoGetPlayerSettingsBlock& Delegate = FRH_PlayerInfoGetPlayerSettingsBlock());
+	/** @private */
+	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Settings", meta = (DisplayName = "Get Player Settings", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_GetPlayerSettingsForKeys(const FString& SettingTypeId, const TArray<FString>& Keys, const FTimespan& StaleThreshold, bool bForceRefresh, const FRH_PlayerInfoGetPlayerSettingsDynamicDelegate& Delegate) { GetPlayerSettingsForKeys(SettingTypeId, Keys, StaleThreshold, bForceRefresh, Delegate); }
+	
+	/**
+	* @brief Sets the players settings information for a given type.
+	* @param [in] SettingTypeId The setting type to update.
+	* @param [in] Key The setting key being updated within the type.
+	* @param [in] Document Json Document to be stored.
+	* @param [in] Delegate Callback when the operation is complete with success information.
+	* @param [in] VersionCheck Optional version check to ensure the data is not stale.
+	*/
+	virtual void SetPlayerSetting(const FString& SettingTypeId, const FString& Key, const FRHAPI_SetSinglePlayerSettingRequest& Document, const FRH_PlayerInfoSetPlayerSettingBlock& Delegate = FRH_PlayerInfoSetPlayerSettingBlock(), const FRH_ObjectVersionCheck& VersionCheck = FRH_ObjectVersionCheck());
+	/** @private */
+	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Settings", meta = (DisplayName = "Set Player Setting", AutoCreateRefTerm = "Delegate, VersionCheck"))
+	void BLUEPRINT_SetPlayerSetting(const FString& SettingTypeId, const FString& Key, const FRHAPI_SetSinglePlayerSettingRequest& Document, const FRH_PlayerInfoSetPlayerSettingDynamicDelegate& Delegate, const FRH_ObjectVersionCheck& VersionCheck) { SetPlayerSetting(SettingTypeId, Key, Document, Delegate, VersionCheck); }
+
+	/**
+	* @brief Deletes a players setting for a given type.
+	* @param [in] SettingTypeId The setting type to update.
+	* @param [in] Key The setting key being updated within the type.
+	* @param [in] Delegate Callback when the operation is complete with success information.
+	*/
+	virtual void DeletePlayerSetting(const FString& SettingTypeId, const FString& Key, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock());
+	/** @private */
+	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Settings", meta = (DisplayName = "Set Player Setting", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_DeletePlayerSetting(const FString& SettingTypeId, const FString& Key, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate) { DeletePlayerSetting(SettingTypeId, Key, Delegate); }
+
+	/**
+	* @brief Gets all the players store settings data.
+	* @return The players stored settings data.
+	*/
+	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Settings")
+	virtual const TMap<FString, FRH_PlayerSettingsDataWrapper>& GetAllStoredPlayerSettings() const { return PlayerSettingsByTypeId; }
+protected:
+	/**
+	 * @brief Handles the response to a Get Player Setting call.
+	 * @param [in] Response Response given for the call
+	 * @param [in] Delegate Delegate passed in for original call to respond to when call completes.
+	 * @param [in] SettingTypeId The type of settings that were requested.
+	 * @param [in] Key The key that was requested.
+	 */
+	virtual void OnGetPlayerSettingResponse(const GetSingleSettingType::Response& Response, const FRH_PlayerInfoGetPlayerSettingsBlock Delegate, const FString SettingTypeId, FString Key);
+	/**
+	 * @brief Handles the response to a Get Player Settings call.
+	 * @param [in] Response Response given for the call
+	 * @param [in] Delegate Delegate passed in for original call to respond to when call completes.
+	 * @param [in] SettingTypeId The type of settings that were requested.
+	 * @param [in] PartialKeys If Specified, only the keys in this list were requested.
+	 */
+	virtual void OnGetPlayerSettingsResponse(const GetSettingsForKeysType::Response& Response, const FRH_PlayerInfoGetPlayerSettingsBlock Delegate, const FString SettingTypeId, TOptional<TArray<FString>> PartialKeys);
+	/**
+	 * @brief Cache of Player Settings Data by their settings types.
+	 */
+	UPROPERTY()
+	TMap<FString, FRH_PlayerSettingsDataWrapper> PlayerSettingsByTypeId;
+};
 
 /**
  * @brief Player Sessions class used to store player session membership information
@@ -745,11 +848,6 @@ class RALLYHEREINTEGRATION_API URH_PlayerInfo : public UObject
 	GENERATED_UCLASS_BODY()
 public:
 	typedef RallyHereAPI::Traits_GetPlayerLinks GetPlatforms;
-	typedef RallyHereAPI::Traits_GetAllPlayerUuidSettingsForSettingType GetSettings;
-	UE_DEPRECATED(5.0, "Use of the functions to set multiple settings at once has been deprecated, please use the single setting version instead.")
-	typedef RallyHereAPI::Traits_SetSinglePlayerUuidSetting SetSettings;
-	typedef RallyHereAPI::Traits_SetSinglePlayerUuidSetting SetSetting;
-	typedef RallyHereAPI::Traits_DeleteSinglePlayerUuidSetting DeleteSetting;
 	typedef RallyHereAPI::Traits_GetAllPlayerUuidRanksV2 GetRankings;
 	typedef RallyHereAPI::Traits_UpdatePlayerUuidRankV2 UpdateRanking;
 
@@ -767,6 +865,13 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Info")
 	FORCEINLINE URH_PlayerPresence* GetPresence() const { return PlayerPresence;}
 
+	/**
+	* @brief Gets The players settings class.
+	* @return The players settings class.
+	*/
+	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Info")
+	FORCEINLINE URH_PlayerSettings* GetSettings() const { return PlayerSettings;}
+	
 	/**
 	* @brief Gets The players sessions class.
 	* @return The players sessions class.
@@ -851,8 +956,9 @@ public:
 	* @brief Gets all the players store settings data.
 	* @return The players stored settings data.
 	*/
-	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Info")
-	virtual const TMap<FString, FRH_PlayerSettingsDataWrapper>& GetAllStoredPlayerSettings() const { return PlayerSettingsByTypeId; }
+	UE_DEPRECATED(5.0, "Please directly call the settings subobject instead.")
+	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Info", meta = (DeprecatedFunction, DeprecationMessage = "Please directly call the settings subobject instead."))
+	virtual const TMap<FString, FRH_PlayerSettingsDataWrapper>& GetAllStoredPlayerSettings() const { return GetSettings()->GetAllStoredPlayerSettings(); }
 
 	/**
 	* @brief Gets all the players stored ranking data.
@@ -916,10 +1022,11 @@ public:
 	* @param [in] bForceRefresh If true, will force a re-request of the players information.
 	* @param [in] Delegate Callback with the players settings for the given type.
 	*/
-	virtual void GetPlayerSettings(const FString& SettingTypeId, const FTimespan& StaleThreshold = FTimespan(), bool bForceRefresh = false, const FRH_PlayerInfoGetPlayerSettingsBlock& Delegate = FRH_PlayerInfoGetPlayerSettingsBlock());
+	UE_DEPRECATED(5.0, "Please directly call the settings subobject instead.")
+	virtual void GetPlayerSettings(const FString& SettingTypeId, const FTimespan& StaleThreshold = FTimespan(), bool bForceRefresh = false, const FRH_PlayerInfoGetPlayerSettingsBlock& Delegate = FRH_PlayerInfoGetPlayerSettingsBlock()) { GetSettings()->GetPlayerSettingsForKeys(SettingTypeId, TArray<FString>(), StaleThreshold, bForceRefresh, Delegate); }
 	/** @private */
-	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Get Player Settings", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_GetPlayerSettings(const FString& SettingTypeId, const FTimespan& StaleThreshold, bool bForceRefresh, const FRH_PlayerInfoGetPlayerSettingsDynamicDelegate& Delegate) { GetPlayerSettingsForKeys(SettingTypeId, TArray<FString>(), StaleThreshold, bForceRefresh, Delegate); }
+	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DeprecatedFunction, DeprecationMessage = "Please directly call the settings subobject instead.", DisplayName = "Get Player Settings", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_GetPlayerSettings(const FString& SettingTypeId, const FTimespan& StaleThreshold, bool bForceRefresh, const FRH_PlayerInfoGetPlayerSettingsDynamicDelegate& Delegate) { GetSettings()->BLUEPRINT_GetPlayerSettingsForKeys(SettingTypeId, TArray<FString>(), StaleThreshold, bForceRefresh, Delegate); }
 
 	/**
 	* @brief Gets the players settings information for a given type, restricted to a list of keys.
@@ -928,25 +1035,12 @@ public:
 	* @param [in] bForceRefresh If true, will force a re-request of the players information.
 	* @param [in] Delegate Callback with the players settings for the given type.
 	*/
-	virtual void GetPlayerSettingsForKeys(const FString& SettingTypeId, const TArray<FString>& Keys, const FTimespan& StaleThreshold = FTimespan(), bool bForceRefresh = false, const FRH_PlayerInfoGetPlayerSettingsBlock& Delegate = FRH_PlayerInfoGetPlayerSettingsBlock());
+	UE_DEPRECATED(5.0, "Please directly call the settings subobject instead.")
+	virtual void GetPlayerSettingsForKeys(const FString& SettingTypeId, const TArray<FString>& Keys, const FTimespan& StaleThreshold = FTimespan(), bool bForceRefresh = false, const FRH_PlayerInfoGetPlayerSettingsBlock& Delegate = FRH_PlayerInfoGetPlayerSettingsBlock()) { GetSettings()->GetPlayerSettingsForKeys(SettingTypeId, Keys, StaleThreshold, bForceRefresh, Delegate); }
 	/** @private */
-	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Get Player Settings", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_GetPlayerSettingsForKeys(const FString& SettingTypeId, const TArray<FString>& Keys, const FTimespan& StaleThreshold, bool bForceRefresh, const FRH_PlayerInfoGetPlayerSettingsDynamicDelegate& Delegate) { GetPlayerSettingsForKeys(SettingTypeId, Keys, StaleThreshold, bForceRefresh, Delegate); }
-
-	/**
-	* @brief Sets the players settings information for a given type.
-	* @param [in] SettingTypeId The setting type to update.
-	* @param [in] SettingsData Data to be stored into the players settings.
-	* @param [in] Delegate Callback when the operation is complete with success information.
-	*/
-	UE_DEPRECATED(5.0, "Setting multiple settings in one call is deprecated, use SetPlayerSetting instead.")
-	virtual void SetPlayerSettings(const FString& SettingTypeId, FRH_PlayerSettingsDataWrapper& SettingsData, const FRH_PlayerInfoSetPlayerSettingsBlock& Delegate = FRH_PlayerInfoSetPlayerSettingsBlock());
-	PRAGMA_DISABLE_DEPRECATION_WARNINGS
-	/** @private */
-	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DeprecatedFunction, DeprecationMessage = "Setting multiple settings in one call is deprecated, use SetPlayerSetting instead.", DisplayName = "Set Player Settings", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_SetPlayerSettings(const FString& SettingTypeId, FRH_PlayerSettingsDataWrapper SettingsData, const FRH_PlayerInfoSetPlayerSettingsDynamicDelegate& Delegate) { SetPlayerSettings(SettingTypeId, SettingsData, Delegate); }
-	PRAGMA_ENABLE_DEPRECATION_WARNINGS
-
+	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DeprecatedFunction, DeprecationMessage = "Please directly call the settings subobject instead.", DisplayName = "Get Player Settings", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_GetPlayerSettingsForKeys(const FString& SettingTypeId, const TArray<FString>& Keys, const FTimespan& StaleThreshold, bool bForceRefresh, const FRH_PlayerInfoGetPlayerSettingsDynamicDelegate& Delegate) { GetSettings()->BLUEPRINT_GetPlayerSettingsForKeys(SettingTypeId, Keys, StaleThreshold, bForceRefresh, Delegate); }
+	
 	/**
 	* @brief Sets the players settings information for a given type.
 	* @param [in] SettingTypeId The setting type to update.
@@ -954,10 +1048,11 @@ public:
 	* @param [in] Document Json Document to be stored.
 	* @param [in] Delegate Callback when the operation is complete with success information.
 	*/
-	virtual void SetPlayerSetting(const FString& SettingTypeId, const FString& Key, const FRHAPI_SetSinglePlayerSettingRequest& Document, const FRH_PlayerInfoSetPlayerSettingBlock& Delegate = FRH_PlayerInfoSetPlayerSettingBlock());
+	UE_DEPRECATED(5.0, "Please directly call the settings subobject instead.")
+	virtual void SetPlayerSetting(const FString& SettingTypeId, const FString& Key, const FRHAPI_SetSinglePlayerSettingRequest& Document, const FRH_PlayerInfoSetPlayerSettingBlock& Delegate = FRH_PlayerInfoSetPlayerSettingBlock()) { GetSettings()->SetPlayerSetting(SettingTypeId, Key, Document, Delegate); }
 	/** @private */
-	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Set Player Setting", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_SetPlayerSetting(const FString& SettingTypeId, const FString& Key, const FRHAPI_SetSinglePlayerSettingRequest& Document, const FRH_PlayerInfoSetPlayerSettingDynamicDelegate& Delegate) { SetPlayerSetting(SettingTypeId, Key, Document, Delegate); }
+	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DeprecatedFunction, DeprecationMessage = "Please directly call the settings subobject instead.", DisplayName = "Set Player Setting", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_SetPlayerSetting(const FString& SettingTypeId, const FString& Key, const FRHAPI_SetSinglePlayerSettingRequest& Document, const FRH_PlayerInfoSetPlayerSettingDynamicDelegate& Delegate) { GetSettings()->BLUEPRINT_SetPlayerSetting(SettingTypeId, Key, Document, Delegate, FRH_ObjectVersionCheck()); }
 
 	/**
 	* @brief Deletes a players setting for a given type.
@@ -965,10 +1060,11 @@ public:
 	* @param [in] Key The setting key being updated within the type.
 	* @param [in] Delegate Callback when the operation is complete with success information.
 	*/
-	virtual void DeletePlayerSetting(const FString& SettingTypeId, const FString& Key, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock());
+	UE_DEPRECATED(5.0, "Please directly call the settings subobject instead.")
+	virtual void DeletePlayerSetting(const FString& SettingTypeId, const FString& Key, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock()) { GetSettings()->DeletePlayerSetting(SettingTypeId, Key, Delegate); }
 	/** @private */
-	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Set Player Setting", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_DeletePlayerSetting(const FString& SettingTypeId, const FString& Key, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate) { DeletePlayerSetting(SettingTypeId, Key, Delegate); }
+	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DeprecatedFunction, DeprecationMessage = "Please directly call the settings subobject instead.", DisplayName = "Set Player Setting", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_DeletePlayerSetting(const FString& SettingTypeId, const FString& Key, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate) { GetSettings()->BLUEPRINT_DeletePlayerSetting(SettingTypeId, Key, Delegate); }
 
 	/**
 	* @brief Gets the players ranking information for a given type.
@@ -1009,21 +1105,6 @@ protected:
 	UPROPERTY(BlueprintGetter = GetRHPlayerUuid, Category = "Player Info Subsystem | Player Info")
 	FGuid RHPlayerUuid;
 	/**
-	 * @brief Cache of Player Settings Data by their settings types.
-	 */
-	UPROPERTY()
-	TMap<FString, FRH_PlayerSettingsDataWrapper> PlayerSettingsByTypeId;
-	/**
-	 * @brief When requesting multiple Player Settings Updates at once, this keeps track of pending requests so we know when all requests are completed.
-	 */
-	UPROPERTY(Transient)
-	TMap<FString, FRH_PlayerSettingKeySetWrapper> PendingSettingRequestsByTypeId;
-	/**
-	 * @brief Used when requesting multiple Player Settings Updates to track all their responses.
-	 */
-	UPROPERTY(Transient)
-	TMap<FString, FRH_PlayerSettingsDataWrapper> SetPlayerSettingResponses;
-	/**
 	 * @brief Cache of all platforms the player is linked to.
 	 */
 	UPROPERTY()
@@ -1033,6 +1114,11 @@ protected:
 	 */
 	UPROPERTY(BlueprintGetter = GetPresence, Category = "Presence")
 	URH_PlayerPresence* PlayerPresence;
+	/**
+	 * @brief The player's settings information.
+	 */
+	UPROPERTY(BlueprintGetter = GetSettings, Category = "Settings")
+	URH_PlayerSettings* PlayerSettings;
 	/**
 	 * @brief The players Sessions Information.
 	 */
@@ -1073,10 +1159,6 @@ protected:
 	 */
 	FDateTime LastRequestPlatforms;
 	/**
-	 * @brief Tracks the last time each settings type was request for checking if the data is stale.
-	 */
-	TMap<FString, FDateTime> LastRequestSettingsByTypeId;
-	/**
 	 * @brief Tracks the last time the player rankings were requested for checking if the data is stale.
 	 */
 	FDateTime LastRequestRankings;
@@ -1103,25 +1185,6 @@ protected:
 	 * @param [in] Delegate Delegate passed in for original call to respond to when call completes.
 	 */
 	virtual void OnGetPlayerLinkedPlatformsResponse(const GetPlatforms::Response& Response, const FRH_PlayerInfoGetPlatformsBlock Delegate);
-	/**
-	 * @brief Handles the response to a Get Player Settings call.
-	 * @param [in] Resp Response given for the call
-	 * @param [in] Delegate Delegate passed in for original call to respond to when call completes.
-	 * @param [in] SettingTypeId The type of settings that were requested.
-	 * @param [in] PartialKeys If Specified, only the keys in this list were requested.
-	 */
-	virtual void OnGetPlayerSettingsResponse(const GetSettings::Response& Response, const FRH_PlayerInfoGetPlayerSettingsBlock Delegate, const FString SettingTypeId, TOptional<TArray<FString>> PartialKeys);
-	PRAGMA_DISABLE_DEPRECATION_WARNINGS
-	/**
-	 * @brief Handles the response to a Set Player Settings call.
-	 * @param [in] Resp Response given for the call
-	 * @param [in] Delegate Delegate passed in for original call to respond to when call completes.
-	 * @param [in] SettinyTypeId The type of settings that being updated requested.
-	 * @param [in] SettingKey The key of the setting that was updated.
-	 * @param [in] SettingsData The data of the setting that was updated.
-	 */
-	virtual void OnSetPlayerSettingsResponse(const SetSettings::Response& Response, const FRH_PlayerInfoSetPlayerSettingsBlock Delegate, const FString SettingTypeId, const FString SettingKey, FRH_PlayerSettingsDataWrapper SettingsData);
-	PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	/**
 	 * @brief Handles the response to a Get Player Rankings call.
 	 * @param [in] Resp Response given for the call

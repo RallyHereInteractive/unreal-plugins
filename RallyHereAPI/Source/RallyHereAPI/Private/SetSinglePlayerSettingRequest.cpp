@@ -43,7 +43,7 @@ bool FRHAPI_SetSinglePlayerSettingRequest::FromJson(const TSharedPtr<FJsonValue>
 	const TSharedPtr<FJsonValue> JsonVField = (*Object)->TryGetField(TEXT("v"));
 	ParseSuccess &= JsonVField.IsValid() && (!JsonVField->IsNull() &&  TryGetJsonValue(JsonVField, V));
 	const TSharedPtr<FJsonValue> JsonValueField = (*Object)->TryGetField(TEXT("value"));
-	Value_IsNull = JsonValueField->IsNull();
+	Value_IsNull = JsonValueField != nullptr && JsonValueField->IsNull();
 	ParseSuccess &= JsonValueField.IsValid() && (Value_IsNull || TryGetJsonValue(JsonValueField, Value));
 
 	return ParseSuccess;

@@ -96,7 +96,7 @@ void URH_MatchmakingBrowserCache::SearchMatchmakingTemplateGroup(const FGuid& Te
 		// if we have an etag, use it
 		if (Existing->GetETag().Len() > 0)
 		{
-			Request.IfNoneMatch = Existing->GetETag();
+			FRH_ObjectVersionCheck::ApplyDefaultGetBehavior(Request, Existing->GetETag());
 		}
 	}
 
@@ -158,7 +158,7 @@ void URH_MatchmakingBrowserCache::SearchMatchmakingProfile(const FString& Profil
 		// if we have an etag, use it
 		if (Existing->GetETag().Len() > 0)
 		{
-			Request.IfNoneMatch = Existing->GetETag();
+			FRH_ObjectVersionCheck::ApplyDefaultGetBehavior(Request, Existing->GetETag());
 		}
 	}
 
@@ -211,7 +211,7 @@ void URH_MatchmakingBrowserCache::SearchInstanceRequestTemplate(const FGuid& Tem
 		// if we have an etag, use it
 		if (Existing->GetETag().Len() > 0)
 		{
-			Request.IfNoneMatch = Existing->GetETag();
+			FRH_ObjectVersionCheck::ApplyDefaultGetBehavior(Request, Existing->GetETag());
 		}
 	}
 

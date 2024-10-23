@@ -144,7 +144,7 @@ bool FRHAPI_PlayerReport::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= SourcePlayerId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonTargetPlayerUuidField = (*Object)->TryGetField(TEXT("target_player_uuid"));
-	TargetPlayerUuid_IsNull = JsonTargetPlayerUuidField->IsNull();
+	TargetPlayerUuid_IsNull = JsonTargetPlayerUuidField != nullptr && JsonTargetPlayerUuidField->IsNull();
 	ParseSuccess &= JsonTargetPlayerUuidField.IsValid() && (TargetPlayerUuid_IsNull || TryGetJsonValue(JsonTargetPlayerUuidField, TargetPlayerUuid));
 	const TSharedPtr<FJsonValue> JsonTargetPlayerIdField = (*Object)->TryGetField(TEXT("target_player_id"));
 	if (JsonTargetPlayerIdField.IsValid())

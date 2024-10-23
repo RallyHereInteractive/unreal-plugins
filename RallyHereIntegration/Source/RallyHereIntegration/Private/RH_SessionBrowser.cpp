@@ -129,7 +129,7 @@ protected:
 
 		if (SessionOwner.IsValid())
 		{
-			Request.IfNoneMatch = SessionOwner->GetETagForSession(SessionId);
+			FRH_ObjectVersionCheck::ApplyDefaultGetBehavior(Request, SessionOwner->GetETagForSession(SessionId));
 		}
 
 		HttpRequest = GetSessionByIdType::DoCall(RH_APIs::GetSessionsAPI(), Request, RallyHereAPI::Traits_GetSessionById::Delegate::CreateSP(this, &FRH_SessionBrowserSearchHelper::OnSessionLookup), GetDefault<URH_IntegrationSettings>()->SessionGetBySessionIdPriority);
