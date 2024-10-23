@@ -1310,18 +1310,6 @@ struct RALLYHEREAPI_API FRHAPI_PexClientResponse : public FRHAPI_Model
 	/** @brief Checks whether Version_Optional is set to null */
 	bool IsVersionNull() const { return Version_IsSet && Version_IsNull; }
 
-	/** @brief Player UUID */
-	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FGuid PlayerUuid{  };
-	/** @brief Gets the value of PlayerUuid */
-	FGuid& GetPlayerUuid() { return PlayerUuid; }
-	/** @brief Gets the value of PlayerUuid */
-	const FGuid& GetPlayerUuid() const { return PlayerUuid; }
-	/** @brief Sets the value of PlayerUuid */
-	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;   }
-	/** @brief Sets the value of PlayerUuid using move semantics */
-	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;   }
-
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString DeviceInfo_Optional{  };
 	/** @brief true if DeviceInfo_Optional has been set to a value */
@@ -1354,6 +1342,51 @@ struct RALLYHEREAPI_API FRHAPI_PexClientResponse : public FRHAPI_Model
 	void SetDeviceInfoToNull() { DeviceInfo_IsSet = true; DeviceInfo_IsNull = true; }
 	/** @brief Checks whether DeviceInfo_Optional is set to null */
 	bool IsDeviceInfoNull() const { return DeviceInfo_IsSet && DeviceInfo_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TMap<FString, FString> CustomData_Optional{  };
+	/** @brief true if CustomData_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool CustomData_IsSet{ false };
+	/** @brief true if CustomData_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool CustomData_IsNull{ false };
+	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
+	TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
+	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
+	const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
+	/** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
+	const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
+	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet && !CustomData_IsNull) OutValue = CustomData_Optional; return CustomData_IsSet; }
+	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
+	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (CustomData_IsNull ? nullptr : &CustomData_Optional); return nullptr; }
+	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
+	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (CustomData_IsNull ? nullptr : &CustomData_Optional); return nullptr; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; CustomData_IsNull = false; }
+	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; CustomData_IsNull = false; }
+	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+	void ClearCustomData() { CustomData_IsSet = false; CustomData_IsNull = false; }
+	/** @brief Checks whether CustomData_Optional has been set */
+	bool IsCustomDataSet() const { return CustomData_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetCustomDataToNull() { CustomData_IsSet = true; CustomData_IsNull = true; }
+	/** @brief Checks whether CustomData_Optional is set to null */
+	bool IsCustomDataNull() const { return CustomData_IsSet && CustomData_IsNull; }
+
+	/** @brief Player UUID */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FGuid PlayerUuid{  };
+	/** @brief Gets the value of PlayerUuid */
+	FGuid& GetPlayerUuid() { return PlayerUuid; }
+	/** @brief Gets the value of PlayerUuid */
+	const FGuid& GetPlayerUuid() const { return PlayerUuid; }
+	/** @brief Sets the value of PlayerUuid */
+	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;   }
+	/** @brief Sets the value of PlayerUuid using move semantics */
+	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;   }
 };
 
 /** @} */

@@ -133,10 +133,13 @@ struct FRHAPI_PexClientResponse
 `public FString `[`Version_Optional`](#structFRHAPI__PexClientResponse_1a107114448b0ac43e6dae660d2a5abb5a) | 
 `public bool `[`Version_IsSet`](#structFRHAPI__PexClientResponse_1afb98891259e4f9166e11b3d1f9bb5ea2) | true if Version_Optional has been set to a value
 `public bool `[`Version_IsNull`](#structFRHAPI__PexClientResponse_1a8aafe59270a38590354c6935fecce9b6) | true if Version_Optional has been explicitly set to null
-`public FGuid `[`PlayerUuid`](#structFRHAPI__PexClientResponse_1a64985223639ad3b72082ed63c553e213) | Player UUID.
 `public FString `[`DeviceInfo_Optional`](#structFRHAPI__PexClientResponse_1aa582ef85226e8ecb88440f7cd7e0f233) | 
 `public bool `[`DeviceInfo_IsSet`](#structFRHAPI__PexClientResponse_1aea10fc93b211e19076993f01a7b08d11) | true if DeviceInfo_Optional has been set to a value
 `public bool `[`DeviceInfo_IsNull`](#structFRHAPI__PexClientResponse_1a46e6db005cdca30b7139a168a3772495) | true if DeviceInfo_Optional has been explicitly set to null
+`public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__PexClientResponse_1a4ed413400a19dcf1252e98e396a2c4bf) | 
+`public bool `[`CustomData_IsSet`](#structFRHAPI__PexClientResponse_1ab3e7c6c4aaf0bee055e35b6882117967) | true if CustomData_Optional has been set to a value
+`public bool `[`CustomData_IsNull`](#structFRHAPI__PexClientResponse_1ab655ba2cbcea9863e354294f7baa743f) | true if CustomData_Optional has been explicitly set to null
+`public FGuid `[`PlayerUuid`](#structFRHAPI__PexClientResponse_1a64985223639ad3b72082ed63c553e213) | Player UUID.
 `public virtual bool `[`FromJson`](#structFRHAPI__PexClientResponse_1a6106f8f9a0a26fe9dcfed63070a040ec)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PexClientResponse_1a1d8da20b4691ec30e753f5fd5a79261b)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FDateTime & `[`GetCreatedTimestamp`](#structFRHAPI__PexClientResponse_1a4d356674f8aec7dc066245284611187b)`()` | Gets the value of CreatedTimestamp_Optional, regardless of it having been set.
@@ -601,10 +604,6 @@ struct FRHAPI_PexClientResponse
 `public inline bool `[`IsVersionSet`](#structFRHAPI__PexClientResponse_1a22d7ea80dc9abce986e02b18a061c59c)`() const` | Checks whether Version_Optional has been set.
 `public inline void `[`SetVersionToNull`](#structFRHAPI__PexClientResponse_1acefc7b7b87f0b1eec2a93a01aae5c098)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsVersionNull`](#structFRHAPI__PexClientResponse_1a0eb3e712f0651738c193512ca858a078)`() const` | Checks whether Version_Optional is set to null.
-`public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__PexClientResponse_1ab0fcdb485a33f46ee9c1bfe7208a8e3a)`()` | Gets the value of PlayerUuid.
-`public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__PexClientResponse_1a2a846e94d1ebff5ef31fc0b273836ae2)`() const` | Gets the value of PlayerUuid.
-`public inline void `[`SetPlayerUuid`](#structFRHAPI__PexClientResponse_1a75ffd32bd7a7e0d257d4ed83b1b1867d)`(const FGuid & NewValue)` | Sets the value of PlayerUuid.
-`public inline void `[`SetPlayerUuid`](#structFRHAPI__PexClientResponse_1a3be39f66f0d7d07d485180e00e1a6891)`(FGuid && NewValue)` | Sets the value of PlayerUuid using move semantics.
 `public inline FString & `[`GetDeviceInfo`](#structFRHAPI__PexClientResponse_1a36552bbe63e71a5b0913dc86f612467c)`()` | Gets the value of DeviceInfo_Optional, regardless of it having been set.
 `public inline const FString & `[`GetDeviceInfo`](#structFRHAPI__PexClientResponse_1af133ea1d9b404ed289d48581473e8a40)`() const` | Gets the value of DeviceInfo_Optional, regardless of it having been set.
 `public inline const FString & `[`GetDeviceInfo`](#structFRHAPI__PexClientResponse_1aacc2e61eea4e7000595162922c8da7a8)`(const FString & DefaultValue) const` | Gets the value of DeviceInfo_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -617,6 +616,22 @@ struct FRHAPI_PexClientResponse
 `public inline bool `[`IsDeviceInfoSet`](#structFRHAPI__PexClientResponse_1a123710c11dc6f9e4defa3942672a2349)`() const` | Checks whether DeviceInfo_Optional has been set.
 `public inline void `[`SetDeviceInfoToNull`](#structFRHAPI__PexClientResponse_1adb9005a08bbf04c576738d387dd5b396)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsDeviceInfoNull`](#structFRHAPI__PexClientResponse_1af5d274c9ef518cc96420eca984e5ea15)`() const` | Checks whether DeviceInfo_Optional is set to null.
+`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PexClientResponse_1aa15f8d1c77458661c526104eb99465d0)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PexClientResponse_1ab357cdfc6c40c457af0f7d57232f5032)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PexClientResponse_1a782072886f7437cdbf5874deb150d276)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetCustomData`](#structFRHAPI__PexClientResponse_1a3b70836f9cf7535d10f6ea27f23d27f9)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PexClientResponse_1a29d6bbc920811c05bb8776bbd182f991)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PexClientResponse_1acaa469a69dfd3b2c8cb0dfc8555f6d29)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetCustomData`](#structFRHAPI__PexClientResponse_1af2240e395fcbaf5b98bf6383b8a3ba4c)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__PexClientResponse_1a7faec5da2df92895d3a0fd04593b042f)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
+`public inline void `[`ClearCustomData`](#structFRHAPI__PexClientResponse_1a6e6ddc9890ec2749595542b8551eb042)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+`public inline bool `[`IsCustomDataSet`](#structFRHAPI__PexClientResponse_1adad015c8c273b22ff1307a6c5a5db2e7)`() const` | Checks whether CustomData_Optional has been set.
+`public inline void `[`SetCustomDataToNull`](#structFRHAPI__PexClientResponse_1add70c8246e38317e7223e5460329724a)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsCustomDataNull`](#structFRHAPI__PexClientResponse_1ae48f0bd8272b59ac8e8f58acd943c4e2)`() const` | Checks whether CustomData_Optional is set to null.
+`public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__PexClientResponse_1ab0fcdb485a33f46ee9c1bfe7208a8e3a)`()` | Gets the value of PlayerUuid.
+`public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__PexClientResponse_1a2a846e94d1ebff5ef31fc0b273836ae2)`() const` | Gets the value of PlayerUuid.
+`public inline void `[`SetPlayerUuid`](#structFRHAPI__PexClientResponse_1a75ffd32bd7a7e0d257d4ed83b1b1867d)`(const FGuid & NewValue)` | Sets the value of PlayerUuid.
+`public inline void `[`SetPlayerUuid`](#structFRHAPI__PexClientResponse_1a3be39f66f0d7d07d485180e00e1a6891)`(FGuid && NewValue)` | Sets the value of PlayerUuid using move semantics.
 
 ### Members
 
@@ -1002,10 +1017,6 @@ true if Version_Optional has been set to a value
 
 true if Version_Optional has been explicitly set to null
 
-#### `public FGuid `[`PlayerUuid`](#structFRHAPI__PexClientResponse_1a64985223639ad3b72082ed63c553e213) <a id="structFRHAPI__PexClientResponse_1a64985223639ad3b72082ed63c553e213"></a>
-
-Player UUID.
-
 #### `public FString `[`DeviceInfo_Optional`](#structFRHAPI__PexClientResponse_1aa582ef85226e8ecb88440f7cd7e0f233) <a id="structFRHAPI__PexClientResponse_1aa582ef85226e8ecb88440f7cd7e0f233"></a>
 
 #### `public bool `[`DeviceInfo_IsSet`](#structFRHAPI__PexClientResponse_1aea10fc93b211e19076993f01a7b08d11) <a id="structFRHAPI__PexClientResponse_1aea10fc93b211e19076993f01a7b08d11"></a>
@@ -1015,6 +1026,20 @@ true if DeviceInfo_Optional has been set to a value
 #### `public bool `[`DeviceInfo_IsNull`](#structFRHAPI__PexClientResponse_1a46e6db005cdca30b7139a168a3772495) <a id="structFRHAPI__PexClientResponse_1a46e6db005cdca30b7139a168a3772495"></a>
 
 true if DeviceInfo_Optional has been explicitly set to null
+
+#### `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__PexClientResponse_1a4ed413400a19dcf1252e98e396a2c4bf) <a id="structFRHAPI__PexClientResponse_1a4ed413400a19dcf1252e98e396a2c4bf"></a>
+
+#### `public bool `[`CustomData_IsSet`](#structFRHAPI__PexClientResponse_1ab3e7c6c4aaf0bee055e35b6882117967) <a id="structFRHAPI__PexClientResponse_1ab3e7c6c4aaf0bee055e35b6882117967"></a>
+
+true if CustomData_Optional has been set to a value
+
+#### `public bool `[`CustomData_IsNull`](#structFRHAPI__PexClientResponse_1ab655ba2cbcea9863e354294f7baa743f) <a id="structFRHAPI__PexClientResponse_1ab655ba2cbcea9863e354294f7baa743f"></a>
+
+true if CustomData_Optional has been explicitly set to null
+
+#### `public FGuid `[`PlayerUuid`](#structFRHAPI__PexClientResponse_1a64985223639ad3b72082ed63c553e213) <a id="structFRHAPI__PexClientResponse_1a64985223639ad3b72082ed63c553e213"></a>
+
+Player UUID.
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__PexClientResponse_1a6106f8f9a0a26fe9dcfed63070a040ec)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PexClientResponse_1a6106f8f9a0a26fe9dcfed63070a040ec"></a>
 
@@ -2881,22 +2906,6 @@ Sets the value explicitly to be treated as null.
 
 Checks whether Version_Optional is set to null.
 
-#### `public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__PexClientResponse_1ab0fcdb485a33f46ee9c1bfe7208a8e3a)`()` <a id="structFRHAPI__PexClientResponse_1ab0fcdb485a33f46ee9c1bfe7208a8e3a"></a>
-
-Gets the value of PlayerUuid.
-
-#### `public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__PexClientResponse_1a2a846e94d1ebff5ef31fc0b273836ae2)`() const` <a id="structFRHAPI__PexClientResponse_1a2a846e94d1ebff5ef31fc0b273836ae2"></a>
-
-Gets the value of PlayerUuid.
-
-#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__PexClientResponse_1a75ffd32bd7a7e0d257d4ed83b1b1867d)`(const FGuid & NewValue)` <a id="structFRHAPI__PexClientResponse_1a75ffd32bd7a7e0d257d4ed83b1b1867d"></a>
-
-Sets the value of PlayerUuid.
-
-#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__PexClientResponse_1a3be39f66f0d7d07d485180e00e1a6891)`(FGuid && NewValue)` <a id="structFRHAPI__PexClientResponse_1a3be39f66f0d7d07d485180e00e1a6891"></a>
-
-Sets the value of PlayerUuid using move semantics.
-
 #### `public inline FString & `[`GetDeviceInfo`](#structFRHAPI__PexClientResponse_1a36552bbe63e71a5b0913dc86f612467c)`()` <a id="structFRHAPI__PexClientResponse_1a36552bbe63e71a5b0913dc86f612467c"></a>
 
 Gets the value of DeviceInfo_Optional, regardless of it having been set.
@@ -2944,4 +2953,68 @@ Sets the value explicitly to be treated as null.
 #### `public inline bool `[`IsDeviceInfoNull`](#structFRHAPI__PexClientResponse_1af5d274c9ef518cc96420eca984e5ea15)`() const` <a id="structFRHAPI__PexClientResponse_1af5d274c9ef518cc96420eca984e5ea15"></a>
 
 Checks whether DeviceInfo_Optional is set to null.
+
+#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PexClientResponse_1aa15f8d1c77458661c526104eb99465d0)`()` <a id="structFRHAPI__PexClientResponse_1aa15f8d1c77458661c526104eb99465d0"></a>
+
+Gets the value of CustomData_Optional, regardless of it having been set.
+
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PexClientResponse_1ab357cdfc6c40c457af0f7d57232f5032)`() const` <a id="structFRHAPI__PexClientResponse_1ab357cdfc6c40c457af0f7d57232f5032"></a>
+
+Gets the value of CustomData_Optional, regardless of it having been set.
+
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PexClientResponse_1a782072886f7437cdbf5874deb150d276)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__PexClientResponse_1a782072886f7437cdbf5874deb150d276"></a>
+
+Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetCustomData`](#structFRHAPI__PexClientResponse_1a3b70836f9cf7535d10f6ea27f23d27f9)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__PexClientResponse_1a3b70836f9cf7535d10f6ea27f23d27f9"></a>
+
+Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PexClientResponse_1a29d6bbc920811c05bb8776bbd182f991)`()` <a id="structFRHAPI__PexClientResponse_1a29d6bbc920811c05bb8776bbd182f991"></a>
+
+Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PexClientResponse_1acaa469a69dfd3b2c8cb0dfc8555f6d29)`() const` <a id="structFRHAPI__PexClientResponse_1acaa469a69dfd3b2c8cb0dfc8555f6d29"></a>
+
+Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetCustomData`](#structFRHAPI__PexClientResponse_1af2240e395fcbaf5b98bf6383b8a3ba4c)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__PexClientResponse_1af2240e395fcbaf5b98bf6383b8a3ba4c"></a>
+
+Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+
+#### `public inline void `[`SetCustomData`](#structFRHAPI__PexClientResponse_1a7faec5da2df92895d3a0fd04593b042f)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__PexClientResponse_1a7faec5da2df92895d3a0fd04593b042f"></a>
+
+Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearCustomData`](#structFRHAPI__PexClientResponse_1a6e6ddc9890ec2749595542b8551eb042)`()` <a id="structFRHAPI__PexClientResponse_1a6e6ddc9890ec2749595542b8551eb042"></a>
+
+Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+
+#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__PexClientResponse_1adad015c8c273b22ff1307a6c5a5db2e7)`() const` <a id="structFRHAPI__PexClientResponse_1adad015c8c273b22ff1307a6c5a5db2e7"></a>
+
+Checks whether CustomData_Optional has been set.
+
+#### `public inline void `[`SetCustomDataToNull`](#structFRHAPI__PexClientResponse_1add70c8246e38317e7223e5460329724a)`()` <a id="structFRHAPI__PexClientResponse_1add70c8246e38317e7223e5460329724a"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsCustomDataNull`](#structFRHAPI__PexClientResponse_1ae48f0bd8272b59ac8e8f58acd943c4e2)`() const` <a id="structFRHAPI__PexClientResponse_1ae48f0bd8272b59ac8e8f58acd943c4e2"></a>
+
+Checks whether CustomData_Optional is set to null.
+
+#### `public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__PexClientResponse_1ab0fcdb485a33f46ee9c1bfe7208a8e3a)`()` <a id="structFRHAPI__PexClientResponse_1ab0fcdb485a33f46ee9c1bfe7208a8e3a"></a>
+
+Gets the value of PlayerUuid.
+
+#### `public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__PexClientResponse_1a2a846e94d1ebff5ef31fc0b273836ae2)`() const` <a id="structFRHAPI__PexClientResponse_1a2a846e94d1ebff5ef31fc0b273836ae2"></a>
+
+Gets the value of PlayerUuid.
+
+#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__PexClientResponse_1a75ffd32bd7a7e0d257d4ed83b1b1867d)`(const FGuid & NewValue)` <a id="structFRHAPI__PexClientResponse_1a75ffd32bd7a7e0d257d4ed83b1b1867d"></a>
+
+Sets the value of PlayerUuid.
+
+#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__PexClientResponse_1a3be39f66f0d7d07d485180e00e1a6891)`(FGuid && NewValue)` <a id="structFRHAPI__PexClientResponse_1a3be39f66f0d7d07d485180e00e1a6891"></a>
+
+Sets the value of PlayerUuid using move semantics.
 

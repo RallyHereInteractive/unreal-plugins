@@ -73,12 +73,12 @@ struct FRHAPI_PexClientQueryParams
 `public FString `[`Version_Optional`](#structFRHAPI__PexClientQueryParams_1ac1b596120e96be08ac492bb32caf8441) | 
 `public bool `[`Version_IsSet`](#structFRHAPI__PexClientQueryParams_1ab0c2b722b05d07e358c733943a583b56) | true if Version_Optional has been set to a value
 `public bool `[`Version_IsNull`](#structFRHAPI__PexClientQueryParams_1acde07334c1b396a6a7d3c450efefd71c) | true if Version_Optional has been explicitly set to null
-`public FString `[`PlayerUuid_Optional`](#structFRHAPI__PexClientQueryParams_1a7674d9224dde5d6d896a4bc1b0759cf2) | 
-`public bool `[`PlayerUuid_IsSet`](#structFRHAPI__PexClientQueryParams_1a84cb645c8163a5356d28171dca0b338a) | true if PlayerUuid_Optional has been set to a value
-`public bool `[`PlayerUuid_IsNull`](#structFRHAPI__PexClientQueryParams_1ae50d1e7df095d7689042dc9ae7814ab9) | true if PlayerUuid_Optional has been explicitly set to null
 `public FString `[`DeviceInfo_Optional`](#structFRHAPI__PexClientQueryParams_1a89e0adef304f35ef1534455fb9f7cc8f) | 
 `public bool `[`DeviceInfo_IsSet`](#structFRHAPI__PexClientQueryParams_1a0f8d58b8456af7fc7975a42d1f55fffb) | true if DeviceInfo_Optional has been set to a value
 `public bool `[`DeviceInfo_IsNull`](#structFRHAPI__PexClientQueryParams_1ae1339c0053ee6c307ef4a9d151ec93e6) | true if DeviceInfo_Optional has been explicitly set to null
+`public FString `[`PlayerUuid_Optional`](#structFRHAPI__PexClientQueryParams_1a7674d9224dde5d6d896a4bc1b0759cf2) | 
+`public bool `[`PlayerUuid_IsSet`](#structFRHAPI__PexClientQueryParams_1a84cb645c8163a5356d28171dca0b338a) | true if PlayerUuid_Optional has been set to a value
+`public bool `[`PlayerUuid_IsNull`](#structFRHAPI__PexClientQueryParams_1ae50d1e7df095d7689042dc9ae7814ab9) | true if PlayerUuid_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__PexClientQueryParams_1aca59bf3569fbfdcfe07a2a86e9477d70)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PexClientQueryParams_1a8f8e5eaeda22b405f69bbbdc61e6dbc3)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FDateTime & `[`GetToDatetime`](#structFRHAPI__PexClientQueryParams_1a43bb89d61890290b7b5c18031a87b146)`()` | Gets the value of ToDatetime_Optional, regardless of it having been set.
@@ -301,18 +301,6 @@ struct FRHAPI_PexClientQueryParams
 `public inline bool `[`IsVersionSet`](#structFRHAPI__PexClientQueryParams_1a50390188293605a7e75974e5b491ee2f)`() const` | Checks whether Version_Optional has been set.
 `public inline void `[`SetVersionToNull`](#structFRHAPI__PexClientQueryParams_1a6b873ec8c9cd3a66d902d3fcf4f2cbca)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsVersionNull`](#structFRHAPI__PexClientQueryParams_1a80b1367d52f1120099a9f17647b21bf6)`() const` | Checks whether Version_Optional is set to null.
-`public inline FString & `[`GetPlayerUuid`](#structFRHAPI__PexClientQueryParams_1a7bd2a13b0e2bbb1ea1baa53f0eae373f)`()` | Gets the value of PlayerUuid_Optional, regardless of it having been set.
-`public inline const FString & `[`GetPlayerUuid`](#structFRHAPI__PexClientQueryParams_1a18d81ccaa92d53c6005f4f926520c599)`() const` | Gets the value of PlayerUuid_Optional, regardless of it having been set.
-`public inline const FString & `[`GetPlayerUuid`](#structFRHAPI__PexClientQueryParams_1a791fb65f65dee9a38614962781fdc956)`(const FString & DefaultValue) const` | Gets the value of PlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPlayerUuid`](#structFRHAPI__PexClientQueryParams_1ac0456ca25497756a8d40777181c1ac22)`(FString & OutValue) const` | Fills OutValue with the value of PlayerUuid_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetPlayerUuidOrNull`](#structFRHAPI__PexClientQueryParams_1a80846a0719b57328c30b20ec3c9141ee)`()` | Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetPlayerUuidOrNull`](#structFRHAPI__PexClientQueryParams_1a1746179228affb77dbb510cffe7dcc8d)`() const` | Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPlayerUuid`](#structFRHAPI__PexClientQueryParams_1a9266df65cb049cee4ab24097a5b15b53)`(const FString & NewValue)` | Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true.
-`public inline void `[`SetPlayerUuid`](#structFRHAPI__PexClientQueryParams_1aa458af47163afa31c56404d3273b8d7c)`(FString && NewValue)` | Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true using move semantics.
-`public inline void `[`ClearPlayerUuid`](#structFRHAPI__PexClientQueryParams_1a7df837ea53f885c5404762794b265632)`()` | Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false.
-`public inline bool `[`IsPlayerUuidSet`](#structFRHAPI__PexClientQueryParams_1a9bc9d3c0f29456688add58b85ea32a43)`() const` | Checks whether PlayerUuid_Optional has been set.
-`public inline void `[`SetPlayerUuidToNull`](#structFRHAPI__PexClientQueryParams_1ab2b34c4ea65a1bbd2257d8d4dfee36d8)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsPlayerUuidNull`](#structFRHAPI__PexClientQueryParams_1a795f8c2470b6ec7166f2e175ab20eb93)`() const` | Checks whether PlayerUuid_Optional is set to null.
 `public inline FString & `[`GetDeviceInfo`](#structFRHAPI__PexClientQueryParams_1ad94faae678709eb9fdb16d850b58179a)`()` | Gets the value of DeviceInfo_Optional, regardless of it having been set.
 `public inline const FString & `[`GetDeviceInfo`](#structFRHAPI__PexClientQueryParams_1ae3c2d64f35487accf165144f9f6a8256)`() const` | Gets the value of DeviceInfo_Optional, regardless of it having been set.
 `public inline const FString & `[`GetDeviceInfo`](#structFRHAPI__PexClientQueryParams_1aaeb27824a1c1ab9b7e9dd4c99c875dac)`(const FString & DefaultValue) const` | Gets the value of DeviceInfo_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -325,6 +313,18 @@ struct FRHAPI_PexClientQueryParams
 `public inline bool `[`IsDeviceInfoSet`](#structFRHAPI__PexClientQueryParams_1aea250561a5e158c152b031952c056edf)`() const` | Checks whether DeviceInfo_Optional has been set.
 `public inline void `[`SetDeviceInfoToNull`](#structFRHAPI__PexClientQueryParams_1a26e94f4c8fd146b1f22def7f7c4aeb5a)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsDeviceInfoNull`](#structFRHAPI__PexClientQueryParams_1a5e9481b43da0f646bc0718e44d90e745)`() const` | Checks whether DeviceInfo_Optional is set to null.
+`public inline FString & `[`GetPlayerUuid`](#structFRHAPI__PexClientQueryParams_1a7bd2a13b0e2bbb1ea1baa53f0eae373f)`()` | Gets the value of PlayerUuid_Optional, regardless of it having been set.
+`public inline const FString & `[`GetPlayerUuid`](#structFRHAPI__PexClientQueryParams_1a18d81ccaa92d53c6005f4f926520c599)`() const` | Gets the value of PlayerUuid_Optional, regardless of it having been set.
+`public inline const FString & `[`GetPlayerUuid`](#structFRHAPI__PexClientQueryParams_1a791fb65f65dee9a38614962781fdc956)`(const FString & DefaultValue) const` | Gets the value of PlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetPlayerUuid`](#structFRHAPI__PexClientQueryParams_1ac0456ca25497756a8d40777181c1ac22)`(FString & OutValue) const` | Fills OutValue with the value of PlayerUuid_Optional and returns true if it has been set, otherwise returns false.
+`public inline FString * `[`GetPlayerUuidOrNull`](#structFRHAPI__PexClientQueryParams_1a80846a0719b57328c30b20ec3c9141ee)`()` | Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetPlayerUuidOrNull`](#structFRHAPI__PexClientQueryParams_1a1746179228affb77dbb510cffe7dcc8d)`() const` | Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetPlayerUuid`](#structFRHAPI__PexClientQueryParams_1a9266df65cb049cee4ab24097a5b15b53)`(const FString & NewValue)` | Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true.
+`public inline void `[`SetPlayerUuid`](#structFRHAPI__PexClientQueryParams_1aa458af47163afa31c56404d3273b8d7c)`(FString && NewValue)` | Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true using move semantics.
+`public inline void `[`ClearPlayerUuid`](#structFRHAPI__PexClientQueryParams_1a7df837ea53f885c5404762794b265632)`()` | Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false.
+`public inline bool `[`IsPlayerUuidSet`](#structFRHAPI__PexClientQueryParams_1a9bc9d3c0f29456688add58b85ea32a43)`() const` | Checks whether PlayerUuid_Optional has been set.
+`public inline void `[`SetPlayerUuidToNull`](#structFRHAPI__PexClientQueryParams_1ab2b34c4ea65a1bbd2257d8d4dfee36d8)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsPlayerUuidNull`](#structFRHAPI__PexClientQueryParams_1a795f8c2470b6ec7166f2e175ab20eb93)`() const` | Checks whether PlayerUuid_Optional is set to null.
 
 ### Members
 
@@ -512,16 +512,6 @@ true if Version_Optional has been set to a value
 
 true if Version_Optional has been explicitly set to null
 
-#### `public FString `[`PlayerUuid_Optional`](#structFRHAPI__PexClientQueryParams_1a7674d9224dde5d6d896a4bc1b0759cf2) <a id="structFRHAPI__PexClientQueryParams_1a7674d9224dde5d6d896a4bc1b0759cf2"></a>
-
-#### `public bool `[`PlayerUuid_IsSet`](#structFRHAPI__PexClientQueryParams_1a84cb645c8163a5356d28171dca0b338a) <a id="structFRHAPI__PexClientQueryParams_1a84cb645c8163a5356d28171dca0b338a"></a>
-
-true if PlayerUuid_Optional has been set to a value
-
-#### `public bool `[`PlayerUuid_IsNull`](#structFRHAPI__PexClientQueryParams_1ae50d1e7df095d7689042dc9ae7814ab9) <a id="structFRHAPI__PexClientQueryParams_1ae50d1e7df095d7689042dc9ae7814ab9"></a>
-
-true if PlayerUuid_Optional has been explicitly set to null
-
 #### `public FString `[`DeviceInfo_Optional`](#structFRHAPI__PexClientQueryParams_1a89e0adef304f35ef1534455fb9f7cc8f) <a id="structFRHAPI__PexClientQueryParams_1a89e0adef304f35ef1534455fb9f7cc8f"></a>
 
 #### `public bool `[`DeviceInfo_IsSet`](#structFRHAPI__PexClientQueryParams_1a0f8d58b8456af7fc7975a42d1f55fffb) <a id="structFRHAPI__PexClientQueryParams_1a0f8d58b8456af7fc7975a42d1f55fffb"></a>
@@ -531,6 +521,16 @@ true if DeviceInfo_Optional has been set to a value
 #### `public bool `[`DeviceInfo_IsNull`](#structFRHAPI__PexClientQueryParams_1ae1339c0053ee6c307ef4a9d151ec93e6) <a id="structFRHAPI__PexClientQueryParams_1ae1339c0053ee6c307ef4a9d151ec93e6"></a>
 
 true if DeviceInfo_Optional has been explicitly set to null
+
+#### `public FString `[`PlayerUuid_Optional`](#structFRHAPI__PexClientQueryParams_1a7674d9224dde5d6d896a4bc1b0759cf2) <a id="structFRHAPI__PexClientQueryParams_1a7674d9224dde5d6d896a4bc1b0759cf2"></a>
+
+#### `public bool `[`PlayerUuid_IsSet`](#structFRHAPI__PexClientQueryParams_1a84cb645c8163a5356d28171dca0b338a) <a id="structFRHAPI__PexClientQueryParams_1a84cb645c8163a5356d28171dca0b338a"></a>
+
+true if PlayerUuid_Optional has been set to a value
+
+#### `public bool `[`PlayerUuid_IsNull`](#structFRHAPI__PexClientQueryParams_1ae50d1e7df095d7689042dc9ae7814ab9) <a id="structFRHAPI__PexClientQueryParams_1ae50d1e7df095d7689042dc9ae7814ab9"></a>
+
+true if PlayerUuid_Optional has been explicitly set to null
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__PexClientQueryParams_1aca59bf3569fbfdcfe07a2a86e9477d70)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PexClientQueryParams_1aca59bf3569fbfdcfe07a2a86e9477d70"></a>
 
@@ -1429,54 +1429,6 @@ Sets the value explicitly to be treated as null.
 
 Checks whether Version_Optional is set to null.
 
-#### `public inline FString & `[`GetPlayerUuid`](#structFRHAPI__PexClientQueryParams_1a7bd2a13b0e2bbb1ea1baa53f0eae373f)`()` <a id="structFRHAPI__PexClientQueryParams_1a7bd2a13b0e2bbb1ea1baa53f0eae373f"></a>
-
-Gets the value of PlayerUuid_Optional, regardless of it having been set.
-
-#### `public inline const FString & `[`GetPlayerUuid`](#structFRHAPI__PexClientQueryParams_1a18d81ccaa92d53c6005f4f926520c599)`() const` <a id="structFRHAPI__PexClientQueryParams_1a18d81ccaa92d53c6005f4f926520c599"></a>
-
-Gets the value of PlayerUuid_Optional, regardless of it having been set.
-
-#### `public inline const FString & `[`GetPlayerUuid`](#structFRHAPI__PexClientQueryParams_1a791fb65f65dee9a38614962781fdc956)`(const FString & DefaultValue) const` <a id="structFRHAPI__PexClientQueryParams_1a791fb65f65dee9a38614962781fdc956"></a>
-
-Gets the value of PlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
-
-#### `public inline bool `[`GetPlayerUuid`](#structFRHAPI__PexClientQueryParams_1ac0456ca25497756a8d40777181c1ac22)`(FString & OutValue) const` <a id="structFRHAPI__PexClientQueryParams_1ac0456ca25497756a8d40777181c1ac22"></a>
-
-Fills OutValue with the value of PlayerUuid_Optional and returns true if it has been set, otherwise returns false.
-
-#### `public inline FString * `[`GetPlayerUuidOrNull`](#structFRHAPI__PexClientQueryParams_1a80846a0719b57328c30b20ec3c9141ee)`()` <a id="structFRHAPI__PexClientQueryParams_1a80846a0719b57328c30b20ec3c9141ee"></a>
-
-Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-
-#### `public inline const FString * `[`GetPlayerUuidOrNull`](#structFRHAPI__PexClientQueryParams_1a1746179228affb77dbb510cffe7dcc8d)`() const` <a id="structFRHAPI__PexClientQueryParams_1a1746179228affb77dbb510cffe7dcc8d"></a>
-
-Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-
-#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__PexClientQueryParams_1a9266df65cb049cee4ab24097a5b15b53)`(const FString & NewValue)` <a id="structFRHAPI__PexClientQueryParams_1a9266df65cb049cee4ab24097a5b15b53"></a>
-
-Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true.
-
-#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__PexClientQueryParams_1aa458af47163afa31c56404d3273b8d7c)`(FString && NewValue)` <a id="structFRHAPI__PexClientQueryParams_1aa458af47163afa31c56404d3273b8d7c"></a>
-
-Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true using move semantics.
-
-#### `public inline void `[`ClearPlayerUuid`](#structFRHAPI__PexClientQueryParams_1a7df837ea53f885c5404762794b265632)`()` <a id="structFRHAPI__PexClientQueryParams_1a7df837ea53f885c5404762794b265632"></a>
-
-Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false.
-
-#### `public inline bool `[`IsPlayerUuidSet`](#structFRHAPI__PexClientQueryParams_1a9bc9d3c0f29456688add58b85ea32a43)`() const` <a id="structFRHAPI__PexClientQueryParams_1a9bc9d3c0f29456688add58b85ea32a43"></a>
-
-Checks whether PlayerUuid_Optional has been set.
-
-#### `public inline void `[`SetPlayerUuidToNull`](#structFRHAPI__PexClientQueryParams_1ab2b34c4ea65a1bbd2257d8d4dfee36d8)`()` <a id="structFRHAPI__PexClientQueryParams_1ab2b34c4ea65a1bbd2257d8d4dfee36d8"></a>
-
-Sets the value explicitly to be treated as null.
-
-#### `public inline bool `[`IsPlayerUuidNull`](#structFRHAPI__PexClientQueryParams_1a795f8c2470b6ec7166f2e175ab20eb93)`() const` <a id="structFRHAPI__PexClientQueryParams_1a795f8c2470b6ec7166f2e175ab20eb93"></a>
-
-Checks whether PlayerUuid_Optional is set to null.
-
 #### `public inline FString & `[`GetDeviceInfo`](#structFRHAPI__PexClientQueryParams_1ad94faae678709eb9fdb16d850b58179a)`()` <a id="structFRHAPI__PexClientQueryParams_1ad94faae678709eb9fdb16d850b58179a"></a>
 
 Gets the value of DeviceInfo_Optional, regardless of it having been set.
@@ -1524,4 +1476,52 @@ Sets the value explicitly to be treated as null.
 #### `public inline bool `[`IsDeviceInfoNull`](#structFRHAPI__PexClientQueryParams_1a5e9481b43da0f646bc0718e44d90e745)`() const` <a id="structFRHAPI__PexClientQueryParams_1a5e9481b43da0f646bc0718e44d90e745"></a>
 
 Checks whether DeviceInfo_Optional is set to null.
+
+#### `public inline FString & `[`GetPlayerUuid`](#structFRHAPI__PexClientQueryParams_1a7bd2a13b0e2bbb1ea1baa53f0eae373f)`()` <a id="structFRHAPI__PexClientQueryParams_1a7bd2a13b0e2bbb1ea1baa53f0eae373f"></a>
+
+Gets the value of PlayerUuid_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetPlayerUuid`](#structFRHAPI__PexClientQueryParams_1a18d81ccaa92d53c6005f4f926520c599)`() const` <a id="structFRHAPI__PexClientQueryParams_1a18d81ccaa92d53c6005f4f926520c599"></a>
+
+Gets the value of PlayerUuid_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetPlayerUuid`](#structFRHAPI__PexClientQueryParams_1a791fb65f65dee9a38614962781fdc956)`(const FString & DefaultValue) const` <a id="structFRHAPI__PexClientQueryParams_1a791fb65f65dee9a38614962781fdc956"></a>
+
+Gets the value of PlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetPlayerUuid`](#structFRHAPI__PexClientQueryParams_1ac0456ca25497756a8d40777181c1ac22)`(FString & OutValue) const` <a id="structFRHAPI__PexClientQueryParams_1ac0456ca25497756a8d40777181c1ac22"></a>
+
+Fills OutValue with the value of PlayerUuid_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline FString * `[`GetPlayerUuidOrNull`](#structFRHAPI__PexClientQueryParams_1a80846a0719b57328c30b20ec3c9141ee)`()` <a id="structFRHAPI__PexClientQueryParams_1a80846a0719b57328c30b20ec3c9141ee"></a>
+
+Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const FString * `[`GetPlayerUuidOrNull`](#structFRHAPI__PexClientQueryParams_1a1746179228affb77dbb510cffe7dcc8d)`() const` <a id="structFRHAPI__PexClientQueryParams_1a1746179228affb77dbb510cffe7dcc8d"></a>
+
+Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__PexClientQueryParams_1a9266df65cb049cee4ab24097a5b15b53)`(const FString & NewValue)` <a id="structFRHAPI__PexClientQueryParams_1a9266df65cb049cee4ab24097a5b15b53"></a>
+
+Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true.
+
+#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__PexClientQueryParams_1aa458af47163afa31c56404d3273b8d7c)`(FString && NewValue)` <a id="structFRHAPI__PexClientQueryParams_1aa458af47163afa31c56404d3273b8d7c"></a>
+
+Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearPlayerUuid`](#structFRHAPI__PexClientQueryParams_1a7df837ea53f885c5404762794b265632)`()` <a id="structFRHAPI__PexClientQueryParams_1a7df837ea53f885c5404762794b265632"></a>
+
+Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false.
+
+#### `public inline bool `[`IsPlayerUuidSet`](#structFRHAPI__PexClientQueryParams_1a9bc9d3c0f29456688add58b85ea32a43)`() const` <a id="structFRHAPI__PexClientQueryParams_1a9bc9d3c0f29456688add58b85ea32a43"></a>
+
+Checks whether PlayerUuid_Optional has been set.
+
+#### `public inline void `[`SetPlayerUuidToNull`](#structFRHAPI__PexClientQueryParams_1ab2b34c4ea65a1bbd2257d8d4dfee36d8)`()` <a id="structFRHAPI__PexClientQueryParams_1ab2b34c4ea65a1bbd2257d8d4dfee36d8"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsPlayerUuidNull`](#structFRHAPI__PexClientQueryParams_1a795f8c2470b6ec7166f2e175ab20eb93)`() const` <a id="structFRHAPI__PexClientQueryParams_1a795f8c2470b6ec7166f2e175ab20eb93"></a>
+
+Checks whether PlayerUuid_Optional is set to null.
 

@@ -125,6 +125,12 @@ struct FRHAPI_PexHostRequest
 `public FString `[`Version_Optional`](#structFRHAPI__PexHostRequest_1adc46c23d1d88633ee338b95f49740077) | 
 `public bool `[`Version_IsSet`](#structFRHAPI__PexHostRequest_1a35831d8d92c4985144b7cfb279384304) | true if Version_Optional has been set to a value
 `public bool `[`Version_IsNull`](#structFRHAPI__PexHostRequest_1aa22c9fa8b4314acb0d44aecb46d6bc02) | true if Version_Optional has been explicitly set to null
+`public FString `[`DeviceInfo_Optional`](#structFRHAPI__PexHostRequest_1a86574361f9974d5ccdb011aed49039a0) | 
+`public bool `[`DeviceInfo_IsSet`](#structFRHAPI__PexHostRequest_1a10a7cd5b9a830827de8c79e62dae1441) | true if DeviceInfo_Optional has been set to a value
+`public bool `[`DeviceInfo_IsNull`](#structFRHAPI__PexHostRequest_1a517006f1c7d970ca7aab87b59e53768a) | true if DeviceInfo_Optional has been explicitly set to null
+`public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__PexHostRequest_1a9de0b6595cd48e1af17d096f5cad8ed9) | 
+`public bool `[`CustomData_IsSet`](#structFRHAPI__PexHostRequest_1a6631dacbd24368576f51df47ac326a16) | true if CustomData_Optional has been set to a value
+`public bool `[`CustomData_IsNull`](#structFRHAPI__PexHostRequest_1aab8083f3c02c5d424d8721c5a5c5423d) | true if CustomData_Optional has been explicitly set to null
 `public FString `[`MachineClass_Optional`](#structFRHAPI__PexHostRequest_1a969a679393e1b777d13b87ae57b53805) | 
 `public bool `[`MachineClass_IsSet`](#structFRHAPI__PexHostRequest_1a39e5426383de40e759d3a9b9b604c763) | true if MachineClass_Optional has been set to a value
 `public bool `[`MachineClass_IsNull`](#structFRHAPI__PexHostRequest_1adfda67a7288668884c3af30f4525581d) | true if MachineClass_Optional has been explicitly set to null
@@ -558,6 +564,30 @@ struct FRHAPI_PexHostRequest
 `public inline bool `[`IsVersionSet`](#structFRHAPI__PexHostRequest_1a0b854cc12fc74d0a77c1aee86f9e154c)`() const` | Checks whether Version_Optional has been set.
 `public inline void `[`SetVersionToNull`](#structFRHAPI__PexHostRequest_1a052bd6048a21edaff8e78322aa8e945f)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsVersionNull`](#structFRHAPI__PexHostRequest_1a8ee1c9ba0220476b8da7559665911258)`() const` | Checks whether Version_Optional is set to null.
+`public inline FString & `[`GetDeviceInfo`](#structFRHAPI__PexHostRequest_1add2fbfa8c26ecbc65182a86fc1907aa1)`()` | Gets the value of DeviceInfo_Optional, regardless of it having been set.
+`public inline const FString & `[`GetDeviceInfo`](#structFRHAPI__PexHostRequest_1a5b92cdcc63fd72610dd5ec02ffef05b0)`() const` | Gets the value of DeviceInfo_Optional, regardless of it having been set.
+`public inline const FString & `[`GetDeviceInfo`](#structFRHAPI__PexHostRequest_1a52160065f171a2783d4b5e8d5663138f)`(const FString & DefaultValue) const` | Gets the value of DeviceInfo_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetDeviceInfo`](#structFRHAPI__PexHostRequest_1a2ab337ada4ceeb118bb88885532d7630)`(FString & OutValue) const` | Fills OutValue with the value of DeviceInfo_Optional and returns true if it has been set, otherwise returns false.
+`public inline FString * `[`GetDeviceInfoOrNull`](#structFRHAPI__PexHostRequest_1ab204de856c6e766cd75273d7d5288350)`()` | Returns a pointer to DeviceInfo_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetDeviceInfoOrNull`](#structFRHAPI__PexHostRequest_1a70c6f6f1722d24fd372635099cd663d1)`() const` | Returns a pointer to DeviceInfo_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetDeviceInfo`](#structFRHAPI__PexHostRequest_1a334d4fe2774830964fd81ff0092e489b)`(const FString & NewValue)` | Sets the value of DeviceInfo_Optional and also sets DeviceInfo_IsSet to true.
+`public inline void `[`SetDeviceInfo`](#structFRHAPI__PexHostRequest_1a54c87935db046391f0f83831f40fe248)`(FString && NewValue)` | Sets the value of DeviceInfo_Optional and also sets DeviceInfo_IsSet to true using move semantics.
+`public inline void `[`ClearDeviceInfo`](#structFRHAPI__PexHostRequest_1a0fa34e9a852f570b7593bb3661c4df9b)`()` | Clears the value of DeviceInfo_Optional and sets DeviceInfo_IsSet to false.
+`public inline bool `[`IsDeviceInfoSet`](#structFRHAPI__PexHostRequest_1a2e9fb87d54a9fa51683bf43c61e8c050)`() const` | Checks whether DeviceInfo_Optional has been set.
+`public inline void `[`SetDeviceInfoToNull`](#structFRHAPI__PexHostRequest_1a6c0a6b32087e33e6c70c4365f28816b5)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsDeviceInfoNull`](#structFRHAPI__PexHostRequest_1a3f47e54024e1a289eb92c1c426bf38f0)`() const` | Checks whether DeviceInfo_Optional is set to null.
+`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PexHostRequest_1a552d6a0d703b950898e88d2cdde6d2cd)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PexHostRequest_1a65a168c889ba1b2b70059c80fde31ede)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PexHostRequest_1aa43b5f2f17d4d81308f89b381f166df9)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetCustomData`](#structFRHAPI__PexHostRequest_1ae1df7f6d8f3d5d72f685b1f98314555a)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PexHostRequest_1a27315eb9626002022f488edf1236b94e)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PexHostRequest_1a4b3b2177b83bdf6717995939602f1d0a)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetCustomData`](#structFRHAPI__PexHostRequest_1aa4e0ba7e3739a06f0168a04f107c9608)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__PexHostRequest_1aa56072cfca1f50c5854320a1a08e1fb5)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
+`public inline void `[`ClearCustomData`](#structFRHAPI__PexHostRequest_1a39e7ef3405dbcf0ebfae6221d6eb680a)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+`public inline bool `[`IsCustomDataSet`](#structFRHAPI__PexHostRequest_1aabc25f9a86df31de06ea024965d1b457)`() const` | Checks whether CustomData_Optional has been set.
+`public inline void `[`SetCustomDataToNull`](#structFRHAPI__PexHostRequest_1a7bd2e4349472a54b5ed75226deffb509)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsCustomDataNull`](#structFRHAPI__PexHostRequest_1a6c2b11e52bdaba64653fdf01d3f51f6a)`() const` | Checks whether CustomData_Optional is set to null.
 `public inline FString & `[`GetMachineClass`](#structFRHAPI__PexHostRequest_1a22c8aa461fe9757771d62d561feb2164)`()` | Gets the value of MachineClass_Optional, regardless of it having been set.
 `public inline const FString & `[`GetMachineClass`](#structFRHAPI__PexHostRequest_1a46f853342cd5814521a97039b08a1a22)`() const` | Gets the value of MachineClass_Optional, regardless of it having been set.
 `public inline const FString & `[`GetMachineClass`](#structFRHAPI__PexHostRequest_1a39d175c13a6af2e064cb4ac321b08c05)`(const FString & DefaultValue) const` | Gets the value of MachineClass_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -926,6 +956,26 @@ true if Version_Optional has been set to a value
 #### `public bool `[`Version_IsNull`](#structFRHAPI__PexHostRequest_1aa22c9fa8b4314acb0d44aecb46d6bc02) <a id="structFRHAPI__PexHostRequest_1aa22c9fa8b4314acb0d44aecb46d6bc02"></a>
 
 true if Version_Optional has been explicitly set to null
+
+#### `public FString `[`DeviceInfo_Optional`](#structFRHAPI__PexHostRequest_1a86574361f9974d5ccdb011aed49039a0) <a id="structFRHAPI__PexHostRequest_1a86574361f9974d5ccdb011aed49039a0"></a>
+
+#### `public bool `[`DeviceInfo_IsSet`](#structFRHAPI__PexHostRequest_1a10a7cd5b9a830827de8c79e62dae1441) <a id="structFRHAPI__PexHostRequest_1a10a7cd5b9a830827de8c79e62dae1441"></a>
+
+true if DeviceInfo_Optional has been set to a value
+
+#### `public bool `[`DeviceInfo_IsNull`](#structFRHAPI__PexHostRequest_1a517006f1c7d970ca7aab87b59e53768a) <a id="structFRHAPI__PexHostRequest_1a517006f1c7d970ca7aab87b59e53768a"></a>
+
+true if DeviceInfo_Optional has been explicitly set to null
+
+#### `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__PexHostRequest_1a9de0b6595cd48e1af17d096f5cad8ed9) <a id="structFRHAPI__PexHostRequest_1a9de0b6595cd48e1af17d096f5cad8ed9"></a>
+
+#### `public bool `[`CustomData_IsSet`](#structFRHAPI__PexHostRequest_1a6631dacbd24368576f51df47ac326a16) <a id="structFRHAPI__PexHostRequest_1a6631dacbd24368576f51df47ac326a16"></a>
+
+true if CustomData_Optional has been set to a value
+
+#### `public bool `[`CustomData_IsNull`](#structFRHAPI__PexHostRequest_1aab8083f3c02c5d424d8721c5a5c5423d) <a id="structFRHAPI__PexHostRequest_1aab8083f3c02c5d424d8721c5a5c5423d"></a>
+
+true if CustomData_Optional has been explicitly set to null
 
 #### `public FString `[`MachineClass_Optional`](#structFRHAPI__PexHostRequest_1a969a679393e1b777d13b87ae57b53805) <a id="structFRHAPI__PexHostRequest_1a969a679393e1b777d13b87ae57b53805"></a>
 
@@ -2665,6 +2715,102 @@ Sets the value explicitly to be treated as null.
 #### `public inline bool `[`IsVersionNull`](#structFRHAPI__PexHostRequest_1a8ee1c9ba0220476b8da7559665911258)`() const` <a id="structFRHAPI__PexHostRequest_1a8ee1c9ba0220476b8da7559665911258"></a>
 
 Checks whether Version_Optional is set to null.
+
+#### `public inline FString & `[`GetDeviceInfo`](#structFRHAPI__PexHostRequest_1add2fbfa8c26ecbc65182a86fc1907aa1)`()` <a id="structFRHAPI__PexHostRequest_1add2fbfa8c26ecbc65182a86fc1907aa1"></a>
+
+Gets the value of DeviceInfo_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetDeviceInfo`](#structFRHAPI__PexHostRequest_1a5b92cdcc63fd72610dd5ec02ffef05b0)`() const` <a id="structFRHAPI__PexHostRequest_1a5b92cdcc63fd72610dd5ec02ffef05b0"></a>
+
+Gets the value of DeviceInfo_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetDeviceInfo`](#structFRHAPI__PexHostRequest_1a52160065f171a2783d4b5e8d5663138f)`(const FString & DefaultValue) const` <a id="structFRHAPI__PexHostRequest_1a52160065f171a2783d4b5e8d5663138f"></a>
+
+Gets the value of DeviceInfo_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetDeviceInfo`](#structFRHAPI__PexHostRequest_1a2ab337ada4ceeb118bb88885532d7630)`(FString & OutValue) const` <a id="structFRHAPI__PexHostRequest_1a2ab337ada4ceeb118bb88885532d7630"></a>
+
+Fills OutValue with the value of DeviceInfo_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline FString * `[`GetDeviceInfoOrNull`](#structFRHAPI__PexHostRequest_1ab204de856c6e766cd75273d7d5288350)`()` <a id="structFRHAPI__PexHostRequest_1ab204de856c6e766cd75273d7d5288350"></a>
+
+Returns a pointer to DeviceInfo_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const FString * `[`GetDeviceInfoOrNull`](#structFRHAPI__PexHostRequest_1a70c6f6f1722d24fd372635099cd663d1)`() const` <a id="structFRHAPI__PexHostRequest_1a70c6f6f1722d24fd372635099cd663d1"></a>
+
+Returns a pointer to DeviceInfo_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetDeviceInfo`](#structFRHAPI__PexHostRequest_1a334d4fe2774830964fd81ff0092e489b)`(const FString & NewValue)` <a id="structFRHAPI__PexHostRequest_1a334d4fe2774830964fd81ff0092e489b"></a>
+
+Sets the value of DeviceInfo_Optional and also sets DeviceInfo_IsSet to true.
+
+#### `public inline void `[`SetDeviceInfo`](#structFRHAPI__PexHostRequest_1a54c87935db046391f0f83831f40fe248)`(FString && NewValue)` <a id="structFRHAPI__PexHostRequest_1a54c87935db046391f0f83831f40fe248"></a>
+
+Sets the value of DeviceInfo_Optional and also sets DeviceInfo_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearDeviceInfo`](#structFRHAPI__PexHostRequest_1a0fa34e9a852f570b7593bb3661c4df9b)`()` <a id="structFRHAPI__PexHostRequest_1a0fa34e9a852f570b7593bb3661c4df9b"></a>
+
+Clears the value of DeviceInfo_Optional and sets DeviceInfo_IsSet to false.
+
+#### `public inline bool `[`IsDeviceInfoSet`](#structFRHAPI__PexHostRequest_1a2e9fb87d54a9fa51683bf43c61e8c050)`() const` <a id="structFRHAPI__PexHostRequest_1a2e9fb87d54a9fa51683bf43c61e8c050"></a>
+
+Checks whether DeviceInfo_Optional has been set.
+
+#### `public inline void `[`SetDeviceInfoToNull`](#structFRHAPI__PexHostRequest_1a6c0a6b32087e33e6c70c4365f28816b5)`()` <a id="structFRHAPI__PexHostRequest_1a6c0a6b32087e33e6c70c4365f28816b5"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsDeviceInfoNull`](#structFRHAPI__PexHostRequest_1a3f47e54024e1a289eb92c1c426bf38f0)`() const` <a id="structFRHAPI__PexHostRequest_1a3f47e54024e1a289eb92c1c426bf38f0"></a>
+
+Checks whether DeviceInfo_Optional is set to null.
+
+#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PexHostRequest_1a552d6a0d703b950898e88d2cdde6d2cd)`()` <a id="structFRHAPI__PexHostRequest_1a552d6a0d703b950898e88d2cdde6d2cd"></a>
+
+Gets the value of CustomData_Optional, regardless of it having been set.
+
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PexHostRequest_1a65a168c889ba1b2b70059c80fde31ede)`() const` <a id="structFRHAPI__PexHostRequest_1a65a168c889ba1b2b70059c80fde31ede"></a>
+
+Gets the value of CustomData_Optional, regardless of it having been set.
+
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PexHostRequest_1aa43b5f2f17d4d81308f89b381f166df9)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__PexHostRequest_1aa43b5f2f17d4d81308f89b381f166df9"></a>
+
+Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetCustomData`](#structFRHAPI__PexHostRequest_1ae1df7f6d8f3d5d72f685b1f98314555a)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__PexHostRequest_1ae1df7f6d8f3d5d72f685b1f98314555a"></a>
+
+Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PexHostRequest_1a27315eb9626002022f488edf1236b94e)`()` <a id="structFRHAPI__PexHostRequest_1a27315eb9626002022f488edf1236b94e"></a>
+
+Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PexHostRequest_1a4b3b2177b83bdf6717995939602f1d0a)`() const` <a id="structFRHAPI__PexHostRequest_1a4b3b2177b83bdf6717995939602f1d0a"></a>
+
+Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetCustomData`](#structFRHAPI__PexHostRequest_1aa4e0ba7e3739a06f0168a04f107c9608)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__PexHostRequest_1aa4e0ba7e3739a06f0168a04f107c9608"></a>
+
+Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+
+#### `public inline void `[`SetCustomData`](#structFRHAPI__PexHostRequest_1aa56072cfca1f50c5854320a1a08e1fb5)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__PexHostRequest_1aa56072cfca1f50c5854320a1a08e1fb5"></a>
+
+Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearCustomData`](#structFRHAPI__PexHostRequest_1a39e7ef3405dbcf0ebfae6221d6eb680a)`()` <a id="structFRHAPI__PexHostRequest_1a39e7ef3405dbcf0ebfae6221d6eb680a"></a>
+
+Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+
+#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__PexHostRequest_1aabc25f9a86df31de06ea024965d1b457)`() const` <a id="structFRHAPI__PexHostRequest_1aabc25f9a86df31de06ea024965d1b457"></a>
+
+Checks whether CustomData_Optional has been set.
+
+#### `public inline void `[`SetCustomDataToNull`](#structFRHAPI__PexHostRequest_1a7bd2e4349472a54b5ed75226deffb509)`()` <a id="structFRHAPI__PexHostRequest_1a7bd2e4349472a54b5ed75226deffb509"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsCustomDataNull`](#structFRHAPI__PexHostRequest_1a6c2b11e52bdaba64653fdf01d3f51f6a)`() const` <a id="structFRHAPI__PexHostRequest_1a6c2b11e52bdaba64653fdf01d3f51f6a"></a>
+
+Checks whether CustomData_Optional is set to null.
 
 #### `public inline FString & `[`GetMachineClass`](#structFRHAPI__PexHostRequest_1a22c8aa461fe9757771d62d561feb2164)`()` <a id="structFRHAPI__PexHostRequest_1a22c8aa461fe9757771d62d561feb2164"></a>
 

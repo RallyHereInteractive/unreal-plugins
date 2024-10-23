@@ -12,6 +12,7 @@
 #include "RallyHereIntegrationModule.h"
 #include "OnlineSubsystem.h"
 #include "Online.h"
+#include "RH_GameInstanceSubsystem.h"
 #include "Interfaces/OnlineIdentityInterface.h"
 
 #include "WebAuthModule.h"
@@ -852,6 +853,26 @@ void URH_LocalPlayerLoginSubsystem::RetrieveOSSAuthTokenComplete(int32 LocalUser
 
 void URH_LocalPlayerLoginSubsystem::DoRallyHereLogin(FRH_PendingLoginRequest& Req, const FExternalAuthToken& AuthToken)
 {
+	Req.LoginPhase = ERHAPI_LocalPlayerLoginOSS::None;
+
+	auto GISS = GetGameInstanceSubsystem();
+	if (GISS == nullptr)
+	{
+		// if we don't have a game instance subsystem, we can't do anything to get the IP address, so just keep going
+		DoRallyHereLoginWithIpAddress(Req, AuthToken, FString());
+		return;
+	}
+	
+	// query the address if needed, and on callback continue with the login regardless of the result
+	GISS->QueryIpAddressIfNeeded(false, FSimpleDelegate::CreateWeakLambda(this, [this, Req, AuthToken]() mutable
+		{
+			auto GISS = GetGameInstanceSubsystem();
+			DoRallyHereLoginWithIpAddress(Req, AuthToken, GISS->GetLastKnownIPAddress());
+		}));
+}
+
+void URH_LocalPlayerLoginSubsystem::DoRallyHereLoginWithIpAddress(FRH_PendingLoginRequest& Req, const FExternalAuthToken& AuthToken, const FString& IpAddress)
+{
     Req.LoginPhase = ERHAPI_LocalPlayerLoginOSS::None;
 
     auto LoginOSS = GetLoginOSS();
@@ -897,6 +918,8 @@ void URH_LocalPlayerLoginSubsystem::DoRallyHereLogin(FRH_PendingLoginRequest& Re
     Request.LoginRequestV1.SetAcceptEula(Req.bAcceptEULA);
     Request.LoginRequestV1.SetAcceptTos(Req.bAcceptTOS);
     Request.LoginRequestV1.SetAcceptPrivacyPolicy(Req.bAcceptPP);
+	Request.XRhClientAddr = IpAddress;
+	
     if (Req.CredentialRefreshToken.IsEmpty())
     {
         auto NicknameOSS = GetNicknameOSS();

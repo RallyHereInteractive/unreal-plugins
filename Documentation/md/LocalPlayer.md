@@ -128,6 +128,7 @@ Login Subsystem for the local player.
 `protected virtual void `[`RetrieveOSSAuthToken`](#classURH__LocalPlayerLoginSubsystem_1abe4cba66bc2a21657b730e9c456a8297)`(`[`FRH_PendingLoginRequest`](undefined.md#structURH__LocalPlayerLoginSubsystem_1_1FRH__PendingLoginRequest)` & Req)` | Start the retrieval of the OSS Auth Token.
 `protected virtual void `[`RetrieveOSSAuthTokenComplete`](#classURH__LocalPlayerLoginSubsystem_1a27fbe50ee06ccb5822c1edbf773d81a8)`(int32 LocalUserNum,bool bWasSuccessful,const FExternalAuthToken & AuthToken,`[`FRH_PendingLoginRequest`](undefined.md#structURH__LocalPlayerLoginSubsystem_1_1FRH__PendingLoginRequest)` Req)` | Start the login to Rally Here.
 `protected virtual void `[`DoRallyHereLogin`](#classURH__LocalPlayerLoginSubsystem_1ac566c5385eac7117a5562ba0010cf4fc)`(`[`FRH_PendingLoginRequest`](undefined.md#structURH__LocalPlayerLoginSubsystem_1_1FRH__PendingLoginRequest)` & Req,const FExternalAuthToken & AuthToken)` | Start the login to Rally Here.
+`protected virtual void `[`DoRallyHereLoginWithIpAddress`](#classURH__LocalPlayerLoginSubsystem_1a9ab43c881dddd615e3ea4ae6ab298149)`(`[`FRH_PendingLoginRequest`](undefined.md#structURH__LocalPlayerLoginSubsystem_1_1FRH__PendingLoginRequest)` & Req,const FExternalAuthToken & AuthToken,const FString & IpAddress)` | Start the login to Rally Here.
 `protected virtual void `[`RallyHereLoginComplete`](#classURH__LocalPlayerLoginSubsystem_1a7b877ea539a11d526e488f43a1044cd4)`(const RallyHereAPI::FResponse_Login & Resp,`[`FRH_PendingLoginRequest`](undefined.md#structURH__LocalPlayerLoginSubsystem_1_1FRH__PendingLoginRequest)` Req)` | Handle the response from the login to Rally Here.
 `protected virtual FString `[`GetSavedCredentialEnvironment`](#classURH__LocalPlayerLoginSubsystem_1a159afb852506a24c40a44f315debfbc6)`(FName OSSName) const` | Gets the cached credentials for the given online subsystem.
 `protected virtual void `[`CheckCrossplayPrivilege`](#classURH__LocalPlayerLoginSubsystem_1a56da439941bdce891cbe97ebf75d5666)`(const FUniqueNetId & UniqueId)` | Checks the users OSS privileges for crossplay.
@@ -544,7 +545,20 @@ Start the login to Rally Here.
 Start the login to Rally Here.
 
 #### Parameters
-* `Req` The pending login request.
+* `Req` The pending login request. 
+
+* `AuthToken` The auth token to use for the login.
+
+#### `protected virtual void `[`DoRallyHereLoginWithIpAddress`](#classURH__LocalPlayerLoginSubsystem_1a9ab43c881dddd615e3ea4ae6ab298149)`(`[`FRH_PendingLoginRequest`](undefined.md#structURH__LocalPlayerLoginSubsystem_1_1FRH__PendingLoginRequest)` & Req,const FExternalAuthToken & AuthToken,const FString & IpAddress)` <a id="classURH__LocalPlayerLoginSubsystem_1a9ab43c881dddd615e3ea4ae6ab298149"></a>
+
+Start the login to Rally Here.
+
+#### Parameters
+* `Req` The pending login request. 
+
+* `AuthToken` The auth token to use for the login. 
+
+* `IpAddress` The IP address of the player logging in.
 
 #### `protected virtual void `[`RallyHereLoginComplete`](#classURH__LocalPlayerLoginSubsystem_1a7b877ea539a11d526e488f43a1044cd4)`(const RallyHereAPI::FResponse_Login & Resp,`[`FRH_PendingLoginRequest`](undefined.md#structURH__LocalPlayerLoginSubsystem_1_1FRH__PendingLoginRequest)` Req)` <a id="classURH__LocalPlayerLoginSubsystem_1a7b877ea539a11d526e488f43a1044cd4"></a>
 

@@ -29,6 +29,22 @@ void FRHAPI_SettingData::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		WriteJsonValue(Writer, nullptr);
 	else
 	RallyHereAPI::WriteJsonValue(Writer, Value);
+	if (Etag_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("etag"));
+		if (Etag_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Etag_Optional);
+	}
+	if (LastModified_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("last_modified"));
+		if (LastModified_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, LastModified_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -45,6 +61,20 @@ bool FRHAPI_SettingData::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonValueField = (*Object)->TryGetField(TEXT("value"));
 	Value_IsNull = JsonValueField->IsNull();
 	ParseSuccess &= JsonValueField.IsValid() && (Value_IsNull || TryGetJsonValue(JsonValueField, Value));
+	const TSharedPtr<FJsonValue> JsonEtagField = (*Object)->TryGetField(TEXT("etag"));
+	if (JsonEtagField.IsValid())
+	{
+		Etag_IsNull = JsonEtagField->IsNull();
+		Etag_IsSet = Etag_IsNull || TryGetJsonValue(JsonEtagField, Etag_Optional);
+		ParseSuccess &= Etag_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonLastModifiedField = (*Object)->TryGetField(TEXT("last_modified"));
+	if (JsonLastModifiedField.IsValid())
+	{
+		LastModified_IsNull = JsonLastModifiedField->IsNull();
+		LastModified_IsSet = LastModified_IsNull || TryGetJsonValue(JsonLastModifiedField, LastModified_Optional);
+		ParseSuccess &= LastModified_IsSet;
+	}
 
 	return ParseSuccess;
 }

@@ -325,8 +325,6 @@ void FRHAPI_PexClientResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) cons
 		else
 		RallyHereAPI::WriteJsonValue(Writer, Version_Optional);
 	}
-	Writer->WriteIdentifierPrefix(TEXT("player_uuid"));
-	RallyHereAPI::WriteJsonValue(Writer, PlayerUuid);
 	if (DeviceInfo_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("device_info"));
@@ -335,6 +333,16 @@ void FRHAPI_PexClientResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) cons
 		else
 		RallyHereAPI::WriteJsonValue(Writer, DeviceInfo_Optional);
 	}
+	if (CustomData_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("custom_data"));
+		if (CustomData_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
+	}
+	Writer->WriteIdentifierPrefix(TEXT("player_uuid"));
+	RallyHereAPI::WriteJsonValue(Writer, PlayerUuid);
 	Writer->WriteObjectEnd();
 }
 
@@ -613,8 +621,6 @@ bool FRHAPI_PexClientResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		Version_IsSet = Version_IsNull || TryGetJsonValue(JsonVersionField, Version_Optional);
 		ParseSuccess &= Version_IsSet;
 	}
-	const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
-	ParseSuccess &= JsonPlayerUuidField.IsValid() && (!JsonPlayerUuidField->IsNull() &&  TryGetJsonValue(JsonPlayerUuidField, PlayerUuid));
 	const TSharedPtr<FJsonValue> JsonDeviceInfoField = (*Object)->TryGetField(TEXT("device_info"));
 	if (JsonDeviceInfoField.IsValid())
 	{
@@ -622,6 +628,15 @@ bool FRHAPI_PexClientResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		DeviceInfo_IsSet = DeviceInfo_IsNull || TryGetJsonValue(JsonDeviceInfoField, DeviceInfo_Optional);
 		ParseSuccess &= DeviceInfo_IsSet;
 	}
+	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+	if (JsonCustomDataField.IsValid())
+	{
+		CustomData_IsNull = JsonCustomDataField->IsNull();
+		CustomData_IsSet = CustomData_IsNull || TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
+		ParseSuccess &= CustomData_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
+	ParseSuccess &= JsonPlayerUuidField.IsValid() && (!JsonPlayerUuidField->IsNull() &&  TryGetJsonValue(JsonPlayerUuidField, PlayerUuid));
 
 	return ParseSuccess;
 }

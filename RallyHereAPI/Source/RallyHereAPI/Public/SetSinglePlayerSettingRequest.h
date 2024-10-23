@@ -16,7 +16,7 @@
  */
 
 /**
- * @brief Updatable contents of a setting for a player
+ * @brief Updatable contents of a setting document for a player
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_SetSinglePlayerSettingRequest : public FRHAPI_Model
@@ -55,7 +55,7 @@ struct RALLYHEREAPI_API FRHAPI_SetSinglePlayerSettingRequest : public FRHAPI_Mod
 	/** @brief Sets the value of V to its default  */
 	void SetVToDefault() { SetV(0); }
 
-	/** @brief New value for the setting.  Must conform to the jsonschema defined for the setting type+version */
+	/** @brief New value document for the setting.  Must conform to the jsonschema defined for the setting type+version */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_JsonValue Value{  };
 	/** @brief true if Value has been explicitly set to null */

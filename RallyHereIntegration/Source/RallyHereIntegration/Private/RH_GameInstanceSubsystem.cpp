@@ -97,6 +97,8 @@ void URH_GameInstanceSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 	{
 		Plugin->Initialize();
 	}
+
+	QueryIpAddressIfNeeded();
 }
 
 void URH_GameInstanceSubsystem::Deinitialize()
@@ -170,6 +172,81 @@ void URH_GameInstanceSubsystem::CustomEndpoint(const FRH_CustomEndpointRequestWr
 			Delegate.ExecuteIfBound(ResponseWrapper);
 		});
 	CustomEndpoint(Request, InternalDelegate);
+}
+
+void URH_GameInstanceSubsystem::QueryIpAddressIfNeeded(bool bForce, FSimpleDelegate Delegate)
+{
+	if (bForce || LastKnownIPAddressQueryState == IP_QUERY_STATE_NONE || LastKnownIPAddressQueryState == IP_QUERY_STATE_COMPLETE_FAILURE)
+	{	
+		const auto& IntegrationSettings = GetDefault<URH_IntegrationSettings>();
+		if (IntegrationSettings->ClientDeviceIpEndpoint.Len() > 0 && ensure(FModuleManager::Get().IsModuleLoaded("HTTP")))
+		{
+			LastKnownIPAddressQueryState = IP_QUERY_STATE_IN_PROGRESS;
+			// add the delegate to the list of deferred callbacks
+			LastKnownIpAddressUpdateDelegates.Add(Delegate);
+			
+			// use the custom API's retry manager
+			auto HttpRetryManager = RH_APIs::GetAPIs().GetCustom()->GetHttpRetryManager();
+
+			// Create/send Http request for an event
+			TSharedRef<IHttpRequest, ESPMode::ThreadSafe> HttpRequest = HttpRetryManager->CreateRequest(FHttpRetrySystem::FRetryLimitCountSetting(),
+				FHttpRetrySystem::FRetryTimeoutRelativeSecondsSetting(),
+				FHttpRetrySystem::FRetryResponseCodes(),
+				FHttpRetrySystem::FRetryVerbs(),
+				FHttpRetrySystem::FRetryDomainsPtr()
+			);
+
+			HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
+			HttpRequest->SetURL(IntegrationSettings->ClientDeviceIpEndpoint);
+			HttpRequest->SetVerb(TEXT("GET"));
+
+			HttpRequest->OnProcessRequestComplete().BindWeakLambda(this, [this](FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bProcessedSuccess) mutable
+				{
+					if (bProcessedSuccess && HttpResponse != nullptr && EHttpResponseCodes::IsOk(HttpResponse->GetResponseCode()))
+					{
+						LastKnownIPAddress = HttpResponse->GetContentAsString().TrimStartAndEnd();
+						LastKnownIPAddressQueryState = IP_QUERY_STATE_COMPLETE_SUCCESS;
+
+						// write through to global cache
+						FRallyHereIntegrationModule::Get().SetLastKnownIPAddress(LastKnownIPAddress);
+					}
+					else
+					{
+						LastKnownIPAddressQueryState = IP_QUERY_STATE_COMPLETE_FAILURE;
+					}
+					
+					OnLastKnownIpAddressUpdated.Broadcast();
+
+					for (auto& Delegate : LastKnownIpAddressUpdateDelegates)
+					{
+						Delegate.ExecuteIfBound();
+					}
+					LastKnownIpAddressUpdateDelegates.Empty();
+				});
+
+			HttpRequest->ProcessRequest();
+		}
+		else
+		{
+			// if no endpoint is configured, just mark as success so we don't keep trying
+			LastKnownIPAddressQueryState = IP_QUERY_STATE_COMPLETE_SUCCESS;
+
+			// execute the broadcast delegate as state changed
+			OnLastKnownIpAddressUpdated.Broadcast();
+			// execute the callback delegate
+			Delegate.ExecuteIfBound();
+		}
+	}
+	else if (LastKnownIPAddressQueryState == IP_QUERY_STATE_IN_PROGRESS)
+	{
+		// already in progress, just wait for the callback
+		LastKnownIpAddressUpdateDelegates.Add(Delegate);
+	}
+	else // IP_QUERY_STATE_COMPLETE_SUCCESS
+	{
+		// already has completed, just call the waiting delegate
+		Delegate.ExecuteIfBound();
+	}
 }
 
 void URH_GameInstanceSubsystem::AppSuspendCallback()

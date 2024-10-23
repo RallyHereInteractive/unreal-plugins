@@ -73,6 +73,9 @@ struct FRHAPI_PexHostQueryParams
 `public FString `[`Version_Optional`](#structFRHAPI__PexHostQueryParams_1a073b142ec71bf6afdb156beb3e251a6c) | 
 `public bool `[`Version_IsSet`](#structFRHAPI__PexHostQueryParams_1ac6ebf49d34df90ca0cd106d98a9bea3f) | true if Version_Optional has been set to a value
 `public bool `[`Version_IsNull`](#structFRHAPI__PexHostQueryParams_1a804e1a1b19e43c9d1b5bce886216a6d8) | true if Version_Optional has been explicitly set to null
+`public FString `[`DeviceInfo_Optional`](#structFRHAPI__PexHostQueryParams_1ae090a93a048731477a6faae709d0922c) | 
+`public bool `[`DeviceInfo_IsSet`](#structFRHAPI__PexHostQueryParams_1a93f24db053590e3d703ce5f4179b6bf2) | true if DeviceInfo_Optional has been set to a value
+`public bool `[`DeviceInfo_IsNull`](#structFRHAPI__PexHostQueryParams_1a2075a26e77c41922b761d82272a819b6) | true if DeviceInfo_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__PexHostQueryParams_1a44aba5f6f335147dc91f2de31ee2c6cb)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PexHostQueryParams_1a0ce0c43b2ed9b4f2f7f7e11ffab3b1d9)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FDateTime & `[`GetToDatetime`](#structFRHAPI__PexHostQueryParams_1a6844cca54749155a12df94eefec7336d)`()` | Gets the value of ToDatetime_Optional, regardless of it having been set.
@@ -295,6 +298,18 @@ struct FRHAPI_PexHostQueryParams
 `public inline bool `[`IsVersionSet`](#structFRHAPI__PexHostQueryParams_1a6dc94de1bce6d58345e9f5d4080b3cda)`() const` | Checks whether Version_Optional has been set.
 `public inline void `[`SetVersionToNull`](#structFRHAPI__PexHostQueryParams_1a5fece69f8d3f4d68828903391da4c569)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsVersionNull`](#structFRHAPI__PexHostQueryParams_1a5292c1f321f5066bc620860f23b1b8de)`() const` | Checks whether Version_Optional is set to null.
+`public inline FString & `[`GetDeviceInfo`](#structFRHAPI__PexHostQueryParams_1a170165edc7388fd1290279fbd89649db)`()` | Gets the value of DeviceInfo_Optional, regardless of it having been set.
+`public inline const FString & `[`GetDeviceInfo`](#structFRHAPI__PexHostQueryParams_1a65a28a39662cd85049dae78220e75034)`() const` | Gets the value of DeviceInfo_Optional, regardless of it having been set.
+`public inline const FString & `[`GetDeviceInfo`](#structFRHAPI__PexHostQueryParams_1aee3a7548430c31d82c0e4d11d2bc620f)`(const FString & DefaultValue) const` | Gets the value of DeviceInfo_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetDeviceInfo`](#structFRHAPI__PexHostQueryParams_1a0f09942272d19eaeabaf9eb8be3d08c9)`(FString & OutValue) const` | Fills OutValue with the value of DeviceInfo_Optional and returns true if it has been set, otherwise returns false.
+`public inline FString * `[`GetDeviceInfoOrNull`](#structFRHAPI__PexHostQueryParams_1a03b8ae30f12171df3df5ec039158bf9b)`()` | Returns a pointer to DeviceInfo_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetDeviceInfoOrNull`](#structFRHAPI__PexHostQueryParams_1a750e7fd651bbe6afe0c187b9e4dd6aaf)`() const` | Returns a pointer to DeviceInfo_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetDeviceInfo`](#structFRHAPI__PexHostQueryParams_1a903a59168381c5d15a7e8866c0f499b1)`(const FString & NewValue)` | Sets the value of DeviceInfo_Optional and also sets DeviceInfo_IsSet to true.
+`public inline void `[`SetDeviceInfo`](#structFRHAPI__PexHostQueryParams_1a47876a1176398fde5c234ac366fd93ba)`(FString && NewValue)` | Sets the value of DeviceInfo_Optional and also sets DeviceInfo_IsSet to true using move semantics.
+`public inline void `[`ClearDeviceInfo`](#structFRHAPI__PexHostQueryParams_1aa3e32e8a02d09aa5544fdf62eb259d81)`()` | Clears the value of DeviceInfo_Optional and sets DeviceInfo_IsSet to false.
+`public inline bool `[`IsDeviceInfoSet`](#structFRHAPI__PexHostQueryParams_1ad768a92567d579b8540cb735274129fe)`() const` | Checks whether DeviceInfo_Optional has been set.
+`public inline void `[`SetDeviceInfoToNull`](#structFRHAPI__PexHostQueryParams_1a806cff91cadf0db34c942c86e65f360a)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsDeviceInfoNull`](#structFRHAPI__PexHostQueryParams_1a8fe7132f65766b39dc3a728eb312b1af)`() const` | Checks whether DeviceInfo_Optional is set to null.
 
 ### Members
 
@@ -481,6 +496,16 @@ true if Version_Optional has been set to a value
 #### `public bool `[`Version_IsNull`](#structFRHAPI__PexHostQueryParams_1a804e1a1b19e43c9d1b5bce886216a6d8) <a id="structFRHAPI__PexHostQueryParams_1a804e1a1b19e43c9d1b5bce886216a6d8"></a>
 
 true if Version_Optional has been explicitly set to null
+
+#### `public FString `[`DeviceInfo_Optional`](#structFRHAPI__PexHostQueryParams_1ae090a93a048731477a6faae709d0922c) <a id="structFRHAPI__PexHostQueryParams_1ae090a93a048731477a6faae709d0922c"></a>
+
+#### `public bool `[`DeviceInfo_IsSet`](#structFRHAPI__PexHostQueryParams_1a93f24db053590e3d703ce5f4179b6bf2) <a id="structFRHAPI__PexHostQueryParams_1a93f24db053590e3d703ce5f4179b6bf2"></a>
+
+true if DeviceInfo_Optional has been set to a value
+
+#### `public bool `[`DeviceInfo_IsNull`](#structFRHAPI__PexHostQueryParams_1a2075a26e77c41922b761d82272a819b6) <a id="structFRHAPI__PexHostQueryParams_1a2075a26e77c41922b761d82272a819b6"></a>
+
+true if DeviceInfo_Optional has been explicitly set to null
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__PexHostQueryParams_1a44aba5f6f335147dc91f2de31ee2c6cb)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PexHostQueryParams_1a44aba5f6f335147dc91f2de31ee2c6cb"></a>
 
@@ -1378,4 +1403,52 @@ Sets the value explicitly to be treated as null.
 #### `public inline bool `[`IsVersionNull`](#structFRHAPI__PexHostQueryParams_1a5292c1f321f5066bc620860f23b1b8de)`() const` <a id="structFRHAPI__PexHostQueryParams_1a5292c1f321f5066bc620860f23b1b8de"></a>
 
 Checks whether Version_Optional is set to null.
+
+#### `public inline FString & `[`GetDeviceInfo`](#structFRHAPI__PexHostQueryParams_1a170165edc7388fd1290279fbd89649db)`()` <a id="structFRHAPI__PexHostQueryParams_1a170165edc7388fd1290279fbd89649db"></a>
+
+Gets the value of DeviceInfo_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetDeviceInfo`](#structFRHAPI__PexHostQueryParams_1a65a28a39662cd85049dae78220e75034)`() const` <a id="structFRHAPI__PexHostQueryParams_1a65a28a39662cd85049dae78220e75034"></a>
+
+Gets the value of DeviceInfo_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetDeviceInfo`](#structFRHAPI__PexHostQueryParams_1aee3a7548430c31d82c0e4d11d2bc620f)`(const FString & DefaultValue) const` <a id="structFRHAPI__PexHostQueryParams_1aee3a7548430c31d82c0e4d11d2bc620f"></a>
+
+Gets the value of DeviceInfo_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetDeviceInfo`](#structFRHAPI__PexHostQueryParams_1a0f09942272d19eaeabaf9eb8be3d08c9)`(FString & OutValue) const` <a id="structFRHAPI__PexHostQueryParams_1a0f09942272d19eaeabaf9eb8be3d08c9"></a>
+
+Fills OutValue with the value of DeviceInfo_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline FString * `[`GetDeviceInfoOrNull`](#structFRHAPI__PexHostQueryParams_1a03b8ae30f12171df3df5ec039158bf9b)`()` <a id="structFRHAPI__PexHostQueryParams_1a03b8ae30f12171df3df5ec039158bf9b"></a>
+
+Returns a pointer to DeviceInfo_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const FString * `[`GetDeviceInfoOrNull`](#structFRHAPI__PexHostQueryParams_1a750e7fd651bbe6afe0c187b9e4dd6aaf)`() const` <a id="structFRHAPI__PexHostQueryParams_1a750e7fd651bbe6afe0c187b9e4dd6aaf"></a>
+
+Returns a pointer to DeviceInfo_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetDeviceInfo`](#structFRHAPI__PexHostQueryParams_1a903a59168381c5d15a7e8866c0f499b1)`(const FString & NewValue)` <a id="structFRHAPI__PexHostQueryParams_1a903a59168381c5d15a7e8866c0f499b1"></a>
+
+Sets the value of DeviceInfo_Optional and also sets DeviceInfo_IsSet to true.
+
+#### `public inline void `[`SetDeviceInfo`](#structFRHAPI__PexHostQueryParams_1a47876a1176398fde5c234ac366fd93ba)`(FString && NewValue)` <a id="structFRHAPI__PexHostQueryParams_1a47876a1176398fde5c234ac366fd93ba"></a>
+
+Sets the value of DeviceInfo_Optional and also sets DeviceInfo_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearDeviceInfo`](#structFRHAPI__PexHostQueryParams_1aa3e32e8a02d09aa5544fdf62eb259d81)`()` <a id="structFRHAPI__PexHostQueryParams_1aa3e32e8a02d09aa5544fdf62eb259d81"></a>
+
+Clears the value of DeviceInfo_Optional and sets DeviceInfo_IsSet to false.
+
+#### `public inline bool `[`IsDeviceInfoSet`](#structFRHAPI__PexHostQueryParams_1ad768a92567d579b8540cb735274129fe)`() const` <a id="structFRHAPI__PexHostQueryParams_1ad768a92567d579b8540cb735274129fe"></a>
+
+Checks whether DeviceInfo_Optional has been set.
+
+#### `public inline void `[`SetDeviceInfoToNull`](#structFRHAPI__PexHostQueryParams_1a806cff91cadf0db34c942c86e65f360a)`()` <a id="structFRHAPI__PexHostQueryParams_1a806cff91cadf0db34c942c86e65f360a"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsDeviceInfoNull`](#structFRHAPI__PexHostQueryParams_1a8fe7132f65766b39dc3a728eb312b1af)`() const` <a id="structFRHAPI__PexHostQueryParams_1a8fe7132f65766b39dc3a728eb312b1af"></a>
+
+Checks whether DeviceInfo_Optional is set to null.
 

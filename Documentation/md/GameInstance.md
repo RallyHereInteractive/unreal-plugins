@@ -727,6 +727,9 @@ Subsystem for the Game Instance.
 `public inline virtual bool `[`IsClientBootstrappingEnabled`](#classURH__GameInstanceSubsystem_1a2b838f400728010a6b525d6222cf3768)`()` | Gets if client boostrapping is enabled.
 `public virtual void `[`CustomEndpoint`](#classURH__GameInstanceSubsystem_1a0a69062a00fa3638f34752c643bd1a79)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const RallyHereAPI::FDelegate_CustomEndpointSend & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
 `public virtual void `[`CustomEndpoint`](#classURH__GameInstanceSubsystem_1a9f80933f5977a68e1d88ceef046b1c80)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDelegateBlock & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
+`public inline FString `[`GetLastKnownIPAddress`](#classURH__GameInstanceSubsystem_1aafe0f7d649e78a7785e1c68d351e490c)`() const` | Gets a last-known IP address for use with reporting.
+`public inline FSimpleMulticastDelegate & `[`GetOnLastKnownIpAddressUpdated`](#classURH__GameInstanceSubsystem_1a919b76273ea8f8e67da7d2ec40a332d4)`()` | Gets a delegate triggered if the last-known IP address is updated.
+`public virtual void `[`QueryIpAddressIfNeeded`](#classURH__GameInstanceSubsystem_1aa2e63aeac365862b5dbd7a787acd832c)`(bool bForce,FSimpleDelegate Delegate)` | Attempts to update the IP address.
 `protected FAuthContextPtr `[`AuthContext`](#classURH__GameInstanceSubsystem_1a8836a0620d1de84cc1383f20b38ab775) | Auth context used by the Game Instance Subsystem.
 `protected TSharedPtr< class IAnalyticsProvider > `[`AnalyticsProvider`](#classURH__GameInstanceSubsystem_1aae5830efe955343c08f88ce79747be51) | Analytics provider used by the Game Instance Subsystem.
 `protected TArray< `[`URH_GameInstanceSubsystemPlugin`](SubsystemBase.md#classURH__GameInstanceSubsystemPlugin)` * > `[`SubsystemPlugins`](#classURH__GameInstanceSubsystem_1a6204638edcade74afc54e77e367b6078) | Array of plugins for the Game Instance Subsystem.
@@ -741,6 +744,10 @@ Subsystem for the Game Instance.
 `protected `[`URH_SettingsSubsystem`](Settings.md#classURH__SettingsSubsystem)` * `[`SettingsSubsystem`](#classURH__GameInstanceSubsystem_1a0faf95129232d8f19571e9ebdc7b13e1) | The Settings Subsystem.
 `protected `[`URH_MatchSubsystem`](Match.md#classURH__MatchSubsystem)` * `[`MatchSubsystem`](#classURH__GameInstanceSubsystem_1a3d15c09c7d7205f9e38ccc368ffaf62a) | The Match Subsystem.
 `protected `[`URH_RemoteFileSubsystem`](File.md#classURH__RemoteFileSubsystem)` * `[`RemoteFileSubsystem`](#classURH__GameInstanceSubsystem_1a02dcdefba948191414723ca5a5770190) | The File Subsystem.
+`protected FString `[`LastKnownIPAddress`](#classURH__GameInstanceSubsystem_1a9bc153d26a9a8045cde9f0cab0d9f883) | 
+`protected IpQueryState `[`LastKnownIPAddressQueryState`](#classURH__GameInstanceSubsystem_1abb85968bb9e0df901384875654e3d08b) | 
+`protected FSimpleMulticastDelegate `[`OnLastKnownIpAddressUpdated`](#classURH__GameInstanceSubsystem_1aef7b2a4e382c7d973521cf5dc4ca28f6) | 
+`protected TArray< FSimpleDelegate > `[`LastKnownIpAddressUpdateDelegates`](#classURH__GameInstanceSubsystem_1adef034474e23d863eb7ab15c4d8781be) | 
 `protected bool `[`bEnabled`](#classURH__GameInstanceSubsystem_1aec940d2a189827f2ffea8b8248f9be12) | If the Game Instance Subsystem is enabled.
 `protected bool `[`bEnableSessionBrowser`](#classURH__GameInstanceSubsystem_1a05992b3ee9dc7cc018f9f424069c4748) | If the Session Browser is enabled.
 `protected bool `[`bEnableMatchmakingBrowser`](#classURH__GameInstanceSubsystem_1a65744cd5c8afb2596503251f63a7cf0f) | If the Matchmaking Browser is enabled.
@@ -860,6 +867,29 @@ Custom Endpoint wrapper (for custom endpoints that require authentication)
 
 * `Delegate` The delegate to call when the call is complete
 
+#### `public inline FString `[`GetLastKnownIPAddress`](#classURH__GameInstanceSubsystem_1aafe0f7d649e78a7785e1c68d351e490c)`() const` <a id="classURH__GameInstanceSubsystem_1aafe0f7d649e78a7785e1c68d351e490c"></a>
+
+Gets a last-known IP address for use with reporting.
+
+#### Returns
+The last-known IP address, if known, empty otherwise
+
+#### `public inline FSimpleMulticastDelegate & `[`GetOnLastKnownIpAddressUpdated`](#classURH__GameInstanceSubsystem_1a919b76273ea8f8e67da7d2ec40a332d4)`()` <a id="classURH__GameInstanceSubsystem_1a919b76273ea8f8e67da7d2ec40a332d4"></a>
+
+Gets a delegate triggered if the last-known IP address is updated.
+
+#### Returns
+The delegate
+
+#### `public virtual void `[`QueryIpAddressIfNeeded`](#classURH__GameInstanceSubsystem_1aa2e63aeac365862b5dbd7a787acd832c)`(bool bForce,FSimpleDelegate Delegate)` <a id="classURH__GameInstanceSubsystem_1aa2e63aeac365862b5dbd7a787acd832c"></a>
+
+Attempts to update the IP address.
+
+#### Parameters
+* `bForce` If true, forces the query to occur even if one is already in progress or has already completed 
+
+* `Delegate` The delegate to call when the call is complete
+
 #### `protected FAuthContextPtr `[`AuthContext`](#classURH__GameInstanceSubsystem_1a8836a0620d1de84cc1383f20b38ab775) <a id="classURH__GameInstanceSubsystem_1a8836a0620d1de84cc1383f20b38ab775"></a>
 
 Auth context used by the Game Instance Subsystem.
@@ -915,6 +945,14 @@ The Match Subsystem.
 #### `protected `[`URH_RemoteFileSubsystem`](File.md#classURH__RemoteFileSubsystem)` * `[`RemoteFileSubsystem`](#classURH__GameInstanceSubsystem_1a02dcdefba948191414723ca5a5770190) <a id="classURH__GameInstanceSubsystem_1a02dcdefba948191414723ca5a5770190"></a>
 
 The File Subsystem.
+
+#### `protected FString `[`LastKnownIPAddress`](#classURH__GameInstanceSubsystem_1a9bc153d26a9a8045cde9f0cab0d9f883) <a id="classURH__GameInstanceSubsystem_1a9bc153d26a9a8045cde9f0cab0d9f883"></a>
+
+#### `protected IpQueryState `[`LastKnownIPAddressQueryState`](#classURH__GameInstanceSubsystem_1abb85968bb9e0df901384875654e3d08b) <a id="classURH__GameInstanceSubsystem_1abb85968bb9e0df901384875654e3d08b"></a>
+
+#### `protected FSimpleMulticastDelegate `[`OnLastKnownIpAddressUpdated`](#classURH__GameInstanceSubsystem_1aef7b2a4e382c7d973521cf5dc4ca28f6) <a id="classURH__GameInstanceSubsystem_1aef7b2a4e382c7d973521cf5dc4ca28f6"></a>
+
+#### `protected TArray< FSimpleDelegate > `[`LastKnownIpAddressUpdateDelegates`](#classURH__GameInstanceSubsystem_1adef034474e23d863eb7ab15c4d8781be) <a id="classURH__GameInstanceSubsystem_1adef034474e23d863eb7ab15c4d8781be"></a>
 
 #### `protected bool `[`bEnabled`](#classURH__GameInstanceSubsystem_1aec940d2a189827f2ffea8b8248f9be12) <a id="classURH__GameInstanceSubsystem_1aec940d2a189827f2ffea8b8248f9be12"></a>
 

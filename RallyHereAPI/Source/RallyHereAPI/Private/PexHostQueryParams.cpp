@@ -166,6 +166,14 @@ void FRHAPI_PexHostQueryParams::WriteJson(TSharedRef<TJsonWriter<>>& Writer) con
 		else
 		RallyHereAPI::WriteJsonValue(Writer, Version_Optional);
 	}
+	if (DeviceInfo_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("device_info"));
+		if (DeviceInfo_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, DeviceInfo_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -302,6 +310,13 @@ bool FRHAPI_PexHostQueryParams::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 		Version_IsNull = JsonVersionField->IsNull();
 		Version_IsSet = Version_IsNull || TryGetJsonValue(JsonVersionField, Version_Optional);
 		ParseSuccess &= Version_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonDeviceInfoField = (*Object)->TryGetField(TEXT("device_info"));
+	if (JsonDeviceInfoField.IsValid())
+	{
+		DeviceInfo_IsNull = JsonDeviceInfoField->IsNull();
+		DeviceInfo_IsSet = DeviceInfo_IsNull || TryGetJsonValue(JsonDeviceInfoField, DeviceInfo_Optional);
+		ParseSuccess &= DeviceInfo_IsSet;
 	}
 
 	return ParseSuccess;
