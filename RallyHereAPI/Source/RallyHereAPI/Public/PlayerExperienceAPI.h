@@ -10,6 +10,7 @@
 #include "CoreMinimal.h"
 #include "RallyHereAPIAuthContext.h"
 #include "RallyHereAPIHelpers.h"
+#include "MatchPlatform.h"
 #include "HTTPValidationError.h"
 #include "HzApiErrorModel.h"
 #include "PexClientPagedResponse.h"
@@ -261,7 +262,7 @@ struct RALLYHEREAPI_API FRequest_GetAllPexClientRawByFilter : public FRequest
 	TOptional<FString> HostPlayerUuid;
 	TOptional<FString> OwningPlayerUuid;
 	TOptional<FString> Version;
-	TOptional<FString> DeviceInfo;
+	TOptional<ERHAPI_MatchPlatform> PlatformId;
 	TOptional<FString> PlayerUuid;
 };
 
@@ -394,7 +395,7 @@ struct RALLYHEREAPI_API FRequest_GetAllPexClientScoresByFilter : public FRequest
 	TOptional<FString> HostPlayerUuid;
 	TOptional<FString> OwningPlayerUuid;
 	TOptional<FString> Version;
-	TOptional<FString> DeviceInfo;
+	TOptional<ERHAPI_MatchPlatform> PlatformId;
 	TOptional<FString> PlayerUuid;
 };
 
@@ -522,7 +523,7 @@ struct RALLYHEREAPI_API FRequest_GetAllPexHostRawByFilter : public FRequest
 	TOptional<FString> HostPlayerUuid;
 	TOptional<FString> OwningPlayerUuid;
 	TOptional<FString> Version;
-	TOptional<FString> DeviceInfo;
+	TOptional<ERHAPI_MatchPlatform> PlatformId;
 };
 
 /** The response type for FRequest_GetAllPexHostRawByFilter */
@@ -654,7 +655,7 @@ struct RALLYHEREAPI_API FRequest_GetAllPexHostScoresByFilter : public FRequest
 	TOptional<FString> HostPlayerUuid;
 	TOptional<FString> OwningPlayerUuid;
 	TOptional<FString> Version;
-	TOptional<FString> DeviceInfo;
+	TOptional<ERHAPI_MatchPlatform> PlatformId;
 };
 
 /** The response type for FRequest_GetAllPexHostScoresByFilter */

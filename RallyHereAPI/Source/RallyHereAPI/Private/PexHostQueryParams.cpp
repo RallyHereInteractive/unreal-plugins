@@ -166,13 +166,13 @@ void FRHAPI_PexHostQueryParams::WriteJson(TSharedRef<TJsonWriter<>>& Writer) con
 		else
 		RallyHereAPI::WriteJsonValue(Writer, Version_Optional);
 	}
-	if (DeviceInfo_IsSet)
+	if (PlatformId_IsSet)
 	{
-		Writer->WriteIdentifierPrefix(TEXT("device_info"));
-		if (DeviceInfo_IsNull)
+		Writer->WriteIdentifierPrefix(TEXT("platform_id"));
+		if (PlatformId_IsNull)
 			WriteJsonValue(Writer, nullptr);
 		else
-		RallyHereAPI::WriteJsonValue(Writer, DeviceInfo_Optional);
+		RallyHereAPI::WriteJsonValue(Writer, EnumToString(PlatformId_Optional));
 	}
 	Writer->WriteObjectEnd();
 }
@@ -311,12 +311,12 @@ bool FRHAPI_PexHostQueryParams::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 		Version_IsSet = Version_IsNull || TryGetJsonValue(JsonVersionField, Version_Optional);
 		ParseSuccess &= Version_IsSet;
 	}
-	const TSharedPtr<FJsonValue> JsonDeviceInfoField = (*Object)->TryGetField(TEXT("device_info"));
-	if (JsonDeviceInfoField.IsValid())
+	const TSharedPtr<FJsonValue> JsonPlatformIdField = (*Object)->TryGetField(TEXT("platform_id"));
+	if (JsonPlatformIdField.IsValid())
 	{
-		DeviceInfo_IsNull = JsonDeviceInfoField->IsNull();
-		DeviceInfo_IsSet = DeviceInfo_IsNull || TryGetJsonValue(JsonDeviceInfoField, DeviceInfo_Optional);
-		ParseSuccess &= DeviceInfo_IsSet;
+		PlatformId_IsNull = JsonPlatformIdField->IsNull();
+		PlatformId_IsSet = PlatformId_IsNull || TryGetJsonValue(JsonPlatformIdField, PlatformId_Optional);
+		ParseSuccess &= PlatformId_IsSet;
 	}
 
 	return ParseSuccess;

@@ -53,6 +53,7 @@ Private/DeserterConfig.cpp
 Private/DeserterConfigResponse.cpp
 Private/DeserterUpdateRequest.cpp
 Private/Determiner.cpp
+Private/DeviceType.cpp
 Private/EntitlementActionType.cpp
 Private/EntitlementErrorCode.cpp
 Private/EntitlementEvent.cpp
@@ -159,6 +160,7 @@ Private/MatchMakingTemplate.cpp
 Private/MatchMakingTemplateGroup.cpp
 Private/MatchMakingTemplateGroupV2.cpp
 Private/MatchMakingTemplateV2.cpp
+Private/MatchPlatform.cpp
 Private/MatchPlayerRequest.cpp
 Private/MatchPlayerResponse.cpp
 Private/MatchPlayerWithMatch.cpp
@@ -419,6 +421,7 @@ Public/DeserterConfig.h
 Public/DeserterConfigResponse.h
 Public/DeserterUpdateRequest.h
 Public/Determiner.h
+Public/DeviceType.h
 Public/EntitlementActionType.h
 Public/EntitlementErrorCode.h
 Public/EntitlementEvent.h
@@ -525,6 +528,7 @@ Public/MatchMakingTemplate.h
 Public/MatchMakingTemplateGroup.h
 Public/MatchMakingTemplateGroupV2.h
 Public/MatchMakingTemplateV2.h
+Public/MatchPlatform.h
 Public/MatchPlayerRequest.h
 Public/MatchPlayerResponse.h
 Public/MatchPlayerWithMatch.h

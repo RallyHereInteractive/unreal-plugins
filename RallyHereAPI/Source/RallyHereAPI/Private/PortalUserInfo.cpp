@@ -30,6 +30,11 @@ void FRHAPI_PortalUserInfo::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	RallyHereAPI::WriteJsonValue(Writer, PortalUserId);
 	Writer->WriteIdentifierPrefix(TEXT("display_name"));
 	RallyHereAPI::WriteJsonValue(Writer, DisplayName);
+	if (DeviceType_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("device_type"));
+		RallyHereAPI::WriteJsonValue(Writer, EnumToString(DeviceType_Optional));
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -49,6 +54,12 @@ bool FRHAPI_PortalUserInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	ParseSuccess &= JsonPortalUserIdField.IsValid() && (!JsonPortalUserIdField->IsNull() &&  TryGetJsonValue(JsonPortalUserIdField, PortalUserId));
 	const TSharedPtr<FJsonValue> JsonDisplayNameField = (*Object)->TryGetField(TEXT("display_name"));
 	ParseSuccess &= JsonDisplayNameField.IsValid() && (!JsonDisplayNameField->IsNull() &&  TryGetJsonValue(JsonDisplayNameField, DisplayName));
+	const TSharedPtr<FJsonValue> JsonDeviceTypeField = (*Object)->TryGetField(TEXT("device_type"));
+	if (JsonDeviceTypeField.IsValid())
+	{
+		DeviceType_IsSet = TryGetJsonValue(JsonDeviceTypeField, DeviceType_Optional);
+		ParseSuccess &= DeviceType_IsSet;
+	}
 
 	return ParseSuccess;
 }
