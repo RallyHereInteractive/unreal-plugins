@@ -10,6 +10,7 @@
 #include "CustomAPI.h"
 
 #include "Common/RH_Logging.h"
+#include "Common/RH_Version.h"
 
 #include "RH_AsyncWeb.generated.h"
 
@@ -445,6 +446,31 @@ protected:
 };
 
 
+/** @brief Indexing for serialized HTTP files */
+namespace RH_SerializableHttpFormat
+{
+	namespace LineIndex
+	{
+		enum
+		{
+			// metadata
+			ResponseCode = 0,
+			URL,
+			EffectiveURL,
+			ContentLength,
+			ContentType,
+			Headers,					// base64 with newlines to separate headers
+			CompressionFormat,			// for compressed content, None if not compressed
+			UncompressedSize,			// for compressed content, generally should match ContentLength
+			Content,					//base64, optionally compressed
+
+			
+
+			Max
+		};
+	}
+};
+
 class RALLYHEREINTEGRATION_API FRH_HttpResponseSerializable : public IHttpResponse
 {
 protected:
@@ -452,6 +478,14 @@ protected:
 	int32 ResponseCode;
 	/** @brief The URL used to send the request. */
 	FString URL;
+#if RH_FROM_ENGINE_VERSION(5,4)
+	/** @brief The effective URL in case of redirected. */
+	FString EffectiveURL;
+	/** @brief The current status of the request being processed. */
+	EHttpRequestStatus::Type Status;
+	/** @brief The reason of the failure if GetStatus returns Failed. */
+	EHttpFailureReason FailureReason;
+#endif
 	/** @brief The URL parameters for the request. */
 	TMap<FString, FString> URLParameters;
 	/** @brief The content length of the response. */
@@ -469,6 +503,10 @@ public:
 	 */
 	FRH_HttpResponseSerializable()
 		: ResponseCode(0)
+#if RH_FROM_ENGINE_VERSION(5,4)
+		, Status(EHttpRequestStatus::NotStarted)
+		, FailureReason(EHttpFailureReason::None)
+#endif
 		, ContentLength(0)
 		, ContentType(TEXT(""))
 	{}
@@ -482,6 +520,11 @@ public:
 		check(InHttpResponse.IsValid());
 		ResponseCode = InHttpResponse->GetResponseCode();
 		URL = InHttpResponse->GetURL();
+#if RH_FROM_ENGINE_VERSION(5,4)
+		EffectiveURL = InHttpResponse->GetEffectiveURL();
+		Status = InHttpResponse->GetStatus();
+		FailureReason = InHttpResponse->GetFailureReason();
+#endif
 		ContentLength = InHttpResponse->GetContentLength();
 		ContentType = InHttpResponse->GetContentType();
 		Headers = InHttpResponse->GetAllHeaders();
@@ -491,9 +534,10 @@ public:
 	/**
 	 * @brief Exports the contents of the response to a file.
 	 * @param [in] FilePath The file path to export the response to.
+	 * @param [in] bCanCompress Whether the content can be compressed.
 	 * @return Whether the export was successful. 
 	 */
-	virtual bool ExportToFile(const FString& FilePath);
+	virtual bool ExportToFile(const FString& FilePath, bool bCanCompress = true) const;
 
 	/**
 	 * @brief Imports the contents of the response from a file.
@@ -524,6 +568,29 @@ public:
 	 * @return the URL string.
 	 */
 	virtual FString GetURL() const override { return URL; }
+
+#if RH_FROM_ENGINE_VERSION(5,4)
+	/**
+	 * Get the effective URL in case of redirected. If not redirected, it's the same as GetURL
+	 *
+	 * @return the effective URL string.
+	 */
+	virtual const FString& GetEffectiveURL() const override { return EffectiveURL; }
+
+	/**
+	 * Get the current status of the request being processed
+	 *
+	 * @return the current status
+	 */
+	virtual EHttpRequestStatus::Type GetStatus() const override { return Status; };
+
+	/**
+	 * Get the reason of th failure if GetStatus returns Failed
+	 *
+	 * @return the reason of the failure
+	 */
+	virtual EHttpFailureReason GetFailureReason() const override { return FailureReason; };
+#endif
 	
 	/** 
 	 * @brief Gets an URL parameter.
@@ -754,7 +821,7 @@ struct FRH_ObjectVersionCheck
 	static void SetRequest##ValueName(T& Request, const FString& InValue) { Request.MUST_BE_EMPTY##ValueName = InValue; }; /* this is the first function override, which is called if the ValueName exists in the type T */ \
 	\
 	template <typename T, typename std::enable_if<!has_##ValueName<T>::value, T>::type* = nullptr> \
-	static void SetRequest##ValueName(T& Request, const FString& InValue) { UE_LOG(LogRallyHereIntegration, Warning, TEXT("Attempted to set header %s on a request that does not support it"), #ValueName); }; /* this is the second function override, which is called if the ValueName does not exist in the type T */
+	static void SetRequest##ValueName(T& Request, const FString& InValue) { UE_LOG(LogRallyHereIntegration, Warning, TEXT("Attempted to set header %hs on a request that does not support it"), #ValueName); }; /* this is the second function override, which is called if the ValueName does not exist in the type T */
 
 	/*
 	template <typename, typename = void>
