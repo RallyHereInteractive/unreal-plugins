@@ -296,7 +296,7 @@ class FRH_HttpResponseSerializable
 --------------------------------|---------------------------------------------
 `public inline  `[`FRH_HttpResponseSerializable`](#classFRH__HttpResponseSerializable_1a3e3fdeb6daa9393df1522ce131aa3b44)`()` | Default constructor.
 `public inline  `[`FRH_HttpResponseSerializable`](#classFRH__HttpResponseSerializable_1a43e36325c864bb823cb171f005578351)`(const FHttpResponsePtr & InHttpResponse)` | Constructor that takes a response pointer to serialize.
-`public virtual bool `[`ExportToFile`](#classFRH__HttpResponseSerializable_1a3f3fe81e4375462220974f8355ecd2a8)`(const FString & FilePath)` | Exports the contents of the response to a file.
+`public virtual bool `[`ExportToFile`](#classFRH__HttpResponseSerializable_1aec8b537514cd0a2b9117a29c830971b4)`(const FString & FilePath,bool bCanCompress) const` | Exports the contents of the response to a file.
 `public virtual bool `[`ImportFromFile`](#classFRH__HttpResponseSerializable_1a761fe72cbace3f161d69c9ef86bf41d2)`(const FString & FilePath)` | Imports the contents of the response from a file.
 `public inline virtual int32 `[`GetResponseCode`](#classFRH__HttpResponseSerializable_1ad0c48c1e60b06e4c7693730a92c7f403)`() const` | Gets the response code returned by the requested server. See EHttpResponseCodes for known response codes.
 `public inline virtual FString `[`GetContentAsString`](#classFRH__HttpResponseSerializable_1aec46f5e9c742c58e9168b5e45c082414)`() const` | Returns the payload as a string, assuming the payload is UTF8.
@@ -328,12 +328,14 @@ Constructor that takes a response pointer to serialize.
 #### Parameters
 * `InHttpResponse` The response pointer to use.
 
-#### `public virtual bool `[`ExportToFile`](#classFRH__HttpResponseSerializable_1a3f3fe81e4375462220974f8355ecd2a8)`(const FString & FilePath)` <a id="classFRH__HttpResponseSerializable_1a3f3fe81e4375462220974f8355ecd2a8"></a>
+#### `public virtual bool `[`ExportToFile`](#classFRH__HttpResponseSerializable_1aec8b537514cd0a2b9117a29c830971b4)`(const FString & FilePath,bool bCanCompress) const` <a id="classFRH__HttpResponseSerializable_1aec8b537514cd0a2b9117a29c830971b4"></a>
 
 Exports the contents of the response to a file.
 
 #### Parameters
 * `FilePath` The file path to export the response to. 
+
+* `bCanCompress` Whether the content can be compressed. 
 
 #### Returns
 Whether the export was successful.

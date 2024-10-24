@@ -90,16 +90,32 @@ void URH_CatalogSubsystem::OnGetCatalogAllResponse(const TGetCatalogAll::Respons
 	const auto Content = Resp.TryGetDefaultContentAsPointer();
 	if (Resp.IsSuccessful() && Content != nullptr)
 	{
+		// clear all subcomponent etag storage, as this is a full refresh
+		GetCatalogAllETag.Reset();
+		GetCatalogXpAllETag.Reset();
+		GetCatalogPricePointsAllETag.Reset();
+		GetCatalogVendorsAllETag.Reset();
+		GetCatalogTimeFramesAllETag.Reset();
+		GetCatalogInventoryBucketUseRuleSetsAllETag.Reset();
+
 		Resp.TryGetDefaultHeader_ETag(GetCatalogAllETag);
 
 		if (const auto& Data = Content->GetXpTablesOrNull())
 		{
 			ParseAllXpTables(*Data);
+			if (auto CacheInfo = Data->GetCacheInfoOrNull())
+			{
+				GetCatalogXpAllETag = CacheInfo->GetEtag();
+			}
 		}
 
 		if (const auto& Data = Content->GetInventoryBucketUseRuleSetsOrNull())
 		{
 			ParseAllInventoryBucketUseRuleSets(*Data);
+			if (auto CacheInfo = Data->GetCacheInfoOrNull())
+			{
+				GetCatalogInventoryBucketUseRuleSetsAllETag = CacheInfo->GetEtag();
+			}
 		}
 
 		CatalogVendors.Empty();
@@ -111,6 +127,10 @@ void URH_CatalogSubsystem::OnGetCatalogAllResponse(const TGetCatalogAll::Respons
 				{
 					CatalogVendors.Add(FCString::Atoi(*VendorPair.Key), VendorPair.Value);
 				}
+			}
+			if (auto CacheInfo = Data->GetCacheInfoOrNull())
+			{
+				GetCatalogVendorsAllETag = CacheInfo->GetEtag();
 			}
 		}
 
@@ -124,6 +144,7 @@ void URH_CatalogSubsystem::OnGetCatalogAllResponse(const TGetCatalogAll::Respons
 					CatalogLootItems.Add(FCString::Atoi(*LootPair.Key), LootPair.Value);
 				}
 			}
+			// no etag, generally embedded in vendors
 		}
 
 		CatalogItems.Empty();
@@ -136,6 +157,7 @@ void URH_CatalogSubsystem::OnGetCatalogAllResponse(const TGetCatalogAll::Respons
 					ParseCatalogItem(ItemPair.Value, FCString::Atoi(*ItemPair.Key));
 				}
 			}
+			// no etag, generally embedded in the vendors
 		}
 
 		CatalogPricePoints.Empty();
@@ -148,6 +170,10 @@ void URH_CatalogSubsystem::OnGetCatalogAllResponse(const TGetCatalogAll::Respons
 					CatalogPricePoints.Add(FGuid(PricePointPair.Key), PricePointPair.Value);
 				}
 			}
+			if (auto CacheInfo = Data->GetCacheInfoOrNull())
+			{
+				GetCatalogPricePointsAllETag = CacheInfo->GetEtag();
+			}
 		}
 
 		TimeFrames.Empty();
@@ -159,6 +185,10 @@ void URH_CatalogSubsystem::OnGetCatalogAllResponse(const TGetCatalogAll::Respons
 				{
 					TimeFrames.Add(FCString::Atoi(*TimeFramePair.Key), TimeFramePair.Value);
 				}
+			}
+			if (auto CacheInfo = Data->GetCacheInfoOrNull())
+			{
+				GetCatalogTimeFramesAllETag = CacheInfo->GetEtag();
 			}
 		}
 	}
