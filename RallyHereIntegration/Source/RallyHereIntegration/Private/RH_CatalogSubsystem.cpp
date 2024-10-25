@@ -87,6 +87,8 @@ void URH_CatalogSubsystem::GetCatalogAll(const FRH_CatalogCallBlock& Delegate)
 
 void URH_CatalogSubsystem::OnGetCatalogAllResponse(const TGetCatalogAll::Response& Resp, const FRH_CatalogCallBlock Delegate)
 {
+	SCOPED_NAMED_EVENT(RallyHere_OnGetCatalogAllResponse, FColor::Purple);
+	
 	const auto Content = Resp.TryGetDefaultContentAsPointer();
 	if (Resp.IsSuccessful() && Content != nullptr)
 	{
@@ -102,6 +104,7 @@ void URH_CatalogSubsystem::OnGetCatalogAllResponse(const TGetCatalogAll::Respons
 
 		if (const auto& Data = Content->GetXpTablesOrNull())
 		{
+			SCOPED_NAMED_EVENT(XpTables, FColor::Purple);
 			ParseAllXpTables(*Data);
 			if (auto CacheInfo = Data->GetCacheInfoOrNull())
 			{
@@ -111,6 +114,7 @@ void URH_CatalogSubsystem::OnGetCatalogAllResponse(const TGetCatalogAll::Respons
 
 		if (const auto& Data = Content->GetInventoryBucketUseRuleSetsOrNull())
 		{
+			SCOPED_NAMED_EVENT(InventoryBuckets, FColor::Purple);
 			ParseAllInventoryBucketUseRuleSets(*Data);
 			if (auto CacheInfo = Data->GetCacheInfoOrNull())
 			{
@@ -121,8 +125,10 @@ void URH_CatalogSubsystem::OnGetCatalogAllResponse(const TGetCatalogAll::Respons
 		CatalogVendors.Empty();
 		if (const auto& Data = Content->GetVendorsOrNull())
 		{
+			SCOPED_NAMED_EVENT(Vendors, FColor::Purple);
 			if (const auto& Vendors = (*Data).GetVendorsOrNull())
 			{
+				CatalogVendors.Reserve(Vendors->Num());
 				for (const auto& VendorPair : (*Vendors))
 				{
 					CatalogVendors.Add(FCString::Atoi(*VendorPair.Key), VendorPair.Value);
@@ -137,8 +143,10 @@ void URH_CatalogSubsystem::OnGetCatalogAllResponse(const TGetCatalogAll::Respons
 		CatalogLootItems.Empty();
 		if (const auto& Data = Content->GetLootOrNull())
 		{
+			SCOPED_NAMED_EVENT(Loot, FColor::Purple);
 			if (const auto& Loot = (*Data).GetLootOrNull())
 			{
+				CatalogLootItems.Reserve(Loot->Num());
 				for (const auto& LootPair : (*Loot))
 				{
 					CatalogLootItems.Add(FCString::Atoi(*LootPair.Key), LootPair.Value);
@@ -150,8 +158,10 @@ void URH_CatalogSubsystem::OnGetCatalogAllResponse(const TGetCatalogAll::Respons
 		CatalogItems.Empty();
 		if (const auto& Data = Content->GetItemsOrNull())
 		{
+			SCOPED_NAMED_EVENT(Items, FColor::Purple);
 			if (const auto& Items = (*Data).GetItemsOrNull())
 			{
+				CatalogItems.Reserve(Items->Num());
 				for (const auto& ItemPair : (*Items))
 				{
 					ParseCatalogItem(ItemPair.Value, FCString::Atoi(*ItemPair.Key));
@@ -163,8 +173,10 @@ void URH_CatalogSubsystem::OnGetCatalogAllResponse(const TGetCatalogAll::Respons
 		CatalogPricePoints.Empty();
 		if (const auto Data = Content->GetPricePointsOrNull())
 		{
+			SCOPED_NAMED_EVENT(PricePoints, FColor::Purple);
 			if (auto PricePoints = (*Data).GetPricePointsOrNull())
 			{
+				CatalogPricePoints.Reserve(PricePoints->Num());
 				for (const auto& PricePointPair : *PricePoints)
 				{
 					CatalogPricePoints.Add(FGuid(PricePointPair.Key), PricePointPair.Value);
@@ -179,8 +191,10 @@ void URH_CatalogSubsystem::OnGetCatalogAllResponse(const TGetCatalogAll::Respons
 		TimeFrames.Empty();
 		if (const auto& Data = Content->GetTimeFramesOrNull())
 		{
+			SCOPED_NAMED_EVENT(TimeFrames, FColor::Purple);
 			if (const auto& TimeframeData = (*Data).GetTimeFramesOrNull())
 			{
+				TimeFrames.Reserve(TimeframeData->Num());
 				for (const auto& TimeFramePair : (*TimeframeData))
 				{
 					TimeFrames.Add(FCString::Atoi(*TimeFramePair.Key), TimeFramePair.Value);
@@ -274,7 +288,7 @@ void URH_CatalogSubsystem::ParseAllXpTables(const FRHAPI_XpTables& Content)
 {
 	if (const auto NewXpTables = Content.GetXpTablesOrNull())
 	{
-		XpTables.Empty();
+		XpTables.Empty(NewXpTables->Num());
 
 		for (auto const& XpTable : *NewXpTables)
 		{
@@ -312,14 +326,11 @@ void URH_CatalogSubsystem::OnGetCatalogInventoryBucketUseRuleSetsAllResponse(con
 
 void URH_CatalogSubsystem::ParseAllInventoryBucketUseRuleSets(const FRHAPI_InventoryBucketUseRuleSets& Content)
 {
-	InventoryBucketUseRuleSets.Empty();
 	const auto RuleSets = Content.GetRuleSetsOrNull();
-	if (!RuleSets || RuleSets->Num() == 0)
+	if (RuleSets != nullptr)
 	{
-		return;
+		InventoryBucketUseRuleSets = *RuleSets;
 	}
-
-	InventoryBucketUseRuleSets = *RuleSets;
 }
 
 bool URH_CatalogSubsystem::CanRulesetUsePlatformForBucket(const FString& InventoryBucketRulesetId, ERHAPI_InventoryBucket TargetBucket, ERHAPI_InventoryBucket ItemInventoryBucket) const
