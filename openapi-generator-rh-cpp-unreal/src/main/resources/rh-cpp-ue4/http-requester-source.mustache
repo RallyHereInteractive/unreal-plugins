@@ -64,18 +64,25 @@ void F{{unrealModuleName}}HttpRequester::TryExecuteNextRequest(bool bIsExiting)
 				{
 					const auto Request = (*findItem).Pop();
 					Request->Metadata.HttpQueuedTimestamp = FDateTime::Now();
-					Request->HttpRequest->OnProcessRequestComplete().BindSP(AsShared(), &F{{unrealModuleName}}HttpRequester::OnResponse, Request->ResponseDelegate);
+					
+					// last chance to safely access the request before processing it (which may modify it in other threads)
+					// do not fire callbacks if exiting
+					if (!bIsExiting)
+					{
+						// bind the main response handler
+						Request->HttpRequest->OnProcessRequestComplete().BindSP(AsShared(), &F{{unrealModuleName}}HttpRequester::OnResponse, Request->ResponseDelegate);
+					
+						// broadcast the started event
+						{
+							SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestStarted, FColor::Purple);
+							Request->API->OnRequestStarted().Broadcast(Request->Metadata, Request->HttpRequest);
+						}
+					}
+					
 					if (Request->HttpRequest->ProcessRequest())
 					{
 						// increment pending request count, so we can keep track of how many requests are currently in-flight
 						InFlightRequestCount++;
-					}
-
-					// do not fire callback if exiting
-					if (!bIsExiting)
-					{
-						SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestStarted, FColor::Purple);
-						Request->API->OnRequestStarted().Broadcast(Request->Metadata, Request->HttpRequest);
 					}
 
 					if (MaxSimultaneousRequests > 0 && InFlightRequestCount >= MaxSimultaneousRequests)
