@@ -68,10 +68,10 @@ protected:
 		check(HttpRequest == nullptr);
 
 		// this request runs long with no activity, by default 30 seconds, so set the activity timeout to be higher so it does not get cancelled.
-		auto ModifyTimeoutLambda = [](const RallyHereAPI::FRequest& RHRequest, FHttpRequestRef HttpRequest)
+		auto ModifyTimeoutLambda = [](const RallyHereAPI::FRequest& InRHRequest, FHttpRequestRef InHttpRequest)
 		{
 #if RH_FROM_ENGINE_VERSION(5,4)
-			HttpRequest->SetActivityTimeout(60.f);
+			InHttpRequest->SetActivityTimeout(60.f);
 #endif
 		};
 
