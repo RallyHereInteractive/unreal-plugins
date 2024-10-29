@@ -583,6 +583,13 @@ void URallyHereDebugTool::ImGuiPostInit()
 
 		FImGuiDelegates::OnWorldDebug(GetWorld()).Add(FSimpleDelegate::CreateUObject(this, &URallyHereDebugTool::DoImGui));
 
+		// update window visibility to enforce initial state to match active flag
+		auto Viewport = GetWorld()->GetGameViewport();
+		if (Viewport != nullptr && FImGuiModule::IsAvailable())
+		{
+			FImGuiModule::Get().SetViewportWidgetVisibility(Viewport, bActive);
+		}
+
 #ifdef WITH_IMGUI_NETIMGUI
 		{
 			const auto Policy = IsRunningDedicatedServer() ? URallyHereDebugToolSettings::Get()->DedicatedServerNetImguiPolicy : URallyHereDebugToolSettings::Get()->NetImguiPolicy;
