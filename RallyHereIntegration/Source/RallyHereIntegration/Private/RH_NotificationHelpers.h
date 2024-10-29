@@ -21,6 +21,7 @@ public:
 	FRH_NotificationStreamingLongPollHelper(FAuthContextPtr InAuthContext, const FGuid& InPlayerUuid, const FString& Cursor,
 		const FRH_OnNotificationsStreamedHelperDelegate& InDelegate)
 		: AuthContext(InAuthContext)
+		, PlayerUuid(InPlayerUuid)
 		, Cursor(Cursor)
 		, NotificationsResult()
 		, Delegate(InDelegate)
@@ -66,6 +67,17 @@ protected:
 	{
 		check(HttpRequest == nullptr);
 
+		// this request runs long with no activity, by default 30 seconds, so set the activity timeout to be higher so it does not get cancelled.
+		auto ModifyTimeoutLambda = [](const RallyHereAPI::FRequest& RHRequest, FHttpRequestRef HttpRequest)
+		{
+#if RH_FROM_ENGINE_VERSION(5,4)
+			HttpRequest->SetActivityTimeout(60.f);
+#endif
+		};
+
+		// the above does not seem to be entirely reliable for some reason, so also set a deadline manually to 25 seconds
+		int32 Deadline = 25;
+
 		if (PlayerUuid.IsValid())
 		{
 			auto Request = LongPollTraits::Request();
@@ -73,6 +85,9 @@ protected:
 			Request.ExcludeBefore = Cursor;
 			Request.OffsetResetStrategy = ERHAPI_OffsetReset::Latest;
 			Request.PlayerUuid = PlayerUuid;
+			Request.Deadline = Deadline;
+
+			Request.OnModifyRequest().AddLambda(ModifyTimeoutLambda);
 
 			UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 			HttpRequest = LongPollTraits::DoCall(RH_APIs::GetAPIs().GetPlayerNotification(), Request,
@@ -85,7 +100,10 @@ protected:
 			Request.AuthContext = AuthContext;
 			Request.ExcludeBefore = Cursor;
 			Request.OffsetResetStrategy = ERHAPI_OffsetReset::Latest;
+			Request.Deadline = Deadline;
 
+			Request.OnModifyRequest().AddLambda(ModifyTimeoutLambda);
+			
 			UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 			HttpRequest = LongPollTraitsSelf::DoCall(RH_APIs::GetAPIs().GetPlayerNotification(), Request,
 				LongPollTraitsSelf::Delegate::CreateSP(this, &FRH_NotificationStreamingLongPollHelper::LongPollCompleteSelf),
