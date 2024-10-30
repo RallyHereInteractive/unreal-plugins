@@ -53,12 +53,16 @@ const FAuthContextPtr URH_PlayerInventory::GetAuthContext() const
 
 void URH_PlayerInventory::OnUserChanged()
 {
+	// cache item ids that will be cleared out
 	TArray<int32> UpdatedItemIds;
 	InventoryCache.GetKeys(UpdatedItemIds);
 
+	// clear inventory state
 	InventorySession = {};
 	InventoryCache.Empty();
+	LastFullInventoryTime.Reset();
 
+	// broadcast that item ids were changed
 	if (PlayerInfo != nullptr)
 	{
 		BroadcastOnInventoryCacheUpdated(UpdatedItemIds);
