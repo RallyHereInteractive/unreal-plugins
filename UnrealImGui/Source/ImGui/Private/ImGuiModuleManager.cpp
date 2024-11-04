@@ -280,6 +280,28 @@ void FImGuiModuleManager::SetViewportWidgetVisibility(UGameViewportClient* GameV
 	auto Widget = Widgets.FindByPredicate([GameViewport](const auto& Widget) { return Widget.IsValid() && Widget.Pin()->GetGameViewport().Get() == GameViewport; });
 	if (Widget && Widget->IsValid())
 	{
-		return Widget->Pin()->SetVisibility(bVisible ? EVisibility::Visible : EVisibility::Collapsed);
+		//$$ BEGIN check if the widget still has a valid parent, if it does not and we try to set visibility to true, re-add it to the game viewport if possible
+		auto SharedWidget = Widget->Pin();
+		if (!SharedWidget->IsParentValid() && bVisible)
+		{
+			if (GameViewport != nullptr)
+			{
+				GameViewport->RemoveViewportWidgetContent(SharedWidget.ToSharedRef());
+				GameViewport->AddViewportWidgetContent(SharedWidget.ToSharedRef(), IMGUI_WIDGET_Z_ORDER);
+			}
+		}
+		return SharedWidget->SetVisibility(bVisible ? EVisibility::Visible : EVisibility::Collapsed);
+		//$$ END
 	}
+	//$$ BEGIN if the widget is not found, try to add it to the game viewport if possible
+	else if (bVisible)
+	{
+		AddWidgetToViewport(GameViewport);
+		Widget = Widgets.FindByPredicate([GameViewport](const auto& Widget) { return Widget.IsValid() && Widget.Pin()->GetGameViewport().Get() == GameViewport; });
+		if (Widget && Widget->IsValid())
+		{
+			return Widget->Pin()->SetVisibility(EVisibility::Visible);
+		}
+	}
+	//$$ END
 }
