@@ -593,7 +593,7 @@ inline void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const FRHAPI_Model
 }
 
 #if RHAPI_FROM_ENGINE_VERSION(5,4)
-template<typename T, typename std::enable_if<!TIsVariant_V<std::remove_reference_t<T>>::Value && !std::is_base_of<FRHAPI_Model, T>::value, int>::type = 0>
+template<typename T, typename std::enable_if<!TIsVariant_V<std::remove_reference_t<T>> && !std::is_base_of<FRHAPI_Model, T>::value, int>::type = 0>
 #else
 template<typename T, typename std::enable_if<!TIsVariant<T>::Value && !std::is_base_of<FRHAPI_Model, T>::value, int>::type = 0>
 #endif
@@ -790,7 +790,7 @@ inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, FRHAPI_Mode
 }
 
 #if RHAPI_FROM_ENGINE_VERSION(5,4)
-template<typename T, typename std::enable_if<TIsVariant_V<std::remove_reference_t<T>>::Value, bool>::type = true>
+template<typename T, typename std::enable_if<TIsVariant_V<std::remove_reference_t<T>>, bool>::type = true>
 #else
 template<typename T, typename std::enable_if<TIsVariant<T>::Value, bool>::type = true>
 #endif
@@ -800,7 +800,7 @@ inline bool TryGetJsonValue(const TSharedPtr<FJsonObject>& JsonObject, T& Value)
 }
 
 #if RHAPI_FROM_ENGINE_VERSION(5,4)
-template<typename T, typename std::enable_if<TIsVariant_V<std::remove_reference_t<T>>::Value, bool>::type = true>
+template<typename T, typename std::enable_if<TIsVariant_V<std::remove_reference_t<T>>, bool>::type = true>
 #else
 template<typename T, typename std::enable_if<TIsVariant<T>::Value, bool>::type = true>
 #endif
@@ -810,7 +810,7 @@ inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, T& Value)
 }
 
 #if RHAPI_FROM_ENGINE_VERSION(5,4)
-template<typename T, typename std::enable_if<!TIsVariant_V<std::remove_reference_t<T>>::Value && !std::is_base_of<FRHAPI_Model, T>::value, int>::type = 0>
+template<typename T, typename std::enable_if<!TIsVariant_V<std::remove_reference_t<T>> && !std::is_base_of<FRHAPI_Model, T>::value, int>::type = 0>
 #else
 template<typename T, typename std::enable_if<!TIsVariant<T>::Value && !std::is_base_of<FRHAPI_Model, T>::value, int>::type = 0>
 #endif
