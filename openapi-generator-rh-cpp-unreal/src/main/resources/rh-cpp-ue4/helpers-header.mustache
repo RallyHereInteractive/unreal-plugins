@@ -604,7 +604,11 @@ inline void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const {{unrealMode
 	Value.WriteJson(Writer);
 }
 
+#if RHAPI_FROM_ENGINE_VERSION(5,4)
+template<typename T, typename std::enable_if<!TIsVariant_V<std::remove_reference_t<T>>::Value && !std::is_base_of<{{unrealModelPrefix}}Model, T>::value, int>::type = 0>
+#else
 template<typename T, typename std::enable_if<!TIsVariant<T>::Value && !std::is_base_of<{{unrealModelPrefix}}Model, T>::value, int>::type = 0>
+#endif
 inline void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const T& Value)
 {
 	Writer->WriteValue(Value);
@@ -797,19 +801,31 @@ inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, {{unrealMod
 	return Value.FromJson(JsonValue);
 }
 
+#if RHAPI_FROM_ENGINE_VERSION(5,4)
+template<typename T, typename std::enable_if<TIsVariant_V<std::remove_reference_t<T>>::Value, bool>::type = true>
+#else
 template<typename T, typename std::enable_if<TIsVariant<T>::Value, bool>::type = true>
+#endif
 inline bool TryGetJsonValue(const TSharedPtr<FJsonObject>& JsonObject, T& Value)
 {
 	return TryGetJsonValueTVariant(JsonObject, Value);
 }
 
+#if RHAPI_FROM_ENGINE_VERSION(5,4)
+template<typename T, typename std::enable_if<TIsVariant_V<std::remove_reference_t<T>>::Value, bool>::type = true>
+#else
 template<typename T, typename std::enable_if<TIsVariant<T>::Value, bool>::type = true>
+#endif
 inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, T& Value)
 {
 	return TryGetJsonValueTVariant(JsonValue, Value);
 }
 
+#if RHAPI_FROM_ENGINE_VERSION(5,4)
+template<typename T, typename std::enable_if<!TIsVariant_V<std::remove_reference_t<T>>::Value && !std::is_base_of<{{unrealModelPrefix}}Model, T>::value, int>::type = 0>
+#else
 template<typename T, typename std::enable_if<!TIsVariant<T>::Value && !std::is_base_of<{{unrealModelPrefix}}Model, T>::value, int>::type = 0>
+#endif
 inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, T& Value)
 {
 	T TmpValue;
