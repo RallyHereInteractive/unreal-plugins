@@ -57,9 +57,6 @@ FRH_GameHostProviderGHA::FRH_GameHostProviderGHA(const FString& Commandline)
 		stats.visibility = 0;
 		provided.set_visibility = true;
 
-		stats.version = (ANSICHAR*)BuildVersion.Get();
-		provided.set_version = true;
-
 		stats.server_type = IsRunningDedicatedServer() ? 'd' : 'l';
 		provided.set_server_type = true;
 
@@ -159,13 +156,21 @@ void FRH_GameHostProviderGHA::Tick(float DeltaTime)
 			memset(&provided, 0x00, sizeof(provided));
 
 			// make sure the string storage persists properly until the call
-			FString MapName;
+			FString MapName = GameStats.Map.Get(TEXT(""));
 			FTCHARToUTF8 MapNameUTF8(*MapName);
 			if (GameStats.Map.IsSet())
 			{
-				MapName = GameStats.Map.GetValue();
 				stats.map = (ANSICHAR*)MapNameUTF8.Get();
 				provided.set_map = true;
+			}
+
+			const auto& VersionSpecifier = GameStats.SessionCompatibilityVersion;
+			FString Version = VersionSpecifier.Get(TEXT(""));
+			FTCHARToUTF8 VersionUTF8(*Version);
+			if (VersionSpecifier.IsSet())
+			{
+				stats.version = (ANSICHAR*)VersionUTF8.Get();
+				provided.set_version = true;
 			}
 
 			if (GameStats.PlayerCount.IsSet())

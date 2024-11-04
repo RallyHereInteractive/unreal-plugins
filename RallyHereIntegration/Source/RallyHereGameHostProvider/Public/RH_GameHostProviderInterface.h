@@ -70,6 +70,10 @@ struct FRH_GameHostProviderStats
 	TOptional<bool> AntiCheatEnabled;
 	/** Whether the server is healthy, if known */
 	TOptional<bool> Healthy;
+	/** What build version to report the server is using, if known */
+	TOptional<FString> BuildVersion;
+	/** What session compatibility version to report the server is using, if known */
+	TOptional<FString> SessionCompatibilityVersion;
 
 	FRH_GameHostProviderStats()
 	{
