@@ -273,15 +273,14 @@ void URH_CatalogSubsystem::OnGetCatalogItemResponse(const TGetCatalogItem::Respo
 		ParseCatalogItem(*Content, ItemId);
 	}
 
-	if (const auto& findItem = SubmittedGetCatalogItemCalls.Find(ItemId))
+	TArray<FRH_CatalogCallBlock> CallbackList;
+	if (SubmittedGetCatalogItemCalls.RemoveAndCopyValue(ItemId, CallbackList))
 	{
-		for (const auto& Delegate : *findItem)
+		for (const auto& Delegate : CallbackList)
 		{
 			Delegate.ExecuteIfBound(Resp.IsSuccessful());
 		}
-	}
-
-	SubmittedGetCatalogItemCalls.Remove(ItemId);
+	}	
 }
 
 void URH_CatalogSubsystem::ParseAllXpTables(const FRHAPI_XpTables& Content)
