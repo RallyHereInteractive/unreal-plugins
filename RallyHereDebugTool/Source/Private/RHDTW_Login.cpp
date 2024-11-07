@@ -158,6 +158,12 @@ void FRHDTW_Login::Do()
 				DoServerLoginTab();
 				ImGui::EndTabItem();
 			}
+			
+			if (ImGui::BeginTabItem("Environment", nullptr, ImGuiTabItemFlags_None))
+			{
+				DoEnvironmentTab();
+				ImGui::EndTabItem();
+			}
 		}
 		else
 		{
@@ -175,6 +181,12 @@ void FRHDTW_Login::Do()
 			else
 			{
 				ML_Result = FString();
+			}
+
+			if (ImGui::BeginTabItem("Environment", nullptr, ImGuiTabItemFlags_None))
+			{
+				DoEnvironmentTab();
+				ImGui::EndTabItem();
 			}
 		}
 
@@ -430,5 +442,121 @@ void FRHDTW_Login::DoServerLoginTab()
 	if (ImGui::Button("Refresh Login"))
 	{
 		pRH_GameInstanceBootstrapper->GetAuthContext()->Refresh();
+	}
+}
+
+void FRHDTW_Login::DoEnvironmentTab()
+{
+	auto RHIntegration = FRallyHereIntegrationModule::Get();
+
+	// need a player controller to run the set console commands.  Note that console commands are defined in RH_Integration.cpp
+	auto LP = GetFirstSelectedLocalPlayer();
+	auto PC = LP ? LP->GetPlayerController(nullptr) : nullptr;
+
+	if (PC == nullptr)
+	{
+		ImGui::Text("Please select a local player with a player controller.");
+		return;
+	}
+
+	auto RHSettings = GetDefault<URH_IntegrationSettings>();
+
+	// get and display current state at top
+	FRH_EnvironmentConfiguration CurrentConfiguration;
+	
+	CurrentConfiguration.EnvironmentId = RHIntegration.GetEnvironmentId();
+	CurrentConfiguration.BaseUrl = RHIntegration.GetBaseURL();
+	CurrentConfiguration.ClientId = RHIntegration.GetClientId();
+	CurrentConfiguration.ClientSecret = RHIntegration.GetClientSecret();
+
+	// display current values
+	ImGui::Text("Current Environment Configuration:");
+	ImGuiDisplayCopyableValue(TEXT("Preset"), CurrentConfiguration.EnvironmentId);
+	ImGuiDisplayCopyableValue(TEXT("Base URL"), CurrentConfiguration.BaseUrl);
+	ImGuiDisplayCopyableValue(TEXT("Client ID"), CurrentConfiguration.ClientId);
+	ImGuiDisplayCopyableValue(TEXT("Client Secret"), CurrentConfiguration.ClientSecret, ECopyMode::Key);
+
+	ImGui::Separator();
+
+	ImGui::Text("Modify Environment Configuration:");
+	
+	// preset handling
+	{
+		const FString DefaultEnvironmentId = TEXT("<Default>");
+		// Build a list of environment presets to use
+		TArray<FString> PresetOptions;
+		{
+			PresetOptions.Add(DefaultEnvironmentId);	// special value for base configuration
+			for (const auto& Preset : RHSettings->EnvironmentConfigurations)
+			{
+				PresetOptions.Add(Preset.EnvironmentId);
+			}
+		}
+	
+		ImGuiDisplayCombo(TEXT("Preset"), TempEnvironmentConfiguration.EnvironmentId, PresetOptions, nullptr);
+		ImGui::SameLine();
+		if (ImGui::Button("Set"))
+		{
+			if (TempEnvironmentConfiguration.EnvironmentId == DefaultEnvironmentId)
+			{
+				TempEnvironmentConfiguration.EnvironmentId.Empty();				
+			}
+			
+			// use the console command, as it contains the "user desired change" logic
+			PC->ConsoleCommand(TEXT("rh.setenvid \"") + TempEnvironmentConfiguration.EnvironmentId + TEXT("\""), true);
+		}
+		ImGui::SameLine();
+		if (ImGui::Button("Force Resolve"))
+		{
+			PC->ConsoleCommand(TEXT("rh.resolveenvid"), true);
+		}
+	}
+
+	// url handling
+	{
+		ImGui::InputText("Base URL", &TempEnvironmentConfiguration.BaseUrl);;
+		ImGui::SameLine();
+		if (ImGui::Button("Set"))
+		{			
+			// use the console command, as it contains the "user desired change" logic
+			PC->ConsoleCommand(TEXT("rh.setbaseurl \"") + TempEnvironmentConfiguration.BaseUrl + TEXT("\""), true);
+		}
+		ImGui::SameLine();
+		if (ImGui::Button("Force Resolve"))
+		{
+			PC->ConsoleCommand(TEXT("rh.resolvebaseurl"), true);
+		}
+	}
+
+	// client id handling
+	{
+		ImGui::InputText("Client ID", &TempEnvironmentConfiguration.ClientId);
+		ImGui::SameLine();
+		if (ImGui::Button("Set"))
+		{
+			// use the console command, as it contains the "user desired change" logic
+			PC->ConsoleCommand(TEXT("rh.setclientid \"") + TempEnvironmentConfiguration.ClientId + TEXT("\""), true);
+		}
+		ImGui::SameLine();
+		if (ImGui::Button("Force Resolve"))
+		{
+			PC->ConsoleCommand(TEXT("rh.resolveclientid"), true);
+		}
+	}
+
+	// client secret handling
+	{
+		ImGui::InputText("Client Secret", &TempEnvironmentConfiguration.ClientSecret);
+		ImGui::SameLine();
+		if (ImGui::Button("Set"))
+		{
+			// use the console command, as it contains the "user desired change" logic
+			PC->ConsoleCommand(TEXT("rh.setclientsecret \"") + TempEnvironmentConfiguration.ClientSecret + TEXT("\""), false);	 // note - do not emit to log!
+		}
+		ImGui::SameLine();
+		if (ImGui::Button("Force Resolve"))
+		{
+			PC->ConsoleCommand(TEXT("rh.resolveclientsecret"), true);
+		}
 	}
 }
