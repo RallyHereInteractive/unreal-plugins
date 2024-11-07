@@ -69,7 +69,7 @@ struct RALLYHEREAPI_API FRHAPI_ClientSettings : public FRHAPI_Model
 	/** @brief Checks whether PlatformId_Optional has been set */
 	bool IsPlatformIdSet() const { return PlatformId_IsSet; }
 
-	/** @brief Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. At least one of the two is required */
+	/** @brief Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. Platform is now read from client's authorization claims if available */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_Platform Platform_Optional{  };
 	/** @brief true if Platform_Optional has been set to a value */

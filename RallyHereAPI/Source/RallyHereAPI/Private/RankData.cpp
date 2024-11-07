@@ -22,14 +22,12 @@ using RallyHereAPI::TryGetJsonValue;
 void FRHAPI_RankData::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
 	Writer->WriteObjectStart();
-	Writer->WriteIdentifierPrefix(TEXT("mu"));
-	RallyHereAPI::WriteJsonValue(Writer, Mu);
-	Writer->WriteIdentifierPrefix(TEXT("sigma"));
-	RallyHereAPI::WriteJsonValue(Writer, Sigma);
-	if (CustomData_IsSet)
+	Writer->WriteIdentifierPrefix(TEXT("rank_uuid"));
+	RallyHereAPI::WriteJsonValue(Writer, RankUuid);
+	if (Mu_IsSet)
 	{
-		Writer->WriteIdentifierPrefix(TEXT("custom_data"));
-		RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
+		Writer->WriteIdentifierPrefix(TEXT("mu"));
+		RallyHereAPI::WriteJsonValue(Writer, Mu_Optional);
 	}
 	Writer->WriteObjectEnd();
 }
@@ -42,15 +40,13 @@ bool FRHAPI_RankData::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
 	bool ParseSuccess = true;
 
+	const TSharedPtr<FJsonValue> JsonRankUuidField = (*Object)->TryGetField(TEXT("rank_uuid"));
+	ParseSuccess &= JsonRankUuidField.IsValid() && (!JsonRankUuidField->IsNull() &&  TryGetJsonValue(JsonRankUuidField, RankUuid));
 	const TSharedPtr<FJsonValue> JsonMuField = (*Object)->TryGetField(TEXT("mu"));
-	ParseSuccess &= JsonMuField.IsValid() && (!JsonMuField->IsNull() &&  TryGetJsonValue(JsonMuField, Mu));
-	const TSharedPtr<FJsonValue> JsonSigmaField = (*Object)->TryGetField(TEXT("sigma"));
-	ParseSuccess &= JsonSigmaField.IsValid() && (!JsonSigmaField->IsNull() &&  TryGetJsonValue(JsonSigmaField, Sigma));
-	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid())
+	if (JsonMuField.IsValid())
 	{
-		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
-		ParseSuccess &= CustomData_IsSet;
+		Mu_IsSet = TryGetJsonValue(JsonMuField, Mu_Optional);
+		ParseSuccess &= Mu_IsSet;
 	}
 
 	return ParseSuccess;

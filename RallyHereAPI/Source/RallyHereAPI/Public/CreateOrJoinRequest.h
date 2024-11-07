@@ -54,7 +54,7 @@ struct RALLYHEREAPI_API FRHAPI_CreateOrJoinRequest : public FRHAPI_Model
 	/** @brief Sets the value of ClientVersion using move semantics */
 	void SetClientVersion(FString&& NewValue) { ClientVersion = NewValue;   }
 
-	/** @brief Which input type and platform the client is using */
+	/** @brief Which input type the client is using. Platform is now gotten from authorization claims, and will overwrite the platform passed here */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_ClientSettings ClientSettings{  };
 	/** @brief Gets the value of ClientSettings */

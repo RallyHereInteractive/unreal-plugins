@@ -11,6 +11,7 @@
 #include "RallyHereAPIHelpers.h"
 #include "InstanceStartupParams.h"
 #include "PlatformSessionTemplate.h"
+#include "PlayerVisibility.h"
 #include "SessionTemplate.generated.h"
 
 /** @defgroup RHAPI_SessionTemplate RallyHere API Model SessionTemplate
@@ -621,6 +622,114 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
 	bool IsNotifyOnReservationDefaultValue() const { return NotifyOnReservation_IsSet && NotifyOnReservation_Optional == true; }
 	/** @brief Sets the value of NotifyOnReservation_Optional to its default and also sets NotifyOnReservation_IsSet to true */
 	void SetNotifyOnReservationToDefault() { SetNotifyOnReservation(true); }
+
+	/** @brief What subset of players a regular client will receive info about. With sufficiently large sessions, visibility will automatically be lowered */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	ERHAPI_PlayerVisibility PlayerVisibility_Optional{  };
+	/** @brief true if PlayerVisibility_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool PlayerVisibility_IsSet{ false };
+	/** @brief Gets the value of PlayerVisibility_Optional, regardless of it having been set */
+	ERHAPI_PlayerVisibility& GetPlayerVisibility() { return PlayerVisibility_Optional; }
+	/** @brief Gets the value of PlayerVisibility_Optional, regardless of it having been set */
+	const ERHAPI_PlayerVisibility& GetPlayerVisibility() const { return PlayerVisibility_Optional; }
+	/** @brief Gets the value of PlayerVisibility_Optional, if it has been set, otherwise it returns DefaultValue */
+	const ERHAPI_PlayerVisibility& GetPlayerVisibility(const ERHAPI_PlayerVisibility& DefaultValue) const { if (PlayerVisibility_IsSet) return PlayerVisibility_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of PlayerVisibility_Optional and returns true if it has been set, otherwise returns false */
+	bool GetPlayerVisibility(ERHAPI_PlayerVisibility& OutValue) const { if (PlayerVisibility_IsSet) OutValue = PlayerVisibility_Optional; return PlayerVisibility_IsSet; }
+	/** @brief Returns a pointer to PlayerVisibility_Optional, if it has been set, otherwise returns nullptr */
+	ERHAPI_PlayerVisibility* GetPlayerVisibilityOrNull() { if (PlayerVisibility_IsSet) return (&PlayerVisibility_Optional); return nullptr; }
+	/** @brief Returns a pointer to PlayerVisibility_Optional, if it has been set, otherwise returns nullptr */
+	const ERHAPI_PlayerVisibility* GetPlayerVisibilityOrNull() const { if (PlayerVisibility_IsSet) return (&PlayerVisibility_Optional); return nullptr; }
+	/** @brief Sets the value of PlayerVisibility_Optional and also sets PlayerVisibility_IsSet to true */
+	void SetPlayerVisibility(const ERHAPI_PlayerVisibility& NewValue) { PlayerVisibility_Optional = NewValue; PlayerVisibility_IsSet = true;  }
+	/** @brief Sets the value of PlayerVisibility_Optional and also sets PlayerVisibility_IsSet to true using move semantics */
+	void SetPlayerVisibility(ERHAPI_PlayerVisibility&& NewValue) { PlayerVisibility_Optional = NewValue; PlayerVisibility_IsSet = true;  }
+	/** @brief Clears the value of PlayerVisibility_Optional and sets PlayerVisibility_IsSet to false */
+	void ClearPlayerVisibility() { PlayerVisibility_IsSet = false;  }
+	/** @brief Checks whether PlayerVisibility_Optional has been set */
+	bool IsPlayerVisibilitySet() const { return PlayerVisibility_IsSet; }
+
+	/** @brief What subset of players an admin client with elevated privileges will receive info about */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	ERHAPI_PlayerVisibility AdminPlayerVisibility_Optional{  };
+	/** @brief true if AdminPlayerVisibility_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool AdminPlayerVisibility_IsSet{ false };
+	/** @brief Gets the value of AdminPlayerVisibility_Optional, regardless of it having been set */
+	ERHAPI_PlayerVisibility& GetAdminPlayerVisibility() { return AdminPlayerVisibility_Optional; }
+	/** @brief Gets the value of AdminPlayerVisibility_Optional, regardless of it having been set */
+	const ERHAPI_PlayerVisibility& GetAdminPlayerVisibility() const { return AdminPlayerVisibility_Optional; }
+	/** @brief Gets the value of AdminPlayerVisibility_Optional, if it has been set, otherwise it returns DefaultValue */
+	const ERHAPI_PlayerVisibility& GetAdminPlayerVisibility(const ERHAPI_PlayerVisibility& DefaultValue) const { if (AdminPlayerVisibility_IsSet) return AdminPlayerVisibility_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of AdminPlayerVisibility_Optional and returns true if it has been set, otherwise returns false */
+	bool GetAdminPlayerVisibility(ERHAPI_PlayerVisibility& OutValue) const { if (AdminPlayerVisibility_IsSet) OutValue = AdminPlayerVisibility_Optional; return AdminPlayerVisibility_IsSet; }
+	/** @brief Returns a pointer to AdminPlayerVisibility_Optional, if it has been set, otherwise returns nullptr */
+	ERHAPI_PlayerVisibility* GetAdminPlayerVisibilityOrNull() { if (AdminPlayerVisibility_IsSet) return (&AdminPlayerVisibility_Optional); return nullptr; }
+	/** @brief Returns a pointer to AdminPlayerVisibility_Optional, if it has been set, otherwise returns nullptr */
+	const ERHAPI_PlayerVisibility* GetAdminPlayerVisibilityOrNull() const { if (AdminPlayerVisibility_IsSet) return (&AdminPlayerVisibility_Optional); return nullptr; }
+	/** @brief Sets the value of AdminPlayerVisibility_Optional and also sets AdminPlayerVisibility_IsSet to true */
+	void SetAdminPlayerVisibility(const ERHAPI_PlayerVisibility& NewValue) { AdminPlayerVisibility_Optional = NewValue; AdminPlayerVisibility_IsSet = true;  }
+	/** @brief Sets the value of AdminPlayerVisibility_Optional and also sets AdminPlayerVisibility_IsSet to true using move semantics */
+	void SetAdminPlayerVisibility(ERHAPI_PlayerVisibility&& NewValue) { AdminPlayerVisibility_Optional = NewValue; AdminPlayerVisibility_IsSet = true;  }
+	/** @brief Clears the value of AdminPlayerVisibility_Optional and sets AdminPlayerVisibility_IsSet to false */
+	void ClearAdminPlayerVisibility() { AdminPlayerVisibility_IsSet = false;  }
+	/** @brief Checks whether AdminPlayerVisibility_Optional has been set */
+	bool IsAdminPlayerVisibilitySet() const { return AdminPlayerVisibility_IsSet; }
+
+	/** @brief What subset of notifications a client should receive about players in a session. With sufficiently large sessions, frequency will be automatically lowered */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	ERHAPI_PlayerVisibility PlayerNotificationFrequency_Optional{  };
+	/** @brief true if PlayerNotificationFrequency_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool PlayerNotificationFrequency_IsSet{ false };
+	/** @brief Gets the value of PlayerNotificationFrequency_Optional, regardless of it having been set */
+	ERHAPI_PlayerVisibility& GetPlayerNotificationFrequency() { return PlayerNotificationFrequency_Optional; }
+	/** @brief Gets the value of PlayerNotificationFrequency_Optional, regardless of it having been set */
+	const ERHAPI_PlayerVisibility& GetPlayerNotificationFrequency() const { return PlayerNotificationFrequency_Optional; }
+	/** @brief Gets the value of PlayerNotificationFrequency_Optional, if it has been set, otherwise it returns DefaultValue */
+	const ERHAPI_PlayerVisibility& GetPlayerNotificationFrequency(const ERHAPI_PlayerVisibility& DefaultValue) const { if (PlayerNotificationFrequency_IsSet) return PlayerNotificationFrequency_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of PlayerNotificationFrequency_Optional and returns true if it has been set, otherwise returns false */
+	bool GetPlayerNotificationFrequency(ERHAPI_PlayerVisibility& OutValue) const { if (PlayerNotificationFrequency_IsSet) OutValue = PlayerNotificationFrequency_Optional; return PlayerNotificationFrequency_IsSet; }
+	/** @brief Returns a pointer to PlayerNotificationFrequency_Optional, if it has been set, otherwise returns nullptr */
+	ERHAPI_PlayerVisibility* GetPlayerNotificationFrequencyOrNull() { if (PlayerNotificationFrequency_IsSet) return (&PlayerNotificationFrequency_Optional); return nullptr; }
+	/** @brief Returns a pointer to PlayerNotificationFrequency_Optional, if it has been set, otherwise returns nullptr */
+	const ERHAPI_PlayerVisibility* GetPlayerNotificationFrequencyOrNull() const { if (PlayerNotificationFrequency_IsSet) return (&PlayerNotificationFrequency_Optional); return nullptr; }
+	/** @brief Sets the value of PlayerNotificationFrequency_Optional and also sets PlayerNotificationFrequency_IsSet to true */
+	void SetPlayerNotificationFrequency(const ERHAPI_PlayerVisibility& NewValue) { PlayerNotificationFrequency_Optional = NewValue; PlayerNotificationFrequency_IsSet = true;  }
+	/** @brief Sets the value of PlayerNotificationFrequency_Optional and also sets PlayerNotificationFrequency_IsSet to true using move semantics */
+	void SetPlayerNotificationFrequency(ERHAPI_PlayerVisibility&& NewValue) { PlayerNotificationFrequency_Optional = NewValue; PlayerNotificationFrequency_IsSet = true;  }
+	/** @brief Clears the value of PlayerNotificationFrequency_Optional and sets PlayerNotificationFrequency_IsSet to false */
+	void ClearPlayerNotificationFrequency() { PlayerNotificationFrequency_IsSet = false;  }
+	/** @brief Checks whether PlayerNotificationFrequency_Optional has been set */
+	bool IsPlayerNotificationFrequencySet() const { return PlayerNotificationFrequency_IsSet; }
+
+	/** @brief What subset of notifications an admin client with elevated privileges will receive about players in a session */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	ERHAPI_PlayerVisibility AdminPlayerNotificationFrequency_Optional{  };
+	/** @brief true if AdminPlayerNotificationFrequency_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool AdminPlayerNotificationFrequency_IsSet{ false };
+	/** @brief Gets the value of AdminPlayerNotificationFrequency_Optional, regardless of it having been set */
+	ERHAPI_PlayerVisibility& GetAdminPlayerNotificationFrequency() { return AdminPlayerNotificationFrequency_Optional; }
+	/** @brief Gets the value of AdminPlayerNotificationFrequency_Optional, regardless of it having been set */
+	const ERHAPI_PlayerVisibility& GetAdminPlayerNotificationFrequency() const { return AdminPlayerNotificationFrequency_Optional; }
+	/** @brief Gets the value of AdminPlayerNotificationFrequency_Optional, if it has been set, otherwise it returns DefaultValue */
+	const ERHAPI_PlayerVisibility& GetAdminPlayerNotificationFrequency(const ERHAPI_PlayerVisibility& DefaultValue) const { if (AdminPlayerNotificationFrequency_IsSet) return AdminPlayerNotificationFrequency_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of AdminPlayerNotificationFrequency_Optional and returns true if it has been set, otherwise returns false */
+	bool GetAdminPlayerNotificationFrequency(ERHAPI_PlayerVisibility& OutValue) const { if (AdminPlayerNotificationFrequency_IsSet) OutValue = AdminPlayerNotificationFrequency_Optional; return AdminPlayerNotificationFrequency_IsSet; }
+	/** @brief Returns a pointer to AdminPlayerNotificationFrequency_Optional, if it has been set, otherwise returns nullptr */
+	ERHAPI_PlayerVisibility* GetAdminPlayerNotificationFrequencyOrNull() { if (AdminPlayerNotificationFrequency_IsSet) return (&AdminPlayerNotificationFrequency_Optional); return nullptr; }
+	/** @brief Returns a pointer to AdminPlayerNotificationFrequency_Optional, if it has been set, otherwise returns nullptr */
+	const ERHAPI_PlayerVisibility* GetAdminPlayerNotificationFrequencyOrNull() const { if (AdminPlayerNotificationFrequency_IsSet) return (&AdminPlayerNotificationFrequency_Optional); return nullptr; }
+	/** @brief Sets the value of AdminPlayerNotificationFrequency_Optional and also sets AdminPlayerNotificationFrequency_IsSet to true */
+	void SetAdminPlayerNotificationFrequency(const ERHAPI_PlayerVisibility& NewValue) { AdminPlayerNotificationFrequency_Optional = NewValue; AdminPlayerNotificationFrequency_IsSet = true;  }
+	/** @brief Sets the value of AdminPlayerNotificationFrequency_Optional and also sets AdminPlayerNotificationFrequency_IsSet to true using move semantics */
+	void SetAdminPlayerNotificationFrequency(ERHAPI_PlayerVisibility&& NewValue) { AdminPlayerNotificationFrequency_Optional = NewValue; AdminPlayerNotificationFrequency_IsSet = true;  }
+	/** @brief Clears the value of AdminPlayerNotificationFrequency_Optional and sets AdminPlayerNotificationFrequency_IsSet to false */
+	void ClearAdminPlayerNotificationFrequency() { AdminPlayerNotificationFrequency_IsSet = false;  }
+	/** @brief Checks whether AdminPlayerNotificationFrequency_Optional has been set */
+	bool IsAdminPlayerNotificationFrequencySet() const { return AdminPlayerNotificationFrequency_IsSet; }
 };
 
 /** @} */

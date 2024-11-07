@@ -261,6 +261,37 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
 	/** @brief Sets the value of Teams using move semantics */
 	void SetTeams(TArray<FRHAPI_SessionTeam>&& NewValue) { Teams = NewValue;   }
 
+	/** @brief Flag showing if the list of players has been automatically suppressed due to its size. */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool TeamsSuppressed_Optional{ false };
+	/** @brief true if TeamsSuppressed_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool TeamsSuppressed_IsSet{ false };
+	/** @brief Gets the value of TeamsSuppressed_Optional, regardless of it having been set */
+	bool& GetTeamsSuppressed() { return TeamsSuppressed_Optional; }
+	/** @brief Gets the value of TeamsSuppressed_Optional, regardless of it having been set */
+	const bool& GetTeamsSuppressed() const { return TeamsSuppressed_Optional; }
+	/** @brief Gets the value of TeamsSuppressed_Optional, if it has been set, otherwise it returns DefaultValue */
+	const bool& GetTeamsSuppressed(const bool& DefaultValue) const { if (TeamsSuppressed_IsSet) return TeamsSuppressed_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of TeamsSuppressed_Optional and returns true if it has been set, otherwise returns false */
+	bool GetTeamsSuppressed(bool& OutValue) const { if (TeamsSuppressed_IsSet) OutValue = TeamsSuppressed_Optional; return TeamsSuppressed_IsSet; }
+	/** @brief Returns a pointer to TeamsSuppressed_Optional, if it has been set, otherwise returns nullptr */
+	bool* GetTeamsSuppressedOrNull() { if (TeamsSuppressed_IsSet) return (&TeamsSuppressed_Optional); return nullptr; }
+	/** @brief Returns a pointer to TeamsSuppressed_Optional, if it has been set, otherwise returns nullptr */
+	const bool* GetTeamsSuppressedOrNull() const { if (TeamsSuppressed_IsSet) return (&TeamsSuppressed_Optional); return nullptr; }
+	/** @brief Sets the value of TeamsSuppressed_Optional and also sets TeamsSuppressed_IsSet to true */
+	void SetTeamsSuppressed(const bool& NewValue) { TeamsSuppressed_Optional = NewValue; TeamsSuppressed_IsSet = true;  }
+	/** @brief Sets the value of TeamsSuppressed_Optional and also sets TeamsSuppressed_IsSet to true using move semantics */
+	void SetTeamsSuppressed(bool&& NewValue) { TeamsSuppressed_Optional = NewValue; TeamsSuppressed_IsSet = true;  }
+	/** @brief Clears the value of TeamsSuppressed_Optional and sets TeamsSuppressed_IsSet to false */
+	void ClearTeamsSuppressed() { TeamsSuppressed_Optional = false; TeamsSuppressed_IsSet = false;  }
+	/** @brief Checks whether TeamsSuppressed_Optional has been set */
+	bool IsTeamsSuppressedSet() const { return TeamsSuppressed_IsSet; }
+	/** @brief Returns true if TeamsSuppressed_Optional is set and matches the default value */
+	bool IsTeamsSuppressedDefaultValue() const { return TeamsSuppressed_IsSet && TeamsSuppressed_Optional == false; }
+	/** @brief Sets the value of TeamsSuppressed_Optional to its default and also sets TeamsSuppressed_IsSet to true */
+	void SetTeamsSuppressedToDefault() { SetTeamsSuppressed(false); }
+
 	/** @brief Child Platform Sessions for this session.  A player joining one of the child platform sessions implicitly joins the parent session */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_PlatformSession> PlatformSession_Optional{  };

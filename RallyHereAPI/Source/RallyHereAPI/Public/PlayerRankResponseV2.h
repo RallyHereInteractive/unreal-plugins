@@ -9,7 +9,7 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "RankData.h"
+#include "RankRankData.h"
 #include "PlayerRankResponseV2.generated.h"
 
 /** @defgroup RHAPI_PlayerRankResponseV2 RallyHere API Model PlayerRankResponseV2
@@ -54,15 +54,15 @@ struct RALLYHEREAPI_API FRHAPI_PlayerRankResponseV2 : public FRHAPI_Model
 
 	/** @brief Current rank info about player */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FRHAPI_RankData Rank{  };
+	FRHAPI_RankRankData Rank{  };
 	/** @brief Gets the value of Rank */
-	FRHAPI_RankData& GetRank() { return Rank; }
+	FRHAPI_RankRankData& GetRank() { return Rank; }
 	/** @brief Gets the value of Rank */
-	const FRHAPI_RankData& GetRank() const { return Rank; }
+	const FRHAPI_RankRankData& GetRank() const { return Rank; }
 	/** @brief Sets the value of Rank */
-	void SetRank(const FRHAPI_RankData& NewValue) { Rank = NewValue;   }
+	void SetRank(const FRHAPI_RankRankData& NewValue) { Rank = NewValue;   }
 	/** @brief Sets the value of Rank using move semantics */
-	void SetRank(FRHAPI_RankData&& NewValue) { Rank = NewValue;   }
+	void SetRank(FRHAPI_RankRankData&& NewValue) { Rank = NewValue;   }
 
 	/** @brief ID for this rank */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

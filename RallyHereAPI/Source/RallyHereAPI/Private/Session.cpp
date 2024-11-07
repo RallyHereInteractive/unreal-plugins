@@ -60,6 +60,11 @@ void FRHAPI_Session::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	RallyHereAPI::WriteJsonValue(Writer, Joinable);
 	Writer->WriteIdentifierPrefix(TEXT("teams"));
 	RallyHereAPI::WriteJsonValue(Writer, Teams);
+	if (TeamsSuppressed_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("teams_suppressed"));
+		RallyHereAPI::WriteJsonValue(Writer, TeamsSuppressed_Optional);
+	}
 	if (PlatformSession_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("platform_session"));
@@ -137,6 +142,12 @@ bool FRHAPI_Session::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	ParseSuccess &= JsonJoinableField.IsValid() && (!JsonJoinableField->IsNull() &&  TryGetJsonValue(JsonJoinableField, Joinable));
 	const TSharedPtr<FJsonValue> JsonTeamsField = (*Object)->TryGetField(TEXT("teams"));
 	ParseSuccess &= JsonTeamsField.IsValid() && (!JsonTeamsField->IsNull() &&  TryGetJsonValue(JsonTeamsField, Teams));
+	const TSharedPtr<FJsonValue> JsonTeamsSuppressedField = (*Object)->TryGetField(TEXT("teams_suppressed"));
+	if (JsonTeamsSuppressedField.IsValid())
+	{
+		TeamsSuppressed_IsSet = TryGetJsonValue(JsonTeamsSuppressedField, TeamsSuppressed_Optional);
+		ParseSuccess &= TeamsSuppressed_IsSet;
+	}
 	const TSharedPtr<FJsonValue> JsonPlatformSessionField = (*Object)->TryGetField(TEXT("platform_session"));
 	if (JsonPlatformSessionField.IsValid())
 	{
