@@ -37,6 +37,8 @@ A session resource.
 `public bool `[`Browser_IsSet`](#structFRHAPI__Session_1aa1ace01879821c9c9b2b978cf2d3bcb4) | true if Browser_Optional has been set to a value
 `public bool `[`Joinable`](#structFRHAPI__Session_1a9a4a29da2db810fc7b40b6e955839907) | Is this session freely joinable by players without an invite?
 `public TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > `[`Teams`](#structFRHAPI__Session_1a3489eec79e810de928f11a6d36b6d16e) | List of teams of players currently in the session.
+`public bool `[`TeamsSuppressed_Optional`](#structFRHAPI__Session_1a1004833c638e8fa8792fd43d346080f1) | Flag showing if the list of players has been automatically suppressed due to its size.
+`public bool `[`TeamsSuppressed_IsSet`](#structFRHAPI__Session_1a10f57fbd85b3cab5ad92ea7534e44432) | true if TeamsSuppressed_Optional has been set to a value
 `public TArray< `[`FRHAPI_PlatformSession`](RHAPI_PlatformSession.md#structFRHAPI__PlatformSession)` > `[`PlatformSession_Optional`](#structFRHAPI__Session_1aef33c93a7e5567b34d41af76b8441fe3) | Child Platform Sessions for this session. A player joining one of the child platform sessions implicitly joins the parent session.
 `public bool `[`PlatformSession_IsSet`](#structFRHAPI__Session_1a6f2c00e800ad78c74ead76a70720d494) | true if PlatformSession_Optional has been set to a value
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__Session_1a0d426749efebca34803c875e390e1c4b) | Leader Player or instance defined custom data about this session.
@@ -126,6 +128,18 @@ A session resource.
 `public inline const TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & `[`GetTeams`](#structFRHAPI__Session_1ad7cdb19d35e96ccfdf95561febc18a60)`() const` | Gets the value of Teams.
 `public inline void `[`SetTeams`](#structFRHAPI__Session_1a8cd13fe6b5b0a94a42b93d5183adc3c2)`(const TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & NewValue)` | Sets the value of Teams.
 `public inline void `[`SetTeams`](#structFRHAPI__Session_1a303098da74e4dc89754560502417f1be)`(TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > && NewValue)` | Sets the value of Teams using move semantics.
+`public inline bool & `[`GetTeamsSuppressed`](#structFRHAPI__Session_1a3d3f546a5a39322ead6a764523aa400e)`()` | Gets the value of TeamsSuppressed_Optional, regardless of it having been set.
+`public inline const bool & `[`GetTeamsSuppressed`](#structFRHAPI__Session_1a473663cec8537da43e5fb0ed6ba6a5a3)`() const` | Gets the value of TeamsSuppressed_Optional, regardless of it having been set.
+`public inline const bool & `[`GetTeamsSuppressed`](#structFRHAPI__Session_1a92d82c802b13bb85ba2c1180e119e7b1)`(const bool & DefaultValue) const` | Gets the value of TeamsSuppressed_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetTeamsSuppressed`](#structFRHAPI__Session_1afb1de161ba0e8bc15cffe20220a668be)`(bool & OutValue) const` | Fills OutValue with the value of TeamsSuppressed_Optional and returns true if it has been set, otherwise returns false.
+`public inline bool * `[`GetTeamsSuppressedOrNull`](#structFRHAPI__Session_1ae1298dbdb47133b484b31777ab76778c)`()` | Returns a pointer to TeamsSuppressed_Optional, if it has been set, otherwise returns nullptr.
+`public inline const bool * `[`GetTeamsSuppressedOrNull`](#structFRHAPI__Session_1aa3ef37f523495816ef9df0530960591a)`() const` | Returns a pointer to TeamsSuppressed_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetTeamsSuppressed`](#structFRHAPI__Session_1adfaa9a4f13cdc9a113707062d1b135b8)`(const bool & NewValue)` | Sets the value of TeamsSuppressed_Optional and also sets TeamsSuppressed_IsSet to true.
+`public inline void `[`SetTeamsSuppressed`](#structFRHAPI__Session_1a53a532f62dfc1dbe5c20391e204ecd3b)`(bool && NewValue)` | Sets the value of TeamsSuppressed_Optional and also sets TeamsSuppressed_IsSet to true using move semantics.
+`public inline void `[`ClearTeamsSuppressed`](#structFRHAPI__Session_1a827c5cd69a508fee8febcfeafbebd9ca)`()` | Clears the value of TeamsSuppressed_Optional and sets TeamsSuppressed_IsSet to false.
+`public inline bool `[`IsTeamsSuppressedSet`](#structFRHAPI__Session_1a2ce548e3e240d475194657d98fdf084b)`() const` | Checks whether TeamsSuppressed_Optional has been set.
+`public inline bool `[`IsTeamsSuppressedDefaultValue`](#structFRHAPI__Session_1a7fb0b3372c077fcdc2cf6537ecc1a659)`() const` | Returns true if TeamsSuppressed_Optional is set and matches the default value.
+`public inline void `[`SetTeamsSuppressedToDefault`](#structFRHAPI__Session_1a3783f7b246cf92d7718fe9d9c36d078d)`()` | Sets the value of TeamsSuppressed_Optional to its default and also sets TeamsSuppressed_IsSet to true.
 `public inline TArray< `[`FRHAPI_PlatformSession`](RHAPI_PlatformSession.md#structFRHAPI__PlatformSession)` > & `[`GetPlatformSession`](#structFRHAPI__Session_1a8c178d130dfbf6984477186bba10bdb6)`()` | Gets the value of PlatformSession_Optional, regardless of it having been set.
 `public inline const TArray< `[`FRHAPI_PlatformSession`](RHAPI_PlatformSession.md#structFRHAPI__PlatformSession)` > & `[`GetPlatformSession`](#structFRHAPI__Session_1a50bf670c4cad94a91c9dcef23a7826a2)`() const` | Gets the value of PlatformSession_Optional, regardless of it having been set.
 `public inline const TArray< `[`FRHAPI_PlatformSession`](RHAPI_PlatformSession.md#structFRHAPI__PlatformSession)` > & `[`GetPlatformSession`](#structFRHAPI__Session_1a4d80598db285868a62904cc7a4087fd0)`(const TArray< `[`FRHAPI_PlatformSession`](RHAPI_PlatformSession.md#structFRHAPI__PlatformSession)` > & DefaultValue) const` | Gets the value of PlatformSession_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -238,6 +252,14 @@ Is this session freely joinable by players without an invite?
 #### `public TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > `[`Teams`](#structFRHAPI__Session_1a3489eec79e810de928f11a6d36b6d16e) <a id="structFRHAPI__Session_1a3489eec79e810de928f11a6d36b6d16e"></a>
 
 List of teams of players currently in the session.
+
+#### `public bool `[`TeamsSuppressed_Optional`](#structFRHAPI__Session_1a1004833c638e8fa8792fd43d346080f1) <a id="structFRHAPI__Session_1a1004833c638e8fa8792fd43d346080f1"></a>
+
+Flag showing if the list of players has been automatically suppressed due to its size.
+
+#### `public bool `[`TeamsSuppressed_IsSet`](#structFRHAPI__Session_1a10f57fbd85b3cab5ad92ea7534e44432) <a id="structFRHAPI__Session_1a10f57fbd85b3cab5ad92ea7534e44432"></a>
+
+true if TeamsSuppressed_Optional has been set to a value
 
 #### `public TArray< `[`FRHAPI_PlatformSession`](RHAPI_PlatformSession.md#structFRHAPI__PlatformSession)` > `[`PlatformSession_Optional`](#structFRHAPI__Session_1aef33c93a7e5567b34d41af76b8441fe3) <a id="structFRHAPI__Session_1aef33c93a7e5567b34d41af76b8441fe3"></a>
 
@@ -603,6 +625,54 @@ Sets the value of Teams.
 #### `public inline void `[`SetTeams`](#structFRHAPI__Session_1a303098da74e4dc89754560502417f1be)`(TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > && NewValue)` <a id="structFRHAPI__Session_1a303098da74e4dc89754560502417f1be"></a>
 
 Sets the value of Teams using move semantics.
+
+#### `public inline bool & `[`GetTeamsSuppressed`](#structFRHAPI__Session_1a3d3f546a5a39322ead6a764523aa400e)`()` <a id="structFRHAPI__Session_1a3d3f546a5a39322ead6a764523aa400e"></a>
+
+Gets the value of TeamsSuppressed_Optional, regardless of it having been set.
+
+#### `public inline const bool & `[`GetTeamsSuppressed`](#structFRHAPI__Session_1a473663cec8537da43e5fb0ed6ba6a5a3)`() const` <a id="structFRHAPI__Session_1a473663cec8537da43e5fb0ed6ba6a5a3"></a>
+
+Gets the value of TeamsSuppressed_Optional, regardless of it having been set.
+
+#### `public inline const bool & `[`GetTeamsSuppressed`](#structFRHAPI__Session_1a92d82c802b13bb85ba2c1180e119e7b1)`(const bool & DefaultValue) const` <a id="structFRHAPI__Session_1a92d82c802b13bb85ba2c1180e119e7b1"></a>
+
+Gets the value of TeamsSuppressed_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetTeamsSuppressed`](#structFRHAPI__Session_1afb1de161ba0e8bc15cffe20220a668be)`(bool & OutValue) const` <a id="structFRHAPI__Session_1afb1de161ba0e8bc15cffe20220a668be"></a>
+
+Fills OutValue with the value of TeamsSuppressed_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline bool * `[`GetTeamsSuppressedOrNull`](#structFRHAPI__Session_1ae1298dbdb47133b484b31777ab76778c)`()` <a id="structFRHAPI__Session_1ae1298dbdb47133b484b31777ab76778c"></a>
+
+Returns a pointer to TeamsSuppressed_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const bool * `[`GetTeamsSuppressedOrNull`](#structFRHAPI__Session_1aa3ef37f523495816ef9df0530960591a)`() const` <a id="structFRHAPI__Session_1aa3ef37f523495816ef9df0530960591a"></a>
+
+Returns a pointer to TeamsSuppressed_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetTeamsSuppressed`](#structFRHAPI__Session_1adfaa9a4f13cdc9a113707062d1b135b8)`(const bool & NewValue)` <a id="structFRHAPI__Session_1adfaa9a4f13cdc9a113707062d1b135b8"></a>
+
+Sets the value of TeamsSuppressed_Optional and also sets TeamsSuppressed_IsSet to true.
+
+#### `public inline void `[`SetTeamsSuppressed`](#structFRHAPI__Session_1a53a532f62dfc1dbe5c20391e204ecd3b)`(bool && NewValue)` <a id="structFRHAPI__Session_1a53a532f62dfc1dbe5c20391e204ecd3b"></a>
+
+Sets the value of TeamsSuppressed_Optional and also sets TeamsSuppressed_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearTeamsSuppressed`](#structFRHAPI__Session_1a827c5cd69a508fee8febcfeafbebd9ca)`()` <a id="structFRHAPI__Session_1a827c5cd69a508fee8febcfeafbebd9ca"></a>
+
+Clears the value of TeamsSuppressed_Optional and sets TeamsSuppressed_IsSet to false.
+
+#### `public inline bool `[`IsTeamsSuppressedSet`](#structFRHAPI__Session_1a2ce548e3e240d475194657d98fdf084b)`() const` <a id="structFRHAPI__Session_1a2ce548e3e240d475194657d98fdf084b"></a>
+
+Checks whether TeamsSuppressed_Optional has been set.
+
+#### `public inline bool `[`IsTeamsSuppressedDefaultValue`](#structFRHAPI__Session_1a7fb0b3372c077fcdc2cf6537ecc1a659)`() const` <a id="structFRHAPI__Session_1a7fb0b3372c077fcdc2cf6537ecc1a659"></a>
+
+Returns true if TeamsSuppressed_Optional is set and matches the default value.
+
+#### `public inline void `[`SetTeamsSuppressedToDefault`](#structFRHAPI__Session_1a3783f7b246cf92d7718fe9d9c36d078d)`()` <a id="structFRHAPI__Session_1a3783f7b246cf92d7718fe9d9c36d078d"></a>
+
+Sets the value of TeamsSuppressed_Optional to its default and also sets TeamsSuppressed_IsSet to true.
 
 #### `public inline TArray< `[`FRHAPI_PlatformSession`](RHAPI_PlatformSession.md#structFRHAPI__PlatformSession)` > & `[`GetPlatformSession`](#structFRHAPI__Session_1a8c178d130dfbf6984477186bba10bdb6)`()` <a id="structFRHAPI__Session_1a8c178d130dfbf6984477186bba10bdb6"></a>
 

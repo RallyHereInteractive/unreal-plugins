@@ -25,6 +25,8 @@ struct FRHAPI_MatchmakingResults
 `public bool `[`CustomData_IsSet`](#structFRHAPI__MatchmakingResults_1a457e1e4690a6a4b34e1b12ac76312733) | true if CustomData_Optional has been set to a value
 `public TArray< FString > `[`TicketIds_Optional`](#structFRHAPI__MatchmakingResults_1aaf32e071732f9c81ada7c0ed265993e7) | List of tickets that were assigned to this match if created by matchmaking.
 `public bool `[`TicketIds_IsSet`](#structFRHAPI__MatchmakingResults_1aa41fe3fd301f36e2524791a3fc68edec) | true if TicketIds_Optional has been set to a value
+`public TArray< `[`FRHAPI_TicketData`](RHAPI_TicketData.md#structFRHAPI__TicketData)` > `[`TicketData_Optional`](#structFRHAPI__MatchmakingResults_1aadc585110557b26000d9ddcc7f85c212) | List of all the ticket data that was used when generating this match.
+`public bool `[`TicketData_IsSet`](#structFRHAPI__MatchmakingResults_1a2f5b68051fa49767ed93375f2142cc08) | true if TicketData_Optional has been set to a value
 `public bool `[`TicketsAssigned_Optional`](#structFRHAPI__MatchmakingResults_1a5d7305f61c2b585c05d45f82217a4205) | Whether or not the tickets from these results have been assigned.
 `public bool `[`TicketsAssigned_IsSet`](#structFRHAPI__MatchmakingResults_1ab4f3027f46dce15e66c0768271866b4d) | true if TicketsAssigned_Optional has been set to a value
 `public `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` `[`Profile_Optional`](#structFRHAPI__MatchmakingResults_1adbc0997e7831f29ac0822a7b23236308) | The profile used to create this match.
@@ -59,6 +61,16 @@ struct FRHAPI_MatchmakingResults
 `public inline void `[`SetTicketIds`](#structFRHAPI__MatchmakingResults_1ab7ad53a7ec1fef36cc365228adda0707)`(TArray< FString > && NewValue)` | Sets the value of TicketIds_Optional and also sets TicketIds_IsSet to true using move semantics.
 `public inline void `[`ClearTicketIds`](#structFRHAPI__MatchmakingResults_1a65ed513e849ce02fa71a83adc2b5e626)`()` | Clears the value of TicketIds_Optional and sets TicketIds_IsSet to false.
 `public inline bool `[`IsTicketIdsSet`](#structFRHAPI__MatchmakingResults_1a11314c160409a2dfdc87705e6d4a06f6)`() const` | Checks whether TicketIds_Optional has been set.
+`public inline TArray< `[`FRHAPI_TicketData`](RHAPI_TicketData.md#structFRHAPI__TicketData)` > & `[`GetTicketData`](#structFRHAPI__MatchmakingResults_1a05161d33c04da8e71fdc9b28532540d9)`()` | Gets the value of TicketData_Optional, regardless of it having been set.
+`public inline const TArray< `[`FRHAPI_TicketData`](RHAPI_TicketData.md#structFRHAPI__TicketData)` > & `[`GetTicketData`](#structFRHAPI__MatchmakingResults_1ae4cb58c0e490e61f447823eb188d4dec)`() const` | Gets the value of TicketData_Optional, regardless of it having been set.
+`public inline const TArray< `[`FRHAPI_TicketData`](RHAPI_TicketData.md#structFRHAPI__TicketData)` > & `[`GetTicketData`](#structFRHAPI__MatchmakingResults_1af561a5dcdb4c0a92f4a7f1f41a1af79e)`(const TArray< `[`FRHAPI_TicketData`](RHAPI_TicketData.md#structFRHAPI__TicketData)` > & DefaultValue) const` | Gets the value of TicketData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetTicketData`](#structFRHAPI__MatchmakingResults_1a09022d2b5d30440d76f85fecb2f20202)`(TArray< `[`FRHAPI_TicketData`](RHAPI_TicketData.md#structFRHAPI__TicketData)` > & OutValue) const` | Fills OutValue with the value of TicketData_Optional and returns true if it has been set, otherwise returns false.
+`public inline TArray< `[`FRHAPI_TicketData`](RHAPI_TicketData.md#structFRHAPI__TicketData)` > * `[`GetTicketDataOrNull`](#structFRHAPI__MatchmakingResults_1a55d24d148b35a810615ef85c365d8f1a)`()` | Returns a pointer to TicketData_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TArray< `[`FRHAPI_TicketData`](RHAPI_TicketData.md#structFRHAPI__TicketData)` > * `[`GetTicketDataOrNull`](#structFRHAPI__MatchmakingResults_1a78582eef985d741537d37cb4e82a6bea)`() const` | Returns a pointer to TicketData_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetTicketData`](#structFRHAPI__MatchmakingResults_1a533782c9d6b56d32ae4c2f3727a50390)`(const TArray< `[`FRHAPI_TicketData`](RHAPI_TicketData.md#structFRHAPI__TicketData)` > & NewValue)` | Sets the value of TicketData_Optional and also sets TicketData_IsSet to true.
+`public inline void `[`SetTicketData`](#structFRHAPI__MatchmakingResults_1a4420c67cfc8256e9d4fe0d9266e7d6e9)`(TArray< `[`FRHAPI_TicketData`](RHAPI_TicketData.md#structFRHAPI__TicketData)` > && NewValue)` | Sets the value of TicketData_Optional and also sets TicketData_IsSet to true using move semantics.
+`public inline void `[`ClearTicketData`](#structFRHAPI__MatchmakingResults_1a0cea2c223c4bfb668d7392bc0612b480)`()` | Clears the value of TicketData_Optional and sets TicketData_IsSet to false.
+`public inline bool `[`IsTicketDataSet`](#structFRHAPI__MatchmakingResults_1a2529dddb9c835ae1e0b675f334697e1d)`() const` | Checks whether TicketData_Optional has been set.
 `public inline bool & `[`GetTicketsAssigned`](#structFRHAPI__MatchmakingResults_1a1e366bfdac0e3504b24c541a69eb9001)`()` | Gets the value of TicketsAssigned_Optional, regardless of it having been set.
 `public inline const bool & `[`GetTicketsAssigned`](#structFRHAPI__MatchmakingResults_1a3c6c69815d2813502e1b2277e086d2ad)`() const` | Gets the value of TicketsAssigned_Optional, regardless of it having been set.
 `public inline const bool & `[`GetTicketsAssigned`](#structFRHAPI__MatchmakingResults_1a3185667bb7a5f19b5f565b98f0e29c9c)`(const bool & DefaultValue) const` | Gets the value of TicketsAssigned_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -107,6 +119,14 @@ List of tickets that were assigned to this match if created by matchmaking.
 #### `public bool `[`TicketIds_IsSet`](#structFRHAPI__MatchmakingResults_1aa41fe3fd301f36e2524791a3fc68edec) <a id="structFRHAPI__MatchmakingResults_1aa41fe3fd301f36e2524791a3fc68edec"></a>
 
 true if TicketIds_Optional has been set to a value
+
+#### `public TArray< `[`FRHAPI_TicketData`](RHAPI_TicketData.md#structFRHAPI__TicketData)` > `[`TicketData_Optional`](#structFRHAPI__MatchmakingResults_1aadc585110557b26000d9ddcc7f85c212) <a id="structFRHAPI__MatchmakingResults_1aadc585110557b26000d9ddcc7f85c212"></a>
+
+List of all the ticket data that was used when generating this match.
+
+#### `public bool `[`TicketData_IsSet`](#structFRHAPI__MatchmakingResults_1a2f5b68051fa49767ed93375f2142cc08) <a id="structFRHAPI__MatchmakingResults_1a2f5b68051fa49767ed93375f2142cc08"></a>
+
+true if TicketData_Optional has been set to a value
 
 #### `public bool `[`TicketsAssigned_Optional`](#structFRHAPI__MatchmakingResults_1a5d7305f61c2b585c05d45f82217a4205) <a id="structFRHAPI__MatchmakingResults_1a5d7305f61c2b585c05d45f82217a4205"></a>
 
@@ -252,6 +272,46 @@ Clears the value of TicketIds_Optional and sets TicketIds_IsSet to false.
 #### `public inline bool `[`IsTicketIdsSet`](#structFRHAPI__MatchmakingResults_1a11314c160409a2dfdc87705e6d4a06f6)`() const` <a id="structFRHAPI__MatchmakingResults_1a11314c160409a2dfdc87705e6d4a06f6"></a>
 
 Checks whether TicketIds_Optional has been set.
+
+#### `public inline TArray< `[`FRHAPI_TicketData`](RHAPI_TicketData.md#structFRHAPI__TicketData)` > & `[`GetTicketData`](#structFRHAPI__MatchmakingResults_1a05161d33c04da8e71fdc9b28532540d9)`()` <a id="structFRHAPI__MatchmakingResults_1a05161d33c04da8e71fdc9b28532540d9"></a>
+
+Gets the value of TicketData_Optional, regardless of it having been set.
+
+#### `public inline const TArray< `[`FRHAPI_TicketData`](RHAPI_TicketData.md#structFRHAPI__TicketData)` > & `[`GetTicketData`](#structFRHAPI__MatchmakingResults_1ae4cb58c0e490e61f447823eb188d4dec)`() const` <a id="structFRHAPI__MatchmakingResults_1ae4cb58c0e490e61f447823eb188d4dec"></a>
+
+Gets the value of TicketData_Optional, regardless of it having been set.
+
+#### `public inline const TArray< `[`FRHAPI_TicketData`](RHAPI_TicketData.md#structFRHAPI__TicketData)` > & `[`GetTicketData`](#structFRHAPI__MatchmakingResults_1af561a5dcdb4c0a92f4a7f1f41a1af79e)`(const TArray< `[`FRHAPI_TicketData`](RHAPI_TicketData.md#structFRHAPI__TicketData)` > & DefaultValue) const` <a id="structFRHAPI__MatchmakingResults_1af561a5dcdb4c0a92f4a7f1f41a1af79e"></a>
+
+Gets the value of TicketData_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetTicketData`](#structFRHAPI__MatchmakingResults_1a09022d2b5d30440d76f85fecb2f20202)`(TArray< `[`FRHAPI_TicketData`](RHAPI_TicketData.md#structFRHAPI__TicketData)` > & OutValue) const` <a id="structFRHAPI__MatchmakingResults_1a09022d2b5d30440d76f85fecb2f20202"></a>
+
+Fills OutValue with the value of TicketData_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline TArray< `[`FRHAPI_TicketData`](RHAPI_TicketData.md#structFRHAPI__TicketData)` > * `[`GetTicketDataOrNull`](#structFRHAPI__MatchmakingResults_1a55d24d148b35a810615ef85c365d8f1a)`()` <a id="structFRHAPI__MatchmakingResults_1a55d24d148b35a810615ef85c365d8f1a"></a>
+
+Returns a pointer to TicketData_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const TArray< `[`FRHAPI_TicketData`](RHAPI_TicketData.md#structFRHAPI__TicketData)` > * `[`GetTicketDataOrNull`](#structFRHAPI__MatchmakingResults_1a78582eef985d741537d37cb4e82a6bea)`() const` <a id="structFRHAPI__MatchmakingResults_1a78582eef985d741537d37cb4e82a6bea"></a>
+
+Returns a pointer to TicketData_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetTicketData`](#structFRHAPI__MatchmakingResults_1a533782c9d6b56d32ae4c2f3727a50390)`(const TArray< `[`FRHAPI_TicketData`](RHAPI_TicketData.md#structFRHAPI__TicketData)` > & NewValue)` <a id="structFRHAPI__MatchmakingResults_1a533782c9d6b56d32ae4c2f3727a50390"></a>
+
+Sets the value of TicketData_Optional and also sets TicketData_IsSet to true.
+
+#### `public inline void `[`SetTicketData`](#structFRHAPI__MatchmakingResults_1a4420c67cfc8256e9d4fe0d9266e7d6e9)`(TArray< `[`FRHAPI_TicketData`](RHAPI_TicketData.md#structFRHAPI__TicketData)` > && NewValue)` <a id="structFRHAPI__MatchmakingResults_1a4420c67cfc8256e9d4fe0d9266e7d6e9"></a>
+
+Sets the value of TicketData_Optional and also sets TicketData_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearTicketData`](#structFRHAPI__MatchmakingResults_1a0cea2c223c4bfb668d7392bc0612b480)`()` <a id="structFRHAPI__MatchmakingResults_1a0cea2c223c4bfb668d7392bc0612b480"></a>
+
+Clears the value of TicketData_Optional and sets TicketData_IsSet to false.
+
+#### `public inline bool `[`IsTicketDataSet`](#structFRHAPI__MatchmakingResults_1a2529dddb9c835ae1e0b675f334697e1d)`() const` <a id="structFRHAPI__MatchmakingResults_1a2529dddb9c835ae1e0b675f334697e1d"></a>
+
+Checks whether TicketData_Optional has been set.
 
 #### `public inline bool & `[`GetTicketsAssigned`](#structFRHAPI__MatchmakingResults_1a1e366bfdac0e3504b24c541a69eb9001)`()` <a id="structFRHAPI__MatchmakingResults_1a1e366bfdac0e3504b24c541a69eb9001"></a>
 
