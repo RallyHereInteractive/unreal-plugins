@@ -801,7 +801,8 @@ void URH_OfflineSession::ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, c
 			const auto& TeamPlayer = PlayerList[j];
 			if (TeamPlayer.GetPlayerUuid() == PlayerUuid)
 			{
-				if (Team == SessionTeam.GetTeamId(i))
+				const int32 TeamIndex = i;
+				if (Team == SessionTeam.GetTeamId(TeamIndex))
 				{
 					// already on the correct team
 					Delegate.ExecuteIfBound(true, this, FRH_ErrorInfo());
@@ -827,7 +828,8 @@ void URH_OfflineSession::ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, c
 		FRHAPI_SessionTeam* ExistingTeam = nullptr;
 		for (int i = 0; i < Update.Teams.Num(); ++i)
 		{
-			if (Update.Teams[i].GetTeamId(i) == Team)
+			const int32 TeamIndex = i;
+			if (Update.Teams[i].GetTeamId(TeamIndex) == Team)
 			{
 				ExistingTeam = &Update.Teams[i];
 				break;
