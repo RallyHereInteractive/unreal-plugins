@@ -60,6 +60,14 @@ Template used to create new RallyHere sessions of a specific type. Configurable 
 `public bool `[`CanChangeOwnTeam_IsSet`](#structFRHAPI__SessionTemplate_1ad6b80d668b66266c71f70affb0cae587) | true if CanChangeOwnTeam_Optional has been set to a value
 `public bool `[`NotifyOnReservation_Optional`](#structFRHAPI__SessionTemplate_1a5c0c06cf8165a39442dfc4ab5e830343) | If players should be notified when they are reserved in this type of session instead of waiting until they're invited.
 `public bool `[`NotifyOnReservation_IsSet`](#structFRHAPI__SessionTemplate_1a9fc86e1548fa8e1e0ea7c861f984f15b) | true if NotifyOnReservation_Optional has been set to a value
+`public ERHAPI_PlayerVisibility `[`PlayerVisibility_Optional`](#structFRHAPI__SessionTemplate_1ad27b6802b679b1951be33d4b964b0e09) | What subset of players a regular client will receive info about. With sufficiently large sessions, visibility will automatically be lowered.
+`public bool `[`PlayerVisibility_IsSet`](#structFRHAPI__SessionTemplate_1a2cc0869cd26d1e484f93e728c82e418c) | true if PlayerVisibility_Optional has been set to a value
+`public ERHAPI_PlayerVisibility `[`AdminPlayerVisibility_Optional`](#structFRHAPI__SessionTemplate_1a87ba76ecf706ab2cf9aee0641727cfcb) | What subset of players an admin client with elevated privileges will receive info about.
+`public bool `[`AdminPlayerVisibility_IsSet`](#structFRHAPI__SessionTemplate_1a0ad8bb0bbc6bd66b70a9633fb59f2595) | true if AdminPlayerVisibility_Optional has been set to a value
+`public ERHAPI_PlayerVisibility `[`PlayerNotificationFrequency_Optional`](#structFRHAPI__SessionTemplate_1ab50695184449cba320e0d576ccfd4716) | What subset of notifications a client should receive about players in a session. With sufficiently large sessions, frequency will be automatically lowered.
+`public bool `[`PlayerNotificationFrequency_IsSet`](#structFRHAPI__SessionTemplate_1a88ac6bd193615842594f8235d662f628) | true if PlayerNotificationFrequency_Optional has been set to a value
+`public ERHAPI_PlayerVisibility `[`AdminPlayerNotificationFrequency_Optional`](#structFRHAPI__SessionTemplate_1a4c378f3051e15932451e385b55467bf6) | What subset of notifications an admin client with elevated privileges will receive about players in a session.
+`public bool `[`AdminPlayerNotificationFrequency_IsSet`](#structFRHAPI__SessionTemplate_1a0800679283a7d5d1ea6ee7fa9dba82a6) | true if AdminPlayerNotificationFrequency_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__SessionTemplate_1a584ea37b08d01584233924dd39557b4a)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__SessionTemplate_1ac225d3f4b6be381a7c3674126b0284d3)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetSessionType`](#structFRHAPI__SessionTemplate_1a7772fb5d40d6b5c69dc188065146a39c)`()` | Gets the value of SessionType.
@@ -284,6 +292,46 @@ Template used to create new RallyHere sessions of a specific type. Configurable 
 `public inline bool `[`IsNotifyOnReservationSet`](#structFRHAPI__SessionTemplate_1a6d7f33d80f239b54dc51a098fdb773d3)`() const` | Checks whether NotifyOnReservation_Optional has been set.
 `public inline bool `[`IsNotifyOnReservationDefaultValue`](#structFRHAPI__SessionTemplate_1a5178c473b0e58f10f8cecfa32f155623)`() const` | Returns true if NotifyOnReservation_Optional is set and matches the default value.
 `public inline void `[`SetNotifyOnReservationToDefault`](#structFRHAPI__SessionTemplate_1afbd6260244e4d1471d0049560f3c4ba8)`()` | Sets the value of NotifyOnReservation_Optional to its default and also sets NotifyOnReservation_IsSet to true.
+`public inline ERHAPI_PlayerVisibility & `[`GetPlayerVisibility`](#structFRHAPI__SessionTemplate_1a93b92fbecd3ac06470bcc9a8353d817c)`()` | Gets the value of PlayerVisibility_Optional, regardless of it having been set.
+`public inline const ERHAPI_PlayerVisibility & `[`GetPlayerVisibility`](#structFRHAPI__SessionTemplate_1ad2e7fbca7cad14acaf8335c488075d6c)`() const` | Gets the value of PlayerVisibility_Optional, regardless of it having been set.
+`public inline const ERHAPI_PlayerVisibility & `[`GetPlayerVisibility`](#structFRHAPI__SessionTemplate_1a575435f66b77cf0be4a59765ef53ee87)`(const ERHAPI_PlayerVisibility & DefaultValue) const` | Gets the value of PlayerVisibility_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetPlayerVisibility`](#structFRHAPI__SessionTemplate_1afa179f8285b8b49821c72cdc00e6f9ed)`(ERHAPI_PlayerVisibility & OutValue) const` | Fills OutValue with the value of PlayerVisibility_Optional and returns true if it has been set, otherwise returns false.
+`public inline ERHAPI_PlayerVisibility * `[`GetPlayerVisibilityOrNull`](#structFRHAPI__SessionTemplate_1a2d41c1b42045e1909c36235d29ed4e97)`()` | Returns a pointer to PlayerVisibility_Optional, if it has been set, otherwise returns nullptr.
+`public inline const ERHAPI_PlayerVisibility * `[`GetPlayerVisibilityOrNull`](#structFRHAPI__SessionTemplate_1a01ae4765ed8baf6df342d5aac9f38fa8)`() const` | Returns a pointer to PlayerVisibility_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetPlayerVisibility`](#structFRHAPI__SessionTemplate_1a563117c22429879bdd06e558384fda42)`(const ERHAPI_PlayerVisibility & NewValue)` | Sets the value of PlayerVisibility_Optional and also sets PlayerVisibility_IsSet to true.
+`public inline void `[`SetPlayerVisibility`](#structFRHAPI__SessionTemplate_1aaa040bd05b9f42ef694a2f1cbb63f3a1)`(ERHAPI_PlayerVisibility && NewValue)` | Sets the value of PlayerVisibility_Optional and also sets PlayerVisibility_IsSet to true using move semantics.
+`public inline void `[`ClearPlayerVisibility`](#structFRHAPI__SessionTemplate_1ad9160f33307545c48ba632f454c4332c)`()` | Clears the value of PlayerVisibility_Optional and sets PlayerVisibility_IsSet to false.
+`public inline bool `[`IsPlayerVisibilitySet`](#structFRHAPI__SessionTemplate_1a4cbb01fef0441ce8940ab60a3a79839e)`() const` | Checks whether PlayerVisibility_Optional has been set.
+`public inline ERHAPI_PlayerVisibility & `[`GetAdminPlayerVisibility`](#structFRHAPI__SessionTemplate_1a78d37bf89ba3dbb2add736460f6151e5)`()` | Gets the value of AdminPlayerVisibility_Optional, regardless of it having been set.
+`public inline const ERHAPI_PlayerVisibility & `[`GetAdminPlayerVisibility`](#structFRHAPI__SessionTemplate_1a2030a67a66f1c73863c7933802d8d54e)`() const` | Gets the value of AdminPlayerVisibility_Optional, regardless of it having been set.
+`public inline const ERHAPI_PlayerVisibility & `[`GetAdminPlayerVisibility`](#structFRHAPI__SessionTemplate_1a0086957aca2efb8e000093c4911e26ef)`(const ERHAPI_PlayerVisibility & DefaultValue) const` | Gets the value of AdminPlayerVisibility_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetAdminPlayerVisibility`](#structFRHAPI__SessionTemplate_1a4a67111b81d583d142fb63337cae859e)`(ERHAPI_PlayerVisibility & OutValue) const` | Fills OutValue with the value of AdminPlayerVisibility_Optional and returns true if it has been set, otherwise returns false.
+`public inline ERHAPI_PlayerVisibility * `[`GetAdminPlayerVisibilityOrNull`](#structFRHAPI__SessionTemplate_1a9d02f9ec846833435fa7b39044328765)`()` | Returns a pointer to AdminPlayerVisibility_Optional, if it has been set, otherwise returns nullptr.
+`public inline const ERHAPI_PlayerVisibility * `[`GetAdminPlayerVisibilityOrNull`](#structFRHAPI__SessionTemplate_1a225be78addd1631152237529f52140e8)`() const` | Returns a pointer to AdminPlayerVisibility_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetAdminPlayerVisibility`](#structFRHAPI__SessionTemplate_1aa215431f4505e3baa98295f2771848ff)`(const ERHAPI_PlayerVisibility & NewValue)` | Sets the value of AdminPlayerVisibility_Optional and also sets AdminPlayerVisibility_IsSet to true.
+`public inline void `[`SetAdminPlayerVisibility`](#structFRHAPI__SessionTemplate_1ad1830c5d970292a0c98d54f0f593982a)`(ERHAPI_PlayerVisibility && NewValue)` | Sets the value of AdminPlayerVisibility_Optional and also sets AdminPlayerVisibility_IsSet to true using move semantics.
+`public inline void `[`ClearAdminPlayerVisibility`](#structFRHAPI__SessionTemplate_1a1ed525f8085823e6ac6ae445ba9932e5)`()` | Clears the value of AdminPlayerVisibility_Optional and sets AdminPlayerVisibility_IsSet to false.
+`public inline bool `[`IsAdminPlayerVisibilitySet`](#structFRHAPI__SessionTemplate_1a97b99dd83913269e57edce56edbce9ef)`() const` | Checks whether AdminPlayerVisibility_Optional has been set.
+`public inline ERHAPI_PlayerVisibility & `[`GetPlayerNotificationFrequency`](#structFRHAPI__SessionTemplate_1aa82a1633eabb22499e4296ef1a8e15d8)`()` | Gets the value of PlayerNotificationFrequency_Optional, regardless of it having been set.
+`public inline const ERHAPI_PlayerVisibility & `[`GetPlayerNotificationFrequency`](#structFRHAPI__SessionTemplate_1a6869ecfe4c4ccf4d7ff625b677b58aa3)`() const` | Gets the value of PlayerNotificationFrequency_Optional, regardless of it having been set.
+`public inline const ERHAPI_PlayerVisibility & `[`GetPlayerNotificationFrequency`](#structFRHAPI__SessionTemplate_1a6abfdd082c7e370b8d5dca82323ab88e)`(const ERHAPI_PlayerVisibility & DefaultValue) const` | Gets the value of PlayerNotificationFrequency_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetPlayerNotificationFrequency`](#structFRHAPI__SessionTemplate_1a8d84aa3c71a766eb85bd4af6277dea75)`(ERHAPI_PlayerVisibility & OutValue) const` | Fills OutValue with the value of PlayerNotificationFrequency_Optional and returns true if it has been set, otherwise returns false.
+`public inline ERHAPI_PlayerVisibility * `[`GetPlayerNotificationFrequencyOrNull`](#structFRHAPI__SessionTemplate_1a960e15b12a80a71ec23fa5a9e650dcf7)`()` | Returns a pointer to PlayerNotificationFrequency_Optional, if it has been set, otherwise returns nullptr.
+`public inline const ERHAPI_PlayerVisibility * `[`GetPlayerNotificationFrequencyOrNull`](#structFRHAPI__SessionTemplate_1a848f5bbad3cf87ec1123af70dfa46483)`() const` | Returns a pointer to PlayerNotificationFrequency_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetPlayerNotificationFrequency`](#structFRHAPI__SessionTemplate_1a40087fdd5097362e6d7018eab132bfdc)`(const ERHAPI_PlayerVisibility & NewValue)` | Sets the value of PlayerNotificationFrequency_Optional and also sets PlayerNotificationFrequency_IsSet to true.
+`public inline void `[`SetPlayerNotificationFrequency`](#structFRHAPI__SessionTemplate_1adb3494fb955e2e5f9c8db96c385e3aae)`(ERHAPI_PlayerVisibility && NewValue)` | Sets the value of PlayerNotificationFrequency_Optional and also sets PlayerNotificationFrequency_IsSet to true using move semantics.
+`public inline void `[`ClearPlayerNotificationFrequency`](#structFRHAPI__SessionTemplate_1a9e283ac577d19794a939f946ac98642d)`()` | Clears the value of PlayerNotificationFrequency_Optional and sets PlayerNotificationFrequency_IsSet to false.
+`public inline bool `[`IsPlayerNotificationFrequencySet`](#structFRHAPI__SessionTemplate_1af5b0c780644985e4123a7197abb762b9)`() const` | Checks whether PlayerNotificationFrequency_Optional has been set.
+`public inline ERHAPI_PlayerVisibility & `[`GetAdminPlayerNotificationFrequency`](#structFRHAPI__SessionTemplate_1a50e06c68cc267282a50de555903d0115)`()` | Gets the value of AdminPlayerNotificationFrequency_Optional, regardless of it having been set.
+`public inline const ERHAPI_PlayerVisibility & `[`GetAdminPlayerNotificationFrequency`](#structFRHAPI__SessionTemplate_1a12cd0960ffb0fe734db0508ae85793bf)`() const` | Gets the value of AdminPlayerNotificationFrequency_Optional, regardless of it having been set.
+`public inline const ERHAPI_PlayerVisibility & `[`GetAdminPlayerNotificationFrequency`](#structFRHAPI__SessionTemplate_1a9c8d81d3cfffed01a78c5f5412b6c1d4)`(const ERHAPI_PlayerVisibility & DefaultValue) const` | Gets the value of AdminPlayerNotificationFrequency_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetAdminPlayerNotificationFrequency`](#structFRHAPI__SessionTemplate_1aea213cbf702ce04f03062f5966af1a2f)`(ERHAPI_PlayerVisibility & OutValue) const` | Fills OutValue with the value of AdminPlayerNotificationFrequency_Optional and returns true if it has been set, otherwise returns false.
+`public inline ERHAPI_PlayerVisibility * `[`GetAdminPlayerNotificationFrequencyOrNull`](#structFRHAPI__SessionTemplate_1af168ec59a8f1cd1f218d34224bdd54eb)`()` | Returns a pointer to AdminPlayerNotificationFrequency_Optional, if it has been set, otherwise returns nullptr.
+`public inline const ERHAPI_PlayerVisibility * `[`GetAdminPlayerNotificationFrequencyOrNull`](#structFRHAPI__SessionTemplate_1a77cd44c9d6befd86d3f7ac31f999eadb)`() const` | Returns a pointer to AdminPlayerNotificationFrequency_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetAdminPlayerNotificationFrequency`](#structFRHAPI__SessionTemplate_1a6af1921f4955c3aa170e15866a52888d)`(const ERHAPI_PlayerVisibility & NewValue)` | Sets the value of AdminPlayerNotificationFrequency_Optional and also sets AdminPlayerNotificationFrequency_IsSet to true.
+`public inline void `[`SetAdminPlayerNotificationFrequency`](#structFRHAPI__SessionTemplate_1a1a460126fd5ae175913eb4667965d36e)`(ERHAPI_PlayerVisibility && NewValue)` | Sets the value of AdminPlayerNotificationFrequency_Optional and also sets AdminPlayerNotificationFrequency_IsSet to true using move semantics.
+`public inline void `[`ClearAdminPlayerNotificationFrequency`](#structFRHAPI__SessionTemplate_1aed149547b3e1c182e446b8fce5b7d5f6)`()` | Clears the value of AdminPlayerNotificationFrequency_Optional and sets AdminPlayerNotificationFrequency_IsSet to false.
+`public inline bool `[`IsAdminPlayerNotificationFrequencySet`](#structFRHAPI__SessionTemplate_1a5ea7daf024acb3141141f83420f61665)`() const` | Checks whether AdminPlayerNotificationFrequency_Optional has been set.
 
 ### Members
 
@@ -442,6 +490,38 @@ If players should be notified when they are reserved in this type of session ins
 #### `public bool `[`NotifyOnReservation_IsSet`](#structFRHAPI__SessionTemplate_1a9fc86e1548fa8e1e0ea7c861f984f15b) <a id="structFRHAPI__SessionTemplate_1a9fc86e1548fa8e1e0ea7c861f984f15b"></a>
 
 true if NotifyOnReservation_Optional has been set to a value
+
+#### `public ERHAPI_PlayerVisibility `[`PlayerVisibility_Optional`](#structFRHAPI__SessionTemplate_1ad27b6802b679b1951be33d4b964b0e09) <a id="structFRHAPI__SessionTemplate_1ad27b6802b679b1951be33d4b964b0e09"></a>
+
+What subset of players a regular client will receive info about. With sufficiently large sessions, visibility will automatically be lowered.
+
+#### `public bool `[`PlayerVisibility_IsSet`](#structFRHAPI__SessionTemplate_1a2cc0869cd26d1e484f93e728c82e418c) <a id="structFRHAPI__SessionTemplate_1a2cc0869cd26d1e484f93e728c82e418c"></a>
+
+true if PlayerVisibility_Optional has been set to a value
+
+#### `public ERHAPI_PlayerVisibility `[`AdminPlayerVisibility_Optional`](#structFRHAPI__SessionTemplate_1a87ba76ecf706ab2cf9aee0641727cfcb) <a id="structFRHAPI__SessionTemplate_1a87ba76ecf706ab2cf9aee0641727cfcb"></a>
+
+What subset of players an admin client with elevated privileges will receive info about.
+
+#### `public bool `[`AdminPlayerVisibility_IsSet`](#structFRHAPI__SessionTemplate_1a0ad8bb0bbc6bd66b70a9633fb59f2595) <a id="structFRHAPI__SessionTemplate_1a0ad8bb0bbc6bd66b70a9633fb59f2595"></a>
+
+true if AdminPlayerVisibility_Optional has been set to a value
+
+#### `public ERHAPI_PlayerVisibility `[`PlayerNotificationFrequency_Optional`](#structFRHAPI__SessionTemplate_1ab50695184449cba320e0d576ccfd4716) <a id="structFRHAPI__SessionTemplate_1ab50695184449cba320e0d576ccfd4716"></a>
+
+What subset of notifications a client should receive about players in a session. With sufficiently large sessions, frequency will be automatically lowered.
+
+#### `public bool `[`PlayerNotificationFrequency_IsSet`](#structFRHAPI__SessionTemplate_1a88ac6bd193615842594f8235d662f628) <a id="structFRHAPI__SessionTemplate_1a88ac6bd193615842594f8235d662f628"></a>
+
+true if PlayerNotificationFrequency_Optional has been set to a value
+
+#### `public ERHAPI_PlayerVisibility `[`AdminPlayerNotificationFrequency_Optional`](#structFRHAPI__SessionTemplate_1a4c378f3051e15932451e385b55467bf6) <a id="structFRHAPI__SessionTemplate_1a4c378f3051e15932451e385b55467bf6"></a>
+
+What subset of notifications an admin client with elevated privileges will receive about players in a session.
+
+#### `public bool `[`AdminPlayerNotificationFrequency_IsSet`](#structFRHAPI__SessionTemplate_1a0800679283a7d5d1ea6ee7fa9dba82a6) <a id="structFRHAPI__SessionTemplate_1a0800679283a7d5d1ea6ee7fa9dba82a6"></a>
+
+true if AdminPlayerNotificationFrequency_Optional has been set to a value
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__SessionTemplate_1a584ea37b08d01584233924dd39557b4a)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__SessionTemplate_1a584ea37b08d01584233924dd39557b4a"></a>
 
@@ -1347,4 +1427,164 @@ Returns true if NotifyOnReservation_Optional is set and matches the default valu
 #### `public inline void `[`SetNotifyOnReservationToDefault`](#structFRHAPI__SessionTemplate_1afbd6260244e4d1471d0049560f3c4ba8)`()` <a id="structFRHAPI__SessionTemplate_1afbd6260244e4d1471d0049560f3c4ba8"></a>
 
 Sets the value of NotifyOnReservation_Optional to its default and also sets NotifyOnReservation_IsSet to true.
+
+#### `public inline ERHAPI_PlayerVisibility & `[`GetPlayerVisibility`](#structFRHAPI__SessionTemplate_1a93b92fbecd3ac06470bcc9a8353d817c)`()` <a id="structFRHAPI__SessionTemplate_1a93b92fbecd3ac06470bcc9a8353d817c"></a>
+
+Gets the value of PlayerVisibility_Optional, regardless of it having been set.
+
+#### `public inline const ERHAPI_PlayerVisibility & `[`GetPlayerVisibility`](#structFRHAPI__SessionTemplate_1ad2e7fbca7cad14acaf8335c488075d6c)`() const` <a id="structFRHAPI__SessionTemplate_1ad2e7fbca7cad14acaf8335c488075d6c"></a>
+
+Gets the value of PlayerVisibility_Optional, regardless of it having been set.
+
+#### `public inline const ERHAPI_PlayerVisibility & `[`GetPlayerVisibility`](#structFRHAPI__SessionTemplate_1a575435f66b77cf0be4a59765ef53ee87)`(const ERHAPI_PlayerVisibility & DefaultValue) const` <a id="structFRHAPI__SessionTemplate_1a575435f66b77cf0be4a59765ef53ee87"></a>
+
+Gets the value of PlayerVisibility_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetPlayerVisibility`](#structFRHAPI__SessionTemplate_1afa179f8285b8b49821c72cdc00e6f9ed)`(ERHAPI_PlayerVisibility & OutValue) const` <a id="structFRHAPI__SessionTemplate_1afa179f8285b8b49821c72cdc00e6f9ed"></a>
+
+Fills OutValue with the value of PlayerVisibility_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline ERHAPI_PlayerVisibility * `[`GetPlayerVisibilityOrNull`](#structFRHAPI__SessionTemplate_1a2d41c1b42045e1909c36235d29ed4e97)`()` <a id="structFRHAPI__SessionTemplate_1a2d41c1b42045e1909c36235d29ed4e97"></a>
+
+Returns a pointer to PlayerVisibility_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const ERHAPI_PlayerVisibility * `[`GetPlayerVisibilityOrNull`](#structFRHAPI__SessionTemplate_1a01ae4765ed8baf6df342d5aac9f38fa8)`() const` <a id="structFRHAPI__SessionTemplate_1a01ae4765ed8baf6df342d5aac9f38fa8"></a>
+
+Returns a pointer to PlayerVisibility_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetPlayerVisibility`](#structFRHAPI__SessionTemplate_1a563117c22429879bdd06e558384fda42)`(const ERHAPI_PlayerVisibility & NewValue)` <a id="structFRHAPI__SessionTemplate_1a563117c22429879bdd06e558384fda42"></a>
+
+Sets the value of PlayerVisibility_Optional and also sets PlayerVisibility_IsSet to true.
+
+#### `public inline void `[`SetPlayerVisibility`](#structFRHAPI__SessionTemplate_1aaa040bd05b9f42ef694a2f1cbb63f3a1)`(ERHAPI_PlayerVisibility && NewValue)` <a id="structFRHAPI__SessionTemplate_1aaa040bd05b9f42ef694a2f1cbb63f3a1"></a>
+
+Sets the value of PlayerVisibility_Optional and also sets PlayerVisibility_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearPlayerVisibility`](#structFRHAPI__SessionTemplate_1ad9160f33307545c48ba632f454c4332c)`()` <a id="structFRHAPI__SessionTemplate_1ad9160f33307545c48ba632f454c4332c"></a>
+
+Clears the value of PlayerVisibility_Optional and sets PlayerVisibility_IsSet to false.
+
+#### `public inline bool `[`IsPlayerVisibilitySet`](#structFRHAPI__SessionTemplate_1a4cbb01fef0441ce8940ab60a3a79839e)`() const` <a id="structFRHAPI__SessionTemplate_1a4cbb01fef0441ce8940ab60a3a79839e"></a>
+
+Checks whether PlayerVisibility_Optional has been set.
+
+#### `public inline ERHAPI_PlayerVisibility & `[`GetAdminPlayerVisibility`](#structFRHAPI__SessionTemplate_1a78d37bf89ba3dbb2add736460f6151e5)`()` <a id="structFRHAPI__SessionTemplate_1a78d37bf89ba3dbb2add736460f6151e5"></a>
+
+Gets the value of AdminPlayerVisibility_Optional, regardless of it having been set.
+
+#### `public inline const ERHAPI_PlayerVisibility & `[`GetAdminPlayerVisibility`](#structFRHAPI__SessionTemplate_1a2030a67a66f1c73863c7933802d8d54e)`() const` <a id="structFRHAPI__SessionTemplate_1a2030a67a66f1c73863c7933802d8d54e"></a>
+
+Gets the value of AdminPlayerVisibility_Optional, regardless of it having been set.
+
+#### `public inline const ERHAPI_PlayerVisibility & `[`GetAdminPlayerVisibility`](#structFRHAPI__SessionTemplate_1a0086957aca2efb8e000093c4911e26ef)`(const ERHAPI_PlayerVisibility & DefaultValue) const` <a id="structFRHAPI__SessionTemplate_1a0086957aca2efb8e000093c4911e26ef"></a>
+
+Gets the value of AdminPlayerVisibility_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetAdminPlayerVisibility`](#structFRHAPI__SessionTemplate_1a4a67111b81d583d142fb63337cae859e)`(ERHAPI_PlayerVisibility & OutValue) const` <a id="structFRHAPI__SessionTemplate_1a4a67111b81d583d142fb63337cae859e"></a>
+
+Fills OutValue with the value of AdminPlayerVisibility_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline ERHAPI_PlayerVisibility * `[`GetAdminPlayerVisibilityOrNull`](#structFRHAPI__SessionTemplate_1a9d02f9ec846833435fa7b39044328765)`()` <a id="structFRHAPI__SessionTemplate_1a9d02f9ec846833435fa7b39044328765"></a>
+
+Returns a pointer to AdminPlayerVisibility_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const ERHAPI_PlayerVisibility * `[`GetAdminPlayerVisibilityOrNull`](#structFRHAPI__SessionTemplate_1a225be78addd1631152237529f52140e8)`() const` <a id="structFRHAPI__SessionTemplate_1a225be78addd1631152237529f52140e8"></a>
+
+Returns a pointer to AdminPlayerVisibility_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetAdminPlayerVisibility`](#structFRHAPI__SessionTemplate_1aa215431f4505e3baa98295f2771848ff)`(const ERHAPI_PlayerVisibility & NewValue)` <a id="structFRHAPI__SessionTemplate_1aa215431f4505e3baa98295f2771848ff"></a>
+
+Sets the value of AdminPlayerVisibility_Optional and also sets AdminPlayerVisibility_IsSet to true.
+
+#### `public inline void `[`SetAdminPlayerVisibility`](#structFRHAPI__SessionTemplate_1ad1830c5d970292a0c98d54f0f593982a)`(ERHAPI_PlayerVisibility && NewValue)` <a id="structFRHAPI__SessionTemplate_1ad1830c5d970292a0c98d54f0f593982a"></a>
+
+Sets the value of AdminPlayerVisibility_Optional and also sets AdminPlayerVisibility_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearAdminPlayerVisibility`](#structFRHAPI__SessionTemplate_1a1ed525f8085823e6ac6ae445ba9932e5)`()` <a id="structFRHAPI__SessionTemplate_1a1ed525f8085823e6ac6ae445ba9932e5"></a>
+
+Clears the value of AdminPlayerVisibility_Optional and sets AdminPlayerVisibility_IsSet to false.
+
+#### `public inline bool `[`IsAdminPlayerVisibilitySet`](#structFRHAPI__SessionTemplate_1a97b99dd83913269e57edce56edbce9ef)`() const` <a id="structFRHAPI__SessionTemplate_1a97b99dd83913269e57edce56edbce9ef"></a>
+
+Checks whether AdminPlayerVisibility_Optional has been set.
+
+#### `public inline ERHAPI_PlayerVisibility & `[`GetPlayerNotificationFrequency`](#structFRHAPI__SessionTemplate_1aa82a1633eabb22499e4296ef1a8e15d8)`()` <a id="structFRHAPI__SessionTemplate_1aa82a1633eabb22499e4296ef1a8e15d8"></a>
+
+Gets the value of PlayerNotificationFrequency_Optional, regardless of it having been set.
+
+#### `public inline const ERHAPI_PlayerVisibility & `[`GetPlayerNotificationFrequency`](#structFRHAPI__SessionTemplate_1a6869ecfe4c4ccf4d7ff625b677b58aa3)`() const` <a id="structFRHAPI__SessionTemplate_1a6869ecfe4c4ccf4d7ff625b677b58aa3"></a>
+
+Gets the value of PlayerNotificationFrequency_Optional, regardless of it having been set.
+
+#### `public inline const ERHAPI_PlayerVisibility & `[`GetPlayerNotificationFrequency`](#structFRHAPI__SessionTemplate_1a6abfdd082c7e370b8d5dca82323ab88e)`(const ERHAPI_PlayerVisibility & DefaultValue) const` <a id="structFRHAPI__SessionTemplate_1a6abfdd082c7e370b8d5dca82323ab88e"></a>
+
+Gets the value of PlayerNotificationFrequency_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetPlayerNotificationFrequency`](#structFRHAPI__SessionTemplate_1a8d84aa3c71a766eb85bd4af6277dea75)`(ERHAPI_PlayerVisibility & OutValue) const` <a id="structFRHAPI__SessionTemplate_1a8d84aa3c71a766eb85bd4af6277dea75"></a>
+
+Fills OutValue with the value of PlayerNotificationFrequency_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline ERHAPI_PlayerVisibility * `[`GetPlayerNotificationFrequencyOrNull`](#structFRHAPI__SessionTemplate_1a960e15b12a80a71ec23fa5a9e650dcf7)`()` <a id="structFRHAPI__SessionTemplate_1a960e15b12a80a71ec23fa5a9e650dcf7"></a>
+
+Returns a pointer to PlayerNotificationFrequency_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const ERHAPI_PlayerVisibility * `[`GetPlayerNotificationFrequencyOrNull`](#structFRHAPI__SessionTemplate_1a848f5bbad3cf87ec1123af70dfa46483)`() const` <a id="structFRHAPI__SessionTemplate_1a848f5bbad3cf87ec1123af70dfa46483"></a>
+
+Returns a pointer to PlayerNotificationFrequency_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetPlayerNotificationFrequency`](#structFRHAPI__SessionTemplate_1a40087fdd5097362e6d7018eab132bfdc)`(const ERHAPI_PlayerVisibility & NewValue)` <a id="structFRHAPI__SessionTemplate_1a40087fdd5097362e6d7018eab132bfdc"></a>
+
+Sets the value of PlayerNotificationFrequency_Optional and also sets PlayerNotificationFrequency_IsSet to true.
+
+#### `public inline void `[`SetPlayerNotificationFrequency`](#structFRHAPI__SessionTemplate_1adb3494fb955e2e5f9c8db96c385e3aae)`(ERHAPI_PlayerVisibility && NewValue)` <a id="structFRHAPI__SessionTemplate_1adb3494fb955e2e5f9c8db96c385e3aae"></a>
+
+Sets the value of PlayerNotificationFrequency_Optional and also sets PlayerNotificationFrequency_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearPlayerNotificationFrequency`](#structFRHAPI__SessionTemplate_1a9e283ac577d19794a939f946ac98642d)`()` <a id="structFRHAPI__SessionTemplate_1a9e283ac577d19794a939f946ac98642d"></a>
+
+Clears the value of PlayerNotificationFrequency_Optional and sets PlayerNotificationFrequency_IsSet to false.
+
+#### `public inline bool `[`IsPlayerNotificationFrequencySet`](#structFRHAPI__SessionTemplate_1af5b0c780644985e4123a7197abb762b9)`() const` <a id="structFRHAPI__SessionTemplate_1af5b0c780644985e4123a7197abb762b9"></a>
+
+Checks whether PlayerNotificationFrequency_Optional has been set.
+
+#### `public inline ERHAPI_PlayerVisibility & `[`GetAdminPlayerNotificationFrequency`](#structFRHAPI__SessionTemplate_1a50e06c68cc267282a50de555903d0115)`()` <a id="structFRHAPI__SessionTemplate_1a50e06c68cc267282a50de555903d0115"></a>
+
+Gets the value of AdminPlayerNotificationFrequency_Optional, regardless of it having been set.
+
+#### `public inline const ERHAPI_PlayerVisibility & `[`GetAdminPlayerNotificationFrequency`](#structFRHAPI__SessionTemplate_1a12cd0960ffb0fe734db0508ae85793bf)`() const` <a id="structFRHAPI__SessionTemplate_1a12cd0960ffb0fe734db0508ae85793bf"></a>
+
+Gets the value of AdminPlayerNotificationFrequency_Optional, regardless of it having been set.
+
+#### `public inline const ERHAPI_PlayerVisibility & `[`GetAdminPlayerNotificationFrequency`](#structFRHAPI__SessionTemplate_1a9c8d81d3cfffed01a78c5f5412b6c1d4)`(const ERHAPI_PlayerVisibility & DefaultValue) const` <a id="structFRHAPI__SessionTemplate_1a9c8d81d3cfffed01a78c5f5412b6c1d4"></a>
+
+Gets the value of AdminPlayerNotificationFrequency_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetAdminPlayerNotificationFrequency`](#structFRHAPI__SessionTemplate_1aea213cbf702ce04f03062f5966af1a2f)`(ERHAPI_PlayerVisibility & OutValue) const` <a id="structFRHAPI__SessionTemplate_1aea213cbf702ce04f03062f5966af1a2f"></a>
+
+Fills OutValue with the value of AdminPlayerNotificationFrequency_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline ERHAPI_PlayerVisibility * `[`GetAdminPlayerNotificationFrequencyOrNull`](#structFRHAPI__SessionTemplate_1af168ec59a8f1cd1f218d34224bdd54eb)`()` <a id="structFRHAPI__SessionTemplate_1af168ec59a8f1cd1f218d34224bdd54eb"></a>
+
+Returns a pointer to AdminPlayerNotificationFrequency_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const ERHAPI_PlayerVisibility * `[`GetAdminPlayerNotificationFrequencyOrNull`](#structFRHAPI__SessionTemplate_1a77cd44c9d6befd86d3f7ac31f999eadb)`() const` <a id="structFRHAPI__SessionTemplate_1a77cd44c9d6befd86d3f7ac31f999eadb"></a>
+
+Returns a pointer to AdminPlayerNotificationFrequency_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetAdminPlayerNotificationFrequency`](#structFRHAPI__SessionTemplate_1a6af1921f4955c3aa170e15866a52888d)`(const ERHAPI_PlayerVisibility & NewValue)` <a id="structFRHAPI__SessionTemplate_1a6af1921f4955c3aa170e15866a52888d"></a>
+
+Sets the value of AdminPlayerNotificationFrequency_Optional and also sets AdminPlayerNotificationFrequency_IsSet to true.
+
+#### `public inline void `[`SetAdminPlayerNotificationFrequency`](#structFRHAPI__SessionTemplate_1a1a460126fd5ae175913eb4667965d36e)`(ERHAPI_PlayerVisibility && NewValue)` <a id="structFRHAPI__SessionTemplate_1a1a460126fd5ae175913eb4667965d36e"></a>
+
+Sets the value of AdminPlayerNotificationFrequency_Optional and also sets AdminPlayerNotificationFrequency_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearAdminPlayerNotificationFrequency`](#structFRHAPI__SessionTemplate_1aed149547b3e1c182e446b8fce5b7d5f6)`()` <a id="structFRHAPI__SessionTemplate_1aed149547b3e1c182e446b8fce5b7d5f6"></a>
+
+Clears the value of AdminPlayerNotificationFrequency_Optional and sets AdminPlayerNotificationFrequency_IsSet to false.
+
+#### `public inline bool `[`IsAdminPlayerNotificationFrequencySet`](#structFRHAPI__SessionTemplate_1a5ea7daf024acb3141141f83420f61665)`() const` <a id="structFRHAPI__SessionTemplate_1a5ea7daf024acb3141141f83420f61665"></a>
+
+Checks whether AdminPlayerNotificationFrequency_Optional has been set.
 

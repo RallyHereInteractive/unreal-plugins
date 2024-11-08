@@ -119,6 +119,26 @@ void FRHAPI_SessionTemplate::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		Writer->WriteIdentifierPrefix(TEXT("notify_on_reservation"));
 		RallyHereAPI::WriteJsonValue(Writer, NotifyOnReservation_Optional);
 	}
+	if (PlayerVisibility_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("player_visibility"));
+		RallyHereAPI::WriteJsonValue(Writer, EnumToString(PlayerVisibility_Optional));
+	}
+	if (AdminPlayerVisibility_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("admin_player_visibility"));
+		RallyHereAPI::WriteJsonValue(Writer, EnumToString(AdminPlayerVisibility_Optional));
+	}
+	if (PlayerNotificationFrequency_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("player_notification_frequency"));
+		RallyHereAPI::WriteJsonValue(Writer, EnumToString(PlayerNotificationFrequency_Optional));
+	}
+	if (AdminPlayerNotificationFrequency_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("admin_player_notification_frequency"));
+		RallyHereAPI::WriteJsonValue(Writer, EnumToString(AdminPlayerNotificationFrequency_Optional));
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -245,6 +265,30 @@ bool FRHAPI_SessionTemplate::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	{
 		NotifyOnReservation_IsSet = TryGetJsonValue(JsonNotifyOnReservationField, NotifyOnReservation_Optional);
 		ParseSuccess &= NotifyOnReservation_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonPlayerVisibilityField = (*Object)->TryGetField(TEXT("player_visibility"));
+	if (JsonPlayerVisibilityField.IsValid())
+	{
+		PlayerVisibility_IsSet = TryGetJsonValue(JsonPlayerVisibilityField, PlayerVisibility_Optional);
+		ParseSuccess &= PlayerVisibility_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonAdminPlayerVisibilityField = (*Object)->TryGetField(TEXT("admin_player_visibility"));
+	if (JsonAdminPlayerVisibilityField.IsValid())
+	{
+		AdminPlayerVisibility_IsSet = TryGetJsonValue(JsonAdminPlayerVisibilityField, AdminPlayerVisibility_Optional);
+		ParseSuccess &= AdminPlayerVisibility_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonPlayerNotificationFrequencyField = (*Object)->TryGetField(TEXT("player_notification_frequency"));
+	if (JsonPlayerNotificationFrequencyField.IsValid())
+	{
+		PlayerNotificationFrequency_IsSet = TryGetJsonValue(JsonPlayerNotificationFrequencyField, PlayerNotificationFrequency_Optional);
+		ParseSuccess &= PlayerNotificationFrequency_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonAdminPlayerNotificationFrequencyField = (*Object)->TryGetField(TEXT("admin_player_notification_frequency"));
+	if (JsonAdminPlayerNotificationFrequencyField.IsValid())
+	{
+		AdminPlayerNotificationFrequency_IsSet = TryGetJsonValue(JsonAdminPlayerNotificationFrequencyField, AdminPlayerNotificationFrequency_Optional);
+		ParseSuccess &= AdminPlayerNotificationFrequency_IsSet;
 	}
 
 	return ParseSuccess;

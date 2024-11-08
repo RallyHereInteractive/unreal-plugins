@@ -10,6 +10,7 @@
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
 #include "MatchMakingProfileV2.h"
+#include "TicketData.h"
 #include "MatchmakingResults.generated.h"
 
 /** @defgroup RHAPI_MatchmakingResults RallyHere API Model MatchmakingResults
@@ -117,6 +118,33 @@ struct RALLYHEREAPI_API FRHAPI_MatchmakingResults : public FRHAPI_Model
 	void ClearTicketIds() { TicketIds_IsSet = false;  }
 	/** @brief Checks whether TicketIds_Optional has been set */
 	bool IsTicketIdsSet() const { return TicketIds_IsSet; }
+
+	/** @brief List of all the ticket data that was used when generating this match */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TArray<FRHAPI_TicketData> TicketData_Optional{  };
+	/** @brief true if TicketData_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool TicketData_IsSet{ false };
+	/** @brief Gets the value of TicketData_Optional, regardless of it having been set */
+	TArray<FRHAPI_TicketData>& GetTicketData() { return TicketData_Optional; }
+	/** @brief Gets the value of TicketData_Optional, regardless of it having been set */
+	const TArray<FRHAPI_TicketData>& GetTicketData() const { return TicketData_Optional; }
+	/** @brief Gets the value of TicketData_Optional, if it has been set, otherwise it returns DefaultValue */
+	const TArray<FRHAPI_TicketData>& GetTicketData(const TArray<FRHAPI_TicketData>& DefaultValue) const { if (TicketData_IsSet) return TicketData_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of TicketData_Optional and returns true if it has been set, otherwise returns false */
+	bool GetTicketData(TArray<FRHAPI_TicketData>& OutValue) const { if (TicketData_IsSet) OutValue = TicketData_Optional; return TicketData_IsSet; }
+	/** @brief Returns a pointer to TicketData_Optional, if it has been set, otherwise returns nullptr */
+	TArray<FRHAPI_TicketData>* GetTicketDataOrNull() { if (TicketData_IsSet) return (&TicketData_Optional); return nullptr; }
+	/** @brief Returns a pointer to TicketData_Optional, if it has been set, otherwise returns nullptr */
+	const TArray<FRHAPI_TicketData>* GetTicketDataOrNull() const { if (TicketData_IsSet) return (&TicketData_Optional); return nullptr; }
+	/** @brief Sets the value of TicketData_Optional and also sets TicketData_IsSet to true */
+	void SetTicketData(const TArray<FRHAPI_TicketData>& NewValue) { TicketData_Optional = NewValue; TicketData_IsSet = true;  }
+	/** @brief Sets the value of TicketData_Optional and also sets TicketData_IsSet to true using move semantics */
+	void SetTicketData(TArray<FRHAPI_TicketData>&& NewValue) { TicketData_Optional = NewValue; TicketData_IsSet = true;  }
+	/** @brief Clears the value of TicketData_Optional and sets TicketData_IsSet to false */
+	void ClearTicketData() { TicketData_IsSet = false;  }
+	/** @brief Checks whether TicketData_Optional has been set */
+	bool IsTicketDataSet() const { return TicketData_IsSet; }
 
 	/** @brief Whether or not the tickets from these results have been assigned */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

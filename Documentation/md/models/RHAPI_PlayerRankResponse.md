@@ -22,7 +22,7 @@ DEPRECATED Response to successfully requesting a player&#39;s rank.
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public FGuid `[`PlayerUuid`](#structFRHAPI__PlayerRankResponse_1ad515f738c5f7ba86c3cc1cbc7aabb511) | UUID for this specific player.
-`public `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` `[`Rank`](#structFRHAPI__PlayerRankResponse_1a52b54e3853b393e59f3c344ec9e5e645) | Current rank info about player.
+`public `[`FRHAPI_RankRankData`](RHAPI_RankRankData.md#structFRHAPI__RankRankData)` `[`Rank`](#structFRHAPI__PlayerRankResponse_1a49800ec10e721703e0c900505859a4fc) | Current rank info about player.
 `public int32 `[`RankId`](#structFRHAPI__PlayerRankResponse_1a8200a6af92b552e2e7976f8bc6b0356c) | ID for this rank.
 `public virtual bool `[`FromJson`](#structFRHAPI__PlayerRankResponse_1a0db3f100bbafbfcc6004509fa3568e66)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PlayerRankResponse_1ab6cdc5dcaa1a7dafb21570355943a5cc)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
@@ -30,10 +30,10 @@ DEPRECATED Response to successfully requesting a player&#39;s rank.
 `public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__PlayerRankResponse_1a4e9ebe28e42d96f00e27a7429635e380)`() const` | Gets the value of PlayerUuid.
 `public inline void `[`SetPlayerUuid`](#structFRHAPI__PlayerRankResponse_1a7d0f885871e9380b82622bb66e1e1adc)`(const FGuid & NewValue)` | Sets the value of PlayerUuid.
 `public inline void `[`SetPlayerUuid`](#structFRHAPI__PlayerRankResponse_1a016f32c43c883078fdbf6d1c7e48288a)`(FGuid && NewValue)` | Sets the value of PlayerUuid using move semantics.
-`public inline `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` & `[`GetRank`](#structFRHAPI__PlayerRankResponse_1a82cf4536727d77a43bc213fec4993201)`()` | Gets the value of Rank.
-`public inline const `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` & `[`GetRank`](#structFRHAPI__PlayerRankResponse_1a975d50ded3a316e5989e711a9441590f)`() const` | Gets the value of Rank.
-`public inline void `[`SetRank`](#structFRHAPI__PlayerRankResponse_1a2e451a2bb8f628d4e241afb8e0ff4518)`(const `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` & NewValue)` | Sets the value of Rank.
-`public inline void `[`SetRank`](#structFRHAPI__PlayerRankResponse_1a97d2ba154554fe25d6f6936dd27c029c)`(`[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` && NewValue)` | Sets the value of Rank using move semantics.
+`public inline `[`FRHAPI_RankRankData`](RHAPI_RankRankData.md#structFRHAPI__RankRankData)` & `[`GetRank`](#structFRHAPI__PlayerRankResponse_1ac29fd3a4fad77278b42468a6f9bbd725)`()` | Gets the value of Rank.
+`public inline const `[`FRHAPI_RankRankData`](RHAPI_RankRankData.md#structFRHAPI__RankRankData)` & `[`GetRank`](#structFRHAPI__PlayerRankResponse_1ad1c38756678aef97508f533839a30d4e)`() const` | Gets the value of Rank.
+`public inline void `[`SetRank`](#structFRHAPI__PlayerRankResponse_1a6ff7ae7262a1498a787e490b000eeea6)`(const `[`FRHAPI_RankRankData`](RHAPI_RankRankData.md#structFRHAPI__RankRankData)` & NewValue)` | Sets the value of Rank.
+`public inline void `[`SetRank`](#structFRHAPI__PlayerRankResponse_1a138430efed35616132690ed9dc11c49e)`(`[`FRHAPI_RankRankData`](RHAPI_RankRankData.md#structFRHAPI__RankRankData)` && NewValue)` | Sets the value of Rank using move semantics.
 `public inline int32 & `[`GetRankId`](#structFRHAPI__PlayerRankResponse_1aabbbbb4a9a91e91f8733f8f9188a31f7)`()` | Gets the value of RankId.
 `public inline const int32 & `[`GetRankId`](#structFRHAPI__PlayerRankResponse_1a918c6bbbd69cd6c14ec05ae0b364948a)`() const` | Gets the value of RankId.
 `public inline void `[`SetRankId`](#structFRHAPI__PlayerRankResponse_1a8e6959f71587a0339d440e42640b2960)`(const int32 & NewValue)` | Sets the value of RankId.
@@ -47,7 +47,7 @@ DEPRECATED Response to successfully requesting a player&#39;s rank.
 
 UUID for this specific player.
 
-#### `public `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` `[`Rank`](#structFRHAPI__PlayerRankResponse_1a52b54e3853b393e59f3c344ec9e5e645) <a id="structFRHAPI__PlayerRankResponse_1a52b54e3853b393e59f3c344ec9e5e645"></a>
+#### `public `[`FRHAPI_RankRankData`](RHAPI_RankRankData.md#structFRHAPI__RankRankData)` `[`Rank`](#structFRHAPI__PlayerRankResponse_1a49800ec10e721703e0c900505859a4fc) <a id="structFRHAPI__PlayerRankResponse_1a49800ec10e721703e0c900505859a4fc"></a>
 
 Current rank info about player.
 
@@ -88,19 +88,19 @@ Sets the value of PlayerUuid.
 
 Sets the value of PlayerUuid using move semantics.
 
-#### `public inline `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` & `[`GetRank`](#structFRHAPI__PlayerRankResponse_1a82cf4536727d77a43bc213fec4993201)`()` <a id="structFRHAPI__PlayerRankResponse_1a82cf4536727d77a43bc213fec4993201"></a>
+#### `public inline `[`FRHAPI_RankRankData`](RHAPI_RankRankData.md#structFRHAPI__RankRankData)` & `[`GetRank`](#structFRHAPI__PlayerRankResponse_1ac29fd3a4fad77278b42468a6f9bbd725)`()` <a id="structFRHAPI__PlayerRankResponse_1ac29fd3a4fad77278b42468a6f9bbd725"></a>
 
 Gets the value of Rank.
 
-#### `public inline const `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` & `[`GetRank`](#structFRHAPI__PlayerRankResponse_1a975d50ded3a316e5989e711a9441590f)`() const` <a id="structFRHAPI__PlayerRankResponse_1a975d50ded3a316e5989e711a9441590f"></a>
+#### `public inline const `[`FRHAPI_RankRankData`](RHAPI_RankRankData.md#structFRHAPI__RankRankData)` & `[`GetRank`](#structFRHAPI__PlayerRankResponse_1ad1c38756678aef97508f533839a30d4e)`() const` <a id="structFRHAPI__PlayerRankResponse_1ad1c38756678aef97508f533839a30d4e"></a>
 
 Gets the value of Rank.
 
-#### `public inline void `[`SetRank`](#structFRHAPI__PlayerRankResponse_1a2e451a2bb8f628d4e241afb8e0ff4518)`(const `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` & NewValue)` <a id="structFRHAPI__PlayerRankResponse_1a2e451a2bb8f628d4e241afb8e0ff4518"></a>
+#### `public inline void `[`SetRank`](#structFRHAPI__PlayerRankResponse_1a6ff7ae7262a1498a787e490b000eeea6)`(const `[`FRHAPI_RankRankData`](RHAPI_RankRankData.md#structFRHAPI__RankRankData)` & NewValue)` <a id="structFRHAPI__PlayerRankResponse_1a6ff7ae7262a1498a787e490b000eeea6"></a>
 
 Sets the value of Rank.
 
-#### `public inline void `[`SetRank`](#structFRHAPI__PlayerRankResponse_1a97d2ba154554fe25d6f6936dd27c029c)`(`[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` && NewValue)` <a id="structFRHAPI__PlayerRankResponse_1a97d2ba154554fe25d6f6936dd27c029c"></a>
+#### `public inline void `[`SetRank`](#structFRHAPI__PlayerRankResponse_1a138430efed35616132690ed9dc11c49e)`(`[`FRHAPI_RankRankData`](RHAPI_RankRankData.md#structFRHAPI__RankRankData)` && NewValue)` <a id="structFRHAPI__PlayerRankResponse_1a138430efed35616132690ed9dc11c49e"></a>
 
 Sets the value of Rank using move semantics.
 

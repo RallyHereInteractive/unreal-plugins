@@ -264,6 +264,7 @@ Private/PlayerSessionInvite.cpp
 Private/PlayerSessions.cpp
 Private/PlayerStatsResponse.cpp
 Private/PlayerUuidFromId.cpp
+Private/PlayerVisibility.cpp
 Private/PlayersToValidate.cpp
 Private/Portal.cpp
 Private/PortalTokenDetailsGrantType.cpp
@@ -305,6 +306,7 @@ Private/RankAPI.cpp
 Private/RankConfigRequestResponseV3.cpp
 Private/RankConfigV3.cpp
 Private/RankData.cpp
+Private/RankRankData.cpp
 Private/RankUpdateRequest.cpp
 Private/RankUpdateRequestV2.cpp
 Private/RankedTeam.cpp
@@ -343,6 +345,7 @@ Private/Source.cpp
 Private/StorageInformation.cpp
 Private/TeamOverflowAction.cpp
 Private/TeamUpdate.cpp
+Private/TicketData.cpp
 Private/TimeFrame.cpp
 Private/TimeFrames.cpp
 Private/TokenRequest.cpp
@@ -632,6 +635,7 @@ Public/PlayerSessionInvite.h
 Public/PlayerSessions.h
 Public/PlayerStatsResponse.h
 Public/PlayerUuidFromId.h
+Public/PlayerVisibility.h
 Public/PlayersToValidate.h
 Public/Portal.h
 Public/PortalTokenDetailsGrantType.h
@@ -673,6 +677,7 @@ Public/RankAPI.h
 Public/RankConfigRequestResponseV3.h
 Public/RankConfigV3.h
 Public/RankData.h
+Public/RankRankData.h
 Public/RankUpdateRequest.h
 Public/RankUpdateRequestV2.h
 Public/RankedTeam.h
@@ -711,6 +716,7 @@ Public/Source.h
 Public/StorageInformation.h
 Public/TeamOverflowAction.h
 Public/TeamUpdate.h
+Public/TicketData.h
 Public/TimeFrame.h
 Public/TimeFrames.h
 Public/TokenRequest.h
