@@ -194,6 +194,7 @@ Private/OpportunityState.cpp
 Private/PageMeta.cpp
 Private/PagedMatchResponse.cpp
 Private/PagedPlayerMatchResponse.cpp
+Private/PagedPlayersResponse.cpp
 Private/PersonEmailListRequest.cpp
 Private/PersonEmailListResponse.cpp
 Private/PersonInfoResponse.cpp
@@ -565,6 +566,7 @@ Public/OpportunityState.h
 Public/PageMeta.h
 Public/PagedMatchResponse.h
 Public/PagedPlayerMatchResponse.h
+Public/PagedPlayersResponse.h
 Public/PersonEmailListRequest.h
 Public/PersonEmailListResponse.h
 Public/PersonInfoResponse.h

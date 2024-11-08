@@ -66,6 +66,11 @@ void FRHAPI_MatchMakingProfileV2::WriteJson(TSharedRef<TJsonWriter<>>& Writer) c
 		Writer->WriteIdentifierPrefix(TEXT("session_template_id"));
 		RallyHereAPI::WriteJsonValue(Writer, SessionTemplateId_Optional);
 	}
+	if (CustomData_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("custom_data"));
+		RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -128,6 +133,12 @@ bool FRHAPI_MatchMakingProfileV2::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 	{
 		SessionTemplateId_IsSet = TryGetJsonValue(JsonSessionTemplateIdField, SessionTemplateId_Optional);
 		ParseSuccess &= SessionTemplateId_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+	if (JsonCustomDataField.IsValid())
+	{
+		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
+		ParseSuccess &= CustomData_IsSet;
 	}
 
 	return ParseSuccess;
