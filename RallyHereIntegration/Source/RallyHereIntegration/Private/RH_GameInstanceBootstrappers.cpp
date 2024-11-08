@@ -1532,6 +1532,10 @@ void URH_GameInstanceServerBootstrapper::OnGameHostProviderStats(FRH_GameHostPro
 {
 	// fill in basic information
 	{
+		// retrieve version information from the integration layer
+		Stats.BuildVersion = RH_VersionStrings::GetBuildVersion();
+		Stats.SessionCompatibilityVersion = RH_VersionStrings::GetVersionForSession();
+		
 		// retrieve game state from world
 		const auto* World = GetGameInstanceSubsystem()->GetGameInstance()->GetWorld();
 		if (World != nullptr)
