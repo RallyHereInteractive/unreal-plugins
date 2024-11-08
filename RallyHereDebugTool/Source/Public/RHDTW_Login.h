@@ -3,6 +3,7 @@
 #pragma once
 
 #include "RH_DebugToolWindow.h"
+#include "RH_IntegrationSettings.h"
 
 struct FRHDTW_Login : public FRH_DebugToolWindow
 {
@@ -15,6 +16,7 @@ struct FRHDTW_Login : public FRH_DebugToolWindow
 	void DoLoginTab();
 	void DoMassLoginTab();
 	void DoServerLoginTab();
+	void DoEnvironmentTab();
 
 	// Login variables
 	bool bAcceptEULA;
@@ -35,6 +37,9 @@ struct FRHDTW_Login : public FRH_DebugToolWindow
 	TArray<ANSICHAR> ML_RefreshTokenBuffer;
 	int32 ML_RangeFrom;
 	int32 ML_RangeTo;
+
+	// Environment Config variables
+	FRH_EnvironmentConfiguration TempEnvironmentConfiguration;
 
 private:
 	FString ML_Result;
