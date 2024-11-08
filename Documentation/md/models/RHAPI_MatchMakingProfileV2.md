@@ -39,6 +39,8 @@ A profile that describes what pools of players a session will be a part of when 
 `public bool `[`DeserterId_IsSet`](#structFRHAPI__MatchMakingProfileV2_1a549f6b87b796d3920408a3e5b103d440) | true if DeserterId_Optional has been set to a value
 `public FGuid `[`SessionTemplateId_Optional`](#structFRHAPI__MatchMakingProfileV2_1a5357bb9dad6eedd14a04648d518bbcbe) | What type of session should result from matchmaking on this profile.
 `public bool `[`SessionTemplateId_IsSet`](#structFRHAPI__MatchMakingProfileV2_1a671a2d069be65d525493b353b34c3b4c) | true if SessionTemplateId_Optional has been set to a value
+`public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__MatchMakingProfileV2_1af0ac0b525353859666c32ac12728bcac) | Custom data about this profile.
+`public bool `[`CustomData_IsSet`](#structFRHAPI__MatchMakingProfileV2_1a5901e08685830cc4d88072433627804f) | true if CustomData_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__MatchMakingProfileV2_1aa73d4e9aa317675d9c1bfc43d25680ef)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__MatchMakingProfileV2_1a5dd02d8364e2d98ea1b80f2d18acd532)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetMatchMakingProfileId`](#structFRHAPI__MatchMakingProfileV2_1a4ae3b82d9d3c2bb53a131330dfe71e59)`()` | Gets the value of MatchMakingProfileId.
@@ -135,6 +137,16 @@ A profile that describes what pools of players a session will be a part of when 
 `public inline void `[`SetSessionTemplateId`](#structFRHAPI__MatchMakingProfileV2_1ac3441ac2b72a3045333f8226bc4a81e8)`(FGuid && NewValue)` | Sets the value of SessionTemplateId_Optional and also sets SessionTemplateId_IsSet to true using move semantics.
 `public inline void `[`ClearSessionTemplateId`](#structFRHAPI__MatchMakingProfileV2_1aa0a57023b70ac8d739eace48091a70ef)`()` | Clears the value of SessionTemplateId_Optional and sets SessionTemplateId_IsSet to false.
 `public inline bool `[`IsSessionTemplateIdSet`](#structFRHAPI__MatchMakingProfileV2_1a0baac8b2830140229444fabbee01d36d)`() const` | Checks whether SessionTemplateId_Optional has been set.
+`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchMakingProfileV2_1aedbd034b431794b5e6331f5957775c16)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchMakingProfileV2_1aab57db2d2c35247cbe7a390ae184f936)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchMakingProfileV2_1a2f17ea85deff7f70ec57ad5fe61732f9)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetCustomData`](#structFRHAPI__MatchMakingProfileV2_1a6393cd12eac3ee1e8e8879592dff16d6)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchMakingProfileV2_1a2c0457d18e612477ab2e4bc272794fe1)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchMakingProfileV2_1a0989908e2947efa101e265e948fe2cd1)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetCustomData`](#structFRHAPI__MatchMakingProfileV2_1a213f32c972cbfb9bee5defd6248661a1)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__MatchMakingProfileV2_1adcd71e9bff96cc16c25dbf4e75a1c01a)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
+`public inline void `[`ClearCustomData`](#structFRHAPI__MatchMakingProfileV2_1a9002805ee39e14eceff5cf3acdb17c9a)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+`public inline bool `[`IsCustomDataSet`](#structFRHAPI__MatchMakingProfileV2_1a7e22e39c169c9467266a0aec3ebf7454)`() const` | Checks whether CustomData_Optional has been set.
 
 ### Members
 
@@ -209,6 +221,14 @@ What type of session should result from matchmaking on this profile.
 #### `public bool `[`SessionTemplateId_IsSet`](#structFRHAPI__MatchMakingProfileV2_1a671a2d069be65d525493b353b34c3b4c) <a id="structFRHAPI__MatchMakingProfileV2_1a671a2d069be65d525493b353b34c3b4c"></a>
 
 true if SessionTemplateId_Optional has been set to a value
+
+#### `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__MatchMakingProfileV2_1af0ac0b525353859666c32ac12728bcac) <a id="structFRHAPI__MatchMakingProfileV2_1af0ac0b525353859666c32ac12728bcac"></a>
+
+Custom data about this profile.
+
+#### `public bool `[`CustomData_IsSet`](#structFRHAPI__MatchMakingProfileV2_1a5901e08685830cc4d88072433627804f) <a id="structFRHAPI__MatchMakingProfileV2_1a5901e08685830cc4d88072433627804f"></a>
+
+true if CustomData_Optional has been set to a value
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__MatchMakingProfileV2_1aa73d4e9aa317675d9c1bfc43d25680ef)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__MatchMakingProfileV2_1aa73d4e9aa317675d9c1bfc43d25680ef"></a>
 
@@ -602,4 +622,44 @@ Clears the value of SessionTemplateId_Optional and sets SessionTemplateId_IsSet 
 #### `public inline bool `[`IsSessionTemplateIdSet`](#structFRHAPI__MatchMakingProfileV2_1a0baac8b2830140229444fabbee01d36d)`() const` <a id="structFRHAPI__MatchMakingProfileV2_1a0baac8b2830140229444fabbee01d36d"></a>
 
 Checks whether SessionTemplateId_Optional has been set.
+
+#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchMakingProfileV2_1aedbd034b431794b5e6331f5957775c16)`()` <a id="structFRHAPI__MatchMakingProfileV2_1aedbd034b431794b5e6331f5957775c16"></a>
+
+Gets the value of CustomData_Optional, regardless of it having been set.
+
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchMakingProfileV2_1aab57db2d2c35247cbe7a390ae184f936)`() const` <a id="structFRHAPI__MatchMakingProfileV2_1aab57db2d2c35247cbe7a390ae184f936"></a>
+
+Gets the value of CustomData_Optional, regardless of it having been set.
+
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchMakingProfileV2_1a2f17ea85deff7f70ec57ad5fe61732f9)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__MatchMakingProfileV2_1a2f17ea85deff7f70ec57ad5fe61732f9"></a>
+
+Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetCustomData`](#structFRHAPI__MatchMakingProfileV2_1a6393cd12eac3ee1e8e8879592dff16d6)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__MatchMakingProfileV2_1a6393cd12eac3ee1e8e8879592dff16d6"></a>
+
+Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchMakingProfileV2_1a2c0457d18e612477ab2e4bc272794fe1)`()` <a id="structFRHAPI__MatchMakingProfileV2_1a2c0457d18e612477ab2e4bc272794fe1"></a>
+
+Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchMakingProfileV2_1a0989908e2947efa101e265e948fe2cd1)`() const` <a id="structFRHAPI__MatchMakingProfileV2_1a0989908e2947efa101e265e948fe2cd1"></a>
+
+Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetCustomData`](#structFRHAPI__MatchMakingProfileV2_1a213f32c972cbfb9bee5defd6248661a1)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1a213f32c972cbfb9bee5defd6248661a1"></a>
+
+Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+
+#### `public inline void `[`SetCustomData`](#structFRHAPI__MatchMakingProfileV2_1adcd71e9bff96cc16c25dbf4e75a1c01a)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1adcd71e9bff96cc16c25dbf4e75a1c01a"></a>
+
+Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearCustomData`](#structFRHAPI__MatchMakingProfileV2_1a9002805ee39e14eceff5cf3acdb17c9a)`()` <a id="structFRHAPI__MatchMakingProfileV2_1a9002805ee39e14eceff5cf3acdb17c9a"></a>
+
+Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+
+#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__MatchMakingProfileV2_1a7e22e39c169c9467266a0aec3ebf7454)`() const` <a id="structFRHAPI__MatchMakingProfileV2_1a7e22e39c169c9467266a0aec3ebf7454"></a>
+
+Checks whether CustomData_Optional has been set.
 

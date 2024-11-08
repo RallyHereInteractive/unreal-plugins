@@ -26,6 +26,8 @@ A player&#39;s platform and input settings.
 `public ERHAPI_Platform `[`Platform_Optional`](#structFRHAPI__ClientSettings_1a3cda3757a464c85429c807e30aafb5c9) | Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. Platform is now read from client's authorization claims if available.
 `public bool `[`Platform_IsSet`](#structFRHAPI__ClientSettings_1a431c764ade30fe22fdaed9059dffbfa4) | true if Platform_Optional has been set to a value
 `public ERHAPI_Input `[`Input`](#structFRHAPI__ClientSettings_1a7bcfb29cf8b0184e366256a614f39278) | Which input type this client is using.
+`public ERHAPI_DeviceType `[`DeviceType_Optional`](#structFRHAPI__ClientSettings_1a042d8f8e2a55fb8337c7fe61b606bd3b) | Platform verified device type for this client.
+`public bool `[`DeviceType_IsSet`](#structFRHAPI__ClientSettings_1a6da7e289f1d81989aac606902478f835) | true if DeviceType_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__ClientSettings_1a5022e2daded462f99927edbd94981a43)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__ClientSettings_1aa686bf40f9a3c9f9046f2dc50ef5b161)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_PlatformID & `[`GetPlatformId`](#structFRHAPI__ClientSettings_1ababdad725c89a53c60af202e4390d584)`()` | Gets the value of PlatformId_Optional, regardless of it having been set.
@@ -52,6 +54,16 @@ A player&#39;s platform and input settings.
 `public inline const ERHAPI_Input & `[`GetInput`](#structFRHAPI__ClientSettings_1a987756f572f84cc101ec31fef828a1b9)`() const` | Gets the value of Input.
 `public inline void `[`SetInput`](#structFRHAPI__ClientSettings_1a76aa599df8c174ff30b606a756bd93eb)`(const ERHAPI_Input & NewValue)` | Sets the value of Input.
 `public inline void `[`SetInput`](#structFRHAPI__ClientSettings_1a3f3387f1f429c614b68d2e3519eaf23b)`(ERHAPI_Input && NewValue)` | Sets the value of Input using move semantics.
+`public inline ERHAPI_DeviceType & `[`GetDeviceType`](#structFRHAPI__ClientSettings_1adb3acff1807874c71dd934526ba1a1b5)`()` | Gets the value of DeviceType_Optional, regardless of it having been set.
+`public inline const ERHAPI_DeviceType & `[`GetDeviceType`](#structFRHAPI__ClientSettings_1afd136c7e089626e3b9ba9ac2bdd3eb6d)`() const` | Gets the value of DeviceType_Optional, regardless of it having been set.
+`public inline const ERHAPI_DeviceType & `[`GetDeviceType`](#structFRHAPI__ClientSettings_1aa855b6bd7d2f470d03c3c6c9f9978dbd)`(const ERHAPI_DeviceType & DefaultValue) const` | Gets the value of DeviceType_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetDeviceType`](#structFRHAPI__ClientSettings_1a831a9c0eb51c883a9982e15598f7a640)`(ERHAPI_DeviceType & OutValue) const` | Fills OutValue with the value of DeviceType_Optional and returns true if it has been set, otherwise returns false.
+`public inline ERHAPI_DeviceType * `[`GetDeviceTypeOrNull`](#structFRHAPI__ClientSettings_1ad4e70ed297620c22cde10816ee783321)`()` | Returns a pointer to DeviceType_Optional, if it has been set, otherwise returns nullptr.
+`public inline const ERHAPI_DeviceType * `[`GetDeviceTypeOrNull`](#structFRHAPI__ClientSettings_1a571bb8bf3ed8a8a071360bca8d19ee32)`() const` | Returns a pointer to DeviceType_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetDeviceType`](#structFRHAPI__ClientSettings_1ac66a0245e8cc3dcb3ab81ad17e23b283)`(const ERHAPI_DeviceType & NewValue)` | Sets the value of DeviceType_Optional and also sets DeviceType_IsSet to true.
+`public inline void `[`SetDeviceType`](#structFRHAPI__ClientSettings_1ac10ec30c248c61d6375c95e034b1e9bc)`(ERHAPI_DeviceType && NewValue)` | Sets the value of DeviceType_Optional and also sets DeviceType_IsSet to true using move semantics.
+`public inline void `[`ClearDeviceType`](#structFRHAPI__ClientSettings_1a290624f71ac968f32dc6af054f3e531a)`()` | Clears the value of DeviceType_Optional and sets DeviceType_IsSet to false.
+`public inline bool `[`IsDeviceTypeSet`](#structFRHAPI__ClientSettings_1a454bee6f9cfee8bc73f8859c95775cce)`() const` | Checks whether DeviceType_Optional has been set.
 
 ### Members
 
@@ -74,6 +86,14 @@ true if Platform_Optional has been set to a value
 #### `public ERHAPI_Input `[`Input`](#structFRHAPI__ClientSettings_1a7bcfb29cf8b0184e366256a614f39278) <a id="structFRHAPI__ClientSettings_1a7bcfb29cf8b0184e366256a614f39278"></a>
 
 Which input type this client is using.
+
+#### `public ERHAPI_DeviceType `[`DeviceType_Optional`](#structFRHAPI__ClientSettings_1a042d8f8e2a55fb8337c7fe61b606bd3b) <a id="structFRHAPI__ClientSettings_1a042d8f8e2a55fb8337c7fe61b606bd3b"></a>
+
+Platform verified device type for this client.
+
+#### `public bool `[`DeviceType_IsSet`](#structFRHAPI__ClientSettings_1a6da7e289f1d81989aac606902478f835) <a id="structFRHAPI__ClientSettings_1a6da7e289f1d81989aac606902478f835"></a>
+
+true if DeviceType_Optional has been set to a value
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__ClientSettings_1a5022e2daded462f99927edbd94981a43)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__ClientSettings_1a5022e2daded462f99927edbd94981a43"></a>
 
@@ -187,4 +207,44 @@ Sets the value of Input.
 #### `public inline void `[`SetInput`](#structFRHAPI__ClientSettings_1a3f3387f1f429c614b68d2e3519eaf23b)`(ERHAPI_Input && NewValue)` <a id="structFRHAPI__ClientSettings_1a3f3387f1f429c614b68d2e3519eaf23b"></a>
 
 Sets the value of Input using move semantics.
+
+#### `public inline ERHAPI_DeviceType & `[`GetDeviceType`](#structFRHAPI__ClientSettings_1adb3acff1807874c71dd934526ba1a1b5)`()` <a id="structFRHAPI__ClientSettings_1adb3acff1807874c71dd934526ba1a1b5"></a>
+
+Gets the value of DeviceType_Optional, regardless of it having been set.
+
+#### `public inline const ERHAPI_DeviceType & `[`GetDeviceType`](#structFRHAPI__ClientSettings_1afd136c7e089626e3b9ba9ac2bdd3eb6d)`() const` <a id="structFRHAPI__ClientSettings_1afd136c7e089626e3b9ba9ac2bdd3eb6d"></a>
+
+Gets the value of DeviceType_Optional, regardless of it having been set.
+
+#### `public inline const ERHAPI_DeviceType & `[`GetDeviceType`](#structFRHAPI__ClientSettings_1aa855b6bd7d2f470d03c3c6c9f9978dbd)`(const ERHAPI_DeviceType & DefaultValue) const` <a id="structFRHAPI__ClientSettings_1aa855b6bd7d2f470d03c3c6c9f9978dbd"></a>
+
+Gets the value of DeviceType_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetDeviceType`](#structFRHAPI__ClientSettings_1a831a9c0eb51c883a9982e15598f7a640)`(ERHAPI_DeviceType & OutValue) const` <a id="structFRHAPI__ClientSettings_1a831a9c0eb51c883a9982e15598f7a640"></a>
+
+Fills OutValue with the value of DeviceType_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline ERHAPI_DeviceType * `[`GetDeviceTypeOrNull`](#structFRHAPI__ClientSettings_1ad4e70ed297620c22cde10816ee783321)`()` <a id="structFRHAPI__ClientSettings_1ad4e70ed297620c22cde10816ee783321"></a>
+
+Returns a pointer to DeviceType_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const ERHAPI_DeviceType * `[`GetDeviceTypeOrNull`](#structFRHAPI__ClientSettings_1a571bb8bf3ed8a8a071360bca8d19ee32)`() const` <a id="structFRHAPI__ClientSettings_1a571bb8bf3ed8a8a071360bca8d19ee32"></a>
+
+Returns a pointer to DeviceType_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetDeviceType`](#structFRHAPI__ClientSettings_1ac66a0245e8cc3dcb3ab81ad17e23b283)`(const ERHAPI_DeviceType & NewValue)` <a id="structFRHAPI__ClientSettings_1ac66a0245e8cc3dcb3ab81ad17e23b283"></a>
+
+Sets the value of DeviceType_Optional and also sets DeviceType_IsSet to true.
+
+#### `public inline void `[`SetDeviceType`](#structFRHAPI__ClientSettings_1ac10ec30c248c61d6375c95e034b1e9bc)`(ERHAPI_DeviceType && NewValue)` <a id="structFRHAPI__ClientSettings_1ac10ec30c248c61d6375c95e034b1e9bc"></a>
+
+Sets the value of DeviceType_Optional and also sets DeviceType_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearDeviceType`](#structFRHAPI__ClientSettings_1a290624f71ac968f32dc6af054f3e531a)`()` <a id="structFRHAPI__ClientSettings_1a290624f71ac968f32dc6af054f3e531a"></a>
+
+Clears the value of DeviceType_Optional and sets DeviceType_IsSet to false.
+
+#### `public inline bool `[`IsDeviceTypeSet`](#structFRHAPI__ClientSettings_1a454bee6f9cfee8bc73f8859c95775cce)`() const` <a id="structFRHAPI__ClientSettings_1a454bee6f9cfee8bc73f8859c95775cce"></a>
+
+Checks whether DeviceType_Optional has been set.
 
