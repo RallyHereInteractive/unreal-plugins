@@ -119,7 +119,7 @@ void URH_SessionView::ImportAPISession(const FRH_APISessionWithETag& newSessionD
 			{
 				FRH_SessionMemberStatusState State;
 				State.bIsValid = true;
-				State.TeamId = i;
+				State.TeamId = Team.GetTeamId(i);
 				State.PlayerUuid = Player.GetPlayerUuid();
 				State.Status = Player.GetStatus();
 
@@ -801,7 +801,7 @@ void URH_OfflineSession::ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, c
 			const auto& TeamPlayer = PlayerList[j];
 			if (TeamPlayer.GetPlayerUuid() == PlayerUuid)
 			{
-				if (Team == i)
+				if (Team == SessionTeam.GetTeamId(i))
 				{
 					// already on the correct team
 					Delegate.ExecuteIfBound(true, this, FRH_ErrorInfo());
@@ -823,15 +823,28 @@ void URH_OfflineSession::ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, c
 
 	if (bFoundPlayer)
 	{
-		// make sure we have enough teams
-		if (Team >= Update.Teams.Num())
+		// look for a team with a matching id
+		FRHAPI_SessionTeam* ExistingTeam = nullptr;
+		for (int i = 0; i < Update.Teams.Num(); ++i)
 		{
-			Update.Teams.AddDefaulted(Team - Update.Teams.Num() + 1);
+			if (Update.Teams[i].GetTeamId(i) == Team)
+			{
+				ExistingTeam = &Update.Teams[i];
+				break;
+			}
 		}
+		if (ExistingTeam == nullptr)
+		{
+			// add a new team with the appropriate id
+			auto Index = Update.Teams.AddDefaulted();
+			ExistingTeam = &Update.Teams[Index];
+			ExistingTeam->SetTeamId(Team);
+		}
+		check(ExistingTeam != nullptr);
 		// insert them into their new team
-		auto PlayersList = Update.Teams[Team].GetPlayers();
+		auto PlayersList = ExistingTeam->GetPlayers();
 		PlayersList.Add(Player);
-		Update.Teams[Team].SetPlayers(PlayersList);		
+		ExistingTeam->SetPlayers(PlayersList);		
 	}
 
 	ImportSessionUpdateToAllPlayers(UpdateWrapper);
@@ -844,9 +857,8 @@ void URH_OfflineSession::UpdatePlayerCustomData(const FGuid& PlayerUuid, const T
 	FRH_APISessionWithETag UpdateWrapper(SessionData);
 	auto& Update = UpdateWrapper.Data;
 
-	for (int i = 0; i < Update.Teams.Num(); ++i)
+	for (auto& SessionTeam : Update.Teams)
 	{
-		auto& SessionTeam = Update.Teams[i];
 		for (auto& TeamPlayer : SessionTeam.Players)
 		{
 			if (TeamPlayer.PlayerUuid == PlayerUuid)
