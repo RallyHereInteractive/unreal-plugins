@@ -9,6 +9,7 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
+#include "DeviceType.h"
 #include "Input.h"
 #include "Platform.h"
 #include "PlatformID.h"
@@ -107,6 +108,33 @@ struct RALLYHEREAPI_API FRHAPI_ClientSettings : public FRHAPI_Model
 	void SetInput(const ERHAPI_Input& NewValue) { Input = NewValue;   }
 	/** @brief Sets the value of Input using move semantics */
 	void SetInput(ERHAPI_Input&& NewValue) { Input = NewValue;   }
+
+	/** @brief Platform verified device type for this client */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	ERHAPI_DeviceType DeviceType_Optional{  };
+	/** @brief true if DeviceType_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool DeviceType_IsSet{ false };
+	/** @brief Gets the value of DeviceType_Optional, regardless of it having been set */
+	ERHAPI_DeviceType& GetDeviceType() { return DeviceType_Optional; }
+	/** @brief Gets the value of DeviceType_Optional, regardless of it having been set */
+	const ERHAPI_DeviceType& GetDeviceType() const { return DeviceType_Optional; }
+	/** @brief Gets the value of DeviceType_Optional, if it has been set, otherwise it returns DefaultValue */
+	const ERHAPI_DeviceType& GetDeviceType(const ERHAPI_DeviceType& DefaultValue) const { if (DeviceType_IsSet) return DeviceType_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of DeviceType_Optional and returns true if it has been set, otherwise returns false */
+	bool GetDeviceType(ERHAPI_DeviceType& OutValue) const { if (DeviceType_IsSet) OutValue = DeviceType_Optional; return DeviceType_IsSet; }
+	/** @brief Returns a pointer to DeviceType_Optional, if it has been set, otherwise returns nullptr */
+	ERHAPI_DeviceType* GetDeviceTypeOrNull() { if (DeviceType_IsSet) return (&DeviceType_Optional); return nullptr; }
+	/** @brief Returns a pointer to DeviceType_Optional, if it has been set, otherwise returns nullptr */
+	const ERHAPI_DeviceType* GetDeviceTypeOrNull() const { if (DeviceType_IsSet) return (&DeviceType_Optional); return nullptr; }
+	/** @brief Sets the value of DeviceType_Optional and also sets DeviceType_IsSet to true */
+	void SetDeviceType(const ERHAPI_DeviceType& NewValue) { DeviceType_Optional = NewValue; DeviceType_IsSet = true;  }
+	/** @brief Sets the value of DeviceType_Optional and also sets DeviceType_IsSet to true using move semantics */
+	void SetDeviceType(ERHAPI_DeviceType&& NewValue) { DeviceType_Optional = NewValue; DeviceType_IsSet = true;  }
+	/** @brief Clears the value of DeviceType_Optional and sets DeviceType_IsSet to false */
+	void ClearDeviceType() { DeviceType_IsSet = false;  }
+	/** @brief Checks whether DeviceType_Optional has been set */
+	bool IsDeviceTypeSet() const { return DeviceType_IsSet; }
 };
 
 /** @} */

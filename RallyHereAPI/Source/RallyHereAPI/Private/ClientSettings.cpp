@@ -34,6 +34,11 @@ void FRHAPI_ClientSettings::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	}
 	Writer->WriteIdentifierPrefix(TEXT("input"));
 	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Input));
+	if (DeviceType_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("device_type"));
+		RallyHereAPI::WriteJsonValue(Writer, EnumToString(DeviceType_Optional));
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -59,6 +64,12 @@ bool FRHAPI_ClientSettings::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	}
 	const TSharedPtr<FJsonValue> JsonInputField = (*Object)->TryGetField(TEXT("input"));
 	ParseSuccess &= JsonInputField.IsValid() && (!JsonInputField->IsNull() &&  TryGetJsonValue(JsonInputField, Input));
+	const TSharedPtr<FJsonValue> JsonDeviceTypeField = (*Object)->TryGetField(TEXT("device_type"));
+	if (JsonDeviceTypeField.IsValid())
+	{
+		DeviceType_IsSet = TryGetJsonValue(JsonDeviceTypeField, DeviceType_Optional);
+		ParseSuccess &= DeviceType_IsSet;
+	}
 
 	return ParseSuccess;
 }
