@@ -67,6 +67,7 @@ public:
 	bool IsUIActive() const;
 	void ToggleUI();
 	void CloseUI();
+	void ResetWindows();
 	virtual void DoImGui();
 #ifdef WITH_IMGUI_NETIMGUI
 	void ConnectNetImGui(bool bStartup = false);

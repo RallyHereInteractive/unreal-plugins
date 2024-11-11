@@ -10,6 +10,7 @@
 #include "RH_Common.h"
 
 const FString URallyHereDebugToolSettings::strToggleDebugTool(TEXT("rh.ToggleDebugTool"));
+const FString URallyHereDebugToolSettings::strResetWindowsDebugTool(TEXT("rh.ResetDebugTool"));
 #ifdef WITH_IMGUI_NETIMGUI
 	const FString URallyHereDebugToolSettings::strConnectDebugTool(TEXT("rh.ConnectDebugTool"));
 #endif
