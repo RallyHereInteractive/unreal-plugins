@@ -404,6 +404,10 @@ void FRHDTW_Session::ImGuiDisplaySessionPlayer(URH_SessionView* RHSession, const
 		ImGuiDisplayCopyableValue(TEXT("Invited"), Player.GetInvitedOrNull());
 		ImGuiDisplayCopyableValue(TEXT("Joined"), Player.GetJoinedOrNull());
 
+		ImGui::Text("Client Settings:");
+		ImGui::SameLine();
+		ImGuiDisplayModelData(Player.GetClientSettings());
+
 		ImGuiDisplayCustomData(Player.GetCustomData());
 
 		FImGuiCustomDataStager* PlayerCustomDataStager = nullptr;
