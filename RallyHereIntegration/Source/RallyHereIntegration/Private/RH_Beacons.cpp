@@ -38,7 +38,19 @@ bool ARH_OnlineBeaconHost::InitHost()
 	return bSuccess;
 }
 
-#if RH_FROM_ENGINE_VERSION(5,2)
+#if RH_FROM_ENGINE_VERSION(5,5)
+bool ARH_OnlineBeaconHost::StartVerifyAuthentication(const FUniqueNetId& PlayerId, const FString& LoginOptions, const FString& AuthenticationToken, const FOnAuthenticationVerificationCompleteDelegate& OnComplete)
+{
+	FOnlineError Error;
+	bool bStartedAuth = CommonVerifyAuthentication(PlayerId, AuthenticationToken, Error);
+	if (bStartedAuth)
+	{
+		OnComplete.ExecuteIfBound(Error);
+	}
+
+	return bStartedAuth;
+}
+#elif RH_FROM_ENGINE_VERSION(5,2)
 bool ARH_OnlineBeaconHost::StartVerifyAuthentication(const FUniqueNetId& PlayerId, const FString& AuthenticationToken, const FOnAuthenticationVerificationCompleteDelegate& OnComplete)
 {
 	FOnlineError Error;

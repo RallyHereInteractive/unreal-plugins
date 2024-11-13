@@ -21,8 +21,12 @@ namespace RHAutomationTestUtils
 	{
 		check(Test != nullptr);
 		const auto TestFlags = Test->GetTestFlags();
-		// Accessing the game world is only valid for game-only 
+		// Accessing the game world is only valid for game-only
+#if RH_FROM_ENGINE_VERSION(5,5)
+		check(EnumHasAnyFlags(TestFlags, EAutomationTestFlags::ClientContext | EAutomationTestFlags::ServerContext));
+#else
 		check(((TestFlags & EAutomationTestFlags::ApplicationContextMask) & (EAutomationTestFlags::ClientContext | EAutomationTestFlags::ServerContext)) != 0);
+#endif
 		check(GEngine->GetWorldContexts().Num() == 1);
 		check(GEngine->GetWorldContexts()[0].WorldType == EWorldType::Game);
 

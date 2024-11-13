@@ -31,7 +31,18 @@ public:
 	 */
 	virtual bool InitHost();
 
-#if RH_FROM_ENGINE_VERSION(5,2)
+#if RH_FROM_ENGINE_VERSION(5,5)
+	/**
+	 * Start verifying an authentication token for a connection.
+	 * OnAuthenticationVerificationComplete must be called to complete authentication verification.
+	 *
+	 * @param PlayerId net id of player to authenticate.
+	 * @Param LoginOptions all options passed as part of the Login request.
+	 * @param AuthenticationToken token to use for verification.
+	 * @Param OnComplete delegate to call once the request for authentication has completed
+	 */
+	virtual bool StartVerifyAuthentication(const FUniqueNetId& PlayerId, const FString& LoginOptions, const FString& AuthenticationToken, const FOnAuthenticationVerificationCompleteDelegate& OnComplete);
+#elif RH_FROM_ENGINE_VERSION(5,2)
 	/**
 	 * Start verifying an authentication token for a connection.
 	 * OnAuthenticationVerificationComplete must be called to complete authentication verification.

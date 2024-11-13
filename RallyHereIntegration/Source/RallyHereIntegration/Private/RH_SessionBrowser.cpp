@@ -97,7 +97,11 @@ protected:
 	{
 		if (SearchParams.bCacheSessionDetails && RemainingSessionIds.Num() > 0)
 		{
+#if RH_FROM_ENGINE_VERSION(5,5)
+			FString SessionId = RemainingSessionIds.Pop(EAllowShrinking::No);
+#else
 			FString SessionId = RemainingSessionIds.Pop(false);
+#endif
 
 			UE_LOG(LogRHSession, VeryVerbose, TEXT("Querying next - %s"), *SessionId);
 			DoSessionLookup(SessionId);

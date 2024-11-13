@@ -13,6 +13,7 @@
 #include "Misc/CString.h"
 #include "HAL/IConsoleManager.h"
 #include "HAL/PlatformTime.h"
+#include "Common/RH_Version.h"
 
 namespace RHEventCacheStatic
 {
@@ -123,12 +124,20 @@ namespace RHEventCacheStatic
 			// Give some padding. ensure we add at least one char.
 			const int32 StrLen = (int32)(Len + FMath::Max(1.f, Len * (SizeMultiplier)));
 			// make space for the string
+#if RH_FROM_ENGINE_VERSION(5,5)
+			UTF8Stream.SetNumUninitialized(OldLen + StrLen, EAllowShrinking::No);
+#else
 			UTF8Stream.SetNumUninitialized(OldLen + StrLen, false);
+#endif
 			// convert it to UTF8
 			if (UTF8CHAR* NewEnd = FPlatformString::Convert((UTF8CHAR*)&UTF8Stream[OldLen], StrLen, Str, Len))
 			{
 				// truncate to that length.
+#if RH_FROM_ENGINE_VERSION(5,5)
+				UTF8Stream.SetNum(OldLen + (int32)(NewEnd - (UTF8CHAR*)&UTF8Stream[OldLen]), EAllowShrinking::No);
+#else
 				UTF8Stream.SetNum(OldLen + (int32)(NewEnd - (UTF8CHAR*)&UTF8Stream[OldLen]), false);
+#endif
 				bWroteFullString = true;
 			}
 			else
@@ -139,7 +148,11 @@ namespace RHEventCacheStatic
 				if (SizeMultiplier >= 2.0)
 				{
 					const int32 ActualCharsNeeded = FPlatformString::ConvertedLength<UTF8CHAR>(Str, Len);
+#if RH_FROM_ENGINE_VERSION(5,5)
+					UTF8Stream.SetNumUninitialized(OldLen + ActualCharsNeeded, EAllowShrinking::No);
+#else
 					UTF8Stream.SetNumUninitialized(OldLen + ActualCharsNeeded, false);
+#endif
 					// convert it to UTF8 using the known number of charts
 					FPlatformString::Convert((UTF8CHAR*)&UTF8Stream[OldLen], ActualCharsNeeded, Str, Len);
 					bWroteFullString = true;
@@ -383,7 +396,11 @@ void FRH_AnalyticsProviderEventCache::AddToCache(FString EventName, const TArray
 	RHEventCacheStatic::FJsonStringBuilder EscapedJsonBuffer;
 
 	// strip the payload tail off
+#if RH_FROM_ENGINE_VERSION(5,5)
+	CachedEventUTF8Stream.SetNum(CachedEventUTF8Stream.Num() - RHEventCacheStatic::PayloadTrailerLength, EAllowShrinking::No);
+#else
 	CachedEventUTF8Stream.SetNum(CachedEventUTF8Stream.Num() - RHEventCacheStatic::PayloadTrailerLength, false);
+#endif
 	if (CachedEventEntries.Num() > 0)
 	{
 		// If we already have an event in there, start with a comma.
@@ -614,7 +631,11 @@ TArray<uint8> FRH_AnalyticsProviderEventCache::FlushCache()
 	{
 		// pull out the first element without copying the array or shrinking the queue size
 		TArray<uint8> Payload = MoveTemp(FlushQueue[0]);
+#if RH_FROM_ENGINE_VERSION(5,5)
+		FlushQueue.RemoveAt(0, 1, EAllowShrinking::No);
+#else
 		FlushQueue.RemoveAt(0, 1, false);
+#endif
 		return Payload;
 	}
 

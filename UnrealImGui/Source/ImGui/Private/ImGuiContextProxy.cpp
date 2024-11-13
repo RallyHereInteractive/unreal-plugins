@@ -275,7 +275,13 @@ void FImGuiContextProxy::UpdateDrawData(ImDrawData* DrawData)
 {
 	if (DrawData && DrawData->CmdListsCount > 0)
 	{
+		//$$ BEGIN - Fix deprecation for shrinking
+#if FROM_ENGINE_VERSION(5,5)
+		DrawLists.SetNum(DrawData->CmdListsCount, EAllowShrinking::No);
+#else
 		DrawLists.SetNum(DrawData->CmdListsCount, false);
+#endif
+		//$$ END - Fix deprecation for shrinking
 
 		for (int Index = 0; Index < DrawData->CmdListsCount; Index++)
 		{
