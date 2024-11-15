@@ -815,6 +815,8 @@ Subsystem to manage sessions for the local player.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
+`public const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](models/RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & `[`JoinDetails`](#classURH__LocalPlayerSessionSubsystem_1ab51cd43e773e8da6fe045e438265d2b8) | 
+`public const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](models/RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` const FRH_OnSessionUpdatedDynamicDelegate & `[`Delegate`](#classURH__LocalPlayerSessionSubsystem_1a162d729ae29c6aaea092eb1c3ff8270c) | 
 `public FRH_OnSessionUpdatedMulticastDelegate `[`OnSessionUpdatedDelegate`](#classURH__LocalPlayerSessionSubsystem_1a87ec0a5447e17ebbbda133342770d960) | Multicast delegate triggered when a session managed by this subsystem is updated.
 `public FRH_OnSessionUpdatedMulticastDelegate `[`OnSessionAddedDelegate`](#classURH__LocalPlayerSessionSubsystem_1a34c015e300be4c0474addf8f6d6d947b) | Multicast delegate triggered when a session managed by this subsystem is added.
 `public FRH_OnSessionUpdatedMulticastDelegate `[`OnSessionRemovedDelegate`](#classURH__LocalPlayerSessionSubsystem_1af13b47604f229daf45aa56fdb25554cc) | Multicast delegate triggered when a session managed by this subsystem is removed.
@@ -847,6 +849,7 @@ Subsystem to manage sessions for the local player.
 `public inline virtual void `[`ClearPlatformSessionToJoinOnUserChange`](#classURH__LocalPlayerSessionSubsystem_1afa5db7d0b7302957dd89c4a7b9f78cb5)`()` | Clear a platform session to join upon the next user change.
 `public inline void `[`CreateOrJoinSessionByType`](#classURH__LocalPlayerSessionSubsystem_1ae987d7bbdbc819106e7e00a06a08d918)`(const `[`FRHAPI_CreateOrJoinRequest`](models/RHAPI_CreateOrJoinRequest.md#structFRHAPI__CreateOrJoinRequest)` & CreateParams,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Utility function to Create or Join a session by a given SessionType (most times will create a session, but Hub join rules may do a Join instead)
 `public inline void `[`JoinSessionById`](#classURH__LocalPlayerSessionSubsystem_1a81439a14711f1519f5a4c109574d0527)`(const FString & SessionId,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Utility function to Join a session by SessionId.
+`public inline void `[`JoinSessionByIdEx`](#classURH__LocalPlayerSessionSubsystem_1aaa07b3f9a72b7c7dc3d17a301df2a34a)`(const FString & SessionId,const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](models/RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & JoinDetails,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Utility function to Join a session by SessionId with additional options.
 `public virtual void `[`ImportAPISession`](#classURH__LocalPlayerSessionSubsystem_1a21c227f5c4a783adacd79c25714aa2e3)`(const `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` & Session)` | Imports a new or updated session from the API into this subsystem ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 `public virtual void `[`ImportAPITemplate`](#classURH__LocalPlayerSessionSubsystem_1ae7616f99c6aa669e529aad3cd0a0451f)`(const `[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template)` | Imports a new session template from the API into this subsystem ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 `public virtual void `[`ReconcileAPISessions`](#classURH__LocalPlayerSessionSubsystem_1aede0956db4c8e8626fa239c16cb3d61e)`(const TArray< FString > & SessionIds,const TOptional< FString > & ETag)` | Reconciles the list of session ids with this subsystem, removing any sessions that are no longer in the list, then updates the stored ETag for the local player's session list ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
@@ -896,6 +899,10 @@ Subsystem to manage sessions for the local player.
 `protected virtual void `[`HandlePollAllSessionsComplete`](#classURH__LocalPlayerSessionSubsystem_1a723518fadb2e8fb85f0a624debb53b91)`(bool bSuccess,const TArray< FString > & SessionIds)` | Handles the response of polling all sessions.
 
 ### Members
+
+#### `public const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](models/RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & `[`JoinDetails`](#classURH__LocalPlayerSessionSubsystem_1ab51cd43e773e8da6fe045e438265d2b8) <a id="classURH__LocalPlayerSessionSubsystem_1ab51cd43e773e8da6fe045e438265d2b8"></a>
+
+#### `public const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](models/RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` const FRH_OnSessionUpdatedDynamicDelegate & `[`Delegate`](#classURH__LocalPlayerSessionSubsystem_1a162d729ae29c6aaea092eb1c3ff8270c) <a id="classURH__LocalPlayerSessionSubsystem_1a162d729ae29c6aaea092eb1c3ff8270c"></a>
 
 #### `public FRH_OnSessionUpdatedMulticastDelegate `[`OnSessionUpdatedDelegate`](#classURH__LocalPlayerSessionSubsystem_1a87ec0a5447e17ebbbda133342770d960) <a id="classURH__LocalPlayerSessionSubsystem_1a87ec0a5447e17ebbbda133342770d960"></a>
 
@@ -1102,6 +1109,17 @@ Utility function to Join a session by SessionId.
 
 #### Parameters
 * `SessionId` The session id to join 
+
+* `Delegate` delegate to trigger when complete
+
+#### `public inline void `[`JoinSessionByIdEx`](#classURH__LocalPlayerSessionSubsystem_1aaa07b3f9a72b7c7dc3d17a301df2a34a)`(const FString & SessionId,const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](models/RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & JoinDetails,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__LocalPlayerSessionSubsystem_1aaa07b3f9a72b7c7dc3d17a301df2a34a"></a>
+
+Utility function to Join a session by SessionId with additional options.
+
+#### Parameters
+* `SessionId` The session id to join 
+
+* `JoinDetails` Details to join the session with 
 
 * `Delegate` delegate to trigger when complete
 

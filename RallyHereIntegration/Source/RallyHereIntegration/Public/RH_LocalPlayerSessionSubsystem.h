@@ -247,6 +247,28 @@ public:
 	{
 		JoinSessionById(SessionId, Delegate);
 	}
+	/**
+	* @brief Utility function to Join a session by SessionId with additional options
+	* @param [in] SessionId The session id to join
+	* @param [in] JoinDetails Details to join the session with
+	* @param [in] Delegate delegate to trigger when complete
+	*/
+	void JoinSessionByIdEx(const FString& SessionId, const FRHAPI_SelfSessionPlayerUpdateRequest& JoinDetails, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock())
+	{
+		URH_OnlineSession::JoinByIdEx(SessionId, JoinDetails, this, Delegate);
+	}
+	/**
+	* @private
+	* @brief Blueprint compatible version of JoinSessionByIdEx
+	* @param [in] SessionId The session id to join
+	* @param [in] JoinDetails Details to join the session with
+	* @param [in] Delegate delegate to trigger when complete
+	*/
+	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Join Session By Id (Extended)", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_JoinSessionByIdEx(const FString& SessionId, const FRHAPI_SelfSessionPlayerUpdateRequest& JoinDetails, const FRH_OnSessionUpdatedDynamicDelegate& Delegate)
+	{
+		JoinSessionByIdEx(SessionId, JoinDetails, Delegate);
+	}
 
 	/**
 	* @brief Imports a new or updated session from the API into this subsystem (IRH_SessionOwnerInterface requirement)
