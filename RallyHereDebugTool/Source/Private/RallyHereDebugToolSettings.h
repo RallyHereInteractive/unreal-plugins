@@ -151,6 +151,7 @@ public:
 	int32 NetImguiDefaultListenPort;
 
 	static const FString strToggleDebugTool;
+	static const FString strResetWindowsDebugTool;
 
 #ifdef WITH_IMGUI_NETIMGUI
 	static const FString strConnectDebugTool;

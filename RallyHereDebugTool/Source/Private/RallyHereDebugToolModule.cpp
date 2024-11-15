@@ -26,6 +26,7 @@ class FRallyHereDebugToolModule : public IRallyHereDebugToolModule
 	void RegisterConsoleCommands();
 
 	void ToggleDebugTool(UWorld* InWorld);
+	void ResetWindowsDebugTool(UWorld* InWorld);
 #ifdef WITH_IMGUI_NETIMGUI
 	void ConnectDebugTool(UWorld* InWorld);
 #endif
@@ -35,6 +36,7 @@ class FRallyHereDebugToolModule : public IRallyHereDebugToolModule
 	virtual FRHDTCleanupTool& GetCleanupToolDelegate() override { return OnCleanupTool; }
 
 	TUniquePtr<FAutoConsoleCommandWithWorld> ToggleDebugToolCommand;
+	TUniquePtr<FAutoConsoleCommandWithWorld> ResetWindowsDebugToolCommand;
 #ifdef WITH_IMGUI_NETIMGUI
 	TUniquePtr<FAutoConsoleCommandWithWorld> ConnectDebugToolCommand;
 #endif
@@ -59,6 +61,7 @@ void FRallyHereDebugToolModule::ShutdownModule()
 #endif
 
 	ToggleDebugToolCommand.Reset();
+	ResetWindowsDebugToolCommand.Reset();
 	ShortcutHandler.Reset();
 }
 
@@ -69,6 +72,12 @@ void FRallyHereDebugToolModule::RegisterConsoleCommands()
 		TEXT("Toggle the Rally Here Debug UI On/Off"),
 		FConsoleCommandWithWorldDelegate::CreateRaw(this, &FRallyHereDebugToolModule::ToggleDebugTool)
 		);
+
+	ResetWindowsDebugToolCommand = MakeUnique<FAutoConsoleCommandWithWorld>(
+		*URallyHereDebugToolSettings::strResetWindowsDebugTool,
+		TEXT("Reset the windows in the Rally Here Debug UI"),
+		FConsoleCommandWithWorldDelegate::CreateRaw(this, &FRallyHereDebugToolModule::ResetWindowsDebugTool)
+		); 
 
 #ifdef WITH_IMGUI_NETIMGUI
 	ConnectDebugToolCommand = MakeUnique<FAutoConsoleCommandWithWorld>(
@@ -86,6 +95,14 @@ void FRallyHereDebugToolModule::ToggleDebugTool(UWorld* InWorld)
 	if (URallyHereDebugTool* pDebugToll = GetDebugTool(InWorld))
 	{
 		pDebugToll->ToggleUI();
+	}
+}
+
+void FRallyHereDebugToolModule::ResetWindowsDebugTool(UWorld* InWorld)
+{
+	if (URallyHereDebugTool* pDebugToll = GetDebugTool(InWorld))
+	{
+		pDebugToll->ResetWindows();
 	}
 }
 

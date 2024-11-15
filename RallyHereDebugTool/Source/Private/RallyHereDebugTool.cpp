@@ -525,6 +525,20 @@ void URallyHereDebugTool::ToggleUI()
 	}
 }
 
+void URallyHereDebugTool::CloseUI()
+{
+	if (bActive)
+	{
+		ToggleUI();
+	}
+}
+
+void URallyHereDebugTool::ResetWindows()
+{
+	FImGuiModule::Get().GetProperties().SetLayoutToLoad(URallyHereDebugToolSettings::Get()->DefaultWindowPositions, false);
+}
+
+
 #ifdef WITH_IMGUI_NETIMGUI
 void URallyHereDebugTool::ConnectNetImGui(bool bStartup)
 {
@@ -698,13 +712,13 @@ void URallyHereDebugTool::DoImGui()
 
 		if (ImGui::Button(TCHAR_TO_UTF8(*ButtonLabel)) || bIsToggleKeybindActive)
 		{
-			ToggleUI();
+			CloseUI();
 		}
 
 		ImGui::SameLine();
 		if (ImGui::Button("Reset Windows"))
 		{
-			FImGuiModule::Get().GetProperties().SetLayoutToLoad(URallyHereDebugToolSettings::Get()->DefaultWindowPositions, false);
+			ResetWindows();
 		}
 
 #ifdef WITH_IMGUI_NETIMGUI
