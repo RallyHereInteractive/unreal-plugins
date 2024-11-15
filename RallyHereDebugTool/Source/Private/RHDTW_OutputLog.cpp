@@ -169,7 +169,7 @@ namespace RH_OutputLog
 		}
 		else
 		{
-			SelectedLogCategories.RemoveAt(FoundIndex, /*Count=*/1, /*bAllowShrinking=*/false);
+			SelectedLogCategories.RemoveAt(FoundIndex, /*Count=*/1);
 		}
 	}
 

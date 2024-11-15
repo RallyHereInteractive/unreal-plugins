@@ -54,7 +54,11 @@ bool FRH_HttpResponseSerializable::ExportToFile(const FString& FilePath, bool bC
 		if (FCompression::CompressMemoryIfWorthDecompressing(CompressionFormat, MinBytesSaved, MinPercentSaved,
 			CompressedContent.GetData(), InOutSize, Content.GetData(), Content.Num()))
 		{
+#if RH_FROM_ENGINE_VERSION(5,5)
+			CompressedContent.SetNum(InOutSize, EAllowShrinking::No);
+#else
 			CompressedContent.SetNum(InOutSize, false);
+#endif
 			// mark as compressed
 			FileContents[RH_SerializableHttpFormat::LineIndex::CompressionFormat] = CompressionFormat.ToString();
 			FileContents[RH_SerializableHttpFormat::LineIndex::Content] = FBase64::Encode(CompressedContent.GetData(), CompressedContent.Num());
