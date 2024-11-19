@@ -1679,25 +1679,13 @@ bool URH_GameInstanceSessionSubsystem::StartJoinInstanceFlow(const FRH_GameInsta
 			// set state now before we start travel (which may fail in line)
 			SetActiveSession(DesiredSession);
 
-			// now that the active session has been set, grab a reference to it for correctness
+			// store the active session before travelling, in case it gets changed during travel.  We want to make sure we execute the delegate with the correct session reference
 			auto ActiveSession = GetActiveSession();
 
-			// set status to pending before starting travel (it will run asyncnrhonously on the http thread while travelling)
-			FRHAPI_InstanceInfoUpdate InstanceInfo = ActiveSession->GetInstanceUpdateInfoDefaults();
-			InstanceInfo.SetJoinStatus(ERHAPI_InstanceJoinableStatus::Pending);
-			InstanceInfo.SetVersion(URH_JoinedSession::GetClientVersionForSession());
-			ActiveSession->UpdateInstanceInfo(InstanceInfo);
-
-			bool bTravelStarted = pWorldContext->World()->ServerTravel(hostURL.ToString(false), true, false);
-
-			if (bTravelStarted)
-			{
-				Delegate.ExecuteIfBound(ActiveSession, true, TEXT("Travel Started"));
-			}
-			else
-			{
-				Delegate.ExecuteIfBound(ActiveSession, false, TEXT("Failed to start travel"));
-			}
+			const bool bTravelStarted = HostTravel(pWorldContext->World(), hostURL);
+			
+			Delegate.ExecuteIfBound(ActiveSession, bTravelStarted, TEXT("Travel Started"));
+			
 			return true;
 		}
 		else
@@ -1717,16 +1705,12 @@ bool URH_GameInstanceSessionSubsystem::StartJoinInstanceFlow(const FRH_GameInsta
 		// set state now before we start travel (which may fail in line)
 		SetActiveSession(DesiredSession);
 
-		FString JoinURLString;
-		{
-			// since we allow hostnames, which parse incorrectly in the engine when using the default port, temporarily change the default port so taht we can generate the URL properly but contain the default port
-			TGuardValue<int32> PortGuard(FURL::UrlConfig.DefaultPort, -1); // DefaultPort is a signed in, this should never match, causing it to always be emitted into the string
-			JoinURLString = JoinURL.ToString(true);
-		}
+		// store the active session before travelling, in case it gets changed during travel.  We want to make sure we execute the delegate with the correct session reference
+		auto ActiveSession = GetActiveSession();
 
-		GEngine->SetClientTravel(pWorldContext->World(), *JoinURLString, TRAVEL_Absolute);
+		bool bTravelStarted = ClientTravel(pWorldContext->World(), JoinURL);
 
-		Delegate.ExecuteIfBound(GetActiveSession(), true, TEXT("Travel started"));
+		Delegate.ExecuteIfBound(GetActiveSession(), bTravelStarted, TEXT("Travel started"));
 		return true;
 	}
 	else
@@ -1737,6 +1721,34 @@ bool URH_GameInstanceSessionSubsystem::StartJoinInstanceFlow(const FRH_GameInsta
 	Delegate.ExecuteIfBound(DesiredSession, false, TEXT("Could not generate URL to join"));
 
 	return false;
+}
+
+bool URH_GameInstanceSessionSubsystem::HostTravel(UWorld* pWorld, const FURL& HostURL)
+{
+	auto ActiveSession = GetActiveSession();
+	check(ActiveSession != nullptr);
+	
+	// set status to pending before starting travel (it will run asyncnrhonously on the http thread while travelling)
+	FRHAPI_InstanceInfoUpdate InstanceInfo = ActiveSession->GetInstanceUpdateInfoDefaults();
+	InstanceInfo.SetJoinStatus(ERHAPI_InstanceJoinableStatus::Pending);
+	InstanceInfo.SetVersion(URH_JoinedSession::GetClientVersionForSession());
+	ActiveSession->UpdateInstanceInfo(InstanceInfo);
+
+	return pWorld->ServerTravel(HostURL.ToString(false), true, false);
+}
+
+bool URH_GameInstanceSessionSubsystem::ClientTravel(UWorld* pWorld, const FURL& JoinURL)
+{
+	FString JoinURLString;
+	{
+		// since we allow hostnames, which parse incorrectly in the engine when using the default port, temporarily change the default port so taht we can generate the URL properly but contain the default port
+		TGuardValue<int32> PortGuard(FURL::UrlConfig.DefaultPort, -1); // DefaultPort is a signed in, this should never match, causing it to always be emitted into the string
+		JoinURLString = JoinURL.ToString(true);
+	}
+
+	GEngine->SetClientTravel(pWorld, *JoinURLString, TRAVEL_Absolute);
+
+	return true;
 }
 
 void URH_GameInstanceSessionSubsystem::StartLeaveInstanceFlow(bool bAlreadyDisconnected, bool bCheckDesired, const FRH_GameInstanceSessionSyncBlock& Delegate)
