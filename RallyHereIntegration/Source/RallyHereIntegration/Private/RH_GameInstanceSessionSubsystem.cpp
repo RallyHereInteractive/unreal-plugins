@@ -19,6 +19,7 @@
 
 // used to validate state of local players before joining an instance
 #include "Engine/LocalPlayer.h"
+#include "GameFramework/GameMode.h"
 #include "RH_LocalPlayerSessionSubsystem.h"
 #include "RH_GameInstanceBootstrappers.h"
 
@@ -1728,13 +1729,49 @@ bool URH_GameInstanceSessionSubsystem::HostTravel(UWorld* pWorld, const FURL& Ho
 	auto ActiveSession = GetActiveSession();
 	check(ActiveSession != nullptr);
 	
+	const auto LoadingMethod = GetDefault<URH_IntegrationSettings>()->HostMapLoadMethod;
+	if (LoadingMethod == ERH_HostMapLoadMethod::ServerTravelOnlyIfNeeded)
+	{
+		// determine if we can use a restart rather than a travel
+		// TODO - determine if we need to travel to open an listen connection
+		bool bURLMatch = true;
+
+		const auto ExistingURL = pWorld->URL;
+
+		bURLMatch &= ExistingURL.Map == HostURL.Map;
+		bURLMatch &= ExistingURL.Port == HostURL.Port;
+
+		// gamemode should either match in both cases, or not be specified in both cases.  If it is specified in one and not the other, we should not match
+		bURLMatch &= ExistingURL.GetOption(TEXT("game="), nullptr) == HostURL.GetOption(TEXT("game="), nullptr);
+
+		if (bURLMatch)
+		{
+			// since map is already in the correct stage, mark as joinable to allow clients to join
+			FRHAPI_InstanceInfoUpdate InstanceInfo = ActiveSession->GetInstanceUpdateInfoDefaults();
+			InstanceInfo.SetJoinStatus(ERHAPI_InstanceJoinableStatus::Joinable);
+			InstanceInfo.SetVersion(URH_JoinedSession::GetClientVersionForSession());
+			ActiveSession->UpdateInstanceInfo(InstanceInfo);
+
+			return true;
+		}
+	}
+
 	// set status to pending before starting travel (it will run asyncnrhonously on the http thread while travelling)
 	FRHAPI_InstanceInfoUpdate InstanceInfo = ActiveSession->GetInstanceUpdateInfoDefaults();
 	InstanceInfo.SetJoinStatus(ERHAPI_InstanceJoinableStatus::Pending);
 	InstanceInfo.SetVersion(URH_JoinedSession::GetClientVersionForSession());
 	ActiveSession->UpdateInstanceInfo(InstanceInfo);
-
-	return pWorld->ServerTravel(HostURL.ToString(false), true, false);
+	
+	if (LoadingMethod == ERH_HostMapLoadMethod::SeamlessTravelAlways)
+	{
+		pWorld->SeamlessTravel(HostURL.ToString(false), true);
+		
+		return true;
+	}
+	else // 	ERH_HostMapLoadMethod::ServerTravelAlways, Default
+	{	
+		return pWorld->ServerTravel(HostURL.ToString(false), true, false);
+	}
 }
 
 bool URH_GameInstanceSessionSubsystem::ClientTravel(UWorld* pWorld, const FURL& JoinURL)
