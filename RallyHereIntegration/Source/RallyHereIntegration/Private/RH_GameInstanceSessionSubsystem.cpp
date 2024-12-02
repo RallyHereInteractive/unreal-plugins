@@ -27,6 +27,7 @@
 #include <SocketSubsystem.h>
 #include <IPAddress.h>
 
+#include "GameFramework/GameSession.h"
 #include "GameFramework/GameStateBase.h"
 #include "Interfaces/IPv4/IPv4Address.h"
 
@@ -1728,49 +1729,108 @@ bool URH_GameInstanceSessionSubsystem::HostTravel(UWorld* pWorld, const FURL& Ho
 {
 	auto ActiveSession = GetActiveSession();
 	check(ActiveSession != nullptr);
-	
-	const auto LoadingMethod = GetDefault<URH_IntegrationSettings>()->HostMapLoadMethod;
-	if (LoadingMethod == ERH_HostMapLoadMethod::ServerTravelOnlyIfNeeded)
+
+	bool bIsServerWithBootstrapping = IsRunningDedicatedServer() && URH_GameInstanceServerBootstrapper::IsBootstrapModeEnabled();
+
+	// determine if we can use a restart rather than a travel
+	const auto ExistingURL = pWorld->URL;
+		
+	bool bGameStateMatch = true;
 	{
-		// determine if we can use a restart rather than a travel
-		// TODO - determine if we need to travel to open an listen connection
-		bool bURLMatch = true;
-
-		const auto ExistingURL = pWorld->URL;
-
-		bURLMatch &= ExistingURL.Map == HostURL.Map;
-		bURLMatch &= ExistingURL.Port == HostURL.Port;
-
+		// map should match in both cases
+		bGameStateMatch &= ExistingURL.Map == HostURL.Map;
+			
 		// gamemode should either match in both cases, or not be specified in both cases.  If it is specified in one and not the other, we should not match
-		bURLMatch &= ExistingURL.GetOption(TEXT("game="), nullptr) == HostURL.GetOption(TEXT("game="), nullptr);
+		bGameStateMatch &= ExistingURL.GetOption(TEXT("game="), nullptr) == HostURL.GetOption(TEXT("game="), nullptr);
+	}
 
-		if (bURLMatch)
+	bool bNetworkStateMatch = true;
+	{
+		// assume that instances for online sessions require a netdriver and are networked, so if existing world is not networked that is a mismatch
+		bNetworkStateMatch &= ActiveSession->IsOnline() && pWorld->GetNetDriver() != nullptr && pWorld->GetNetDriver()->IsServer();
+		
+		// we must be hosting on the same port as the existing world
+		bNetworkStateMatch &= ExistingURL.Port == HostURL.Port;
+	}
+
+	// determine if players can be transferred to the new world, and kick them if not
+	{
+		// use the session as a proxy - if the session id matches old vs new world, transfer the players (assume host is loading a new instance for an existing session)
+		bool bSessionIdMatch = ExistingURL.GetOption(RH_SESSION_PARAMETER_NAME, nullptr) == HostURL.GetOption(RH_SESSION_PARAMETER_NAME, nullptr);
+		bool bCanTransferPlayers = bSessionIdMatch;
+		
+		// if we cannot transfer players, kick any players currently present that are not the host
+		if (!bCanTransferPlayers && pWorld->GetNumPlayerControllers() > 0)
 		{
-			// since map is already in the correct stage, mark as joinable to allow clients to join
-			FRHAPI_InstanceInfoUpdate InstanceInfo = ActiveSession->GetInstanceUpdateInfoDefaults();
-			InstanceInfo.SetJoinStatus(ERHAPI_InstanceJoinableStatus::Joinable);
-			InstanceInfo.SetVersion(URH_JoinedSession::GetClientVersionForSession());
-			ActiveSession->UpdateInstanceInfo(InstanceInfo);
+			// create a copy of the player controllers, as we will be kicking them
+			TArray<APlayerController*> PlayerControllerCopy;
+			{
+				for (auto It = pWorld->GetPlayerControllerIterator(); It; ++It)
+				{
+					const auto PC = *It;
+					if (PC.IsValid())
+					{
+						PlayerControllerCopy.Add(PC.Get());
+					}
+				}
+			}
 
-			return true;
+			auto GameSession = pWorld->GetAuthGameMode() ? pWorld->GetAuthGameMode()->GameSession : nullptr;
+			const FText KickMessage = FText::FromString(TEXT("Host is loading a new instance"));
+			
+			for (auto PC : PlayerControllerCopy)
+			{
+				if (!PC->IsLocalPlayerController() && PC->GetNetConnection() != nullptr)
+				{
+					// use game session to kick the player if possible, otherwise destroy the controller
+					
+					if (GameSession)
+					{
+						GameSession->KickPlayer(PC, KickMessage);
+					}
+					else
+					{
+						// otherwise just destroy the controller
+						PC->ClientWasKicked(KickMessage);
+						PC->Destroy();
+					}
+				}
+			}
 		}
 	}
-
-	// set status to pending before starting travel (it will run asyncnrhonously on the http thread while travelling)
-	FRHAPI_InstanceInfoUpdate InstanceInfo = ActiveSession->GetInstanceUpdateInfoDefaults();
-	InstanceInfo.SetJoinStatus(ERHAPI_InstanceJoinableStatus::Pending);
-	InstanceInfo.SetVersion(URH_JoinedSession::GetClientVersionForSession());
-	ActiveSession->UpdateInstanceInfo(InstanceInfo);
 	
-	if (LoadingMethod == ERH_HostMapLoadMethod::SeamlessTravelAlways)
+	const auto LoadingMethod = GetDefault<URH_IntegrationSettings>()->HostMapLoadMethod;
+	if (LoadingMethod == ERH_HostMapLoadMethod::ServerTravelOnlyIfNeeded
+		&& bGameStateMatch && bNetworkStateMatch
+		)
 	{
-		pWorld->SeamlessTravel(HostURL.ToString(false), true);
-		
+		// since map is already in the correct stage, mark as joinable to allow clients to join
+		FRHAPI_InstanceInfoUpdate InstanceInfo = ActiveSession->GetInstanceUpdateInfoDefaults();
+		InstanceInfo.SetJoinStatus(ERHAPI_InstanceJoinableStatus::Joinable);
+		InstanceInfo.SetVersion(URH_JoinedSession::GetClientVersionForSession());
+		ActiveSession->UpdateInstanceInfo(InstanceInfo);
+
 		return true;
 	}
-	else // 	ERH_HostMapLoadMethod::ServerTravelAlways, Default
-	{	
-		return pWorld->ServerTravel(HostURL.ToString(false), true, false);
+	else
+	{
+		// set status to pending before starting travel (it will run asyncnrhonously on the http thread while travelling)
+		FRHAPI_InstanceInfoUpdate InstanceInfo = ActiveSession->GetInstanceUpdateInfoDefaults();
+		InstanceInfo.SetJoinStatus(ERHAPI_InstanceJoinableStatus::Pending);
+		InstanceInfo.SetVersion(URH_JoinedSession::GetClientVersionForSession());
+		ActiveSession->UpdateInstanceInfo(InstanceInfo);
+
+		// if doing a seamless travel, the network must match (as seamless travel will not change network state)
+		if (LoadingMethod == ERH_HostMapLoadMethod::SeamlessTravelAlways && bNetworkStateMatch)
+		{
+			pWorld->SeamlessTravel(HostURL.ToString(false), true);
+		
+			return true;
+		}
+		else // 	ERH_HostMapLoadMethod::ServerTravelAlways, Default
+		{	
+			return pWorld->ServerTravel(HostURL.ToString(false), true, false);
+		}
 	}
 }
 
