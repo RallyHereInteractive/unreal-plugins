@@ -26,10 +26,6 @@ class URH_GameInstanceServerBootstrapper;
 class URH_GameInstanceClientBootstrapper;
 class ARH_OnlineBeaconHost;
 
-#define RH_SESSION_PARAMETER_NAME (TEXT("RHSessionId="))
-#define RH_INSTANCE_PARAMETER_NAME (TEXT("RHInstanceId="))
-
-
 UDELEGATE()
 DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_GameInstanceSessionSyncDynamicDelegate, URH_JoinedSession*, Session, bool, bSuccess, const FString&, Error);
 DECLARE_DELEGATE_ThreeParams(FRH_GameInstanceSessionSyncDelegate, URH_JoinedSession*, bool, const FString&);

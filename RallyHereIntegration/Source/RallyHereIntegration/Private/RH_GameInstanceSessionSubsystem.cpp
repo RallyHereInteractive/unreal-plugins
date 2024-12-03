@@ -958,21 +958,7 @@ void URH_GameInstanceSessionSubsystem::GameModePostLoginEvent(class AGameModeBas
 		}
 	}
 
-	TOptional<FGuid> PlayerId;
-	if (NewPlayer != nullptr)
-	{
-		auto* pRH_Conn = Cast<IRH_IpConnectionInterface>(NewPlayer->Player);
-		auto* pRH_LocalPlayer = Cast<IRH_LocalPlayerInterface>(NewPlayer->Player);
-
-		if (pRH_Conn != nullptr)
-		{
-			PlayerId = pRH_Conn->GetRHPlayerUuid();
-		}
-		else if (pRH_LocalPlayer != nullptr)
-		{
-			PlayerId = pRH_LocalPlayer->GetRHPlayerUuid();
-		}
-	}
+	TOptional<FGuid> PlayerId = RH_GetPlayerUuidFromPlayerController(NewPlayer);
 	if (PlayerId.IsSet() && !PlayerId->IsValid())
 	{
 		PlayerId.Reset();
@@ -1734,22 +1720,38 @@ bool URH_GameInstanceSessionSubsystem::HostTravel(UWorld* pWorld, const FURL& Ho
 
 	// determine if we can use a restart rather than a travel
 	const auto ExistingURL = pWorld->URL;
-		
+	
 	bool bGameStateMatch = true;
 	{
 		// map should match in both cases
-		bGameStateMatch &= ExistingURL.Map == HostURL.Map;
-			
-		// gamemode should either match in both cases, or not be specified in both cases.  If it is specified in one and not the other, we should not match
-		bGameStateMatch &= ExistingURL.GetOption(TEXT("game="), nullptr) == HostURL.GetOption(TEXT("game="), nullptr);
+		UE_CLOG(ExistingURL.Map != HostURL.Map, LogRHSession, Verbose, TEXT("HostTravel: Existing map %s does not match host map %s"), *ExistingURL.Map, *HostURL.Map);
+		bGameStateMatch &= ExistingURL.Map == HostURL.Map;		
+
+		const auto& HostMapURLOptionsWhitelist = GetDefault<URH_IntegrationSettings>()->HostMapURLOptionsWhitelist;
+
+		for (const auto& WhitelistOption : HostMapURLOptionsWhitelist)
+		{
+			const auto& ExistingOption = ExistingURL.GetOption(*WhitelistOption, nullptr);
+			const auto& HostOption = HostURL.GetOption(*WhitelistOption, nullptr);
+			const bool bMatch = ExistingOption == HostOption;
+			UE_CLOG(!bMatch, LogRHSession, Verbose, TEXT("HostTravel: Existing option %s value %s does not match host URL option %s"), *WhitelistOption, ExistingOption ? ExistingOption : TEXT("null"), HostOption ? HostOption : TEXT("null"));
+			UE_CLOG(bMatch, LogRHSession, VeryVerbose, TEXT("HostTravel: Existing option %s value %s matches host URL option %s"), *WhitelistOption, ExistingOption ? ExistingOption : TEXT("null"), HostOption ? HostOption : TEXT("null"));
+			bGameStateMatch &= bMatch;
+		}
 	}
 
 	bool bNetworkStateMatch = true;
 	{
 		// assume that instances for online sessions require a netdriver and are networked, so if existing world is not networked that is a mismatch
-		bNetworkStateMatch &= ActiveSession->IsOnline() && pWorld->GetNetDriver() != nullptr && pWorld->GetNetDriver()->IsServer();
+		const bool bExistingNetworked = pWorld->NetDriver != nullptr && pWorld->NetDriver->IsServer();
+		const bool bOnlineMatch = ActiveSession->IsOnline() == bExistingNetworked;
+		const bool bServerNetworkMatch = bExistingNetworked == bOnlineMatch;
+		UE_CLOG(!bServerNetworkMatch, LogRHSession, Verbose, TEXT("HostTravel: Existing world network is %s, but session is %s"), bExistingNetworked ? TEXT("online") : TEXT("offline"), ActiveSession->IsOnline() ? TEXT("online") : TEXT("offline"));
+		bNetworkStateMatch &= bServerNetworkMatch;
+		
 		
 		// we must be hosting on the same port as the existing world
+		UE_CLOG(ExistingURL.Port != HostURL.Port, LogRHSession, Verbose, TEXT("HostTravel: Existing world port is %d, but session port is %d"), ExistingURL.Port, HostURL.Port);
 		bNetworkStateMatch &= ExistingURL.Port == HostURL.Port;
 	}
 
@@ -1762,6 +1764,8 @@ bool URH_GameInstanceSessionSubsystem::HostTravel(UWorld* pWorld, const FURL& Ho
 		// if we cannot transfer players, kick any players currently present that are not the host
 		if (!bCanTransferPlayers && pWorld->GetNumPlayerControllers() > 0)
 		{
+			UE_LOG(LogRHSession, Log, TEXT("HostTravel: Kicking players from world %s"), *pWorld->GetName());
+			
 			// create a copy of the player controllers, as we will be kicking them
 			TArray<APlayerController*> PlayerControllerCopy;
 			{
@@ -1783,6 +1787,8 @@ bool URH_GameInstanceSessionSubsystem::HostTravel(UWorld* pWorld, const FURL& Ho
 				if (!PC->IsLocalPlayerController() && PC->GetNetConnection() != nullptr)
 				{
 					// use game session to kick the player if possible, otherwise destroy the controller
+					TOptional<FGuid> PlayerUuid = RH_GetPlayerUuidFromPlayerController(PC);
+					UE_LOG(LogRHSession, VeryVerbose, TEXT("HostTravel: Kicking player %s (%s)"), *PC->GetName(), PlayerUuid->IsValid() ? *PlayerUuid->ToString(EGuidFormats::DigitsWithHyphens) : TEXT("unknown"));
 					
 					if (GameSession)
 					{
@@ -1800,10 +1806,13 @@ bool URH_GameInstanceSessionSubsystem::HostTravel(UWorld* pWorld, const FURL& Ho
 	}
 	
 	const auto LoadingMethod = GetDefault<URH_IntegrationSettings>()->HostMapLoadMethod;
-	if (LoadingMethod == ERH_HostMapLoadMethod::ServerTravelOnlyIfNeeded
+	const bool bLoadingMethodCanSkipTravel = LoadingMethod == ERH_HostMapLoadMethod::ServerTravelOnlyIfNeeded;
+	if (bLoadingMethodCanSkipTravel
 		&& bGameStateMatch && bNetworkStateMatch
 		)
 	{
+		UE_LOG(LogRHSession, Log, TEXT("HostTravel: Existing world %s matches state, marking as joinable"), *pWorld->GetName());
+		
 		// since map is already in the correct stage, mark as joinable to allow clients to join
 		FRHAPI_InstanceInfoUpdate InstanceInfo = ActiveSession->GetInstanceUpdateInfoDefaults();
 		InstanceInfo.SetJoinStatus(ERHAPI_InstanceJoinableStatus::Joinable);
@@ -1814,6 +1823,8 @@ bool URH_GameInstanceSessionSubsystem::HostTravel(UWorld* pWorld, const FURL& Ho
 	}
 	else
 	{
+		UE_CLOG(bLoadingMethodCanSkipTravel, LogRHSession, Log, TEXT("HostTravel: Existing world %s does not match state, starting travel"), *pWorld->GetName());
+		
 		// set status to pending before starting travel (it will run asyncnrhonously on the http thread while travelling)
 		FRHAPI_InstanceInfoUpdate InstanceInfo = ActiveSession->GetInstanceUpdateInfoDefaults();
 		InstanceInfo.SetJoinStatus(ERHAPI_InstanceJoinableStatus::Pending);
@@ -1823,12 +1834,14 @@ bool URH_GameInstanceSessionSubsystem::HostTravel(UWorld* pWorld, const FURL& Ho
 		// if doing a seamless travel, the network must match (as seamless travel will not change network state)
 		if (LoadingMethod == ERH_HostMapLoadMethod::SeamlessTravelAlways && bNetworkStateMatch)
 		{
+			UE_LOG(LogRHSession, Log, TEXT("HostTravel: Starting seamless travel to %s"), *HostURL.ToString(false));
 			pWorld->SeamlessTravel(HostURL.ToString(false), true);
 		
 			return true;
 		}
 		else // 	ERH_HostMapLoadMethod::ServerTravelAlways, Default
-		{	
+		{
+			UE_LOG(LogRHSession, Log, TEXT("HostTravel: Starting server travel to %s"), *HostURL.ToString(false));
 			return pWorld->ServerTravel(HostURL.ToString(false), true, false);
 		}
 	}
