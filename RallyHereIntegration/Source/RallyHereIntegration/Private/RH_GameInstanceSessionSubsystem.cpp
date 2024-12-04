@@ -1852,7 +1852,7 @@ bool URH_GameInstanceSessionSubsystem::ClientTravel(UWorld* pWorld, const FURL& 
 	FString JoinURLString;
 	{
 		// since we allow hostnames, which parse incorrectly in the engine when using the default port, temporarily change the default port so taht we can generate the URL properly but contain the default port
-		TGuardValue<int32> PortGuard(FURL::UrlConfig.DefaultPort, -1); // DefaultPort is a signed in, this should never match, causing it to always be emitted into the string
+		TGuardValue<int32> PortGuard(FURL::UrlConfig.DefaultPort, -1); // DefaultPort is a signed int, this should never match, causing it to always be emitted into the string
 		JoinURLString = JoinURL.ToString(true);
 	}
 
