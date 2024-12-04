@@ -6,7 +6,18 @@ title: IntegrationSettings
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
+`enum `[`ERH_HostMapLoadMethod`](#group__IntegrationSettings_1gafe16cb637681d7fe47ad1a8eaa8c1e06)            | 
 `struct `[`FRH_EnvironmentConfiguration`](#structFRH__EnvironmentConfiguration) | Settings for Environment Configuration. If set, these override the defaults when the EnvironmentId matches the specified environment id.
+
+## Members
+
+#### `enum `[`ERH_HostMapLoadMethod`](#group__IntegrationSettings_1gafe16cb637681d7fe47ad1a8eaa8c1e06) <a id="group__IntegrationSettings_1gafe16cb637681d7fe47ad1a8eaa8c1e06"></a>
+
+ Values                         | Descriptions                                
+--------------------------------|---------------------------------------------
+ServerTravelAlways            | 
+SeamlessTravelAlways            | 
+ServerTravelOnlyIfNeeded            | 
 
 ## struct `FRH_EnvironmentConfiguration` <a id="structFRH__EnvironmentConfiguration"></a>
 
