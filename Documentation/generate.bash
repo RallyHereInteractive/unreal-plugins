@@ -10,6 +10,7 @@ doxygen doxygen.cfg
 moxygen --groups --html-anchors --templates ./templates --output %s.md xml
 
 rm -rf md/Reference
+mkdir md
 mkdir md/Reference
 mkdir md/Reference/models
 mv ./RHAPI_*.md ./md/Reference/models/
