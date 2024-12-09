@@ -740,6 +740,41 @@ void URH_PlayerInventory::HandleUpdateInventory(const RallyHereAPI::FResponse_Mo
 	Delegate.ExecuteIfBound(false);
 }
 
+void URH_PlayerInventory::GetItemLevelsAsync(const TArray<int32>& ItemIdsToCheck, const FRH_GenericSuccessWithErrorBlock& Delegate)
+{
+	typedef RallyHereAPI::Traits_GetPlayerUuidInventoryLevel BaseType;
+	BaseType::Request Request;
+
+	Request.PlayerUuid = GetPlayerInfo()->GetRHPlayerUuid();
+	Request.AuthContext = GetPlayerInfo()->GetAuthContext();
+	Request.ItemIds = ItemIdsToCheck;
+
+	const auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate::CreateWeakLambda(this, [this, Delegate](const BaseType::Response& Response)
+			{
+				const auto Content = Response.TryGetDefaultContentAsPointer();
+				if (Response.IsSuccessful() && Content != nullptr && Content->GetLevelsOrNull())
+				{
+					// update the item levels cache
+					for (const auto& ItemLevel : *Content->GetLevelsOrNull())
+					{
+						const auto ItemId = ItemLevel.GetItemIdOrNull();
+						if (!ItemId)
+						{
+							continue;
+						}
+						
+						ItemLevelCache.Add(*ItemId, ItemLevel);
+					}
+				}
+			}),
+		Delegate,
+		GetDefault<URH_IntegrationSettings>()->InventoryGetPriority
+	);
+
+	Helper->Start(RH_APIs::GetInventoryAPI(), Request);
+}
+
 void URH_PlayerInventory::CheckPollStatus()
 {
 	if (!ShouldPollInventory())

@@ -841,9 +841,27 @@ public:
 	const TArray<FRHAPI_PlayerOrder>& GetOrderResults() const { return CachedOrderResults; }
 
 	/**
+	 * @brief Gets the current level of a specified list of items for the player via async request.
+	 * @param [in] ItemIds The list of item ids to get the level of
+	 * @param [in] Delegate Callback delegate for the completion of the level request
+	 */
+	virtual void GetItemLevelsAsync(const TArray<int32>& ItemIds, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock());
+	/** @private */
+	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Get Item Levels (Async)", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_GetItemLevelsAsync(const TArray<int32>& ItemIds, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate) { GetItemLevelsAsync(ItemIds, Delegate); }
+
+	/**
+	 * @brief Gets the cached map of item levels.
+	 * @param [in] ItemIds The list of item ids to get the level of
+	 * @return The map of item ids to their levels
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Get Item Levels (Cached)"))
+	virtual const TMap<int32, FRHAPI_InventoryLevel>& GetCachedItemLevels() const { return ItemLevelCache;}
+	
+	/**
 	* @brief Clears all cached inventory for the player.
 	*/
-	void ClearCachedInventory() { InventoryCache.Empty(); };
+	void ClearCachedInventory() { InventoryCache.Empty(); ItemLevelCache.Empty(); }
 
 	/**
 	* @brief Clears all cached order results for the player.
@@ -947,7 +965,7 @@ public:
 	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Redeem Promo Code", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_RedeemPromoCode(const FString& PromoCode, const FRH_PromoCodeResultDynamicDelegate& Delegate) { RedeemPromoCode(PromoCode, Delegate); }
-
+	
 	/**
 	* @brief Sets a watch to start polling for orders for the player.
 	* @param [in] Delegate Callback delegate whenever the player has any orders.
@@ -1072,6 +1090,8 @@ protected:
 	TMap<int32, TArray<FRH_ItemInventory>> InventoryCache;
 	/** Last time the full inventory has been retrieved since this watch was created. */
 	TOptional<FDateTime> LastFullInventoryTime;
+	/** @brief Map of Item Id to Inventory Level. */
+	TMap<int32, FRHAPI_InventoryLevel> ItemLevelCache;
 	/** @brief Array of inventory orders that have recently been parsed to prevent double parsing orders through normal polling. */
 	TArray<FString> ParsedInventoryOrders;
 	/** @brief Poller for inventory updates. */
