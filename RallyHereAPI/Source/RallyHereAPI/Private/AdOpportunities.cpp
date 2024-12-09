@@ -36,7 +36,8 @@ bool FRHAPI_AdOpportunities::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonOpportunitiesField = (*Object)->TryGetField(TEXT("opportunities"));
-	ParseSuccess &= JsonOpportunitiesField.IsValid() && (!JsonOpportunitiesField->IsNull() &&  TryGetJsonValue(JsonOpportunitiesField, Opportunities));
+	const bool Opportunities_IsValid = JsonOpportunitiesField.IsValid() && (!JsonOpportunitiesField->IsNull() && TryGetJsonValue(JsonOpportunitiesField, Opportunities));
+	ParseSuccess &= Opportunities_IsValid; 
 
 	return ParseSuccess;
 }

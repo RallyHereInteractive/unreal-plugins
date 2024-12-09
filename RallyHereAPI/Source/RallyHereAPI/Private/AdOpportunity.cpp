@@ -40,11 +40,14 @@ bool FRHAPI_AdOpportunity::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonAdUrlField = (*Object)->TryGetField(TEXT("ad_url"));
-	ParseSuccess &= JsonAdUrlField.IsValid() && (!JsonAdUrlField->IsNull() &&  TryGetJsonValue(JsonAdUrlField, AdUrl));
+	const bool AdUrl_IsValid = JsonAdUrlField.IsValid() && (!JsonAdUrlField->IsNull() && TryGetJsonValue(JsonAdUrlField, AdUrl));
+	ParseSuccess &= AdUrl_IsValid; 
 	const TSharedPtr<FJsonValue> JsonSecondsField = (*Object)->TryGetField(TEXT("seconds"));
-	ParseSuccess &= JsonSecondsField.IsValid() && (!JsonSecondsField->IsNull() &&  TryGetJsonValue(JsonSecondsField, Seconds));
+	const bool Seconds_IsValid = JsonSecondsField.IsValid() && (!JsonSecondsField->IsNull() && TryGetJsonValue(JsonSecondsField, Seconds));
+	ParseSuccess &= Seconds_IsValid; 
 	const TSharedPtr<FJsonValue> JsonOpportunityIdField = (*Object)->TryGetField(TEXT("opportunity_id"));
-	ParseSuccess &= JsonOpportunityIdField.IsValid() && (!JsonOpportunityIdField->IsNull() &&  TryGetJsonValue(JsonOpportunityIdField, OpportunityId));
+	const bool OpportunityId_IsValid = JsonOpportunityIdField.IsValid() && (!JsonOpportunityIdField->IsNull() && TryGetJsonValue(JsonOpportunityIdField, OpportunityId));
+	ParseSuccess &= OpportunityId_IsValid; 
 
 	return ParseSuccess;
 }

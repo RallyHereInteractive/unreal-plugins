@@ -36,7 +36,8 @@ bool FRHAPI_KeyClaims::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonClaimsField = (*Object)->TryGetField(TEXT("claims"));
-	ParseSuccess &= JsonClaimsField.IsValid() && (!JsonClaimsField->IsNull() &&  TryGetJsonValue(JsonClaimsField, Claims));
+	const bool Claims_IsValid = JsonClaimsField.IsValid() && (!JsonClaimsField->IsNull() && TryGetJsonValue(JsonClaimsField, Claims));
+	ParseSuccess &= Claims_IsValid; 
 
 	return ParseSuccess;
 }

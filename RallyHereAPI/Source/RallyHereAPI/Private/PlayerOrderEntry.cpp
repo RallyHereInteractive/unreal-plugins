@@ -120,7 +120,8 @@ bool FRHAPI_PlayerOrderEntry::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
-	ParseSuccess &= JsonTypeField.IsValid() && (!JsonTypeField->IsNull() &&  TryGetJsonValue(JsonTypeField, Type));
+	const bool Type_IsValid = JsonTypeField.IsValid() && (!JsonTypeField->IsNull() && TryGetJsonValue(JsonTypeField, Type));
+	ParseSuccess &= Type_IsValid; 
 	const TSharedPtr<FJsonValue> JsonLootIdField = (*Object)->TryGetField(TEXT("loot_id"));
 	if (JsonLootIdField.IsValid())
 	{
@@ -128,7 +129,8 @@ bool FRHAPI_PlayerOrderEntry::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= LootId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonQuantityField = (*Object)->TryGetField(TEXT("quantity"));
-	ParseSuccess &= JsonQuantityField.IsValid() && (!JsonQuantityField->IsNull() &&  TryGetJsonValue(JsonQuantityField, Quantity));
+	const bool Quantity_IsValid = JsonQuantityField.IsValid() && (!JsonQuantityField->IsNull() && TryGetJsonValue(JsonQuantityField, Quantity));
+	ParseSuccess &= Quantity_IsValid; 
 	const TSharedPtr<FJsonValue> JsonVendorVersionField = (*Object)->TryGetField(TEXT("vendor_version"));
 	if (JsonVendorVersionField.IsValid())
 	{
@@ -208,7 +210,8 @@ bool FRHAPI_PlayerOrderEntry::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= CustomData_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonEntryIdField = (*Object)->TryGetField(TEXT("entry_id"));
-	ParseSuccess &= JsonEntryIdField.IsValid() && (!JsonEntryIdField->IsNull() &&  TryGetJsonValue(JsonEntryIdField, EntryId));
+	const bool EntryId_IsValid = JsonEntryIdField.IsValid() && (!JsonEntryIdField->IsNull() && TryGetJsonValue(JsonEntryIdField, EntryId));
+	ParseSuccess &= EntryId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonResultField = (*Object)->TryGetField(TEXT("result"));
 	if (JsonResultField.IsValid())
 	{

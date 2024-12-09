@@ -57,10 +57,12 @@ bool FRHAPI_SettingData::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonVField = (*Object)->TryGetField(TEXT("v"));
-	ParseSuccess &= JsonVField.IsValid() && (!JsonVField->IsNull() &&  TryGetJsonValue(JsonVField, V));
+	const bool V_IsValid = JsonVField.IsValid() && (!JsonVField->IsNull() && TryGetJsonValue(JsonVField, V));
+	ParseSuccess &= V_IsValid; 
 	const TSharedPtr<FJsonValue> JsonValueField = (*Object)->TryGetField(TEXT("value"));
 	Value_IsNull = JsonValueField != nullptr && JsonValueField->IsNull();
-	ParseSuccess &= JsonValueField.IsValid() && (Value_IsNull || TryGetJsonValue(JsonValueField, Value));
+	const bool Value_IsValid = JsonValueField.IsValid() && (Value_IsNull|| TryGetJsonValue(JsonValueField, Value));
+	ParseSuccess &= Value_IsValid; 
 	const TSharedPtr<FJsonValue> JsonEtagField = (*Object)->TryGetField(TEXT("etag"));
 	if (JsonEtagField.IsValid())
 	{

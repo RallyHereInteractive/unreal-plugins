@@ -36,7 +36,8 @@ bool FRHAPI_LogoutRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonRefreshTokenField = (*Object)->TryGetField(TEXT("refresh_token"));
-	ParseSuccess &= JsonRefreshTokenField.IsValid() && (!JsonRefreshTokenField->IsNull() &&  TryGetJsonValue(JsonRefreshTokenField, RefreshToken));
+	const bool RefreshToken_IsValid = JsonRefreshTokenField.IsValid() && (!JsonRefreshTokenField->IsNull() && TryGetJsonValue(JsonRefreshTokenField, RefreshToken));
+	ParseSuccess &= RefreshToken_IsValid; 
 
 	return ParseSuccess;
 }

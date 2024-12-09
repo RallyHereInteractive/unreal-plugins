@@ -56,7 +56,8 @@ bool FRHAPI_Role::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonRoleIdField = (*Object)->TryGetField(TEXT("role_id"));
-	ParseSuccess &= JsonRoleIdField.IsValid() && (!JsonRoleIdField->IsNull() &&  TryGetJsonValue(JsonRoleIdField, RoleId));
+	const bool RoleId_IsValid = JsonRoleIdField.IsValid() && (!JsonRoleIdField->IsNull() && TryGetJsonValue(JsonRoleIdField, RoleId));
+	ParseSuccess &= RoleId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonLegacyRoleIdField = (*Object)->TryGetField(TEXT("legacy_role_id"));
 	if (JsonLegacyRoleIdField.IsValid())
 	{

@@ -128,7 +128,8 @@ bool FRHAPI_PlayerReport::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonReportIdField = (*Object)->TryGetField(TEXT("report_id"));
-	ParseSuccess &= JsonReportIdField.IsValid() && (!JsonReportIdField->IsNull() &&  TryGetJsonValue(JsonReportIdField, ReportId));
+	const bool ReportId_IsValid = JsonReportIdField.IsValid() && (!JsonReportIdField->IsNull() && TryGetJsonValue(JsonReportIdField, ReportId));
+	ParseSuccess &= ReportId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonSourcePlayerUuidField = (*Object)->TryGetField(TEXT("source_player_uuid"));
 	if (JsonSourcePlayerUuidField.IsValid())
 	{
@@ -145,7 +146,8 @@ bool FRHAPI_PlayerReport::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	}
 	const TSharedPtr<FJsonValue> JsonTargetPlayerUuidField = (*Object)->TryGetField(TEXT("target_player_uuid"));
 	TargetPlayerUuid_IsNull = JsonTargetPlayerUuidField != nullptr && JsonTargetPlayerUuidField->IsNull();
-	ParseSuccess &= JsonTargetPlayerUuidField.IsValid() && (TargetPlayerUuid_IsNull || TryGetJsonValue(JsonTargetPlayerUuidField, TargetPlayerUuid));
+	const bool TargetPlayerUuid_IsValid = JsonTargetPlayerUuidField.IsValid() && (TargetPlayerUuid_IsNull|| TryGetJsonValue(JsonTargetPlayerUuidField, TargetPlayerUuid));
+	ParseSuccess &= TargetPlayerUuid_IsValid; 
 	const TSharedPtr<FJsonValue> JsonTargetPlayerIdField = (*Object)->TryGetField(TEXT("target_player_id"));
 	if (JsonTargetPlayerIdField.IsValid())
 	{
@@ -154,7 +156,8 @@ bool FRHAPI_PlayerReport::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= TargetPlayerId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonReasonField = (*Object)->TryGetField(TEXT("reason"));
-	ParseSuccess &= JsonReasonField.IsValid() && (!JsonReasonField->IsNull() &&  TryGetJsonValue(JsonReasonField, Reason));
+	const bool Reason_IsValid = JsonReasonField.IsValid() && (!JsonReasonField->IsNull() && TryGetJsonValue(JsonReasonField, Reason));
+	ParseSuccess &= Reason_IsValid; 
 	const TSharedPtr<FJsonValue> JsonDescriptionField = (*Object)->TryGetField(TEXT("description"));
 	if (JsonDescriptionField.IsValid())
 	{

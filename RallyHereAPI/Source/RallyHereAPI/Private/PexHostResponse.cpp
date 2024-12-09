@@ -521,7 +521,8 @@ bool FRHAPI_PexHostResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= Scores_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonMatchIdField = (*Object)->TryGetField(TEXT("match_id"));
-	ParseSuccess &= JsonMatchIdField.IsValid() && (!JsonMatchIdField->IsNull() &&  TryGetJsonValue(JsonMatchIdField, MatchId));
+	const bool MatchId_IsValid = JsonMatchIdField.IsValid() && (!JsonMatchIdField->IsNull() && TryGetJsonValue(JsonMatchIdField, MatchId));
+	ParseSuccess &= MatchId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonRegionIdField = (*Object)->TryGetField(TEXT("region_id"));
 	if (JsonRegionIdField.IsValid())
 	{

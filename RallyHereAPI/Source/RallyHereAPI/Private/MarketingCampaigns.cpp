@@ -36,7 +36,8 @@ bool FRHAPI_MarketingCampaigns::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonCampaignsField = (*Object)->TryGetField(TEXT("campaigns"));
-	ParseSuccess &= JsonCampaignsField.IsValid() && (!JsonCampaignsField->IsNull() &&  TryGetJsonValue(JsonCampaignsField, Campaigns));
+	const bool Campaigns_IsValid = JsonCampaignsField.IsValid() && (!JsonCampaignsField->IsNull() && TryGetJsonValue(JsonCampaignsField, Campaigns));
+	ParseSuccess &= Campaigns_IsValid; 
 
 	return ParseSuccess;
 }

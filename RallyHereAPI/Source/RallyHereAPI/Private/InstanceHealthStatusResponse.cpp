@@ -36,7 +36,8 @@ bool FRHAPI_InstanceHealthStatusResponse::FromJson(const TSharedPtr<FJsonValue>&
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonUpdatedInstanceHealthField = (*Object)->TryGetField(TEXT("updated_instance_health"));
-	ParseSuccess &= JsonUpdatedInstanceHealthField.IsValid() && (!JsonUpdatedInstanceHealthField->IsNull() &&  TryGetJsonValue(JsonUpdatedInstanceHealthField, UpdatedInstanceHealth));
+	const bool UpdatedInstanceHealth_IsValid = JsonUpdatedInstanceHealthField.IsValid() && (!JsonUpdatedInstanceHealthField->IsNull() && TryGetJsonValue(JsonUpdatedInstanceHealthField, UpdatedInstanceHealth));
+	ParseSuccess &= UpdatedInstanceHealth_IsValid; 
 
 	return ParseSuccess;
 }

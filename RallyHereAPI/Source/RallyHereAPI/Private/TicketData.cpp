@@ -59,7 +59,8 @@ bool FRHAPI_TicketData::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonTicketIdField = (*Object)->TryGetField(TEXT("ticket_id"));
-	ParseSuccess &= JsonTicketIdField.IsValid() && (!JsonTicketIdField->IsNull() &&  TryGetJsonValue(JsonTicketIdField, TicketId));
+	const bool TicketId_IsValid = JsonTicketIdField.IsValid() && (!JsonTicketIdField->IsNull() && TryGetJsonValue(JsonTicketIdField, TicketId));
+	ParseSuccess &= TicketId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonPlayerUuidsField = (*Object)->TryGetField(TEXT("player_uuids"));
 	if (JsonPlayerUuidsField.IsValid())
 	{
@@ -67,13 +68,17 @@ bool FRHAPI_TicketData::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= PlayerUuids_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonQueueJoinDatetimeField = (*Object)->TryGetField(TEXT("queue_join_datetime"));
-	ParseSuccess &= JsonQueueJoinDatetimeField.IsValid() && (!JsonQueueJoinDatetimeField->IsNull() &&  TryGetJsonValue(JsonQueueJoinDatetimeField, QueueJoinDatetime));
+	const bool QueueJoinDatetime_IsValid = JsonQueueJoinDatetimeField.IsValid() && (!JsonQueueJoinDatetimeField->IsNull() && TryGetJsonValue(JsonQueueJoinDatetimeField, QueueJoinDatetime));
+	ParseSuccess &= QueueJoinDatetime_IsValid; 
 	const TSharedPtr<FJsonValue> JsonRegionIdField = (*Object)->TryGetField(TEXT("region_id"));
-	ParseSuccess &= JsonRegionIdField.IsValid() && (!JsonRegionIdField->IsNull() &&  TryGetJsonValue(JsonRegionIdField, RegionId));
+	const bool RegionId_IsValid = JsonRegionIdField.IsValid() && (!JsonRegionIdField->IsNull() && TryGetJsonValue(JsonRegionIdField, RegionId));
+	ParseSuccess &= RegionId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonQueueIdField = (*Object)->TryGetField(TEXT("queue_id"));
-	ParseSuccess &= JsonQueueIdField.IsValid() && (!JsonQueueIdField->IsNull() &&  TryGetJsonValue(JsonQueueIdField, QueueId));
+	const bool QueueId_IsValid = JsonQueueIdField.IsValid() && (!JsonQueueIdField->IsNull() && TryGetJsonValue(JsonQueueIdField, QueueId));
+	ParseSuccess &= QueueId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonProfileIdsField = (*Object)->TryGetField(TEXT("profile_ids"));
-	ParseSuccess &= JsonProfileIdsField.IsValid() && (!JsonProfileIdsField->IsNull() &&  TryGetJsonValue(JsonProfileIdsField, ProfileIds));
+	const bool ProfileIds_IsValid = JsonProfileIdsField.IsValid() && (!JsonProfileIdsField->IsNull() && TryGetJsonValue(JsonProfileIdsField, ProfileIds));
+	ParseSuccess &= ProfileIds_IsValid; 
 	const TSharedPtr<FJsonValue> JsonAdditionalJoinParamsField = (*Object)->TryGetField(TEXT("additional_join_params"));
 	if (JsonAdditionalJoinParamsField.IsValid())
 	{

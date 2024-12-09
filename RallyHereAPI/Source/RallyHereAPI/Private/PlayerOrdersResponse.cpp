@@ -47,7 +47,8 @@ bool FRHAPI_PlayerOrdersResponse::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 		ParseSuccess &= Data_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPageField = (*Object)->TryGetField(TEXT("page"));
-	ParseSuccess &= JsonPageField.IsValid() && (!JsonPageField->IsNull() &&  TryGetJsonValue(JsonPageField, Page));
+	const bool Page_IsValid = JsonPageField.IsValid() && (!JsonPageField->IsNull() && TryGetJsonValue(JsonPageField, Page));
+	ParseSuccess &= Page_IsValid; 
 
 	return ParseSuccess;
 }

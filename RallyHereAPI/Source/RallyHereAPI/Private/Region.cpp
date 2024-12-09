@@ -45,11 +45,14 @@ bool FRHAPI_Region::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonRegionIdField = (*Object)->TryGetField(TEXT("region_id"));
-	ParseSuccess &= JsonRegionIdField.IsValid() && (!JsonRegionIdField->IsNull() &&  TryGetJsonValue(JsonRegionIdField, RegionId));
+	const bool RegionId_IsValid = JsonRegionIdField.IsValid() && (!JsonRegionIdField->IsNull() && TryGetJsonValue(JsonRegionIdField, RegionId));
+	ParseSuccess &= RegionId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonSortOrderField = (*Object)->TryGetField(TEXT("sort_order"));
-	ParseSuccess &= JsonSortOrderField.IsValid() && (!JsonSortOrderField->IsNull() &&  TryGetJsonValue(JsonSortOrderField, SortOrder));
+	const bool SortOrder_IsValid = JsonSortOrderField.IsValid() && (!JsonSortOrderField->IsNull() && TryGetJsonValue(JsonSortOrderField, SortOrder));
+	ParseSuccess &= SortOrder_IsValid; 
 	const TSharedPtr<FJsonValue> JsonCustomOnlyField = (*Object)->TryGetField(TEXT("custom_only"));
-	ParseSuccess &= JsonCustomOnlyField.IsValid() && (!JsonCustomOnlyField->IsNull() &&  TryGetJsonValue(JsonCustomOnlyField, CustomOnly));
+	const bool CustomOnly_IsValid = JsonCustomOnlyField.IsValid() && (!JsonCustomOnlyField->IsNull() && TryGetJsonValue(JsonCustomOnlyField, CustomOnly));
+	ParseSuccess &= CustomOnly_IsValid; 
 	const TSharedPtr<FJsonValue> JsonDescriptionField = (*Object)->TryGetField(TEXT("description"));
 	if (JsonDescriptionField.IsValid())
 	{

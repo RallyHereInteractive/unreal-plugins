@@ -36,7 +36,8 @@ bool FRHAPI_EventList::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonEventListField = (*Object)->TryGetField(TEXT("event_list"));
-	ParseSuccess &= JsonEventListField.IsValid() && (!JsonEventListField->IsNull() &&  TryGetJsonValue(JsonEventListField, EventList));
+	const bool EventList_IsValid = JsonEventListField.IsValid() && (!JsonEventListField->IsNull() && TryGetJsonValue(JsonEventListField, EventList));
+	ParseSuccess &= EventList_IsValid; 
 
 	return ParseSuccess;
 }

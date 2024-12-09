@@ -42,13 +42,17 @@ bool FRHAPI_PublicKey::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonKidField = (*Object)->TryGetField(TEXT("kid"));
-	ParseSuccess &= JsonKidField.IsValid() && (!JsonKidField->IsNull() &&  TryGetJsonValue(JsonKidField, Kid));
+	const bool Kid_IsValid = JsonKidField.IsValid() && (!JsonKidField->IsNull() && TryGetJsonValue(JsonKidField, Kid));
+	ParseSuccess &= Kid_IsValid; 
 	const TSharedPtr<FJsonValue> JsonKtyField = (*Object)->TryGetField(TEXT("kty"));
-	ParseSuccess &= JsonKtyField.IsValid() && (!JsonKtyField->IsNull() &&  TryGetJsonValue(JsonKtyField, Kty));
+	const bool Kty_IsValid = JsonKtyField.IsValid() && (!JsonKtyField->IsNull() && TryGetJsonValue(JsonKtyField, Kty));
+	ParseSuccess &= Kty_IsValid; 
 	const TSharedPtr<FJsonValue> JsonNField = (*Object)->TryGetField(TEXT("n"));
-	ParseSuccess &= JsonNField.IsValid() && (!JsonNField->IsNull() &&  TryGetJsonValue(JsonNField, N));
+	const bool N_IsValid = JsonNField.IsValid() && (!JsonNField->IsNull() && TryGetJsonValue(JsonNField, N));
+	ParseSuccess &= N_IsValid; 
 	const TSharedPtr<FJsonValue> JsonEField = (*Object)->TryGetField(TEXT("e"));
-	ParseSuccess &= JsonEField.IsValid() && (!JsonEField->IsNull() &&  TryGetJsonValue(JsonEField, E));
+	const bool E_IsValid = JsonEField.IsValid() && (!JsonEField->IsNull() && TryGetJsonValue(JsonEField, E));
+	ParseSuccess &= E_IsValid; 
 
 	return ParseSuccess;
 }

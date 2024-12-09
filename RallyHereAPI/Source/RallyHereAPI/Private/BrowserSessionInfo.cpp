@@ -56,7 +56,8 @@ bool FRHAPI_BrowserSessionInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonSessionIdField = (*Object)->TryGetField(TEXT("session_id"));
-	ParseSuccess &= JsonSessionIdField.IsValid() && (!JsonSessionIdField->IsNull() &&  TryGetJsonValue(JsonSessionIdField, SessionId));
+	const bool SessionId_IsValid = JsonSessionIdField.IsValid() && (!JsonSessionIdField->IsNull() && TryGetJsonValue(JsonSessionIdField, SessionId));
+	ParseSuccess &= SessionId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonInstanceHealthField = (*Object)->TryGetField(TEXT("instance_health"));
 	if (JsonInstanceHealthField.IsValid())
 	{

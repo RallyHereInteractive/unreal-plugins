@@ -41,7 +41,8 @@ bool FRHAPI_BackfillInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonBackfillIdField = (*Object)->TryGetField(TEXT("backfill_id"));
-	ParseSuccess &= JsonBackfillIdField.IsValid() && (!JsonBackfillIdField->IsNull() &&  TryGetJsonValue(JsonBackfillIdField, BackfillId));
+	const bool BackfillId_IsValid = JsonBackfillIdField.IsValid() && (!JsonBackfillIdField->IsNull() && TryGetJsonValue(JsonBackfillIdField, BackfillId));
+	ParseSuccess &= BackfillId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonExtensionsField = (*Object)->TryGetField(TEXT("extensions"));
 	if (JsonExtensionsField.IsValid())
 	{

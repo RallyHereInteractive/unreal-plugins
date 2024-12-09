@@ -36,7 +36,8 @@ bool FRHAPI_AllPlayerDeserterStatuses::FromJson(const TSharedPtr<FJsonValue>& Js
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonDeserterStatusesField = (*Object)->TryGetField(TEXT("deserter_statuses"));
-	ParseSuccess &= JsonDeserterStatusesField.IsValid() && (!JsonDeserterStatusesField->IsNull() &&  TryGetJsonValue(JsonDeserterStatusesField, DeserterStatuses));
+	const bool DeserterStatuses_IsValid = JsonDeserterStatusesField.IsValid() && (!JsonDeserterStatusesField->IsNull() && TryGetJsonValue(JsonDeserterStatusesField, DeserterStatuses));
+	ParseSuccess &= DeserterStatuses_IsValid; 
 
 	return ParseSuccess;
 }

@@ -63,9 +63,11 @@ bool FRHAPI_MatchmakingResults::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonMatchMakingIdField = (*Object)->TryGetField(TEXT("match_making_id"));
-	ParseSuccess &= JsonMatchMakingIdField.IsValid() && (!JsonMatchMakingIdField->IsNull() &&  TryGetJsonValue(JsonMatchMakingIdField, MatchMakingId));
+	const bool MatchMakingId_IsValid = JsonMatchMakingIdField.IsValid() && (!JsonMatchMakingIdField->IsNull() && TryGetJsonValue(JsonMatchMakingIdField, MatchMakingId));
+	ParseSuccess &= MatchMakingId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonCreatedField = (*Object)->TryGetField(TEXT("created"));
-	ParseSuccess &= JsonCreatedField.IsValid() && (!JsonCreatedField->IsNull() &&  TryGetJsonValue(JsonCreatedField, Created));
+	const bool Created_IsValid = JsonCreatedField.IsValid() && (!JsonCreatedField->IsNull() && TryGetJsonValue(JsonCreatedField, Created));
+	ParseSuccess &= Created_IsValid; 
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
 	if (JsonCustomDataField.IsValid())
 	{

@@ -65,9 +65,11 @@ bool FRHAPI_MapConfigV2::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonMapIdField = (*Object)->TryGetField(TEXT("map_id"));
-	ParseSuccess &= JsonMapIdField.IsValid() && (!JsonMapIdField->IsNull() &&  TryGetJsonValue(JsonMapIdField, MapId));
+	const bool MapId_IsValid = JsonMapIdField.IsValid() && (!JsonMapIdField->IsNull() && TryGetJsonValue(JsonMapIdField, MapId));
+	ParseSuccess &= MapId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonMapNameField = (*Object)->TryGetField(TEXT("map_name"));
-	ParseSuccess &= JsonMapNameField.IsValid() && (!JsonMapNameField->IsNull() &&  TryGetJsonValue(JsonMapNameField, MapName));
+	const bool MapName_IsValid = JsonMapNameField.IsValid() && (!JsonMapNameField->IsNull() && TryGetJsonValue(JsonMapNameField, MapName));
+	ParseSuccess &= MapName_IsValid; 
 	const TSharedPtr<FJsonValue> JsonModeField = (*Object)->TryGetField(TEXT("mode"));
 	if (JsonModeField.IsValid())
 	{
@@ -75,7 +77,8 @@ bool FRHAPI_MapConfigV2::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= Mode_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonMapWeightField = (*Object)->TryGetField(TEXT("map_weight"));
-	ParseSuccess &= JsonMapWeightField.IsValid() && (!JsonMapWeightField->IsNull() &&  TryGetJsonValue(JsonMapWeightField, MapWeight));
+	const bool MapWeight_IsValid = JsonMapWeightField.IsValid() && (!JsonMapWeightField->IsNull() && TryGetJsonValue(JsonMapWeightField, MapWeight));
+	ParseSuccess &= MapWeight_IsValid; 
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
 	if (JsonCustomDataField.IsValid())
 	{

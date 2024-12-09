@@ -50,21 +50,29 @@ bool FRHAPI_QueueConfig::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonQueueIdField = (*Object)->TryGetField(TEXT("queue_id"));
-	ParseSuccess &= JsonQueueIdField.IsValid() && (!JsonQueueIdField->IsNull() &&  TryGetJsonValue(JsonQueueIdField, QueueId));
+	const bool QueueId_IsValid = JsonQueueIdField.IsValid() && (!JsonQueueIdField->IsNull() && TryGetJsonValue(JsonQueueIdField, QueueId));
+	ParseSuccess &= QueueId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonActiveField = (*Object)->TryGetField(TEXT("active"));
-	ParseSuccess &= JsonActiveField.IsValid() && (!JsonActiveField->IsNull() &&  TryGetJsonValue(JsonActiveField, Active));
+	const bool Active_IsValid = JsonActiveField.IsValid() && (!JsonActiveField->IsNull() && TryGetJsonValue(JsonActiveField, Active));
+	ParseSuccess &= Active_IsValid; 
 	const TSharedPtr<FJsonValue> JsonRankingTypeField = (*Object)->TryGetField(TEXT("ranking_type"));
-	ParseSuccess &= JsonRankingTypeField.IsValid() && (!JsonRankingTypeField->IsNull() &&  TryGetJsonValue(JsonRankingTypeField, RankingType));
+	const bool RankingType_IsValid = JsonRankingTypeField.IsValid() && (!JsonRankingTypeField->IsNull() && TryGetJsonValue(JsonRankingTypeField, RankingType));
+	ParseSuccess &= RankingType_IsValid; 
 	const TSharedPtr<FJsonValue> JsonNumSidesField = (*Object)->TryGetField(TEXT("num_sides"));
-	ParseSuccess &= JsonNumSidesField.IsValid() && (!JsonNumSidesField->IsNull() &&  TryGetJsonValue(JsonNumSidesField, NumSides));
+	const bool NumSides_IsValid = JsonNumSidesField.IsValid() && (!JsonNumSidesField->IsNull() && TryGetJsonValue(JsonNumSidesField, NumSides));
+	ParseSuccess &= NumSides_IsValid; 
 	const TSharedPtr<FJsonValue> JsonMaxPlayersPerSideField = (*Object)->TryGetField(TEXT("max_players_per_side"));
-	ParseSuccess &= JsonMaxPlayersPerSideField.IsValid() && (!JsonMaxPlayersPerSideField->IsNull() &&  TryGetJsonValue(JsonMaxPlayersPerSideField, MaxPlayersPerSide));
+	const bool MaxPlayersPerSide_IsValid = JsonMaxPlayersPerSideField.IsValid() && (!JsonMaxPlayersPerSideField->IsNull() && TryGetJsonValue(JsonMaxPlayersPerSideField, MaxPlayersPerSide));
+	ParseSuccess &= MaxPlayersPerSide_IsValid; 
 	const TSharedPtr<FJsonValue> JsonMinPlayersPerSideField = (*Object)->TryGetField(TEXT("min_players_per_side"));
-	ParseSuccess &= JsonMinPlayersPerSideField.IsValid() && (!JsonMinPlayersPerSideField->IsNull() &&  TryGetJsonValue(JsonMinPlayersPerSideField, MinPlayersPerSide));
+	const bool MinPlayersPerSide_IsValid = JsonMinPlayersPerSideField.IsValid() && (!JsonMinPlayersPerSideField->IsNull() && TryGetJsonValue(JsonMinPlayersPerSideField, MinPlayersPerSide));
+	ParseSuccess &= MinPlayersPerSide_IsValid; 
 	const TSharedPtr<FJsonValue> JsonMaxQueueGroupSizeField = (*Object)->TryGetField(TEXT("max_queue_group_size"));
-	ParseSuccess &= JsonMaxQueueGroupSizeField.IsValid() && (!JsonMaxQueueGroupSizeField->IsNull() &&  TryGetJsonValue(JsonMaxQueueGroupSizeField, MaxQueueGroupSize));
+	const bool MaxQueueGroupSize_IsValid = JsonMaxQueueGroupSizeField.IsValid() && (!JsonMaxQueueGroupSizeField->IsNull() && TryGetJsonValue(JsonMaxQueueGroupSizeField, MaxQueueGroupSize));
+	ParseSuccess &= MaxQueueGroupSize_IsValid; 
 	const TSharedPtr<FJsonValue> JsonMatchMakingTemplateGroupIdField = (*Object)->TryGetField(TEXT("match_making_template_group_id"));
-	ParseSuccess &= JsonMatchMakingTemplateGroupIdField.IsValid() && (!JsonMatchMakingTemplateGroupIdField->IsNull() &&  TryGetJsonValue(JsonMatchMakingTemplateGroupIdField, MatchMakingTemplateGroupId));
+	const bool MatchMakingTemplateGroupId_IsValid = JsonMatchMakingTemplateGroupIdField.IsValid() && (!JsonMatchMakingTemplateGroupIdField->IsNull() && TryGetJsonValue(JsonMatchMakingTemplateGroupIdField, MatchMakingTemplateGroupId));
+	ParseSuccess &= MatchMakingTemplateGroupId_IsValid; 
 
 	return ParseSuccess;
 }

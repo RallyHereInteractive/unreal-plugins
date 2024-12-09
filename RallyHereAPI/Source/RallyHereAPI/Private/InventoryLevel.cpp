@@ -47,7 +47,8 @@ bool FRHAPI_InventoryLevel::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonItemUuidField = (*Object)->TryGetField(TEXT("item_uuid"));
-	ParseSuccess &= JsonItemUuidField.IsValid() && (!JsonItemUuidField->IsNull() &&  TryGetJsonValue(JsonItemUuidField, ItemUuid));
+	const bool ItemUuid_IsValid = JsonItemUuidField.IsValid() && (!JsonItemUuidField->IsNull() && TryGetJsonValue(JsonItemUuidField, ItemUuid));
+	ParseSuccess &= ItemUuid_IsValid; 
 	const TSharedPtr<FJsonValue> JsonItemIdField = (*Object)->TryGetField(TEXT("item_id"));
 	if (JsonItemIdField.IsValid())
 	{
@@ -55,11 +56,14 @@ bool FRHAPI_InventoryLevel::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= ItemId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonLevelField = (*Object)->TryGetField(TEXT("level"));
-	ParseSuccess &= JsonLevelField.IsValid() && (!JsonLevelField->IsNull() &&  TryGetJsonValue(JsonLevelField, Level));
+	const bool Level_IsValid = JsonLevelField.IsValid() && (!JsonLevelField->IsNull() && TryGetJsonValue(JsonLevelField, Level));
+	ParseSuccess &= Level_IsValid; 
 	const TSharedPtr<FJsonValue> JsonCountField = (*Object)->TryGetField(TEXT("count"));
-	ParseSuccess &= JsonCountField.IsValid() && (!JsonCountField->IsNull() &&  TryGetJsonValue(JsonCountField, Count));
+	const bool Count_IsValid = JsonCountField.IsValid() && (!JsonCountField->IsNull() && TryGetJsonValue(JsonCountField, Count));
+	ParseSuccess &= Count_IsValid; 
 	const TSharedPtr<FJsonValue> JsonCountForNextLevelField = (*Object)->TryGetField(TEXT("count_for_next_level"));
-	ParseSuccess &= JsonCountForNextLevelField.IsValid() && (!JsonCountForNextLevelField->IsNull() &&  TryGetJsonValue(JsonCountForNextLevelField, CountForNextLevel));
+	const bool CountForNextLevel_IsValid = JsonCountForNextLevelField.IsValid() && (!JsonCountForNextLevelField->IsNull() && TryGetJsonValue(JsonCountForNextLevelField, CountForNextLevel));
+	ParseSuccess &= CountForNextLevel_IsValid; 
 
 	return ParseSuccess;
 }

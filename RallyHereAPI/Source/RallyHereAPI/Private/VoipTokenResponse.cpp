@@ -45,11 +45,14 @@ bool FRHAPI_VoipTokenResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonTokenField = (*Object)->TryGetField(TEXT("token"));
-	ParseSuccess &= JsonTokenField.IsValid() && (!JsonTokenField->IsNull() &&  TryGetJsonValue(JsonTokenField, Token));
+	const bool Token_IsValid = JsonTokenField.IsValid() && (!JsonTokenField->IsNull() && TryGetJsonValue(JsonTokenField, Token));
+	ParseSuccess &= Token_IsValid; 
 	const TSharedPtr<FJsonValue> JsonIssuerField = (*Object)->TryGetField(TEXT("issuer"));
-	ParseSuccess &= JsonIssuerField.IsValid() && (!JsonIssuerField->IsNull() &&  TryGetJsonValue(JsonIssuerField, Issuer));
+	const bool Issuer_IsValid = JsonIssuerField.IsValid() && (!JsonIssuerField->IsNull() && TryGetJsonValue(JsonIssuerField, Issuer));
+	ParseSuccess &= Issuer_IsValid; 
 	const TSharedPtr<FJsonValue> JsonServerField = (*Object)->TryGetField(TEXT("server"));
-	ParseSuccess &= JsonServerField.IsValid() && (!JsonServerField->IsNull() &&  TryGetJsonValue(JsonServerField, Server));
+	const bool Server_IsValid = JsonServerField.IsValid() && (!JsonServerField->IsNull() && TryGetJsonValue(JsonServerField, Server));
+	ParseSuccess &= Server_IsValid; 
 	const TSharedPtr<FJsonValue> JsonChannelNameField = (*Object)->TryGetField(TEXT("channel_name"));
 	if (JsonChannelNameField.IsValid())
 	{

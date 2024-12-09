@@ -41,7 +41,8 @@ bool FRHAPI_CacheInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonEtagField = (*Object)->TryGetField(TEXT("etag"));
-	ParseSuccess &= JsonEtagField.IsValid() && (!JsonEtagField->IsNull() &&  TryGetJsonValue(JsonEtagField, Etag));
+	const bool Etag_IsValid = JsonEtagField.IsValid() && (!JsonEtagField->IsNull() && TryGetJsonValue(JsonEtagField, Etag));
+	ParseSuccess &= Etag_IsValid; 
 	const TSharedPtr<FJsonValue> JsonStrRepField = (*Object)->TryGetField(TEXT("str_rep"));
 	if (JsonStrRepField.IsValid())
 	{

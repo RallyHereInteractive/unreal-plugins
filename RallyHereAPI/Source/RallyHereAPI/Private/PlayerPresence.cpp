@@ -82,9 +82,11 @@ bool FRHAPI_PlayerPresence::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= Message_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlatformField = (*Object)->TryGetField(TEXT("platform"));
-	ParseSuccess &= JsonPlatformField.IsValid() && (!JsonPlatformField->IsNull() &&  TryGetJsonValue(JsonPlatformField, Platform));
+	const bool Platform_IsValid = JsonPlatformField.IsValid() && (!JsonPlatformField->IsNull() && TryGetJsonValue(JsonPlatformField, Platform));
+	ParseSuccess &= Platform_IsValid; 
 	const TSharedPtr<FJsonValue> JsonDisplayNameField = (*Object)->TryGetField(TEXT("display_name"));
-	ParseSuccess &= JsonDisplayNameField.IsValid() && (!JsonDisplayNameField->IsNull() &&  TryGetJsonValue(JsonDisplayNameField, DisplayName));
+	const bool DisplayName_IsValid = JsonDisplayNameField.IsValid() && (!JsonDisplayNameField->IsNull() && TryGetJsonValue(JsonDisplayNameField, DisplayName));
+	ParseSuccess &= DisplayName_IsValid; 
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
 	if (JsonCustomDataField.IsValid())
 	{
@@ -98,7 +100,8 @@ bool FRHAPI_PlayerPresence::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= PlayerId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
-	ParseSuccess &= JsonPlayerUuidField.IsValid() && (!JsonPlayerUuidField->IsNull() &&  TryGetJsonValue(JsonPlayerUuidField, PlayerUuid));
+	const bool PlayerUuid_IsValid = JsonPlayerUuidField.IsValid() && (!JsonPlayerUuidField->IsNull() && TryGetJsonValue(JsonPlayerUuidField, PlayerUuid));
+	ParseSuccess &= PlayerUuid_IsValid; 
 	const TSharedPtr<FJsonValue> JsonDoNotDisturbField = (*Object)->TryGetField(TEXT("do_not_disturb"));
 	if (JsonDoNotDisturbField.IsValid())
 	{

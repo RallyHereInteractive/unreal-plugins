@@ -47,13 +47,17 @@ bool FRHAPI_PortalUserInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPlatformField = (*Object)->TryGetField(TEXT("platform"));
-	ParseSuccess &= JsonPlatformField.IsValid() && (!JsonPlatformField->IsNull() &&  TryGetJsonValue(JsonPlatformField, Platform));
+	const bool Platform_IsValid = JsonPlatformField.IsValid() && (!JsonPlatformField->IsNull() && TryGetJsonValue(JsonPlatformField, Platform));
+	ParseSuccess &= Platform_IsValid; 
 	const TSharedPtr<FJsonValue> JsonPortalIdField = (*Object)->TryGetField(TEXT("portal_id"));
-	ParseSuccess &= JsonPortalIdField.IsValid() && (!JsonPortalIdField->IsNull() &&  TryGetJsonValue(JsonPortalIdField, PortalId));
+	const bool PortalId_IsValid = JsonPortalIdField.IsValid() && (!JsonPortalIdField->IsNull() && TryGetJsonValue(JsonPortalIdField, PortalId));
+	ParseSuccess &= PortalId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonPortalUserIdField = (*Object)->TryGetField(TEXT("portal_user_id"));
-	ParseSuccess &= JsonPortalUserIdField.IsValid() && (!JsonPortalUserIdField->IsNull() &&  TryGetJsonValue(JsonPortalUserIdField, PortalUserId));
+	const bool PortalUserId_IsValid = JsonPortalUserIdField.IsValid() && (!JsonPortalUserIdField->IsNull() && TryGetJsonValue(JsonPortalUserIdField, PortalUserId));
+	ParseSuccess &= PortalUserId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonDisplayNameField = (*Object)->TryGetField(TEXT("display_name"));
-	ParseSuccess &= JsonDisplayNameField.IsValid() && (!JsonDisplayNameField->IsNull() &&  TryGetJsonValue(JsonDisplayNameField, DisplayName));
+	const bool DisplayName_IsValid = JsonDisplayNameField.IsValid() && (!JsonDisplayNameField->IsNull() && TryGetJsonValue(JsonDisplayNameField, DisplayName));
+	ParseSuccess &= DisplayName_IsValid; 
 	const TSharedPtr<FJsonValue> JsonDeviceTypeField = (*Object)->TryGetField(TEXT("device_type"));
 	if (JsonDeviceTypeField.IsValid())
 	{

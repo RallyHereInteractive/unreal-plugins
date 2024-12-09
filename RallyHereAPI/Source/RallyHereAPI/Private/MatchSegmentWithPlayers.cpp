@@ -206,7 +206,8 @@ bool FRHAPI_MatchSegmentWithPlayers::FromJson(const TSharedPtr<FJsonValue>& Json
 		ParseSuccess &= Allocations_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonMatchSegmentField = (*Object)->TryGetField(TEXT("match_segment"));
-	ParseSuccess &= JsonMatchSegmentField.IsValid() && (!JsonMatchSegmentField->IsNull() &&  TryGetJsonValue(JsonMatchSegmentField, MatchSegment));
+	const bool MatchSegment_IsValid = JsonMatchSegmentField.IsValid() && (!JsonMatchSegmentField->IsNull() && TryGetJsonValue(JsonMatchSegmentField, MatchSegment));
+	ParseSuccess &= MatchSegment_IsValid; 
 	const TSharedPtr<FJsonValue> JsonMatchIdField = (*Object)->TryGetField(TEXT("match_id"));
 	if (JsonMatchIdField.IsValid())
 	{

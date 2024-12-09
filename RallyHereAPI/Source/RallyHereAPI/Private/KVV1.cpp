@@ -46,9 +46,11 @@ bool FRHAPI_KVV1::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonKeyField = (*Object)->TryGetField(TEXT("key"));
-	ParseSuccess &= JsonKeyField.IsValid() && (!JsonKeyField->IsNull() &&  TryGetJsonValue(JsonKeyField, Key));
+	const bool Key_IsValid = JsonKeyField.IsValid() && (!JsonKeyField->IsNull() && TryGetJsonValue(JsonKeyField, Key));
+	ParseSuccess &= Key_IsValid; 
 	const TSharedPtr<FJsonValue> JsonValueField = (*Object)->TryGetField(TEXT("value"));
-	ParseSuccess &= JsonValueField.IsValid() && (!JsonValueField->IsNull() &&  TryGetJsonValue(JsonValueField, Value));
+	const bool Value_IsValid = JsonValueField.IsValid() && (!JsonValueField->IsNull() && TryGetJsonValue(JsonValueField, Value));
+	ParseSuccess &= Value_IsValid; 
 	const TSharedPtr<FJsonValue> JsonNotesField = (*Object)->TryGetField(TEXT("notes"));
 	if (JsonNotesField.IsValid())
 	{

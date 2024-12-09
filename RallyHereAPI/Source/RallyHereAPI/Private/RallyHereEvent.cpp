@@ -79,13 +79,17 @@ bool FRHAPI_RallyHereEvent::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonEventUuidField = (*Object)->TryGetField(TEXT("event_uuid"));
-	ParseSuccess &= JsonEventUuidField.IsValid() && (!JsonEventUuidField->IsNull() &&  TryGetJsonValue(JsonEventUuidField, EventUuid));
+	const bool EventUuid_IsValid = JsonEventUuidField.IsValid() && (!JsonEventUuidField->IsNull() && TryGetJsonValue(JsonEventUuidField, EventUuid));
+	ParseSuccess &= EventUuid_IsValid; 
 	const TSharedPtr<FJsonValue> JsonEventNameField = (*Object)->TryGetField(TEXT("event_name"));
-	ParseSuccess &= JsonEventNameField.IsValid() && (!JsonEventNameField->IsNull() &&  TryGetJsonValue(JsonEventNameField, EventName));
+	const bool EventName_IsValid = JsonEventNameField.IsValid() && (!JsonEventNameField->IsNull() && TryGetJsonValue(JsonEventNameField, EventName));
+	ParseSuccess &= EventName_IsValid; 
 	const TSharedPtr<FJsonValue> JsonEventTimestampField = (*Object)->TryGetField(TEXT("event_timestamp"));
-	ParseSuccess &= JsonEventTimestampField.IsValid() && (!JsonEventTimestampField->IsNull() &&  TryGetJsonValue(JsonEventTimestampField, EventTimestamp));
+	const bool EventTimestamp_IsValid = JsonEventTimestampField.IsValid() && (!JsonEventTimestampField->IsNull() && TryGetJsonValue(JsonEventTimestampField, EventTimestamp));
+	ParseSuccess &= EventTimestamp_IsValid; 
 	const TSharedPtr<FJsonValue> JsonEventParamsField = (*Object)->TryGetField(TEXT("event_params"));
-	ParseSuccess &= JsonEventParamsField.IsValid() && (!JsonEventParamsField->IsNull() &&  TryGetJsonValue(JsonEventParamsField, EventParams));
+	const bool EventParams_IsValid = JsonEventParamsField.IsValid() && (!JsonEventParamsField->IsNull() && TryGetJsonValue(JsonEventParamsField, EventParams));
+	ParseSuccess &= EventParams_IsValid; 
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
 	if (JsonCustomDataField.IsValid())
 	{

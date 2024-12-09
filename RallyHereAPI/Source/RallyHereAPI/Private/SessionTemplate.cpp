@@ -151,7 +151,8 @@ bool FRHAPI_SessionTemplate::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonSessionTypeField = (*Object)->TryGetField(TEXT("session_type"));
-	ParseSuccess &= JsonSessionTypeField.IsValid() && (!JsonSessionTypeField->IsNull() &&  TryGetJsonValue(JsonSessionTypeField, SessionType));
+	const bool SessionType_IsValid = JsonSessionTypeField.IsValid() && (!JsonSessionTypeField->IsNull() && TryGetJsonValue(JsonSessionTypeField, SessionType));
+	ParseSuccess &= SessionType_IsValid; 
 	const TSharedPtr<FJsonValue> JsonEngineSessionTypeField = (*Object)->TryGetField(TEXT("engine_session_type"));
 	if (JsonEngineSessionTypeField.IsValid())
 	{

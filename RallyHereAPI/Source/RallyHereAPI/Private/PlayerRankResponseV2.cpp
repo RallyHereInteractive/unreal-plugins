@@ -40,11 +40,14 @@ bool FRHAPI_PlayerRankResponseV2::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
-	ParseSuccess &= JsonPlayerUuidField.IsValid() && (!JsonPlayerUuidField->IsNull() &&  TryGetJsonValue(JsonPlayerUuidField, PlayerUuid));
+	const bool PlayerUuid_IsValid = JsonPlayerUuidField.IsValid() && (!JsonPlayerUuidField->IsNull() && TryGetJsonValue(JsonPlayerUuidField, PlayerUuid));
+	ParseSuccess &= PlayerUuid_IsValid; 
 	const TSharedPtr<FJsonValue> JsonRankField = (*Object)->TryGetField(TEXT("rank"));
-	ParseSuccess &= JsonRankField.IsValid() && (!JsonRankField->IsNull() &&  TryGetJsonValue(JsonRankField, Rank));
+	const bool Rank_IsValid = JsonRankField.IsValid() && (!JsonRankField->IsNull() && TryGetJsonValue(JsonRankField, Rank));
+	ParseSuccess &= Rank_IsValid; 
 	const TSharedPtr<FJsonValue> JsonRankIdField = (*Object)->TryGetField(TEXT("rank_id"));
-	ParseSuccess &= JsonRankIdField.IsValid() && (!JsonRankIdField->IsNull() &&  TryGetJsonValue(JsonRankIdField, RankId));
+	const bool RankId_IsValid = JsonRankIdField.IsValid() && (!JsonRankIdField->IsNull() && TryGetJsonValue(JsonRankIdField, RankId));
+	ParseSuccess &= RankId_IsValid; 
 
 	return ParseSuccess;
 }

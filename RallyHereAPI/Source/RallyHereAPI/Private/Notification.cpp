@@ -55,7 +55,8 @@ bool FRHAPI_Notification::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonMessageField = (*Object)->TryGetField(TEXT("message"));
-	ParseSuccess &= JsonMessageField.IsValid() && (!JsonMessageField->IsNull() &&  TryGetJsonValue(JsonMessageField, Message));
+	const bool Message_IsValid = JsonMessageField.IsValid() && (!JsonMessageField->IsNull() && TryGetJsonValue(JsonMessageField, Message));
+	ParseSuccess &= Message_IsValid; 
 	const TSharedPtr<FJsonValue> JsonRhUrlField = (*Object)->TryGetField(TEXT("rh_url"));
 	if (JsonRhUrlField.IsValid())
 	{
@@ -75,9 +76,11 @@ bool FRHAPI_Notification::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= Etag_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonNotificationIdField = (*Object)->TryGetField(TEXT("notification_id"));
-	ParseSuccess &= JsonNotificationIdField.IsValid() && (!JsonNotificationIdField->IsNull() &&  TryGetJsonValue(JsonNotificationIdField, NotificationId));
+	const bool NotificationId_IsValid = JsonNotificationIdField.IsValid() && (!JsonNotificationIdField->IsNull() && TryGetJsonValue(JsonNotificationIdField, NotificationId));
+	ParseSuccess &= NotificationId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonCreatedField = (*Object)->TryGetField(TEXT("created"));
-	ParseSuccess &= JsonCreatedField.IsValid() && (!JsonCreatedField->IsNull() &&  TryGetJsonValue(JsonCreatedField, Created));
+	const bool Created_IsValid = JsonCreatedField.IsValid() && (!JsonCreatedField->IsNull() && TryGetJsonValue(JsonCreatedField, Created));
+	ParseSuccess &= Created_IsValid; 
 
 	return ParseSuccess;
 }

@@ -112,7 +112,8 @@ bool FRHAPI_MatchSegmentRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValu
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonMatchSegmentField = (*Object)->TryGetField(TEXT("match_segment"));
-	ParseSuccess &= JsonMatchSegmentField.IsValid() && (!JsonMatchSegmentField->IsNull() &&  TryGetJsonValue(JsonMatchSegmentField, MatchSegment));
+	const bool MatchSegment_IsValid = JsonMatchSegmentField.IsValid() && (!JsonMatchSegmentField->IsNull() && TryGetJsonValue(JsonMatchSegmentField, MatchSegment));
+	ParseSuccess &= MatchSegment_IsValid; 
 	const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
 	if (JsonTypeField.IsValid())
 	{

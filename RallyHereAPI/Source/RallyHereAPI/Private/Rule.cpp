@@ -45,7 +45,8 @@ bool FRHAPI_Rule::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonRuleTypeField = (*Object)->TryGetField(TEXT("rule_type"));
-	ParseSuccess &= JsonRuleTypeField.IsValid() && (!JsonRuleTypeField->IsNull() &&  TryGetJsonValue(JsonRuleTypeField, RuleType));
+	const bool RuleType_IsValid = JsonRuleTypeField.IsValid() && (!JsonRuleTypeField->IsNull() && TryGetJsonValue(JsonRuleTypeField, RuleType));
+	ParseSuccess &= RuleType_IsValid; 
 	const TSharedPtr<FJsonValue> JsonItemIdField = (*Object)->TryGetField(TEXT("item_id"));
 	if (JsonItemIdField.IsValid())
 	{
@@ -53,9 +54,11 @@ bool FRHAPI_Rule::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= ItemId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonComparisonOperationField = (*Object)->TryGetField(TEXT("comparison_operation"));
-	ParseSuccess &= JsonComparisonOperationField.IsValid() && (!JsonComparisonOperationField->IsNull() &&  TryGetJsonValue(JsonComparisonOperationField, ComparisonOperation));
+	const bool ComparisonOperation_IsValid = JsonComparisonOperationField.IsValid() && (!JsonComparisonOperationField->IsNull() && TryGetJsonValue(JsonComparisonOperationField, ComparisonOperation));
+	ParseSuccess &= ComparisonOperation_IsValid; 
 	const TSharedPtr<FJsonValue> JsonComparisonValueField = (*Object)->TryGetField(TEXT("comparison_value"));
-	ParseSuccess &= JsonComparisonValueField.IsValid() && (!JsonComparisonValueField->IsNull() &&  TryGetJsonValue(JsonComparisonValueField, ComparisonValue));
+	const bool ComparisonValue_IsValid = JsonComparisonValueField.IsValid() && (!JsonComparisonValueField->IsNull() && TryGetJsonValue(JsonComparisonValueField, ComparisonValue));
+	ParseSuccess &= ComparisonValue_IsValid; 
 
 	return ParseSuccess;
 }

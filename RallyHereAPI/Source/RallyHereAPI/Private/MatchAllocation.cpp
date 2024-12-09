@@ -36,7 +36,8 @@ bool FRHAPI_MatchAllocation::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonAllocationIdField = (*Object)->TryGetField(TEXT("allocation_id"));
-	ParseSuccess &= JsonAllocationIdField.IsValid() && (!JsonAllocationIdField->IsNull() &&  TryGetJsonValue(JsonAllocationIdField, AllocationId));
+	const bool AllocationId_IsValid = JsonAllocationIdField.IsValid() && (!JsonAllocationIdField->IsNull() && TryGetJsonValue(JsonAllocationIdField, AllocationId));
+	ParseSuccess &= AllocationId_IsValid; 
 
 	return ParseSuccess;
 }

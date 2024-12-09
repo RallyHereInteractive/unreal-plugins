@@ -58,9 +58,11 @@ bool FRHAPI_PortalUserResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 		ParseSuccess &= PortalUserId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPortalIdField = (*Object)->TryGetField(TEXT("portal_id"));
-	ParseSuccess &= JsonPortalIdField.IsValid() && (!JsonPortalIdField->IsNull() &&  TryGetJsonValue(JsonPortalIdField, PortalId));
+	const bool PortalId_IsValid = JsonPortalIdField.IsValid() && (!JsonPortalIdField->IsNull() && TryGetJsonValue(JsonPortalIdField, PortalId));
+	ParseSuccess &= PortalId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonPlatformField = (*Object)->TryGetField(TEXT("platform"));
-	ParseSuccess &= JsonPlatformField.IsValid() && (!JsonPlatformField->IsNull() &&  TryGetJsonValue(JsonPlatformField, Platform));
+	const bool Platform_IsValid = JsonPlatformField.IsValid() && (!JsonPlatformField->IsNull() && TryGetJsonValue(JsonPlatformField, Platform));
+	ParseSuccess &= Platform_IsValid; 
 	const TSharedPtr<FJsonValue> JsonDisplayNameField = (*Object)->TryGetField(TEXT("display_name"));
 	if (JsonDisplayNameField.IsValid())
 	{
@@ -68,9 +70,11 @@ bool FRHAPI_PortalUserResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 		ParseSuccess &= DisplayName_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlayerIdField = (*Object)->TryGetField(TEXT("player_id"));
-	ParseSuccess &= JsonPlayerIdField.IsValid() && (!JsonPlayerIdField->IsNull() &&  TryGetJsonValue(JsonPlayerIdField, PlayerId));
+	const bool PlayerId_IsValid = JsonPlayerIdField.IsValid() && (!JsonPlayerIdField->IsNull() && TryGetJsonValue(JsonPlayerIdField, PlayerId));
+	ParseSuccess &= PlayerId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
-	ParseSuccess &= JsonPlayerUuidField.IsValid() && (!JsonPlayerUuidField->IsNull() &&  TryGetJsonValue(JsonPlayerUuidField, PlayerUuid));
+	const bool PlayerUuid_IsValid = JsonPlayerUuidField.IsValid() && (!JsonPlayerUuidField->IsNull() && TryGetJsonValue(JsonPlayerUuidField, PlayerUuid));
+	ParseSuccess &= PlayerUuid_IsValid; 
 
 	return ParseSuccess;
 }

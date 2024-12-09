@@ -46,7 +46,8 @@ bool FRHAPI_MatchmakingInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonTicketIdField = (*Object)->TryGetField(TEXT("ticket_id"));
-	ParseSuccess &= JsonTicketIdField.IsValid() && (!JsonTicketIdField->IsNull() &&  TryGetJsonValue(JsonTicketIdField, TicketId));
+	const bool TicketId_IsValid = JsonTicketIdField.IsValid() && (!JsonTicketIdField->IsNull() && TryGetJsonValue(JsonTicketIdField, TicketId));
+	ParseSuccess &= TicketId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
 	if (JsonCustomDataField.IsValid())
 	{

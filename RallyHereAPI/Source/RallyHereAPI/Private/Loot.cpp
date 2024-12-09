@@ -220,9 +220,11 @@ bool FRHAPI_Loot::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= LootUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonLootIdField = (*Object)->TryGetField(TEXT("loot_id"));
-	ParseSuccess &= JsonLootIdField.IsValid() && (!JsonLootIdField->IsNull() &&  TryGetJsonValue(JsonLootIdField, LootId));
+	const bool LootId_IsValid = JsonLootIdField.IsValid() && (!JsonLootIdField->IsNull() && TryGetJsonValue(JsonLootIdField, LootId));
+	ParseSuccess &= LootId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonVendorIdField = (*Object)->TryGetField(TEXT("vendor_id"));
-	ParseSuccess &= JsonVendorIdField.IsValid() && (!JsonVendorIdField->IsNull() &&  TryGetJsonValue(JsonVendorIdField, VendorId));
+	const bool VendorId_IsValid = JsonVendorIdField.IsValid() && (!JsonVendorIdField->IsNull() && TryGetJsonValue(JsonVendorIdField, VendorId));
+	ParseSuccess &= VendorId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonVendorUuidField = (*Object)->TryGetField(TEXT("vendor_uuid"));
 	if (JsonVendorUuidField.IsValid())
 	{

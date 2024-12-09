@@ -63,9 +63,11 @@ bool FRHAPI_PlayerDeserterStatus::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonDeserterIdField = (*Object)->TryGetField(TEXT("deserter_id"));
-	ParseSuccess &= JsonDeserterIdField.IsValid() && (!JsonDeserterIdField->IsNull() &&  TryGetJsonValue(JsonDeserterIdField, DeserterId));
+	const bool DeserterId_IsValid = JsonDeserterIdField.IsValid() && (!JsonDeserterIdField->IsNull() && TryGetJsonValue(JsonDeserterIdField, DeserterId));
+	ParseSuccess &= DeserterId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonDeserterStatusField = (*Object)->TryGetField(TEXT("deserter_status"));
-	ParseSuccess &= JsonDeserterStatusField.IsValid() && (!JsonDeserterStatusField->IsNull() &&  TryGetJsonValue(JsonDeserterStatusField, DeserterStatus));
+	const bool DeserterStatus_IsValid = JsonDeserterStatusField.IsValid() && (!JsonDeserterStatusField->IsNull() && TryGetJsonValue(JsonDeserterStatusField, DeserterStatus));
+	ParseSuccess &= DeserterStatus_IsValid; 
 	const TSharedPtr<FJsonValue> JsonDeserterExpirationField = (*Object)->TryGetField(TEXT("deserter_expiration"));
 	if (JsonDeserterExpirationField.IsValid())
 	{

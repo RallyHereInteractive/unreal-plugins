@@ -48,7 +48,8 @@ bool FRHAPI_LootPriceCurrency::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPriceItemIdField = (*Object)->TryGetField(TEXT("price_item_id"));
-	ParseSuccess &= JsonPriceItemIdField.IsValid() && (!JsonPriceItemIdField->IsNull() &&  TryGetJsonValue(JsonPriceItemIdField, PriceItemId));
+	const bool PriceItemId_IsValid = JsonPriceItemIdField.IsValid() && (!JsonPriceItemIdField->IsNull() && TryGetJsonValue(JsonPriceItemIdField, PriceItemId));
+	ParseSuccess &= PriceItemId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonPriceLegacyItemIdField = (*Object)->TryGetField(TEXT("price_legacy_item_id"));
 	if (JsonPriceLegacyItemIdField.IsValid())
 	{
@@ -56,7 +57,8 @@ bool FRHAPI_LootPriceCurrency::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= PriceLegacyItemId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCurrentPriceField = (*Object)->TryGetField(TEXT("current_price"));
-	ParseSuccess &= JsonCurrentPriceField.IsValid() && (!JsonCurrentPriceField->IsNull() &&  TryGetJsonValue(JsonCurrentPriceField, CurrentPrice));
+	const bool CurrentPrice_IsValid = JsonCurrentPriceField.IsValid() && (!JsonCurrentPriceField->IsNull() && TryGetJsonValue(JsonCurrentPriceField, CurrentPrice));
+	ParseSuccess &= CurrentPrice_IsValid; 
 	const TSharedPtr<FJsonValue> JsonOriginalPriceField = (*Object)->TryGetField(TEXT("original_price"));
 	if (JsonOriginalPriceField.IsValid())
 	{

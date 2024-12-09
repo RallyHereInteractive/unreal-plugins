@@ -36,7 +36,8 @@ bool FRHAPI_ConnectionInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonIpField = (*Object)->TryGetField(TEXT("ip"));
-	ParseSuccess &= JsonIpField.IsValid() && (!JsonIpField->IsNull() &&  TryGetJsonValue(JsonIpField, Ip));
+	const bool Ip_IsValid = JsonIpField.IsValid() && (!JsonIpField->IsNull() && TryGetJsonValue(JsonIpField, Ip));
+	ParseSuccess &= Ip_IsValid; 
 
 	return ParseSuccess;
 }

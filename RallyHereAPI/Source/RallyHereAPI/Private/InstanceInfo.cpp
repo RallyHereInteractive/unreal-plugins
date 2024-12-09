@@ -108,9 +108,11 @@ bool FRHAPI_InstanceInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= AllocationId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonInstanceIdField = (*Object)->TryGetField(TEXT("instance_id"));
-	ParseSuccess &= JsonInstanceIdField.IsValid() && (!JsonInstanceIdField->IsNull() &&  TryGetJsonValue(JsonInstanceIdField, InstanceId));
+	const bool InstanceId_IsValid = JsonInstanceIdField.IsValid() && (!JsonInstanceIdField->IsNull() && TryGetJsonValue(JsonInstanceIdField, InstanceId));
+	ParseSuccess &= InstanceId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonHostTypeField = (*Object)->TryGetField(TEXT("host_type"));
-	ParseSuccess &= JsonHostTypeField.IsValid() && (!JsonHostTypeField->IsNull() &&  TryGetJsonValue(JsonHostTypeField, HostType));
+	const bool HostType_IsValid = JsonHostTypeField.IsValid() && (!JsonHostTypeField->IsNull() && TryGetJsonValue(JsonHostTypeField, HostType));
+	ParseSuccess &= HostType_IsValid; 
 	const TSharedPtr<FJsonValue> JsonHostPlayerIdField = (*Object)->TryGetField(TEXT("host_player_id"));
 	if (JsonHostPlayerIdField.IsValid())
 	{
@@ -136,7 +138,8 @@ bool FRHAPI_InstanceInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= HostDedicatedServerId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonJoinStatusField = (*Object)->TryGetField(TEXT("join_status"));
-	ParseSuccess &= JsonJoinStatusField.IsValid() && (!JsonJoinStatusField->IsNull() &&  TryGetJsonValue(JsonJoinStatusField, JoinStatus));
+	const bool JoinStatus_IsValid = JsonJoinStatusField.IsValid() && (!JsonJoinStatusField->IsNull() && TryGetJsonValue(JsonJoinStatusField, JoinStatus));
+	ParseSuccess &= JoinStatus_IsValid; 
 	const TSharedPtr<FJsonValue> JsonJoinParamsField = (*Object)->TryGetField(TEXT("join_params"));
 	if (JsonJoinParamsField.IsValid())
 	{
@@ -156,7 +159,8 @@ bool FRHAPI_InstanceInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= Version_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCreatedField = (*Object)->TryGetField(TEXT("created"));
-	ParseSuccess &= JsonCreatedField.IsValid() && (!JsonCreatedField->IsNull() &&  TryGetJsonValue(JsonCreatedField, Created));
+	const bool Created_IsValid = JsonCreatedField.IsValid() && (!JsonCreatedField->IsNull() && TryGetJsonValue(JsonCreatedField, Created));
+	ParseSuccess &= Created_IsValid; 
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
 	if (JsonCustomDataField.IsValid())
 	{

@@ -119,13 +119,17 @@ bool FRHAPI_PlayerOrder::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= IsTransaction_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonOrderIdField = (*Object)->TryGetField(TEXT("order_id"));
-	ParseSuccess &= JsonOrderIdField.IsValid() && (!JsonOrderIdField->IsNull() &&  TryGetJsonValue(JsonOrderIdField, OrderId));
+	const bool OrderId_IsValid = JsonOrderIdField.IsValid() && (!JsonOrderIdField->IsNull() && TryGetJsonValue(JsonOrderIdField, OrderId));
+	ParseSuccess &= OrderId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
-	ParseSuccess &= JsonPlayerUuidField.IsValid() && (!JsonPlayerUuidField->IsNull() &&  TryGetJsonValue(JsonPlayerUuidField, PlayerUuid));
+	const bool PlayerUuid_IsValid = JsonPlayerUuidField.IsValid() && (!JsonPlayerUuidField->IsNull() && TryGetJsonValue(JsonPlayerUuidField, PlayerUuid));
+	ParseSuccess &= PlayerUuid_IsValid; 
 	const TSharedPtr<FJsonValue> JsonCreatedTimeField = (*Object)->TryGetField(TEXT("created_time"));
-	ParseSuccess &= JsonCreatedTimeField.IsValid() && (!JsonCreatedTimeField->IsNull() &&  TryGetJsonValue(JsonCreatedTimeField, CreatedTime));
+	const bool CreatedTime_IsValid = JsonCreatedTimeField.IsValid() && (!JsonCreatedTimeField->IsNull() && TryGetJsonValue(JsonCreatedTimeField, CreatedTime));
+	ParseSuccess &= CreatedTime_IsValid; 
 	const TSharedPtr<FJsonValue> JsonEntriesField = (*Object)->TryGetField(TEXT("entries"));
-	ParseSuccess &= JsonEntriesField.IsValid() && (!JsonEntriesField->IsNull() &&  TryGetJsonValue(JsonEntriesField, Entries));
+	const bool Entries_IsValid = JsonEntriesField.IsValid() && (!JsonEntriesField->IsNull() && TryGetJsonValue(JsonEntriesField, Entries));
+	ParseSuccess &= Entries_IsValid; 
 
 	return ParseSuccess;
 }

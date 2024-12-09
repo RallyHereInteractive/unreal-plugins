@@ -124,7 +124,8 @@ bool FRHAPI_PlayerOrderCreate::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= OrderId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonEntriesField = (*Object)->TryGetField(TEXT("entries"));
-	ParseSuccess &= JsonEntriesField.IsValid() && (!JsonEntriesField->IsNull() &&  TryGetJsonValue(JsonEntriesField, Entries));
+	const bool Entries_IsValid = JsonEntriesField.IsValid() && (!JsonEntriesField->IsNull() && TryGetJsonValue(JsonEntriesField, Entries));
+	ParseSuccess &= Entries_IsValid; 
 
 	return ParseSuccess;
 }

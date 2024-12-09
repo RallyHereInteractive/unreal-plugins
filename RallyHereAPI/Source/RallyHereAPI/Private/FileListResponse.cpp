@@ -36,7 +36,8 @@ bool FRHAPI_FileListResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonFilesField = (*Object)->TryGetField(TEXT("files"));
-	ParseSuccess &= JsonFilesField.IsValid() && (!JsonFilesField->IsNull() &&  TryGetJsonValue(JsonFilesField, Files));
+	const bool Files_IsValid = JsonFilesField.IsValid() && (!JsonFilesField->IsNull() && TryGetJsonValue(JsonFilesField, Files));
+	ParseSuccess &= Files_IsValid; 
 
 	return ParseSuccess;
 }

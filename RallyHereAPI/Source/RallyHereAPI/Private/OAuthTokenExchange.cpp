@@ -53,9 +53,11 @@ bool FRHAPI_OAuthTokenExchange::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonGrantTypeField = (*Object)->TryGetField(TEXT("grant_type"));
-	ParseSuccess &= JsonGrantTypeField.IsValid() && (!JsonGrantTypeField->IsNull() &&  TryGetJsonValue(JsonGrantTypeField, GrantType));
+	const bool GrantType_IsValid = JsonGrantTypeField.IsValid() && (!JsonGrantTypeField->IsNull() && TryGetJsonValue(JsonGrantTypeField, GrantType));
+	ParseSuccess &= GrantType_IsValid; 
 	const TSharedPtr<FJsonValue> JsonCodeField = (*Object)->TryGetField(TEXT("code"));
-	ParseSuccess &= JsonCodeField.IsValid() && (!JsonCodeField->IsNull() &&  TryGetJsonValue(JsonCodeField, Code));
+	const bool Code_IsValid = JsonCodeField.IsValid() && (!JsonCodeField->IsNull() && TryGetJsonValue(JsonCodeField, Code));
+	ParseSuccess &= Code_IsValid; 
 	const TSharedPtr<FJsonValue> JsonAcceptedEulaField = (*Object)->TryGetField(TEXT("accepted_eula"));
 	if (JsonAcceptedEulaField.IsValid())
 	{

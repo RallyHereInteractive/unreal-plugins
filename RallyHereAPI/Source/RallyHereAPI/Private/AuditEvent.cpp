@@ -205,9 +205,11 @@ bool FRHAPI_AuditEvent::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonEventNameField = (*Object)->TryGetField(TEXT("event_name"));
-	ParseSuccess &= JsonEventNameField.IsValid() && (!JsonEventNameField->IsNull() &&  TryGetJsonValue(JsonEventNameField, EventName));
+	const bool EventName_IsValid = JsonEventNameField.IsValid() && (!JsonEventNameField->IsNull() && TryGetJsonValue(JsonEventNameField, EventName));
+	ParseSuccess &= EventName_IsValid; 
 	const TSharedPtr<FJsonValue> JsonSessionIdField = (*Object)->TryGetField(TEXT("session_id"));
-	ParseSuccess &= JsonSessionIdField.IsValid() && (!JsonSessionIdField->IsNull() &&  TryGetJsonValue(JsonSessionIdField, SessionId));
+	const bool SessionId_IsValid = JsonSessionIdField.IsValid() && (!JsonSessionIdField->IsNull() && TryGetJsonValue(JsonSessionIdField, SessionId));
+	ParseSuccess &= SessionId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
 	if (JsonCustomDataField.IsValid())
 	{
@@ -407,7 +409,8 @@ bool FRHAPI_AuditEvent::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= RequestingUserUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonEventDatetimeField = (*Object)->TryGetField(TEXT("event_datetime"));
-	ParseSuccess &= JsonEventDatetimeField.IsValid() && (!JsonEventDatetimeField->IsNull() &&  TryGetJsonValue(JsonEventDatetimeField, EventDatetime));
+	const bool EventDatetime_IsValid = JsonEventDatetimeField.IsValid() && (!JsonEventDatetimeField->IsNull() && TryGetJsonValue(JsonEventDatetimeField, EventDatetime));
+	ParseSuccess &= EventDatetime_IsValid; 
 
 	return ParseSuccess;
 }

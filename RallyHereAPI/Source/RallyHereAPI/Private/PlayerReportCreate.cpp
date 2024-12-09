@@ -96,7 +96,8 @@ bool FRHAPI_PlayerReportCreate::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 		ParseSuccess &= SourcePlayerUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonReasonField = (*Object)->TryGetField(TEXT("reason"));
-	ParseSuccess &= JsonReasonField.IsValid() && (!JsonReasonField->IsNull() &&  TryGetJsonValue(JsonReasonField, Reason));
+	const bool Reason_IsValid = JsonReasonField.IsValid() && (!JsonReasonField->IsNull() && TryGetJsonValue(JsonReasonField, Reason));
+	ParseSuccess &= Reason_IsValid; 
 	const TSharedPtr<FJsonValue> JsonDescriptionField = (*Object)->TryGetField(TEXT("description"));
 	if (JsonDescriptionField.IsValid())
 	{

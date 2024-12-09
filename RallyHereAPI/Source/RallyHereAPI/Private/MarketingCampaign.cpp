@@ -55,9 +55,11 @@ bool FRHAPI_MarketingCampaign::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonUuidField = (*Object)->TryGetField(TEXT("uuid"));
-	ParseSuccess &= JsonUuidField.IsValid() && (!JsonUuidField->IsNull() &&  TryGetJsonValue(JsonUuidField, Uuid));
+	const bool Uuid_IsValid = JsonUuidField.IsValid() && (!JsonUuidField->IsNull() && TryGetJsonValue(JsonUuidField, Uuid));
+	ParseSuccess &= Uuid_IsValid; 
 	const TSharedPtr<FJsonValue> JsonNameField = (*Object)->TryGetField(TEXT("name"));
-	ParseSuccess &= JsonNameField.IsValid() && (!JsonNameField->IsNull() &&  TryGetJsonValue(JsonNameField, Name));
+	const bool Name_IsValid = JsonNameField.IsValid() && (!JsonNameField->IsNull() && TryGetJsonValue(JsonNameField, Name));
+	ParseSuccess &= Name_IsValid; 
 	const TSharedPtr<FJsonValue> JsonPortalIdField = (*Object)->TryGetField(TEXT("portal_id"));
 	if (JsonPortalIdField.IsValid())
 	{
@@ -65,7 +67,8 @@ bool FRHAPI_MarketingCampaign::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= PortalId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonKeyTypesField = (*Object)->TryGetField(TEXT("key_types"));
-	ParseSuccess &= JsonKeyTypesField.IsValid() && (!JsonKeyTypesField->IsNull() &&  TryGetJsonValue(JsonKeyTypesField, KeyTypes));
+	const bool KeyTypes_IsValid = JsonKeyTypesField.IsValid() && (!JsonKeyTypesField->IsNull() && TryGetJsonValue(JsonKeyTypesField, KeyTypes));
+	ParseSuccess &= KeyTypes_IsValid; 
 	const TSharedPtr<FJsonValue> JsonCreatedOnField = (*Object)->TryGetField(TEXT("created_on"));
 	if (JsonCreatedOnField.IsValid())
 	{

@@ -49,9 +49,11 @@ bool FRHAPI_HzApiErrorModel::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= AuthSuccess_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonErrorCodeField = (*Object)->TryGetField(TEXT("error_code"));
-	ParseSuccess &= JsonErrorCodeField.IsValid() && (!JsonErrorCodeField->IsNull() &&  TryGetJsonValue(JsonErrorCodeField, ErrorCode));
+	const bool ErrorCode_IsValid = JsonErrorCodeField.IsValid() && (!JsonErrorCodeField->IsNull() && TryGetJsonValue(JsonErrorCodeField, ErrorCode));
+	ParseSuccess &= ErrorCode_IsValid; 
 	const TSharedPtr<FJsonValue> JsonDescField = (*Object)->TryGetField(TEXT("desc"));
-	ParseSuccess &= JsonDescField.IsValid() && (!JsonDescField->IsNull() &&  TryGetJsonValue(JsonDescField, Desc));
+	const bool Desc_IsValid = JsonDescField.IsValid() && (!JsonDescField->IsNull() && TryGetJsonValue(JsonDescField, Desc));
+	ParseSuccess &= Desc_IsValid; 
 
 	return ParseSuccess;
 }
