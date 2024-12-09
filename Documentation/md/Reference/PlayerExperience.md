@@ -248,8 +248,8 @@ Base class for a group of stats.
 `public inline virtual TSharedRef< FJsonObject > `[`GetSummary`](#classURH__PEXStatGroup_1a8ae61abd63243754f7c40827fa51bc2f)`() const` | Write the summary data to a JSON object.
 `public inline virtual FString `[`GetTimelineCSVHeader`](#classURH__PEXStatGroup_1a42e88b291697e54f60ab5456c32c6495)`() const` | Write the timeline data header to a CSV file for all stats.
 `public inline virtual FString `[`GetTimelineCSVValues`](#classURH__PEXStatGroup_1ac01e22d6cfb9def52b82ba36365d6589)`() const` | Write the timeline data values to a CSV file for all stats.
-`public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXStatGroup_1a5f4775578ec0a4871098c5b0cfe295e1)`(`[`FRHAPI_PexHostRequest`](models/RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` | Fill in a API PEX host summary report with the summary data.
-`public inline virtual void `[`GetPEXClientSummary`](#classURH__PEXStatGroup_1a310a8d8a8afffb1eb5c3cdef87c7fe31)`(`[`FRHAPI_PexClientRequest`](models/RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` & Report) const` | Fill in a API PEX client summary report with the summary data.
+`public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXStatGroup_1a5f4775578ec0a4871098c5b0cfe295e1)`(`[`FRHAPI_PexHostRequest`](RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` | Fill in a API PEX host summary report with the summary data.
+`public inline virtual void `[`GetPEXClientSummary`](#classURH__PEXStatGroup_1a310a8d8a8afffb1eb5c3cdef87c7fe31)`(`[`FRHAPI_PexClientRequest`](RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` & Report) const` | Fill in a API PEX client summary report with the summary data.
 
 ### Members
 
@@ -326,11 +326,11 @@ Write the timeline data header to a CSV file for all stats.
 
 Write the timeline data values to a CSV file for all stats.
 
-#### `public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXStatGroup_1a5f4775578ec0a4871098c5b0cfe295e1)`(`[`FRHAPI_PexHostRequest`](models/RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` <a id="classURH__PEXStatGroup_1a5f4775578ec0a4871098c5b0cfe295e1"></a>
+#### `public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXStatGroup_1a5f4775578ec0a4871098c5b0cfe295e1)`(`[`FRHAPI_PexHostRequest`](RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` <a id="classURH__PEXStatGroup_1a5f4775578ec0a4871098c5b0cfe295e1"></a>
 
 Fill in a API PEX host summary report with the summary data.
 
-#### `public inline virtual void `[`GetPEXClientSummary`](#classURH__PEXStatGroup_1a310a8d8a8afffb1eb5c3cdef87c7fe31)`(`[`FRHAPI_PexClientRequest`](models/RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` & Report) const` <a id="classURH__PEXStatGroup_1a310a8d8a8afffb1eb5c3cdef87c7fe31"></a>
+#### `public inline virtual void `[`GetPEXClientSummary`](#classURH__PEXStatGroup_1a310a8d8a8afffb1eb5c3cdef87c7fe31)`(`[`FRHAPI_PexClientRequest`](RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` & Report) const` <a id="classURH__PEXStatGroup_1a310a8d8a8afffb1eb5c3cdef87c7fe31"></a>
 
 Fill in a API PEX client summary report with the summary data.
 
@@ -581,8 +581,8 @@ Stat group for capturing primary stats.
 `public virtual void `[`Init`](#classURH__PEXPrimaryStats_1acca2b022e2e56b972e0265f42bfd1d5d)`(const `[`URH_PEXCollectorConfig`](PlayerExperience.md#classURH__PEXCollectorConfig)` * InConfig,const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` | Initialize the stat group and any children. May add non-dynamic groups and init them as well.
 `public virtual void `[`CapturePerFrameStats`](#classURH__PEXPrimaryStats_1ac3d24a75995eb1d7f0903c3eec5a4faf)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` | Capture once-per-frame stats.
 `public virtual void `[`CapturePerIntervalStats`](#classURH__PEXPrimaryStats_1acdedf0c275a9279eaa34f305b2bf6ab9)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` | Capture once-per-interval stats.
-`public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXPrimaryStats_1aef86c588fefc43c341cf91531ea53b21)`(`[`FRHAPI_PexHostRequest`](models/RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` | Fill in a API PEX host summary report with the summary data.
-`public inline virtual void `[`GetPEXClientSummary`](#classURH__PEXPrimaryStats_1a56041f0246ba4a1dca4dc304caea7a42)`(`[`FRHAPI_PexClientRequest`](models/RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` & Report) const` | Fill in a API PEX client summary report with the summary data.
+`public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXPrimaryStats_1aef86c588fefc43c341cf91531ea53b21)`(`[`FRHAPI_PexHostRequest`](RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` | Fill in a API PEX host summary report with the summary data.
+`public inline virtual void `[`GetPEXClientSummary`](#classURH__PEXPrimaryStats_1a56041f0246ba4a1dca4dc304caea7a42)`(`[`FRHAPI_PexClientRequest`](RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` & Report) const` | Fill in a API PEX client summary report with the summary data.
 `enum `[`ECaptureStat`](#classURH__PEXPrimaryStats_1a3680482a111dacd52d63a8fb41c213e3) | 
 `enum `[`ECaptureCounter`](#classURH__PEXPrimaryStats_1a209895a19d0081b1c9a891af140c24cf) | 
 
@@ -610,11 +610,11 @@ Capture once-per-frame stats.
 
 Capture once-per-interval stats.
 
-#### `public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXPrimaryStats_1aef86c588fefc43c341cf91531ea53b21)`(`[`FRHAPI_PexHostRequest`](models/RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` <a id="classURH__PEXPrimaryStats_1aef86c588fefc43c341cf91531ea53b21"></a>
+#### `public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXPrimaryStats_1aef86c588fefc43c341cf91531ea53b21)`(`[`FRHAPI_PexHostRequest`](RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` <a id="classURH__PEXPrimaryStats_1aef86c588fefc43c341cf91531ea53b21"></a>
 
 Fill in a API PEX host summary report with the summary data.
 
-#### `public inline virtual void `[`GetPEXClientSummary`](#classURH__PEXPrimaryStats_1a56041f0246ba4a1dca4dc304caea7a42)`(`[`FRHAPI_PexClientRequest`](models/RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` & Report) const` <a id="classURH__PEXPrimaryStats_1a56041f0246ba4a1dca4dc304caea7a42"></a>
+#### `public inline virtual void `[`GetPEXClientSummary`](#classURH__PEXPrimaryStats_1a56041f0246ba4a1dca4dc304caea7a42)`(`[`FRHAPI_PexClientRequest`](RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` & Report) const` <a id="classURH__PEXPrimaryStats_1a56041f0246ba4a1dca4dc304caea7a42"></a>
 
 Fill in a API PEX client summary report with the summary data.
 
@@ -661,8 +661,8 @@ Stat group for capturing whole-state network stats.
 `public inline FORCEINLINE `[`FRH_StatAccumulator`](PlayerExperience.md#structFRH__StatAccumulator)` & `[`GetCaptureStat`](#classURH__PEXNetworkStats__Base_1af86e26e7c4258b5cae49009a11156cb8)`(ECaptureStat Stat)` | 
 `public inline FORCEINLINE const `[`FRH_StatAccumulator`](PlayerExperience.md#structFRH__StatAccumulator)` & `[`GetCaptureStat`](#classURH__PEXNetworkStats__Base_1a0311d5f7b01b3ba2d89f3787d413e86f)`(ECaptureStat Stat) const` | 
 `public  `[`URH_PEXNetworkStats_Base`](#classURH__PEXNetworkStats__Base_1af3a02b991ff93ef56148932b5c4cee60)`()` | 
-`public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXNetworkStats__Base_1a955776d5d441399b8efc0e5ae8703a0e)`(`[`FRHAPI_PexHostRequest`](models/RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` | Fill in a API PEX host summary report with the summary data.
-`public inline virtual void `[`GetPEXClientSummary`](#classURH__PEXNetworkStats__Base_1a056e52f6d8e9f191af2ce3f4416c4158)`(`[`FRHAPI_PexClientRequest`](models/RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` & Report) const` | Fill in a API PEX client summary report with the summary data.
+`public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXNetworkStats__Base_1a955776d5d441399b8efc0e5ae8703a0e)`(`[`FRHAPI_PexHostRequest`](RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` | Fill in a API PEX host summary report with the summary data.
+`public inline virtual void `[`GetPEXClientSummary`](#classURH__PEXNetworkStats__Base_1a056e52f6d8e9f191af2ce3f4416c4158)`(`[`FRHAPI_PexClientRequest`](RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` & Report) const` | Fill in a API PEX client summary report with the summary data.
 `enum `[`ECaptureStat`](#classURH__PEXNetworkStats__Base_1a4442bfbff2299f7b2590c680474e79cd) | 
 
 ### Members
@@ -673,11 +673,11 @@ Stat group for capturing whole-state network stats.
 
 #### `public  `[`URH_PEXNetworkStats_Base`](#classURH__PEXNetworkStats__Base_1af3a02b991ff93ef56148932b5c4cee60)`()` <a id="classURH__PEXNetworkStats__Base_1af3a02b991ff93ef56148932b5c4cee60"></a>
 
-#### `public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXNetworkStats__Base_1a955776d5d441399b8efc0e5ae8703a0e)`(`[`FRHAPI_PexHostRequest`](models/RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` <a id="classURH__PEXNetworkStats__Base_1a955776d5d441399b8efc0e5ae8703a0e"></a>
+#### `public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXNetworkStats__Base_1a955776d5d441399b8efc0e5ae8703a0e)`(`[`FRHAPI_PexHostRequest`](RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` <a id="classURH__PEXNetworkStats__Base_1a955776d5d441399b8efc0e5ae8703a0e"></a>
 
 Fill in a API PEX host summary report with the summary data.
 
-#### `public inline virtual void `[`GetPEXClientSummary`](#classURH__PEXNetworkStats__Base_1a056e52f6d8e9f191af2ce3f4416c4158)`(`[`FRHAPI_PexClientRequest`](models/RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` & Report) const` <a id="classURH__PEXNetworkStats__Base_1a056e52f6d8e9f191af2ce3f4416c4158"></a>
+#### `public inline virtual void `[`GetPEXClientSummary`](#classURH__PEXNetworkStats__Base_1a056e52f6d8e9f191af2ce3f4416c4158)`(`[`FRHAPI_PexClientRequest`](RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` & Report) const` <a id="classURH__PEXNetworkStats__Base_1a056e52f6d8e9f191af2ce3f4416c4158"></a>
 
 Fill in a API PEX client summary report with the summary data.
 
@@ -769,7 +769,7 @@ Stat group for capturing a group of player network stats.
 `public inline  `[`URH_PEXNetworkStats_Host`](#classURH__PEXNetworkStats__Host_1a4b679c43c823bbcf78d1c6d853e09e04)`()` | 
 `public virtual void `[`GetOrCreatePlayerNetworkStats`](#classURH__PEXNetworkStats__Host_1a0499371af05de74f3e8785f1150d0c78)`(const class UNetConnection * Connection,`[`URH_PEXNetworkStats_Connection`](PlayerExperience.md#classURH__PEXNetworkStats__Connection)` *& OutPlayerNetworkStats)` | Get or create a player's network stats.
 `public inline virtual void `[`ResetSummary`](#classURH__PEXNetworkStats__Host_1a9d2b323c8976b30a4e1736c5785ec60e)`()` | Reset the summary state of all stats.
-`public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXNetworkStats__Host_1a4c65911c24e4727cce22420a940683c2)`(`[`FRHAPI_PexHostRequest`](models/RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` | Fill in a API PEX host summary report with the summary data.
+`public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXNetworkStats__Host_1a4c65911c24e4727cce22420a940683c2)`(`[`FRHAPI_PexHostRequest`](RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` | Fill in a API PEX host summary report with the summary data.
 `public virtual void `[`EnsureConnectionTrackersExist`](#classURH__PEXNetworkStats__Host_1a6c20265da5e08351301b5544bd366f88)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` | 
 `public virtual void `[`CapturePerFrameStats`](#classURH__PEXNetworkStats__Host_1a8a577d11ba1d408c9abfdd22d1b2f6da)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` | Capture once-per-frame stats.
 `public virtual void `[`CapturePerSecondStats`](#classURH__PEXNetworkStats__Host_1a4386ba497c2e2a871b51334b786291fc)`(const TScriptInterface< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > & Owner)` | Capture once-per-second stats.
@@ -791,7 +791,7 @@ Get or create a player's network stats.
 
 Reset the summary state of all stats.
 
-#### `public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXNetworkStats__Host_1a4c65911c24e4727cce22420a940683c2)`(`[`FRHAPI_PexHostRequest`](models/RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` <a id="classURH__PEXNetworkStats__Host_1a4c65911c24e4727cce22420a940683c2"></a>
+#### `public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXNetworkStats__Host_1a4c65911c24e4727cce22420a940683c2)`(`[`FRHAPI_PexHostRequest`](RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` <a id="classURH__PEXNetworkStats__Host_1a4c65911c24e4727cce22420a940683c2"></a>
 
 Fill in a API PEX host summary report with the summary data.
 
@@ -863,8 +863,8 @@ Stat group for capturing local whole-state network stats, plus per-player stats.
 `public `[`URH_PEXNetworkStats_Client`](PlayerExperience.md#classURH__PEXNetworkStats__Client)` * `[`ClientNetworkStats`](#classURH__PEXNetworkStats_1a212cb988d8d7039c901932789fe54318) | Client's connection to host, only used by summary
 `public `[`URH_PEXNetworkStats_Host`](PlayerExperience.md#classURH__PEXNetworkStats__Host)` * `[`HostNetworkStats`](#classURH__PEXNetworkStats_1a0b98f24749d884e7ee921ef93b213c97) | Host's connection to clients, only used by summary
 `public  `[`URH_PEXNetworkStats`](#classURH__PEXNetworkStats_1a3354185befc3c15728f1362cc34f95e2)`()` | 
-`public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXNetworkStats_1a18a03108cbe2dcb94d6dc97dd4f1a229)`(`[`FRHAPI_PexHostRequest`](models/RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` | Fill in a API PEX host summary report with the summary data.
-`public inline virtual void `[`GetPEXClientSummary`](#classURH__PEXNetworkStats_1aa53c887acc51913905a8081079263e88)`(`[`FRHAPI_PexClientRequest`](models/RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` & Report) const` | Fill in a API PEX client summary report with the summary data.
+`public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXNetworkStats_1a18a03108cbe2dcb94d6dc97dd4f1a229)`(`[`FRHAPI_PexHostRequest`](RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` | Fill in a API PEX host summary report with the summary data.
+`public inline virtual void `[`GetPEXClientSummary`](#classURH__PEXNetworkStats_1aa53c887acc51913905a8081079263e88)`(`[`FRHAPI_PexClientRequest`](RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` & Report) const` | Fill in a API PEX client summary report with the summary data.
 
 ### Members
 
@@ -882,11 +882,11 @@ Host's connection to clients, only used by summary
 
 #### `public  `[`URH_PEXNetworkStats`](#classURH__PEXNetworkStats_1a3354185befc3c15728f1362cc34f95e2)`()` <a id="classURH__PEXNetworkStats_1a3354185befc3c15728f1362cc34f95e2"></a>
 
-#### `public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXNetworkStats_1a18a03108cbe2dcb94d6dc97dd4f1a229)`(`[`FRHAPI_PexHostRequest`](models/RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` <a id="classURH__PEXNetworkStats_1a18a03108cbe2dcb94d6dc97dd4f1a229"></a>
+#### `public inline virtual void `[`GetPEXHostSummary`](#classURH__PEXNetworkStats_1a18a03108cbe2dcb94d6dc97dd4f1a229)`(`[`FRHAPI_PexHostRequest`](RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` & Report) const` <a id="classURH__PEXNetworkStats_1a18a03108cbe2dcb94d6dc97dd4f1a229"></a>
 
 Fill in a API PEX host summary report with the summary data.
 
-#### `public inline virtual void `[`GetPEXClientSummary`](#classURH__PEXNetworkStats_1aa53c887acc51913905a8081079263e88)`(`[`FRHAPI_PexClientRequest`](models/RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` & Report) const` <a id="classURH__PEXNetworkStats_1aa53c887acc51913905a8081079263e88"></a>
+#### `public inline virtual void `[`GetPEXClientSummary`](#classURH__PEXNetworkStats_1aa53c887acc51913905a8081079263e88)`(`[`FRHAPI_PexClientRequest`](RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` & Report) const` <a id="classURH__PEXNetworkStats_1aa53c887acc51913905a8081079263e88"></a>
 
 Fill in a API PEX client summary report with the summary data.
 
@@ -1000,8 +1000,8 @@ class URH_TestPEXOwner
 `public FGuid `[`PlayerId`](#classURH__TestPEXOwner_1a43b7bd0bb58a6ebb37ade126a774f2d6) | 
 `public FString `[`MatchId`](#classURH__TestPEXOwner_1a1127493ed99ade6e18620921a4470b91) | 
 `public bool `[`bSendReportsToAPI`](#classURH__TestPEXOwner_1a234ed01e57ee337a919bae13d1001f1d) | 
-`public mutable TOptional< `[`FRHAPI_PexClientRequest`](models/RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` > `[`ClientReport`](#classURH__TestPEXOwner_1a94bed84e6a2aef0f3135344dfdc414cf) | 
-`public mutable TOptional< `[`FRHAPI_PexHostRequest`](models/RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` > `[`HostReport`](#classURH__TestPEXOwner_1afe117b1194971b6c8f20f1726b20cb73) | 
+`public mutable TOptional< `[`FRHAPI_PexClientRequest`](RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` > `[`ClientReport`](#classURH__TestPEXOwner_1a94bed84e6a2aef0f3135344dfdc414cf) | 
+`public mutable TOptional< `[`FRHAPI_PexHostRequest`](RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` > `[`HostReport`](#classURH__TestPEXOwner_1afe117b1194971b6c8f20f1726b20cb73) | 
 `public inline  `[`URH_TestPEXOwner`](#classURH__TestPEXOwner_1a59cc322ce116f2a880e3057909b6da18)`()` | 
 `public inline virtual UEngine * `[`GetPEXEngine`](#classURH__TestPEXOwner_1a59738a682866e8a7a6194b51713ff39f)`() const` | 
 `public inline virtual UWorld * `[`GetPEXWorld`](#classURH__TestPEXOwner_1a5b50b9ea1dc76a9a830f1f901fd83365)`() const` | 
@@ -1009,8 +1009,8 @@ class URH_TestPEXOwner
 `public inline virtual FGuid `[`GetPEXPlayerId`](#classURH__TestPEXOwner_1ac975e4caa360548e994a27f2443188f6)`() const` | 
 `public inline virtual `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` `[`GetPEXRemoteFileDirectory`](#classURH__TestPEXOwner_1a5854365a69238f85f4007083e38f4979)`() const` | 
 `public inline virtual bool `[`GetPEXIsHost`](#classURH__TestPEXOwner_1a1a7d5a3b776e8c01bd668fcbe027ecf8)`() const` | 
-`public virtual void `[`SubmitPEXHostSummary`](#classURH__TestPEXOwner_1a420ec1e5e87bcc7c08c3fa70a28d643b)`(`[`FRHAPI_PexHostRequest`](models/RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` && Report) const` | 
-`public virtual void `[`SubmitPEXClientSummary`](#classURH__TestPEXOwner_1a8b6db289fa0ccfd3931e368eaa088d17)`(`[`FRHAPI_PexClientRequest`](models/RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` && Report) const` | 
+`public virtual void `[`SubmitPEXHostSummary`](#classURH__TestPEXOwner_1a420ec1e5e87bcc7c08c3fa70a28d643b)`(`[`FRHAPI_PexHostRequest`](RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` && Report) const` | 
+`public virtual void `[`SubmitPEXClientSummary`](#classURH__TestPEXOwner_1a8b6db289fa0ccfd3931e368eaa088d17)`(`[`FRHAPI_PexClientRequest`](RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` && Report) const` | 
 `public virtual void `[`ValidateReports`](#classURH__TestPEXOwner_1a85e7219ba356d999310e7244bc8ca205)`(FAutomationTestBase * Test,const `[`URH_PEXCollectorConfig`](PlayerExperience.md#classURH__PEXCollectorConfig)` * Config) const` | 
 
 ### Members
@@ -1021,9 +1021,9 @@ class URH_TestPEXOwner
 
 #### `public bool `[`bSendReportsToAPI`](#classURH__TestPEXOwner_1a234ed01e57ee337a919bae13d1001f1d) <a id="classURH__TestPEXOwner_1a234ed01e57ee337a919bae13d1001f1d"></a>
 
-#### `public mutable TOptional< `[`FRHAPI_PexClientRequest`](models/RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` > `[`ClientReport`](#classURH__TestPEXOwner_1a94bed84e6a2aef0f3135344dfdc414cf) <a id="classURH__TestPEXOwner_1a94bed84e6a2aef0f3135344dfdc414cf"></a>
+#### `public mutable TOptional< `[`FRHAPI_PexClientRequest`](RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` > `[`ClientReport`](#classURH__TestPEXOwner_1a94bed84e6a2aef0f3135344dfdc414cf) <a id="classURH__TestPEXOwner_1a94bed84e6a2aef0f3135344dfdc414cf"></a>
 
-#### `public mutable TOptional< `[`FRHAPI_PexHostRequest`](models/RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` > `[`HostReport`](#classURH__TestPEXOwner_1afe117b1194971b6c8f20f1726b20cb73) <a id="classURH__TestPEXOwner_1afe117b1194971b6c8f20f1726b20cb73"></a>
+#### `public mutable TOptional< `[`FRHAPI_PexHostRequest`](RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` > `[`HostReport`](#classURH__TestPEXOwner_1afe117b1194971b6c8f20f1726b20cb73) <a id="classURH__TestPEXOwner_1afe117b1194971b6c8f20f1726b20cb73"></a>
 
 #### `public inline  `[`URH_TestPEXOwner`](#classURH__TestPEXOwner_1a59cc322ce116f2a880e3057909b6da18)`()` <a id="classURH__TestPEXOwner_1a59cc322ce116f2a880e3057909b6da18"></a>
 
@@ -1039,9 +1039,9 @@ class URH_TestPEXOwner
 
 #### `public inline virtual bool `[`GetPEXIsHost`](#classURH__TestPEXOwner_1a1a7d5a3b776e8c01bd668fcbe027ecf8)`() const` <a id="classURH__TestPEXOwner_1a1a7d5a3b776e8c01bd668fcbe027ecf8"></a>
 
-#### `public virtual void `[`SubmitPEXHostSummary`](#classURH__TestPEXOwner_1a420ec1e5e87bcc7c08c3fa70a28d643b)`(`[`FRHAPI_PexHostRequest`](models/RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` && Report) const` <a id="classURH__TestPEXOwner_1a420ec1e5e87bcc7c08c3fa70a28d643b"></a>
+#### `public virtual void `[`SubmitPEXHostSummary`](#classURH__TestPEXOwner_1a420ec1e5e87bcc7c08c3fa70a28d643b)`(`[`FRHAPI_PexHostRequest`](RHAPI_PexHostRequest.md#structFRHAPI__PexHostRequest)` && Report) const` <a id="classURH__TestPEXOwner_1a420ec1e5e87bcc7c08c3fa70a28d643b"></a>
 
-#### `public virtual void `[`SubmitPEXClientSummary`](#classURH__TestPEXOwner_1a8b6db289fa0ccfd3931e368eaa088d17)`(`[`FRHAPI_PexClientRequest`](models/RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` && Report) const` <a id="classURH__TestPEXOwner_1a8b6db289fa0ccfd3931e368eaa088d17"></a>
+#### `public virtual void `[`SubmitPEXClientSummary`](#classURH__TestPEXOwner_1a8b6db289fa0ccfd3931e368eaa088d17)`(`[`FRHAPI_PexClientRequest`](RHAPI_PexClientRequest.md#structFRHAPI__PexClientRequest)` && Report) const` <a id="classURH__TestPEXOwner_1a8b6db289fa0ccfd3931e368eaa088d17"></a>
 
 #### `public virtual void `[`ValidateReports`](#classURH__TestPEXOwner_1a85e7219ba356d999310e7244bc8ca205)`(FAutomationTestBase * Test,const `[`URH_PEXCollectorConfig`](PlayerExperience.md#classURH__PEXCollectorConfig)` * Config) const` <a id="classURH__TestPEXOwner_1a85e7219ba356d999310e7244bc8ca205"></a>
 
@@ -1141,7 +1141,7 @@ Simple accumulator that represents a captured statistic. Tracks min, max, averag
 `public inline FName `[`GetName`](#structFRH__StatAccumulator_1a1a88cbe4e0cf605a8d764dffc7e73d60)`() const` | Get the name of the stat.
 `public inline float `[`GetTimelineValue`](#structFRH__StatAccumulator_1afb8eda2508255bd08ce9d110cbb08460)`() const` | Get the value of the stat to be recorded in the timeline.
 `public inline TSharedPtr< FJsonObject > `[`GetSummaryJson`](#structFRH__StatAccumulator_1aab14419061a5d9aabfe17e3b5c057389)`(bool bIncludeName) const` | Get a JSON object representing the summary data.
-`public inline bool `[`GetPexStat`](#structFRH__StatAccumulator_1a586d65db4e4dff6be2e48ac3de148796)`(`[`FRHAPI_PexStat`](models/RHAPI_PexStat.md#structFRHAPI__PexStat)` & PexStat) const` | Get a PexStat object representing the summary data.
+`public inline bool `[`GetPexStat`](#structFRH__StatAccumulator_1a586d65db4e4dff6be2e48ac3de148796)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & PexStat) const` | Get a PexStat object representing the summary data.
 
 ### Members
 
@@ -1204,7 +1204,7 @@ Get the value of the stat to be recorded in the timeline.
 
 Get a JSON object representing the summary data.
 
-#### `public inline bool `[`GetPexStat`](#structFRH__StatAccumulator_1a586d65db4e4dff6be2e48ac3de148796)`(`[`FRHAPI_PexStat`](models/RHAPI_PexStat.md#structFRHAPI__PexStat)` & PexStat) const` <a id="structFRH__StatAccumulator_1a586d65db4e4dff6be2e48ac3de148796"></a>
+#### `public inline bool `[`GetPexStat`](#structFRH__StatAccumulator_1a586d65db4e4dff6be2e48ac3de148796)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & PexStat) const` <a id="structFRH__StatAccumulator_1a586d65db4e4dff6be2e48ac3de148796"></a>
 
 Get a PexStat object representing the summary data.
 
@@ -1229,7 +1229,7 @@ Simple counter that represents a captured statistic. Tracks current value, and t
 `public inline FName `[`GetName`](#structFRH__StatCounter_1a8136128ec541f3d424969dbf371fa32f)`() const` | Get the name of the stat.
 `public inline float `[`GetTimelineValue`](#structFRH__StatCounter_1ab3ef232d3130ee9fb1bfe8357c9b9bed)`() const` | Get the value of the stat to be recorded in the timeline.
 `public inline TSharedPtr< FJsonObject > `[`GetSummaryJson`](#structFRH__StatCounter_1a6c918987cbce1ebe8af05b9983b0d15e)`(bool bIncludeName) const` | Get a JSON object representing the summary data.
-`public inline bool `[`GetPexStat`](#structFRH__StatCounter_1abf6a742866b4a76746b12bb007b8dbfb)`(`[`FRHAPI_PexStat`](models/RHAPI_PexStat.md#structFRHAPI__PexStat)` & PexStat) const` | Get a PexStat object representing the summary data.
+`public inline bool `[`GetPexStat`](#structFRH__StatCounter_1abf6a742866b4a76746b12bb007b8dbfb)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & PexStat) const` | Get a PexStat object representing the summary data.
 
 ### Members
 
@@ -1288,7 +1288,7 @@ Get the value of the stat to be recorded in the timeline.
 
 Get a JSON object representing the summary data.
 
-#### `public inline bool `[`GetPexStat`](#structFRH__StatCounter_1abf6a742866b4a76746b12bb007b8dbfb)`(`[`FRHAPI_PexStat`](models/RHAPI_PexStat.md#structFRHAPI__PexStat)` & PexStat) const` <a id="structFRH__StatCounter_1abf6a742866b4a76746b12bb007b8dbfb"></a>
+#### `public inline bool `[`GetPexStat`](#structFRH__StatCounter_1abf6a742866b4a76746b12bb007b8dbfb)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & PexStat) const` <a id="structFRH__StatCounter_1abf6a742866b4a76746b12bb007b8dbfb"></a>
 
 Get a PexStat object representing the summary data.
 

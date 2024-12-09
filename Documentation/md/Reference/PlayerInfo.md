@@ -234,7 +234,7 @@ Player Settings class used to store player settings data.
 `public const FString const FTimespan bool const FRH_PlayerInfoGetPlayerSettingsDynamicDelegate & `[`Delegate`](#classURH__PlayerSettings_1a4b5f8e590e595e1f83c0290c12f9d962) | 
 `public virtual void `[`GetPlayerSetting`](#classURH__PlayerSettings_1aefcf45115c7dec153d9f05191ffcfe1e)`(const FString & SettingTypeId,const FString & Key,const FTimespan & StaleThreshold,bool bForceRefresh,const FRH_PlayerInfoGetPlayerSettingsBlock & Delegate)` | Gets the players settings information for a given type.
 `public virtual void `[`GetPlayerSettingsForKeys`](#classURH__PlayerSettings_1a0d12274f161869118a878a2dce470582)`(const FString & SettingTypeId,const TArray< FString > & Keys,const FTimespan & StaleThreshold,bool bForceRefresh,const FRH_PlayerInfoGetPlayerSettingsBlock & Delegate)` | Gets the players settings information for a given type, restricted to a list of keys.
-`public virtual void `[`SetPlayerSetting`](#classURH__PlayerSettings_1adf7351daad25cabd96e3943f69bcc283)`(const FString & SettingTypeId,const FString & Key,const `[`FRHAPI_SetSinglePlayerSettingRequest`](models/RHAPI_SetSinglePlayerSettingRequest.md#structFRHAPI__SetSinglePlayerSettingRequest)` & Document,const FRH_PlayerInfoSetPlayerSettingBlock & Delegate,const `[`FRH_ObjectVersionCheck`](Common.md#structFRH__ObjectVersionCheck)` & VersionCheck)` | Sets the players settings information for a given type.
+`public virtual void `[`SetPlayerSetting`](#classURH__PlayerSettings_1adf7351daad25cabd96e3943f69bcc283)`(const FString & SettingTypeId,const FString & Key,const `[`FRHAPI_SetSinglePlayerSettingRequest`](RHAPI_SetSinglePlayerSettingRequest.md#structFRHAPI__SetSinglePlayerSettingRequest)` & Document,const FRH_PlayerInfoSetPlayerSettingBlock & Delegate,const `[`FRH_ObjectVersionCheck`](Common.md#structFRH__ObjectVersionCheck)` & VersionCheck)` | Sets the players settings information for a given type.
 `public virtual void `[`DeletePlayerSetting`](#classURH__PlayerSettings_1aeae7898c01c64d7b260a71436ecf8c6b)`(const FString & SettingTypeId,const FString & Key,const FRH_GenericSuccessWithErrorBlock & Delegate)` | Deletes a players setting for a given type.
 `public inline virtual const TMap< FString, `[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` > & `[`GetAllStoredPlayerSettings`](#classURH__PlayerSettings_1ac49d4ca5fde1ea8b9511548809b6ab17)`() const` | Gets all the players store settings data.
 `protected TMap< FString, `[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` > `[`PlayerSettingsByTypeId`](#classURH__PlayerSettings_1a95d4670b0a19e82ab2be26776ccf991f) | Cache of Player Settings Data by their settings types.
@@ -285,7 +285,7 @@ Gets the players settings information for a given type, restricted to a list of 
 
 * `Delegate` Callback with the players settings for the given type.
 
-#### `public virtual void `[`SetPlayerSetting`](#classURH__PlayerSettings_1adf7351daad25cabd96e3943f69bcc283)`(const FString & SettingTypeId,const FString & Key,const `[`FRHAPI_SetSinglePlayerSettingRequest`](models/RHAPI_SetSinglePlayerSettingRequest.md#structFRHAPI__SetSinglePlayerSettingRequest)` & Document,const FRH_PlayerInfoSetPlayerSettingBlock & Delegate,const `[`FRH_ObjectVersionCheck`](Common.md#structFRH__ObjectVersionCheck)` & VersionCheck)` <a id="classURH__PlayerSettings_1adf7351daad25cabd96e3943f69bcc283"></a>
+#### `public virtual void `[`SetPlayerSetting`](#classURH__PlayerSettings_1adf7351daad25cabd96e3943f69bcc283)`(const FString & SettingTypeId,const FString & Key,const `[`FRHAPI_SetSinglePlayerSettingRequest`](RHAPI_SetSinglePlayerSettingRequest.md#structFRHAPI__SetSinglePlayerSettingRequest)` & Document,const FRH_PlayerInfoSetPlayerSettingBlock & Delegate,const `[`FRH_ObjectVersionCheck`](Common.md#structFRH__ObjectVersionCheck)` & VersionCheck)` <a id="classURH__PlayerSettings_1adf7351daad25cabd96e3943f69bcc283"></a>
 
 Sets the players settings information for a given type.
 
@@ -369,14 +369,14 @@ Player Sessions class used to store player session membership information.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public `[`FRHAPI_PlayerSessions`](models/RHAPI_PlayerSessions.md#structFRHAPI__PlayerSessions)` `[`Sessions`](#classURH__PlayerSessions_1ac1c23232b2bb48fc13ea1b7fd438f2ab) | The sessions the player is a member of.
+`public `[`FRHAPI_PlayerSessions`](RHAPI_PlayerSessions.md#structFRHAPI__PlayerSessions)` `[`Sessions`](#classURH__PlayerSessions_1ac1c23232b2bb48fc13ea1b7fd438f2ab) | The sessions the player is a member of.
 `protected virtual void `[`Poll`](#classURH__PlayerSessions_1a7adb05ae630f0bffb316507c08749a95)`(const FRH_PollCompleteFunc & Delegate)` | Starts a poll of the players sessions.
 `protected inline virtual void `[`Update`](#classURH__PlayerSessions_1aec7d221dfaac8ca3386fc25280a9817e)`(const GetSessionsType::Response & Other)` | Stores the response data from an API request.
 `typedef `[`GetSessionsType`](#classURH__PlayerSessions_1afa8a5657954ca5d686f07cea03b23b92) | 
 
 ### Members
 
-#### `public `[`FRHAPI_PlayerSessions`](models/RHAPI_PlayerSessions.md#structFRHAPI__PlayerSessions)` `[`Sessions`](#classURH__PlayerSessions_1ac1c23232b2bb48fc13ea1b7fd438f2ab) <a id="classURH__PlayerSessions_1ac1c23232b2bb48fc13ea1b7fd438f2ab"></a>
+#### `public `[`FRHAPI_PlayerSessions`](RHAPI_PlayerSessions.md#structFRHAPI__PlayerSessions)` `[`Sessions`](#classURH__PlayerSessions_1ac1c23232b2bb48fc13ea1b7fd438f2ab) <a id="classURH__PlayerSessions_1ac1c23232b2bb48fc13ea1b7fd438f2ab"></a>
 
 The sessions the player is a member of.
 
@@ -409,8 +409,8 @@ Player Deserters class used to store player deserter information.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public TMap< FString, `[`FRHAPI_PlayerDeserterStatus`](models/RHAPI_PlayerDeserterStatus.md#structFRHAPI__PlayerDeserterStatus)` > `[`DeserterStatus`](#classURH__PlayerDeserter_1a05ffb9ed63dc9857664c8f6c11a2b5e7) | The deserter status for the player by DeserterId.
-`public virtual void `[`SetDeserterStatus`](#classURH__PlayerDeserter_1a69f7bd8f4cdeceae377fe8b733b9fb29)`(const FString & DeserterId,const `[`FRHAPI_DeserterUpdateRequest`](models/RHAPI_DeserterUpdateRequest.md#structFRHAPI__DeserterUpdateRequest)` & NewDeserterStatus,const FRH_OnRequestPlayerInfoSubobjectDelegateBlock & Delegate)` | Updates the deserter status for the player.
+`public TMap< FString, `[`FRHAPI_PlayerDeserterStatus`](RHAPI_PlayerDeserterStatus.md#structFRHAPI__PlayerDeserterStatus)` > `[`DeserterStatus`](#classURH__PlayerDeserter_1a05ffb9ed63dc9857664c8f6c11a2b5e7) | The deserter status for the player by DeserterId.
+`public virtual void `[`SetDeserterStatus`](#classURH__PlayerDeserter_1a69f7bd8f4cdeceae377fe8b733b9fb29)`(const FString & DeserterId,const `[`FRHAPI_DeserterUpdateRequest`](RHAPI_DeserterUpdateRequest.md#structFRHAPI__DeserterUpdateRequest)` & NewDeserterStatus,const FRH_OnRequestPlayerInfoSubobjectDelegateBlock & Delegate)` | Updates the deserter status for the player.
 `public virtual void `[`ClearDeserterStatus`](#classURH__PlayerDeserter_1a0a7433a6727348f723c0e202e0d65934)`(const FString & DeserterId,const FRH_GenericSuccessWithErrorBlock & Delegate)` | Clears the deserter state for the player for the given id.
 `public virtual void `[`ClearAllDeserterStatus`](#classURH__PlayerDeserter_1a994048ec55a1137c5dacd24b93358e1d)`(const FRH_GenericSuccessWithErrorBlock & Delegate)` | Clears all deserter states for the player.
 `protected virtual void `[`Poll`](#classURH__PlayerDeserter_1a544d4de164032b9966a4f42a609f4c09)`(const FRH_PollCompleteFunc & Delegate)` | Starts a poll of the players deserter status.
@@ -422,11 +422,11 @@ Player Deserters class used to store player deserter information.
 
 ### Members
 
-#### `public TMap< FString, `[`FRHAPI_PlayerDeserterStatus`](models/RHAPI_PlayerDeserterStatus.md#structFRHAPI__PlayerDeserterStatus)` > `[`DeserterStatus`](#classURH__PlayerDeserter_1a05ffb9ed63dc9857664c8f6c11a2b5e7) <a id="classURH__PlayerDeserter_1a05ffb9ed63dc9857664c8f6c11a2b5e7"></a>
+#### `public TMap< FString, `[`FRHAPI_PlayerDeserterStatus`](RHAPI_PlayerDeserterStatus.md#structFRHAPI__PlayerDeserterStatus)` > `[`DeserterStatus`](#classURH__PlayerDeserter_1a05ffb9ed63dc9857664c8f6c11a2b5e7) <a id="classURH__PlayerDeserter_1a05ffb9ed63dc9857664c8f6c11a2b5e7"></a>
 
 The deserter status for the player by DeserterId.
 
-#### `public virtual void `[`SetDeserterStatus`](#classURH__PlayerDeserter_1a69f7bd8f4cdeceae377fe8b733b9fb29)`(const FString & DeserterId,const `[`FRHAPI_DeserterUpdateRequest`](models/RHAPI_DeserterUpdateRequest.md#structFRHAPI__DeserterUpdateRequest)` & NewDeserterStatus,const FRH_OnRequestPlayerInfoSubobjectDelegateBlock & Delegate)` <a id="classURH__PlayerDeserter_1a69f7bd8f4cdeceae377fe8b733b9fb29"></a>
+#### `public virtual void `[`SetDeserterStatus`](#classURH__PlayerDeserter_1a69f7bd8f4cdeceae377fe8b733b9fb29)`(const FString & DeserterId,const `[`FRHAPI_DeserterUpdateRequest`](RHAPI_DeserterUpdateRequest.md#structFRHAPI__DeserterUpdateRequest)` & NewDeserterStatus,const FRH_OnRequestPlayerInfoSubobjectDelegateBlock & Delegate)` <a id="classURH__PlayerDeserter_1a69f7bd8f4cdeceae377fe8b733b9fb29"></a>
 
 Updates the deserter status for the player.
 
@@ -491,7 +491,7 @@ Player Matches class used to store player match history information.
 `public int32 `[`PollPageSize`](#classURH__PlayerMatches_1a5d396c7fa4ed1186a1e88fc848571be2) | The size of the pages to poll, if 0, uses default.
 `public int32 `[`PollMaxPageCount`](#classURH__PlayerMatches_1ab61d485e5d851ff8fea078e331c9c7b8) | Polling of new pages is stopped after this value is reached, if 0, polls until all pages are polled.
 `public FTimespan `[`PollMaxAge`](#classURH__PlayerMatches_1ae4bebdc4d6137fb5585f4310b1d7c4e7) | The maximum age after which to stop polling new pages, if 0, polls until max count is reached.
-`public TMap< FString, `[`FRHAPI_MatchPlayerWithMatch`](models/RHAPI_MatchPlayerWithMatch.md#structFRHAPI__MatchPlayerWithMatch)` > `[`Matches`](#classURH__PlayerMatches_1aca9fc68c9d093c1a90bce75d0f9832ea) | The matches the player has participated in.
+`public TMap< FString, `[`FRHAPI_MatchPlayerWithMatch`](RHAPI_MatchPlayerWithMatch.md#structFRHAPI__MatchPlayerWithMatch)` > `[`Matches`](#classURH__PlayerMatches_1aca9fc68c9d093c1a90bce75d0f9832ea) | The matches the player has participated in.
 `protected virtual void `[`Poll`](#classURH__PlayerMatches_1a40b839311638c5097b6bc1f74b3156d3)`(const FRH_PollCompleteFunc & Delegate)` | Starts a poll of the object data.
 `protected virtual void `[`PollNextPage`](#classURH__PlayerMatches_1a2ca5a0cec9f116fd4469fb3a2a387e11)`(const FRH_PollCompleteFunc & Delegate,TSharedPtr< `[`FPollContext`](undefined.md#structURH__PlayerMatches_1_1FPollContext)` > Context)` | Starts a poll of the object data.
 `protected inline virtual void `[`Update`](#classURH__PlayerMatches_1a2d718f1945307bc4570e9b6fc1a10a27)`(const GetMatchesType::Response & Other,TSharedPtr< `[`FPollContext`](undefined.md#structURH__PlayerMatches_1_1FPollContext)` > Context)` | Stores the response data from an API presence request.
@@ -511,7 +511,7 @@ Polling of new pages is stopped after this value is reached, if 0, polls until a
 
 The maximum age after which to stop polling new pages, if 0, polls until max count is reached.
 
-#### `public TMap< FString, `[`FRHAPI_MatchPlayerWithMatch`](models/RHAPI_MatchPlayerWithMatch.md#structFRHAPI__MatchPlayerWithMatch)` > `[`Matches`](#classURH__PlayerMatches_1aca9fc68c9d093c1a90bce75d0f9832ea) <a id="classURH__PlayerMatches_1aca9fc68c9d093c1a90bce75d0f9832ea"></a>
+#### `public TMap< FString, `[`FRHAPI_MatchPlayerWithMatch`](RHAPI_MatchPlayerWithMatch.md#structFRHAPI__MatchPlayerWithMatch)` > `[`Matches`](#classURH__PlayerMatches_1aca9fc68c9d093c1a90bce75d0f9832ea) <a id="classURH__PlayerMatches_1aca9fc68c9d093c1a90bce75d0f9832ea"></a>
 
 The matches the player has participated in.
 
@@ -556,13 +556,13 @@ Player Reports class used to store and send player report information.
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public virtual void `[`GetReportsSentAsync`](#classURH__PlayerReports_1a8286167a68b0b8f0dc9e57c394fd29fd)`(const FString & Cursor,const int32 PageSize,const FRH_PlayerInfoGetPlayerReportsBlock & Delegate)` | Request a list of player reports send by this player.
-`public inline TArray< `[`FRHAPI_PlayerReport`](models/RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`GetReportsSent`](#classURH__PlayerReports_1a143d1f8a21fec0136747bd53bfe85750)`() const` | Get the current cached list of player reports sent by this player.
+`public inline TArray< `[`FRHAPI_PlayerReport`](RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`GetReportsSent`](#classURH__PlayerReports_1a143d1f8a21fec0136747bd53bfe85750)`() const` | Get the current cached list of player reports sent by this player.
 `public virtual void `[`GetReportsReceivedAsync`](#classURH__PlayerReports_1ace60d12bc864d0546372df009c41f5f2)`(const FString & Cursor,const int32 PageSize,const FRH_PlayerInfoGetPlayerReportsBlock & Delegate)` | Request a list of player reports received by this player.
-`public inline virtual TArray< `[`FRHAPI_PlayerReport`](models/RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`GetReportsReceived`](#classURH__PlayerReports_1a34372b78a48405bac1101576e9aaa256)`() const` | Get the current cached list of player reports received by this player.
-`public virtual void `[`CreateReport`](#classURH__PlayerReports_1a3a7db86764cfd8c2a83be10dd5d9d157)`(const `[`FRHAPI_PlayerReportCreate`](models/RHAPI_PlayerReportCreate.md#structFRHAPI__PlayerReportCreate)` & Report,const FRH_PlayerInfoCreatePlayerReportBlock & Delegate)` | Create a new report for the target player.
-`public virtual void `[`CreateReport`](#classURH__PlayerReports_1a33a8bdc35ba9d092820b6796dc9763bf)`(const `[`FRHAPI_PlayerReportCreate`](models/RHAPI_PlayerReportCreate.md#structFRHAPI__PlayerReportCreate)` & Report,FAuthContextPtr AuthContext,const FRH_PlayerInfoCreatePlayerReportBlock & Delegate)` | Create a new report for the target player with a specific auth context.
-`protected TArray< `[`FRHAPI_PlayerReport`](models/RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`ReportsSent`](#classURH__PlayerReports_1afa610002ff1c15ed7e6dfdfce53b2263) | 
-`protected TArray< `[`FRHAPI_PlayerReport`](models/RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`ReportsReceived`](#classURH__PlayerReports_1a3f561b683fa7026383b75e5494ca6959) | 
+`public inline virtual TArray< `[`FRHAPI_PlayerReport`](RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`GetReportsReceived`](#classURH__PlayerReports_1a34372b78a48405bac1101576e9aaa256)`() const` | Get the current cached list of player reports received by this player.
+`public virtual void `[`CreateReport`](#classURH__PlayerReports_1a3a7db86764cfd8c2a83be10dd5d9d157)`(const `[`FRHAPI_PlayerReportCreate`](RHAPI_PlayerReportCreate.md#structFRHAPI__PlayerReportCreate)` & Report,const FRH_PlayerInfoCreatePlayerReportBlock & Delegate)` | Create a new report for the target player.
+`public virtual void `[`CreateReport`](#classURH__PlayerReports_1a33a8bdc35ba9d092820b6796dc9763bf)`(const `[`FRHAPI_PlayerReportCreate`](RHAPI_PlayerReportCreate.md#structFRHAPI__PlayerReportCreate)` & Report,FAuthContextPtr AuthContext,const FRH_PlayerInfoCreatePlayerReportBlock & Delegate)` | Create a new report for the target player with a specific auth context.
+`protected TArray< `[`FRHAPI_PlayerReport`](RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`ReportsSent`](#classURH__PlayerReports_1afa610002ff1c15ed7e6dfdfce53b2263) | 
+`protected TArray< `[`FRHAPI_PlayerReport`](RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`ReportsReceived`](#classURH__PlayerReports_1a3f561b683fa7026383b75e5494ca6959) | 
 `typedef `[`GetReportsSentType`](#classURH__PlayerReports_1a66e9b68dfeb75fe986b3f615385e80a7) | 
 `typedef `[`GetReportsReceivedType`](#classURH__PlayerReports_1a2bebbdb949cccf80084b2e5b3cb99951) | 
 `typedef `[`CreateReportType`](#classURH__PlayerReports_1a6b101fa42b9857a05a752b07cade837d) | 
@@ -580,7 +580,7 @@ Request a list of player reports send by this player.
 
 * `Delegate` Callback delegate for the request.
 
-#### `public inline TArray< `[`FRHAPI_PlayerReport`](models/RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`GetReportsSent`](#classURH__PlayerReports_1a143d1f8a21fec0136747bd53bfe85750)`() const` <a id="classURH__PlayerReports_1a143d1f8a21fec0136747bd53bfe85750"></a>
+#### `public inline TArray< `[`FRHAPI_PlayerReport`](RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`GetReportsSent`](#classURH__PlayerReports_1a143d1f8a21fec0136747bd53bfe85750)`() const` <a id="classURH__PlayerReports_1a143d1f8a21fec0136747bd53bfe85750"></a>
 
 Get the current cached list of player reports sent by this player.
 
@@ -595,11 +595,11 @@ Request a list of player reports received by this player.
 
 * `Delegate` Callback delegate for the request.
 
-#### `public inline virtual TArray< `[`FRHAPI_PlayerReport`](models/RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`GetReportsReceived`](#classURH__PlayerReports_1a34372b78a48405bac1101576e9aaa256)`() const` <a id="classURH__PlayerReports_1a34372b78a48405bac1101576e9aaa256"></a>
+#### `public inline virtual TArray< `[`FRHAPI_PlayerReport`](RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`GetReportsReceived`](#classURH__PlayerReports_1a34372b78a48405bac1101576e9aaa256)`() const` <a id="classURH__PlayerReports_1a34372b78a48405bac1101576e9aaa256"></a>
 
 Get the current cached list of player reports received by this player.
 
-#### `public virtual void `[`CreateReport`](#classURH__PlayerReports_1a3a7db86764cfd8c2a83be10dd5d9d157)`(const `[`FRHAPI_PlayerReportCreate`](models/RHAPI_PlayerReportCreate.md#structFRHAPI__PlayerReportCreate)` & Report,const FRH_PlayerInfoCreatePlayerReportBlock & Delegate)` <a id="classURH__PlayerReports_1a3a7db86764cfd8c2a83be10dd5d9d157"></a>
+#### `public virtual void `[`CreateReport`](#classURH__PlayerReports_1a3a7db86764cfd8c2a83be10dd5d9d157)`(const `[`FRHAPI_PlayerReportCreate`](RHAPI_PlayerReportCreate.md#structFRHAPI__PlayerReportCreate)` & Report,const FRH_PlayerInfoCreatePlayerReportBlock & Delegate)` <a id="classURH__PlayerReports_1a3a7db86764cfd8c2a83be10dd5d9d157"></a>
 
 Create a new report for the target player.
 
@@ -608,7 +608,7 @@ Create a new report for the target player.
 
 * `Delegate` Callback delegate for the request.
 
-#### `public virtual void `[`CreateReport`](#classURH__PlayerReports_1a33a8bdc35ba9d092820b6796dc9763bf)`(const `[`FRHAPI_PlayerReportCreate`](models/RHAPI_PlayerReportCreate.md#structFRHAPI__PlayerReportCreate)` & Report,FAuthContextPtr AuthContext,const FRH_PlayerInfoCreatePlayerReportBlock & Delegate)` <a id="classURH__PlayerReports_1a33a8bdc35ba9d092820b6796dc9763bf"></a>
+#### `public virtual void `[`CreateReport`](#classURH__PlayerReports_1a33a8bdc35ba9d092820b6796dc9763bf)`(const `[`FRHAPI_PlayerReportCreate`](RHAPI_PlayerReportCreate.md#structFRHAPI__PlayerReportCreate)` & Report,FAuthContextPtr AuthContext,const FRH_PlayerInfoCreatePlayerReportBlock & Delegate)` <a id="classURH__PlayerReports_1a33a8bdc35ba9d092820b6796dc9763bf"></a>
 
 Create a new report for the target player with a specific auth context.
 
@@ -619,9 +619,9 @@ Create a new report for the target player with a specific auth context.
 
 * `Delegate` Callback delegate for the request.
 
-#### `protected TArray< `[`FRHAPI_PlayerReport`](models/RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`ReportsSent`](#classURH__PlayerReports_1afa610002ff1c15ed7e6dfdfce53b2263) <a id="classURH__PlayerReports_1afa610002ff1c15ed7e6dfdfce53b2263"></a>
+#### `protected TArray< `[`FRHAPI_PlayerReport`](RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`ReportsSent`](#classURH__PlayerReports_1afa610002ff1c15ed7e6dfdfce53b2263) <a id="classURH__PlayerReports_1afa610002ff1c15ed7e6dfdfce53b2263"></a>
 
-#### `protected TArray< `[`FRHAPI_PlayerReport`](models/RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`ReportsReceived`](#classURH__PlayerReports_1a3f561b683fa7026383b75e5494ca6959) <a id="classURH__PlayerReports_1a3f561b683fa7026383b75e5494ca6959"></a>
+#### `protected TArray< `[`FRHAPI_PlayerReport`](RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`ReportsReceived`](#classURH__PlayerReports_1a3f561b683fa7026383b75e5494ca6959) <a id="classURH__PlayerReports_1a3f561b683fa7026383b75e5494ca6959"></a>
 
 #### `typedef `[`GetReportsSentType`](#classURH__PlayerReports_1a66e9b68dfeb75fe986b3f615385e80a7) <a id="classURH__PlayerReports_1a66e9b68dfeb75fe986b3f615385e80a7"></a>
 
@@ -716,7 +716,7 @@ Stores and fetchs all the information about a given player.
 `public virtual void `[`StartStreamingNotifications`](#classURH__PlayerInfo_1af0c9066d3c0b17440adfaf7e6b9cca9f)`()` | Request to start streaming notifications for this player.
 `public virtual void `[`StopStreamingNotifications`](#classURH__PlayerInfo_1a030ec9d94254cb742700d1c3947412dd)`(bool bClearCache)` | Requests to stop streaming notifications.
 `public inline virtual const TMap< FString, `[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` > & `[`GetAllStoredPlayerSettings`](#classURH__PlayerInfo_1a3eeb21bd2ebc5e074abc0de97d35ce9e)`() const` | Gets all the players store settings data.
-`public inline virtual const TMap< FString, `[`FRHAPI_PlayerRankResponseV2`](models/RHAPI_PlayerRankResponseV2.md#structFRHAPI__PlayerRankResponseV2)` > & `[`GetAllStoredPlayerRankings`](#classURH__PlayerInfo_1a2727915e9be4638dbd49310a6938645c)`() const` | Gets all the players stored ranking data.
+`public inline virtual const TMap< FString, `[`FRHAPI_PlayerRankResponseV2`](RHAPI_PlayerRankResponseV2.md#structFRHAPI__PlayerRankResponseV2)` > & `[`GetAllStoredPlayerRankings`](#classURH__PlayerInfo_1a2727915e9be4638dbd49310a6938645c)`() const` | Gets all the players stored ranking data.
 `public virtual `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__PlayerInfo_1a79f8f54e2bbda560cb138f54efbfd0ac)`() const` | Gets the players Info Subsystem that the Player Info is on.
 `public virtual void `[`InitializeForPlayer`](#classURH__PlayerInfo_1a95e3c7c6762abe6c801e98e708905d39)`(const FGuid & PlayerUuid)` | Initialized the player info from a given Player Unique Id.
 `public virtual void `[`GetLastKnownDisplayNameAsync`](#classURH__PlayerInfo_1a2294e1b29debae35974c1776ef703cfd)`(const FTimespan & StaleThreshold,bool bForceRefresh,ERHAPI_Platform PreferredPlatformType,const FRH_PlayerInfoGetDisplayNameBlock & Delegate,const class `[`URH_LocalPlayerSubsystem`](LocalPlayer.md#classURH__LocalPlayerSubsystem)` * LocalPlayerSubsystem)` | Gets the last known display name for the player, will make required API calls to retrieve the information if needed.
@@ -724,10 +724,10 @@ Stores and fetchs all the information about a given player.
 `public virtual void `[`GetLinkedPlatformInfo`](#classURH__PlayerInfo_1a3cdeb290b652d16aa44e5c6e1e4ae44c)`(const FTimespan & StaleThreshold,bool bForceRefresh,const FRH_PlayerInfoGetPlatformsBlock & Delegate)` | Gets the players linked platforms via API call.
 `public inline virtual void `[`GetPlayerSettings`](#classURH__PlayerInfo_1a6f0c823fb1c55bcf4ab2482092cfad2a)`(const FString & SettingTypeId,const FTimespan & StaleThreshold,bool bForceRefresh,const FRH_PlayerInfoGetPlayerSettingsBlock & Delegate)` | Gets the players settings information for a given type.
 `public inline virtual void `[`GetPlayerSettingsForKeys`](#classURH__PlayerInfo_1ae6eeb698d34e599d1ec6f32b04c182eb)`(const FString & SettingTypeId,const TArray< FString > & Keys,const FTimespan & StaleThreshold,bool bForceRefresh,const FRH_PlayerInfoGetPlayerSettingsBlock & Delegate)` | Gets the players settings information for a given type, restricted to a list of keys.
-`public inline virtual void `[`SetPlayerSetting`](#classURH__PlayerInfo_1ae7b9fda2aa95f72d7786072877d22ee2)`(const FString & SettingTypeId,const FString & Key,const `[`FRHAPI_SetSinglePlayerSettingRequest`](models/RHAPI_SetSinglePlayerSettingRequest.md#structFRHAPI__SetSinglePlayerSettingRequest)` & Document,const FRH_PlayerInfoSetPlayerSettingBlock & Delegate)` | Sets the players settings information for a given type.
+`public inline virtual void `[`SetPlayerSetting`](#classURH__PlayerInfo_1ae7b9fda2aa95f72d7786072877d22ee2)`(const FString & SettingTypeId,const FString & Key,const `[`FRHAPI_SetSinglePlayerSettingRequest`](RHAPI_SetSinglePlayerSettingRequest.md#structFRHAPI__SetSinglePlayerSettingRequest)` & Document,const FRH_PlayerInfoSetPlayerSettingBlock & Delegate)` | Sets the players settings information for a given type.
 `public inline virtual void `[`DeletePlayerSetting`](#classURH__PlayerInfo_1a75f8a74087a97a33e9bc3dc296abbf0c)`(const FString & SettingTypeId,const FString & Key,const FRH_GenericSuccessWithErrorBlock & Delegate)` | Deletes a players setting for a given type.
 `public virtual void `[`GetPlayerRankings`](#classURH__PlayerInfo_1a03b9bc9136601f64145bec69a5e9e9e8)`(const FTimespan & StaleThreshold,bool bForceRefresh,const FRH_PlayerInfoGetPlayerRankingsBlock & Delegate)` | Gets the players ranking information for a given type.
-`public virtual void `[`UpdatePlayerRanking`](#classURH__PlayerInfo_1afd6c1206e990ca64b9fa56a54e085094)`(const FString & RankId,const `[`FRHAPI_PlayerRankUpdateRequest`](models/RHAPI_PlayerRankUpdateRequest.md#structFRHAPI__PlayerRankUpdateRequest)` & RankData,const FRH_PlayerInfoGetPlayerRankingsBlock & Delegate)` | Sets the players settings information for a given type.
+`public virtual void `[`UpdatePlayerRanking`](#classURH__PlayerInfo_1afd6c1206e990ca64b9fa56a54e085094)`(const FString & RankId,const `[`FRHAPI_PlayerRankUpdateRequest`](RHAPI_PlayerRankUpdateRequest.md#structFRHAPI__PlayerRankUpdateRequest)` & RankData,const FRH_PlayerInfoGetPlayerRankingsBlock & Delegate)` | Sets the players settings information for a given type.
 `public FAuthContextPtr `[`GetAuthContext`](#classURH__PlayerInfo_1a38aa7a072a97be36bc623a9cda702cdf)`() const` | Gets the local Auth Context for making API calls.
 `public virtual ERHAPI_Platform `[`GetLoggedInPlatform`](#classURH__PlayerInfo_1a12baa089a6981ccb98fba0dab3ea550b)`() const` | Gets the local users logged in platform type.
 `protected FGuid `[`RHPlayerUuid`](#classURH__PlayerInfo_1abd6b1bad2e1044b59af44d04f822cef1) | The Unique Player Id for the player.
@@ -740,7 +740,7 @@ Stores and fetchs all the information about a given player.
 `protected `[`URH_PlayerReports`](PlayerInfo.md#classURH__PlayerReports)` * `[`PlayerReports`](#classURH__PlayerInfo_1a99a08ebcbd1c9c030f1d4ca7f9fcb572) | The players Reports Information.
 `protected `[`URH_PlayerInventory`](Inventory.md#classURH__PlayerInventory)` * `[`PlayerInventory`](#classURH__PlayerInfo_1ab06228dae3921d141dbbf2bf895c55da) | The Players Inventory Subsystem.
 `protected `[`URH_PlayerNotifications`](Notifications.md#classURH__PlayerNotifications)` * `[`PlayerNotifications`](#classURH__PlayerInfo_1ac1eb1a25b4d89a7f7c75cbb6d4c9e4a8) | The Players Inventory Subsystem.
-`protected TMap< FString, `[`FRHAPI_PlayerRankResponseV2`](models/RHAPI_PlayerRankResponseV2.md#structFRHAPI__PlayerRankResponseV2)` > `[`PlayerRankingsByRankingId`](#classURH__PlayerInfo_1a5728d3241aef0abed0788e90422ad071) | List of the player's rankings.
+`protected TMap< FString, `[`FRHAPI_PlayerRankResponseV2`](RHAPI_PlayerRankResponseV2.md#structFRHAPI__PlayerRankResponseV2)` > `[`PlayerRankingsByRankingId`](#classURH__PlayerInfo_1a5728d3241aef0abed0788e90422ad071) | List of the player's rankings.
 `protected FDateTime `[`LastRequestPlatforms`](#classURH__PlayerInfo_1aa5e1b18e6f2841b2f1e32914d8552756) | Tracks the last time the players linked platforms were requested for checking if the data is stale.
 `protected FDateTime `[`LastRequestRankings`](#classURH__PlayerInfo_1a5e9c3bbbc44273cfa7286f52c457d435) | Tracks the last time the player rankings were requested for checking if the data is stale.
 `protected virtual void `[`OnGetPlayerLinkedPlatformsForLastKnownDisplayNameResponse`](#classURH__PlayerInfo_1a49e19ae4082f15e22b2062c1cb78deb0)`(bool bSuccess,const TArray< `[`URH_PlayerPlatformInfo`](PlayerInfo.md#classURH__PlayerPlatformInfo)` * > & Platforms,ERHAPI_Platform PreferredPlatformType,const FRH_PlayerInfoGetDisplayNameBlock Delegate,const class `[`URH_LocalPlayerSubsystem`](LocalPlayer.md#classURH__LocalPlayerSubsystem)` * LocalPlayerSubsystem)` | Handles the response to a Get Linked Platforms For Last Known Display Name call.
@@ -866,7 +866,7 @@ Gets all the players store settings data.
 #### Returns
 The players stored settings data.
 
-#### `public inline virtual const TMap< FString, `[`FRHAPI_PlayerRankResponseV2`](models/RHAPI_PlayerRankResponseV2.md#structFRHAPI__PlayerRankResponseV2)` > & `[`GetAllStoredPlayerRankings`](#classURH__PlayerInfo_1a2727915e9be4638dbd49310a6938645c)`() const` <a id="classURH__PlayerInfo_1a2727915e9be4638dbd49310a6938645c"></a>
+#### `public inline virtual const TMap< FString, `[`FRHAPI_PlayerRankResponseV2`](RHAPI_PlayerRankResponseV2.md#structFRHAPI__PlayerRankResponseV2)` > & `[`GetAllStoredPlayerRankings`](#classURH__PlayerInfo_1a2727915e9be4638dbd49310a6938645c)`() const` <a id="classURH__PlayerInfo_1a2727915e9be4638dbd49310a6938645c"></a>
 
 Gets all the players stored ranking data.
 
@@ -951,7 +951,7 @@ Gets the players settings information for a given type, restricted to a list of 
 
 * `Delegate` Callback with the players settings for the given type.
 
-#### `public inline virtual void `[`SetPlayerSetting`](#classURH__PlayerInfo_1ae7b9fda2aa95f72d7786072877d22ee2)`(const FString & SettingTypeId,const FString & Key,const `[`FRHAPI_SetSinglePlayerSettingRequest`](models/RHAPI_SetSinglePlayerSettingRequest.md#structFRHAPI__SetSinglePlayerSettingRequest)` & Document,const FRH_PlayerInfoSetPlayerSettingBlock & Delegate)` <a id="classURH__PlayerInfo_1ae7b9fda2aa95f72d7786072877d22ee2"></a>
+#### `public inline virtual void `[`SetPlayerSetting`](#classURH__PlayerInfo_1ae7b9fda2aa95f72d7786072877d22ee2)`(const FString & SettingTypeId,const FString & Key,const `[`FRHAPI_SetSinglePlayerSettingRequest`](RHAPI_SetSinglePlayerSettingRequest.md#structFRHAPI__SetSinglePlayerSettingRequest)` & Document,const FRH_PlayerInfoSetPlayerSettingBlock & Delegate)` <a id="classURH__PlayerInfo_1ae7b9fda2aa95f72d7786072877d22ee2"></a>
 
 Sets the players settings information for a given type.
 
@@ -986,7 +986,7 @@ Gets the players ranking information for a given type.
 
 * `Delegate` Callback with the players ranking for the given type.
 
-#### `public virtual void `[`UpdatePlayerRanking`](#classURH__PlayerInfo_1afd6c1206e990ca64b9fa56a54e085094)`(const FString & RankId,const `[`FRHAPI_PlayerRankUpdateRequest`](models/RHAPI_PlayerRankUpdateRequest.md#structFRHAPI__PlayerRankUpdateRequest)` & RankData,const FRH_PlayerInfoGetPlayerRankingsBlock & Delegate)` <a id="classURH__PlayerInfo_1afd6c1206e990ca64b9fa56a54e085094"></a>
+#### `public virtual void `[`UpdatePlayerRanking`](#classURH__PlayerInfo_1afd6c1206e990ca64b9fa56a54e085094)`(const FString & RankId,const `[`FRHAPI_PlayerRankUpdateRequest`](RHAPI_PlayerRankUpdateRequest.md#structFRHAPI__PlayerRankUpdateRequest)` & RankData,const FRH_PlayerInfoGetPlayerRankingsBlock & Delegate)` <a id="classURH__PlayerInfo_1afd6c1206e990ca64b9fa56a54e085094"></a>
 
 Sets the players settings information for a given type.
 
@@ -1051,7 +1051,7 @@ The Players Inventory Subsystem.
 
 The Players Inventory Subsystem.
 
-#### `protected TMap< FString, `[`FRHAPI_PlayerRankResponseV2`](models/RHAPI_PlayerRankResponseV2.md#structFRHAPI__PlayerRankResponseV2)` > `[`PlayerRankingsByRankingId`](#classURH__PlayerInfo_1a5728d3241aef0abed0788e90422ad071) <a id="classURH__PlayerInfo_1a5728d3241aef0abed0788e90422ad071"></a>
+#### `protected TMap< FString, `[`FRHAPI_PlayerRankResponseV2`](RHAPI_PlayerRankResponseV2.md#structFRHAPI__PlayerRankResponseV2)` > `[`PlayerRankingsByRankingId`](#classURH__PlayerInfo_1a5728d3241aef0abed0788e90422ad071) <a id="classURH__PlayerInfo_1a5728d3241aef0abed0788e90422ad071"></a>
 
 List of the player's rankings.
 
