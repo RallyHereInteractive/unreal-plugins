@@ -164,15 +164,15 @@ bool URH_GameInstanceSessionSubsystem::MakeActiveSessionJoinable(UWorld* pWorld)
 	{
 		// fall back to local LAN detection
 		auto* NetDriver = pWorld->GetNetDriver();
-		auto LocalAddr = NetDriver ? NetDriver->GetLocalAddr() : nullptr;
-		if (NetDriver != nullptr && NetDriver->IsServer() && LocalAddr.IsValid() && LocalAddr->GetPort() > 0)
+		if (NetDriver != nullptr && NetDriver->IsServer() && NetDriver->GetSocketSubsystem() != nullptr && pWorld->URL.Port > 0)
 		{
 			bool bCanBind = false;
-			if (LocalAddr->IsValid()) // validity check for the address not the shared ref
+			const TSharedRef<FInternetAddr> LocalIp = NetDriver->GetSocketSubsystem()->GetLocalHostAddr(*GLog, bCanBind);
+			if (LocalIp->IsValid()) // validity check for the address not the shared ref
 			{
-				const auto LocalIPModified = LocalAddr->Clone();
+				const auto LocalIPModified = LocalIp->Clone();
 				// world URL should have the port that was opened for listen
-				LocalIPModified->SetPort(LocalAddr->GetPort());
+				LocalIPModified->SetPort(pWorld->URL.Port);
 
 				// temp - parse as IPv4 to determine if it should be public or private
 				FIPv4Address tempIPv4;

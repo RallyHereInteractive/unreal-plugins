@@ -90,7 +90,7 @@ Login Subsystem for the local player.
 `public virtual void `[`Initialize`](#classURH__LocalPlayerLoginSubsystem_1a938bd41c5c5fa6b5eacbeb43d0758a63)`()` | Initialize the subsystem.
 `public virtual void `[`Deinitialize`](#classURH__LocalPlayerLoginSubsystem_1a363bdf9386b7854ed44a03cfe6faea18)`()` | Safely tears down the subsystem.
 `public virtual void `[`OnUserChanged`](#classURH__LocalPlayerLoginSubsystem_1ab6d2f50070d3611329243a43e898785b)`(const FGuid & OldPlayerUuid,class `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * OldLocalPlayerInfo)` | Base handling when the local user changes, override to provide functionality.
-`public virtual void `[`HandleNotification`](#classURH__LocalPlayerLoginSubsystem_1ad80279dbf8a8ae3b3c1a022afb109985)`(const struct `[`FRHAPI_Notification`](models/RHAPI_Notification.md#structFRHAPI__Notification)` & Notification,const FString & APIName,const TArray< FString > & APIParams)` | Handle a notification from the notification API.
+`public virtual void `[`HandleNotification`](#classURH__LocalPlayerLoginSubsystem_1ad80279dbf8a8ae3b3c1a022afb109985)`(const struct `[`FRHAPI_Notification`](RHAPI_Notification.md#structFRHAPI__Notification)` & Notification,const FString & APIName,const TArray< FString > & APIParams)` | Handle a notification from the notification API.
 `public void `[`SubmitAutoLogin`](#classURH__LocalPlayerLoginSubsystem_1aec27fd534d794470e4eb893de8d722c4)`(bool bAcceptEULA,bool bAcceptTOS,bool bAcceptPP,const FRH_OnLoginComplete & OnLoginCompleteDelegate)` | Begins a complete multi-phased login to the OnlineSubsystem with the credentials provided on the command line, checking if the user has appropriate permissions, and logging into RallyHere.
 `public void `[`ResubmitLastSuccessfulLogin`](#classURH__LocalPlayerLoginSubsystem_1a937e6ee9e5592c699ff28bbf89344532)`(const FRH_OnLoginComplete & OnLoginCompleteDelegate)` | Submits a complete multi-phased login using the last successful set of login parameters.
 `public void `[`SubmitLogin`](#classURH__LocalPlayerLoginSubsystem_1a8feda49ddf6a5f48448d4f989eca3d57)`(const FOnlineAccountCredentials & Credentials,FString CredentialRefreshToken,bool bAcceptEULA,bool bAcceptTOS,bool bAcceptPP,FRH_OnLoginComplete OnLoginCompleteDelegate)` | Begins a complete multi-phased login to the OnlineSubsystem with the provided credentials, checking if the user has appropriate permissions, and logging into RallyHere.
@@ -234,7 +234,7 @@ Base handling when the local user changes, override to provide functionality.
 
 * `OldLocalPlayerInfo` The old local player info.
 
-#### `public virtual void `[`HandleNotification`](#classURH__LocalPlayerLoginSubsystem_1ad80279dbf8a8ae3b3c1a022afb109985)`(const struct `[`FRHAPI_Notification`](models/RHAPI_Notification.md#structFRHAPI__Notification)` & Notification,const FString & APIName,const TArray< FString > & APIParams)` <a id="classURH__LocalPlayerLoginSubsystem_1ad80279dbf8a8ae3b3c1a022afb109985"></a>
+#### `public virtual void `[`HandleNotification`](#classURH__LocalPlayerLoginSubsystem_1ad80279dbf8a8ae3b3c1a022afb109985)`(const struct `[`FRHAPI_Notification`](RHAPI_Notification.md#structFRHAPI__Notification)` & Notification,const FString & APIName,const TArray< FString > & APIParams)` <a id="classURH__LocalPlayerLoginSubsystem_1ad80279dbf8a8ae3b3c1a022afb109985"></a>
 
 Handle a notification from the notification API.
 
@@ -653,14 +653,14 @@ Subsystem to manage the local players presence.
 `public inline bool `[`GetDesiredDoNotDisturb`](#classURH__LocalPlayerPresenceSubsystem_1aec49acc65c1627bcfb9b95eb29b1c2dc)`() const` | Gets the desired do not disturb setting that the player wants to be set to.
 `public inline void `[`SetDesiredCustomData`](#classURH__LocalPlayerPresenceSubsystem_1af554c5a6e2f17be875c859f0e6503245)`(TMap< FString, FString > NewCustomData)` | Requests an update of your presence custom data to be set to the desired setting.
 `public inline const TMap< FString, FString > `[`GetDesiredCustomData`](#classURH__LocalPlayerPresenceSubsystem_1a44018e1ef4737b09d495eeca408c3016)`() const` | Gets the desired custom data that the player wants to be set to.
-`public inline void `[`SetDesiredPresence`](#classURH__LocalPlayerPresenceSubsystem_1a4ffc23a0a9185823907fff0c361e4045)`(`[`FRHAPI_PlayerPresenceUpdateSelf`](models/RHAPI_PlayerPresenceUpdateSelf.md#structFRHAPI__PlayerPresenceUpdateSelf)` NewPresenceState)` | Requests an update of your entire presence state to be set to the desired structure.
-`public inline const `[`FRHAPI_PlayerPresenceUpdateSelf`](models/RHAPI_PlayerPresenceUpdateSelf.md#structFRHAPI__PlayerPresenceUpdateSelf)` & `[`GetDesiredPresence`](#classURH__LocalPlayerPresenceSubsystem_1a0b762d8e59fc2ceeafafb5b77f3b1c6a)`() const` | Gets the desired custom data that the player wants to be set to.
+`public inline void `[`SetDesiredPresence`](#classURH__LocalPlayerPresenceSubsystem_1a4ffc23a0a9185823907fff0c361e4045)`(`[`FRHAPI_PlayerPresenceUpdateSelf`](RHAPI_PlayerPresenceUpdateSelf.md#structFRHAPI__PlayerPresenceUpdateSelf)` NewPresenceState)` | Requests an update of your entire presence state to be set to the desired structure.
+`public inline const `[`FRHAPI_PlayerPresenceUpdateSelf`](RHAPI_PlayerPresenceUpdateSelf.md#structFRHAPI__PlayerPresenceUpdateSelf)` & `[`GetDesiredPresence`](#classURH__LocalPlayerPresenceSubsystem_1a0b762d8e59fc2ceeafafb5b77f3b1c6a)`() const` | Gets the desired custom data that the player wants to be set to.
 `public void `[`StartRefreshTimer`](#classURH__LocalPlayerPresenceSubsystem_1a32af15e5eafaf94bdea501e1dc02d90b)`()` | Starts polling to refresh the player's presence status.
 `public void `[`StopRefreshTimer`](#classURH__LocalPlayerPresenceSubsystem_1a95919d768be0b60ad1134052aff7ef2c)`()` | Stops polling to refresh the player's presence status.
 `public void `[`RefreshStatus`](#classURH__LocalPlayerPresenceSubsystem_1a409192cc26f0fb395231023cf4449fa7)`()` | Forces an update of the players presence with a status change.
 `public bool `[`IsRefreshTimerActive`](#classURH__LocalPlayerPresenceSubsystem_1ac786e4bb032fc9711ec196868c6c6b30)`(float & TimeRemaining) const` | Returns whether the refresh timer is active. param [in].
 `protected FRH_AutoPollerPtr `[`Poller`](#classURH__LocalPlayerPresenceSubsystem_1ab76093aeb1b7ae4313b979bfb5981f04) | Poller for the local presence.
-`protected `[`FRHAPI_PlayerPresenceUpdateSelf`](models/RHAPI_PlayerPresenceUpdateSelf.md#structFRHAPI__PlayerPresenceUpdateSelf)` `[`DesiredPresenceState`](#classURH__LocalPlayerPresenceSubsystem_1a005a96091c2add66fdfdf43b685247c9) | The Status that the local player is being changed to.
+`protected `[`FRHAPI_PlayerPresenceUpdateSelf`](RHAPI_PlayerPresenceUpdateSelf.md#structFRHAPI__PlayerPresenceUpdateSelf)` `[`DesiredPresenceState`](#classURH__LocalPlayerPresenceSubsystem_1a005a96091c2add66fdfdf43b685247c9) | The Status that the local player is being changed to.
 `protected TOptional< FString > `[`LastETag`](#classURH__LocalPlayerPresenceSubsystem_1a8f9d559a2e3b544b53c55c2a1aebc640) | The last ETag from the last successful poll.
 `protected virtual void `[`OnUserChanged`](#classURH__LocalPlayerPresenceSubsystem_1a39281ccf81d020bce677a4687ac61d16)`()` | Callback that occurs whenever the local player this subsystem is associated with changes.
 `protected virtual void `[`InitPropertiesWithDefaultValues`](#classURH__LocalPlayerPresenceSubsystem_1a41e97dcb80554d54d25008f03d407e1f)`()` | Initializes the subsystem with defaults for its cached data.
@@ -747,14 +747,14 @@ Requests an update of your presence custom data to be set to the desired setting
 
 Gets the desired custom data that the player wants to be set to.
 
-#### `public inline void `[`SetDesiredPresence`](#classURH__LocalPlayerPresenceSubsystem_1a4ffc23a0a9185823907fff0c361e4045)`(`[`FRHAPI_PlayerPresenceUpdateSelf`](models/RHAPI_PlayerPresenceUpdateSelf.md#structFRHAPI__PlayerPresenceUpdateSelf)` NewPresenceState)` <a id="classURH__LocalPlayerPresenceSubsystem_1a4ffc23a0a9185823907fff0c361e4045"></a>
+#### `public inline void `[`SetDesiredPresence`](#classURH__LocalPlayerPresenceSubsystem_1a4ffc23a0a9185823907fff0c361e4045)`(`[`FRHAPI_PlayerPresenceUpdateSelf`](RHAPI_PlayerPresenceUpdateSelf.md#structFRHAPI__PlayerPresenceUpdateSelf)` NewPresenceState)` <a id="classURH__LocalPlayerPresenceSubsystem_1a4ffc23a0a9185823907fff0c361e4045"></a>
 
 Requests an update of your entire presence state to be set to the desired structure.
 
 #### Parameters
 * `NewPresenceState` The new custom data desired.
 
-#### `public inline const `[`FRHAPI_PlayerPresenceUpdateSelf`](models/RHAPI_PlayerPresenceUpdateSelf.md#structFRHAPI__PlayerPresenceUpdateSelf)` & `[`GetDesiredPresence`](#classURH__LocalPlayerPresenceSubsystem_1a0b762d8e59fc2ceeafafb5b77f3b1c6a)`() const` <a id="classURH__LocalPlayerPresenceSubsystem_1a0b762d8e59fc2ceeafafb5b77f3b1c6a"></a>
+#### `public inline const `[`FRHAPI_PlayerPresenceUpdateSelf`](RHAPI_PlayerPresenceUpdateSelf.md#structFRHAPI__PlayerPresenceUpdateSelf)` & `[`GetDesiredPresence`](#classURH__LocalPlayerPresenceSubsystem_1a0b762d8e59fc2ceeafafb5b77f3b1c6a)`() const` <a id="classURH__LocalPlayerPresenceSubsystem_1a0b762d8e59fc2ceeafafb5b77f3b1c6a"></a>
 
 Gets the desired custom data that the player wants to be set to.
 
@@ -778,7 +778,7 @@ Returns whether the refresh timer is active. param [in].
 
 Poller for the local presence.
 
-#### `protected `[`FRHAPI_PlayerPresenceUpdateSelf`](models/RHAPI_PlayerPresenceUpdateSelf.md#structFRHAPI__PlayerPresenceUpdateSelf)` `[`DesiredPresenceState`](#classURH__LocalPlayerPresenceSubsystem_1a005a96091c2add66fdfdf43b685247c9) <a id="classURH__LocalPlayerPresenceSubsystem_1a005a96091c2add66fdfdf43b685247c9"></a>
+#### `protected `[`FRHAPI_PlayerPresenceUpdateSelf`](RHAPI_PlayerPresenceUpdateSelf.md#structFRHAPI__PlayerPresenceUpdateSelf)` `[`DesiredPresenceState`](#classURH__LocalPlayerPresenceSubsystem_1a005a96091c2add66fdfdf43b685247c9) <a id="classURH__LocalPlayerPresenceSubsystem_1a005a96091c2add66fdfdf43b685247c9"></a>
 
 The Status that the local player is being changed to.
 
@@ -815,8 +815,8 @@ Subsystem to manage sessions for the local player.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](models/RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & `[`JoinDetails`](#classURH__LocalPlayerSessionSubsystem_1ab51cd43e773e8da6fe045e438265d2b8) | 
-`public const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](models/RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` const FRH_OnSessionUpdatedDynamicDelegate & `[`Delegate`](#classURH__LocalPlayerSessionSubsystem_1a162d729ae29c6aaea092eb1c3ff8270c) | 
+`public const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & `[`JoinDetails`](#classURH__LocalPlayerSessionSubsystem_1ab51cd43e773e8da6fe045e438265d2b8) | 
+`public const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` const FRH_OnSessionUpdatedDynamicDelegate & `[`Delegate`](#classURH__LocalPlayerSessionSubsystem_1a162d729ae29c6aaea092eb1c3ff8270c) | 
 `public FRH_OnSessionUpdatedMulticastDelegate `[`OnSessionUpdatedDelegate`](#classURH__LocalPlayerSessionSubsystem_1a87ec0a5447e17ebbbda133342770d960) | Multicast delegate triggered when a session managed by this subsystem is updated.
 `public FRH_OnSessionUpdatedMulticastDelegate `[`OnSessionAddedDelegate`](#classURH__LocalPlayerSessionSubsystem_1a34c015e300be4c0474addf8f6d6d947b) | Multicast delegate triggered when a session managed by this subsystem is added.
 `public FRH_OnSessionUpdatedMulticastDelegate `[`OnSessionRemovedDelegate`](#classURH__LocalPlayerSessionSubsystem_1af13b47604f229daf45aa56fdb25554cc) | Multicast delegate triggered when a session managed by this subsystem is removed.
@@ -847,15 +847,15 @@ Subsystem to manage sessions for the local player.
 `public virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__LocalPlayerSessionSubsystem_1a498582f9ba28c7472e33004de090efe7)`(const FUniqueNetIdRepl & PlatformSessionId) const` | Gets the platform session synchronization object for a given platform session id.
 `public inline virtual void `[`SetPlatformSessionToJoinOnUserChange`](#classURH__LocalPlayerSessionSubsystem_1a7b32f021e042bf401d2156764df2babc)`(const FOnlineSessionSearchResult & Session)` | Set a platform session to join upon the next user change.
 `public inline virtual void `[`ClearPlatformSessionToJoinOnUserChange`](#classURH__LocalPlayerSessionSubsystem_1afa5db7d0b7302957dd89c4a7b9f78cb5)`()` | Clear a platform session to join upon the next user change.
-`public inline void `[`CreateOrJoinSessionByType`](#classURH__LocalPlayerSessionSubsystem_1ae987d7bbdbc819106e7e00a06a08d918)`(const `[`FRHAPI_CreateOrJoinRequest`](models/RHAPI_CreateOrJoinRequest.md#structFRHAPI__CreateOrJoinRequest)` & CreateParams,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Utility function to Create or Join a session by a given SessionType (most times will create a session, but Hub join rules may do a Join instead)
+`public inline void `[`CreateOrJoinSessionByType`](#classURH__LocalPlayerSessionSubsystem_1ae987d7bbdbc819106e7e00a06a08d918)`(const `[`FRHAPI_CreateOrJoinRequest`](RHAPI_CreateOrJoinRequest.md#structFRHAPI__CreateOrJoinRequest)` & CreateParams,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Utility function to Create or Join a session by a given SessionType (most times will create a session, but Hub join rules may do a Join instead)
 `public inline void `[`JoinSessionById`](#classURH__LocalPlayerSessionSubsystem_1a81439a14711f1519f5a4c109574d0527)`(const FString & SessionId,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Utility function to Join a session by SessionId.
-`public inline void `[`JoinSessionByIdEx`](#classURH__LocalPlayerSessionSubsystem_1aaa07b3f9a72b7c7dc3d17a301df2a34a)`(const FString & SessionId,const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](models/RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & JoinDetails,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Utility function to Join a session by SessionId with additional options.
+`public inline void `[`JoinSessionByIdEx`](#classURH__LocalPlayerSessionSubsystem_1aaa07b3f9a72b7c7dc3d17a301df2a34a)`(const FString & SessionId,const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & JoinDetails,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Utility function to Join a session by SessionId with additional options.
 `public virtual void `[`ImportAPISession`](#classURH__LocalPlayerSessionSubsystem_1a21c227f5c4a783adacd79c25714aa2e3)`(const `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` & Session)` | Imports a new or updated session from the API into this subsystem ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
-`public virtual void `[`ImportAPITemplate`](#classURH__LocalPlayerSessionSubsystem_1ae7616f99c6aa669e529aad3cd0a0451f)`(const `[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template)` | Imports a new session template from the API into this subsystem ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
+`public virtual void `[`ImportAPITemplate`](#classURH__LocalPlayerSessionSubsystem_1ae7616f99c6aa669e529aad3cd0a0451f)`(const `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template)` | Imports a new session template from the API into this subsystem ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 `public virtual void `[`ReconcileAPISessions`](#classURH__LocalPlayerSessionSubsystem_1aede0956db4c8e8626fa239c16cb3d61e)`(const TArray< FString > & SessionIds,const TOptional< FString > & ETag)` | Reconciles the list of session ids with this subsystem, removing any sessions that are no longer in the list, then updates the stored ETag for the local player's session list ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 `public virtual void `[`ReconcileAPITemplates`](#classURH__LocalPlayerSessionSubsystem_1a4f63fd2f8b8a6f34c01cc45022eeee71)`(const TArray< FString > & InTemplates,const TOptional< FString > & ETag)` | Reconciles the list of template SessionTypes with this subsystem, removing any templates that are no longer in the list, then updates the stored ETag for the local player's templatelist ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
-`public virtual bool `[`GetTemplate`](#classURH__LocalPlayerSessionSubsystem_1a237eee46e92fabeb77c426fce7e857d8)`(const FString & Type,`[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template) const` | Looks up a template from within this subsystem ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
-`public inline FORCEINLINE TArray< `[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > `[`GetTemplates`](#classURH__LocalPlayerSessionSubsystem_1a4c06df84a31add059852a36de3959038)`() const` | Gets a list of all templates in this subsystem.
+`public virtual bool `[`GetTemplate`](#classURH__LocalPlayerSessionSubsystem_1a237eee46e92fabeb77c426fce7e857d8)`(const FString & Type,`[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template) const` | Looks up a template from within this subsystem ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
+`public inline FORCEINLINE TArray< `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > `[`GetTemplates`](#classURH__LocalPlayerSessionSubsystem_1a4c06df84a31add059852a36de3959038)`() const` | Gets a list of all templates in this subsystem.
 `public inline virtual TOptional< FString > `[`GetETagForAllSessionsPoll`](#classURH__LocalPlayerSessionSubsystem_1a95c37ca700d9e30f3cc46c79055208b2)`() const` | Looks up a ETag to use when querying for session membership ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 `public inline virtual TOptional< FString > `[`GetETagForAllTemplatesPoll`](#classURH__LocalPlayerSessionSubsystem_1aa3e56b3a6b8466282f98f33fa444b814)`() const` | Looks up a ETag to use when querying for template information ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 `public inline virtual TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classURH__LocalPlayerSessionSubsystem_1a4dbf97c53be79cdeced20be7d9176378)`() const` | Looks up all sessions to process when polling if ETags match ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
@@ -867,7 +867,7 @@ Subsystem to manage sessions for the local player.
 `public float `[`GetPollTimeRemaining`](#classURH__LocalPlayerSessionSubsystem_1a27ce3d0bc063b3466f74c6b5e735696c)`() const` | Get the current time remaining on poll cycle, or -1.f if not polling.
 `public inline virtual bool `[`HasInitialSessionData`](#classURH__LocalPlayerSessionSubsystem_1a066058a5f0658733d0e27f7ce447b4bd)`() const` | Get whether initial session data has been polled successfully (which may not include any sessions)
 `protected FRH_AutoPollerPtr `[`Poller`](#classURH__LocalPlayerSessionSubsystem_1a042e9dee585644aa339fd3b3b8e6ad12) | Poller for sessions.
-`protected TMap< FString, `[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > `[`Templates`](#classURH__LocalPlayerSessionSubsystem_1a78953314d26e12a0aa43abd5828fe912) | Map of Template Ids to Session Templates.
+`protected TMap< FString, `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > `[`Templates`](#classURH__LocalPlayerSessionSubsystem_1a78953314d26e12a0aa43abd5828fe912) | Map of Template Ids to Session Templates.
 `protected TOptional< FString > `[`AllSessionsETag`](#classURH__LocalPlayerSessionSubsystem_1a3b99704446608834a66a9def184c133b) | ETag of last QueryAllSessions call response.
 `protected TOptional< FString > `[`AllTemplatesETag`](#classURH__LocalPlayerSessionSubsystem_1a5479e5160d85fc15ecfc553a897d5bea) | ETag of last QueryAllSessionTemplates call response.
 `protected TOptional< FOnlineSessionSearchResult > `[`PlatformSessionToJoinOnUserChange`](#classURH__LocalPlayerSessionSubsystem_1afcd78f39dfd5aebd442d959d6212fbaa) | OSS Session that we need to join upon user change (ex: login).
@@ -876,13 +876,13 @@ Subsystem to manage sessions for the local player.
 `protected TMap< FString, `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` > `[`DeferredSessionUpdates`](#classURH__LocalPlayerSessionSubsystem_1a9f22ebb821fcb358e5e277acbef28010) | Map of Session Ids to Sessions updates we could not process for some reason, such as race conditions.
 `protected TMap< FString, `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * > `[`PlatformSyncers`](#classURH__LocalPlayerSessionSubsystem_1ab601abbf8833c31cb45ccde7d481d3de) | Map of Session Ids to their Platform Session Syncers.
 `protected virtual `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`CreateOrUpdateRHSession`](#classURH__LocalPlayerSessionSubsystem_1a2efe4a073341684f83e5da781df7a9f0)`(const `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` & Session,const ERHAPI_SessionPlayerStatus & LocalPlayerStatus)` | Creates or updates a specific session for the local player.
-`protected virtual bool `[`LocalPlayerStatusFromSession`](#classURH__LocalPlayerSessionSubsystem_1aa0bec72de8c9da10cb97e78730c5cb79)`(const `[`FRHAPI_Session`](models/RHAPI_Session.md#structFRHAPI__Session)` & Session,ERHAPI_SessionPlayerStatus & Status) const` | Gets the local player status in a specific session.
+`protected virtual bool `[`LocalPlayerStatusFromSession`](#classURH__LocalPlayerSessionSubsystem_1aa0bec72de8c9da10cb97e78730c5cb79)`(const `[`FRHAPI_Session`](RHAPI_Session.md#structFRHAPI__Session)` & Session,ERHAPI_SessionPlayerStatus & Status) const` | Gets the local player status in a specific session.
 `protected inline virtual void `[`RemoveSession`](#classURH__LocalPlayerSessionSubsystem_1ac956ad61bb35b46c9cb067e247e8b06f)`(const `[`URH_SessionView`](Session.md#classURH__SessionView)` * Session)` | Removes a cached session for the local player, this does NOT try to leave it.
 `protected virtual void `[`OnExpirationComplete`](#classURH__LocalPlayerSessionSubsystem_1ae8b9736ce9f79dd68014b3f01df9fd1f)`(`[`URH_SessionView`](Session.md#classURH__SessionView)` * Session)` | Called when a session the local player is part of expires.
-`protected virtual bool `[`PreprocessAPISessionImport`](#classURH__LocalPlayerSessionSubsystem_1a9c559f45b88f7a21f62dcdf6476fcbea)`(const `[`FRHAPI_Session`](models/RHAPI_Session.md#structFRHAPI__Session)` & Session,ERHAPI_SessionPlayerStatus & Status)` | Attepts to preprocess an API session.
+`protected virtual bool `[`PreprocessAPISessionImport`](#classURH__LocalPlayerSessionSubsystem_1a9c559f45b88f7a21f62dcdf6476fcbea)`(const `[`FRHAPI_Session`](RHAPI_Session.md#structFRHAPI__Session)` & Session,ERHAPI_SessionPlayerStatus & Status)` | Attepts to preprocess an API session.
 `protected virtual void `[`OnUserChanged`](#classURH__LocalPlayerSessionSubsystem_1a26fbf14bcba6e280614f699fb5e3711c)`(const FGuid & OldPlayerUuid,class `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * OldLocalPlayerInfo)` | Base handling when the local user changes, override to provide functionality.
 `protected virtual void `[`InitPropertiesWithDefaultValues`](#classURH__LocalPlayerSessionSubsystem_1a8d62c9d3f5c42d59b77fa894ce226ad4)`()` | Initializes the subsystem with defaults for its cached data.
-`protected virtual void `[`HandleNotification`](#classURH__LocalPlayerSessionSubsystem_1aa1277f7aa4d99bb48c64153da9b8574f)`(const struct `[`FRHAPI_Notification`](models/RHAPI_Notification.md#structFRHAPI__Notification)` & Notification,const FString & APIName,const TArray< FString > & APIParams)` | Handle a notification from the notification API.
+`protected virtual void `[`HandleNotification`](#classURH__LocalPlayerSessionSubsystem_1aa1277f7aa4d99bb48c64153da9b8574f)`(const struct `[`FRHAPI_Notification`](RHAPI_Notification.md#structFRHAPI__Notification)` & Notification,const FString & APIName,const TArray< FString > & APIParams)` | Handle a notification from the notification API.
 `protected `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`CreatePlatformSyncer`](#classURH__LocalPlayerSessionSubsystem_1a689a1f5d6391c55118c8467e5fe2e9ce)`(`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session)` | Creates a Platform Session Syncer for the local player.
 `protected virtual bool `[`FilterOSSCallbackUser`](#classURH__LocalPlayerSessionSubsystem_1ac3f8a2189935d62ddee4f0c523028264)`(const int32 ControllerId)` | Checks if the online subsystem call is for the local user.
 `protected virtual bool `[`FilterOSSCallbackUser`](#classURH__LocalPlayerSessionSubsystem_1a499f53a4e277ea57c023eca530e7edd1)`(const FUniqueNetId & UniqueNetId)` | Checks if the online subsystem call is for the local user.
@@ -900,9 +900,9 @@ Subsystem to manage sessions for the local player.
 
 ### Members
 
-#### `public const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](models/RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & `[`JoinDetails`](#classURH__LocalPlayerSessionSubsystem_1ab51cd43e773e8da6fe045e438265d2b8) <a id="classURH__LocalPlayerSessionSubsystem_1ab51cd43e773e8da6fe045e438265d2b8"></a>
+#### `public const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & `[`JoinDetails`](#classURH__LocalPlayerSessionSubsystem_1ab51cd43e773e8da6fe045e438265d2b8) <a id="classURH__LocalPlayerSessionSubsystem_1ab51cd43e773e8da6fe045e438265d2b8"></a>
 
-#### `public const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](models/RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` const FRH_OnSessionUpdatedDynamicDelegate & `[`Delegate`](#classURH__LocalPlayerSessionSubsystem_1a162d729ae29c6aaea092eb1c3ff8270c) <a id="classURH__LocalPlayerSessionSubsystem_1a162d729ae29c6aaea092eb1c3ff8270c"></a>
+#### `public const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` const FRH_OnSessionUpdatedDynamicDelegate & `[`Delegate`](#classURH__LocalPlayerSessionSubsystem_1a162d729ae29c6aaea092eb1c3ff8270c) <a id="classURH__LocalPlayerSessionSubsystem_1a162d729ae29c6aaea092eb1c3ff8270c"></a>
 
 #### `public FRH_OnSessionUpdatedMulticastDelegate `[`OnSessionUpdatedDelegate`](#classURH__LocalPlayerSessionSubsystem_1a87ec0a5447e17ebbbda133342770d960) <a id="classURH__LocalPlayerSessionSubsystem_1a87ec0a5447e17ebbbda133342770d960"></a>
 
@@ -1094,7 +1094,7 @@ Set a platform session to join upon the next user change.
 
 Clear a platform session to join upon the next user change.
 
-#### `public inline void `[`CreateOrJoinSessionByType`](#classURH__LocalPlayerSessionSubsystem_1ae987d7bbdbc819106e7e00a06a08d918)`(const `[`FRHAPI_CreateOrJoinRequest`](models/RHAPI_CreateOrJoinRequest.md#structFRHAPI__CreateOrJoinRequest)` & CreateParams,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__LocalPlayerSessionSubsystem_1ae987d7bbdbc819106e7e00a06a08d918"></a>
+#### `public inline void `[`CreateOrJoinSessionByType`](#classURH__LocalPlayerSessionSubsystem_1ae987d7bbdbc819106e7e00a06a08d918)`(const `[`FRHAPI_CreateOrJoinRequest`](RHAPI_CreateOrJoinRequest.md#structFRHAPI__CreateOrJoinRequest)` & CreateParams,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__LocalPlayerSessionSubsystem_1ae987d7bbdbc819106e7e00a06a08d918"></a>
 
 Utility function to Create or Join a session by a given SessionType (most times will create a session, but Hub join rules may do a Join instead)
 
@@ -1112,7 +1112,7 @@ Utility function to Join a session by SessionId.
 
 * `Delegate` delegate to trigger when complete
 
-#### `public inline void `[`JoinSessionByIdEx`](#classURH__LocalPlayerSessionSubsystem_1aaa07b3f9a72b7c7dc3d17a301df2a34a)`(const FString & SessionId,const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](models/RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & JoinDetails,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__LocalPlayerSessionSubsystem_1aaa07b3f9a72b7c7dc3d17a301df2a34a"></a>
+#### `public inline void `[`JoinSessionByIdEx`](#classURH__LocalPlayerSessionSubsystem_1aaa07b3f9a72b7c7dc3d17a301df2a34a)`(const FString & SessionId,const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & JoinDetails,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__LocalPlayerSessionSubsystem_1aaa07b3f9a72b7c7dc3d17a301df2a34a"></a>
 
 Utility function to Join a session by SessionId with additional options.
 
@@ -1130,7 +1130,7 @@ Imports a new or updated session from the API into this subsystem ([IRH_SessionO
 #### Parameters
 * `Session` The session data to import
 
-#### `public virtual void `[`ImportAPITemplate`](#classURH__LocalPlayerSessionSubsystem_1ae7616f99c6aa669e529aad3cd0a0451f)`(const `[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template)` <a id="classURH__LocalPlayerSessionSubsystem_1ae7616f99c6aa669e529aad3cd0a0451f"></a>
+#### `public virtual void `[`ImportAPITemplate`](#classURH__LocalPlayerSessionSubsystem_1ae7616f99c6aa669e529aad3cd0a0451f)`(const `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template)` <a id="classURH__LocalPlayerSessionSubsystem_1ae7616f99c6aa669e529aad3cd0a0451f"></a>
 
 Imports a new session template from the API into this subsystem ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 
@@ -1155,7 +1155,7 @@ Reconciles the list of template SessionTypes with this subsystem, removing any t
 
 * `ETag` optional ETag to use when querying all templates for optimization
 
-#### `public virtual bool `[`GetTemplate`](#classURH__LocalPlayerSessionSubsystem_1a237eee46e92fabeb77c426fce7e857d8)`(const FString & Type,`[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template) const` <a id="classURH__LocalPlayerSessionSubsystem_1a237eee46e92fabeb77c426fce7e857d8"></a>
+#### `public virtual bool `[`GetTemplate`](#classURH__LocalPlayerSessionSubsystem_1a237eee46e92fabeb77c426fce7e857d8)`(const FString & Type,`[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template) const` <a id="classURH__LocalPlayerSessionSubsystem_1a237eee46e92fabeb77c426fce7e857d8"></a>
 
 Looks up a template from within this subsystem ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 
@@ -1167,7 +1167,7 @@ Looks up a template from within this subsystem ([IRH_SessionOwnerInterface](Sess
 #### Returns
 Whether or not the template was found
 
-#### `public inline FORCEINLINE TArray< `[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > `[`GetTemplates`](#classURH__LocalPlayerSessionSubsystem_1a4c06df84a31add059852a36de3959038)`() const` <a id="classURH__LocalPlayerSessionSubsystem_1a4c06df84a31add059852a36de3959038"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > `[`GetTemplates`](#classURH__LocalPlayerSessionSubsystem_1a4c06df84a31add059852a36de3959038)`() const` <a id="classURH__LocalPlayerSessionSubsystem_1a4c06df84a31add059852a36de3959038"></a>
 
 Gets a list of all templates in this subsystem.
 
@@ -1226,7 +1226,7 @@ Get whether initial session data has been polled successfully (which may not inc
 
 Poller for sessions.
 
-#### `protected TMap< FString, `[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > `[`Templates`](#classURH__LocalPlayerSessionSubsystem_1a78953314d26e12a0aa43abd5828fe912) <a id="classURH__LocalPlayerSessionSubsystem_1a78953314d26e12a0aa43abd5828fe912"></a>
+#### `protected TMap< FString, `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > `[`Templates`](#classURH__LocalPlayerSessionSubsystem_1a78953314d26e12a0aa43abd5828fe912) <a id="classURH__LocalPlayerSessionSubsystem_1a78953314d26e12a0aa43abd5828fe912"></a>
 
 Map of Template Ids to Session Templates.
 
@@ -1270,7 +1270,7 @@ Creates or updates a specific session for the local player.
 #### Returns
 The session that is created or updated.
 
-#### `protected virtual bool `[`LocalPlayerStatusFromSession`](#classURH__LocalPlayerSessionSubsystem_1aa0bec72de8c9da10cb97e78730c5cb79)`(const `[`FRHAPI_Session`](models/RHAPI_Session.md#structFRHAPI__Session)` & Session,ERHAPI_SessionPlayerStatus & Status) const` <a id="classURH__LocalPlayerSessionSubsystem_1aa0bec72de8c9da10cb97e78730c5cb79"></a>
+#### `protected virtual bool `[`LocalPlayerStatusFromSession`](#classURH__LocalPlayerSessionSubsystem_1aa0bec72de8c9da10cb97e78730c5cb79)`(const `[`FRHAPI_Session`](RHAPI_Session.md#structFRHAPI__Session)` & Session,ERHAPI_SessionPlayerStatus & Status) const` <a id="classURH__LocalPlayerSessionSubsystem_1aa0bec72de8c9da10cb97e78730c5cb79"></a>
 
 Gets the local player status in a specific session.
 
@@ -1296,7 +1296,7 @@ Called when a session the local player is part of expires.
 #### Parameters
 * `Session` The session that expired.
 
-#### `protected virtual bool `[`PreprocessAPISessionImport`](#classURH__LocalPlayerSessionSubsystem_1a9c559f45b88f7a21f62dcdf6476fcbea)`(const `[`FRHAPI_Session`](models/RHAPI_Session.md#structFRHAPI__Session)` & Session,ERHAPI_SessionPlayerStatus & Status)` <a id="classURH__LocalPlayerSessionSubsystem_1a9c559f45b88f7a21f62dcdf6476fcbea"></a>
+#### `protected virtual bool `[`PreprocessAPISessionImport`](#classURH__LocalPlayerSessionSubsystem_1a9c559f45b88f7a21f62dcdf6476fcbea)`(const `[`FRHAPI_Session`](RHAPI_Session.md#structFRHAPI__Session)` & Session,ERHAPI_SessionPlayerStatus & Status)` <a id="classURH__LocalPlayerSessionSubsystem_1a9c559f45b88f7a21f62dcdf6476fcbea"></a>
 
 Attepts to preprocess an API session.
 
@@ -1321,7 +1321,7 @@ Base handling when the local user changes, override to provide functionality.
 
 Initializes the subsystem with defaults for its cached data.
 
-#### `protected virtual void `[`HandleNotification`](#classURH__LocalPlayerSessionSubsystem_1aa1277f7aa4d99bb48c64153da9b8574f)`(const struct `[`FRHAPI_Notification`](models/RHAPI_Notification.md#structFRHAPI__Notification)` & Notification,const FString & APIName,const TArray< FString > & APIParams)` <a id="classURH__LocalPlayerSessionSubsystem_1aa1277f7aa4d99bb48c64153da9b8574f"></a>
+#### `protected virtual void `[`HandleNotification`](#classURH__LocalPlayerSessionSubsystem_1aa1277f7aa4d99bb48c64153da9b8574f)`(const struct `[`FRHAPI_Notification`](RHAPI_Notification.md#structFRHAPI__Notification)` & Notification,const FString & APIName,const TArray< FString > & APIParams)` <a id="classURH__LocalPlayerSessionSubsystem_1aa1277f7aa4d99bb48c64153da9b8574f"></a>
 
 Handle a notification from the notification API.
 

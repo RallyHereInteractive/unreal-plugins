@@ -482,6 +482,8 @@ void FRHDTW_Login::DoEnvironmentTab()
 	
 	// preset handling
 	{
+		ImGui::PushID("Preset");
+		
 		const FString DefaultEnvironmentId = TEXT("<Default>");
 		// Build a list of environment presets to use
 		TArray<FString> PresetOptions;
@@ -510,10 +512,14 @@ void FRHDTW_Login::DoEnvironmentTab()
 		{
 			PC->ConsoleCommand(TEXT("rh.resolveenvid"), true);
 		}
+
+		ImGui::PopID();
 	}
 
 	// url handling
 	{
+		ImGui::PushID("BaseUrl");
+		
 		ImGui::InputText("Base URL", &TempEnvironmentConfiguration.BaseUrl);;
 		ImGui::SameLine();
 		if (ImGui::Button("Set"))
@@ -526,10 +532,14 @@ void FRHDTW_Login::DoEnvironmentTab()
 		{
 			PC->ConsoleCommand(TEXT("rh.resolvebaseurl"), true);
 		}
+
+		ImGui::PopID();
 	}
 
 	// client id handling
 	{
+		ImGui::PushID("Client Id");
+		
 		ImGui::InputText("Client ID", &TempEnvironmentConfiguration.ClientId);
 		ImGui::SameLine();
 		if (ImGui::Button("Set"))
@@ -542,10 +552,14 @@ void FRHDTW_Login::DoEnvironmentTab()
 		{
 			PC->ConsoleCommand(TEXT("rh.resolveclientid"), true);
 		}
+
+		ImGui::PopID();
 	}
 
 	// client secret handling
 	{
+		ImGui::PushID("Client Secret");
+		
 		ImGui::InputText("Client Secret", &TempEnvironmentConfiguration.ClientSecret);
 		ImGui::SameLine();
 		if (ImGui::Button("Set"))
@@ -558,5 +572,7 @@ void FRHDTW_Login::DoEnvironmentTab()
 		{
 			PC->ConsoleCommand(TEXT("rh.resolveclientsecret"), true);
 		}
+
+		ImGui::PopID();
 	}
 }

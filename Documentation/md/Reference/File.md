@@ -34,9 +34,9 @@ File Subsystem used for file API calls.
 `public virtual void `[`DownloadToStream`](#classURH__RemoteFileSubsystem_1ae1f1609aee8b4e72d71660bc01101e36)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,const FString & RemoteFileName,TSharedRef< FArchive > Stream,const FRH_GenericSuccessWithErrorBlock Delegate)` | Download a remote file to local file storage.
 `public virtual void `[`DownloadAllFiles`](#classURH__RemoteFileSubsystem_1aae6267a8ad1d709fd57b9b6007fd0a68)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,const FString & LocalDirectory,bool bUseCachedList,const FRH_FileDirectoryDownloadDelegateBlock Delegate)` | Downloads all discoverable files in a remote directory to a local file directory.
 `public virtual void `[`LookupFileList`](#classURH__RemoteFileSubsystem_1a36fea83617549e77ed8ae584a72510c7)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,const FRH_GenericSuccessWithErrorBlock Delegate)` | List the available remote files for an entity from the API and store results in cache.
-`public inline const TMap< `[`FRH_RemoteFileApiDirectory](Common.md#structFRH__RemoteFileApiDirectory), [FRHAPI_FileListResponse`](models/RHAPI_FileListResponse.md#structFRHAPI__FileListResponse)` > & `[`GetFileListCache`](#classURH__RemoteFileSubsystem_1a10bf521503a066a0983a554b0011b412)`() const` | Get the entire file list cache.
-`public inline virtual bool `[`ListFiles`](#classURH__RemoteFileSubsystem_1a3d9dbd4f20220f82b8047db827c37777)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,`[`FRHAPI_FileListResponse`](models/RHAPI_FileListResponse.md#structFRHAPI__FileListResponse)` & OutFileList)` | List the available remote files for an entity from the cache.
-`protected TMap< `[`FRH_RemoteFileApiDirectory](Common.md#structFRH__RemoteFileApiDirectory), [FRHAPI_FileListResponse`](models/RHAPI_FileListResponse.md#structFRHAPI__FileListResponse)` > `[`FileListCache`](#classURH__RemoteFileSubsystem_1ad6229657ea8ef6c417c9ced173eebe85) | 
+`public inline const TMap< `[`FRH_RemoteFileApiDirectory](Common.md#structFRH__RemoteFileApiDirectory), [FRHAPI_FileListResponse`](RHAPI_FileListResponse.md#structFRHAPI__FileListResponse)` > & `[`GetFileListCache`](#classURH__RemoteFileSubsystem_1a10bf521503a066a0983a554b0011b412)`() const` | Get the entire file list cache.
+`public inline virtual bool `[`ListFiles`](#classURH__RemoteFileSubsystem_1a3d9dbd4f20220f82b8047db827c37777)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,`[`FRHAPI_FileListResponse`](RHAPI_FileListResponse.md#structFRHAPI__FileListResponse)` & OutFileList)` | List the available remote files for an entity from the cache.
+`protected TMap< `[`FRH_RemoteFileApiDirectory](Common.md#structFRH__RemoteFileApiDirectory), [FRHAPI_FileListResponse`](RHAPI_FileListResponse.md#structFRHAPI__FileListResponse)` > `[`FileListCache`](#classURH__RemoteFileSubsystem_1ad6229657ea8ef6c417c9ced173eebe85) | 
 `protected virtual void `[`DownloadFileList`](#classURH__RemoteFileSubsystem_1ac8ee5bc68fb208fb9c329c897b93eab9)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,const TArray< FString > & RemoteFileNames,const FString & LocalDirectory,const FRH_FileDirectoryDownloadDelegateBlock Delegate)` | Downloads all discoverable files in a remote directory to a local file directory.
 
 ### Members
@@ -184,18 +184,18 @@ List the available remote files for an entity from the API and store results in 
 
 * `Delegate` The delegate to call when the operation completes.
 
-#### `public inline const TMap< `[`FRH_RemoteFileApiDirectory](Common.md#structFRH__RemoteFileApiDirectory), [FRHAPI_FileListResponse`](models/RHAPI_FileListResponse.md#structFRHAPI__FileListResponse)` > & `[`GetFileListCache`](#classURH__RemoteFileSubsystem_1a10bf521503a066a0983a554b0011b412)`() const` <a id="classURH__RemoteFileSubsystem_1a10bf521503a066a0983a554b0011b412"></a>
+#### `public inline const TMap< `[`FRH_RemoteFileApiDirectory](Common.md#structFRH__RemoteFileApiDirectory), [FRHAPI_FileListResponse`](RHAPI_FileListResponse.md#structFRHAPI__FileListResponse)` > & `[`GetFileListCache`](#classURH__RemoteFileSubsystem_1a10bf521503a066a0983a554b0011b412)`() const` <a id="classURH__RemoteFileSubsystem_1a10bf521503a066a0983a554b0011b412"></a>
 
 Get the entire file list cache.
 
-#### `public inline virtual bool `[`ListFiles`](#classURH__RemoteFileSubsystem_1a3d9dbd4f20220f82b8047db827c37777)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,`[`FRHAPI_FileListResponse`](models/RHAPI_FileListResponse.md#structFRHAPI__FileListResponse)` & OutFileList)` <a id="classURH__RemoteFileSubsystem_1a3d9dbd4f20220f82b8047db827c37777"></a>
+#### `public inline virtual bool `[`ListFiles`](#classURH__RemoteFileSubsystem_1a3d9dbd4f20220f82b8047db827c37777)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,`[`FRHAPI_FileListResponse`](RHAPI_FileListResponse.md#structFRHAPI__FileListResponse)` & OutFileList)` <a id="classURH__RemoteFileSubsystem_1a3d9dbd4f20220f82b8047db827c37777"></a>
 
 List the available remote files for an entity from the cache.
 
 #### Parameters
 * `Directory` The directory of the file on the remote storage.
 
-#### `protected TMap< `[`FRH_RemoteFileApiDirectory](Common.md#structFRH__RemoteFileApiDirectory), [FRHAPI_FileListResponse`](models/RHAPI_FileListResponse.md#structFRHAPI__FileListResponse)` > `[`FileListCache`](#classURH__RemoteFileSubsystem_1ad6229657ea8ef6c417c9ced173eebe85) <a id="classURH__RemoteFileSubsystem_1ad6229657ea8ef6c417c9ced173eebe85"></a>
+#### `protected TMap< `[`FRH_RemoteFileApiDirectory](Common.md#structFRH__RemoteFileApiDirectory), [FRHAPI_FileListResponse`](RHAPI_FileListResponse.md#structFRHAPI__FileListResponse)` > `[`FileListCache`](#classURH__RemoteFileSubsystem_1ad6229657ea8ef6c417c9ced173eebe85) <a id="classURH__RemoteFileSubsystem_1ad6229657ea8ef6c417c9ced173eebe85"></a>
 
 #### `protected virtual void `[`DownloadFileList`](#classURH__RemoteFileSubsystem_1ac8ee5bc68fb208fb9c329c897b93eab9)`(const `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` & Directory,const TArray< FString > & RemoteFileNames,const FString & LocalDirectory,const FRH_FileDirectoryDownloadDelegateBlock Delegate)` <a id="classURH__RemoteFileSubsystem_1ac8ee5bc68fb208fb9c329c897b93eab9"></a>
 

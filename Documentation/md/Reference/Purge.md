@@ -28,8 +28,8 @@ Subsystem to manage purging a players account.
 `public inline bool `[`PurgeMeImmediately`](#classURH__PurgeSubsystem_1a0bb785444b4d09ce1cafeea8d59b4c1c)`(const FRH_OnPurgeStatusUpdatedDelegateBlock & Delegate)` | Requests a purge for the local player that will be resolved immediately.
 `public bool `[`DequeueMeForPurge`](#classURH__PurgeSubsystem_1a4b2219391a24ee4dca3967817f39d86e)`(const FRH_OnPurgeStatusUpdatedDelegateBlock & Delegate)` | Requests to clear the purge request for the local play.
 `public bool `[`QueryMyPurgeStatus`](#classURH__PurgeSubsystem_1a22d6f35bec5e9d367606523ed3bcb36d)`(const FRH_OnPurgeStatusUpdatedDelegateBlock & Delegate)` | Requests the status of a purge for the local player.
-`public inline `[`FRHAPI_PurgeResponse`](models/RHAPI_PurgeResponse.md#structFRHAPI__PurgeResponse)` `[`GetMyPurgeStatus`](#classURH__PurgeSubsystem_1a6a62e3627282c0f74b215fa3e07afa40)`() const` | Gets the local players Purge Status.
-`protected `[`FRHAPI_PurgeResponse`](models/RHAPI_PurgeResponse.md#structFRHAPI__PurgeResponse)` `[`PurgeStatus`](#classURH__PurgeSubsystem_1ac05f63f95cfb89fe33d8298047fced58) | Current Purge Status.
+`public inline `[`FRHAPI_PurgeResponse`](RHAPI_PurgeResponse.md#structFRHAPI__PurgeResponse)` `[`GetMyPurgeStatus`](#classURH__PurgeSubsystem_1a6a62e3627282c0f74b215fa3e07afa40)`() const` | Gets the local players Purge Status.
+`protected `[`FRHAPI_PurgeResponse`](RHAPI_PurgeResponse.md#structFRHAPI__PurgeResponse)` `[`PurgeStatus`](#classURH__PurgeSubsystem_1ac05f63f95cfb89fe33d8298047fced58) | Current Purge Status.
 `protected virtual void `[`OnUserChanged`](#classURH__PurgeSubsystem_1a4d78dff96da837bbe7ed8ea6f089546e)`()` | Callback that occurs whenever the local player this subsystem is associated with changes.
 `protected virtual bool `[`EnqueueMeForPurge`](#classURH__PurgeSubsystem_1a6ce3544e1ef73d4f54aaaf78c91c9bf1)`(const TOptional< FDateTime > & PurgeTime,const FRH_OnPurgeStatusUpdatedDelegateBlock & Delegate)` | Creates the request to purge the local player.
 `protected virtual void `[`OnPurgeMe`](#classURH__PurgeSubsystem_1ae082ed61d599f9b267b667f7793efb1c)`(const RallyHereAPI::FResponse_QueueMeForPurge & Resp,const FRH_OnPurgeStatusUpdatedDelegateBlock Delegate)` | Handles the response to a Purge Me call.
@@ -83,11 +83,11 @@ Requests the status of a purge for the local player.
 #### Parameters
 * `Delegate` Callback with the current status of the purge request.
 
-#### `public inline `[`FRHAPI_PurgeResponse`](models/RHAPI_PurgeResponse.md#structFRHAPI__PurgeResponse)` `[`GetMyPurgeStatus`](#classURH__PurgeSubsystem_1a6a62e3627282c0f74b215fa3e07afa40)`() const` <a id="classURH__PurgeSubsystem_1a6a62e3627282c0f74b215fa3e07afa40"></a>
+#### `public inline `[`FRHAPI_PurgeResponse`](RHAPI_PurgeResponse.md#structFRHAPI__PurgeResponse)` `[`GetMyPurgeStatus`](#classURH__PurgeSubsystem_1a6a62e3627282c0f74b215fa3e07afa40)`() const` <a id="classURH__PurgeSubsystem_1a6a62e3627282c0f74b215fa3e07afa40"></a>
 
 Gets the local players Purge Status.
 
-#### `protected `[`FRHAPI_PurgeResponse`](models/RHAPI_PurgeResponse.md#structFRHAPI__PurgeResponse)` `[`PurgeStatus`](#classURH__PurgeSubsystem_1ac05f63f95cfb89fe33d8298047fced58) <a id="classURH__PurgeSubsystem_1ac05f63f95cfb89fe33d8298047fced58"></a>
+#### `protected `[`FRHAPI_PurgeResponse`](RHAPI_PurgeResponse.md#structFRHAPI__PurgeResponse)` `[`PurgeStatus`](#classURH__PurgeSubsystem_1ac05f63f95cfb89fe33d8298047fced58) <a id="classURH__PurgeSubsystem_1ac05f63f95cfb89fe33d8298047fced58"></a>
 
 Current Purge Status.
 
