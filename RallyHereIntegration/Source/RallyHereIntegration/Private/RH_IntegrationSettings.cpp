@@ -41,6 +41,9 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	bAutoStartSessionsAfterJoin = true;
 	bAutoJoinPlatformSessionsAfterUserChange = true;
 	bAutoWatchPlayersOnSessionActive = false;
+	HostMapLoadMethod = ERH_HostMapLoadMethod::ServerTravelAlways;
+	HostMapURLOptionsWhitelist.Add(TEXT("game="));
+	HostMapURLOptionsWhitelist.Add(TEXT("port="));
 
 	bLocalPlayerSubsystemSandboxing = false;
 

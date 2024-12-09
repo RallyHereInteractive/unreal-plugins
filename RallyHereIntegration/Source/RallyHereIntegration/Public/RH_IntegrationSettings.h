@@ -14,6 +14,17 @@
  *  @{
  */
 
+/*
+ * @brief An enumeration for types of map loading methods to use when hosting a session
+ */
+UENUM(BlueprintType)
+enum class ERH_HostMapLoadMethod : uint8
+{
+	ServerTravelAlways,
+	SeamlessTravelAlways,
+	ServerTravelOnlyIfNeeded,
+};
+
 /**
  * @brief Settings for Environment Configuration.  If set, these override the defaults when the EnvironmentId matches the specified environment id
  */
@@ -149,6 +160,14 @@ public:
 	UPROPERTY(EditAnywhere, Config, Category = "Sessions|Joining")
 	/** @brief If set, automatically call SetWatchingPlayers() on the session when it is set as the active gameplay session, to enable presence polling for the session. */
 	bool bAutoWatchPlayersOnSessionActive;
+	
+	UPROPERTY(EditAnywhere, Config, Category = "Sessions|Hosting")
+	/** @brief What method to use for hosts to load the map when joining an instance. */
+	ERH_HostMapLoadMethod HostMapLoadMethod;
+
+	UPROPERTY(EditAnywhere, Config, Category = "Sessions|Hosting")
+	/** @brief What options should be checked when checking if optimized host map loading can be used (based on HostMapLoadMethod). */
+	TArray<FString> HostMapURLOptionsWhitelist;
 
 	/** @brief Sets the default page size when requesting a player's match history */
 	UPROPERTY(EditAnywhere, Config, Category = "Matches|Player History")

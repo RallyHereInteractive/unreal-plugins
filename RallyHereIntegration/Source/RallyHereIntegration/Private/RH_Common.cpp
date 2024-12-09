@@ -2,6 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 #include "RH_Common.h"
+
+#include "RH_LocalPlayer.h"
 #include "RH_OnlineSubsystemNames.h"
 #include "Engine/LocalPlayer.h"
 #include "Misc/ConfigCacheIni.h"
@@ -176,3 +178,27 @@ ERHAPI_InventoryBucket RH_GetInventoryBucketFromPlatform(ERHAPI_Platform Platfor
 
 	return ERHAPI_InventoryBucket::None;
 }
+
+TOptional<FGuid> RH_GetPlayerUuidFromPlayerController(APlayerController* PC)
+{
+	TOptional<FGuid> PlayerId;
+	if (PC != nullptr)
+	{
+		auto* pRH_Conn = Cast<IRH_IpConnectionInterface>(PC->Player);
+		auto* pRH_LocalPlayer = Cast<IRH_LocalPlayerInterface>(PC->Player);
+
+		if (pRH_Conn != nullptr)
+		{
+			PlayerId = pRH_Conn->GetRHPlayerUuid();
+		}
+		else if (pRH_LocalPlayer != nullptr)
+		{
+			PlayerId = pRH_LocalPlayer->GetRHPlayerUuid();
+		}
+	}
+
+	return PlayerId;
+}
+
+
+

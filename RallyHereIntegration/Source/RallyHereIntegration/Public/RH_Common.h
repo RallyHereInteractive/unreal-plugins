@@ -79,6 +79,12 @@ FString RALLYHEREINTEGRATION_API RH_GetPlatformNameFromPlatformEnum(const ERHAPI
 
 ERHAPI_InventoryBucket RALLYHEREINTEGRATION_API RH_GetInventoryBucketFromPlatform(ERHAPI_Platform PlatformType);
 
+TOptional<FGuid> RH_GetPlayerUuidFromPlayerController(const class APlayerController* PC);
+
+// URL options for use when doing instance joins
+#define RH_SESSION_PARAMETER_NAME (TEXT("RHSessionId="))
+#define RH_INSTANCE_PARAMETER_NAME (TEXT("RHInstanceId="))
+
 /**
  *	@defgroup Common RallyHere Common
  *	@addtogroup Common

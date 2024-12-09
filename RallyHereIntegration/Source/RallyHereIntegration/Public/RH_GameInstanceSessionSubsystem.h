@@ -26,10 +26,6 @@ class URH_GameInstanceServerBootstrapper;
 class URH_GameInstanceClientBootstrapper;
 class ARH_OnlineBeaconHost;
 
-#define RH_SESSION_PARAMETER_NAME (TEXT("RHSessionId="))
-#define RH_INSTANCE_PARAMETER_NAME (TEXT("RHInstanceId="))
-
-
 UDELEGATE()
 DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_GameInstanceSessionSyncDynamicDelegate, URH_JoinedSession*, Session, bool, bSuccess, const FString&, Error);
 DECLARE_DELEGATE_ThreeParams(FRH_GameInstanceSessionSyncDelegate, URH_JoinedSession*, bool, const FString&);
@@ -469,6 +465,20 @@ protected:
 	 * @param [in] Delegate Callback delegate for when the health is updated.
 	 */
 	virtual void PollBackfill(const FRH_PollCompleteFunc& Delegate);
+	/**
+	* @brief Initiate travel for the host to the instance
+	* @param [in] pWorld The world being travelled.
+	* @param [in] HostURL The URL to join the instance with.
+	* @return If true, the travel was initiated.
+	*/
+	virtual bool HostTravel(UWorld* pWorld, const FURL& HostURL);
+	/**
+	 * @brief Initiate travel for a client to the instance
+	 * @param [in] pWorld The world being travelled.
+	 * @param [in] JoinURL The URL to join the instance with.
+	 * @return If true, the travel was initiated.
+	 */
+	virtual bool ClientTravel(UWorld* pWorld, const FURL& JoinURL);
 
 	// analytics hooks
 	void EmitJoinInstanceStartedEvent(const URH_JoinedSession* Session) const;
