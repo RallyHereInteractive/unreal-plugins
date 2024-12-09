@@ -40,11 +40,14 @@ bool FRHAPI_PageMeta::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPageField = (*Object)->TryGetField(TEXT("page"));
-	ParseSuccess &= JsonPageField.IsValid() && (!JsonPageField->IsNull() &&  TryGetJsonValue(JsonPageField, Page));
+	const bool Page_IsValid = JsonPageField.IsValid() && (!JsonPageField->IsNull() && TryGetJsonValue(JsonPageField, Page));
+	ParseSuccess &= Page_IsValid; 
 	const TSharedPtr<FJsonValue> JsonLimitField = (*Object)->TryGetField(TEXT("limit"));
-	ParseSuccess &= JsonLimitField.IsValid() && (!JsonLimitField->IsNull() &&  TryGetJsonValue(JsonLimitField, Limit));
+	const bool Limit_IsValid = JsonLimitField.IsValid() && (!JsonLimitField->IsNull() && TryGetJsonValue(JsonLimitField, Limit));
+	ParseSuccess &= Limit_IsValid; 
 	const TSharedPtr<FJsonValue> JsonTotalField = (*Object)->TryGetField(TEXT("total"));
-	ParseSuccess &= JsonTotalField.IsValid() && (!JsonTotalField->IsNull() &&  TryGetJsonValue(JsonTotalField, Total));
+	const bool Total_IsValid = JsonTotalField.IsValid() && (!JsonTotalField->IsNull() && TryGetJsonValue(JsonTotalField, Total));
+	ParseSuccess &= Total_IsValid; 
 
 	return ParseSuccess;
 }

@@ -53,9 +53,11 @@ bool FRHAPI_SessionTeam::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPlayersField = (*Object)->TryGetField(TEXT("players"));
-	ParseSuccess &= JsonPlayersField.IsValid() && (!JsonPlayersField->IsNull() &&  TryGetJsonValue(JsonPlayersField, Players));
+	const bool Players_IsValid = JsonPlayersField.IsValid() && (!JsonPlayersField->IsNull() && TryGetJsonValue(JsonPlayersField, Players));
+	ParseSuccess &= Players_IsValid; 
 	const TSharedPtr<FJsonValue> JsonMaxSizeField = (*Object)->TryGetField(TEXT("max_size"));
-	ParseSuccess &= JsonMaxSizeField.IsValid() && (!JsonMaxSizeField->IsNull() &&  TryGetJsonValue(JsonMaxSizeField, MaxSize));
+	const bool MaxSize_IsValid = JsonMaxSizeField.IsValid() && (!JsonMaxSizeField->IsNull() && TryGetJsonValue(JsonMaxSizeField, MaxSize));
+	ParseSuccess &= MaxSize_IsValid; 
 	const TSharedPtr<FJsonValue> JsonTeamIdField = (*Object)->TryGetField(TEXT("team_id"));
 	if (JsonTeamIdField.IsValid())
 	{

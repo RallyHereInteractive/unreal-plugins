@@ -38,9 +38,11 @@ bool FRHAPI_CrossplayPreferences::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPermittedPlatformField = (*Object)->TryGetField(TEXT("permitted_platform"));
-	ParseSuccess &= JsonPermittedPlatformField.IsValid() && (!JsonPermittedPlatformField->IsNull() &&  TryGetJsonValue(JsonPermittedPlatformField, PermittedPlatform));
+	const bool PermittedPlatform_IsValid = JsonPermittedPlatformField.IsValid() && (!JsonPermittedPlatformField->IsNull() && TryGetJsonValue(JsonPermittedPlatformField, PermittedPlatform));
+	ParseSuccess &= PermittedPlatform_IsValid; 
 	const TSharedPtr<FJsonValue> JsonPermittedInputField = (*Object)->TryGetField(TEXT("permitted_input"));
-	ParseSuccess &= JsonPermittedInputField.IsValid() && (!JsonPermittedInputField->IsNull() &&  TryGetJsonValue(JsonPermittedInputField, PermittedInput));
+	const bool PermittedInput_IsValid = JsonPermittedInputField.IsValid() && (!JsonPermittedInputField->IsNull() && TryGetJsonValue(JsonPermittedInputField, PermittedInput));
+	ParseSuccess &= PermittedInput_IsValid; 
 
 	return ParseSuccess;
 }

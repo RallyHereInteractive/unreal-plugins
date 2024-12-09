@@ -38,9 +38,11 @@ bool FRHAPI_MapSelectionList::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonMapSelectionListIdField = (*Object)->TryGetField(TEXT("map_selection_list_id"));
-	ParseSuccess &= JsonMapSelectionListIdField.IsValid() && (!JsonMapSelectionListIdField->IsNull() &&  TryGetJsonValue(JsonMapSelectionListIdField, MapSelectionListId));
+	const bool MapSelectionListId_IsValid = JsonMapSelectionListIdField.IsValid() && (!JsonMapSelectionListIdField->IsNull() && TryGetJsonValue(JsonMapSelectionListIdField, MapSelectionListId));
+	ParseSuccess &= MapSelectionListId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonMapsField = (*Object)->TryGetField(TEXT("maps"));
-	ParseSuccess &= JsonMapsField.IsValid() && (!JsonMapsField->IsNull() &&  TryGetJsonValue(JsonMapsField, Maps));
+	const bool Maps_IsValid = JsonMapsField.IsValid() && (!JsonMapsField->IsNull() && TryGetJsonValue(JsonMapsField, Maps));
+	ParseSuccess &= Maps_IsValid; 
 
 	return ParseSuccess;
 }

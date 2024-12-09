@@ -44,15 +44,20 @@ bool FRHAPI_PurgeResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPersonIdField = (*Object)->TryGetField(TEXT("person_id"));
-	ParseSuccess &= JsonPersonIdField.IsValid() && (!JsonPersonIdField->IsNull() &&  TryGetJsonValue(JsonPersonIdField, PersonId));
+	const bool PersonId_IsValid = JsonPersonIdField.IsValid() && (!JsonPersonIdField->IsNull() && TryGetJsonValue(JsonPersonIdField, PersonId));
+	ParseSuccess &= PersonId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonPurgeOnField = (*Object)->TryGetField(TEXT("purge_on"));
-	ParseSuccess &= JsonPurgeOnField.IsValid() && (!JsonPurgeOnField->IsNull() &&  TryGetJsonValue(JsonPurgeOnField, PurgeOn));
+	const bool PurgeOn_IsValid = JsonPurgeOnField.IsValid() && (!JsonPurgeOnField->IsNull() && TryGetJsonValue(JsonPurgeOnField, PurgeOn));
+	ParseSuccess &= PurgeOn_IsValid; 
 	const TSharedPtr<FJsonValue> JsonCreatedOnField = (*Object)->TryGetField(TEXT("created_on"));
-	ParseSuccess &= JsonCreatedOnField.IsValid() && (!JsonCreatedOnField->IsNull() &&  TryGetJsonValue(JsonCreatedOnField, CreatedOn));
+	const bool CreatedOn_IsValid = JsonCreatedOnField.IsValid() && (!JsonCreatedOnField->IsNull() && TryGetJsonValue(JsonCreatedOnField, CreatedOn));
+	ParseSuccess &= CreatedOn_IsValid; 
 	const TSharedPtr<FJsonValue> JsonLastModifiedOnField = (*Object)->TryGetField(TEXT("last_modified_on"));
-	ParseSuccess &= JsonLastModifiedOnField.IsValid() && (!JsonLastModifiedOnField->IsNull() &&  TryGetJsonValue(JsonLastModifiedOnField, LastModifiedOn));
+	const bool LastModifiedOn_IsValid = JsonLastModifiedOnField.IsValid() && (!JsonLastModifiedOnField->IsNull() && TryGetJsonValue(JsonLastModifiedOnField, LastModifiedOn));
+	ParseSuccess &= LastModifiedOn_IsValid; 
 	const TSharedPtr<FJsonValue> JsonStatusField = (*Object)->TryGetField(TEXT("status"));
-	ParseSuccess &= JsonStatusField.IsValid() && (!JsonStatusField->IsNull() &&  TryGetJsonValue(JsonStatusField, Status));
+	const bool Status_IsValid = JsonStatusField.IsValid() && (!JsonStatusField->IsNull() && TryGetJsonValue(JsonStatusField, Status));
+	ParseSuccess &= Status_IsValid; 
 
 	return ParseSuccess;
 }

@@ -38,9 +38,11 @@ bool FRHAPI_BlockedPlayer::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonBlockedPlayerUuidField = (*Object)->TryGetField(TEXT("blocked_player_uuid"));
-	ParseSuccess &= JsonBlockedPlayerUuidField.IsValid() && (!JsonBlockedPlayerUuidField->IsNull() &&  TryGetJsonValue(JsonBlockedPlayerUuidField, BlockedPlayerUuid));
+	const bool BlockedPlayerUuid_IsValid = JsonBlockedPlayerUuidField.IsValid() && (!JsonBlockedPlayerUuidField->IsNull() && TryGetJsonValue(JsonBlockedPlayerUuidField, BlockedPlayerUuid));
+	ParseSuccess &= BlockedPlayerUuid_IsValid; 
 	const TSharedPtr<FJsonValue> JsonLastModifiedOnField = (*Object)->TryGetField(TEXT("last_modified_on"));
-	ParseSuccess &= JsonLastModifiedOnField.IsValid() && (!JsonLastModifiedOnField->IsNull() &&  TryGetJsonValue(JsonLastModifiedOnField, LastModifiedOn));
+	const bool LastModifiedOn_IsValid = JsonLastModifiedOnField.IsValid() && (!JsonLastModifiedOnField->IsNull() && TryGetJsonValue(JsonLastModifiedOnField, LastModifiedOn));
+	ParseSuccess &= LastModifiedOn_IsValid; 
 
 	return ParseSuccess;
 }

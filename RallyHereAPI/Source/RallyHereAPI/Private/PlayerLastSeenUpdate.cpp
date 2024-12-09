@@ -46,7 +46,8 @@ bool FRHAPI_PlayerLastSeenUpdate::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonTimeField = (*Object)->TryGetField(TEXT("time"));
-	ParseSuccess &= JsonTimeField.IsValid() && (!JsonTimeField->IsNull() &&  TryGetJsonValue(JsonTimeField, Time));
+	const bool Time_IsValid = JsonTimeField.IsValid() && (!JsonTimeField->IsNull() && TryGetJsonValue(JsonTimeField, Time));
+	ParseSuccess &= Time_IsValid; 
 	const TSharedPtr<FJsonValue> JsonPlatformField = (*Object)->TryGetField(TEXT("platform"));
 	if (JsonPlatformField.IsValid())
 	{

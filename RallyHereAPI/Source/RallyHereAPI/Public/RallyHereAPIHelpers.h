@@ -838,7 +838,8 @@ inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, TArray<T>& 
 		for (int i = 0; i < Count; i++)
 		{
 			T TmpValue;
-			ParseSuccess &= TryGetJsonValue((*JsonArray)[i], TmpValue);
+			const bool bValidField = TryGetJsonValue((*JsonArray)[i], TmpValue);
+			ParseSuccess &= bValidField;
 			ArrayValue.Emplace(MoveTemp(TmpValue));
 		}
 		return ParseSuccess;
@@ -859,7 +860,8 @@ inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, TSet<T>& Se
 		for (int i = 0; i < Count; i++)
 		{
 			T TmpValue;
-			ParseSuccess &= TryGetJsonValue((*JsonArray)[i], TmpValue);
+			const bool bValidField = TryGetJsonValue((*JsonArray)[i], TmpValue);
+			ParseSuccess &= bValidField;
 			SetValue.Emplace(MoveTemp(TmpValue));
 		}
 		return ParseSuccess;
@@ -878,7 +880,8 @@ inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, TMap<FStrin
 		for (const auto& It : (*Object)->Values)
 		{
 			T TmpValue;
-			ParseSuccess &= TryGetJsonValue(It.Value, TmpValue);
+			const bool bValidField = TryGetJsonValue(It.Value, TmpValue);
+			ParseSuccess &= bValidField;
 			MapValue.Emplace(It.Key, MoveTemp(TmpValue));
 		}
 		return ParseSuccess;

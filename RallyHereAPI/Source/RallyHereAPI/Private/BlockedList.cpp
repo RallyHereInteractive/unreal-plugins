@@ -40,11 +40,14 @@ bool FRHAPI_BlockedList::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
-	ParseSuccess &= JsonPlayerUuidField.IsValid() && (!JsonPlayerUuidField->IsNull() &&  TryGetJsonValue(JsonPlayerUuidField, PlayerUuid));
+	const bool PlayerUuid_IsValid = JsonPlayerUuidField.IsValid() && (!JsonPlayerUuidField->IsNull() && TryGetJsonValue(JsonPlayerUuidField, PlayerUuid));
+	ParseSuccess &= PlayerUuid_IsValid; 
 	const TSharedPtr<FJsonValue> JsonBlockedField = (*Object)->TryGetField(TEXT("blocked"));
-	ParseSuccess &= JsonBlockedField.IsValid() && (!JsonBlockedField->IsNull() &&  TryGetJsonValue(JsonBlockedField, Blocked));
+	const bool Blocked_IsValid = JsonBlockedField.IsValid() && (!JsonBlockedField->IsNull() && TryGetJsonValue(JsonBlockedField, Blocked));
+	ParseSuccess &= Blocked_IsValid; 
 	const TSharedPtr<FJsonValue> JsonPageField = (*Object)->TryGetField(TEXT("page"));
-	ParseSuccess &= JsonPageField.IsValid() && (!JsonPageField->IsNull() &&  TryGetJsonValue(JsonPageField, Page));
+	const bool Page_IsValid = JsonPageField.IsValid() && (!JsonPageField->IsNull() && TryGetJsonValue(JsonPageField, Page));
+	ParseSuccess &= Page_IsValid; 
 
 	return ParseSuccess;
 }

@@ -63,7 +63,8 @@ bool FRHAPI_SettingTypeVersion::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 		ParseSuccess &= KeyRegex_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonValueJsonschemaField = (*Object)->TryGetField(TEXT("value_jsonschema"));
-	ParseSuccess &= JsonValueJsonschemaField.IsValid() && (!JsonValueJsonschemaField->IsNull() &&  TryGetJsonValue(JsonValueJsonschemaField, ValueJsonschema));
+	const bool ValueJsonschema_IsValid = JsonValueJsonschemaField.IsValid() && (!JsonValueJsonschemaField->IsNull() && TryGetJsonValue(JsonValueJsonschemaField, ValueJsonschema));
+	ParseSuccess &= ValueJsonschema_IsValid; 
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
 	if (JsonCustomDataField.IsValid())
 	{

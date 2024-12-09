@@ -88,7 +88,8 @@ bool FRHAPI_KeyClaim::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= PortalUserId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonKeyClaimUuidField = (*Object)->TryGetField(TEXT("key_claim_uuid"));
-	ParseSuccess &= JsonKeyClaimUuidField.IsValid() && (!JsonKeyClaimUuidField->IsNull() &&  TryGetJsonValue(JsonKeyClaimUuidField, KeyClaimUuid));
+	const bool KeyClaimUuid_IsValid = JsonKeyClaimUuidField.IsValid() && (!JsonKeyClaimUuidField->IsNull() && TryGetJsonValue(JsonKeyClaimUuidField, KeyClaimUuid));
+	ParseSuccess &= KeyClaimUuid_IsValid; 
 	const TSharedPtr<FJsonValue> JsonClaimedField = (*Object)->TryGetField(TEXT("claimed"));
 	if (JsonClaimedField.IsValid())
 	{

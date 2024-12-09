@@ -36,7 +36,8 @@ bool FRHAPI_BackfillSettingsResponse::FromJson(const TSharedPtr<FJsonValue>& Jso
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonTimeoutField = (*Object)->TryGetField(TEXT("timeout"));
-	ParseSuccess &= JsonTimeoutField.IsValid() && (!JsonTimeoutField->IsNull() &&  TryGetJsonValue(JsonTimeoutField, Timeout));
+	const bool Timeout_IsValid = JsonTimeoutField.IsValid() && (!JsonTimeoutField->IsNull() && TryGetJsonValue(JsonTimeoutField, Timeout));
+	ParseSuccess &= Timeout_IsValid; 
 
 	return ParseSuccess;
 }

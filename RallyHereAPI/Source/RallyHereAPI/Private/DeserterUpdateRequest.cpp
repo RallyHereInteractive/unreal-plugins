@@ -48,7 +48,8 @@ bool FRHAPI_DeserterUpdateRequest::FromJson(const TSharedPtr<FJsonValue>& JsonVa
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonDeserterExpirationField = (*Object)->TryGetField(TEXT("deserter_expiration"));
-	ParseSuccess &= JsonDeserterExpirationField.IsValid() && (!JsonDeserterExpirationField->IsNull() &&  TryGetJsonValue(JsonDeserterExpirationField, DeserterExpiration));
+	const bool DeserterExpiration_IsValid = JsonDeserterExpirationField.IsValid() && (!JsonDeserterExpirationField->IsNull() && TryGetJsonValue(JsonDeserterExpirationField, DeserterExpiration));
+	ParseSuccess &= DeserterExpiration_IsValid; 
 	const TSharedPtr<FJsonValue> JsonDeserterResetField = (*Object)->TryGetField(TEXT("deserter_reset"));
 	if (JsonDeserterResetField.IsValid())
 	{
@@ -56,7 +57,8 @@ bool FRHAPI_DeserterUpdateRequest::FromJson(const TSharedPtr<FJsonValue>& JsonVa
 		ParseSuccess &= DeserterReset_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonDeserterCountField = (*Object)->TryGetField(TEXT("deserter_count"));
-	ParseSuccess &= JsonDeserterCountField.IsValid() && (!JsonDeserterCountField->IsNull() &&  TryGetJsonValue(JsonDeserterCountField, DeserterCount));
+	const bool DeserterCount_IsValid = JsonDeserterCountField.IsValid() && (!JsonDeserterCountField->IsNull() && TryGetJsonValue(JsonDeserterCountField, DeserterCount));
+	ParseSuccess &= DeserterCount_IsValid; 
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
 	if (JsonCustomDataField.IsValid())
 	{

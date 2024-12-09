@@ -36,7 +36,8 @@ bool FRHAPI_PlatformUnionCCUs::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPlatformCountsField = (*Object)->TryGetField(TEXT("platform_counts"));
-	ParseSuccess &= JsonPlatformCountsField.IsValid() && (!JsonPlatformCountsField->IsNull() &&  TryGetJsonValue(JsonPlatformCountsField, PlatformCounts));
+	const bool PlatformCounts_IsValid = JsonPlatformCountsField.IsValid() && (!JsonPlatformCountsField->IsNull() && TryGetJsonValue(JsonPlatformCountsField, PlatformCounts));
+	ParseSuccess &= PlatformCounts_IsValid; 
 
 	return ParseSuccess;
 }

@@ -62,9 +62,11 @@ bool FRHAPI_InventoryRecord::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonInventoryIdField = (*Object)->TryGetField(TEXT("inventory_id"));
-	ParseSuccess &= JsonInventoryIdField.IsValid() && (!JsonInventoryIdField->IsNull() &&  TryGetJsonValue(JsonInventoryIdField, InventoryId));
+	const bool InventoryId_IsValid = JsonInventoryIdField.IsValid() && (!JsonInventoryIdField->IsNull() && TryGetJsonValue(JsonInventoryIdField, InventoryId));
+	ParseSuccess &= InventoryId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
-	ParseSuccess &= JsonTypeField.IsValid() && (!JsonTypeField->IsNull() &&  TryGetJsonValue(JsonTypeField, Type));
+	const bool Type_IsValid = JsonTypeField.IsValid() && (!JsonTypeField->IsNull() && TryGetJsonValue(JsonTypeField, Type));
+	ParseSuccess &= Type_IsValid; 
 	const TSharedPtr<FJsonValue> JsonLegacyInventoryIdField = (*Object)->TryGetField(TEXT("legacy_inventory_id"));
 	if (JsonLegacyInventoryIdField.IsValid())
 	{
@@ -78,9 +80,11 @@ bool FRHAPI_InventoryRecord::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= Bucket_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCountField = (*Object)->TryGetField(TEXT("count"));
-	ParseSuccess &= JsonCountField.IsValid() && (!JsonCountField->IsNull() &&  TryGetJsonValue(JsonCountField, Count));
+	const bool Count_IsValid = JsonCountField.IsValid() && (!JsonCountField->IsNull() && TryGetJsonValue(JsonCountField, Count));
+	ParseSuccess &= Count_IsValid; 
 	const TSharedPtr<FJsonValue> JsonAcquiredField = (*Object)->TryGetField(TEXT("acquired"));
-	ParseSuccess &= JsonAcquiredField.IsValid() && (!JsonAcquiredField->IsNull() &&  TryGetJsonValue(JsonAcquiredField, Acquired));
+	const bool Acquired_IsValid = JsonAcquiredField.IsValid() && (!JsonAcquiredField->IsNull() && TryGetJsonValue(JsonAcquiredField, Acquired));
+	ParseSuccess &= Acquired_IsValid; 
 	const TSharedPtr<FJsonValue> JsonExpiresField = (*Object)->TryGetField(TEXT("expires"));
 	if (JsonExpiresField.IsValid())
 	{

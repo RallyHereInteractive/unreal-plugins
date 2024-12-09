@@ -68,7 +68,8 @@ bool FRHAPI_PriceBreakpoint::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= PriceItemId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonQuantityField = (*Object)->TryGetField(TEXT("quantity"));
-	ParseSuccess &= JsonQuantityField.IsValid() && (!JsonQuantityField->IsNull() &&  TryGetJsonValue(JsonQuantityField, Quantity));
+	const bool Quantity_IsValid = JsonQuantityField.IsValid() && (!JsonQuantityField->IsNull() && TryGetJsonValue(JsonQuantityField, Quantity));
+	ParseSuccess &= Quantity_IsValid; 
 	const TSharedPtr<FJsonValue> JsonPriceField = (*Object)->TryGetField(TEXT("price"));
 	if (JsonPriceField.IsValid())
 	{

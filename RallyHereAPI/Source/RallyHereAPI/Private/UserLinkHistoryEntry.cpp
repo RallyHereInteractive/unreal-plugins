@@ -107,7 +107,8 @@ bool FRHAPI_UserLinkHistoryEntry::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 		ParseSuccess &= ActivePlayerUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonActionField = (*Object)->TryGetField(TEXT("action"));
-	ParseSuccess &= JsonActionField.IsValid() && (!JsonActionField->IsNull() &&  TryGetJsonValue(JsonActionField, Action));
+	const bool Action_IsValid = JsonActionField.IsValid() && (!JsonActionField->IsNull() && TryGetJsonValue(JsonActionField, Action));
+	ParseSuccess &= Action_IsValid; 
 	const TSharedPtr<FJsonValue> JsonTimestampField = (*Object)->TryGetField(TEXT("timestamp"));
 	if (JsonTimestampField.IsValid())
 	{

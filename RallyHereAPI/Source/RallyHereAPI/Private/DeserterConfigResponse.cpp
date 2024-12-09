@@ -36,7 +36,8 @@ bool FRHAPI_DeserterConfigResponse::FromJson(const TSharedPtr<FJsonValue>& JsonV
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonDeserterConfigsField = (*Object)->TryGetField(TEXT("deserter_configs"));
-	ParseSuccess &= JsonDeserterConfigsField.IsValid() && (!JsonDeserterConfigsField->IsNull() &&  TryGetJsonValue(JsonDeserterConfigsField, DeserterConfigs));
+	const bool DeserterConfigs_IsValid = JsonDeserterConfigsField.IsValid() && (!JsonDeserterConfigsField->IsNull() && TryGetJsonValue(JsonDeserterConfigsField, DeserterConfigs));
+	ParseSuccess &= DeserterConfigs_IsValid; 
 
 	return ParseSuccess;
 }

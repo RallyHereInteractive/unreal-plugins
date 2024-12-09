@@ -44,7 +44,8 @@ bool FRHAPI_PlayerReportList::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonReportsField = (*Object)->TryGetField(TEXT("reports"));
-	ParseSuccess &= JsonReportsField.IsValid() && (!JsonReportsField->IsNull() &&  TryGetJsonValue(JsonReportsField, Reports));
+	const bool Reports_IsValid = JsonReportsField.IsValid() && (!JsonReportsField->IsNull() && TryGetJsonValue(JsonReportsField, Reports));
+	ParseSuccess &= Reports_IsValid; 
 	const TSharedPtr<FJsonValue> JsonNextCursorField = (*Object)->TryGetField(TEXT("next_cursor"));
 	if (JsonNextCursorField.IsValid())
 	{

@@ -89,7 +89,8 @@ bool FRHAPI_MatchMakingSessionRequest::FromJson(const TSharedPtr<FJsonValue>& Js
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonTeamsField = (*Object)->TryGetField(TEXT("teams"));
-	ParseSuccess &= JsonTeamsField.IsValid() && (!JsonTeamsField->IsNull() &&  TryGetJsonValue(JsonTeamsField, Teams));
+	const bool Teams_IsValid = JsonTeamsField.IsValid() && (!JsonTeamsField->IsNull() && TryGetJsonValue(JsonTeamsField, Teams));
+	ParseSuccess &= Teams_IsValid; 
 	const TSharedPtr<FJsonValue> JsonSessionTicketsField = (*Object)->TryGetField(TEXT("session_tickets"));
 	if (JsonSessionTicketsField.IsValid())
 	{
@@ -115,9 +116,11 @@ bool FRHAPI_MatchMakingSessionRequest::FromJson(const TSharedPtr<FJsonValue>& Js
 		ParseSuccess &= InstanceRequestTemplateId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonRegionIdField = (*Object)->TryGetField(TEXT("region_id"));
-	ParseSuccess &= JsonRegionIdField.IsValid() && (!JsonRegionIdField->IsNull() &&  TryGetJsonValue(JsonRegionIdField, RegionId));
+	const bool RegionId_IsValid = JsonRegionIdField.IsValid() && (!JsonRegionIdField->IsNull() && TryGetJsonValue(JsonRegionIdField, RegionId));
+	ParseSuccess &= RegionId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonMatchIdField = (*Object)->TryGetField(TEXT("match_id"));
-	ParseSuccess &= JsonMatchIdField.IsValid() && (!JsonMatchIdField->IsNull() &&  TryGetJsonValue(JsonMatchIdField, MatchId));
+	const bool MatchId_IsValid = JsonMatchIdField.IsValid() && (!JsonMatchIdField->IsNull() && TryGetJsonValue(JsonMatchIdField, MatchId));
+	ParseSuccess &= MatchId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
 	if (JsonCustomDataField.IsValid())
 	{
@@ -137,7 +140,8 @@ bool FRHAPI_MatchMakingSessionRequest::FromJson(const TSharedPtr<FJsonValue>& Js
 		ParseSuccess &= BackfillId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonMatchCreateRequestTimeField = (*Object)->TryGetField(TEXT("match_create_request_time"));
-	ParseSuccess &= JsonMatchCreateRequestTimeField.IsValid() && (!JsonMatchCreateRequestTimeField->IsNull() &&  TryGetJsonValue(JsonMatchCreateRequestTimeField, MatchCreateRequestTime));
+	const bool MatchCreateRequestTime_IsValid = JsonMatchCreateRequestTimeField.IsValid() && (!JsonMatchCreateRequestTimeField->IsNull() && TryGetJsonValue(JsonMatchCreateRequestTimeField, MatchCreateRequestTime));
+	ParseSuccess &= MatchCreateRequestTime_IsValid; 
 	const TSharedPtr<FJsonValue> JsonEvaluationScoreField = (*Object)->TryGetField(TEXT("evaluation_score"));
 	if (JsonEvaluationScoreField.IsValid())
 	{
@@ -151,7 +155,8 @@ bool FRHAPI_MatchMakingSessionRequest::FromJson(const TSharedPtr<FJsonValue>& Js
 		ParseSuccess &= RankQuality_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonMatchMakingProfileIdField = (*Object)->TryGetField(TEXT("match_making_profile_id"));
-	ParseSuccess &= JsonMatchMakingProfileIdField.IsValid() && (!JsonMatchMakingProfileIdField->IsNull() &&  TryGetJsonValue(JsonMatchMakingProfileIdField, MatchMakingProfileId));
+	const bool MatchMakingProfileId_IsValid = JsonMatchMakingProfileIdField.IsValid() && (!JsonMatchMakingProfileIdField->IsNull() && TryGetJsonValue(JsonMatchMakingProfileIdField, MatchMakingProfileId));
+	ParseSuccess &= MatchMakingProfileId_IsValid; 
 
 	return ParseSuccess;
 }

@@ -38,9 +38,11 @@ bool FRHAPI_BrowserResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonCursorField = (*Object)->TryGetField(TEXT("cursor"));
-	ParseSuccess &= JsonCursorField.IsValid() && (!JsonCursorField->IsNull() &&  TryGetJsonValue(JsonCursorField, Cursor));
+	const bool Cursor_IsValid = JsonCursorField.IsValid() && (!JsonCursorField->IsNull() && TryGetJsonValue(JsonCursorField, Cursor));
+	ParseSuccess &= Cursor_IsValid; 
 	const TSharedPtr<FJsonValue> JsonBrowserSessionsField = (*Object)->TryGetField(TEXT("browser_sessions"));
-	ParseSuccess &= JsonBrowserSessionsField.IsValid() && (!JsonBrowserSessionsField->IsNull() &&  TryGetJsonValue(JsonBrowserSessionsField, BrowserSessions));
+	const bool BrowserSessions_IsValid = JsonBrowserSessionsField.IsValid() && (!JsonBrowserSessionsField->IsNull() && TryGetJsonValue(JsonBrowserSessionsField, BrowserSessions));
+	ParseSuccess &= BrowserSessions_IsValid; 
 
 	return ParseSuccess;
 }

@@ -36,7 +36,8 @@ bool FRHAPI_SettingType::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonVersionsField = (*Object)->TryGetField(TEXT("versions"));
-	ParseSuccess &= JsonVersionsField.IsValid() && (!JsonVersionsField->IsNull() &&  TryGetJsonValue(JsonVersionsField, Versions));
+	const bool Versions_IsValid = JsonVersionsField.IsValid() && (!JsonVersionsField->IsNull() && TryGetJsonValue(JsonVersionsField, Versions));
+	ParseSuccess &= Versions_IsValid; 
 
 	return ParseSuccess;
 }

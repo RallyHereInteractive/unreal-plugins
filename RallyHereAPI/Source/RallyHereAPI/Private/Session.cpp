@@ -99,9 +99,11 @@ bool FRHAPI_Session::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
-	ParseSuccess &= JsonTypeField.IsValid() && (!JsonTypeField->IsNull() &&  TryGetJsonValue(JsonTypeField, Type));
+	const bool Type_IsValid = JsonTypeField.IsValid() && (!JsonTypeField->IsNull() && TryGetJsonValue(JsonTypeField, Type));
+	ParseSuccess &= Type_IsValid; 
 	const TSharedPtr<FJsonValue> JsonSessionIdField = (*Object)->TryGetField(TEXT("session_id"));
-	ParseSuccess &= JsonSessionIdField.IsValid() && (!JsonSessionIdField->IsNull() &&  TryGetJsonValue(JsonSessionIdField, SessionId));
+	const bool SessionId_IsValid = JsonSessionIdField.IsValid() && (!JsonSessionIdField->IsNull() && TryGetJsonValue(JsonSessionIdField, SessionId));
+	ParseSuccess &= SessionId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonInstanceField = (*Object)->TryGetField(TEXT("instance"));
 	if (JsonInstanceField.IsValid())
 	{
@@ -139,9 +141,11 @@ bool FRHAPI_Session::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= Browser_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonJoinableField = (*Object)->TryGetField(TEXT("joinable"));
-	ParseSuccess &= JsonJoinableField.IsValid() && (!JsonJoinableField->IsNull() &&  TryGetJsonValue(JsonJoinableField, Joinable));
+	const bool Joinable_IsValid = JsonJoinableField.IsValid() && (!JsonJoinableField->IsNull() && TryGetJsonValue(JsonJoinableField, Joinable));
+	ParseSuccess &= Joinable_IsValid; 
 	const TSharedPtr<FJsonValue> JsonTeamsField = (*Object)->TryGetField(TEXT("teams"));
-	ParseSuccess &= JsonTeamsField.IsValid() && (!JsonTeamsField->IsNull() &&  TryGetJsonValue(JsonTeamsField, Teams));
+	const bool Teams_IsValid = JsonTeamsField.IsValid() && (!JsonTeamsField->IsNull() && TryGetJsonValue(JsonTeamsField, Teams));
+	ParseSuccess &= Teams_IsValid; 
 	const TSharedPtr<FJsonValue> JsonTeamsSuppressedField = (*Object)->TryGetField(TEXT("teams_suppressed"));
 	if (JsonTeamsSuppressedField.IsValid())
 	{
@@ -161,7 +165,8 @@ bool FRHAPI_Session::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= CustomData_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCreatedField = (*Object)->TryGetField(TEXT("created"));
-	ParseSuccess &= JsonCreatedField.IsValid() && (!JsonCreatedField->IsNull() &&  TryGetJsonValue(JsonCreatedField, Created));
+	const bool Created_IsValid = JsonCreatedField.IsValid() && (!JsonCreatedField->IsNull() && TryGetJsonValue(JsonCreatedField, Created));
+	ParseSuccess &= Created_IsValid; 
 	const TSharedPtr<FJsonValue> JsonRegionIdField = (*Object)->TryGetField(TEXT("region_id"));
 	if (JsonRegionIdField.IsValid())
 	{

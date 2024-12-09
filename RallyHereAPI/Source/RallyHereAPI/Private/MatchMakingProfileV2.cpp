@@ -83,7 +83,8 @@ bool FRHAPI_MatchMakingProfileV2::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonMatchMakingProfileIdField = (*Object)->TryGetField(TEXT("match_making_profile_id"));
-	ParseSuccess &= JsonMatchMakingProfileIdField.IsValid() && (!JsonMatchMakingProfileIdField->IsNull() &&  TryGetJsonValue(JsonMatchMakingProfileIdField, MatchMakingProfileId));
+	const bool MatchMakingProfileId_IsValid = JsonMatchMakingProfileIdField.IsValid() && (!JsonMatchMakingProfileIdField->IsNull() && TryGetJsonValue(JsonMatchMakingProfileIdField, MatchMakingProfileId));
+	ParseSuccess &= MatchMakingProfileId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonJoinModeField = (*Object)->TryGetField(TEXT("join_mode"));
 	if (JsonJoinModeField.IsValid())
 	{
@@ -91,7 +92,8 @@ bool FRHAPI_MatchMakingProfileV2::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 		ParseSuccess &= JoinMode_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonInstanceRequestTemplateIdField = (*Object)->TryGetField(TEXT("instance_request_template_id"));
-	ParseSuccess &= JsonInstanceRequestTemplateIdField.IsValid() && (!JsonInstanceRequestTemplateIdField->IsNull() &&  TryGetJsonValue(JsonInstanceRequestTemplateIdField, InstanceRequestTemplateId));
+	const bool InstanceRequestTemplateId_IsValid = JsonInstanceRequestTemplateIdField.IsValid() && (!JsonInstanceRequestTemplateIdField->IsNull() && TryGetJsonValue(JsonInstanceRequestTemplateIdField, InstanceRequestTemplateId));
+	ParseSuccess &= InstanceRequestTemplateId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonRankIdField = (*Object)->TryGetField(TEXT("rank_id"));
 	if (JsonRankIdField.IsValid())
 	{

@@ -64,9 +64,11 @@ bool FRHAPI_PlatformSKU::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= CustomData_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlatformField = (*Object)->TryGetField(TEXT("platform"));
-	ParseSuccess &= JsonPlatformField.IsValid() && (!JsonPlatformField->IsNull() &&  TryGetJsonValue(JsonPlatformField, Platform));
+	const bool Platform_IsValid = JsonPlatformField.IsValid() && (!JsonPlatformField->IsNull() && TryGetJsonValue(JsonPlatformField, Platform));
+	ParseSuccess &= Platform_IsValid; 
 	const TSharedPtr<FJsonValue> JsonSkuField = (*Object)->TryGetField(TEXT("sku"));
-	ParseSuccess &= JsonSkuField.IsValid() && (!JsonSkuField->IsNull() &&  TryGetJsonValue(JsonSkuField, Sku));
+	const bool Sku_IsValid = JsonSkuField.IsValid() && (!JsonSkuField->IsNull() && TryGetJsonValue(JsonSkuField, Sku));
+	ParseSuccess &= Sku_IsValid; 
 	const TSharedPtr<FJsonValue> JsonLootEntitlementField = (*Object)->TryGetField(TEXT("loot_entitlement"));
 	if (JsonLootEntitlementField.IsValid())
 	{

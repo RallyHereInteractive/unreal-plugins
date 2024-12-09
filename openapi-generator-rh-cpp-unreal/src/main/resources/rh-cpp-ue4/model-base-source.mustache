@@ -43,7 +43,7 @@ FResponse::JsonPayloadType FResponse::DefaultJsonPayload = FResponse::JsonPayloa
 FResponse::StringPayloadType FResponse::DefaultStringPayload = FResponse::StringPayloadType();
 
 FResponse::FResponse(FRequestMetadata InRequestMetadata) :
-	Successful{},
+	Successful(false),HasParseErrors(false),
 	ResponseCode{ EHttpResponseCodes::Type::Unknown },
 	HttpResponse{},
 	RequestMetadata{ MoveTemp(InRequestMetadata) }
@@ -150,17 +150,19 @@ bool FResponse::ParseJsonTypeContent()
 		SetPayload<JsonPayloadType>(JsonValue);
 
 		// attempt to parse the json with the response object (for successful responses, this will fill in the Content subobject)
-		if (FromJson(JsonValue))
-		{
-			// Successfully parsed into response
-			return true;
-		}
-		else
+		HasParseErrors = !FromJson(JsonValue);
+		if (HasParseErrors)
 		{
 			// Report the parse error but do not mark the request as unsuccessful. Data could be partial or malformed, but the request succeeded.
 			UE_LOG(Log{{unrealModuleName}}, Warning, TEXT("Parsed JSON successfully, but failed to ingest into API structures (note: failure may be partial):\n%s"), *ContentAsString);
-			return true;
 		}
+		else
+		{
+			// Successfully parsed into response
+		}
+		
+		// we received a valid resposne and attempted to parse into unreal structures, so return success
+		return true;
 	}
 	else
 	{

@@ -73,7 +73,8 @@ bool FRHAPI_MatchMakingProfile::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonProfileIdField = (*Object)->TryGetField(TEXT("profile_id"));
-	ParseSuccess &= JsonProfileIdField.IsValid() && (!JsonProfileIdField->IsNull() &&  TryGetJsonValue(JsonProfileIdField, ProfileId));
+	const bool ProfileId_IsValid = JsonProfileIdField.IsValid() && (!JsonProfileIdField->IsNull() && TryGetJsonValue(JsonProfileIdField, ProfileId));
+	ParseSuccess &= ProfileId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonJoinModeField = (*Object)->TryGetField(TEXT("join_mode"));
 	if (JsonJoinModeField.IsValid())
 	{
@@ -81,7 +82,8 @@ bool FRHAPI_MatchMakingProfile::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 		ParseSuccess &= JoinMode_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonInstanceLaunchTemplateIdField = (*Object)->TryGetField(TEXT("instance_launch_template_id"));
-	ParseSuccess &= JsonInstanceLaunchTemplateIdField.IsValid() && (!JsonInstanceLaunchTemplateIdField->IsNull() &&  TryGetJsonValue(JsonInstanceLaunchTemplateIdField, InstanceLaunchTemplateId));
+	const bool InstanceLaunchTemplateId_IsValid = JsonInstanceLaunchTemplateIdField.IsValid() && (!JsonInstanceLaunchTemplateIdField->IsNull() && TryGetJsonValue(JsonInstanceLaunchTemplateIdField, InstanceLaunchTemplateId));
+	ParseSuccess &= InstanceLaunchTemplateId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonRankIdField = (*Object)->TryGetField(TEXT("rank_id"));
 	if (JsonRankIdField.IsValid())
 	{

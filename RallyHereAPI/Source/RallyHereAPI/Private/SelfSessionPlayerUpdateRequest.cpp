@@ -61,11 +61,14 @@ bool FRHAPI_SelfSessionPlayerUpdateRequest::FromJson(const TSharedPtr<FJsonValue
 		ParseSuccess &= Status_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonClientVersionField = (*Object)->TryGetField(TEXT("client_version"));
-	ParseSuccess &= JsonClientVersionField.IsValid() && (!JsonClientVersionField->IsNull() &&  TryGetJsonValue(JsonClientVersionField, ClientVersion));
+	const bool ClientVersion_IsValid = JsonClientVersionField.IsValid() && (!JsonClientVersionField->IsNull() && TryGetJsonValue(JsonClientVersionField, ClientVersion));
+	ParseSuccess &= ClientVersion_IsValid; 
 	const TSharedPtr<FJsonValue> JsonClientSettingsField = (*Object)->TryGetField(TEXT("client_settings"));
-	ParseSuccess &= JsonClientSettingsField.IsValid() && (!JsonClientSettingsField->IsNull() &&  TryGetJsonValue(JsonClientSettingsField, ClientSettings));
+	const bool ClientSettings_IsValid = JsonClientSettingsField.IsValid() && (!JsonClientSettingsField->IsNull() && TryGetJsonValue(JsonClientSettingsField, ClientSettings));
+	ParseSuccess &= ClientSettings_IsValid; 
 	const TSharedPtr<FJsonValue> JsonTeamIdField = (*Object)->TryGetField(TEXT("team_id"));
-	ParseSuccess &= JsonTeamIdField.IsValid() && (!JsonTeamIdField->IsNull() &&  TryGetJsonValue(JsonTeamIdField, TeamId));
+	const bool TeamId_IsValid = JsonTeamIdField.IsValid() && (!JsonTeamIdField->IsNull() && TryGetJsonValue(JsonTeamIdField, TeamId));
+	ParseSuccess &= TeamId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonCrossplayPreferencesField = (*Object)->TryGetField(TEXT("crossplay_preferences"));
 	if (JsonCrossplayPreferencesField.IsValid())
 	{

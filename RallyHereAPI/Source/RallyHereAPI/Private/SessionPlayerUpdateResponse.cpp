@@ -54,9 +54,11 @@ bool FRHAPI_SessionPlayerUpdateResponse::FromJson(const TSharedPtr<FJsonValue>& 
 		ParseSuccess &= PlayerUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonStatusField = (*Object)->TryGetField(TEXT("status"));
-	ParseSuccess &= JsonStatusField.IsValid() && (!JsonStatusField->IsNull() &&  TryGetJsonValue(JsonStatusField, Status));
+	const bool Status_IsValid = JsonStatusField.IsValid() && (!JsonStatusField->IsNull() && TryGetJsonValue(JsonStatusField, Status));
+	ParseSuccess &= Status_IsValid; 
 	const TSharedPtr<FJsonValue> JsonTeamIdField = (*Object)->TryGetField(TEXT("team_id"));
-	ParseSuccess &= JsonTeamIdField.IsValid() && (!JsonTeamIdField->IsNull() &&  TryGetJsonValue(JsonTeamIdField, TeamId));
+	const bool TeamId_IsValid = JsonTeamIdField.IsValid() && (!JsonTeamIdField->IsNull() && TryGetJsonValue(JsonTeamIdField, TeamId));
+	ParseSuccess &= TeamId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
 	if (JsonCustomDataField.IsValid())
 	{

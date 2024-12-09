@@ -46,7 +46,8 @@ bool FRHAPI_BodyUpdateOpportunityById::FromJson(const TSharedPtr<FJsonValue>& Js
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonStateField = (*Object)->TryGetField(TEXT("state"));
-	ParseSuccess &= JsonStateField.IsValid() && (!JsonStateField->IsNull() &&  TryGetJsonValue(JsonStateField, State));
+	const bool State_IsValid = JsonStateField.IsValid() && (!JsonStateField->IsNull() && TryGetJsonValue(JsonStateField, State));
+	ParseSuccess &= State_IsValid; 
 	const TSharedPtr<FJsonValue> JsonAbortReasonField = (*Object)->TryGetField(TEXT("abort_reason"));
 	if (JsonAbortReasonField.IsValid())
 	{

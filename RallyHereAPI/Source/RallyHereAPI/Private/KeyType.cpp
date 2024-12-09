@@ -36,7 +36,8 @@ bool FRHAPI_KeyType::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
-	ParseSuccess &= JsonTypeField.IsValid() && (!JsonTypeField->IsNull() &&  TryGetJsonValue(JsonTypeField, Type));
+	const bool Type_IsValid = JsonTypeField.IsValid() && (!JsonTypeField->IsNull() && TryGetJsonValue(JsonTypeField, Type));
+	ParseSuccess &= Type_IsValid; 
 
 	return ParseSuccess;
 }

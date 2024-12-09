@@ -45,9 +45,11 @@ bool FRHAPI_FriendRelationship::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonFriendsPlayerUuidField = (*Object)->TryGetField(TEXT("friends_player_uuid"));
-	ParseSuccess &= JsonFriendsPlayerUuidField.IsValid() && (!JsonFriendsPlayerUuidField->IsNull() &&  TryGetJsonValue(JsonFriendsPlayerUuidField, FriendsPlayerUuid));
+	const bool FriendsPlayerUuid_IsValid = JsonFriendsPlayerUuidField.IsValid() && (!JsonFriendsPlayerUuidField->IsNull() && TryGetJsonValue(JsonFriendsPlayerUuidField, FriendsPlayerUuid));
+	ParseSuccess &= FriendsPlayerUuid_IsValid; 
 	const TSharedPtr<FJsonValue> JsonStatusField = (*Object)->TryGetField(TEXT("status"));
-	ParseSuccess &= JsonStatusField.IsValid() && (!JsonStatusField->IsNull() &&  TryGetJsonValue(JsonStatusField, Status));
+	const bool Status_IsValid = JsonStatusField.IsValid() && (!JsonStatusField->IsNull() && TryGetJsonValue(JsonStatusField, Status));
+	ParseSuccess &= Status_IsValid; 
 	const TSharedPtr<FJsonValue> JsonNotesField = (*Object)->TryGetField(TEXT("notes"));
 	if (JsonNotesField.IsValid())
 	{
@@ -55,7 +57,8 @@ bool FRHAPI_FriendRelationship::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 		ParseSuccess &= Notes_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonLastModifiedOnField = (*Object)->TryGetField(TEXT("last_modified_on"));
-	ParseSuccess &= JsonLastModifiedOnField.IsValid() && (!JsonLastModifiedOnField->IsNull() &&  TryGetJsonValue(JsonLastModifiedOnField, LastModifiedOn));
+	const bool LastModifiedOn_IsValid = JsonLastModifiedOnField.IsValid() && (!JsonLastModifiedOnField->IsNull() && TryGetJsonValue(JsonLastModifiedOnField, LastModifiedOn));
+	ParseSuccess &= LastModifiedOn_IsValid; 
 
 	return ParseSuccess;
 }

@@ -55,9 +55,11 @@ bool FRHAPI_CreateOrJoinRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValu
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonClientVersionField = (*Object)->TryGetField(TEXT("client_version"));
-	ParseSuccess &= JsonClientVersionField.IsValid() && (!JsonClientVersionField->IsNull() &&  TryGetJsonValue(JsonClientVersionField, ClientVersion));
+	const bool ClientVersion_IsValid = JsonClientVersionField.IsValid() && (!JsonClientVersionField->IsNull() && TryGetJsonValue(JsonClientVersionField, ClientVersion));
+	ParseSuccess &= ClientVersion_IsValid; 
 	const TSharedPtr<FJsonValue> JsonClientSettingsField = (*Object)->TryGetField(TEXT("client_settings"));
-	ParseSuccess &= JsonClientSettingsField.IsValid() && (!JsonClientSettingsField->IsNull() &&  TryGetJsonValue(JsonClientSettingsField, ClientSettings));
+	const bool ClientSettings_IsValid = JsonClientSettingsField.IsValid() && (!JsonClientSettingsField->IsNull() && TryGetJsonValue(JsonClientSettingsField, ClientSettings));
+	ParseSuccess &= ClientSettings_IsValid; 
 	const TSharedPtr<FJsonValue> JsonCrossplayPreferencesField = (*Object)->TryGetField(TEXT("crossplay_preferences"));
 	if (JsonCrossplayPreferencesField.IsValid())
 	{
@@ -65,7 +67,8 @@ bool FRHAPI_CreateOrJoinRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValu
 		ParseSuccess &= CrossplayPreferences_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonSessionTypeField = (*Object)->TryGetField(TEXT("session_type"));
-	ParseSuccess &= JsonSessionTypeField.IsValid() && (!JsonSessionTypeField->IsNull() &&  TryGetJsonValue(JsonSessionTypeField, SessionType));
+	const bool SessionType_IsValid = JsonSessionTypeField.IsValid() && (!JsonSessionTypeField->IsNull() && TryGetJsonValue(JsonSessionTypeField, SessionType));
+	ParseSuccess &= SessionType_IsValid; 
 	const TSharedPtr<FJsonValue> JsonRegionIdField = (*Object)->TryGetField(TEXT("region_id"));
 	if (JsonRegionIdField.IsValid())
 	{

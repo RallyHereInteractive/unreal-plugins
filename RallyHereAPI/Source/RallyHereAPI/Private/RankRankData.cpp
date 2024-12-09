@@ -43,9 +43,11 @@ bool FRHAPI_RankRankData::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonMuField = (*Object)->TryGetField(TEXT("mu"));
-	ParseSuccess &= JsonMuField.IsValid() && (!JsonMuField->IsNull() &&  TryGetJsonValue(JsonMuField, Mu));
+	const bool Mu_IsValid = JsonMuField.IsValid() && (!JsonMuField->IsNull() && TryGetJsonValue(JsonMuField, Mu));
+	ParseSuccess &= Mu_IsValid; 
 	const TSharedPtr<FJsonValue> JsonSigmaField = (*Object)->TryGetField(TEXT("sigma"));
-	ParseSuccess &= JsonSigmaField.IsValid() && (!JsonSigmaField->IsNull() &&  TryGetJsonValue(JsonSigmaField, Sigma));
+	const bool Sigma_IsValid = JsonSigmaField.IsValid() && (!JsonSigmaField->IsNull() && TryGetJsonValue(JsonSigmaField, Sigma));
+	ParseSuccess &= Sigma_IsValid; 
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
 	if (JsonCustomDataField.IsValid())
 	{

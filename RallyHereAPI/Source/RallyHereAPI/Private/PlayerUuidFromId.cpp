@@ -36,7 +36,8 @@ bool FRHAPI_PlayerUuidFromId::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonUuidField = (*Object)->TryGetField(TEXT("uuid"));
-	ParseSuccess &= JsonUuidField.IsValid() && (!JsonUuidField->IsNull() &&  TryGetJsonValue(JsonUuidField, Uuid));
+	const bool Uuid_IsValid = JsonUuidField.IsValid() && (!JsonUuidField->IsNull() && TryGetJsonValue(JsonUuidField, Uuid));
+	ParseSuccess &= Uuid_IsValid; 
 
 	return ParseSuccess;
 }
