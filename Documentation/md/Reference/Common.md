@@ -502,9 +502,9 @@ Generic handler for HTTP request errors.
 `public int32 `[`ResponseCode`](#structFRH__ErrorInfo_1a390a2d3df6eb1eb30b8c45910beda439) | The Error Code of the HTTP request.
 `public FString `[`ResponseContent`](#structFRH__ErrorInfo_1a1a9cfc1398f93647a4409ed1e9712330) | Content of the HTTP request response.
 `public bool `[`bIsRHCommonError`](#structFRH__ErrorInfo_1a3dc04003818b7b61b32a1afcec580cf4) | Whether the response is a RallyHere common error.
-`public `[`FRHAPI_HzApiErrorModel`](models/RHAPI_HzApiErrorModel.md#structFRHAPI__HzApiErrorModel)` `[`RHCommonError`](#structFRH__ErrorInfo_1ae3439276423c4db34a8178f0382c4f27) | The response as a RallyHere common error.
+`public `[`FRHAPI_HzApiErrorModel`](RHAPI_HzApiErrorModel.md#structFRHAPI__HzApiErrorModel)` `[`RHCommonError`](#structFRH__ErrorInfo_1ae3439276423c4db34a8178f0382c4f27) | The response as a RallyHere common error.
 `public bool `[`bIsRHValidationError`](#structFRH__ErrorInfo_1a8c5a433b1d62e3562a010bda5376521a) | Whether the response is a RallyHere validation error.
-`public `[`FRHAPI_ValidationError`](models/RHAPI_ValidationError.md#structFRHAPI__ValidationError)` `[`RHValidationError`](#structFRH__ErrorInfo_1a5d714aa9f92485faeca2e6985de7363d) | The response as a RallyHere validation error.
+`public `[`FRHAPI_ValidationError`](RHAPI_ValidationError.md#structFRHAPI__ValidationError)` `[`RHValidationError`](#structFRH__ErrorInfo_1a5d714aa9f92485faeca2e6985de7363d) | The response as a RallyHere validation error.
 `public inline  `[`FRH_ErrorInfo`](#structFRH__ErrorInfo_1a73f5665c8b3d1e58d64e035d6dc0d141)`()` | Default constructor.
 `public inline  `[`FRH_ErrorInfo`](#structFRH__ErrorInfo_1a3aa352c4f719437558b1ad1e9bb2ca12)`(const RallyHereAPI::FResponse * Response)` | Construct from Response Ptr.
 `public inline  `[`FRH_ErrorInfo`](#structFRH__ErrorInfo_1aeb95360beb4cd80cc13d261d67cec516)`(const RallyHereAPI::FResponse & Response)` | Construct from Response Ref.
@@ -529,7 +529,7 @@ Content of the HTTP request response.
 
 Whether the response is a RallyHere common error.
 
-#### `public `[`FRHAPI_HzApiErrorModel`](models/RHAPI_HzApiErrorModel.md#structFRHAPI__HzApiErrorModel)` `[`RHCommonError`](#structFRH__ErrorInfo_1ae3439276423c4db34a8178f0382c4f27) <a id="structFRH__ErrorInfo_1ae3439276423c4db34a8178f0382c4f27"></a>
+#### `public `[`FRHAPI_HzApiErrorModel`](RHAPI_HzApiErrorModel.md#structFRHAPI__HzApiErrorModel)` `[`RHCommonError`](#structFRH__ErrorInfo_1ae3439276423c4db34a8178f0382c4f27) <a id="structFRH__ErrorInfo_1ae3439276423c4db34a8178f0382c4f27"></a>
 
 The response as a RallyHere common error.
 
@@ -537,7 +537,7 @@ The response as a RallyHere common error.
 
 Whether the response is a RallyHere validation error.
 
-#### `public `[`FRHAPI_ValidationError`](models/RHAPI_ValidationError.md#structFRHAPI__ValidationError)` `[`RHValidationError`](#structFRH__ErrorInfo_1a5d714aa9f92485faeca2e6985de7363d) <a id="structFRH__ErrorInfo_1a5d714aa9f92485faeca2e6985de7363d"></a>
+#### `public `[`FRHAPI_ValidationError`](RHAPI_ValidationError.md#structFRHAPI__ValidationError)` `[`RHValidationError`](#structFRH__ErrorInfo_1a5d714aa9f92485faeca2e6985de7363d) <a id="structFRH__ErrorInfo_1a5d714aa9f92485faeca2e6985de7363d"></a>
 
 The response as a RallyHere validation error.
 

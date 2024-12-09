@@ -538,7 +538,7 @@ Friends Subsystem for handling a users relationships with other players.
 `protected FDelegateHandle `[`OnOSSPresenceReceivedHandle`](#classURH__FriendSubsystem_1af4dee5d7db87903fc77a81214efdda36) | Delegate to be fired when online subsystem presence is received.
 `protected FDelegateHandle `[`OnOSSBlockListReceivedHandle`](#classURH__FriendSubsystem_1aa34a363f7ba27902f860e261910f01aa) | Delegate to be fired when online subsystem blocked list is received.
 `protected virtual void `[`OnUserChanged`](#classURH__FriendSubsystem_1ace5e8036219386fc48ec8ec89f391e36)`(const FGuid & OldPlayerUuid,class `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * OldLocalPlayerInfo)` | Callback that occurs whenever the local player this subsystem is associated with changes.
-`protected virtual void `[`HandleNotification`](#classURH__FriendSubsystem_1a7e151250348a53e5ea59bd3b1e46621c)`(const struct `[`FRHAPI_Notification`](models/RHAPI_Notification.md#structFRHAPI__Notification)` & Notification,const FString & APIName,const TArray< FString > & APIParams)` | Handle a notification from the notification API.
+`protected virtual void `[`HandleNotification`](#classURH__FriendSubsystem_1a7e151250348a53e5ea59bd3b1e46621c)`(const struct `[`FRHAPI_Notification`](RHAPI_Notification.md#structFRHAPI__Notification)` & Notification,const FString & APIName,const TArray< FString > & APIParams)` | Handle a notification from the notification API.
 `protected virtual void `[`InitPropertiesWithDefaultValues`](#classURH__FriendSubsystem_1a329dc919c010125a81f508eaf83f3d74)`()` | Initializes the subsystem with defaults for its cached data.
 `protected virtual bool `[`SetDefaultParamsForGetFriendRequest`](#classURH__FriendSubsystem_1ac4a8491381ccb8bcc26a031048d628b9)`(GetFriendRelationshipType::Request & Request) const` | Fills our a Get Friend request.
 `protected virtual void `[`PostReloadConfig`](#classURH__FriendSubsystem_1ad94ca4a65eeae28cd4fde373c4035d8d)`(class FProperty * PropertyThatWasLoaded)` | Called from ReloadConfig after the object has reloaded its configuration data.
@@ -907,7 +907,7 @@ Delegate to be fired when online subsystem blocked list is received.
 
 Callback that occurs whenever the local player this subsystem is associated with changes.
 
-#### `protected virtual void `[`HandleNotification`](#classURH__FriendSubsystem_1a7e151250348a53e5ea59bd3b1e46621c)`(const struct `[`FRHAPI_Notification`](models/RHAPI_Notification.md#structFRHAPI__Notification)` & Notification,const FString & APIName,const TArray< FString > & APIParams)` <a id="classURH__FriendSubsystem_1a7e151250348a53e5ea59bd3b1e46621c"></a>
+#### `protected virtual void `[`HandleNotification`](#classURH__FriendSubsystem_1a7e151250348a53e5ea59bd3b1e46621c)`(const struct `[`FRHAPI_Notification`](RHAPI_Notification.md#structFRHAPI__Notification)` & Notification,const FString & APIName,const TArray< FString > & APIParams)` <a id="classURH__FriendSubsystem_1a7e151250348a53e5ea59bd3b1e46621c"></a>
 
 Handle a notification from the notification API.
 

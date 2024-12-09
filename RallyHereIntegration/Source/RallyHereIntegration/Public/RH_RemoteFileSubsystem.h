@@ -48,7 +48,7 @@ public:
 	 * @param LocalFilePath The path of the file on the local storage to upload.
 	 * @param Delegate The delegate to call when the operation completes.
 	 */
-	UE_DEPRECATED(5.0, "Please use UploadFile instead")
+	UE_DEPRECATED(5.0, "Please use UploadFromFile instead")
 	virtual void UploadFile(const FRH_RemoteFileApiDirectory& Directory, const FString& RemoteFileName, const FString& LocalFilePath, const FRH_GenericSuccessWithErrorBlock Delegate = FRH_GenericSuccessWithErrorBlock())
 	{
 		UploadFromFile(Directory, RemoteFileName, LocalFilePath, true, Delegate);

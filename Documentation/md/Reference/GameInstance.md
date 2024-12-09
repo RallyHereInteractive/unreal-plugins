@@ -112,7 +112,7 @@ Server Bootstrapper for the Game Instance.
 `public inline virtual `[`URH_OnlineSession`](Session.md#classURH__OnlineSession)` * `[`GetSession`](#classURH__GameInstanceServerBootstrapper_1a2ee4a4f52cbb85e077b2ffb2459f2c3e)`() const` | Get the current bootstrapping mode.
 `public inline virtual FAuthContextPtr `[`GetSessionAuthContext`](#classURH__GameInstanceServerBootstrapper_1a3c8ddb006bbc3dea378d179e51be5b62)`() const` | Gets the auth context to use for API calls for the session owner.
 `public virtual void `[`ImportAPISession`](#classURH__GameInstanceServerBootstrapper_1a374284e48119f0092acb4a0da5634215)`(const `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` & Session)` | Imports a session object from the API into the owner (ex: from polling).
-`public virtual void `[`ImportAPITemplate`](#classURH__GameInstanceServerBootstrapper_1a9cfc35913bd38f0fd8f090428c6971d4)`(const `[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template)` | Imports the template into the owner's template list (ex: from polling).
+`public virtual void `[`ImportAPITemplate`](#classURH__GameInstanceServerBootstrapper_1a9cfc35913bd38f0fd8f090428c6971d4)`(const `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template)` | Imports the template into the owner's template list (ex: from polling).
 `public virtual void `[`ReconcileAPISessions`](#classURH__GameInstanceServerBootstrapper_1a30545d8b52b8fdfe6ebbff321514e929)`(const TArray< FString > & SessionIds,const TOptional< FString > & ETag)` | Updates the list of sessions to only those that are active.
 `public virtual void `[`ReconcileAPITemplates`](#classURH__GameInstanceServerBootstrapper_1a3f046c14798943a59bcb268c75e02e6c)`(const TArray< FString > & InTemplates,const TOptional< FString > & ETag)` | Updates the list of session templates to those that are active.
 `public virtual class `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__GameInstanceServerBootstrapper_1ac1a7eee0c5d62a932aba1d57520fba59)`() const` | Gets the PlayerInfo Subsystem.
@@ -124,7 +124,7 @@ Server Bootstrapper for the Game Instance.
 `public inline virtual TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classURH__GameInstanceServerBootstrapper_1ac2f94216aa37e0981cbb72db9e8a9f10)`() const` | Used to get all sessions, primarily for get all sessions polling where etag matches.
 `public virtual `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`GetSessionById`](#classURH__GameInstanceServerBootstrapper_1abe0dcf495d31dfbd8876d63feab05ad5)`(const FString & SessionId) const` | Gets a session by its id.
 `public virtual void `[`RemoveSessionById`](#classURH__GameInstanceServerBootstrapper_1a493191c1aab0553e34f0dcf4c05f8f22)`(const FString & SessionId)` | Removes a cached session for the local player, this does NOT try to leave it.
-`public virtual bool `[`GetTemplate`](#classURH__GameInstanceServerBootstrapper_1a62d69a1d7e7021f03557dff715e6179d)`(const FString & Type,`[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template) const` | Gets a session template by type.
+`public virtual bool `[`GetTemplate`](#classURH__GameInstanceServerBootstrapper_1a62d69a1d7e7021f03557dff715e6179d)`(const FString & Type,`[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template) const` | Gets a session template by type.
 `public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__GameInstanceServerBootstrapper_1aec9f89849a3865282935f12646e98255)`(const FString & SessionId) const` | Gets the platform synchronization object using the rally here session id.
 `public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__GameInstanceServerBootstrapper_1a2c2d7c9b2b38fca62aba5ba8e642797b)`(const FUniqueNetIdRepl & PlatformSessionId) const` | Gets the platform synchronization object using the platform session id.
 `public inline const `[`FRH_BootstrappingResult`](GameInstance.md#structFRH__BootstrappingResult)` & `[`GetBootstrappingResult`](#classURH__GameInstanceServerBootstrapper_1aa61e1f51c28e5437d220362e652e4156)`() const` | Gets the bootstrapping result from this bootstrapper.
@@ -143,7 +143,7 @@ Server Bootstrapper for the Game Instance.
 `protected TOptional< FDateTime > `[`AnalyticsStartTime`](#classURH__GameInstanceServerBootstrapper_1a397fabb31e01701e68081f7cb3da45da) | The start time of the AnalyticsProvider
 `protected TUniquePtr< IRH_GameHostProviderInterface > `[`GameHostProvider`](#classURH__GameInstanceServerBootstrapper_1a1b04f9631853c09086b8f616bf2e14a5) | The game host provider for this bootstrapper
 `protected `[`FRH_BootstrappingResult`](GameInstance.md#structFRH__BootstrappingResult)` `[`BootstrappingResult`](#classURH__GameInstanceServerBootstrapper_1a0874c2b9b1ad9a8e9e61e26ac7777d04) | The current bootstrapping result
-`protected TMap< FString, `[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > `[`Templates`](#classURH__GameInstanceServerBootstrapper_1a9cd2bf3717733651fd52d461e8f11f16) | Session templates to use to iniailize the session
+`protected TMap< FString, `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > `[`Templates`](#classURH__GameInstanceServerBootstrapper_1a9cd2bf3717733651fd52d461e8f11f16) | Session templates to use to iniailize the session
 `protected TOptional< FString > `[`AllTemplatesETag`](#classURH__GameInstanceServerBootstrapper_1a98d6b5f7f29f0a05d3cfe1064de8e230) | ETag for the template list
 `protected `[`URH_OnlineSession`](Session.md#classURH__OnlineSession)` * `[`RHSession`](#classURH__GameInstanceServerBootstrapper_1ad302c0226ce41e487468265ce7ce3808) | The current session we are using
 `protected FString `[`DefaultAutoCreateSessionType`](#classURH__GameInstanceServerBootstrapper_1ade098c2efc90a5136ef64520677b72d2) | The default type of session to create when using AutoCreate bootstrapping mode
@@ -272,7 +272,7 @@ Imports a session object from the API into the owner (ex: from polling).
 #### Parameters
 * `Session` The Session to import.
 
-#### `public virtual void `[`ImportAPITemplate`](#classURH__GameInstanceServerBootstrapper_1a9cfc35913bd38f0fd8f090428c6971d4)`(const `[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template)` <a id="classURH__GameInstanceServerBootstrapper_1a9cfc35913bd38f0fd8f090428c6971d4"></a>
+#### `public virtual void `[`ImportAPITemplate`](#classURH__GameInstanceServerBootstrapper_1a9cfc35913bd38f0fd8f090428c6971d4)`(const `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template)` <a id="classURH__GameInstanceServerBootstrapper_1a9cfc35913bd38f0fd8f090428c6971d4"></a>
 
 Imports the template into the owner's template list (ex: from polling).
 
@@ -342,7 +342,7 @@ Removes a cached session for the local player, this does NOT try to leave it.
 #### Parameters
 * `SessionId` The Session Id to remove.
 
-#### `public virtual bool `[`GetTemplate`](#classURH__GameInstanceServerBootstrapper_1a62d69a1d7e7021f03557dff715e6179d)`(const FString & Type,`[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template) const` <a id="classURH__GameInstanceServerBootstrapper_1a62d69a1d7e7021f03557dff715e6179d"></a>
+#### `public virtual bool `[`GetTemplate`](#classURH__GameInstanceServerBootstrapper_1a62d69a1d7e7021f03557dff715e6179d)`(const FString & Type,`[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template) const` <a id="classURH__GameInstanceServerBootstrapper_1a62d69a1d7e7021f03557dff715e6179d"></a>
 
 Gets a session template by type.
 
@@ -426,7 +426,7 @@ The game host provider for this bootstrapper
 
 The current bootstrapping result
 
-#### `protected TMap< FString, `[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > `[`Templates`](#classURH__GameInstanceServerBootstrapper_1a9cd2bf3717733651fd52d461e8f11f16) <a id="classURH__GameInstanceServerBootstrapper_1a9cd2bf3717733651fd52d461e8f11f16"></a>
+#### `protected TMap< FString, `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > `[`Templates`](#classURH__GameInstanceServerBootstrapper_1a9cd2bf3717733651fd52d461e8f11f16) <a id="classURH__GameInstanceServerBootstrapper_1a9cd2bf3717733651fd52d461e8f11f16"></a>
 
 Session templates to use to iniailize the session
 
@@ -1025,7 +1025,7 @@ An result object that contains the accumulated results for the bootstrapping flo
 `public FRH_GameHostAllocationInfo `[`AllocationInfo`](#structFRH__BootstrappingResult_1adec6488272e42a9e0b06af3ab6d59d21) | Allocation info from the provider.
 `public TOptional< FString > `[`ETag`](#structFRH__BootstrappingResult_1ac73f26d7721fb5dad1842db2210f63ee) | Etag for the session.
 `public TOptional< `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` > `[`Session`](#structFRH__BootstrappingResult_1ad19f9f0c2ef01ee27ee8662fa2c24fbf) | Session data.
-`public TOptional< `[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > `[`Template`](#structFRH__BootstrappingResult_1a96b718bfaa357278d45e35e5f8195d7d) | Session template.
+`public TOptional< `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > `[`Template`](#structFRH__BootstrappingResult_1a96b718bfaa357278d45e35e5f8195d7d) | Session template.
 `public inline  `[`FRH_BootstrappingResult`](#structFRH__BootstrappingResult_1aa216ffeac7a1df598341b1c44b1cf60a)`()` | Default constructor.
 `public inline  `[`FRH_BootstrappingResult`](#structFRH__BootstrappingResult_1ac72f8aa3aba34360f7bb355c28b09bf4)`(const FRH_GameHostAllocationInfo & InAllocationInfo)` | Constructor with Host Allocation Info.
 `public inline FORCEINLINE bool `[`IsValid`](#structFRH__BootstrappingResult_1a2c15ea10bd2944064a94f6623a605c53)`() const` | Whether or not this result is valid (it has the required IDs to be finalized)
@@ -1045,7 +1045,7 @@ Etag for the session.
 
 Session data.
 
-#### `public TOptional< `[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > `[`Template`](#structFRH__BootstrappingResult_1a96b718bfaa357278d45e35e5f8195d7d) <a id="structFRH__BootstrappingResult_1a96b718bfaa357278d45e35e5f8195d7d"></a>
+#### `public TOptional< `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > `[`Template`](#structFRH__BootstrappingResult_1a96b718bfaa357278d45e35e5f8195d7d) <a id="structFRH__BootstrappingResult_1a96b718bfaa357278d45e35e5f8195d7d"></a>
 
 Session template.
 
