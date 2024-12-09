@@ -462,14 +462,10 @@ Inventory Subsystem created per player for tracking and updating player inventor
 `public const TArray< `[`FRH_ItemInventory`](Inventory.md#structFRH__ItemInventory)` > `[`GetCachedInventoryForType`](#classURH__PlayerInventory_1ab29ede8a19a9316eb20eb52ed9c35aed)`(const ERHAPI_InventoryType & Type) const` | Gets the cached inventory records for an inventory type for the player.
 `public const TArray< `[`FRH_ItemInventory`](Inventory.md#structFRH__ItemInventory)` > `[`GetCachedInventoryForItemsAndTypes`](#classURH__PlayerInventory_1ab8e5653fa66b9f65d3f0ebd527f2629c)`(const TArray< int32 > & ItemIds,const TArray< ERHAPI_InventoryType > & Types) const` | Gets the cached inventory records for multiple item ids that have the given inventory type for the player.
 `public bool `[`GetCachedInventoryForInventoryId`](#classURH__PlayerInventory_1a8a8295a3807aef746e6b2db5a51cf9ba)`(const FGuid & InventoryId,`[`FRH_ItemInventory`](Inventory.md#structFRH__ItemInventory)` & Item) const` | Gets an exact cached inventory record for the player.
-<<<<<<< HEAD:Documentation/md/Inventory.md
-`public inline const TArray< `[`FRHAPI_PlayerOrder`](models/RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > & `[`GetOrderResults`](#classURH__PlayerInventory_1a743b0a4541f198b9e4f9520caeabcde4)`() const` | Gets all order results that have come in for the player.
+`public inline const TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > & `[`GetOrderResults`](#classURH__PlayerInventory_1a743b0a4541f198b9e4f9520caeabcde4)`() const` | Gets all order results that have come in for the player.
 `public virtual void `[`GetItemLevelsAsync`](#classURH__PlayerInventory_1a6249118a1e398be0553c545e4e4d693b)`(const TArray< int32 > & ItemIds,const FRH_GenericSuccessWithErrorBlock & Delegate)` | Gets the current level of a specified list of items for the player via async request.
 `public  `[`UFUNCTION`](#classURH__PlayerInventory_1a93e2900d963800fb9b3634f3dce474c6)`(BlueprintCallable,Category,meta) const` | Gets the cached map of item levels.
-`public inline `[`FRHAPI_InventoryLevel`](models/RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` & `[`GetCachedItemLevels`](#classURH__PlayerInventory_1ad79bc7e53ab701dad1e28d92a9c52c9e)`() const` | 
-=======
-`public inline const TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > & `[`GetOrderResults`](#classURH__PlayerInventory_1a743b0a4541f198b9e4f9520caeabcde4)`() const` | Gets all order results that have come in for the player.
->>>>>>> main:Documentation/md/Reference/Inventory.md
+`public inline `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` & `[`GetCachedItemLevels`](#classURH__PlayerInventory_1ad79bc7e53ab701dad1e28d92a9c52c9e)`() const` | 
 `public inline void `[`ClearCachedInventory`](#classURH__PlayerInventory_1abfe1776646639ec37f10b74ad3dee8e5)`()` | Clears all cached inventory for the player.
 `public inline void `[`ClearOrderCache`](#classURH__PlayerInventory_1a5387581632c52d10ec6464099ade2b3b)`()` | Clears all cached order results for the player.
 `public void `[`GetInventorySession`](#classURH__PlayerInventory_1a00d805080c0941cf004bfbc77b8942cb)`(const FRH_OnInventorySessionUpdateDelegateBlock & Delegate)` | Calls the Inventory API to get the players active Inventory Session.
@@ -490,7 +486,7 @@ Inventory Subsystem created per player for tracking and updating player inventor
 `public void `[`ParseOrderResult`](#classURH__PlayerInventory_1a0a3af764f187ffbd05955fb16a8bd5d7)`(const `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` & Content)` | Parses a player order result API into a [URH_PlayerOrderEntry](Inventory.md#classURH__PlayerOrderEntry).
 `protected TMap< int32, TArray< `[`FRH_ItemInventory`](Inventory.md#structFRH__ItemInventory)` > > `[`InventoryCache`](#classURH__PlayerInventory_1a5d5179ccce89d685f086005d1b907ad8) | Inventory cache map of Item Id to inventory records.
 `protected TOptional< FDateTime > `[`LastFullInventoryTime`](#classURH__PlayerInventory_1aa0850ee414c71713fc6bfb385759aa83) | Last time the full inventory has been retrieved since this watch was created.
-`protected TMap< int32, `[`FRHAPI_InventoryLevel`](models/RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > `[`ItemLevelCache`](#classURH__PlayerInventory_1a65e72dec4ba9427fece680d1649849c9) | Map of Item Id to Inventory Level.
+`protected TMap< int32, `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > `[`ItemLevelCache`](#classURH__PlayerInventory_1a65e72dec4ba9427fece680d1649849c9) | Map of Item Id to Inventory Level.
 `protected TArray< FString > `[`ParsedInventoryOrders`](#classURH__PlayerInventory_1a76a82d3bb8f00ae1427129887e83952b) | Array of inventory orders that have recently been parsed to prevent double parsing orders through normal polling.
 `protected FRH_AutoPollerPtr `[`InventoryPoller`](#classURH__PlayerInventory_1a9b073e90506714df4cff00f456168580) | Poller for inventory updates.
 `protected FRH_AutoPollerPtr `[`PendingInventoryPoller`](#classURH__PlayerInventory_1ad2760c4c21398d38fad0929a5ab3b9ff) | Polled for pending inventory.
@@ -687,7 +683,7 @@ Gets the cached map of item levels.
 #### Returns
 The map of item ids to their levels
 
-#### `public inline `[`FRHAPI_InventoryLevel`](models/RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` & `[`GetCachedItemLevels`](#classURH__PlayerInventory_1ad79bc7e53ab701dad1e28d92a9c52c9e)`() const` <a id="classURH__PlayerInventory_1ad79bc7e53ab701dad1e28d92a9c52c9e"></a>
+#### `public inline `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` & `[`GetCachedItemLevels`](#classURH__PlayerInventory_1ad79bc7e53ab701dad1e28d92a9c52c9e)`() const` <a id="classURH__PlayerInventory_1ad79bc7e53ab701dad1e28d92a9c52c9e"></a>
 
 #### `public inline void `[`ClearCachedInventory`](#classURH__PlayerInventory_1abfe1776646639ec37f10b74ad3dee8e5)`()` <a id="classURH__PlayerInventory_1abfe1776646639ec37f10b74ad3dee8e5"></a>
 
@@ -849,7 +845,7 @@ Inventory cache map of Item Id to inventory records.
 
 Last time the full inventory has been retrieved since this watch was created.
 
-#### `protected TMap< int32, `[`FRHAPI_InventoryLevel`](models/RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > `[`ItemLevelCache`](#classURH__PlayerInventory_1a65e72dec4ba9427fece680d1649849c9) <a id="classURH__PlayerInventory_1a65e72dec4ba9427fece680d1649849c9"></a>
+#### `protected TMap< int32, `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > `[`ItemLevelCache`](#classURH__PlayerInventory_1a65e72dec4ba9427fece680d1649849c9) <a id="classURH__PlayerInventory_1a65e72dec4ba9427fece680d1649849c9"></a>
 
 Map of Item Id to Inventory Level.
 
