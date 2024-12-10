@@ -391,9 +391,9 @@ struct RALLYHEREAPI_API FRequest_DeleteMatch : public FRequest
 };
 
 /** The response type for FRequest_DeleteMatch */
-struct RALLYHEREAPI_API FResponse_DeleteMatch : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_DeleteMatch : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_DeleteMatch(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_DeleteMatch() = default;
@@ -491,9 +491,9 @@ struct RALLYHEREAPI_API FRequest_DeleteMatchPlayer : public FRequest
 };
 
 /** The response type for FRequest_DeleteMatchPlayer */
-struct RALLYHEREAPI_API FResponse_DeleteMatchPlayer : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_DeleteMatchPlayer : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_DeleteMatchPlayer(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_DeleteMatchPlayer() = default;
@@ -591,9 +591,9 @@ struct RALLYHEREAPI_API FRequest_DeleteMatchSegment : public FRequest
 };
 
 /** The response type for FRequest_DeleteMatchSegment */
-struct RALLYHEREAPI_API FResponse_DeleteMatchSegment : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_DeleteMatchSegment : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_DeleteMatchSegment(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_DeleteMatchSegment() = default;

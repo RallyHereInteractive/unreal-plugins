@@ -33,6 +33,11 @@ void FRHAPI_CreateOrJoinRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) co
 	}
 	Writer->WriteIdentifierPrefix(TEXT("session_type"));
 	RallyHereAPI::WriteJsonValue(Writer, SessionType);
+	if (Password_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("password"));
+		RallyHereAPI::WriteJsonValue(Writer, Password_Optional);
+	}
 	if (RegionId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("region_id"));
@@ -66,6 +71,12 @@ bool FRHAPI_CreateOrJoinRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValu
 	}
 	const TSharedPtr<FJsonValue> JsonSessionTypeField = (*Object)->TryGetField(TEXT("session_type"));
 	ParseSuccess &= JsonSessionTypeField.IsValid() && (!JsonSessionTypeField->IsNull() &&  TryGetJsonValue(JsonSessionTypeField, SessionType));
+	const TSharedPtr<FJsonValue> JsonPasswordField = (*Object)->TryGetField(TEXT("password"));
+	if (JsonPasswordField.IsValid())
+	{
+		Password_IsSet = TryGetJsonValue(JsonPasswordField, Password_Optional);
+		ParseSuccess &= Password_IsSet;
+	}
 	const TSharedPtr<FJsonValue> JsonRegionIdField = (*Object)->TryGetField(TEXT("region_id"));
 	if (JsonRegionIdField.IsValid())
 	{

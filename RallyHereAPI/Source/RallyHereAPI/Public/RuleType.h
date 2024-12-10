@@ -19,8 +19,8 @@ UENUM(BlueprintType)
 enum class ERHAPI_RuleType : uint8
 {
 	Inventory UMETA(ToolTip="Comparing the count of a specific item that a player owns"),
-	LinkingSize UMETA(ToolTip="Comparing the size of the linking (the number of players) in the session to be queued"),
-	JoiningSessionSize UMETA(ToolTip="Comparing the size of the linking (the number of players) in the session to be queued"),
+	JoiningSessionSize UMETA(ToolTip="Comparing the number of session members to be queued"),
+	RegionList UMETA(ToolTip="Comparing the region of the session to a list of regions"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_RuleType& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_RuleType& EnumValue);

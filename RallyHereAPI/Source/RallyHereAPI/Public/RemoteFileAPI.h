@@ -59,9 +59,9 @@ struct RALLYHEREAPI_API FRequest_CreateEntityDirectoryFile : public FRequest
 };
 
 /** The response type for FRequest_CreateEntityDirectoryFile */
-struct RALLYHEREAPI_API FResponse_CreateEntityDirectoryFile : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_CreateEntityDirectoryFile : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_CreateEntityDirectoryFile(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_CreateEntityDirectoryFile() = default;
@@ -255,9 +255,9 @@ struct RALLYHEREAPI_API FRequest_DeleteEntityDirectoryFile : public FRequest
 };
 
 /** The response type for FRequest_DeleteEntityDirectoryFile */
-struct RALLYHEREAPI_API FResponse_DeleteEntityDirectoryFile : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_DeleteEntityDirectoryFile : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_DeleteEntityDirectoryFile(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_DeleteEntityDirectoryFile() = default;
