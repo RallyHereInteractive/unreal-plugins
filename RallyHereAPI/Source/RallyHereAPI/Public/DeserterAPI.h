@@ -52,9 +52,9 @@ struct RALLYHEREAPI_API FRequest_ClearAllDeserter : public FRequest
 };
 
 /** The response type for FRequest_ClearAllDeserter */
-struct RALLYHEREAPI_API FResponse_ClearAllDeserter : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel>
+struct RALLYHEREAPI_API FResponse_ClearAllDeserter : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel> Super;
 
 	FResponse_ClearAllDeserter(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_ClearAllDeserter() = default;
@@ -137,9 +137,9 @@ struct RALLYHEREAPI_API FRequest_ClearSpecificDeserter : public FRequest
 };
 
 /** The response type for FRequest_ClearSpecificDeserter */
-struct RALLYHEREAPI_API FResponse_ClearSpecificDeserter : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_ClearSpecificDeserter : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_ClearSpecificDeserter(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_ClearSpecificDeserter() = default;
@@ -227,9 +227,9 @@ struct RALLYHEREAPI_API FRequest_DeleteAllPlayerDeserter : public FRequest
 };
 
 /** The response type for FRequest_DeleteAllPlayerDeserter */
-struct RALLYHEREAPI_API FResponse_DeleteAllPlayerDeserter : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_DeleteAllPlayerDeserter : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_DeleteAllPlayerDeserter(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_DeleteAllPlayerDeserter() = default;
@@ -318,9 +318,9 @@ struct RALLYHEREAPI_API FRequest_DeletePlayerDeserter : public FRequest
 };
 
 /** The response type for FRequest_DeletePlayerDeserter */
-struct RALLYHEREAPI_API FResponse_DeletePlayerDeserter : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_DeletePlayerDeserter : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_DeletePlayerDeserter(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_DeletePlayerDeserter() = default;

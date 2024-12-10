@@ -27,6 +27,8 @@ A collection of MatchMakingTemplates that may be used when a session enters a qu
 `public bool `[`RequiredItemIds_IsSet`](#structFRHAPI__MatchMakingTemplateGroupV2_1acf8e308da6fcec42032dd998a15284c3) | true if RequiredItemIds_Optional has been set to a value
 `public bool `[`RequiresAllPlayersItems_Optional`](#structFRHAPI__MatchMakingTemplateGroupV2_1a8488674c91fc3cf5cfe7be4c51b89abb) | Whether or not the rulesets under this group will require us to query all players inventory, or just the leader's.
 `public bool `[`RequiresAllPlayersItems_IsSet`](#structFRHAPI__MatchMakingTemplateGroupV2_1aa1ce654df8e332c2883087f691bd7503) | true if RequiresAllPlayersItems_Optional has been set to a value
+`public bool `[`IncludesSessionRule_Optional`](#structFRHAPI__MatchMakingTemplateGroupV2_1a78e546039e5a79103050ebbeabbc8fe2) | Whether or not the rulesets under this group will require us to validate session data.
+`public bool `[`IncludesSessionRule_IsSet`](#structFRHAPI__MatchMakingTemplateGroupV2_1ad85d849ab5f1dd72347a07ce5a706cbe) | true if IncludesSessionRule_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__MatchMakingTemplateGroupV2_1ab2bd4c99d48b826ea841c97880c250a2)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__MatchMakingTemplateGroupV2_1a9909abfe12210b32cd90427daa2bd70a)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FGuid & `[`GetMatchMakingTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1a01e8f3d3b4d2a717e193aed171c0d40c)`()` | Gets the value of MatchMakingTemplateGroupId.
@@ -59,6 +61,18 @@ A collection of MatchMakingTemplates that may be used when a session enters a qu
 `public inline bool `[`IsRequiresAllPlayersItemsSet`](#structFRHAPI__MatchMakingTemplateGroupV2_1a442668f810897c3c52da93a512bb3335)`() const` | Checks whether RequiresAllPlayersItems_Optional has been set.
 `public inline bool `[`IsRequiresAllPlayersItemsDefaultValue`](#structFRHAPI__MatchMakingTemplateGroupV2_1a630b53fea6154b63951c162e05197d59)`() const` | Returns true if RequiresAllPlayersItems_Optional is set and matches the default value.
 `public inline void `[`SetRequiresAllPlayersItemsToDefault`](#structFRHAPI__MatchMakingTemplateGroupV2_1a7a3a20244efffa3ce670adcbd1cce5a7)`()` | Sets the value of RequiresAllPlayersItems_Optional to its default and also sets RequiresAllPlayersItems_IsSet to true.
+`public inline bool & `[`GetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1aa8f2be9bb791212939e6ee55d605de1e)`()` | Gets the value of IncludesSessionRule_Optional, regardless of it having been set.
+`public inline const bool & `[`GetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1afd83191f8b9380059bf885dd22fdc951)`() const` | Gets the value of IncludesSessionRule_Optional, regardless of it having been set.
+`public inline const bool & `[`GetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1a24b836cd2ac2fb2e0dedc3102f0e6687)`(const bool & DefaultValue) const` | Gets the value of IncludesSessionRule_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1af22836aa626672d2efa665c100ec462c)`(bool & OutValue) const` | Fills OutValue with the value of IncludesSessionRule_Optional and returns true if it has been set, otherwise returns false.
+`public inline bool * `[`GetIncludesSessionRuleOrNull`](#structFRHAPI__MatchMakingTemplateGroupV2_1abe258e3215f3e7f233a0b1610dd999c4)`()` | Returns a pointer to IncludesSessionRule_Optional, if it has been set, otherwise returns nullptr.
+`public inline const bool * `[`GetIncludesSessionRuleOrNull`](#structFRHAPI__MatchMakingTemplateGroupV2_1a0dcfe263d9edd74851b89201b0ea507d)`() const` | Returns a pointer to IncludesSessionRule_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1a4e56a48fcd09ae47beb71927aa5d1215)`(const bool & NewValue)` | Sets the value of IncludesSessionRule_Optional and also sets IncludesSessionRule_IsSet to true.
+`public inline void `[`SetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1a864b5238fc4f6b3066caf8aab1ebed96)`(bool && NewValue)` | Sets the value of IncludesSessionRule_Optional and also sets IncludesSessionRule_IsSet to true using move semantics.
+`public inline void `[`ClearIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1afc0e2ee48c73d470d0715723b42efd0b)`()` | Clears the value of IncludesSessionRule_Optional and sets IncludesSessionRule_IsSet to false.
+`public inline bool `[`IsIncludesSessionRuleSet`](#structFRHAPI__MatchMakingTemplateGroupV2_1af0b67de34212a2fceed2d4cde8b6b268)`() const` | Checks whether IncludesSessionRule_Optional has been set.
+`public inline bool `[`IsIncludesSessionRuleDefaultValue`](#structFRHAPI__MatchMakingTemplateGroupV2_1a4b7e04b99038b1c7fae4171cceacc1e0)`() const` | Returns true if IncludesSessionRule_Optional is set and matches the default value.
+`public inline void `[`SetIncludesSessionRuleToDefault`](#structFRHAPI__MatchMakingTemplateGroupV2_1a1195134b0e1935ca8ff997dd9bc5a3f9)`()` | Sets the value of IncludesSessionRule_Optional to its default and also sets IncludesSessionRule_IsSet to true.
 
 ### Members
 
@@ -85,6 +99,14 @@ Whether or not the rulesets under this group will require us to query all player
 #### `public bool `[`RequiresAllPlayersItems_IsSet`](#structFRHAPI__MatchMakingTemplateGroupV2_1aa1ce654df8e332c2883087f691bd7503) <a id="structFRHAPI__MatchMakingTemplateGroupV2_1aa1ce654df8e332c2883087f691bd7503"></a>
 
 true if RequiresAllPlayersItems_Optional has been set to a value
+
+#### `public bool `[`IncludesSessionRule_Optional`](#structFRHAPI__MatchMakingTemplateGroupV2_1a78e546039e5a79103050ebbeabbc8fe2) <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a78e546039e5a79103050ebbeabbc8fe2"></a>
+
+Whether or not the rulesets under this group will require us to validate session data.
+
+#### `public bool `[`IncludesSessionRule_IsSet`](#structFRHAPI__MatchMakingTemplateGroupV2_1ad85d849ab5f1dd72347a07ce5a706cbe) <a id="structFRHAPI__MatchMakingTemplateGroupV2_1ad85d849ab5f1dd72347a07ce5a706cbe"></a>
+
+true if IncludesSessionRule_Optional has been set to a value
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__MatchMakingTemplateGroupV2_1ab2bd4c99d48b826ea841c97880c250a2)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1ab2bd4c99d48b826ea841c97880c250a2"></a>
 
@@ -222,4 +244,52 @@ Returns true if RequiresAllPlayersItems_Optional is set and matches the default 
 #### `public inline void `[`SetRequiresAllPlayersItemsToDefault`](#structFRHAPI__MatchMakingTemplateGroupV2_1a7a3a20244efffa3ce670adcbd1cce5a7)`()` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a7a3a20244efffa3ce670adcbd1cce5a7"></a>
 
 Sets the value of RequiresAllPlayersItems_Optional to its default and also sets RequiresAllPlayersItems_IsSet to true.
+
+#### `public inline bool & `[`GetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1aa8f2be9bb791212939e6ee55d605de1e)`()` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1aa8f2be9bb791212939e6ee55d605de1e"></a>
+
+Gets the value of IncludesSessionRule_Optional, regardless of it having been set.
+
+#### `public inline const bool & `[`GetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1afd83191f8b9380059bf885dd22fdc951)`() const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1afd83191f8b9380059bf885dd22fdc951"></a>
+
+Gets the value of IncludesSessionRule_Optional, regardless of it having been set.
+
+#### `public inline const bool & `[`GetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1a24b836cd2ac2fb2e0dedc3102f0e6687)`(const bool & DefaultValue) const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a24b836cd2ac2fb2e0dedc3102f0e6687"></a>
+
+Gets the value of IncludesSessionRule_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1af22836aa626672d2efa665c100ec462c)`(bool & OutValue) const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1af22836aa626672d2efa665c100ec462c"></a>
+
+Fills OutValue with the value of IncludesSessionRule_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline bool * `[`GetIncludesSessionRuleOrNull`](#structFRHAPI__MatchMakingTemplateGroupV2_1abe258e3215f3e7f233a0b1610dd999c4)`()` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1abe258e3215f3e7f233a0b1610dd999c4"></a>
+
+Returns a pointer to IncludesSessionRule_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const bool * `[`GetIncludesSessionRuleOrNull`](#structFRHAPI__MatchMakingTemplateGroupV2_1a0dcfe263d9edd74851b89201b0ea507d)`() const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a0dcfe263d9edd74851b89201b0ea507d"></a>
+
+Returns a pointer to IncludesSessionRule_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1a4e56a48fcd09ae47beb71927aa5d1215)`(const bool & NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a4e56a48fcd09ae47beb71927aa5d1215"></a>
+
+Sets the value of IncludesSessionRule_Optional and also sets IncludesSessionRule_IsSet to true.
+
+#### `public inline void `[`SetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1a864b5238fc4f6b3066caf8aab1ebed96)`(bool && NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a864b5238fc4f6b3066caf8aab1ebed96"></a>
+
+Sets the value of IncludesSessionRule_Optional and also sets IncludesSessionRule_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1afc0e2ee48c73d470d0715723b42efd0b)`()` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1afc0e2ee48c73d470d0715723b42efd0b"></a>
+
+Clears the value of IncludesSessionRule_Optional and sets IncludesSessionRule_IsSet to false.
+
+#### `public inline bool `[`IsIncludesSessionRuleSet`](#structFRHAPI__MatchMakingTemplateGroupV2_1af0b67de34212a2fceed2d4cde8b6b268)`() const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1af0b67de34212a2fceed2d4cde8b6b268"></a>
+
+Checks whether IncludesSessionRule_Optional has been set.
+
+#### `public inline bool `[`IsIncludesSessionRuleDefaultValue`](#structFRHAPI__MatchMakingTemplateGroupV2_1a4b7e04b99038b1c7fae4171cceacc1e0)`() const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a4b7e04b99038b1c7fae4171cceacc1e0"></a>
+
+Returns true if IncludesSessionRule_Optional is set and matches the default value.
+
+#### `public inline void `[`SetIncludesSessionRuleToDefault`](#structFRHAPI__MatchMakingTemplateGroupV2_1a1195134b0e1935ca8ff997dd9bc5a3f9)`()` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a1195134b0e1935ca8ff997dd9bc5a3f9"></a>
+
+Sets the value of IncludesSessionRule_Optional to its default and also sets IncludesSessionRule_IsSet to true.
 

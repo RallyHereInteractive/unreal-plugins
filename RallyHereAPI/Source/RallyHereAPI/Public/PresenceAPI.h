@@ -519,9 +519,9 @@ struct RALLYHEREAPI_API FRequest_UpdatePlayerPresenceSelf : public FRequest
 };
 
 /** The response type for FRequest_UpdatePlayerPresenceSelf */
-struct RALLYHEREAPI_API FResponse_UpdatePlayerPresenceSelf : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_UpdatePlayerPresenceSelf : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_UpdatePlayerPresenceSelf(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_UpdatePlayerPresenceSelf() = default;

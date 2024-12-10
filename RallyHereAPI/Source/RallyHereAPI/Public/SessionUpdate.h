@@ -151,6 +151,33 @@ struct RALLYHEREAPI_API FRHAPI_SessionUpdate : public FRHAPI_Model
 	void ClearTeams() { Teams_IsSet = false;  }
 	/** @brief Checks whether Teams_Optional has been set */
 	bool IsTeamsSet() const { return Teams_IsSet; }
+
+	/** @brief A password to join this session */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Password_Optional{  };
+	/** @brief true if Password_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Password_IsSet{ false };
+	/** @brief Gets the value of Password_Optional, regardless of it having been set */
+	FString& GetPassword() { return Password_Optional; }
+	/** @brief Gets the value of Password_Optional, regardless of it having been set */
+	const FString& GetPassword() const { return Password_Optional; }
+	/** @brief Gets the value of Password_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetPassword(const FString& DefaultValue) const { if (Password_IsSet) return Password_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Password_Optional and returns true if it has been set, otherwise returns false */
+	bool GetPassword(FString& OutValue) const { if (Password_IsSet) OutValue = Password_Optional; return Password_IsSet; }
+	/** @brief Returns a pointer to Password_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetPasswordOrNull() { if (Password_IsSet) return (&Password_Optional); return nullptr; }
+	/** @brief Returns a pointer to Password_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetPasswordOrNull() const { if (Password_IsSet) return (&Password_Optional); return nullptr; }
+	/** @brief Sets the value of Password_Optional and also sets Password_IsSet to true */
+	void SetPassword(const FString& NewValue) { Password_Optional = NewValue; Password_IsSet = true;  }
+	/** @brief Sets the value of Password_Optional and also sets Password_IsSet to true using move semantics */
+	void SetPassword(FString&& NewValue) { Password_Optional = NewValue; Password_IsSet = true;  }
+	/** @brief Clears the value of Password_Optional and sets Password_IsSet to false */
+	void ClearPassword() { Password_IsSet = false;  }
+	/** @brief Checks whether Password_Optional has been set */
+	bool IsPasswordSet() const { return Password_IsSet; }
 };
 
 /** @} */

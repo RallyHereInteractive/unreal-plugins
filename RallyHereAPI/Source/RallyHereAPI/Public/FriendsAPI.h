@@ -456,9 +456,9 @@ struct RALLYHEREAPI_API FRequest_DeleteFriendV2 : public FRequest
 };
 
 /** The response type for FRequest_DeleteFriendV2 */
-struct RALLYHEREAPI_API FResponse_DeleteFriendV2 : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_DeleteFriendV2 : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_DeleteFriendV2(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_DeleteFriendV2() = default;
@@ -577,9 +577,9 @@ struct RALLYHEREAPI_API FRequest_DeleteFriendsV2 : public FRequest
 };
 
 /** The response type for FRequest_DeleteFriendsV2 */
-struct RALLYHEREAPI_API FResponse_DeleteFriendsV2 : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_DeleteFriendsV2 : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_DeleteFriendsV2(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_DeleteFriendsV2() = default;
@@ -682,9 +682,9 @@ struct RALLYHEREAPI_API FRequest_DeleteNotesV2 : public FRequest
 };
 
 /** The response type for FRequest_DeleteNotesV2 */
-struct RALLYHEREAPI_API FResponse_DeleteNotesV2 : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_DeleteNotesV2 : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_DeleteNotesV2(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_DeleteNotesV2() = default;
@@ -1323,9 +1323,9 @@ struct RALLYHEREAPI_API FRequest_UnblockV2 : public FRequest
 };
 
 /** The response type for FRequest_UnblockV2 */
-struct RALLYHEREAPI_API FResponse_UnblockV2 : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_UnblockV2 : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_UnblockV2(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_UnblockV2() = default;

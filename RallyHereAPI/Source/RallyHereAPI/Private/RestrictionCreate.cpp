@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 
-#include "Restriction.h"
+#include "RestrictionCreate.h"
 #include "RallyHereAPIModule.h"
 #include "RallyHereAPIHelpers.h"
 #include "Templates/SharedPointer.h"
@@ -17,9 +17,9 @@ using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
 ////////////////////////////////////////////////////
-// Implementation for FRHAPI_Restriction
+// Implementation for FRHAPI_RestrictionCreate
 
-void FRHAPI_Restriction::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
+void FRHAPI_RestrictionCreate::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
 	Writer->WriteObjectStart();
 	Writer->WriteIdentifierPrefix(TEXT("type"));
@@ -34,10 +34,14 @@ void FRHAPI_Restriction::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		Writer->WriteIdentifierPrefix(TEXT("expiration"));
 		RallyHereAPI::WriteJsonValue(Writer, Expiration_Optional);
 	}
+	Writer->WriteIdentifierPrefix(TEXT("issuer_type"));
+	RallyHereAPI::WriteJsonValue(Writer, EnumToString(IssuerType));
+	Writer->WriteIdentifierPrefix(TEXT("issuer"));
+	RallyHereAPI::WriteJsonValue(Writer, Issuer);
 	Writer->WriteObjectEnd();
 }
 
-bool FRHAPI_Restriction::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FRHAPI_RestrictionCreate::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	const TSharedPtr<FJsonObject>* Object;
 	if (!JsonValue->TryGetObject(Object))
@@ -59,6 +63,10 @@ bool FRHAPI_Restriction::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		Expiration_IsSet = TryGetJsonValue(JsonExpirationField, Expiration_Optional);
 		ParseSuccess &= Expiration_IsSet;
 	}
+	const TSharedPtr<FJsonValue> JsonIssuerTypeField = (*Object)->TryGetField(TEXT("issuer_type"));
+	ParseSuccess &= JsonIssuerTypeField.IsValid() && (!JsonIssuerTypeField->IsNull() &&  TryGetJsonValue(JsonIssuerTypeField, IssuerType));
+	const TSharedPtr<FJsonValue> JsonIssuerField = (*Object)->TryGetField(TEXT("issuer"));
+	ParseSuccess &= JsonIssuerField.IsValid() && (!JsonIssuerField->IsNull() &&  TryGetJsonValue(JsonIssuerField, Issuer));
 
 	return ParseSuccess;
 }

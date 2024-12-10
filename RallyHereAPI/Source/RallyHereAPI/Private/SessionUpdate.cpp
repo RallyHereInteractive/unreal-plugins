@@ -42,6 +42,11 @@ void FRHAPI_SessionUpdate::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		Writer->WriteIdentifierPrefix(TEXT("teams"));
 		RallyHereAPI::WriteJsonValue(Writer, Teams_Optional);
 	}
+	if (Password_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("password"));
+		RallyHereAPI::WriteJsonValue(Writer, Password_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -76,6 +81,12 @@ bool FRHAPI_SessionUpdate::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	{
 		Teams_IsSet = TryGetJsonValue(JsonTeamsField, Teams_Optional);
 		ParseSuccess &= Teams_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonPasswordField = (*Object)->TryGetField(TEXT("password"));
+	if (JsonPasswordField.IsValid())
+	{
+		Password_IsSet = TryGetJsonValue(JsonPasswordField, Password_Optional);
+		ParseSuccess &= Password_IsSet;
 	}
 
 	return ParseSuccess;

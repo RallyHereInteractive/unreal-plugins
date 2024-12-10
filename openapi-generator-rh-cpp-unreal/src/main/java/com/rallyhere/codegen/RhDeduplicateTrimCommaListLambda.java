@@ -61,6 +61,11 @@ public class RhDeduplicateTrimCommaListLambda implements Mustache.Lambda {
             {
                 parts.remove(y);
             }
+            else
+            {
+                // make sure there is no whitespace present
+                parts.set(y, parts.get(y).trim());
+            }
         }
 
         // search for any duplicates entries and remove them
@@ -80,7 +85,7 @@ public class RhDeduplicateTrimCommaListLambda implements Mustache.Lambda {
         {
             sb.append(parts.get(x));
             if (x < (parts.size() - 1))
-                sb.append(",");
+                sb.append(", ");
         }
         writer.write(sb.toString());
     }

@@ -57,9 +57,9 @@ struct RALLYHEREAPI_API FRequest_CreatePexHost : public FRequest
 };
 
 /** The response type for FRequest_CreatePexHost */
-struct RALLYHEREAPI_API FResponse_CreatePexHost : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_CreatePexHost : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_CreatePexHost(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_CreatePexHost() = default;
@@ -151,9 +151,9 @@ struct RALLYHEREAPI_API FRequest_CreatePexPlayer : public FRequest
 };
 
 /** The response type for FRequest_CreatePexPlayer */
-struct RALLYHEREAPI_API FResponse_CreatePexPlayer : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_CreatePexPlayer : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_CreatePexPlayer(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_CreatePexPlayer() = default;

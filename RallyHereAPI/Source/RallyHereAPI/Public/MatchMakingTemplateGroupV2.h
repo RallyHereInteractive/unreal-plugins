@@ -122,6 +122,37 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplateGroupV2 : public FRHAPI_Model
 	bool IsRequiresAllPlayersItemsDefaultValue() const { return RequiresAllPlayersItems_IsSet && RequiresAllPlayersItems_Optional == false; }
 	/** @brief Sets the value of RequiresAllPlayersItems_Optional to its default and also sets RequiresAllPlayersItems_IsSet to true */
 	void SetRequiresAllPlayersItemsToDefault() { SetRequiresAllPlayersItems(false); }
+
+	/** @brief Whether or not the rulesets under this group will require us to validate session data */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool IncludesSessionRule_Optional{ false };
+	/** @brief true if IncludesSessionRule_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool IncludesSessionRule_IsSet{ false };
+	/** @brief Gets the value of IncludesSessionRule_Optional, regardless of it having been set */
+	bool& GetIncludesSessionRule() { return IncludesSessionRule_Optional; }
+	/** @brief Gets the value of IncludesSessionRule_Optional, regardless of it having been set */
+	const bool& GetIncludesSessionRule() const { return IncludesSessionRule_Optional; }
+	/** @brief Gets the value of IncludesSessionRule_Optional, if it has been set, otherwise it returns DefaultValue */
+	const bool& GetIncludesSessionRule(const bool& DefaultValue) const { if (IncludesSessionRule_IsSet) return IncludesSessionRule_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of IncludesSessionRule_Optional and returns true if it has been set, otherwise returns false */
+	bool GetIncludesSessionRule(bool& OutValue) const { if (IncludesSessionRule_IsSet) OutValue = IncludesSessionRule_Optional; return IncludesSessionRule_IsSet; }
+	/** @brief Returns a pointer to IncludesSessionRule_Optional, if it has been set, otherwise returns nullptr */
+	bool* GetIncludesSessionRuleOrNull() { if (IncludesSessionRule_IsSet) return (&IncludesSessionRule_Optional); return nullptr; }
+	/** @brief Returns a pointer to IncludesSessionRule_Optional, if it has been set, otherwise returns nullptr */
+	const bool* GetIncludesSessionRuleOrNull() const { if (IncludesSessionRule_IsSet) return (&IncludesSessionRule_Optional); return nullptr; }
+	/** @brief Sets the value of IncludesSessionRule_Optional and also sets IncludesSessionRule_IsSet to true */
+	void SetIncludesSessionRule(const bool& NewValue) { IncludesSessionRule_Optional = NewValue; IncludesSessionRule_IsSet = true;  }
+	/** @brief Sets the value of IncludesSessionRule_Optional and also sets IncludesSessionRule_IsSet to true using move semantics */
+	void SetIncludesSessionRule(bool&& NewValue) { IncludesSessionRule_Optional = NewValue; IncludesSessionRule_IsSet = true;  }
+	/** @brief Clears the value of IncludesSessionRule_Optional and sets IncludesSessionRule_IsSet to false */
+	void ClearIncludesSessionRule() { IncludesSessionRule_Optional = false; IncludesSessionRule_IsSet = false;  }
+	/** @brief Checks whether IncludesSessionRule_Optional has been set */
+	bool IsIncludesSessionRuleSet() const { return IncludesSessionRule_IsSet; }
+	/** @brief Returns true if IncludesSessionRule_Optional is set and matches the default value */
+	bool IsIncludesSessionRuleDefaultValue() const { return IncludesSessionRule_IsSet && IncludesSessionRule_Optional == false; }
+	/** @brief Sets the value of IncludesSessionRule_Optional to its default and also sets IncludesSessionRule_IsSet to true */
+	void SetIncludesSessionRuleToDefault() { SetIncludesSessionRule(false); }
 };
 
 /** @} */

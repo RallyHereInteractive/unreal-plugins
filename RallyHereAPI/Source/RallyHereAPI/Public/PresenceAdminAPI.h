@@ -2277,9 +2277,9 @@ struct RALLYHEREAPI_API FRequest_AdminUpdatePlayerLastSeen : public FRequest
 };
 
 /** The response type for FRequest_AdminUpdatePlayerLastSeen */
-struct RALLYHEREAPI_API FResponse_AdminUpdatePlayerLastSeen : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_AdminUpdatePlayerLastSeen : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_AdminUpdatePlayerLastSeen(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_AdminUpdatePlayerLastSeen() = default;
@@ -2392,9 +2392,9 @@ struct RALLYHEREAPI_API FRequest_AdminUpdatePlayerLastSeenId : public FRequest
 };
 
 /** The response type for FRequest_AdminUpdatePlayerLastSeenId */
-struct RALLYHEREAPI_API FResponse_AdminUpdatePlayerLastSeenId : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_AdminUpdatePlayerLastSeenId : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_AdminUpdatePlayerLastSeenId(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_AdminUpdatePlayerLastSeenId() = default;

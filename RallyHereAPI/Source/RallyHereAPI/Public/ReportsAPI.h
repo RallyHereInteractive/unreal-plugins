@@ -29,7 +29,7 @@ class FReportsAPI;
  * @brief Create Report For Target Player Uuid
  * Create a new report for a target player
  * Required Permissions:
- * If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:any`, `sanction:*`, `sanction:report:create:self`
+ * If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:self`, `sanction:report:create:any`, `sanction:*`
  * Otherwise: any of: `sanction:report:create:any`, `sanction:*`
 */
 struct RALLYHEREAPI_API FRequest_CreateReportForTargetPlayerUuid : public FRequest

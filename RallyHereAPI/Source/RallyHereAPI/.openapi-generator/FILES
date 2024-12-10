@@ -264,6 +264,7 @@ Private/PlayerSession.cpp
 Private/PlayerSessionInvite.cpp
 Private/PlayerSessions.cpp
 Private/PlayerStatsResponse.cpp
+Private/PlayerSwapRequest.cpp
 Private/PlayerUuidFromId.cpp
 Private/PlayerVisibility.cpp
 Private/PlayersToValidate.cpp
@@ -317,7 +318,11 @@ Private/RemoteFileAPI.cpp
 Private/ReportReason.cpp
 Private/ReportsAPI.cpp
 Private/Restriction.cpp
+Private/RestrictionCreate.cpp
+Private/RestrictionIssuerType.cpp
+Private/RestrictionReasonCode.cpp
 Private/RestrictionType.cpp
+Private/Restrictions.cpp
 Private/Role.cpp
 Private/RoleAuthBypass.cpp
 Private/Rule.cpp
@@ -331,6 +336,7 @@ Private/SessionPlayer.cpp
 Private/SessionPlayerStatus.cpp
 Private/SessionPlayerUpdateRequest.cpp
 Private/SessionPlayerUpdateResponse.cpp
+Private/SessionPlayersUpdateResponse.cpp
 Private/SessionTeam.cpp
 Private/SessionTemplate.cpp
 Private/SessionTemplates.cpp
@@ -636,6 +642,7 @@ Public/PlayerSession.h
 Public/PlayerSessionInvite.h
 Public/PlayerSessions.h
 Public/PlayerStatsResponse.h
+Public/PlayerSwapRequest.h
 Public/PlayerUuidFromId.h
 Public/PlayerVisibility.h
 Public/PlayersToValidate.h
@@ -689,7 +696,11 @@ Public/RemoteFileAPI.h
 Public/ReportReason.h
 Public/ReportsAPI.h
 Public/Restriction.h
+Public/RestrictionCreate.h
+Public/RestrictionIssuerType.h
+Public/RestrictionReasonCode.h
 Public/RestrictionType.h
+Public/Restrictions.h
 Public/Role.h
 Public/RoleAuthBypass.h
 Public/Rule.h
@@ -703,6 +714,7 @@ Public/SessionPlayer.h
 Public/SessionPlayerStatus.h
 Public/SessionPlayerUpdateRequest.h
 Public/SessionPlayerUpdateResponse.h
+Public/SessionPlayersUpdateResponse.h
 Public/SessionTeam.h
 Public/SessionTemplate.h
 Public/SessionTemplates.h

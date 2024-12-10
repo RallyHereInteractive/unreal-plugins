@@ -23,6 +23,460 @@ FUsersAPI::FUsersAPI() : FAPI()
 
 FUsersAPI::~FUsersAPI() {}
 
+FHttpRequestPtr FUsersAPI::AddPersonRestrictions(const FRequest_AddPersonRestrictions& Request, const FDelegate_AddPersonRestrictions& Delegate /*= FDelegate_AddPersonRestrictions()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+{
+	if (!IsValid())
+		return nullptr;
+
+	// create the http request and tracking structure
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+	// add headers to tracker
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
+
+	// setup http request from custom request object
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
+
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
+
+	// bind response handler
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindSP(this, &FUsersAPI::OnAddPersonRestrictionsResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
+
+	// submit request to http system
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
+}
+
+void FUsersAPI::OnAddPersonRestrictionsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AddPersonRestrictions Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+	FHttpRequestCompleteDelegate ResponseDelegate;
+
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindSP(this, &FUsersAPI::OnAddPersonRestrictionsResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
+
+	TSharedRef<FResponse_AddPersonRestrictions> Response = MakeShared<FResponse_AddPersonRestrictions>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
+}
+
+FRequest_AddPersonRestrictions::FRequest_AddPersonRestrictions()
+	: FRequest()
+{
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
+}
+
+FName FRequest_AddPersonRestrictions::GetSimplifiedPath() const
+{
+	static FName Path = FName(TEXT("/users/v1/person/{person_id}/restrictions"));
+	return Path;
+}
+
+FName FRequest_AddPersonRestrictions::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
+}
+
+FString FRequest_AddPersonRestrictions::ComputePath() const
+{
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("person_id"), ToStringFormatArg(PersonId) }
+	};
+
+	FString Path = FString::Format(TEXT("/users/v1/person/{person_id}/restrictions"), PathParams);
+
+	return Path;
+}
+
+bool FRequest_AddPersonRestrictions::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+	static const TArray<FString> Consumes = { TEXT("application/json") };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
+
+	HttpRequest->SetVerb(TEXT("POST"));
+
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_AddPersonRestrictions - missing auth context"));
+		return false;
+	}
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_AddPersonRestrictions - failed to add bearer token"));
+		return false;
+	}
+
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+		// Body parameters
+		FString JsonBody;
+		TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
+
+		WriteJsonValue(Writer, RestrictionCreate);
+		Writer->Close();
+
+		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
+		HttpRequest->SetContentAsString(JsonBody);
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_AddPersonRestrictions - Body parameter (FRHAPI_RestrictionCreate) was ignored, not supported in multipart form"));
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_AddPersonRestrictions - Body parameter (FRHAPI_RestrictionCreate) was ignored, not supported in urlencoded requests"));
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_AddPersonRestrictions - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
+
+	return true;
+}
+
+FString FResponse_AddPersonRestrictions::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+{
+	switch ((int)InHttpResponseCode)
+	{
+	case 201:
+		return TEXT("Successful Response");
+	case 403:
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 422:
+		return TEXT("Validation Error");
+	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
+}
+
+bool FResponse_AddPersonRestrictions::ParseHeaders()
+{
+	if (!Super::ParseHeaders())
+	{
+		return false;
+	}
+
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 201:
+		break;
+	case 403:
+		break;
+	case 422:
+		break;
+	default:
+		break;
+	}
+	
+	return bParsedAllRequiredHeaders;
+}
+
+bool FResponse_AddPersonRestrictions::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 403)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_AddPersonRestrictions::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 422)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_AddPersonRestrictions::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+	bool bParsed = false;
+	return true;
+}
+
+FResponse_AddPersonRestrictions::FResponse_AddPersonRestrictions(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_AddPersonRestrictions::Name = TEXT("AddPersonRestrictions");
+
+FHttpRequestPtr Traits_AddPersonRestrictions::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->AddPersonRestrictions(InRequest, InDelegate, InPriority);
+}
+
+FHttpRequestPtr FUsersAPI::AddPlayerRestrictions(const FRequest_AddPlayerRestrictions& Request, const FDelegate_AddPlayerRestrictions& Delegate /*= FDelegate_AddPlayerRestrictions()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+{
+	if (!IsValid())
+		return nullptr;
+
+	// create the http request and tracking structure
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+	// add headers to tracker
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
+
+	// setup http request from custom request object
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
+
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
+
+	// bind response handler
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindSP(this, &FUsersAPI::OnAddPlayerRestrictionsResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
+
+	// submit request to http system
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
+}
+
+void FUsersAPI::OnAddPlayerRestrictionsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AddPlayerRestrictions Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+	FHttpRequestCompleteDelegate ResponseDelegate;
+
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindSP(this, &FUsersAPI::OnAddPlayerRestrictionsResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
+
+	TSharedRef<FResponse_AddPlayerRestrictions> Response = MakeShared<FResponse_AddPlayerRestrictions>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
+}
+
+FRequest_AddPlayerRestrictions::FRequest_AddPlayerRestrictions()
+	: FRequest()
+{
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
+}
+
+FName FRequest_AddPlayerRestrictions::GetSimplifiedPath() const
+{
+	static FName Path = FName(TEXT("/users/v2/player/{player_uuid}/restrictions"));
+	return Path;
+}
+
+FName FRequest_AddPlayerRestrictions::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
+}
+
+FString FRequest_AddPlayerRestrictions::ComputePath() const
+{
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
+	};
+
+	FString Path = FString::Format(TEXT("/users/v2/player/{player_uuid}/restrictions"), PathParams);
+
+	return Path;
+}
+
+bool FRequest_AddPlayerRestrictions::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+	static const TArray<FString> Consumes = { TEXT("application/json") };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
+
+	HttpRequest->SetVerb(TEXT("POST"));
+
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_AddPlayerRestrictions - missing auth context"));
+		return false;
+	}
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_AddPlayerRestrictions - failed to add bearer token"));
+		return false;
+	}
+
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+		// Body parameters
+		FString JsonBody;
+		TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
+
+		WriteJsonValue(Writer, RestrictionCreate);
+		Writer->Close();
+
+		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
+		HttpRequest->SetContentAsString(JsonBody);
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_AddPlayerRestrictions - Body parameter (FRHAPI_RestrictionCreate) was ignored, not supported in multipart form"));
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_AddPlayerRestrictions - Body parameter (FRHAPI_RestrictionCreate) was ignored, not supported in urlencoded requests"));
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_AddPlayerRestrictions - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
+
+	return true;
+}
+
+FString FResponse_AddPlayerRestrictions::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+{
+	switch ((int)InHttpResponseCode)
+	{
+	case 201:
+		return TEXT("Successful Response");
+	case 403:
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 422:
+		return TEXT("Validation Error");
+	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
+}
+
+bool FResponse_AddPlayerRestrictions::ParseHeaders()
+{
+	if (!Super::ParseHeaders())
+	{
+		return false;
+	}
+
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 201:
+		break;
+	case 403:
+		break;
+	case 422:
+		break;
+	default:
+		break;
+	}
+	
+	return bParsedAllRequiredHeaders;
+}
+
+bool FResponse_AddPlayerRestrictions::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 403)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_AddPlayerRestrictions::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 422)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_AddPlayerRestrictions::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+	bool bParsed = false;
+	return true;
+}
+
+FResponse_AddPlayerRestrictions::FResponse_AddPlayerRestrictions(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_AddPlayerRestrictions::Name = TEXT("AddPlayerRestrictions");
+
+FHttpRequestPtr Traits_AddPlayerRestrictions::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->AddPlayerRestrictions(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FUsersAPI::CreatePlatformUserById(const FRequest_CreatePlatformUserById& Request, const FDelegate_CreatePlatformUserById& Delegate /*= FDelegate_CreatePlatformUserById()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -3446,6 +3900,545 @@ FHttpRequestPtr Traits_GetPersonForSelf::DoCall(TSharedRef<API> InAPI, const Req
 	return InAPI->GetPersonForSelf(InRequest, InDelegate, InPriority);
 }
 
+FHttpRequestPtr FUsersAPI::GetPersonRestrictions(const FRequest_GetPersonRestrictions& Request, const FDelegate_GetPersonRestrictions& Delegate /*= FDelegate_GetPersonRestrictions()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+{
+	if (!IsValid())
+		return nullptr;
+
+	// create the http request and tracking structure
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+	// add headers to tracker
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
+
+	// setup http request from custom request object
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
+
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
+
+	// bind response handler
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindSP(this, &FUsersAPI::OnGetPersonRestrictionsResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
+
+	// submit request to http system
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
+}
+
+void FUsersAPI::OnGetPersonRestrictionsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPersonRestrictions Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+	FHttpRequestCompleteDelegate ResponseDelegate;
+
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindSP(this, &FUsersAPI::OnGetPersonRestrictionsResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
+
+	TSharedRef<FResponse_GetPersonRestrictions> Response = MakeShared<FResponse_GetPersonRestrictions>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
+}
+
+FRequest_GetPersonRestrictions::FRequest_GetPersonRestrictions()
+	: FRequest()
+{
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
+}
+
+FName FRequest_GetPersonRestrictions::GetSimplifiedPath() const
+{
+	static FName Path = FName(TEXT("/users/v1/person/{person_id}/restrictions"));
+	return Path;
+}
+
+FName FRequest_GetPersonRestrictions::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
+}
+
+FString FRequest_GetPersonRestrictions::ComputePath() const
+{
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("person_id"), ToStringFormatArg(PersonId) }
+	};
+
+	FString Path = FString::Format(TEXT("/users/v1/person/{person_id}/restrictions"), PathParams);
+
+	return Path;
+}
+
+bool FRequest_GetPersonRestrictions::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
+
+	HttpRequest->SetVerb(TEXT("GET"));
+
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPersonRestrictions - missing auth context"));
+		return false;
+	}
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPersonRestrictions - failed to add bearer token"));
+		return false;
+	}
+
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPersonRestrictions - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
+
+	return true;
+}
+
+FString FResponse_GetPersonRestrictions::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+{
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		return TEXT("Successful Response");
+	case 403:
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 422:
+		return TEXT("Validation Error");
+	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
+}
+
+bool FResponse_GetPersonRestrictions::ParseHeaders()
+{
+	if (!Super::ParseHeaders())
+	{
+		return false;
+	}
+
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 403:
+		break;
+	case 422:
+		break;
+	default:
+		break;
+	}
+	
+	return bParsedAllRequiredHeaders;
+}
+
+bool FResponse_GetPersonRestrictions::TryGetContentFor200(FRHAPI_Restrictions& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 200)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_GetPersonRestrictions::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 403)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_GetPersonRestrictions::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 422)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_GetPersonRestrictions::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+	bool bParsed = false;
+	// for non default responses, parse into a temporary object to validate the response can be parsed properly
+	switch ((int)GetHttpResponseCode())
+	{  
+		case 200:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_Restrictions Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_Restrictions>(Object);
+				break;
+			} 
+		case 403:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_HzApiErrorModel Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+				break;
+			} 
+		case 422:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_HTTPValidationError Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+				break;
+			}
+		default:
+			break;
+	}
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// if using legacy content object, attempt to parse any response into the main content object.  For some legacy reasons around multiple success variants, this needs to ignore the intended type and always parse into the default type
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS;
+	TryGetJsonValue(JsonValue, Content);
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS;
+#endif
+
+	return bParsed;
+}
+
+FResponse_GetPersonRestrictions::FResponse_GetPersonRestrictions(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_GetPersonRestrictions::Name = TEXT("GetPersonRestrictions");
+
+FHttpRequestPtr Traits_GetPersonRestrictions::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPersonRestrictions(InRequest, InDelegate, InPriority);
+}
+
+FHttpRequestPtr FUsersAPI::GetPersonRestrictionsForSelf(const FRequest_GetPersonRestrictionsForSelf& Request, const FDelegate_GetPersonRestrictionsForSelf& Delegate /*= FDelegate_GetPersonRestrictionsForSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+{
+	if (!IsValid())
+		return nullptr;
+
+	// create the http request and tracking structure
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+	// add headers to tracker
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
+
+	// setup http request from custom request object
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
+
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
+
+	// bind response handler
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindSP(this, &FUsersAPI::OnGetPersonRestrictionsForSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
+
+	// submit request to http system
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
+}
+
+void FUsersAPI::OnGetPersonRestrictionsForSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPersonRestrictionsForSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+	FHttpRequestCompleteDelegate ResponseDelegate;
+
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindSP(this, &FUsersAPI::OnGetPersonRestrictionsForSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
+
+	TSharedRef<FResponse_GetPersonRestrictionsForSelf> Response = MakeShared<FResponse_GetPersonRestrictionsForSelf>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
+}
+
+FRequest_GetPersonRestrictionsForSelf::FRequest_GetPersonRestrictionsForSelf()
+	: FRequest()
+{
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
+}
+
+FName FRequest_GetPersonRestrictionsForSelf::GetSimplifiedPath() const
+{
+	static FName Path = FName(TEXT("/users/v1/person/me/restrictions"));
+	return Path;
+}
+
+FName FRequest_GetPersonRestrictionsForSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
+}
+
+FString FRequest_GetPersonRestrictionsForSelf::ComputePath() const
+{
+	FString Path = GetSimplifiedPath().ToString();
+	return Path;
+}
+
+bool FRequest_GetPersonRestrictionsForSelf::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
+
+	HttpRequest->SetVerb(TEXT("GET"));
+
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPersonRestrictionsForSelf - missing auth context"));
+		return false;
+	}
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPersonRestrictionsForSelf - failed to add bearer token"));
+		return false;
+	}
+
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPersonRestrictionsForSelf - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
+
+	return true;
+}
+
+FString FResponse_GetPersonRestrictionsForSelf::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+{
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		return TEXT("Successful Response");
+	case 403:
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 404:
+		return TEXT(" Error Codes: - &#x60;user_not_found&#x60; - User not found ");
+	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
+}
+
+bool FResponse_GetPersonRestrictionsForSelf::ParseHeaders()
+{
+	if (!Super::ParseHeaders())
+	{
+		return false;
+	}
+
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 403:
+		break;
+	case 404:
+		break;
+	default:
+		break;
+	}
+	
+	return bParsedAllRequiredHeaders;
+}
+
+bool FResponse_GetPersonRestrictionsForSelf::TryGetContentFor200(FRHAPI_Restrictions& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 200)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_GetPersonRestrictionsForSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 403)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_GetPersonRestrictionsForSelf::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 404)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_GetPersonRestrictionsForSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+	bool bParsed = false;
+	// for non default responses, parse into a temporary object to validate the response can be parsed properly
+	switch ((int)GetHttpResponseCode())
+	{  
+		case 200:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_Restrictions Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_Restrictions>(Object);
+				break;
+			} 
+		case 403:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_HzApiErrorModel Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+				break;
+			} 
+		case 404:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_HzApiErrorModel Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+				break;
+			}
+		default:
+			break;
+	}
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// if using legacy content object, attempt to parse any response into the main content object.  For some legacy reasons around multiple success variants, this needs to ignore the intended type and always parse into the default type
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS;
+	TryGetJsonValue(JsonValue, Content);
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS;
+#endif
+
+	return bParsed;
+}
+
+FResponse_GetPersonRestrictionsForSelf::FResponse_GetPersonRestrictionsForSelf(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_GetPersonRestrictionsForSelf::Name = TEXT("GetPersonRestrictionsForSelf");
+
+FHttpRequestPtr Traits_GetPersonRestrictionsForSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPersonRestrictionsForSelf(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FUsersAPI::GetPlayerIdFromPlayerUuid(const FRequest_GetPlayerIdFromPlayerUuid& Request, const FDelegate_GetPlayerIdFromPlayerUuid& Delegate /*= FDelegate_GetPlayerIdFromPlayerUuid()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -4924,6 +5917,519 @@ FString Traits_GetPlayerLinksForSelf::Name = TEXT("GetPlayerLinksForSelf");
 FHttpRequestPtr Traits_GetPlayerLinksForSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
 {
 	return InAPI->GetPlayerLinksForSelf(InRequest, InDelegate, InPriority);
+}
+
+FHttpRequestPtr FUsersAPI::GetPlayerRestrictions(const FRequest_GetPlayerRestrictions& Request, const FDelegate_GetPlayerRestrictions& Delegate /*= FDelegate_GetPlayerRestrictions()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+{
+	if (!IsValid())
+		return nullptr;
+
+	// create the http request and tracking structure
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+	// add headers to tracker
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
+
+	// setup http request from custom request object
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
+
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
+
+	// bind response handler
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindSP(this, &FUsersAPI::OnGetPlayerRestrictionsResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
+
+	// submit request to http system
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
+}
+
+void FUsersAPI::OnGetPlayerRestrictionsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerRestrictions Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+	FHttpRequestCompleteDelegate ResponseDelegate;
+
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindSP(this, &FUsersAPI::OnGetPlayerRestrictionsResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
+
+	TSharedRef<FResponse_GetPlayerRestrictions> Response = MakeShared<FResponse_GetPlayerRestrictions>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
+}
+
+FRequest_GetPlayerRestrictions::FRequest_GetPlayerRestrictions()
+	: FRequest()
+{
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
+}
+
+FName FRequest_GetPlayerRestrictions::GetSimplifiedPath() const
+{
+	static FName Path = FName(TEXT("/users/v2/player/{player_uuid}/restrictions"));
+	return Path;
+}
+
+FName FRequest_GetPlayerRestrictions::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
+}
+
+FString FRequest_GetPlayerRestrictions::ComputePath() const
+{
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
+	};
+
+	FString Path = FString::Format(TEXT("/users/v2/player/{player_uuid}/restrictions"), PathParams);
+
+	return Path;
+}
+
+bool FRequest_GetPlayerRestrictions::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
+
+	HttpRequest->SetVerb(TEXT("GET"));
+
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayerRestrictions - missing auth context"));
+		return false;
+	}
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayerRestrictions - failed to add bearer token"));
+		return false;
+	}
+
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayerRestrictions - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
+
+	return true;
+}
+
+FString FResponse_GetPlayerRestrictions::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+{
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		return TEXT("Successful Response");
+	case 403:
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 422:
+		return TEXT("Validation Error");
+	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
+}
+
+bool FResponse_GetPlayerRestrictions::ParseHeaders()
+{
+	if (!Super::ParseHeaders())
+	{
+		return false;
+	}
+
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 403:
+		break;
+	case 422:
+		break;
+	default:
+		break;
+	}
+	
+	return bParsedAllRequiredHeaders;
+}
+
+bool FResponse_GetPlayerRestrictions::TryGetContentFor200(FRHAPI_Restrictions& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 200)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_GetPlayerRestrictions::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 403)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_GetPlayerRestrictions::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 422)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_GetPlayerRestrictions::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+	bool bParsed = false;
+	// for non default responses, parse into a temporary object to validate the response can be parsed properly
+	switch ((int)GetHttpResponseCode())
+	{  
+		case 200:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_Restrictions Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_Restrictions>(Object);
+				break;
+			} 
+		case 403:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_HzApiErrorModel Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+				break;
+			} 
+		case 422:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_HTTPValidationError Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+				break;
+			}
+		default:
+			break;
+	}
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// if using legacy content object, attempt to parse any response into the main content object.  For some legacy reasons around multiple success variants, this needs to ignore the intended type and always parse into the default type
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS;
+	TryGetJsonValue(JsonValue, Content);
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS;
+#endif
+
+	return bParsed;
+}
+
+FResponse_GetPlayerRestrictions::FResponse_GetPlayerRestrictions(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_GetPlayerRestrictions::Name = TEXT("GetPlayerRestrictions");
+
+FHttpRequestPtr Traits_GetPlayerRestrictions::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerRestrictions(InRequest, InDelegate, InPriority);
+}
+
+FHttpRequestPtr FUsersAPI::GetPlayerRestrictionsForSelf(const FRequest_GetPlayerRestrictionsForSelf& Request, const FDelegate_GetPlayerRestrictionsForSelf& Delegate /*= FDelegate_GetPlayerRestrictionsForSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+{
+	if (!IsValid())
+		return nullptr;
+
+	// create the http request and tracking structure
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+	// add headers to tracker
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
+
+	// setup http request from custom request object
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
+
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
+
+	// bind response handler
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindSP(this, &FUsersAPI::OnGetPlayerRestrictionsForSelfResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
+
+	// submit request to http system
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
+}
+
+void FUsersAPI::OnGetPlayerRestrictionsForSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerRestrictionsForSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+	FHttpRequestCompleteDelegate ResponseDelegate;
+
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindSP(this, &FUsersAPI::OnGetPlayerRestrictionsForSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
+
+	TSharedRef<FResponse_GetPlayerRestrictionsForSelf> Response = MakeShared<FResponse_GetPlayerRestrictionsForSelf>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
+}
+
+FRequest_GetPlayerRestrictionsForSelf::FRequest_GetPlayerRestrictionsForSelf()
+	: FRequest()
+{
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
+}
+
+FName FRequest_GetPlayerRestrictionsForSelf::GetSimplifiedPath() const
+{
+	static FName Path = FName(TEXT("/users/v2/player/me/restrictions"));
+	return Path;
+}
+
+FName FRequest_GetPlayerRestrictionsForSelf::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
+}
+
+FString FRequest_GetPlayerRestrictionsForSelf::ComputePath() const
+{
+	FString Path = GetSimplifiedPath().ToString();
+	return Path;
+}
+
+bool FRequest_GetPlayerRestrictionsForSelf::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
+
+	HttpRequest->SetVerb(TEXT("GET"));
+
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayerRestrictionsForSelf - missing auth context"));
+		return false;
+	}
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayerRestrictionsForSelf - failed to add bearer token"));
+		return false;
+	}
+
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayerRestrictionsForSelf - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
+
+	return true;
+}
+
+FString FResponse_GetPlayerRestrictionsForSelf::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+{
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		return TEXT("Successful Response");
+	case 403:
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
+}
+
+bool FResponse_GetPlayerRestrictionsForSelf::ParseHeaders()
+{
+	if (!Super::ParseHeaders())
+	{
+		return false;
+	}
+
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 403:
+		break;
+	default:
+		break;
+	}
+	
+	return bParsedAllRequiredHeaders;
+}
+
+bool FResponse_GetPlayerRestrictionsForSelf::TryGetContentFor200(FRHAPI_Restrictions& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 200)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_GetPlayerRestrictionsForSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 403)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_GetPlayerRestrictionsForSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+	bool bParsed = false;
+	// for non default responses, parse into a temporary object to validate the response can be parsed properly
+	switch ((int)GetHttpResponseCode())
+	{  
+		case 200:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_Restrictions Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_Restrictions>(Object);
+				break;
+			} 
+		case 403:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_HzApiErrorModel Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+				break;
+			}
+		default:
+			break;
+	}
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// if using legacy content object, attempt to parse any response into the main content object.  For some legacy reasons around multiple success variants, this needs to ignore the intended type and always parse into the default type
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS;
+	TryGetJsonValue(JsonValue, Content);
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS;
+#endif
+
+	return bParsed;
+}
+
+FResponse_GetPlayerRestrictionsForSelf::FResponse_GetPlayerRestrictionsForSelf(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_GetPlayerRestrictionsForSelf::Name = TEXT("GetPlayerRestrictionsForSelf");
+
+FHttpRequestPtr Traits_GetPlayerRestrictionsForSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetPlayerRestrictionsForSelf(InRequest, InDelegate, InPriority);
 }
 
 FHttpRequestPtr FUsersAPI::GetPlayerUuidFromPlayerId(const FRequest_GetPlayerUuidFromPlayerId& Request, const FDelegate_GetPlayerUuidFromPlayerId& Delegate /*= FDelegate_GetPlayerUuidFromPlayerId()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
@@ -8093,6 +9599,462 @@ FHttpRequestPtr Traits_QueuePersonForPurge::DoCall(TSharedRef<API> InAPI, const 
 	return InAPI->QueuePersonForPurge(InRequest, InDelegate, InPriority);
 }
 
+FHttpRequestPtr FUsersAPI::RemovePersonRestrictions(const FRequest_RemovePersonRestrictions& Request, const FDelegate_RemovePersonRestrictions& Delegate /*= FDelegate_RemovePersonRestrictions()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+{
+	if (!IsValid())
+		return nullptr;
+
+	// create the http request and tracking structure
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+	// add headers to tracker
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
+
+	// setup http request from custom request object
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
+
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
+
+	// bind response handler
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindSP(this, &FUsersAPI::OnRemovePersonRestrictionsResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
+
+	// submit request to http system
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
+}
+
+void FUsersAPI::OnRemovePersonRestrictionsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_RemovePersonRestrictions Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+	FHttpRequestCompleteDelegate ResponseDelegate;
+
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindSP(this, &FUsersAPI::OnRemovePersonRestrictionsResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
+
+	TSharedRef<FResponse_RemovePersonRestrictions> Response = MakeShared<FResponse_RemovePersonRestrictions>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
+}
+
+FRequest_RemovePersonRestrictions::FRequest_RemovePersonRestrictions()
+	: FRequest()
+{
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
+}
+
+FName FRequest_RemovePersonRestrictions::GetSimplifiedPath() const
+{
+	static FName Path = FName(TEXT("/users/v1/person/{person_id}/restrictions"));
+	return Path;
+}
+
+FName FRequest_RemovePersonRestrictions::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
+}
+
+FString FRequest_RemovePersonRestrictions::ComputePath() const
+{
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("person_id"), ToStringFormatArg(PersonId) }
+	};
+
+	FString Path = FString::Format(TEXT("/users/v1/person/{person_id}/restrictions"), PathParams);
+
+	TArray<FString> QueryParams;
+	if(IssuerType.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("issuer_type=")) + ToUrlString(IssuerType.GetValue()));
+	}
+	if(Issuer.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("issuer=")) + ToUrlString(Issuer.GetValue()));
+	}
+	Path += TCHAR('?');
+	Path += FString::Join(QueryParams, TEXT("&"));
+
+	return Path;
+}
+
+bool FRequest_RemovePersonRestrictions::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
+
+	HttpRequest->SetVerb(TEXT("DELETE"));
+
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_RemovePersonRestrictions - missing auth context"));
+		return false;
+	}
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_RemovePersonRestrictions - failed to add bearer token"));
+		return false;
+	}
+
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_RemovePersonRestrictions - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
+
+	return true;
+}
+
+FString FResponse_RemovePersonRestrictions::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+{
+	switch ((int)InHttpResponseCode)
+	{
+	case 204:
+		return TEXT("Successful Response");
+	case 403:
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 422:
+		return TEXT("Validation Error");
+	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
+}
+
+bool FResponse_RemovePersonRestrictions::ParseHeaders()
+{
+	if (!Super::ParseHeaders())
+	{
+		return false;
+	}
+
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 204:
+		break;
+	case 403:
+		break;
+	case 422:
+		break;
+	default:
+		break;
+	}
+	
+	return bParsedAllRequiredHeaders;
+}
+
+bool FResponse_RemovePersonRestrictions::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 403)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_RemovePersonRestrictions::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 422)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_RemovePersonRestrictions::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+	bool bParsed = false;
+	return true;
+}
+
+FResponse_RemovePersonRestrictions::FResponse_RemovePersonRestrictions(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_RemovePersonRestrictions::Name = TEXT("RemovePersonRestrictions");
+
+FHttpRequestPtr Traits_RemovePersonRestrictions::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->RemovePersonRestrictions(InRequest, InDelegate, InPriority);
+}
+
+FHttpRequestPtr FUsersAPI::RemovePlayerRestrictions(const FRequest_RemovePlayerRestrictions& Request, const FDelegate_RemovePlayerRestrictions& Delegate /*= FDelegate_RemovePlayerRestrictions()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+{
+	if (!IsValid())
+		return nullptr;
+
+	// create the http request and tracking structure
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+	// add headers to tracker
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
+
+	// setup http request from custom request object
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
+
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
+
+	// bind response handler
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindSP(this, &FUsersAPI::OnRemovePlayerRestrictionsResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
+
+	// submit request to http system
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
+}
+
+void FUsersAPI::OnRemovePlayerRestrictionsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_RemovePlayerRestrictions Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+	FHttpRequestCompleteDelegate ResponseDelegate;
+
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindSP(this, &FUsersAPI::OnRemovePlayerRestrictionsResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
+
+	TSharedRef<FResponse_RemovePlayerRestrictions> Response = MakeShared<FResponse_RemovePlayerRestrictions>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
+}
+
+FRequest_RemovePlayerRestrictions::FRequest_RemovePlayerRestrictions()
+	: FRequest()
+{
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
+}
+
+FName FRequest_RemovePlayerRestrictions::GetSimplifiedPath() const
+{
+	static FName Path = FName(TEXT("/users/v2/player/{player_uuid}/restrictions"));
+	return Path;
+}
+
+FName FRequest_RemovePlayerRestrictions::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
+}
+
+FString FRequest_RemovePlayerRestrictions::ComputePath() const
+{
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
+	};
+
+	FString Path = FString::Format(TEXT("/users/v2/player/{player_uuid}/restrictions"), PathParams);
+
+	TArray<FString> QueryParams;
+	if(IssuerType.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("issuer_type=")) + ToUrlString(IssuerType.GetValue()));
+	}
+	if(Issuer.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("issuer=")) + ToUrlString(Issuer.GetValue()));
+	}
+	Path += TCHAR('?');
+	Path += FString::Join(QueryParams, TEXT("&"));
+
+	return Path;
+}
+
+bool FRequest_RemovePlayerRestrictions::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
+
+	HttpRequest->SetVerb(TEXT("DELETE"));
+
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_RemovePlayerRestrictions - missing auth context"));
+		return false;
+	}
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_RemovePlayerRestrictions - failed to add bearer token"));
+		return false;
+	}
+
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_RemovePlayerRestrictions - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
+
+	return true;
+}
+
+FString FResponse_RemovePlayerRestrictions::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+{
+	switch ((int)InHttpResponseCode)
+	{
+	case 204:
+		return TEXT("Successful Response");
+	case 403:
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 422:
+		return TEXT("Validation Error");
+	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
+}
+
+bool FResponse_RemovePlayerRestrictions::ParseHeaders()
+{
+	if (!Super::ParseHeaders())
+	{
+		return false;
+	}
+
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 204:
+		break;
+	case 403:
+		break;
+	case 422:
+		break;
+	default:
+		break;
+	}
+	
+	return bParsedAllRequiredHeaders;
+}
+
+bool FResponse_RemovePlayerRestrictions::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 403)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_RemovePlayerRestrictions::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 422)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_RemovePlayerRestrictions::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+	bool bParsed = false;
+	return true;
+}
+
+FResponse_RemovePlayerRestrictions::FResponse_RemovePlayerRestrictions(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_RemovePlayerRestrictions::Name = TEXT("RemovePlayerRestrictions");
+
+FHttpRequestPtr Traits_RemovePlayerRestrictions::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->RemovePlayerRestrictions(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FUsersAPI::Unlink(const FRequest_Unlink& Request, const FDelegate_Unlink& Delegate /*= FDelegate_Unlink()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -9454,6 +11416,306 @@ FString Traits_UpdatePersonForSelf::Name = TEXT("UpdatePersonForSelf");
 FHttpRequestPtr Traits_UpdatePersonForSelf::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
 {
 	return InAPI->UpdatePersonForSelf(InRequest, InDelegate, InPriority);
+}
+
+FHttpRequestPtr FUsersAPI::UpdatePlatformUserById(const FRequest_UpdatePlatformUserById& Request, const FDelegate_UpdatePlatformUserById& Delegate /*= FDelegate_UpdatePlatformUserById()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+{
+	if (!IsValid())
+		return nullptr;
+
+	// create the http request and tracking structure
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+	// add headers to tracker
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
+
+	// setup http request from custom request object
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
+
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
+
+	// bind response handler
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindSP(this, &FUsersAPI::OnUpdatePlatformUserByIdResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
+
+	// submit request to http system
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
+}
+
+void FUsersAPI::OnUpdatePlatformUserByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdatePlatformUserById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+	FHttpRequestCompleteDelegate ResponseDelegate;
+
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindSP(this, &FUsersAPI::OnUpdatePlatformUserByIdResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
+
+	TSharedRef<FResponse_UpdatePlatformUserById> Response = MakeShared<FResponse_UpdatePlatformUserById>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
+}
+
+FRequest_UpdatePlatformUserById::FRequest_UpdatePlatformUserById()
+	: FRequest()
+{
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
+}
+
+FName FRequest_UpdatePlatformUserById::GetSimplifiedPath() const
+{
+	static FName Path = FName(TEXT("/users/v1/platform-user"));
+	return Path;
+}
+
+FName FRequest_UpdatePlatformUserById::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("PUT %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
+}
+
+FString FRequest_UpdatePlatformUserById::ComputePath() const
+{
+	FString Path = GetSimplifiedPath().ToString();
+	TArray<FString> QueryParams;
+	QueryParams.Add(FString(TEXT("platform=")) + ToUrlString(Platform));
+	QueryParams.Add(FString(TEXT("platform_user_id=")) + ToUrlString(PlatformUserId));
+	QueryParams.Add(FString(TEXT("display_name=")) + ToUrlString(DisplayName));
+	Path += TCHAR('?');
+	Path += FString::Join(QueryParams, TEXT("&"));
+
+	return Path;
+}
+
+bool FRequest_UpdatePlatformUserById::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
+
+	HttpRequest->SetVerb(TEXT("PUT"));
+
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdatePlatformUserById - missing auth context"));
+		return false;
+	}
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdatePlatformUserById - failed to add bearer token"));
+		return false;
+	}
+
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdatePlatformUserById - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
+
+	return true;
+}
+
+FString FResponse_UpdatePlatformUserById::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+{
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		return TEXT("Existing platform user was updated successfully");
+	case 201:
+		return TEXT("New platform user was created successfully");
+	case 403:
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 422:
+		return TEXT("Validation Error");
+	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
+}
+
+bool FResponse_UpdatePlatformUserById::ParseHeaders()
+{
+	if (!Super::ParseHeaders())
+	{
+		return false;
+	}
+
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 201:
+		break;
+	case 403:
+		break;
+	case 422:
+		break;
+	default:
+		break;
+	}
+	
+	return bParsedAllRequiredHeaders;
+}
+
+bool FResponse_UpdatePlatformUserById::TryGetContentFor200(FRHAPI_PlatformUserResponse& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 200)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_UpdatePlatformUserById::TryGetContentFor201(FRHAPI_PlatformUserResponse& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 201)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_UpdatePlatformUserById::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 403)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_UpdatePlatformUserById::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 422)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_UpdatePlatformUserById::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+	bool bParsed = false;
+	// for non default responses, parse into a temporary object to validate the response can be parsed properly
+	switch ((int)GetHttpResponseCode())
+	{  
+		case 200:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_PlatformUserResponse Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_PlatformUserResponse>(Object);
+				break;
+			} 
+		case 201:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_PlatformUserResponse Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_PlatformUserResponse>(Object);
+				break;
+			} 
+		case 403:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_HzApiErrorModel Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+				break;
+			} 
+		case 422:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_HTTPValidationError Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+				break;
+			}
+		default:
+			break;
+	}
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// if using legacy content object, attempt to parse any response into the main content object.  For some legacy reasons around multiple success variants, this needs to ignore the intended type and always parse into the default type
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS;
+	TryGetJsonValue(JsonValue, Content);
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS;
+#endif
+
+	return bParsed;
+}
+
+FResponse_UpdatePlatformUserById::FResponse_UpdatePlatformUserById(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_UpdatePlatformUserById::Name = TEXT("UpdatePlatformUserById");
+
+FHttpRequestPtr Traits_UpdatePlatformUserById::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->UpdatePlatformUserById(InRequest, InDelegate, InPriority);
 }
 
 

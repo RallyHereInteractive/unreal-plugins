@@ -558,9 +558,9 @@ struct RALLYHEREAPI_API FRequest_OauthLogin : public FRequest
 };
 
 /** The response type for FRequest_OauthLogin */
-struct RALLYHEREAPI_API FResponse_OauthLogin : public FResponseAccessorTemplate< FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_OauthLogin : public FResponseAccessorTemplate<FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HTTPValidationError> Super;
 
 	FResponse_OauthLogin(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_OauthLogin() = default;
@@ -663,9 +663,9 @@ struct RALLYHEREAPI_API FRequest_OauthResponse : public FRequest
 };
 
 /** The response type for FRequest_OauthResponse */
-struct RALLYHEREAPI_API FResponse_OauthResponse : public FResponseAccessorTemplate< FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_OauthResponse : public FResponseAccessorTemplate<FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HTTPValidationError> Super;
 
 	FResponse_OauthResponse(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_OauthResponse() = default;

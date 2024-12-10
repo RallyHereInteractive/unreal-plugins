@@ -29,6 +29,8 @@ A request body to update information about a session resource.
 `public bool `[`Joinable_IsSet`](#structFRHAPI__SessionUpdate_1a1771b6a886f26629df2e7c1f798c3632) | true if Joinable_Optional has been set to a value
 `public TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > `[`Teams_Optional`](#structFRHAPI__SessionUpdate_1aea24906b7e7a2d1b3e5fc24dd2475623) | List of team size updates for this session. The length of the list represents the number of desired teams.
 `public bool `[`Teams_IsSet`](#structFRHAPI__SessionUpdate_1aac6261a25e5317b6c4a1a31a7c4bb920) | true if Teams_Optional has been set to a value
+`public FString `[`Password_Optional`](#structFRHAPI__SessionUpdate_1ad87dc561bd34385bd9b4ab8b2e9eee9b) | A password to join this session.
+`public bool `[`Password_IsSet`](#structFRHAPI__SessionUpdate_1a6c0f390872003a6774d2569f074c0887) | true if Password_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__SessionUpdate_1a92402f614620d0a1b3605ca95b8a2905)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__SessionUpdate_1a8475ec92a18311bdd5b517fcee91a261)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetRegionId`](#structFRHAPI__SessionUpdate_1a89c91fcd33810a8033ff794ad01923ab)`()` | Gets the value of RegionId_Optional, regardless of it having been set.
@@ -73,6 +75,16 @@ A request body to update information about a session resource.
 `public inline void `[`SetTeams`](#structFRHAPI__SessionUpdate_1a9b6f391a708d219f7f7eee092ef4853f)`(TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > && NewValue)` | Sets the value of Teams_Optional and also sets Teams_IsSet to true using move semantics.
 `public inline void `[`ClearTeams`](#structFRHAPI__SessionUpdate_1a25c2f946c12657cbf3ecd48755f2b141)`()` | Clears the value of Teams_Optional and sets Teams_IsSet to false.
 `public inline bool `[`IsTeamsSet`](#structFRHAPI__SessionUpdate_1aeebf249d5d2ea99471be863fbcdcc3ab)`() const` | Checks whether Teams_Optional has been set.
+`public inline FString & `[`GetPassword`](#structFRHAPI__SessionUpdate_1af0ebd70fa653ff5d1b64bffbde206314)`()` | Gets the value of Password_Optional, regardless of it having been set.
+`public inline const FString & `[`GetPassword`](#structFRHAPI__SessionUpdate_1a1d084e371feace770646ad8a350e343c)`() const` | Gets the value of Password_Optional, regardless of it having been set.
+`public inline const FString & `[`GetPassword`](#structFRHAPI__SessionUpdate_1a79c491a08573ee34a53300e6263f56e5)`(const FString & DefaultValue) const` | Gets the value of Password_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetPassword`](#structFRHAPI__SessionUpdate_1aef76f832fce8c3c0de46b708ebe0a028)`(FString & OutValue) const` | Fills OutValue with the value of Password_Optional and returns true if it has been set, otherwise returns false.
+`public inline FString * `[`GetPasswordOrNull`](#structFRHAPI__SessionUpdate_1a2251b037a5e37a55fcb70f974992d721)`()` | Returns a pointer to Password_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetPasswordOrNull`](#structFRHAPI__SessionUpdate_1a2f09b6ba728d743b17bd8fc4e4f0187f)`() const` | Returns a pointer to Password_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetPassword`](#structFRHAPI__SessionUpdate_1a9248f190b5be5597fed91faf404df2fa)`(const FString & NewValue)` | Sets the value of Password_Optional and also sets Password_IsSet to true.
+`public inline void `[`SetPassword`](#structFRHAPI__SessionUpdate_1ae6b53cf6942dddc717770b7f31f1f154)`(FString && NewValue)` | Sets the value of Password_Optional and also sets Password_IsSet to true using move semantics.
+`public inline void `[`ClearPassword`](#structFRHAPI__SessionUpdate_1a97e1dde9469af932d4083b01fbe2a2fd)`()` | Clears the value of Password_Optional and sets Password_IsSet to false.
+`public inline bool `[`IsPasswordSet`](#structFRHAPI__SessionUpdate_1a6cbae1f2dfb99b4fefd6e07765541a12)`() const` | Checks whether Password_Optional has been set.
 
 ### Members
 
@@ -107,6 +119,14 @@ List of team size updates for this session. The length of the list represents th
 #### `public bool `[`Teams_IsSet`](#structFRHAPI__SessionUpdate_1aac6261a25e5317b6c4a1a31a7c4bb920) <a id="structFRHAPI__SessionUpdate_1aac6261a25e5317b6c4a1a31a7c4bb920"></a>
 
 true if Teams_Optional has been set to a value
+
+#### `public FString `[`Password_Optional`](#structFRHAPI__SessionUpdate_1ad87dc561bd34385bd9b4ab8b2e9eee9b) <a id="structFRHAPI__SessionUpdate_1ad87dc561bd34385bd9b4ab8b2e9eee9b"></a>
+
+A password to join this session.
+
+#### `public bool `[`Password_IsSet`](#structFRHAPI__SessionUpdate_1a6c0f390872003a6774d2569f074c0887) <a id="structFRHAPI__SessionUpdate_1a6c0f390872003a6774d2569f074c0887"></a>
+
+true if Password_Optional has been set to a value
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__SessionUpdate_1a92402f614620d0a1b3605ca95b8a2905)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__SessionUpdate_1a92402f614620d0a1b3605ca95b8a2905"></a>
 
@@ -292,4 +312,44 @@ Clears the value of Teams_Optional and sets Teams_IsSet to false.
 #### `public inline bool `[`IsTeamsSet`](#structFRHAPI__SessionUpdate_1aeebf249d5d2ea99471be863fbcdcc3ab)`() const` <a id="structFRHAPI__SessionUpdate_1aeebf249d5d2ea99471be863fbcdcc3ab"></a>
 
 Checks whether Teams_Optional has been set.
+
+#### `public inline FString & `[`GetPassword`](#structFRHAPI__SessionUpdate_1af0ebd70fa653ff5d1b64bffbde206314)`()` <a id="structFRHAPI__SessionUpdate_1af0ebd70fa653ff5d1b64bffbde206314"></a>
+
+Gets the value of Password_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetPassword`](#structFRHAPI__SessionUpdate_1a1d084e371feace770646ad8a350e343c)`() const` <a id="structFRHAPI__SessionUpdate_1a1d084e371feace770646ad8a350e343c"></a>
+
+Gets the value of Password_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetPassword`](#structFRHAPI__SessionUpdate_1a79c491a08573ee34a53300e6263f56e5)`(const FString & DefaultValue) const` <a id="structFRHAPI__SessionUpdate_1a79c491a08573ee34a53300e6263f56e5"></a>
+
+Gets the value of Password_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetPassword`](#structFRHAPI__SessionUpdate_1aef76f832fce8c3c0de46b708ebe0a028)`(FString & OutValue) const` <a id="structFRHAPI__SessionUpdate_1aef76f832fce8c3c0de46b708ebe0a028"></a>
+
+Fills OutValue with the value of Password_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline FString * `[`GetPasswordOrNull`](#structFRHAPI__SessionUpdate_1a2251b037a5e37a55fcb70f974992d721)`()` <a id="structFRHAPI__SessionUpdate_1a2251b037a5e37a55fcb70f974992d721"></a>
+
+Returns a pointer to Password_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const FString * `[`GetPasswordOrNull`](#structFRHAPI__SessionUpdate_1a2f09b6ba728d743b17bd8fc4e4f0187f)`() const` <a id="structFRHAPI__SessionUpdate_1a2f09b6ba728d743b17bd8fc4e4f0187f"></a>
+
+Returns a pointer to Password_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetPassword`](#structFRHAPI__SessionUpdate_1a9248f190b5be5597fed91faf404df2fa)`(const FString & NewValue)` <a id="structFRHAPI__SessionUpdate_1a9248f190b5be5597fed91faf404df2fa"></a>
+
+Sets the value of Password_Optional and also sets Password_IsSet to true.
+
+#### `public inline void `[`SetPassword`](#structFRHAPI__SessionUpdate_1ae6b53cf6942dddc717770b7f31f1f154)`(FString && NewValue)` <a id="structFRHAPI__SessionUpdate_1ae6b53cf6942dddc717770b7f31f1f154"></a>
+
+Sets the value of Password_Optional and also sets Password_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearPassword`](#structFRHAPI__SessionUpdate_1a97e1dde9469af932d4083b01fbe2a2fd)`()` <a id="structFRHAPI__SessionUpdate_1a97e1dde9469af932d4083b01fbe2a2fd"></a>
+
+Clears the value of Password_Optional and sets Password_IsSet to false.
+
+#### `public inline bool `[`IsPasswordSet`](#structFRHAPI__SessionUpdate_1a6cbae1f2dfb99b4fefd6e07765541a12)`() const` <a id="structFRHAPI__SessionUpdate_1a6cbae1f2dfb99b4fefd6e07765541a12"></a>
+
+Checks whether Password_Optional has been set.
 

@@ -34,6 +34,10 @@ FString EnumToString(const ERHAPI_Operation& Value)
 		return TEXT("gt");
 	case ERHAPI_Operation::GreaterThanEqual:
 		return TEXT("ge");
+	case ERHAPI_Operation::IncludedInSet:
+		return TEXT("in_set");
+	case ERHAPI_Operation::ExcludedFromSet:
+		return TEXT("not_in_set");
 	}
 
 	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_Operation::Values Value (%d)"), (int)Value);
@@ -48,7 +52,9 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_Operation& Value)
 		{ TEXT("lt"), ERHAPI_Operation::LessThan },
 		{ TEXT("le"), ERHAPI_Operation::LessThanEqual },
 		{ TEXT("gt"), ERHAPI_Operation::GreaterThan },
-		{ TEXT("ge"), ERHAPI_Operation::GreaterThanEqual },	};
+		{ TEXT("ge"), ERHAPI_Operation::GreaterThanEqual },
+		{ TEXT("in_set"), ERHAPI_Operation::IncludedInSet },
+		{ TEXT("not_in_set"), ERHAPI_Operation::ExcludedFromSet },	};
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)
