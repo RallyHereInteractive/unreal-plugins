@@ -26,6 +26,8 @@ A request body for a player to join a session.
 `public `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` `[`CrossplayPreferences_Optional`](#structFRHAPI__CreateOrJoinRequest_1ae1cf8611b7b6391f7ed46d79ceb0c4fa) | Client's desired crossplay settings to determine which other clients it can play with. If not defined, assumed to be as permissive as possible.
 `public bool `[`CrossplayPreferences_IsSet`](#structFRHAPI__CreateOrJoinRequest_1ace0dda09c63eff0066ef37fc2fe66f90) | true if CrossplayPreferences_Optional has been set to a value
 `public FString `[`SessionType`](#structFRHAPI__CreateOrJoinRequest_1ac2339ba0c03efd01c707b078da845cda) | Type of session client is creating or joining.
+`public FString `[`Password_Optional`](#structFRHAPI__CreateOrJoinRequest_1ac8adb725d9c37795d87f836d97c3eea2) | Password to set on a session if a new one is created.
+`public bool `[`Password_IsSet`](#structFRHAPI__CreateOrJoinRequest_1ac8887e986b6e32260d06a74c1fb7f2f1) | true if Password_Optional has been set to a value
 `public FString `[`RegionId_Optional`](#structFRHAPI__CreateOrJoinRequest_1a15cd29f37ee871cba1be3deb9e16f26f) | Preferred region for the instance and match to take place in.
 `public bool `[`RegionId_IsSet`](#structFRHAPI__CreateOrJoinRequest_1a20aa30896105392bd7a1757c27ef4fb6) | true if RegionId_Optional has been set to a value
 `public `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` `[`Player_Optional`](#structFRHAPI__CreateOrJoinRequest_1a608e52772ec0d3e177990ac2f34b47bd) | Optional information about player in order to join the new/existing session. V2 version of CreateOrJoin will require this.
@@ -54,6 +56,16 @@ A request body for a player to join a session.
 `public inline const FString & `[`GetSessionType`](#structFRHAPI__CreateOrJoinRequest_1aea1b3469d84d803ca5d0f2b6a53cf934)`() const` | Gets the value of SessionType.
 `public inline void `[`SetSessionType`](#structFRHAPI__CreateOrJoinRequest_1a25f6994aab8c5c553e41e2e0c0e0b2ac)`(const FString & NewValue)` | Sets the value of SessionType.
 `public inline void `[`SetSessionType`](#structFRHAPI__CreateOrJoinRequest_1a574819f050aa6412fc2769a2daee0bb6)`(FString && NewValue)` | Sets the value of SessionType using move semantics.
+`public inline FString & `[`GetPassword`](#structFRHAPI__CreateOrJoinRequest_1a135f8b47beb81d475d6739e41db1a6f4)`()` | Gets the value of Password_Optional, regardless of it having been set.
+`public inline const FString & `[`GetPassword`](#structFRHAPI__CreateOrJoinRequest_1a6a0f95d68183273f2f47a83398f71a63)`() const` | Gets the value of Password_Optional, regardless of it having been set.
+`public inline const FString & `[`GetPassword`](#structFRHAPI__CreateOrJoinRequest_1ae83ce57672c1315e8a9a3a39508d97c9)`(const FString & DefaultValue) const` | Gets the value of Password_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetPassword`](#structFRHAPI__CreateOrJoinRequest_1ae1381921ba5564cb1d8acbe2cf00f4ba)`(FString & OutValue) const` | Fills OutValue with the value of Password_Optional and returns true if it has been set, otherwise returns false.
+`public inline FString * `[`GetPasswordOrNull`](#structFRHAPI__CreateOrJoinRequest_1a74897ff2e939a4713491da0067c4c566)`()` | Returns a pointer to Password_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetPasswordOrNull`](#structFRHAPI__CreateOrJoinRequest_1a10d4c0f19ca104ca2f9b5fceb3daf693)`() const` | Returns a pointer to Password_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetPassword`](#structFRHAPI__CreateOrJoinRequest_1aa2acc86b14881f576474862ebeaca1a3)`(const FString & NewValue)` | Sets the value of Password_Optional and also sets Password_IsSet to true.
+`public inline void `[`SetPassword`](#structFRHAPI__CreateOrJoinRequest_1abbdf7d247805cda06df35932aba23152)`(FString && NewValue)` | Sets the value of Password_Optional and also sets Password_IsSet to true using move semantics.
+`public inline void `[`ClearPassword`](#structFRHAPI__CreateOrJoinRequest_1ab87df60fb7763494f1b70d4e6d8bc94b)`()` | Clears the value of Password_Optional and sets Password_IsSet to false.
+`public inline bool `[`IsPasswordSet`](#structFRHAPI__CreateOrJoinRequest_1a5aa1735eb1bc4c73d62348763eeecc61)`() const` | Checks whether Password_Optional has been set.
 `public inline FString & `[`GetRegionId`](#structFRHAPI__CreateOrJoinRequest_1a4020780ff301c28968911639d01ce274)`()` | Gets the value of RegionId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetRegionId`](#structFRHAPI__CreateOrJoinRequest_1af448083d16ef762dbbd6947e19bfe359)`() const` | Gets the value of RegionId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetRegionId`](#structFRHAPI__CreateOrJoinRequest_1a9b95a11bb3a078317bccb2a1ab409829)`(const FString & DefaultValue) const` | Gets the value of RegionId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -96,6 +108,14 @@ true if CrossplayPreferences_Optional has been set to a value
 #### `public FString `[`SessionType`](#structFRHAPI__CreateOrJoinRequest_1ac2339ba0c03efd01c707b078da845cda) <a id="structFRHAPI__CreateOrJoinRequest_1ac2339ba0c03efd01c707b078da845cda"></a>
 
 Type of session client is creating or joining.
+
+#### `public FString `[`Password_Optional`](#structFRHAPI__CreateOrJoinRequest_1ac8adb725d9c37795d87f836d97c3eea2) <a id="structFRHAPI__CreateOrJoinRequest_1ac8adb725d9c37795d87f836d97c3eea2"></a>
+
+Password to set on a session if a new one is created.
+
+#### `public bool `[`Password_IsSet`](#structFRHAPI__CreateOrJoinRequest_1ac8887e986b6e32260d06a74c1fb7f2f1) <a id="structFRHAPI__CreateOrJoinRequest_1ac8887e986b6e32260d06a74c1fb7f2f1"></a>
+
+true if Password_Optional has been set to a value
 
 #### `public FString `[`RegionId_Optional`](#structFRHAPI__CreateOrJoinRequest_1a15cd29f37ee871cba1be3deb9e16f26f) <a id="structFRHAPI__CreateOrJoinRequest_1a15cd29f37ee871cba1be3deb9e16f26f"></a>
 
@@ -217,6 +237,46 @@ Sets the value of SessionType.
 #### `public inline void `[`SetSessionType`](#structFRHAPI__CreateOrJoinRequest_1a574819f050aa6412fc2769a2daee0bb6)`(FString && NewValue)` <a id="structFRHAPI__CreateOrJoinRequest_1a574819f050aa6412fc2769a2daee0bb6"></a>
 
 Sets the value of SessionType using move semantics.
+
+#### `public inline FString & `[`GetPassword`](#structFRHAPI__CreateOrJoinRequest_1a135f8b47beb81d475d6739e41db1a6f4)`()` <a id="structFRHAPI__CreateOrJoinRequest_1a135f8b47beb81d475d6739e41db1a6f4"></a>
+
+Gets the value of Password_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetPassword`](#structFRHAPI__CreateOrJoinRequest_1a6a0f95d68183273f2f47a83398f71a63)`() const` <a id="structFRHAPI__CreateOrJoinRequest_1a6a0f95d68183273f2f47a83398f71a63"></a>
+
+Gets the value of Password_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetPassword`](#structFRHAPI__CreateOrJoinRequest_1ae83ce57672c1315e8a9a3a39508d97c9)`(const FString & DefaultValue) const` <a id="structFRHAPI__CreateOrJoinRequest_1ae83ce57672c1315e8a9a3a39508d97c9"></a>
+
+Gets the value of Password_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetPassword`](#structFRHAPI__CreateOrJoinRequest_1ae1381921ba5564cb1d8acbe2cf00f4ba)`(FString & OutValue) const` <a id="structFRHAPI__CreateOrJoinRequest_1ae1381921ba5564cb1d8acbe2cf00f4ba"></a>
+
+Fills OutValue with the value of Password_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline FString * `[`GetPasswordOrNull`](#structFRHAPI__CreateOrJoinRequest_1a74897ff2e939a4713491da0067c4c566)`()` <a id="structFRHAPI__CreateOrJoinRequest_1a74897ff2e939a4713491da0067c4c566"></a>
+
+Returns a pointer to Password_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const FString * `[`GetPasswordOrNull`](#structFRHAPI__CreateOrJoinRequest_1a10d4c0f19ca104ca2f9b5fceb3daf693)`() const` <a id="structFRHAPI__CreateOrJoinRequest_1a10d4c0f19ca104ca2f9b5fceb3daf693"></a>
+
+Returns a pointer to Password_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetPassword`](#structFRHAPI__CreateOrJoinRequest_1aa2acc86b14881f576474862ebeaca1a3)`(const FString & NewValue)` <a id="structFRHAPI__CreateOrJoinRequest_1aa2acc86b14881f576474862ebeaca1a3"></a>
+
+Sets the value of Password_Optional and also sets Password_IsSet to true.
+
+#### `public inline void `[`SetPassword`](#structFRHAPI__CreateOrJoinRequest_1abbdf7d247805cda06df35932aba23152)`(FString && NewValue)` <a id="structFRHAPI__CreateOrJoinRequest_1abbdf7d247805cda06df35932aba23152"></a>
+
+Sets the value of Password_Optional and also sets Password_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearPassword`](#structFRHAPI__CreateOrJoinRequest_1ab87df60fb7763494f1b70d4e6d8bc94b)`()` <a id="structFRHAPI__CreateOrJoinRequest_1ab87df60fb7763494f1b70d4e6d8bc94b"></a>
+
+Clears the value of Password_Optional and sets Password_IsSet to false.
+
+#### `public inline bool `[`IsPasswordSet`](#structFRHAPI__CreateOrJoinRequest_1a5aa1735eb1bc4c73d62348763eeecc61)`() const` <a id="structFRHAPI__CreateOrJoinRequest_1a5aa1735eb1bc4c73d62348763eeecc61"></a>
+
+Checks whether Password_Optional has been set.
 
 #### `public inline FString & `[`GetRegionId`](#structFRHAPI__CreateOrJoinRequest_1a4020780ff301c28968911639d01ce274)`()` <a id="structFRHAPI__CreateOrJoinRequest_1a4020780ff301c28968911639d01ce274"></a>
 
