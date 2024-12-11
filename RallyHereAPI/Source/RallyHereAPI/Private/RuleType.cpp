@@ -24,10 +24,10 @@ FString EnumToString(const ERHAPI_RuleType& Value)
 	{
 	case ERHAPI_RuleType::Inventory:
 		return TEXT("Inventory");
-	case ERHAPI_RuleType::LinkingSize:
-		return TEXT("LinkingSize");
 	case ERHAPI_RuleType::JoiningSessionSize:
 		return TEXT("JoiningSessionSize");
+	case ERHAPI_RuleType::RegionList:
+		return TEXT("RegionList");
 	}
 
 	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_RuleType::Values Value (%d)"), (int)Value);
@@ -38,8 +38,8 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_RuleType& Value)
 {
 	static TMap<FString, ERHAPI_RuleType> StringToEnum = { 
 		{ TEXT("Inventory"), ERHAPI_RuleType::Inventory },
-		{ TEXT("LinkingSize"), ERHAPI_RuleType::LinkingSize },
-		{ TEXT("JoiningSessionSize"), ERHAPI_RuleType::JoiningSessionSize },	};
+		{ TEXT("JoiningSessionSize"), ERHAPI_RuleType::JoiningSessionSize },
+		{ TEXT("RegionList"), ERHAPI_RuleType::RegionList },	};
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)

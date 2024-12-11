@@ -9,11 +9,12 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
+#include "RestrictionIssuerType.h"
 #include "RestrictionReasonCode.h"
 #include "RestrictionType.h"
-#include "Restriction.generated.h"
+#include "RestrictionCreate.generated.h"
 
-/** @defgroup RHAPI_Restriction RallyHere API Model Restriction
+/** @defgroup RHAPI_RestrictionCreate RallyHere API Model RestrictionCreate
  *  @{
  */
 
@@ -21,7 +22,7 @@
  * @brief Restriction applied to a player
  */
 USTRUCT(BlueprintType)
-struct RALLYHEREAPI_API FRHAPI_Restriction : public FRHAPI_Model
+struct RALLYHEREAPI_API FRHAPI_RestrictionCreate : public FRHAPI_Model
 {
 	GENERATED_BODY()
 
@@ -106,6 +107,30 @@ struct RALLYHEREAPI_API FRHAPI_Restriction : public FRHAPI_Model
 	void ClearExpiration() { Expiration_IsSet = false;  }
 	/** @brief Checks whether Expiration_Optional has been set */
 	bool IsExpirationSet() const { return Expiration_IsSet; }
+
+	/** @brief Type of the Issuer */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	ERHAPI_RestrictionIssuerType IssuerType{  };
+	/** @brief Gets the value of IssuerType */
+	ERHAPI_RestrictionIssuerType& GetIssuerType() { return IssuerType; }
+	/** @brief Gets the value of IssuerType */
+	const ERHAPI_RestrictionIssuerType& GetIssuerType() const { return IssuerType; }
+	/** @brief Sets the value of IssuerType */
+	void SetIssuerType(const ERHAPI_RestrictionIssuerType& NewValue) { IssuerType = NewValue;   }
+	/** @brief Sets the value of IssuerType using move semantics */
+	void SetIssuerType(ERHAPI_RestrictionIssuerType&& NewValue) { IssuerType = NewValue;   }
+
+	/** @brief The creator of the restriction */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Issuer{  };
+	/** @brief Gets the value of Issuer */
+	FString& GetIssuer() { return Issuer; }
+	/** @brief Gets the value of Issuer */
+	const FString& GetIssuer() const { return Issuer; }
+	/** @brief Sets the value of Issuer */
+	void SetIssuer(const FString& NewValue) { Issuer = NewValue;   }
+	/** @brief Sets the value of Issuer using move semantics */
+	void SetIssuer(FString&& NewValue) { Issuer = NewValue;   }
 };
 
 /** @} */

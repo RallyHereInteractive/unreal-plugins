@@ -30,6 +30,8 @@ A request body for a player updating information about themselves.
 `public bool `[`CrossplayPreferences_IsSet`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1abea2347af254bb0e3f9eb8cbb46fc9e3) | true if CrossplayPreferences_Optional has been set to a value
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1aaa1ded6c84ac6e5ddda821fe76a086ae) | player-defined custom data
 `public bool `[`CustomData_IsSet`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a8217d194f5c6d231a970922b72505333) | true if CustomData_Optional has been set to a value
+`public FString `[`Password_Optional`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1aeaffaeeb75bbf81be1c6c71f55741ea3) | Password to join a password protected session that you are not invited to.
+`public bool `[`Password_IsSet`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1af920855dec5e06f3ba9e62f99c22aeca) | true if Password_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a689b45738def0c35f8b23d5062395aa1)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a1417b85422448456a79475daff1bf9a9)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_SessionPlayerStatus & `[`GetStatus`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a9396bf8b5d1ade1bcfba5f0012a7e840)`()` | Gets the value of Status_Optional, regardless of it having been set.
@@ -76,6 +78,16 @@ A request body for a player updating information about themselves.
 `public inline void `[`SetCustomData`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a7abed25d8014343285c9a8af520774f4)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1afc76499c6b23732fdd02a72402d7e752)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 `public inline bool `[`IsCustomDataSet`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1af5b2c1bd05fafedcc787875fca55b5b1)`() const` | Checks whether CustomData_Optional has been set.
+`public inline FString & `[`GetPassword`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a96c4ec8f71656eee3102351972d9ca5f)`()` | Gets the value of Password_Optional, regardless of it having been set.
+`public inline const FString & `[`GetPassword`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a9a6c7893e6c96c6a5cfb54149b4b2ca3)`() const` | Gets the value of Password_Optional, regardless of it having been set.
+`public inline const FString & `[`GetPassword`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a58a198544e5d2cdfb8e22c7125947d07)`(const FString & DefaultValue) const` | Gets the value of Password_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetPassword`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a3f8a6b7193a915eadc71dbaed0d42845)`(FString & OutValue) const` | Fills OutValue with the value of Password_Optional and returns true if it has been set, otherwise returns false.
+`public inline FString * `[`GetPasswordOrNull`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a3e40cd207786f87ad7f06383c3358657)`()` | Returns a pointer to Password_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetPasswordOrNull`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a024f6647b9db8678b7ad3d7ee17d6b09)`() const` | Returns a pointer to Password_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetPassword`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a02a56609839b92b82c929da432854667)`(const FString & NewValue)` | Sets the value of Password_Optional and also sets Password_IsSet to true.
+`public inline void `[`SetPassword`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a87e2bd4ccd25a598e1176b7c23948b31)`(FString && NewValue)` | Sets the value of Password_Optional and also sets Password_IsSet to true using move semantics.
+`public inline void `[`ClearPassword`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a6858175ae0bfebce9a67971e0cc3ca33)`()` | Clears the value of Password_Optional and sets Password_IsSet to false.
+`public inline bool `[`IsPasswordSet`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1aa8855f2950fb13c365cd9a2ab6ba77ca)`() const` | Checks whether Password_Optional has been set.
 
 ### Members
 
@@ -114,6 +126,14 @@ player-defined custom data
 #### `public bool `[`CustomData_IsSet`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a8217d194f5c6d231a970922b72505333) <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a8217d194f5c6d231a970922b72505333"></a>
 
 true if CustomData_Optional has been set to a value
+
+#### `public FString `[`Password_Optional`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1aeaffaeeb75bbf81be1c6c71f55741ea3) <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1aeaffaeeb75bbf81be1c6c71f55741ea3"></a>
+
+Password to join a password protected session that you are not invited to.
+
+#### `public bool `[`Password_IsSet`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1af920855dec5e06f3ba9e62f99c22aeca) <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1af920855dec5e06f3ba9e62f99c22aeca"></a>
+
+true if Password_Optional has been set to a value
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a689b45738def0c35f8b23d5062395aa1)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a689b45738def0c35f8b23d5062395aa1"></a>
 
@@ -307,4 +327,44 @@ Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 #### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1af5b2c1bd05fafedcc787875fca55b5b1)`() const` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1af5b2c1bd05fafedcc787875fca55b5b1"></a>
 
 Checks whether CustomData_Optional has been set.
+
+#### `public inline FString & `[`GetPassword`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a96c4ec8f71656eee3102351972d9ca5f)`()` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a96c4ec8f71656eee3102351972d9ca5f"></a>
+
+Gets the value of Password_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetPassword`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a9a6c7893e6c96c6a5cfb54149b4b2ca3)`() const` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a9a6c7893e6c96c6a5cfb54149b4b2ca3"></a>
+
+Gets the value of Password_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetPassword`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a58a198544e5d2cdfb8e22c7125947d07)`(const FString & DefaultValue) const` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a58a198544e5d2cdfb8e22c7125947d07"></a>
+
+Gets the value of Password_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetPassword`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a3f8a6b7193a915eadc71dbaed0d42845)`(FString & OutValue) const` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a3f8a6b7193a915eadc71dbaed0d42845"></a>
+
+Fills OutValue with the value of Password_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline FString * `[`GetPasswordOrNull`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a3e40cd207786f87ad7f06383c3358657)`()` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a3e40cd207786f87ad7f06383c3358657"></a>
+
+Returns a pointer to Password_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const FString * `[`GetPasswordOrNull`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a024f6647b9db8678b7ad3d7ee17d6b09)`() const` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a024f6647b9db8678b7ad3d7ee17d6b09"></a>
+
+Returns a pointer to Password_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetPassword`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a02a56609839b92b82c929da432854667)`(const FString & NewValue)` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a02a56609839b92b82c929da432854667"></a>
+
+Sets the value of Password_Optional and also sets Password_IsSet to true.
+
+#### `public inline void `[`SetPassword`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a87e2bd4ccd25a598e1176b7c23948b31)`(FString && NewValue)` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a87e2bd4ccd25a598e1176b7c23948b31"></a>
+
+Sets the value of Password_Optional and also sets Password_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearPassword`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a6858175ae0bfebce9a67971e0cc3ca33)`()` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a6858175ae0bfebce9a67971e0cc3ca33"></a>
+
+Clears the value of Password_Optional and sets Password_IsSet to false.
+
+#### `public inline bool `[`IsPasswordSet`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1aa8855f2950fb13c365cd9a2ab6ba77ca)`() const` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1aa8855f2950fb13c365cd9a2ab6ba77ca"></a>
+
+Checks whether Password_Optional has been set.
 

@@ -22,7 +22,7 @@ Restriction applied to a player.
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public ERHAPI_RestrictionType `[`Type`](#structFRHAPI__Restriction_1a4563f4ef4361eacf1e83acde5aa9e9b1) | Type of restriction.
-`public FString `[`Reason_Optional`](#structFRHAPI__Restriction_1acb07c004735610b31b0326e85867841f) | Reason the restriction was applied.
+`public ERHAPI_RestrictionReasonCode `[`Reason_Optional`](#structFRHAPI__Restriction_1a7474068fad2a2ea3deb79e6ac72d8808) | Reason the restriction was applied.
 `public bool `[`Reason_IsSet`](#structFRHAPI__Restriction_1a33efc2fe715a3c3ee06ec148ab82a239) | true if Reason_Optional has been set to a value
 `public FDateTime `[`Expiration_Optional`](#structFRHAPI__Restriction_1aa9e2bfa5e8c955b12b209034e64c5e57) | Date the restriction expires. Null means the restriction is permanent.
 `public bool `[`Expiration_IsSet`](#structFRHAPI__Restriction_1ae0bb6d1bcce99870a53bd773b2740cf2) | true if Expiration_Optional has been set to a value
@@ -32,14 +32,14 @@ Restriction applied to a player.
 `public inline const ERHAPI_RestrictionType & `[`GetType`](#structFRHAPI__Restriction_1a591e500a3661de66229c5f1ba7724435)`() const` | Gets the value of Type.
 `public inline void `[`SetType`](#structFRHAPI__Restriction_1aa95290fbf9706c49ec1b49f5fb3cdcc3)`(const ERHAPI_RestrictionType & NewValue)` | Sets the value of Type.
 `public inline void `[`SetType`](#structFRHAPI__Restriction_1a2e0a205fffdbfda1c2ce9c36aee7ef04)`(ERHAPI_RestrictionType && NewValue)` | Sets the value of Type using move semantics.
-`public inline FString & `[`GetReason`](#structFRHAPI__Restriction_1a182cbbe5278382533d8c8ba1929a35bf)`()` | Gets the value of Reason_Optional, regardless of it having been set.
-`public inline const FString & `[`GetReason`](#structFRHAPI__Restriction_1a531a35039b7dec535cd8ad7c84d066bb)`() const` | Gets the value of Reason_Optional, regardless of it having been set.
-`public inline const FString & `[`GetReason`](#structFRHAPI__Restriction_1afe82ab3fd779eb1d73b537f733ba6bc0)`(const FString & DefaultValue) const` | Gets the value of Reason_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetReason`](#structFRHAPI__Restriction_1a560c7de16a3a9e8ae18c7f200d34104f)`(FString & OutValue) const` | Fills OutValue with the value of Reason_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetReasonOrNull`](#structFRHAPI__Restriction_1a580cc0f156b36849c2bdf786383a9b65)`()` | Returns a pointer to Reason_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetReasonOrNull`](#structFRHAPI__Restriction_1a6b62ccb570a792b511846846be454f02)`() const` | Returns a pointer to Reason_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetReason`](#structFRHAPI__Restriction_1a750c617f4c01db3f77218a8c0f370c70)`(const FString & NewValue)` | Sets the value of Reason_Optional and also sets Reason_IsSet to true.
-`public inline void `[`SetReason`](#structFRHAPI__Restriction_1a58c2a0b0546fb3a7444350a000ba45d1)`(FString && NewValue)` | Sets the value of Reason_Optional and also sets Reason_IsSet to true using move semantics.
+`public inline ERHAPI_RestrictionReasonCode & `[`GetReason`](#structFRHAPI__Restriction_1a6e7a8311942d1852cb2ebdb2e69c2837)`()` | Gets the value of Reason_Optional, regardless of it having been set.
+`public inline const ERHAPI_RestrictionReasonCode & `[`GetReason`](#structFRHAPI__Restriction_1afb6347d7b4097728d1c3eff0adb348d6)`() const` | Gets the value of Reason_Optional, regardless of it having been set.
+`public inline const ERHAPI_RestrictionReasonCode & `[`GetReason`](#structFRHAPI__Restriction_1a5cf31a5bec5fe7039936f378efdf5ec0)`(const ERHAPI_RestrictionReasonCode & DefaultValue) const` | Gets the value of Reason_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetReason`](#structFRHAPI__Restriction_1aa074595a9ed3d659d65c57b387faff40)`(ERHAPI_RestrictionReasonCode & OutValue) const` | Fills OutValue with the value of Reason_Optional and returns true if it has been set, otherwise returns false.
+`public inline ERHAPI_RestrictionReasonCode * `[`GetReasonOrNull`](#structFRHAPI__Restriction_1a382a9d92915b5fde944ed9cad1db13c6)`()` | Returns a pointer to Reason_Optional, if it has been set, otherwise returns nullptr.
+`public inline const ERHAPI_RestrictionReasonCode * `[`GetReasonOrNull`](#structFRHAPI__Restriction_1aaa0593407274af1f1f7faafc9e45532e)`() const` | Returns a pointer to Reason_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetReason`](#structFRHAPI__Restriction_1aff66cfec7a51cc9356382c657a764379)`(const ERHAPI_RestrictionReasonCode & NewValue)` | Sets the value of Reason_Optional and also sets Reason_IsSet to true.
+`public inline void `[`SetReason`](#structFRHAPI__Restriction_1aef686486305517d940d5eea912d08131)`(ERHAPI_RestrictionReasonCode && NewValue)` | Sets the value of Reason_Optional and also sets Reason_IsSet to true using move semantics.
 `public inline void `[`ClearReason`](#structFRHAPI__Restriction_1a7d50b5b72086bb552c7a73c2acd0dd2c)`()` | Clears the value of Reason_Optional and sets Reason_IsSet to false.
 `public inline bool `[`IsReasonSet`](#structFRHAPI__Restriction_1a9146cac6536c766279fc4a9a7af831a9)`() const` | Checks whether Reason_Optional has been set.
 `public inline FDateTime & `[`GetExpiration`](#structFRHAPI__Restriction_1a9de96ed60891e7a52aff0cb19582fe96)`()` | Gets the value of Expiration_Optional, regardless of it having been set.
@@ -59,7 +59,7 @@ Restriction applied to a player.
 
 Type of restriction.
 
-#### `public FString `[`Reason_Optional`](#structFRHAPI__Restriction_1acb07c004735610b31b0326e85867841f) <a id="structFRHAPI__Restriction_1acb07c004735610b31b0326e85867841f"></a>
+#### `public ERHAPI_RestrictionReasonCode `[`Reason_Optional`](#structFRHAPI__Restriction_1a7474068fad2a2ea3deb79e6ac72d8808) <a id="structFRHAPI__Restriction_1a7474068fad2a2ea3deb79e6ac72d8808"></a>
 
 Reason the restriction was applied.
 
@@ -108,35 +108,35 @@ Sets the value of Type.
 
 Sets the value of Type using move semantics.
 
-#### `public inline FString & `[`GetReason`](#structFRHAPI__Restriction_1a182cbbe5278382533d8c8ba1929a35bf)`()` <a id="structFRHAPI__Restriction_1a182cbbe5278382533d8c8ba1929a35bf"></a>
+#### `public inline ERHAPI_RestrictionReasonCode & `[`GetReason`](#structFRHAPI__Restriction_1a6e7a8311942d1852cb2ebdb2e69c2837)`()` <a id="structFRHAPI__Restriction_1a6e7a8311942d1852cb2ebdb2e69c2837"></a>
 
 Gets the value of Reason_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetReason`](#structFRHAPI__Restriction_1a531a35039b7dec535cd8ad7c84d066bb)`() const` <a id="structFRHAPI__Restriction_1a531a35039b7dec535cd8ad7c84d066bb"></a>
+#### `public inline const ERHAPI_RestrictionReasonCode & `[`GetReason`](#structFRHAPI__Restriction_1afb6347d7b4097728d1c3eff0adb348d6)`() const` <a id="structFRHAPI__Restriction_1afb6347d7b4097728d1c3eff0adb348d6"></a>
 
 Gets the value of Reason_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetReason`](#structFRHAPI__Restriction_1afe82ab3fd779eb1d73b537f733ba6bc0)`(const FString & DefaultValue) const` <a id="structFRHAPI__Restriction_1afe82ab3fd779eb1d73b537f733ba6bc0"></a>
+#### `public inline const ERHAPI_RestrictionReasonCode & `[`GetReason`](#structFRHAPI__Restriction_1a5cf31a5bec5fe7039936f378efdf5ec0)`(const ERHAPI_RestrictionReasonCode & DefaultValue) const` <a id="structFRHAPI__Restriction_1a5cf31a5bec5fe7039936f378efdf5ec0"></a>
 
 Gets the value of Reason_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetReason`](#structFRHAPI__Restriction_1a560c7de16a3a9e8ae18c7f200d34104f)`(FString & OutValue) const` <a id="structFRHAPI__Restriction_1a560c7de16a3a9e8ae18c7f200d34104f"></a>
+#### `public inline bool `[`GetReason`](#structFRHAPI__Restriction_1aa074595a9ed3d659d65c57b387faff40)`(ERHAPI_RestrictionReasonCode & OutValue) const` <a id="structFRHAPI__Restriction_1aa074595a9ed3d659d65c57b387faff40"></a>
 
 Fills OutValue with the value of Reason_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetReasonOrNull`](#structFRHAPI__Restriction_1a580cc0f156b36849c2bdf786383a9b65)`()` <a id="structFRHAPI__Restriction_1a580cc0f156b36849c2bdf786383a9b65"></a>
+#### `public inline ERHAPI_RestrictionReasonCode * `[`GetReasonOrNull`](#structFRHAPI__Restriction_1a382a9d92915b5fde944ed9cad1db13c6)`()` <a id="structFRHAPI__Restriction_1a382a9d92915b5fde944ed9cad1db13c6"></a>
 
 Returns a pointer to Reason_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetReasonOrNull`](#structFRHAPI__Restriction_1a6b62ccb570a792b511846846be454f02)`() const` <a id="structFRHAPI__Restriction_1a6b62ccb570a792b511846846be454f02"></a>
+#### `public inline const ERHAPI_RestrictionReasonCode * `[`GetReasonOrNull`](#structFRHAPI__Restriction_1aaa0593407274af1f1f7faafc9e45532e)`() const` <a id="structFRHAPI__Restriction_1aaa0593407274af1f1f7faafc9e45532e"></a>
 
 Returns a pointer to Reason_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetReason`](#structFRHAPI__Restriction_1a750c617f4c01db3f77218a8c0f370c70)`(const FString & NewValue)` <a id="structFRHAPI__Restriction_1a750c617f4c01db3f77218a8c0f370c70"></a>
+#### `public inline void `[`SetReason`](#structFRHAPI__Restriction_1aff66cfec7a51cc9356382c657a764379)`(const ERHAPI_RestrictionReasonCode & NewValue)` <a id="structFRHAPI__Restriction_1aff66cfec7a51cc9356382c657a764379"></a>
 
 Sets the value of Reason_Optional and also sets Reason_IsSet to true.
 
-#### `public inline void `[`SetReason`](#structFRHAPI__Restriction_1a58c2a0b0546fb3a7444350a000ba45d1)`(FString && NewValue)` <a id="structFRHAPI__Restriction_1a58c2a0b0546fb3a7444350a000ba45d1"></a>
+#### `public inline void `[`SetReason`](#structFRHAPI__Restriction_1aef686486305517d940d5eea912d08131)`(ERHAPI_RestrictionReasonCode && NewValue)` <a id="structFRHAPI__Restriction_1aef686486305517d940d5eea912d08131"></a>
 
 Sets the value of Reason_Optional and also sets Reason_IsSet to true using move semantics.
 
