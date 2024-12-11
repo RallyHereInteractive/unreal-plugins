@@ -850,10 +850,21 @@ void URH_PlayerSettings::GetPlayerSettingsForKeys(const FString& SettingTypeId, 
 						}
 					}
 
-					if (FoundSettings->Content.Num() > 0)
+					// if no keys were specified, or all keys specified were found, return the settings, otherwise fall through and request the missing keys
+					if (bHasAllKeys)
 					{
-						Delegate.ExecuteIfBound(true, ReturnedSettings);
-						return;
+						// if specific keys were requested, return just that subset
+						if (Keys.Num() > 0)
+						{
+							Delegate.ExecuteIfBound(true, ReturnedSettings);
+							return;
+						}
+						// if no specific keys were requested, return the full set
+						else
+						{
+							Delegate.ExecuteIfBound(true, *FoundSettings);
+							return;
+						}
 					}
 				}
 			}
