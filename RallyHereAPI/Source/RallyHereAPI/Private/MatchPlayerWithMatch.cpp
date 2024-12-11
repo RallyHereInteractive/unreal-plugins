@@ -204,7 +204,8 @@ bool FRHAPI_MatchPlayerWithMatch::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 		ParseSuccess &= CustomData_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonMatchField = (*Object)->TryGetField(TEXT("match"));
-	ParseSuccess &= JsonMatchField.IsValid() && (!JsonMatchField->IsNull() &&  TryGetJsonValue(JsonMatchField, Match));
+	const bool Match_IsValid = JsonMatchField.IsValid() && (!JsonMatchField->IsNull() && TryGetJsonValue(JsonMatchField, Match));
+	ParseSuccess &= Match_IsValid; 
 
 	return ParseSuccess;
 }

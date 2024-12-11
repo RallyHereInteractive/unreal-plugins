@@ -85,7 +85,8 @@ bool FRHAPI_CreateInventoryRequest::FromJson(const TSharedPtr<FJsonValue>& JsonV
 		ParseSuccess &= CustomData_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonItemIdField = (*Object)->TryGetField(TEXT("item_id"));
-	ParseSuccess &= JsonItemIdField.IsValid() && (!JsonItemIdField->IsNull() &&  TryGetJsonValue(JsonItemIdField, ItemId));
+	const bool ItemId_IsValid = JsonItemIdField.IsValid() && (!JsonItemIdField->IsNull() && TryGetJsonValue(JsonItemIdField, ItemId));
+	ParseSuccess &= ItemId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
 	if (JsonTypeField.IsValid())
 	{

@@ -46,7 +46,8 @@ bool FRHAPI_UpdateBackfillRequest::FromJson(const TSharedPtr<FJsonValue>& JsonVa
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonInstanceIdField = (*Object)->TryGetField(TEXT("instance_id"));
-	ParseSuccess &= JsonInstanceIdField.IsValid() && (!JsonInstanceIdField->IsNull() &&  TryGetJsonValue(JsonInstanceIdField, InstanceId));
+	const bool InstanceId_IsValid = JsonInstanceIdField.IsValid() && (!JsonInstanceIdField->IsNull() && TryGetJsonValue(JsonInstanceIdField, InstanceId));
+	ParseSuccess &= InstanceId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonAdditionalJoinParamsField = (*Object)->TryGetField(TEXT("additional_join_params"));
 	if (JsonAdditionalJoinParamsField.IsValid())
 	{

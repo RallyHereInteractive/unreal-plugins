@@ -36,7 +36,8 @@ bool FRHAPI_PlayerIdWrapper::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPlayerIdField = (*Object)->TryGetField(TEXT("player_id"));
-	ParseSuccess &= JsonPlayerIdField.IsValid() && (!JsonPlayerIdField->IsNull() &&  TryGetJsonValue(JsonPlayerIdField, PlayerId));
+	const bool PlayerId_IsValid = JsonPlayerIdField.IsValid() && (!JsonPlayerIdField->IsNull() && TryGetJsonValue(JsonPlayerIdField, PlayerId));
+	ParseSuccess &= PlayerId_IsValid; 
 
 	return ParseSuccess;
 }

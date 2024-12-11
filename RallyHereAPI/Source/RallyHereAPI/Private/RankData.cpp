@@ -41,7 +41,8 @@ bool FRHAPI_RankData::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonRankUuidField = (*Object)->TryGetField(TEXT("rank_uuid"));
-	ParseSuccess &= JsonRankUuidField.IsValid() && (!JsonRankUuidField->IsNull() &&  TryGetJsonValue(JsonRankUuidField, RankUuid));
+	const bool RankUuid_IsValid = JsonRankUuidField.IsValid() && (!JsonRankUuidField->IsNull() && TryGetJsonValue(JsonRankUuidField, RankUuid));
+	ParseSuccess &= RankUuid_IsValid; 
 	const TSharedPtr<FJsonValue> JsonMuField = (*Object)->TryGetField(TEXT("mu"));
 	if (JsonMuField.IsValid())
 	{

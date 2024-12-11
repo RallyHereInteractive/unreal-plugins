@@ -91,7 +91,8 @@ bool FRHAPI_UpdateInventoryRequestById::FromJson(const TSharedPtr<FJsonValue>& J
 		ParseSuccess &= ItemId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonInventoryIdField = (*Object)->TryGetField(TEXT("inventory_id"));
-	ParseSuccess &= JsonInventoryIdField.IsValid() && (!JsonInventoryIdField->IsNull() &&  TryGetJsonValue(JsonInventoryIdField, InventoryId));
+	const bool InventoryId_IsValid = JsonInventoryIdField.IsValid() && (!JsonInventoryIdField->IsNull() && TryGetJsonValue(JsonInventoryIdField, InventoryId));
+	ParseSuccess &= InventoryId_IsValid; 
 
 	return ParseSuccess;
 }

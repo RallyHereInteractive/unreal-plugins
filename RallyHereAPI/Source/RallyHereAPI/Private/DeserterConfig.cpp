@@ -41,7 +41,8 @@ bool FRHAPI_DeserterConfig::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonDeserterIdField = (*Object)->TryGetField(TEXT("deserter_id"));
-	ParseSuccess &= JsonDeserterIdField.IsValid() && (!JsonDeserterIdField->IsNull() &&  TryGetJsonValue(JsonDeserterIdField, DeserterId));
+	const bool DeserterId_IsValid = JsonDeserterIdField.IsValid() && (!JsonDeserterIdField->IsNull() && TryGetJsonValue(JsonDeserterIdField, DeserterId));
+	ParseSuccess &= DeserterId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonLastClearedTimestampField = (*Object)->TryGetField(TEXT("last_cleared_timestamp"));
 	if (JsonLastClearedTimestampField.IsValid())
 	{

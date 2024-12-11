@@ -55,9 +55,11 @@ bool FRHAPI_PlayerPersonResponse::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPlayerIdField = (*Object)->TryGetField(TEXT("player_id"));
-	ParseSuccess &= JsonPlayerIdField.IsValid() && (!JsonPlayerIdField->IsNull() &&  TryGetJsonValue(JsonPlayerIdField, PlayerId));
+	const bool PlayerId_IsValid = JsonPlayerIdField.IsValid() && (!JsonPlayerIdField->IsNull() && TryGetJsonValue(JsonPlayerIdField, PlayerId));
+	ParseSuccess &= PlayerId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
-	ParseSuccess &= JsonPlayerUuidField.IsValid() && (!JsonPlayerUuidField->IsNull() &&  TryGetJsonValue(JsonPlayerUuidField, PlayerUuid));
+	const bool PlayerUuid_IsValid = JsonPlayerUuidField.IsValid() && (!JsonPlayerUuidField->IsNull() && TryGetJsonValue(JsonPlayerUuidField, PlayerUuid));
+	ParseSuccess &= PlayerUuid_IsValid; 
 	const TSharedPtr<FJsonValue> JsonActivePlayerIdField = (*Object)->TryGetField(TEXT("active_player_id"));
 	if (JsonActivePlayerIdField.IsValid())
 	{
@@ -71,7 +73,8 @@ bool FRHAPI_PlayerPersonResponse::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 		ParseSuccess &= ActivePlayerUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPersonIdField = (*Object)->TryGetField(TEXT("person_id"));
-	ParseSuccess &= JsonPersonIdField.IsValid() && (!JsonPersonIdField->IsNull() &&  TryGetJsonValue(JsonPersonIdField, PersonId));
+	const bool PersonId_IsValid = JsonPersonIdField.IsValid() && (!JsonPersonIdField->IsNull() && TryGetJsonValue(JsonPersonIdField, PersonId));
+	ParseSuccess &= PersonId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonRoleIdField = (*Object)->TryGetField(TEXT("role_id"));
 	if (JsonRoleIdField.IsValid())
 	{

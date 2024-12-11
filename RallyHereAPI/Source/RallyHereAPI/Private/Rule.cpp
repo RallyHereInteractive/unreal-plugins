@@ -53,9 +53,11 @@ bool FRHAPI_Rule::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonRuleTypeField = (*Object)->TryGetField(TEXT("rule_type"));
-	ParseSuccess &= JsonRuleTypeField.IsValid() && (!JsonRuleTypeField->IsNull() &&  TryGetJsonValue(JsonRuleTypeField, RuleType));
+	const bool RuleType_IsValid = JsonRuleTypeField.IsValid() && (!JsonRuleTypeField->IsNull() && TryGetJsonValue(JsonRuleTypeField, RuleType));
+	ParseSuccess &= RuleType_IsValid; 
 	const TSharedPtr<FJsonValue> JsonComparisonOperationField = (*Object)->TryGetField(TEXT("comparison_operation"));
-	ParseSuccess &= JsonComparisonOperationField.IsValid() && (!JsonComparisonOperationField->IsNull() &&  TryGetJsonValue(JsonComparisonOperationField, ComparisonOperation));
+	const bool ComparisonOperation_IsValid = JsonComparisonOperationField.IsValid() && (!JsonComparisonOperationField->IsNull() && TryGetJsonValue(JsonComparisonOperationField, ComparisonOperation));
+	ParseSuccess &= ComparisonOperation_IsValid; 
 	const TSharedPtr<FJsonValue> JsonComparisonValueField = (*Object)->TryGetField(TEXT("comparison_value"));
 	if (JsonComparisonValueField.IsValid())
 	{

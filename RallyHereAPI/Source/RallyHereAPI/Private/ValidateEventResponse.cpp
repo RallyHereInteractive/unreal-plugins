@@ -60,7 +60,8 @@ bool FRHAPI_ValidateEventResponse::FromJson(const TSharedPtr<FJsonValue>& JsonVa
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonSuccessField = (*Object)->TryGetField(TEXT("success"));
-	ParseSuccess &= JsonSuccessField.IsValid() && (!JsonSuccessField->IsNull() &&  TryGetJsonValue(JsonSuccessField, Success));
+	const bool Success_IsValid = JsonSuccessField.IsValid() && (!JsonSuccessField->IsNull() && TryGetJsonValue(JsonSuccessField, Success));
+	ParseSuccess &= Success_IsValid; 
 	const TSharedPtr<FJsonValue> JsonErrorCodeField = (*Object)->TryGetField(TEXT("error_code"));
 	if (JsonErrorCodeField.IsValid())
 	{

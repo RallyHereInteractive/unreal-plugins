@@ -71,13 +71,17 @@ bool FRHAPI_PlatformEntitlementProcessResult::FromJson(const TSharedPtr<FJsonVal
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonRequestIdField = (*Object)->TryGetField(TEXT("request_id"));
-	ParseSuccess &= JsonRequestIdField.IsValid() && (!JsonRequestIdField->IsNull() &&  TryGetJsonValue(JsonRequestIdField, RequestId));
+	const bool RequestId_IsValid = JsonRequestIdField.IsValid() && (!JsonRequestIdField->IsNull() && TryGetJsonValue(JsonRequestIdField, RequestId));
+	ParseSuccess &= RequestId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonClientTypeField = (*Object)->TryGetField(TEXT("client_type"));
-	ParseSuccess &= JsonClientTypeField.IsValid() && (!JsonClientTypeField->IsNull() &&  TryGetJsonValue(JsonClientTypeField, ClientType));
+	const bool ClientType_IsValid = JsonClientTypeField.IsValid() && (!JsonClientTypeField->IsNull() && TryGetJsonValue(JsonClientTypeField, ClientType));
+	ParseSuccess &= ClientType_IsValid; 
 	const TSharedPtr<FJsonValue> JsonTransactionIdField = (*Object)->TryGetField(TEXT("transaction_id"));
-	ParseSuccess &= JsonTransactionIdField.IsValid() && (!JsonTransactionIdField->IsNull() &&  TryGetJsonValue(JsonTransactionIdField, TransactionId));
+	const bool TransactionId_IsValid = JsonTransactionIdField.IsValid() && (!JsonTransactionIdField->IsNull() && TryGetJsonValue(JsonTransactionIdField, TransactionId));
+	ParseSuccess &= TransactionId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonPlatformRegionField = (*Object)->TryGetField(TEXT("platform_region"));
-	ParseSuccess &= JsonPlatformRegionField.IsValid() && (!JsonPlatformRegionField->IsNull() &&  TryGetJsonValue(JsonPlatformRegionField, PlatformRegion));
+	const bool PlatformRegion_IsValid = JsonPlatformRegionField.IsValid() && (!JsonPlatformRegionField->IsNull() && TryGetJsonValue(JsonPlatformRegionField, PlatformRegion));
+	ParseSuccess &= PlatformRegion_IsValid; 
 	const TSharedPtr<FJsonValue> JsonStatusField = (*Object)->TryGetField(TEXT("status"));
 	if (JsonStatusField.IsValid())
 	{
@@ -103,9 +107,11 @@ bool FRHAPI_PlatformEntitlementProcessResult::FromJson(const TSharedPtr<FJsonVal
 		ParseSuccess &= ServerEntitlements_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlatformIdField = (*Object)->TryGetField(TEXT("platform_id"));
-	ParseSuccess &= JsonPlatformIdField.IsValid() && (!JsonPlatformIdField->IsNull() &&  TryGetJsonValue(JsonPlatformIdField, PlatformId));
+	const bool PlatformId_IsValid = JsonPlatformIdField.IsValid() && (!JsonPlatformIdField->IsNull() && TryGetJsonValue(JsonPlatformIdField, PlatformId));
+	ParseSuccess &= PlatformId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonPlatformUserIdField = (*Object)->TryGetField(TEXT("platform_user_id"));
-	ParseSuccess &= JsonPlatformUserIdField.IsValid() && (!JsonPlatformUserIdField->IsNull() &&  TryGetJsonValue(JsonPlatformUserIdField, PlatformUserId));
+	const bool PlatformUserId_IsValid = JsonPlatformUserIdField.IsValid() && (!JsonPlatformUserIdField->IsNull() && TryGetJsonValue(JsonPlatformUserIdField, PlatformUserId));
+	ParseSuccess &= PlatformUserId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonSkippedServerEntitlementsField = (*Object)->TryGetField(TEXT("skipped_server_entitlements"));
 	if (JsonSkippedServerEntitlementsField.IsValid())
 	{

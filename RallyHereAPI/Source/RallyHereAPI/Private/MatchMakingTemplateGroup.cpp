@@ -43,9 +43,11 @@ bool FRHAPI_MatchMakingTemplateGroup::FromJson(const TSharedPtr<FJsonValue>& Jso
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonTemplateGroupIdField = (*Object)->TryGetField(TEXT("template_group_id"));
-	ParseSuccess &= JsonTemplateGroupIdField.IsValid() && (!JsonTemplateGroupIdField->IsNull() &&  TryGetJsonValue(JsonTemplateGroupIdField, TemplateGroupId));
+	const bool TemplateGroupId_IsValid = JsonTemplateGroupIdField.IsValid() && (!JsonTemplateGroupIdField->IsNull() && TryGetJsonValue(JsonTemplateGroupIdField, TemplateGroupId));
+	ParseSuccess &= TemplateGroupId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonTemplateOptionsField = (*Object)->TryGetField(TEXT("template_options"));
-	ParseSuccess &= JsonTemplateOptionsField.IsValid() && (!JsonTemplateOptionsField->IsNull() &&  TryGetJsonValue(JsonTemplateOptionsField, TemplateOptions));
+	const bool TemplateOptions_IsValid = JsonTemplateOptionsField.IsValid() && (!JsonTemplateOptionsField->IsNull() && TryGetJsonValue(JsonTemplateOptionsField, TemplateOptions));
+	ParseSuccess &= TemplateOptions_IsValid; 
 	const TSharedPtr<FJsonValue> JsonRequiredItemIdsField = (*Object)->TryGetField(TEXT("required_item_ids"));
 	if (JsonRequiredItemIdsField.IsValid())
 	{

@@ -286,6 +286,8 @@ public:
 
 	virtual bool ParseHeaders() { return true; }
 	virtual bool ParseContent();
+	/** Whether or not the parsed content has internal parsing errors that are non-fatal */
+	bool HasContentParseErrors() const { return HasParseErrors; }
 
 	void SetSuccessful(bool InSuccessful) { Successful = InSuccessful; }
 	bool IsSuccessful() const { return Successful; }
@@ -320,7 +322,7 @@ public:
 	const JsonPayloadType& GetJsonResponse() const { auto PayloadJson = TryGetPayload<JsonPayloadType>(); return PayloadJson ? *PayloadJson : DefaultJsonPayload; }
 
 protected:
-	bool Successful;
+	bool Successful, HasParseErrors;
 	EHttpResponseCodes::Type ResponseCode;
 	FHttpResponsePtr HttpResponse;
 	FRequestMetadata RequestMetadata;

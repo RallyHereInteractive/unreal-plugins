@@ -62,7 +62,8 @@ bool FRHAPI_MapConfig::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= MapGameId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonMapNameField = (*Object)->TryGetField(TEXT("map_name"));
-	ParseSuccess &= JsonMapNameField.IsValid() && (!JsonMapNameField->IsNull() &&  TryGetJsonValue(JsonMapNameField, MapName));
+	const bool MapName_IsValid = JsonMapNameField.IsValid() && (!JsonMapNameField->IsNull() && TryGetJsonValue(JsonMapNameField, MapName));
+	ParseSuccess &= MapName_IsValid; 
 	const TSharedPtr<FJsonValue> JsonModeField = (*Object)->TryGetField(TEXT("mode"));
 	if (JsonModeField.IsValid())
 	{

@@ -40,11 +40,14 @@ bool FRHAPI_InstanceHealthSettingsResponse::FromJson(const TSharedPtr<FJsonValue
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonCadenceSecondsField = (*Object)->TryGetField(TEXT("cadence_seconds"));
-	ParseSuccess &= JsonCadenceSecondsField.IsValid() && (!JsonCadenceSecondsField->IsNull() &&  TryGetJsonValue(JsonCadenceSecondsField, CadenceSeconds));
+	const bool CadenceSeconds_IsValid = JsonCadenceSecondsField.IsValid() && (!JsonCadenceSecondsField->IsNull() && TryGetJsonValue(JsonCadenceSecondsField, CadenceSeconds));
+	ParseSuccess &= CadenceSeconds_IsValid; 
 	const TSharedPtr<FJsonValue> JsonUnhealthyHealthCheckPercentageField = (*Object)->TryGetField(TEXT("unhealthy_health_check_percentage"));
-	ParseSuccess &= JsonUnhealthyHealthCheckPercentageField.IsValid() && (!JsonUnhealthyHealthCheckPercentageField->IsNull() &&  TryGetJsonValue(JsonUnhealthyHealthCheckPercentageField, UnhealthyHealthCheckPercentage));
+	const bool UnhealthyHealthCheckPercentage_IsValid = JsonUnhealthyHealthCheckPercentageField.IsValid() && (!JsonUnhealthyHealthCheckPercentageField->IsNull() && TryGetJsonValue(JsonUnhealthyHealthCheckPercentageField, UnhealthyHealthCheckPercentage));
+	ParseSuccess &= UnhealthyHealthCheckPercentage_IsValid; 
 	const TSharedPtr<FJsonValue> JsonMissedChecksBeforeUnknownField = (*Object)->TryGetField(TEXT("missed_checks_before_unknown"));
-	ParseSuccess &= JsonMissedChecksBeforeUnknownField.IsValid() && (!JsonMissedChecksBeforeUnknownField->IsNull() &&  TryGetJsonValue(JsonMissedChecksBeforeUnknownField, MissedChecksBeforeUnknown));
+	const bool MissedChecksBeforeUnknown_IsValid = JsonMissedChecksBeforeUnknownField.IsValid() && (!JsonMissedChecksBeforeUnknownField->IsNull() && TryGetJsonValue(JsonMissedChecksBeforeUnknownField, MissedChecksBeforeUnknown));
+	ParseSuccess &= MissedChecksBeforeUnknown_IsValid; 
 
 	return ParseSuccess;
 }

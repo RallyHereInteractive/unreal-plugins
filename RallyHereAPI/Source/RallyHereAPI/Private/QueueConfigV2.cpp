@@ -47,13 +47,17 @@ bool FRHAPI_QueueConfigV2::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonQueueIdField = (*Object)->TryGetField(TEXT("queue_id"));
-	ParseSuccess &= JsonQueueIdField.IsValid() && (!JsonQueueIdField->IsNull() &&  TryGetJsonValue(JsonQueueIdField, QueueId));
+	const bool QueueId_IsValid = JsonQueueIdField.IsValid() && (!JsonQueueIdField->IsNull() && TryGetJsonValue(JsonQueueIdField, QueueId));
+	ParseSuccess &= QueueId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonActiveField = (*Object)->TryGetField(TEXT("active"));
-	ParseSuccess &= JsonActiveField.IsValid() && (!JsonActiveField->IsNull() &&  TryGetJsonValue(JsonActiveField, Active));
+	const bool Active_IsValid = JsonActiveField.IsValid() && (!JsonActiveField->IsNull() && TryGetJsonValue(JsonActiveField, Active));
+	ParseSuccess &= Active_IsValid; 
 	const TSharedPtr<FJsonValue> JsonMaxQueueGroupSizeField = (*Object)->TryGetField(TEXT("max_queue_group_size"));
-	ParseSuccess &= JsonMaxQueueGroupSizeField.IsValid() && (!JsonMaxQueueGroupSizeField->IsNull() &&  TryGetJsonValue(JsonMaxQueueGroupSizeField, MaxQueueGroupSize));
+	const bool MaxQueueGroupSize_IsValid = JsonMaxQueueGroupSizeField.IsValid() && (!JsonMaxQueueGroupSizeField->IsNull() && TryGetJsonValue(JsonMaxQueueGroupSizeField, MaxQueueGroupSize));
+	ParseSuccess &= MaxQueueGroupSize_IsValid; 
 	const TSharedPtr<FJsonValue> JsonMatchMakingTemplateGroupIdField = (*Object)->TryGetField(TEXT("match_making_template_group_id"));
-	ParseSuccess &= JsonMatchMakingTemplateGroupIdField.IsValid() && (!JsonMatchMakingTemplateGroupIdField->IsNull() &&  TryGetJsonValue(JsonMatchMakingTemplateGroupIdField, MatchMakingTemplateGroupId));
+	const bool MatchMakingTemplateGroupId_IsValid = JsonMatchMakingTemplateGroupIdField.IsValid() && (!JsonMatchMakingTemplateGroupIdField->IsNull() && TryGetJsonValue(JsonMatchMakingTemplateGroupIdField, MatchMakingTemplateGroupId));
+	ParseSuccess &= MatchMakingTemplateGroupId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonLegacyConfigField = (*Object)->TryGetField(TEXT("legacy_config"));
 	if (JsonLegacyConfigField.IsValid())
 	{

@@ -47,7 +47,8 @@ bool FRHAPI_PlayerRankUpdateRequest::FromJson(const TSharedPtr<FJsonValue>& Json
 		ParseSuccess &= InstanceId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonRankField = (*Object)->TryGetField(TEXT("rank"));
-	ParseSuccess &= JsonRankField.IsValid() && (!JsonRankField->IsNull() &&  TryGetJsonValue(JsonRankField, Rank));
+	const bool Rank_IsValid = JsonRankField.IsValid() && (!JsonRankField->IsNull() && TryGetJsonValue(JsonRankField, Rank));
+	ParseSuccess &= Rank_IsValid; 
 
 	return ParseSuccess;
 }

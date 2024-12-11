@@ -63,7 +63,8 @@ bool FRHAPI_ClientSettings::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= Platform_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonInputField = (*Object)->TryGetField(TEXT("input"));
-	ParseSuccess &= JsonInputField.IsValid() && (!JsonInputField->IsNull() &&  TryGetJsonValue(JsonInputField, Input));
+	const bool Input_IsValid = JsonInputField.IsValid() && (!JsonInputField->IsNull() && TryGetJsonValue(JsonInputField, Input));
+	ParseSuccess &= Input_IsValid; 
 	const TSharedPtr<FJsonValue> JsonDeviceTypeField = (*Object)->TryGetField(TEXT("device_type"));
 	if (JsonDeviceTypeField.IsValid())
 	{

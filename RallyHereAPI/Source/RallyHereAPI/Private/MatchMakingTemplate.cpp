@@ -54,7 +54,8 @@ bool FRHAPI_MatchMakingTemplate::FromJson(const TSharedPtr<FJsonValue>& JsonValu
 		ParseSuccess &= MatchMakingTemplateId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonMmrGroupingMethodField = (*Object)->TryGetField(TEXT("mmr_grouping_method"));
-	ParseSuccess &= JsonMmrGroupingMethodField.IsValid() && (!JsonMmrGroupingMethodField->IsNull() &&  TryGetJsonValue(JsonMmrGroupingMethodField, MmrGroupingMethod));
+	const bool MmrGroupingMethod_IsValid = JsonMmrGroupingMethodField.IsValid() && (!JsonMmrGroupingMethodField->IsNull() && TryGetJsonValue(JsonMmrGroupingMethodField, MmrGroupingMethod));
+	ParseSuccess &= MmrGroupingMethod_IsValid; 
 	const TSharedPtr<FJsonValue> JsonRulesetField = (*Object)->TryGetField(TEXT("ruleset"));
 	if (JsonRulesetField.IsValid())
 	{
@@ -62,7 +63,8 @@ bool FRHAPI_MatchMakingTemplate::FromJson(const TSharedPtr<FJsonValue>& JsonValu
 		ParseSuccess &= Ruleset_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonProfilesField = (*Object)->TryGetField(TEXT("profiles"));
-	ParseSuccess &= JsonProfilesField.IsValid() && (!JsonProfilesField->IsNull() &&  TryGetJsonValue(JsonProfilesField, Profiles));
+	const bool Profiles_IsValid = JsonProfilesField.IsValid() && (!JsonProfilesField->IsNull() && TryGetJsonValue(JsonProfilesField, Profiles));
+	ParseSuccess &= Profiles_IsValid; 
 
 	return ParseSuccess;
 }

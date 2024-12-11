@@ -51,7 +51,8 @@ bool FRHAPI_NotificationCreate::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonMessageField = (*Object)->TryGetField(TEXT("message"));
-	ParseSuccess &= JsonMessageField.IsValid() && (!JsonMessageField->IsNull() &&  TryGetJsonValue(JsonMessageField, Message));
+	const bool Message_IsValid = JsonMessageField.IsValid() && (!JsonMessageField->IsNull() && TryGetJsonValue(JsonMessageField, Message));
+	ParseSuccess &= Message_IsValid; 
 	const TSharedPtr<FJsonValue> JsonRhUrlField = (*Object)->TryGetField(TEXT("rh_url"));
 	if (JsonRhUrlField.IsValid())
 	{

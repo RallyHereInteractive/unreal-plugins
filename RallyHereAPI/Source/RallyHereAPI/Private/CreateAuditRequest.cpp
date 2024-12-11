@@ -203,9 +203,11 @@ bool FRHAPI_CreateAuditRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonEventNameField = (*Object)->TryGetField(TEXT("event_name"));
-	ParseSuccess &= JsonEventNameField.IsValid() && (!JsonEventNameField->IsNull() &&  TryGetJsonValue(JsonEventNameField, EventName));
+	const bool EventName_IsValid = JsonEventNameField.IsValid() && (!JsonEventNameField->IsNull() && TryGetJsonValue(JsonEventNameField, EventName));
+	ParseSuccess &= EventName_IsValid; 
 	const TSharedPtr<FJsonValue> JsonSessionIdField = (*Object)->TryGetField(TEXT("session_id"));
-	ParseSuccess &= JsonSessionIdField.IsValid() && (!JsonSessionIdField->IsNull() &&  TryGetJsonValue(JsonSessionIdField, SessionId));
+	const bool SessionId_IsValid = JsonSessionIdField.IsValid() && (!JsonSessionIdField->IsNull() && TryGetJsonValue(JsonSessionIdField, SessionId));
+	ParseSuccess &= SessionId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
 	if (JsonCustomDataField.IsValid())
 	{

@@ -98,9 +98,11 @@ bool FRHAPI_TimeFrame::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= HourInterval_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonStartField = (*Object)->TryGetField(TEXT("start"));
-	ParseSuccess &= JsonStartField.IsValid() && (!JsonStartField->IsNull() &&  TryGetJsonValue(JsonStartField, Start));
+	const bool Start_IsValid = JsonStartField.IsValid() && (!JsonStartField->IsNull() && TryGetJsonValue(JsonStartField, Start));
+	ParseSuccess &= Start_IsValid; 
 	const TSharedPtr<FJsonValue> JsonEndField = (*Object)->TryGetField(TEXT("end"));
-	ParseSuccess &= JsonEndField.IsValid() && (!JsonEndField->IsNull() &&  TryGetJsonValue(JsonEndField, End));
+	const bool End_IsValid = JsonEndField.IsValid() && (!JsonEndField->IsNull() && TryGetJsonValue(JsonEndField, End));
+	ParseSuccess &= End_IsValid; 
 	const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
 	if (JsonCacheInfoField.IsValid())
 	{

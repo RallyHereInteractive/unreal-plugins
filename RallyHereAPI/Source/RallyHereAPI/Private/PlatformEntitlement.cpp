@@ -58,9 +58,11 @@ bool FRHAPI_PlatformEntitlement::FromJson(const TSharedPtr<FJsonValue>& JsonValu
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPlatformSkuField = (*Object)->TryGetField(TEXT("platform_sku"));
-	ParseSuccess &= JsonPlatformSkuField.IsValid() && (!JsonPlatformSkuField->IsNull() &&  TryGetJsonValue(JsonPlatformSkuField, PlatformSku));
+	const bool PlatformSku_IsValid = JsonPlatformSkuField.IsValid() && (!JsonPlatformSkuField->IsNull() && TryGetJsonValue(JsonPlatformSkuField, PlatformSku));
+	ParseSuccess &= PlatformSku_IsValid; 
 	const TSharedPtr<FJsonValue> JsonPlatformEntitlementIdField = (*Object)->TryGetField(TEXT("platform_entitlement_id"));
-	ParseSuccess &= JsonPlatformEntitlementIdField.IsValid() && (!JsonPlatformEntitlementIdField->IsNull() &&  TryGetJsonValue(JsonPlatformEntitlementIdField, PlatformEntitlementId));
+	const bool PlatformEntitlementId_IsValid = JsonPlatformEntitlementIdField.IsValid() && (!JsonPlatformEntitlementIdField->IsNull() && TryGetJsonValue(JsonPlatformEntitlementIdField, PlatformEntitlementId));
+	ParseSuccess &= PlatformEntitlementId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonQuantityField = (*Object)->TryGetField(TEXT("quantity"));
 	if (JsonQuantityField.IsValid())
 	{

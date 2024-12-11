@@ -84,7 +84,8 @@ bool FRHAPI_MatchInstance::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonInstanceIdField = (*Object)->TryGetField(TEXT("instance_id"));
-	ParseSuccess &= JsonInstanceIdField.IsValid() && (!JsonInstanceIdField->IsNull() &&  TryGetJsonValue(JsonInstanceIdField, InstanceId));
+	const bool InstanceId_IsValid = JsonInstanceIdField.IsValid() && (!JsonInstanceIdField->IsNull() && TryGetJsonValue(JsonInstanceIdField, InstanceId));
+	ParseSuccess &= InstanceId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonHostPlayerUuidField = (*Object)->TryGetField(TEXT("host_player_uuid"));
 	if (JsonHostPlayerUuidField.IsValid())
 	{
