@@ -53,13 +53,11 @@ bool FRHAPI_Rule::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonRuleTypeField = (*Object)->TryGetField(TEXT("rule_type"));
-<<<<<<< HEAD
 	const bool RuleType_IsValid = JsonRuleTypeField.IsValid() && (!JsonRuleTypeField->IsNull() && TryGetJsonValue(JsonRuleTypeField, RuleType));
 	ParseSuccess &= RuleType_IsValid; 
-=======
-	ParseSuccess &= JsonRuleTypeField.IsValid() && (!JsonRuleTypeField->IsNull() &&  TryGetJsonValue(JsonRuleTypeField, RuleType));
 	const TSharedPtr<FJsonValue> JsonComparisonOperationField = (*Object)->TryGetField(TEXT("comparison_operation"));
-	ParseSuccess &= JsonComparisonOperationField.IsValid() && (!JsonComparisonOperationField->IsNull() &&  TryGetJsonValue(JsonComparisonOperationField, ComparisonOperation));
+	const bool ComparisonOperation_IsValid = JsonComparisonOperationField.IsValid() && (!JsonComparisonOperationField->IsNull() && TryGetJsonValue(JsonComparisonOperationField, ComparisonOperation));
+	ParseSuccess &= ComparisonOperation_IsValid; 
 	const TSharedPtr<FJsonValue> JsonComparisonValueField = (*Object)->TryGetField(TEXT("comparison_value"));
 	if (JsonComparisonValueField.IsValid())
 	{
@@ -72,22 +70,12 @@ bool FRHAPI_Rule::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ComparisonValueSet_IsSet = TryGetJsonValue(JsonComparisonValueSetField, ComparisonValueSet_Optional);
 		ParseSuccess &= ComparisonValueSet_IsSet;
 	}
->>>>>>> main
 	const TSharedPtr<FJsonValue> JsonItemIdField = (*Object)->TryGetField(TEXT("item_id"));
 	if (JsonItemIdField.IsValid())
 	{
 		ItemId_IsSet = TryGetJsonValue(JsonItemIdField, ItemId_Optional);
 		ParseSuccess &= ItemId_IsSet;
 	}
-<<<<<<< HEAD
-	const TSharedPtr<FJsonValue> JsonComparisonOperationField = (*Object)->TryGetField(TEXT("comparison_operation"));
-	const bool ComparisonOperation_IsValid = JsonComparisonOperationField.IsValid() && (!JsonComparisonOperationField->IsNull() && TryGetJsonValue(JsonComparisonOperationField, ComparisonOperation));
-	ParseSuccess &= ComparisonOperation_IsValid; 
-	const TSharedPtr<FJsonValue> JsonComparisonValueField = (*Object)->TryGetField(TEXT("comparison_value"));
-	const bool ComparisonValue_IsValid = JsonComparisonValueField.IsValid() && (!JsonComparisonValueField->IsNull() && TryGetJsonValue(JsonComparisonValueField, ComparisonValue));
-	ParseSuccess &= ComparisonValue_IsValid; 
-=======
->>>>>>> main
 
 	return ParseSuccess;
 }

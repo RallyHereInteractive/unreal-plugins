@@ -72,18 +72,14 @@ bool FRHAPI_CreateOrJoinRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValu
 		ParseSuccess &= CrossplayPreferences_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonSessionTypeField = (*Object)->TryGetField(TEXT("session_type"));
-<<<<<<< HEAD
 	const bool SessionType_IsValid = JsonSessionTypeField.IsValid() && (!JsonSessionTypeField->IsNull() && TryGetJsonValue(JsonSessionTypeField, SessionType));
 	ParseSuccess &= SessionType_IsValid; 
-=======
-	ParseSuccess &= JsonSessionTypeField.IsValid() && (!JsonSessionTypeField->IsNull() &&  TryGetJsonValue(JsonSessionTypeField, SessionType));
 	const TSharedPtr<FJsonValue> JsonPasswordField = (*Object)->TryGetField(TEXT("password"));
 	if (JsonPasswordField.IsValid())
 	{
 		Password_IsSet = TryGetJsonValue(JsonPasswordField, Password_Optional);
 		ParseSuccess &= Password_IsSet;
 	}
->>>>>>> main
 	const TSharedPtr<FJsonValue> JsonRegionIdField = (*Object)->TryGetField(TEXT("region_id"));
 	if (JsonRegionIdField.IsValid())
 	{

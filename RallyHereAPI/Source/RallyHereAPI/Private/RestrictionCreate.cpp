@@ -50,7 +50,8 @@ bool FRHAPI_RestrictionCreate::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
-	ParseSuccess &= JsonTypeField.IsValid() && (!JsonTypeField->IsNull() &&  TryGetJsonValue(JsonTypeField, Type));
+	const bool Type_IsValid = JsonTypeField.IsValid() && (!JsonTypeField->IsNull() && TryGetJsonValue(JsonTypeField, Type));
+	ParseSuccess &= Type_IsValid; 
 	const TSharedPtr<FJsonValue> JsonReasonField = (*Object)->TryGetField(TEXT("reason"));
 	if (JsonReasonField.IsValid())
 	{
@@ -64,9 +65,11 @@ bool FRHAPI_RestrictionCreate::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= Expiration_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonIssuerTypeField = (*Object)->TryGetField(TEXT("issuer_type"));
-	ParseSuccess &= JsonIssuerTypeField.IsValid() && (!JsonIssuerTypeField->IsNull() &&  TryGetJsonValue(JsonIssuerTypeField, IssuerType));
+	const bool IssuerType_IsValid = JsonIssuerTypeField.IsValid() && (!JsonIssuerTypeField->IsNull() && TryGetJsonValue(JsonIssuerTypeField, IssuerType));
+	ParseSuccess &= IssuerType_IsValid; 
 	const TSharedPtr<FJsonValue> JsonIssuerField = (*Object)->TryGetField(TEXT("issuer"));
-	ParseSuccess &= JsonIssuerField.IsValid() && (!JsonIssuerField->IsNull() &&  TryGetJsonValue(JsonIssuerField, Issuer));
+	const bool Issuer_IsValid = JsonIssuerField.IsValid() && (!JsonIssuerField->IsNull() && TryGetJsonValue(JsonIssuerField, Issuer));
+	ParseSuccess &= Issuer_IsValid; 
 
 	return ParseSuccess;
 }

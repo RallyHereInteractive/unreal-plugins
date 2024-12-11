@@ -36,7 +36,8 @@ bool FRHAPI_PlayerSwapRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPlayersField = (*Object)->TryGetField(TEXT("players"));
-	ParseSuccess &= JsonPlayersField.IsValid() && (!JsonPlayersField->IsNull() &&  TryGetJsonValue(JsonPlayersField, Players));
+	const bool Players_IsValid = JsonPlayersField.IsValid() && (!JsonPlayersField->IsNull() && TryGetJsonValue(JsonPlayersField, Players));
+	ParseSuccess &= Players_IsValid; 
 
 	return ParseSuccess;
 }
