@@ -39,6 +39,7 @@ UDELEGATE()
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FRH_OnActiveSessionChangedDynamicDelegate, URH_JoinedSession*, OldSession, URH_JoinedSession*, NewSession);
 DECLARE_MULTICAST_DELEGATE_TwoParams(FRH_OnActiveSessionChangedDelegate, URH_JoinedSession*, URH_JoinedSession*);
 
+#define JWT_RSA_TEST_ISSUER TEXT("rallyhere.com")
 
 /** @ingroup GameInstance
  *  @{
@@ -244,9 +245,10 @@ public:
 	 * @param [in] Session The session to be joined.
 	 * @param [in] lastURL The last URL used to connect to a session.
 	 * @param [out] outURL The URL to join the session.
+	 * @param [in] JoinToken The join token to use, if non-empty
 	 * @return If true, a join URL was generated.
 	 */
-	virtual bool GenerateJoinURL(const URH_JoinedSession* Session, FURL& lastURL, FURL& outURL) const;
+	virtual bool GenerateJoinURL(const URH_JoinedSession* Session, FURL& lastURL, FURL& outURL, const FString& JoinToken = TEXT("")) const;
 	/**
 	 * @brief @brief Attempt to generate a host URL from a session.
 	 * @param [in] Session The session a host url is being requested for.
@@ -380,6 +382,17 @@ protected:
 	* @param [in] Delegate Callback delegate for when the session is now active, or failed to transition.
 	*/
 	virtual bool StartJoinInstanceFlow(const FRH_GameInstanceSessionSyncBlock& Delegate = FRH_GameInstanceSessionSyncBlock());
+	/**
+	* @brief Retrieves a join token for a specified session, then performs the join.
+	* @param [in] Delegate Callback delegate for when the session is now active, or failed to transition.
+	*/
+	virtual void FetchJoinTokenAndPerformJoin(const FRH_GameInstanceSessionSyncBlock& Delegate);
+	/**
+	* @brief Retrieves a join token for a specified session, then performs the join.
+	* @param [in] Delegate Callback delegate for when the session is now active, or failed to transition.
+	* @param [in] JoinToken The join token to use, or empty
+	*/
+	virtual void PerformJoin(const FRH_GameInstanceSessionSyncBlock& Delegate, const FString& JoinToken = TEXT(""));
 	/**
 	* @private
 	* @brief Blueprint compatible wrapper for StartJoinInstanceFlow

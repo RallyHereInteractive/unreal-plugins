@@ -39,6 +39,7 @@ public class RallyHereIntegration : ModuleRules
 				"PerfCounters",
 				"RenderCore",
 				"RHI",
+				"JWT",
 			}
 		);
     }

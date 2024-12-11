@@ -84,6 +84,7 @@ TOptional<FGuid> RH_GetPlayerUuidFromPlayerController(const class APlayerControl
 // URL options for use when doing instance joins
 #define RH_SESSION_PARAMETER_NAME (TEXT("RHSessionId="))
 #define RH_INSTANCE_PARAMETER_NAME (TEXT("RHInstanceId="))
+#define RH_SESSION_JOINTOKEN_PARAMETER_NAME (TEXT("RHJoinToken="))
 
 /**
  *	@defgroup Common RallyHere Common

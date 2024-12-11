@@ -47,6 +47,10 @@
 			"Enabled" : true
 		},
 		{
+			"Name" : "JWT",
+			"Enabled" : true
+		},
+		{
 			"Name" : "WebBrowserWidget",
 			"Enabled" : true,
 			"TargetAllowList" : [ "Editor" ]

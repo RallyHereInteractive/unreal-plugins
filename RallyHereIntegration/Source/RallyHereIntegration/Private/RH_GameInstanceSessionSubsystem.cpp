@@ -31,6 +31,9 @@
 #include "GameFramework/GameStateBase.h"
 #include "Interfaces/IPv4/IPv4Address.h"
 
+#include "JsonWebToken.h"
+#include "JwtAlgorithms.h"
+
 
 //==================================================================
 
@@ -739,7 +742,7 @@ bool URH_GameInstanceSessionSubsystem::GenerateHostURL(const URH_JoinedSession* 
 	return false;
 }
 
-bool URH_GameInstanceSessionSubsystem::GenerateJoinURL(const URH_JoinedSession* Session, FURL& lastURL, FURL& outURL) const
+bool URH_GameInstanceSessionSubsystem::GenerateJoinURL(const URH_JoinedSession* Session, FURL& lastURL, FURL& outURL, const FString& JoinToken) const
 {
 	if (Session == nullptr)
 	{
@@ -782,6 +785,11 @@ bool URH_GameInstanceSessionSubsystem::GenerateJoinURL(const URH_JoinedSession* 
 
 	// add the RH Instance Id to the URL.  This is used to identify if a map loaded was on behalf of the instance, for tracking reasons (ex: enable it to be joined once load completes)
 	TravelURL.AddOption(*FString::Printf(TEXT("%s%s"), RH_INSTANCE_PARAMETER_NAME, *Instance->GetInstanceId()));
+
+	if (!JoinToken.IsEmpty())
+	{
+		TravelURL.AddOption(*FString::Printf(TEXT("%s%s"), RH_SESSION_JOINTOKEN_PARAMETER_NAME, *JoinToken));
+	}
 
 	if (TravelURL.Valid && TravelURL.Host.Len() > 0)
 	{
@@ -869,6 +877,44 @@ bool URH_GameInstanceSessionSubsystem::ValidateIncomingConnection(UNetConnection
 				ErrorMessage = TEXT("Imported player ids are not valid");
 				return false;
 			}
+		}
+	}
+
+	if (pSession != nullptr)
+	{
+		// extract the join token from the URL, and convert to JWT type
+		const FURL TempURL(nullptr, *RequestURL, TRAVEL_Absolute);
+		const FString JoinTokenString = TempURL.GetOption(RH_SESSION_JOINTOKEN_PARAMETER_NAME, TEXT(""));
+		const auto JoinToken = FJsonWebToken::FromString(JoinTokenString);
+		
+		// set up a verifier for the JWT and validate it
+		/*
+		FJwtAlgorithm_RS256 Verifier;
+		Verifier.SetPublicKey(JWT_RSA_TEST_PUBLIC_KEY);
+		const FString Issuer = JWT_RSA_TEST_ISSUER;
+		
+		bool bValidJoinToken = JoinToken.IsSet() && JoinToken->Verify(Verifier, Issuer);
+		if (!bValidJoinToken)
+		{
+			ErrorMessage = TEXT("Join token is not valid");
+			return false;
+		}
+		*/
+
+		const auto SessionIdClaim = JoinToken->GetClaim<EJson::String>(TEXT("session_id"));
+		const FString SessionId = SessionIdClaim.IsValid() ? SessionIdClaim->AsString() : TEXT("");
+		const auto PlayerUuidClaim = JoinToken->GetClaim<EJson::String>(TEXT("player_uuid"));
+		const FGuid PlayerUuid(PlayerUuidClaim.IsValid() ? PlayerUuidClaim->AsString() : TEXT(""));
+
+		if (SessionId != pSession->GetSessionId())
+		{
+			ErrorMessage = TEXT("Session ID mismatch");
+			return false;
+		}
+		if (pRH_Conn != nullptr && pRH_Conn->GetRHPlayerUuid() != PlayerUuid)
+		{
+			ErrorMessage = TEXT("Player UUID mismatch");
+			return false;
 		}
 	}
 
@@ -1685,8 +1731,69 @@ bool URH_GameInstanceSessionSubsystem::StartJoinInstanceFlow(const FRH_GameInsta
 		}
 	}
 
+	// make sure we can generate a basic join without a token
+	{
+		FURL JoinURL;
+		if (!GenerateJoinURL(DesiredSession, pWorldContext->LastURL, JoinURL))
+		{
+			UE_LOG(LogRallyHereIntegration, Warning, TEXT("Could not join session because URL could not be generated correctly"));
+			Delegate.ExecuteIfBound(DesiredSession, false, TEXT("URL could not be generated"));
+			return false;
+		}
+	}
+
+	const bool bShouldFetchToken = true;
+	if (bShouldFetchToken)
+	{
+		FetchJoinTokenAndPerformJoin(Delegate);
+	}
+	else
+	{
+		PerformJoin(Delegate, FString());
+	}
+
+	return true;
+}
+
+void URH_GameInstanceSessionSubsystem::FetchJoinTokenAndPerformJoin(const FRH_GameInstanceSessionSyncBlock& Delegate)
+{
+	check(DesiredSession != nullptr);
+
+	const FString Header = FString::Printf(TEXT("{ \"iss\": \"%s\" }"), JWT_RSA_TEST_ISSUER);
+	const FString Payload = FString::Printf(TEXT("{ \"session_id\": \"%s\", \"player_uuid\" : \"56e4d7a2-71a2-520f-9a21-1be73f6d9235\" }"), *DesiredSession->GetSessionId());
+	
+	const FString Base64Header = RallyHereAPI::Base64UrlEncode(Header);
+	const FString Base64Payload = RallyHereAPI::Base64UrlEncode(Payload);
+	const FString EncodeRegion = Base64Header + TEXT(".") + Base64Payload;
+
+	// TODO
+	const FString Signature = TEXT("");
+
+	const FString Token = EncodeRegion + TEXT(".") + Signature;
+	
+	PerformJoin(Delegate, Token);
+}
+
+void URH_GameInstanceSessionSubsystem::PerformJoin(const FRH_GameInstanceSessionSyncBlock& Delegate, const FString& JoinToken)
+{
+	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	if (DesiredSession == nullptr)
+	{
+		UE_LOG(LogRallyHereIntegration, Warning, TEXT("Could not join session because session is null after fetching token"));
+		Delegate.ExecuteIfBound(DesiredSession, false, TEXT("Desired session does not exist after fetching join token"));
+		return;
+	}
+		
+	// kick travel with flags
+	UGameInstance* pGameInstance = GetGameInstanceSubsystem()->GetGameInstance();
+	check(pGameInstance != nullptr);	// if this is somehow nullptr, this object should not exist, and we are in a very broken state
+
+	FWorldContext* pWorldContext = pGameInstance->GetWorldContext();
+	check(pWorldContext != nullptr && pWorldContext->World() != nullptr);	// if we are somehow travelling without a world context, we are in a broken state, and should not have gotten to this point
+		
 	FURL JoinURL;
-	if (GenerateJoinURL(DesiredSession, pWorldContext->LastURL, JoinURL))
+	if (GenerateJoinURL(DesiredSession, pWorldContext->LastURL, JoinURL, JoinToken))
 	{
 		UE_LOG(LogRallyHereIntegration, Log, TEXT("Setting travel to %s"), *JoinURL.ToString());
 
@@ -1699,16 +1806,12 @@ bool URH_GameInstanceSessionSubsystem::StartJoinInstanceFlow(const FRH_GameInsta
 		bool bTravelStarted = ClientTravel(pWorldContext->World(), JoinURL);
 
 		Delegate.ExecuteIfBound(GetActiveSession(), bTravelStarted, TEXT("Travel started"));
-		return true;
 	}
 	else
 	{
-		UE_LOG(LogRallyHereIntegration, Warning, TEXT("Could not join session because URL could not be generated correctly"));
+		UE_LOG(LogRallyHereIntegration, Warning, TEXT("Could not join session because URL could not be generated correctly after fetching join token"));
+		Delegate.ExecuteIfBound(DesiredSession, false, TEXT("URL could not be generated after fetching join token"));
 	}
-
-	Delegate.ExecuteIfBound(DesiredSession, false, TEXT("Could not generate URL to join"));
-
-	return false;
 }
 
 bool URH_GameInstanceSessionSubsystem::HostTravel(UWorld* pWorld, const FURL& HostURL)
