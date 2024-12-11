@@ -42,6 +42,7 @@
 #include "PagedPlayersResponse.h"
 #include "PlatformSession.h"
 #include "PlayerSessions.h"
+#include "PlayerSwapRequest.h"
 #include "QueueJoinRequest.h"
 #include "QueueJoinResponse.h"
 #include "QueuesResponse.h"
@@ -55,6 +56,7 @@
 #include "SessionPlayer.h"
 #include "SessionPlayerUpdateRequest.h"
 #include "SessionPlayerUpdateResponse.h"
+#include "SessionPlayersUpdateResponse.h"
 #include "SessionTeam.h"
 #include "SessionTemplate.h"
 #include "SessionTemplates.h"
@@ -930,9 +932,9 @@ struct RALLYHEREAPI_API FRequest_DeleteBackfillRequest : public FRequest
 };
 
 /** The response type for FRequest_DeleteBackfillRequest */
-struct RALLYHEREAPI_API FResponse_DeleteBackfillRequest : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_DeleteBackfillRequest : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_DeleteBackfillRequest(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_DeleteBackfillRequest() = default;
@@ -1033,9 +1035,9 @@ struct RALLYHEREAPI_API FRequest_DeleteBrowserInfo : public FRequest
 };
 
 /** The response type for FRequest_DeleteBrowserInfo */
-struct RALLYHEREAPI_API FResponse_DeleteBrowserInfo : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_DeleteBrowserInfo : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_DeleteBrowserInfo(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_DeleteBrowserInfo() = default;
@@ -1134,9 +1136,9 @@ struct RALLYHEREAPI_API FRequest_DeletePlatformSessionFromRallyHereSession : pub
 };
 
 /** The response type for FRequest_DeletePlatformSessionFromRallyHereSession */
-struct RALLYHEREAPI_API FResponse_DeletePlatformSessionFromRallyHereSession : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_DeletePlatformSessionFromRallyHereSession : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_DeletePlatformSessionFromRallyHereSession(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_DeletePlatformSessionFromRallyHereSession() = default;
@@ -1244,9 +1246,9 @@ struct RALLYHEREAPI_API FRequest_EndInstance : public FRequest
 };
 
 /** The response type for FRequest_EndInstance */
-struct RALLYHEREAPI_API FResponse_EndInstance : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_EndInstance : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_EndInstance(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_EndInstance() = default;
@@ -5539,9 +5541,9 @@ struct RALLYHEREAPI_API FRequest_KickPlayerFromSessionById : public FRequest
 };
 
 /** The response type for FRequest_KickPlayerFromSessionById */
-struct RALLYHEREAPI_API FResponse_KickPlayerFromSessionById : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_KickPlayerFromSessionById : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_KickPlayerFromSessionById(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_KickPlayerFromSessionById() = default;
@@ -5645,9 +5647,9 @@ struct RALLYHEREAPI_API FRequest_KickPlayerFromSessionByUuid : public FRequest
 };
 
 /** The response type for FRequest_KickPlayerFromSessionByUuid */
-struct RALLYHEREAPI_API FResponse_KickPlayerFromSessionByUuid : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_KickPlayerFromSessionByUuid : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_KickPlayerFromSessionByUuid(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_KickPlayerFromSessionByUuid() = default;
@@ -5766,9 +5768,9 @@ struct RALLYHEREAPI_API FRequest_KickPlayerFromSessionByUuidV2 : public FRequest
 };
 
 /** The response type for FRequest_KickPlayerFromSessionByUuidV2 */
-struct RALLYHEREAPI_API FResponse_KickPlayerFromSessionByUuidV2 : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_KickPlayerFromSessionByUuidV2 : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_KickPlayerFromSessionByUuidV2(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_KickPlayerFromSessionByUuidV2() = default;
@@ -5892,9 +5894,9 @@ struct RALLYHEREAPI_API FRequest_KickSessionFromSession : public FRequest
 };
 
 /** The response type for FRequest_KickSessionFromSession */
-struct RALLYHEREAPI_API FResponse_KickSessionFromSession : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_KickSessionFromSession : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_KickSessionFromSession(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_KickSessionFromSession() = default;
@@ -5997,9 +5999,9 @@ struct RALLYHEREAPI_API FRequest_LeaveQueue : public FRequest
 };
 
 /** The response type for FRequest_LeaveQueue */
-struct RALLYHEREAPI_API FResponse_LeaveQueue : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_LeaveQueue : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_LeaveQueue(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_LeaveQueue() = default;
@@ -6100,9 +6102,9 @@ struct RALLYHEREAPI_API FRequest_LeaveSessionByIdSelf : public FRequest
 };
 
 /** The response type for FRequest_LeaveSessionByIdSelf */
-struct RALLYHEREAPI_API FResponse_LeaveSessionByIdSelf : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_LeaveSessionByIdSelf : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_LeaveSessionByIdSelf(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_LeaveSessionByIdSelf() = default;
@@ -6205,9 +6207,9 @@ struct RALLYHEREAPI_API FRequest_LeaveSessionByPlatformSessionByUuid : public FR
 };
 
 /** The response type for FRequest_LeaveSessionByPlatformSessionByUuid */
-struct RALLYHEREAPI_API FResponse_LeaveSessionByPlatformSessionByUuid : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_LeaveSessionByPlatformSessionByUuid : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_LeaveSessionByPlatformSessionByUuid(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_LeaveSessionByPlatformSessionByUuid() = default;
@@ -6316,9 +6318,9 @@ struct RALLYHEREAPI_API FRequest_LeaveSessionByPlatformSessionSelf : public FReq
 };
 
 /** The response type for FRequest_LeaveSessionByPlatformSessionSelf */
-struct RALLYHEREAPI_API FResponse_LeaveSessionByPlatformSessionSelf : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_LeaveSessionByPlatformSessionSelf : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_LeaveSessionByPlatformSessionSelf(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_LeaveSessionByPlatformSessionSelf() = default;
@@ -6505,6 +6507,138 @@ struct RALLYHEREAPI_API Traits_PostBrowserInfo
 };
 
 /**
+ * @brief Swap Players In Session
+ * Swap two players on different teams. Leaders cannot be swapped
+ * 
+ * For all sessions:
+ * 
+ * * Required auth permissions are any of: `session:*`, `session:update:any`
+ * 
+ * * Required session permissions are None
+ * 
+ * For sessions you are actively in:
+ * 
+ * * Required auth permissions are any of: `session:*`, `session:update:any`, `session:update:self`
+ * 
+ * * Required session permissions are `SessionPermissions.session_admin`
+*/
+struct RALLYHEREAPI_API FRequest_SwapPlayersInSession : public FRequest
+{
+	FRequest_SwapPlayersInSession();
+	virtual ~FRequest_SwapPlayersInSession() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FString SessionId;
+	FRHAPI_PlayerSwapRequest PlayerSwapRequest;
+	TOptional<bool> RefreshTtl;
+};
+
+/** The response type for FRequest_SwapPlayersInSession */
+struct RALLYHEREAPI_API FResponse_SwapPlayersInSession : public FResponseAccessorTemplate<FRHAPI_SessionPlayersUpdateResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_SessionPlayersUpdateResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_SwapPlayersInSession(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_SwapPlayersInSession() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_SessionPlayersUpdateResponse Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_SessionPlayersUpdateResponse& OutContent) const { return TryGetContent<FRHAPI_SessionPlayersUpdateResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_SessionPlayersUpdateResponse>& OutContent) const { return TryGetContent<FRHAPI_SessionPlayersUpdateResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_SessionPlayersUpdateResponse* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_SessionPlayersUpdateResponse>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_SessionPlayersUpdateResponse> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_SessionPlayersUpdateResponse>(); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(FString& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_ETag() const { return TryGetHeaderAsPointer(TEXT("ETag")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_ETag() const { return TryGetHeaderAsOptional(TEXT("ETag")); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_SessionPlayersUpdateResponse& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_SwapPlayersInSession */
+DECLARE_DELEGATE_OneParam(FDelegate_SwapPlayersInSession, const FResponse_SwapPlayersInSession&);
+
+/** @brief A helper metadata object for SwapPlayersInSession that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_SwapPlayersInSession
+{
+	/** The request type */
+	typedef FRequest_SwapPlayersInSession Request;
+	/** The response type */
+	typedef FResponse_SwapPlayersInSession Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_SwapPlayersInSession Delegate;
+	/** The API object that supports this API call */
+	typedef FSessionsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
  * @brief Update Backfill Request
  * Update a existing backfill's search fields and extensions
 */
@@ -6532,9 +6666,9 @@ struct RALLYHEREAPI_API FRequest_UpdateBackfillRequest : public FRequest
 };
 
 /** The response type for FRequest_UpdateBackfillRequest */
-struct RALLYHEREAPI_API FResponse_UpdateBackfillRequest : public FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_UpdateBackfillRequest : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate< FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_UpdateBackfillRequest(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_UpdateBackfillRequest() = default;
@@ -7591,6 +7725,8 @@ public:
 	void OnLeaveSessionByPlatformSessionSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_LeaveSessionByPlatformSessionSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr PostBrowserInfo(const FRequest_PostBrowserInfo& Request, const FDelegate_PostBrowserInfo& Delegate = FDelegate_PostBrowserInfo(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnPostBrowserInfoResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PostBrowserInfo Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr SwapPlayersInSession(const FRequest_SwapPlayersInSession& Request, const FDelegate_SwapPlayersInSession& Delegate = FDelegate_SwapPlayersInSession(), int32 Priority = DefaultRallyHereAPIPriority);
+	void OnSwapPlayersInSessionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SwapPlayersInSession Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr UpdateBackfillRequest(const FRequest_UpdateBackfillRequest& Request, const FDelegate_UpdateBackfillRequest& Delegate = FDelegate_UpdateBackfillRequest(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnUpdateBackfillRequestResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateBackfillRequest Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr UpdateBrowserInfo(const FRequest_UpdateBrowserInfo& Request, const FDelegate_UpdateBrowserInfo& Delegate = FDelegate_UpdateBrowserInfo(), int32 Priority = DefaultRallyHereAPIPriority);

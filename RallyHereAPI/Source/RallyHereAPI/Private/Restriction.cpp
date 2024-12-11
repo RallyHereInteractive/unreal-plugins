@@ -27,7 +27,7 @@ void FRHAPI_Restriction::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (Reason_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("reason"));
-		RallyHereAPI::WriteJsonValue(Writer, Reason_Optional);
+		RallyHereAPI::WriteJsonValue(Writer, EnumToString(Reason_Optional));
 	}
 	if (Expiration_IsSet)
 	{

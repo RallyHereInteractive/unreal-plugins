@@ -36,6 +36,11 @@ void FRHAPI_MatchMakingTemplateGroupV2::WriteJson(TSharedRef<TJsonWriter<>>& Wri
 		Writer->WriteIdentifierPrefix(TEXT("requires_all_players_items"));
 		RallyHereAPI::WriteJsonValue(Writer, RequiresAllPlayersItems_Optional);
 	}
+	if (IncludesSessionRule_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("includes_session_rule"));
+		RallyHereAPI::WriteJsonValue(Writer, IncludesSessionRule_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -64,6 +69,12 @@ bool FRHAPI_MatchMakingTemplateGroupV2::FromJson(const TSharedPtr<FJsonValue>& J
 	{
 		RequiresAllPlayersItems_IsSet = TryGetJsonValue(JsonRequiresAllPlayersItemsField, RequiresAllPlayersItems_Optional);
 		ParseSuccess &= RequiresAllPlayersItems_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonIncludesSessionRuleField = (*Object)->TryGetField(TEXT("includes_session_rule"));
+	if (JsonIncludesSessionRuleField.IsValid())
+	{
+		IncludesSessionRule_IsSet = TryGetJsonValue(JsonIncludesSessionRuleField, IncludesSessionRule_Optional);
+		ParseSuccess &= IncludesSessionRule_IsSet;
 	}
 
 	return ParseSuccess;

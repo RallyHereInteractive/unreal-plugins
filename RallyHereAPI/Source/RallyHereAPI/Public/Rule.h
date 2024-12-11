@@ -9,6 +9,7 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
+#include "Containers/Set.h"
 #include "Operation.h"
 #include "RuleType.h"
 #include "Rule.generated.h"
@@ -53,6 +54,76 @@ struct RALLYHEREAPI_API FRHAPI_Rule : public FRHAPI_Model
 	/** @brief Sets the value of RuleType using move semantics */
 	void SetRuleType(ERHAPI_RuleType&& NewValue) { RuleType = NewValue;   }
 
+	/** @brief Comparison operation to be performed */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	ERHAPI_Operation ComparisonOperation{  };
+	/** @brief Gets the value of ComparisonOperation */
+	ERHAPI_Operation& GetComparisonOperation() { return ComparisonOperation; }
+	/** @brief Gets the value of ComparisonOperation */
+	const ERHAPI_Operation& GetComparisonOperation() const { return ComparisonOperation; }
+	/** @brief Sets the value of ComparisonOperation */
+	void SetComparisonOperation(const ERHAPI_Operation& NewValue) { ComparisonOperation = NewValue;   }
+	/** @brief Sets the value of ComparisonOperation using move semantics */
+	void SetComparisonOperation(ERHAPI_Operation&& NewValue) { ComparisonOperation = NewValue;   }
+
+	/** @brief Integer Value to compare to */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 ComparisonValue_Optional{ 0 };
+	/** @brief true if ComparisonValue_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool ComparisonValue_IsSet{ false };
+	/** @brief Gets the value of ComparisonValue_Optional, regardless of it having been set */
+	int32& GetComparisonValue() { return ComparisonValue_Optional; }
+	/** @brief Gets the value of ComparisonValue_Optional, regardless of it having been set */
+	const int32& GetComparisonValue() const { return ComparisonValue_Optional; }
+	/** @brief Gets the value of ComparisonValue_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetComparisonValue(const int32& DefaultValue) const { if (ComparisonValue_IsSet) return ComparisonValue_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of ComparisonValue_Optional and returns true if it has been set, otherwise returns false */
+	bool GetComparisonValue(int32& OutValue) const { if (ComparisonValue_IsSet) OutValue = ComparisonValue_Optional; return ComparisonValue_IsSet; }
+	/** @brief Returns a pointer to ComparisonValue_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetComparisonValueOrNull() { if (ComparisonValue_IsSet) return (&ComparisonValue_Optional); return nullptr; }
+	/** @brief Returns a pointer to ComparisonValue_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetComparisonValueOrNull() const { if (ComparisonValue_IsSet) return (&ComparisonValue_Optional); return nullptr; }
+	/** @brief Sets the value of ComparisonValue_Optional and also sets ComparisonValue_IsSet to true */
+	void SetComparisonValue(const int32& NewValue) { ComparisonValue_Optional = NewValue; ComparisonValue_IsSet = true;  }
+	/** @brief Sets the value of ComparisonValue_Optional and also sets ComparisonValue_IsSet to true using move semantics */
+	void SetComparisonValue(int32&& NewValue) { ComparisonValue_Optional = NewValue; ComparisonValue_IsSet = true;  }
+	/** @brief Clears the value of ComparisonValue_Optional and sets ComparisonValue_IsSet to false */
+	void ClearComparisonValue() { ComparisonValue_Optional = 0; ComparisonValue_IsSet = false;  }
+	/** @brief Checks whether ComparisonValue_Optional has been set */
+	bool IsComparisonValueSet() const { return ComparisonValue_IsSet; }
+	/** @brief Returns true if ComparisonValue_Optional is set and matches the default value */
+	bool IsComparisonValueDefaultValue() const { return ComparisonValue_IsSet && ComparisonValue_Optional == 0; }
+	/** @brief Sets the value of ComparisonValue_Optional to its default and also sets ComparisonValue_IsSet to true */
+	void SetComparisonValueToDefault() { SetComparisonValue(0); }
+
+	/** @brief Set of string values to compare to */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TSet<FString> ComparisonValueSet_Optional{  };
+	/** @brief true if ComparisonValueSet_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool ComparisonValueSet_IsSet{ false };
+	/** @brief Gets the value of ComparisonValueSet_Optional, regardless of it having been set */
+	TSet<FString>& GetComparisonValueSet() { return ComparisonValueSet_Optional; }
+	/** @brief Gets the value of ComparisonValueSet_Optional, regardless of it having been set */
+	const TSet<FString>& GetComparisonValueSet() const { return ComparisonValueSet_Optional; }
+	/** @brief Gets the value of ComparisonValueSet_Optional, if it has been set, otherwise it returns DefaultValue */
+	const TSet<FString>& GetComparisonValueSet(const TSet<FString>& DefaultValue) const { if (ComparisonValueSet_IsSet) return ComparisonValueSet_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of ComparisonValueSet_Optional and returns true if it has been set, otherwise returns false */
+	bool GetComparisonValueSet(TSet<FString>& OutValue) const { if (ComparisonValueSet_IsSet) OutValue = ComparisonValueSet_Optional; return ComparisonValueSet_IsSet; }
+	/** @brief Returns a pointer to ComparisonValueSet_Optional, if it has been set, otherwise returns nullptr */
+	TSet<FString>* GetComparisonValueSetOrNull() { if (ComparisonValueSet_IsSet) return (&ComparisonValueSet_Optional); return nullptr; }
+	/** @brief Returns a pointer to ComparisonValueSet_Optional, if it has been set, otherwise returns nullptr */
+	const TSet<FString>* GetComparisonValueSetOrNull() const { if (ComparisonValueSet_IsSet) return (&ComparisonValueSet_Optional); return nullptr; }
+	/** @brief Sets the value of ComparisonValueSet_Optional and also sets ComparisonValueSet_IsSet to true */
+	void SetComparisonValueSet(const TSet<FString>& NewValue) { ComparisonValueSet_Optional = NewValue; ComparisonValueSet_IsSet = true;  }
+	/** @brief Sets the value of ComparisonValueSet_Optional and also sets ComparisonValueSet_IsSet to true using move semantics */
+	void SetComparisonValueSet(TSet<FString>&& NewValue) { ComparisonValueSet_Optional = NewValue; ComparisonValueSet_IsSet = true;  }
+	/** @brief Clears the value of ComparisonValueSet_Optional and sets ComparisonValueSet_IsSet to false */
+	void ClearComparisonValueSet() { ComparisonValueSet_IsSet = false;  }
+	/** @brief Checks whether ComparisonValueSet_Optional has been set */
+	bool IsComparisonValueSetSet() const { return ComparisonValueSet_IsSet; }
+
 	/** @brief Id of the item we are comparing if this is an inventory rule */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 ItemId_Optional{ 0 };
@@ -83,34 +154,6 @@ struct RALLYHEREAPI_API FRHAPI_Rule : public FRHAPI_Model
 	bool IsItemIdDefaultValue() const { return ItemId_IsSet && ItemId_Optional == 0; }
 	/** @brief Sets the value of ItemId_Optional to its default and also sets ItemId_IsSet to true */
 	void SetItemIdToDefault() { SetItemId(0); }
-
-	/** @brief Comparison operation to be performed */
-	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	ERHAPI_Operation ComparisonOperation{  };
-	/** @brief Gets the value of ComparisonOperation */
-	ERHAPI_Operation& GetComparisonOperation() { return ComparisonOperation; }
-	/** @brief Gets the value of ComparisonOperation */
-	const ERHAPI_Operation& GetComparisonOperation() const { return ComparisonOperation; }
-	/** @brief Sets the value of ComparisonOperation */
-	void SetComparisonOperation(const ERHAPI_Operation& NewValue) { ComparisonOperation = NewValue;   }
-	/** @brief Sets the value of ComparisonOperation using move semantics */
-	void SetComparisonOperation(ERHAPI_Operation&& NewValue) { ComparisonOperation = NewValue;   }
-
-	/** @brief Value to compare to */
-	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 ComparisonValue{ 0 };
-	/** @brief Gets the value of ComparisonValue */
-	int32& GetComparisonValue() { return ComparisonValue; }
-	/** @brief Gets the value of ComparisonValue */
-	const int32& GetComparisonValue() const { return ComparisonValue; }
-	/** @brief Sets the value of ComparisonValue */
-	void SetComparisonValue(const int32& NewValue) { ComparisonValue = NewValue;   }
-	/** @brief Sets the value of ComparisonValue using move semantics */
-	void SetComparisonValue(int32&& NewValue) { ComparisonValue = NewValue;   }
-	/** @brief Returns true if ComparisonValue matches the default value */
-	bool IsComparisonValueDefaultValue() const { return ComparisonValue == 0; }
-	/** @brief Sets the value of ComparisonValue to its default  */
-	void SetComparisonValueToDefault() { SetComparisonValue(0); }
 };
 
 /** @} */

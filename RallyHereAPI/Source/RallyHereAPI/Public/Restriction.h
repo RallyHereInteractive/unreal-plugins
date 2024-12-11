@@ -9,6 +9,7 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
+#include "RestrictionReasonCode.h"
 #include "RestrictionType.h"
 #include "Restriction.generated.h"
 
@@ -54,26 +55,26 @@ struct RALLYHEREAPI_API FRHAPI_Restriction : public FRHAPI_Model
 
 	/** @brief Reason the restriction was applied */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FString Reason_Optional{  };
+	ERHAPI_RestrictionReasonCode Reason_Optional{  };
 	/** @brief true if Reason_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Reason_IsSet{ false };
 	/** @brief Gets the value of Reason_Optional, regardless of it having been set */
-	FString& GetReason() { return Reason_Optional; }
+	ERHAPI_RestrictionReasonCode& GetReason() { return Reason_Optional; }
 	/** @brief Gets the value of Reason_Optional, regardless of it having been set */
-	const FString& GetReason() const { return Reason_Optional; }
+	const ERHAPI_RestrictionReasonCode& GetReason() const { return Reason_Optional; }
 	/** @brief Gets the value of Reason_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetReason(const FString& DefaultValue) const { if (Reason_IsSet) return Reason_Optional; return DefaultValue; }
+	const ERHAPI_RestrictionReasonCode& GetReason(const ERHAPI_RestrictionReasonCode& DefaultValue) const { if (Reason_IsSet) return Reason_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Reason_Optional and returns true if it has been set, otherwise returns false */
-	bool GetReason(FString& OutValue) const { if (Reason_IsSet) OutValue = Reason_Optional; return Reason_IsSet; }
+	bool GetReason(ERHAPI_RestrictionReasonCode& OutValue) const { if (Reason_IsSet) OutValue = Reason_Optional; return Reason_IsSet; }
 	/** @brief Returns a pointer to Reason_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetReasonOrNull() { if (Reason_IsSet) return (&Reason_Optional); return nullptr; }
+	ERHAPI_RestrictionReasonCode* GetReasonOrNull() { if (Reason_IsSet) return (&Reason_Optional); return nullptr; }
 	/** @brief Returns a pointer to Reason_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetReasonOrNull() const { if (Reason_IsSet) return (&Reason_Optional); return nullptr; }
+	const ERHAPI_RestrictionReasonCode* GetReasonOrNull() const { if (Reason_IsSet) return (&Reason_Optional); return nullptr; }
 	/** @brief Sets the value of Reason_Optional and also sets Reason_IsSet to true */
-	void SetReason(const FString& NewValue) { Reason_Optional = NewValue; Reason_IsSet = true;  }
+	void SetReason(const ERHAPI_RestrictionReasonCode& NewValue) { Reason_Optional = NewValue; Reason_IsSet = true;  }
 	/** @brief Sets the value of Reason_Optional and also sets Reason_IsSet to true using move semantics */
-	void SetReason(FString&& NewValue) { Reason_Optional = NewValue; Reason_IsSet = true;  }
+	void SetReason(ERHAPI_RestrictionReasonCode&& NewValue) { Reason_Optional = NewValue; Reason_IsSet = true;  }
 	/** @brief Clears the value of Reason_Optional and sets Reason_IsSet to false */
 	void ClearReason() { Reason_IsSet = false;  }
 	/** @brief Checks whether Reason_Optional has been set */
