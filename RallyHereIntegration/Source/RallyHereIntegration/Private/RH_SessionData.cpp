@@ -1184,6 +1184,11 @@ void URH_OnlineSession::CreateOrJoinByType(const FRHAPI_CreateOrJoinRequest& Cre
 	auto CopyPlayerData = CreateParamsCopy.GetPlayerOrNull();
 	if (CopyPlayerData)
 	{
+		// default to the leader if not otherwise specified
+		if (!CopyPlayerData->IsStatusSet())
+		{
+			CopyPlayerData->SetStatus(ERHAPI_SessionPlayerStatus::Leader);
+		}
 		if (CopyPlayerData->GetClientVersion().IsEmpty())
 		{
 			CopyPlayerData->SetClientVersion(GetClientVersionForSession());
