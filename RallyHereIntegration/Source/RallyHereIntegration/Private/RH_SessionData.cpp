@@ -854,6 +854,106 @@ void URH_OfflineSession::ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, c
 	Delegate.ExecuteIfBound(true, this, FRH_ErrorInfo());
 }
 
+
+void URH_OfflineSession::SwapPlayerTeams(const FGuid& PlayerUuidA, const FGuid& PlayerUuidB, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+{
+	// ensure session has both players to swap
+	const auto PlayerA = GetSessionPlayer(PlayerUuidA);
+	const auto PlayerB = GetSessionPlayer(PlayerUuidB);
+
+	if (PlayerA == nullptr || PlayerB == nullptr)
+	{
+		Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
+		return;
+	}
+	
+	const auto PlayerATeam = GetSessionPlayerTeamId(PlayerUuidA);
+	const auto PlayerBTeam = GetSessionPlayerTeamId(PlayerUuidB);
+	
+	if (PlayerATeam == INDEX_NONE || PlayerBTeam == INDEX_NONE)
+	{
+		Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
+		return;
+	}
+	
+	FRH_APISessionWithETag UpdateWrapper(SessionData);
+	auto& Update = UpdateWrapper.Data;
+
+	auto RemovePlayerFromTeam = [&Update](const FGuid& PlayerUuid, int32 TeamNum) -> bool
+	{
+		for (int i = 0; i < Update.Teams.Num(); ++i)
+		{
+			auto& SessionTeam = Update.Teams[i];
+			const auto Index = i; 
+			if (SessionTeam.GetTeamId(Index) == TeamNum)
+			{
+				const auto PlayerList = SessionTeam.GetPlayers();
+				for (int j = 0; j < PlayerList.Num(); ++j)
+				{
+					const auto& TeamPlayer = PlayerList[j];
+					if (TeamPlayer.GetPlayerUuid() == PlayerUuid)
+					{
+						// remove the player from the team
+						SessionTeam.GetPlayers().RemoveAtSwap(j);
+						return true;
+					}
+				}
+			}
+		}
+
+		return false;
+	};
+
+	const bool bRemovedA = RemovePlayerFromTeam(PlayerUuidA, PlayerATeam);
+	const bool bRemovedB = RemovePlayerFromTeam(PlayerUuidB, PlayerBTeam);
+
+	if (!bRemovedA || !bRemovedB)
+	{
+		Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
+		return;
+	}
+
+	auto AddPlayerToTeam = [&Update](const FRHAPI_SessionPlayer& Player, int32 TeamNum) -> bool
+	{
+		// look for a team with a matching id
+		FRHAPI_SessionTeam* ExistingTeam = nullptr;
+		for (int i = 0; i < Update.Teams.Num(); ++i)
+		{
+			const int32 TeamIndex = i;
+			if (Update.Teams[i].GetTeamId(TeamIndex) == TeamNum)
+			{
+				ExistingTeam = &Update.Teams[i];
+				break;
+			}
+		}
+		if (ExistingTeam == nullptr)
+		{
+			// this should not happen, since we verified both teams were present, but is here for safety
+			return false;
+		}
+		check(ExistingTeam != nullptr);
+		// insert them into their new team
+		auto PlayersList = ExistingTeam->GetPlayers();
+		PlayersList.Add(Player);
+		ExistingTeam->SetPlayers(PlayersList);
+
+		return true;
+	};
+
+	const bool bAddedA = AddPlayerToTeam(*PlayerA, PlayerBTeam);
+	const bool bAddedB = AddPlayerToTeam(*PlayerB, PlayerATeam);
+
+	if (!bAddedA || !bAddedB)
+	{
+		Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
+		return;
+	}
+	
+	ImportSessionUpdateToAllPlayers(UpdateWrapper);
+
+	Delegate.ExecuteIfBound(true, this, FRH_ErrorInfo());
+}
+
 void URH_OfflineSession::UpdatePlayerCustomData(const FGuid& PlayerUuid, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	FRH_APISessionWithETag UpdateWrapper(SessionData);
@@ -1331,6 +1431,24 @@ void URH_OnlineSession::ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, co
 	Request.SessionId = GetSessionId();
 	Request.PlayerUuid = PlayerUuid;
 	Request.SessionPlayerUpdateRequest.SetTeamId(Team);
+
+	auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(SessionOwner), SessionId, Delegate, GetDefault<URH_IntegrationSettings>()->SessionChangeTeamsPriority);
+	Helper->Start(Request);
+}
+
+void URH_OnlineSession::SwapPlayerTeams(const FGuid& PlayerUuidA, const FGuid& PlayerUuidB, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+{
+	// TODO - check that players is in this session?
+
+	typedef RallyHereAPI::Traits_SwapPlayersInSession BaseType;
+	auto SessionId = GetSessionId();
+	auto SessionOwner = GetSessionOwner();
+	UE_LOG(LogRHSession, Log, TEXT("[%s::%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *BaseType::Name, *SessionId);
+	BaseType::Request Request;
+	Request.AuthContext = SessionOwner->GetSessionAuthContext();
+	Request.SessionId = GetSessionId();
+	Request.PlayerSwapRequest.Players.Add(PlayerUuidA);
+	Request.PlayerSwapRequest.Players.Add(PlayerUuidB);
 
 	auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(SessionOwner), SessionId, Delegate, GetDefault<URH_IntegrationSettings>()->SessionChangeTeamsPriority);
 	Helper->Start(Request);
