@@ -1169,6 +1169,7 @@ void URH_OnlineSession::CreateOrJoinByType(const FRHAPI_CreateOrJoinRequest& Cre
 
 	auto CreateParamsCopy = CreateParams;
 
+	// inject to the base object some defaults for ease of use
 	if (CreateParamsCopy.GetClientVersion().IsEmpty())
 	{
 		CreateParamsCopy.SetClientVersion(GetClientVersionForSession());
@@ -1178,6 +1179,21 @@ void URH_OnlineSession::CreateOrJoinByType(const FRHAPI_CreateOrJoinRequest& Cre
 		CreateParamsCopy.ClientSettings.SetPlatform(RH_GetPlatformFromOSSName(OSS ? OSS->GetSubsystemName() : NAME_None).Get(ERHAPI_Platform::Anon));
 	}
 	CreateParamsCopy.ClientSettings.SetInput(GetClientInputTypeForSession());
+
+	// inject to the player object too, if it is set
+	auto CopyPlayerData = CreateParamsCopy.GetPlayerOrNull();
+	if (CopyPlayerData)
+	{
+		if (CopyPlayerData->GetClientVersion().IsEmpty())
+		{
+			CopyPlayerData->SetClientVersion(GetClientVersionForSession());
+		}
+		if (!CopyPlayerData->ClientSettings.IsPlatformSet())
+		{
+			CopyPlayerData->ClientSettings.SetPlatform(RH_GetPlatformFromOSSName(OSS ? OSS->GetSubsystemName() : NAME_None).Get(ERHAPI_Platform::Anon));
+		}
+		CopyPlayerData->ClientSettings.SetInput(GetClientInputTypeForSession());
+	}
 
 	auto Helper = MakeShared<FRH_SessionCreateOrJoinByTypeHelper>(MakeWeakInterface(SessionOwner), CreateParamsCopy, Delegate, GetDefault<URH_IntegrationSettings>()->SessionJoinPriority);
 	Helper->Start();
