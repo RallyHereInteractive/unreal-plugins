@@ -845,6 +845,7 @@ Offline Sessions are sessions the session owner is actively a member of that are
 `public virtual void `[`KickOtherSession`](#classURH__OfflineSession_1aef48af399b765fcf42bddbbb49242d18)`(const FString & KickedSessionId,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Currently not supported for offline sessions.
 `public virtual void `[`SetLeader`](#classURH__OfflineSession_1a88d682913b0247652317fa4ed3213152)`(const FGuid & PlayerUuid,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Currently not supported for offline sessions.
 `public virtual void `[`ChangePlayerTeam`](#classURH__OfflineSession_1a06bb9470b305e09a1eed9ffbc35153e8)`(const FGuid & PlayerUuid,int32 Team,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Changes the team a given player is associated with in the session.
+`public virtual void `[`SwapPlayerTeams`](#classURH__OfflineSession_1a3c543c48fdc9fe0d82912ef2635bdae4)`(const FGuid & PlayerUuidA,const FGuid & PlayerUuidB,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Swaps the teams of a specified pair of players.
 `public virtual void `[`UpdatePlayerCustomData`](#classURH__OfflineSession_1aa58dc5637c9e083c6990f7832077a60d)`(const FGuid & PlayerUuid,const TMap< FString, FString > & CustomData,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Currently not supported for offline sessions.
 `public virtual void `[`Leave`](#classURH__OfflineSession_1ac9879abe8ef573431669f5e4b2c99f14)`(bool bFromOSSSession,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Leaves the session.
 `public virtual void `[`RequestInstance`](#classURH__OfflineSession_1a15f9d178c350737ffd1c7315b174b9d3)`(const `[`FRHAPI_InstanceRequest`](RHAPI_InstanceRequest.md#structFRHAPI__InstanceRequest)` & InstanceRequest,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Attempt to create a new instance for the session.
@@ -894,6 +895,17 @@ Changes the team a given player is associated with in the session.
 * `PlayerUuid` The unique player Id to invite to the session. 
 
 * `Team` The target team that the player will be associated with in the session. 
+
+* `Delegate` Callback delegate for the session being updated by the team change.
+
+#### `public virtual void `[`SwapPlayerTeams`](#classURH__OfflineSession_1a3c543c48fdc9fe0d82912ef2635bdae4)`(const FGuid & PlayerUuidA,const FGuid & PlayerUuidB,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OfflineSession_1a3c543c48fdc9fe0d82912ef2635bdae4"></a>
+
+Swaps the teams of a specified pair of players.
+
+#### Parameters
+* `PlayerUuidA` The first unique player id to swap 
+
+* `PlayerUuidB` The second unique player id to swap 
 
 * `Delegate` Callback delegate for the session being updated by the team change.
 
@@ -1040,6 +1052,7 @@ Online Sessions are sessions that are synchronized from the API (and since it is
 `public virtual void `[`KickOtherSession`](#classURH__OnlineSession_1aaea0484871603acf63a76317dd1ffe9e)`(const FString & KickedSessionId,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Kicks all players in a target tsession from this session.
 `public virtual void `[`SetLeader`](#classURH__OnlineSession_1ade15c14b576cf4c5ba384bc61fe25879)`(const FGuid & PlayerUuid,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Sets a new leader for the session.
 `public virtual void `[`ChangePlayerTeam`](#classURH__OnlineSession_1ab35d9139e68b21dd3ee9ed779fb37f16)`(const FGuid & PlayerUuid,int32 Team,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Changes the team a given player is associated with in the session.
+`public virtual void `[`SwapPlayerTeams`](#classURH__OnlineSession_1a84fe6960f643869d2e96966c8f7386c3)`(const FGuid & PlayerUuidA,const FGuid & PlayerUuidB,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Swaps the teams of a specified pair of players.
 `public virtual void `[`UpdatePlayerCustomData`](#classURH__OnlineSession_1a8f35a3597ef47c2570e9489e62ac6d23)`(const FGuid & PlayerUuid,const TMap< FString, FString > & CustomData,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Changes the session player's custom data.
 `public virtual void `[`Leave`](#classURH__OnlineSession_1abb7f5b8c9eaadd30166337a5dccebbbe)`(bool bFromOSSSession,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Leaves the session.
 `public virtual void `[`RequestInstance`](#classURH__OnlineSession_1aae906a67108cba268d73786229e8aa94)`(const `[`FRHAPI_InstanceRequest`](RHAPI_InstanceRequest.md#structFRHAPI__InstanceRequest)` & InstanceRequest,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Attempt to create a new instance for the session.
@@ -1190,6 +1203,17 @@ Changes the team a given player is associated with in the session.
 * `PlayerUuid` The unique player Id to invite to the session. 
 
 * `Team` The target team that the player will be associated with in the session. 
+
+* `Delegate` Callback delegate for the session being updated by the team change.
+
+#### `public virtual void `[`SwapPlayerTeams`](#classURH__OnlineSession_1a84fe6960f643869d2e96966c8f7386c3)`(const FGuid & PlayerUuidA,const FGuid & PlayerUuidB,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OnlineSession_1a84fe6960f643869d2e96966c8f7386c3"></a>
+
+Swaps the teams of a specified pair of players.
+
+#### Parameters
+* `PlayerUuidA` The first unique player id to swap 
+
+* `PlayerUuidB` The second unique player id to swap 
 
 * `Delegate` Callback delegate for the session being updated by the team change.
 
