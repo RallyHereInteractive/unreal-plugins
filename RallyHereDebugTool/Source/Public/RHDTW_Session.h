@@ -32,6 +32,7 @@ public:
 	TArray<ANSICHAR> JoinByIdString;
 	TArray<ANSICHAR> CreateByTypeSessionTypeString;
 	TArray<ANSICHAR> CreateByTypeRegionIdString;
+	bool CreateByTypeUsePlayerOptions;
 	FString SessionActionResult;
 
 	int32 InvitePlayerTeam;

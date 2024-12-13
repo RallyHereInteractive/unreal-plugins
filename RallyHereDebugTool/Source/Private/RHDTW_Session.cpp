@@ -66,6 +66,7 @@ FRHDTW_Session::FRHDTW_Session()
 	JoinByIdString.SetNumZeroed(IMGUI_SESSION_TEXTENTRY_PREALLOCATION_SIZE);
 	CreateByTypeSessionTypeString.SetNumZeroed(IMGUI_SESSION_TYPE_PREALLOCATION_SIZE);
 	CreateByTypeRegionIdString.SetNumZeroed(IMGUI_SESSION_TYPE_PREALLOCATION_SIZE);
+	CreateByTypeUsePlayerOptions = false;
 	SessionActionResult.Empty();
 
 	InvitePlayerTeam = 0;
@@ -1085,6 +1086,8 @@ void FRHDTW_Session::ImGuiDisplayLocalPlayerSessions(URH_GameInstanceSubsystem* 
 
 	ImGui::SetNextItemWidth(150.f);
 	ImGui::InputText("Region Id", CreateByTypeRegionIdString.GetData(), CreateByTypeRegionIdString.Num());
+	ImGui::SameLine();
+	ImGui::Checkbox("Use Player Options", &CreateByTypeUsePlayerOptions);
 	if (ImGui::Button("Create/Join (Type)"))
 	{
 		SessionActionResult.Empty();
@@ -1096,7 +1099,11 @@ void FRHDTW_Session::ImGuiDisplayLocalPlayerSessions(URH_GameInstanceSubsystem* 
 		{
 			Params.SetRegionId(RegionId);
 		}
-		Params.SetClientVersion(URH_JoinedSession::GetClientVersionForSession());
+		if (CreateByTypeUsePlayerOptions)
+		{
+			// use a default object and let session routines auto-inject the values
+			Params.SetPlayer(FRHAPI_SelfSessionPlayerUpdateRequest());
+		}
 
 		ForEachSelectedLocalRHPlayer(FRHDT_RHLPAction::CreateLambda([this, Params](URH_LocalPlayerSubsystem* LPSS)
 			{
