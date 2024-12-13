@@ -195,6 +195,18 @@ bool URH_PlatformSessionSyncer::IsLocalPlayerScout() const
 		return false;
 	}
 
+	// use the API specified scout array if it is present
+	auto Scouts = RHSession->GetSessionData().GetPlatformScoutsOrNull();
+	if (Scouts)
+	{
+		auto Scout = Scouts->Find(EnumToString(RHPlatform));
+		if (Scout)
+		{
+			return Scout->GetPlayerUuid() == SessionOwner->GetPlayerUuid();
+		}
+	}
+
+	// fall back to old logic (deprecated)
 	FGuid FirstGuidOnPlatform;
 	FDateTime FirstJoinTime = FDateTime::MaxValue();
 
