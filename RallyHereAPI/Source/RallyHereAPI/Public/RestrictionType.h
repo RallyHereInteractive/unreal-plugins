@@ -20,7 +20,7 @@ enum class ERHAPI_RestrictionType : uint8
 {
 	AccountBan UMETA(ToolTip="Account is banned.  User is not allowed to login"),
 	AccountLockout UMETA(ToolTip="Account is locked out.  User is not allowed to login"),
-	AccountPendingDeletion UMETA(ToolTip="Account is pending deletion and will be deleted in the future.  User is not allowed to login"),
+	AccountPendingDeletion UMETA(ToolTip="Account is pending deletion and will be deleted in the future."),
 	AccountDenyAuth UMETA(ToolTip="Account has been banned from authentication.  User is not allowed to login"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_RestrictionType& EnumValue);
