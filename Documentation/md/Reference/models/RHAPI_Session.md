@@ -41,6 +41,8 @@ A session resource.
 `public bool `[`TeamsSuppressed_IsSet`](#structFRHAPI__Session_1a10f57fbd85b3cab5ad92ea7534e44432) | true if TeamsSuppressed_Optional has been set to a value
 `public TArray< `[`FRHAPI_PlatformSession`](RHAPI_PlatformSession.md#structFRHAPI__PlatformSession)` > `[`PlatformSession_Optional`](#structFRHAPI__Session_1aef33c93a7e5567b34d41af76b8441fe3) | Child Platform Sessions for this session. A player joining one of the child platform sessions implicitly joins the parent session.
 `public bool `[`PlatformSession_IsSet`](#structFRHAPI__Session_1a6f2c00e800ad78c74ead76a70720d494) | true if PlatformSession_Optional has been set to a value
+`public TMap< FString, `[`FRHAPI_PlatformScout`](RHAPI_PlatformScout.md#structFRHAPI__PlatformScout)` > `[`PlatformScouts_Optional`](#structFRHAPI__Session_1a9d8175903e2e5ca8012195343e26e6ea) | List of platform scouts for this session.
+`public bool `[`PlatformScouts_IsSet`](#structFRHAPI__Session_1a9cce8395f42aa5aa258a1834f526aa57) | true if PlatformScouts_Optional has been set to a value
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__Session_1a0d426749efebca34803c875e390e1c4b) | Leader Player or instance defined custom data about this session.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__Session_1a02208d99aadc08bc3ccc982f92db99c8) | true if CustomData_Optional has been set to a value
 `public FDateTime `[`Created`](#structFRHAPI__Session_1ab51fce893a31fce6b645ffb16c34544b) | Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone.
@@ -150,6 +152,16 @@ A session resource.
 `public inline void `[`SetPlatformSession`](#structFRHAPI__Session_1aaae614b29615924c25581b5d274955ce)`(TArray< `[`FRHAPI_PlatformSession`](RHAPI_PlatformSession.md#structFRHAPI__PlatformSession)` > && NewValue)` | Sets the value of PlatformSession_Optional and also sets PlatformSession_IsSet to true using move semantics.
 `public inline void `[`ClearPlatformSession`](#structFRHAPI__Session_1ab2a2e49368eff0e0b474a8698449ee59)`()` | Clears the value of PlatformSession_Optional and sets PlatformSession_IsSet to false.
 `public inline bool `[`IsPlatformSessionSet`](#structFRHAPI__Session_1a80aa992baaca370a4a8fd9737a71de9b)`() const` | Checks whether PlatformSession_Optional has been set.
+`public inline TMap< FString, `[`FRHAPI_PlatformScout`](RHAPI_PlatformScout.md#structFRHAPI__PlatformScout)` > & `[`GetPlatformScouts`](#structFRHAPI__Session_1a286d4157ff00e74b1ac3e68778c9acea)`()` | Gets the value of PlatformScouts_Optional, regardless of it having been set.
+`public inline const TMap< FString, `[`FRHAPI_PlatformScout`](RHAPI_PlatformScout.md#structFRHAPI__PlatformScout)` > & `[`GetPlatformScouts`](#structFRHAPI__Session_1afc58621852a53b24bf0e9cc3bd668608)`() const` | Gets the value of PlatformScouts_Optional, regardless of it having been set.
+`public inline const TMap< FString, `[`FRHAPI_PlatformScout`](RHAPI_PlatformScout.md#structFRHAPI__PlatformScout)` > & `[`GetPlatformScouts`](#structFRHAPI__Session_1a49a6dfcb5a74687b96dbd8edf88f6079)`(const TMap< FString, `[`FRHAPI_PlatformScout`](RHAPI_PlatformScout.md#structFRHAPI__PlatformScout)` > & DefaultValue) const` | Gets the value of PlatformScouts_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetPlatformScouts`](#structFRHAPI__Session_1a7cfdabf35d746377b4c7cbc931ca9bda)`(TMap< FString, `[`FRHAPI_PlatformScout`](RHAPI_PlatformScout.md#structFRHAPI__PlatformScout)` > & OutValue) const` | Fills OutValue with the value of PlatformScouts_Optional and returns true if it has been set, otherwise returns false.
+`public inline TMap< FString, `[`FRHAPI_PlatformScout`](RHAPI_PlatformScout.md#structFRHAPI__PlatformScout)` > * `[`GetPlatformScoutsOrNull`](#structFRHAPI__Session_1af7fdf93703026a9fda5feca93e397ba6)`()` | Returns a pointer to PlatformScouts_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TMap< FString, `[`FRHAPI_PlatformScout`](RHAPI_PlatformScout.md#structFRHAPI__PlatformScout)` > * `[`GetPlatformScoutsOrNull`](#structFRHAPI__Session_1a17187a017809be2567cc7696876e7386)`() const` | Returns a pointer to PlatformScouts_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetPlatformScouts`](#structFRHAPI__Session_1a8f7dbeb46a1f0a02899d50e2e2772c21)`(const TMap< FString, `[`FRHAPI_PlatformScout`](RHAPI_PlatformScout.md#structFRHAPI__PlatformScout)` > & NewValue)` | Sets the value of PlatformScouts_Optional and also sets PlatformScouts_IsSet to true.
+`public inline void `[`SetPlatformScouts`](#structFRHAPI__Session_1a840c72a73a704a1ec347cdf181a36e82)`(TMap< FString, `[`FRHAPI_PlatformScout`](RHAPI_PlatformScout.md#structFRHAPI__PlatformScout)` > && NewValue)` | Sets the value of PlatformScouts_Optional and also sets PlatformScouts_IsSet to true using move semantics.
+`public inline void `[`ClearPlatformScouts`](#structFRHAPI__Session_1a6b418e8b04c7f22a40894bcb2ab97ec3)`()` | Clears the value of PlatformScouts_Optional and sets PlatformScouts_IsSet to false.
+`public inline bool `[`IsPlatformScoutsSet`](#structFRHAPI__Session_1aa874412d3cbb662b90170d71229fb8ef)`() const` | Checks whether PlatformScouts_Optional has been set.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Session_1abed072171f304dcb8b90486b80943efa)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Session_1ad27ca08587eedfe4b8e9ec79233cc0c4)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Session_1a7b13eb31cdc9b0badc6cdff6f96b9f5b)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -268,6 +280,14 @@ Child Platform Sessions for this session. A player joining one of the child plat
 #### `public bool `[`PlatformSession_IsSet`](#structFRHAPI__Session_1a6f2c00e800ad78c74ead76a70720d494) <a id="structFRHAPI__Session_1a6f2c00e800ad78c74ead76a70720d494"></a>
 
 true if PlatformSession_Optional has been set to a value
+
+#### `public TMap< FString, `[`FRHAPI_PlatformScout`](RHAPI_PlatformScout.md#structFRHAPI__PlatformScout)` > `[`PlatformScouts_Optional`](#structFRHAPI__Session_1a9d8175903e2e5ca8012195343e26e6ea) <a id="structFRHAPI__Session_1a9d8175903e2e5ca8012195343e26e6ea"></a>
+
+List of platform scouts for this session.
+
+#### `public bool `[`PlatformScouts_IsSet`](#structFRHAPI__Session_1a9cce8395f42aa5aa258a1834f526aa57) <a id="structFRHAPI__Session_1a9cce8395f42aa5aa258a1834f526aa57"></a>
+
+true if PlatformScouts_Optional has been set to a value
 
 #### `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__Session_1a0d426749efebca34803c875e390e1c4b) <a id="structFRHAPI__Session_1a0d426749efebca34803c875e390e1c4b"></a>
 
@@ -713,6 +733,46 @@ Clears the value of PlatformSession_Optional and sets PlatformSession_IsSet to f
 #### `public inline bool `[`IsPlatformSessionSet`](#structFRHAPI__Session_1a80aa992baaca370a4a8fd9737a71de9b)`() const` <a id="structFRHAPI__Session_1a80aa992baaca370a4a8fd9737a71de9b"></a>
 
 Checks whether PlatformSession_Optional has been set.
+
+#### `public inline TMap< FString, `[`FRHAPI_PlatformScout`](RHAPI_PlatformScout.md#structFRHAPI__PlatformScout)` > & `[`GetPlatformScouts`](#structFRHAPI__Session_1a286d4157ff00e74b1ac3e68778c9acea)`()` <a id="structFRHAPI__Session_1a286d4157ff00e74b1ac3e68778c9acea"></a>
+
+Gets the value of PlatformScouts_Optional, regardless of it having been set.
+
+#### `public inline const TMap< FString, `[`FRHAPI_PlatformScout`](RHAPI_PlatformScout.md#structFRHAPI__PlatformScout)` > & `[`GetPlatformScouts`](#structFRHAPI__Session_1afc58621852a53b24bf0e9cc3bd668608)`() const` <a id="structFRHAPI__Session_1afc58621852a53b24bf0e9cc3bd668608"></a>
+
+Gets the value of PlatformScouts_Optional, regardless of it having been set.
+
+#### `public inline const TMap< FString, `[`FRHAPI_PlatformScout`](RHAPI_PlatformScout.md#structFRHAPI__PlatformScout)` > & `[`GetPlatformScouts`](#structFRHAPI__Session_1a49a6dfcb5a74687b96dbd8edf88f6079)`(const TMap< FString, `[`FRHAPI_PlatformScout`](RHAPI_PlatformScout.md#structFRHAPI__PlatformScout)` > & DefaultValue) const` <a id="structFRHAPI__Session_1a49a6dfcb5a74687b96dbd8edf88f6079"></a>
+
+Gets the value of PlatformScouts_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetPlatformScouts`](#structFRHAPI__Session_1a7cfdabf35d746377b4c7cbc931ca9bda)`(TMap< FString, `[`FRHAPI_PlatformScout`](RHAPI_PlatformScout.md#structFRHAPI__PlatformScout)` > & OutValue) const` <a id="structFRHAPI__Session_1a7cfdabf35d746377b4c7cbc931ca9bda"></a>
+
+Fills OutValue with the value of PlatformScouts_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline TMap< FString, `[`FRHAPI_PlatformScout`](RHAPI_PlatformScout.md#structFRHAPI__PlatformScout)` > * `[`GetPlatformScoutsOrNull`](#structFRHAPI__Session_1af7fdf93703026a9fda5feca93e397ba6)`()` <a id="structFRHAPI__Session_1af7fdf93703026a9fda5feca93e397ba6"></a>
+
+Returns a pointer to PlatformScouts_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const TMap< FString, `[`FRHAPI_PlatformScout`](RHAPI_PlatformScout.md#structFRHAPI__PlatformScout)` > * `[`GetPlatformScoutsOrNull`](#structFRHAPI__Session_1a17187a017809be2567cc7696876e7386)`() const` <a id="structFRHAPI__Session_1a17187a017809be2567cc7696876e7386"></a>
+
+Returns a pointer to PlatformScouts_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetPlatformScouts`](#structFRHAPI__Session_1a8f7dbeb46a1f0a02899d50e2e2772c21)`(const TMap< FString, `[`FRHAPI_PlatformScout`](RHAPI_PlatformScout.md#structFRHAPI__PlatformScout)` > & NewValue)` <a id="structFRHAPI__Session_1a8f7dbeb46a1f0a02899d50e2e2772c21"></a>
+
+Sets the value of PlatformScouts_Optional and also sets PlatformScouts_IsSet to true.
+
+#### `public inline void `[`SetPlatformScouts`](#structFRHAPI__Session_1a840c72a73a704a1ec347cdf181a36e82)`(TMap< FString, `[`FRHAPI_PlatformScout`](RHAPI_PlatformScout.md#structFRHAPI__PlatformScout)` > && NewValue)` <a id="structFRHAPI__Session_1a840c72a73a704a1ec347cdf181a36e82"></a>
+
+Sets the value of PlatformScouts_Optional and also sets PlatformScouts_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearPlatformScouts`](#structFRHAPI__Session_1a6b418e8b04c7f22a40894bcb2ab97ec3)`()` <a id="structFRHAPI__Session_1a6b418e8b04c7f22a40894bcb2ab97ec3"></a>
+
+Clears the value of PlatformScouts_Optional and sets PlatformScouts_IsSet to false.
+
+#### `public inline bool `[`IsPlatformScoutsSet`](#structFRHAPI__Session_1aa874412d3cbb662b90170d71229fb8ef)`() const` <a id="structFRHAPI__Session_1aa874412d3cbb662b90170d71229fb8ef"></a>
+
+Checks whether PlatformScouts_Optional has been set.
 
 #### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Session_1abed072171f304dcb8b90486b80943efa)`()` <a id="structFRHAPI__Session_1abed072171f304dcb8b90486b80943efa"></a>
 
