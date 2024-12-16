@@ -798,6 +798,29 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Change Player Team", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_ChangePlayerTeam(UPARAM(ref) const FGuid& PlayerUuid, int32 Team, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { ChangePlayerTeam(PlayerUuid, Team, Delegate); }
 	/**
+	 * @brief Swaps the teams of a specified pair of players.
+	 * @param [in] PlayerUuidA The first unique player id to swap
+	 * @param [in] PlayerUuidB The second unique player id to swap
+	 * @param [in] Delegate Callback delegate for the session being updated by the team change.
+	 */
+	virtual void SwapPlayerTeams(const FGuid& PlayerUuidA, const FGuid& PlayerUuidB, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::SwapPlayerTeams, ); }
+	/**
+	 * @private
+	 * @brief Blueprint compatible version of SwapPlayerTeams
+	 * @param [in] PlayerUuidA The first unique player id to swap
+	 * @param [in] PlayerUuidB The second unique player id to swap
+	 * @param [in] Delegate Callback delegate for the session being updated by the team change.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Swap Player Teams", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_SwapPlayerTeams(UPARAM(ref) const FGuid& PlayerUuidA, UPARAM(ref) const FGuid& PlayerUuidB, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { SwapPlayerTeams(PlayerUuidA, PlayerUuidB, Delegate); }
+	/**
+	 * @brief Changes the session player's custom data.
+	 * @param [in] PlayerUuid The unique player Id whose custom data will be updated
+	 * @param [in] CustomData The custom data map to set the player's to
+	 * @param [in] Delegate Callback delegate for the session being updated by the player update
+	 */
+	
+	/**
 	 * @brief Changes the session player's custom data.
 	 * @param [in] PlayerUuid The unique player Id whose custom data will be updated
 	 * @param [in] CustomData The custom data map to set the player's to
@@ -1079,6 +1102,13 @@ public:
 	 * @param [in] Delegate Callback delegate for the session being updated by the team change.
 	 */
 	virtual void ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	/**
+	 * @brief Swaps the teams of a specified pair of players.
+	 * @param [in] PlayerUuidA The first unique player id to swap
+	 * @param [in] PlayerUuidB The second unique player id to swap
+	 * @param [in] Delegate Callback delegate for the session being updated by the team change.
+	 */
+	virtual void SwapPlayerTeams(const FGuid& PlayerUuidA, const FGuid& PlayerUuidB, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/** @brief Currently not supported for offline sessions */
 	virtual void UpdatePlayerCustomData(const FGuid& PlayerUuid, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
@@ -1333,6 +1363,13 @@ public:
 	 * @param [in] Delegate Callback delegate for the session being updated by the team change.
 	 */
 	virtual void ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	/**
+	 * @brief Swaps the teams of a specified pair of players.
+	 * @param [in] PlayerUuidA The first unique player id to swap
+	 * @param [in] PlayerUuidB The second unique player id to swap
+	 * @param [in] Delegate Callback delegate for the session being updated by the team change.
+	 */
+	virtual void SwapPlayerTeams(const FGuid& PlayerUuidA, const FGuid& PlayerUuidB, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	 * @brief Changes the session player's custom data.
 	 * @param [in] PlayerUuid The unique player Id whose custom data will be updated
