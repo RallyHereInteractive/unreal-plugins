@@ -19,6 +19,7 @@ UENUM(BlueprintType)
 enum class ERHAPI_RuleType : uint8
 {
 	Inventory UMETA(ToolTip="Comparing the count of a specific item that a player owns"),
+	InventoryLevel UMETA(ToolTip="Comparing the level of a specific item that a player owns"),
 	JoiningSessionSize UMETA(ToolTip="Comparing the number of session members to be queued"),
 	RegionList UMETA(ToolTip="Comparing the region of the session to a list of regions"),
 };

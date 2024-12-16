@@ -65,7 +65,7 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplateGroupV2 : public FRHAPI_Model
 	/** @brief Sets the value of TemplateOptions using move semantics */
 	void SetTemplateOptions(TArray<FRHAPI_MatchMakingTemplateV2>&& NewValue) { TemplateOptions = NewValue;   }
 
-	/** @brief Set of all the item ids that are required to validate every rule contained in this template group */
+	/** @brief DEPRECATED. Set of all the item ids that are required to validate every rule contained in this template group */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TSet<int32> RequiredItemIds_Optional{  };
 	/** @brief true if RequiredItemIds_Optional has been set to a value */
@@ -92,7 +92,7 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplateGroupV2 : public FRHAPI_Model
 	/** @brief Checks whether RequiredItemIds_Optional has been set */
 	bool IsRequiredItemIdsSet() const { return RequiredItemIds_IsSet; }
 
-	/** @brief Whether or not the rulesets under this group will require us to query all players inventory, or just the leader's */
+	/** @brief DEPRECATED. Whether or not the rulesets under this group will require us to query all players inventory, or just the leader's */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool RequiresAllPlayersItems_Optional{ false };
 	/** @brief true if RequiresAllPlayersItems_Optional has been set to a value */
@@ -123,7 +123,7 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplateGroupV2 : public FRHAPI_Model
 	/** @brief Sets the value of RequiresAllPlayersItems_Optional to its default and also sets RequiresAllPlayersItems_IsSet to true */
 	void SetRequiresAllPlayersItemsToDefault() { SetRequiresAllPlayersItems(false); }
 
-	/** @brief Whether or not the rulesets under this group will require us to validate session data */
+	/** @brief DEPRECATED. Whether or not the rulesets under this group will require us to validate session data */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool IncludesSessionRule_Optional{ false };
 	/** @brief true if IncludesSessionRule_Optional has been set to a value */

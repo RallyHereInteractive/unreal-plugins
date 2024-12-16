@@ -221,6 +221,7 @@ Private/PlatformIndividualCCUs.cpp
 Private/PlatformRegion.cpp
 Private/PlatformSKU.cpp
 Private/PlatformSKUs.cpp
+Private/PlatformScout.cpp
 Private/PlatformSession.cpp
 Private/PlatformSessionPlayer.cpp
 Private/PlatformSessionTemplate.cpp
@@ -599,6 +600,7 @@ Public/PlatformIndividualCCUs.h
 Public/PlatformRegion.h
 Public/PlatformSKU.h
 Public/PlatformSKUs.h
+Public/PlatformScout.h
 Public/PlatformSession.h
 Public/PlatformSessionPlayer.h
 Public/PlatformSessionTemplate.h

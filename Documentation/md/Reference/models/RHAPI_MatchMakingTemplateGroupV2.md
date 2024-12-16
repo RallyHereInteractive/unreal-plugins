@@ -23,11 +23,11 @@ A collection of MatchMakingTemplates that may be used when a session enters a qu
 --------------------------------|---------------------------------------------
 `public FGuid `[`MatchMakingTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1ab6ac4a6cc076fa58e61f71f0b74c6da2) | ID for this set of potential matchmaking templates.
 `public TArray< `[`FRHAPI_MatchMakingTemplateV2`](RHAPI_MatchMakingTemplateV2.md#structFRHAPI__MatchMakingTemplateV2)` > `[`TemplateOptions`](#structFRHAPI__MatchMakingTemplateGroupV2_1a5f061f6b1728e5e91acbc50c8d0db1cb) | List of the different matchmaking templates that could be used. The config is chosen based on a set of rules in each MatchMakingTemplate object. If there are no rules, it's the default template.
-`public TSet< int32 > `[`RequiredItemIds_Optional`](#structFRHAPI__MatchMakingTemplateGroupV2_1a679dffab35167122874604eb826703bd) | Set of all the item ids that are required to validate every rule contained in this template group.
+`public TSet< int32 > `[`RequiredItemIds_Optional`](#structFRHAPI__MatchMakingTemplateGroupV2_1a679dffab35167122874604eb826703bd) | DEPRECATED. Set of all the item ids that are required to validate every rule contained in this template group.
 `public bool `[`RequiredItemIds_IsSet`](#structFRHAPI__MatchMakingTemplateGroupV2_1acf8e308da6fcec42032dd998a15284c3) | true if RequiredItemIds_Optional has been set to a value
-`public bool `[`RequiresAllPlayersItems_Optional`](#structFRHAPI__MatchMakingTemplateGroupV2_1a8488674c91fc3cf5cfe7be4c51b89abb) | Whether or not the rulesets under this group will require us to query all players inventory, or just the leader's.
+`public bool `[`RequiresAllPlayersItems_Optional`](#structFRHAPI__MatchMakingTemplateGroupV2_1a8488674c91fc3cf5cfe7be4c51b89abb) | DEPRECATED. Whether or not the rulesets under this group will require us to query all players inventory, or just the leader's.
 `public bool `[`RequiresAllPlayersItems_IsSet`](#structFRHAPI__MatchMakingTemplateGroupV2_1aa1ce654df8e332c2883087f691bd7503) | true if RequiresAllPlayersItems_Optional has been set to a value
-`public bool `[`IncludesSessionRule_Optional`](#structFRHAPI__MatchMakingTemplateGroupV2_1a78e546039e5a79103050ebbeabbc8fe2) | Whether or not the rulesets under this group will require us to validate session data.
+`public bool `[`IncludesSessionRule_Optional`](#structFRHAPI__MatchMakingTemplateGroupV2_1a78e546039e5a79103050ebbeabbc8fe2) | DEPRECATED. Whether or not the rulesets under this group will require us to validate session data.
 `public bool `[`IncludesSessionRule_IsSet`](#structFRHAPI__MatchMakingTemplateGroupV2_1ad85d849ab5f1dd72347a07ce5a706cbe) | true if IncludesSessionRule_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__MatchMakingTemplateGroupV2_1ab2bd4c99d48b826ea841c97880c250a2)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__MatchMakingTemplateGroupV2_1a9909abfe12210b32cd90427daa2bd70a)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
@@ -86,7 +86,7 @@ List of the different matchmaking templates that could be used. The config is ch
 
 #### `public TSet< int32 > `[`RequiredItemIds_Optional`](#structFRHAPI__MatchMakingTemplateGroupV2_1a679dffab35167122874604eb826703bd) <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a679dffab35167122874604eb826703bd"></a>
 
-Set of all the item ids that are required to validate every rule contained in this template group.
+DEPRECATED. Set of all the item ids that are required to validate every rule contained in this template group.
 
 #### `public bool `[`RequiredItemIds_IsSet`](#structFRHAPI__MatchMakingTemplateGroupV2_1acf8e308da6fcec42032dd998a15284c3) <a id="structFRHAPI__MatchMakingTemplateGroupV2_1acf8e308da6fcec42032dd998a15284c3"></a>
 
@@ -94,7 +94,7 @@ true if RequiredItemIds_Optional has been set to a value
 
 #### `public bool `[`RequiresAllPlayersItems_Optional`](#structFRHAPI__MatchMakingTemplateGroupV2_1a8488674c91fc3cf5cfe7be4c51b89abb) <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a8488674c91fc3cf5cfe7be4c51b89abb"></a>
 
-Whether or not the rulesets under this group will require us to query all players inventory, or just the leader's.
+DEPRECATED. Whether or not the rulesets under this group will require us to query all players inventory, or just the leader's.
 
 #### `public bool `[`RequiresAllPlayersItems_IsSet`](#structFRHAPI__MatchMakingTemplateGroupV2_1aa1ce654df8e332c2883087f691bd7503) <a id="structFRHAPI__MatchMakingTemplateGroupV2_1aa1ce654df8e332c2883087f691bd7503"></a>
 
@@ -102,7 +102,7 @@ true if RequiresAllPlayersItems_Optional has been set to a value
 
 #### `public bool `[`IncludesSessionRule_Optional`](#structFRHAPI__MatchMakingTemplateGroupV2_1a78e546039e5a79103050ebbeabbc8fe2) <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a78e546039e5a79103050ebbeabbc8fe2"></a>
 
-Whether or not the rulesets under this group will require us to validate session data.
+DEPRECATED. Whether or not the rulesets under this group will require us to validate session data.
 
 #### `public bool `[`IncludesSessionRule_IsSet`](#structFRHAPI__MatchMakingTemplateGroupV2_1ad85d849ab5f1dd72347a07ce5a706cbe) <a id="structFRHAPI__MatchMakingTemplateGroupV2_1ad85d849ab5f1dd72347a07ce5a706cbe"></a>
 

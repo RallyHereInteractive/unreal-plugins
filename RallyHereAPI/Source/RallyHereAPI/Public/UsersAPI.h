@@ -49,6 +49,10 @@ class FUsersAPI;
 /**
  * @brief Add Person Restrictions
  * Add a new restriction to an existing person
+ * 
+ * Required Permissions:
+ * 
+ * - For any person (including themselves) any of: `user:*`, `user:restriction:modify:any`
 */
 struct RALLYHEREAPI_API FRequest_AddPersonRestrictions : public FRequest
 {
@@ -140,6 +144,10 @@ struct RALLYHEREAPI_API Traits_AddPersonRestrictions
 /**
  * @brief Add Player Restrictions
  * Add a new restriction to an existing player's person
+ * 
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `user:*`, `user:restriction:modify:any`
 */
 struct RALLYHEREAPI_API FRequest_AddPlayerRestrictions : public FRequest
 {
@@ -1604,6 +1612,12 @@ struct RALLYHEREAPI_API Traits_GetPersonForSelf
 /**
  * @brief Get Person Restrictions
  * Get Restrictions for a person.  These same restrictions apply to all players associated with the person
+ * 
+ * Required Permissions:
+ * 
+ * - For any person (including themselves) any of: `user:*`, `user:restriction:read:any`
+ * 
+ * - For the person themselves : `user:restriction:read:self`
 */
 struct RALLYHEREAPI_API FRequest_GetPersonRestrictions : public FRequest
 {
@@ -1706,6 +1720,12 @@ struct RALLYHEREAPI_API Traits_GetPersonRestrictions
 /**
  * @brief Get Person Restrictions For Self
  * Get Restrictions for your person.  These same restrictions apply to all players associated with the person
+ * 
+ * Required Permissions:
+ * 
+ * - For any person (including themselves) any of: `user:*`, `user:restriction:read:any`
+ * 
+ * - For the person themselves : `user:restriction:read:self`
 */
 struct RALLYHEREAPI_API FRequest_GetPersonRestrictionsForSelf : public FRequest
 {
@@ -2340,6 +2360,12 @@ struct RALLYHEREAPI_API Traits_GetPlayerLinksForSelf
 /**
  * @brief Get Player Restrictions
  * Get Restrictions for a player
+ * 
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `user:*`, `user:restriction:read:any`
+ * 
+ * - For the player themselves : `user:restriction:read:self`
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerRestrictions : public FRequest
 {
@@ -2442,6 +2468,12 @@ struct RALLYHEREAPI_API Traits_GetPlayerRestrictions
 /**
  * @brief Get Player Restrictions For Self
  * Get Restrictions for a player
+ * 
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `user:*`, `user:restriction:read:any`
+ * 
+ * - For the player themselves : `user:restriction:read:self`
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerRestrictionsForSelf : public FRequest
 {
@@ -3731,6 +3763,10 @@ struct RALLYHEREAPI_API Traits_QueuePersonForPurge
 /**
  * @brief Remove Person Restrictions
  * Remove restrictions from user.  NOTE: this will NOT remove restrictions for account deletion
+ * 
+ * Required Permissions:
+ * 
+ * - For any person (including themselves) any of: `user:*`, `user:restriction:modify:any`
 */
 struct RALLYHEREAPI_API FRequest_RemovePersonRestrictions : public FRequest
 {
@@ -3825,6 +3861,10 @@ struct RALLYHEREAPI_API Traits_RemovePersonRestrictions
 /**
  * @brief Remove Player Restrictions
  * Remove restrictions from user.  NOTE: this will NOT remove restrictions for account deletion
+ * 
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `user:*`, `user:restriction:modify:any`
 */
 struct RALLYHEREAPI_API FRequest_RemovePlayerRestrictions : public FRequest
 {

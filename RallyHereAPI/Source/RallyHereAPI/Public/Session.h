@@ -15,6 +15,7 @@
 #include "MatchInfo.h"
 #include "MatchmakingInfo.h"
 #include "MatchmakingResults.h"
+#include "PlatformScout.h"
 #include "PlatformSession.h"
 #include "SessionTeam.h"
 #include "Session.generated.h"
@@ -318,6 +319,33 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
 	void ClearPlatformSession() { PlatformSession_IsSet = false;  }
 	/** @brief Checks whether PlatformSession_Optional has been set */
 	bool IsPlatformSessionSet() const { return PlatformSession_IsSet; }
+
+	/** @brief List of platform scouts for this session */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TMap<FString, FRHAPI_PlatformScout> PlatformScouts_Optional{  };
+	/** @brief true if PlatformScouts_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool PlatformScouts_IsSet{ false };
+	/** @brief Gets the value of PlatformScouts_Optional, regardless of it having been set */
+	TMap<FString, FRHAPI_PlatformScout>& GetPlatformScouts() { return PlatformScouts_Optional; }
+	/** @brief Gets the value of PlatformScouts_Optional, regardless of it having been set */
+	const TMap<FString, FRHAPI_PlatformScout>& GetPlatformScouts() const { return PlatformScouts_Optional; }
+	/** @brief Gets the value of PlatformScouts_Optional, if it has been set, otherwise it returns DefaultValue */
+	const TMap<FString, FRHAPI_PlatformScout>& GetPlatformScouts(const TMap<FString, FRHAPI_PlatformScout>& DefaultValue) const { if (PlatformScouts_IsSet) return PlatformScouts_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of PlatformScouts_Optional and returns true if it has been set, otherwise returns false */
+	bool GetPlatformScouts(TMap<FString, FRHAPI_PlatformScout>& OutValue) const { if (PlatformScouts_IsSet) OutValue = PlatformScouts_Optional; return PlatformScouts_IsSet; }
+	/** @brief Returns a pointer to PlatformScouts_Optional, if it has been set, otherwise returns nullptr */
+	TMap<FString, FRHAPI_PlatformScout>* GetPlatformScoutsOrNull() { if (PlatformScouts_IsSet) return (&PlatformScouts_Optional); return nullptr; }
+	/** @brief Returns a pointer to PlatformScouts_Optional, if it has been set, otherwise returns nullptr */
+	const TMap<FString, FRHAPI_PlatformScout>* GetPlatformScoutsOrNull() const { if (PlatformScouts_IsSet) return (&PlatformScouts_Optional); return nullptr; }
+	/** @brief Sets the value of PlatformScouts_Optional and also sets PlatformScouts_IsSet to true */
+	void SetPlatformScouts(const TMap<FString, FRHAPI_PlatformScout>& NewValue) { PlatformScouts_Optional = NewValue; PlatformScouts_IsSet = true;  }
+	/** @brief Sets the value of PlatformScouts_Optional and also sets PlatformScouts_IsSet to true using move semantics */
+	void SetPlatformScouts(TMap<FString, FRHAPI_PlatformScout>&& NewValue) { PlatformScouts_Optional = NewValue; PlatformScouts_IsSet = true;  }
+	/** @brief Clears the value of PlatformScouts_Optional and sets PlatformScouts_IsSet to false */
+	void ClearPlatformScouts() { PlatformScouts_IsSet = false;  }
+	/** @brief Checks whether PlatformScouts_Optional has been set */
+	bool IsPlatformScoutsSet() const { return PlatformScouts_IsSet; }
 
 	/** @brief Leader Player or instance defined custom data about this session */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

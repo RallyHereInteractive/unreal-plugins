@@ -24,6 +24,8 @@ FString EnumToString(const ERHAPI_RuleType& Value)
 	{
 	case ERHAPI_RuleType::Inventory:
 		return TEXT("Inventory");
+	case ERHAPI_RuleType::InventoryLevel:
+		return TEXT("InventoryLevel");
 	case ERHAPI_RuleType::JoiningSessionSize:
 		return TEXT("JoiningSessionSize");
 	case ERHAPI_RuleType::RegionList:
@@ -38,6 +40,7 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_RuleType& Value)
 {
 	static TMap<FString, ERHAPI_RuleType> StringToEnum = { 
 		{ TEXT("Inventory"), ERHAPI_RuleType::Inventory },
+		{ TEXT("InventoryLevel"), ERHAPI_RuleType::InventoryLevel },
 		{ TEXT("JoiningSessionSize"), ERHAPI_RuleType::JoiningSessionSize },
 		{ TEXT("RegionList"), ERHAPI_RuleType::RegionList },	};
 

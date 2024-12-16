@@ -70,6 +70,11 @@ void FRHAPI_Session::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		Writer->WriteIdentifierPrefix(TEXT("platform_session"));
 		RallyHereAPI::WriteJsonValue(Writer, PlatformSession_Optional);
 	}
+	if (PlatformScouts_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("platform_scouts"));
+		RallyHereAPI::WriteJsonValue(Writer, PlatformScouts_Optional);
+	}
 	if (CustomData_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("custom_data"));
@@ -157,6 +162,12 @@ bool FRHAPI_Session::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	{
 		PlatformSession_IsSet = TryGetJsonValue(JsonPlatformSessionField, PlatformSession_Optional);
 		ParseSuccess &= PlatformSession_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonPlatformScoutsField = (*Object)->TryGetField(TEXT("platform_scouts"));
+	if (JsonPlatformScoutsField.IsValid())
+	{
+		PlatformScouts_IsSet = TryGetJsonValue(JsonPlatformScoutsField, PlatformScouts_Optional);
+		ParseSuccess &= PlatformScouts_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
 	if (JsonCustomDataField.IsValid())
