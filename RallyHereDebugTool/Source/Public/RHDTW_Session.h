@@ -86,7 +86,7 @@ protected:
 	void ImGuiDisplayInstanceRequest(TSharedRef<FInstanceLaunchParamsDisplay>& InstanceLaunchParams, URH_GameInstanceSubsystem* pGISubsystem, URH_JoinedSession* Session);
 	void ImGuiDisplayMatch(const FRHAPI_MatchInfo& Info);
 	void ImGuiDisplaySessionPlayer(URH_SessionView* RHSession, const FRHAPI_SessionPlayer& Player, int32 TeamId, URH_GameInstanceSessionSubsystem* pGISessionSubsystem);
-	void ImGuiDisplayPlatformSession(const FRHAPI_PlatformSession& Info);
+	void ImGuiDisplayPlatformSession(const FRHAPI_PlatformSession& Info, const TMap<FString, FRHAPI_PlatformScout>* Scouts);
 	void ImGuiDisplaySession(const FRH_APISessionWithETag& Session, URH_SessionView* RHSession, URH_LocalPlayerSessionSubsystem* pLPSessionSubsystem, URH_GameInstanceSessionSubsystem* pGISessionSubsystem);
 
 	// session state tabs

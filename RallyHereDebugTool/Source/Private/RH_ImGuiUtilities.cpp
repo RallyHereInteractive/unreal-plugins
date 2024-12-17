@@ -59,7 +59,7 @@ void ImGuiDisplayCopyableValue(const FString& Key, const FString& Value, ECopyMo
 	}
 	else if (CopyMode == ECopyMode::KeyValue)
 	{
-		ImGui::Text("%s : %s", TCHAR_TO_UTF8(*Key), TCHAR_TO_UTF8(*Value));
+		ImGui::Text("%s: %s", TCHAR_TO_UTF8(*Key), TCHAR_TO_UTF8(*Value));
 	}
 	else if (CopyMode == ECopyMode::TwoColumn)
 	{
