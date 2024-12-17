@@ -61,7 +61,7 @@ void RALLYHEREDEBUGTOOL_API ImGuiDisplayCopyableValue(const FString& Key, const 
 	{
 		if (CopyMode == ECopyMode::KeyValue)
 		{
-			ImGui::Text("%s : <UNSET>", TCHAR_TO_UTF8(*Key));
+			ImGui::Text("%s: <UNSET>", TCHAR_TO_UTF8(*Key));
 		}
 		else if (CopyMode == ECopyMode::Value)
 		{
@@ -89,7 +89,7 @@ void RALLYHEREDEBUGTOOL_API ImGuiDisplayCopyableEnumValue(const FString& Key, co
 	{
 		if (CopyMode == ECopyMode::KeyValue)
 		{
-			ImGui::Text("%s : <UNSET>", TCHAR_TO_UTF8(*Key));
+			ImGui::Text("%s: <UNSET>", TCHAR_TO_UTF8(*Key));
 		}
 		else if (CopyMode == ECopyMode::Value)
 		{

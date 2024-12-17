@@ -441,9 +441,10 @@ void FRHDTW_Session::ImGuiDisplaySessionPlayer(URH_SessionView* RHSession, const
 	}
 }
 
-void FRHDTW_Session::ImGuiDisplayPlatformSession(const FRHAPI_PlatformSession& Info)
+void FRHDTW_Session::ImGuiDisplayPlatformSession(const FRHAPI_PlatformSession& Info, const TMap<FString, FRHAPI_PlatformScout>* Scouts)
 {
-	FString HeaderString = FString::Printf(TEXT("%s"), *EnumToString(Info.Platform));
+	const auto Platform = EnumToString(Info.Platform);
+	FString HeaderString = FString::Printf(TEXT("%s"), *Platform);
 
 	if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*HeaderString), RH_DefaultTreeFlags))
 	{
@@ -456,13 +457,12 @@ void FRHDTW_Session::ImGuiDisplayPlatformSession(const FRHAPI_PlatformSession& I
 		}
 		ImGuiDisplayCopyableValue(TEXT("PlatformSessionIdBase64"), Info.PlatformSessionIdBase64);
 
-		/* Players in the platform session */
-		for (auto Player : Info.Players)
+		if (Scouts)
 		{
-			FString Label = FString::Printf(TEXT("Player##%d"), *Player.PlayerUuid.ToString(EGuidFormats::DigitsWithHyphens));
-			if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*Label), RH_DefaultTreeFlagsLeaf))
+			const auto Scout = Scouts->Find(Platform);
+			if (Scout)
 			{
-				ImGuiDisplayCopyableValue(TEXT("PlayerUuid"), Player.PlayerUuid);
+				ImGuiDisplayCopyableValue(TEXT("Scout Player Uuid"), Scout->GetPlayerUuid());
 			}
 		}
 
@@ -920,7 +920,7 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 			{
 				for (auto& platformSession : *PlatformSessions)
 				{
-					ImGuiDisplayPlatformSession(platformSession);
+					ImGuiDisplayPlatformSession(platformSession, Session.GetPlatformScoutsOrNull());
 				}
 			}
 			else
