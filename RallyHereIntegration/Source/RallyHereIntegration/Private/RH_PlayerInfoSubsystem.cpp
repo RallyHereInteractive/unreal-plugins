@@ -632,6 +632,26 @@ URH_PlayerInfo* URH_PlayerInfoSubobject::GetPlayerInfo() const
 	return Cast<URH_PlayerInfo>(GetOuter());
 }
 
+void URH_PlayerInfoSubobject::RequestUpdateIfStale(const FTimespan& StaleThreshold, bool bForceRefresh, const FRH_OnRequestPlayerInfoSubobjectDelegateBlock& Delegate)
+{
+	if (bInitialized)
+	{
+		const FDateTime& Then = LastUpdated;
+		FDateTime Now = FDateTime::UtcNow();
+		if (Then.GetTicks() != 0 && !bForceRefresh)
+		{
+			// check if we are in the stale threshold, or if it is not set (in which case, always prefer the cache)
+			if ((Then + StaleThreshold) < Now || StaleThreshold.IsZero())
+			{
+				Delegate.ExecuteIfBound(true, this);
+				return;
+			}
+		}
+	}
+
+	RequestUpdate(bForceRefresh, Delegate);
+}
+
 void URH_PlayerInfoSubobject::CheckPollStatus(const bool bForceUpdate)
 {
 	if (!ShouldPoll())
