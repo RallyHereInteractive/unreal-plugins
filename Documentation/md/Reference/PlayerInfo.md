@@ -42,6 +42,7 @@ Player Info Subobject base class used to store player data.
 `public inline virtual void `[`MarkUpdated`](#classURH__PlayerInfoSubobject_1a23487defc38d317099f23d9b68086f03)`()` | Sets the last updated time to now.
 `public inline virtual void `[`MarkDirty`](#classURH__PlayerInfoSubobject_1ae49b2a6e09b8159f32f1ccedc27c3dcc)`()` | Clears the last updated time to force an update.
 `public inline virtual void `[`RequestUpdate`](#classURH__PlayerInfoSubobject_1aab35a732de0ee7a292776887fae18190)`(bool bForceUpdate,const FRH_OnRequestPlayerInfoSubobjectDelegateBlock & Delegate)` | Enqueues an update request for the players information from the RallyHere API.
+`public virtual void `[`RequestUpdateIfStale`](#classURH__PlayerInfoSubobject_1a2c2e6fef8d302d1511526b063e57faa0)`(const FTimespan & StaleThreshold,bool bForceRefresh,const FRH_OnRequestPlayerInfoSubobjectDelegateBlock & Delegate)` | Enqueues an update request for the players information from the RallyHere API.
 `public virtual void `[`CheckPollStatus`](#classURH__PlayerInfoSubobject_1a2e46e4cf8c81cee9eeafac9d8dcdee36)`(const bool bForceUpdate)` | Updates the poll status to be active or inactive based on if it should currently be polling.
 `protected FRH_AutoPollerPtr `[`Poller`](#classURH__PlayerInfoSubobject_1a9abab6c88fabe22a23835813a56bffbd) | Poller for the players matches.
 `protected FName `[`PollTimerName`](#classURH__PlayerInfoSubobject_1a697ccd6d2e132cd4ac05fcc31e64272f) | The name of the timer preset to use for polling.
@@ -99,6 +100,17 @@ Enqueues an update request for the players information from the RallyHere API.
 
 #### Parameters
 * `bForceUpdate` If true, immediately requests an update rather than waiting for the next poll time. WARNING: Use this sparingly 
+
+* `Delegate` Callback delegate for the request.
+
+#### `public virtual void `[`RequestUpdateIfStale`](#classURH__PlayerInfoSubobject_1a2c2e6fef8d302d1511526b063e57faa0)`(const FTimespan & StaleThreshold,bool bForceRefresh,const FRH_OnRequestPlayerInfoSubobjectDelegateBlock & Delegate)` <a id="classURH__PlayerInfoSubobject_1a2c2e6fef8d302d1511526b063e57faa0"></a>
+
+Enqueues an update request for the players information from the RallyHere API.
+
+#### Parameters
+* `StaleThreshold` If set, will force a re-request of the players information if the last updated time was more than the threshold. 
+
+* `bForceRefresh` If true, will force a re-request of the players information. 
 
 * `Delegate` Callback delegate for the request.
 
