@@ -25,17 +25,17 @@ Cache information for the resource it is attached to. The etag value can be used
 `public FString `[`StrRep_Optional`](#structFRHAPI__CacheInfo_1a938568e3ec9062c4a82cece832024b9f) | 
 `public bool `[`StrRep_IsSet`](#structFRHAPI__CacheInfo_1a87a1e5ca07427850d04158a042692726) | true if StrRep_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__CacheInfo_1a2071a5d33c2c1d33c972a45529de530a)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__CacheInfo_1aafc272a2c6203c4963b614cc32afdd0f)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetEtag`](#structFRHAPI__CacheInfo_1a3eeacaaa962ca3a8c2dbd5c786c03d47)`()` | Gets the value of Etag.
-`public inline const FString & `[`GetEtag`](#structFRHAPI__CacheInfo_1a70906082e6cf7aaaccfcb3a28914df4a)`() const` | Gets the value of Etag.
+`public virtual void `[`WriteJson`](#structFRHAPI__CacheInfo_1abada52c839a7586b78eb2635a539290d)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline FString & `[`GetEtag`](#structFRHAPI__CacheInfo_1a1fb24b4a6945b3c4e8ad2888321d7039)`()` | Gets the value of Etag.
+`public inline const FString & `[`GetEtag`](#structFRHAPI__CacheInfo_1a4635c32c790fa334c7c9e5bbd7d38dff)`() const` | Gets the value of Etag.
 `public inline void `[`SetEtag`](#structFRHAPI__CacheInfo_1a57c41212b3e33053226ddd2a4931c4eb)`(const FString & NewValue)` | Sets the value of Etag.
 `public inline void `[`SetEtag`](#structFRHAPI__CacheInfo_1a7bdb2741364cedae1dbe2d5ee443536f)`(FString && NewValue)` | Sets the value of Etag using move semantics.
-`public inline FString & `[`GetStrRep`](#structFRHAPI__CacheInfo_1aa2c8e02237725aeb366b3ad9d4321a84)`()` | Gets the value of StrRep_Optional, regardless of it having been set.
-`public inline const FString & `[`GetStrRep`](#structFRHAPI__CacheInfo_1a3770dab27ec97bbd78cff0687c6a1419)`() const` | Gets the value of StrRep_Optional, regardless of it having been set.
-`public inline const FString & `[`GetStrRep`](#structFRHAPI__CacheInfo_1ad6577093d7ff910a546f357f63cd6678)`(const FString & DefaultValue) const` | Gets the value of StrRep_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FString & `[`GetStrRep`](#structFRHAPI__CacheInfo_1a95f589680f53bd498fd4de0959af4667)`()` | Gets the value of StrRep_Optional, regardless of it having been set.
+`public inline const FString & `[`GetStrRep`](#structFRHAPI__CacheInfo_1ad1e9267e6f7f7cd720c2e6709b381e25)`() const` | Gets the value of StrRep_Optional, regardless of it having been set.
+`public inline const FString & `[`GetStrRep`](#structFRHAPI__CacheInfo_1ad91a1a1d05146030dc412cb2a6812b3c)`(const FString & DefaultValue) const` | Gets the value of StrRep_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetStrRep`](#structFRHAPI__CacheInfo_1ade0b14154bf2de9b79dd99a5f82f0e3f)`(FString & OutValue) const` | Fills OutValue with the value of StrRep_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetStrRepOrNull`](#structFRHAPI__CacheInfo_1a1e2371d34addfd12dbb140d2657269c7)`()` | Returns a pointer to StrRep_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetStrRepOrNull`](#structFRHAPI__CacheInfo_1af2861c77379562d11e31f7130c42562e)`() const` | Returns a pointer to StrRep_Optional, if it has been set, otherwise returns nullptr.
+`public inline FString * `[`GetStrRepOrNull`](#structFRHAPI__CacheInfo_1aae4c442cda957fbbde616d22a69fa09a)`()` | Returns a pointer to StrRep_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetStrRepOrNull`](#structFRHAPI__CacheInfo_1a9f3419399f38a1dadbe17e90408e009b)`() const` | Returns a pointer to StrRep_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetStrRep`](#structFRHAPI__CacheInfo_1ad45561fa18f77b759e02d286afb60457)`(const FString & NewValue)` | Sets the value of StrRep_Optional and also sets StrRep_IsSet to true.
 `public inline void `[`SetStrRep`](#structFRHAPI__CacheInfo_1af0b364cb74dde5fa2b13a75d7101d7cb)`(FString && NewValue)` | Sets the value of StrRep_Optional and also sets StrRep_IsSet to true using move semantics.
 `public inline void `[`ClearStrRep`](#structFRHAPI__CacheInfo_1a961e7ae4d42f98b5708fa842a80bb990)`()` | Clears the value of StrRep_Optional and sets StrRep_IsSet to false.
@@ -61,18 +61,18 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__CacheInfo_1aafc272a2c6203c4963b614cc32afdd0f)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__CacheInfo_1aafc272a2c6203c4963b614cc32afdd0f"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__CacheInfo_1abada52c839a7586b78eb2635a539290d)`(TSharedRef< TJsonWriter<> > & Writer) const` <a id="structFRHAPI__CacheInfo_1abada52c839a7586b78eb2635a539290d"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetEtag`](#structFRHAPI__CacheInfo_1a3eeacaaa962ca3a8c2dbd5c786c03d47)`()` <a id="structFRHAPI__CacheInfo_1a3eeacaaa962ca3a8c2dbd5c786c03d47"></a>
+#### `public inline FString & `[`GetEtag`](#structFRHAPI__CacheInfo_1a1fb24b4a6945b3c4e8ad2888321d7039)`()` <a id="structFRHAPI__CacheInfo_1a1fb24b4a6945b3c4e8ad2888321d7039"></a>
 
 Gets the value of Etag.
 
-#### `public inline const FString & `[`GetEtag`](#structFRHAPI__CacheInfo_1a70906082e6cf7aaaccfcb3a28914df4a)`() const` <a id="structFRHAPI__CacheInfo_1a70906082e6cf7aaaccfcb3a28914df4a"></a>
+#### `public inline const FString & `[`GetEtag`](#structFRHAPI__CacheInfo_1a4635c32c790fa334c7c9e5bbd7d38dff)`() const` <a id="structFRHAPI__CacheInfo_1a4635c32c790fa334c7c9e5bbd7d38dff"></a>
 
 Gets the value of Etag.
 
@@ -84,15 +84,15 @@ Sets the value of Etag.
 
 Sets the value of Etag using move semantics.
 
-#### `public inline FString & `[`GetStrRep`](#structFRHAPI__CacheInfo_1aa2c8e02237725aeb366b3ad9d4321a84)`()` <a id="structFRHAPI__CacheInfo_1aa2c8e02237725aeb366b3ad9d4321a84"></a>
+#### `public inline FString & `[`GetStrRep`](#structFRHAPI__CacheInfo_1a95f589680f53bd498fd4de0959af4667)`()` <a id="structFRHAPI__CacheInfo_1a95f589680f53bd498fd4de0959af4667"></a>
 
 Gets the value of StrRep_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetStrRep`](#structFRHAPI__CacheInfo_1a3770dab27ec97bbd78cff0687c6a1419)`() const` <a id="structFRHAPI__CacheInfo_1a3770dab27ec97bbd78cff0687c6a1419"></a>
+#### `public inline const FString & `[`GetStrRep`](#structFRHAPI__CacheInfo_1ad1e9267e6f7f7cd720c2e6709b381e25)`() const` <a id="structFRHAPI__CacheInfo_1ad1e9267e6f7f7cd720c2e6709b381e25"></a>
 
 Gets the value of StrRep_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetStrRep`](#structFRHAPI__CacheInfo_1ad6577093d7ff910a546f357f63cd6678)`(const FString & DefaultValue) const` <a id="structFRHAPI__CacheInfo_1ad6577093d7ff910a546f357f63cd6678"></a>
+#### `public inline const FString & `[`GetStrRep`](#structFRHAPI__CacheInfo_1ad91a1a1d05146030dc412cb2a6812b3c)`(const FString & DefaultValue) const` <a id="structFRHAPI__CacheInfo_1ad91a1a1d05146030dc412cb2a6812b3c"></a>
 
 Gets the value of StrRep_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -100,11 +100,11 @@ Gets the value of StrRep_Optional, if it has been set, otherwise it returns Defa
 
 Fills OutValue with the value of StrRep_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetStrRepOrNull`](#structFRHAPI__CacheInfo_1a1e2371d34addfd12dbb140d2657269c7)`()` <a id="structFRHAPI__CacheInfo_1a1e2371d34addfd12dbb140d2657269c7"></a>
+#### `public inline FString * `[`GetStrRepOrNull`](#structFRHAPI__CacheInfo_1aae4c442cda957fbbde616d22a69fa09a)`()` <a id="structFRHAPI__CacheInfo_1aae4c442cda957fbbde616d22a69fa09a"></a>
 
 Returns a pointer to StrRep_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetStrRepOrNull`](#structFRHAPI__CacheInfo_1af2861c77379562d11e31f7130c42562e)`() const` <a id="structFRHAPI__CacheInfo_1af2861c77379562d11e31f7130c42562e"></a>
+#### `public inline const FString * `[`GetStrRepOrNull`](#structFRHAPI__CacheInfo_1a9f3419399f38a1dadbe17e90408e009b)`() const` <a id="structFRHAPI__CacheInfo_1a9f3419399f38a1dadbe17e90408e009b"></a>
 
 Returns a pointer to StrRep_Optional, if it has been set, otherwise returns nullptr.
 

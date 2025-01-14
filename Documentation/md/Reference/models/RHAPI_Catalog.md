@@ -42,103 +42,103 @@ Full list of all loaded objects for the catalog. Organized in a normalized model
 `public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__Catalog_1a44d0ba982a4d410b0b93ccaca10970ae) | Cache info for the Catalog.
 `public bool `[`CacheInfo_IsSet`](#structFRHAPI__Catalog_1af1aa2319fa555fe776de228ccaafc079) | true if CacheInfo_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__Catalog_1a25a9042dbb57666656d59bdbc377efb6)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__Catalog_1a68cc40de1a9cdc05976e531fb16b9a21)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline `[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` & `[`GetXpTables`](#structFRHAPI__Catalog_1ac635831282e496fe3acfaf1ab8d1f9e2)`()` | Gets the value of XpTables_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` & `[`GetXpTables`](#structFRHAPI__Catalog_1a60e04ea7190e71f1296c08cd311c4df2)`() const` | Gets the value of XpTables_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` & `[`GetXpTables`](#structFRHAPI__Catalog_1ae4caeefa77d66696a058a2664d5787cf)`(const `[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` & DefaultValue) const` | Gets the value of XpTables_Optional, if it has been set, otherwise it returns DefaultValue.
+`public virtual void `[`WriteJson`](#structFRHAPI__Catalog_1a4c6d29ba9084db26f01f25e27e991e0f)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline `[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` & `[`GetXpTables`](#structFRHAPI__Catalog_1a6bd928540304c1c3f4e1f9e10e328734)`()` | Gets the value of XpTables_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` & `[`GetXpTables`](#structFRHAPI__Catalog_1a48aa0e1d2ebf896b13df098ed1da4448)`() const` | Gets the value of XpTables_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` & `[`GetXpTables`](#structFRHAPI__Catalog_1a86a813b324364c459bc072d6dc21abbd)`(const `[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` & DefaultValue) const` | Gets the value of XpTables_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetXpTables`](#structFRHAPI__Catalog_1afd660dbad74255621245cfb47ff7547e)`(`[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` & OutValue) const` | Fills OutValue with the value of XpTables_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` * `[`GetXpTablesOrNull`](#structFRHAPI__Catalog_1acfd2589d19438af0424e3713c34439a9)`()` | Returns a pointer to XpTables_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` * `[`GetXpTablesOrNull`](#structFRHAPI__Catalog_1a660b4d1cda8e1f55947b8fda44676cdc)`() const` | Returns a pointer to XpTables_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` * `[`GetXpTablesOrNull`](#structFRHAPI__Catalog_1abae4b03e1fbff8581aaf6cd09b86cb12)`()` | Returns a pointer to XpTables_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` * `[`GetXpTablesOrNull`](#structFRHAPI__Catalog_1a929a3b85dfe0cd34e726deca73c780e9)`() const` | Returns a pointer to XpTables_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetXpTables`](#structFRHAPI__Catalog_1a5a1dad0de76f85b6e10fc73938901426)`(const `[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` & NewValue)` | Sets the value of XpTables_Optional and also sets XpTables_IsSet to true.
 `public inline void `[`SetXpTables`](#structFRHAPI__Catalog_1a1747a97fc306dced01735929cc511c05)`(`[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` && NewValue)` | Sets the value of XpTables_Optional and also sets XpTables_IsSet to true using move semantics.
 `public inline void `[`ClearXpTables`](#structFRHAPI__Catalog_1a312a992dab0e537045c9cedbffdb4058)`()` | Clears the value of XpTables_Optional and sets XpTables_IsSet to false.
 `public inline bool `[`IsXpTablesSet`](#structFRHAPI__Catalog_1aee97765fe3423e51681891d6170ae22b)`() const` | Checks whether XpTables_Optional has been set.
-`public inline `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` & `[`GetPortalUseRulesets`](#structFRHAPI__Catalog_1a8929eef72c02162b1088f9e1efae1aea)`()` | Gets the value of PortalUseRulesets_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` & `[`GetPortalUseRulesets`](#structFRHAPI__Catalog_1a6bee3029bc9d5e1e41b0462223d93702)`() const` | Gets the value of PortalUseRulesets_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` & `[`GetPortalUseRulesets`](#structFRHAPI__Catalog_1a8176e5ae0b4dfa1e3c7cadcac12c4208)`(const `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` & DefaultValue) const` | Gets the value of PortalUseRulesets_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` & `[`GetPortalUseRulesets`](#structFRHAPI__Catalog_1ae0555b6ae65c08d3d56e48a7ffb47e78)`()` | Gets the value of PortalUseRulesets_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` & `[`GetPortalUseRulesets`](#structFRHAPI__Catalog_1abe93af77efb46d3e111bac9c3e78bca4)`() const` | Gets the value of PortalUseRulesets_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` & `[`GetPortalUseRulesets`](#structFRHAPI__Catalog_1a130bb819fd4d822537cd8a3031410dce)`(const `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` & DefaultValue) const` | Gets the value of PortalUseRulesets_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetPortalUseRulesets`](#structFRHAPI__Catalog_1abe4c3f349ccf71cd92d071e711c5e3cb)`(`[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` & OutValue) const` | Fills OutValue with the value of PortalUseRulesets_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` * `[`GetPortalUseRulesetsOrNull`](#structFRHAPI__Catalog_1a39474764042ef58a0055601cd8f57c27)`()` | Returns a pointer to PortalUseRulesets_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` * `[`GetPortalUseRulesetsOrNull`](#structFRHAPI__Catalog_1afd9bd4263f0bfd6d45866fd0bb0a823f)`() const` | Returns a pointer to PortalUseRulesets_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` * `[`GetPortalUseRulesetsOrNull`](#structFRHAPI__Catalog_1a5c26997e66a00de7ed2ceaf896162a3c)`()` | Returns a pointer to PortalUseRulesets_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` * `[`GetPortalUseRulesetsOrNull`](#structFRHAPI__Catalog_1a81a0915dfc9ce729fe66f1a529cbd126)`() const` | Returns a pointer to PortalUseRulesets_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetPortalUseRulesets`](#structFRHAPI__Catalog_1a2a8471be54c3aa0ae787563e5ed3733d)`(const `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` & NewValue)` | Sets the value of PortalUseRulesets_Optional and also sets PortalUseRulesets_IsSet to true.
 `public inline void `[`SetPortalUseRulesets`](#structFRHAPI__Catalog_1a65db921d2d30ae00e1d8ad64a8ad37d9)`(`[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` && NewValue)` | Sets the value of PortalUseRulesets_Optional and also sets PortalUseRulesets_IsSet to true using move semantics.
 `public inline void `[`ClearPortalUseRulesets`](#structFRHAPI__Catalog_1a019fbe65af45baa13186e4e1f87ea585)`()` | Clears the value of PortalUseRulesets_Optional and sets PortalUseRulesets_IsSet to false.
 `public inline bool `[`IsPortalUseRulesetsSet`](#structFRHAPI__Catalog_1a0cf948a11f864b607b88a1dcdd1fdbb3)`() const` | Checks whether PortalUseRulesets_Optional has been set.
-`public inline `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` & `[`GetInventoryBucketUseRuleSets`](#structFRHAPI__Catalog_1a4f8c6e3a4aa03ad8e476a827bbdf80c3)`()` | Gets the value of InventoryBucketUseRuleSets_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` & `[`GetInventoryBucketUseRuleSets`](#structFRHAPI__Catalog_1a454b18762ee63e07051e2614905ae78a)`() const` | Gets the value of InventoryBucketUseRuleSets_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` & `[`GetInventoryBucketUseRuleSets`](#structFRHAPI__Catalog_1a2728ff6eba13174fd65ed76d8122ff7f)`(const `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` & DefaultValue) const` | Gets the value of InventoryBucketUseRuleSets_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` & `[`GetInventoryBucketUseRuleSets`](#structFRHAPI__Catalog_1a4b33af56baed676c51c742c52183c175)`()` | Gets the value of InventoryBucketUseRuleSets_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` & `[`GetInventoryBucketUseRuleSets`](#structFRHAPI__Catalog_1ab80f8081fe215bc503fa1642e49e9021)`() const` | Gets the value of InventoryBucketUseRuleSets_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` & `[`GetInventoryBucketUseRuleSets`](#structFRHAPI__Catalog_1a8f0554e0673b7200cdb34b8697c007d2)`(const `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` & DefaultValue) const` | Gets the value of InventoryBucketUseRuleSets_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetInventoryBucketUseRuleSets`](#structFRHAPI__Catalog_1aa62b2c49f3236e005ebf07859b607000)`(`[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` & OutValue) const` | Fills OutValue with the value of InventoryBucketUseRuleSets_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` * `[`GetInventoryBucketUseRuleSetsOrNull`](#structFRHAPI__Catalog_1a698efd5d57d3ce3cad2d90c210f142d9)`()` | Returns a pointer to InventoryBucketUseRuleSets_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` * `[`GetInventoryBucketUseRuleSetsOrNull`](#structFRHAPI__Catalog_1aece6ee5342daf100ed3773bbfcbd5620)`() const` | Returns a pointer to InventoryBucketUseRuleSets_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` * `[`GetInventoryBucketUseRuleSetsOrNull`](#structFRHAPI__Catalog_1ade5be77d9695ebef53381df643d59962)`()` | Returns a pointer to InventoryBucketUseRuleSets_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` * `[`GetInventoryBucketUseRuleSetsOrNull`](#structFRHAPI__Catalog_1ab8feb65d9304d3eed12c109ff3d2f9fd)`() const` | Returns a pointer to InventoryBucketUseRuleSets_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetInventoryBucketUseRuleSets`](#structFRHAPI__Catalog_1a647c04bc90e9dbd3de82635ecd7224a6)`(const `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` & NewValue)` | Sets the value of InventoryBucketUseRuleSets_Optional and also sets InventoryBucketUseRuleSets_IsSet to true.
 `public inline void `[`SetInventoryBucketUseRuleSets`](#structFRHAPI__Catalog_1ad8768eb7fe37c593e5b2fc1ce6912768)`(`[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` && NewValue)` | Sets the value of InventoryBucketUseRuleSets_Optional and also sets InventoryBucketUseRuleSets_IsSet to true using move semantics.
 `public inline void `[`ClearInventoryBucketUseRuleSets`](#structFRHAPI__Catalog_1a2ce7f945184d3e78b03c850dcac1d6e7)`()` | Clears the value of InventoryBucketUseRuleSets_Optional and sets InventoryBucketUseRuleSets_IsSet to false.
 `public inline bool `[`IsInventoryBucketUseRuleSetsSet`](#structFRHAPI__Catalog_1a83a7cf004bfedfbd1724be59b78ed4f4)`() const` | Checks whether InventoryBucketUseRuleSets_Optional has been set.
-`public inline `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` & `[`GetVendors`](#structFRHAPI__Catalog_1adfaebc84183c9989096a71f5ab5e9506)`()` | Gets the value of Vendors_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` & `[`GetVendors`](#structFRHAPI__Catalog_1addb75c932c919d143c98d54a1fb357c1)`() const` | Gets the value of Vendors_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` & `[`GetVendors`](#structFRHAPI__Catalog_1a996f5ebf75b7595c402726b3eda577c6)`(const `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` & DefaultValue) const` | Gets the value of Vendors_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` & `[`GetVendors`](#structFRHAPI__Catalog_1a64d67996d1fc2c98bf369f53a4b90f32)`()` | Gets the value of Vendors_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` & `[`GetVendors`](#structFRHAPI__Catalog_1ae099679c1cf706c2bee0409631da2bc5)`() const` | Gets the value of Vendors_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` & `[`GetVendors`](#structFRHAPI__Catalog_1a12ccd3e247baf0c57e9ad5e74abb51a3)`(const `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` & DefaultValue) const` | Gets the value of Vendors_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetVendors`](#structFRHAPI__Catalog_1a3207e715c63930b2dbcda2aab6cb6fbb)`(`[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` & OutValue) const` | Fills OutValue with the value of Vendors_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` * `[`GetVendorsOrNull`](#structFRHAPI__Catalog_1aceebc9b220159aa3886d34d43fc56306)`()` | Returns a pointer to Vendors_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` * `[`GetVendorsOrNull`](#structFRHAPI__Catalog_1a3203bce1de9990365a346a6072eb5fff)`() const` | Returns a pointer to Vendors_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` * `[`GetVendorsOrNull`](#structFRHAPI__Catalog_1a8f046696e3c1dbe123ce73b1b56a0df8)`()` | Returns a pointer to Vendors_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` * `[`GetVendorsOrNull`](#structFRHAPI__Catalog_1a180c6fff900d1094f8c43b9f5b523999)`() const` | Returns a pointer to Vendors_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetVendors`](#structFRHAPI__Catalog_1ac3089b85be9fb477395458e45edda3c1)`(const `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` & NewValue)` | Sets the value of Vendors_Optional and also sets Vendors_IsSet to true.
 `public inline void `[`SetVendors`](#structFRHAPI__Catalog_1ae9155c776c0721c7118b1fe18f0b2a86)`(`[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` && NewValue)` | Sets the value of Vendors_Optional and also sets Vendors_IsSet to true using move semantics.
 `public inline void `[`ClearVendors`](#structFRHAPI__Catalog_1af2e2f21c8d75068e489bac4925c03e8b)`()` | Clears the value of Vendors_Optional and sets Vendors_IsSet to false.
 `public inline bool `[`IsVendorsSet`](#structFRHAPI__Catalog_1aa8a9182d29955a8ddfe31365352b6afe)`() const` | Checks whether Vendors_Optional has been set.
-`public inline `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` & `[`GetLoot`](#structFRHAPI__Catalog_1aacca746059cc2f775ad80731a8037e2c)`()` | Gets the value of Loot_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` & `[`GetLoot`](#structFRHAPI__Catalog_1ac4a9cc014a82f7026832671c31f52b0b)`() const` | Gets the value of Loot_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` & `[`GetLoot`](#structFRHAPI__Catalog_1a184367d546587daeda8f9865e41a7967)`(const `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` & DefaultValue) const` | Gets the value of Loot_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` & `[`GetLoot`](#structFRHAPI__Catalog_1afbe85a4a43862447853b6ce623835d86)`()` | Gets the value of Loot_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` & `[`GetLoot`](#structFRHAPI__Catalog_1a1dbce9d8df77ac393b85a22d77d33463)`() const` | Gets the value of Loot_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` & `[`GetLoot`](#structFRHAPI__Catalog_1a775201a0dd0c47b8f02872aec014d74c)`(const `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` & DefaultValue) const` | Gets the value of Loot_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetLoot`](#structFRHAPI__Catalog_1aa293cb9e3d3866c379b0e0d1493dd2b7)`(`[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` & OutValue) const` | Fills OutValue with the value of Loot_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` * `[`GetLootOrNull`](#structFRHAPI__Catalog_1a4340c8c0e19c20efe84cffe56d996f51)`()` | Returns a pointer to Loot_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` * `[`GetLootOrNull`](#structFRHAPI__Catalog_1a830ba43d6552b19b79302c7a054e497b)`() const` | Returns a pointer to Loot_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` * `[`GetLootOrNull`](#structFRHAPI__Catalog_1a1a10d0f1a6939022d8f6def4416ff73f)`()` | Returns a pointer to Loot_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` * `[`GetLootOrNull`](#structFRHAPI__Catalog_1a9cb31c08b384c10236a22b6fb559f82c)`() const` | Returns a pointer to Loot_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetLoot`](#structFRHAPI__Catalog_1ae757a2792d50d9a39a88353f4675817d)`(const `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` & NewValue)` | Sets the value of Loot_Optional and also sets Loot_IsSet to true.
 `public inline void `[`SetLoot`](#structFRHAPI__Catalog_1ae75142bbc46e356b28da60c53c3a70d5)`(`[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` && NewValue)` | Sets the value of Loot_Optional and also sets Loot_IsSet to true using move semantics.
 `public inline void `[`ClearLoot`](#structFRHAPI__Catalog_1ace1be3d5346d254d6761503a7830e988)`()` | Clears the value of Loot_Optional and sets Loot_IsSet to false.
 `public inline bool `[`IsLootSet`](#structFRHAPI__Catalog_1a4c0d697ac505e4aeeddc8d941e24bdd6)`() const` | Checks whether Loot_Optional has been set.
-`public inline `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` & `[`GetItems`](#structFRHAPI__Catalog_1acf55ff2706872c8178267f5e7df3b131)`()` | Gets the value of Items_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` & `[`GetItems`](#structFRHAPI__Catalog_1a9eabcc9cd56c8a39ab5490f105adf28c)`() const` | Gets the value of Items_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` & `[`GetItems`](#structFRHAPI__Catalog_1adb287186bf4b8cd3545da0c8342e4348)`(const `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` & DefaultValue) const` | Gets the value of Items_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` & `[`GetItems`](#structFRHAPI__Catalog_1a1cac251d88c1c0717bdf808a7ed5a37d)`()` | Gets the value of Items_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` & `[`GetItems`](#structFRHAPI__Catalog_1ae67115a85d11e2d01a56bc2f89e08fce)`() const` | Gets the value of Items_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` & `[`GetItems`](#structFRHAPI__Catalog_1a038e63e6f5a062546305e33913e5b9d5)`(const `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` & DefaultValue) const` | Gets the value of Items_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetItems`](#structFRHAPI__Catalog_1aedbde4096eb3151c6b614400b17ddadd)`(`[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` & OutValue) const` | Fills OutValue with the value of Items_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` * `[`GetItemsOrNull`](#structFRHAPI__Catalog_1a110054c2ba7e3c51c80572eb84ac7fad)`()` | Returns a pointer to Items_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` * `[`GetItemsOrNull`](#structFRHAPI__Catalog_1a9a9a3651a9223d73b2d89468a533d19e)`() const` | Returns a pointer to Items_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` * `[`GetItemsOrNull`](#structFRHAPI__Catalog_1a398ae89d54756250de594de987d611ae)`()` | Returns a pointer to Items_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` * `[`GetItemsOrNull`](#structFRHAPI__Catalog_1a7ebc929dfe7ad63359af0c142c4ed4a0)`() const` | Returns a pointer to Items_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetItems`](#structFRHAPI__Catalog_1a2e5fe3379e897259f3c0801a7b7996e1)`(const `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` & NewValue)` | Sets the value of Items_Optional and also sets Items_IsSet to true.
 `public inline void `[`SetItems`](#structFRHAPI__Catalog_1a2f6dbd1a624a643126e5263658f28a48)`(`[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` && NewValue)` | Sets the value of Items_Optional and also sets Items_IsSet to true using move semantics.
 `public inline void `[`ClearItems`](#structFRHAPI__Catalog_1a4113d168029b287a1f20959aebdec398)`()` | Clears the value of Items_Optional and sets Items_IsSet to false.
 `public inline bool `[`IsItemsSet`](#structFRHAPI__Catalog_1a101cc8a5d1104bff025b3f334d84b691)`() const` | Checks whether Items_Optional has been set.
-`public inline `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` & `[`GetPricePoints`](#structFRHAPI__Catalog_1a175500e9cb7dfa7debccff4e912d5a67)`()` | Gets the value of PricePoints_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` & `[`GetPricePoints`](#structFRHAPI__Catalog_1aedb2131d1fcaaf33df5d24b5f44180d6)`() const` | Gets the value of PricePoints_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` & `[`GetPricePoints`](#structFRHAPI__Catalog_1a2b3448fce66d20b10b56f08f4fbc5769)`(const `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` & DefaultValue) const` | Gets the value of PricePoints_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` & `[`GetPricePoints`](#structFRHAPI__Catalog_1ae0eca8bbadedebe2a11030ee9b2fa4e1)`()` | Gets the value of PricePoints_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` & `[`GetPricePoints`](#structFRHAPI__Catalog_1ac288a11987efb053fc8795f6c53dcac7)`() const` | Gets the value of PricePoints_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` & `[`GetPricePoints`](#structFRHAPI__Catalog_1af89627ea3ec8fe8e97ba329a3177bbf8)`(const `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` & DefaultValue) const` | Gets the value of PricePoints_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetPricePoints`](#structFRHAPI__Catalog_1ab8b870836b1bab5341c09bcaf27767fb)`(`[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` & OutValue) const` | Fills OutValue with the value of PricePoints_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` * `[`GetPricePointsOrNull`](#structFRHAPI__Catalog_1a63ccc91cc51efc6cff53bc9eb58f67fa)`()` | Returns a pointer to PricePoints_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` * `[`GetPricePointsOrNull`](#structFRHAPI__Catalog_1a54844133736016c2ebe9d84432b6b98e)`() const` | Returns a pointer to PricePoints_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` * `[`GetPricePointsOrNull`](#structFRHAPI__Catalog_1a6da0d4f0cbeca9f2fcc7ffd7f25af295)`()` | Returns a pointer to PricePoints_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` * `[`GetPricePointsOrNull`](#structFRHAPI__Catalog_1a705dd3447c15606969c9477a88c9fd98)`() const` | Returns a pointer to PricePoints_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetPricePoints`](#structFRHAPI__Catalog_1affd1a1022aaea6a0d004a9d798f473a9)`(const `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` & NewValue)` | Sets the value of PricePoints_Optional and also sets PricePoints_IsSet to true.
 `public inline void `[`SetPricePoints`](#structFRHAPI__Catalog_1a9fbaaa1c7cb3cf735a56dbebcfa238a5)`(`[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` && NewValue)` | Sets the value of PricePoints_Optional and also sets PricePoints_IsSet to true using move semantics.
 `public inline void `[`ClearPricePoints`](#structFRHAPI__Catalog_1ab66a478aca1f7c7e14fa71ed0fe198a5)`()` | Clears the value of PricePoints_Optional and sets PricePoints_IsSet to false.
 `public inline bool `[`IsPricePointsSet`](#structFRHAPI__Catalog_1a2d3326fef606ea63198dd9af58487254)`() const` | Checks whether PricePoints_Optional has been set.
-`public inline `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` & `[`GetTimeFrames`](#structFRHAPI__Catalog_1a8072dd84810e1f6939b7e80accf26f91)`()` | Gets the value of TimeFrames_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` & `[`GetTimeFrames`](#structFRHAPI__Catalog_1a033b3218e6f5f1d470e6d65cce14766e)`() const` | Gets the value of TimeFrames_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` & `[`GetTimeFrames`](#structFRHAPI__Catalog_1a4f31c06cc9adb2319c64ff6e1ea0cdcb)`(const `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` & DefaultValue) const` | Gets the value of TimeFrames_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` & `[`GetTimeFrames`](#structFRHAPI__Catalog_1ae0d04ad6ed7e83038fcce80673c8a4d2)`()` | Gets the value of TimeFrames_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` & `[`GetTimeFrames`](#structFRHAPI__Catalog_1a34fad808cbe3b5fc1bff3fbc8d0ddd78)`() const` | Gets the value of TimeFrames_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` & `[`GetTimeFrames`](#structFRHAPI__Catalog_1ab982d1f028dd5d05ef35691af8e82a8e)`(const `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` & DefaultValue) const` | Gets the value of TimeFrames_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetTimeFrames`](#structFRHAPI__Catalog_1a6ed03fc9fd51968883f0cdd1507f752a)`(`[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` & OutValue) const` | Fills OutValue with the value of TimeFrames_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` * `[`GetTimeFramesOrNull`](#structFRHAPI__Catalog_1a92d7aac23a6c9023487c40e1bc3ebfb8)`()` | Returns a pointer to TimeFrames_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` * `[`GetTimeFramesOrNull`](#structFRHAPI__Catalog_1a091f3b84759ff8222a18440bb27a1ae7)`() const` | Returns a pointer to TimeFrames_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` * `[`GetTimeFramesOrNull`](#structFRHAPI__Catalog_1a84936a24fc2f2c3f9f56c8d48d3f4ba4)`()` | Returns a pointer to TimeFrames_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` * `[`GetTimeFramesOrNull`](#structFRHAPI__Catalog_1a00ae1c4f3aba2236ba4932e2784b3e8d)`() const` | Returns a pointer to TimeFrames_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetTimeFrames`](#structFRHAPI__Catalog_1a438699c3fb2ab7048182b170dcaadf2a)`(const `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` & NewValue)` | Sets the value of TimeFrames_Optional and also sets TimeFrames_IsSet to true.
 `public inline void `[`SetTimeFrames`](#structFRHAPI__Catalog_1ae13db96f537750ca340aa3e1b0291ed9)`(`[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` && NewValue)` | Sets the value of TimeFrames_Optional and also sets TimeFrames_IsSet to true using move semantics.
 `public inline void `[`ClearTimeFrames`](#structFRHAPI__Catalog_1ac3f2252f7dd6be43359b67c6a264cde5)`()` | Clears the value of TimeFrames_Optional and sets TimeFrames_IsSet to false.
 `public inline bool `[`IsTimeFramesSet`](#structFRHAPI__Catalog_1a5e728abf43f75208f41a27a8be18b05d)`() const` | Checks whether TimeFrames_Optional has been set.
-`public inline `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` & `[`GetSkus`](#structFRHAPI__Catalog_1aecd3e567a3e8505612cff0a6060ded3c)`()` | Gets the value of Skus_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` & `[`GetSkus`](#structFRHAPI__Catalog_1a2ec9a13449858fe7b30ca8da6a18da71)`() const` | Gets the value of Skus_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` & `[`GetSkus`](#structFRHAPI__Catalog_1a7778d38213342b764ba32de27877a87e)`(const `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` & DefaultValue) const` | Gets the value of Skus_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` & `[`GetSkus`](#structFRHAPI__Catalog_1a53e4d20e6002876f5b43ef51a4b90d78)`()` | Gets the value of Skus_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` & `[`GetSkus`](#structFRHAPI__Catalog_1a3b7514f2c3a2a1fd8d5bdc045678cb85)`() const` | Gets the value of Skus_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` & `[`GetSkus`](#structFRHAPI__Catalog_1a916ac1232ab4e68d034d438d5e83ec7c)`(const `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` & DefaultValue) const` | Gets the value of Skus_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetSkus`](#structFRHAPI__Catalog_1a949ae87736f8b02e0dc8b210f5872b7f)`(`[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` & OutValue) const` | Fills OutValue with the value of Skus_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` * `[`GetSkusOrNull`](#structFRHAPI__Catalog_1a60b66383a155cce30ad54b6eb92e00f8)`()` | Returns a pointer to Skus_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` * `[`GetSkusOrNull`](#structFRHAPI__Catalog_1a20ecb5baaedad96eff367f1605dfa2f8)`() const` | Returns a pointer to Skus_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` * `[`GetSkusOrNull`](#structFRHAPI__Catalog_1af1e6a7632ba667642a74baa0aecb1b6c)`()` | Returns a pointer to Skus_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` * `[`GetSkusOrNull`](#structFRHAPI__Catalog_1a8635df6756bdb94e43cff588c0750bed)`() const` | Returns a pointer to Skus_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetSkus`](#structFRHAPI__Catalog_1a5dd5ffa6846a0c8b9e9990e97d2e7071)`(const `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` & NewValue)` | Sets the value of Skus_Optional and also sets Skus_IsSet to true.
 `public inline void `[`SetSkus`](#structFRHAPI__Catalog_1a90a23fabcd446b00d91ab9c5db08a78a)`(`[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` && NewValue)` | Sets the value of Skus_Optional and also sets Skus_IsSet to true using move semantics.
 `public inline void `[`ClearSkus`](#structFRHAPI__Catalog_1a765461b15f5b17e1425f262afc0940a2)`()` | Clears the value of Skus_Optional and sets Skus_IsSet to false.
 `public inline bool `[`IsSkusSet`](#structFRHAPI__Catalog_1a4603e9835f522e7df4cfa3515d612b87)`() const` | Checks whether Skus_Optional has been set.
-`public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Catalog_1a3bcfc74eef1b5ed8c468aa203d73505a)`()` | Gets the value of CacheInfo_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Catalog_1a3767f024df63790d04bfaba39add23a6)`() const` | Gets the value of CacheInfo_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Catalog_1a44b14981d1b3157b786d07adbc36fb73)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` | Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Catalog_1a9b31d9b09b6ace54995dff359a0ccaa1)`()` | Gets the value of CacheInfo_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Catalog_1a93e905be9ed95b6d651cba222813b41c)`() const` | Gets the value of CacheInfo_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Catalog_1a43facd716dcdb4c600752f76a766e05f)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` | Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetCacheInfo`](#structFRHAPI__Catalog_1a2e4536ef1c64c02e1f52e83e75af8f3d)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & OutValue) const` | Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Catalog_1a79154ae3e9fe9fb81a3994f93448ee43)`()` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Catalog_1a5f40badba0c9c3e6aa0dc5cd5bacd5f8)`() const` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Catalog_1a55a8909d146db154dded34eb6465e453)`()` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Catalog_1a6b591d0d35167a7c5d046119ea732dcd)`() const` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__Catalog_1a06a9bee09a521f5bf29827ca96639c3c)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__Catalog_1ade8ddd18bc6b39433348092fff3471b4)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__Catalog_1a06e23285bc21a8cbee8b3e247cfbf7a9)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
@@ -236,22 +236,22 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__Catalog_1a68cc40de1a9cdc05976e531fb16b9a21)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__Catalog_1a68cc40de1a9cdc05976e531fb16b9a21"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__Catalog_1a4c6d29ba9084db26f01f25e27e991e0f)`(TSharedRef< TJsonWriter<> > & Writer) const` <a id="structFRHAPI__Catalog_1a4c6d29ba9084db26f01f25e27e991e0f"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline `[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` & `[`GetXpTables`](#structFRHAPI__Catalog_1ac635831282e496fe3acfaf1ab8d1f9e2)`()` <a id="structFRHAPI__Catalog_1ac635831282e496fe3acfaf1ab8d1f9e2"></a>
+#### `public inline `[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` & `[`GetXpTables`](#structFRHAPI__Catalog_1a6bd928540304c1c3f4e1f9e10e328734)`()` <a id="structFRHAPI__Catalog_1a6bd928540304c1c3f4e1f9e10e328734"></a>
 
 Gets the value of XpTables_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` & `[`GetXpTables`](#structFRHAPI__Catalog_1a60e04ea7190e71f1296c08cd311c4df2)`() const` <a id="structFRHAPI__Catalog_1a60e04ea7190e71f1296c08cd311c4df2"></a>
+#### `public inline const `[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` & `[`GetXpTables`](#structFRHAPI__Catalog_1a48aa0e1d2ebf896b13df098ed1da4448)`() const` <a id="structFRHAPI__Catalog_1a48aa0e1d2ebf896b13df098ed1da4448"></a>
 
 Gets the value of XpTables_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` & `[`GetXpTables`](#structFRHAPI__Catalog_1ae4caeefa77d66696a058a2664d5787cf)`(const `[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` & DefaultValue) const` <a id="structFRHAPI__Catalog_1ae4caeefa77d66696a058a2664d5787cf"></a>
+#### `public inline const `[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` & `[`GetXpTables`](#structFRHAPI__Catalog_1a86a813b324364c459bc072d6dc21abbd)`(const `[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` & DefaultValue) const` <a id="structFRHAPI__Catalog_1a86a813b324364c459bc072d6dc21abbd"></a>
 
 Gets the value of XpTables_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -259,11 +259,11 @@ Gets the value of XpTables_Optional, if it has been set, otherwise it returns De
 
 Fills OutValue with the value of XpTables_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` * `[`GetXpTablesOrNull`](#structFRHAPI__Catalog_1acfd2589d19438af0424e3713c34439a9)`()` <a id="structFRHAPI__Catalog_1acfd2589d19438af0424e3713c34439a9"></a>
+#### `public inline `[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` * `[`GetXpTablesOrNull`](#structFRHAPI__Catalog_1abae4b03e1fbff8581aaf6cd09b86cb12)`()` <a id="structFRHAPI__Catalog_1abae4b03e1fbff8581aaf6cd09b86cb12"></a>
 
 Returns a pointer to XpTables_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` * `[`GetXpTablesOrNull`](#structFRHAPI__Catalog_1a660b4d1cda8e1f55947b8fda44676cdc)`() const` <a id="structFRHAPI__Catalog_1a660b4d1cda8e1f55947b8fda44676cdc"></a>
+#### `public inline const `[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` * `[`GetXpTablesOrNull`](#structFRHAPI__Catalog_1a929a3b85dfe0cd34e726deca73c780e9)`() const` <a id="structFRHAPI__Catalog_1a929a3b85dfe0cd34e726deca73c780e9"></a>
 
 Returns a pointer to XpTables_Optional, if it has been set, otherwise returns nullptr.
 
@@ -283,15 +283,15 @@ Clears the value of XpTables_Optional and sets XpTables_IsSet to false.
 
 Checks whether XpTables_Optional has been set.
 
-#### `public inline `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` & `[`GetPortalUseRulesets`](#structFRHAPI__Catalog_1a8929eef72c02162b1088f9e1efae1aea)`()` <a id="structFRHAPI__Catalog_1a8929eef72c02162b1088f9e1efae1aea"></a>
+#### `public inline `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` & `[`GetPortalUseRulesets`](#structFRHAPI__Catalog_1ae0555b6ae65c08d3d56e48a7ffb47e78)`()` <a id="structFRHAPI__Catalog_1ae0555b6ae65c08d3d56e48a7ffb47e78"></a>
 
 Gets the value of PortalUseRulesets_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` & `[`GetPortalUseRulesets`](#structFRHAPI__Catalog_1a6bee3029bc9d5e1e41b0462223d93702)`() const` <a id="structFRHAPI__Catalog_1a6bee3029bc9d5e1e41b0462223d93702"></a>
+#### `public inline const `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` & `[`GetPortalUseRulesets`](#structFRHAPI__Catalog_1abe93af77efb46d3e111bac9c3e78bca4)`() const` <a id="structFRHAPI__Catalog_1abe93af77efb46d3e111bac9c3e78bca4"></a>
 
 Gets the value of PortalUseRulesets_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` & `[`GetPortalUseRulesets`](#structFRHAPI__Catalog_1a8176e5ae0b4dfa1e3c7cadcac12c4208)`(const `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` & DefaultValue) const` <a id="structFRHAPI__Catalog_1a8176e5ae0b4dfa1e3c7cadcac12c4208"></a>
+#### `public inline const `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` & `[`GetPortalUseRulesets`](#structFRHAPI__Catalog_1a130bb819fd4d822537cd8a3031410dce)`(const `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` & DefaultValue) const` <a id="structFRHAPI__Catalog_1a130bb819fd4d822537cd8a3031410dce"></a>
 
 Gets the value of PortalUseRulesets_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -299,11 +299,11 @@ Gets the value of PortalUseRulesets_Optional, if it has been set, otherwise it r
 
 Fills OutValue with the value of PortalUseRulesets_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` * `[`GetPortalUseRulesetsOrNull`](#structFRHAPI__Catalog_1a39474764042ef58a0055601cd8f57c27)`()` <a id="structFRHAPI__Catalog_1a39474764042ef58a0055601cd8f57c27"></a>
+#### `public inline `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` * `[`GetPortalUseRulesetsOrNull`](#structFRHAPI__Catalog_1a5c26997e66a00de7ed2ceaf896162a3c)`()` <a id="structFRHAPI__Catalog_1a5c26997e66a00de7ed2ceaf896162a3c"></a>
 
 Returns a pointer to PortalUseRulesets_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` * `[`GetPortalUseRulesetsOrNull`](#structFRHAPI__Catalog_1afd9bd4263f0bfd6d45866fd0bb0a823f)`() const` <a id="structFRHAPI__Catalog_1afd9bd4263f0bfd6d45866fd0bb0a823f"></a>
+#### `public inline const `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` * `[`GetPortalUseRulesetsOrNull`](#structFRHAPI__Catalog_1a81a0915dfc9ce729fe66f1a529cbd126)`() const` <a id="structFRHAPI__Catalog_1a81a0915dfc9ce729fe66f1a529cbd126"></a>
 
 Returns a pointer to PortalUseRulesets_Optional, if it has been set, otherwise returns nullptr.
 
@@ -323,15 +323,15 @@ Clears the value of PortalUseRulesets_Optional and sets PortalUseRulesets_IsSet 
 
 Checks whether PortalUseRulesets_Optional has been set.
 
-#### `public inline `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` & `[`GetInventoryBucketUseRuleSets`](#structFRHAPI__Catalog_1a4f8c6e3a4aa03ad8e476a827bbdf80c3)`()` <a id="structFRHAPI__Catalog_1a4f8c6e3a4aa03ad8e476a827bbdf80c3"></a>
+#### `public inline `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` & `[`GetInventoryBucketUseRuleSets`](#structFRHAPI__Catalog_1a4b33af56baed676c51c742c52183c175)`()` <a id="structFRHAPI__Catalog_1a4b33af56baed676c51c742c52183c175"></a>
 
 Gets the value of InventoryBucketUseRuleSets_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` & `[`GetInventoryBucketUseRuleSets`](#structFRHAPI__Catalog_1a454b18762ee63e07051e2614905ae78a)`() const` <a id="structFRHAPI__Catalog_1a454b18762ee63e07051e2614905ae78a"></a>
+#### `public inline const `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` & `[`GetInventoryBucketUseRuleSets`](#structFRHAPI__Catalog_1ab80f8081fe215bc503fa1642e49e9021)`() const` <a id="structFRHAPI__Catalog_1ab80f8081fe215bc503fa1642e49e9021"></a>
 
 Gets the value of InventoryBucketUseRuleSets_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` & `[`GetInventoryBucketUseRuleSets`](#structFRHAPI__Catalog_1a2728ff6eba13174fd65ed76d8122ff7f)`(const `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` & DefaultValue) const` <a id="structFRHAPI__Catalog_1a2728ff6eba13174fd65ed76d8122ff7f"></a>
+#### `public inline const `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` & `[`GetInventoryBucketUseRuleSets`](#structFRHAPI__Catalog_1a8f0554e0673b7200cdb34b8697c007d2)`(const `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` & DefaultValue) const` <a id="structFRHAPI__Catalog_1a8f0554e0673b7200cdb34b8697c007d2"></a>
 
 Gets the value of InventoryBucketUseRuleSets_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -339,11 +339,11 @@ Gets the value of InventoryBucketUseRuleSets_Optional, if it has been set, other
 
 Fills OutValue with the value of InventoryBucketUseRuleSets_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` * `[`GetInventoryBucketUseRuleSetsOrNull`](#structFRHAPI__Catalog_1a698efd5d57d3ce3cad2d90c210f142d9)`()` <a id="structFRHAPI__Catalog_1a698efd5d57d3ce3cad2d90c210f142d9"></a>
+#### `public inline `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` * `[`GetInventoryBucketUseRuleSetsOrNull`](#structFRHAPI__Catalog_1ade5be77d9695ebef53381df643d59962)`()` <a id="structFRHAPI__Catalog_1ade5be77d9695ebef53381df643d59962"></a>
 
 Returns a pointer to InventoryBucketUseRuleSets_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` * `[`GetInventoryBucketUseRuleSetsOrNull`](#structFRHAPI__Catalog_1aece6ee5342daf100ed3773bbfcbd5620)`() const` <a id="structFRHAPI__Catalog_1aece6ee5342daf100ed3773bbfcbd5620"></a>
+#### `public inline const `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` * `[`GetInventoryBucketUseRuleSetsOrNull`](#structFRHAPI__Catalog_1ab8feb65d9304d3eed12c109ff3d2f9fd)`() const` <a id="structFRHAPI__Catalog_1ab8feb65d9304d3eed12c109ff3d2f9fd"></a>
 
 Returns a pointer to InventoryBucketUseRuleSets_Optional, if it has been set, otherwise returns nullptr.
 
@@ -363,15 +363,15 @@ Clears the value of InventoryBucketUseRuleSets_Optional and sets InventoryBucket
 
 Checks whether InventoryBucketUseRuleSets_Optional has been set.
 
-#### `public inline `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` & `[`GetVendors`](#structFRHAPI__Catalog_1adfaebc84183c9989096a71f5ab5e9506)`()` <a id="structFRHAPI__Catalog_1adfaebc84183c9989096a71f5ab5e9506"></a>
+#### `public inline `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` & `[`GetVendors`](#structFRHAPI__Catalog_1a64d67996d1fc2c98bf369f53a4b90f32)`()` <a id="structFRHAPI__Catalog_1a64d67996d1fc2c98bf369f53a4b90f32"></a>
 
 Gets the value of Vendors_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` & `[`GetVendors`](#structFRHAPI__Catalog_1addb75c932c919d143c98d54a1fb357c1)`() const` <a id="structFRHAPI__Catalog_1addb75c932c919d143c98d54a1fb357c1"></a>
+#### `public inline const `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` & `[`GetVendors`](#structFRHAPI__Catalog_1ae099679c1cf706c2bee0409631da2bc5)`() const` <a id="structFRHAPI__Catalog_1ae099679c1cf706c2bee0409631da2bc5"></a>
 
 Gets the value of Vendors_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` & `[`GetVendors`](#structFRHAPI__Catalog_1a996f5ebf75b7595c402726b3eda577c6)`(const `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` & DefaultValue) const` <a id="structFRHAPI__Catalog_1a996f5ebf75b7595c402726b3eda577c6"></a>
+#### `public inline const `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` & `[`GetVendors`](#structFRHAPI__Catalog_1a12ccd3e247baf0c57e9ad5e74abb51a3)`(const `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` & DefaultValue) const` <a id="structFRHAPI__Catalog_1a12ccd3e247baf0c57e9ad5e74abb51a3"></a>
 
 Gets the value of Vendors_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -379,11 +379,11 @@ Gets the value of Vendors_Optional, if it has been set, otherwise it returns Def
 
 Fills OutValue with the value of Vendors_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` * `[`GetVendorsOrNull`](#structFRHAPI__Catalog_1aceebc9b220159aa3886d34d43fc56306)`()` <a id="structFRHAPI__Catalog_1aceebc9b220159aa3886d34d43fc56306"></a>
+#### `public inline `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` * `[`GetVendorsOrNull`](#structFRHAPI__Catalog_1a8f046696e3c1dbe123ce73b1b56a0df8)`()` <a id="structFRHAPI__Catalog_1a8f046696e3c1dbe123ce73b1b56a0df8"></a>
 
 Returns a pointer to Vendors_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` * `[`GetVendorsOrNull`](#structFRHAPI__Catalog_1a3203bce1de9990365a346a6072eb5fff)`() const` <a id="structFRHAPI__Catalog_1a3203bce1de9990365a346a6072eb5fff"></a>
+#### `public inline const `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` * `[`GetVendorsOrNull`](#structFRHAPI__Catalog_1a180c6fff900d1094f8c43b9f5b523999)`() const` <a id="structFRHAPI__Catalog_1a180c6fff900d1094f8c43b9f5b523999"></a>
 
 Returns a pointer to Vendors_Optional, if it has been set, otherwise returns nullptr.
 
@@ -403,15 +403,15 @@ Clears the value of Vendors_Optional and sets Vendors_IsSet to false.
 
 Checks whether Vendors_Optional has been set.
 
-#### `public inline `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` & `[`GetLoot`](#structFRHAPI__Catalog_1aacca746059cc2f775ad80731a8037e2c)`()` <a id="structFRHAPI__Catalog_1aacca746059cc2f775ad80731a8037e2c"></a>
+#### `public inline `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` & `[`GetLoot`](#structFRHAPI__Catalog_1afbe85a4a43862447853b6ce623835d86)`()` <a id="structFRHAPI__Catalog_1afbe85a4a43862447853b6ce623835d86"></a>
 
 Gets the value of Loot_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` & `[`GetLoot`](#structFRHAPI__Catalog_1ac4a9cc014a82f7026832671c31f52b0b)`() const` <a id="structFRHAPI__Catalog_1ac4a9cc014a82f7026832671c31f52b0b"></a>
+#### `public inline const `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` & `[`GetLoot`](#structFRHAPI__Catalog_1a1dbce9d8df77ac393b85a22d77d33463)`() const` <a id="structFRHAPI__Catalog_1a1dbce9d8df77ac393b85a22d77d33463"></a>
 
 Gets the value of Loot_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` & `[`GetLoot`](#structFRHAPI__Catalog_1a184367d546587daeda8f9865e41a7967)`(const `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` & DefaultValue) const` <a id="structFRHAPI__Catalog_1a184367d546587daeda8f9865e41a7967"></a>
+#### `public inline const `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` & `[`GetLoot`](#structFRHAPI__Catalog_1a775201a0dd0c47b8f02872aec014d74c)`(const `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` & DefaultValue) const` <a id="structFRHAPI__Catalog_1a775201a0dd0c47b8f02872aec014d74c"></a>
 
 Gets the value of Loot_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -419,11 +419,11 @@ Gets the value of Loot_Optional, if it has been set, otherwise it returns Defaul
 
 Fills OutValue with the value of Loot_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` * `[`GetLootOrNull`](#structFRHAPI__Catalog_1a4340c8c0e19c20efe84cffe56d996f51)`()` <a id="structFRHAPI__Catalog_1a4340c8c0e19c20efe84cffe56d996f51"></a>
+#### `public inline `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` * `[`GetLootOrNull`](#structFRHAPI__Catalog_1a1a10d0f1a6939022d8f6def4416ff73f)`()` <a id="structFRHAPI__Catalog_1a1a10d0f1a6939022d8f6def4416ff73f"></a>
 
 Returns a pointer to Loot_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` * `[`GetLootOrNull`](#structFRHAPI__Catalog_1a830ba43d6552b19b79302c7a054e497b)`() const` <a id="structFRHAPI__Catalog_1a830ba43d6552b19b79302c7a054e497b"></a>
+#### `public inline const `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` * `[`GetLootOrNull`](#structFRHAPI__Catalog_1a9cb31c08b384c10236a22b6fb559f82c)`() const` <a id="structFRHAPI__Catalog_1a9cb31c08b384c10236a22b6fb559f82c"></a>
 
 Returns a pointer to Loot_Optional, if it has been set, otherwise returns nullptr.
 
@@ -443,15 +443,15 @@ Clears the value of Loot_Optional and sets Loot_IsSet to false.
 
 Checks whether Loot_Optional has been set.
 
-#### `public inline `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` & `[`GetItems`](#structFRHAPI__Catalog_1acf55ff2706872c8178267f5e7df3b131)`()` <a id="structFRHAPI__Catalog_1acf55ff2706872c8178267f5e7df3b131"></a>
+#### `public inline `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` & `[`GetItems`](#structFRHAPI__Catalog_1a1cac251d88c1c0717bdf808a7ed5a37d)`()` <a id="structFRHAPI__Catalog_1a1cac251d88c1c0717bdf808a7ed5a37d"></a>
 
 Gets the value of Items_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` & `[`GetItems`](#structFRHAPI__Catalog_1a9eabcc9cd56c8a39ab5490f105adf28c)`() const` <a id="structFRHAPI__Catalog_1a9eabcc9cd56c8a39ab5490f105adf28c"></a>
+#### `public inline const `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` & `[`GetItems`](#structFRHAPI__Catalog_1ae67115a85d11e2d01a56bc2f89e08fce)`() const` <a id="structFRHAPI__Catalog_1ae67115a85d11e2d01a56bc2f89e08fce"></a>
 
 Gets the value of Items_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` & `[`GetItems`](#structFRHAPI__Catalog_1adb287186bf4b8cd3545da0c8342e4348)`(const `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` & DefaultValue) const` <a id="structFRHAPI__Catalog_1adb287186bf4b8cd3545da0c8342e4348"></a>
+#### `public inline const `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` & `[`GetItems`](#structFRHAPI__Catalog_1a038e63e6f5a062546305e33913e5b9d5)`(const `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` & DefaultValue) const` <a id="structFRHAPI__Catalog_1a038e63e6f5a062546305e33913e5b9d5"></a>
 
 Gets the value of Items_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -459,11 +459,11 @@ Gets the value of Items_Optional, if it has been set, otherwise it returns Defau
 
 Fills OutValue with the value of Items_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` * `[`GetItemsOrNull`](#structFRHAPI__Catalog_1a110054c2ba7e3c51c80572eb84ac7fad)`()` <a id="structFRHAPI__Catalog_1a110054c2ba7e3c51c80572eb84ac7fad"></a>
+#### `public inline `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` * `[`GetItemsOrNull`](#structFRHAPI__Catalog_1a398ae89d54756250de594de987d611ae)`()` <a id="structFRHAPI__Catalog_1a398ae89d54756250de594de987d611ae"></a>
 
 Returns a pointer to Items_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` * `[`GetItemsOrNull`](#structFRHAPI__Catalog_1a9a9a3651a9223d73b2d89468a533d19e)`() const` <a id="structFRHAPI__Catalog_1a9a9a3651a9223d73b2d89468a533d19e"></a>
+#### `public inline const `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` * `[`GetItemsOrNull`](#structFRHAPI__Catalog_1a7ebc929dfe7ad63359af0c142c4ed4a0)`() const` <a id="structFRHAPI__Catalog_1a7ebc929dfe7ad63359af0c142c4ed4a0"></a>
 
 Returns a pointer to Items_Optional, if it has been set, otherwise returns nullptr.
 
@@ -483,15 +483,15 @@ Clears the value of Items_Optional and sets Items_IsSet to false.
 
 Checks whether Items_Optional has been set.
 
-#### `public inline `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` & `[`GetPricePoints`](#structFRHAPI__Catalog_1a175500e9cb7dfa7debccff4e912d5a67)`()` <a id="structFRHAPI__Catalog_1a175500e9cb7dfa7debccff4e912d5a67"></a>
+#### `public inline `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` & `[`GetPricePoints`](#structFRHAPI__Catalog_1ae0eca8bbadedebe2a11030ee9b2fa4e1)`()` <a id="structFRHAPI__Catalog_1ae0eca8bbadedebe2a11030ee9b2fa4e1"></a>
 
 Gets the value of PricePoints_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` & `[`GetPricePoints`](#structFRHAPI__Catalog_1aedb2131d1fcaaf33df5d24b5f44180d6)`() const` <a id="structFRHAPI__Catalog_1aedb2131d1fcaaf33df5d24b5f44180d6"></a>
+#### `public inline const `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` & `[`GetPricePoints`](#structFRHAPI__Catalog_1ac288a11987efb053fc8795f6c53dcac7)`() const` <a id="structFRHAPI__Catalog_1ac288a11987efb053fc8795f6c53dcac7"></a>
 
 Gets the value of PricePoints_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` & `[`GetPricePoints`](#structFRHAPI__Catalog_1a2b3448fce66d20b10b56f08f4fbc5769)`(const `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` & DefaultValue) const` <a id="structFRHAPI__Catalog_1a2b3448fce66d20b10b56f08f4fbc5769"></a>
+#### `public inline const `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` & `[`GetPricePoints`](#structFRHAPI__Catalog_1af89627ea3ec8fe8e97ba329a3177bbf8)`(const `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` & DefaultValue) const` <a id="structFRHAPI__Catalog_1af89627ea3ec8fe8e97ba329a3177bbf8"></a>
 
 Gets the value of PricePoints_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -499,11 +499,11 @@ Gets the value of PricePoints_Optional, if it has been set, otherwise it returns
 
 Fills OutValue with the value of PricePoints_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` * `[`GetPricePointsOrNull`](#structFRHAPI__Catalog_1a63ccc91cc51efc6cff53bc9eb58f67fa)`()` <a id="structFRHAPI__Catalog_1a63ccc91cc51efc6cff53bc9eb58f67fa"></a>
+#### `public inline `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` * `[`GetPricePointsOrNull`](#structFRHAPI__Catalog_1a6da0d4f0cbeca9f2fcc7ffd7f25af295)`()` <a id="structFRHAPI__Catalog_1a6da0d4f0cbeca9f2fcc7ffd7f25af295"></a>
 
 Returns a pointer to PricePoints_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` * `[`GetPricePointsOrNull`](#structFRHAPI__Catalog_1a54844133736016c2ebe9d84432b6b98e)`() const` <a id="structFRHAPI__Catalog_1a54844133736016c2ebe9d84432b6b98e"></a>
+#### `public inline const `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` * `[`GetPricePointsOrNull`](#structFRHAPI__Catalog_1a705dd3447c15606969c9477a88c9fd98)`() const` <a id="structFRHAPI__Catalog_1a705dd3447c15606969c9477a88c9fd98"></a>
 
 Returns a pointer to PricePoints_Optional, if it has been set, otherwise returns nullptr.
 
@@ -523,15 +523,15 @@ Clears the value of PricePoints_Optional and sets PricePoints_IsSet to false.
 
 Checks whether PricePoints_Optional has been set.
 
-#### `public inline `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` & `[`GetTimeFrames`](#structFRHAPI__Catalog_1a8072dd84810e1f6939b7e80accf26f91)`()` <a id="structFRHAPI__Catalog_1a8072dd84810e1f6939b7e80accf26f91"></a>
+#### `public inline `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` & `[`GetTimeFrames`](#structFRHAPI__Catalog_1ae0d04ad6ed7e83038fcce80673c8a4d2)`()` <a id="structFRHAPI__Catalog_1ae0d04ad6ed7e83038fcce80673c8a4d2"></a>
 
 Gets the value of TimeFrames_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` & `[`GetTimeFrames`](#structFRHAPI__Catalog_1a033b3218e6f5f1d470e6d65cce14766e)`() const` <a id="structFRHAPI__Catalog_1a033b3218e6f5f1d470e6d65cce14766e"></a>
+#### `public inline const `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` & `[`GetTimeFrames`](#structFRHAPI__Catalog_1a34fad808cbe3b5fc1bff3fbc8d0ddd78)`() const` <a id="structFRHAPI__Catalog_1a34fad808cbe3b5fc1bff3fbc8d0ddd78"></a>
 
 Gets the value of TimeFrames_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` & `[`GetTimeFrames`](#structFRHAPI__Catalog_1a4f31c06cc9adb2319c64ff6e1ea0cdcb)`(const `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` & DefaultValue) const` <a id="structFRHAPI__Catalog_1a4f31c06cc9adb2319c64ff6e1ea0cdcb"></a>
+#### `public inline const `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` & `[`GetTimeFrames`](#structFRHAPI__Catalog_1ab982d1f028dd5d05ef35691af8e82a8e)`(const `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` & DefaultValue) const` <a id="structFRHAPI__Catalog_1ab982d1f028dd5d05ef35691af8e82a8e"></a>
 
 Gets the value of TimeFrames_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -539,11 +539,11 @@ Gets the value of TimeFrames_Optional, if it has been set, otherwise it returns 
 
 Fills OutValue with the value of TimeFrames_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` * `[`GetTimeFramesOrNull`](#structFRHAPI__Catalog_1a92d7aac23a6c9023487c40e1bc3ebfb8)`()` <a id="structFRHAPI__Catalog_1a92d7aac23a6c9023487c40e1bc3ebfb8"></a>
+#### `public inline `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` * `[`GetTimeFramesOrNull`](#structFRHAPI__Catalog_1a84936a24fc2f2c3f9f56c8d48d3f4ba4)`()` <a id="structFRHAPI__Catalog_1a84936a24fc2f2c3f9f56c8d48d3f4ba4"></a>
 
 Returns a pointer to TimeFrames_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` * `[`GetTimeFramesOrNull`](#structFRHAPI__Catalog_1a091f3b84759ff8222a18440bb27a1ae7)`() const` <a id="structFRHAPI__Catalog_1a091f3b84759ff8222a18440bb27a1ae7"></a>
+#### `public inline const `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` * `[`GetTimeFramesOrNull`](#structFRHAPI__Catalog_1a00ae1c4f3aba2236ba4932e2784b3e8d)`() const` <a id="structFRHAPI__Catalog_1a00ae1c4f3aba2236ba4932e2784b3e8d"></a>
 
 Returns a pointer to TimeFrames_Optional, if it has been set, otherwise returns nullptr.
 
@@ -563,15 +563,15 @@ Clears the value of TimeFrames_Optional and sets TimeFrames_IsSet to false.
 
 Checks whether TimeFrames_Optional has been set.
 
-#### `public inline `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` & `[`GetSkus`](#structFRHAPI__Catalog_1aecd3e567a3e8505612cff0a6060ded3c)`()` <a id="structFRHAPI__Catalog_1aecd3e567a3e8505612cff0a6060ded3c"></a>
+#### `public inline `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` & `[`GetSkus`](#structFRHAPI__Catalog_1a53e4d20e6002876f5b43ef51a4b90d78)`()` <a id="structFRHAPI__Catalog_1a53e4d20e6002876f5b43ef51a4b90d78"></a>
 
 Gets the value of Skus_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` & `[`GetSkus`](#structFRHAPI__Catalog_1a2ec9a13449858fe7b30ca8da6a18da71)`() const` <a id="structFRHAPI__Catalog_1a2ec9a13449858fe7b30ca8da6a18da71"></a>
+#### `public inline const `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` & `[`GetSkus`](#structFRHAPI__Catalog_1a3b7514f2c3a2a1fd8d5bdc045678cb85)`() const` <a id="structFRHAPI__Catalog_1a3b7514f2c3a2a1fd8d5bdc045678cb85"></a>
 
 Gets the value of Skus_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` & `[`GetSkus`](#structFRHAPI__Catalog_1a7778d38213342b764ba32de27877a87e)`(const `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` & DefaultValue) const` <a id="structFRHAPI__Catalog_1a7778d38213342b764ba32de27877a87e"></a>
+#### `public inline const `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` & `[`GetSkus`](#structFRHAPI__Catalog_1a916ac1232ab4e68d034d438d5e83ec7c)`(const `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` & DefaultValue) const` <a id="structFRHAPI__Catalog_1a916ac1232ab4e68d034d438d5e83ec7c"></a>
 
 Gets the value of Skus_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -579,11 +579,11 @@ Gets the value of Skus_Optional, if it has been set, otherwise it returns Defaul
 
 Fills OutValue with the value of Skus_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` * `[`GetSkusOrNull`](#structFRHAPI__Catalog_1a60b66383a155cce30ad54b6eb92e00f8)`()` <a id="structFRHAPI__Catalog_1a60b66383a155cce30ad54b6eb92e00f8"></a>
+#### `public inline `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` * `[`GetSkusOrNull`](#structFRHAPI__Catalog_1af1e6a7632ba667642a74baa0aecb1b6c)`()` <a id="structFRHAPI__Catalog_1af1e6a7632ba667642a74baa0aecb1b6c"></a>
 
 Returns a pointer to Skus_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` * `[`GetSkusOrNull`](#structFRHAPI__Catalog_1a20ecb5baaedad96eff367f1605dfa2f8)`() const` <a id="structFRHAPI__Catalog_1a20ecb5baaedad96eff367f1605dfa2f8"></a>
+#### `public inline const `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` * `[`GetSkusOrNull`](#structFRHAPI__Catalog_1a8635df6756bdb94e43cff588c0750bed)`() const` <a id="structFRHAPI__Catalog_1a8635df6756bdb94e43cff588c0750bed"></a>
 
 Returns a pointer to Skus_Optional, if it has been set, otherwise returns nullptr.
 
@@ -603,15 +603,15 @@ Clears the value of Skus_Optional and sets Skus_IsSet to false.
 
 Checks whether Skus_Optional has been set.
 
-#### `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Catalog_1a3bcfc74eef1b5ed8c468aa203d73505a)`()` <a id="structFRHAPI__Catalog_1a3bcfc74eef1b5ed8c468aa203d73505a"></a>
+#### `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Catalog_1a9b31d9b09b6ace54995dff359a0ccaa1)`()` <a id="structFRHAPI__Catalog_1a9b31d9b09b6ace54995dff359a0ccaa1"></a>
 
 Gets the value of CacheInfo_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Catalog_1a3767f024df63790d04bfaba39add23a6)`() const` <a id="structFRHAPI__Catalog_1a3767f024df63790d04bfaba39add23a6"></a>
+#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Catalog_1a93e905be9ed95b6d651cba222813b41c)`() const` <a id="structFRHAPI__Catalog_1a93e905be9ed95b6d651cba222813b41c"></a>
 
 Gets the value of CacheInfo_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Catalog_1a44b14981d1b3157b786d07adbc36fb73)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` <a id="structFRHAPI__Catalog_1a44b14981d1b3157b786d07adbc36fb73"></a>
+#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Catalog_1a43facd716dcdb4c600752f76a766e05f)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` <a id="structFRHAPI__Catalog_1a43facd716dcdb4c600752f76a766e05f"></a>
 
 Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -619,11 +619,11 @@ Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns D
 
 Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Catalog_1a79154ae3e9fe9fb81a3994f93448ee43)`()` <a id="structFRHAPI__Catalog_1a79154ae3e9fe9fb81a3994f93448ee43"></a>
+#### `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Catalog_1a55a8909d146db154dded34eb6465e453)`()` <a id="structFRHAPI__Catalog_1a55a8909d146db154dded34eb6465e453"></a>
 
 Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Catalog_1a5f40badba0c9c3e6aa0dc5cd5bacd5f8)`() const` <a id="structFRHAPI__Catalog_1a5f40badba0c9c3e6aa0dc5cd5bacd5f8"></a>
+#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Catalog_1a6b591d0d35167a7c5d046119ea732dcd)`() const` <a id="structFRHAPI__Catalog_1a6b591d0d35167a7c5d046119ea732dcd"></a>
 
 Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 

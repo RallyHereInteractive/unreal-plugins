@@ -36,7 +36,7 @@ Notification Subsystem used for polling notifications of updates.
 `public FRH_OnNotificationStreamedDelegate `[`OnNotificationStreamed`](#classURH__PlayerNotifications_1ab1e1c5a76082f64b939d8a88a7d8590d) | Delegate to listen to for when a notification is streamed.
 `public TMap< FString, FRH_OnNotificationStreamedDelegate > `[`OnNotificationStreamedByAPI`](#classURH__PlayerNotifications_1a1452a94aa41139929fd6d84b7beff989) | Specialty version available only to C++, as cannot bind a TMap to a delegate in a UPROPERTY.
 `public virtual void `[`Initialize`](#classURH__PlayerNotifications_1a81d80e9dc231e046e56406ea2f98f32b)`()` | Initialize the subsystem.
-`public inline `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetPlayerInfo`](#classURH__PlayerNotifications_1a930863811488b9f22d9cc3ad6a31bf55)`() const` | Gets the player info set on the subsystem.
+`public inline `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetPlayerInfo`](#classURH__PlayerNotifications_1a280f43ec60493689d6d78da916dd3d72)`() const` | Gets the player info set on the subsystem.
 `public FGuid `[`GetRHPlayerUuid`](#classURH__PlayerNotifications_1af3db438fe9e033f223c7ae8fe49d7207)`() const` | Gets the associated player infos Unique Player Id.
 `public FAuthContextPtr `[`GetAuthContext`](#classURH__PlayerNotifications_1aaaf349e01cb764899baeb5151686ff2b)`() const` | Gets the Auth Context that has authority to operate on this players inventory.
 `public inline void `[`SetPlayerInfo`](#classURH__PlayerNotifications_1a85c903acc8824dd815258b3422a2530a)`(`[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * InPlayerInfo)` | Sets the Player Info owner of the subsystem.
@@ -45,10 +45,10 @@ Notification Subsystem used for polling notifications of updates.
 `public inline bool `[`IsStreaming`](#classURH__PlayerNotifications_1a74837149464570caefd49854ebddafc1)`() const` | Gets if notifications are currenly being streamed.
 `public inline void `[`SetStreamingHistorySize`](#classURH__PlayerNotifications_1aac53f07b03c118fc22333869867b80da)`(int32 Size)` | Sets the amount of notifications to cache.
 `public inline int32 `[`GetStreamingHistorySize`](#classURH__PlayerNotifications_1a7c497c6358c33023cac59d15f1d32078)`() const` | Gets the max size of the history cache.
-`public inline const TArray< `[`FRHAPI_Notification`](RHAPI_Notification.md#structFRHAPI__Notification)` > & `[`GetStreamingHistory`](#classURH__PlayerNotifications_1aedab4bbc1a1e6c59e9a23d1819b55d63)`() const` | Gets the notification history cache.
+`public inline const TArray< `[`FRHAPI_Notification`](RHAPI_Notification.md#structFRHAPI__Notification)` > & `[`GetStreamingHistory`](#classURH__PlayerNotifications_1a6d96ff5b8cca4b3456cbbe33f0882334)`() const` | Gets the notification history cache.
 `public inline void `[`ClearStreamingHistory`](#classURH__PlayerNotifications_1a4d072865418e5292188c57bda8d3d4d4)`()` | Clears the notification history cache.
-`public inline const FString & `[`GetStreamingCursor`](#classURH__PlayerNotifications_1ab626106ca160ac09e3eebb8a02f04f24)`() const` | Gets the current cursor for streaming notifications.
-`public inline const FGuid & `[`GetStreamingPlayerUuid`](#classURH__PlayerNotifications_1ac4ce080fb03019b67f7f1534d5ac6239)`() const` | Gets the unique player id the notifications are being streamed for.
+`public inline const FString & `[`GetStreamingCursor`](#classURH__PlayerNotifications_1a1e91f805d3d491600031b7113b091c1b)`() const` | Gets the current cursor for streaming notifications.
+`public inline const FGuid & `[`GetStreamingPlayerUuid`](#classURH__PlayerNotifications_1a5aa0e1d2a2167ff00a4718f7ccc9f66f)`() const` | Gets the unique player id the notifications are being streamed for.
 `public bool `[`CreateNotification`](#classURH__PlayerNotifications_1a847a88d9756e4dd4e8f14358816d3711)`(const FGuid & PlayerUuid,const FString & Message,const FString & RhUrl,const TMap< FString, FString > & CustomData,const FRH_OnSingularNotificationIDDelegateBlock & Delegate)` | Creates a notification, mostly used for debugging as notifications generally originate from the core.
 `protected `[`FRH_NotificationPollingTypes`](undefined.md#group__Notifications_1gace387863cbcb11c5932fc70080b2d724)` `[`PollingType`](#classURH__PlayerNotifications_1a40c95a52389181570358ef990ce84912) | The polling type to use, defaults to Long Poll.
 `protected TSharedPtr< class FRH_NotificationStreamingLongPollHelper > `[`LongPollHelper`](#classURH__PlayerNotifications_1a38ebff9ba57e162f812c688d60b48df0) | Helper for making long polling requests.
@@ -85,7 +85,7 @@ Specialty version available only to C++, as cannot bind a TMap to a delegate in 
 
 Initialize the subsystem.
 
-#### `public inline `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetPlayerInfo`](#classURH__PlayerNotifications_1a930863811488b9f22d9cc3ad6a31bf55)`() const` <a id="classURH__PlayerNotifications_1a930863811488b9f22d9cc3ad6a31bf55"></a>
+#### `public inline `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetPlayerInfo`](#classURH__PlayerNotifications_1a280f43ec60493689d6d78da916dd3d72)`() const` <a id="classURH__PlayerNotifications_1a280f43ec60493689d6d78da916dd3d72"></a>
 
 Gets the player info set on the subsystem.
 
@@ -139,7 +139,7 @@ Sets the amount of notifications to cache.
 
 Gets the max size of the history cache.
 
-#### `public inline const TArray< `[`FRHAPI_Notification`](RHAPI_Notification.md#structFRHAPI__Notification)` > & `[`GetStreamingHistory`](#classURH__PlayerNotifications_1aedab4bbc1a1e6c59e9a23d1819b55d63)`() const` <a id="classURH__PlayerNotifications_1aedab4bbc1a1e6c59e9a23d1819b55d63"></a>
+#### `public inline const TArray< `[`FRHAPI_Notification`](RHAPI_Notification.md#structFRHAPI__Notification)` > & `[`GetStreamingHistory`](#classURH__PlayerNotifications_1a6d96ff5b8cca4b3456cbbe33f0882334)`() const` <a id="classURH__PlayerNotifications_1a6d96ff5b8cca4b3456cbbe33f0882334"></a>
 
 Gets the notification history cache.
 
@@ -147,11 +147,11 @@ Gets the notification history cache.
 
 Clears the notification history cache.
 
-#### `public inline const FString & `[`GetStreamingCursor`](#classURH__PlayerNotifications_1ab626106ca160ac09e3eebb8a02f04f24)`() const` <a id="classURH__PlayerNotifications_1ab626106ca160ac09e3eebb8a02f04f24"></a>
+#### `public inline const FString & `[`GetStreamingCursor`](#classURH__PlayerNotifications_1a1e91f805d3d491600031b7113b091c1b)`() const` <a id="classURH__PlayerNotifications_1a1e91f805d3d491600031b7113b091c1b"></a>
 
 Gets the current cursor for streaming notifications.
 
-#### `public inline const FGuid & `[`GetStreamingPlayerUuid`](#classURH__PlayerNotifications_1ac4ce080fb03019b67f7f1534d5ac6239)`() const` <a id="classURH__PlayerNotifications_1ac4ce080fb03019b67f7f1534d5ac6239"></a>
+#### `public inline const FGuid & `[`GetStreamingPlayerUuid`](#classURH__PlayerNotifications_1a5aa0e1d2a2167ff00a4718f7ccc9f66f)`() const` <a id="classURH__PlayerNotifications_1a5aa0e1d2a2167ff00a4718f7ccc9f66f"></a>
 
 Gets the unique player id the notifications are being streamed for.
 

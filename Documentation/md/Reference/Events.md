@@ -6,8 +6,8 @@ title: Events
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public void RALLYHEREINTEGRATION_API `[`CreateCustomDataAttributes`](#group__Events_1gaa582d62c9f49b2f7fd8f24fa6ae4d6df)`(const TOptional< TMap< FString, FString >> & InCustomData,TArray< FAnalyticsEventAttribute > & Attributes)`            | 
-`public TSharedPtr< class IAnalyticsProvider > RALLYHEREINTEGRATION_API `[`AutoCreateAnalyticsProvider`](#group__Events_1ga7eb36ad6c9fda8dbaf75f0105729e359)`()`            | 
+`public void RALLYHEREINTEGRATION_API `[`CreateCustomDataAttributes`](#group__Events_1ga691ec721f943275025926c231a3f4c28)`(const TOptional< TMap< FString, FString > > & InCustomData,TArray< FAnalyticsEventAttribute > & Attributes)`            | 
+`public TSharedPtr< class IAnalyticsProvider > RALLYHEREINTEGRATION_API `[`AutoCreateAnalyticsProvider`](#group__Events_1ga4da7f90b601e5f1200297599bbf7822d)`()`            | 
 `public FORCEINLINE FJsonFragment `[`JsonValueToFragment`](#group__Events_1ga030389845523022e1934e67c81e62df9)`(const TSharedPtr< FJsonValue > & InJsonValue)`            | 
 `struct `[`RHStandardEvents::FCorrelationStartEvent`](#structRHStandardEvents_1_1FCorrelationStartEvent) | Event that is triggered at the start of the application and when we have generated a correlation_id to track events.
 `struct `[`RHStandardEvents::FCorrelationEndEvent`](#structRHStandardEvents_1_1FCorrelationEndEvent) | This event is triggered to mark the end of tracking events. Typically triggered when the client gracefully is closed.
@@ -28,9 +28,9 @@ title: Events
 
 ## Members
 
-#### `public void RALLYHEREINTEGRATION_API `[`CreateCustomDataAttributes`](#group__Events_1gaa582d62c9f49b2f7fd8f24fa6ae4d6df)`(const TOptional< TMap< FString, FString >> & InCustomData,TArray< FAnalyticsEventAttribute > & Attributes)` <a id="group__Events_1gaa582d62c9f49b2f7fd8f24fa6ae4d6df"></a>
+#### `public void RALLYHEREINTEGRATION_API `[`CreateCustomDataAttributes`](#group__Events_1ga691ec721f943275025926c231a3f4c28)`(const TOptional< TMap< FString, FString > > & InCustomData,TArray< FAnalyticsEventAttribute > & Attributes)` <a id="group__Events_1ga691ec721f943275025926c231a3f4c28"></a>
 
-#### `public TSharedPtr< class IAnalyticsProvider > RALLYHEREINTEGRATION_API `[`AutoCreateAnalyticsProvider`](#group__Events_1ga7eb36ad6c9fda8dbaf75f0105729e359)`()` <a id="group__Events_1ga7eb36ad6c9fda8dbaf75f0105729e359"></a>
+#### `public TSharedPtr< class IAnalyticsProvider > RALLYHEREINTEGRATION_API `[`AutoCreateAnalyticsProvider`](#group__Events_1ga4da7f90b601e5f1200297599bbf7822d)`()` <a id="group__Events_1ga4da7f90b601e5f1200297599bbf7822d"></a>
 
 #### `public FORCEINLINE FJsonFragment `[`JsonValueToFragment`](#group__Events_1ga030389845523022e1934e67c81e62df9)`(const TSharedPtr< FJsonValue > & InJsonValue)` <a id="group__Events_1ga030389845523022e1934e67c81e62df9"></a>
 

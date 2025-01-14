@@ -29,20 +29,20 @@ Config Subsystem used for interfacing with configuration coming from the core se
 `public virtual void `[`Deinitialize`](#classURH__ConfigSubsystem_1a3772586395855d20b68419525357d482)`()` | Safely tears down the subsystem.
 `public virtual void `[`FetchKVs`](#classURH__ConfigSubsystem_1a79d77433c4d5f4c671fc1ecadf1645bd)`(const FRH_GenericSuccessWithErrorBlock & Delegate)` | Requests the server for the latest KVs.
 `public void `[`PollKVs`](#classURH__ConfigSubsystem_1aac6461308740848ec368388c5793f5c8)`(const FRH_PollCompleteFunc & Delegate)` | Pulses a FetchKVs call for the polling of KVs.
-`public inline const TMap< FString, FString > & `[`GetKVs`](#classURH__ConfigSubsystem_1a757de9fcdf1e5cb32f566f9415f79921)`() const` | Gets the map of all the Public KVs and their values.
+`public inline const TMap< FString, FString > & `[`GetKVs`](#classURH__ConfigSubsystem_1ac780e0e841c5313768d1ed1f17809ce2)`() const` | Gets the map of all the Public KVs and their values.
 `public inline bool `[`GetKV`](#classURH__ConfigSubsystem_1aa1248874924178b0be7b383b09fb095b)`(const FString & Key,FString & Value) const` | Gets the value of a specific Publc KV.
 `public inline bool `[`GetAnyKV`](#classURH__ConfigSubsystem_1ac5caaee0e2aa29122861d5b45ee3d41c)`(const FString & Key,FString & Value) const` | Gets the value of a specific KV (wrapper for if multiple KV sources are present).
 `public inline FDateTime `[`GetKickBeforeHint`](#classURH__ConfigSubsystem_1a5051253a4523c1d2b76c0a3fe53d5e3a)`() const` | Time for which any player logins older than should log out (staggered kick all players support).
 `public inline void `[`FetchAppSettings`](#classURH__ConfigSubsystem_1ad403c4ca8a27ea7c655e90a284dc78d5)`(const FRH_GenericSuccessWithErrorBlock & Delegate)` | Requests the server for the latest App Settings.
 `public inline FORCEINLINE void `[`FetchAppSettings`](#classURH__ConfigSubsystem_1a50fe9c7e6cff1c087b90a9a260589d42)`(const FRH_GenericSuccessDelegate & Delegate)` | 
 `public inline void `[`PollAppSettings`](#classURH__ConfigSubsystem_1af54aaef08b3ea1cde7002a1d9c799f5e)`(const FRH_PollCompleteFunc & Delegate)` | Pulses a FetchAppSettings call for the polling of App Settings.
-`public inline const TMap< FString, FString > & `[`GetAppSettings`](#classURH__ConfigSubsystem_1a5dc66896184c8dfb91dd2be05adbf885)`() const` | Gets the map of all the App Settings and their values.
+`public inline const TMap< FString, FString > & `[`GetAppSettings`](#classURH__ConfigSubsystem_1a5d0b4baea8775e1be2b17d840c2207c0)`() const` | Gets the map of all the App Settings and their values.
 `public inline bool `[`GetAppSetting`](#classURH__ConfigSubsystem_1aa720f15382278f6dc7843fd813f7c055)`(const FString & Key,FString & Value) const` | Gets the value of a specific App Setting.
 `public void `[`TriggerHotfixProcessing`](#classURH__ConfigSubsystem_1a524f29aaf89857bd7bbb75ee8a4a47a6)`()` | If hotfix settings are set, this starts the process of applying them to unreal assets.
 `public void `[`StartKVsRefreshTimer`](#classURH__ConfigSubsystem_1a2159e9b6bb06f03fa2f53216672e46fe)`()` | Starts the polling for KVs.
 `public void `[`StopKVsRefreshTimer`](#classURH__ConfigSubsystem_1aba0146f1ca8686280cf28153330388bc)`()` | Stops the polling for KVs.
 `public void `[`RefreshServerTimeCache`](#classURH__ConfigSubsystem_1afeee33613fe6dfd83ad7b2a8b8a82397)`(const FRH_GenericSuccessWithErrorBlock & Delegate)` | Requests the server time cache to be updated.
-`public inline const `[`FRH_ServerTimeCache`](Config.md#structFRH__ServerTimeCache)` & `[`GetServerTimeCache`](#classURH__ConfigSubsystem_1a15bf58f4b62f9d9f638c2ceae633c474)`() const` | Gets the server time cache object.
+`public inline const `[`FRH_ServerTimeCache`](Config.md#structFRH__ServerTimeCache)` & `[`GetServerTimeCache`](#classURH__ConfigSubsystem_1a030a1e343a351b016fb5a43e795c5bb6)`() const` | Gets the server time cache object.
 `public inline bool `[`GetServerTime`](#classURH__ConfigSubsystem_1a946dd5b6f7306f98540241a22a02bb4a)`(FDateTime & Time) const` | Gets the approximate server time, if we have received one.
 `public inline bool `[`GetServerTimeDrift`](#classURH__ConfigSubsystem_1a8c858f002ca9de0d0c656e2dad1d08a8)`(FTimespan & Timespan) const` | Gets the approximate server time, if we have received one.
 `public bool `[`GetHotfixTestValue`](#classURH__ConfigSubsystem_1a36219ba1c46c10df675d0fe546fc31b4)`() const` | Gets if the hotfix system is enabled.
@@ -91,7 +91,7 @@ Pulses a FetchKVs call for the polling of KVs.
 #### Parameters
 * `Delegate` Delegate to call when the request is complete.
 
-#### `public inline const TMap< FString, FString > & `[`GetKVs`](#classURH__ConfigSubsystem_1a757de9fcdf1e5cb32f566f9415f79921)`() const` <a id="classURH__ConfigSubsystem_1a757de9fcdf1e5cb32f566f9415f79921"></a>
+#### `public inline const TMap< FString, FString > & `[`GetKVs`](#classURH__ConfigSubsystem_1ac780e0e841c5313768d1ed1f17809ce2)`() const` <a id="classURH__ConfigSubsystem_1ac780e0e841c5313768d1ed1f17809ce2"></a>
 
 Gets the map of all the Public KVs and their values.
 
@@ -142,7 +142,7 @@ Pulses a FetchAppSettings call for the polling of App Settings.
 #### Parameters
 * `Delegate` Delegate to call when the request is complete.
 
-#### `public inline const TMap< FString, FString > & `[`GetAppSettings`](#classURH__ConfigSubsystem_1a5dc66896184c8dfb91dd2be05adbf885)`() const` <a id="classURH__ConfigSubsystem_1a5dc66896184c8dfb91dd2be05adbf885"></a>
+#### `public inline const TMap< FString, FString > & `[`GetAppSettings`](#classURH__ConfigSubsystem_1a5d0b4baea8775e1be2b17d840c2207c0)`() const` <a id="classURH__ConfigSubsystem_1a5d0b4baea8775e1be2b17d840c2207c0"></a>
 
 Gets the map of all the App Settings and their values.
 
@@ -177,7 +177,7 @@ Stops the polling for KVs.
 
 Requests the server time cache to be updated.
 
-#### `public inline const `[`FRH_ServerTimeCache`](Config.md#structFRH__ServerTimeCache)` & `[`GetServerTimeCache`](#classURH__ConfigSubsystem_1a15bf58f4b62f9d9f638c2ceae633c474)`() const` <a id="classURH__ConfigSubsystem_1a15bf58f4b62f9d9f638c2ceae633c474"></a>
+#### `public inline const `[`FRH_ServerTimeCache`](Config.md#structFRH__ServerTimeCache)` & `[`GetServerTimeCache`](#classURH__ConfigSubsystem_1a030a1e343a351b016fb5a43e795c5bb6)`() const` <a id="classURH__ConfigSubsystem_1a030a1e343a351b016fb5a43e795c5bb6"></a>
 
 Gets the server time cache object.
 

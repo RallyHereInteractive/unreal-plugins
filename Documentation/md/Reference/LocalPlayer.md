@@ -97,9 +97,9 @@ Login Subsystem for the local player.
 `public void `[`Logout`](#classURH__LocalPlayerLoginSubsystem_1ae3394f883c697e57a705c23d8b0be23a)`()` | Requests a logout on the server clearing the players auth credentials.
 `public bool `[`ShowLoginProfileSelectionUI`](#classURH__LocalPlayerLoginSubsystem_1a6b569dc65fc1a0a0b6bb9f03a5c33ca9)`(bool bShowOnlineOnly,const FRH_OnProfileSelectionUIClosed & OnClosed,`[`ERHAPI_LocalPlayerLoginOSS`](undefined.md#group__LocalPlayer_1ga0aae9d7dd1467ba0ef09be86df25b7a2)` OSSType)` | Show an OSS-specific profile selection UI to the user. This is for Xbox and other platforms that support profile swapping. A valid profile is required to login on those platforms.
 `public bool `[`ShouldUseSavedCredentials`](#classURH__LocalPlayerLoginSubsystem_1a508f8e109c3ec8be8a8b3fc2cb4ded58)`() const` | Are saved credentials allowed for auto-login?
-`public IOnlineSubsystem * `[`GetOSS`](#classURH__LocalPlayerLoginSubsystem_1aa90dc3aaf0dd07ac57aab97b3d300e8d)`(`[`ERHAPI_LocalPlayerLoginOSS`](undefined.md#group__LocalPlayer_1ga0aae9d7dd1467ba0ef09be86df25b7a2)` OSSType) const` | Get the fully resolved OSS by type.
-`public IOnlineSubsystem * `[`GetLoginOSS`](#classURH__LocalPlayerLoginSubsystem_1a9e877c23c0e17ff59e45c9690b319da0)`() const` | Get the fully resolved OSS to use for Login.
-`public IOnlineSubsystem * `[`GetNicknameOSS`](#classURH__LocalPlayerLoginSubsystem_1aaa99f329af713816b4c175c0f7671e49)`() const` | Get the fully resolved OSS to use for getting a player's display name for login. This triggers a second OSS login.
+`public IOnlineSubsystem * `[`GetOSS`](#classURH__LocalPlayerLoginSubsystem_1a386630639294cc738abf45fff7109357)`(`[`ERHAPI_LocalPlayerLoginOSS`](undefined.md#group__LocalPlayer_1ga0aae9d7dd1467ba0ef09be86df25b7a2)` OSSType) const` | Get the fully resolved OSS by type.
+`public IOnlineSubsystem * `[`GetLoginOSS`](#classURH__LocalPlayerLoginSubsystem_1ac64020e992c532e82d93fd02bc4fee71)`() const` | Get the fully resolved OSS to use for Login.
+`public IOnlineSubsystem * `[`GetNicknameOSS`](#classURH__LocalPlayerLoginSubsystem_1aa8daa7ad4b47b22e42e80fb55caa60b0)`() const` | Get the fully resolved OSS to use for getting a player's display name for login. This triggers a second OSS login.
 `public inline virtual bool `[`IsCrossplayEnabled`](#classURH__LocalPlayerLoginSubsystem_1a311a51ee03f291f4c236f1983e0b3f7c)`() const` | Gets if crossplay is enabled.
 `public inline virtual bool `[`IsCommunicationEnabled`](#classURH__LocalPlayerLoginSubsystem_1a1412124dc14c386e02ce52bbcb2671c0)`() const` | Gets if cvommunication is enabled.
 `protected TArray< FString > `[`IgnoreSavedCredentialsCommandLineKeys`](#classURH__LocalPlayerLoginSubsystem_1a807481151c1204a711576e7372534dc1) | Configurations to skip saved credentials.
@@ -276,15 +276,15 @@ Show an OSS-specific profile selection UI to the user. This is for Xbox and othe
 
 Are saved credentials allowed for auto-login?
 
-#### `public IOnlineSubsystem * `[`GetOSS`](#classURH__LocalPlayerLoginSubsystem_1aa90dc3aaf0dd07ac57aab97b3d300e8d)`(`[`ERHAPI_LocalPlayerLoginOSS`](undefined.md#group__LocalPlayer_1ga0aae9d7dd1467ba0ef09be86df25b7a2)` OSSType) const` <a id="classURH__LocalPlayerLoginSubsystem_1aa90dc3aaf0dd07ac57aab97b3d300e8d"></a>
+#### `public IOnlineSubsystem * `[`GetOSS`](#classURH__LocalPlayerLoginSubsystem_1a386630639294cc738abf45fff7109357)`(`[`ERHAPI_LocalPlayerLoginOSS`](undefined.md#group__LocalPlayer_1ga0aae9d7dd1467ba0ef09be86df25b7a2)` OSSType) const` <a id="classURH__LocalPlayerLoginSubsystem_1a386630639294cc738abf45fff7109357"></a>
 
 Get the fully resolved OSS by type.
 
-#### `public IOnlineSubsystem * `[`GetLoginOSS`](#classURH__LocalPlayerLoginSubsystem_1a9e877c23c0e17ff59e45c9690b319da0)`() const` <a id="classURH__LocalPlayerLoginSubsystem_1a9e877c23c0e17ff59e45c9690b319da0"></a>
+#### `public IOnlineSubsystem * `[`GetLoginOSS`](#classURH__LocalPlayerLoginSubsystem_1ac64020e992c532e82d93fd02bc4fee71)`() const` <a id="classURH__LocalPlayerLoginSubsystem_1ac64020e992c532e82d93fd02bc4fee71"></a>
 
 Get the fully resolved OSS to use for Login.
 
-#### `public IOnlineSubsystem * `[`GetNicknameOSS`](#classURH__LocalPlayerLoginSubsystem_1aaa99f329af713816b4c175c0f7671e49)`() const` <a id="classURH__LocalPlayerLoginSubsystem_1aaa99f329af713816b4c175c0f7671e49"></a>
+#### `public IOnlineSubsystem * `[`GetNicknameOSS`](#classURH__LocalPlayerLoginSubsystem_1aa8daa7ad4b47b22e42e80fb55caa60b0)`() const` <a id="classURH__LocalPlayerLoginSubsystem_1aa8daa7ad4b47b22e42e80fb55caa60b0"></a>
 
 Get the fully resolved OSS to use for getting a player's display name for login. This triggers a second OSS login.
 
@@ -652,9 +652,9 @@ Subsystem to manage the local players presence.
 `public inline void `[`SetDesiredDoNotDisturb`](#classURH__LocalPlayerPresenceSubsystem_1a7f8a9a266c0ab29d1da24f836a3a58ba)`(bool NewDoNotDisturb)` | Requests an update of your presence do not disturb setting to be set to the desired setting.
 `public inline bool `[`GetDesiredDoNotDisturb`](#classURH__LocalPlayerPresenceSubsystem_1aec49acc65c1627bcfb9b95eb29b1c2dc)`() const` | Gets the desired do not disturb setting that the player wants to be set to.
 `public inline void `[`SetDesiredCustomData`](#classURH__LocalPlayerPresenceSubsystem_1af554c5a6e2f17be875c859f0e6503245)`(TMap< FString, FString > NewCustomData)` | Requests an update of your presence custom data to be set to the desired setting.
-`public inline const TMap< FString, FString > `[`GetDesiredCustomData`](#classURH__LocalPlayerPresenceSubsystem_1a44018e1ef4737b09d495eeca408c3016)`() const` | Gets the desired custom data that the player wants to be set to.
+`public inline const TMap< FString, FString > `[`GetDesiredCustomData`](#classURH__LocalPlayerPresenceSubsystem_1a6055386d55ac708899020f7a661a70d4)`() const` | Gets the desired custom data that the player wants to be set to.
 `public inline void `[`SetDesiredPresence`](#classURH__LocalPlayerPresenceSubsystem_1a4ffc23a0a9185823907fff0c361e4045)`(`[`FRHAPI_PlayerPresenceUpdateSelf`](RHAPI_PlayerPresenceUpdateSelf.md#structFRHAPI__PlayerPresenceUpdateSelf)` NewPresenceState)` | Requests an update of your entire presence state to be set to the desired structure.
-`public inline const `[`FRHAPI_PlayerPresenceUpdateSelf`](RHAPI_PlayerPresenceUpdateSelf.md#structFRHAPI__PlayerPresenceUpdateSelf)` & `[`GetDesiredPresence`](#classURH__LocalPlayerPresenceSubsystem_1a0b762d8e59fc2ceeafafb5b77f3b1c6a)`() const` | Gets the desired custom data that the player wants to be set to.
+`public inline const `[`FRHAPI_PlayerPresenceUpdateSelf`](RHAPI_PlayerPresenceUpdateSelf.md#structFRHAPI__PlayerPresenceUpdateSelf)` & `[`GetDesiredPresence`](#classURH__LocalPlayerPresenceSubsystem_1acbafa26fae623c26a04669ad10095760)`() const` | Gets the desired custom data that the player wants to be set to.
 `public void `[`StartRefreshTimer`](#classURH__LocalPlayerPresenceSubsystem_1a32af15e5eafaf94bdea501e1dc02d90b)`()` | Starts polling to refresh the player's presence status.
 `public void `[`StopRefreshTimer`](#classURH__LocalPlayerPresenceSubsystem_1a95919d768be0b60ad1134052aff7ef2c)`()` | Stops polling to refresh the player's presence status.
 `public void `[`RefreshStatus`](#classURH__LocalPlayerPresenceSubsystem_1a409192cc26f0fb395231023cf4449fa7)`()` | Forces an update of the players presence with a status change.
@@ -743,7 +743,7 @@ Requests an update of your presence custom data to be set to the desired setting
 #### Parameters
 * `NewCustomData` The new custom data desired.
 
-#### `public inline const TMap< FString, FString > `[`GetDesiredCustomData`](#classURH__LocalPlayerPresenceSubsystem_1a44018e1ef4737b09d495eeca408c3016)`() const` <a id="classURH__LocalPlayerPresenceSubsystem_1a44018e1ef4737b09d495eeca408c3016"></a>
+#### `public inline const TMap< FString, FString > `[`GetDesiredCustomData`](#classURH__LocalPlayerPresenceSubsystem_1a6055386d55ac708899020f7a661a70d4)`() const` <a id="classURH__LocalPlayerPresenceSubsystem_1a6055386d55ac708899020f7a661a70d4"></a>
 
 Gets the desired custom data that the player wants to be set to.
 
@@ -754,7 +754,7 @@ Requests an update of your entire presence state to be set to the desired struct
 #### Parameters
 * `NewPresenceState` The new custom data desired.
 
-#### `public inline const `[`FRHAPI_PlayerPresenceUpdateSelf`](RHAPI_PlayerPresenceUpdateSelf.md#structFRHAPI__PlayerPresenceUpdateSelf)` & `[`GetDesiredPresence`](#classURH__LocalPlayerPresenceSubsystem_1a0b762d8e59fc2ceeafafb5b77f3b1c6a)`() const` <a id="classURH__LocalPlayerPresenceSubsystem_1a0b762d8e59fc2ceeafafb5b77f3b1c6a"></a>
+#### `public inline const `[`FRHAPI_PlayerPresenceUpdateSelf`](RHAPI_PlayerPresenceUpdateSelf.md#structFRHAPI__PlayerPresenceUpdateSelf)` & `[`GetDesiredPresence`](#classURH__LocalPlayerPresenceSubsystem_1acbafa26fae623c26a04669ad10095760)`() const` <a id="classURH__LocalPlayerPresenceSubsystem_1acbafa26fae623c26a04669ad10095760"></a>
 
 Gets the desired custom data that the player wants to be set to.
 
@@ -827,24 +827,24 @@ Subsystem to manage sessions for the local player.
 `public virtual void `[`Initialize`](#classURH__LocalPlayerSessionSubsystem_1a0f380ce4b08ba9e13a06496939bc14d7)`()` | Initialize the subsystem.
 `public virtual void `[`Deinitialize`](#classURH__LocalPlayerSessionSubsystem_1a120580f60e2559621a29074257000119)`()` | Deinitialize the subsystem.
 `public inline virtual FAuthContextPtr `[`GetSessionAuthContext`](#classURH__LocalPlayerSessionSubsystem_1a6eb6370bc861ae0aa43831888996e885)`() const` | Get auth context for session ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
-`public inline virtual `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`GetSessionById`](#classURH__LocalPlayerSessionSubsystem_1ae9b547c5444917b422f0faf4f9f302f7)`(const FString & SessionId) const` | Get session by its Session Id.
-`public TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetSessionsByType`](#classURH__LocalPlayerSessionSubsystem_1ada97ad5b91df96d7c12906654dff2efc)`(const FString & Type) const` | Get all joined and invited sessions by SessionType.
-`public TArray< `[`URH_InvitedSession`](Session.md#classURH__InvitedSession)` * > `[`GetInvitedSessionsByType`](#classURH__LocalPlayerSessionSubsystem_1a2062f6db160d2e691043384daba8a0c7)`(const FString & Type) const` | Get all invited sessions by SessionType.
-`public TArray< `[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * > `[`GetJoinedSessionsByType`](#classURH__LocalPlayerSessionSubsystem_1a8ef4d278c989d7ce7d27066f763d6a6b)`(const FString & Type) const` | Get all joined sessions by SessionType.
-`public inline FORCEINLINE `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`GetFirstSessionByType`](#classURH__LocalPlayerSessionSubsystem_1a01900cd4029717129f2a9b58ed0393bf)`(const FString & Type) const` | Get first joined or invited sessions by SessionType (useful for titles that ensure only one of a given session type will exist)
-`public inline FORCEINLINE `[`URH_InvitedSession`](Session.md#classURH__InvitedSession)` * `[`GetFirstInvitedSessionByType`](#classURH__LocalPlayerSessionSubsystem_1a6425315f9172f8dfa5f8c91c134906cf)`(const FString & Type) const` | Get first invited sessions by SessionType (useful for titles that ensure only one of a given session type will exist)
-`public inline FORCEINLINE `[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * `[`GetFirstJoinedSessionByType`](#classURH__LocalPlayerSessionSubsystem_1aa414c134992b703f331750fb0efe7ad6)`(const FString & Type) const` | Get first joined sessions by SessionType (useful for titles that ensure only one of a given session type will exist)
-`public `[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * `[`GetFirstActiveSession`](#classURH__LocalPlayerSessionSubsystem_1a520c98308877db871add24d0dd4b4b54)`() const` | Get first "active" session (session which is IsActive())
-`public inline FORCEINLINE TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetSessions`](#classURH__LocalPlayerSessionSubsystem_1ae82fb3ff0c18d5c55cc163b935ff56f8)`() const` | Get an array of all sessions controlled by this system.
+`public inline virtual `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`GetSessionById`](#classURH__LocalPlayerSessionSubsystem_1a35fadcbb4a6200cf5f6dd50219425632)`(const FString & SessionId) const` | Get session by its Session Id.
+`public TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetSessionsByType`](#classURH__LocalPlayerSessionSubsystem_1ade3626d6a9eea60910b82c8be0672b90)`(const FString & Type) const` | Get all joined and invited sessions by SessionType.
+`public TArray< `[`URH_InvitedSession`](Session.md#classURH__InvitedSession)` * > `[`GetInvitedSessionsByType`](#classURH__LocalPlayerSessionSubsystem_1a3f39bc19e62996704c7e7fce26d458f4)`(const FString & Type) const` | Get all invited sessions by SessionType.
+`public TArray< `[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * > `[`GetJoinedSessionsByType`](#classURH__LocalPlayerSessionSubsystem_1a88fb114cf7ce24803441a1606552c3a0)`(const FString & Type) const` | Get all joined sessions by SessionType.
+`public inline FORCEINLINE `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`GetFirstSessionByType`](#classURH__LocalPlayerSessionSubsystem_1aa1daf7f451869c9f3be2a145756a4462)`(const FString & Type) const` | Get first joined or invited sessions by SessionType (useful for titles that ensure only one of a given session type will exist)
+`public inline FORCEINLINE `[`URH_InvitedSession`](Session.md#classURH__InvitedSession)` * `[`GetFirstInvitedSessionByType`](#classURH__LocalPlayerSessionSubsystem_1a9431ecae7f1da9a2ac011aaace0f3b7c)`(const FString & Type) const` | Get first invited sessions by SessionType (useful for titles that ensure only one of a given session type will exist)
+`public inline FORCEINLINE `[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * `[`GetFirstJoinedSessionByType`](#classURH__LocalPlayerSessionSubsystem_1a38dc9247565316917f5332ab63aa18d5)`(const FString & Type) const` | Get first joined sessions by SessionType (useful for titles that ensure only one of a given session type will exist)
+`public `[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * `[`GetFirstActiveSession`](#classURH__LocalPlayerSessionSubsystem_1a8fcbcaefdffd59e7573c7112834c58f1)`() const` | Get first "active" session (session which is IsActive())
+`public inline FORCEINLINE TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetSessions`](#classURH__LocalPlayerSessionSubsystem_1ac5e0acf5f9d7f762f5c9ceec8d6b9c02)`() const` | Get an array of all sessions controlled by this system.
 `public virtual void `[`RemoveSessionById`](#classURH__LocalPlayerSessionSubsystem_1a7e790f89c514d7210c5b58b947cebec2)`(const FString & SessionId)` | Removes a cached session for the local player, this does NOT try to leave it.
 `public inline FORCEINLINE bool `[`IsInSession`](#classURH__LocalPlayerSessionSubsystem_1ad5bfcc3b466927d7d92f94bff1ba31d5)`(const FString & SessionId)` | Utility function to determine if local player is a member of that session.
-`public virtual class `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__LocalPlayerSessionSubsystem_1a8978774a71778d9d5a9b4f20f1ee85f6)`() const` | Utility function to look up the player info subsystem ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
-`public virtual IOnlineSubsystem * `[`GetOSS`](#classURH__LocalPlayerSessionSubsystem_1a236725daa5e1b49d96c04a2da868be04)`() const` | Utility function to look up the OnlineSubsystem to use for session calls ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
+`public virtual class `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__LocalPlayerSessionSubsystem_1a96a865719fb2494d0e89e7660a6fd2b2)`() const` | Utility function to look up the player info subsystem ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
+`public virtual IOnlineSubsystem * `[`GetOSS`](#classURH__LocalPlayerSessionSubsystem_1a07e92b976c6edb22a8d8e2abc574e1c7)`() const` | Utility function to look up the OnlineSubsystem to use for session calls ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 `public virtual FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classURH__LocalPlayerSessionSubsystem_1a242dea7f5ff3092050c7d15ba05dc8a0)`() const` | Utility function to look up the UniqueNetId to use for OnlineSubsystem calls ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 `public virtual FPlatformUserId `[`GetOSSPlatformUserId`](#classURH__LocalPlayerSessionSubsystem_1a381885585853e65604470259e8a053ff)`() const` | Gets the Online Subsystem PlatformUserId to use for OSS calls (equivalent to controller index)
 `public virtual FGuid `[`GetPlayerUuid`](#classURH__LocalPlayerSessionSubsystem_1aaf5587019c1eb05ce9e42c72541dd802)`() const` | Gets the Player UUID to use for player related calls (can be invalid)
-`public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__LocalPlayerSessionSubsystem_1a4ed75c6f69c267d419355a48e64db6fe)`(const FString & SessionId) const` | Gets the platform session synchronization object for a given session id ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
-`public virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__LocalPlayerSessionSubsystem_1a498582f9ba28c7472e33004de090efe7)`(const FUniqueNetIdRepl & PlatformSessionId) const` | Gets the platform session synchronization object for a given platform session id.
+`public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__LocalPlayerSessionSubsystem_1af17a705ee8af54747dccb52a37554918)`(const FString & SessionId) const` | Gets the platform session synchronization object for a given session id ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
+`public virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__LocalPlayerSessionSubsystem_1a5f4ce3f68b15c21a15411b1a12bad287)`(const FUniqueNetIdRepl & PlatformSessionId) const` | Gets the platform session synchronization object for a given platform session id.
 `public inline virtual void `[`SetPlatformSessionToJoinOnUserChange`](#classURH__LocalPlayerSessionSubsystem_1a7b32f021e042bf401d2156764df2babc)`(const FOnlineSessionSearchResult & Session)` | Set a platform session to join upon the next user change.
 `public inline virtual void `[`ClearPlatformSessionToJoinOnUserChange`](#classURH__LocalPlayerSessionSubsystem_1afa5db7d0b7302957dd89c4a7b9f78cb5)`()` | Clear a platform session to join upon the next user change.
 `public inline void `[`CreateOrJoinSessionByType`](#classURH__LocalPlayerSessionSubsystem_1ae987d7bbdbc819106e7e00a06a08d918)`(const `[`FRHAPI_CreateOrJoinRequest`](RHAPI_CreateOrJoinRequest.md#structFRHAPI__CreateOrJoinRequest)` & CreateParams,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Utility function to Create or Join a session by a given SessionType (most times will create a session, but Hub join rules may do a Join instead)
@@ -855,10 +855,10 @@ Subsystem to manage sessions for the local player.
 `public virtual void `[`ReconcileAPISessions`](#classURH__LocalPlayerSessionSubsystem_1aede0956db4c8e8626fa239c16cb3d61e)`(const TArray< FString > & SessionIds,const TOptional< FString > & ETag)` | Reconciles the list of session ids with this subsystem, removing any sessions that are no longer in the list, then updates the stored ETag for the local player's session list ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 `public virtual void `[`ReconcileAPITemplates`](#classURH__LocalPlayerSessionSubsystem_1a4f63fd2f8b8a6f34c01cc45022eeee71)`(const TArray< FString > & InTemplates,const TOptional< FString > & ETag)` | Reconciles the list of template SessionTypes with this subsystem, removing any templates that are no longer in the list, then updates the stored ETag for the local player's templatelist ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 `public virtual bool `[`GetTemplate`](#classURH__LocalPlayerSessionSubsystem_1a237eee46e92fabeb77c426fce7e857d8)`(const FString & Type,`[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template) const` | Looks up a template from within this subsystem ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
-`public inline FORCEINLINE TArray< `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > `[`GetTemplates`](#classURH__LocalPlayerSessionSubsystem_1a4c06df84a31add059852a36de3959038)`() const` | Gets a list of all templates in this subsystem.
-`public inline virtual TOptional< FString > `[`GetETagForAllSessionsPoll`](#classURH__LocalPlayerSessionSubsystem_1a95c37ca700d9e30f3cc46c79055208b2)`() const` | Looks up a ETag to use when querying for session membership ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
-`public inline virtual TOptional< FString > `[`GetETagForAllTemplatesPoll`](#classURH__LocalPlayerSessionSubsystem_1aa3e56b3a6b8466282f98f33fa444b814)`() const` | Looks up a ETag to use when querying for template information ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
-`public inline virtual TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classURH__LocalPlayerSessionSubsystem_1a4dbf97c53be79cdeced20be7d9176378)`() const` | Looks up all sessions to process when polling if ETags match ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
+`public inline FORCEINLINE TArray< `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > `[`GetTemplates`](#classURH__LocalPlayerSessionSubsystem_1a6ecb1b04a0bc6393b42a11d00609e580)`() const` | Gets a list of all templates in this subsystem.
+`public inline virtual TOptional< FString > `[`GetETagForAllSessionsPoll`](#classURH__LocalPlayerSessionSubsystem_1a2f60c3627f17b0cc366307a1c6aab830)`() const` | Looks up a ETag to use when querying for session membership ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
+`public inline virtual TOptional< FString > `[`GetETagForAllTemplatesPoll`](#classURH__LocalPlayerSessionSubsystem_1a750ee76f5c28dbfae5575f206c23dbff)`() const` | Looks up a ETag to use when querying for template information ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
+`public inline virtual TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classURH__LocalPlayerSessionSubsystem_1a573fa34a250882293c81f9bad329f987)`() const` | Looks up all sessions to process when polling if ETags match ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 `public void `[`SearchForSessions`](#classURH__LocalPlayerSessionSubsystem_1a2d981ffabd1a06a57e12cf2f64e991c5)`(const `[`FRH_SessionBrowserSearchParams`](Session.md#structFRH__SessionBrowserSearchParams)` & Params,const FRH_OnSessionSearchCompleteDelegateBlock & Delegate)` | Utility function that searches the session browser cache for information on browser sessions.
 `public void `[`StartPolling`](#classURH__LocalPlayerSessionSubsystem_1a46f1de5fd5535924cb742f82878b949a)`()` | Start polling for session template and membership updates.
 `public void `[`StopPolling`](#classURH__LocalPlayerSessionSubsystem_1ae11fbca181c0c52bd17cc06b701a12e1)`()` | Stop polling for session template and membership updates.
@@ -875,7 +875,7 @@ Subsystem to manage sessions for the local player.
 `protected TMap< FString, `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`ExpiringSessions`](#classURH__LocalPlayerSessionSubsystem_1ad1bcc3afd124b033ccfba4b001cebbe2) | Map of Session Ids to Sessions objects that may be in the process of cleaning themselves up.
 `protected TMap< FString, `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` > `[`DeferredSessionUpdates`](#classURH__LocalPlayerSessionSubsystem_1a9f22ebb821fcb358e5e277acbef28010) | Map of Session Ids to Sessions updates we could not process for some reason, such as race conditions.
 `protected TMap< FString, `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * > `[`PlatformSyncers`](#classURH__LocalPlayerSessionSubsystem_1ab601abbf8833c31cb45ccde7d481d3de) | Map of Session Ids to their Platform Session Syncers.
-`protected virtual `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`CreateOrUpdateRHSession`](#classURH__LocalPlayerSessionSubsystem_1a2efe4a073341684f83e5da781df7a9f0)`(const `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` & Session,const ERHAPI_SessionPlayerStatus & LocalPlayerStatus)` | Creates or updates a specific session for the local player.
+`protected virtual `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`CreateOrUpdateRHSession`](#classURH__LocalPlayerSessionSubsystem_1a978d608c83b7e6db20f955d8003f77b7)`(const `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` & Session,const ERHAPI_SessionPlayerStatus & LocalPlayerStatus)` | Creates or updates a specific session for the local player.
 `protected virtual bool `[`LocalPlayerStatusFromSession`](#classURH__LocalPlayerSessionSubsystem_1aa0bec72de8c9da10cb97e78730c5cb79)`(const `[`FRHAPI_Session`](RHAPI_Session.md#structFRHAPI__Session)` & Session,ERHAPI_SessionPlayerStatus & Status) const` | Gets the local player status in a specific session.
 `protected inline virtual void `[`RemoveSession`](#classURH__LocalPlayerSessionSubsystem_1ac956ad61bb35b46c9cb067e247e8b06f)`(const `[`URH_SessionView`](Session.md#classURH__SessionView)` * Session)` | Removes a cached session for the local player, this does NOT try to leave it.
 `protected virtual void `[`OnExpirationComplete`](#classURH__LocalPlayerSessionSubsystem_1ae8b9736ce9f79dd68014b3f01df9fd1f)`(`[`URH_SessionView`](Session.md#classURH__SessionView)` * Session)` | Called when a session the local player is part of expires.
@@ -883,7 +883,7 @@ Subsystem to manage sessions for the local player.
 `protected virtual void `[`OnUserChanged`](#classURH__LocalPlayerSessionSubsystem_1a26fbf14bcba6e280614f699fb5e3711c)`(const FGuid & OldPlayerUuid,class `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * OldLocalPlayerInfo)` | Base handling when the local user changes, override to provide functionality.
 `protected virtual void `[`InitPropertiesWithDefaultValues`](#classURH__LocalPlayerSessionSubsystem_1a8d62c9d3f5c42d59b77fa894ce226ad4)`()` | Initializes the subsystem with defaults for its cached data.
 `protected virtual void `[`HandleNotification`](#classURH__LocalPlayerSessionSubsystem_1aa1277f7aa4d99bb48c64153da9b8574f)`(const struct `[`FRHAPI_Notification`](RHAPI_Notification.md#structFRHAPI__Notification)` & Notification,const FString & APIName,const TArray< FString > & APIParams)` | Handle a notification from the notification API.
-`protected `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`CreatePlatformSyncer`](#classURH__LocalPlayerSessionSubsystem_1a689a1f5d6391c55118c8467e5fe2e9ce)`(`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session)` | Creates a Platform Session Syncer for the local player.
+`protected `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`CreatePlatformSyncer`](#classURH__LocalPlayerSessionSubsystem_1a96aa1cc05790f411445ac30733532f76)`(`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session)` | Creates a Platform Session Syncer for the local player.
 `protected virtual bool `[`FilterOSSCallbackUser`](#classURH__LocalPlayerSessionSubsystem_1ac3f8a2189935d62ddee4f0c523028264)`(const int32 ControllerId)` | Checks if the online subsystem call is for the local user.
 `protected virtual bool `[`FilterOSSCallbackUser`](#classURH__LocalPlayerSessionSubsystem_1a499f53a4e277ea57c023eca530e7edd1)`(const FUniqueNetId & UniqueNetId)` | Checks if the online subsystem call is for the local user.
 `protected virtual void `[`OnPlatformActivityActivation`](#classURH__LocalPlayerSessionSubsystem_1aa06aadafbc3aebee2e79d0114db792a3)`(const FUniqueNetId & LocalUserId,const FString & ActivityId,const FOnlineSessionSearchResult * SessionInfo)` | Handles the response of an online subsystem activity activation.
@@ -942,7 +942,7 @@ Deinitialize the subsystem.
 
 Get auth context for session ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 
-#### `public inline virtual `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`GetSessionById`](#classURH__LocalPlayerSessionSubsystem_1ae9b547c5444917b422f0faf4f9f302f7)`(const FString & SessionId) const` <a id="classURH__LocalPlayerSessionSubsystem_1ae9b547c5444917b422f0faf4f9f302f7"></a>
+#### `public inline virtual `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`GetSessionById`](#classURH__LocalPlayerSessionSubsystem_1a35fadcbb4a6200cf5f6dd50219425632)`(const FString & SessionId) const` <a id="classURH__LocalPlayerSessionSubsystem_1a35fadcbb4a6200cf5f6dd50219425632"></a>
 
 Get session by its Session Id.
 
@@ -952,7 +952,7 @@ Get session by its Session Id.
 #### Returns
 Session object, if it exists
 
-#### `public TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetSessionsByType`](#classURH__LocalPlayerSessionSubsystem_1ada97ad5b91df96d7c12906654dff2efc)`(const FString & Type) const` <a id="classURH__LocalPlayerSessionSubsystem_1ada97ad5b91df96d7c12906654dff2efc"></a>
+#### `public TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetSessionsByType`](#classURH__LocalPlayerSessionSubsystem_1ade3626d6a9eea60910b82c8be0672b90)`(const FString & Type) const` <a id="classURH__LocalPlayerSessionSubsystem_1ade3626d6a9eea60910b82c8be0672b90"></a>
 
 Get all joined and invited sessions by SessionType.
 
@@ -962,7 +962,7 @@ Get all joined and invited sessions by SessionType.
 #### Returns
 Array of session objects of the specified SessionType
 
-#### `public TArray< `[`URH_InvitedSession`](Session.md#classURH__InvitedSession)` * > `[`GetInvitedSessionsByType`](#classURH__LocalPlayerSessionSubsystem_1a2062f6db160d2e691043384daba8a0c7)`(const FString & Type) const` <a id="classURH__LocalPlayerSessionSubsystem_1a2062f6db160d2e691043384daba8a0c7"></a>
+#### `public TArray< `[`URH_InvitedSession`](Session.md#classURH__InvitedSession)` * > `[`GetInvitedSessionsByType`](#classURH__LocalPlayerSessionSubsystem_1a3f39bc19e62996704c7e7fce26d458f4)`(const FString & Type) const` <a id="classURH__LocalPlayerSessionSubsystem_1a3f39bc19e62996704c7e7fce26d458f4"></a>
 
 Get all invited sessions by SessionType.
 
@@ -972,7 +972,7 @@ Get all invited sessions by SessionType.
 #### Returns
 Array of session objects of the specified SessionType
 
-#### `public TArray< `[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * > `[`GetJoinedSessionsByType`](#classURH__LocalPlayerSessionSubsystem_1a8ef4d278c989d7ce7d27066f763d6a6b)`(const FString & Type) const` <a id="classURH__LocalPlayerSessionSubsystem_1a8ef4d278c989d7ce7d27066f763d6a6b"></a>
+#### `public TArray< `[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * > `[`GetJoinedSessionsByType`](#classURH__LocalPlayerSessionSubsystem_1a88fb114cf7ce24803441a1606552c3a0)`(const FString & Type) const` <a id="classURH__LocalPlayerSessionSubsystem_1a88fb114cf7ce24803441a1606552c3a0"></a>
 
 Get all joined sessions by SessionType.
 
@@ -982,7 +982,7 @@ Get all joined sessions by SessionType.
 #### Returns
 Array of session objects of the specified SessionType
 
-#### `public inline FORCEINLINE `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`GetFirstSessionByType`](#classURH__LocalPlayerSessionSubsystem_1a01900cd4029717129f2a9b58ed0393bf)`(const FString & Type) const` <a id="classURH__LocalPlayerSessionSubsystem_1a01900cd4029717129f2a9b58ed0393bf"></a>
+#### `public inline FORCEINLINE `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`GetFirstSessionByType`](#classURH__LocalPlayerSessionSubsystem_1aa1daf7f451869c9f3be2a145756a4462)`(const FString & Type) const` <a id="classURH__LocalPlayerSessionSubsystem_1aa1daf7f451869c9f3be2a145756a4462"></a>
 
 Get first joined or invited sessions by SessionType (useful for titles that ensure only one of a given session type will exist)
 
@@ -992,7 +992,7 @@ Get first joined or invited sessions by SessionType (useful for titles that ensu
 #### Returns
 Session object of the specified SessionType, if it exists
 
-#### `public inline FORCEINLINE `[`URH_InvitedSession`](Session.md#classURH__InvitedSession)` * `[`GetFirstInvitedSessionByType`](#classURH__LocalPlayerSessionSubsystem_1a6425315f9172f8dfa5f8c91c134906cf)`(const FString & Type) const` <a id="classURH__LocalPlayerSessionSubsystem_1a6425315f9172f8dfa5f8c91c134906cf"></a>
+#### `public inline FORCEINLINE `[`URH_InvitedSession`](Session.md#classURH__InvitedSession)` * `[`GetFirstInvitedSessionByType`](#classURH__LocalPlayerSessionSubsystem_1a9431ecae7f1da9a2ac011aaace0f3b7c)`(const FString & Type) const` <a id="classURH__LocalPlayerSessionSubsystem_1a9431ecae7f1da9a2ac011aaace0f3b7c"></a>
 
 Get first invited sessions by SessionType (useful for titles that ensure only one of a given session type will exist)
 
@@ -1002,7 +1002,7 @@ Get first invited sessions by SessionType (useful for titles that ensure only on
 #### Returns
 Session object of the specified SessionType, if it exists
 
-#### `public inline FORCEINLINE `[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * `[`GetFirstJoinedSessionByType`](#classURH__LocalPlayerSessionSubsystem_1aa414c134992b703f331750fb0efe7ad6)`(const FString & Type) const` <a id="classURH__LocalPlayerSessionSubsystem_1aa414c134992b703f331750fb0efe7ad6"></a>
+#### `public inline FORCEINLINE `[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * `[`GetFirstJoinedSessionByType`](#classURH__LocalPlayerSessionSubsystem_1a38dc9247565316917f5332ab63aa18d5)`(const FString & Type) const` <a id="classURH__LocalPlayerSessionSubsystem_1a38dc9247565316917f5332ab63aa18d5"></a>
 
 Get first joined sessions by SessionType (useful for titles that ensure only one of a given session type will exist)
 
@@ -1012,7 +1012,7 @@ Get first joined sessions by SessionType (useful for titles that ensure only one
 #### Returns
 Session object of the specified SessionType, if it exists
 
-#### `public `[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * `[`GetFirstActiveSession`](#classURH__LocalPlayerSessionSubsystem_1a520c98308877db871add24d0dd4b4b54)`() const` <a id="classURH__LocalPlayerSessionSubsystem_1a520c98308877db871add24d0dd4b4b54"></a>
+#### `public `[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * `[`GetFirstActiveSession`](#classURH__LocalPlayerSessionSubsystem_1a8fcbcaefdffd59e7573c7112834c58f1)`() const` <a id="classURH__LocalPlayerSessionSubsystem_1a8fcbcaefdffd59e7573c7112834c58f1"></a>
 
 Get first "active" session (session which is IsActive())
 
@@ -1022,7 +1022,7 @@ Get first "active" session (session which is IsActive())
 #### Returns
 Session object of the specified SessionType, if it exists
 
-#### `public inline FORCEINLINE TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetSessions`](#classURH__LocalPlayerSessionSubsystem_1ae82fb3ff0c18d5c55cc163b935ff56f8)`() const` <a id="classURH__LocalPlayerSessionSubsystem_1ae82fb3ff0c18d5c55cc163b935ff56f8"></a>
+#### `public inline FORCEINLINE TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetSessions`](#classURH__LocalPlayerSessionSubsystem_1ac5e0acf5f9d7f762f5c9ceec8d6b9c02)`() const` <a id="classURH__LocalPlayerSessionSubsystem_1ac5e0acf5f9d7f762f5c9ceec8d6b9c02"></a>
 
 Get an array of all sessions controlled by this system.
 
@@ -1046,11 +1046,11 @@ Utility function to determine if local player is a member of that session.
 #### Returns
 whether or not the player is in the session
 
-#### `public virtual class `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__LocalPlayerSessionSubsystem_1a8978774a71778d9d5a9b4f20f1ee85f6)`() const` <a id="classURH__LocalPlayerSessionSubsystem_1a8978774a71778d9d5a9b4f20f1ee85f6"></a>
+#### `public virtual class `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__LocalPlayerSessionSubsystem_1a96a865719fb2494d0e89e7660a6fd2b2)`() const` <a id="classURH__LocalPlayerSessionSubsystem_1a96a865719fb2494d0e89e7660a6fd2b2"></a>
 
 Utility function to look up the player info subsystem ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 
-#### `public virtual IOnlineSubsystem * `[`GetOSS`](#classURH__LocalPlayerSessionSubsystem_1a236725daa5e1b49d96c04a2da868be04)`() const` <a id="classURH__LocalPlayerSessionSubsystem_1a236725daa5e1b49d96c04a2da868be04"></a>
+#### `public virtual IOnlineSubsystem * `[`GetOSS`](#classURH__LocalPlayerSessionSubsystem_1a07e92b976c6edb22a8d8e2abc574e1c7)`() const` <a id="classURH__LocalPlayerSessionSubsystem_1a07e92b976c6edb22a8d8e2abc574e1c7"></a>
 
 Utility function to look up the OnlineSubsystem to use for session calls ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 
@@ -1066,7 +1066,7 @@ Gets the Online Subsystem PlatformUserId to use for OSS calls (equivalent to con
 
 Gets the Player UUID to use for player related calls (can be invalid)
 
-#### `public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__LocalPlayerSessionSubsystem_1a4ed75c6f69c267d419355a48e64db6fe)`(const FString & SessionId) const` <a id="classURH__LocalPlayerSessionSubsystem_1a4ed75c6f69c267d419355a48e64db6fe"></a>
+#### `public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__LocalPlayerSessionSubsystem_1af17a705ee8af54747dccb52a37554918)`(const FString & SessionId) const` <a id="classURH__LocalPlayerSessionSubsystem_1af17a705ee8af54747dccb52a37554918"></a>
 
 Gets the platform session synchronization object for a given session id ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 
@@ -1076,7 +1076,7 @@ Gets the platform session synchronization object for a given session id ([IRH_Se
 #### Returns
 Platform Session synchronization object
 
-#### `public virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__LocalPlayerSessionSubsystem_1a498582f9ba28c7472e33004de090efe7)`(const FUniqueNetIdRepl & PlatformSessionId) const` <a id="classURH__LocalPlayerSessionSubsystem_1a498582f9ba28c7472e33004de090efe7"></a>
+#### `public virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__LocalPlayerSessionSubsystem_1a5f4ce3f68b15c21a15411b1a12bad287)`(const FUniqueNetIdRepl & PlatformSessionId) const` <a id="classURH__LocalPlayerSessionSubsystem_1a5f4ce3f68b15c21a15411b1a12bad287"></a>
 
 Gets the platform session synchronization object for a given platform session id.
 
@@ -1167,22 +1167,22 @@ Looks up a template from within this subsystem ([IRH_SessionOwnerInterface](Sess
 #### Returns
 Whether or not the template was found
 
-#### `public inline FORCEINLINE TArray< `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > `[`GetTemplates`](#classURH__LocalPlayerSessionSubsystem_1a4c06df84a31add059852a36de3959038)`() const` <a id="classURH__LocalPlayerSessionSubsystem_1a4c06df84a31add059852a36de3959038"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > `[`GetTemplates`](#classURH__LocalPlayerSessionSubsystem_1a6ecb1b04a0bc6393b42a11d00609e580)`() const` <a id="classURH__LocalPlayerSessionSubsystem_1a6ecb1b04a0bc6393b42a11d00609e580"></a>
 
 Gets a list of all templates in this subsystem.
 
 #### Returns
 Array of all templates
 
-#### `public inline virtual TOptional< FString > `[`GetETagForAllSessionsPoll`](#classURH__LocalPlayerSessionSubsystem_1a95c37ca700d9e30f3cc46c79055208b2)`() const` <a id="classURH__LocalPlayerSessionSubsystem_1a95c37ca700d9e30f3cc46c79055208b2"></a>
+#### `public inline virtual TOptional< FString > `[`GetETagForAllSessionsPoll`](#classURH__LocalPlayerSessionSubsystem_1a2f60c3627f17b0cc366307a1c6aab830)`() const` <a id="classURH__LocalPlayerSessionSubsystem_1a2f60c3627f17b0cc366307a1c6aab830"></a>
 
 Looks up a ETag to use when querying for session membership ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 
-#### `public inline virtual TOptional< FString > `[`GetETagForAllTemplatesPoll`](#classURH__LocalPlayerSessionSubsystem_1aa3e56b3a6b8466282f98f33fa444b814)`() const` <a id="classURH__LocalPlayerSessionSubsystem_1aa3e56b3a6b8466282f98f33fa444b814"></a>
+#### `public inline virtual TOptional< FString > `[`GetETagForAllTemplatesPoll`](#classURH__LocalPlayerSessionSubsystem_1a750ee76f5c28dbfae5575f206c23dbff)`() const` <a id="classURH__LocalPlayerSessionSubsystem_1a750ee76f5c28dbfae5575f206c23dbff"></a>
 
 Looks up a ETag to use when querying for template information ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 
-#### `public inline virtual TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classURH__LocalPlayerSessionSubsystem_1a4dbf97c53be79cdeced20be7d9176378)`() const` <a id="classURH__LocalPlayerSessionSubsystem_1a4dbf97c53be79cdeced20be7d9176378"></a>
+#### `public inline virtual TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classURH__LocalPlayerSessionSubsystem_1a573fa34a250882293c81f9bad329f987)`() const` <a id="classURH__LocalPlayerSessionSubsystem_1a573fa34a250882293c81f9bad329f987"></a>
 
 Looks up all sessions to process when polling if ETags match ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 
@@ -1258,7 +1258,7 @@ Map of Session Ids to Sessions updates we could not process for some reason, suc
 
 Map of Session Ids to their Platform Session Syncers.
 
-#### `protected virtual `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`CreateOrUpdateRHSession`](#classURH__LocalPlayerSessionSubsystem_1a2efe4a073341684f83e5da781df7a9f0)`(const `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` & Session,const ERHAPI_SessionPlayerStatus & LocalPlayerStatus)` <a id="classURH__LocalPlayerSessionSubsystem_1a2efe4a073341684f83e5da781df7a9f0"></a>
+#### `protected virtual `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`CreateOrUpdateRHSession`](#classURH__LocalPlayerSessionSubsystem_1a978d608c83b7e6db20f955d8003f77b7)`(const `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` & Session,const ERHAPI_SessionPlayerStatus & LocalPlayerStatus)` <a id="classURH__LocalPlayerSessionSubsystem_1a978d608c83b7e6db20f955d8003f77b7"></a>
 
 Creates or updates a specific session for the local player.
 
@@ -1332,7 +1332,7 @@ Handle a notification from the notification API.
 
 * `APIParams` The parameters for the API that sent the notification.
 
-#### `protected `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`CreatePlatformSyncer`](#classURH__LocalPlayerSessionSubsystem_1a689a1f5d6391c55118c8467e5fe2e9ce)`(`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session)` <a id="classURH__LocalPlayerSessionSubsystem_1a689a1f5d6391c55118c8467e5fe2e9ce"></a>
+#### `protected `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`CreatePlatformSyncer`](#classURH__LocalPlayerSessionSubsystem_1a96aa1cc05790f411445ac30733532f76)`(`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session)` <a id="classURH__LocalPlayerSessionSubsystem_1a96aa1cc05790f411445ac30733532f76"></a>
 
 Creates a Platform Session Syncer for the local player.
 
@@ -1489,24 +1489,24 @@ Subsystem to manage the local player.
 `public virtual void `[`Deinitialize`](#classURH__LocalPlayerSubsystem_1adfc8060ee2b1815d85009c5d9c61fb10)`()` | Safely tears down the subsystem.
 `public virtual bool `[`IsLoggedIn`](#classURH__LocalPlayerSubsystem_1aa87f996f6200f58e7bb5b1e76af85f78)`() const` | Gets if the player is currently logged in.
 `public virtual FGuid `[`GetPlayerUuid`](#classURH__LocalPlayerSubsystem_1a639688a2978cc465ad6576e100daffe4)`() const` | Gets the player's unique player id.
-`public virtual TOptional< ERHAPI_Platform > `[`GetLoggedInPlatform`](#classURH__LocalPlayerSubsystem_1afe833d0afadea6cd3e526c5feb86a6e6)`() const` | Gets the platform type for the player if logged in.
+`public virtual TOptional< ERHAPI_Platform > `[`GetLoggedInPlatform`](#classURH__LocalPlayerSubsystem_1a048bf1e9a716b9bd7c2774a4646a3780)`() const` | Gets the platform type for the player if logged in.
 `public virtual FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classURH__LocalPlayerSubsystem_1a4c35e09b4d1d7b9c2b1994ba26519509)`() const` | Gets the player's OSS unique id.
 `public virtual int32 `[`GetPlatformUserId`](#classURH__LocalPlayerSubsystem_1a67201c7ebaba8d4b7f72bb55064f518c)`() const` | Gets the player's platform id.
-`public inline virtual TSharedPtr< class IAnalyticsProvider > `[`GetAnalyticsProvider`](#classURH__LocalPlayerSubsystem_1a971e67d99251ee5a805fc339f48ab66d)`() const` | Gets the player's analytics provider.
-`public virtual TSharedPtr< class IAnalyticsProvider > `[`CreateAnalyticsProvider`](#classURH__LocalPlayerSubsystem_1a3b2f8337c43926cb688c16d15916ad03)`()` | Gets the player's analytics provider.
-`public virtual `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetLocalPlayerInfo`](#classURH__LocalPlayerSubsystem_1ae7902af37f78a0a491c26b14ff448ac1)`() const` | Gets the player's player info.
+`public inline virtual TSharedPtr< class IAnalyticsProvider > `[`GetAnalyticsProvider`](#classURH__LocalPlayerSubsystem_1a850df889785b3344b6779e5daacda4a3)`() const` | Gets the player's analytics provider.
+`public virtual TSharedPtr< class IAnalyticsProvider > `[`CreateAnalyticsProvider`](#classURH__LocalPlayerSubsystem_1a3b8d761019f3cecca9472b609b6b6868)`()` | Gets the player's analytics provider.
+`public virtual `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetLocalPlayerInfo`](#classURH__LocalPlayerSubsystem_1adb7c2e606b0220fbabdaf9f2cfe619b6)`() const` | Gets the player's player info.
 `public virtual `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` `[`GetPlayerPlatformId`](#classURH__LocalPlayerSubsystem_1a7a9c27b2728b01d3c9cf095af2533cd0)`() const` | Gets the player's platform id wrapped with platform type.
 `public inline FORCEINLINE FAuthContextPtr `[`GetAuthContext`](#classURH__LocalPlayerSubsystem_1aac6f2bd9809734eae11efd9cdfbb0738)`() const` | Gets the player's auth context.
-`public virtual IOnlineSubsystem * `[`GetOSS`](#classURH__LocalPlayerSubsystem_1a37e363ec5503a8c6341bdde27132bf8c)`(const FName & SubsystemName) const` | Get a specific OSS by name for this local player's world. In editor, this allows each world/game instance to have a different OSS.
-`public inline FORCEINLINE `[`URH_LocalPlayerLoginSubsystem`](LocalPlayer.md#classURH__LocalPlayerLoginSubsystem)` * `[`GetLoginSubsystem`](#classURH__LocalPlayerSubsystem_1aa6d9e0d8f6462d16b6c0eab3e8c445b9)`() const` | Gets the player's login subsystem.
-`public inline FORCEINLINE `[`URH_AdSubsystem`](Ads.md#classURH__AdSubsystem)` * `[`GetAdSubsystem`](#classURH__LocalPlayerSubsystem_1a4b0be8bb978e72e755f383b5ca519c5a)`() const` | Gets the player's ad subsystem.
-`public inline FORCEINLINE `[`URH_FriendSubsystem`](Friends.md#classURH__FriendSubsystem)` * `[`GetFriendSubsystem`](#classURH__LocalPlayerSubsystem_1ad49c347f8117e9c66f0c40564bbe9ad8)`() const` | Gets the player's friend subsystem.
-`public inline FORCEINLINE `[`URH_LocalPlayerSessionSubsystem`](LocalPlayer.md#classURH__LocalPlayerSessionSubsystem)` * `[`GetSessionSubsystem`](#classURH__LocalPlayerSubsystem_1af7588ae73890bd95a0d4b8ce240ecff9)`() const` | Gets the player's session subsystem.
-`public inline FORCEINLINE `[`URH_LocalPlayerPresenceSubsystem`](LocalPlayer.md#classURH__LocalPlayerPresenceSubsystem)` * `[`GetPresenceSubsystem`](#classURH__LocalPlayerSubsystem_1ac43dba7fff9bf907ae5e17675cc65c77)`() const` | Gets the player's presence subsystem.
-`public inline FORCEINLINE `[`URH_PurgeSubsystem`](Purge.md#classURH__PurgeSubsystem)` * `[`GetPurgeSubsystem`](#classURH__LocalPlayerSubsystem_1a5c2884b8b405e18804009f8b8cfeb245)`() const` | Gets the player's purge subsystem.
-`public inline FORCEINLINE `[`URH_EntitlementSubsystem`](Entitlement.md#classURH__EntitlementSubsystem)` * `[`GetEntitlementSubsystem`](#classURH__LocalPlayerSubsystem_1a3553f6723f3c694a2bf15f3bfd647774)`() const` | Gets the player's entitlement subsystem.
-`public virtual `[`URH_PlayerNotifications`](Notifications.md#classURH__PlayerNotifications)` * `[`GetPlayerNotifications`](#classURH__LocalPlayerSubsystem_1a013ac5a0ad7a13bfe1c5e615d15ea8fd)`() const` | Gets the player's notification subsystem.
-`public virtual `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__LocalPlayerSubsystem_1a395c248cddf85f98ea9a993b4155ab58)`() const` | Gets the player's player info.
+`public virtual IOnlineSubsystem * `[`GetOSS`](#classURH__LocalPlayerSubsystem_1af28d3992d7757a476ae70f4fbe9c8d9e)`(const FName & SubsystemName) const` | Get a specific OSS by name for this local player's world. In editor, this allows each world/game instance to have a different OSS.
+`public inline FORCEINLINE `[`URH_LocalPlayerLoginSubsystem`](LocalPlayer.md#classURH__LocalPlayerLoginSubsystem)` * `[`GetLoginSubsystem`](#classURH__LocalPlayerSubsystem_1a83dd1b24ed384f121ac62c3454b287c2)`() const` | Gets the player's login subsystem.
+`public inline FORCEINLINE `[`URH_AdSubsystem`](Ads.md#classURH__AdSubsystem)` * `[`GetAdSubsystem`](#classURH__LocalPlayerSubsystem_1a657893fe2d39f56b63f0240e93d37a35)`() const` | Gets the player's ad subsystem.
+`public inline FORCEINLINE `[`URH_FriendSubsystem`](Friends.md#classURH__FriendSubsystem)` * `[`GetFriendSubsystem`](#classURH__LocalPlayerSubsystem_1aa96edae19ba92eb31d043e2e0b3c1604)`() const` | Gets the player's friend subsystem.
+`public inline FORCEINLINE `[`URH_LocalPlayerSessionSubsystem`](LocalPlayer.md#classURH__LocalPlayerSessionSubsystem)` * `[`GetSessionSubsystem`](#classURH__LocalPlayerSubsystem_1a5a2555ca69234e162e92f3b2fc7fdfe7)`() const` | Gets the player's session subsystem.
+`public inline FORCEINLINE `[`URH_LocalPlayerPresenceSubsystem`](LocalPlayer.md#classURH__LocalPlayerPresenceSubsystem)` * `[`GetPresenceSubsystem`](#classURH__LocalPlayerSubsystem_1af9a36cfa5adbdd12513005035cfc44a4)`() const` | Gets the player's presence subsystem.
+`public inline FORCEINLINE `[`URH_PurgeSubsystem`](Purge.md#classURH__PurgeSubsystem)` * `[`GetPurgeSubsystem`](#classURH__LocalPlayerSubsystem_1a21e89c2ffedfa9051e41fac1d1e6dc00)`() const` | Gets the player's purge subsystem.
+`public inline FORCEINLINE `[`URH_EntitlementSubsystem`](Entitlement.md#classURH__EntitlementSubsystem)` * `[`GetEntitlementSubsystem`](#classURH__LocalPlayerSubsystem_1a52dfe0c4156ebab526c61f92237ed182)`() const` | Gets the player's entitlement subsystem.
+`public virtual `[`URH_PlayerNotifications`](Notifications.md#classURH__PlayerNotifications)` * `[`GetPlayerNotifications`](#classURH__LocalPlayerSubsystem_1aead7865f1737ed5b1b50fb9c1769c7b9)`() const` | Gets the player's notification subsystem.
+`public virtual `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__LocalPlayerSubsystem_1a90c483b9675aa38167ef92c7540c02d3)`() const` | Gets the player's player info.
 `public virtual void `[`CustomEndpoint`](#classURH__LocalPlayerSubsystem_1a4b55e59b8d1f8dddbd2d91a8845e12dd)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const RallyHereAPI::FDelegate_CustomEndpointSend & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
 `public virtual void `[`CustomEndpoint`](#classURH__LocalPlayerSubsystem_1ad82004afa264f46a22441f80c6d27554)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDelegateBlock & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
 `protected TArray< `[`URH_LocalPlayerSubsystemPlugin`](SubsystemBase.md#classURH__LocalPlayerSubsystemPlugin)` * > `[`SubsystemPlugins`](#classURH__LocalPlayerSubsystem_1aa1e0f18bd03b9082f4dfa3b87e294111) | Array of plugins for the Local Player Subsystem.
@@ -1524,9 +1524,9 @@ Subsystem to manage the local player.
 `protected TOptional< FDateTime > `[`LastLoginTime`](#classURH__LocalPlayerSubsystem_1ae888b4ea2ddbba822b8182789f401ebe) | The timestamp of the last successful login.
 `protected TSharedPtr< class IAnalyticsProvider > `[`AnalyticsProvider`](#classURH__LocalPlayerSubsystem_1a9ece424deff5492e8d400a01c3295514) | The Analytics Provider for the player.
 `protected TOptional< FDateTime > `[`AnalyticsStartTime`](#classURH__LocalPlayerSubsystem_1a4035dec7f2a4568acd091f0058fbf0b3) | The start time of the AnalyticsProvider
-`protected template<>`  <br/>`inline UClassToUse * `[`AddSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1ab757058d891a562b63869377edf607bf)`(const FSoftClassPath & SubsystemClassPath)` | Adds a plugin to the Local Player Subsystem.
+`protected template<>`  <br/>`inline UClassToUse * `[`AddSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1ac096d2f4afb5e022914100fe52260a51)`(const FSoftClassPath & SubsystemClassPath)` | Adds a plugin to the Local Player Subsystem.
 `protected inline virtual void `[`AddSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1aae3af807f829d7481c4622a022753287)`(`[`URH_LocalPlayerSubsystemPlugin`](SubsystemBase.md#classURH__LocalPlayerSubsystemPlugin)` * InPlugin)` | Adds a plugin to the Local Player Subsystem.
-`protected template<>`  <br/>`inline UClassToUse * `[`AddSandboxedSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1a2de7a5eafd696d509f653192edd9a09f)`(const FSoftClassPath & SubsystemClassPath)` | Adds a sandboxed plugin to the Local Player Subsystem.
+`protected template<>`  <br/>`inline UClassToUse * `[`AddSandboxedSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1a0025bd1e639bf3a4bbbae6fd57186b0f)`(const FSoftClassPath & SubsystemClassPath)` | Adds a sandboxed plugin to the Local Player Subsystem.
 `protected inline virtual void `[`AddSandboxedSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1a92a9fa258ca81bc42ceb380a9703f747)`(`[`URH_SandboxedSubsystemPlugin`](SubsystemBase.md#classURH__SandboxedSubsystemPlugin)` * InPlugin)` | Adds a plugin to the Local Player Subsystem.
 `protected virtual void `[`OnConfigKVsUpdated`](#classURH__LocalPlayerSubsystem_1ad7883d278b8e1b20b214396eca363f74)`(class `[`URH_ConfigSubsystem`](Config.md#classURH__ConfigSubsystem)` * ConfigSubsystem)` | Called whenever the config subsystem KV list is updated.
 `protected virtual void `[`OnUserLoggedIn`](#classURH__LocalPlayerSubsystem_1a9ef1338417d75dfc9f463538e2515d72)`(bool bSuccess)` | Called whenever the user logs in.
@@ -1564,7 +1564,7 @@ Gets if the player is currently logged in.
 
 Gets the player's unique player id.
 
-#### `public virtual TOptional< ERHAPI_Platform > `[`GetLoggedInPlatform`](#classURH__LocalPlayerSubsystem_1afe833d0afadea6cd3e526c5feb86a6e6)`() const` <a id="classURH__LocalPlayerSubsystem_1afe833d0afadea6cd3e526c5feb86a6e6"></a>
+#### `public virtual TOptional< ERHAPI_Platform > `[`GetLoggedInPlatform`](#classURH__LocalPlayerSubsystem_1a048bf1e9a716b9bd7c2774a4646a3780)`() const` <a id="classURH__LocalPlayerSubsystem_1a048bf1e9a716b9bd7c2774a4646a3780"></a>
 
 Gets the platform type for the player if logged in.
 
@@ -1576,15 +1576,15 @@ Gets the player's OSS unique id.
 
 Gets the player's platform id.
 
-#### `public inline virtual TSharedPtr< class IAnalyticsProvider > `[`GetAnalyticsProvider`](#classURH__LocalPlayerSubsystem_1a971e67d99251ee5a805fc339f48ab66d)`() const` <a id="classURH__LocalPlayerSubsystem_1a971e67d99251ee5a805fc339f48ab66d"></a>
+#### `public inline virtual TSharedPtr< class IAnalyticsProvider > `[`GetAnalyticsProvider`](#classURH__LocalPlayerSubsystem_1a850df889785b3344b6779e5daacda4a3)`() const` <a id="classURH__LocalPlayerSubsystem_1a850df889785b3344b6779e5daacda4a3"></a>
 
 Gets the player's analytics provider.
 
-#### `public virtual TSharedPtr< class IAnalyticsProvider > `[`CreateAnalyticsProvider`](#classURH__LocalPlayerSubsystem_1a3b2f8337c43926cb688c16d15916ad03)`()` <a id="classURH__LocalPlayerSubsystem_1a3b2f8337c43926cb688c16d15916ad03"></a>
+#### `public virtual TSharedPtr< class IAnalyticsProvider > `[`CreateAnalyticsProvider`](#classURH__LocalPlayerSubsystem_1a3b8d761019f3cecca9472b609b6b6868)`()` <a id="classURH__LocalPlayerSubsystem_1a3b8d761019f3cecca9472b609b6b6868"></a>
 
 Gets the player's analytics provider.
 
-#### `public virtual `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetLocalPlayerInfo`](#classURH__LocalPlayerSubsystem_1ae7902af37f78a0a491c26b14ff448ac1)`() const` <a id="classURH__LocalPlayerSubsystem_1ae7902af37f78a0a491c26b14ff448ac1"></a>
+#### `public virtual `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetLocalPlayerInfo`](#classURH__LocalPlayerSubsystem_1adb7c2e606b0220fbabdaf9f2cfe619b6)`() const` <a id="classURH__LocalPlayerSubsystem_1adb7c2e606b0220fbabdaf9f2cfe619b6"></a>
 
 Gets the player's player info.
 
@@ -1596,43 +1596,43 @@ Gets the player's platform id wrapped with platform type.
 
 Gets the player's auth context.
 
-#### `public virtual IOnlineSubsystem * `[`GetOSS`](#classURH__LocalPlayerSubsystem_1a37e363ec5503a8c6341bdde27132bf8c)`(const FName & SubsystemName) const` <a id="classURH__LocalPlayerSubsystem_1a37e363ec5503a8c6341bdde27132bf8c"></a>
+#### `public virtual IOnlineSubsystem * `[`GetOSS`](#classURH__LocalPlayerSubsystem_1af28d3992d7757a476ae70f4fbe9c8d9e)`(const FName & SubsystemName) const` <a id="classURH__LocalPlayerSubsystem_1af28d3992d7757a476ae70f4fbe9c8d9e"></a>
 
 Get a specific OSS by name for this local player's world. In editor, this allows each world/game instance to have a different OSS.
 
-#### `public inline FORCEINLINE `[`URH_LocalPlayerLoginSubsystem`](LocalPlayer.md#classURH__LocalPlayerLoginSubsystem)` * `[`GetLoginSubsystem`](#classURH__LocalPlayerSubsystem_1aa6d9e0d8f6462d16b6c0eab3e8c445b9)`() const` <a id="classURH__LocalPlayerSubsystem_1aa6d9e0d8f6462d16b6c0eab3e8c445b9"></a>
+#### `public inline FORCEINLINE `[`URH_LocalPlayerLoginSubsystem`](LocalPlayer.md#classURH__LocalPlayerLoginSubsystem)` * `[`GetLoginSubsystem`](#classURH__LocalPlayerSubsystem_1a83dd1b24ed384f121ac62c3454b287c2)`() const` <a id="classURH__LocalPlayerSubsystem_1a83dd1b24ed384f121ac62c3454b287c2"></a>
 
 Gets the player's login subsystem.
 
-#### `public inline FORCEINLINE `[`URH_AdSubsystem`](Ads.md#classURH__AdSubsystem)` * `[`GetAdSubsystem`](#classURH__LocalPlayerSubsystem_1a4b0be8bb978e72e755f383b5ca519c5a)`() const` <a id="classURH__LocalPlayerSubsystem_1a4b0be8bb978e72e755f383b5ca519c5a"></a>
+#### `public inline FORCEINLINE `[`URH_AdSubsystem`](Ads.md#classURH__AdSubsystem)` * `[`GetAdSubsystem`](#classURH__LocalPlayerSubsystem_1a657893fe2d39f56b63f0240e93d37a35)`() const` <a id="classURH__LocalPlayerSubsystem_1a657893fe2d39f56b63f0240e93d37a35"></a>
 
 Gets the player's ad subsystem.
 
-#### `public inline FORCEINLINE `[`URH_FriendSubsystem`](Friends.md#classURH__FriendSubsystem)` * `[`GetFriendSubsystem`](#classURH__LocalPlayerSubsystem_1ad49c347f8117e9c66f0c40564bbe9ad8)`() const` <a id="classURH__LocalPlayerSubsystem_1ad49c347f8117e9c66f0c40564bbe9ad8"></a>
+#### `public inline FORCEINLINE `[`URH_FriendSubsystem`](Friends.md#classURH__FriendSubsystem)` * `[`GetFriendSubsystem`](#classURH__LocalPlayerSubsystem_1aa96edae19ba92eb31d043e2e0b3c1604)`() const` <a id="classURH__LocalPlayerSubsystem_1aa96edae19ba92eb31d043e2e0b3c1604"></a>
 
 Gets the player's friend subsystem.
 
-#### `public inline FORCEINLINE `[`URH_LocalPlayerSessionSubsystem`](LocalPlayer.md#classURH__LocalPlayerSessionSubsystem)` * `[`GetSessionSubsystem`](#classURH__LocalPlayerSubsystem_1af7588ae73890bd95a0d4b8ce240ecff9)`() const` <a id="classURH__LocalPlayerSubsystem_1af7588ae73890bd95a0d4b8ce240ecff9"></a>
+#### `public inline FORCEINLINE `[`URH_LocalPlayerSessionSubsystem`](LocalPlayer.md#classURH__LocalPlayerSessionSubsystem)` * `[`GetSessionSubsystem`](#classURH__LocalPlayerSubsystem_1a5a2555ca69234e162e92f3b2fc7fdfe7)`() const` <a id="classURH__LocalPlayerSubsystem_1a5a2555ca69234e162e92f3b2fc7fdfe7"></a>
 
 Gets the player's session subsystem.
 
-#### `public inline FORCEINLINE `[`URH_LocalPlayerPresenceSubsystem`](LocalPlayer.md#classURH__LocalPlayerPresenceSubsystem)` * `[`GetPresenceSubsystem`](#classURH__LocalPlayerSubsystem_1ac43dba7fff9bf907ae5e17675cc65c77)`() const` <a id="classURH__LocalPlayerSubsystem_1ac43dba7fff9bf907ae5e17675cc65c77"></a>
+#### `public inline FORCEINLINE `[`URH_LocalPlayerPresenceSubsystem`](LocalPlayer.md#classURH__LocalPlayerPresenceSubsystem)` * `[`GetPresenceSubsystem`](#classURH__LocalPlayerSubsystem_1af9a36cfa5adbdd12513005035cfc44a4)`() const` <a id="classURH__LocalPlayerSubsystem_1af9a36cfa5adbdd12513005035cfc44a4"></a>
 
 Gets the player's presence subsystem.
 
-#### `public inline FORCEINLINE `[`URH_PurgeSubsystem`](Purge.md#classURH__PurgeSubsystem)` * `[`GetPurgeSubsystem`](#classURH__LocalPlayerSubsystem_1a5c2884b8b405e18804009f8b8cfeb245)`() const` <a id="classURH__LocalPlayerSubsystem_1a5c2884b8b405e18804009f8b8cfeb245"></a>
+#### `public inline FORCEINLINE `[`URH_PurgeSubsystem`](Purge.md#classURH__PurgeSubsystem)` * `[`GetPurgeSubsystem`](#classURH__LocalPlayerSubsystem_1a21e89c2ffedfa9051e41fac1d1e6dc00)`() const` <a id="classURH__LocalPlayerSubsystem_1a21e89c2ffedfa9051e41fac1d1e6dc00"></a>
 
 Gets the player's purge subsystem.
 
-#### `public inline FORCEINLINE `[`URH_EntitlementSubsystem`](Entitlement.md#classURH__EntitlementSubsystem)` * `[`GetEntitlementSubsystem`](#classURH__LocalPlayerSubsystem_1a3553f6723f3c694a2bf15f3bfd647774)`() const` <a id="classURH__LocalPlayerSubsystem_1a3553f6723f3c694a2bf15f3bfd647774"></a>
+#### `public inline FORCEINLINE `[`URH_EntitlementSubsystem`](Entitlement.md#classURH__EntitlementSubsystem)` * `[`GetEntitlementSubsystem`](#classURH__LocalPlayerSubsystem_1a52dfe0c4156ebab526c61f92237ed182)`() const` <a id="classURH__LocalPlayerSubsystem_1a52dfe0c4156ebab526c61f92237ed182"></a>
 
 Gets the player's entitlement subsystem.
 
-#### `public virtual `[`URH_PlayerNotifications`](Notifications.md#classURH__PlayerNotifications)` * `[`GetPlayerNotifications`](#classURH__LocalPlayerSubsystem_1a013ac5a0ad7a13bfe1c5e615d15ea8fd)`() const` <a id="classURH__LocalPlayerSubsystem_1a013ac5a0ad7a13bfe1c5e615d15ea8fd"></a>
+#### `public virtual `[`URH_PlayerNotifications`](Notifications.md#classURH__PlayerNotifications)` * `[`GetPlayerNotifications`](#classURH__LocalPlayerSubsystem_1aead7865f1737ed5b1b50fb9c1769c7b9)`() const` <a id="classURH__LocalPlayerSubsystem_1aead7865f1737ed5b1b50fb9c1769c7b9"></a>
 
 Gets the player's notification subsystem.
 
-#### `public virtual `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__LocalPlayerSubsystem_1a395c248cddf85f98ea9a993b4155ab58)`() const` <a id="classURH__LocalPlayerSubsystem_1a395c248cddf85f98ea9a993b4155ab58"></a>
+#### `public virtual `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__LocalPlayerSubsystem_1a90c483b9675aa38167ef92c7540c02d3)`() const` <a id="classURH__LocalPlayerSubsystem_1a90c483b9675aa38167ef92c7540c02d3"></a>
 
 Gets the player's player info.
 
@@ -1714,7 +1714,7 @@ The Analytics Provider for the player.
 
 The start time of the AnalyticsProvider
 
-#### `protected template<>`  <br/>`inline UClassToUse * `[`AddSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1ab757058d891a562b63869377edf607bf)`(const FSoftClassPath & SubsystemClassPath)` <a id="classURH__LocalPlayerSubsystem_1ab757058d891a562b63869377edf607bf"></a>
+#### `protected template<>`  <br/>`inline UClassToUse * `[`AddSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1ac096d2f4afb5e022914100fe52260a51)`(const FSoftClassPath & SubsystemClassPath)` <a id="classURH__LocalPlayerSubsystem_1ac096d2f4afb5e022914100fe52260a51"></a>
 
 Adds a plugin to the Local Player Subsystem.
 
@@ -1734,7 +1734,7 @@ Adds a plugin to the Local Player Subsystem.
 #### Returns
 The plugin that was added.
 
-#### `protected template<>`  <br/>`inline UClassToUse * `[`AddSandboxedSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1a2de7a5eafd696d509f653192edd9a09f)`(const FSoftClassPath & SubsystemClassPath)` <a id="classURH__LocalPlayerSubsystem_1a2de7a5eafd696d509f653192edd9a09f"></a>
+#### `protected template<>`  <br/>`inline UClassToUse * `[`AddSandboxedSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1a0025bd1e639bf3a4bbbae6fd57186b0f)`(const FSoftClassPath & SubsystemClassPath)` <a id="classURH__LocalPlayerSubsystem_1a0025bd1e639bf3a4bbbae6fd57186b0f"></a>
 
 Adds a sandboxed plugin to the Local Player Subsystem.
 

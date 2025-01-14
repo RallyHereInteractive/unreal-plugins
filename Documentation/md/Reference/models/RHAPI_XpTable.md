@@ -30,43 +30,43 @@ A collection of XP Levels from 1 to N. Each level has a minimum XP value.
 `public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__XpTable_1a0785200adbf808bdd25fab3cb5f01b0b) | 
 `public bool `[`CacheInfo_IsSet`](#structFRHAPI__XpTable_1a90dc3ba87a1ecdef6402df456d2389f8) | true if CacheInfo_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__XpTable_1a93218d75d5ca30eea726486a9f5d9646)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__XpTable_1a835fe543b7c2b0f0d54f8baf65aade32)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__XpTable_1a114b66b927102155aee991cd58933d6b)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__XpTable_1a807ff3cb851d942fe382189b2d1de39d)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__XpTable_1a49b4dce12c110d5ab853cb3806538360)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public virtual void `[`WriteJson`](#structFRHAPI__XpTable_1a61c4cbe9dae0d8cbebd2a6b873c76d14)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__XpTable_1accc47d6ae9f1fbdb47a6dbeced7570ab)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__XpTable_1a73aba188ed4a04599d2510320629b4a8)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__XpTable_1ac69c9845ee33b33b4bc048b1533084ba)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetCustomData`](#structFRHAPI__XpTable_1ab510bf011a4173a01f6f536a3fe7b3be)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__XpTable_1a671589c09f7b9c04afe1f9ec78a08ffb)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__XpTable_1a78bc02a47e85ccbaa064abd3ba74d5ac)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__XpTable_1ab420789570010f694a034a3f6fd781ce)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__XpTable_1a3ced2b63f765da8bcc2cc88847969c01)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetCustomData`](#structFRHAPI__XpTable_1aebdb72d296e7b1dc2f64928bfecf7956)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`SetCustomData`](#structFRHAPI__XpTable_1aa8b701ac1c2dc04473e74ca442cec53b)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__XpTable_1ae84305fd00b049e142b7ca609225e959)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 `public inline bool `[`IsCustomDataSet`](#structFRHAPI__XpTable_1af11cb504877443551cb33d15d8a80c2b)`() const` | Checks whether CustomData_Optional has been set.
-`public inline FGuid & `[`GetXpUuid`](#structFRHAPI__XpTable_1aa959c114770a28fb7bfa2e0c3b5a01ea)`()` | Gets the value of XpUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetXpUuid`](#structFRHAPI__XpTable_1a7ef1602cb6deaa93f30543e17eed1178)`() const` | Gets the value of XpUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetXpUuid`](#structFRHAPI__XpTable_1a18bc8bab6fd96bb8acd8814416a8c762)`(const FGuid & DefaultValue) const` | Gets the value of XpUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FGuid & `[`GetXpUuid`](#structFRHAPI__XpTable_1a8057debe8c0a7a860fc2950cef0c0a6c)`()` | Gets the value of XpUuid_Optional, regardless of it having been set.
+`public inline const FGuid & `[`GetXpUuid`](#structFRHAPI__XpTable_1a1247e35831bc4423d1822f99902061f5)`() const` | Gets the value of XpUuid_Optional, regardless of it having been set.
+`public inline const FGuid & `[`GetXpUuid`](#structFRHAPI__XpTable_1a5fb50dc1209af4573ecbc93c3a7c3edc)`(const FGuid & DefaultValue) const` | Gets the value of XpUuid_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetXpUuid`](#structFRHAPI__XpTable_1a3397f6ce21c649115fef7400cca188f8)`(FGuid & OutValue) const` | Fills OutValue with the value of XpUuid_Optional and returns true if it has been set, otherwise returns false.
-`public inline FGuid * `[`GetXpUuidOrNull`](#structFRHAPI__XpTable_1ad922d62d8a9e5384f734d6f6e4994d0a)`()` | Returns a pointer to XpUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FGuid * `[`GetXpUuidOrNull`](#structFRHAPI__XpTable_1ad814398692c686b085ea338e2c392adb)`() const` | Returns a pointer to XpUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FGuid * `[`GetXpUuidOrNull`](#structFRHAPI__XpTable_1a17850746f15b0648c8cb7dc044a75aae)`()` | Returns a pointer to XpUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FGuid * `[`GetXpUuidOrNull`](#structFRHAPI__XpTable_1a50181fd0561fabdab2f4acafbd634032)`() const` | Returns a pointer to XpUuid_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetXpUuid`](#structFRHAPI__XpTable_1aec23d5448ffdd4512ad1451a7852edb7)`(const FGuid & NewValue)` | Sets the value of XpUuid_Optional and also sets XpUuid_IsSet to true.
 `public inline void `[`SetXpUuid`](#structFRHAPI__XpTable_1a6004024ca9a2b27ce968ec767e212bf1)`(FGuid && NewValue)` | Sets the value of XpUuid_Optional and also sets XpUuid_IsSet to true using move semantics.
 `public inline void `[`ClearXpUuid`](#structFRHAPI__XpTable_1acb556ad5b7af78430e60dc1f7ffa63ae)`()` | Clears the value of XpUuid_Optional and sets XpUuid_IsSet to false.
 `public inline bool `[`IsXpUuidSet`](#structFRHAPI__XpTable_1ab638cd3628fdfef2ce62e1f8b508bcc8)`() const` | Checks whether XpUuid_Optional has been set.
-`public inline TMap< FString, int32 > & `[`GetXpEntries`](#structFRHAPI__XpTable_1af3fd80f0b0ca8769eb57089f7a672448)`()` | Gets the value of XpEntries_Optional, regardless of it having been set.
-`public inline const TMap< FString, int32 > & `[`GetXpEntries`](#structFRHAPI__XpTable_1a28bd1c9fbc988a8fb285418a5ff0f332)`() const` | Gets the value of XpEntries_Optional, regardless of it having been set.
-`public inline const TMap< FString, int32 > & `[`GetXpEntries`](#structFRHAPI__XpTable_1a19d0b92c5075718cb70ecaf15994a270)`(const TMap< FString, int32 > & DefaultValue) const` | Gets the value of XpEntries_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline TMap< FString, int32 > & `[`GetXpEntries`](#structFRHAPI__XpTable_1ac03c7a11e96cb91a34f01bd77a8fd63e)`()` | Gets the value of XpEntries_Optional, regardless of it having been set.
+`public inline const TMap< FString, int32 > & `[`GetXpEntries`](#structFRHAPI__XpTable_1ace6218b7f369af822e057d1f5afbe03b)`() const` | Gets the value of XpEntries_Optional, regardless of it having been set.
+`public inline const TMap< FString, int32 > & `[`GetXpEntries`](#structFRHAPI__XpTable_1a35e989cee0cc81c221a08fd3c308841b)`(const TMap< FString, int32 > & DefaultValue) const` | Gets the value of XpEntries_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetXpEntries`](#structFRHAPI__XpTable_1a9f905a87e09cf2d84b6ae98e0f7ec030)`(TMap< FString, int32 > & OutValue) const` | Fills OutValue with the value of XpEntries_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, int32 > * `[`GetXpEntriesOrNull`](#structFRHAPI__XpTable_1af21728e76da9955953e58d1b95161481)`()` | Returns a pointer to XpEntries_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, int32 > * `[`GetXpEntriesOrNull`](#structFRHAPI__XpTable_1adfcc075e78c9ea6083a73fcc4aed0159)`() const` | Returns a pointer to XpEntries_Optional, if it has been set, otherwise returns nullptr.
+`public inline TMap< FString, int32 > * `[`GetXpEntriesOrNull`](#structFRHAPI__XpTable_1afe7b93f2b48b457595e3030091202265)`()` | Returns a pointer to XpEntries_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TMap< FString, int32 > * `[`GetXpEntriesOrNull`](#structFRHAPI__XpTable_1a63a81550dbff929a706fd393738ae376)`() const` | Returns a pointer to XpEntries_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetXpEntries`](#structFRHAPI__XpTable_1a18ec58bc91b6ea5f076f3bc1964a3474)`(const TMap< FString, int32 > & NewValue)` | Sets the value of XpEntries_Optional and also sets XpEntries_IsSet to true.
 `public inline void `[`SetXpEntries`](#structFRHAPI__XpTable_1a851aa6c3f38e11c331168309d2febc21)`(TMap< FString, int32 > && NewValue)` | Sets the value of XpEntries_Optional and also sets XpEntries_IsSet to true using move semantics.
 `public inline void `[`ClearXpEntries`](#structFRHAPI__XpTable_1adfef2f411c225c0d6bfd1272ac300bb7)`()` | Clears the value of XpEntries_Optional and sets XpEntries_IsSet to false.
 `public inline bool `[`IsXpEntriesSet`](#structFRHAPI__XpTable_1a624a5d3da6f80680c03189091db423ca)`() const` | Checks whether XpEntries_Optional has been set.
-`public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__XpTable_1a355e9df63257ca1d858dc66204012a91)`()` | Gets the value of CacheInfo_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__XpTable_1a56c3f70e35c5617fa2de8e753152b5de)`() const` | Gets the value of CacheInfo_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__XpTable_1a12fbb3744d1457d74515689bfb75f48d)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` | Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__XpTable_1ad9f5d0b582bd10c04935308d80a5c388)`()` | Gets the value of CacheInfo_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__XpTable_1ac1aebbbcaa50efb248b9c8cbc812b291)`() const` | Gets the value of CacheInfo_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__XpTable_1aebd8c9f0e561c23736a51f707b1deccc)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` | Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetCacheInfo`](#structFRHAPI__XpTable_1ac2851870da4c14480a5f4db8b5c5c69a)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & OutValue) const` | Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__XpTable_1a4aedfc9c07616d5dc36dfea2fd89ff86)`()` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__XpTable_1aa86736fb49ce03fa012e98b5e1036efa)`() const` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__XpTable_1aead02321811f1360e6b7764bcf3fa816)`()` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__XpTable_1af97d32069125da24343f773c35076b9d)`() const` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__XpTable_1afbb435a7aa83de75f4b16c329fd93025)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__XpTable_1ab8df1d7f48b45ceaa9c27f508dcbac3d)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__XpTable_1aa5ecb7e76cf1ff2ad80407b03a12f840)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
@@ -112,22 +112,22 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__XpTable_1a835fe543b7c2b0f0d54f8baf65aade32)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__XpTable_1a835fe543b7c2b0f0d54f8baf65aade32"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__XpTable_1a61c4cbe9dae0d8cbebd2a6b873c76d14)`(TSharedRef< TJsonWriter<> > & Writer) const` <a id="structFRHAPI__XpTable_1a61c4cbe9dae0d8cbebd2a6b873c76d14"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__XpTable_1a114b66b927102155aee991cd58933d6b)`()` <a id="structFRHAPI__XpTable_1a114b66b927102155aee991cd58933d6b"></a>
+#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__XpTable_1accc47d6ae9f1fbdb47a6dbeced7570ab)`()` <a id="structFRHAPI__XpTable_1accc47d6ae9f1fbdb47a6dbeced7570ab"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__XpTable_1a807ff3cb851d942fe382189b2d1de39d)`() const` <a id="structFRHAPI__XpTable_1a807ff3cb851d942fe382189b2d1de39d"></a>
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__XpTable_1a73aba188ed4a04599d2510320629b4a8)`() const` <a id="structFRHAPI__XpTable_1a73aba188ed4a04599d2510320629b4a8"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__XpTable_1a49b4dce12c110d5ab853cb3806538360)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__XpTable_1a49b4dce12c110d5ab853cb3806538360"></a>
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__XpTable_1ac69c9845ee33b33b4bc048b1533084ba)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__XpTable_1ac69c9845ee33b33b4bc048b1533084ba"></a>
 
 Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -135,11 +135,11 @@ Gets the value of CustomData_Optional, if it has been set, otherwise it returns 
 
 Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__XpTable_1a671589c09f7b9c04afe1f9ec78a08ffb)`()` <a id="structFRHAPI__XpTable_1a671589c09f7b9c04afe1f9ec78a08ffb"></a>
+#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__XpTable_1ab420789570010f694a034a3f6fd781ce)`()` <a id="structFRHAPI__XpTable_1ab420789570010f694a034a3f6fd781ce"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__XpTable_1a78bc02a47e85ccbaa064abd3ba74d5ac)`() const` <a id="structFRHAPI__XpTable_1a78bc02a47e85ccbaa064abd3ba74d5ac"></a>
+#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__XpTable_1a3ced2b63f765da8bcc2cc88847969c01)`() const` <a id="structFRHAPI__XpTable_1a3ced2b63f765da8bcc2cc88847969c01"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
@@ -159,15 +159,15 @@ Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
 Checks whether CustomData_Optional has been set.
 
-#### `public inline FGuid & `[`GetXpUuid`](#structFRHAPI__XpTable_1aa959c114770a28fb7bfa2e0c3b5a01ea)`()` <a id="structFRHAPI__XpTable_1aa959c114770a28fb7bfa2e0c3b5a01ea"></a>
+#### `public inline FGuid & `[`GetXpUuid`](#structFRHAPI__XpTable_1a8057debe8c0a7a860fc2950cef0c0a6c)`()` <a id="structFRHAPI__XpTable_1a8057debe8c0a7a860fc2950cef0c0a6c"></a>
 
 Gets the value of XpUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetXpUuid`](#structFRHAPI__XpTable_1a7ef1602cb6deaa93f30543e17eed1178)`() const` <a id="structFRHAPI__XpTable_1a7ef1602cb6deaa93f30543e17eed1178"></a>
+#### `public inline const FGuid & `[`GetXpUuid`](#structFRHAPI__XpTable_1a1247e35831bc4423d1822f99902061f5)`() const` <a id="structFRHAPI__XpTable_1a1247e35831bc4423d1822f99902061f5"></a>
 
 Gets the value of XpUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetXpUuid`](#structFRHAPI__XpTable_1a18bc8bab6fd96bb8acd8814416a8c762)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__XpTable_1a18bc8bab6fd96bb8acd8814416a8c762"></a>
+#### `public inline const FGuid & `[`GetXpUuid`](#structFRHAPI__XpTable_1a5fb50dc1209af4573ecbc93c3a7c3edc)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__XpTable_1a5fb50dc1209af4573ecbc93c3a7c3edc"></a>
 
 Gets the value of XpUuid_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -175,11 +175,11 @@ Gets the value of XpUuid_Optional, if it has been set, otherwise it returns Defa
 
 Fills OutValue with the value of XpUuid_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FGuid * `[`GetXpUuidOrNull`](#structFRHAPI__XpTable_1ad922d62d8a9e5384f734d6f6e4994d0a)`()` <a id="structFRHAPI__XpTable_1ad922d62d8a9e5384f734d6f6e4994d0a"></a>
+#### `public inline FGuid * `[`GetXpUuidOrNull`](#structFRHAPI__XpTable_1a17850746f15b0648c8cb7dc044a75aae)`()` <a id="structFRHAPI__XpTable_1a17850746f15b0648c8cb7dc044a75aae"></a>
 
 Returns a pointer to XpUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FGuid * `[`GetXpUuidOrNull`](#structFRHAPI__XpTable_1ad814398692c686b085ea338e2c392adb)`() const` <a id="structFRHAPI__XpTable_1ad814398692c686b085ea338e2c392adb"></a>
+#### `public inline const FGuid * `[`GetXpUuidOrNull`](#structFRHAPI__XpTable_1a50181fd0561fabdab2f4acafbd634032)`() const` <a id="structFRHAPI__XpTable_1a50181fd0561fabdab2f4acafbd634032"></a>
 
 Returns a pointer to XpUuid_Optional, if it has been set, otherwise returns nullptr.
 
@@ -199,15 +199,15 @@ Clears the value of XpUuid_Optional and sets XpUuid_IsSet to false.
 
 Checks whether XpUuid_Optional has been set.
 
-#### `public inline TMap< FString, int32 > & `[`GetXpEntries`](#structFRHAPI__XpTable_1af3fd80f0b0ca8769eb57089f7a672448)`()` <a id="structFRHAPI__XpTable_1af3fd80f0b0ca8769eb57089f7a672448"></a>
+#### `public inline TMap< FString, int32 > & `[`GetXpEntries`](#structFRHAPI__XpTable_1ac03c7a11e96cb91a34f01bd77a8fd63e)`()` <a id="structFRHAPI__XpTable_1ac03c7a11e96cb91a34f01bd77a8fd63e"></a>
 
 Gets the value of XpEntries_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, int32 > & `[`GetXpEntries`](#structFRHAPI__XpTable_1a28bd1c9fbc988a8fb285418a5ff0f332)`() const` <a id="structFRHAPI__XpTable_1a28bd1c9fbc988a8fb285418a5ff0f332"></a>
+#### `public inline const TMap< FString, int32 > & `[`GetXpEntries`](#structFRHAPI__XpTable_1ace6218b7f369af822e057d1f5afbe03b)`() const` <a id="structFRHAPI__XpTable_1ace6218b7f369af822e057d1f5afbe03b"></a>
 
 Gets the value of XpEntries_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, int32 > & `[`GetXpEntries`](#structFRHAPI__XpTable_1a19d0b92c5075718cb70ecaf15994a270)`(const TMap< FString, int32 > & DefaultValue) const` <a id="structFRHAPI__XpTable_1a19d0b92c5075718cb70ecaf15994a270"></a>
+#### `public inline const TMap< FString, int32 > & `[`GetXpEntries`](#structFRHAPI__XpTable_1a35e989cee0cc81c221a08fd3c308841b)`(const TMap< FString, int32 > & DefaultValue) const` <a id="structFRHAPI__XpTable_1a35e989cee0cc81c221a08fd3c308841b"></a>
 
 Gets the value of XpEntries_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -215,11 +215,11 @@ Gets the value of XpEntries_Optional, if it has been set, otherwise it returns D
 
 Fills OutValue with the value of XpEntries_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, int32 > * `[`GetXpEntriesOrNull`](#structFRHAPI__XpTable_1af21728e76da9955953e58d1b95161481)`()` <a id="structFRHAPI__XpTable_1af21728e76da9955953e58d1b95161481"></a>
+#### `public inline TMap< FString, int32 > * `[`GetXpEntriesOrNull`](#structFRHAPI__XpTable_1afe7b93f2b48b457595e3030091202265)`()` <a id="structFRHAPI__XpTable_1afe7b93f2b48b457595e3030091202265"></a>
 
 Returns a pointer to XpEntries_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, int32 > * `[`GetXpEntriesOrNull`](#structFRHAPI__XpTable_1adfcc075e78c9ea6083a73fcc4aed0159)`() const` <a id="structFRHAPI__XpTable_1adfcc075e78c9ea6083a73fcc4aed0159"></a>
+#### `public inline const TMap< FString, int32 > * `[`GetXpEntriesOrNull`](#structFRHAPI__XpTable_1a63a81550dbff929a706fd393738ae376)`() const` <a id="structFRHAPI__XpTable_1a63a81550dbff929a706fd393738ae376"></a>
 
 Returns a pointer to XpEntries_Optional, if it has been set, otherwise returns nullptr.
 
@@ -239,15 +239,15 @@ Clears the value of XpEntries_Optional and sets XpEntries_IsSet to false.
 
 Checks whether XpEntries_Optional has been set.
 
-#### `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__XpTable_1a355e9df63257ca1d858dc66204012a91)`()` <a id="structFRHAPI__XpTable_1a355e9df63257ca1d858dc66204012a91"></a>
+#### `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__XpTable_1ad9f5d0b582bd10c04935308d80a5c388)`()` <a id="structFRHAPI__XpTable_1ad9f5d0b582bd10c04935308d80a5c388"></a>
 
 Gets the value of CacheInfo_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__XpTable_1a56c3f70e35c5617fa2de8e753152b5de)`() const` <a id="structFRHAPI__XpTable_1a56c3f70e35c5617fa2de8e753152b5de"></a>
+#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__XpTable_1ac1aebbbcaa50efb248b9c8cbc812b291)`() const` <a id="structFRHAPI__XpTable_1ac1aebbbcaa50efb248b9c8cbc812b291"></a>
 
 Gets the value of CacheInfo_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__XpTable_1a12fbb3744d1457d74515689bfb75f48d)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` <a id="structFRHAPI__XpTable_1a12fbb3744d1457d74515689bfb75f48d"></a>
+#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__XpTable_1aebd8c9f0e561c23736a51f707b1deccc)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` <a id="structFRHAPI__XpTable_1aebd8c9f0e561c23736a51f707b1deccc"></a>
 
 Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -255,11 +255,11 @@ Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns D
 
 Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__XpTable_1a4aedfc9c07616d5dc36dfea2fd89ff86)`()` <a id="structFRHAPI__XpTable_1a4aedfc9c07616d5dc36dfea2fd89ff86"></a>
+#### `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__XpTable_1aead02321811f1360e6b7764bcf3fa816)`()` <a id="structFRHAPI__XpTable_1aead02321811f1360e6b7764bcf3fa816"></a>
 
 Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__XpTable_1aa86736fb49ce03fa012e98b5e1036efa)`() const` <a id="structFRHAPI__XpTable_1aa86736fb49ce03fa012e98b5e1036efa"></a>
+#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__XpTable_1af97d32069125da24343f773c35076b9d)`() const` <a id="structFRHAPI__XpTable_1af97d32069125da24343f773c35076b9d"></a>
 
 Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 

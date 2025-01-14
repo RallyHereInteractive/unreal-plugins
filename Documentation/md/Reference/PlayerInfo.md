@@ -38,7 +38,7 @@ Player Info Subobject base class used to store player data.
 `public FGuid `[`PlayerUuid`](#classURH__PlayerInfoSubobject_1ae2cc7f7dfc47525f2d6edaf01b04403f) | Players unique identifier.
 `public FRH_OnPlayerInfoSubobjectUpdatedMulticastDelegate `[`OnUpdatedDelegate`](#classURH__PlayerInfoSubobject_1a79fe3beb1968bb4fec503603aab7c7c5) | Native delegate to listen for presence updates.
 `public TArray< FRH_OnRequestPlayerInfoSubobjectDelegateBlock > `[`TemporaryRequestDelegates`](#classURH__PlayerInfoSubobject_1a5968c4b094b525f7e54adc02b11a35bf) | Delegates stored to response to currently active requests.
-`public class `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetPlayerInfo`](#classURH__PlayerInfoSubobject_1aa4e6fb9d2cdcfd4690022db8ea155e0e)`() const` | Gets the PlayerInfo that owns this Player Matches object.
+`public class `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetPlayerInfo`](#classURH__PlayerInfoSubobject_1adb3e6ea4b2d577dfc0b48cff1f0b7829)`() const` | Gets the PlayerInfo that owns this Player Matches object.
 `public inline virtual void `[`MarkUpdated`](#classURH__PlayerInfoSubobject_1a23487defc38d317099f23d9b68086f03)`()` | Sets the last updated time to now.
 `public inline virtual void `[`MarkDirty`](#classURH__PlayerInfoSubobject_1ae49b2a6e09b8159f32f1ccedc27c3dcc)`()` | Clears the last updated time to force an update.
 `public inline virtual void `[`RequestUpdate`](#classURH__PlayerInfoSubobject_1aab35a732de0ee7a292776887fae18190)`(bool bForceUpdate,const FRH_OnRequestPlayerInfoSubobjectDelegateBlock & Delegate)` | Enqueues an update request for the players information from the RallyHere API.
@@ -79,7 +79,7 @@ Native delegate to listen for presence updates.
 
 Delegates stored to response to currently active requests.
 
-#### `public class `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetPlayerInfo`](#classURH__PlayerInfoSubobject_1aa4e6fb9d2cdcfd4690022db8ea155e0e)`() const` <a id="classURH__PlayerInfoSubobject_1aa4e6fb9d2cdcfd4690022db8ea155e0e"></a>
+#### `public class `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetPlayerInfo`](#classURH__PlayerInfoSubobject_1adb3e6ea4b2d577dfc0b48cff1f0b7829)`() const` <a id="classURH__PlayerInfoSubobject_1adb3e6ea4b2d577dfc0b48cff1f0b7829"></a>
 
 Gets the PlayerInfo that owns this Player Matches object.
 
@@ -248,10 +248,10 @@ Player Settings class used to store player settings data.
 `public virtual void `[`GetPlayerSettingsForKeys`](#classURH__PlayerSettings_1a0d12274f161869118a878a2dce470582)`(const FString & SettingTypeId,const TArray< FString > & Keys,const FTimespan & StaleThreshold,bool bForceRefresh,const FRH_PlayerInfoGetPlayerSettingsBlock & Delegate)` | Gets the players settings information for a given type, restricted to a list of keys.
 `public virtual void `[`SetPlayerSetting`](#classURH__PlayerSettings_1adf7351daad25cabd96e3943f69bcc283)`(const FString & SettingTypeId,const FString & Key,const `[`FRHAPI_SetSinglePlayerSettingRequest`](RHAPI_SetSinglePlayerSettingRequest.md#structFRHAPI__SetSinglePlayerSettingRequest)` & Document,const FRH_PlayerInfoSetPlayerSettingBlock & Delegate,const `[`FRH_ObjectVersionCheck`](Common.md#structFRH__ObjectVersionCheck)` & VersionCheck)` | Sets the players settings information for a given type.
 `public virtual void `[`DeletePlayerSetting`](#classURH__PlayerSettings_1aeae7898c01c64d7b260a71436ecf8c6b)`(const FString & SettingTypeId,const FString & Key,const FRH_GenericSuccessWithErrorBlock & Delegate)` | Deletes a players setting for a given type.
-`public inline virtual const TMap< FString, `[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` > & `[`GetAllStoredPlayerSettings`](#classURH__PlayerSettings_1ac49d4ca5fde1ea8b9511548809b6ab17)`() const` | Gets all the players store settings data.
+`public inline virtual const TMap< FString, `[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` > & `[`GetAllStoredPlayerSettings`](#classURH__PlayerSettings_1abcd75501f4f530590762d79c01064997)`() const` | Gets all the players store settings data.
 `protected TMap< FString, `[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` > `[`PlayerSettingsByTypeId`](#classURH__PlayerSettings_1a95d4670b0a19e82ab2be26776ccf991f) | Cache of Player Settings Data by their settings types.
 `protected virtual void `[`OnGetPlayerSettingResponse`](#classURH__PlayerSettings_1a2d9c30fdee4ff9173707eddbf1f3cfae)`(const GetSingleSettingType::Response & Response,const FRH_PlayerInfoGetPlayerSettingsBlock Delegate,const FString SettingTypeId,FString Key)` | Handles the response to a Get Player Setting call.
-`protected virtual void `[`OnGetPlayerSettingsResponse`](#classURH__PlayerSettings_1a7102477f812ac6b572408acb0b79bec3)`(const GetSettingsForKeysType::Response & Response,const FRH_PlayerInfoGetPlayerSettingsBlock Delegate,const FString SettingTypeId,TOptional< TArray< FString >> PartialKeys)` | Handles the response to a Get Player Settings call.
+`protected virtual void `[`OnGetPlayerSettingsResponse`](#classURH__PlayerSettings_1a18c0ce0863a4a5177c4fa4260ed77dfe)`(const GetSettingsForKeysType::Response & Response,const FRH_PlayerInfoGetPlayerSettingsBlock Delegate,const FString SettingTypeId,TOptional< TArray< FString > > PartialKeys)` | Handles the response to a Get Player Settings call.
 `typedef `[`GetSingleSettingType`](#classURH__PlayerSettings_1a4b12e4ce5f44803c1a6d2df90d210eb0) | 
 `typedef `[`GetSettingsForKeysType`](#classURH__PlayerSettings_1adf4e1f965655275eae23ecd2c684e197) | 
 `typedef `[`SetSettingType`](#classURH__PlayerSettings_1acbf2e7681d406cd088a13cab0199622c) | 
@@ -323,7 +323,7 @@ Deletes a players setting for a given type.
 
 * `Delegate` Callback when the operation is complete with success information.
 
-#### `public inline virtual const TMap< FString, `[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` > & `[`GetAllStoredPlayerSettings`](#classURH__PlayerSettings_1ac49d4ca5fde1ea8b9511548809b6ab17)`() const` <a id="classURH__PlayerSettings_1ac49d4ca5fde1ea8b9511548809b6ab17"></a>
+#### `public inline virtual const TMap< FString, `[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` > & `[`GetAllStoredPlayerSettings`](#classURH__PlayerSettings_1abcd75501f4f530590762d79c01064997)`() const` <a id="classURH__PlayerSettings_1abcd75501f4f530590762d79c01064997"></a>
 
 Gets all the players store settings data.
 
@@ -347,7 +347,7 @@ Handles the response to a Get Player Setting call.
 
 * `Key` The key that was requested.
 
-#### `protected virtual void `[`OnGetPlayerSettingsResponse`](#classURH__PlayerSettings_1a7102477f812ac6b572408acb0b79bec3)`(const GetSettingsForKeysType::Response & Response,const FRH_PlayerInfoGetPlayerSettingsBlock Delegate,const FString SettingTypeId,TOptional< TArray< FString >> PartialKeys)` <a id="classURH__PlayerSettings_1a7102477f812ac6b572408acb0b79bec3"></a>
+#### `protected virtual void `[`OnGetPlayerSettingsResponse`](#classURH__PlayerSettings_1a18c0ce0863a4a5177c4fa4260ed77dfe)`(const GetSettingsForKeysType::Response & Response,const FRH_PlayerInfoGetPlayerSettingsBlock Delegate,const FString SettingTypeId,TOptional< TArray< FString > > PartialKeys)` <a id="classURH__PlayerSettings_1a18c0ce0863a4a5177c4fa4260ed77dfe"></a>
 
 Handles the response to a Get Player Settings call.
 
@@ -568,9 +568,9 @@ Player Reports class used to store and send player report information.
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public virtual void `[`GetReportsSentAsync`](#classURH__PlayerReports_1a8286167a68b0b8f0dc9e57c394fd29fd)`(const FString & Cursor,const int32 PageSize,const FRH_PlayerInfoGetPlayerReportsBlock & Delegate)` | Request a list of player reports send by this player.
-`public inline TArray< `[`FRHAPI_PlayerReport`](RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`GetReportsSent`](#classURH__PlayerReports_1a143d1f8a21fec0136747bd53bfe85750)`() const` | Get the current cached list of player reports sent by this player.
+`public inline TArray< `[`FRHAPI_PlayerReport`](RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`GetReportsSent`](#classURH__PlayerReports_1a640b9bbfa7c5f4059d6f4febae50692f)`() const` | Get the current cached list of player reports sent by this player.
 `public virtual void `[`GetReportsReceivedAsync`](#classURH__PlayerReports_1ace60d12bc864d0546372df009c41f5f2)`(const FString & Cursor,const int32 PageSize,const FRH_PlayerInfoGetPlayerReportsBlock & Delegate)` | Request a list of player reports received by this player.
-`public inline virtual TArray< `[`FRHAPI_PlayerReport`](RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`GetReportsReceived`](#classURH__PlayerReports_1a34372b78a48405bac1101576e9aaa256)`() const` | Get the current cached list of player reports received by this player.
+`public inline virtual TArray< `[`FRHAPI_PlayerReport`](RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`GetReportsReceived`](#classURH__PlayerReports_1aff09a68f6aab8261b75181c6c8c129b4)`() const` | Get the current cached list of player reports received by this player.
 `public virtual void `[`CreateReport`](#classURH__PlayerReports_1a3a7db86764cfd8c2a83be10dd5d9d157)`(const `[`FRHAPI_PlayerReportCreate`](RHAPI_PlayerReportCreate.md#structFRHAPI__PlayerReportCreate)` & Report,const FRH_PlayerInfoCreatePlayerReportBlock & Delegate)` | Create a new report for the target player.
 `public virtual void `[`CreateReport`](#classURH__PlayerReports_1a33a8bdc35ba9d092820b6796dc9763bf)`(const `[`FRHAPI_PlayerReportCreate`](RHAPI_PlayerReportCreate.md#structFRHAPI__PlayerReportCreate)` & Report,FAuthContextPtr AuthContext,const FRH_PlayerInfoCreatePlayerReportBlock & Delegate)` | Create a new report for the target player with a specific auth context.
 `protected TArray< `[`FRHAPI_PlayerReport`](RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`ReportsSent`](#classURH__PlayerReports_1afa610002ff1c15ed7e6dfdfce53b2263) | 
@@ -592,7 +592,7 @@ Request a list of player reports send by this player.
 
 * `Delegate` Callback delegate for the request.
 
-#### `public inline TArray< `[`FRHAPI_PlayerReport`](RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`GetReportsSent`](#classURH__PlayerReports_1a143d1f8a21fec0136747bd53bfe85750)`() const` <a id="classURH__PlayerReports_1a143d1f8a21fec0136747bd53bfe85750"></a>
+#### `public inline TArray< `[`FRHAPI_PlayerReport`](RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`GetReportsSent`](#classURH__PlayerReports_1a640b9bbfa7c5f4059d6f4febae50692f)`() const` <a id="classURH__PlayerReports_1a640b9bbfa7c5f4059d6f4febae50692f"></a>
 
 Get the current cached list of player reports sent by this player.
 
@@ -607,7 +607,7 @@ Request a list of player reports received by this player.
 
 * `Delegate` Callback delegate for the request.
 
-#### `public inline virtual TArray< `[`FRHAPI_PlayerReport`](RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`GetReportsReceived`](#classURH__PlayerReports_1a34372b78a48405bac1101576e9aaa256)`() const` <a id="classURH__PlayerReports_1a34372b78a48405bac1101576e9aaa256"></a>
+#### `public inline virtual TArray< `[`FRHAPI_PlayerReport`](RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`GetReportsReceived`](#classURH__PlayerReports_1aff09a68f6aab8261b75181c6c8c129b4)`() const` <a id="classURH__PlayerReports_1aff09a68f6aab8261b75181c6c8c129b4"></a>
 
 Get the current cached list of player reports received by this player.
 
@@ -712,24 +712,24 @@ Stores and fetchs all the information about a given player.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public inline FORCEINLINE FGuid & `[`GetRHPlayerUuid`](#classURH__PlayerInfo_1ab4bac7a190b2e5fec6d242c25f7672f4)`()` | Gets the players Unique player Id.
-`public inline FORCEINLINE `[`URH_PlayerPresence`](PlayerInfo.md#classURH__PlayerPresence)` * `[`GetPresence`](#classURH__PlayerInfo_1a30440b0a7ab410262e696bc6ac976568)`() const` | Gets The players presence class.
-`public inline FORCEINLINE `[`URH_PlayerSettings`](PlayerInfo.md#classURH__PlayerSettings)` * `[`GetSettings`](#classURH__PlayerInfo_1ad3dcaf0e5c8398f6d3490e6547efe3d8)`() const` | Gets The players settings class.
-`public inline FORCEINLINE `[`URH_PlayerSessions`](PlayerInfo.md#classURH__PlayerSessions)` * `[`GetSessions`](#classURH__PlayerInfo_1a3a012da0a55d1edb09a80dcf658ae7f4)`() const` | Gets The players sessions class.
-`public inline FORCEINLINE `[`URH_PlayerDeserter`](PlayerInfo.md#classURH__PlayerDeserter)` * `[`GetDeserter`](#classURH__PlayerInfo_1a88c9082ca13985dbe17af33bd1888a0f)`() const` | Gets The players deserter class.
-`public inline FORCEINLINE `[`URH_PlayerMatches`](PlayerInfo.md#classURH__PlayerMatches)` * `[`GetMatches`](#classURH__PlayerInfo_1a18162aabb6b78affb52f918ae8517f84)`() const` | Gets The players matches class.
-`public inline FORCEINLINE `[`URH_PlayerReports`](PlayerInfo.md#classURH__PlayerReports)` * `[`GetReports`](#classURH__PlayerInfo_1a384f5b99113927ed0f47cf1278e45018)`() const` | Gets The players reports class.
-`public inline virtual TArray< `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` > & `[`GetPlayerPlatformIds`](#classURH__PlayerInfo_1a07f7aedb216f1536718b152d384d7ba9)`()` | Gets the associated platform ids of the player.
-`public inline virtual const TArray< `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` > & `[`GetPlayerPlatformIds`](#classURH__PlayerInfo_1a28f6726b50d19d49895f5ef07a080625)`() const` | Gets the associated platform ids of the player.
-`public virtual TArray< `[`URH_PlayerPlatformInfo`](PlayerInfo.md#classURH__PlayerPlatformInfo)` * > `[`GetPlayerPlatforms`](#classURH__PlayerInfo_1a809c05d3726b297a8c9c1a5647e1b312)`() const` | Gets the associated platforms of the player.
-`public virtual `[`URH_PlayerPlatformInfo`](PlayerInfo.md#classURH__PlayerPlatformInfo)` * `[`GetPlayerPlatformInfo`](#classURH__PlayerInfo_1a739b91e94755670e614506e17ee468d8)`(const `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` & PlayerPlatformId) const` | Gets a specific platform for the player.
-`public inline `[`URH_PlayerInventory`](Inventory.md#classURH__PlayerInventory)` * `[`GetPlayerInventory`](#classURH__PlayerInfo_1a430d123219813a6ba0c8100b367df6ec)`() const` | Gets the players Inventory Subsystem.
-`public inline `[`URH_PlayerNotifications`](Notifications.md#classURH__PlayerNotifications)` * `[`GetPlayerNotifications`](#classURH__PlayerInfo_1a6f1e1f6ef4d38ed87c2c2b920a5cd891)`() const` | Gets the players Notification Subsystem.
+`public inline FORCEINLINE FGuid & `[`GetRHPlayerUuid`](#classURH__PlayerInfo_1aefce19eecdef10f5201e3169557e6faa)`()` | Gets the players Unique player Id.
+`public inline FORCEINLINE `[`URH_PlayerPresence`](PlayerInfo.md#classURH__PlayerPresence)` * `[`GetPresence`](#classURH__PlayerInfo_1ad9659a9732c06001f74d914c4d604ce1)`() const` | Gets The players presence class.
+`public inline FORCEINLINE `[`URH_PlayerSettings`](PlayerInfo.md#classURH__PlayerSettings)` * `[`GetSettings`](#classURH__PlayerInfo_1af3df76bf1062e38b2ad1b4ca6981a633)`() const` | Gets The players settings class.
+`public inline FORCEINLINE `[`URH_PlayerSessions`](PlayerInfo.md#classURH__PlayerSessions)` * `[`GetSessions`](#classURH__PlayerInfo_1a2792b9d33049abbb1914e7a30aefc5d0)`() const` | Gets The players sessions class.
+`public inline FORCEINLINE `[`URH_PlayerDeserter`](PlayerInfo.md#classURH__PlayerDeserter)` * `[`GetDeserter`](#classURH__PlayerInfo_1ae0f62a5c1c239065cf553b271028df78)`() const` | Gets The players deserter class.
+`public inline FORCEINLINE `[`URH_PlayerMatches`](PlayerInfo.md#classURH__PlayerMatches)` * `[`GetMatches`](#classURH__PlayerInfo_1adf80a62480686f8a0a07df3984549e6d)`() const` | Gets The players matches class.
+`public inline FORCEINLINE `[`URH_PlayerReports`](PlayerInfo.md#classURH__PlayerReports)` * `[`GetReports`](#classURH__PlayerInfo_1a4c837d7a547fd1cf311315834e0416d1)`() const` | Gets The players reports class.
+`public inline virtual TArray< `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` > & `[`GetPlayerPlatformIds`](#classURH__PlayerInfo_1a3a419c311ffbd17b766e293407663f1c)`()` | Gets the associated platform ids of the player.
+`public inline virtual const TArray< `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` > & `[`GetPlayerPlatformIds`](#classURH__PlayerInfo_1ae2979dea7727e07acfba65d1ee9e5ceb)`() const` | Gets the associated platform ids of the player.
+`public virtual TArray< `[`URH_PlayerPlatformInfo`](PlayerInfo.md#classURH__PlayerPlatformInfo)` * > `[`GetPlayerPlatforms`](#classURH__PlayerInfo_1ad81c81dd9e0267d0aa3a22e99ececc93)`() const` | Gets the associated platforms of the player.
+`public virtual `[`URH_PlayerPlatformInfo`](PlayerInfo.md#classURH__PlayerPlatformInfo)` * `[`GetPlayerPlatformInfo`](#classURH__PlayerInfo_1a5888c7dd8cc1cab5e597fb73465753b8)`(const `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` & PlayerPlatformId) const` | Gets a specific platform for the player.
+`public inline `[`URH_PlayerInventory`](Inventory.md#classURH__PlayerInventory)` * `[`GetPlayerInventory`](#classURH__PlayerInfo_1a5f8f4ca11ffc3452f2bfb187e6501afb)`() const` | Gets the players Inventory Subsystem.
+`public inline `[`URH_PlayerNotifications`](Notifications.md#classURH__PlayerNotifications)` * `[`GetPlayerNotifications`](#classURH__PlayerInfo_1ab06214fd39968624f2df09e152d2d782)`() const` | Gets the players Notification Subsystem.
 `public virtual void `[`StartStreamingNotifications`](#classURH__PlayerInfo_1af0c9066d3c0b17440adfaf7e6b9cca9f)`()` | Request to start streaming notifications for this player.
 `public virtual void `[`StopStreamingNotifications`](#classURH__PlayerInfo_1a030ec9d94254cb742700d1c3947412dd)`(bool bClearCache)` | Requests to stop streaming notifications.
-`public inline virtual const TMap< FString, `[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` > & `[`GetAllStoredPlayerSettings`](#classURH__PlayerInfo_1a3eeb21bd2ebc5e074abc0de97d35ce9e)`() const` | Gets all the players store settings data.
-`public inline virtual const TMap< FString, `[`FRHAPI_PlayerRankResponseV2`](RHAPI_PlayerRankResponseV2.md#structFRHAPI__PlayerRankResponseV2)` > & `[`GetAllStoredPlayerRankings`](#classURH__PlayerInfo_1a2727915e9be4638dbd49310a6938645c)`() const` | Gets all the players stored ranking data.
-`public virtual `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__PlayerInfo_1a79f8f54e2bbda560cb138f54efbfd0ac)`() const` | Gets the players Info Subsystem that the Player Info is on.
+`public inline virtual const TMap< FString, `[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` > & `[`GetAllStoredPlayerSettings`](#classURH__PlayerInfo_1af879e401811cacbd0599278a2cce22b9)`() const` | Gets all the players store settings data.
+`public inline virtual const TMap< FString, `[`FRHAPI_PlayerRankResponseV2`](RHAPI_PlayerRankResponseV2.md#structFRHAPI__PlayerRankResponseV2)` > & `[`GetAllStoredPlayerRankings`](#classURH__PlayerInfo_1aa0e1761677b503537a9b942ae5ad0d82)`() const` | Gets all the players stored ranking data.
+`public virtual `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__PlayerInfo_1ab520fd6614f500da4d93332d10bb9bbb)`() const` | Gets the players Info Subsystem that the Player Info is on.
 `public virtual void `[`InitializeForPlayer`](#classURH__PlayerInfo_1a95e3c7c6762abe6c801e98e708905d39)`(const FGuid & PlayerUuid)` | Initialized the player info from a given Player Unique Id.
 `public virtual void `[`GetLastKnownDisplayNameAsync`](#classURH__PlayerInfo_1a2294e1b29debae35974c1776ef703cfd)`(const FTimespan & StaleThreshold,bool bForceRefresh,ERHAPI_Platform PreferredPlatformType,const FRH_PlayerInfoGetDisplayNameBlock & Delegate,const class `[`URH_LocalPlayerSubsystem`](LocalPlayer.md#classURH__LocalPlayerSubsystem)` * LocalPlayerSubsystem)` | Gets the last known display name for the player, will make required API calls to retrieve the information if needed.
 `public virtual bool `[`GetLastKnownDisplayName`](#classURH__PlayerInfo_1ac983a0c5b8e6e3df2f216b94b7fd249c)`(FString & OutDisplayName,ERHAPI_Platform PreferredPlatformType) const` | Gets the last known display name for the player.
@@ -766,77 +766,77 @@ Stores and fetchs all the information about a given player.
 
 ### Members
 
-#### `public inline FORCEINLINE FGuid & `[`GetRHPlayerUuid`](#classURH__PlayerInfo_1ab4bac7a190b2e5fec6d242c25f7672f4)`()` <a id="classURH__PlayerInfo_1ab4bac7a190b2e5fec6d242c25f7672f4"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetRHPlayerUuid`](#classURH__PlayerInfo_1aefce19eecdef10f5201e3169557e6faa)`()` <a id="classURH__PlayerInfo_1aefce19eecdef10f5201e3169557e6faa"></a>
 
 Gets the players Unique player Id.
 
 #### Returns
 The players Unique Player Id.
 
-#### `public inline FORCEINLINE `[`URH_PlayerPresence`](PlayerInfo.md#classURH__PlayerPresence)` * `[`GetPresence`](#classURH__PlayerInfo_1a30440b0a7ab410262e696bc6ac976568)`() const` <a id="classURH__PlayerInfo_1a30440b0a7ab410262e696bc6ac976568"></a>
+#### `public inline FORCEINLINE `[`URH_PlayerPresence`](PlayerInfo.md#classURH__PlayerPresence)` * `[`GetPresence`](#classURH__PlayerInfo_1ad9659a9732c06001f74d914c4d604ce1)`() const` <a id="classURH__PlayerInfo_1ad9659a9732c06001f74d914c4d604ce1"></a>
 
 Gets The players presence class.
 
 #### Returns
 The players presence class.
 
-#### `public inline FORCEINLINE `[`URH_PlayerSettings`](PlayerInfo.md#classURH__PlayerSettings)` * `[`GetSettings`](#classURH__PlayerInfo_1ad3dcaf0e5c8398f6d3490e6547efe3d8)`() const` <a id="classURH__PlayerInfo_1ad3dcaf0e5c8398f6d3490e6547efe3d8"></a>
+#### `public inline FORCEINLINE `[`URH_PlayerSettings`](PlayerInfo.md#classURH__PlayerSettings)` * `[`GetSettings`](#classURH__PlayerInfo_1af3df76bf1062e38b2ad1b4ca6981a633)`() const` <a id="classURH__PlayerInfo_1af3df76bf1062e38b2ad1b4ca6981a633"></a>
 
 Gets The players settings class.
 
 #### Returns
 The players settings class.
 
-#### `public inline FORCEINLINE `[`URH_PlayerSessions`](PlayerInfo.md#classURH__PlayerSessions)` * `[`GetSessions`](#classURH__PlayerInfo_1a3a012da0a55d1edb09a80dcf658ae7f4)`() const` <a id="classURH__PlayerInfo_1a3a012da0a55d1edb09a80dcf658ae7f4"></a>
+#### `public inline FORCEINLINE `[`URH_PlayerSessions`](PlayerInfo.md#classURH__PlayerSessions)` * `[`GetSessions`](#classURH__PlayerInfo_1a2792b9d33049abbb1914e7a30aefc5d0)`() const` <a id="classURH__PlayerInfo_1a2792b9d33049abbb1914e7a30aefc5d0"></a>
 
 Gets The players sessions class.
 
 #### Returns
 The players sessions class.
 
-#### `public inline FORCEINLINE `[`URH_PlayerDeserter`](PlayerInfo.md#classURH__PlayerDeserter)` * `[`GetDeserter`](#classURH__PlayerInfo_1a88c9082ca13985dbe17af33bd1888a0f)`() const` <a id="classURH__PlayerInfo_1a88c9082ca13985dbe17af33bd1888a0f"></a>
+#### `public inline FORCEINLINE `[`URH_PlayerDeserter`](PlayerInfo.md#classURH__PlayerDeserter)` * `[`GetDeserter`](#classURH__PlayerInfo_1ae0f62a5c1c239065cf553b271028df78)`() const` <a id="classURH__PlayerInfo_1ae0f62a5c1c239065cf553b271028df78"></a>
 
 Gets The players deserter class.
 
 #### Returns
 The players deserter class.
 
-#### `public inline FORCEINLINE `[`URH_PlayerMatches`](PlayerInfo.md#classURH__PlayerMatches)` * `[`GetMatches`](#classURH__PlayerInfo_1a18162aabb6b78affb52f918ae8517f84)`() const` <a id="classURH__PlayerInfo_1a18162aabb6b78affb52f918ae8517f84"></a>
+#### `public inline FORCEINLINE `[`URH_PlayerMatches`](PlayerInfo.md#classURH__PlayerMatches)` * `[`GetMatches`](#classURH__PlayerInfo_1adf80a62480686f8a0a07df3984549e6d)`() const` <a id="classURH__PlayerInfo_1adf80a62480686f8a0a07df3984549e6d"></a>
 
 Gets The players matches class.
 
 #### Returns
 The players matches class.
 
-#### `public inline FORCEINLINE `[`URH_PlayerReports`](PlayerInfo.md#classURH__PlayerReports)` * `[`GetReports`](#classURH__PlayerInfo_1a384f5b99113927ed0f47cf1278e45018)`() const` <a id="classURH__PlayerInfo_1a384f5b99113927ed0f47cf1278e45018"></a>
+#### `public inline FORCEINLINE `[`URH_PlayerReports`](PlayerInfo.md#classURH__PlayerReports)` * `[`GetReports`](#classURH__PlayerInfo_1a4c837d7a547fd1cf311315834e0416d1)`() const` <a id="classURH__PlayerInfo_1a4c837d7a547fd1cf311315834e0416d1"></a>
 
 Gets The players reports class.
 
 #### Returns
 The players reports class.
 
-#### `public inline virtual TArray< `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` > & `[`GetPlayerPlatformIds`](#classURH__PlayerInfo_1a07f7aedb216f1536718b152d384d7ba9)`()` <a id="classURH__PlayerInfo_1a07f7aedb216f1536718b152d384d7ba9"></a>
+#### `public inline virtual TArray< `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` > & `[`GetPlayerPlatformIds`](#classURH__PlayerInfo_1a3a419c311ffbd17b766e293407663f1c)`()` <a id="classURH__PlayerInfo_1a3a419c311ffbd17b766e293407663f1c"></a>
 
 Gets the associated platform ids of the player.
 
 #### Returns
 The players associated platforms ids.
 
-#### `public inline virtual const TArray< `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` > & `[`GetPlayerPlatformIds`](#classURH__PlayerInfo_1a28f6726b50d19d49895f5ef07a080625)`() const` <a id="classURH__PlayerInfo_1a28f6726b50d19d49895f5ef07a080625"></a>
+#### `public inline virtual const TArray< `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` > & `[`GetPlayerPlatformIds`](#classURH__PlayerInfo_1ae2979dea7727e07acfba65d1ee9e5ceb)`() const` <a id="classURH__PlayerInfo_1ae2979dea7727e07acfba65d1ee9e5ceb"></a>
 
 Gets the associated platform ids of the player.
 
 #### Returns
 The players associated platforms ids.
 
-#### `public virtual TArray< `[`URH_PlayerPlatformInfo`](PlayerInfo.md#classURH__PlayerPlatformInfo)` * > `[`GetPlayerPlatforms`](#classURH__PlayerInfo_1a809c05d3726b297a8c9c1a5647e1b312)`() const` <a id="classURH__PlayerInfo_1a809c05d3726b297a8c9c1a5647e1b312"></a>
+#### `public virtual TArray< `[`URH_PlayerPlatformInfo`](PlayerInfo.md#classURH__PlayerPlatformInfo)` * > `[`GetPlayerPlatforms`](#classURH__PlayerInfo_1ad81c81dd9e0267d0aa3a22e99ececc93)`() const` <a id="classURH__PlayerInfo_1ad81c81dd9e0267d0aa3a22e99ececc93"></a>
 
 Gets the associated platforms of the player.
 
 #### Returns
 The players associated platforms.
 
-#### `public virtual `[`URH_PlayerPlatformInfo`](PlayerInfo.md#classURH__PlayerPlatformInfo)` * `[`GetPlayerPlatformInfo`](#classURH__PlayerInfo_1a739b91e94755670e614506e17ee468d8)`(const `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` & PlayerPlatformId) const` <a id="classURH__PlayerInfo_1a739b91e94755670e614506e17ee468d8"></a>
+#### `public virtual `[`URH_PlayerPlatformInfo`](PlayerInfo.md#classURH__PlayerPlatformInfo)` * `[`GetPlayerPlatformInfo`](#classURH__PlayerInfo_1a5888c7dd8cc1cab5e597fb73465753b8)`(const `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` & PlayerPlatformId) const` <a id="classURH__PlayerInfo_1a5888c7dd8cc1cab5e597fb73465753b8"></a>
 
 Gets a specific platform for the player.
 
@@ -846,14 +846,14 @@ Gets a specific platform for the player.
 #### Returns
 The platform requested for the player if it exists.
 
-#### `public inline `[`URH_PlayerInventory`](Inventory.md#classURH__PlayerInventory)` * `[`GetPlayerInventory`](#classURH__PlayerInfo_1a430d123219813a6ba0c8100b367df6ec)`() const` <a id="classURH__PlayerInfo_1a430d123219813a6ba0c8100b367df6ec"></a>
+#### `public inline `[`URH_PlayerInventory`](Inventory.md#classURH__PlayerInventory)` * `[`GetPlayerInventory`](#classURH__PlayerInfo_1a5f8f4ca11ffc3452f2bfb187e6501afb)`() const` <a id="classURH__PlayerInfo_1a5f8f4ca11ffc3452f2bfb187e6501afb"></a>
 
 Gets the players Inventory Subsystem.
 
 #### Returns
 The players Inventory Subsystem.
 
-#### `public inline `[`URH_PlayerNotifications`](Notifications.md#classURH__PlayerNotifications)` * `[`GetPlayerNotifications`](#classURH__PlayerInfo_1a6f1e1f6ef4d38ed87c2c2b920a5cd891)`() const` <a id="classURH__PlayerInfo_1a6f1e1f6ef4d38ed87c2c2b920a5cd891"></a>
+#### `public inline `[`URH_PlayerNotifications`](Notifications.md#classURH__PlayerNotifications)` * `[`GetPlayerNotifications`](#classURH__PlayerInfo_1ab06214fd39968624f2df09e152d2d782)`() const` <a id="classURH__PlayerInfo_1ab06214fd39968624f2df09e152d2d782"></a>
 
 Gets the players Notification Subsystem.
 
@@ -871,21 +871,21 @@ Requests to stop streaming notifications.
 #### Parameters
 * `[in[` bClearCache If true, the cache of notifications will be cleared.
 
-#### `public inline virtual const TMap< FString, `[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` > & `[`GetAllStoredPlayerSettings`](#classURH__PlayerInfo_1a3eeb21bd2ebc5e074abc0de97d35ce9e)`() const` <a id="classURH__PlayerInfo_1a3eeb21bd2ebc5e074abc0de97d35ce9e"></a>
+#### `public inline virtual const TMap< FString, `[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` > & `[`GetAllStoredPlayerSettings`](#classURH__PlayerInfo_1af879e401811cacbd0599278a2cce22b9)`() const` <a id="classURH__PlayerInfo_1af879e401811cacbd0599278a2cce22b9"></a>
 
 Gets all the players store settings data.
 
 #### Returns
 The players stored settings data.
 
-#### `public inline virtual const TMap< FString, `[`FRHAPI_PlayerRankResponseV2`](RHAPI_PlayerRankResponseV2.md#structFRHAPI__PlayerRankResponseV2)` > & `[`GetAllStoredPlayerRankings`](#classURH__PlayerInfo_1a2727915e9be4638dbd49310a6938645c)`() const` <a id="classURH__PlayerInfo_1a2727915e9be4638dbd49310a6938645c"></a>
+#### `public inline virtual const TMap< FString, `[`FRHAPI_PlayerRankResponseV2`](RHAPI_PlayerRankResponseV2.md#structFRHAPI__PlayerRankResponseV2)` > & `[`GetAllStoredPlayerRankings`](#classURH__PlayerInfo_1aa0e1761677b503537a9b942ae5ad0d82)`() const` <a id="classURH__PlayerInfo_1aa0e1761677b503537a9b942ae5ad0d82"></a>
 
 Gets all the players stored ranking data.
 
 #### Returns
 The players stored settings data.
 
-#### `public virtual `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__PlayerInfo_1a79f8f54e2bbda560cb138f54efbfd0ac)`() const` <a id="classURH__PlayerInfo_1a79f8f54e2bbda560cb138f54efbfd0ac"></a>
+#### `public virtual `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__PlayerInfo_1ab520fd6614f500da4d93332d10bb9bbb)`() const` <a id="classURH__PlayerInfo_1ab520fd6614f500da4d93332d10bb9bbb"></a>
 
 Gets the players Info Subsystem that the Player Info is on.
 
@@ -1152,16 +1152,16 @@ Subsystem used to track and request information about players.
 --------------------------------|---------------------------------------------
 `public virtual void `[`Initialize`](#classURH__PlayerInfoSubsystem_1a572d4ae155b61530e30fdf4943313228)`()` | Initialize the subsystem.
 `public virtual void `[`Deinitialize`](#classURH__PlayerInfoSubsystem_1ac84840e29cafeb3dd61382c359dd93e8)`()` | Safely tears down the subsystem.
-`public inline const TMap< FGuid, `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * > & `[`GetPlayerInfos`](#classURH__PlayerInfoSubsystem_1abc456ab4d8ed5e310f4069cd412b7015)`() const` | Gets a map of all the player infos.
-`public virtual `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetOrCreatePlayerInfo`](#classURH__PlayerInfoSubsystem_1a86cbf48c7736df66c95719b2aa2e56df)`(const FGuid & PlayerUuid)` | Gets a Player Info object for a given Player Unique Id, creates if needed.
-`public virtual `[`URH_PlayerPlatformInfo`](PlayerInfo.md#classURH__PlayerPlatformInfo)` * `[`GetOrCreatePlayerPlatformInfo`](#classURH__PlayerInfoSubsystem_1afe3412c3393e536a6bfa3df5c32b1d30)`(const `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` & PlayerPlatformId)` | Gets a Player Info object for a given Player Platform Id, creates if needed.
-`public virtual `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`FindPlayerInfoByPlatformId`](#classURH__PlayerInfoSubsystem_1a0b93b7052abf97f65ac4e457585dd386)`(const `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` & PlayerPlatformId) const` | Gets a Player Info object for a given Player Platform Id.
-`public inline virtual `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetPlayerInfo`](#classURH__PlayerInfoSubsystem_1a313afdb4e447c17e8bd9f44d789fd4c4)`(const FGuid & PlayerUuid) const` | Gets a Player Info object for a given Unique Player Id.
-`public inline virtual `[`URH_PlayerPlatformInfo`](PlayerInfo.md#classURH__PlayerPlatformInfo)` * `[`GetPlayerPlatformInfo`](#classURH__PlayerInfoSubsystem_1a078ceecb56513631701ed82bfbfbcbf4)`(const `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` & PlayerPlatformId) const` | Gets the platform info object for a player by the Platform Id.
+`public inline const TMap< FGuid, `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * > & `[`GetPlayerInfos`](#classURH__PlayerInfoSubsystem_1ad5e71939758e23389251760e48d4efdb)`() const` | Gets a map of all the player infos.
+`public virtual `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetOrCreatePlayerInfo`](#classURH__PlayerInfoSubsystem_1a77ee4243e4f177805461015fd2a51d21)`(const FGuid & PlayerUuid)` | Gets a Player Info object for a given Player Unique Id, creates if needed.
+`public virtual `[`URH_PlayerPlatformInfo`](PlayerInfo.md#classURH__PlayerPlatformInfo)` * `[`GetOrCreatePlayerPlatformInfo`](#classURH__PlayerInfoSubsystem_1ad233b8f23a07b796170eb861198abe6f)`(const `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` & PlayerPlatformId)` | Gets a Player Info object for a given Player Platform Id, creates if needed.
+`public virtual `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`FindPlayerInfoByPlatformId`](#classURH__PlayerInfoSubsystem_1a2cbbca04050ce7a4fe92e0ddf0218dda)`(const `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` & PlayerPlatformId) const` | Gets a Player Info object for a given Player Platform Id.
+`public inline virtual `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetPlayerInfo`](#classURH__PlayerInfoSubsystem_1a6f36f578556bb8d774e302491b38bcfc)`(const FGuid & PlayerUuid) const` | Gets a Player Info object for a given Unique Player Id.
+`public inline virtual `[`URH_PlayerPlatformInfo`](PlayerInfo.md#classURH__PlayerPlatformInfo)` * `[`GetPlayerPlatformInfo`](#classURH__PlayerInfoSubsystem_1a3583f26376d4cc3906cc2d09942c5f6e)`(const `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` & PlayerPlatformId) const` | Gets the platform info object for a player by the Platform Id.
 `public inline virtual void `[`AddPlayerLink`](#classURH__PlayerInfoSubsystem_1a4036500640f2d33632faee6aa5c09755)`(const `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` & PlayerPlatformId,const FGuid & PlayerUuid)` | Adds a platform mapping for a given player.
 `public virtual void `[`LookupPlayer`](#classURH__PlayerInfoSubsystem_1a4440282ee5fee5dfee7e23cb905a87d7)`(FString PlayerName,const FRH_PlayerInfoLookupPlayerBlock & Delegate)` | Searchs for all players who use the given display name via API Call.
 `public virtual void `[`LookupPlayerByPlatformUserId`](#classURH__PlayerInfoSubsystem_1a9f0630cd321711484630ba48a75cdef2)`(`[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` PlayerPlatformId,const FRH_PlayerInfoLookupPlayerBlock & Delegate)` | Searchs for players associated with the given platform and platform user id via API Call.
-`public virtual `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`RemovePlayerInfoFromCache`](#classURH__PlayerInfoSubsystem_1ac2630ddd5570040bb68a69c94721d3a4)`(const FGuid & PlayerUuid)` | Remove a specific Player Info from PlayerInfoSubsystem's cache.
+`public virtual `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`RemovePlayerInfoFromCache`](#classURH__PlayerInfoSubsystem_1a25bda7fb6a01c6158f8aadb1d6f2eab4)`(const FGuid & PlayerUuid)` | Remove a specific Player Info from PlayerInfoSubsystem's cache.
 `public virtual void `[`Tick`](#classURH__PlayerInfoSubsystem_1abf83de825c346653c1bc3cba1df75815)`(float DeltaTime)` | Unreals basic Tick function.
 `public inline virtual bool `[`IsTickable`](#classURH__PlayerInfoSubsystem_1a49b75fe691775b67c9af6a818d2e4592)`() const` | Gets if currently tickable.
 `public inline virtual TStatId `[`GetStatId`](#classURH__PlayerInfoSubsystem_1a159d3535c053aa721f87274f48742cfa)`() const` | Gets the stat to use for the tick time.
@@ -1185,14 +1185,14 @@ Initialize the subsystem.
 
 Safely tears down the subsystem.
 
-#### `public inline const TMap< FGuid, `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * > & `[`GetPlayerInfos`](#classURH__PlayerInfoSubsystem_1abc456ab4d8ed5e310f4069cd412b7015)`() const` <a id="classURH__PlayerInfoSubsystem_1abc456ab4d8ed5e310f4069cd412b7015"></a>
+#### `public inline const TMap< FGuid, `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * > & `[`GetPlayerInfos`](#classURH__PlayerInfoSubsystem_1ad5e71939758e23389251760e48d4efdb)`() const` <a id="classURH__PlayerInfoSubsystem_1ad5e71939758e23389251760e48d4efdb"></a>
 
 Gets a map of all the player infos.
 
 #### Returns
 Map of player infos by Player Unique Id
 
-#### `public virtual `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetOrCreatePlayerInfo`](#classURH__PlayerInfoSubsystem_1a86cbf48c7736df66c95719b2aa2e56df)`(const FGuid & PlayerUuid)` <a id="classURH__PlayerInfoSubsystem_1a86cbf48c7736df66c95719b2aa2e56df"></a>
+#### `public virtual `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetOrCreatePlayerInfo`](#classURH__PlayerInfoSubsystem_1a77ee4243e4f177805461015fd2a51d21)`(const FGuid & PlayerUuid)` <a id="classURH__PlayerInfoSubsystem_1a77ee4243e4f177805461015fd2a51d21"></a>
 
 Gets a Player Info object for a given Player Unique Id, creates if needed.
 
@@ -1202,7 +1202,7 @@ Gets a Player Info object for a given Player Unique Id, creates if needed.
 #### Returns
 Player Info for the player
 
-#### `public virtual `[`URH_PlayerPlatformInfo`](PlayerInfo.md#classURH__PlayerPlatformInfo)` * `[`GetOrCreatePlayerPlatformInfo`](#classURH__PlayerInfoSubsystem_1afe3412c3393e536a6bfa3df5c32b1d30)`(const `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` & PlayerPlatformId)` <a id="classURH__PlayerInfoSubsystem_1afe3412c3393e536a6bfa3df5c32b1d30"></a>
+#### `public virtual `[`URH_PlayerPlatformInfo`](PlayerInfo.md#classURH__PlayerPlatformInfo)` * `[`GetOrCreatePlayerPlatformInfo`](#classURH__PlayerInfoSubsystem_1ad233b8f23a07b796170eb861198abe6f)`(const `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` & PlayerPlatformId)` <a id="classURH__PlayerInfoSubsystem_1ad233b8f23a07b796170eb861198abe6f"></a>
 
 Gets a Player Info object for a given Player Platform Id, creates if needed.
 
@@ -1212,7 +1212,7 @@ Gets a Player Info object for a given Player Platform Id, creates if needed.
 #### Returns
 Player Info for the player
 
-#### `public virtual `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`FindPlayerInfoByPlatformId`](#classURH__PlayerInfoSubsystem_1a0b93b7052abf97f65ac4e457585dd386)`(const `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` & PlayerPlatformId) const` <a id="classURH__PlayerInfoSubsystem_1a0b93b7052abf97f65ac4e457585dd386"></a>
+#### `public virtual `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`FindPlayerInfoByPlatformId`](#classURH__PlayerInfoSubsystem_1a2cbbca04050ce7a4fe92e0ddf0218dda)`(const `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` & PlayerPlatformId) const` <a id="classURH__PlayerInfoSubsystem_1a2cbbca04050ce7a4fe92e0ddf0218dda"></a>
 
 Gets a Player Info object for a given Player Platform Id.
 
@@ -1222,7 +1222,7 @@ Gets a Player Info object for a given Player Platform Id.
 #### Returns
 Player Info for the player if found
 
-#### `public inline virtual `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetPlayerInfo`](#classURH__PlayerInfoSubsystem_1a313afdb4e447c17e8bd9f44d789fd4c4)`(const FGuid & PlayerUuid) const` <a id="classURH__PlayerInfoSubsystem_1a313afdb4e447c17e8bd9f44d789fd4c4"></a>
+#### `public inline virtual `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetPlayerInfo`](#classURH__PlayerInfoSubsystem_1a6f36f578556bb8d774e302491b38bcfc)`(const FGuid & PlayerUuid) const` <a id="classURH__PlayerInfoSubsystem_1a6f36f578556bb8d774e302491b38bcfc"></a>
 
 Gets a Player Info object for a given Unique Player Id.
 
@@ -1232,7 +1232,7 @@ Gets a Player Info object for a given Unique Player Id.
 #### Returns
 Player Info for the player if found
 
-#### `public inline virtual `[`URH_PlayerPlatformInfo`](PlayerInfo.md#classURH__PlayerPlatformInfo)` * `[`GetPlayerPlatformInfo`](#classURH__PlayerInfoSubsystem_1a078ceecb56513631701ed82bfbfbcbf4)`(const `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` & PlayerPlatformId) const` <a id="classURH__PlayerInfoSubsystem_1a078ceecb56513631701ed82bfbfbcbf4"></a>
+#### `public inline virtual `[`URH_PlayerPlatformInfo`](PlayerInfo.md#classURH__PlayerPlatformInfo)` * `[`GetPlayerPlatformInfo`](#classURH__PlayerInfoSubsystem_1a3583f26376d4cc3906cc2d09942c5f6e)`(const `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` & PlayerPlatformId) const` <a id="classURH__PlayerInfoSubsystem_1a3583f26376d4cc3906cc2d09942c5f6e"></a>
 
 Gets the platform info object for a player by the Platform Id.
 
@@ -1271,7 +1271,7 @@ Searchs for players associated with the given platform and platform user id via 
 
 * `Delegate` Callback with the all PlayerInfos that are found with that display name
 
-#### `public virtual `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`RemovePlayerInfoFromCache`](#classURH__PlayerInfoSubsystem_1ac2630ddd5570040bb68a69c94721d3a4)`(const FGuid & PlayerUuid)` <a id="classURH__PlayerInfoSubsystem_1ac2630ddd5570040bb68a69c94721d3a4"></a>
+#### `public virtual `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`RemovePlayerInfoFromCache`](#classURH__PlayerInfoSubsystem_1a25bda7fb6a01c6158f8aadb1d6f2eab4)`(const FGuid & PlayerUuid)` <a id="classURH__PlayerInfoSubsystem_1a25bda7fb6a01c6158f8aadb1d6f2eab4"></a>
 
 Remove a specific Player Info from PlayerInfoSubsystem's cache.
 

@@ -23,9 +23,9 @@ Response body for an instance health check.
 --------------------------------|---------------------------------------------
 `public ERHAPI_InstanceHealthStatus `[`UpdatedInstanceHealth`](#structFRHAPI__InstanceHealthStatusResponse_1a5353d047babab8d0085993f33d3a82a8) | The new health status of the instance. It may not match the status sent up if too few health checks are being recieved.
 `public virtual bool `[`FromJson`](#structFRHAPI__InstanceHealthStatusResponse_1aa9bca781bf2f7fd6288cd95951e41b09)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__InstanceHealthStatusResponse_1aa5be70cb0700483aaa90c635f5959d2e)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline ERHAPI_InstanceHealthStatus & `[`GetUpdatedInstanceHealth`](#structFRHAPI__InstanceHealthStatusResponse_1ac26b0bbfd237bdadd4ed172c543030d0)`()` | Gets the value of UpdatedInstanceHealth.
-`public inline const ERHAPI_InstanceHealthStatus & `[`GetUpdatedInstanceHealth`](#structFRHAPI__InstanceHealthStatusResponse_1a5ce08ac2c8e4fb15ac43a8ff6f15f258)`() const` | Gets the value of UpdatedInstanceHealth.
+`public virtual void `[`WriteJson`](#structFRHAPI__InstanceHealthStatusResponse_1aaa01464b90fe7f5414351b5281fcf1a4)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline ERHAPI_InstanceHealthStatus & `[`GetUpdatedInstanceHealth`](#structFRHAPI__InstanceHealthStatusResponse_1a93a214724fef95f28c7f439cb9e7beb3)`()` | Gets the value of UpdatedInstanceHealth.
+`public inline const ERHAPI_InstanceHealthStatus & `[`GetUpdatedInstanceHealth`](#structFRHAPI__InstanceHealthStatusResponse_1af23952e7eafd979cea1a41c88ba34110)`() const` | Gets the value of UpdatedInstanceHealth.
 `public inline void `[`SetUpdatedInstanceHealth`](#structFRHAPI__InstanceHealthStatusResponse_1a1aab0cbab929fa9f5e0c145da6fd548d)`(const ERHAPI_InstanceHealthStatus & NewValue)` | Sets the value of UpdatedInstanceHealth.
 `public inline void `[`SetUpdatedInstanceHealth`](#structFRHAPI__InstanceHealthStatusResponse_1a84859652c802d388f561584fbf90f160)`(ERHAPI_InstanceHealthStatus && NewValue)` | Sets the value of UpdatedInstanceHealth using move semantics.
 
@@ -45,18 +45,18 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__InstanceHealthStatusResponse_1aa5be70cb0700483aaa90c635f5959d2e)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__InstanceHealthStatusResponse_1aa5be70cb0700483aaa90c635f5959d2e"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__InstanceHealthStatusResponse_1aaa01464b90fe7f5414351b5281fcf1a4)`(TSharedRef< TJsonWriter<> > & Writer) const` <a id="structFRHAPI__InstanceHealthStatusResponse_1aaa01464b90fe7f5414351b5281fcf1a4"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline ERHAPI_InstanceHealthStatus & `[`GetUpdatedInstanceHealth`](#structFRHAPI__InstanceHealthStatusResponse_1ac26b0bbfd237bdadd4ed172c543030d0)`()` <a id="structFRHAPI__InstanceHealthStatusResponse_1ac26b0bbfd237bdadd4ed172c543030d0"></a>
+#### `public inline ERHAPI_InstanceHealthStatus & `[`GetUpdatedInstanceHealth`](#structFRHAPI__InstanceHealthStatusResponse_1a93a214724fef95f28c7f439cb9e7beb3)`()` <a id="structFRHAPI__InstanceHealthStatusResponse_1a93a214724fef95f28c7f439cb9e7beb3"></a>
 
 Gets the value of UpdatedInstanceHealth.
 
-#### `public inline const ERHAPI_InstanceHealthStatus & `[`GetUpdatedInstanceHealth`](#structFRHAPI__InstanceHealthStatusResponse_1a5ce08ac2c8e4fb15ac43a8ff6f15f258)`() const` <a id="structFRHAPI__InstanceHealthStatusResponse_1a5ce08ac2c8e4fb15ac43a8ff6f15f258"></a>
+#### `public inline const ERHAPI_InstanceHealthStatus & `[`GetUpdatedInstanceHealth`](#structFRHAPI__InstanceHealthStatusResponse_1af23952e7eafd979cea1a41c88ba34110)`() const` <a id="structFRHAPI__InstanceHealthStatusResponse_1af23952e7eafd979cea1a41c88ba34110"></a>
 
 Gets the value of UpdatedInstanceHealth.
 

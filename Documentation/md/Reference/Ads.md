@@ -27,7 +27,7 @@ Ad Subsystem used for serving and responging to ad operrtunities for players.
 `public FHttpRequestPtr `[`FindOpportunities`](#classURH__AdSubsystem_1a5f36e3c9cfa910812b2867e2c78e1eeb)`(RallyHereAPI::FRequest_FindOpportunities Request,const RallyHereAPI::FDelegate_FindOpportunities & Delegate)` | Attempts to find new ad oppertunities to present to the user.
 `public FHttpRequestPtr `[`UpdateOpportunityById`](#classURH__AdSubsystem_1a6737a0085bcf9d8bf07418f12f2eaca9)`(RallyHereAPI::FRequest_UpdateOpportunityById Request,const RallyHereAPI::FDelegate_UpdateOpportunityById & Delegate)` | Updates the status of an ad oppertunity.
 `public FString `[`GetAdApiToken`](#classURH__AdSubsystem_1aa84c842cb38bb70ea8dcef42dda4f1b0)`() const` | Gets the API token used to make quick ad oppertunity attempts for the same user.
-`public const TArray< `[`FRHAPI_AdOpportunity`](RHAPI_AdOpportunity.md#structFRHAPI__AdOpportunity)` > & `[`GetOpportunities`](#classURH__AdSubsystem_1ad31daa92d579d443b48a8269492f5478)`() const` | Gets all ad oppertunities that have been been found during the session.
+`public const TArray< `[`FRHAPI_AdOpportunity`](RHAPI_AdOpportunity.md#structFRHAPI__AdOpportunity)` > & `[`GetOpportunities`](#classURH__AdSubsystem_1ac92a3dd64ee47076c4c0e6c956fb66ee)`() const` | Gets all ad oppertunities that have been been found during the session.
 `protected TArray< `[`FRHAPI_AdOpportunity`](RHAPI_AdOpportunity.md#structFRHAPI__AdOpportunity)` > `[`Opportunities`](#classURH__AdSubsystem_1ab5b3a448252fa2e2f75eecc2aa365579) | Cached Ad Oppertunities.
 `protected FString `[`XHzAdApiToken`](#classURH__AdSubsystem_1a103b700c07d6184030fcbf664e551c30) | Ad API token used by the subsystem to make ad calls.
 `protected virtual void `[`OnUserChanged`](#classURH__AdSubsystem_1a0f08945f65d5a03be1a52f6660f49d86)`()` | Callback that occurs whenever the local player this subsystem is associated with changes.
@@ -88,7 +88,7 @@ Gets the API token used to make quick ad oppertunity attempts for the same user.
 #### Returns
 The API Token.
 
-#### `public const TArray< `[`FRHAPI_AdOpportunity`](RHAPI_AdOpportunity.md#structFRHAPI__AdOpportunity)` > & `[`GetOpportunities`](#classURH__AdSubsystem_1ad31daa92d579d443b48a8269492f5478)`() const` <a id="classURH__AdSubsystem_1ad31daa92d579d443b48a8269492f5478"></a>
+#### `public const TArray< `[`FRHAPI_AdOpportunity`](RHAPI_AdOpportunity.md#structFRHAPI__AdOpportunity)` > & `[`GetOpportunities`](#classURH__AdSubsystem_1ac92a3dd64ee47076c4c0e6c956fb66ee)`() const` <a id="classURH__AdSubsystem_1ac92a3dd64ee47076c4c0e6c956fb66ee"></a>
 
 Gets all ad oppertunities that have been been found during the session.
 

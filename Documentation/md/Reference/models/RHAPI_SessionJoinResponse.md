@@ -23,9 +23,9 @@ Response when a player successfully joins a session.
 --------------------------------|---------------------------------------------
 `public FString `[`SessionId`](#structFRHAPI__SessionJoinResponse_1a78b2bc9860f7b5620c9968d290884257) | Session ID the player is now a part of.
 `public virtual bool `[`FromJson`](#structFRHAPI__SessionJoinResponse_1a95422a5c1f3c09a209899074243cd6d8)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__SessionJoinResponse_1a58836ae651e69579d449ac0fdaff84b9)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetSessionId`](#structFRHAPI__SessionJoinResponse_1aec0fea30126379f82c3b0b92b40ee9c2)`()` | Gets the value of SessionId.
-`public inline const FString & `[`GetSessionId`](#structFRHAPI__SessionJoinResponse_1a5864fade9558dad663e8f6cccf769468)`() const` | Gets the value of SessionId.
+`public virtual void `[`WriteJson`](#structFRHAPI__SessionJoinResponse_1a94405750f03af6e12c8d3247d876a669)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline FString & `[`GetSessionId`](#structFRHAPI__SessionJoinResponse_1a95d8d7bd494a9e46bc2392695cb5c9b0)`()` | Gets the value of SessionId.
+`public inline const FString & `[`GetSessionId`](#structFRHAPI__SessionJoinResponse_1aa5ac7dc919e0f6449f02644e97410fc5)`() const` | Gets the value of SessionId.
 `public inline void `[`SetSessionId`](#structFRHAPI__SessionJoinResponse_1ac73376a9211c0d65dc15ccaf5f96da42)`(const FString & NewValue)` | Sets the value of SessionId.
 `public inline void `[`SetSessionId`](#structFRHAPI__SessionJoinResponse_1ad2a7741d51fb07f0766bab8a202c97a1)`(FString && NewValue)` | Sets the value of SessionId using move semantics.
 
@@ -45,18 +45,18 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__SessionJoinResponse_1a58836ae651e69579d449ac0fdaff84b9)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__SessionJoinResponse_1a58836ae651e69579d449ac0fdaff84b9"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__SessionJoinResponse_1a94405750f03af6e12c8d3247d876a669)`(TSharedRef< TJsonWriter<> > & Writer) const` <a id="structFRHAPI__SessionJoinResponse_1a94405750f03af6e12c8d3247d876a669"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetSessionId`](#structFRHAPI__SessionJoinResponse_1aec0fea30126379f82c3b0b92b40ee9c2)`()` <a id="structFRHAPI__SessionJoinResponse_1aec0fea30126379f82c3b0b92b40ee9c2"></a>
+#### `public inline FString & `[`GetSessionId`](#structFRHAPI__SessionJoinResponse_1a95d8d7bd494a9e46bc2392695cb5c9b0)`()` <a id="structFRHAPI__SessionJoinResponse_1a95d8d7bd494a9e46bc2392695cb5c9b0"></a>
 
 Gets the value of SessionId.
 
-#### `public inline const FString & `[`GetSessionId`](#structFRHAPI__SessionJoinResponse_1a5864fade9558dad663e8f6cccf769468)`() const` <a id="structFRHAPI__SessionJoinResponse_1a5864fade9558dad663e8f6cccf769468"></a>
+#### `public inline const FString & `[`GetSessionId`](#structFRHAPI__SessionJoinResponse_1aa5ac7dc919e0f6449f02644e97410fc5)`() const` <a id="structFRHAPI__SessionJoinResponse_1aa5ac7dc919e0f6449f02644e97410fc5"></a>
 
 Gets the value of SessionId.
 

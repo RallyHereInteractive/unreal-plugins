@@ -68,7 +68,7 @@ Match Subsystem used for match API calls.
 `public virtual void `[`SearchMatches`](#classURH__MatchSubsystem_1a23248c4305bc3aa2a6dfc4ef3aa93573)`(const `[`FRH_MatchSearchParams`](Match.md#structFRH__MatchSearchParams)` & params,const FRH_OnMatchSearchCompleteDelegateBlock & Delegate)` | Search for Matches.
 `public virtual void `[`GetMatchAsync`](#classURH__MatchSubsystem_1ac5d211f2d31af98c42373828fad8d86b)`(const FString & MatchId,bool bIgnoreCache,const FRH_OnMatchLookupCompleteDelegateBlock & Delegate)` | Lookup a specific match.
 `public inline bool `[`GetMatch`](#classURH__MatchSubsystem_1a893610997366c15dd53fa65e311ce1b8)`(const FString & MatchId,`[`FRHAPI_MatchWithPlayers`](RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` & OutMatch)` | Lookup a specific match from the cache.
-`public inline const TMap< FString, `[`FRHAPI_MatchWithPlayers`](RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` > & `[`GetAllMatches`](#classURH__MatchSubsystem_1a051681ea68418192d99aaffe1264b258)`() const` | Get all matches from the cache.
+`public inline const TMap< FString, `[`FRHAPI_MatchWithPlayers`](RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` > & `[`GetAllMatches`](#classURH__MatchSubsystem_1aecd554409ff638b16654a427b9569243)`() const` | Get all matches from the cache.
 `public inline void `[`ClearMatchesCache`](#classURH__MatchSubsystem_1abad303e288ec2208c57861a2c449b17b)`()` | Clear the match cache.
 `public virtual void `[`CreateMatch`](#classURH__MatchSubsystem_1a1857cd27251cdd8d7dbb34056214d8be)`(const `[`FRHAPI_MatchRequest`](RHAPI_MatchRequest.md#structFRHAPI__MatchRequest)` & Match,const FRH_OnMatchUpdateCompleteDelegateBlock & Delegate)` | Create a match (POST)
 `public virtual void `[`UpdateMatch`](#classURH__MatchSubsystem_1a3300d745ccd6c04a28a76895dfd7a6fd)`(const FString & MatchId,const `[`FRHAPI_MatchRequest`](RHAPI_MatchRequest.md#structFRHAPI__MatchRequest)` & Match,const FRH_OnMatchUpdateCompleteDelegateBlock & Delegate)` | Update a match (PATCH w/ UPSERT)
@@ -108,7 +108,7 @@ Lookup a specific match.
 
 Lookup a specific match from the cache.
 
-#### `public inline const TMap< FString, `[`FRHAPI_MatchWithPlayers`](RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` > & `[`GetAllMatches`](#classURH__MatchSubsystem_1a051681ea68418192d99aaffe1264b258)`() const` <a id="classURH__MatchSubsystem_1a051681ea68418192d99aaffe1264b258"></a>
+#### `public inline const TMap< FString, `[`FRHAPI_MatchWithPlayers`](RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` > & `[`GetAllMatches`](#classURH__MatchSubsystem_1aecd554409ff638b16654a427b9569243)`() const` <a id="classURH__MatchSubsystem_1aecd554409ff638b16654a427b9569243"></a>
 
 Get all matches from the cache.
 

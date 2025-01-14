@@ -36,77 +36,77 @@ A collection of Price Breakpoints (volume pricing).
 `public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__PricePoint_1a2c2cf9441fff3bd907421bc8ae6c541a) | Cache info for the Price Point.
 `public bool `[`CacheInfo_IsSet`](#structFRHAPI__PricePoint_1a4ae46d4bcca1201ccecbfdde4254e7be) | true if CacheInfo_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__PricePoint_1a7b935b9253c3e11318fb654eb6e7a761)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PricePoint_1ad6d0159e387d5a90070d9a993d39aa44)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PricePoint_1a87ab45f4f394ac693bfb8176bc7a239f)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PricePoint_1a2f2cf1ea9d4f84202af8feb0f81bb47b)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PricePoint_1a75fac3e26f601de30a1bfb5e53d833b2)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public virtual void `[`WriteJson`](#structFRHAPI__PricePoint_1a36ece9e5f6d8f2bbef5a245596f177c9)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PricePoint_1a569bc202cd8d1ce5e5e6b829cd9f93c3)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PricePoint_1a6c32b84d548ca2d463969f4b625d5be0)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PricePoint_1a92030447b7ad5af6f2498700d9069d3d)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetCustomData`](#structFRHAPI__PricePoint_1ae551d3d477542e217d70381427125feb)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PricePoint_1af0bd33eabb2b5aa3e6d32516f6a61bfd)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PricePoint_1a32b7726aa13eed431bcf08aeeb016773)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PricePoint_1a1563e6b753deaccbb3608bed1310e490)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PricePoint_1ad50595fa2a1bb77c1385e0507dc6504f)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetCustomData`](#structFRHAPI__PricePoint_1aa9cfabf1849f694c9ee1b345df907bc7)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`SetCustomData`](#structFRHAPI__PricePoint_1afc73ce91956a5fd60e9766b7a2e0ba16)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__PricePoint_1a3f7a4f2dcc067371645926043b0277f7)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 `public inline bool `[`IsCustomDataSet`](#structFRHAPI__PricePoint_1ab704b9dd5bd9c338f708cae4a6b93588)`() const` | Checks whether CustomData_Optional has been set.
-`public inline FString & `[`GetName`](#structFRHAPI__PricePoint_1a9db967c7703918222c1027295fd5856a)`()` | Gets the value of Name_Optional, regardless of it having been set.
-`public inline const FString & `[`GetName`](#structFRHAPI__PricePoint_1adcb2ae6afe38155283fb9362647e94e5)`() const` | Gets the value of Name_Optional, regardless of it having been set.
-`public inline const FString & `[`GetName`](#structFRHAPI__PricePoint_1abc701b11ceed079e796f8e4b655cc648)`(const FString & DefaultValue) const` | Gets the value of Name_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FString & `[`GetName`](#structFRHAPI__PricePoint_1a0dfdda61399861610371143a0d7b3967)`()` | Gets the value of Name_Optional, regardless of it having been set.
+`public inline const FString & `[`GetName`](#structFRHAPI__PricePoint_1ab82fce5f3e8f2b98370ee187ea48517d)`() const` | Gets the value of Name_Optional, regardless of it having been set.
+`public inline const FString & `[`GetName`](#structFRHAPI__PricePoint_1a63b27cf4957e5aeca25fc2c46633809e)`(const FString & DefaultValue) const` | Gets the value of Name_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetName`](#structFRHAPI__PricePoint_1a0ed342a46a8ab925698a97acc1ba509e)`(FString & OutValue) const` | Fills OutValue with the value of Name_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetNameOrNull`](#structFRHAPI__PricePoint_1a37d3193ab89794e62aa59ee052c42116)`()` | Returns a pointer to Name_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetNameOrNull`](#structFRHAPI__PricePoint_1a506cac06d94fd6a5c254ef0b2bca98d5)`() const` | Returns a pointer to Name_Optional, if it has been set, otherwise returns nullptr.
+`public inline FString * `[`GetNameOrNull`](#structFRHAPI__PricePoint_1aaf241be1a6a0d19a9c1884841278ce43)`()` | Returns a pointer to Name_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetNameOrNull`](#structFRHAPI__PricePoint_1a837968202040e3d74814d3f80c7c9aee)`() const` | Returns a pointer to Name_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetName`](#structFRHAPI__PricePoint_1ae6794b53da8ddcc78b1229b51a4afa3d)`(const FString & NewValue)` | Sets the value of Name_Optional and also sets Name_IsSet to true.
 `public inline void `[`SetName`](#structFRHAPI__PricePoint_1af116f2ea5604952215dbde8cd17547fd)`(FString && NewValue)` | Sets the value of Name_Optional and also sets Name_IsSet to true using move semantics.
 `public inline void `[`ClearName`](#structFRHAPI__PricePoint_1a4925121288f9d0ac7a71ba732997d369)`()` | Clears the value of Name_Optional and sets Name_IsSet to false.
 `public inline bool `[`IsNameSet`](#structFRHAPI__PricePoint_1a91ac1e720e4f3f61e6a50ced57996d75)`() const` | Checks whether Name_Optional has been set.
-`public inline bool & `[`GetStrictFlag`](#structFRHAPI__PricePoint_1a300a6014f050b98ddba1625395eea2b0)`()` | Gets the value of StrictFlag_Optional, regardless of it having been set.
-`public inline const bool & `[`GetStrictFlag`](#structFRHAPI__PricePoint_1a2b82e2cb18ae4137cc1e7bd1896b5c0e)`() const` | Gets the value of StrictFlag_Optional, regardless of it having been set.
-`public inline const bool & `[`GetStrictFlag`](#structFRHAPI__PricePoint_1acba9027e3b18d1274c2eea88893f3c0a)`(const bool & DefaultValue) const` | Gets the value of StrictFlag_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool & `[`GetStrictFlag`](#structFRHAPI__PricePoint_1a59be9e0badb065ac64d61f315c5a6207)`()` | Gets the value of StrictFlag_Optional, regardless of it having been set.
+`public inline const bool & `[`GetStrictFlag`](#structFRHAPI__PricePoint_1accc02759b46c7b5d45521c7c54fb891f)`() const` | Gets the value of StrictFlag_Optional, regardless of it having been set.
+`public inline const bool & `[`GetStrictFlag`](#structFRHAPI__PricePoint_1a1705cec2662b34e43ff9e4b2b1467fe6)`(const bool & DefaultValue) const` | Gets the value of StrictFlag_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetStrictFlag`](#structFRHAPI__PricePoint_1a74c06fb9c6a4f0b5e3638c14f35bb6bb)`(bool & OutValue) const` | Fills OutValue with the value of StrictFlag_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetStrictFlagOrNull`](#structFRHAPI__PricePoint_1addeae056c10c3b04291b7f5599d17456)`()` | Returns a pointer to StrictFlag_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetStrictFlagOrNull`](#structFRHAPI__PricePoint_1a21f18de9878fee28933dea9d55982979)`() const` | Returns a pointer to StrictFlag_Optional, if it has been set, otherwise returns nullptr.
+`public inline bool * `[`GetStrictFlagOrNull`](#structFRHAPI__PricePoint_1a662349cdff087e1fdd50161f925fc13e)`()` | Returns a pointer to StrictFlag_Optional, if it has been set, otherwise returns nullptr.
+`public inline const bool * `[`GetStrictFlagOrNull`](#structFRHAPI__PricePoint_1a347217ce16fa9b8c37ea442bb741037e)`() const` | Returns a pointer to StrictFlag_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetStrictFlag`](#structFRHAPI__PricePoint_1a837f70cbbab3c27773999e8e38c0d595)`(const bool & NewValue)` | Sets the value of StrictFlag_Optional and also sets StrictFlag_IsSet to true.
 `public inline void `[`SetStrictFlag`](#structFRHAPI__PricePoint_1a74bd5da0c978c35f4a95160fabf2fc5b)`(bool && NewValue)` | Sets the value of StrictFlag_Optional and also sets StrictFlag_IsSet to true using move semantics.
 `public inline void `[`ClearStrictFlag`](#structFRHAPI__PricePoint_1a65649a3f6abbc0bd5d1779bb33938bd1)`()` | Clears the value of StrictFlag_Optional and sets StrictFlag_IsSet to false.
 `public inline bool `[`IsStrictFlagSet`](#structFRHAPI__PricePoint_1a160b9a2484dbfebd9f07285a8db4cffa)`() const` | Checks whether StrictFlag_Optional has been set.
 `public inline bool `[`IsStrictFlagDefaultValue`](#structFRHAPI__PricePoint_1ae3b921dee70cd9e0e717953c5fd2fb1d)`() const` | Returns true if StrictFlag_Optional is set and matches the default value.
 `public inline void `[`SetStrictFlagToDefault`](#structFRHAPI__PricePoint_1a37585831994f33ec8e9aa074a60c4a53)`()` | Sets the value of StrictFlag_Optional to its default and also sets StrictFlag_IsSet to true.
-`public inline bool & `[`GetCapFlag`](#structFRHAPI__PricePoint_1a60cd0290f02c4c6801a661d603202ce5)`()` | Gets the value of CapFlag_Optional, regardless of it having been set.
-`public inline const bool & `[`GetCapFlag`](#structFRHAPI__PricePoint_1af17ae8addf4551342a66af028c78affc)`() const` | Gets the value of CapFlag_Optional, regardless of it having been set.
-`public inline const bool & `[`GetCapFlag`](#structFRHAPI__PricePoint_1a8d3a9a05ebdcab3149c2c7a13aead2d6)`(const bool & DefaultValue) const` | Gets the value of CapFlag_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool & `[`GetCapFlag`](#structFRHAPI__PricePoint_1af9f4ac51fe00a4a229aad7017e02cce5)`()` | Gets the value of CapFlag_Optional, regardless of it having been set.
+`public inline const bool & `[`GetCapFlag`](#structFRHAPI__PricePoint_1ad61f64537a215822c1ce750851571a6b)`() const` | Gets the value of CapFlag_Optional, regardless of it having been set.
+`public inline const bool & `[`GetCapFlag`](#structFRHAPI__PricePoint_1a22dd2e44e2dfb960c79d855384b4114b)`(const bool & DefaultValue) const` | Gets the value of CapFlag_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetCapFlag`](#structFRHAPI__PricePoint_1a9b06b65ad6c1755693fa636ce1d284e8)`(bool & OutValue) const` | Fills OutValue with the value of CapFlag_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetCapFlagOrNull`](#structFRHAPI__PricePoint_1a8c45c05e16aaef95edd569bc37faf9aa)`()` | Returns a pointer to CapFlag_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetCapFlagOrNull`](#structFRHAPI__PricePoint_1ab4b2952dc94ccfa5e254839853f44359)`() const` | Returns a pointer to CapFlag_Optional, if it has been set, otherwise returns nullptr.
+`public inline bool * `[`GetCapFlagOrNull`](#structFRHAPI__PricePoint_1a783283fbb59a161fe932bd34b529fb71)`()` | Returns a pointer to CapFlag_Optional, if it has been set, otherwise returns nullptr.
+`public inline const bool * `[`GetCapFlagOrNull`](#structFRHAPI__PricePoint_1a3fc1948bab18a0035ba21c2dcf3ff0a5)`() const` | Returns a pointer to CapFlag_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetCapFlag`](#structFRHAPI__PricePoint_1a5b1057b9d4e94ea182d77008fea4b337)`(const bool & NewValue)` | Sets the value of CapFlag_Optional and also sets CapFlag_IsSet to true.
 `public inline void `[`SetCapFlag`](#structFRHAPI__PricePoint_1a09f901d616bd8541dd27a496048d3cca)`(bool && NewValue)` | Sets the value of CapFlag_Optional and also sets CapFlag_IsSet to true using move semantics.
 `public inline void `[`ClearCapFlag`](#structFRHAPI__PricePoint_1a974656326e5143fe9115c662312af6d7)`()` | Clears the value of CapFlag_Optional and sets CapFlag_IsSet to false.
 `public inline bool `[`IsCapFlagSet`](#structFRHAPI__PricePoint_1a3842cb4d0c7d2590dbfde9b4b96a858a)`() const` | Checks whether CapFlag_Optional has been set.
 `public inline bool `[`IsCapFlagDefaultValue`](#structFRHAPI__PricePoint_1ac7bdd29493de65739abf520023380ced)`() const` | Returns true if CapFlag_Optional is set and matches the default value.
 `public inline void `[`SetCapFlagToDefault`](#structFRHAPI__PricePoint_1a42d6cf3c6484b5845a21ce641736db09)`()` | Sets the value of CapFlag_Optional to its default and also sets CapFlag_IsSet to true.
-`public inline TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & `[`GetCurrentBreakpoints`](#structFRHAPI__PricePoint_1a848c359f3d7c4b072466075aef42b3d1)`()` | Gets the value of CurrentBreakpoints_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & `[`GetCurrentBreakpoints`](#structFRHAPI__PricePoint_1a71fc88b22034cc46afc5b0394afbd6c3)`() const` | Gets the value of CurrentBreakpoints_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & `[`GetCurrentBreakpoints`](#structFRHAPI__PricePoint_1aa507aed8b9d9dad2fe9742e2d083f696)`(const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & DefaultValue) const` | Gets the value of CurrentBreakpoints_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & `[`GetCurrentBreakpoints`](#structFRHAPI__PricePoint_1a3fecafbbfca290ba0edeea986c3d12cf)`()` | Gets the value of CurrentBreakpoints_Optional, regardless of it having been set.
+`public inline const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & `[`GetCurrentBreakpoints`](#structFRHAPI__PricePoint_1a771607ec591a0f4b56656de086f1a64c)`() const` | Gets the value of CurrentBreakpoints_Optional, regardless of it having been set.
+`public inline const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & `[`GetCurrentBreakpoints`](#structFRHAPI__PricePoint_1af366cb934b208fc789594f34faf7cc2f)`(const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & DefaultValue) const` | Gets the value of CurrentBreakpoints_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetCurrentBreakpoints`](#structFRHAPI__PricePoint_1a3f8ef083f62a90d53c3a50f422c867ec)`(TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & OutValue) const` | Fills OutValue with the value of CurrentBreakpoints_Optional and returns true if it has been set, otherwise returns false.
-`public inline TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > * `[`GetCurrentBreakpointsOrNull`](#structFRHAPI__PricePoint_1ab93a1ed21742ddf23f32ecb14ef3c7a3)`()` | Returns a pointer to CurrentBreakpoints_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > * `[`GetCurrentBreakpointsOrNull`](#structFRHAPI__PricePoint_1adb1b1d631ac4107f8fcf418724a03984)`() const` | Returns a pointer to CurrentBreakpoints_Optional, if it has been set, otherwise returns nullptr.
+`public inline TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > * `[`GetCurrentBreakpointsOrNull`](#structFRHAPI__PricePoint_1a8ef8a360f674112dc936e88b5239a960)`()` | Returns a pointer to CurrentBreakpoints_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > * `[`GetCurrentBreakpointsOrNull`](#structFRHAPI__PricePoint_1ade7bb8c875f28f4eaef2fb07924033ed)`() const` | Returns a pointer to CurrentBreakpoints_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetCurrentBreakpoints`](#structFRHAPI__PricePoint_1a04ec10c3b9a69c932955bf094672f4f1)`(const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & NewValue)` | Sets the value of CurrentBreakpoints_Optional and also sets CurrentBreakpoints_IsSet to true.
 `public inline void `[`SetCurrentBreakpoints`](#structFRHAPI__PricePoint_1aa63505a3687bb02702c2283051ade8bd)`(TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > && NewValue)` | Sets the value of CurrentBreakpoints_Optional and also sets CurrentBreakpoints_IsSet to true using move semantics.
 `public inline void `[`ClearCurrentBreakpoints`](#structFRHAPI__PricePoint_1a918866dc41492d878259a899f8555ca6)`()` | Clears the value of CurrentBreakpoints_Optional and sets CurrentBreakpoints_IsSet to false.
 `public inline bool `[`IsCurrentBreakpointsSet`](#structFRHAPI__PricePoint_1a00629650409823ed2b2ec4ace12626aa)`() const` | Checks whether CurrentBreakpoints_Optional has been set.
-`public inline TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & `[`GetPreSaleBreakpoints`](#structFRHAPI__PricePoint_1a6860dab065ced79067e4921708f1b174)`()` | Gets the value of PreSaleBreakpoints_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & `[`GetPreSaleBreakpoints`](#structFRHAPI__PricePoint_1a68751303abe6bf5625bc052b82e275f3)`() const` | Gets the value of PreSaleBreakpoints_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & `[`GetPreSaleBreakpoints`](#structFRHAPI__PricePoint_1aa00675cc156a0732d52ab329b99dcd2a)`(const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & DefaultValue) const` | Gets the value of PreSaleBreakpoints_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & `[`GetPreSaleBreakpoints`](#structFRHAPI__PricePoint_1af47904ba11283bef78f4b7b696ccb763)`()` | Gets the value of PreSaleBreakpoints_Optional, regardless of it having been set.
+`public inline const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & `[`GetPreSaleBreakpoints`](#structFRHAPI__PricePoint_1a3565d32d65ced2f3427299de1978a5e8)`() const` | Gets the value of PreSaleBreakpoints_Optional, regardless of it having been set.
+`public inline const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & `[`GetPreSaleBreakpoints`](#structFRHAPI__PricePoint_1ae91cd55986be52f899b2553d0ee9efca)`(const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & DefaultValue) const` | Gets the value of PreSaleBreakpoints_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetPreSaleBreakpoints`](#structFRHAPI__PricePoint_1a9d06b5909e8e46bf9d44cc54e200e3d2)`(TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & OutValue) const` | Fills OutValue with the value of PreSaleBreakpoints_Optional and returns true if it has been set, otherwise returns false.
-`public inline TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > * `[`GetPreSaleBreakpointsOrNull`](#structFRHAPI__PricePoint_1ac41d42060cdbfd89b631e7f01b7705f4)`()` | Returns a pointer to PreSaleBreakpoints_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > * `[`GetPreSaleBreakpointsOrNull`](#structFRHAPI__PricePoint_1a03d8ca2cabbaf46bc1a4e8b3e64147db)`() const` | Returns a pointer to PreSaleBreakpoints_Optional, if it has been set, otherwise returns nullptr.
+`public inline TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > * `[`GetPreSaleBreakpointsOrNull`](#structFRHAPI__PricePoint_1aaf14b396a05e68e62d669bfbdf5ce2a7)`()` | Returns a pointer to PreSaleBreakpoints_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > * `[`GetPreSaleBreakpointsOrNull`](#structFRHAPI__PricePoint_1a50a837572639c31837b353a76feb9f46)`() const` | Returns a pointer to PreSaleBreakpoints_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetPreSaleBreakpoints`](#structFRHAPI__PricePoint_1a9e7395f82d8853034f934c835c450455)`(const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & NewValue)` | Sets the value of PreSaleBreakpoints_Optional and also sets PreSaleBreakpoints_IsSet to true.
 `public inline void `[`SetPreSaleBreakpoints`](#structFRHAPI__PricePoint_1a13319459276c23ea61836d8ef579a492)`(TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > && NewValue)` | Sets the value of PreSaleBreakpoints_Optional and also sets PreSaleBreakpoints_IsSet to true using move semantics.
 `public inline void `[`ClearPreSaleBreakpoints`](#structFRHAPI__PricePoint_1ab7efa847171a85308ae120274282d731)`()` | Clears the value of PreSaleBreakpoints_Optional and sets PreSaleBreakpoints_IsSet to false.
 `public inline bool `[`IsPreSaleBreakpointsSet`](#structFRHAPI__PricePoint_1abd38741d34dd31250c2de3fd32a8feee)`() const` | Checks whether PreSaleBreakpoints_Optional has been set.
-`public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__PricePoint_1ab9251bec3945f3ab38ab65fa3318a467)`()` | Gets the value of CacheInfo_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__PricePoint_1addb2de5e905ef9f0e96f34aa1ee5ef1b)`() const` | Gets the value of CacheInfo_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__PricePoint_1a70751ecc7adac244ddc77c3fd6707f1f)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` | Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__PricePoint_1ac3c6010be6f11d5ad6b9abeb7c152c2f)`()` | Gets the value of CacheInfo_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__PricePoint_1a8aee7aba8074f144eb4862af4656d763)`() const` | Gets the value of CacheInfo_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__PricePoint_1ad39a732a79859b6b97faa23f617de8e7)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` | Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetCacheInfo`](#structFRHAPI__PricePoint_1a803317f9e1c420480ab226c8190bc7f7)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & OutValue) const` | Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__PricePoint_1ac181662aef5589ee23f93e3a23a2277b)`()` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__PricePoint_1a6ad98a61ef7d51cdc961f24a61e72728)`() const` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__PricePoint_1aa30be6bba264d24df80919e1c3f3d384)`()` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__PricePoint_1a7568ed27bb8158c1be8005e3461fb1b1)`() const` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__PricePoint_1a280020fc411e29c24fc2a082e5d8a646)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__PricePoint_1a6d7a40d99d9fa50adb79db8ad02625d3)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__PricePoint_1a086da727daacd12623284ffb073e7392)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
@@ -180,22 +180,22 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PricePoint_1ad6d0159e387d5a90070d9a993d39aa44)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PricePoint_1ad6d0159e387d5a90070d9a993d39aa44"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PricePoint_1a36ece9e5f6d8f2bbef5a245596f177c9)`(TSharedRef< TJsonWriter<> > & Writer) const` <a id="structFRHAPI__PricePoint_1a36ece9e5f6d8f2bbef5a245596f177c9"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PricePoint_1a87ab45f4f394ac693bfb8176bc7a239f)`()` <a id="structFRHAPI__PricePoint_1a87ab45f4f394ac693bfb8176bc7a239f"></a>
+#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PricePoint_1a569bc202cd8d1ce5e5e6b829cd9f93c3)`()` <a id="structFRHAPI__PricePoint_1a569bc202cd8d1ce5e5e6b829cd9f93c3"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PricePoint_1a2f2cf1ea9d4f84202af8feb0f81bb47b)`() const` <a id="structFRHAPI__PricePoint_1a2f2cf1ea9d4f84202af8feb0f81bb47b"></a>
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PricePoint_1a6c32b84d548ca2d463969f4b625d5be0)`() const` <a id="structFRHAPI__PricePoint_1a6c32b84d548ca2d463969f4b625d5be0"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PricePoint_1a75fac3e26f601de30a1bfb5e53d833b2)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__PricePoint_1a75fac3e26f601de30a1bfb5e53d833b2"></a>
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PricePoint_1a92030447b7ad5af6f2498700d9069d3d)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__PricePoint_1a92030447b7ad5af6f2498700d9069d3d"></a>
 
 Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -203,11 +203,11 @@ Gets the value of CustomData_Optional, if it has been set, otherwise it returns 
 
 Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PricePoint_1af0bd33eabb2b5aa3e6d32516f6a61bfd)`()` <a id="structFRHAPI__PricePoint_1af0bd33eabb2b5aa3e6d32516f6a61bfd"></a>
+#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PricePoint_1a1563e6b753deaccbb3608bed1310e490)`()` <a id="structFRHAPI__PricePoint_1a1563e6b753deaccbb3608bed1310e490"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PricePoint_1a32b7726aa13eed431bcf08aeeb016773)`() const` <a id="structFRHAPI__PricePoint_1a32b7726aa13eed431bcf08aeeb016773"></a>
+#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PricePoint_1ad50595fa2a1bb77c1385e0507dc6504f)`() const` <a id="structFRHAPI__PricePoint_1ad50595fa2a1bb77c1385e0507dc6504f"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
@@ -227,15 +227,15 @@ Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
 Checks whether CustomData_Optional has been set.
 
-#### `public inline FString & `[`GetName`](#structFRHAPI__PricePoint_1a9db967c7703918222c1027295fd5856a)`()` <a id="structFRHAPI__PricePoint_1a9db967c7703918222c1027295fd5856a"></a>
+#### `public inline FString & `[`GetName`](#structFRHAPI__PricePoint_1a0dfdda61399861610371143a0d7b3967)`()` <a id="structFRHAPI__PricePoint_1a0dfdda61399861610371143a0d7b3967"></a>
 
 Gets the value of Name_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetName`](#structFRHAPI__PricePoint_1adcb2ae6afe38155283fb9362647e94e5)`() const` <a id="structFRHAPI__PricePoint_1adcb2ae6afe38155283fb9362647e94e5"></a>
+#### `public inline const FString & `[`GetName`](#structFRHAPI__PricePoint_1ab82fce5f3e8f2b98370ee187ea48517d)`() const` <a id="structFRHAPI__PricePoint_1ab82fce5f3e8f2b98370ee187ea48517d"></a>
 
 Gets the value of Name_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetName`](#structFRHAPI__PricePoint_1abc701b11ceed079e796f8e4b655cc648)`(const FString & DefaultValue) const` <a id="structFRHAPI__PricePoint_1abc701b11ceed079e796f8e4b655cc648"></a>
+#### `public inline const FString & `[`GetName`](#structFRHAPI__PricePoint_1a63b27cf4957e5aeca25fc2c46633809e)`(const FString & DefaultValue) const` <a id="structFRHAPI__PricePoint_1a63b27cf4957e5aeca25fc2c46633809e"></a>
 
 Gets the value of Name_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -243,11 +243,11 @@ Gets the value of Name_Optional, if it has been set, otherwise it returns Defaul
 
 Fills OutValue with the value of Name_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetNameOrNull`](#structFRHAPI__PricePoint_1a37d3193ab89794e62aa59ee052c42116)`()` <a id="structFRHAPI__PricePoint_1a37d3193ab89794e62aa59ee052c42116"></a>
+#### `public inline FString * `[`GetNameOrNull`](#structFRHAPI__PricePoint_1aaf241be1a6a0d19a9c1884841278ce43)`()` <a id="structFRHAPI__PricePoint_1aaf241be1a6a0d19a9c1884841278ce43"></a>
 
 Returns a pointer to Name_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetNameOrNull`](#structFRHAPI__PricePoint_1a506cac06d94fd6a5c254ef0b2bca98d5)`() const` <a id="structFRHAPI__PricePoint_1a506cac06d94fd6a5c254ef0b2bca98d5"></a>
+#### `public inline const FString * `[`GetNameOrNull`](#structFRHAPI__PricePoint_1a837968202040e3d74814d3f80c7c9aee)`() const` <a id="structFRHAPI__PricePoint_1a837968202040e3d74814d3f80c7c9aee"></a>
 
 Returns a pointer to Name_Optional, if it has been set, otherwise returns nullptr.
 
@@ -267,15 +267,15 @@ Clears the value of Name_Optional and sets Name_IsSet to false.
 
 Checks whether Name_Optional has been set.
 
-#### `public inline bool & `[`GetStrictFlag`](#structFRHAPI__PricePoint_1a300a6014f050b98ddba1625395eea2b0)`()` <a id="structFRHAPI__PricePoint_1a300a6014f050b98ddba1625395eea2b0"></a>
+#### `public inline bool & `[`GetStrictFlag`](#structFRHAPI__PricePoint_1a59be9e0badb065ac64d61f315c5a6207)`()` <a id="structFRHAPI__PricePoint_1a59be9e0badb065ac64d61f315c5a6207"></a>
 
 Gets the value of StrictFlag_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetStrictFlag`](#structFRHAPI__PricePoint_1a2b82e2cb18ae4137cc1e7bd1896b5c0e)`() const` <a id="structFRHAPI__PricePoint_1a2b82e2cb18ae4137cc1e7bd1896b5c0e"></a>
+#### `public inline const bool & `[`GetStrictFlag`](#structFRHAPI__PricePoint_1accc02759b46c7b5d45521c7c54fb891f)`() const` <a id="structFRHAPI__PricePoint_1accc02759b46c7b5d45521c7c54fb891f"></a>
 
 Gets the value of StrictFlag_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetStrictFlag`](#structFRHAPI__PricePoint_1acba9027e3b18d1274c2eea88893f3c0a)`(const bool & DefaultValue) const` <a id="structFRHAPI__PricePoint_1acba9027e3b18d1274c2eea88893f3c0a"></a>
+#### `public inline const bool & `[`GetStrictFlag`](#structFRHAPI__PricePoint_1a1705cec2662b34e43ff9e4b2b1467fe6)`(const bool & DefaultValue) const` <a id="structFRHAPI__PricePoint_1a1705cec2662b34e43ff9e4b2b1467fe6"></a>
 
 Gets the value of StrictFlag_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -283,11 +283,11 @@ Gets the value of StrictFlag_Optional, if it has been set, otherwise it returns 
 
 Fills OutValue with the value of StrictFlag_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetStrictFlagOrNull`](#structFRHAPI__PricePoint_1addeae056c10c3b04291b7f5599d17456)`()` <a id="structFRHAPI__PricePoint_1addeae056c10c3b04291b7f5599d17456"></a>
+#### `public inline bool * `[`GetStrictFlagOrNull`](#structFRHAPI__PricePoint_1a662349cdff087e1fdd50161f925fc13e)`()` <a id="structFRHAPI__PricePoint_1a662349cdff087e1fdd50161f925fc13e"></a>
 
 Returns a pointer to StrictFlag_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetStrictFlagOrNull`](#structFRHAPI__PricePoint_1a21f18de9878fee28933dea9d55982979)`() const` <a id="structFRHAPI__PricePoint_1a21f18de9878fee28933dea9d55982979"></a>
+#### `public inline const bool * `[`GetStrictFlagOrNull`](#structFRHAPI__PricePoint_1a347217ce16fa9b8c37ea442bb741037e)`() const` <a id="structFRHAPI__PricePoint_1a347217ce16fa9b8c37ea442bb741037e"></a>
 
 Returns a pointer to StrictFlag_Optional, if it has been set, otherwise returns nullptr.
 
@@ -315,15 +315,15 @@ Returns true if StrictFlag_Optional is set and matches the default value.
 
 Sets the value of StrictFlag_Optional to its default and also sets StrictFlag_IsSet to true.
 
-#### `public inline bool & `[`GetCapFlag`](#structFRHAPI__PricePoint_1a60cd0290f02c4c6801a661d603202ce5)`()` <a id="structFRHAPI__PricePoint_1a60cd0290f02c4c6801a661d603202ce5"></a>
+#### `public inline bool & `[`GetCapFlag`](#structFRHAPI__PricePoint_1af9f4ac51fe00a4a229aad7017e02cce5)`()` <a id="structFRHAPI__PricePoint_1af9f4ac51fe00a4a229aad7017e02cce5"></a>
 
 Gets the value of CapFlag_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetCapFlag`](#structFRHAPI__PricePoint_1af17ae8addf4551342a66af028c78affc)`() const` <a id="structFRHAPI__PricePoint_1af17ae8addf4551342a66af028c78affc"></a>
+#### `public inline const bool & `[`GetCapFlag`](#structFRHAPI__PricePoint_1ad61f64537a215822c1ce750851571a6b)`() const` <a id="structFRHAPI__PricePoint_1ad61f64537a215822c1ce750851571a6b"></a>
 
 Gets the value of CapFlag_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetCapFlag`](#structFRHAPI__PricePoint_1a8d3a9a05ebdcab3149c2c7a13aead2d6)`(const bool & DefaultValue) const` <a id="structFRHAPI__PricePoint_1a8d3a9a05ebdcab3149c2c7a13aead2d6"></a>
+#### `public inline const bool & `[`GetCapFlag`](#structFRHAPI__PricePoint_1a22dd2e44e2dfb960c79d855384b4114b)`(const bool & DefaultValue) const` <a id="structFRHAPI__PricePoint_1a22dd2e44e2dfb960c79d855384b4114b"></a>
 
 Gets the value of CapFlag_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -331,11 +331,11 @@ Gets the value of CapFlag_Optional, if it has been set, otherwise it returns Def
 
 Fills OutValue with the value of CapFlag_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetCapFlagOrNull`](#structFRHAPI__PricePoint_1a8c45c05e16aaef95edd569bc37faf9aa)`()` <a id="structFRHAPI__PricePoint_1a8c45c05e16aaef95edd569bc37faf9aa"></a>
+#### `public inline bool * `[`GetCapFlagOrNull`](#structFRHAPI__PricePoint_1a783283fbb59a161fe932bd34b529fb71)`()` <a id="structFRHAPI__PricePoint_1a783283fbb59a161fe932bd34b529fb71"></a>
 
 Returns a pointer to CapFlag_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetCapFlagOrNull`](#structFRHAPI__PricePoint_1ab4b2952dc94ccfa5e254839853f44359)`() const` <a id="structFRHAPI__PricePoint_1ab4b2952dc94ccfa5e254839853f44359"></a>
+#### `public inline const bool * `[`GetCapFlagOrNull`](#structFRHAPI__PricePoint_1a3fc1948bab18a0035ba21c2dcf3ff0a5)`() const` <a id="structFRHAPI__PricePoint_1a3fc1948bab18a0035ba21c2dcf3ff0a5"></a>
 
 Returns a pointer to CapFlag_Optional, if it has been set, otherwise returns nullptr.
 
@@ -363,15 +363,15 @@ Returns true if CapFlag_Optional is set and matches the default value.
 
 Sets the value of CapFlag_Optional to its default and also sets CapFlag_IsSet to true.
 
-#### `public inline TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & `[`GetCurrentBreakpoints`](#structFRHAPI__PricePoint_1a848c359f3d7c4b072466075aef42b3d1)`()` <a id="structFRHAPI__PricePoint_1a848c359f3d7c4b072466075aef42b3d1"></a>
+#### `public inline TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & `[`GetCurrentBreakpoints`](#structFRHAPI__PricePoint_1a3fecafbbfca290ba0edeea986c3d12cf)`()` <a id="structFRHAPI__PricePoint_1a3fecafbbfca290ba0edeea986c3d12cf"></a>
 
 Gets the value of CurrentBreakpoints_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & `[`GetCurrentBreakpoints`](#structFRHAPI__PricePoint_1a71fc88b22034cc46afc5b0394afbd6c3)`() const` <a id="structFRHAPI__PricePoint_1a71fc88b22034cc46afc5b0394afbd6c3"></a>
+#### `public inline const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & `[`GetCurrentBreakpoints`](#structFRHAPI__PricePoint_1a771607ec591a0f4b56656de086f1a64c)`() const` <a id="structFRHAPI__PricePoint_1a771607ec591a0f4b56656de086f1a64c"></a>
 
 Gets the value of CurrentBreakpoints_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & `[`GetCurrentBreakpoints`](#structFRHAPI__PricePoint_1aa507aed8b9d9dad2fe9742e2d083f696)`(const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & DefaultValue) const` <a id="structFRHAPI__PricePoint_1aa507aed8b9d9dad2fe9742e2d083f696"></a>
+#### `public inline const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & `[`GetCurrentBreakpoints`](#structFRHAPI__PricePoint_1af366cb934b208fc789594f34faf7cc2f)`(const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & DefaultValue) const` <a id="structFRHAPI__PricePoint_1af366cb934b208fc789594f34faf7cc2f"></a>
 
 Gets the value of CurrentBreakpoints_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -379,11 +379,11 @@ Gets the value of CurrentBreakpoints_Optional, if it has been set, otherwise it 
 
 Fills OutValue with the value of CurrentBreakpoints_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > * `[`GetCurrentBreakpointsOrNull`](#structFRHAPI__PricePoint_1ab93a1ed21742ddf23f32ecb14ef3c7a3)`()` <a id="structFRHAPI__PricePoint_1ab93a1ed21742ddf23f32ecb14ef3c7a3"></a>
+#### `public inline TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > * `[`GetCurrentBreakpointsOrNull`](#structFRHAPI__PricePoint_1a8ef8a360f674112dc936e88b5239a960)`()` <a id="structFRHAPI__PricePoint_1a8ef8a360f674112dc936e88b5239a960"></a>
 
 Returns a pointer to CurrentBreakpoints_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > * `[`GetCurrentBreakpointsOrNull`](#structFRHAPI__PricePoint_1adb1b1d631ac4107f8fcf418724a03984)`() const` <a id="structFRHAPI__PricePoint_1adb1b1d631ac4107f8fcf418724a03984"></a>
+#### `public inline const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > * `[`GetCurrentBreakpointsOrNull`](#structFRHAPI__PricePoint_1ade7bb8c875f28f4eaef2fb07924033ed)`() const` <a id="structFRHAPI__PricePoint_1ade7bb8c875f28f4eaef2fb07924033ed"></a>
 
 Returns a pointer to CurrentBreakpoints_Optional, if it has been set, otherwise returns nullptr.
 
@@ -403,15 +403,15 @@ Clears the value of CurrentBreakpoints_Optional and sets CurrentBreakpoints_IsSe
 
 Checks whether CurrentBreakpoints_Optional has been set.
 
-#### `public inline TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & `[`GetPreSaleBreakpoints`](#structFRHAPI__PricePoint_1a6860dab065ced79067e4921708f1b174)`()` <a id="structFRHAPI__PricePoint_1a6860dab065ced79067e4921708f1b174"></a>
+#### `public inline TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & `[`GetPreSaleBreakpoints`](#structFRHAPI__PricePoint_1af47904ba11283bef78f4b7b696ccb763)`()` <a id="structFRHAPI__PricePoint_1af47904ba11283bef78f4b7b696ccb763"></a>
 
 Gets the value of PreSaleBreakpoints_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & `[`GetPreSaleBreakpoints`](#structFRHAPI__PricePoint_1a68751303abe6bf5625bc052b82e275f3)`() const` <a id="structFRHAPI__PricePoint_1a68751303abe6bf5625bc052b82e275f3"></a>
+#### `public inline const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & `[`GetPreSaleBreakpoints`](#structFRHAPI__PricePoint_1a3565d32d65ced2f3427299de1978a5e8)`() const` <a id="structFRHAPI__PricePoint_1a3565d32d65ced2f3427299de1978a5e8"></a>
 
 Gets the value of PreSaleBreakpoints_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & `[`GetPreSaleBreakpoints`](#structFRHAPI__PricePoint_1aa00675cc156a0732d52ab329b99dcd2a)`(const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & DefaultValue) const` <a id="structFRHAPI__PricePoint_1aa00675cc156a0732d52ab329b99dcd2a"></a>
+#### `public inline const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & `[`GetPreSaleBreakpoints`](#structFRHAPI__PricePoint_1ae91cd55986be52f899b2553d0ee9efca)`(const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > & DefaultValue) const` <a id="structFRHAPI__PricePoint_1ae91cd55986be52f899b2553d0ee9efca"></a>
 
 Gets the value of PreSaleBreakpoints_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -419,11 +419,11 @@ Gets the value of PreSaleBreakpoints_Optional, if it has been set, otherwise it 
 
 Fills OutValue with the value of PreSaleBreakpoints_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > * `[`GetPreSaleBreakpointsOrNull`](#structFRHAPI__PricePoint_1ac41d42060cdbfd89b631e7f01b7705f4)`()` <a id="structFRHAPI__PricePoint_1ac41d42060cdbfd89b631e7f01b7705f4"></a>
+#### `public inline TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > * `[`GetPreSaleBreakpointsOrNull`](#structFRHAPI__PricePoint_1aaf14b396a05e68e62d669bfbdf5ce2a7)`()` <a id="structFRHAPI__PricePoint_1aaf14b396a05e68e62d669bfbdf5ce2a7"></a>
 
 Returns a pointer to PreSaleBreakpoints_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > * `[`GetPreSaleBreakpointsOrNull`](#structFRHAPI__PricePoint_1a03d8ca2cabbaf46bc1a4e8b3e64147db)`() const` <a id="structFRHAPI__PricePoint_1a03d8ca2cabbaf46bc1a4e8b3e64147db"></a>
+#### `public inline const TArray< `[`FRHAPI_PriceBreakpoint`](RHAPI_PriceBreakpoint.md#structFRHAPI__PriceBreakpoint)` > * `[`GetPreSaleBreakpointsOrNull`](#structFRHAPI__PricePoint_1a50a837572639c31837b353a76feb9f46)`() const` <a id="structFRHAPI__PricePoint_1a50a837572639c31837b353a76feb9f46"></a>
 
 Returns a pointer to PreSaleBreakpoints_Optional, if it has been set, otherwise returns nullptr.
 
@@ -443,15 +443,15 @@ Clears the value of PreSaleBreakpoints_Optional and sets PreSaleBreakpoints_IsSe
 
 Checks whether PreSaleBreakpoints_Optional has been set.
 
-#### `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__PricePoint_1ab9251bec3945f3ab38ab65fa3318a467)`()` <a id="structFRHAPI__PricePoint_1ab9251bec3945f3ab38ab65fa3318a467"></a>
+#### `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__PricePoint_1ac3c6010be6f11d5ad6b9abeb7c152c2f)`()` <a id="structFRHAPI__PricePoint_1ac3c6010be6f11d5ad6b9abeb7c152c2f"></a>
 
 Gets the value of CacheInfo_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__PricePoint_1addb2de5e905ef9f0e96f34aa1ee5ef1b)`() const` <a id="structFRHAPI__PricePoint_1addb2de5e905ef9f0e96f34aa1ee5ef1b"></a>
+#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__PricePoint_1a8aee7aba8074f144eb4862af4656d763)`() const` <a id="structFRHAPI__PricePoint_1a8aee7aba8074f144eb4862af4656d763"></a>
 
 Gets the value of CacheInfo_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__PricePoint_1a70751ecc7adac244ddc77c3fd6707f1f)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` <a id="structFRHAPI__PricePoint_1a70751ecc7adac244ddc77c3fd6707f1f"></a>
+#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__PricePoint_1ad39a732a79859b6b97faa23f617de8e7)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` <a id="structFRHAPI__PricePoint_1ad39a732a79859b6b97faa23f617de8e7"></a>
 
 Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -459,11 +459,11 @@ Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns D
 
 Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__PricePoint_1ac181662aef5589ee23f93e3a23a2277b)`()` <a id="structFRHAPI__PricePoint_1ac181662aef5589ee23f93e3a23a2277b"></a>
+#### `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__PricePoint_1aa30be6bba264d24df80919e1c3f3d384)`()` <a id="structFRHAPI__PricePoint_1aa30be6bba264d24df80919e1c3f3d384"></a>
 
 Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__PricePoint_1a6ad98a61ef7d51cdc961f24a61e72728)`() const` <a id="structFRHAPI__PricePoint_1a6ad98a61ef7d51cdc961f24a61e72728"></a>
+#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__PricePoint_1a7568ed27bb8158c1be8005e3461fb1b1)`() const` <a id="structFRHAPI__PricePoint_1a7568ed27bb8158c1be8005e3461fb1b1"></a>
 
 Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 

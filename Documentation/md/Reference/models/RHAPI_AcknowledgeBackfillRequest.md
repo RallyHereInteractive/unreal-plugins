@@ -27,37 +27,37 @@ struct FRHAPI_AcknowledgeBackfillRequest
 `public TArray< ERHAPI_BackfillStyle > `[`Styles_Optional`](#structFRHAPI__AcknowledgeBackfillRequest_1abcc0da1618c90d3f0dfa82215e82244b) | The styles of backfill to acknowledge. Can provide multiple for backwards compatibility.
 `public bool `[`Styles_IsSet`](#structFRHAPI__AcknowledgeBackfillRequest_1ac02874af8e3cd2c4e089fc691e3b934b) | true if Styles_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__AcknowledgeBackfillRequest_1a8b9c8ada81a29f5c27373ccdb744f503)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__AcknowledgeBackfillRequest_1a6baa078c6d0820a1edfb087afe3e4e80)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetInstanceId`](#structFRHAPI__AcknowledgeBackfillRequest_1ad8f0beb276ae3c29cf25ee2d0433cc44)`()` | Gets the value of InstanceId.
-`public inline const FString & `[`GetInstanceId`](#structFRHAPI__AcknowledgeBackfillRequest_1a2e8f06f0b393750e7255f8dd6f57ec12)`() const` | Gets the value of InstanceId.
+`public virtual void `[`WriteJson`](#structFRHAPI__AcknowledgeBackfillRequest_1a13bc35665e78e03496cdcbda19e1c989)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline FString & `[`GetInstanceId`](#structFRHAPI__AcknowledgeBackfillRequest_1a800181ff9e0d71b689e7c31a5afa3e93)`()` | Gets the value of InstanceId.
+`public inline const FString & `[`GetInstanceId`](#structFRHAPI__AcknowledgeBackfillRequest_1a09f1b7ca71c6faf0c4c1a3a65d5e20d5)`() const` | Gets the value of InstanceId.
 `public inline void `[`SetInstanceId`](#structFRHAPI__AcknowledgeBackfillRequest_1a1e77362f507a10b54c856c6a16058a9e)`(const FString & NewValue)` | Sets the value of InstanceId.
 `public inline void `[`SetInstanceId`](#structFRHAPI__AcknowledgeBackfillRequest_1a4cad61de7f4469a4de7bca862ec1a216)`(FString && NewValue)` | Sets the value of InstanceId using move semantics.
-`public inline TMap< FString, FString > & `[`GetExtensions`](#structFRHAPI__AcknowledgeBackfillRequest_1a1c659e1b5a491ce224e5e3ceda7b0ad7)`()` | Gets the value of Extensions_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetExtensions`](#structFRHAPI__AcknowledgeBackfillRequest_1ac9896f1d4604dbcaa7c37da0cfc8bbab)`() const` | Gets the value of Extensions_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetExtensions`](#structFRHAPI__AcknowledgeBackfillRequest_1ae7658fe6ae44655ea2b8ff3925d3a65d)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of Extensions_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline TMap< FString, FString > & `[`GetExtensions`](#structFRHAPI__AcknowledgeBackfillRequest_1aeff3697a237672ec2b7cf1c7bee79fe2)`()` | Gets the value of Extensions_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetExtensions`](#structFRHAPI__AcknowledgeBackfillRequest_1a28678d6dd80c024ae5b5b0093d83b1ba)`() const` | Gets the value of Extensions_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetExtensions`](#structFRHAPI__AcknowledgeBackfillRequest_1adc0c0fee2c43d696e086f695beb70b28)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of Extensions_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetExtensions`](#structFRHAPI__AcknowledgeBackfillRequest_1aeab99f0232db3b9a3b059a48c7d7188d)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of Extensions_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, FString > * `[`GetExtensionsOrNull`](#structFRHAPI__AcknowledgeBackfillRequest_1ad441436ad6f13436710c1dd3b73d6ada)`()` | Returns a pointer to Extensions_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, FString > * `[`GetExtensionsOrNull`](#structFRHAPI__AcknowledgeBackfillRequest_1a973415325b0ff1e8707185310a9555c6)`() const` | Returns a pointer to Extensions_Optional, if it has been set, otherwise returns nullptr.
+`public inline TMap< FString, FString > * `[`GetExtensionsOrNull`](#structFRHAPI__AcknowledgeBackfillRequest_1a7ee2c9326f219c31dd5dce3542b4df8b)`()` | Returns a pointer to Extensions_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TMap< FString, FString > * `[`GetExtensionsOrNull`](#structFRHAPI__AcknowledgeBackfillRequest_1a66ea6c9ffde016443082257a4606b865)`() const` | Returns a pointer to Extensions_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetExtensions`](#structFRHAPI__AcknowledgeBackfillRequest_1a4cf8e5df63332b391a6936e2825a9973)`(const TMap< FString, FString > & NewValue)` | Sets the value of Extensions_Optional and also sets Extensions_IsSet to true.
 `public inline void `[`SetExtensions`](#structFRHAPI__AcknowledgeBackfillRequest_1a9e089db08f761932b0193999f500b5ee)`(TMap< FString, FString > && NewValue)` | Sets the value of Extensions_Optional and also sets Extensions_IsSet to true using move semantics.
 `public inline void `[`ClearExtensions`](#structFRHAPI__AcknowledgeBackfillRequest_1ad11a0dcb1f66f153b38c169e1bb0545f)`()` | Clears the value of Extensions_Optional and sets Extensions_IsSet to false.
 `public inline bool `[`IsExtensionsSet`](#structFRHAPI__AcknowledgeBackfillRequest_1a15056fe38655cfb21797bdc34f9f85f6)`() const` | Checks whether Extensions_Optional has been set.
-`public inline ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__AcknowledgeBackfillRequest_1a3ac69be242bef74f6e1783f5ce92d818)`()` | Gets the value of OverflowAction_Optional, regardless of it having been set.
-`public inline const ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__AcknowledgeBackfillRequest_1a35a7aa7357ffee073cfe85bb4edea085)`() const` | Gets the value of OverflowAction_Optional, regardless of it having been set.
-`public inline const ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__AcknowledgeBackfillRequest_1a1d8a1c2ee545ca6178a0cd317784c5c5)`(const ERHAPI_TeamOverflowAction & DefaultValue) const` | Gets the value of OverflowAction_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__AcknowledgeBackfillRequest_1ae553800072cb3881c074fbe79a50a9e5)`()` | Gets the value of OverflowAction_Optional, regardless of it having been set.
+`public inline const ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__AcknowledgeBackfillRequest_1aae69568f946459399daea262d9fe00d6)`() const` | Gets the value of OverflowAction_Optional, regardless of it having been set.
+`public inline const ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__AcknowledgeBackfillRequest_1a0524d6777cef4b1d75db78804e7f2f62)`(const ERHAPI_TeamOverflowAction & DefaultValue) const` | Gets the value of OverflowAction_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetOverflowAction`](#structFRHAPI__AcknowledgeBackfillRequest_1ad82aa0969badd398b3671c38652dde11)`(ERHAPI_TeamOverflowAction & OutValue) const` | Fills OutValue with the value of OverflowAction_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_TeamOverflowAction * `[`GetOverflowActionOrNull`](#structFRHAPI__AcknowledgeBackfillRequest_1aaefae1ea31ecff78371cc9181d755082)`()` | Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_TeamOverflowAction * `[`GetOverflowActionOrNull`](#structFRHAPI__AcknowledgeBackfillRequest_1a26439de08430092f96fcc0f7dfda038f)`() const` | Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr.
+`public inline ERHAPI_TeamOverflowAction * `[`GetOverflowActionOrNull`](#structFRHAPI__AcknowledgeBackfillRequest_1ab5749ac8e4e093d42aa045fff69a41fc)`()` | Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr.
+`public inline const ERHAPI_TeamOverflowAction * `[`GetOverflowActionOrNull`](#structFRHAPI__AcknowledgeBackfillRequest_1ab8db8037d59f8b5bd003ed07b42f683e)`() const` | Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetOverflowAction`](#structFRHAPI__AcknowledgeBackfillRequest_1a8c132cbc79fbf1515167b423399034e8)`(const ERHAPI_TeamOverflowAction & NewValue)` | Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true.
 `public inline void `[`SetOverflowAction`](#structFRHAPI__AcknowledgeBackfillRequest_1a70815419879f49f726601e25d59b656b)`(ERHAPI_TeamOverflowAction && NewValue)` | Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true using move semantics.
 `public inline void `[`ClearOverflowAction`](#structFRHAPI__AcknowledgeBackfillRequest_1a36d183c608e39df827315e3e1b384383)`()` | Clears the value of OverflowAction_Optional and sets OverflowAction_IsSet to false.
 `public inline bool `[`IsOverflowActionSet`](#structFRHAPI__AcknowledgeBackfillRequest_1ad2d9178027f6f018aaaa215f7677954d)`() const` | Checks whether OverflowAction_Optional has been set.
-`public inline TArray< ERHAPI_BackfillStyle > & `[`GetStyles`](#structFRHAPI__AcknowledgeBackfillRequest_1a3ba6d11403a43cd8db6d047bab80fe57)`()` | Gets the value of Styles_Optional, regardless of it having been set.
-`public inline const TArray< ERHAPI_BackfillStyle > & `[`GetStyles`](#structFRHAPI__AcknowledgeBackfillRequest_1ad39874796de12a05c3ba5f59b42f36b6)`() const` | Gets the value of Styles_Optional, regardless of it having been set.
-`public inline const TArray< ERHAPI_BackfillStyle > & `[`GetStyles`](#structFRHAPI__AcknowledgeBackfillRequest_1a6e7d60c8889035542b5dc29473a407c4)`(const TArray< ERHAPI_BackfillStyle > & DefaultValue) const` | Gets the value of Styles_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline TArray< ERHAPI_BackfillStyle > & `[`GetStyles`](#structFRHAPI__AcknowledgeBackfillRequest_1a1b93b8af2ba1e607db9ba39abf4c2c88)`()` | Gets the value of Styles_Optional, regardless of it having been set.
+`public inline const TArray< ERHAPI_BackfillStyle > & `[`GetStyles`](#structFRHAPI__AcknowledgeBackfillRequest_1a5cb8ebcdda4c3a6bcb7bf316ebe67db1)`() const` | Gets the value of Styles_Optional, regardless of it having been set.
+`public inline const TArray< ERHAPI_BackfillStyle > & `[`GetStyles`](#structFRHAPI__AcknowledgeBackfillRequest_1a5017595f6441239f407102654e24c745)`(const TArray< ERHAPI_BackfillStyle > & DefaultValue) const` | Gets the value of Styles_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetStyles`](#structFRHAPI__AcknowledgeBackfillRequest_1a2172da9753fca123b29d744c415706cd)`(TArray< ERHAPI_BackfillStyle > & OutValue) const` | Fills OutValue with the value of Styles_Optional and returns true if it has been set, otherwise returns false.
-`public inline TArray< ERHAPI_BackfillStyle > * `[`GetStylesOrNull`](#structFRHAPI__AcknowledgeBackfillRequest_1a6149b7e3aaa77d52b03b07ca58937880)`()` | Returns a pointer to Styles_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TArray< ERHAPI_BackfillStyle > * `[`GetStylesOrNull`](#structFRHAPI__AcknowledgeBackfillRequest_1aca7f1eda712e365c1a66209e2250f021)`() const` | Returns a pointer to Styles_Optional, if it has been set, otherwise returns nullptr.
+`public inline TArray< ERHAPI_BackfillStyle > * `[`GetStylesOrNull`](#structFRHAPI__AcknowledgeBackfillRequest_1a52c784917b053168f56fdd43c3bbc6d5)`()` | Returns a pointer to Styles_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TArray< ERHAPI_BackfillStyle > * `[`GetStylesOrNull`](#structFRHAPI__AcknowledgeBackfillRequest_1a96776cfaf25da137b51b1924f994a7b2)`() const` | Returns a pointer to Styles_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetStyles`](#structFRHAPI__AcknowledgeBackfillRequest_1a1c71557f5cb9449b81262276259560a4)`(const TArray< ERHAPI_BackfillStyle > & NewValue)` | Sets the value of Styles_Optional and also sets Styles_IsSet to true.
 `public inline void `[`SetStyles`](#structFRHAPI__AcknowledgeBackfillRequest_1a19ee224aec9b5d0552ef2780eee76315)`(TArray< ERHAPI_BackfillStyle > && NewValue)` | Sets the value of Styles_Optional and also sets Styles_IsSet to true using move semantics.
 `public inline void `[`ClearStyles`](#structFRHAPI__AcknowledgeBackfillRequest_1ac31d6fcf9135ca9460eafbc34702160e)`()` | Clears the value of Styles_Optional and sets Styles_IsSet to false.
@@ -103,18 +103,18 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__AcknowledgeBackfillRequest_1a6baa078c6d0820a1edfb087afe3e4e80)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__AcknowledgeBackfillRequest_1a6baa078c6d0820a1edfb087afe3e4e80"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__AcknowledgeBackfillRequest_1a13bc35665e78e03496cdcbda19e1c989)`(TSharedRef< TJsonWriter<> > & Writer) const` <a id="structFRHAPI__AcknowledgeBackfillRequest_1a13bc35665e78e03496cdcbda19e1c989"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetInstanceId`](#structFRHAPI__AcknowledgeBackfillRequest_1ad8f0beb276ae3c29cf25ee2d0433cc44)`()` <a id="structFRHAPI__AcknowledgeBackfillRequest_1ad8f0beb276ae3c29cf25ee2d0433cc44"></a>
+#### `public inline FString & `[`GetInstanceId`](#structFRHAPI__AcknowledgeBackfillRequest_1a800181ff9e0d71b689e7c31a5afa3e93)`()` <a id="structFRHAPI__AcknowledgeBackfillRequest_1a800181ff9e0d71b689e7c31a5afa3e93"></a>
 
 Gets the value of InstanceId.
 
-#### `public inline const FString & `[`GetInstanceId`](#structFRHAPI__AcknowledgeBackfillRequest_1a2e8f06f0b393750e7255f8dd6f57ec12)`() const` <a id="structFRHAPI__AcknowledgeBackfillRequest_1a2e8f06f0b393750e7255f8dd6f57ec12"></a>
+#### `public inline const FString & `[`GetInstanceId`](#structFRHAPI__AcknowledgeBackfillRequest_1a09f1b7ca71c6faf0c4c1a3a65d5e20d5)`() const` <a id="structFRHAPI__AcknowledgeBackfillRequest_1a09f1b7ca71c6faf0c4c1a3a65d5e20d5"></a>
 
 Gets the value of InstanceId.
 
@@ -126,15 +126,15 @@ Sets the value of InstanceId.
 
 Sets the value of InstanceId using move semantics.
 
-#### `public inline TMap< FString, FString > & `[`GetExtensions`](#structFRHAPI__AcknowledgeBackfillRequest_1a1c659e1b5a491ce224e5e3ceda7b0ad7)`()` <a id="structFRHAPI__AcknowledgeBackfillRequest_1a1c659e1b5a491ce224e5e3ceda7b0ad7"></a>
+#### `public inline TMap< FString, FString > & `[`GetExtensions`](#structFRHAPI__AcknowledgeBackfillRequest_1aeff3697a237672ec2b7cf1c7bee79fe2)`()` <a id="structFRHAPI__AcknowledgeBackfillRequest_1aeff3697a237672ec2b7cf1c7bee79fe2"></a>
 
 Gets the value of Extensions_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetExtensions`](#structFRHAPI__AcknowledgeBackfillRequest_1ac9896f1d4604dbcaa7c37da0cfc8bbab)`() const` <a id="structFRHAPI__AcknowledgeBackfillRequest_1ac9896f1d4604dbcaa7c37da0cfc8bbab"></a>
+#### `public inline const TMap< FString, FString > & `[`GetExtensions`](#structFRHAPI__AcknowledgeBackfillRequest_1a28678d6dd80c024ae5b5b0093d83b1ba)`() const` <a id="structFRHAPI__AcknowledgeBackfillRequest_1a28678d6dd80c024ae5b5b0093d83b1ba"></a>
 
 Gets the value of Extensions_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetExtensions`](#structFRHAPI__AcknowledgeBackfillRequest_1ae7658fe6ae44655ea2b8ff3925d3a65d)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__AcknowledgeBackfillRequest_1ae7658fe6ae44655ea2b8ff3925d3a65d"></a>
+#### `public inline const TMap< FString, FString > & `[`GetExtensions`](#structFRHAPI__AcknowledgeBackfillRequest_1adc0c0fee2c43d696e086f695beb70b28)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__AcknowledgeBackfillRequest_1adc0c0fee2c43d696e086f695beb70b28"></a>
 
 Gets the value of Extensions_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -142,11 +142,11 @@ Gets the value of Extensions_Optional, if it has been set, otherwise it returns 
 
 Fills OutValue with the value of Extensions_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, FString > * `[`GetExtensionsOrNull`](#structFRHAPI__AcknowledgeBackfillRequest_1ad441436ad6f13436710c1dd3b73d6ada)`()` <a id="structFRHAPI__AcknowledgeBackfillRequest_1ad441436ad6f13436710c1dd3b73d6ada"></a>
+#### `public inline TMap< FString, FString > * `[`GetExtensionsOrNull`](#structFRHAPI__AcknowledgeBackfillRequest_1a7ee2c9326f219c31dd5dce3542b4df8b)`()` <a id="structFRHAPI__AcknowledgeBackfillRequest_1a7ee2c9326f219c31dd5dce3542b4df8b"></a>
 
 Returns a pointer to Extensions_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, FString > * `[`GetExtensionsOrNull`](#structFRHAPI__AcknowledgeBackfillRequest_1a973415325b0ff1e8707185310a9555c6)`() const` <a id="structFRHAPI__AcknowledgeBackfillRequest_1a973415325b0ff1e8707185310a9555c6"></a>
+#### `public inline const TMap< FString, FString > * `[`GetExtensionsOrNull`](#structFRHAPI__AcknowledgeBackfillRequest_1a66ea6c9ffde016443082257a4606b865)`() const` <a id="structFRHAPI__AcknowledgeBackfillRequest_1a66ea6c9ffde016443082257a4606b865"></a>
 
 Returns a pointer to Extensions_Optional, if it has been set, otherwise returns nullptr.
 
@@ -166,15 +166,15 @@ Clears the value of Extensions_Optional and sets Extensions_IsSet to false.
 
 Checks whether Extensions_Optional has been set.
 
-#### `public inline ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__AcknowledgeBackfillRequest_1a3ac69be242bef74f6e1783f5ce92d818)`()` <a id="structFRHAPI__AcknowledgeBackfillRequest_1a3ac69be242bef74f6e1783f5ce92d818"></a>
+#### `public inline ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__AcknowledgeBackfillRequest_1ae553800072cb3881c074fbe79a50a9e5)`()` <a id="structFRHAPI__AcknowledgeBackfillRequest_1ae553800072cb3881c074fbe79a50a9e5"></a>
 
 Gets the value of OverflowAction_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__AcknowledgeBackfillRequest_1a35a7aa7357ffee073cfe85bb4edea085)`() const` <a id="structFRHAPI__AcknowledgeBackfillRequest_1a35a7aa7357ffee073cfe85bb4edea085"></a>
+#### `public inline const ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__AcknowledgeBackfillRequest_1aae69568f946459399daea262d9fe00d6)`() const` <a id="structFRHAPI__AcknowledgeBackfillRequest_1aae69568f946459399daea262d9fe00d6"></a>
 
 Gets the value of OverflowAction_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__AcknowledgeBackfillRequest_1a1d8a1c2ee545ca6178a0cd317784c5c5)`(const ERHAPI_TeamOverflowAction & DefaultValue) const` <a id="structFRHAPI__AcknowledgeBackfillRequest_1a1d8a1c2ee545ca6178a0cd317784c5c5"></a>
+#### `public inline const ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__AcknowledgeBackfillRequest_1a0524d6777cef4b1d75db78804e7f2f62)`(const ERHAPI_TeamOverflowAction & DefaultValue) const` <a id="structFRHAPI__AcknowledgeBackfillRequest_1a0524d6777cef4b1d75db78804e7f2f62"></a>
 
 Gets the value of OverflowAction_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -182,11 +182,11 @@ Gets the value of OverflowAction_Optional, if it has been set, otherwise it retu
 
 Fills OutValue with the value of OverflowAction_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline ERHAPI_TeamOverflowAction * `[`GetOverflowActionOrNull`](#structFRHAPI__AcknowledgeBackfillRequest_1aaefae1ea31ecff78371cc9181d755082)`()` <a id="structFRHAPI__AcknowledgeBackfillRequest_1aaefae1ea31ecff78371cc9181d755082"></a>
+#### `public inline ERHAPI_TeamOverflowAction * `[`GetOverflowActionOrNull`](#structFRHAPI__AcknowledgeBackfillRequest_1ab5749ac8e4e093d42aa045fff69a41fc)`()` <a id="structFRHAPI__AcknowledgeBackfillRequest_1ab5749ac8e4e093d42aa045fff69a41fc"></a>
 
 Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const ERHAPI_TeamOverflowAction * `[`GetOverflowActionOrNull`](#structFRHAPI__AcknowledgeBackfillRequest_1a26439de08430092f96fcc0f7dfda038f)`() const` <a id="structFRHAPI__AcknowledgeBackfillRequest_1a26439de08430092f96fcc0f7dfda038f"></a>
+#### `public inline const ERHAPI_TeamOverflowAction * `[`GetOverflowActionOrNull`](#structFRHAPI__AcknowledgeBackfillRequest_1ab8db8037d59f8b5bd003ed07b42f683e)`() const` <a id="structFRHAPI__AcknowledgeBackfillRequest_1ab8db8037d59f8b5bd003ed07b42f683e"></a>
 
 Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr.
 
@@ -206,15 +206,15 @@ Clears the value of OverflowAction_Optional and sets OverflowAction_IsSet to fal
 
 Checks whether OverflowAction_Optional has been set.
 
-#### `public inline TArray< ERHAPI_BackfillStyle > & `[`GetStyles`](#structFRHAPI__AcknowledgeBackfillRequest_1a3ba6d11403a43cd8db6d047bab80fe57)`()` <a id="structFRHAPI__AcknowledgeBackfillRequest_1a3ba6d11403a43cd8db6d047bab80fe57"></a>
+#### `public inline TArray< ERHAPI_BackfillStyle > & `[`GetStyles`](#structFRHAPI__AcknowledgeBackfillRequest_1a1b93b8af2ba1e607db9ba39abf4c2c88)`()` <a id="structFRHAPI__AcknowledgeBackfillRequest_1a1b93b8af2ba1e607db9ba39abf4c2c88"></a>
 
 Gets the value of Styles_Optional, regardless of it having been set.
 
-#### `public inline const TArray< ERHAPI_BackfillStyle > & `[`GetStyles`](#structFRHAPI__AcknowledgeBackfillRequest_1ad39874796de12a05c3ba5f59b42f36b6)`() const` <a id="structFRHAPI__AcknowledgeBackfillRequest_1ad39874796de12a05c3ba5f59b42f36b6"></a>
+#### `public inline const TArray< ERHAPI_BackfillStyle > & `[`GetStyles`](#structFRHAPI__AcknowledgeBackfillRequest_1a5cb8ebcdda4c3a6bcb7bf316ebe67db1)`() const` <a id="structFRHAPI__AcknowledgeBackfillRequest_1a5cb8ebcdda4c3a6bcb7bf316ebe67db1"></a>
 
 Gets the value of Styles_Optional, regardless of it having been set.
 
-#### `public inline const TArray< ERHAPI_BackfillStyle > & `[`GetStyles`](#structFRHAPI__AcknowledgeBackfillRequest_1a6e7d60c8889035542b5dc29473a407c4)`(const TArray< ERHAPI_BackfillStyle > & DefaultValue) const` <a id="structFRHAPI__AcknowledgeBackfillRequest_1a6e7d60c8889035542b5dc29473a407c4"></a>
+#### `public inline const TArray< ERHAPI_BackfillStyle > & `[`GetStyles`](#structFRHAPI__AcknowledgeBackfillRequest_1a5017595f6441239f407102654e24c745)`(const TArray< ERHAPI_BackfillStyle > & DefaultValue) const` <a id="structFRHAPI__AcknowledgeBackfillRequest_1a5017595f6441239f407102654e24c745"></a>
 
 Gets the value of Styles_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -222,11 +222,11 @@ Gets the value of Styles_Optional, if it has been set, otherwise it returns Defa
 
 Fills OutValue with the value of Styles_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TArray< ERHAPI_BackfillStyle > * `[`GetStylesOrNull`](#structFRHAPI__AcknowledgeBackfillRequest_1a6149b7e3aaa77d52b03b07ca58937880)`()` <a id="structFRHAPI__AcknowledgeBackfillRequest_1a6149b7e3aaa77d52b03b07ca58937880"></a>
+#### `public inline TArray< ERHAPI_BackfillStyle > * `[`GetStylesOrNull`](#structFRHAPI__AcknowledgeBackfillRequest_1a52c784917b053168f56fdd43c3bbc6d5)`()` <a id="structFRHAPI__AcknowledgeBackfillRequest_1a52c784917b053168f56fdd43c3bbc6d5"></a>
 
 Returns a pointer to Styles_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TArray< ERHAPI_BackfillStyle > * `[`GetStylesOrNull`](#structFRHAPI__AcknowledgeBackfillRequest_1aca7f1eda712e365c1a66209e2250f021)`() const` <a id="structFRHAPI__AcknowledgeBackfillRequest_1aca7f1eda712e365c1a66209e2250f021"></a>
+#### `public inline const TArray< ERHAPI_BackfillStyle > * `[`GetStylesOrNull`](#structFRHAPI__AcknowledgeBackfillRequest_1a96776cfaf25da137b51b1924f994a7b2)`() const` <a id="structFRHAPI__AcknowledgeBackfillRequest_1a96776cfaf25da137b51b1924f994a7b2"></a>
 
 Returns a pointer to Styles_Optional, if it has been set, otherwise returns nullptr.
 

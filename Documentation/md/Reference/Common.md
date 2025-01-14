@@ -303,10 +303,10 @@ class FRH_HttpResponseSerializable
 `public inline virtual FString `[`GetURL`](#classFRH__HttpResponseSerializable_1a8bbd59b07e2418ff8491ff9fec4db46c)`() const` | Get the URL used to send the request.
 `public inline virtual FString `[`GetURLParameter`](#classFRH__HttpResponseSerializable_1a85c1cea844dcefbfcd4b1c7fff2d423a)`(const FString & ParameterName) const` | Gets an URL parameter. expected format is ?Key=Value&Key=Value... If that format is not used, this function will not work.
 `public inline virtual FString `[`GetHeader`](#classFRH__HttpResponseSerializable_1aa76e506d231aa42097c34d2e03dbc8ea)`(const FString & HeaderName) const` | Gets the value of a header, or empty string if not found.
-`public inline virtual TArray< FString > `[`GetAllHeaders`](#classFRH__HttpResponseSerializable_1aa1c8580d6fdef29f315eed78ac5ee625)`() const` | Return all headers in an array in "Name: Value" format.
+`public inline virtual TArray< FString > `[`GetAllHeaders`](#classFRH__HttpResponseSerializable_1a341b62cdae3a6277b9d4cd8856c48d9e)`() const` | Return all headers in an array in "Name: Value" format.
 `public inline virtual FString `[`GetContentType`](#classFRH__HttpResponseSerializable_1a069d0192e6ed8cd119f51bcfa399e140)`() const` | Shortcut to get the Content-Type header value (if available)
 `public inline virtual uint64 `[`GetContentLength`](#classFRH__HttpResponseSerializable_1a87eb6b183a194faa8575eb96b242807f)`() const` | Shortcut to get the Content-Length header value. Will not always return non-zero. If you want the real length of the payload, get the payload and check it's length.
-`public inline virtual const TArray< uint8 > & `[`GetContent`](#classFRH__HttpResponseSerializable_1aafa53c53adb52fff11b057a50332b648)`() const` | Get the content payload of the request or response.
+`public inline virtual const TArray< uint8 > & `[`GetContent`](#classFRH__HttpResponseSerializable_1a5096f19c497a4caa34ba2cdeded77747)`() const` | Get the content payload of the request or response.
 `protected int32 `[`ResponseCode`](#classFRH__HttpResponseSerializable_1a683c80f16031c7964a8dc727a320ffa4) | The http response code.
 `protected FString `[`URL`](#classFRH__HttpResponseSerializable_1ab2971457cd7442e9a5b05a9f8d69b381) | The URL used to send the request.
 `protected TMap< FString, FString > `[`URLParameters`](#classFRH__HttpResponseSerializable_1ab1253ad3493ed1b0b5d9e8af87085668) | The URL parameters for the request.
@@ -388,7 +388,7 @@ Gets the value of a header, or empty string if not found.
 #### Parameters
 * `HeaderName` - name of the header to set.
 
-#### `public inline virtual TArray< FString > `[`GetAllHeaders`](#classFRH__HttpResponseSerializable_1aa1c8580d6fdef29f315eed78ac5ee625)`() const` <a id="classFRH__HttpResponseSerializable_1aa1c8580d6fdef29f315eed78ac5ee625"></a>
+#### `public inline virtual TArray< FString > `[`GetAllHeaders`](#classFRH__HttpResponseSerializable_1a341b62cdae3a6277b9d4cd8856c48d9e)`() const` <a id="classFRH__HttpResponseSerializable_1a341b62cdae3a6277b9d4cd8856c48d9e"></a>
 
 Return all headers in an array in "Name: Value" format.
 
@@ -409,7 +409,7 @@ Shortcut to get the Content-Length header value. Will not always return non-zero
 #### Returns
 the content length (if available)
 
-#### `public inline virtual const TArray< uint8 > & `[`GetContent`](#classFRH__HttpResponseSerializable_1aafa53c53adb52fff11b057a50332b648)`() const` <a id="classFRH__HttpResponseSerializable_1aafa53c53adb52fff11b057a50332b648"></a>
+#### `public inline virtual const TArray< uint8 > & `[`GetContent`](#classFRH__HttpResponseSerializable_1a5096f19c497a4caa34ba2cdeded77747)`() const` <a id="classFRH__HttpResponseSerializable_1a5096f19c497a4caa34ba2cdeded77747"></a>
 
 Get the content payload of the request or response.
 

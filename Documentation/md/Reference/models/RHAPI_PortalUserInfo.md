@@ -28,29 +28,29 @@ Portal user info.
 `public ERHAPI_DeviceType `[`DeviceType_Optional`](#structFRHAPI__PortalUserInfo_1aa45110e5fcd50bfaf310fcec1caa6a77) | Platform-verified device type of the login.
 `public bool `[`DeviceType_IsSet`](#structFRHAPI__PortalUserInfo_1a9048188b2de7d1fd40a98a21f30e99d4) | true if DeviceType_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__PortalUserInfo_1a0ca5098c9ceb1d32639907161ac5dc8c)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PortalUserInfo_1aa48113211a257428d7a48cdcd56424eb)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PortalUserInfo_1a3f453744df9708c61b8d4cbc145eb71a)`()` | Gets the value of Platform.
-`public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PortalUserInfo_1a40e45a21d723e554b55aa7a41b4af6d1)`() const` | Gets the value of Platform.
+`public virtual void `[`WriteJson`](#structFRHAPI__PortalUserInfo_1a359469aa1262b73b44658af2b667dbf5)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PortalUserInfo_1ad41a0d6e99e2d82c6fdf761ac93e3936)`()` | Gets the value of Platform.
+`public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PortalUserInfo_1a76f6dfc3cbeb3911cff00045a3ce53d6)`() const` | Gets the value of Platform.
 `public inline void `[`SetPlatform`](#structFRHAPI__PortalUserInfo_1a44074732910033daa094db3801af9844)`(const ERHAPI_Platform & NewValue)` | Sets the value of Platform.
 `public inline void `[`SetPlatform`](#structFRHAPI__PortalUserInfo_1a61094c7e45f7523129045ea51fd10f66)`(ERHAPI_Platform && NewValue)` | Sets the value of Platform using move semantics.
-`public inline ERHAPI_DependenciesSchemasPortal & `[`GetPortalId`](#structFRHAPI__PortalUserInfo_1a9d1356770916296ce708f009273a37eb)`()` | Gets the value of PortalId.
-`public inline const ERHAPI_DependenciesSchemasPortal & `[`GetPortalId`](#structFRHAPI__PortalUserInfo_1af6f98c6f6ac2cf9e5de6510e2217681a)`() const` | Gets the value of PortalId.
+`public inline ERHAPI_DependenciesSchemasPortal & `[`GetPortalId`](#structFRHAPI__PortalUserInfo_1aabcfcb9a23450baf715f0e796f910b8e)`()` | Gets the value of PortalId.
+`public inline const ERHAPI_DependenciesSchemasPortal & `[`GetPortalId`](#structFRHAPI__PortalUserInfo_1a1aad331e6dc529ef57e8c35ca3107265)`() const` | Gets the value of PortalId.
 `public inline void `[`SetPortalId`](#structFRHAPI__PortalUserInfo_1a4a5ff208210acd2fb87fa780480ab9c9)`(const ERHAPI_DependenciesSchemasPortal & NewValue)` | Sets the value of PortalId.
 `public inline void `[`SetPortalId`](#structFRHAPI__PortalUserInfo_1a5c46064ea43abd217be0f9dd7a08083a)`(ERHAPI_DependenciesSchemasPortal && NewValue)` | Sets the value of PortalId using move semantics.
-`public inline FString & `[`GetPortalUserId`](#structFRHAPI__PortalUserInfo_1a02293533e662c590c4d1434fa698c8e8)`()` | Gets the value of PortalUserId.
-`public inline const FString & `[`GetPortalUserId`](#structFRHAPI__PortalUserInfo_1add30541439590b909bdcff70ceaed762)`() const` | Gets the value of PortalUserId.
+`public inline FString & `[`GetPortalUserId`](#structFRHAPI__PortalUserInfo_1aea9f4496fa8a28c2e41153222905c356)`()` | Gets the value of PortalUserId.
+`public inline const FString & `[`GetPortalUserId`](#structFRHAPI__PortalUserInfo_1aee355d8df70f1c64af4feeeb3f083ee1)`() const` | Gets the value of PortalUserId.
 `public inline void `[`SetPortalUserId`](#structFRHAPI__PortalUserInfo_1a78a2bd60a18f0ad956e631568194185b)`(const FString & NewValue)` | Sets the value of PortalUserId.
 `public inline void `[`SetPortalUserId`](#structFRHAPI__PortalUserInfo_1a57bc630ea606f0e717fa79b2d73e0cb5)`(FString && NewValue)` | Sets the value of PortalUserId using move semantics.
-`public inline FString & `[`GetDisplayName`](#structFRHAPI__PortalUserInfo_1a2db99b60ec4b0ee6d486bfcc92499af1)`()` | Gets the value of DisplayName.
-`public inline const FString & `[`GetDisplayName`](#structFRHAPI__PortalUserInfo_1a3748a4f9b1fe44030fc16bce07e5f092)`() const` | Gets the value of DisplayName.
+`public inline FString & `[`GetDisplayName`](#structFRHAPI__PortalUserInfo_1a6dc192d01c0a0eef9bea5543389fdf08)`()` | Gets the value of DisplayName.
+`public inline const FString & `[`GetDisplayName`](#structFRHAPI__PortalUserInfo_1afc20c3f325d0b68491582847ff000756)`() const` | Gets the value of DisplayName.
 `public inline void `[`SetDisplayName`](#structFRHAPI__PortalUserInfo_1a576242ed5ef69ebd695b8d16224de5e3)`(const FString & NewValue)` | Sets the value of DisplayName.
 `public inline void `[`SetDisplayName`](#structFRHAPI__PortalUserInfo_1a081355b13257ab48967dfe0c9ab8f3c2)`(FString && NewValue)` | Sets the value of DisplayName using move semantics.
-`public inline ERHAPI_DeviceType & `[`GetDeviceType`](#structFRHAPI__PortalUserInfo_1a4d9ccac590f43fd64811b0a4956f3708)`()` | Gets the value of DeviceType_Optional, regardless of it having been set.
-`public inline const ERHAPI_DeviceType & `[`GetDeviceType`](#structFRHAPI__PortalUserInfo_1ad79f3c27099d3377ba79514a4cf51a71)`() const` | Gets the value of DeviceType_Optional, regardless of it having been set.
-`public inline const ERHAPI_DeviceType & `[`GetDeviceType`](#structFRHAPI__PortalUserInfo_1a5a940953bb12bc57e913331c1d39f556)`(const ERHAPI_DeviceType & DefaultValue) const` | Gets the value of DeviceType_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline ERHAPI_DeviceType & `[`GetDeviceType`](#structFRHAPI__PortalUserInfo_1a04c52ad7fae20ca4a8890d7f1a05826c)`()` | Gets the value of DeviceType_Optional, regardless of it having been set.
+`public inline const ERHAPI_DeviceType & `[`GetDeviceType`](#structFRHAPI__PortalUserInfo_1a16bcbd488fa9b69fa1a53685bbf7f13b)`() const` | Gets the value of DeviceType_Optional, regardless of it having been set.
+`public inline const ERHAPI_DeviceType & `[`GetDeviceType`](#structFRHAPI__PortalUserInfo_1a15cd180c25e472b31aa87c9f511a3de3)`(const ERHAPI_DeviceType & DefaultValue) const` | Gets the value of DeviceType_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetDeviceType`](#structFRHAPI__PortalUserInfo_1a576b999330fe1e647e976301d1a112fd)`(ERHAPI_DeviceType & OutValue) const` | Fills OutValue with the value of DeviceType_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_DeviceType * `[`GetDeviceTypeOrNull`](#structFRHAPI__PortalUserInfo_1a9e95e02f876a25e6f6765f9d87aeddc4)`()` | Returns a pointer to DeviceType_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_DeviceType * `[`GetDeviceTypeOrNull`](#structFRHAPI__PortalUserInfo_1a645020c0bf04dee502647b74c1b3d1ca)`() const` | Returns a pointer to DeviceType_Optional, if it has been set, otherwise returns nullptr.
+`public inline ERHAPI_DeviceType * `[`GetDeviceTypeOrNull`](#structFRHAPI__PortalUserInfo_1a7c37f4ae6ac571f798a6b417309851c2)`()` | Returns a pointer to DeviceType_Optional, if it has been set, otherwise returns nullptr.
+`public inline const ERHAPI_DeviceType * `[`GetDeviceTypeOrNull`](#structFRHAPI__PortalUserInfo_1aa4f38a741a70f2ddd2f006dfd4e2a0c6)`() const` | Returns a pointer to DeviceType_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetDeviceType`](#structFRHAPI__PortalUserInfo_1adeaa2b041d684be51b2115c4ca9cc2d2)`(const ERHAPI_DeviceType & NewValue)` | Sets the value of DeviceType_Optional and also sets DeviceType_IsSet to true.
 `public inline void `[`SetDeviceType`](#structFRHAPI__PortalUserInfo_1ada255c5a642eecefb1681dc8957bc847)`(ERHAPI_DeviceType && NewValue)` | Sets the value of DeviceType_Optional and also sets DeviceType_IsSet to true using move semantics.
 `public inline void `[`ClearDeviceType`](#structFRHAPI__PortalUserInfo_1a80537c78f0e6df5473eb5d852fe03c20)`()` | Clears the value of DeviceType_Optional and sets DeviceType_IsSet to false.
@@ -92,18 +92,18 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PortalUserInfo_1aa48113211a257428d7a48cdcd56424eb)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PortalUserInfo_1aa48113211a257428d7a48cdcd56424eb"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PortalUserInfo_1a359469aa1262b73b44658af2b667dbf5)`(TSharedRef< TJsonWriter<> > & Writer) const` <a id="structFRHAPI__PortalUserInfo_1a359469aa1262b73b44658af2b667dbf5"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PortalUserInfo_1a3f453744df9708c61b8d4cbc145eb71a)`()` <a id="structFRHAPI__PortalUserInfo_1a3f453744df9708c61b8d4cbc145eb71a"></a>
+#### `public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PortalUserInfo_1ad41a0d6e99e2d82c6fdf761ac93e3936)`()` <a id="structFRHAPI__PortalUserInfo_1ad41a0d6e99e2d82c6fdf761ac93e3936"></a>
 
 Gets the value of Platform.
 
-#### `public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PortalUserInfo_1a40e45a21d723e554b55aa7a41b4af6d1)`() const` <a id="structFRHAPI__PortalUserInfo_1a40e45a21d723e554b55aa7a41b4af6d1"></a>
+#### `public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PortalUserInfo_1a76f6dfc3cbeb3911cff00045a3ce53d6)`() const` <a id="structFRHAPI__PortalUserInfo_1a76f6dfc3cbeb3911cff00045a3ce53d6"></a>
 
 Gets the value of Platform.
 
@@ -115,11 +115,11 @@ Sets the value of Platform.
 
 Sets the value of Platform using move semantics.
 
-#### `public inline ERHAPI_DependenciesSchemasPortal & `[`GetPortalId`](#structFRHAPI__PortalUserInfo_1a9d1356770916296ce708f009273a37eb)`()` <a id="structFRHAPI__PortalUserInfo_1a9d1356770916296ce708f009273a37eb"></a>
+#### `public inline ERHAPI_DependenciesSchemasPortal & `[`GetPortalId`](#structFRHAPI__PortalUserInfo_1aabcfcb9a23450baf715f0e796f910b8e)`()` <a id="structFRHAPI__PortalUserInfo_1aabcfcb9a23450baf715f0e796f910b8e"></a>
 
 Gets the value of PortalId.
 
-#### `public inline const ERHAPI_DependenciesSchemasPortal & `[`GetPortalId`](#structFRHAPI__PortalUserInfo_1af6f98c6f6ac2cf9e5de6510e2217681a)`() const` <a id="structFRHAPI__PortalUserInfo_1af6f98c6f6ac2cf9e5de6510e2217681a"></a>
+#### `public inline const ERHAPI_DependenciesSchemasPortal & `[`GetPortalId`](#structFRHAPI__PortalUserInfo_1a1aad331e6dc529ef57e8c35ca3107265)`() const` <a id="structFRHAPI__PortalUserInfo_1a1aad331e6dc529ef57e8c35ca3107265"></a>
 
 Gets the value of PortalId.
 
@@ -131,11 +131,11 @@ Sets the value of PortalId.
 
 Sets the value of PortalId using move semantics.
 
-#### `public inline FString & `[`GetPortalUserId`](#structFRHAPI__PortalUserInfo_1a02293533e662c590c4d1434fa698c8e8)`()` <a id="structFRHAPI__PortalUserInfo_1a02293533e662c590c4d1434fa698c8e8"></a>
+#### `public inline FString & `[`GetPortalUserId`](#structFRHAPI__PortalUserInfo_1aea9f4496fa8a28c2e41153222905c356)`()` <a id="structFRHAPI__PortalUserInfo_1aea9f4496fa8a28c2e41153222905c356"></a>
 
 Gets the value of PortalUserId.
 
-#### `public inline const FString & `[`GetPortalUserId`](#structFRHAPI__PortalUserInfo_1add30541439590b909bdcff70ceaed762)`() const` <a id="structFRHAPI__PortalUserInfo_1add30541439590b909bdcff70ceaed762"></a>
+#### `public inline const FString & `[`GetPortalUserId`](#structFRHAPI__PortalUserInfo_1aee355d8df70f1c64af4feeeb3f083ee1)`() const` <a id="structFRHAPI__PortalUserInfo_1aee355d8df70f1c64af4feeeb3f083ee1"></a>
 
 Gets the value of PortalUserId.
 
@@ -147,11 +147,11 @@ Sets the value of PortalUserId.
 
 Sets the value of PortalUserId using move semantics.
 
-#### `public inline FString & `[`GetDisplayName`](#structFRHAPI__PortalUserInfo_1a2db99b60ec4b0ee6d486bfcc92499af1)`()` <a id="structFRHAPI__PortalUserInfo_1a2db99b60ec4b0ee6d486bfcc92499af1"></a>
+#### `public inline FString & `[`GetDisplayName`](#structFRHAPI__PortalUserInfo_1a6dc192d01c0a0eef9bea5543389fdf08)`()` <a id="structFRHAPI__PortalUserInfo_1a6dc192d01c0a0eef9bea5543389fdf08"></a>
 
 Gets the value of DisplayName.
 
-#### `public inline const FString & `[`GetDisplayName`](#structFRHAPI__PortalUserInfo_1a3748a4f9b1fe44030fc16bce07e5f092)`() const` <a id="structFRHAPI__PortalUserInfo_1a3748a4f9b1fe44030fc16bce07e5f092"></a>
+#### `public inline const FString & `[`GetDisplayName`](#structFRHAPI__PortalUserInfo_1afc20c3f325d0b68491582847ff000756)`() const` <a id="structFRHAPI__PortalUserInfo_1afc20c3f325d0b68491582847ff000756"></a>
 
 Gets the value of DisplayName.
 
@@ -163,15 +163,15 @@ Sets the value of DisplayName.
 
 Sets the value of DisplayName using move semantics.
 
-#### `public inline ERHAPI_DeviceType & `[`GetDeviceType`](#structFRHAPI__PortalUserInfo_1a4d9ccac590f43fd64811b0a4956f3708)`()` <a id="structFRHAPI__PortalUserInfo_1a4d9ccac590f43fd64811b0a4956f3708"></a>
+#### `public inline ERHAPI_DeviceType & `[`GetDeviceType`](#structFRHAPI__PortalUserInfo_1a04c52ad7fae20ca4a8890d7f1a05826c)`()` <a id="structFRHAPI__PortalUserInfo_1a04c52ad7fae20ca4a8890d7f1a05826c"></a>
 
 Gets the value of DeviceType_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_DeviceType & `[`GetDeviceType`](#structFRHAPI__PortalUserInfo_1ad79f3c27099d3377ba79514a4cf51a71)`() const` <a id="structFRHAPI__PortalUserInfo_1ad79f3c27099d3377ba79514a4cf51a71"></a>
+#### `public inline const ERHAPI_DeviceType & `[`GetDeviceType`](#structFRHAPI__PortalUserInfo_1a16bcbd488fa9b69fa1a53685bbf7f13b)`() const` <a id="structFRHAPI__PortalUserInfo_1a16bcbd488fa9b69fa1a53685bbf7f13b"></a>
 
 Gets the value of DeviceType_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_DeviceType & `[`GetDeviceType`](#structFRHAPI__PortalUserInfo_1a5a940953bb12bc57e913331c1d39f556)`(const ERHAPI_DeviceType & DefaultValue) const` <a id="structFRHAPI__PortalUserInfo_1a5a940953bb12bc57e913331c1d39f556"></a>
+#### `public inline const ERHAPI_DeviceType & `[`GetDeviceType`](#structFRHAPI__PortalUserInfo_1a15cd180c25e472b31aa87c9f511a3de3)`(const ERHAPI_DeviceType & DefaultValue) const` <a id="structFRHAPI__PortalUserInfo_1a15cd180c25e472b31aa87c9f511a3de3"></a>
 
 Gets the value of DeviceType_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -179,11 +179,11 @@ Gets the value of DeviceType_Optional, if it has been set, otherwise it returns 
 
 Fills OutValue with the value of DeviceType_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline ERHAPI_DeviceType * `[`GetDeviceTypeOrNull`](#structFRHAPI__PortalUserInfo_1a9e95e02f876a25e6f6765f9d87aeddc4)`()` <a id="structFRHAPI__PortalUserInfo_1a9e95e02f876a25e6f6765f9d87aeddc4"></a>
+#### `public inline ERHAPI_DeviceType * `[`GetDeviceTypeOrNull`](#structFRHAPI__PortalUserInfo_1a7c37f4ae6ac571f798a6b417309851c2)`()` <a id="structFRHAPI__PortalUserInfo_1a7c37f4ae6ac571f798a6b417309851c2"></a>
 
 Returns a pointer to DeviceType_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const ERHAPI_DeviceType * `[`GetDeviceTypeOrNull`](#structFRHAPI__PortalUserInfo_1a645020c0bf04dee502647b74c1b3d1ca)`() const` <a id="structFRHAPI__PortalUserInfo_1a645020c0bf04dee502647b74c1b3d1ca"></a>
+#### `public inline const ERHAPI_DeviceType * `[`GetDeviceTypeOrNull`](#structFRHAPI__PortalUserInfo_1aa4f38a741a70f2ddd2f006dfd4e2a0c6)`() const` <a id="structFRHAPI__PortalUserInfo_1aa4f38a741a70f2ddd2f006dfd4e2a0c6"></a>
 
 Returns a pointer to DeviceType_Optional, if it has been set, otherwise returns nullptr.
 

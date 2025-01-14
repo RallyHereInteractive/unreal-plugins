@@ -33,55 +33,55 @@ A request body for a player to join a session.
 `public `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` `[`Player_Optional`](#structFRHAPI__CreateOrJoinRequest_1a608e52772ec0d3e177990ac2f34b47bd) | Optional information about player in order to join the new/existing session. V2 version of CreateOrJoin will require this.
 `public bool `[`Player_IsSet`](#structFRHAPI__CreateOrJoinRequest_1a9ad67a1403586151831ec6d857acfc5d) | true if Player_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__CreateOrJoinRequest_1a6aca639fd88b3a1b0b40ddc38ebfa6d4)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__CreateOrJoinRequest_1ab9c86fba70080e9606dcd760bc94f65b)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetClientVersion`](#structFRHAPI__CreateOrJoinRequest_1a2a0bfde7e47b8be26a9cc2ae4efd4e12)`()` | Gets the value of ClientVersion.
-`public inline const FString & `[`GetClientVersion`](#structFRHAPI__CreateOrJoinRequest_1a20cc88e65f0c61d0f1add0ff14fbf68f)`() const` | Gets the value of ClientVersion.
+`public virtual void `[`WriteJson`](#structFRHAPI__CreateOrJoinRequest_1a29a712034027280e86cec2987897fa5d)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline FString & `[`GetClientVersion`](#structFRHAPI__CreateOrJoinRequest_1a71e50de72f13b8b6e3cd8ba21aeea460)`()` | Gets the value of ClientVersion.
+`public inline const FString & `[`GetClientVersion`](#structFRHAPI__CreateOrJoinRequest_1a31e5e583f6887ff7597c4e70fd72c531)`() const` | Gets the value of ClientVersion.
 `public inline void `[`SetClientVersion`](#structFRHAPI__CreateOrJoinRequest_1a00935398599a07b9a1a9033230fd0628)`(const FString & NewValue)` | Sets the value of ClientVersion.
 `public inline void `[`SetClientVersion`](#structFRHAPI__CreateOrJoinRequest_1a9ec859875f5151f770ad734ca64603f7)`(FString && NewValue)` | Sets the value of ClientVersion using move semantics.
-`public inline `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & `[`GetClientSettings`](#structFRHAPI__CreateOrJoinRequest_1a049d06430b3b160c1fe1c12bdb022115)`()` | Gets the value of ClientSettings.
-`public inline const `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & `[`GetClientSettings`](#structFRHAPI__CreateOrJoinRequest_1ad61b06a93f6519bc8daf0e962271aaaf)`() const` | Gets the value of ClientSettings.
+`public inline `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & `[`GetClientSettings`](#structFRHAPI__CreateOrJoinRequest_1a61c87b35ab5f765bc71e4d1bd838224a)`()` | Gets the value of ClientSettings.
+`public inline const `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & `[`GetClientSettings`](#structFRHAPI__CreateOrJoinRequest_1a36ec1c9d98be9a299d5905b9fa30e045)`() const` | Gets the value of ClientSettings.
 `public inline void `[`SetClientSettings`](#structFRHAPI__CreateOrJoinRequest_1ad36fc0c580b823d059a3de83da245588)`(const `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & NewValue)` | Sets the value of ClientSettings.
 `public inline void `[`SetClientSettings`](#structFRHAPI__CreateOrJoinRequest_1a74ce34e9834f6ec9cb66f5f099b93be8)`(`[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` && NewValue)` | Sets the value of ClientSettings using move semantics.
-`public inline `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & `[`GetCrossplayPreferences`](#structFRHAPI__CreateOrJoinRequest_1a5270de1fe88069255f35d642b3c24fb5)`()` | Gets the value of CrossplayPreferences_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & `[`GetCrossplayPreferences`](#structFRHAPI__CreateOrJoinRequest_1afc75ac3be997c1ddd20daedb38373880)`() const` | Gets the value of CrossplayPreferences_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & `[`GetCrossplayPreferences`](#structFRHAPI__CreateOrJoinRequest_1abc2d76686aeabd65ac7fa83b31265b14)`(const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & DefaultValue) const` | Gets the value of CrossplayPreferences_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & `[`GetCrossplayPreferences`](#structFRHAPI__CreateOrJoinRequest_1aa985210e9ead7545346ff801c3072736)`()` | Gets the value of CrossplayPreferences_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & `[`GetCrossplayPreferences`](#structFRHAPI__CreateOrJoinRequest_1a411b3a926d1b9b6fe9abf5d16d75307a)`() const` | Gets the value of CrossplayPreferences_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & `[`GetCrossplayPreferences`](#structFRHAPI__CreateOrJoinRequest_1a18ec5c85615820946cad5c2624c0bd6c)`(const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & DefaultValue) const` | Gets the value of CrossplayPreferences_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetCrossplayPreferences`](#structFRHAPI__CreateOrJoinRequest_1a7b571632c5380077f063e86e12b99e04)`(`[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & OutValue) const` | Fills OutValue with the value of CrossplayPreferences_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` * `[`GetCrossplayPreferencesOrNull`](#structFRHAPI__CreateOrJoinRequest_1a0bbc1ad71150e6e9cb70d6b571ee8572)`()` | Returns a pointer to CrossplayPreferences_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` * `[`GetCrossplayPreferencesOrNull`](#structFRHAPI__CreateOrJoinRequest_1ac8d701cbc79a40d731193d549c9422a8)`() const` | Returns a pointer to CrossplayPreferences_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` * `[`GetCrossplayPreferencesOrNull`](#structFRHAPI__CreateOrJoinRequest_1a55650565a7ca6c5e17fccb54c64e6aa4)`()` | Returns a pointer to CrossplayPreferences_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` * `[`GetCrossplayPreferencesOrNull`](#structFRHAPI__CreateOrJoinRequest_1a4e0efef60bb27b0a810aba9f93da6651)`() const` | Returns a pointer to CrossplayPreferences_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetCrossplayPreferences`](#structFRHAPI__CreateOrJoinRequest_1ac955a55bef4ddfd77f835ea5ff11ec89)`(const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & NewValue)` | Sets the value of CrossplayPreferences_Optional and also sets CrossplayPreferences_IsSet to true.
 `public inline void `[`SetCrossplayPreferences`](#structFRHAPI__CreateOrJoinRequest_1acdf25d4ae8d78b5b20e5c25d3c8e5b17)`(`[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` && NewValue)` | Sets the value of CrossplayPreferences_Optional and also sets CrossplayPreferences_IsSet to true using move semantics.
 `public inline void `[`ClearCrossplayPreferences`](#structFRHAPI__CreateOrJoinRequest_1a70fc9ee692df502c55225790ebc0e170)`()` | Clears the value of CrossplayPreferences_Optional and sets CrossplayPreferences_IsSet to false.
 `public inline bool `[`IsCrossplayPreferencesSet`](#structFRHAPI__CreateOrJoinRequest_1abb78a92166b44807dc32b58ce8fd07ea)`() const` | Checks whether CrossplayPreferences_Optional has been set.
-`public inline FString & `[`GetSessionType`](#structFRHAPI__CreateOrJoinRequest_1a3d1fcb8709ecab86dbefb5bc15e0d765)`()` | Gets the value of SessionType.
-`public inline const FString & `[`GetSessionType`](#structFRHAPI__CreateOrJoinRequest_1aea1b3469d84d803ca5d0f2b6a53cf934)`() const` | Gets the value of SessionType.
+`public inline FString & `[`GetSessionType`](#structFRHAPI__CreateOrJoinRequest_1ad91143ad81cefdc0e66e8b4dbb2b9d10)`()` | Gets the value of SessionType.
+`public inline const FString & `[`GetSessionType`](#structFRHAPI__CreateOrJoinRequest_1a6a85b331acf15fd94439f0fcefb49abe)`() const` | Gets the value of SessionType.
 `public inline void `[`SetSessionType`](#structFRHAPI__CreateOrJoinRequest_1a25f6994aab8c5c553e41e2e0c0e0b2ac)`(const FString & NewValue)` | Sets the value of SessionType.
 `public inline void `[`SetSessionType`](#structFRHAPI__CreateOrJoinRequest_1a574819f050aa6412fc2769a2daee0bb6)`(FString && NewValue)` | Sets the value of SessionType using move semantics.
-`public inline FString & `[`GetPassword`](#structFRHAPI__CreateOrJoinRequest_1a135f8b47beb81d475d6739e41db1a6f4)`()` | Gets the value of Password_Optional, regardless of it having been set.
-`public inline const FString & `[`GetPassword`](#structFRHAPI__CreateOrJoinRequest_1a6a0f95d68183273f2f47a83398f71a63)`() const` | Gets the value of Password_Optional, regardless of it having been set.
-`public inline const FString & `[`GetPassword`](#structFRHAPI__CreateOrJoinRequest_1ae83ce57672c1315e8a9a3a39508d97c9)`(const FString & DefaultValue) const` | Gets the value of Password_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FString & `[`GetPassword`](#structFRHAPI__CreateOrJoinRequest_1abc8f5339b8385f8dfd6fd00156c0183b)`()` | Gets the value of Password_Optional, regardless of it having been set.
+`public inline const FString & `[`GetPassword`](#structFRHAPI__CreateOrJoinRequest_1a255baf8c21a17fa2bba104a323a39c54)`() const` | Gets the value of Password_Optional, regardless of it having been set.
+`public inline const FString & `[`GetPassword`](#structFRHAPI__CreateOrJoinRequest_1a16a52a8b894ead8e2a74f6323b012a74)`(const FString & DefaultValue) const` | Gets the value of Password_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetPassword`](#structFRHAPI__CreateOrJoinRequest_1ae1381921ba5564cb1d8acbe2cf00f4ba)`(FString & OutValue) const` | Fills OutValue with the value of Password_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetPasswordOrNull`](#structFRHAPI__CreateOrJoinRequest_1a74897ff2e939a4713491da0067c4c566)`()` | Returns a pointer to Password_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetPasswordOrNull`](#structFRHAPI__CreateOrJoinRequest_1a10d4c0f19ca104ca2f9b5fceb3daf693)`() const` | Returns a pointer to Password_Optional, if it has been set, otherwise returns nullptr.
+`public inline FString * `[`GetPasswordOrNull`](#structFRHAPI__CreateOrJoinRequest_1ae6dee7d9b9cb885249b69dbd2ee6f343)`()` | Returns a pointer to Password_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetPasswordOrNull`](#structFRHAPI__CreateOrJoinRequest_1a0e482ec31341acfd73ee9bc03adbb44f)`() const` | Returns a pointer to Password_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetPassword`](#structFRHAPI__CreateOrJoinRequest_1aa2acc86b14881f576474862ebeaca1a3)`(const FString & NewValue)` | Sets the value of Password_Optional and also sets Password_IsSet to true.
 `public inline void `[`SetPassword`](#structFRHAPI__CreateOrJoinRequest_1abbdf7d247805cda06df35932aba23152)`(FString && NewValue)` | Sets the value of Password_Optional and also sets Password_IsSet to true using move semantics.
 `public inline void `[`ClearPassword`](#structFRHAPI__CreateOrJoinRequest_1ab87df60fb7763494f1b70d4e6d8bc94b)`()` | Clears the value of Password_Optional and sets Password_IsSet to false.
 `public inline bool `[`IsPasswordSet`](#structFRHAPI__CreateOrJoinRequest_1a5aa1735eb1bc4c73d62348763eeecc61)`() const` | Checks whether Password_Optional has been set.
-`public inline FString & `[`GetRegionId`](#structFRHAPI__CreateOrJoinRequest_1a4020780ff301c28968911639d01ce274)`()` | Gets the value of RegionId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRegionId`](#structFRHAPI__CreateOrJoinRequest_1af448083d16ef762dbbd6947e19bfe359)`() const` | Gets the value of RegionId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRegionId`](#structFRHAPI__CreateOrJoinRequest_1a9b95a11bb3a078317bccb2a1ab409829)`(const FString & DefaultValue) const` | Gets the value of RegionId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FString & `[`GetRegionId`](#structFRHAPI__CreateOrJoinRequest_1a3bbe59f9ee288f016765343b4dd390a2)`()` | Gets the value of RegionId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetRegionId`](#structFRHAPI__CreateOrJoinRequest_1ae8c3bde03ecd7094ad1aa3408998b3a2)`() const` | Gets the value of RegionId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetRegionId`](#structFRHAPI__CreateOrJoinRequest_1a6bf36fbf35f42d44fbca2412411c0f18)`(const FString & DefaultValue) const` | Gets the value of RegionId_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetRegionId`](#structFRHAPI__CreateOrJoinRequest_1acee32c331957deb3f83530fd545bf1fd)`(FString & OutValue) const` | Fills OutValue with the value of RegionId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRegionIdOrNull`](#structFRHAPI__CreateOrJoinRequest_1a2e801541333c59f985192a1b47adb556)`()` | Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRegionIdOrNull`](#structFRHAPI__CreateOrJoinRequest_1a938b82f90787dc74a4c9edaaea80ac86)`() const` | Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FString * `[`GetRegionIdOrNull`](#structFRHAPI__CreateOrJoinRequest_1aa66ed15dfae5802c70a9a7c34f8a6282)`()` | Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetRegionIdOrNull`](#structFRHAPI__CreateOrJoinRequest_1a549b7b11b6de1be3c20316ca55b2fd3a)`() const` | Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetRegionId`](#structFRHAPI__CreateOrJoinRequest_1a700edbfb249cd81573cf88e3027d0725)`(const FString & NewValue)` | Sets the value of RegionId_Optional and also sets RegionId_IsSet to true.
 `public inline void `[`SetRegionId`](#structFRHAPI__CreateOrJoinRequest_1a9afe638538af227a0a88ee3b10948a60)`(FString && NewValue)` | Sets the value of RegionId_Optional and also sets RegionId_IsSet to true using move semantics.
 `public inline void `[`ClearRegionId`](#structFRHAPI__CreateOrJoinRequest_1a24ad2ef9681bc5fd6c0deef62ba7f281)`()` | Clears the value of RegionId_Optional and sets RegionId_IsSet to false.
 `public inline bool `[`IsRegionIdSet`](#structFRHAPI__CreateOrJoinRequest_1a7584e4932858dc49107485385bfd8366)`() const` | Checks whether RegionId_Optional has been set.
-`public inline `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & `[`GetPlayer`](#structFRHAPI__CreateOrJoinRequest_1a2bd467f40eb269bf40ce4c49cc902879)`()` | Gets the value of Player_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & `[`GetPlayer`](#structFRHAPI__CreateOrJoinRequest_1af5e533dafd22d712d8ee3cd5e8954768)`() const` | Gets the value of Player_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & `[`GetPlayer`](#structFRHAPI__CreateOrJoinRequest_1a62699c1b92d15d0a9bfbc8b803aad99b)`(const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & DefaultValue) const` | Gets the value of Player_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & `[`GetPlayer`](#structFRHAPI__CreateOrJoinRequest_1a90a6f3726ca7ad66440bc2e1ff7c55f5)`()` | Gets the value of Player_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & `[`GetPlayer`](#structFRHAPI__CreateOrJoinRequest_1a07bfde8769120cf6c30dc62555895eb3)`() const` | Gets the value of Player_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & `[`GetPlayer`](#structFRHAPI__CreateOrJoinRequest_1a2384745075d1194ba0eeff76383d1c02)`(const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & DefaultValue) const` | Gets the value of Player_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetPlayer`](#structFRHAPI__CreateOrJoinRequest_1a4db162a6eefff961e430395c9fbbee21)`(`[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & OutValue) const` | Fills OutValue with the value of Player_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` * `[`GetPlayerOrNull`](#structFRHAPI__CreateOrJoinRequest_1ad905c068915da3cf833297f131c23485)`()` | Returns a pointer to Player_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` * `[`GetPlayerOrNull`](#structFRHAPI__CreateOrJoinRequest_1af1329c668db4e4ad390a92f49b854b8f)`() const` | Returns a pointer to Player_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` * `[`GetPlayerOrNull`](#structFRHAPI__CreateOrJoinRequest_1a19f02b001ec436f7eb94855d8a493bd3)`()` | Returns a pointer to Player_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` * `[`GetPlayerOrNull`](#structFRHAPI__CreateOrJoinRequest_1af35cbd46374baf777fd0054b1afe7d85)`() const` | Returns a pointer to Player_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetPlayer`](#structFRHAPI__CreateOrJoinRequest_1afe4b1682129f5285b53883ac312e6c67)`(const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & NewValue)` | Sets the value of Player_Optional and also sets Player_IsSet to true.
 `public inline void `[`SetPlayer`](#structFRHAPI__CreateOrJoinRequest_1a7e6f036ef4266f6d30fe16db0d2bd0e1)`(`[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` && NewValue)` | Sets the value of Player_Optional and also sets Player_IsSet to true using move semantics.
 `public inline void `[`ClearPlayer`](#structFRHAPI__CreateOrJoinRequest_1a3714ab0adfecec9485860c63165f7977)`()` | Clears the value of Player_Optional and sets Player_IsSet to false.
@@ -143,18 +143,18 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__CreateOrJoinRequest_1ab9c86fba70080e9606dcd760bc94f65b)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__CreateOrJoinRequest_1ab9c86fba70080e9606dcd760bc94f65b"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__CreateOrJoinRequest_1a29a712034027280e86cec2987897fa5d)`(TSharedRef< TJsonWriter<> > & Writer) const` <a id="structFRHAPI__CreateOrJoinRequest_1a29a712034027280e86cec2987897fa5d"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetClientVersion`](#structFRHAPI__CreateOrJoinRequest_1a2a0bfde7e47b8be26a9cc2ae4efd4e12)`()` <a id="structFRHAPI__CreateOrJoinRequest_1a2a0bfde7e47b8be26a9cc2ae4efd4e12"></a>
+#### `public inline FString & `[`GetClientVersion`](#structFRHAPI__CreateOrJoinRequest_1a71e50de72f13b8b6e3cd8ba21aeea460)`()` <a id="structFRHAPI__CreateOrJoinRequest_1a71e50de72f13b8b6e3cd8ba21aeea460"></a>
 
 Gets the value of ClientVersion.
 
-#### `public inline const FString & `[`GetClientVersion`](#structFRHAPI__CreateOrJoinRequest_1a20cc88e65f0c61d0f1add0ff14fbf68f)`() const` <a id="structFRHAPI__CreateOrJoinRequest_1a20cc88e65f0c61d0f1add0ff14fbf68f"></a>
+#### `public inline const FString & `[`GetClientVersion`](#structFRHAPI__CreateOrJoinRequest_1a31e5e583f6887ff7597c4e70fd72c531)`() const` <a id="structFRHAPI__CreateOrJoinRequest_1a31e5e583f6887ff7597c4e70fd72c531"></a>
 
 Gets the value of ClientVersion.
 
@@ -166,11 +166,11 @@ Sets the value of ClientVersion.
 
 Sets the value of ClientVersion using move semantics.
 
-#### `public inline `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & `[`GetClientSettings`](#structFRHAPI__CreateOrJoinRequest_1a049d06430b3b160c1fe1c12bdb022115)`()` <a id="structFRHAPI__CreateOrJoinRequest_1a049d06430b3b160c1fe1c12bdb022115"></a>
+#### `public inline `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & `[`GetClientSettings`](#structFRHAPI__CreateOrJoinRequest_1a61c87b35ab5f765bc71e4d1bd838224a)`()` <a id="structFRHAPI__CreateOrJoinRequest_1a61c87b35ab5f765bc71e4d1bd838224a"></a>
 
 Gets the value of ClientSettings.
 
-#### `public inline const `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & `[`GetClientSettings`](#structFRHAPI__CreateOrJoinRequest_1ad61b06a93f6519bc8daf0e962271aaaf)`() const` <a id="structFRHAPI__CreateOrJoinRequest_1ad61b06a93f6519bc8daf0e962271aaaf"></a>
+#### `public inline const `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & `[`GetClientSettings`](#structFRHAPI__CreateOrJoinRequest_1a36ec1c9d98be9a299d5905b9fa30e045)`() const` <a id="structFRHAPI__CreateOrJoinRequest_1a36ec1c9d98be9a299d5905b9fa30e045"></a>
 
 Gets the value of ClientSettings.
 
@@ -182,15 +182,15 @@ Sets the value of ClientSettings.
 
 Sets the value of ClientSettings using move semantics.
 
-#### `public inline `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & `[`GetCrossplayPreferences`](#structFRHAPI__CreateOrJoinRequest_1a5270de1fe88069255f35d642b3c24fb5)`()` <a id="structFRHAPI__CreateOrJoinRequest_1a5270de1fe88069255f35d642b3c24fb5"></a>
+#### `public inline `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & `[`GetCrossplayPreferences`](#structFRHAPI__CreateOrJoinRequest_1aa985210e9ead7545346ff801c3072736)`()` <a id="structFRHAPI__CreateOrJoinRequest_1aa985210e9ead7545346ff801c3072736"></a>
 
 Gets the value of CrossplayPreferences_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & `[`GetCrossplayPreferences`](#structFRHAPI__CreateOrJoinRequest_1afc75ac3be997c1ddd20daedb38373880)`() const` <a id="structFRHAPI__CreateOrJoinRequest_1afc75ac3be997c1ddd20daedb38373880"></a>
+#### `public inline const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & `[`GetCrossplayPreferences`](#structFRHAPI__CreateOrJoinRequest_1a411b3a926d1b9b6fe9abf5d16d75307a)`() const` <a id="structFRHAPI__CreateOrJoinRequest_1a411b3a926d1b9b6fe9abf5d16d75307a"></a>
 
 Gets the value of CrossplayPreferences_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & `[`GetCrossplayPreferences`](#structFRHAPI__CreateOrJoinRequest_1abc2d76686aeabd65ac7fa83b31265b14)`(const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & DefaultValue) const` <a id="structFRHAPI__CreateOrJoinRequest_1abc2d76686aeabd65ac7fa83b31265b14"></a>
+#### `public inline const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & `[`GetCrossplayPreferences`](#structFRHAPI__CreateOrJoinRequest_1a18ec5c85615820946cad5c2624c0bd6c)`(const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & DefaultValue) const` <a id="structFRHAPI__CreateOrJoinRequest_1a18ec5c85615820946cad5c2624c0bd6c"></a>
 
 Gets the value of CrossplayPreferences_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -198,11 +198,11 @@ Gets the value of CrossplayPreferences_Optional, if it has been set, otherwise i
 
 Fills OutValue with the value of CrossplayPreferences_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` * `[`GetCrossplayPreferencesOrNull`](#structFRHAPI__CreateOrJoinRequest_1a0bbc1ad71150e6e9cb70d6b571ee8572)`()` <a id="structFRHAPI__CreateOrJoinRequest_1a0bbc1ad71150e6e9cb70d6b571ee8572"></a>
+#### `public inline `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` * `[`GetCrossplayPreferencesOrNull`](#structFRHAPI__CreateOrJoinRequest_1a55650565a7ca6c5e17fccb54c64e6aa4)`()` <a id="structFRHAPI__CreateOrJoinRequest_1a55650565a7ca6c5e17fccb54c64e6aa4"></a>
 
 Returns a pointer to CrossplayPreferences_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` * `[`GetCrossplayPreferencesOrNull`](#structFRHAPI__CreateOrJoinRequest_1ac8d701cbc79a40d731193d549c9422a8)`() const` <a id="structFRHAPI__CreateOrJoinRequest_1ac8d701cbc79a40d731193d549c9422a8"></a>
+#### `public inline const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` * `[`GetCrossplayPreferencesOrNull`](#structFRHAPI__CreateOrJoinRequest_1a4e0efef60bb27b0a810aba9f93da6651)`() const` <a id="structFRHAPI__CreateOrJoinRequest_1a4e0efef60bb27b0a810aba9f93da6651"></a>
 
 Returns a pointer to CrossplayPreferences_Optional, if it has been set, otherwise returns nullptr.
 
@@ -222,11 +222,11 @@ Clears the value of CrossplayPreferences_Optional and sets CrossplayPreferences_
 
 Checks whether CrossplayPreferences_Optional has been set.
 
-#### `public inline FString & `[`GetSessionType`](#structFRHAPI__CreateOrJoinRequest_1a3d1fcb8709ecab86dbefb5bc15e0d765)`()` <a id="structFRHAPI__CreateOrJoinRequest_1a3d1fcb8709ecab86dbefb5bc15e0d765"></a>
+#### `public inline FString & `[`GetSessionType`](#structFRHAPI__CreateOrJoinRequest_1ad91143ad81cefdc0e66e8b4dbb2b9d10)`()` <a id="structFRHAPI__CreateOrJoinRequest_1ad91143ad81cefdc0e66e8b4dbb2b9d10"></a>
 
 Gets the value of SessionType.
 
-#### `public inline const FString & `[`GetSessionType`](#structFRHAPI__CreateOrJoinRequest_1aea1b3469d84d803ca5d0f2b6a53cf934)`() const` <a id="structFRHAPI__CreateOrJoinRequest_1aea1b3469d84d803ca5d0f2b6a53cf934"></a>
+#### `public inline const FString & `[`GetSessionType`](#structFRHAPI__CreateOrJoinRequest_1a6a85b331acf15fd94439f0fcefb49abe)`() const` <a id="structFRHAPI__CreateOrJoinRequest_1a6a85b331acf15fd94439f0fcefb49abe"></a>
 
 Gets the value of SessionType.
 
@@ -238,15 +238,15 @@ Sets the value of SessionType.
 
 Sets the value of SessionType using move semantics.
 
-#### `public inline FString & `[`GetPassword`](#structFRHAPI__CreateOrJoinRequest_1a135f8b47beb81d475d6739e41db1a6f4)`()` <a id="structFRHAPI__CreateOrJoinRequest_1a135f8b47beb81d475d6739e41db1a6f4"></a>
+#### `public inline FString & `[`GetPassword`](#structFRHAPI__CreateOrJoinRequest_1abc8f5339b8385f8dfd6fd00156c0183b)`()` <a id="structFRHAPI__CreateOrJoinRequest_1abc8f5339b8385f8dfd6fd00156c0183b"></a>
 
 Gets the value of Password_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetPassword`](#structFRHAPI__CreateOrJoinRequest_1a6a0f95d68183273f2f47a83398f71a63)`() const` <a id="structFRHAPI__CreateOrJoinRequest_1a6a0f95d68183273f2f47a83398f71a63"></a>
+#### `public inline const FString & `[`GetPassword`](#structFRHAPI__CreateOrJoinRequest_1a255baf8c21a17fa2bba104a323a39c54)`() const` <a id="structFRHAPI__CreateOrJoinRequest_1a255baf8c21a17fa2bba104a323a39c54"></a>
 
 Gets the value of Password_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetPassword`](#structFRHAPI__CreateOrJoinRequest_1ae83ce57672c1315e8a9a3a39508d97c9)`(const FString & DefaultValue) const` <a id="structFRHAPI__CreateOrJoinRequest_1ae83ce57672c1315e8a9a3a39508d97c9"></a>
+#### `public inline const FString & `[`GetPassword`](#structFRHAPI__CreateOrJoinRequest_1a16a52a8b894ead8e2a74f6323b012a74)`(const FString & DefaultValue) const` <a id="structFRHAPI__CreateOrJoinRequest_1a16a52a8b894ead8e2a74f6323b012a74"></a>
 
 Gets the value of Password_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -254,11 +254,11 @@ Gets the value of Password_Optional, if it has been set, otherwise it returns De
 
 Fills OutValue with the value of Password_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetPasswordOrNull`](#structFRHAPI__CreateOrJoinRequest_1a74897ff2e939a4713491da0067c4c566)`()` <a id="structFRHAPI__CreateOrJoinRequest_1a74897ff2e939a4713491da0067c4c566"></a>
+#### `public inline FString * `[`GetPasswordOrNull`](#structFRHAPI__CreateOrJoinRequest_1ae6dee7d9b9cb885249b69dbd2ee6f343)`()` <a id="structFRHAPI__CreateOrJoinRequest_1ae6dee7d9b9cb885249b69dbd2ee6f343"></a>
 
 Returns a pointer to Password_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetPasswordOrNull`](#structFRHAPI__CreateOrJoinRequest_1a10d4c0f19ca104ca2f9b5fceb3daf693)`() const` <a id="structFRHAPI__CreateOrJoinRequest_1a10d4c0f19ca104ca2f9b5fceb3daf693"></a>
+#### `public inline const FString * `[`GetPasswordOrNull`](#structFRHAPI__CreateOrJoinRequest_1a0e482ec31341acfd73ee9bc03adbb44f)`() const` <a id="structFRHAPI__CreateOrJoinRequest_1a0e482ec31341acfd73ee9bc03adbb44f"></a>
 
 Returns a pointer to Password_Optional, if it has been set, otherwise returns nullptr.
 
@@ -278,15 +278,15 @@ Clears the value of Password_Optional and sets Password_IsSet to false.
 
 Checks whether Password_Optional has been set.
 
-#### `public inline FString & `[`GetRegionId`](#structFRHAPI__CreateOrJoinRequest_1a4020780ff301c28968911639d01ce274)`()` <a id="structFRHAPI__CreateOrJoinRequest_1a4020780ff301c28968911639d01ce274"></a>
+#### `public inline FString & `[`GetRegionId`](#structFRHAPI__CreateOrJoinRequest_1a3bbe59f9ee288f016765343b4dd390a2)`()` <a id="structFRHAPI__CreateOrJoinRequest_1a3bbe59f9ee288f016765343b4dd390a2"></a>
 
 Gets the value of RegionId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRegionId`](#structFRHAPI__CreateOrJoinRequest_1af448083d16ef762dbbd6947e19bfe359)`() const` <a id="structFRHAPI__CreateOrJoinRequest_1af448083d16ef762dbbd6947e19bfe359"></a>
+#### `public inline const FString & `[`GetRegionId`](#structFRHAPI__CreateOrJoinRequest_1ae8c3bde03ecd7094ad1aa3408998b3a2)`() const` <a id="structFRHAPI__CreateOrJoinRequest_1ae8c3bde03ecd7094ad1aa3408998b3a2"></a>
 
 Gets the value of RegionId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRegionId`](#structFRHAPI__CreateOrJoinRequest_1a9b95a11bb3a078317bccb2a1ab409829)`(const FString & DefaultValue) const` <a id="structFRHAPI__CreateOrJoinRequest_1a9b95a11bb3a078317bccb2a1ab409829"></a>
+#### `public inline const FString & `[`GetRegionId`](#structFRHAPI__CreateOrJoinRequest_1a6bf36fbf35f42d44fbca2412411c0f18)`(const FString & DefaultValue) const` <a id="structFRHAPI__CreateOrJoinRequest_1a6bf36fbf35f42d44fbca2412411c0f18"></a>
 
 Gets the value of RegionId_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -294,11 +294,11 @@ Gets the value of RegionId_Optional, if it has been set, otherwise it returns De
 
 Fills OutValue with the value of RegionId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRegionIdOrNull`](#structFRHAPI__CreateOrJoinRequest_1a2e801541333c59f985192a1b47adb556)`()` <a id="structFRHAPI__CreateOrJoinRequest_1a2e801541333c59f985192a1b47adb556"></a>
+#### `public inline FString * `[`GetRegionIdOrNull`](#structFRHAPI__CreateOrJoinRequest_1aa66ed15dfae5802c70a9a7c34f8a6282)`()` <a id="structFRHAPI__CreateOrJoinRequest_1aa66ed15dfae5802c70a9a7c34f8a6282"></a>
 
 Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRegionIdOrNull`](#structFRHAPI__CreateOrJoinRequest_1a938b82f90787dc74a4c9edaaea80ac86)`() const` <a id="structFRHAPI__CreateOrJoinRequest_1a938b82f90787dc74a4c9edaaea80ac86"></a>
+#### `public inline const FString * `[`GetRegionIdOrNull`](#structFRHAPI__CreateOrJoinRequest_1a549b7b11b6de1be3c20316ca55b2fd3a)`() const` <a id="structFRHAPI__CreateOrJoinRequest_1a549b7b11b6de1be3c20316ca55b2fd3a"></a>
 
 Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr.
 
@@ -318,15 +318,15 @@ Clears the value of RegionId_Optional and sets RegionId_IsSet to false.
 
 Checks whether RegionId_Optional has been set.
 
-#### `public inline `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & `[`GetPlayer`](#structFRHAPI__CreateOrJoinRequest_1a2bd467f40eb269bf40ce4c49cc902879)`()` <a id="structFRHAPI__CreateOrJoinRequest_1a2bd467f40eb269bf40ce4c49cc902879"></a>
+#### `public inline `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & `[`GetPlayer`](#structFRHAPI__CreateOrJoinRequest_1a90a6f3726ca7ad66440bc2e1ff7c55f5)`()` <a id="structFRHAPI__CreateOrJoinRequest_1a90a6f3726ca7ad66440bc2e1ff7c55f5"></a>
 
 Gets the value of Player_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & `[`GetPlayer`](#structFRHAPI__CreateOrJoinRequest_1af5e533dafd22d712d8ee3cd5e8954768)`() const` <a id="structFRHAPI__CreateOrJoinRequest_1af5e533dafd22d712d8ee3cd5e8954768"></a>
+#### `public inline const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & `[`GetPlayer`](#structFRHAPI__CreateOrJoinRequest_1a07bfde8769120cf6c30dc62555895eb3)`() const` <a id="structFRHAPI__CreateOrJoinRequest_1a07bfde8769120cf6c30dc62555895eb3"></a>
 
 Gets the value of Player_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & `[`GetPlayer`](#structFRHAPI__CreateOrJoinRequest_1a62699c1b92d15d0a9bfbc8b803aad99b)`(const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & DefaultValue) const` <a id="structFRHAPI__CreateOrJoinRequest_1a62699c1b92d15d0a9bfbc8b803aad99b"></a>
+#### `public inline const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & `[`GetPlayer`](#structFRHAPI__CreateOrJoinRequest_1a2384745075d1194ba0eeff76383d1c02)`(const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & DefaultValue) const` <a id="structFRHAPI__CreateOrJoinRequest_1a2384745075d1194ba0eeff76383d1c02"></a>
 
 Gets the value of Player_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -334,11 +334,11 @@ Gets the value of Player_Optional, if it has been set, otherwise it returns Defa
 
 Fills OutValue with the value of Player_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` * `[`GetPlayerOrNull`](#structFRHAPI__CreateOrJoinRequest_1ad905c068915da3cf833297f131c23485)`()` <a id="structFRHAPI__CreateOrJoinRequest_1ad905c068915da3cf833297f131c23485"></a>
+#### `public inline `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` * `[`GetPlayerOrNull`](#structFRHAPI__CreateOrJoinRequest_1a19f02b001ec436f7eb94855d8a493bd3)`()` <a id="structFRHAPI__CreateOrJoinRequest_1a19f02b001ec436f7eb94855d8a493bd3"></a>
 
 Returns a pointer to Player_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` * `[`GetPlayerOrNull`](#structFRHAPI__CreateOrJoinRequest_1af1329c668db4e4ad390a92f49b854b8f)`() const` <a id="structFRHAPI__CreateOrJoinRequest_1af1329c668db4e4ad390a92f49b854b8f"></a>
+#### `public inline const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` * `[`GetPlayerOrNull`](#structFRHAPI__CreateOrJoinRequest_1af35cbd46374baf777fd0054b1afe7d85)`() const` <a id="structFRHAPI__CreateOrJoinRequest_1af35cbd46374baf777fd0054b1afe7d85"></a>
 
 Returns a pointer to Player_Optional, if it has been set, otherwise returns nullptr.
 

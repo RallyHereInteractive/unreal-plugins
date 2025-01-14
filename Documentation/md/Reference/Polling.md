@@ -108,7 +108,7 @@ Controller for the polling.
 `public inline virtual TStatId `[`GetStatId`](#structFRH__PollControl_1a94251dff895305e3df471335a2e8048b)`() const` | Gets the poll controller stat Id.
 `public void `[`SetPollingIntervalOverride`](#structFRH__PollControl_1aff2bd0c3387cd5f52abc05b6bd29c0d1)`(const `[`FRH_PollTimerSetting`](Polling.md#structFRH__PollTimerSetting)` & TimerSetting)` | Sets a polling interval override by name.
 `public void `[`ClearPollingIntervalOverride`](#structFRH__PollControl_1a3795267e9d083d413473dd2115dac496)`(const FName & TimerName)` | Clears a polling interval override by name.
-`public const `[`FRH_PollTimerSetting`](Polling.md#structFRH__PollTimerSetting)` & `[`GetPollTimerSetting`](#structFRH__PollControl_1a929c79f134c154715085186a6aac04f3)`(const FName & TimerName) const` | Gets the polling interval setting (including overrides) by timer name.
+`public const `[`FRH_PollTimerSetting`](Polling.md#structFRH__PollTimerSetting)` & `[`GetPollTimerSetting`](#structFRH__PollControl_1ae981b78ba699684c6506aa3b79132653)`(const FName & TimerName) const` | Gets the polling interval setting (including overrides) by timer name.
 `public inline float `[`GetPollingInterval`](#structFRH__PollControl_1a8fcdf87d451f938fb4aa157167cf6123)`(const FName & TimerName) const` | Gets a polling interval by name, or falls back to default if not found.
 `public inline float `[`GetPollingIntervalWithJitter`](#structFRH__PollControl_1a26db354c7e3ad5c6623032ab8a7991f0)`(const FName & TimerName,bool bInitial) const` | Gets a polling interval by name, or falls back to default if not found. Adds configured jitter.
 `protected TArray< FRH_AutoPollerWeakPtr > `[`InactivePolls`](#structFRH__PollControl_1ac825a703abab879befa89f425264f236) | Polls that are registered but not active.
@@ -228,7 +228,7 @@ Clears a polling interval override by name.
 #### Parameters
 * `TimerName` Name of Timer to set interval for.
 
-#### `public const `[`FRH_PollTimerSetting`](Polling.md#structFRH__PollTimerSetting)` & `[`GetPollTimerSetting`](#structFRH__PollControl_1a929c79f134c154715085186a6aac04f3)`(const FName & TimerName) const` <a id="structFRH__PollControl_1a929c79f134c154715085186a6aac04f3"></a>
+#### `public const `[`FRH_PollTimerSetting`](Polling.md#structFRH__PollTimerSetting)` & `[`GetPollTimerSetting`](#structFRH__PollControl_1ae981b78ba699684c6506aa3b79132653)`(const FName & TimerName) const` <a id="structFRH__PollControl_1ae981b78ba699684c6506aa3b79132653"></a>
 
 Gets the polling interval setting (including overrides) by timer name.
 
@@ -300,7 +300,7 @@ Auto Poller to poll at a given interval for updates.
 `public inline FORCEINLINE bool `[`IsWaiting`](#structFRH__AutoPoller_1a982bcbc2e6dff3515a0df4e72e965e3a)`() const` | Gets if the poller is waiting with poll control.
 `public inline FORCEINLINE bool `[`IsInactive`](#structFRH__AutoPoller_1af32eb09dfddca17516e4754e6d4837f2)`() const` | Gets if the poller is inactive with poll control.
 `public inline FORCEINLINE bool `[`IsExecuting`](#structFRH__AutoPoller_1a114832c16a15985551fa3593ce5a2db1)`() const` | Gets if the poller is executing with poll control.
-`public inline FORCEINLINE const FDateTime & `[`GetNextPollTime`](#structFRH__AutoPoller_1a0169c89c621ccfed98114885dc681baf)`() const` | Gets the next poll time.
+`public inline FORCEINLINE const FDateTime & `[`GetNextPollTime`](#structFRH__AutoPoller_1ad18ebf9f7c6144e2692a54af66caa3d3)`() const` | Gets the next poll time.
 `public inline FORCEINLINE float `[`GetTimeRemaining`](#structFRH__AutoPoller_1ae592de2857f70bbaebb936a54d0ae11b)`()` | Gets the poll time remaining in seconds. Returns -1.f if the poll is inactive or executing.
 `protected FDateTime `[`NextPollTime`](#structFRH__AutoPoller_1aa1fe3300b55d50dcbf73e89f0ff22d4d) | When the next poll should run.
 `protected FRH_PollFunc `[`PollFunc`](#structFRH__AutoPoller_1acf0883c8af80dde4c365138ff19a14db) | Call when the poll timer fires.
@@ -367,7 +367,7 @@ Gets if the poller is inactive with poll control.
 
 Gets if the poller is executing with poll control.
 
-#### `public inline FORCEINLINE const FDateTime & `[`GetNextPollTime`](#structFRH__AutoPoller_1a0169c89c621ccfed98114885dc681baf)`() const` <a id="structFRH__AutoPoller_1a0169c89c621ccfed98114885dc681baf"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetNextPollTime`](#structFRH__AutoPoller_1ad18ebf9f7c6144e2692a54af66caa3d3)`() const` <a id="structFRH__AutoPoller_1ad18ebf9f7c6144e2692a54af66caa3d3"></a>
 
 Gets the next poll time.
 

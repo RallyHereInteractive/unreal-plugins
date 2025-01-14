@@ -25,17 +25,17 @@ Information about an invite to a session that a player received.
 `public FGuid `[`InvitingPlayerUuid_Optional`](#structFRHAPI__PlayerSessionInvite_1af2df5467426af28587216798cdbea9f5) | Player who sent the invite.
 `public bool `[`InvitingPlayerUuid_IsSet`](#structFRHAPI__PlayerSessionInvite_1a8e042b370589e5e406711482986a5a53) | true if InvitingPlayerUuid_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__PlayerSessionInvite_1a7b0b0d6aac6074a1c8fb9dacadb08443)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PlayerSessionInvite_1ac9f88e539f06fb7498031511e28f8037)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetSessionId`](#structFRHAPI__PlayerSessionInvite_1ab4f322194e0846ffae453790aab9c632)`()` | Gets the value of SessionId.
-`public inline const FString & `[`GetSessionId`](#structFRHAPI__PlayerSessionInvite_1a6942c9405b4f6833913b0c6f78f54255)`() const` | Gets the value of SessionId.
+`public virtual void `[`WriteJson`](#structFRHAPI__PlayerSessionInvite_1a2ca3e640e98da6b026e6d76deb7a5553)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline FString & `[`GetSessionId`](#structFRHAPI__PlayerSessionInvite_1a1f3116cd6e8a4d6581d5231915091f6b)`()` | Gets the value of SessionId.
+`public inline const FString & `[`GetSessionId`](#structFRHAPI__PlayerSessionInvite_1a74d160fdd5b1af1ffd04de1cdd287200)`() const` | Gets the value of SessionId.
 `public inline void `[`SetSessionId`](#structFRHAPI__PlayerSessionInvite_1ae700cfcfd7698da99159f8bc38e5d12b)`(const FString & NewValue)` | Sets the value of SessionId.
 `public inline void `[`SetSessionId`](#structFRHAPI__PlayerSessionInvite_1a0314e2c43e517feef84074ed343ccc07)`(FString && NewValue)` | Sets the value of SessionId using move semantics.
-`public inline FGuid & `[`GetInvitingPlayerUuid`](#structFRHAPI__PlayerSessionInvite_1a09ba2839f057d3fefb9aadf4280033d6)`()` | Gets the value of InvitingPlayerUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetInvitingPlayerUuid`](#structFRHAPI__PlayerSessionInvite_1ac6d73c9af405b60b9ec0212722b1da2e)`() const` | Gets the value of InvitingPlayerUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetInvitingPlayerUuid`](#structFRHAPI__PlayerSessionInvite_1a87a38b45131948df65ed5cac8ee9aff8)`(const FGuid & DefaultValue) const` | Gets the value of InvitingPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FGuid & `[`GetInvitingPlayerUuid`](#structFRHAPI__PlayerSessionInvite_1a75e9a9d820de7c7eb65f8f6a9cd5798f)`()` | Gets the value of InvitingPlayerUuid_Optional, regardless of it having been set.
+`public inline const FGuid & `[`GetInvitingPlayerUuid`](#structFRHAPI__PlayerSessionInvite_1a507e3ae243eab217ac943b65fb5eff8f)`() const` | Gets the value of InvitingPlayerUuid_Optional, regardless of it having been set.
+`public inline const FGuid & `[`GetInvitingPlayerUuid`](#structFRHAPI__PlayerSessionInvite_1abcce08256e80dc0ee6be30942518ef62)`(const FGuid & DefaultValue) const` | Gets the value of InvitingPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetInvitingPlayerUuid`](#structFRHAPI__PlayerSessionInvite_1a23a1e66ba7ed697efe527ecd9f157a6b)`(FGuid & OutValue) const` | Fills OutValue with the value of InvitingPlayerUuid_Optional and returns true if it has been set, otherwise returns false.
-`public inline FGuid * `[`GetInvitingPlayerUuidOrNull`](#structFRHAPI__PlayerSessionInvite_1adb9649b04507d7924c1b42fc15661922)`()` | Returns a pointer to InvitingPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FGuid * `[`GetInvitingPlayerUuidOrNull`](#structFRHAPI__PlayerSessionInvite_1a87df4f36cb3854b5b5de479e724bcada)`() const` | Returns a pointer to InvitingPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FGuid * `[`GetInvitingPlayerUuidOrNull`](#structFRHAPI__PlayerSessionInvite_1a256a74009052d62ae6ce81ec2c9c6bd7)`()` | Returns a pointer to InvitingPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FGuid * `[`GetInvitingPlayerUuidOrNull`](#structFRHAPI__PlayerSessionInvite_1a260f0ca861030d781a8acedcd66d2e7f)`() const` | Returns a pointer to InvitingPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetInvitingPlayerUuid`](#structFRHAPI__PlayerSessionInvite_1abc19c4432bcc425a944b2ca956018cf2)`(const FGuid & NewValue)` | Sets the value of InvitingPlayerUuid_Optional and also sets InvitingPlayerUuid_IsSet to true.
 `public inline void `[`SetInvitingPlayerUuid`](#structFRHAPI__PlayerSessionInvite_1aa85bf89be8f6ea2c3a9d14d42087489e)`(FGuid && NewValue)` | Sets the value of InvitingPlayerUuid_Optional and also sets InvitingPlayerUuid_IsSet to true using move semantics.
 `public inline void `[`ClearInvitingPlayerUuid`](#structFRHAPI__PlayerSessionInvite_1adb861db179ca0fe3fe9359a2f95aa1b8)`()` | Clears the value of InvitingPlayerUuid_Optional and sets InvitingPlayerUuid_IsSet to false.
@@ -65,18 +65,18 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PlayerSessionInvite_1ac9f88e539f06fb7498031511e28f8037)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlayerSessionInvite_1ac9f88e539f06fb7498031511e28f8037"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PlayerSessionInvite_1a2ca3e640e98da6b026e6d76deb7a5553)`(TSharedRef< TJsonWriter<> > & Writer) const` <a id="structFRHAPI__PlayerSessionInvite_1a2ca3e640e98da6b026e6d76deb7a5553"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetSessionId`](#structFRHAPI__PlayerSessionInvite_1ab4f322194e0846ffae453790aab9c632)`()` <a id="structFRHAPI__PlayerSessionInvite_1ab4f322194e0846ffae453790aab9c632"></a>
+#### `public inline FString & `[`GetSessionId`](#structFRHAPI__PlayerSessionInvite_1a1f3116cd6e8a4d6581d5231915091f6b)`()` <a id="structFRHAPI__PlayerSessionInvite_1a1f3116cd6e8a4d6581d5231915091f6b"></a>
 
 Gets the value of SessionId.
 
-#### `public inline const FString & `[`GetSessionId`](#structFRHAPI__PlayerSessionInvite_1a6942c9405b4f6833913b0c6f78f54255)`() const` <a id="structFRHAPI__PlayerSessionInvite_1a6942c9405b4f6833913b0c6f78f54255"></a>
+#### `public inline const FString & `[`GetSessionId`](#structFRHAPI__PlayerSessionInvite_1a74d160fdd5b1af1ffd04de1cdd287200)`() const` <a id="structFRHAPI__PlayerSessionInvite_1a74d160fdd5b1af1ffd04de1cdd287200"></a>
 
 Gets the value of SessionId.
 
@@ -88,15 +88,15 @@ Sets the value of SessionId.
 
 Sets the value of SessionId using move semantics.
 
-#### `public inline FGuid & `[`GetInvitingPlayerUuid`](#structFRHAPI__PlayerSessionInvite_1a09ba2839f057d3fefb9aadf4280033d6)`()` <a id="structFRHAPI__PlayerSessionInvite_1a09ba2839f057d3fefb9aadf4280033d6"></a>
+#### `public inline FGuid & `[`GetInvitingPlayerUuid`](#structFRHAPI__PlayerSessionInvite_1a75e9a9d820de7c7eb65f8f6a9cd5798f)`()` <a id="structFRHAPI__PlayerSessionInvite_1a75e9a9d820de7c7eb65f8f6a9cd5798f"></a>
 
 Gets the value of InvitingPlayerUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetInvitingPlayerUuid`](#structFRHAPI__PlayerSessionInvite_1ac6d73c9af405b60b9ec0212722b1da2e)`() const` <a id="structFRHAPI__PlayerSessionInvite_1ac6d73c9af405b60b9ec0212722b1da2e"></a>
+#### `public inline const FGuid & `[`GetInvitingPlayerUuid`](#structFRHAPI__PlayerSessionInvite_1a507e3ae243eab217ac943b65fb5eff8f)`() const` <a id="structFRHAPI__PlayerSessionInvite_1a507e3ae243eab217ac943b65fb5eff8f"></a>
 
 Gets the value of InvitingPlayerUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetInvitingPlayerUuid`](#structFRHAPI__PlayerSessionInvite_1a87a38b45131948df65ed5cac8ee9aff8)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__PlayerSessionInvite_1a87a38b45131948df65ed5cac8ee9aff8"></a>
+#### `public inline const FGuid & `[`GetInvitingPlayerUuid`](#structFRHAPI__PlayerSessionInvite_1abcce08256e80dc0ee6be30942518ef62)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__PlayerSessionInvite_1abcce08256e80dc0ee6be30942518ef62"></a>
 
 Gets the value of InvitingPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -104,11 +104,11 @@ Gets the value of InvitingPlayerUuid_Optional, if it has been set, otherwise it 
 
 Fills OutValue with the value of InvitingPlayerUuid_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FGuid * `[`GetInvitingPlayerUuidOrNull`](#structFRHAPI__PlayerSessionInvite_1adb9649b04507d7924c1b42fc15661922)`()` <a id="structFRHAPI__PlayerSessionInvite_1adb9649b04507d7924c1b42fc15661922"></a>
+#### `public inline FGuid * `[`GetInvitingPlayerUuidOrNull`](#structFRHAPI__PlayerSessionInvite_1a256a74009052d62ae6ce81ec2c9c6bd7)`()` <a id="structFRHAPI__PlayerSessionInvite_1a256a74009052d62ae6ce81ec2c9c6bd7"></a>
 
 Returns a pointer to InvitingPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FGuid * `[`GetInvitingPlayerUuidOrNull`](#structFRHAPI__PlayerSessionInvite_1a87df4f36cb3854b5b5de479e724bcada)`() const` <a id="structFRHAPI__PlayerSessionInvite_1a87df4f36cb3854b5b5de479e724bcada"></a>
+#### `public inline const FGuid * `[`GetInvitingPlayerUuidOrNull`](#structFRHAPI__PlayerSessionInvite_1a260f0ca861030d781a8acedcd66d2e7f)`() const` <a id="structFRHAPI__PlayerSessionInvite_1a260f0ca861030d781a8acedcd66d2e7f"></a>
 
 Returns a pointer to InvitingPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 

@@ -23,9 +23,9 @@ A response for successfully joining a matchmaking queue.
 --------------------------------|---------------------------------------------
 `public FString `[`TicketId`](#structFRHAPI__QueueJoinResponse_1af954b4ff6c24fb605858abbbe004cd09) | ID for the newly created match making ticket.
 `public virtual bool `[`FromJson`](#structFRHAPI__QueueJoinResponse_1a5ee6f61f890b644faa949764fecd5839)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__QueueJoinResponse_1a59b4cadb023132a19d904ab1b8596cf3)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetTicketId`](#structFRHAPI__QueueJoinResponse_1ab0e3d2d5d43f96c58aa1f1e49d1be733)`()` | Gets the value of TicketId.
-`public inline const FString & `[`GetTicketId`](#structFRHAPI__QueueJoinResponse_1a8a65bbb1fee3afbadcc529088774aabe)`() const` | Gets the value of TicketId.
+`public virtual void `[`WriteJson`](#structFRHAPI__QueueJoinResponse_1abd6c37919b79f1b7be0a12bf36415313)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline FString & `[`GetTicketId`](#structFRHAPI__QueueJoinResponse_1a752de0e1b5c80d5aa4ad3fc5bb1b77ac)`()` | Gets the value of TicketId.
+`public inline const FString & `[`GetTicketId`](#structFRHAPI__QueueJoinResponse_1a64520e48dd16f64e83f06f6f3aec9639)`() const` | Gets the value of TicketId.
 `public inline void `[`SetTicketId`](#structFRHAPI__QueueJoinResponse_1ab6782823d19d4a0613d9521013c1f0ff)`(const FString & NewValue)` | Sets the value of TicketId.
 `public inline void `[`SetTicketId`](#structFRHAPI__QueueJoinResponse_1a05dedf5638833d9fe9ce533c69504b17)`(FString && NewValue)` | Sets the value of TicketId using move semantics.
 
@@ -45,18 +45,18 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__QueueJoinResponse_1a59b4cadb023132a19d904ab1b8596cf3)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__QueueJoinResponse_1a59b4cadb023132a19d904ab1b8596cf3"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__QueueJoinResponse_1abd6c37919b79f1b7be0a12bf36415313)`(TSharedRef< TJsonWriter<> > & Writer) const` <a id="structFRHAPI__QueueJoinResponse_1abd6c37919b79f1b7be0a12bf36415313"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetTicketId`](#structFRHAPI__QueueJoinResponse_1ab0e3d2d5d43f96c58aa1f1e49d1be733)`()` <a id="structFRHAPI__QueueJoinResponse_1ab0e3d2d5d43f96c58aa1f1e49d1be733"></a>
+#### `public inline FString & `[`GetTicketId`](#structFRHAPI__QueueJoinResponse_1a752de0e1b5c80d5aa4ad3fc5bb1b77ac)`()` <a id="structFRHAPI__QueueJoinResponse_1a752de0e1b5c80d5aa4ad3fc5bb1b77ac"></a>
 
 Gets the value of TicketId.
 
-#### `public inline const FString & `[`GetTicketId`](#structFRHAPI__QueueJoinResponse_1a8a65bbb1fee3afbadcc529088774aabe)`() const` <a id="structFRHAPI__QueueJoinResponse_1a8a65bbb1fee3afbadcc529088774aabe"></a>
+#### `public inline const FString & `[`GetTicketId`](#structFRHAPI__QueueJoinResponse_1a64520e48dd16f64e83f06f6f3aec9639)`() const` <a id="structFRHAPI__QueueJoinResponse_1a64520e48dd16f64e83f06f6f3aec9639"></a>
 
 Gets the value of TicketId.
 

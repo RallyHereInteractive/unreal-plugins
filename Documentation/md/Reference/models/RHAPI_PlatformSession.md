@@ -28,29 +28,29 @@ A platform session resource in a RallyHere session.
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__PlatformSession_1a9892c6b70fc4a33cb19ec43e5ea10d0a) | Product defined custom data fields about the platform session.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__PlatformSession_1a1868b2138d2cf1feca6c1f300a104cea) | true if CustomData_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__PlatformSession_1ac38d76af37830fe89415db449ec3addd)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PlatformSession_1ae66a71facd7c6d7685a00acdb1fe1e3b)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PlatformSession_1a4bb18b46b2c2687ce80b63ea0357d210)`()` | Gets the value of Platform.
-`public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PlatformSession_1a26fb79f79f15f9f77811e2ae696ac511)`() const` | Gets the value of Platform.
+`public virtual void `[`WriteJson`](#structFRHAPI__PlatformSession_1aa44e115425ea23712661a04698b3152d)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PlatformSession_1a952cb14f6eaaa2491086cd489981948a)`()` | Gets the value of Platform.
+`public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PlatformSession_1a33457ff07a216fd18b280dd291bad4a8)`() const` | Gets the value of Platform.
 `public inline void `[`SetPlatform`](#structFRHAPI__PlatformSession_1a5550cb055b2e15cd5bbeb88a7c105034)`(const ERHAPI_Platform & NewValue)` | Sets the value of Platform.
 `public inline void `[`SetPlatform`](#structFRHAPI__PlatformSession_1ac07e0095c1e581adb986086ad87a3fcd)`(ERHAPI_Platform && NewValue)` | Sets the value of Platform using move semantics.
-`public inline FString & `[`GetPlatformSessionType`](#structFRHAPI__PlatformSession_1ae31aa8df950002b96ce224e6128a1dc4)`()` | Gets the value of PlatformSessionType.
-`public inline const FString & `[`GetPlatformSessionType`](#structFRHAPI__PlatformSession_1a6afbbb4c98285c70d95c4d2fe8d7d93b)`() const` | Gets the value of PlatformSessionType.
+`public inline FString & `[`GetPlatformSessionType`](#structFRHAPI__PlatformSession_1a6abf96e6720a2bb31f101d61018665ac)`()` | Gets the value of PlatformSessionType.
+`public inline const FString & `[`GetPlatformSessionType`](#structFRHAPI__PlatformSession_1a1b0ea0e671af45dfe5ded668bae2fcb0)`() const` | Gets the value of PlatformSessionType.
 `public inline void `[`SetPlatformSessionType`](#structFRHAPI__PlatformSession_1a1000d7f30b43edac9dc4f3dc1389df6f)`(const FString & NewValue)` | Sets the value of PlatformSessionType.
 `public inline void `[`SetPlatformSessionType`](#structFRHAPI__PlatformSession_1a190f203e890b984d2fd6fefa937d906c)`(FString && NewValue)` | Sets the value of PlatformSessionType using move semantics.
-`public inline FString & `[`GetPlatformSessionIdBase64`](#structFRHAPI__PlatformSession_1a15fa96ccee660aa48718141a9600c3ce)`()` | Gets the value of PlatformSessionIdBase64.
-`public inline const FString & `[`GetPlatformSessionIdBase64`](#structFRHAPI__PlatformSession_1a9d2ad046a95f6bda0f9a006565b505c8)`() const` | Gets the value of PlatformSessionIdBase64.
+`public inline FString & `[`GetPlatformSessionIdBase64`](#structFRHAPI__PlatformSession_1adfef5c3286b68e09c708156b558e6f73)`()` | Gets the value of PlatformSessionIdBase64.
+`public inline const FString & `[`GetPlatformSessionIdBase64`](#structFRHAPI__PlatformSession_1af1b862d2198208a369b05a74ede225db)`() const` | Gets the value of PlatformSessionIdBase64.
 `public inline void `[`SetPlatformSessionIdBase64`](#structFRHAPI__PlatformSession_1a3e09fcf39b3f2392315c7f715a177ae6)`(const FString & NewValue)` | Sets the value of PlatformSessionIdBase64.
 `public inline void `[`SetPlatformSessionIdBase64`](#structFRHAPI__PlatformSession_1a64cc329bd0f448e450855ab97b8c27ee)`(FString && NewValue)` | Sets the value of PlatformSessionIdBase64 using move semantics.
-`public inline TArray< `[`FRHAPI_PlatformSessionPlayer`](RHAPI_PlatformSessionPlayer.md#structFRHAPI__PlatformSessionPlayer)` > & `[`GetPlayers`](#structFRHAPI__PlatformSession_1a614ed29701838a10d39f761b904699c1)`()` | Gets the value of Players.
-`public inline const TArray< `[`FRHAPI_PlatformSessionPlayer`](RHAPI_PlatformSessionPlayer.md#structFRHAPI__PlatformSessionPlayer)` > & `[`GetPlayers`](#structFRHAPI__PlatformSession_1a8a8c811b88cf4d8b2bfe7b05d4978ec1)`() const` | Gets the value of Players.
+`public inline TArray< `[`FRHAPI_PlatformSessionPlayer`](RHAPI_PlatformSessionPlayer.md#structFRHAPI__PlatformSessionPlayer)` > & `[`GetPlayers`](#structFRHAPI__PlatformSession_1aa11d88ea1361b79f10a4672cdfc3ed4b)`()` | Gets the value of Players.
+`public inline const TArray< `[`FRHAPI_PlatformSessionPlayer`](RHAPI_PlatformSessionPlayer.md#structFRHAPI__PlatformSessionPlayer)` > & `[`GetPlayers`](#structFRHAPI__PlatformSession_1a5935d17c3b89c6d009abb60aef17105b)`() const` | Gets the value of Players.
 `public inline void `[`SetPlayers`](#structFRHAPI__PlatformSession_1aada98f6a50ed902ab01988347b2f993f)`(const TArray< `[`FRHAPI_PlatformSessionPlayer`](RHAPI_PlatformSessionPlayer.md#structFRHAPI__PlatformSessionPlayer)` > & NewValue)` | Sets the value of Players.
 `public inline void `[`SetPlayers`](#structFRHAPI__PlatformSession_1ac0b8acd60543912ab39cb5ff41e99194)`(TArray< `[`FRHAPI_PlatformSessionPlayer`](RHAPI_PlatformSessionPlayer.md#structFRHAPI__PlatformSessionPlayer)` > && NewValue)` | Sets the value of Players using move semantics.
-`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlatformSession_1a5ef4cb3f4c9ef59b07808731c0a9171d)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlatformSession_1a31ca45bef966ba0f4776da050770d774)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlatformSession_1a23044803453d0fd2436473c8c2c2f498)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlatformSession_1ac083df7b76ced80c638f16babc9ab407)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlatformSession_1aec59be28296ae6efb83135e581de0bf4)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlatformSession_1a5cf93788fd580595571973639a6a1981)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetCustomData`](#structFRHAPI__PlatformSession_1a7213f0b2a42417f2ffa8fb82cc685227)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PlatformSession_1a772a1c1d8455398ecfb28a03d28a1017)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PlatformSession_1a61953976e75263bf9bcddc08bb00b1ce)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PlatformSession_1a49dc4068448498cd488e39ced6db885b)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PlatformSession_1a4eb71296da8b0c90ed7509e9e06d4e83)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetCustomData`](#structFRHAPI__PlatformSession_1abac22e80c8b5803f71f4a879029a469f)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`SetCustomData`](#structFRHAPI__PlatformSession_1afdc31ca1908f5f2cfb77bb384521bec4)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__PlatformSession_1a27df4527314de6e07dd805631af23b14)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
@@ -92,18 +92,18 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PlatformSession_1ae66a71facd7c6d7685a00acdb1fe1e3b)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlatformSession_1ae66a71facd7c6d7685a00acdb1fe1e3b"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PlatformSession_1aa44e115425ea23712661a04698b3152d)`(TSharedRef< TJsonWriter<> > & Writer) const` <a id="structFRHAPI__PlatformSession_1aa44e115425ea23712661a04698b3152d"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PlatformSession_1a4bb18b46b2c2687ce80b63ea0357d210)`()` <a id="structFRHAPI__PlatformSession_1a4bb18b46b2c2687ce80b63ea0357d210"></a>
+#### `public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PlatformSession_1a952cb14f6eaaa2491086cd489981948a)`()` <a id="structFRHAPI__PlatformSession_1a952cb14f6eaaa2491086cd489981948a"></a>
 
 Gets the value of Platform.
 
-#### `public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PlatformSession_1a26fb79f79f15f9f77811e2ae696ac511)`() const` <a id="structFRHAPI__PlatformSession_1a26fb79f79f15f9f77811e2ae696ac511"></a>
+#### `public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PlatformSession_1a33457ff07a216fd18b280dd291bad4a8)`() const` <a id="structFRHAPI__PlatformSession_1a33457ff07a216fd18b280dd291bad4a8"></a>
 
 Gets the value of Platform.
 
@@ -115,11 +115,11 @@ Sets the value of Platform.
 
 Sets the value of Platform using move semantics.
 
-#### `public inline FString & `[`GetPlatformSessionType`](#structFRHAPI__PlatformSession_1ae31aa8df950002b96ce224e6128a1dc4)`()` <a id="structFRHAPI__PlatformSession_1ae31aa8df950002b96ce224e6128a1dc4"></a>
+#### `public inline FString & `[`GetPlatformSessionType`](#structFRHAPI__PlatformSession_1a6abf96e6720a2bb31f101d61018665ac)`()` <a id="structFRHAPI__PlatformSession_1a6abf96e6720a2bb31f101d61018665ac"></a>
 
 Gets the value of PlatformSessionType.
 
-#### `public inline const FString & `[`GetPlatformSessionType`](#structFRHAPI__PlatformSession_1a6afbbb4c98285c70d95c4d2fe8d7d93b)`() const` <a id="structFRHAPI__PlatformSession_1a6afbbb4c98285c70d95c4d2fe8d7d93b"></a>
+#### `public inline const FString & `[`GetPlatformSessionType`](#structFRHAPI__PlatformSession_1a1b0ea0e671af45dfe5ded668bae2fcb0)`() const` <a id="structFRHAPI__PlatformSession_1a1b0ea0e671af45dfe5ded668bae2fcb0"></a>
 
 Gets the value of PlatformSessionType.
 
@@ -131,11 +131,11 @@ Sets the value of PlatformSessionType.
 
 Sets the value of PlatformSessionType using move semantics.
 
-#### `public inline FString & `[`GetPlatformSessionIdBase64`](#structFRHAPI__PlatformSession_1a15fa96ccee660aa48718141a9600c3ce)`()` <a id="structFRHAPI__PlatformSession_1a15fa96ccee660aa48718141a9600c3ce"></a>
+#### `public inline FString & `[`GetPlatformSessionIdBase64`](#structFRHAPI__PlatformSession_1adfef5c3286b68e09c708156b558e6f73)`()` <a id="structFRHAPI__PlatformSession_1adfef5c3286b68e09c708156b558e6f73"></a>
 
 Gets the value of PlatformSessionIdBase64.
 
-#### `public inline const FString & `[`GetPlatformSessionIdBase64`](#structFRHAPI__PlatformSession_1a9d2ad046a95f6bda0f9a006565b505c8)`() const` <a id="structFRHAPI__PlatformSession_1a9d2ad046a95f6bda0f9a006565b505c8"></a>
+#### `public inline const FString & `[`GetPlatformSessionIdBase64`](#structFRHAPI__PlatformSession_1af1b862d2198208a369b05a74ede225db)`() const` <a id="structFRHAPI__PlatformSession_1af1b862d2198208a369b05a74ede225db"></a>
 
 Gets the value of PlatformSessionIdBase64.
 
@@ -147,11 +147,11 @@ Sets the value of PlatformSessionIdBase64.
 
 Sets the value of PlatformSessionIdBase64 using move semantics.
 
-#### `public inline TArray< `[`FRHAPI_PlatformSessionPlayer`](RHAPI_PlatformSessionPlayer.md#structFRHAPI__PlatformSessionPlayer)` > & `[`GetPlayers`](#structFRHAPI__PlatformSession_1a614ed29701838a10d39f761b904699c1)`()` <a id="structFRHAPI__PlatformSession_1a614ed29701838a10d39f761b904699c1"></a>
+#### `public inline TArray< `[`FRHAPI_PlatformSessionPlayer`](RHAPI_PlatformSessionPlayer.md#structFRHAPI__PlatformSessionPlayer)` > & `[`GetPlayers`](#structFRHAPI__PlatformSession_1aa11d88ea1361b79f10a4672cdfc3ed4b)`()` <a id="structFRHAPI__PlatformSession_1aa11d88ea1361b79f10a4672cdfc3ed4b"></a>
 
 Gets the value of Players.
 
-#### `public inline const TArray< `[`FRHAPI_PlatformSessionPlayer`](RHAPI_PlatformSessionPlayer.md#structFRHAPI__PlatformSessionPlayer)` > & `[`GetPlayers`](#structFRHAPI__PlatformSession_1a8a8c811b88cf4d8b2bfe7b05d4978ec1)`() const` <a id="structFRHAPI__PlatformSession_1a8a8c811b88cf4d8b2bfe7b05d4978ec1"></a>
+#### `public inline const TArray< `[`FRHAPI_PlatformSessionPlayer`](RHAPI_PlatformSessionPlayer.md#structFRHAPI__PlatformSessionPlayer)` > & `[`GetPlayers`](#structFRHAPI__PlatformSession_1a5935d17c3b89c6d009abb60aef17105b)`() const` <a id="structFRHAPI__PlatformSession_1a5935d17c3b89c6d009abb60aef17105b"></a>
 
 Gets the value of Players.
 
@@ -163,15 +163,15 @@ Sets the value of Players.
 
 Sets the value of Players using move semantics.
 
-#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlatformSession_1a5ef4cb3f4c9ef59b07808731c0a9171d)`()` <a id="structFRHAPI__PlatformSession_1a5ef4cb3f4c9ef59b07808731c0a9171d"></a>
+#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlatformSession_1ac083df7b76ced80c638f16babc9ab407)`()` <a id="structFRHAPI__PlatformSession_1ac083df7b76ced80c638f16babc9ab407"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlatformSession_1a31ca45bef966ba0f4776da050770d774)`() const` <a id="structFRHAPI__PlatformSession_1a31ca45bef966ba0f4776da050770d774"></a>
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlatformSession_1aec59be28296ae6efb83135e581de0bf4)`() const` <a id="structFRHAPI__PlatformSession_1aec59be28296ae6efb83135e581de0bf4"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlatformSession_1a23044803453d0fd2436473c8c2c2f498)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__PlatformSession_1a23044803453d0fd2436473c8c2c2f498"></a>
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlatformSession_1a5cf93788fd580595571973639a6a1981)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__PlatformSession_1a5cf93788fd580595571973639a6a1981"></a>
 
 Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -179,11 +179,11 @@ Gets the value of CustomData_Optional, if it has been set, otherwise it returns 
 
 Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PlatformSession_1a772a1c1d8455398ecfb28a03d28a1017)`()` <a id="structFRHAPI__PlatformSession_1a772a1c1d8455398ecfb28a03d28a1017"></a>
+#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PlatformSession_1a49dc4068448498cd488e39ced6db885b)`()` <a id="structFRHAPI__PlatformSession_1a49dc4068448498cd488e39ced6db885b"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PlatformSession_1a61953976e75263bf9bcddc08bb00b1ce)`() const` <a id="structFRHAPI__PlatformSession_1a61953976e75263bf9bcddc08bb00b1ce"></a>
+#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PlatformSession_1a4eb71296da8b0c90ed7509e9e06d4e83)`() const` <a id="structFRHAPI__PlatformSession_1a4eb71296da8b0c90ed7509e9e06d4e83"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 

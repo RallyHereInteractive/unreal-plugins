@@ -21,9 +21,9 @@ struct FRHAPI_DeserterConfigResponse
 --------------------------------|---------------------------------------------
 `public TArray< `[`FRHAPI_DeserterConfig`](RHAPI_DeserterConfig.md#structFRHAPI__DeserterConfig)` > `[`DeserterConfigs`](#structFRHAPI__DeserterConfigResponse_1a70fc399fc7586341e681d4937997689c) | List of desertion config objects.
 `public virtual bool `[`FromJson`](#structFRHAPI__DeserterConfigResponse_1a21dacde9b6f2fde5ca2caaf2da30cf24)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__DeserterConfigResponse_1aecf255a5fafbd62ad5bb7e8f15a4dd5d)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline TArray< `[`FRHAPI_DeserterConfig`](RHAPI_DeserterConfig.md#structFRHAPI__DeserterConfig)` > & `[`GetDeserterConfigs`](#structFRHAPI__DeserterConfigResponse_1af1b3277ecefd58d2923e7bb8f9ea46f7)`()` | Gets the value of DeserterConfigs.
-`public inline const TArray< `[`FRHAPI_DeserterConfig`](RHAPI_DeserterConfig.md#structFRHAPI__DeserterConfig)` > & `[`GetDeserterConfigs`](#structFRHAPI__DeserterConfigResponse_1aa746e1b67a1e07e8870fc00eec1c201c)`() const` | Gets the value of DeserterConfigs.
+`public virtual void `[`WriteJson`](#structFRHAPI__DeserterConfigResponse_1a39b1a7a49aee592015734e80c3faf918)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline TArray< `[`FRHAPI_DeserterConfig`](RHAPI_DeserterConfig.md#structFRHAPI__DeserterConfig)` > & `[`GetDeserterConfigs`](#structFRHAPI__DeserterConfigResponse_1aabc387dcd9f3a545c5209d1c97b81c72)`()` | Gets the value of DeserterConfigs.
+`public inline const TArray< `[`FRHAPI_DeserterConfig`](RHAPI_DeserterConfig.md#structFRHAPI__DeserterConfig)` > & `[`GetDeserterConfigs`](#structFRHAPI__DeserterConfigResponse_1ac8c6d005de5086e847b70ad5c083d152)`() const` | Gets the value of DeserterConfigs.
 `public inline void `[`SetDeserterConfigs`](#structFRHAPI__DeserterConfigResponse_1a59ff0c1dff04ed8f23f7734c840a60ad)`(const TArray< `[`FRHAPI_DeserterConfig`](RHAPI_DeserterConfig.md#structFRHAPI__DeserterConfig)` > & NewValue)` | Sets the value of DeserterConfigs.
 `public inline void `[`SetDeserterConfigs`](#structFRHAPI__DeserterConfigResponse_1ad4b4697f41c1b045f2a18f61c721c52a)`(TArray< `[`FRHAPI_DeserterConfig`](RHAPI_DeserterConfig.md#structFRHAPI__DeserterConfig)` > && NewValue)` | Sets the value of DeserterConfigs using move semantics.
 
@@ -43,18 +43,18 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__DeserterConfigResponse_1aecf255a5fafbd62ad5bb7e8f15a4dd5d)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__DeserterConfigResponse_1aecf255a5fafbd62ad5bb7e8f15a4dd5d"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__DeserterConfigResponse_1a39b1a7a49aee592015734e80c3faf918)`(TSharedRef< TJsonWriter<> > & Writer) const` <a id="structFRHAPI__DeserterConfigResponse_1a39b1a7a49aee592015734e80c3faf918"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline TArray< `[`FRHAPI_DeserterConfig`](RHAPI_DeserterConfig.md#structFRHAPI__DeserterConfig)` > & `[`GetDeserterConfigs`](#structFRHAPI__DeserterConfigResponse_1af1b3277ecefd58d2923e7bb8f9ea46f7)`()` <a id="structFRHAPI__DeserterConfigResponse_1af1b3277ecefd58d2923e7bb8f9ea46f7"></a>
+#### `public inline TArray< `[`FRHAPI_DeserterConfig`](RHAPI_DeserterConfig.md#structFRHAPI__DeserterConfig)` > & `[`GetDeserterConfigs`](#structFRHAPI__DeserterConfigResponse_1aabc387dcd9f3a545c5209d1c97b81c72)`()` <a id="structFRHAPI__DeserterConfigResponse_1aabc387dcd9f3a545c5209d1c97b81c72"></a>
 
 Gets the value of DeserterConfigs.
 
-#### `public inline const TArray< `[`FRHAPI_DeserterConfig`](RHAPI_DeserterConfig.md#structFRHAPI__DeserterConfig)` > & `[`GetDeserterConfigs`](#structFRHAPI__DeserterConfigResponse_1aa746e1b67a1e07e8870fc00eec1c201c)`() const` <a id="structFRHAPI__DeserterConfigResponse_1aa746e1b67a1e07e8870fc00eec1c201c"></a>
+#### `public inline const TArray< `[`FRHAPI_DeserterConfig`](RHAPI_DeserterConfig.md#structFRHAPI__DeserterConfig)` > & `[`GetDeserterConfigs`](#structFRHAPI__DeserterConfigResponse_1ac8c6d005de5086e847b70ad5c083d152)`() const` <a id="structFRHAPI__DeserterConfigResponse_1ac8c6d005de5086e847b70ad5c083d152"></a>
 
 Gets the value of DeserterConfigs.
 

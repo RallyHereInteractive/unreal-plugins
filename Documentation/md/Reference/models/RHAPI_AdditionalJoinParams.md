@@ -30,43 +30,43 @@ Additional parameters to apply to a matchmaking ticket.
 `public TMap< FString, FString > `[`Extensions_Optional`](#structFRHAPI__AdditionalJoinParams_1aa76f09c6714d382a195c79ba533685dd) | Additional extensions to add to the matchmaking ticket. Value is a base64 string representation of the protobuf binary data. The data will be converted back to binary before being put on the ticket.
 `public bool `[`Extensions_IsSet`](#structFRHAPI__AdditionalJoinParams_1a7585d1a783ebca930804ed2eaf2b6e83) | true if Extensions_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__AdditionalJoinParams_1a1a0d03b3ad1223859a88287733ff13b4)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__AdditionalJoinParams_1a2d1150131102f5414e4d05bfa6fc6487)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline TMap< FString, float > & `[`GetDoubleArgs`](#structFRHAPI__AdditionalJoinParams_1aabe7c646e550db8df4bc5e1782bbae8c)`()` | Gets the value of DoubleArgs_Optional, regardless of it having been set.
-`public inline const TMap< FString, float > & `[`GetDoubleArgs`](#structFRHAPI__AdditionalJoinParams_1a84f4c7a3e8523c80145c8da26b042b3a)`() const` | Gets the value of DoubleArgs_Optional, regardless of it having been set.
-`public inline const TMap< FString, float > & `[`GetDoubleArgs`](#structFRHAPI__AdditionalJoinParams_1ad1ba115ea7a2a9eee148419c490d27ec)`(const TMap< FString, float > & DefaultValue) const` | Gets the value of DoubleArgs_Optional, if it has been set, otherwise it returns DefaultValue.
+`public virtual void `[`WriteJson`](#structFRHAPI__AdditionalJoinParams_1a15c180c984f3184041ff5f9dab7c409d)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline TMap< FString, float > & `[`GetDoubleArgs`](#structFRHAPI__AdditionalJoinParams_1ae409fe92afdad5421a1fd3c0db828bbe)`()` | Gets the value of DoubleArgs_Optional, regardless of it having been set.
+`public inline const TMap< FString, float > & `[`GetDoubleArgs`](#structFRHAPI__AdditionalJoinParams_1ad48bb97d8655ff36738733f8eb076837)`() const` | Gets the value of DoubleArgs_Optional, regardless of it having been set.
+`public inline const TMap< FString, float > & `[`GetDoubleArgs`](#structFRHAPI__AdditionalJoinParams_1ac68fff45f073b4d0c136017b4a724532)`(const TMap< FString, float > & DefaultValue) const` | Gets the value of DoubleArgs_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetDoubleArgs`](#structFRHAPI__AdditionalJoinParams_1aee93e59343933267ad1fcaafafcc274b)`(TMap< FString, float > & OutValue) const` | Fills OutValue with the value of DoubleArgs_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, float > * `[`GetDoubleArgsOrNull`](#structFRHAPI__AdditionalJoinParams_1a1929b09bc94153c1709b04a34cb5f579)`()` | Returns a pointer to DoubleArgs_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, float > * `[`GetDoubleArgsOrNull`](#structFRHAPI__AdditionalJoinParams_1aa582bc773b05c745ba2cf92f1a9d2a4d)`() const` | Returns a pointer to DoubleArgs_Optional, if it has been set, otherwise returns nullptr.
+`public inline TMap< FString, float > * `[`GetDoubleArgsOrNull`](#structFRHAPI__AdditionalJoinParams_1a8d838246e4f05dd51d87ef7269780676)`()` | Returns a pointer to DoubleArgs_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TMap< FString, float > * `[`GetDoubleArgsOrNull`](#structFRHAPI__AdditionalJoinParams_1a0d168f164ff5cd20732deba6e1adfb88)`() const` | Returns a pointer to DoubleArgs_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetDoubleArgs`](#structFRHAPI__AdditionalJoinParams_1acc48a26a04304f47573677907a76b91c)`(const TMap< FString, float > & NewValue)` | Sets the value of DoubleArgs_Optional and also sets DoubleArgs_IsSet to true.
 `public inline void `[`SetDoubleArgs`](#structFRHAPI__AdditionalJoinParams_1a94cc0399784078fbd380a46a3f0afaeb)`(TMap< FString, float > && NewValue)` | Sets the value of DoubleArgs_Optional and also sets DoubleArgs_IsSet to true using move semantics.
 `public inline void `[`ClearDoubleArgs`](#structFRHAPI__AdditionalJoinParams_1a5055d3c7ceab28d5c3ac8ff572055207)`()` | Clears the value of DoubleArgs_Optional and sets DoubleArgs_IsSet to false.
 `public inline bool `[`IsDoubleArgsSet`](#structFRHAPI__AdditionalJoinParams_1a67efa7da38de2ffb40a176b7ba4916d6)`() const` | Checks whether DoubleArgs_Optional has been set.
-`public inline TMap< FString, FString > & `[`GetStringArgs`](#structFRHAPI__AdditionalJoinParams_1aee56142e4ede519e524b6e2e176b2902)`()` | Gets the value of StringArgs_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetStringArgs`](#structFRHAPI__AdditionalJoinParams_1a64563214481a17493c6fbe4853c449e8)`() const` | Gets the value of StringArgs_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetStringArgs`](#structFRHAPI__AdditionalJoinParams_1a37ac752248e252d0379f18a221128580)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of StringArgs_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline TMap< FString, FString > & `[`GetStringArgs`](#structFRHAPI__AdditionalJoinParams_1a19efcf78722857c1de81e5c003222ae0)`()` | Gets the value of StringArgs_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetStringArgs`](#structFRHAPI__AdditionalJoinParams_1aa7139a36dc717a938f41aad4f633cf36)`() const` | Gets the value of StringArgs_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetStringArgs`](#structFRHAPI__AdditionalJoinParams_1a930aa8d153f646929802d6e07a8f1820)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of StringArgs_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetStringArgs`](#structFRHAPI__AdditionalJoinParams_1a1d259bb154755e3bb9eca79ac510f427)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of StringArgs_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, FString > * `[`GetStringArgsOrNull`](#structFRHAPI__AdditionalJoinParams_1aa93e031a5878f950eb64e0fd1e05227d)`()` | Returns a pointer to StringArgs_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, FString > * `[`GetStringArgsOrNull`](#structFRHAPI__AdditionalJoinParams_1a0c3a1bf622363576124c7619b33d89f6)`() const` | Returns a pointer to StringArgs_Optional, if it has been set, otherwise returns nullptr.
+`public inline TMap< FString, FString > * `[`GetStringArgsOrNull`](#structFRHAPI__AdditionalJoinParams_1ad825b712fd9305c1d6043fe11f58fb12)`()` | Returns a pointer to StringArgs_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TMap< FString, FString > * `[`GetStringArgsOrNull`](#structFRHAPI__AdditionalJoinParams_1afbe7ef92b623eb5fe199f17ef5deeb84)`() const` | Returns a pointer to StringArgs_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetStringArgs`](#structFRHAPI__AdditionalJoinParams_1a59832950089edb0c4f9b85092fa52447)`(const TMap< FString, FString > & NewValue)` | Sets the value of StringArgs_Optional and also sets StringArgs_IsSet to true.
 `public inline void `[`SetStringArgs`](#structFRHAPI__AdditionalJoinParams_1a1224f8a69234fa7c590ef426ffd09fc7)`(TMap< FString, FString > && NewValue)` | Sets the value of StringArgs_Optional and also sets StringArgs_IsSet to true using move semantics.
 `public inline void `[`ClearStringArgs`](#structFRHAPI__AdditionalJoinParams_1a99c9c6930bc31ad763a7fb316e851563)`()` | Clears the value of StringArgs_Optional and sets StringArgs_IsSet to false.
 `public inline bool `[`IsStringArgsSet`](#structFRHAPI__AdditionalJoinParams_1a321968e43a3d3710c3bd0a2432b38f3e)`() const` | Checks whether StringArgs_Optional has been set.
-`public inline TArray< FString > & `[`GetTags`](#structFRHAPI__AdditionalJoinParams_1ac1caf9793e68f022ece1f7f189161d42)`()` | Gets the value of Tags_Optional, regardless of it having been set.
-`public inline const TArray< FString > & `[`GetTags`](#structFRHAPI__AdditionalJoinParams_1a5d2c0934b594959c6d870d8e06b1876c)`() const` | Gets the value of Tags_Optional, regardless of it having been set.
-`public inline const TArray< FString > & `[`GetTags`](#structFRHAPI__AdditionalJoinParams_1ab3c6e6203999cd0cdb79b02d6a4bec5f)`(const TArray< FString > & DefaultValue) const` | Gets the value of Tags_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline TArray< FString > & `[`GetTags`](#structFRHAPI__AdditionalJoinParams_1a902254f2aecd9f486e42d54928c4898b)`()` | Gets the value of Tags_Optional, regardless of it having been set.
+`public inline const TArray< FString > & `[`GetTags`](#structFRHAPI__AdditionalJoinParams_1a786ddf26f8b5acdd0c060d113b52691c)`() const` | Gets the value of Tags_Optional, regardless of it having been set.
+`public inline const TArray< FString > & `[`GetTags`](#structFRHAPI__AdditionalJoinParams_1ab52a89966ebf510e30e7ca03eaa47302)`(const TArray< FString > & DefaultValue) const` | Gets the value of Tags_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetTags`](#structFRHAPI__AdditionalJoinParams_1a6735a8b6cb588aa2f3805a3ed5eb34a3)`(TArray< FString > & OutValue) const` | Fills OutValue with the value of Tags_Optional and returns true if it has been set, otherwise returns false.
-`public inline TArray< FString > * `[`GetTagsOrNull`](#structFRHAPI__AdditionalJoinParams_1a817f369f070e33e0a55d356292fba64f)`()` | Returns a pointer to Tags_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TArray< FString > * `[`GetTagsOrNull`](#structFRHAPI__AdditionalJoinParams_1a39662fcd9d3af849292d5d5793a08d54)`() const` | Returns a pointer to Tags_Optional, if it has been set, otherwise returns nullptr.
+`public inline TArray< FString > * `[`GetTagsOrNull`](#structFRHAPI__AdditionalJoinParams_1a9d5955c1d2033824c85b96ea6fdff230)`()` | Returns a pointer to Tags_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TArray< FString > * `[`GetTagsOrNull`](#structFRHAPI__AdditionalJoinParams_1ad5412929a3aa5898e9d9df84e9b89da2)`() const` | Returns a pointer to Tags_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetTags`](#structFRHAPI__AdditionalJoinParams_1ae958fd06d8bda2bf0931ef23b471acc6)`(const TArray< FString > & NewValue)` | Sets the value of Tags_Optional and also sets Tags_IsSet to true.
 `public inline void `[`SetTags`](#structFRHAPI__AdditionalJoinParams_1a39e86864adbd6ccce2d913cf636c7f7a)`(TArray< FString > && NewValue)` | Sets the value of Tags_Optional and also sets Tags_IsSet to true using move semantics.
 `public inline void `[`ClearTags`](#structFRHAPI__AdditionalJoinParams_1afbd5779f4bf70aa83f592727750c89e9)`()` | Clears the value of Tags_Optional and sets Tags_IsSet to false.
 `public inline bool `[`IsTagsSet`](#structFRHAPI__AdditionalJoinParams_1adb89ab77b8a48ffd24bfb32beaaba758)`() const` | Checks whether Tags_Optional has been set.
-`public inline TMap< FString, FString > & `[`GetExtensions`](#structFRHAPI__AdditionalJoinParams_1a2af14fcbfccaf8733a3d0a9c511debdb)`()` | Gets the value of Extensions_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetExtensions`](#structFRHAPI__AdditionalJoinParams_1a4d202329f362922798012b8ca3f8784b)`() const` | Gets the value of Extensions_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetExtensions`](#structFRHAPI__AdditionalJoinParams_1ab60908d74a79b88788cc2e9993203c71)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of Extensions_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline TMap< FString, FString > & `[`GetExtensions`](#structFRHAPI__AdditionalJoinParams_1a423222e81266a75941785d2855bfc442)`()` | Gets the value of Extensions_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetExtensions`](#structFRHAPI__AdditionalJoinParams_1a45e84ab49337b9bdb61df1ee6bb01a13)`() const` | Gets the value of Extensions_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetExtensions`](#structFRHAPI__AdditionalJoinParams_1ad251729f2b3795d059cefaa300e0f2a3)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of Extensions_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetExtensions`](#structFRHAPI__AdditionalJoinParams_1a6f76d92a00aa66b83d89f707ef306940)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of Extensions_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, FString > * `[`GetExtensionsOrNull`](#structFRHAPI__AdditionalJoinParams_1a718fce2b4a063aa53b92047ad35de12a)`()` | Returns a pointer to Extensions_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, FString > * `[`GetExtensionsOrNull`](#structFRHAPI__AdditionalJoinParams_1ab61518d1a59cd1cd9305364dd88d4cb1)`() const` | Returns a pointer to Extensions_Optional, if it has been set, otherwise returns nullptr.
+`public inline TMap< FString, FString > * `[`GetExtensionsOrNull`](#structFRHAPI__AdditionalJoinParams_1a50706eb832fa6bef02effa67eece8148)`()` | Returns a pointer to Extensions_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TMap< FString, FString > * `[`GetExtensionsOrNull`](#structFRHAPI__AdditionalJoinParams_1add6b5e6ad54be84f40912838253769e7)`() const` | Returns a pointer to Extensions_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetExtensions`](#structFRHAPI__AdditionalJoinParams_1a1801f3196252cf1f2d86fd2757233001)`(const TMap< FString, FString > & NewValue)` | Sets the value of Extensions_Optional and also sets Extensions_IsSet to true.
 `public inline void `[`SetExtensions`](#structFRHAPI__AdditionalJoinParams_1a120c011a9c0836cb567ec4f386f0c2f4)`(TMap< FString, FString > && NewValue)` | Sets the value of Extensions_Optional and also sets Extensions_IsSet to true using move semantics.
 `public inline void `[`ClearExtensions`](#structFRHAPI__AdditionalJoinParams_1af4f1ea3d69193091aaf259a362f379c2)`()` | Clears the value of Extensions_Optional and sets Extensions_IsSet to false.
@@ -116,22 +116,22 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__AdditionalJoinParams_1a2d1150131102f5414e4d05bfa6fc6487)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__AdditionalJoinParams_1a2d1150131102f5414e4d05bfa6fc6487"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__AdditionalJoinParams_1a15c180c984f3184041ff5f9dab7c409d)`(TSharedRef< TJsonWriter<> > & Writer) const` <a id="structFRHAPI__AdditionalJoinParams_1a15c180c984f3184041ff5f9dab7c409d"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline TMap< FString, float > & `[`GetDoubleArgs`](#structFRHAPI__AdditionalJoinParams_1aabe7c646e550db8df4bc5e1782bbae8c)`()` <a id="structFRHAPI__AdditionalJoinParams_1aabe7c646e550db8df4bc5e1782bbae8c"></a>
+#### `public inline TMap< FString, float > & `[`GetDoubleArgs`](#structFRHAPI__AdditionalJoinParams_1ae409fe92afdad5421a1fd3c0db828bbe)`()` <a id="structFRHAPI__AdditionalJoinParams_1ae409fe92afdad5421a1fd3c0db828bbe"></a>
 
 Gets the value of DoubleArgs_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, float > & `[`GetDoubleArgs`](#structFRHAPI__AdditionalJoinParams_1a84f4c7a3e8523c80145c8da26b042b3a)`() const` <a id="structFRHAPI__AdditionalJoinParams_1a84f4c7a3e8523c80145c8da26b042b3a"></a>
+#### `public inline const TMap< FString, float > & `[`GetDoubleArgs`](#structFRHAPI__AdditionalJoinParams_1ad48bb97d8655ff36738733f8eb076837)`() const` <a id="structFRHAPI__AdditionalJoinParams_1ad48bb97d8655ff36738733f8eb076837"></a>
 
 Gets the value of DoubleArgs_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, float > & `[`GetDoubleArgs`](#structFRHAPI__AdditionalJoinParams_1ad1ba115ea7a2a9eee148419c490d27ec)`(const TMap< FString, float > & DefaultValue) const` <a id="structFRHAPI__AdditionalJoinParams_1ad1ba115ea7a2a9eee148419c490d27ec"></a>
+#### `public inline const TMap< FString, float > & `[`GetDoubleArgs`](#structFRHAPI__AdditionalJoinParams_1ac68fff45f073b4d0c136017b4a724532)`(const TMap< FString, float > & DefaultValue) const` <a id="structFRHAPI__AdditionalJoinParams_1ac68fff45f073b4d0c136017b4a724532"></a>
 
 Gets the value of DoubleArgs_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -139,11 +139,11 @@ Gets the value of DoubleArgs_Optional, if it has been set, otherwise it returns 
 
 Fills OutValue with the value of DoubleArgs_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, float > * `[`GetDoubleArgsOrNull`](#structFRHAPI__AdditionalJoinParams_1a1929b09bc94153c1709b04a34cb5f579)`()` <a id="structFRHAPI__AdditionalJoinParams_1a1929b09bc94153c1709b04a34cb5f579"></a>
+#### `public inline TMap< FString, float > * `[`GetDoubleArgsOrNull`](#structFRHAPI__AdditionalJoinParams_1a8d838246e4f05dd51d87ef7269780676)`()` <a id="structFRHAPI__AdditionalJoinParams_1a8d838246e4f05dd51d87ef7269780676"></a>
 
 Returns a pointer to DoubleArgs_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, float > * `[`GetDoubleArgsOrNull`](#structFRHAPI__AdditionalJoinParams_1aa582bc773b05c745ba2cf92f1a9d2a4d)`() const` <a id="structFRHAPI__AdditionalJoinParams_1aa582bc773b05c745ba2cf92f1a9d2a4d"></a>
+#### `public inline const TMap< FString, float > * `[`GetDoubleArgsOrNull`](#structFRHAPI__AdditionalJoinParams_1a0d168f164ff5cd20732deba6e1adfb88)`() const` <a id="structFRHAPI__AdditionalJoinParams_1a0d168f164ff5cd20732deba6e1adfb88"></a>
 
 Returns a pointer to DoubleArgs_Optional, if it has been set, otherwise returns nullptr.
 
@@ -163,15 +163,15 @@ Clears the value of DoubleArgs_Optional and sets DoubleArgs_IsSet to false.
 
 Checks whether DoubleArgs_Optional has been set.
 
-#### `public inline TMap< FString, FString > & `[`GetStringArgs`](#structFRHAPI__AdditionalJoinParams_1aee56142e4ede519e524b6e2e176b2902)`()` <a id="structFRHAPI__AdditionalJoinParams_1aee56142e4ede519e524b6e2e176b2902"></a>
+#### `public inline TMap< FString, FString > & `[`GetStringArgs`](#structFRHAPI__AdditionalJoinParams_1a19efcf78722857c1de81e5c003222ae0)`()` <a id="structFRHAPI__AdditionalJoinParams_1a19efcf78722857c1de81e5c003222ae0"></a>
 
 Gets the value of StringArgs_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetStringArgs`](#structFRHAPI__AdditionalJoinParams_1a64563214481a17493c6fbe4853c449e8)`() const` <a id="structFRHAPI__AdditionalJoinParams_1a64563214481a17493c6fbe4853c449e8"></a>
+#### `public inline const TMap< FString, FString > & `[`GetStringArgs`](#structFRHAPI__AdditionalJoinParams_1aa7139a36dc717a938f41aad4f633cf36)`() const` <a id="structFRHAPI__AdditionalJoinParams_1aa7139a36dc717a938f41aad4f633cf36"></a>
 
 Gets the value of StringArgs_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetStringArgs`](#structFRHAPI__AdditionalJoinParams_1a37ac752248e252d0379f18a221128580)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__AdditionalJoinParams_1a37ac752248e252d0379f18a221128580"></a>
+#### `public inline const TMap< FString, FString > & `[`GetStringArgs`](#structFRHAPI__AdditionalJoinParams_1a930aa8d153f646929802d6e07a8f1820)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__AdditionalJoinParams_1a930aa8d153f646929802d6e07a8f1820"></a>
 
 Gets the value of StringArgs_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -179,11 +179,11 @@ Gets the value of StringArgs_Optional, if it has been set, otherwise it returns 
 
 Fills OutValue with the value of StringArgs_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, FString > * `[`GetStringArgsOrNull`](#structFRHAPI__AdditionalJoinParams_1aa93e031a5878f950eb64e0fd1e05227d)`()` <a id="structFRHAPI__AdditionalJoinParams_1aa93e031a5878f950eb64e0fd1e05227d"></a>
+#### `public inline TMap< FString, FString > * `[`GetStringArgsOrNull`](#structFRHAPI__AdditionalJoinParams_1ad825b712fd9305c1d6043fe11f58fb12)`()` <a id="structFRHAPI__AdditionalJoinParams_1ad825b712fd9305c1d6043fe11f58fb12"></a>
 
 Returns a pointer to StringArgs_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, FString > * `[`GetStringArgsOrNull`](#structFRHAPI__AdditionalJoinParams_1a0c3a1bf622363576124c7619b33d89f6)`() const` <a id="structFRHAPI__AdditionalJoinParams_1a0c3a1bf622363576124c7619b33d89f6"></a>
+#### `public inline const TMap< FString, FString > * `[`GetStringArgsOrNull`](#structFRHAPI__AdditionalJoinParams_1afbe7ef92b623eb5fe199f17ef5deeb84)`() const` <a id="structFRHAPI__AdditionalJoinParams_1afbe7ef92b623eb5fe199f17ef5deeb84"></a>
 
 Returns a pointer to StringArgs_Optional, if it has been set, otherwise returns nullptr.
 
@@ -203,15 +203,15 @@ Clears the value of StringArgs_Optional and sets StringArgs_IsSet to false.
 
 Checks whether StringArgs_Optional has been set.
 
-#### `public inline TArray< FString > & `[`GetTags`](#structFRHAPI__AdditionalJoinParams_1ac1caf9793e68f022ece1f7f189161d42)`()` <a id="structFRHAPI__AdditionalJoinParams_1ac1caf9793e68f022ece1f7f189161d42"></a>
+#### `public inline TArray< FString > & `[`GetTags`](#structFRHAPI__AdditionalJoinParams_1a902254f2aecd9f486e42d54928c4898b)`()` <a id="structFRHAPI__AdditionalJoinParams_1a902254f2aecd9f486e42d54928c4898b"></a>
 
 Gets the value of Tags_Optional, regardless of it having been set.
 
-#### `public inline const TArray< FString > & `[`GetTags`](#structFRHAPI__AdditionalJoinParams_1a5d2c0934b594959c6d870d8e06b1876c)`() const` <a id="structFRHAPI__AdditionalJoinParams_1a5d2c0934b594959c6d870d8e06b1876c"></a>
+#### `public inline const TArray< FString > & `[`GetTags`](#structFRHAPI__AdditionalJoinParams_1a786ddf26f8b5acdd0c060d113b52691c)`() const` <a id="structFRHAPI__AdditionalJoinParams_1a786ddf26f8b5acdd0c060d113b52691c"></a>
 
 Gets the value of Tags_Optional, regardless of it having been set.
 
-#### `public inline const TArray< FString > & `[`GetTags`](#structFRHAPI__AdditionalJoinParams_1ab3c6e6203999cd0cdb79b02d6a4bec5f)`(const TArray< FString > & DefaultValue) const` <a id="structFRHAPI__AdditionalJoinParams_1ab3c6e6203999cd0cdb79b02d6a4bec5f"></a>
+#### `public inline const TArray< FString > & `[`GetTags`](#structFRHAPI__AdditionalJoinParams_1ab52a89966ebf510e30e7ca03eaa47302)`(const TArray< FString > & DefaultValue) const` <a id="structFRHAPI__AdditionalJoinParams_1ab52a89966ebf510e30e7ca03eaa47302"></a>
 
 Gets the value of Tags_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -219,11 +219,11 @@ Gets the value of Tags_Optional, if it has been set, otherwise it returns Defaul
 
 Fills OutValue with the value of Tags_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TArray< FString > * `[`GetTagsOrNull`](#structFRHAPI__AdditionalJoinParams_1a817f369f070e33e0a55d356292fba64f)`()` <a id="structFRHAPI__AdditionalJoinParams_1a817f369f070e33e0a55d356292fba64f"></a>
+#### `public inline TArray< FString > * `[`GetTagsOrNull`](#structFRHAPI__AdditionalJoinParams_1a9d5955c1d2033824c85b96ea6fdff230)`()` <a id="structFRHAPI__AdditionalJoinParams_1a9d5955c1d2033824c85b96ea6fdff230"></a>
 
 Returns a pointer to Tags_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TArray< FString > * `[`GetTagsOrNull`](#structFRHAPI__AdditionalJoinParams_1a39662fcd9d3af849292d5d5793a08d54)`() const` <a id="structFRHAPI__AdditionalJoinParams_1a39662fcd9d3af849292d5d5793a08d54"></a>
+#### `public inline const TArray< FString > * `[`GetTagsOrNull`](#structFRHAPI__AdditionalJoinParams_1ad5412929a3aa5898e9d9df84e9b89da2)`() const` <a id="structFRHAPI__AdditionalJoinParams_1ad5412929a3aa5898e9d9df84e9b89da2"></a>
 
 Returns a pointer to Tags_Optional, if it has been set, otherwise returns nullptr.
 
@@ -243,15 +243,15 @@ Clears the value of Tags_Optional and sets Tags_IsSet to false.
 
 Checks whether Tags_Optional has been set.
 
-#### `public inline TMap< FString, FString > & `[`GetExtensions`](#structFRHAPI__AdditionalJoinParams_1a2af14fcbfccaf8733a3d0a9c511debdb)`()` <a id="structFRHAPI__AdditionalJoinParams_1a2af14fcbfccaf8733a3d0a9c511debdb"></a>
+#### `public inline TMap< FString, FString > & `[`GetExtensions`](#structFRHAPI__AdditionalJoinParams_1a423222e81266a75941785d2855bfc442)`()` <a id="structFRHAPI__AdditionalJoinParams_1a423222e81266a75941785d2855bfc442"></a>
 
 Gets the value of Extensions_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetExtensions`](#structFRHAPI__AdditionalJoinParams_1a4d202329f362922798012b8ca3f8784b)`() const` <a id="structFRHAPI__AdditionalJoinParams_1a4d202329f362922798012b8ca3f8784b"></a>
+#### `public inline const TMap< FString, FString > & `[`GetExtensions`](#structFRHAPI__AdditionalJoinParams_1a45e84ab49337b9bdb61df1ee6bb01a13)`() const` <a id="structFRHAPI__AdditionalJoinParams_1a45e84ab49337b9bdb61df1ee6bb01a13"></a>
 
 Gets the value of Extensions_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetExtensions`](#structFRHAPI__AdditionalJoinParams_1ab60908d74a79b88788cc2e9993203c71)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__AdditionalJoinParams_1ab60908d74a79b88788cc2e9993203c71"></a>
+#### `public inline const TMap< FString, FString > & `[`GetExtensions`](#structFRHAPI__AdditionalJoinParams_1ad251729f2b3795d059cefaa300e0f2a3)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__AdditionalJoinParams_1ad251729f2b3795d059cefaa300e0f2a3"></a>
 
 Gets the value of Extensions_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -259,11 +259,11 @@ Gets the value of Extensions_Optional, if it has been set, otherwise it returns 
 
 Fills OutValue with the value of Extensions_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, FString > * `[`GetExtensionsOrNull`](#structFRHAPI__AdditionalJoinParams_1a718fce2b4a063aa53b92047ad35de12a)`()` <a id="structFRHAPI__AdditionalJoinParams_1a718fce2b4a063aa53b92047ad35de12a"></a>
+#### `public inline TMap< FString, FString > * `[`GetExtensionsOrNull`](#structFRHAPI__AdditionalJoinParams_1a50706eb832fa6bef02effa67eece8148)`()` <a id="structFRHAPI__AdditionalJoinParams_1a50706eb832fa6bef02effa67eece8148"></a>
 
 Returns a pointer to Extensions_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, FString > * `[`GetExtensionsOrNull`](#structFRHAPI__AdditionalJoinParams_1ab61518d1a59cd1cd9305364dd88d4cb1)`() const` <a id="structFRHAPI__AdditionalJoinParams_1ab61518d1a59cd1cd9305364dd88d4cb1"></a>
+#### `public inline const TMap< FString, FString > * `[`GetExtensionsOrNull`](#structFRHAPI__AdditionalJoinParams_1add6b5e6ad54be84f40912838253769e7)`() const` <a id="structFRHAPI__AdditionalJoinParams_1add6b5e6ad54be84f40912838253769e7"></a>
 
 Returns a pointer to Extensions_Optional, if it has been set, otherwise returns nullptr.
 

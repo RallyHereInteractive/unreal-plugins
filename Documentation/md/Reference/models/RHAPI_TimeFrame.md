@@ -36,79 +36,79 @@ Time Frames are used to calculate the expiration of Inventory.
 `public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__TimeFrame_1a147c3051181706c6bdf0c078e9f8d44b) | Cache info for the Time Frame.
 `public bool `[`CacheInfo_IsSet`](#structFRHAPI__TimeFrame_1a35e7451323d4130ffdf6f1768334514e) | true if CacheInfo_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__TimeFrame_1a8c5ba6096db5b29dd96e0eb9087defc9)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__TimeFrame_1afed34952d9089480a218492c7d09aff0)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetName`](#structFRHAPI__TimeFrame_1a61a9c58b46ee70d81e2db50065091133)`()` | Gets the value of Name_Optional, regardless of it having been set.
-`public inline const FString & `[`GetName`](#structFRHAPI__TimeFrame_1a74a8f2660fa870509e208f709bb5f324)`() const` | Gets the value of Name_Optional, regardless of it having been set.
-`public inline const FString & `[`GetName`](#structFRHAPI__TimeFrame_1a61956dabee5d81e6010fd6649465f058)`(const FString & DefaultValue) const` | Gets the value of Name_Optional, if it has been set, otherwise it returns DefaultValue.
+`public virtual void `[`WriteJson`](#structFRHAPI__TimeFrame_1a50919440f291883fb76d28b5e40a06fd)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline FString & `[`GetName`](#structFRHAPI__TimeFrame_1a952a4802a4d8042126e199ff7513d9d7)`()` | Gets the value of Name_Optional, regardless of it having been set.
+`public inline const FString & `[`GetName`](#structFRHAPI__TimeFrame_1a9a44cc71ebf878a36272f72fb3b3d2d8)`() const` | Gets the value of Name_Optional, regardless of it having been set.
+`public inline const FString & `[`GetName`](#structFRHAPI__TimeFrame_1a0352f713fbd745447ae5241597029623)`(const FString & DefaultValue) const` | Gets the value of Name_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetName`](#structFRHAPI__TimeFrame_1a758329c3ea43e1f46586235a6f1f6c1d)`(FString & OutValue) const` | Fills OutValue with the value of Name_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetNameOrNull`](#structFRHAPI__TimeFrame_1aefee06dc4bfdb221312e8ace4ccd8b9a)`()` | Returns a pointer to Name_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetNameOrNull`](#structFRHAPI__TimeFrame_1a0c9e9f3dc27555d9d558b679a0e87134)`() const` | Returns a pointer to Name_Optional, if it has been set, otherwise returns nullptr.
+`public inline FString * `[`GetNameOrNull`](#structFRHAPI__TimeFrame_1a97ee4aff65616b54499fbb532deae955)`()` | Returns a pointer to Name_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetNameOrNull`](#structFRHAPI__TimeFrame_1ab3e57f94a22b6a8778536f39af31527c)`() const` | Returns a pointer to Name_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetName`](#structFRHAPI__TimeFrame_1a2b6aa3730d162fe1d537f122483136a6)`(const FString & NewValue)` | Sets the value of Name_Optional and also sets Name_IsSet to true.
 `public inline void `[`SetName`](#structFRHAPI__TimeFrame_1af76700d9c576a7d16b5b8d9db1c577a5)`(FString && NewValue)` | Sets the value of Name_Optional and also sets Name_IsSet to true using move semantics.
 `public inline void `[`ClearName`](#structFRHAPI__TimeFrame_1a581126a53e4cb04c4151c1454e79aded)`()` | Clears the value of Name_Optional and sets Name_IsSet to false.
 `public inline bool `[`IsNameSet`](#structFRHAPI__TimeFrame_1a94d84d4feee4fd1c4749b56d34286a49)`() const` | Checks whether Name_Optional has been set.
-`public inline bool & `[`GetActive`](#structFRHAPI__TimeFrame_1a7a12bcf20262c2009ed84473cd914405)`()` | Gets the value of Active_Optional, regardless of it having been set.
-`public inline const bool & `[`GetActive`](#structFRHAPI__TimeFrame_1a5ef2ffa44fefe506cebaa4f66ce1ef48)`() const` | Gets the value of Active_Optional, regardless of it having been set.
-`public inline const bool & `[`GetActive`](#structFRHAPI__TimeFrame_1a09122c2a9538d8b41f96f10e304179ad)`(const bool & DefaultValue) const` | Gets the value of Active_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool & `[`GetActive`](#structFRHAPI__TimeFrame_1af833108f0d23810c755bf177389bbbcb)`()` | Gets the value of Active_Optional, regardless of it having been set.
+`public inline const bool & `[`GetActive`](#structFRHAPI__TimeFrame_1acc573477da397b8f53686c2a6edff9fd)`() const` | Gets the value of Active_Optional, regardless of it having been set.
+`public inline const bool & `[`GetActive`](#structFRHAPI__TimeFrame_1a090b519f7d31de0bf3e93b56a279d84d)`(const bool & DefaultValue) const` | Gets the value of Active_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetActive`](#structFRHAPI__TimeFrame_1a2270c07de39e64c8c2a99d8dbd72070c)`(bool & OutValue) const` | Fills OutValue with the value of Active_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetActiveOrNull`](#structFRHAPI__TimeFrame_1a58445f3c2933caaf91a495d153a1c17e)`()` | Returns a pointer to Active_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetActiveOrNull`](#structFRHAPI__TimeFrame_1a78fb77fe09a49a56f8ae44da6b33c126)`() const` | Returns a pointer to Active_Optional, if it has been set, otherwise returns nullptr.
+`public inline bool * `[`GetActiveOrNull`](#structFRHAPI__TimeFrame_1a508e17ea1189d60f3850168d7675b947)`()` | Returns a pointer to Active_Optional, if it has been set, otherwise returns nullptr.
+`public inline const bool * `[`GetActiveOrNull`](#structFRHAPI__TimeFrame_1a0f80c7e77a12b462051be7af9c4b3ceb)`() const` | Returns a pointer to Active_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetActive`](#structFRHAPI__TimeFrame_1adf8e0210edf162531c1cc33dc3200945)`(const bool & NewValue)` | Sets the value of Active_Optional and also sets Active_IsSet to true.
 `public inline void `[`SetActive`](#structFRHAPI__TimeFrame_1a4a51c8ebfef2e6a7a780e4f024f02a67)`(bool && NewValue)` | Sets the value of Active_Optional and also sets Active_IsSet to true using move semantics.
 `public inline void `[`ClearActive`](#structFRHAPI__TimeFrame_1ad0aca5c772290bd9b2c69b0e95cac039)`()` | Clears the value of Active_Optional and sets Active_IsSet to false.
 `public inline bool `[`IsActiveSet`](#structFRHAPI__TimeFrame_1aa05d94f6f8a14f013a55b823c9801670)`() const` | Checks whether Active_Optional has been set.
 `public inline bool `[`IsActiveDefaultValue`](#structFRHAPI__TimeFrame_1a868ac1cf044aba574f8b71380cd5c84e)`() const` | Returns true if Active_Optional is set and matches the default value.
 `public inline void `[`SetActiveToDefault`](#structFRHAPI__TimeFrame_1ac3e33f300357adaafe87c2d29e058a31)`()` | Sets the value of Active_Optional to its default and also sets Active_IsSet to true.
-`public inline int32 & `[`GetEpisode`](#structFRHAPI__TimeFrame_1a81efe2c90e4897f348a02ec956bca5b7)`()` | Gets the value of Episode_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetEpisode`](#structFRHAPI__TimeFrame_1a32628e6aa1b5b3445847fdf20c413a5d)`() const` | Gets the value of Episode_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetEpisode`](#structFRHAPI__TimeFrame_1a188254266e1b65194afbd37059760d79)`(const int32 & DefaultValue) const` | Gets the value of Episode_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline int32 & `[`GetEpisode`](#structFRHAPI__TimeFrame_1a595fd652865bb009c365d9016b77ef3c)`()` | Gets the value of Episode_Optional, regardless of it having been set.
+`public inline const int32 & `[`GetEpisode`](#structFRHAPI__TimeFrame_1a7a35b228bdcdd97007132bd655821a6b)`() const` | Gets the value of Episode_Optional, regardless of it having been set.
+`public inline const int32 & `[`GetEpisode`](#structFRHAPI__TimeFrame_1ad49908c4cd0897bf366d279a93b36461)`(const int32 & DefaultValue) const` | Gets the value of Episode_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetEpisode`](#structFRHAPI__TimeFrame_1afdb8b52fa67192b5b84ea28055e6933d)`(int32 & OutValue) const` | Fills OutValue with the value of Episode_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetEpisodeOrNull`](#structFRHAPI__TimeFrame_1acc3e2886064a54754261a4e2ac6d7c7f)`()` | Returns a pointer to Episode_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetEpisodeOrNull`](#structFRHAPI__TimeFrame_1a84f705a43ed2aa5e7d0911b56931285b)`() const` | Returns a pointer to Episode_Optional, if it has been set, otherwise returns nullptr.
+`public inline int32 * `[`GetEpisodeOrNull`](#structFRHAPI__TimeFrame_1a2d5b08ebfb161ebcd13e96b28693fbaa)`()` | Returns a pointer to Episode_Optional, if it has been set, otherwise returns nullptr.
+`public inline const int32 * `[`GetEpisodeOrNull`](#structFRHAPI__TimeFrame_1a641e4d6f74277fc91e8b0d157373d4f2)`() const` | Returns a pointer to Episode_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetEpisode`](#structFRHAPI__TimeFrame_1a85fc0ed2b27cc005ce9f9e375ee02e55)`(const int32 & NewValue)` | Sets the value of Episode_Optional and also sets Episode_IsSet to true.
 `public inline void `[`SetEpisode`](#structFRHAPI__TimeFrame_1af31f55a5df19d62398ca8ad582f92c59)`(int32 && NewValue)` | Sets the value of Episode_Optional and also sets Episode_IsSet to true using move semantics.
 `public inline void `[`ClearEpisode`](#structFRHAPI__TimeFrame_1a2f88f072cc4379db7a5e9355178dedcd)`()` | Clears the value of Episode_Optional and sets Episode_IsSet to false.
 `public inline bool `[`IsEpisodeSet`](#structFRHAPI__TimeFrame_1acd56fc53175186fa2a084040ff72040c)`() const` | Checks whether Episode_Optional has been set.
 `public inline bool `[`IsEpisodeDefaultValue`](#structFRHAPI__TimeFrame_1a3c1c4726e257599575433177bab44d2f)`() const` | Returns true if Episode_Optional is set and matches the default value.
 `public inline void `[`SetEpisodeToDefault`](#structFRHAPI__TimeFrame_1a7dd090778af7205fb0076af77f84e4d5)`()` | Sets the value of Episode_Optional to its default and also sets Episode_IsSet to true.
-`public inline int32 & `[`GetEpisodeType`](#structFRHAPI__TimeFrame_1a8fd40449d98103424b3b0ebc22b9eadd)`()` | Gets the value of EpisodeType_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetEpisodeType`](#structFRHAPI__TimeFrame_1ace71d32bd19c9798ce6e5b1d3e7a7e89)`() const` | Gets the value of EpisodeType_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetEpisodeType`](#structFRHAPI__TimeFrame_1aedcab36c40ce0f9c65c6caae417e85b7)`(const int32 & DefaultValue) const` | Gets the value of EpisodeType_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline int32 & `[`GetEpisodeType`](#structFRHAPI__TimeFrame_1ab6fdd77056f3f10bd0910127c3c34d35)`()` | Gets the value of EpisodeType_Optional, regardless of it having been set.
+`public inline const int32 & `[`GetEpisodeType`](#structFRHAPI__TimeFrame_1ae6d77598d88af9560ff06c8e110c5d63)`() const` | Gets the value of EpisodeType_Optional, regardless of it having been set.
+`public inline const int32 & `[`GetEpisodeType`](#structFRHAPI__TimeFrame_1a9554a22c44a650bb3159b302ec711050)`(const int32 & DefaultValue) const` | Gets the value of EpisodeType_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetEpisodeType`](#structFRHAPI__TimeFrame_1a6ec55307d4f45826becb235276a81bc0)`(int32 & OutValue) const` | Fills OutValue with the value of EpisodeType_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetEpisodeTypeOrNull`](#structFRHAPI__TimeFrame_1aec3237f211f5a315646ae569f15f0d3e)`()` | Returns a pointer to EpisodeType_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetEpisodeTypeOrNull`](#structFRHAPI__TimeFrame_1a537a6c6e1f3fa724593574a8b32e2a8c)`() const` | Returns a pointer to EpisodeType_Optional, if it has been set, otherwise returns nullptr.
+`public inline int32 * `[`GetEpisodeTypeOrNull`](#structFRHAPI__TimeFrame_1a3d7571c7300e81d24b925c8d1326aab1)`()` | Returns a pointer to EpisodeType_Optional, if it has been set, otherwise returns nullptr.
+`public inline const int32 * `[`GetEpisodeTypeOrNull`](#structFRHAPI__TimeFrame_1aede2a2cebce84328224ecdd80d7fffd1)`() const` | Returns a pointer to EpisodeType_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetEpisodeType`](#structFRHAPI__TimeFrame_1aa1f0fe9acc79f543ae69717f82bc7f07)`(const int32 & NewValue)` | Sets the value of EpisodeType_Optional and also sets EpisodeType_IsSet to true.
 `public inline void `[`SetEpisodeType`](#structFRHAPI__TimeFrame_1a0d039f254312db0611d5ae4b4698201b)`(int32 && NewValue)` | Sets the value of EpisodeType_Optional and also sets EpisodeType_IsSet to true using move semantics.
 `public inline void `[`ClearEpisodeType`](#structFRHAPI__TimeFrame_1ac593875efb4429774428eb2de7ff4eb9)`()` | Clears the value of EpisodeType_Optional and sets EpisodeType_IsSet to false.
 `public inline bool `[`IsEpisodeTypeSet`](#structFRHAPI__TimeFrame_1aa3948c743870c0fca05f0692c4992c78)`() const` | Checks whether EpisodeType_Optional has been set.
 `public inline bool `[`IsEpisodeTypeDefaultValue`](#structFRHAPI__TimeFrame_1ab1cc20719aabc912a5fb97d99ee0e211)`() const` | Returns true if EpisodeType_Optional is set and matches the default value.
 `public inline void `[`SetEpisodeTypeToDefault`](#structFRHAPI__TimeFrame_1a211e7b5d08b87886daddaf325358ee15)`()` | Sets the value of EpisodeType_Optional to its default and also sets EpisodeType_IsSet to true.
-`public inline int32 & `[`GetHourInterval`](#structFRHAPI__TimeFrame_1a96fe52c2123c0171189076b9957d5055)`()` | Gets the value of HourInterval_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetHourInterval`](#structFRHAPI__TimeFrame_1a98c1e1b0437597f70e1532c4aedbb0f3)`() const` | Gets the value of HourInterval_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetHourInterval`](#structFRHAPI__TimeFrame_1a9ed2214e9fdbda6be5f0be224d482722)`(const int32 & DefaultValue) const` | Gets the value of HourInterval_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline int32 & `[`GetHourInterval`](#structFRHAPI__TimeFrame_1afdf55d495afd2146764b2d292ebefd81)`()` | Gets the value of HourInterval_Optional, regardless of it having been set.
+`public inline const int32 & `[`GetHourInterval`](#structFRHAPI__TimeFrame_1a31a4e601ae5d906edf13b2257f0da4b8)`() const` | Gets the value of HourInterval_Optional, regardless of it having been set.
+`public inline const int32 & `[`GetHourInterval`](#structFRHAPI__TimeFrame_1ab9779705ff0e13b32fe9bb35ca8c1cd2)`(const int32 & DefaultValue) const` | Gets the value of HourInterval_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetHourInterval`](#structFRHAPI__TimeFrame_1ace7da4e14654b9de551fcedf243ef83a)`(int32 & OutValue) const` | Fills OutValue with the value of HourInterval_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetHourIntervalOrNull`](#structFRHAPI__TimeFrame_1ae926130800a31b291758a1e7c9ce9c4d)`()` | Returns a pointer to HourInterval_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetHourIntervalOrNull`](#structFRHAPI__TimeFrame_1ab54995c9ec6e93bc721dbad614789812)`() const` | Returns a pointer to HourInterval_Optional, if it has been set, otherwise returns nullptr.
+`public inline int32 * `[`GetHourIntervalOrNull`](#structFRHAPI__TimeFrame_1a338a89f292121df2c718e8e8efd4d670)`()` | Returns a pointer to HourInterval_Optional, if it has been set, otherwise returns nullptr.
+`public inline const int32 * `[`GetHourIntervalOrNull`](#structFRHAPI__TimeFrame_1a4d5c7d754d28b41842d03e34598d6ddb)`() const` | Returns a pointer to HourInterval_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetHourInterval`](#structFRHAPI__TimeFrame_1a096e26c1f4005b9c491f45d21fd87823)`(const int32 & NewValue)` | Sets the value of HourInterval_Optional and also sets HourInterval_IsSet to true.
 `public inline void `[`SetHourInterval`](#structFRHAPI__TimeFrame_1ae05fd793a0ef5aa5cf1e08435e41f18e)`(int32 && NewValue)` | Sets the value of HourInterval_Optional and also sets HourInterval_IsSet to true using move semantics.
 `public inline void `[`ClearHourInterval`](#structFRHAPI__TimeFrame_1a7488c51a0f1ecd54b148cc00009ef711)`()` | Clears the value of HourInterval_Optional and sets HourInterval_IsSet to false.
 `public inline bool `[`IsHourIntervalSet`](#structFRHAPI__TimeFrame_1a1dd1f6d9ef520cc44f685e2b6c69e776)`() const` | Checks whether HourInterval_Optional has been set.
 `public inline bool `[`IsHourIntervalDefaultValue`](#structFRHAPI__TimeFrame_1adaaf6dfb8a78bdd20d76260a45d65d95)`() const` | Returns true if HourInterval_Optional is set and matches the default value.
 `public inline void `[`SetHourIntervalToDefault`](#structFRHAPI__TimeFrame_1a1b3affee895187185d25a80d848097c6)`()` | Sets the value of HourInterval_Optional to its default and also sets HourInterval_IsSet to true.
-`public inline FDateTime & `[`GetStart`](#structFRHAPI__TimeFrame_1afcd1399a2f4d19035b6dc7e1b068b971)`()` | Gets the value of Start.
-`public inline const FDateTime & `[`GetStart`](#structFRHAPI__TimeFrame_1adfea0cf9fe4c09b0e77087fe2ff3c6c6)`() const` | Gets the value of Start.
+`public inline FDateTime & `[`GetStart`](#structFRHAPI__TimeFrame_1a0b50db032a062ef7f3d27c729af5543a)`()` | Gets the value of Start.
+`public inline const FDateTime & `[`GetStart`](#structFRHAPI__TimeFrame_1a5d8ea739dd79c97e3092f5827556d0c2)`() const` | Gets the value of Start.
 `public inline void `[`SetStart`](#structFRHAPI__TimeFrame_1ae5a23a1c98943888751086a83317e905)`(const FDateTime & NewValue)` | Sets the value of Start.
 `public inline void `[`SetStart`](#structFRHAPI__TimeFrame_1a248f33e2b9da67385abd5370682d0928)`(FDateTime && NewValue)` | Sets the value of Start using move semantics.
-`public inline FDateTime & `[`GetEnd`](#structFRHAPI__TimeFrame_1af81d214b4f63a21dfd7b0659d963ff99)`()` | Gets the value of End.
-`public inline const FDateTime & `[`GetEnd`](#structFRHAPI__TimeFrame_1a20a539e8f2739e6e86bb44ca0edd15f0)`() const` | Gets the value of End.
+`public inline FDateTime & `[`GetEnd`](#structFRHAPI__TimeFrame_1acbb16dd1b600de5573eb8fe53df57721)`()` | Gets the value of End.
+`public inline const FDateTime & `[`GetEnd`](#structFRHAPI__TimeFrame_1a100050feb98b46e1e216baa430592346)`() const` | Gets the value of End.
 `public inline void `[`SetEnd`](#structFRHAPI__TimeFrame_1a2aa68b170888ecc63b811855dab2b514)`(const FDateTime & NewValue)` | Sets the value of End.
 `public inline void `[`SetEnd`](#structFRHAPI__TimeFrame_1a20980b33dd83900c6ec5c10e25b697cd)`(FDateTime && NewValue)` | Sets the value of End using move semantics.
-`public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__TimeFrame_1af9aa89ce323040f0ccd0c2d14b5dde29)`()` | Gets the value of CacheInfo_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__TimeFrame_1a62cd18465fa31e73c0a6156afdc583eb)`() const` | Gets the value of CacheInfo_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__TimeFrame_1a517db9f51a7ec1bc0ac5b04fbd2b1c6c)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` | Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__TimeFrame_1a177f557db6c8b54ad83811826e0ac574)`()` | Gets the value of CacheInfo_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__TimeFrame_1a46e3d8e9853e1f3ce7957edd2369d59c)`() const` | Gets the value of CacheInfo_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__TimeFrame_1ae3a77dab2c8a72a70a2413ba0a25f737)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` | Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetCacheInfo`](#structFRHAPI__TimeFrame_1ab2d06ff4c1f1c9d37c6fcae1e33878b8)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & OutValue) const` | Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__TimeFrame_1a5d762255a302a1bf885905350c8394f0)`()` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__TimeFrame_1aed405aca0d7c3ca4590cd75d145f73b9)`() const` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__TimeFrame_1a0a068af28667855f0c6892d6261d17c8)`()` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__TimeFrame_1a34fcde157131467fdd239fb210fc7135)`() const` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__TimeFrame_1a16eb4bafb287d3a668539440b25c376d)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__TimeFrame_1a35c2ab3e943bf2e56280c6209c3d273d)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__TimeFrame_1a38a9e13c08ae05b91dd35621c129a2d1)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
@@ -178,22 +178,22 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__TimeFrame_1afed34952d9089480a218492c7d09aff0)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__TimeFrame_1afed34952d9089480a218492c7d09aff0"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__TimeFrame_1a50919440f291883fb76d28b5e40a06fd)`(TSharedRef< TJsonWriter<> > & Writer) const` <a id="structFRHAPI__TimeFrame_1a50919440f291883fb76d28b5e40a06fd"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetName`](#structFRHAPI__TimeFrame_1a61a9c58b46ee70d81e2db50065091133)`()` <a id="structFRHAPI__TimeFrame_1a61a9c58b46ee70d81e2db50065091133"></a>
+#### `public inline FString & `[`GetName`](#structFRHAPI__TimeFrame_1a952a4802a4d8042126e199ff7513d9d7)`()` <a id="structFRHAPI__TimeFrame_1a952a4802a4d8042126e199ff7513d9d7"></a>
 
 Gets the value of Name_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetName`](#structFRHAPI__TimeFrame_1a74a8f2660fa870509e208f709bb5f324)`() const` <a id="structFRHAPI__TimeFrame_1a74a8f2660fa870509e208f709bb5f324"></a>
+#### `public inline const FString & `[`GetName`](#structFRHAPI__TimeFrame_1a9a44cc71ebf878a36272f72fb3b3d2d8)`() const` <a id="structFRHAPI__TimeFrame_1a9a44cc71ebf878a36272f72fb3b3d2d8"></a>
 
 Gets the value of Name_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetName`](#structFRHAPI__TimeFrame_1a61956dabee5d81e6010fd6649465f058)`(const FString & DefaultValue) const` <a id="structFRHAPI__TimeFrame_1a61956dabee5d81e6010fd6649465f058"></a>
+#### `public inline const FString & `[`GetName`](#structFRHAPI__TimeFrame_1a0352f713fbd745447ae5241597029623)`(const FString & DefaultValue) const` <a id="structFRHAPI__TimeFrame_1a0352f713fbd745447ae5241597029623"></a>
 
 Gets the value of Name_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -201,11 +201,11 @@ Gets the value of Name_Optional, if it has been set, otherwise it returns Defaul
 
 Fills OutValue with the value of Name_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetNameOrNull`](#structFRHAPI__TimeFrame_1aefee06dc4bfdb221312e8ace4ccd8b9a)`()` <a id="structFRHAPI__TimeFrame_1aefee06dc4bfdb221312e8ace4ccd8b9a"></a>
+#### `public inline FString * `[`GetNameOrNull`](#structFRHAPI__TimeFrame_1a97ee4aff65616b54499fbb532deae955)`()` <a id="structFRHAPI__TimeFrame_1a97ee4aff65616b54499fbb532deae955"></a>
 
 Returns a pointer to Name_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetNameOrNull`](#structFRHAPI__TimeFrame_1a0c9e9f3dc27555d9d558b679a0e87134)`() const` <a id="structFRHAPI__TimeFrame_1a0c9e9f3dc27555d9d558b679a0e87134"></a>
+#### `public inline const FString * `[`GetNameOrNull`](#structFRHAPI__TimeFrame_1ab3e57f94a22b6a8778536f39af31527c)`() const` <a id="structFRHAPI__TimeFrame_1ab3e57f94a22b6a8778536f39af31527c"></a>
 
 Returns a pointer to Name_Optional, if it has been set, otherwise returns nullptr.
 
@@ -225,15 +225,15 @@ Clears the value of Name_Optional and sets Name_IsSet to false.
 
 Checks whether Name_Optional has been set.
 
-#### `public inline bool & `[`GetActive`](#structFRHAPI__TimeFrame_1a7a12bcf20262c2009ed84473cd914405)`()` <a id="structFRHAPI__TimeFrame_1a7a12bcf20262c2009ed84473cd914405"></a>
+#### `public inline bool & `[`GetActive`](#structFRHAPI__TimeFrame_1af833108f0d23810c755bf177389bbbcb)`()` <a id="structFRHAPI__TimeFrame_1af833108f0d23810c755bf177389bbbcb"></a>
 
 Gets the value of Active_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetActive`](#structFRHAPI__TimeFrame_1a5ef2ffa44fefe506cebaa4f66ce1ef48)`() const` <a id="structFRHAPI__TimeFrame_1a5ef2ffa44fefe506cebaa4f66ce1ef48"></a>
+#### `public inline const bool & `[`GetActive`](#structFRHAPI__TimeFrame_1acc573477da397b8f53686c2a6edff9fd)`() const` <a id="structFRHAPI__TimeFrame_1acc573477da397b8f53686c2a6edff9fd"></a>
 
 Gets the value of Active_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetActive`](#structFRHAPI__TimeFrame_1a09122c2a9538d8b41f96f10e304179ad)`(const bool & DefaultValue) const` <a id="structFRHAPI__TimeFrame_1a09122c2a9538d8b41f96f10e304179ad"></a>
+#### `public inline const bool & `[`GetActive`](#structFRHAPI__TimeFrame_1a090b519f7d31de0bf3e93b56a279d84d)`(const bool & DefaultValue) const` <a id="structFRHAPI__TimeFrame_1a090b519f7d31de0bf3e93b56a279d84d"></a>
 
 Gets the value of Active_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -241,11 +241,11 @@ Gets the value of Active_Optional, if it has been set, otherwise it returns Defa
 
 Fills OutValue with the value of Active_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetActiveOrNull`](#structFRHAPI__TimeFrame_1a58445f3c2933caaf91a495d153a1c17e)`()` <a id="structFRHAPI__TimeFrame_1a58445f3c2933caaf91a495d153a1c17e"></a>
+#### `public inline bool * `[`GetActiveOrNull`](#structFRHAPI__TimeFrame_1a508e17ea1189d60f3850168d7675b947)`()` <a id="structFRHAPI__TimeFrame_1a508e17ea1189d60f3850168d7675b947"></a>
 
 Returns a pointer to Active_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetActiveOrNull`](#structFRHAPI__TimeFrame_1a78fb77fe09a49a56f8ae44da6b33c126)`() const` <a id="structFRHAPI__TimeFrame_1a78fb77fe09a49a56f8ae44da6b33c126"></a>
+#### `public inline const bool * `[`GetActiveOrNull`](#structFRHAPI__TimeFrame_1a0f80c7e77a12b462051be7af9c4b3ceb)`() const` <a id="structFRHAPI__TimeFrame_1a0f80c7e77a12b462051be7af9c4b3ceb"></a>
 
 Returns a pointer to Active_Optional, if it has been set, otherwise returns nullptr.
 
@@ -273,15 +273,15 @@ Returns true if Active_Optional is set and matches the default value.
 
 Sets the value of Active_Optional to its default and also sets Active_IsSet to true.
 
-#### `public inline int32 & `[`GetEpisode`](#structFRHAPI__TimeFrame_1a81efe2c90e4897f348a02ec956bca5b7)`()` <a id="structFRHAPI__TimeFrame_1a81efe2c90e4897f348a02ec956bca5b7"></a>
+#### `public inline int32 & `[`GetEpisode`](#structFRHAPI__TimeFrame_1a595fd652865bb009c365d9016b77ef3c)`()` <a id="structFRHAPI__TimeFrame_1a595fd652865bb009c365d9016b77ef3c"></a>
 
 Gets the value of Episode_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetEpisode`](#structFRHAPI__TimeFrame_1a32628e6aa1b5b3445847fdf20c413a5d)`() const` <a id="structFRHAPI__TimeFrame_1a32628e6aa1b5b3445847fdf20c413a5d"></a>
+#### `public inline const int32 & `[`GetEpisode`](#structFRHAPI__TimeFrame_1a7a35b228bdcdd97007132bd655821a6b)`() const` <a id="structFRHAPI__TimeFrame_1a7a35b228bdcdd97007132bd655821a6b"></a>
 
 Gets the value of Episode_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetEpisode`](#structFRHAPI__TimeFrame_1a188254266e1b65194afbd37059760d79)`(const int32 & DefaultValue) const` <a id="structFRHAPI__TimeFrame_1a188254266e1b65194afbd37059760d79"></a>
+#### `public inline const int32 & `[`GetEpisode`](#structFRHAPI__TimeFrame_1ad49908c4cd0897bf366d279a93b36461)`(const int32 & DefaultValue) const` <a id="structFRHAPI__TimeFrame_1ad49908c4cd0897bf366d279a93b36461"></a>
 
 Gets the value of Episode_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -289,11 +289,11 @@ Gets the value of Episode_Optional, if it has been set, otherwise it returns Def
 
 Fills OutValue with the value of Episode_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetEpisodeOrNull`](#structFRHAPI__TimeFrame_1acc3e2886064a54754261a4e2ac6d7c7f)`()` <a id="structFRHAPI__TimeFrame_1acc3e2886064a54754261a4e2ac6d7c7f"></a>
+#### `public inline int32 * `[`GetEpisodeOrNull`](#structFRHAPI__TimeFrame_1a2d5b08ebfb161ebcd13e96b28693fbaa)`()` <a id="structFRHAPI__TimeFrame_1a2d5b08ebfb161ebcd13e96b28693fbaa"></a>
 
 Returns a pointer to Episode_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetEpisodeOrNull`](#structFRHAPI__TimeFrame_1a84f705a43ed2aa5e7d0911b56931285b)`() const` <a id="structFRHAPI__TimeFrame_1a84f705a43ed2aa5e7d0911b56931285b"></a>
+#### `public inline const int32 * `[`GetEpisodeOrNull`](#structFRHAPI__TimeFrame_1a641e4d6f74277fc91e8b0d157373d4f2)`() const` <a id="structFRHAPI__TimeFrame_1a641e4d6f74277fc91e8b0d157373d4f2"></a>
 
 Returns a pointer to Episode_Optional, if it has been set, otherwise returns nullptr.
 
@@ -321,15 +321,15 @@ Returns true if Episode_Optional is set and matches the default value.
 
 Sets the value of Episode_Optional to its default and also sets Episode_IsSet to true.
 
-#### `public inline int32 & `[`GetEpisodeType`](#structFRHAPI__TimeFrame_1a8fd40449d98103424b3b0ebc22b9eadd)`()` <a id="structFRHAPI__TimeFrame_1a8fd40449d98103424b3b0ebc22b9eadd"></a>
+#### `public inline int32 & `[`GetEpisodeType`](#structFRHAPI__TimeFrame_1ab6fdd77056f3f10bd0910127c3c34d35)`()` <a id="structFRHAPI__TimeFrame_1ab6fdd77056f3f10bd0910127c3c34d35"></a>
 
 Gets the value of EpisodeType_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetEpisodeType`](#structFRHAPI__TimeFrame_1ace71d32bd19c9798ce6e5b1d3e7a7e89)`() const` <a id="structFRHAPI__TimeFrame_1ace71d32bd19c9798ce6e5b1d3e7a7e89"></a>
+#### `public inline const int32 & `[`GetEpisodeType`](#structFRHAPI__TimeFrame_1ae6d77598d88af9560ff06c8e110c5d63)`() const` <a id="structFRHAPI__TimeFrame_1ae6d77598d88af9560ff06c8e110c5d63"></a>
 
 Gets the value of EpisodeType_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetEpisodeType`](#structFRHAPI__TimeFrame_1aedcab36c40ce0f9c65c6caae417e85b7)`(const int32 & DefaultValue) const` <a id="structFRHAPI__TimeFrame_1aedcab36c40ce0f9c65c6caae417e85b7"></a>
+#### `public inline const int32 & `[`GetEpisodeType`](#structFRHAPI__TimeFrame_1a9554a22c44a650bb3159b302ec711050)`(const int32 & DefaultValue) const` <a id="structFRHAPI__TimeFrame_1a9554a22c44a650bb3159b302ec711050"></a>
 
 Gets the value of EpisodeType_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -337,11 +337,11 @@ Gets the value of EpisodeType_Optional, if it has been set, otherwise it returns
 
 Fills OutValue with the value of EpisodeType_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetEpisodeTypeOrNull`](#structFRHAPI__TimeFrame_1aec3237f211f5a315646ae569f15f0d3e)`()` <a id="structFRHAPI__TimeFrame_1aec3237f211f5a315646ae569f15f0d3e"></a>
+#### `public inline int32 * `[`GetEpisodeTypeOrNull`](#structFRHAPI__TimeFrame_1a3d7571c7300e81d24b925c8d1326aab1)`()` <a id="structFRHAPI__TimeFrame_1a3d7571c7300e81d24b925c8d1326aab1"></a>
 
 Returns a pointer to EpisodeType_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetEpisodeTypeOrNull`](#structFRHAPI__TimeFrame_1a537a6c6e1f3fa724593574a8b32e2a8c)`() const` <a id="structFRHAPI__TimeFrame_1a537a6c6e1f3fa724593574a8b32e2a8c"></a>
+#### `public inline const int32 * `[`GetEpisodeTypeOrNull`](#structFRHAPI__TimeFrame_1aede2a2cebce84328224ecdd80d7fffd1)`() const` <a id="structFRHAPI__TimeFrame_1aede2a2cebce84328224ecdd80d7fffd1"></a>
 
 Returns a pointer to EpisodeType_Optional, if it has been set, otherwise returns nullptr.
 
@@ -369,15 +369,15 @@ Returns true if EpisodeType_Optional is set and matches the default value.
 
 Sets the value of EpisodeType_Optional to its default and also sets EpisodeType_IsSet to true.
 
-#### `public inline int32 & `[`GetHourInterval`](#structFRHAPI__TimeFrame_1a96fe52c2123c0171189076b9957d5055)`()` <a id="structFRHAPI__TimeFrame_1a96fe52c2123c0171189076b9957d5055"></a>
+#### `public inline int32 & `[`GetHourInterval`](#structFRHAPI__TimeFrame_1afdf55d495afd2146764b2d292ebefd81)`()` <a id="structFRHAPI__TimeFrame_1afdf55d495afd2146764b2d292ebefd81"></a>
 
 Gets the value of HourInterval_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetHourInterval`](#structFRHAPI__TimeFrame_1a98c1e1b0437597f70e1532c4aedbb0f3)`() const` <a id="structFRHAPI__TimeFrame_1a98c1e1b0437597f70e1532c4aedbb0f3"></a>
+#### `public inline const int32 & `[`GetHourInterval`](#structFRHAPI__TimeFrame_1a31a4e601ae5d906edf13b2257f0da4b8)`() const` <a id="structFRHAPI__TimeFrame_1a31a4e601ae5d906edf13b2257f0da4b8"></a>
 
 Gets the value of HourInterval_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetHourInterval`](#structFRHAPI__TimeFrame_1a9ed2214e9fdbda6be5f0be224d482722)`(const int32 & DefaultValue) const` <a id="structFRHAPI__TimeFrame_1a9ed2214e9fdbda6be5f0be224d482722"></a>
+#### `public inline const int32 & `[`GetHourInterval`](#structFRHAPI__TimeFrame_1ab9779705ff0e13b32fe9bb35ca8c1cd2)`(const int32 & DefaultValue) const` <a id="structFRHAPI__TimeFrame_1ab9779705ff0e13b32fe9bb35ca8c1cd2"></a>
 
 Gets the value of HourInterval_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -385,11 +385,11 @@ Gets the value of HourInterval_Optional, if it has been set, otherwise it return
 
 Fills OutValue with the value of HourInterval_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetHourIntervalOrNull`](#structFRHAPI__TimeFrame_1ae926130800a31b291758a1e7c9ce9c4d)`()` <a id="structFRHAPI__TimeFrame_1ae926130800a31b291758a1e7c9ce9c4d"></a>
+#### `public inline int32 * `[`GetHourIntervalOrNull`](#structFRHAPI__TimeFrame_1a338a89f292121df2c718e8e8efd4d670)`()` <a id="structFRHAPI__TimeFrame_1a338a89f292121df2c718e8e8efd4d670"></a>
 
 Returns a pointer to HourInterval_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetHourIntervalOrNull`](#structFRHAPI__TimeFrame_1ab54995c9ec6e93bc721dbad614789812)`() const` <a id="structFRHAPI__TimeFrame_1ab54995c9ec6e93bc721dbad614789812"></a>
+#### `public inline const int32 * `[`GetHourIntervalOrNull`](#structFRHAPI__TimeFrame_1a4d5c7d754d28b41842d03e34598d6ddb)`() const` <a id="structFRHAPI__TimeFrame_1a4d5c7d754d28b41842d03e34598d6ddb"></a>
 
 Returns a pointer to HourInterval_Optional, if it has been set, otherwise returns nullptr.
 
@@ -417,11 +417,11 @@ Returns true if HourInterval_Optional is set and matches the default value.
 
 Sets the value of HourInterval_Optional to its default and also sets HourInterval_IsSet to true.
 
-#### `public inline FDateTime & `[`GetStart`](#structFRHAPI__TimeFrame_1afcd1399a2f4d19035b6dc7e1b068b971)`()` <a id="structFRHAPI__TimeFrame_1afcd1399a2f4d19035b6dc7e1b068b971"></a>
+#### `public inline FDateTime & `[`GetStart`](#structFRHAPI__TimeFrame_1a0b50db032a062ef7f3d27c729af5543a)`()` <a id="structFRHAPI__TimeFrame_1a0b50db032a062ef7f3d27c729af5543a"></a>
 
 Gets the value of Start.
 
-#### `public inline const FDateTime & `[`GetStart`](#structFRHAPI__TimeFrame_1adfea0cf9fe4c09b0e77087fe2ff3c6c6)`() const` <a id="structFRHAPI__TimeFrame_1adfea0cf9fe4c09b0e77087fe2ff3c6c6"></a>
+#### `public inline const FDateTime & `[`GetStart`](#structFRHAPI__TimeFrame_1a5d8ea739dd79c97e3092f5827556d0c2)`() const` <a id="structFRHAPI__TimeFrame_1a5d8ea739dd79c97e3092f5827556d0c2"></a>
 
 Gets the value of Start.
 
@@ -433,11 +433,11 @@ Sets the value of Start.
 
 Sets the value of Start using move semantics.
 
-#### `public inline FDateTime & `[`GetEnd`](#structFRHAPI__TimeFrame_1af81d214b4f63a21dfd7b0659d963ff99)`()` <a id="structFRHAPI__TimeFrame_1af81d214b4f63a21dfd7b0659d963ff99"></a>
+#### `public inline FDateTime & `[`GetEnd`](#structFRHAPI__TimeFrame_1acbb16dd1b600de5573eb8fe53df57721)`()` <a id="structFRHAPI__TimeFrame_1acbb16dd1b600de5573eb8fe53df57721"></a>
 
 Gets the value of End.
 
-#### `public inline const FDateTime & `[`GetEnd`](#structFRHAPI__TimeFrame_1a20a539e8f2739e6e86bb44ca0edd15f0)`() const` <a id="structFRHAPI__TimeFrame_1a20a539e8f2739e6e86bb44ca0edd15f0"></a>
+#### `public inline const FDateTime & `[`GetEnd`](#structFRHAPI__TimeFrame_1a100050feb98b46e1e216baa430592346)`() const` <a id="structFRHAPI__TimeFrame_1a100050feb98b46e1e216baa430592346"></a>
 
 Gets the value of End.
 
@@ -449,15 +449,15 @@ Sets the value of End.
 
 Sets the value of End using move semantics.
 
-#### `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__TimeFrame_1af9aa89ce323040f0ccd0c2d14b5dde29)`()` <a id="structFRHAPI__TimeFrame_1af9aa89ce323040f0ccd0c2d14b5dde29"></a>
+#### `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__TimeFrame_1a177f557db6c8b54ad83811826e0ac574)`()` <a id="structFRHAPI__TimeFrame_1a177f557db6c8b54ad83811826e0ac574"></a>
 
 Gets the value of CacheInfo_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__TimeFrame_1a62cd18465fa31e73c0a6156afdc583eb)`() const` <a id="structFRHAPI__TimeFrame_1a62cd18465fa31e73c0a6156afdc583eb"></a>
+#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__TimeFrame_1a46e3d8e9853e1f3ce7957edd2369d59c)`() const` <a id="structFRHAPI__TimeFrame_1a46e3d8e9853e1f3ce7957edd2369d59c"></a>
 
 Gets the value of CacheInfo_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__TimeFrame_1a517db9f51a7ec1bc0ac5b04fbd2b1c6c)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` <a id="structFRHAPI__TimeFrame_1a517db9f51a7ec1bc0ac5b04fbd2b1c6c"></a>
+#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__TimeFrame_1ae3a77dab2c8a72a70a2413ba0a25f737)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` <a id="structFRHAPI__TimeFrame_1ae3a77dab2c8a72a70a2413ba0a25f737"></a>
 
 Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -465,11 +465,11 @@ Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns D
 
 Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__TimeFrame_1a5d762255a302a1bf885905350c8394f0)`()` <a id="structFRHAPI__TimeFrame_1a5d762255a302a1bf885905350c8394f0"></a>
+#### `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__TimeFrame_1a0a068af28667855f0c6892d6261d17c8)`()` <a id="structFRHAPI__TimeFrame_1a0a068af28667855f0c6892d6261d17c8"></a>
 
 Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__TimeFrame_1aed405aca0d7c3ca4590cd75d145f73b9)`() const` <a id="structFRHAPI__TimeFrame_1aed405aca0d7c3ca4590cd75d145f73b9"></a>
+#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__TimeFrame_1a34fcde157131467fdd239fb210fc7135)`() const` <a id="structFRHAPI__TimeFrame_1a34fcde157131467fdd239fb210fc7135"></a>
 
 Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 

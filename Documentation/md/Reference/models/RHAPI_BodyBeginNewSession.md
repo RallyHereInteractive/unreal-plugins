@@ -23,17 +23,17 @@ struct FRHAPI_BodyBeginNewSession
 `public FString `[`DeviceId_Optional`](#structFRHAPI__BodyBeginNewSession_1afb3f92a8ebaa4b435f58d8a3e2f1cb6b) | Unique Identifier for the device a session is started on. E.g should be the same for multiple users on the same device.
 `public bool `[`DeviceId_IsSet`](#structFRHAPI__BodyBeginNewSession_1a1ab96b1e204409126b40d416a87d4255) | true if DeviceId_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__BodyBeginNewSession_1a5434d98824dd8551f368ff6f30b526ce)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__BodyBeginNewSession_1a7163a59cca173520257bcc43f52648c1)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetCountryCode`](#structFRHAPI__BodyBeginNewSession_1a6389cd1eff5913dc8846897aa608bac7)`()` | Gets the value of CountryCode.
-`public inline const FString & `[`GetCountryCode`](#structFRHAPI__BodyBeginNewSession_1a260f56c1f98a11fb15cee9782b9ed373)`() const` | Gets the value of CountryCode.
+`public virtual void `[`WriteJson`](#structFRHAPI__BodyBeginNewSession_1ab98c08045505fa5294485467218abf3e)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline FString & `[`GetCountryCode`](#structFRHAPI__BodyBeginNewSession_1a2a50a22385aeabb3dbee5539a10c8ef3)`()` | Gets the value of CountryCode.
+`public inline const FString & `[`GetCountryCode`](#structFRHAPI__BodyBeginNewSession_1afbd9691c733f973ae2bdf456781a2aed)`() const` | Gets the value of CountryCode.
 `public inline void `[`SetCountryCode`](#structFRHAPI__BodyBeginNewSession_1a35478f3af0971b1433dbad006124973c)`(const FString & NewValue)` | Sets the value of CountryCode.
 `public inline void `[`SetCountryCode`](#structFRHAPI__BodyBeginNewSession_1a541ebeb59cdd2f1aa2962e70ea990620)`(FString && NewValue)` | Sets the value of CountryCode using move semantics.
-`public inline FString & `[`GetDeviceId`](#structFRHAPI__BodyBeginNewSession_1a4eea2f2bd9d4bd859380833600c3f610)`()` | Gets the value of DeviceId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetDeviceId`](#structFRHAPI__BodyBeginNewSession_1ade2cd5930fe03039e294e42d436b4628)`() const` | Gets the value of DeviceId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetDeviceId`](#structFRHAPI__BodyBeginNewSession_1a9620840815ec9c2ee834e1ca31d62dee)`(const FString & DefaultValue) const` | Gets the value of DeviceId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FString & `[`GetDeviceId`](#structFRHAPI__BodyBeginNewSession_1a0e119dd55dc01b532bbb7d6cbdd02c70)`()` | Gets the value of DeviceId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetDeviceId`](#structFRHAPI__BodyBeginNewSession_1a3dc4361c25ebf376a13e8c96dcac1935)`() const` | Gets the value of DeviceId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetDeviceId`](#structFRHAPI__BodyBeginNewSession_1a762f4e341d687989b4f9f7dd4641cd76)`(const FString & DefaultValue) const` | Gets the value of DeviceId_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetDeviceId`](#structFRHAPI__BodyBeginNewSession_1a8ffe9a4c354f183c5372e80e8e957a29)`(FString & OutValue) const` | Fills OutValue with the value of DeviceId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetDeviceIdOrNull`](#structFRHAPI__BodyBeginNewSession_1a8b21a4a1672d0c12b008b5d389c522c3)`()` | Returns a pointer to DeviceId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetDeviceIdOrNull`](#structFRHAPI__BodyBeginNewSession_1a891c220cbbdb6dc7a930f6ac7f64aa2e)`() const` | Returns a pointer to DeviceId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FString * `[`GetDeviceIdOrNull`](#structFRHAPI__BodyBeginNewSession_1a8860a6566f88a1def03f60920e5f16ac)`()` | Returns a pointer to DeviceId_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetDeviceIdOrNull`](#structFRHAPI__BodyBeginNewSession_1aec2d1c1b24067fbd54e37dbfe7dc8a52)`() const` | Returns a pointer to DeviceId_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetDeviceId`](#structFRHAPI__BodyBeginNewSession_1afa826ef99895ffefc51fc55e5f3e70cf)`(const FString & NewValue)` | Sets the value of DeviceId_Optional and also sets DeviceId_IsSet to true.
 `public inline void `[`SetDeviceId`](#structFRHAPI__BodyBeginNewSession_1a65bfb4595fdf40d2ec1aa2e5574958e0)`(FString && NewValue)` | Sets the value of DeviceId_Optional and also sets DeviceId_IsSet to true using move semantics.
 `public inline void `[`ClearDeviceId`](#structFRHAPI__BodyBeginNewSession_1aae458d9179139e19b99c983ce6ba80c5)`()` | Clears the value of DeviceId_Optional and sets DeviceId_IsSet to false.
@@ -63,18 +63,18 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__BodyBeginNewSession_1a7163a59cca173520257bcc43f52648c1)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__BodyBeginNewSession_1a7163a59cca173520257bcc43f52648c1"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__BodyBeginNewSession_1ab98c08045505fa5294485467218abf3e)`(TSharedRef< TJsonWriter<> > & Writer) const` <a id="structFRHAPI__BodyBeginNewSession_1ab98c08045505fa5294485467218abf3e"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetCountryCode`](#structFRHAPI__BodyBeginNewSession_1a6389cd1eff5913dc8846897aa608bac7)`()` <a id="structFRHAPI__BodyBeginNewSession_1a6389cd1eff5913dc8846897aa608bac7"></a>
+#### `public inline FString & `[`GetCountryCode`](#structFRHAPI__BodyBeginNewSession_1a2a50a22385aeabb3dbee5539a10c8ef3)`()` <a id="structFRHAPI__BodyBeginNewSession_1a2a50a22385aeabb3dbee5539a10c8ef3"></a>
 
 Gets the value of CountryCode.
 
-#### `public inline const FString & `[`GetCountryCode`](#structFRHAPI__BodyBeginNewSession_1a260f56c1f98a11fb15cee9782b9ed373)`() const` <a id="structFRHAPI__BodyBeginNewSession_1a260f56c1f98a11fb15cee9782b9ed373"></a>
+#### `public inline const FString & `[`GetCountryCode`](#structFRHAPI__BodyBeginNewSession_1afbd9691c733f973ae2bdf456781a2aed)`() const` <a id="structFRHAPI__BodyBeginNewSession_1afbd9691c733f973ae2bdf456781a2aed"></a>
 
 Gets the value of CountryCode.
 
@@ -86,15 +86,15 @@ Sets the value of CountryCode.
 
 Sets the value of CountryCode using move semantics.
 
-#### `public inline FString & `[`GetDeviceId`](#structFRHAPI__BodyBeginNewSession_1a4eea2f2bd9d4bd859380833600c3f610)`()` <a id="structFRHAPI__BodyBeginNewSession_1a4eea2f2bd9d4bd859380833600c3f610"></a>
+#### `public inline FString & `[`GetDeviceId`](#structFRHAPI__BodyBeginNewSession_1a0e119dd55dc01b532bbb7d6cbdd02c70)`()` <a id="structFRHAPI__BodyBeginNewSession_1a0e119dd55dc01b532bbb7d6cbdd02c70"></a>
 
 Gets the value of DeviceId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetDeviceId`](#structFRHAPI__BodyBeginNewSession_1ade2cd5930fe03039e294e42d436b4628)`() const` <a id="structFRHAPI__BodyBeginNewSession_1ade2cd5930fe03039e294e42d436b4628"></a>
+#### `public inline const FString & `[`GetDeviceId`](#structFRHAPI__BodyBeginNewSession_1a3dc4361c25ebf376a13e8c96dcac1935)`() const` <a id="structFRHAPI__BodyBeginNewSession_1a3dc4361c25ebf376a13e8c96dcac1935"></a>
 
 Gets the value of DeviceId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetDeviceId`](#structFRHAPI__BodyBeginNewSession_1a9620840815ec9c2ee834e1ca31d62dee)`(const FString & DefaultValue) const` <a id="structFRHAPI__BodyBeginNewSession_1a9620840815ec9c2ee834e1ca31d62dee"></a>
+#### `public inline const FString & `[`GetDeviceId`](#structFRHAPI__BodyBeginNewSession_1a762f4e341d687989b4f9f7dd4641cd76)`(const FString & DefaultValue) const` <a id="structFRHAPI__BodyBeginNewSession_1a762f4e341d687989b4f9f7dd4641cd76"></a>
 
 Gets the value of DeviceId_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -102,11 +102,11 @@ Gets the value of DeviceId_Optional, if it has been set, otherwise it returns De
 
 Fills OutValue with the value of DeviceId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetDeviceIdOrNull`](#structFRHAPI__BodyBeginNewSession_1a8b21a4a1672d0c12b008b5d389c522c3)`()` <a id="structFRHAPI__BodyBeginNewSession_1a8b21a4a1672d0c12b008b5d389c522c3"></a>
+#### `public inline FString * `[`GetDeviceIdOrNull`](#structFRHAPI__BodyBeginNewSession_1a8860a6566f88a1def03f60920e5f16ac)`()` <a id="structFRHAPI__BodyBeginNewSession_1a8860a6566f88a1def03f60920e5f16ac"></a>
 
 Returns a pointer to DeviceId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetDeviceIdOrNull`](#structFRHAPI__BodyBeginNewSession_1a891c220cbbdb6dc7a930f6ac7f64aa2e)`() const` <a id="structFRHAPI__BodyBeginNewSession_1a891c220cbbdb6dc7a930f6ac7f64aa2e"></a>
+#### `public inline const FString * `[`GetDeviceIdOrNull`](#structFRHAPI__BodyBeginNewSession_1aec2d1c1b24067fbd54e37dbfe7dc8a52)`() const` <a id="structFRHAPI__BodyBeginNewSession_1aec2d1c1b24067fbd54e37dbfe7dc8a52"></a>
 
 Returns a pointer to DeviceId_Optional, if it has been set, otherwise returns nullptr.
 

@@ -28,35 +28,35 @@ Price with current and original (pre-sale) price breakpoints.
 `public bool `[`CapFlag_Optional`](#structFRHAPI__LootPrice_1af013bfd252d0ec49ffaf2e7bf06c7ccb) | Can the number of units being purchased be higher than the highest quantity on the Price Breakpoints?
 `public bool `[`CapFlag_IsSet`](#structFRHAPI__LootPrice_1a4c9a1af57a25c16713933bdfe7c3fbd5) | true if CapFlag_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__LootPrice_1aeb6bf6377fba6d1ec7a560f647c2df57)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__LootPrice_1a7507ad1cc0134dfa69b25ac71ba755b6)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline TArray< `[`FRHAPI_LootPriceBreakpoint`](RHAPI_LootPriceBreakpoint.md#structFRHAPI__LootPriceBreakpoint)` > & `[`GetBreakpoints`](#structFRHAPI__LootPrice_1a873e40823dd5741dc195c951ea7551c4)`()` | Gets the value of Breakpoints_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_LootPriceBreakpoint`](RHAPI_LootPriceBreakpoint.md#structFRHAPI__LootPriceBreakpoint)` > & `[`GetBreakpoints`](#structFRHAPI__LootPrice_1a9d98053edb6f6826188810b3f927af9d)`() const` | Gets the value of Breakpoints_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_LootPriceBreakpoint`](RHAPI_LootPriceBreakpoint.md#structFRHAPI__LootPriceBreakpoint)` > & `[`GetBreakpoints`](#structFRHAPI__LootPrice_1ac9a4c11bd7b5500dfba30f03cb2ed68a)`(const TArray< `[`FRHAPI_LootPriceBreakpoint`](RHAPI_LootPriceBreakpoint.md#structFRHAPI__LootPriceBreakpoint)` > & DefaultValue) const` | Gets the value of Breakpoints_Optional, if it has been set, otherwise it returns DefaultValue.
+`public virtual void `[`WriteJson`](#structFRHAPI__LootPrice_1a65698a0a55604ddb47d66b7e09e35286)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline TArray< `[`FRHAPI_LootPriceBreakpoint`](RHAPI_LootPriceBreakpoint.md#structFRHAPI__LootPriceBreakpoint)` > & `[`GetBreakpoints`](#structFRHAPI__LootPrice_1a425c7942b4587939007a6e24a06116ad)`()` | Gets the value of Breakpoints_Optional, regardless of it having been set.
+`public inline const TArray< `[`FRHAPI_LootPriceBreakpoint`](RHAPI_LootPriceBreakpoint.md#structFRHAPI__LootPriceBreakpoint)` > & `[`GetBreakpoints`](#structFRHAPI__LootPrice_1a86984235a49471b957a3852f233173d3)`() const` | Gets the value of Breakpoints_Optional, regardless of it having been set.
+`public inline const TArray< `[`FRHAPI_LootPriceBreakpoint`](RHAPI_LootPriceBreakpoint.md#structFRHAPI__LootPriceBreakpoint)` > & `[`GetBreakpoints`](#structFRHAPI__LootPrice_1ae90ff85951c453635644617131af082f)`(const TArray< `[`FRHAPI_LootPriceBreakpoint`](RHAPI_LootPriceBreakpoint.md#structFRHAPI__LootPriceBreakpoint)` > & DefaultValue) const` | Gets the value of Breakpoints_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetBreakpoints`](#structFRHAPI__LootPrice_1ab1eb2beeda6065e7d2dca600b93ead07)`(TArray< `[`FRHAPI_LootPriceBreakpoint`](RHAPI_LootPriceBreakpoint.md#structFRHAPI__LootPriceBreakpoint)` > & OutValue) const` | Fills OutValue with the value of Breakpoints_Optional and returns true if it has been set, otherwise returns false.
-`public inline TArray< `[`FRHAPI_LootPriceBreakpoint`](RHAPI_LootPriceBreakpoint.md#structFRHAPI__LootPriceBreakpoint)` > * `[`GetBreakpointsOrNull`](#structFRHAPI__LootPrice_1a4b419ec195c11da9d93eb745e9cc3732)`()` | Returns a pointer to Breakpoints_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TArray< `[`FRHAPI_LootPriceBreakpoint`](RHAPI_LootPriceBreakpoint.md#structFRHAPI__LootPriceBreakpoint)` > * `[`GetBreakpointsOrNull`](#structFRHAPI__LootPrice_1a55382e094c5814a5076374cf18202f9b)`() const` | Returns a pointer to Breakpoints_Optional, if it has been set, otherwise returns nullptr.
+`public inline TArray< `[`FRHAPI_LootPriceBreakpoint`](RHAPI_LootPriceBreakpoint.md#structFRHAPI__LootPriceBreakpoint)` > * `[`GetBreakpointsOrNull`](#structFRHAPI__LootPrice_1a84b52012f102b6ac6ee4320ee38a6122)`()` | Returns a pointer to Breakpoints_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TArray< `[`FRHAPI_LootPriceBreakpoint`](RHAPI_LootPriceBreakpoint.md#structFRHAPI__LootPriceBreakpoint)` > * `[`GetBreakpointsOrNull`](#structFRHAPI__LootPrice_1a1f217d455a88d7bed5055b2aa9b916ad)`() const` | Returns a pointer to Breakpoints_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetBreakpoints`](#structFRHAPI__LootPrice_1aaf793e5de31f845764fc48c43d3f3e9f)`(const TArray< `[`FRHAPI_LootPriceBreakpoint`](RHAPI_LootPriceBreakpoint.md#structFRHAPI__LootPriceBreakpoint)` > & NewValue)` | Sets the value of Breakpoints_Optional and also sets Breakpoints_IsSet to true.
 `public inline void `[`SetBreakpoints`](#structFRHAPI__LootPrice_1a8771323d9c4055725bfe9129c4c40b00)`(TArray< `[`FRHAPI_LootPriceBreakpoint`](RHAPI_LootPriceBreakpoint.md#structFRHAPI__LootPriceBreakpoint)` > && NewValue)` | Sets the value of Breakpoints_Optional and also sets Breakpoints_IsSet to true using move semantics.
 `public inline void `[`ClearBreakpoints`](#structFRHAPI__LootPrice_1a262f8481b4ab47d5d5123df931b64887)`()` | Clears the value of Breakpoints_Optional and sets Breakpoints_IsSet to false.
 `public inline bool `[`IsBreakpointsSet`](#structFRHAPI__LootPrice_1abbd4174afbd5fe5bfbd27d8905ca300b)`() const` | Checks whether Breakpoints_Optional has been set.
-`public inline bool & `[`GetStrictFlag`](#structFRHAPI__LootPrice_1af37b0df2ddc01a49e9ca2b59b3042357)`()` | Gets the value of StrictFlag_Optional, regardless of it having been set.
-`public inline const bool & `[`GetStrictFlag`](#structFRHAPI__LootPrice_1a9334ea88c44c631ea505b9762433e17a)`() const` | Gets the value of StrictFlag_Optional, regardless of it having been set.
-`public inline const bool & `[`GetStrictFlag`](#structFRHAPI__LootPrice_1a5c9586f4c76e5759e3d64174560529a2)`(const bool & DefaultValue) const` | Gets the value of StrictFlag_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool & `[`GetStrictFlag`](#structFRHAPI__LootPrice_1a5f913d1b304c6ee8d34d0bd60a41a8f4)`()` | Gets the value of StrictFlag_Optional, regardless of it having been set.
+`public inline const bool & `[`GetStrictFlag`](#structFRHAPI__LootPrice_1a87fa7d6ff8720ac584fb66c53b14dd9c)`() const` | Gets the value of StrictFlag_Optional, regardless of it having been set.
+`public inline const bool & `[`GetStrictFlag`](#structFRHAPI__LootPrice_1a2c13a02643581caa40fc2763b8d6d8e3)`(const bool & DefaultValue) const` | Gets the value of StrictFlag_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetStrictFlag`](#structFRHAPI__LootPrice_1a2c8b4212155bc0fc0d2f565c56182e6d)`(bool & OutValue) const` | Fills OutValue with the value of StrictFlag_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetStrictFlagOrNull`](#structFRHAPI__LootPrice_1a195678187b924d5a204a2794ff485090)`()` | Returns a pointer to StrictFlag_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetStrictFlagOrNull`](#structFRHAPI__LootPrice_1ac533dcfa09dd4d3c928472a536e84cda)`() const` | Returns a pointer to StrictFlag_Optional, if it has been set, otherwise returns nullptr.
+`public inline bool * `[`GetStrictFlagOrNull`](#structFRHAPI__LootPrice_1a282c104066b481499bf3b227a25f9702)`()` | Returns a pointer to StrictFlag_Optional, if it has been set, otherwise returns nullptr.
+`public inline const bool * `[`GetStrictFlagOrNull`](#structFRHAPI__LootPrice_1a400f6b464310d45ad54c96fe7153b1eb)`() const` | Returns a pointer to StrictFlag_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetStrictFlag`](#structFRHAPI__LootPrice_1a1e591658aadadc48dad31e94014e947f)`(const bool & NewValue)` | Sets the value of StrictFlag_Optional and also sets StrictFlag_IsSet to true.
 `public inline void `[`SetStrictFlag`](#structFRHAPI__LootPrice_1a4539ff9e2f57f9fc1447b35063dc854d)`(bool && NewValue)` | Sets the value of StrictFlag_Optional and also sets StrictFlag_IsSet to true using move semantics.
 `public inline void `[`ClearStrictFlag`](#structFRHAPI__LootPrice_1a317d6f0e24b31d6024613ad8ed0e5ca3)`()` | Clears the value of StrictFlag_Optional and sets StrictFlag_IsSet to false.
 `public inline bool `[`IsStrictFlagSet`](#structFRHAPI__LootPrice_1a1ad95cb8319d9841d1a6df3df95d1789)`() const` | Checks whether StrictFlag_Optional has been set.
 `public inline bool `[`IsStrictFlagDefaultValue`](#structFRHAPI__LootPrice_1aee2002b9f17f256ab2138cde179b04f5)`() const` | Returns true if StrictFlag_Optional is set and matches the default value.
 `public inline void `[`SetStrictFlagToDefault`](#structFRHAPI__LootPrice_1a03aa971a0cdaaee1cd040ff52818d47f)`()` | Sets the value of StrictFlag_Optional to its default and also sets StrictFlag_IsSet to true.
-`public inline bool & `[`GetCapFlag`](#structFRHAPI__LootPrice_1aedb1700a3a40ea741a4ec86137530d2a)`()` | Gets the value of CapFlag_Optional, regardless of it having been set.
-`public inline const bool & `[`GetCapFlag`](#structFRHAPI__LootPrice_1a08359bd1730868905ea757684a703b5c)`() const` | Gets the value of CapFlag_Optional, regardless of it having been set.
-`public inline const bool & `[`GetCapFlag`](#structFRHAPI__LootPrice_1aa8eeaf4b91df5ad2aec907450ad90767)`(const bool & DefaultValue) const` | Gets the value of CapFlag_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool & `[`GetCapFlag`](#structFRHAPI__LootPrice_1ab58769f53fa5070e4358b94803878c96)`()` | Gets the value of CapFlag_Optional, regardless of it having been set.
+`public inline const bool & `[`GetCapFlag`](#structFRHAPI__LootPrice_1a02bbb48e6c742de767666fdf8fcd9519)`() const` | Gets the value of CapFlag_Optional, regardless of it having been set.
+`public inline const bool & `[`GetCapFlag`](#structFRHAPI__LootPrice_1a260f9b9ae560bda0bba38181e39ed688)`(const bool & DefaultValue) const` | Gets the value of CapFlag_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetCapFlag`](#structFRHAPI__LootPrice_1a2f308b7b585fa671d6eebd381b7d1101)`(bool & OutValue) const` | Fills OutValue with the value of CapFlag_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetCapFlagOrNull`](#structFRHAPI__LootPrice_1ab536e07e10488d7ba868cab348b5b07c)`()` | Returns a pointer to CapFlag_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetCapFlagOrNull`](#structFRHAPI__LootPrice_1a9593f432e7d67a626adc5336fb600035)`() const` | Returns a pointer to CapFlag_Optional, if it has been set, otherwise returns nullptr.
+`public inline bool * `[`GetCapFlagOrNull`](#structFRHAPI__LootPrice_1afd845db6b78a0b0a814d422b4579e9b7)`()` | Returns a pointer to CapFlag_Optional, if it has been set, otherwise returns nullptr.
+`public inline const bool * `[`GetCapFlagOrNull`](#structFRHAPI__LootPrice_1a49c4ae819fda96837de7afc233d833e8)`() const` | Returns a pointer to CapFlag_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetCapFlag`](#structFRHAPI__LootPrice_1a1403e3dbe8e376f1fcaea5758b4fabaf)`(const bool & NewValue)` | Sets the value of CapFlag_Optional and also sets CapFlag_IsSet to true.
 `public inline void `[`SetCapFlag`](#structFRHAPI__LootPrice_1a1880a4cb94be1766dc804b4d77b39314)`(bool && NewValue)` | Sets the value of CapFlag_Optional and also sets CapFlag_IsSet to true using move semantics.
 `public inline void `[`ClearCapFlag`](#structFRHAPI__LootPrice_1ad45487ee866d3538e21ad2f07c9a0f12)`()` | Clears the value of CapFlag_Optional and sets CapFlag_IsSet to false.
@@ -100,22 +100,22 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__LootPrice_1a7507ad1cc0134dfa69b25ac71ba755b6)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__LootPrice_1a7507ad1cc0134dfa69b25ac71ba755b6"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__LootPrice_1a65698a0a55604ddb47d66b7e09e35286)`(TSharedRef< TJsonWriter<> > & Writer) const` <a id="structFRHAPI__LootPrice_1a65698a0a55604ddb47d66b7e09e35286"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline TArray< `[`FRHAPI_LootPriceBreakpoint`](RHAPI_LootPriceBreakpoint.md#structFRHAPI__LootPriceBreakpoint)` > & `[`GetBreakpoints`](#structFRHAPI__LootPrice_1a873e40823dd5741dc195c951ea7551c4)`()` <a id="structFRHAPI__LootPrice_1a873e40823dd5741dc195c951ea7551c4"></a>
+#### `public inline TArray< `[`FRHAPI_LootPriceBreakpoint`](RHAPI_LootPriceBreakpoint.md#structFRHAPI__LootPriceBreakpoint)` > & `[`GetBreakpoints`](#structFRHAPI__LootPrice_1a425c7942b4587939007a6e24a06116ad)`()` <a id="structFRHAPI__LootPrice_1a425c7942b4587939007a6e24a06116ad"></a>
 
 Gets the value of Breakpoints_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_LootPriceBreakpoint`](RHAPI_LootPriceBreakpoint.md#structFRHAPI__LootPriceBreakpoint)` > & `[`GetBreakpoints`](#structFRHAPI__LootPrice_1a9d98053edb6f6826188810b3f927af9d)`() const` <a id="structFRHAPI__LootPrice_1a9d98053edb6f6826188810b3f927af9d"></a>
+#### `public inline const TArray< `[`FRHAPI_LootPriceBreakpoint`](RHAPI_LootPriceBreakpoint.md#structFRHAPI__LootPriceBreakpoint)` > & `[`GetBreakpoints`](#structFRHAPI__LootPrice_1a86984235a49471b957a3852f233173d3)`() const` <a id="structFRHAPI__LootPrice_1a86984235a49471b957a3852f233173d3"></a>
 
 Gets the value of Breakpoints_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_LootPriceBreakpoint`](RHAPI_LootPriceBreakpoint.md#structFRHAPI__LootPriceBreakpoint)` > & `[`GetBreakpoints`](#structFRHAPI__LootPrice_1ac9a4c11bd7b5500dfba30f03cb2ed68a)`(const TArray< `[`FRHAPI_LootPriceBreakpoint`](RHAPI_LootPriceBreakpoint.md#structFRHAPI__LootPriceBreakpoint)` > & DefaultValue) const` <a id="structFRHAPI__LootPrice_1ac9a4c11bd7b5500dfba30f03cb2ed68a"></a>
+#### `public inline const TArray< `[`FRHAPI_LootPriceBreakpoint`](RHAPI_LootPriceBreakpoint.md#structFRHAPI__LootPriceBreakpoint)` > & `[`GetBreakpoints`](#structFRHAPI__LootPrice_1ae90ff85951c453635644617131af082f)`(const TArray< `[`FRHAPI_LootPriceBreakpoint`](RHAPI_LootPriceBreakpoint.md#structFRHAPI__LootPriceBreakpoint)` > & DefaultValue) const` <a id="structFRHAPI__LootPrice_1ae90ff85951c453635644617131af082f"></a>
 
 Gets the value of Breakpoints_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -123,11 +123,11 @@ Gets the value of Breakpoints_Optional, if it has been set, otherwise it returns
 
 Fills OutValue with the value of Breakpoints_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TArray< `[`FRHAPI_LootPriceBreakpoint`](RHAPI_LootPriceBreakpoint.md#structFRHAPI__LootPriceBreakpoint)` > * `[`GetBreakpointsOrNull`](#structFRHAPI__LootPrice_1a4b419ec195c11da9d93eb745e9cc3732)`()` <a id="structFRHAPI__LootPrice_1a4b419ec195c11da9d93eb745e9cc3732"></a>
+#### `public inline TArray< `[`FRHAPI_LootPriceBreakpoint`](RHAPI_LootPriceBreakpoint.md#structFRHAPI__LootPriceBreakpoint)` > * `[`GetBreakpointsOrNull`](#structFRHAPI__LootPrice_1a84b52012f102b6ac6ee4320ee38a6122)`()` <a id="structFRHAPI__LootPrice_1a84b52012f102b6ac6ee4320ee38a6122"></a>
 
 Returns a pointer to Breakpoints_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TArray< `[`FRHAPI_LootPriceBreakpoint`](RHAPI_LootPriceBreakpoint.md#structFRHAPI__LootPriceBreakpoint)` > * `[`GetBreakpointsOrNull`](#structFRHAPI__LootPrice_1a55382e094c5814a5076374cf18202f9b)`() const` <a id="structFRHAPI__LootPrice_1a55382e094c5814a5076374cf18202f9b"></a>
+#### `public inline const TArray< `[`FRHAPI_LootPriceBreakpoint`](RHAPI_LootPriceBreakpoint.md#structFRHAPI__LootPriceBreakpoint)` > * `[`GetBreakpointsOrNull`](#structFRHAPI__LootPrice_1a1f217d455a88d7bed5055b2aa9b916ad)`() const` <a id="structFRHAPI__LootPrice_1a1f217d455a88d7bed5055b2aa9b916ad"></a>
 
 Returns a pointer to Breakpoints_Optional, if it has been set, otherwise returns nullptr.
 
@@ -147,15 +147,15 @@ Clears the value of Breakpoints_Optional and sets Breakpoints_IsSet to false.
 
 Checks whether Breakpoints_Optional has been set.
 
-#### `public inline bool & `[`GetStrictFlag`](#structFRHAPI__LootPrice_1af37b0df2ddc01a49e9ca2b59b3042357)`()` <a id="structFRHAPI__LootPrice_1af37b0df2ddc01a49e9ca2b59b3042357"></a>
+#### `public inline bool & `[`GetStrictFlag`](#structFRHAPI__LootPrice_1a5f913d1b304c6ee8d34d0bd60a41a8f4)`()` <a id="structFRHAPI__LootPrice_1a5f913d1b304c6ee8d34d0bd60a41a8f4"></a>
 
 Gets the value of StrictFlag_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetStrictFlag`](#structFRHAPI__LootPrice_1a9334ea88c44c631ea505b9762433e17a)`() const` <a id="structFRHAPI__LootPrice_1a9334ea88c44c631ea505b9762433e17a"></a>
+#### `public inline const bool & `[`GetStrictFlag`](#structFRHAPI__LootPrice_1a87fa7d6ff8720ac584fb66c53b14dd9c)`() const` <a id="structFRHAPI__LootPrice_1a87fa7d6ff8720ac584fb66c53b14dd9c"></a>
 
 Gets the value of StrictFlag_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetStrictFlag`](#structFRHAPI__LootPrice_1a5c9586f4c76e5759e3d64174560529a2)`(const bool & DefaultValue) const` <a id="structFRHAPI__LootPrice_1a5c9586f4c76e5759e3d64174560529a2"></a>
+#### `public inline const bool & `[`GetStrictFlag`](#structFRHAPI__LootPrice_1a2c13a02643581caa40fc2763b8d6d8e3)`(const bool & DefaultValue) const` <a id="structFRHAPI__LootPrice_1a2c13a02643581caa40fc2763b8d6d8e3"></a>
 
 Gets the value of StrictFlag_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -163,11 +163,11 @@ Gets the value of StrictFlag_Optional, if it has been set, otherwise it returns 
 
 Fills OutValue with the value of StrictFlag_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetStrictFlagOrNull`](#structFRHAPI__LootPrice_1a195678187b924d5a204a2794ff485090)`()` <a id="structFRHAPI__LootPrice_1a195678187b924d5a204a2794ff485090"></a>
+#### `public inline bool * `[`GetStrictFlagOrNull`](#structFRHAPI__LootPrice_1a282c104066b481499bf3b227a25f9702)`()` <a id="structFRHAPI__LootPrice_1a282c104066b481499bf3b227a25f9702"></a>
 
 Returns a pointer to StrictFlag_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetStrictFlagOrNull`](#structFRHAPI__LootPrice_1ac533dcfa09dd4d3c928472a536e84cda)`() const` <a id="structFRHAPI__LootPrice_1ac533dcfa09dd4d3c928472a536e84cda"></a>
+#### `public inline const bool * `[`GetStrictFlagOrNull`](#structFRHAPI__LootPrice_1a400f6b464310d45ad54c96fe7153b1eb)`() const` <a id="structFRHAPI__LootPrice_1a400f6b464310d45ad54c96fe7153b1eb"></a>
 
 Returns a pointer to StrictFlag_Optional, if it has been set, otherwise returns nullptr.
 
@@ -195,15 +195,15 @@ Returns true if StrictFlag_Optional is set and matches the default value.
 
 Sets the value of StrictFlag_Optional to its default and also sets StrictFlag_IsSet to true.
 
-#### `public inline bool & `[`GetCapFlag`](#structFRHAPI__LootPrice_1aedb1700a3a40ea741a4ec86137530d2a)`()` <a id="structFRHAPI__LootPrice_1aedb1700a3a40ea741a4ec86137530d2a"></a>
+#### `public inline bool & `[`GetCapFlag`](#structFRHAPI__LootPrice_1ab58769f53fa5070e4358b94803878c96)`()` <a id="structFRHAPI__LootPrice_1ab58769f53fa5070e4358b94803878c96"></a>
 
 Gets the value of CapFlag_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetCapFlag`](#structFRHAPI__LootPrice_1a08359bd1730868905ea757684a703b5c)`() const` <a id="structFRHAPI__LootPrice_1a08359bd1730868905ea757684a703b5c"></a>
+#### `public inline const bool & `[`GetCapFlag`](#structFRHAPI__LootPrice_1a02bbb48e6c742de767666fdf8fcd9519)`() const` <a id="structFRHAPI__LootPrice_1a02bbb48e6c742de767666fdf8fcd9519"></a>
 
 Gets the value of CapFlag_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetCapFlag`](#structFRHAPI__LootPrice_1aa8eeaf4b91df5ad2aec907450ad90767)`(const bool & DefaultValue) const` <a id="structFRHAPI__LootPrice_1aa8eeaf4b91df5ad2aec907450ad90767"></a>
+#### `public inline const bool & `[`GetCapFlag`](#structFRHAPI__LootPrice_1a260f9b9ae560bda0bba38181e39ed688)`(const bool & DefaultValue) const` <a id="structFRHAPI__LootPrice_1a260f9b9ae560bda0bba38181e39ed688"></a>
 
 Gets the value of CapFlag_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -211,11 +211,11 @@ Gets the value of CapFlag_Optional, if it has been set, otherwise it returns Def
 
 Fills OutValue with the value of CapFlag_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetCapFlagOrNull`](#structFRHAPI__LootPrice_1ab536e07e10488d7ba868cab348b5b07c)`()` <a id="structFRHAPI__LootPrice_1ab536e07e10488d7ba868cab348b5b07c"></a>
+#### `public inline bool * `[`GetCapFlagOrNull`](#structFRHAPI__LootPrice_1afd845db6b78a0b0a814d422b4579e9b7)`()` <a id="structFRHAPI__LootPrice_1afd845db6b78a0b0a814d422b4579e9b7"></a>
 
 Returns a pointer to CapFlag_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetCapFlagOrNull`](#structFRHAPI__LootPrice_1a9593f432e7d67a626adc5336fb600035)`() const` <a id="structFRHAPI__LootPrice_1a9593f432e7d67a626adc5336fb600035"></a>
+#### `public inline const bool * `[`GetCapFlagOrNull`](#structFRHAPI__LootPrice_1a49c4ae819fda96837de7afc233d833e8)`() const` <a id="structFRHAPI__LootPrice_1a49c4ae819fda96837de7afc233d833e8"></a>
 
 Returns a pointer to CapFlag_Optional, if it has been set, otherwise returns nullptr.
 

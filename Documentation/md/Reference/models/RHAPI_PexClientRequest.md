@@ -139,389 +139,389 @@ struct FRHAPI_PexClientRequest
 `public bool `[`CustomData_IsNull`](#structFRHAPI__PexClientRequest_1a3e71daa0b742774e71986e54eb738667) | true if CustomData_Optional has been explicitly set to null
 `public FGuid `[`PlayerUuid`](#structFRHAPI__PexClientRequest_1ab7a3523917b6068b18acedd6daab5484) | Player UUID.
 `public virtual bool `[`FromJson`](#structFRHAPI__PexClientRequest_1aa57c9262bc640415448c093b42262453)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PexClientRequest_1a24aee71cd8267e7c5fda27f05894bc6d)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetFrameTime`](#structFRHAPI__PexClientRequest_1a689d4a860160c292f336476de53dc2cb)`()` | Gets the value of FrameTime_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetFrameTime`](#structFRHAPI__PexClientRequest_1a4fb04f07c9a51617053c6ad04cc018b0)`() const` | Gets the value of FrameTime_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetFrameTime`](#structFRHAPI__PexClientRequest_1a1f16463263d408cd894816c84c7344d6)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of FrameTime_Optional, if it has been set, otherwise it returns DefaultValue.
+`public virtual void `[`WriteJson`](#structFRHAPI__PexClientRequest_1a9ebe2f4759a6a8bf28acfabe4d0965d5)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetFrameTime`](#structFRHAPI__PexClientRequest_1ae779aaedf6282b3b87b5cb4c332edc3d)`()` | Gets the value of FrameTime_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetFrameTime`](#structFRHAPI__PexClientRequest_1a905319a5e19f8e6fed60611f37fde23d)`() const` | Gets the value of FrameTime_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetFrameTime`](#structFRHAPI__PexClientRequest_1a9939445561b7bf795720baf9e3155d78)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of FrameTime_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetFrameTime`](#structFRHAPI__PexClientRequest_1af4b61d59097d054d28809b7a11cb5027)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & OutValue) const` | Fills OutValue with the value of FrameTime_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetFrameTimeOrNull`](#structFRHAPI__PexClientRequest_1a2498e776a6bd300cd9d70963e5901564)`()` | Returns a pointer to FrameTime_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetFrameTimeOrNull`](#structFRHAPI__PexClientRequest_1a6406c6306981c0d0a1b5062c42366fab)`() const` | Returns a pointer to FrameTime_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetFrameTimeOrNull`](#structFRHAPI__PexClientRequest_1ada252d20bca4f60502dadc011b7fb8e0)`()` | Returns a pointer to FrameTime_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetFrameTimeOrNull`](#structFRHAPI__PexClientRequest_1a7f108054028a78bb87a75ff314d921bb)`() const` | Returns a pointer to FrameTime_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetFrameTime`](#structFRHAPI__PexClientRequest_1a3c8eb716bc8f4aa15722db74feca8125)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & NewValue)` | Sets the value of FrameTime_Optional and also sets FrameTime_IsSet to true.
 `public inline void `[`SetFrameTime`](#structFRHAPI__PexClientRequest_1ad7538692be3e4a420403be1db7f84845)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` && NewValue)` | Sets the value of FrameTime_Optional and also sets FrameTime_IsSet to true using move semantics.
 `public inline void `[`ClearFrameTime`](#structFRHAPI__PexClientRequest_1a2e40b97892c9febf17bed48c5fec834a)`()` | Clears the value of FrameTime_Optional and sets FrameTime_IsSet to false.
 `public inline bool `[`IsFrameTimeSet`](#structFRHAPI__PexClientRequest_1a71ba9345581b38fa95cf5939b7725ed9)`() const` | Checks whether FrameTime_Optional has been set.
 `public inline void `[`SetFrameTimeToNull`](#structFRHAPI__PexClientRequest_1ac277e9252b53e0adf0f93349fb4a6ea2)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsFrameTimeNull`](#structFRHAPI__PexClientRequest_1a19904acbc1b1aa751397e40f80bdc365)`() const` | Checks whether FrameTime_Optional is set to null.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetDeltaTime`](#structFRHAPI__PexClientRequest_1a10b7a0f0855e42f4abedf23044762bb1)`()` | Gets the value of DeltaTime_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetDeltaTime`](#structFRHAPI__PexClientRequest_1a15766bd601355783089b19e436099dbc)`() const` | Gets the value of DeltaTime_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetDeltaTime`](#structFRHAPI__PexClientRequest_1af1b622f7e98f68a1dba0953b2f5e8350)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of DeltaTime_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetDeltaTime`](#structFRHAPI__PexClientRequest_1addf844ac18eddf9bbb63798ef5d32318)`()` | Gets the value of DeltaTime_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetDeltaTime`](#structFRHAPI__PexClientRequest_1a8c05f15a0f181c69fec13fad332162e6)`() const` | Gets the value of DeltaTime_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetDeltaTime`](#structFRHAPI__PexClientRequest_1a71fb4334eda64ac6bafa1be6b5bc5e5c)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of DeltaTime_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetDeltaTime`](#structFRHAPI__PexClientRequest_1a100273fa49bea496e1b7efb57cff1ed2)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & OutValue) const` | Fills OutValue with the value of DeltaTime_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetDeltaTimeOrNull`](#structFRHAPI__PexClientRequest_1a8526f223a0f96de6cc66b5219180ace0)`()` | Returns a pointer to DeltaTime_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetDeltaTimeOrNull`](#structFRHAPI__PexClientRequest_1ac754dcbe2c600177c526fac2104642d7)`() const` | Returns a pointer to DeltaTime_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetDeltaTimeOrNull`](#structFRHAPI__PexClientRequest_1a5edeab3425f19589e5d23dd79fc58370)`()` | Returns a pointer to DeltaTime_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetDeltaTimeOrNull`](#structFRHAPI__PexClientRequest_1aebfa6fb4f67f3cb5fbbf1eec19ebd902)`() const` | Returns a pointer to DeltaTime_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetDeltaTime`](#structFRHAPI__PexClientRequest_1a57a2b501a384deab69326ad111ae54ae)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & NewValue)` | Sets the value of DeltaTime_Optional and also sets DeltaTime_IsSet to true.
 `public inline void `[`SetDeltaTime`](#structFRHAPI__PexClientRequest_1a7dd226d5b41990b3552d71f094d578ef)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` && NewValue)` | Sets the value of DeltaTime_Optional and also sets DeltaTime_IsSet to true using move semantics.
 `public inline void `[`ClearDeltaTime`](#structFRHAPI__PexClientRequest_1a609653d03d9f527ac2724d4b9d81f59a)`()` | Clears the value of DeltaTime_Optional and sets DeltaTime_IsSet to false.
 `public inline bool `[`IsDeltaTimeSet`](#structFRHAPI__PexClientRequest_1ae1757b025d9750c8944489afc0b09934)`() const` | Checks whether DeltaTime_Optional has been set.
 `public inline void `[`SetDeltaTimeToNull`](#structFRHAPI__PexClientRequest_1abe5b0065732693407566e10238516243)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsDeltaTimeNull`](#structFRHAPI__PexClientRequest_1a9312fcee57e2ff8720a360ecbd45ff5e)`() const` | Checks whether DeltaTime_Optional is set to null.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTickCount`](#structFRHAPI__PexClientRequest_1a029e1a217837086d64c648db348b1184)`()` | Gets the value of TickCount_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTickCount`](#structFRHAPI__PexClientRequest_1a4e1d7bb555c954b29a9ba9ac932edcab)`() const` | Gets the value of TickCount_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTickCount`](#structFRHAPI__PexClientRequest_1a84741d9111957f689aa9b0af5703d8b8)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of TickCount_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTickCount`](#structFRHAPI__PexClientRequest_1a633298165b4b528428e82e3926240ca4)`()` | Gets the value of TickCount_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTickCount`](#structFRHAPI__PexClientRequest_1ab32b2b77d6a87f2c430dd777cee5eb6f)`() const` | Gets the value of TickCount_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTickCount`](#structFRHAPI__PexClientRequest_1a70f6ddd4623eec679a0ec0b98c614ec9)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of TickCount_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetTickCount`](#structFRHAPI__PexClientRequest_1a5a39bc364feda5e3b8099c26caa2373d)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & OutValue) const` | Fills OutValue with the value of TickCount_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetTickCountOrNull`](#structFRHAPI__PexClientRequest_1a5242bfde85dee540a2d74860c9edf13d)`()` | Returns a pointer to TickCount_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetTickCountOrNull`](#structFRHAPI__PexClientRequest_1a2952ceaa7cc7c43b2dbbae570e7b2000)`() const` | Returns a pointer to TickCount_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetTickCountOrNull`](#structFRHAPI__PexClientRequest_1a25084d87d4873f286f7e5d57fcafc393)`()` | Returns a pointer to TickCount_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetTickCountOrNull`](#structFRHAPI__PexClientRequest_1a9aa06a63c9ac9db5a7f99eb0a27470e9)`() const` | Returns a pointer to TickCount_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetTickCount`](#structFRHAPI__PexClientRequest_1af7447dbd4d29698d67ff87d42b3f0933)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & NewValue)` | Sets the value of TickCount_Optional and also sets TickCount_IsSet to true.
 `public inline void `[`SetTickCount`](#structFRHAPI__PexClientRequest_1ab584ead7e69251cd6daa72f55c10a09b)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` && NewValue)` | Sets the value of TickCount_Optional and also sets TickCount_IsSet to true using move semantics.
 `public inline void `[`ClearTickCount`](#structFRHAPI__PexClientRequest_1a36dcbf26cdf9e24e96fa3b0a47087bc7)`()` | Clears the value of TickCount_Optional and sets TickCount_IsSet to false.
 `public inline bool `[`IsTickCountSet`](#structFRHAPI__PexClientRequest_1a04ec49ad51b9a2ef2a2f12ede0b71032)`() const` | Checks whether TickCount_Optional has been set.
 `public inline void `[`SetTickCountToNull`](#structFRHAPI__PexClientRequest_1a32470e272475506767f609cc9b48c5cf)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsTickCountNull`](#structFRHAPI__PexClientRequest_1ae9f786425ff7a5b77b9a8cfe4bc55f9d)`() const` | Checks whether TickCount_Optional is set to null.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetDelayedTickCount`](#structFRHAPI__PexClientRequest_1a3f1e760bba484d7a83b921d47ffbe102)`()` | Gets the value of DelayedTickCount_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetDelayedTickCount`](#structFRHAPI__PexClientRequest_1a61d493eb1c8a1fee5e146da4ece42292)`() const` | Gets the value of DelayedTickCount_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetDelayedTickCount`](#structFRHAPI__PexClientRequest_1a0050b34a2717ea29d0c6731204dcf67c)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of DelayedTickCount_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetDelayedTickCount`](#structFRHAPI__PexClientRequest_1a640393169f271451c29256f00f02287c)`()` | Gets the value of DelayedTickCount_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetDelayedTickCount`](#structFRHAPI__PexClientRequest_1a54c4ba66452e7a932b7078b904988011)`() const` | Gets the value of DelayedTickCount_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetDelayedTickCount`](#structFRHAPI__PexClientRequest_1a5b6fb727ac0ddf8ada8b9ba332805162)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of DelayedTickCount_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetDelayedTickCount`](#structFRHAPI__PexClientRequest_1ad865614ee6f4492aceb8aa9bcd2b2e0c)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & OutValue) const` | Fills OutValue with the value of DelayedTickCount_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetDelayedTickCountOrNull`](#structFRHAPI__PexClientRequest_1a277df6034ec35a30bf7c14d78150e3a9)`()` | Returns a pointer to DelayedTickCount_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetDelayedTickCountOrNull`](#structFRHAPI__PexClientRequest_1a2934db19c9c4847e7b160d44cec23217)`() const` | Returns a pointer to DelayedTickCount_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetDelayedTickCountOrNull`](#structFRHAPI__PexClientRequest_1a502ca10268bcd32b50e828d698a2cc59)`()` | Returns a pointer to DelayedTickCount_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetDelayedTickCountOrNull`](#structFRHAPI__PexClientRequest_1af1fc2b0ccefd00a9315de63458e7c773)`() const` | Returns a pointer to DelayedTickCount_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetDelayedTickCount`](#structFRHAPI__PexClientRequest_1a6c6c644ca54436f2ba9f4b76931a3a91)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & NewValue)` | Sets the value of DelayedTickCount_Optional and also sets DelayedTickCount_IsSet to true.
 `public inline void `[`SetDelayedTickCount`](#structFRHAPI__PexClientRequest_1af2acbf5d2580649614991acc0fc786f9)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` && NewValue)` | Sets the value of DelayedTickCount_Optional and also sets DelayedTickCount_IsSet to true using move semantics.
 `public inline void `[`ClearDelayedTickCount`](#structFRHAPI__PexClientRequest_1a47efcec9ec7f07ddae84cd756e009cba)`()` | Clears the value of DelayedTickCount_Optional and sets DelayedTickCount_IsSet to false.
 `public inline bool `[`IsDelayedTickCountSet`](#structFRHAPI__PexClientRequest_1a4dff60d81db2e883c256fc6569fb8069)`() const` | Checks whether DelayedTickCount_Optional has been set.
 `public inline void `[`SetDelayedTickCountToNull`](#structFRHAPI__PexClientRequest_1a96d4f4a779160d6406ecae47e8174db3)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsDelayedTickCountNull`](#structFRHAPI__PexClientRequest_1ab9200d67859fc4f483481ec429fe2cfd)`() const` | Checks whether DelayedTickCount_Optional is set to null.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetMemoryWs`](#structFRHAPI__PexClientRequest_1a7be6088eb92bb628bfd11bbf8a7fbac7)`()` | Gets the value of MemoryWs_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetMemoryWs`](#structFRHAPI__PexClientRequest_1aeb0f88ad37d4adea0594d65a6da6fbc3)`() const` | Gets the value of MemoryWs_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetMemoryWs`](#structFRHAPI__PexClientRequest_1a99be664fffb0929d710ad8d4f882f17a)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of MemoryWs_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetMemoryWs`](#structFRHAPI__PexClientRequest_1a69984b8874155b6fca6080f1c9968719)`()` | Gets the value of MemoryWs_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetMemoryWs`](#structFRHAPI__PexClientRequest_1aa7d7a97677b8ed518f3c3242c5fde9bd)`() const` | Gets the value of MemoryWs_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetMemoryWs`](#structFRHAPI__PexClientRequest_1a2abf5190d0e9d2a104fb358de5a9e1a1)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of MemoryWs_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetMemoryWs`](#structFRHAPI__PexClientRequest_1ac525bb680198624315f2b61ce3486fa1)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & OutValue) const` | Fills OutValue with the value of MemoryWs_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetMemoryWsOrNull`](#structFRHAPI__PexClientRequest_1a3bf8549cb6668e35969cb9e9bd46699a)`()` | Returns a pointer to MemoryWs_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetMemoryWsOrNull`](#structFRHAPI__PexClientRequest_1aa3eaff836bb17520c5c65d67bb12b11c)`() const` | Returns a pointer to MemoryWs_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetMemoryWsOrNull`](#structFRHAPI__PexClientRequest_1aff15b7993b6642976c1c841a88b7dbce)`()` | Returns a pointer to MemoryWs_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetMemoryWsOrNull`](#structFRHAPI__PexClientRequest_1a832b6c92bc3f42a1a6fb7d69f65a5f97)`() const` | Returns a pointer to MemoryWs_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetMemoryWs`](#structFRHAPI__PexClientRequest_1a2fc5e08b6584075bd20b654e990b091d)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & NewValue)` | Sets the value of MemoryWs_Optional and also sets MemoryWs_IsSet to true.
 `public inline void `[`SetMemoryWs`](#structFRHAPI__PexClientRequest_1abb9826aca30a57fddfc03464df70608e)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` && NewValue)` | Sets the value of MemoryWs_Optional and also sets MemoryWs_IsSet to true using move semantics.
 `public inline void `[`ClearMemoryWs`](#structFRHAPI__PexClientRequest_1af78538add8fca5af4f0eda31ea169828)`()` | Clears the value of MemoryWs_Optional and sets MemoryWs_IsSet to false.
 `public inline bool `[`IsMemoryWsSet`](#structFRHAPI__PexClientRequest_1a6c2c45d745a6a7ffbc686fb7c7c05b6a)`() const` | Checks whether MemoryWs_Optional has been set.
 `public inline void `[`SetMemoryWsToNull`](#structFRHAPI__PexClientRequest_1a6d020fb20e8c7fdd2d61304bdf509bbc)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsMemoryWsNull`](#structFRHAPI__PexClientRequest_1a591c6c785ed894f5ef6ff81882984f88)`() const` | Checks whether MemoryWs_Optional is set to null.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetMemoryVb`](#structFRHAPI__PexClientRequest_1a47b7ba10a28718aefc0b696a723eed80)`()` | Gets the value of MemoryVb_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetMemoryVb`](#structFRHAPI__PexClientRequest_1a8512530958c5cd58d437604d49b77dd1)`() const` | Gets the value of MemoryVb_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetMemoryVb`](#structFRHAPI__PexClientRequest_1a9487bacff05dddb929839427c7a63869)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of MemoryVb_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetMemoryVb`](#structFRHAPI__PexClientRequest_1ae71d1554b65fcfdabcfa8af5d32ec36f)`()` | Gets the value of MemoryVb_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetMemoryVb`](#structFRHAPI__PexClientRequest_1a2dbca36d510f9d67bf08d41a69c7c5d5)`() const` | Gets the value of MemoryVb_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetMemoryVb`](#structFRHAPI__PexClientRequest_1a12941840d39a3bc45a6afddeefd256f3)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of MemoryVb_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetMemoryVb`](#structFRHAPI__PexClientRequest_1ac5462e99df116f727bff913f6893dab2)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & OutValue) const` | Fills OutValue with the value of MemoryVb_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetMemoryVbOrNull`](#structFRHAPI__PexClientRequest_1a35fd8384e673bd93093d38f0a6f03f9b)`()` | Returns a pointer to MemoryVb_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetMemoryVbOrNull`](#structFRHAPI__PexClientRequest_1a7889524ceb6dffe696acc37027954810)`() const` | Returns a pointer to MemoryVb_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetMemoryVbOrNull`](#structFRHAPI__PexClientRequest_1aef4631346d102c66ecffec45371ee839)`()` | Returns a pointer to MemoryVb_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetMemoryVbOrNull`](#structFRHAPI__PexClientRequest_1a38450255726b53d366a4336f0a06be6b)`() const` | Returns a pointer to MemoryVb_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetMemoryVb`](#structFRHAPI__PexClientRequest_1af7a6e313e36870444a32c1c300e636d0)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & NewValue)` | Sets the value of MemoryVb_Optional and also sets MemoryVb_IsSet to true.
 `public inline void `[`SetMemoryVb`](#structFRHAPI__PexClientRequest_1a778a0016202d87d445f8735fdee8f7af)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` && NewValue)` | Sets the value of MemoryVb_Optional and also sets MemoryVb_IsSet to true using move semantics.
 `public inline void `[`ClearMemoryVb`](#structFRHAPI__PexClientRequest_1a4b2dcac2efecfddc04be42f70bf9ab57)`()` | Clears the value of MemoryVb_Optional and sets MemoryVb_IsSet to false.
 `public inline bool `[`IsMemoryVbSet`](#structFRHAPI__PexClientRequest_1abc7e86328cc0416df7c5c90f7e7fe626)`() const` | Checks whether MemoryVb_Optional has been set.
 `public inline void `[`SetMemoryVbToNull`](#structFRHAPI__PexClientRequest_1a0cad433f6da342508339b15d7f1457af)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsMemoryVbNull`](#structFRHAPI__PexClientRequest_1a1c39c6fe31449fe94879cc871e67b90c)`() const` | Checks whether MemoryVb_Optional is set to null.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetCpuProcess`](#structFRHAPI__PexClientRequest_1a4a5b84b4705f421eb89876c36d1a3a46)`()` | Gets the value of CpuProcess_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetCpuProcess`](#structFRHAPI__PexClientRequest_1ab6daf56ca2053e6d1323fb6dfb50e9dc)`() const` | Gets the value of CpuProcess_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetCpuProcess`](#structFRHAPI__PexClientRequest_1a6bb389dc758cbadf3b718b9dbc3dce5e)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of CpuProcess_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetCpuProcess`](#structFRHAPI__PexClientRequest_1ad8edfc651efd23504bc398296314dc6f)`()` | Gets the value of CpuProcess_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetCpuProcess`](#structFRHAPI__PexClientRequest_1a0b3cbc3147791877402418cc8e2bacaa)`() const` | Gets the value of CpuProcess_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetCpuProcess`](#structFRHAPI__PexClientRequest_1a2028430c3e0089f922cbf1913206423e)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of CpuProcess_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetCpuProcess`](#structFRHAPI__PexClientRequest_1af7b0db9bf311834b4ddf22689eaa4268)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & OutValue) const` | Fills OutValue with the value of CpuProcess_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetCpuProcessOrNull`](#structFRHAPI__PexClientRequest_1ac4e3f2a335ab39bbbda55d1bedf67d4c)`()` | Returns a pointer to CpuProcess_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetCpuProcessOrNull`](#structFRHAPI__PexClientRequest_1a36248f1de6e281dd54225d650cd2144e)`() const` | Returns a pointer to CpuProcess_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetCpuProcessOrNull`](#structFRHAPI__PexClientRequest_1a1d9051ad3acd8b1e3d44e74d13f04a0d)`()` | Returns a pointer to CpuProcess_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetCpuProcessOrNull`](#structFRHAPI__PexClientRequest_1a52ba1d1922ad4c80d9c8a24bb2529c80)`() const` | Returns a pointer to CpuProcess_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetCpuProcess`](#structFRHAPI__PexClientRequest_1a313967e51ac3601f0135857c1716f406)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & NewValue)` | Sets the value of CpuProcess_Optional and also sets CpuProcess_IsSet to true.
 `public inline void `[`SetCpuProcess`](#structFRHAPI__PexClientRequest_1a39ae02cb6ee371854b8a6c7fde6c84ff)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` && NewValue)` | Sets the value of CpuProcess_Optional and also sets CpuProcess_IsSet to true using move semantics.
 `public inline void `[`ClearCpuProcess`](#structFRHAPI__PexClientRequest_1a666a41a738d9085fe7666c7b5f4d203d)`()` | Clears the value of CpuProcess_Optional and sets CpuProcess_IsSet to false.
 `public inline bool `[`IsCpuProcessSet`](#structFRHAPI__PexClientRequest_1a78d5faab026bb3090cbae4fbd847ddfe)`() const` | Checks whether CpuProcess_Optional has been set.
 `public inline void `[`SetCpuProcessToNull`](#structFRHAPI__PexClientRequest_1a6a34c99aadf80af790fb8fe71f31f379)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsCpuProcessNull`](#structFRHAPI__PexClientRequest_1aeae62167b9de956391a1ee4469abff51)`() const` | Checks whether CpuProcess_Optional is set to null.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetPing`](#structFRHAPI__PexClientRequest_1ab9d59a72898a84fbfeb85ef6e46dd003)`()` | Gets the value of Ping_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetPing`](#structFRHAPI__PexClientRequest_1a6447a3f9f5aacbd0f3f3fa12bcb7083e)`() const` | Gets the value of Ping_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetPing`](#structFRHAPI__PexClientRequest_1a826df7329778f8a34b9e73142a343c15)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of Ping_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetPing`](#structFRHAPI__PexClientRequest_1a846ebe38aa3778c0f35c4f42eb677d63)`()` | Gets the value of Ping_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetPing`](#structFRHAPI__PexClientRequest_1ab43e607fc9efeff17dc73ec7394884b4)`() const` | Gets the value of Ping_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetPing`](#structFRHAPI__PexClientRequest_1a6d42eda87441d4c05c6178855d3572fb)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of Ping_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetPing`](#structFRHAPI__PexClientRequest_1a7d3b066e39e74354f04bf4bcf9a4bf1c)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & OutValue) const` | Fills OutValue with the value of Ping_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetPingOrNull`](#structFRHAPI__PexClientRequest_1a247c83c0b1cec285503801860238b438)`()` | Returns a pointer to Ping_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetPingOrNull`](#structFRHAPI__PexClientRequest_1ac76c882a76bca706d542c2ba64cad7fa)`() const` | Returns a pointer to Ping_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetPingOrNull`](#structFRHAPI__PexClientRequest_1a0b21e2ab2576f801f8f97ca8d7e48577)`()` | Returns a pointer to Ping_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetPingOrNull`](#structFRHAPI__PexClientRequest_1a793c857137724c8a4fa52dff68577b04)`() const` | Returns a pointer to Ping_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetPing`](#structFRHAPI__PexClientRequest_1abfe364c9865e35faa4dd6fa893fc260b)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & NewValue)` | Sets the value of Ping_Optional and also sets Ping_IsSet to true.
 `public inline void `[`SetPing`](#structFRHAPI__PexClientRequest_1a1d644c5a687e40b1f65f5d66b9ec56c0)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` && NewValue)` | Sets the value of Ping_Optional and also sets Ping_IsSet to true using move semantics.
 `public inline void `[`ClearPing`](#structFRHAPI__PexClientRequest_1a97246ad541865699f3324c45b6471fc1)`()` | Clears the value of Ping_Optional and sets Ping_IsSet to false.
 `public inline bool `[`IsPingSet`](#structFRHAPI__PexClientRequest_1a0a7473b24d473327fc940483ec1cb7d0)`() const` | Checks whether Ping_Optional has been set.
 `public inline void `[`SetPingToNull`](#structFRHAPI__PexClientRequest_1aac7cd0d9a26c3cda4ce961be101fa6b2)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsPingNull`](#structFRHAPI__PexClientRequest_1a5e3977cbd2b35329333336499c50901b)`() const` | Checks whether Ping_Optional is set to null.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPackets`](#structFRHAPI__PexClientRequest_1aa6392ce6ad2ffb38cfeb078dee07652c)`()` | Gets the value of InPackets_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPackets`](#structFRHAPI__PexClientRequest_1a1533acb3ed7613dd35862fe7ca8900db)`() const` | Gets the value of InPackets_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPackets`](#structFRHAPI__PexClientRequest_1a3b97089df8d99971acc7cc4803872fae)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of InPackets_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPackets`](#structFRHAPI__PexClientRequest_1adf54d830f87e48cb22b5efd5d0cfff55)`()` | Gets the value of InPackets_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPackets`](#structFRHAPI__PexClientRequest_1aebc1bfa57bcede5171bdb88c3f2c65ee)`() const` | Gets the value of InPackets_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPackets`](#structFRHAPI__PexClientRequest_1a127a8d684df60a33806bf645d273f15f)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of InPackets_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetInPackets`](#structFRHAPI__PexClientRequest_1a3c7a03ef20aa983e349844a219630a49)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & OutValue) const` | Fills OutValue with the value of InPackets_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetInPacketsOrNull`](#structFRHAPI__PexClientRequest_1a1c29569988beedd2284ab01326e3abee)`()` | Returns a pointer to InPackets_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetInPacketsOrNull`](#structFRHAPI__PexClientRequest_1a665e8c5d0c7a621eefd530bbeabf7369)`() const` | Returns a pointer to InPackets_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetInPacketsOrNull`](#structFRHAPI__PexClientRequest_1a7d4e79ea07c96012023d810510f110cb)`()` | Returns a pointer to InPackets_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetInPacketsOrNull`](#structFRHAPI__PexClientRequest_1ada38a2ca7c057e2dbb2e88fed3ec49da)`() const` | Returns a pointer to InPackets_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetInPackets`](#structFRHAPI__PexClientRequest_1a9881273bec6227c7e8b90027cf2dd704)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & NewValue)` | Sets the value of InPackets_Optional and also sets InPackets_IsSet to true.
 `public inline void `[`SetInPackets`](#structFRHAPI__PexClientRequest_1a7f85f190e2febfa147f68dc1236c5d58)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` && NewValue)` | Sets the value of InPackets_Optional and also sets InPackets_IsSet to true using move semantics.
 `public inline void `[`ClearInPackets`](#structFRHAPI__PexClientRequest_1af5fea99fdf0994385d5231d37fea2cea)`()` | Clears the value of InPackets_Optional and sets InPackets_IsSet to false.
 `public inline bool `[`IsInPacketsSet`](#structFRHAPI__PexClientRequest_1ae230dc7c4b8ac8f36bb08df10bbb170f)`() const` | Checks whether InPackets_Optional has been set.
 `public inline void `[`SetInPacketsToNull`](#structFRHAPI__PexClientRequest_1ab8169837c20067d17c01448c7f35dbc9)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsInPacketsNull`](#structFRHAPI__PexClientRequest_1a3321153195dd90649153b65b641a9e6e)`() const` | Checks whether InPackets_Optional is set to null.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPackets`](#structFRHAPI__PexClientRequest_1a142f2ac62e334eb7f04c49787a895548)`()` | Gets the value of OutPackets_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPackets`](#structFRHAPI__PexClientRequest_1a266608641d0d72f8afe3a62625553f79)`() const` | Gets the value of OutPackets_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPackets`](#structFRHAPI__PexClientRequest_1a2b7ecba2bdff8aa3c04a3288ac0c393d)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of OutPackets_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPackets`](#structFRHAPI__PexClientRequest_1a5bc2db495ca911fe2e71a50c0cd28a83)`()` | Gets the value of OutPackets_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPackets`](#structFRHAPI__PexClientRequest_1af46dad8d65eab6b8278f4bff3ef28056)`() const` | Gets the value of OutPackets_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPackets`](#structFRHAPI__PexClientRequest_1a55df265359a69609da226056b332682c)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of OutPackets_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetOutPackets`](#structFRHAPI__PexClientRequest_1ab30409515f6a65660994ccc265b6cc4e)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & OutValue) const` | Fills OutValue with the value of OutPackets_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetOutPacketsOrNull`](#structFRHAPI__PexClientRequest_1a5e788107856a9308a25f7515f76e24c9)`()` | Returns a pointer to OutPackets_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetOutPacketsOrNull`](#structFRHAPI__PexClientRequest_1a4536c844cadbbad2f28bf05a00134cd8)`() const` | Returns a pointer to OutPackets_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetOutPacketsOrNull`](#structFRHAPI__PexClientRequest_1a272525c05e86cbf406ef6bbd73bfa844)`()` | Returns a pointer to OutPackets_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetOutPacketsOrNull`](#structFRHAPI__PexClientRequest_1a5ceb6bc569b591eeccd4f097e4956de0)`() const` | Returns a pointer to OutPackets_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetOutPackets`](#structFRHAPI__PexClientRequest_1ae34defb49d8bb220ed4e19fda17fbd64)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & NewValue)` | Sets the value of OutPackets_Optional and also sets OutPackets_IsSet to true.
 `public inline void `[`SetOutPackets`](#structFRHAPI__PexClientRequest_1a1a8cd3f6c6ba211196d3e871c4a6f458)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` && NewValue)` | Sets the value of OutPackets_Optional and also sets OutPackets_IsSet to true using move semantics.
 `public inline void `[`ClearOutPackets`](#structFRHAPI__PexClientRequest_1a52f93a59935a0f0f96da164a834aadfa)`()` | Clears the value of OutPackets_Optional and sets OutPackets_IsSet to false.
 `public inline bool `[`IsOutPacketsSet`](#structFRHAPI__PexClientRequest_1adc2f2edc1ca656c7360d8ea1c3538fd3)`() const` | Checks whether OutPackets_Optional has been set.
 `public inline void `[`SetOutPacketsToNull`](#structFRHAPI__PexClientRequest_1a19d0ff945518544299227fabca9fb4d5)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsOutPacketsNull`](#structFRHAPI__PexClientRequest_1a130e2b25fe4f396ab19d67a5fa37ebab)`() const` | Checks whether OutPackets_Optional is set to null.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPackets`](#structFRHAPI__PexClientRequest_1aa3db57dc719c519e315140d62b404b2e)`()` | Gets the value of TotalPackets_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPackets`](#structFRHAPI__PexClientRequest_1a39179bfe0aea688633423a4b033f9730)`() const` | Gets the value of TotalPackets_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPackets`](#structFRHAPI__PexClientRequest_1a4d4d83a20264bbfe35d6cb641caa5fa6)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of TotalPackets_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPackets`](#structFRHAPI__PexClientRequest_1aefc8b30abb9037b532329afb513ff9d3)`()` | Gets the value of TotalPackets_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPackets`](#structFRHAPI__PexClientRequest_1a75db246023094875a087754e52d6fcef)`() const` | Gets the value of TotalPackets_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPackets`](#structFRHAPI__PexClientRequest_1a90bf562f214347548a7e49842bf9ea17)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of TotalPackets_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetTotalPackets`](#structFRHAPI__PexClientRequest_1a916c92a081619720d239707f721cc432)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & OutValue) const` | Fills OutValue with the value of TotalPackets_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetTotalPacketsOrNull`](#structFRHAPI__PexClientRequest_1aa9c038d602e85f5581a987540dc5cdf5)`()` | Returns a pointer to TotalPackets_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetTotalPacketsOrNull`](#structFRHAPI__PexClientRequest_1a7d17b60e0e014f325ac994e2931421bb)`() const` | Returns a pointer to TotalPackets_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetTotalPacketsOrNull`](#structFRHAPI__PexClientRequest_1ac65ca0585e4c3f7e1cef2e17547aed9d)`()` | Returns a pointer to TotalPackets_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetTotalPacketsOrNull`](#structFRHAPI__PexClientRequest_1a38d2558e11b33042ba5eb2d14ee8b14d)`() const` | Returns a pointer to TotalPackets_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetTotalPackets`](#structFRHAPI__PexClientRequest_1a505855d62dc16ed05bc0223aaf898e5d)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & NewValue)` | Sets the value of TotalPackets_Optional and also sets TotalPackets_IsSet to true.
 `public inline void `[`SetTotalPackets`](#structFRHAPI__PexClientRequest_1af98e235cb5aa8b8c7037dee0a429b70e)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` && NewValue)` | Sets the value of TotalPackets_Optional and also sets TotalPackets_IsSet to true using move semantics.
 `public inline void `[`ClearTotalPackets`](#structFRHAPI__PexClientRequest_1a33aa836c0e9d4532c566f7e1c0eff90b)`()` | Clears the value of TotalPackets_Optional and sets TotalPackets_IsSet to false.
 `public inline bool `[`IsTotalPacketsSet`](#structFRHAPI__PexClientRequest_1a184582764316956e08ab8d72b8dbd9ea)`() const` | Checks whether TotalPackets_Optional has been set.
 `public inline void `[`SetTotalPacketsToNull`](#structFRHAPI__PexClientRequest_1a37110a97e894e6206fefa62086159b1e)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsTotalPacketsNull`](#structFRHAPI__PexClientRequest_1a46e94b37c73ce24aee89716e94e65b21)`() const` | Checks whether TotalPackets_Optional is set to null.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPacketLoss`](#structFRHAPI__PexClientRequest_1aabadd0e9060fffac0a439c4c3f76e190)`()` | Gets the value of InPacketLoss_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPacketLoss`](#structFRHAPI__PexClientRequest_1aca04796b2e75947acff3f4313787432a)`() const` | Gets the value of InPacketLoss_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPacketLoss`](#structFRHAPI__PexClientRequest_1a476e715151204588b5aa4b5bed6a42a5)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of InPacketLoss_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPacketLoss`](#structFRHAPI__PexClientRequest_1a20bde098a1828ce6b877f69ec3fbf5d8)`()` | Gets the value of InPacketLoss_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPacketLoss`](#structFRHAPI__PexClientRequest_1ab6bb05843ba4ef05159cdc0c3cf1a429)`() const` | Gets the value of InPacketLoss_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPacketLoss`](#structFRHAPI__PexClientRequest_1a16450cd5f11e7ad4440a7ae3ca28584d)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of InPacketLoss_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetInPacketLoss`](#structFRHAPI__PexClientRequest_1a358b73013b848c6a8ac031e31167c8a7)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & OutValue) const` | Fills OutValue with the value of InPacketLoss_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetInPacketLossOrNull`](#structFRHAPI__PexClientRequest_1a3f1eb3c8a6af4bbd94d0ae6570d11877)`()` | Returns a pointer to InPacketLoss_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetInPacketLossOrNull`](#structFRHAPI__PexClientRequest_1a83daf86a1308bf3794b15c6e684b8671)`() const` | Returns a pointer to InPacketLoss_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetInPacketLossOrNull`](#structFRHAPI__PexClientRequest_1ad8d90a343af2d9f639078f51f7790732)`()` | Returns a pointer to InPacketLoss_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetInPacketLossOrNull`](#structFRHAPI__PexClientRequest_1afe75c8e851da1047be295ddb2147ed60)`() const` | Returns a pointer to InPacketLoss_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetInPacketLoss`](#structFRHAPI__PexClientRequest_1a83585eb50724b0197c571912d45db708)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & NewValue)` | Sets the value of InPacketLoss_Optional and also sets InPacketLoss_IsSet to true.
 `public inline void `[`SetInPacketLoss`](#structFRHAPI__PexClientRequest_1a65c7db21ede2da332fea39a0ea5116ed)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` && NewValue)` | Sets the value of InPacketLoss_Optional and also sets InPacketLoss_IsSet to true using move semantics.
 `public inline void `[`ClearInPacketLoss`](#structFRHAPI__PexClientRequest_1ab49299d5b9490ad0b42f36aa247c34e7)`()` | Clears the value of InPacketLoss_Optional and sets InPacketLoss_IsSet to false.
 `public inline bool `[`IsInPacketLossSet`](#structFRHAPI__PexClientRequest_1ad214f7f2a55a58fecefe111819973082)`() const` | Checks whether InPacketLoss_Optional has been set.
 `public inline void `[`SetInPacketLossToNull`](#structFRHAPI__PexClientRequest_1a7076ee2cf6f183bc4f332243d3c3e7f7)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsInPacketLossNull`](#structFRHAPI__PexClientRequest_1a8029604630d7c5bad4ef66af4767a1df)`() const` | Checks whether InPacketLoss_Optional is set to null.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPacketLoss`](#structFRHAPI__PexClientRequest_1aa390710dbb5b157b4d1fed292acd15dc)`()` | Gets the value of OutPacketLoss_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPacketLoss`](#structFRHAPI__PexClientRequest_1afaa83942ed294f5bd7ad1a3f9f475aad)`() const` | Gets the value of OutPacketLoss_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPacketLoss`](#structFRHAPI__PexClientRequest_1a0921aac03126313325604308300b36bc)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of OutPacketLoss_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPacketLoss`](#structFRHAPI__PexClientRequest_1a0dc203c4def738bca9614793485d41d3)`()` | Gets the value of OutPacketLoss_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPacketLoss`](#structFRHAPI__PexClientRequest_1aaa01d77e155b67d0ab339b9100a2ae1d)`() const` | Gets the value of OutPacketLoss_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPacketLoss`](#structFRHAPI__PexClientRequest_1ab2d4b1b87b9df3608001758d1fd734fe)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of OutPacketLoss_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetOutPacketLoss`](#structFRHAPI__PexClientRequest_1a4a3ed67ae1cfb45256634a09a279dcc0)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & OutValue) const` | Fills OutValue with the value of OutPacketLoss_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetOutPacketLossOrNull`](#structFRHAPI__PexClientRequest_1a5745280faa7676ff5f5f48f04d420d22)`()` | Returns a pointer to OutPacketLoss_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetOutPacketLossOrNull`](#structFRHAPI__PexClientRequest_1ad28abdf8ab64f8139424ba362ff02201)`() const` | Returns a pointer to OutPacketLoss_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetOutPacketLossOrNull`](#structFRHAPI__PexClientRequest_1af08b4a1024486f74918ce811a43ed7fa)`()` | Returns a pointer to OutPacketLoss_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetOutPacketLossOrNull`](#structFRHAPI__PexClientRequest_1a23abceeb4c403f0143fdb9e8e24e07d9)`() const` | Returns a pointer to OutPacketLoss_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetOutPacketLoss`](#structFRHAPI__PexClientRequest_1ab1a72e31591087e524c4d7b82fbc7297)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & NewValue)` | Sets the value of OutPacketLoss_Optional and also sets OutPacketLoss_IsSet to true.
 `public inline void `[`SetOutPacketLoss`](#structFRHAPI__PexClientRequest_1a31360384a957c644ebf179423786c8f6)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` && NewValue)` | Sets the value of OutPacketLoss_Optional and also sets OutPacketLoss_IsSet to true using move semantics.
 `public inline void `[`ClearOutPacketLoss`](#structFRHAPI__PexClientRequest_1a1e65309f77aea5f8dae0a7d1686968a0)`()` | Clears the value of OutPacketLoss_Optional and sets OutPacketLoss_IsSet to false.
 `public inline bool `[`IsOutPacketLossSet`](#structFRHAPI__PexClientRequest_1ad4e4adbf8c976e84bd04814a05a284f4)`() const` | Checks whether OutPacketLoss_Optional has been set.
 `public inline void `[`SetOutPacketLossToNull`](#structFRHAPI__PexClientRequest_1a505246c6a5c2c28e89b978863641536f)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsOutPacketLossNull`](#structFRHAPI__PexClientRequest_1a89d8659860cfe7701a6df5d7082b1f26)`() const` | Checks whether OutPacketLoss_Optional is set to null.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPacketLoss`](#structFRHAPI__PexClientRequest_1a723d0ce408e9ad87b7372bd5d5b69424)`()` | Gets the value of TotalPacketLoss_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPacketLoss`](#structFRHAPI__PexClientRequest_1ae80cf865687caf45a67920e73219f808)`() const` | Gets the value of TotalPacketLoss_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPacketLoss`](#structFRHAPI__PexClientRequest_1ab47a3ef9a645027e3a1d2bf11e9d3e3d)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of TotalPacketLoss_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPacketLoss`](#structFRHAPI__PexClientRequest_1a1bd5e87a44115e03e24a0f010c2e1212)`()` | Gets the value of TotalPacketLoss_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPacketLoss`](#structFRHAPI__PexClientRequest_1aebab30cc765842a2e465b77ef0670a1d)`() const` | Gets the value of TotalPacketLoss_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPacketLoss`](#structFRHAPI__PexClientRequest_1aa2bb1fdf01db8c5c8d3a144b4a21756c)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of TotalPacketLoss_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetTotalPacketLoss`](#structFRHAPI__PexClientRequest_1a92100cc57efbbd267d13245caaa9f12c)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & OutValue) const` | Fills OutValue with the value of TotalPacketLoss_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetTotalPacketLossOrNull`](#structFRHAPI__PexClientRequest_1a3207395e2b98ec2ab27c0a16f9d8a118)`()` | Returns a pointer to TotalPacketLoss_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetTotalPacketLossOrNull`](#structFRHAPI__PexClientRequest_1a758fef22d29776a5dbc048a0f95b8a36)`() const` | Returns a pointer to TotalPacketLoss_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetTotalPacketLossOrNull`](#structFRHAPI__PexClientRequest_1a3370483d74a97424df6cb49ba46e1a07)`()` | Returns a pointer to TotalPacketLoss_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetTotalPacketLossOrNull`](#structFRHAPI__PexClientRequest_1a659425f5472c79bae0834d92984d50fa)`() const` | Returns a pointer to TotalPacketLoss_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetTotalPacketLoss`](#structFRHAPI__PexClientRequest_1a526c9509dccbeaf1fd2bba6a0c0bc2b2)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & NewValue)` | Sets the value of TotalPacketLoss_Optional and also sets TotalPacketLoss_IsSet to true.
 `public inline void `[`SetTotalPacketLoss`](#structFRHAPI__PexClientRequest_1a05d150317a2e826a9da296d60ad9f8ba)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` && NewValue)` | Sets the value of TotalPacketLoss_Optional and also sets TotalPacketLoss_IsSet to true using move semantics.
 `public inline void `[`ClearTotalPacketLoss`](#structFRHAPI__PexClientRequest_1a107904eed0163c620ea46e8512d9138c)`()` | Clears the value of TotalPacketLoss_Optional and sets TotalPacketLoss_IsSet to false.
 `public inline bool `[`IsTotalPacketLossSet`](#structFRHAPI__PexClientRequest_1ae1963ae54e1a77c00a51a3630bd2454a)`() const` | Checks whether TotalPacketLoss_Optional has been set.
 `public inline void `[`SetTotalPacketLossToNull`](#structFRHAPI__PexClientRequest_1a633f85772e35db8872f6db53e7208a47)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsTotalPacketLossNull`](#structFRHAPI__PexClientRequest_1af4a45536e907914423ef46ec53276fa8)`() const` | Checks whether TotalPacketLoss_Optional is set to null.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPacketLossPct`](#structFRHAPI__PexClientRequest_1aa8414c2ccfce9c027d2521d430a56aa8)`()` | Gets the value of InPacketLossPct_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPacketLossPct`](#structFRHAPI__PexClientRequest_1a2c13e8a1b1987afc4af621ee84c1abfc)`() const` | Gets the value of InPacketLossPct_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPacketLossPct`](#structFRHAPI__PexClientRequest_1a4b9627ff37fd44973aa0eb843c1a162f)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of InPacketLossPct_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPacketLossPct`](#structFRHAPI__PexClientRequest_1a2de29636eb87c11529a6b869b6bd6565)`()` | Gets the value of InPacketLossPct_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPacketLossPct`](#structFRHAPI__PexClientRequest_1a7b14b15e99d4be0cae8fdf19137418bf)`() const` | Gets the value of InPacketLossPct_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPacketLossPct`](#structFRHAPI__PexClientRequest_1af8e9adb831f7d8cfcad3d996e27cc882)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of InPacketLossPct_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetInPacketLossPct`](#structFRHAPI__PexClientRequest_1a0de6664de74d7cf7009424d2264683a5)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & OutValue) const` | Fills OutValue with the value of InPacketLossPct_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetInPacketLossPctOrNull`](#structFRHAPI__PexClientRequest_1a3ffd179e25ca77c4b9f5be71b7e2da81)`()` | Returns a pointer to InPacketLossPct_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetInPacketLossPctOrNull`](#structFRHAPI__PexClientRequest_1ab0b67967befa461c025e00f751c02be9)`() const` | Returns a pointer to InPacketLossPct_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetInPacketLossPctOrNull`](#structFRHAPI__PexClientRequest_1ac814e36eff2e1bb578e1ba71187bd857)`()` | Returns a pointer to InPacketLossPct_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetInPacketLossPctOrNull`](#structFRHAPI__PexClientRequest_1a4bcfdb83e5d975379db053e36515cd31)`() const` | Returns a pointer to InPacketLossPct_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetInPacketLossPct`](#structFRHAPI__PexClientRequest_1aa5b7c92f1d36a22a9182ce42dfa006c7)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & NewValue)` | Sets the value of InPacketLossPct_Optional and also sets InPacketLossPct_IsSet to true.
 `public inline void `[`SetInPacketLossPct`](#structFRHAPI__PexClientRequest_1a127d3d0d56465f8977b69d9b0e355f16)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` && NewValue)` | Sets the value of InPacketLossPct_Optional and also sets InPacketLossPct_IsSet to true using move semantics.
 `public inline void `[`ClearInPacketLossPct`](#structFRHAPI__PexClientRequest_1a020b354e2f50c660934af9d554744c50)`()` | Clears the value of InPacketLossPct_Optional and sets InPacketLossPct_IsSet to false.
 `public inline bool `[`IsInPacketLossPctSet`](#structFRHAPI__PexClientRequest_1a21e18e552dff2624239b127368970762)`() const` | Checks whether InPacketLossPct_Optional has been set.
 `public inline void `[`SetInPacketLossPctToNull`](#structFRHAPI__PexClientRequest_1a2cdd96263a2e563ab12c068f6a09b369)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsInPacketLossPctNull`](#structFRHAPI__PexClientRequest_1a2ca8f4fb842812d55b6cfa95b150750e)`() const` | Checks whether InPacketLossPct_Optional is set to null.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPacketLossPct`](#structFRHAPI__PexClientRequest_1ac7d42d19c9e0cef486486238db49ac36)`()` | Gets the value of OutPacketLossPct_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPacketLossPct`](#structFRHAPI__PexClientRequest_1a5637d6b3e9f5ad35e8e3e9c29a551916)`() const` | Gets the value of OutPacketLossPct_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPacketLossPct`](#structFRHAPI__PexClientRequest_1a74a8fc0f2f316c71b852e6e54c0e9824)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of OutPacketLossPct_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPacketLossPct`](#structFRHAPI__PexClientRequest_1a0aac80cfa6c83950ffb30fd8b614cb86)`()` | Gets the value of OutPacketLossPct_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPacketLossPct`](#structFRHAPI__PexClientRequest_1aa92222716a7ad31059bbd573ccde37f9)`() const` | Gets the value of OutPacketLossPct_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPacketLossPct`](#structFRHAPI__PexClientRequest_1a3aae83df9aa1d86b3f2ab3db5e9cc1a6)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of OutPacketLossPct_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetOutPacketLossPct`](#structFRHAPI__PexClientRequest_1ab74098e043aa1bb8b802d8fa6210915f)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & OutValue) const` | Fills OutValue with the value of OutPacketLossPct_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetOutPacketLossPctOrNull`](#structFRHAPI__PexClientRequest_1a25ba4a6bb0bbb883efc5e07237549e2c)`()` | Returns a pointer to OutPacketLossPct_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetOutPacketLossPctOrNull`](#structFRHAPI__PexClientRequest_1afd920f4db6487b97c8c657c53b5d1219)`() const` | Returns a pointer to OutPacketLossPct_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetOutPacketLossPctOrNull`](#structFRHAPI__PexClientRequest_1ada17c1e1b441241ecf3a99d81bc5c5d6)`()` | Returns a pointer to OutPacketLossPct_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetOutPacketLossPctOrNull`](#structFRHAPI__PexClientRequest_1ae5b6b0431fc45c4d10aa178c746b8b92)`() const` | Returns a pointer to OutPacketLossPct_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetOutPacketLossPct`](#structFRHAPI__PexClientRequest_1a5e049d438776375dca47406fac5f12d5)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & NewValue)` | Sets the value of OutPacketLossPct_Optional and also sets OutPacketLossPct_IsSet to true.
 `public inline void `[`SetOutPacketLossPct`](#structFRHAPI__PexClientRequest_1aeeaa5e7fd184dc399e1e630f1476da2c)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` && NewValue)` | Sets the value of OutPacketLossPct_Optional and also sets OutPacketLossPct_IsSet to true using move semantics.
 `public inline void `[`ClearOutPacketLossPct`](#structFRHAPI__PexClientRequest_1a671538dd871e0f080bbd57906683236a)`()` | Clears the value of OutPacketLossPct_Optional and sets OutPacketLossPct_IsSet to false.
 `public inline bool `[`IsOutPacketLossPctSet`](#structFRHAPI__PexClientRequest_1a7c1a3d2a639ccdde30d9692ad5841d45)`() const` | Checks whether OutPacketLossPct_Optional has been set.
 `public inline void `[`SetOutPacketLossPctToNull`](#structFRHAPI__PexClientRequest_1a2dbfd3d46056842f7318a8edd969c80d)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsOutPacketLossPctNull`](#structFRHAPI__PexClientRequest_1afee5468cfc07e9fede2e2f83f3f89ec7)`() const` | Checks whether OutPacketLossPct_Optional is set to null.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPacketLossPct`](#structFRHAPI__PexClientRequest_1a8f29cda846fde79cd6462448463b4f31)`()` | Gets the value of TotalPacketLossPct_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPacketLossPct`](#structFRHAPI__PexClientRequest_1aacc6ffbe45d453c0f4a01347f56c7994)`() const` | Gets the value of TotalPacketLossPct_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPacketLossPct`](#structFRHAPI__PexClientRequest_1a962391f3dbba6bcb893930abfcc1d28c)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of TotalPacketLossPct_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPacketLossPct`](#structFRHAPI__PexClientRequest_1a734a5e2ebc197476db3d00962cc2cae2)`()` | Gets the value of TotalPacketLossPct_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPacketLossPct`](#structFRHAPI__PexClientRequest_1abd85fceddf7cd646cc9fcf08c4dea513)`() const` | Gets the value of TotalPacketLossPct_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPacketLossPct`](#structFRHAPI__PexClientRequest_1aef37735a09d5b9343d0d022361ddc66f)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of TotalPacketLossPct_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetTotalPacketLossPct`](#structFRHAPI__PexClientRequest_1aa92ff0c0aa143a9b6964aaaaec292c8d)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & OutValue) const` | Fills OutValue with the value of TotalPacketLossPct_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetTotalPacketLossPctOrNull`](#structFRHAPI__PexClientRequest_1a66d5f12825db65c4a04cecf396b31f05)`()` | Returns a pointer to TotalPacketLossPct_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetTotalPacketLossPctOrNull`](#structFRHAPI__PexClientRequest_1acfcc3f176af49e9f393c77f2e510d3f5)`() const` | Returns a pointer to TotalPacketLossPct_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetTotalPacketLossPctOrNull`](#structFRHAPI__PexClientRequest_1ae1897e1731aa31630315646a1f1aab0c)`()` | Returns a pointer to TotalPacketLossPct_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetTotalPacketLossPctOrNull`](#structFRHAPI__PexClientRequest_1a98f7bee773e5ac1f08a8aeab9d50349c)`() const` | Returns a pointer to TotalPacketLossPct_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetTotalPacketLossPct`](#structFRHAPI__PexClientRequest_1a30cf7a4f3fb3df7e1d90c56619bb3262)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & NewValue)` | Sets the value of TotalPacketLossPct_Optional and also sets TotalPacketLossPct_IsSet to true.
 `public inline void `[`SetTotalPacketLossPct`](#structFRHAPI__PexClientRequest_1a776927ce406ae19fa6a3ea54f8407b73)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` && NewValue)` | Sets the value of TotalPacketLossPct_Optional and also sets TotalPacketLossPct_IsSet to true using move semantics.
 `public inline void `[`ClearTotalPacketLossPct`](#structFRHAPI__PexClientRequest_1a0e4694fbb5a33d0fc45cdbd5845ec854)`()` | Clears the value of TotalPacketLossPct_Optional and sets TotalPacketLossPct_IsSet to false.
 `public inline bool `[`IsTotalPacketLossPctSet`](#structFRHAPI__PexClientRequest_1acd8c12900cf2d5ea36d5b494ba3a0a71)`() const` | Checks whether TotalPacketLossPct_Optional has been set.
 `public inline void `[`SetTotalPacketLossPctToNull`](#structFRHAPI__PexClientRequest_1a74e14714833ca2d36952965b35cb0cf3)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsTotalPacketLossPctNull`](#structFRHAPI__PexClientRequest_1a4f8ec093af66d3748bda3667e3008ab8)`() const` | Checks whether TotalPacketLossPct_Optional is set to null.
-`public inline `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & `[`GetTotalDisconnects`](#structFRHAPI__PexClientRequest_1a8205153332c2a206ffe2444dcc1345d4)`()` | Gets the value of TotalDisconnects_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & `[`GetTotalDisconnects`](#structFRHAPI__PexClientRequest_1a529fc0ce0674d39ec678079276939d36)`() const` | Gets the value of TotalDisconnects_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & `[`GetTotalDisconnects`](#structFRHAPI__PexClientRequest_1aab214cb1429495d4b40644e3c759f610)`(const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & DefaultValue) const` | Gets the value of TotalDisconnects_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & `[`GetTotalDisconnects`](#structFRHAPI__PexClientRequest_1a1f8fb19417e6cb1475198fab98241a14)`()` | Gets the value of TotalDisconnects_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & `[`GetTotalDisconnects`](#structFRHAPI__PexClientRequest_1ad3303b358b322f1d919cd7039f02b3d7)`() const` | Gets the value of TotalDisconnects_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & `[`GetTotalDisconnects`](#structFRHAPI__PexClientRequest_1ad3961f46eb43ea6a87e64419447469c6)`(const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & DefaultValue) const` | Gets the value of TotalDisconnects_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetTotalDisconnects`](#structFRHAPI__PexClientRequest_1a9f846b7aec16a5f6f608bf7bfa918f2a)`(`[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & OutValue) const` | Fills OutValue with the value of TotalDisconnects_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` * `[`GetTotalDisconnectsOrNull`](#structFRHAPI__PexClientRequest_1aa4e4053bdeb0b96fd42ad4ec19fd3d15)`()` | Returns a pointer to TotalDisconnects_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` * `[`GetTotalDisconnectsOrNull`](#structFRHAPI__PexClientRequest_1a1c3a07069f5938d2829b63500128fe26)`() const` | Returns a pointer to TotalDisconnects_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` * `[`GetTotalDisconnectsOrNull`](#structFRHAPI__PexClientRequest_1a24ebf75af34917102f25593caf520f20)`()` | Returns a pointer to TotalDisconnects_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` * `[`GetTotalDisconnectsOrNull`](#structFRHAPI__PexClientRequest_1ab22f68c5f8ead2a4aae38d71b5bb9bef)`() const` | Returns a pointer to TotalDisconnects_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetTotalDisconnects`](#structFRHAPI__PexClientRequest_1a6435943ca07f0b9b0ff81a80df4a46d0)`(const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & NewValue)` | Sets the value of TotalDisconnects_Optional and also sets TotalDisconnects_IsSet to true.
 `public inline void `[`SetTotalDisconnects`](#structFRHAPI__PexClientRequest_1a9f38ff5ebf4bfc46b41123b9fd362d97)`(`[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` && NewValue)` | Sets the value of TotalDisconnects_Optional and also sets TotalDisconnects_IsSet to true using move semantics.
 `public inline void `[`ClearTotalDisconnects`](#structFRHAPI__PexClientRequest_1a2ee8b911f158ab674ca70d07581e43b6)`()` | Clears the value of TotalDisconnects_Optional and sets TotalDisconnects_IsSet to false.
 `public inline bool `[`IsTotalDisconnectsSet`](#structFRHAPI__PexClientRequest_1a276dd0025c23f448663a8d7468d9107d)`() const` | Checks whether TotalDisconnects_Optional has been set.
 `public inline void `[`SetTotalDisconnectsToNull`](#structFRHAPI__PexClientRequest_1acaa8fc32324be16877a0aea90c3ce81e)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsTotalDisconnectsNull`](#structFRHAPI__PexClientRequest_1a4602da5557974715f41f748157755549)`() const` | Checks whether TotalDisconnects_Optional is set to null.
-`public inline `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & `[`GetMatchDuration`](#structFRHAPI__PexClientRequest_1a6bd9488066ad20996d2b1d02c7d9b3ec)`()` | Gets the value of MatchDuration_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & `[`GetMatchDuration`](#structFRHAPI__PexClientRequest_1a40565d5e851920da8631e1d25ac0f1db)`() const` | Gets the value of MatchDuration_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & `[`GetMatchDuration`](#structFRHAPI__PexClientRequest_1a0375cbc7c6e9d4ed8f4d3f34dc86b3e6)`(const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & DefaultValue) const` | Gets the value of MatchDuration_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & `[`GetMatchDuration`](#structFRHAPI__PexClientRequest_1aee6db80c3572bdca95ab4d1432292ddf)`()` | Gets the value of MatchDuration_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & `[`GetMatchDuration`](#structFRHAPI__PexClientRequest_1ac7718bbca47ee98099ffe16354e1d898)`() const` | Gets the value of MatchDuration_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & `[`GetMatchDuration`](#structFRHAPI__PexClientRequest_1ad19dd3240c0e38d2c67c99b6f4947bf4)`(const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & DefaultValue) const` | Gets the value of MatchDuration_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetMatchDuration`](#structFRHAPI__PexClientRequest_1a9c65b1f23ac774120620715f2bb62152)`(`[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & OutValue) const` | Fills OutValue with the value of MatchDuration_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` * `[`GetMatchDurationOrNull`](#structFRHAPI__PexClientRequest_1aec5adfbe9eac5f51148c0f367bbbba55)`()` | Returns a pointer to MatchDuration_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` * `[`GetMatchDurationOrNull`](#structFRHAPI__PexClientRequest_1ac9d33eb4bb8fcb60b1436b1987df7c67)`() const` | Returns a pointer to MatchDuration_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` * `[`GetMatchDurationOrNull`](#structFRHAPI__PexClientRequest_1ab5b654b06d77ee622ea693fe3759dbc1)`()` | Returns a pointer to MatchDuration_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` * `[`GetMatchDurationOrNull`](#structFRHAPI__PexClientRequest_1a001ae326bf0214ee4e1d7ed0ebd14086)`() const` | Returns a pointer to MatchDuration_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetMatchDuration`](#structFRHAPI__PexClientRequest_1a18cf7ab598f6dde17a4e7133e8d2366e)`(const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & NewValue)` | Sets the value of MatchDuration_Optional and also sets MatchDuration_IsSet to true.
 `public inline void `[`SetMatchDuration`](#structFRHAPI__PexClientRequest_1aa20a5e4114ad97d3b17e9d0ef58b0b83)`(`[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` && NewValue)` | Sets the value of MatchDuration_Optional and also sets MatchDuration_IsSet to true using move semantics.
 `public inline void `[`ClearMatchDuration`](#structFRHAPI__PexClientRequest_1a486a09632787a91a39121d94bacdd20b)`()` | Clears the value of MatchDuration_Optional and sets MatchDuration_IsSet to false.
 `public inline bool `[`IsMatchDurationSet`](#structFRHAPI__PexClientRequest_1a716a46a6ec95a70d1aa5a7f0688b6a3f)`() const` | Checks whether MatchDuration_Optional has been set.
 `public inline void `[`SetMatchDurationToNull`](#structFRHAPI__PexClientRequest_1acd95903398f28836356320b12988ddb1)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsMatchDurationNull`](#structFRHAPI__PexClientRequest_1af440a6e9813c01fb61acdbdf2a40c0a8)`() const` | Checks whether MatchDuration_Optional is set to null.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetGameThreadTime`](#structFRHAPI__PexClientRequest_1adbd9b12768d8e107ea64da8a33157b4f)`()` | Gets the value of GameThreadTime_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetGameThreadTime`](#structFRHAPI__PexClientRequest_1a962ed037405c0ed415847c74ebcfa3a6)`() const` | Gets the value of GameThreadTime_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetGameThreadTime`](#structFRHAPI__PexClientRequest_1a2dd7a2fed32f95667a33c4cd3e9db359)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of GameThreadTime_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetGameThreadTime`](#structFRHAPI__PexClientRequest_1abacc15f8e353bfac9b6eb3c2e306ab4d)`()` | Gets the value of GameThreadTime_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetGameThreadTime`](#structFRHAPI__PexClientRequest_1a319ae2b2efef18efa60cb032eb2a8b40)`() const` | Gets the value of GameThreadTime_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetGameThreadTime`](#structFRHAPI__PexClientRequest_1a9855ccea48718d5fa09416b54106b90c)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of GameThreadTime_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetGameThreadTime`](#structFRHAPI__PexClientRequest_1aa39f795aa8e59242585f10dbe22310d4)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & OutValue) const` | Fills OutValue with the value of GameThreadTime_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetGameThreadTimeOrNull`](#structFRHAPI__PexClientRequest_1a8a196582075a95bf8f680426c9eb9975)`()` | Returns a pointer to GameThreadTime_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetGameThreadTimeOrNull`](#structFRHAPI__PexClientRequest_1a5245fadabd1616486d1d8ce2c86cf7d4)`() const` | Returns a pointer to GameThreadTime_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetGameThreadTimeOrNull`](#structFRHAPI__PexClientRequest_1a617487e9eeab994886952a6cf39b150b)`()` | Returns a pointer to GameThreadTime_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetGameThreadTimeOrNull`](#structFRHAPI__PexClientRequest_1af31c4b5b8d3c67c849c97630c7def02d)`() const` | Returns a pointer to GameThreadTime_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetGameThreadTime`](#structFRHAPI__PexClientRequest_1a05a749e1d9aaf6131ba3b386c2963505)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & NewValue)` | Sets the value of GameThreadTime_Optional and also sets GameThreadTime_IsSet to true.
 `public inline void `[`SetGameThreadTime`](#structFRHAPI__PexClientRequest_1a7bd129a972531fbb6f2b8f2aa71397dd)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` && NewValue)` | Sets the value of GameThreadTime_Optional and also sets GameThreadTime_IsSet to true using move semantics.
 `public inline void `[`ClearGameThreadTime`](#structFRHAPI__PexClientRequest_1aa94167ed4ae5de76dc7853c677b22d12)`()` | Clears the value of GameThreadTime_Optional and sets GameThreadTime_IsSet to false.
 `public inline bool `[`IsGameThreadTimeSet`](#structFRHAPI__PexClientRequest_1a4d93320d8889514bd3b8feeb4dcd4d50)`() const` | Checks whether GameThreadTime_Optional has been set.
 `public inline void `[`SetGameThreadTimeToNull`](#structFRHAPI__PexClientRequest_1a597b902d3a496bee07c1428b6e17da9e)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsGameThreadTimeNull`](#structFRHAPI__PexClientRequest_1a8793786bc73ea959f2567c59a5d3857d)`() const` | Checks whether GameThreadTime_Optional is set to null.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetRenderThreadTime`](#structFRHAPI__PexClientRequest_1aa21d66241392b64b1d4c278393b671a3)`()` | Gets the value of RenderThreadTime_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetRenderThreadTime`](#structFRHAPI__PexClientRequest_1a30ea5e94be15a9aee885f528e9036223)`() const` | Gets the value of RenderThreadTime_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetRenderThreadTime`](#structFRHAPI__PexClientRequest_1ae5e444e6d2b7ee2897c91f0f44dd82ff)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of RenderThreadTime_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetRenderThreadTime`](#structFRHAPI__PexClientRequest_1a36989ca95ba1849cf495b95ee66ffc7e)`()` | Gets the value of RenderThreadTime_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetRenderThreadTime`](#structFRHAPI__PexClientRequest_1a189a63fba3425cd6d0597aaff427fa67)`() const` | Gets the value of RenderThreadTime_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetRenderThreadTime`](#structFRHAPI__PexClientRequest_1a8f3eb7b223b626cf0ea1930697efe4c5)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of RenderThreadTime_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetRenderThreadTime`](#structFRHAPI__PexClientRequest_1a97f1beec4f62f21e0bd126a40b06abb8)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & OutValue) const` | Fills OutValue with the value of RenderThreadTime_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetRenderThreadTimeOrNull`](#structFRHAPI__PexClientRequest_1a3c56ea960d9a8ed16472a22aff29aa37)`()` | Returns a pointer to RenderThreadTime_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetRenderThreadTimeOrNull`](#structFRHAPI__PexClientRequest_1a35fdd88d7c861333db977014ddc08cdf)`() const` | Returns a pointer to RenderThreadTime_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetRenderThreadTimeOrNull`](#structFRHAPI__PexClientRequest_1adcf8ae74ef1bc9b4608926ca4cd97d72)`()` | Returns a pointer to RenderThreadTime_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetRenderThreadTimeOrNull`](#structFRHAPI__PexClientRequest_1abb324377a4d8f63a70678bb91de41fa2)`() const` | Returns a pointer to RenderThreadTime_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetRenderThreadTime`](#structFRHAPI__PexClientRequest_1a6e489d39047ee481d58666c6572df737)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & NewValue)` | Sets the value of RenderThreadTime_Optional and also sets RenderThreadTime_IsSet to true.
 `public inline void `[`SetRenderThreadTime`](#structFRHAPI__PexClientRequest_1abe8b17c12756b3fbdaa3d1bca17301b0)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` && NewValue)` | Sets the value of RenderThreadTime_Optional and also sets RenderThreadTime_IsSet to true using move semantics.
 `public inline void `[`ClearRenderThreadTime`](#structFRHAPI__PexClientRequest_1a34966420078edb9c113e4a852d899439)`()` | Clears the value of RenderThreadTime_Optional and sets RenderThreadTime_IsSet to false.
 `public inline bool `[`IsRenderThreadTimeSet`](#structFRHAPI__PexClientRequest_1a9e8fd0d7f186def5c695afde80fea073)`() const` | Checks whether RenderThreadTime_Optional has been set.
 `public inline void `[`SetRenderThreadTimeToNull`](#structFRHAPI__PexClientRequest_1a65e895fe1faac9c3afc6118aafbcbde2)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsRenderThreadTimeNull`](#structFRHAPI__PexClientRequest_1a6f6bfd4d2b7923893af5408e71dd5baa)`() const` | Checks whether RenderThreadTime_Optional is set to null.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetGpuTime`](#structFRHAPI__PexClientRequest_1a14753b84e8b38d6a1ad11383f4a27d86)`()` | Gets the value of GpuTime_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetGpuTime`](#structFRHAPI__PexClientRequest_1adbab5d202992e1b536025b9d4da570a0)`() const` | Gets the value of GpuTime_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetGpuTime`](#structFRHAPI__PexClientRequest_1afffc0209136bf75851febdcee2d620de)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of GpuTime_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetGpuTime`](#structFRHAPI__PexClientRequest_1a3b9a49fab961a2dfffef15c1e39a63a1)`()` | Gets the value of GpuTime_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetGpuTime`](#structFRHAPI__PexClientRequest_1a1eade3525ffb01bd102d9f1beab7200e)`() const` | Gets the value of GpuTime_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetGpuTime`](#structFRHAPI__PexClientRequest_1aa1e56a5c49c18a54e07820d6bf0bc60a)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of GpuTime_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetGpuTime`](#structFRHAPI__PexClientRequest_1a7f8c8eac3af00f64a6226342adcf849a)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & OutValue) const` | Fills OutValue with the value of GpuTime_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetGpuTimeOrNull`](#structFRHAPI__PexClientRequest_1ad436b76fda8098cbe2eb2670c247cca5)`()` | Returns a pointer to GpuTime_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetGpuTimeOrNull`](#structFRHAPI__PexClientRequest_1a08e3b933317cd5a2edea72a45c721cdf)`() const` | Returns a pointer to GpuTime_Optional, if it has been set, otherwise returns nullptr.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetGpuTimeOrNull`](#structFRHAPI__PexClientRequest_1a77acbcbc40c77db7bb0ea9794e4a53f2)`()` | Returns a pointer to GpuTime_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetGpuTimeOrNull`](#structFRHAPI__PexClientRequest_1acb5eeb3a6358b364bab1d264ef1c1f94)`() const` | Returns a pointer to GpuTime_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetGpuTime`](#structFRHAPI__PexClientRequest_1a56ad5a4445b34c23e7ea14fae2fa12d5)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & NewValue)` | Sets the value of GpuTime_Optional and also sets GpuTime_IsSet to true.
 `public inline void `[`SetGpuTime`](#structFRHAPI__PexClientRequest_1a0e640ddd4535640ee7c2ecf418d97d1b)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` && NewValue)` | Sets the value of GpuTime_Optional and also sets GpuTime_IsSet to true using move semantics.
 `public inline void `[`ClearGpuTime`](#structFRHAPI__PexClientRequest_1ac4b0ecceb3435fbe6f6692972c3e7db6)`()` | Clears the value of GpuTime_Optional and sets GpuTime_IsSet to false.
 `public inline bool `[`IsGpuTimeSet`](#structFRHAPI__PexClientRequest_1abd239e129630a44c5020b2ad07c2fa74)`() const` | Checks whether GpuTime_Optional has been set.
 `public inline void `[`SetGpuTimeToNull`](#structFRHAPI__PexClientRequest_1a6a8cbbfcf85d64cc4ef88c7b8842ef36)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsGpuTimeNull`](#structFRHAPI__PexClientRequest_1a2eb69930bf74a8846530a91fc0156437)`() const` | Checks whether GpuTime_Optional is set to null.
-`public inline FString & `[`GetMatchId`](#structFRHAPI__PexClientRequest_1a03103f750dd0945b515e97aa5bf706b6)`()` | Gets the value of MatchId.
-`public inline const FString & `[`GetMatchId`](#structFRHAPI__PexClientRequest_1ab9f9ba6c0846d46041994a0b5e7035db)`() const` | Gets the value of MatchId.
+`public inline FString & `[`GetMatchId`](#structFRHAPI__PexClientRequest_1aaed609e71fc09746805676d6ecb907c6)`()` | Gets the value of MatchId.
+`public inline const FString & `[`GetMatchId`](#structFRHAPI__PexClientRequest_1ab689b538a79fd7d0190897a030b7bbda)`() const` | Gets the value of MatchId.
 `public inline void `[`SetMatchId`](#structFRHAPI__PexClientRequest_1a62b3398017743dc9b89322295df462c2)`(const FString & NewValue)` | Sets the value of MatchId.
 `public inline void `[`SetMatchId`](#structFRHAPI__PexClientRequest_1aa916130d587bc0f27788a2dc2e45b1a4)`(FString && NewValue)` | Sets the value of MatchId using move semantics.
-`public inline FString & `[`GetRegionId`](#structFRHAPI__PexClientRequest_1a36f209f0c2c2eb6a30f2b4fdc2567807)`()` | Gets the value of RegionId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRegionId`](#structFRHAPI__PexClientRequest_1a67e40d50736317466b87132d6cbdbb95)`() const` | Gets the value of RegionId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRegionId`](#structFRHAPI__PexClientRequest_1ac11c5cfdfabbdf661156c2be945ac5e3)`(const FString & DefaultValue) const` | Gets the value of RegionId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FString & `[`GetRegionId`](#structFRHAPI__PexClientRequest_1ad0956771955e4d7d1b0c61962db08cb1)`()` | Gets the value of RegionId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetRegionId`](#structFRHAPI__PexClientRequest_1ab72fffffb327d281dc204d3a29eb4e13)`() const` | Gets the value of RegionId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetRegionId`](#structFRHAPI__PexClientRequest_1ad1b81dca5a481f2e5fc1ae821c74cefd)`(const FString & DefaultValue) const` | Gets the value of RegionId_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetRegionId`](#structFRHAPI__PexClientRequest_1a5d2d56851a344dcc3a503a96c191039f)`(FString & OutValue) const` | Fills OutValue with the value of RegionId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRegionIdOrNull`](#structFRHAPI__PexClientRequest_1a4ec40035cfe9d5abc211fb76c925a3cb)`()` | Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRegionIdOrNull`](#structFRHAPI__PexClientRequest_1aa84a8d8e3a10325efa23c9618e99b4b1)`() const` | Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FString * `[`GetRegionIdOrNull`](#structFRHAPI__PexClientRequest_1a13794ad795d67f95def7dcb9226f21b2)`()` | Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetRegionIdOrNull`](#structFRHAPI__PexClientRequest_1a5a607188a0bc1c5529025ea490f26d25)`() const` | Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetRegionId`](#structFRHAPI__PexClientRequest_1a3b75f15ffad614ad5a47036917dd7f77)`(const FString & NewValue)` | Sets the value of RegionId_Optional and also sets RegionId_IsSet to true.
 `public inline void `[`SetRegionId`](#structFRHAPI__PexClientRequest_1a916d2f161230a3131e842b851c2992d3)`(FString && NewValue)` | Sets the value of RegionId_Optional and also sets RegionId_IsSet to true using move semantics.
 `public inline void `[`ClearRegionId`](#structFRHAPI__PexClientRequest_1a8c918767fb28b04e8657fd4d94d4ea9c)`()` | Clears the value of RegionId_Optional and sets RegionId_IsSet to false.
 `public inline bool `[`IsRegionIdSet`](#structFRHAPI__PexClientRequest_1ac78e392d3c4a9bee27d1202aaeacfc6c)`() const` | Checks whether RegionId_Optional has been set.
 `public inline void `[`SetRegionIdToNull`](#structFRHAPI__PexClientRequest_1a05bdf5b5f178cf0a6f02b0a70452578d)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsRegionIdNull`](#structFRHAPI__PexClientRequest_1a16da84540796c312595bb7442c49b5d3)`() const` | Checks whether RegionId_Optional is set to null.
-`public inline FString & `[`GetServerId`](#structFRHAPI__PexClientRequest_1ab4b979776aca2f1a6afd1a88a1e320b3)`()` | Gets the value of ServerId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetServerId`](#structFRHAPI__PexClientRequest_1a3f856143166ee2e6ef89e9ed462ae947)`() const` | Gets the value of ServerId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetServerId`](#structFRHAPI__PexClientRequest_1a0698781b2905d8d1113e53ce6bfb529f)`(const FString & DefaultValue) const` | Gets the value of ServerId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FString & `[`GetServerId`](#structFRHAPI__PexClientRequest_1a6b96b11e754d122dd958145fb5da2317)`()` | Gets the value of ServerId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetServerId`](#structFRHAPI__PexClientRequest_1a86b6825b9b15a37e6d0000222d9cd648)`() const` | Gets the value of ServerId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetServerId`](#structFRHAPI__PexClientRequest_1ad612398135682ef897e2dfc47772cea6)`(const FString & DefaultValue) const` | Gets the value of ServerId_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetServerId`](#structFRHAPI__PexClientRequest_1adb25df2e8f8bcd06b7cb651a1a581757)`(FString & OutValue) const` | Fills OutValue with the value of ServerId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetServerIdOrNull`](#structFRHAPI__PexClientRequest_1a126b5fb066db5ce4f7bafdacac6f0361)`()` | Returns a pointer to ServerId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetServerIdOrNull`](#structFRHAPI__PexClientRequest_1aa13a1f7a3c17377cc7d9bf818f81cdbf)`() const` | Returns a pointer to ServerId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FString * `[`GetServerIdOrNull`](#structFRHAPI__PexClientRequest_1ad900d88abeb6babdcd1fe5f7372eac17)`()` | Returns a pointer to ServerId_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetServerIdOrNull`](#structFRHAPI__PexClientRequest_1aecca66bd1d15afd6d93f6d0441e5a897)`() const` | Returns a pointer to ServerId_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetServerId`](#structFRHAPI__PexClientRequest_1a98faf65a0c32a9172eeced62e5e89efb)`(const FString & NewValue)` | Sets the value of ServerId_Optional and also sets ServerId_IsSet to true.
 `public inline void `[`SetServerId`](#structFRHAPI__PexClientRequest_1aaf015f4ead70271c88e45a6a70b59adb)`(FString && NewValue)` | Sets the value of ServerId_Optional and also sets ServerId_IsSet to true using move semantics.
 `public inline void `[`ClearServerId`](#structFRHAPI__PexClientRequest_1a343fc83d911ff02da34491b573b4e16f)`()` | Clears the value of ServerId_Optional and sets ServerId_IsSet to false.
 `public inline bool `[`IsServerIdSet`](#structFRHAPI__PexClientRequest_1a2290ff31bd7e13eef9557e3e804db061)`() const` | Checks whether ServerId_Optional has been set.
 `public inline void `[`SetServerIdToNull`](#structFRHAPI__PexClientRequest_1a47aab85783e93333bc52b74db1a24e7d)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsServerIdNull`](#structFRHAPI__PexClientRequest_1a60c865e996c335168e0d6ad73e47db46)`() const` | Checks whether ServerId_Optional is set to null.
-`public inline FString & `[`GetAllocationId`](#structFRHAPI__PexClientRequest_1a737dee55c111febcd274fb40bfbd7061)`()` | Gets the value of AllocationId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetAllocationId`](#structFRHAPI__PexClientRequest_1a8d84e38845c3ae8bfb7a2662831826f7)`() const` | Gets the value of AllocationId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetAllocationId`](#structFRHAPI__PexClientRequest_1ab05786136d4b23a80e340e9607c00559)`(const FString & DefaultValue) const` | Gets the value of AllocationId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FString & `[`GetAllocationId`](#structFRHAPI__PexClientRequest_1a477e5ceb6e1d85c2ba1f99c88f77491f)`()` | Gets the value of AllocationId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetAllocationId`](#structFRHAPI__PexClientRequest_1a51ef1abcc8ac012c761fda3f17d43e8d)`() const` | Gets the value of AllocationId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetAllocationId`](#structFRHAPI__PexClientRequest_1a1f78670fd28c615f951a1c75d369f63c)`(const FString & DefaultValue) const` | Gets the value of AllocationId_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetAllocationId`](#structFRHAPI__PexClientRequest_1a96f1d1bdb72bd3332738c282e3055d3e)`(FString & OutValue) const` | Fills OutValue with the value of AllocationId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetAllocationIdOrNull`](#structFRHAPI__PexClientRequest_1af6f11ace2aabb3b7e6460aa5699f2d3b)`()` | Returns a pointer to AllocationId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetAllocationIdOrNull`](#structFRHAPI__PexClientRequest_1a975ec9228a8b2d694552e4df8e1b6bcb)`() const` | Returns a pointer to AllocationId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FString * `[`GetAllocationIdOrNull`](#structFRHAPI__PexClientRequest_1adbe0f4a8ead8c36b405bbcd34231b376)`()` | Returns a pointer to AllocationId_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetAllocationIdOrNull`](#structFRHAPI__PexClientRequest_1a6668ad4218ffc343a18e9c508901a77d)`() const` | Returns a pointer to AllocationId_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetAllocationId`](#structFRHAPI__PexClientRequest_1a28d7d95cecb5e0ed083679e9f40bb661)`(const FString & NewValue)` | Sets the value of AllocationId_Optional and also sets AllocationId_IsSet to true.
 `public inline void `[`SetAllocationId`](#structFRHAPI__PexClientRequest_1af4ec3c7240c84d34c448ab7fb145d244)`(FString && NewValue)` | Sets the value of AllocationId_Optional and also sets AllocationId_IsSet to true using move semantics.
 `public inline void `[`ClearAllocationId`](#structFRHAPI__PexClientRequest_1a6e1b30cbb2c7f1176a94b7d9f7035e74)`()` | Clears the value of AllocationId_Optional and sets AllocationId_IsSet to false.
 `public inline bool `[`IsAllocationIdSet`](#structFRHAPI__PexClientRequest_1a167e95870a04a7f0a5c3111355bf20c6)`() const` | Checks whether AllocationId_Optional has been set.
 `public inline void `[`SetAllocationIdToNull`](#structFRHAPI__PexClientRequest_1a1b2d3117ee957a10d9ae777165d7db8a)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsAllocationIdNull`](#structFRHAPI__PexClientRequest_1a36998cec8ec1d0775775366ad4fd308c)`() const` | Checks whether AllocationId_Optional is set to null.
-`public inline FString & `[`GetDatacenterProvider`](#structFRHAPI__PexClientRequest_1a689a2307210d5cff2486039f81321477)`()` | Gets the value of DatacenterProvider_Optional, regardless of it having been set.
-`public inline const FString & `[`GetDatacenterProvider`](#structFRHAPI__PexClientRequest_1a6f7433224aab455558d80b5075c1e514)`() const` | Gets the value of DatacenterProvider_Optional, regardless of it having been set.
-`public inline const FString & `[`GetDatacenterProvider`](#structFRHAPI__PexClientRequest_1a8389b28147fac321f1562148e3f4a35f)`(const FString & DefaultValue) const` | Gets the value of DatacenterProvider_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FString & `[`GetDatacenterProvider`](#structFRHAPI__PexClientRequest_1a0370b50319cb15b0e7fcedd98e390ade)`()` | Gets the value of DatacenterProvider_Optional, regardless of it having been set.
+`public inline const FString & `[`GetDatacenterProvider`](#structFRHAPI__PexClientRequest_1afc94a8f0d79c8227d75d8b857329565f)`() const` | Gets the value of DatacenterProvider_Optional, regardless of it having been set.
+`public inline const FString & `[`GetDatacenterProvider`](#structFRHAPI__PexClientRequest_1a50020547ab8d4b4f70f95bd378a18bcd)`(const FString & DefaultValue) const` | Gets the value of DatacenterProvider_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetDatacenterProvider`](#structFRHAPI__PexClientRequest_1a303b7e04deddf1512deeb70a04592aa1)`(FString & OutValue) const` | Fills OutValue with the value of DatacenterProvider_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetDatacenterProviderOrNull`](#structFRHAPI__PexClientRequest_1adcc1ed7e61774c60d394b7d72c9ce946)`()` | Returns a pointer to DatacenterProvider_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetDatacenterProviderOrNull`](#structFRHAPI__PexClientRequest_1a5298cbb51ba27057c1568ced7fa6322a)`() const` | Returns a pointer to DatacenterProvider_Optional, if it has been set, otherwise returns nullptr.
+`public inline FString * `[`GetDatacenterProviderOrNull`](#structFRHAPI__PexClientRequest_1a1e3e6197da7fd31e04b754d34ce2a467)`()` | Returns a pointer to DatacenterProvider_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetDatacenterProviderOrNull`](#structFRHAPI__PexClientRequest_1aa79a8a6a6af3c534a030d663647f1374)`() const` | Returns a pointer to DatacenterProvider_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetDatacenterProvider`](#structFRHAPI__PexClientRequest_1ac737dcf92821bf36d557e4271cf29f61)`(const FString & NewValue)` | Sets the value of DatacenterProvider_Optional and also sets DatacenterProvider_IsSet to true.
 `public inline void `[`SetDatacenterProvider`](#structFRHAPI__PexClientRequest_1a719c526140a5f850b5ba96cd784bd4b7)`(FString && NewValue)` | Sets the value of DatacenterProvider_Optional and also sets DatacenterProvider_IsSet to true using move semantics.
 `public inline void `[`ClearDatacenterProvider`](#structFRHAPI__PexClientRequest_1a1a1da09813a278fac222757ebe669f80)`()` | Clears the value of DatacenterProvider_Optional and sets DatacenterProvider_IsSet to false.
 `public inline bool `[`IsDatacenterProviderSet`](#structFRHAPI__PexClientRequest_1a5be0164d7768d459d55a4de29a42fba3)`() const` | Checks whether DatacenterProvider_Optional has been set.
 `public inline void `[`SetDatacenterProviderToNull`](#structFRHAPI__PexClientRequest_1ad800d854ae422e8eec25fc14b9cdbaa1)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsDatacenterProviderNull`](#structFRHAPI__PexClientRequest_1ad5c5bd61d236327cc8dd7b7359bb6329)`() const` | Checks whether DatacenterProvider_Optional is set to null.
-`public inline FString & `[`GetDatacenterLocation`](#structFRHAPI__PexClientRequest_1a639d82f7ef2f98487ce70d7343660fa3)`()` | Gets the value of DatacenterLocation_Optional, regardless of it having been set.
-`public inline const FString & `[`GetDatacenterLocation`](#structFRHAPI__PexClientRequest_1a62aa91f67e3db4ff7a95af8b17dbb10e)`() const` | Gets the value of DatacenterLocation_Optional, regardless of it having been set.
-`public inline const FString & `[`GetDatacenterLocation`](#structFRHAPI__PexClientRequest_1a7663c717428956b2eecf4442bfb16548)`(const FString & DefaultValue) const` | Gets the value of DatacenterLocation_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FString & `[`GetDatacenterLocation`](#structFRHAPI__PexClientRequest_1ad69164f200bb8bb01ece42ddcb4e7ecd)`()` | Gets the value of DatacenterLocation_Optional, regardless of it having been set.
+`public inline const FString & `[`GetDatacenterLocation`](#structFRHAPI__PexClientRequest_1ad02ab7c54b7cbe157b003cb9895bc8cd)`() const` | Gets the value of DatacenterLocation_Optional, regardless of it having been set.
+`public inline const FString & `[`GetDatacenterLocation`](#structFRHAPI__PexClientRequest_1a97e1b8847834cc9b0fb83e3fd199fc5c)`(const FString & DefaultValue) const` | Gets the value of DatacenterLocation_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetDatacenterLocation`](#structFRHAPI__PexClientRequest_1aeabff6587c5ffca8ea267c4fa1e7d477)`(FString & OutValue) const` | Fills OutValue with the value of DatacenterLocation_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetDatacenterLocationOrNull`](#structFRHAPI__PexClientRequest_1ad137745f9a11fb45c8e1b58735db5be7)`()` | Returns a pointer to DatacenterLocation_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetDatacenterLocationOrNull`](#structFRHAPI__PexClientRequest_1a42a793ceb288ce33c6310b8984678515)`() const` | Returns a pointer to DatacenterLocation_Optional, if it has been set, otherwise returns nullptr.
+`public inline FString * `[`GetDatacenterLocationOrNull`](#structFRHAPI__PexClientRequest_1a6fb2d465cd9f539f388310319299bd0c)`()` | Returns a pointer to DatacenterLocation_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetDatacenterLocationOrNull`](#structFRHAPI__PexClientRequest_1a63c20377baf7627abcfb3ad2491f9347)`() const` | Returns a pointer to DatacenterLocation_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetDatacenterLocation`](#structFRHAPI__PexClientRequest_1a347267a70382e10529044495decfe97b)`(const FString & NewValue)` | Sets the value of DatacenterLocation_Optional and also sets DatacenterLocation_IsSet to true.
 `public inline void `[`SetDatacenterLocation`](#structFRHAPI__PexClientRequest_1a998543b8857dfbcd84415efd7b6df606)`(FString && NewValue)` | Sets the value of DatacenterLocation_Optional and also sets DatacenterLocation_IsSet to true using move semantics.
 `public inline void `[`ClearDatacenterLocation`](#structFRHAPI__PexClientRequest_1a4c1bdb550bde41dd50b82caf29b2d3ad)`()` | Clears the value of DatacenterLocation_Optional and sets DatacenterLocation_IsSet to false.
 `public inline bool `[`IsDatacenterLocationSet`](#structFRHAPI__PexClientRequest_1a35f43dcc9e1e85a75e67102776dba427)`() const` | Checks whether DatacenterLocation_Optional has been set.
 `public inline void `[`SetDatacenterLocationToNull`](#structFRHAPI__PexClientRequest_1a771ddf3f8fc9249807bbdc1831bac8e6)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsDatacenterLocationNull`](#structFRHAPI__PexClientRequest_1a61cd32cfc96c1734ab11d5f47137c8fa)`() const` | Checks whether DatacenterLocation_Optional is set to null.
-`public inline FString & `[`GetAddressIp`](#structFRHAPI__PexClientRequest_1ad2d603533aae78500f77e11f3e50a786)`()` | Gets the value of AddressIp_Optional, regardless of it having been set.
-`public inline const FString & `[`GetAddressIp`](#structFRHAPI__PexClientRequest_1a70678636b993e0e8e6e1c2cbeafe9db4)`() const` | Gets the value of AddressIp_Optional, regardless of it having been set.
-`public inline const FString & `[`GetAddressIp`](#structFRHAPI__PexClientRequest_1a542bd945cbf283bc98690e2355fd377e)`(const FString & DefaultValue) const` | Gets the value of AddressIp_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FString & `[`GetAddressIp`](#structFRHAPI__PexClientRequest_1a66ca598d39001375f6bf5ad7fe29229c)`()` | Gets the value of AddressIp_Optional, regardless of it having been set.
+`public inline const FString & `[`GetAddressIp`](#structFRHAPI__PexClientRequest_1a86c463966143055dd2fe43ade74f1108)`() const` | Gets the value of AddressIp_Optional, regardless of it having been set.
+`public inline const FString & `[`GetAddressIp`](#structFRHAPI__PexClientRequest_1a0813d03dcfc6af96fbd8f84a6cfa1c33)`(const FString & DefaultValue) const` | Gets the value of AddressIp_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetAddressIp`](#structFRHAPI__PexClientRequest_1ad233d91cf58e146074512a0981e13f1c)`(FString & OutValue) const` | Fills OutValue with the value of AddressIp_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetAddressIpOrNull`](#structFRHAPI__PexClientRequest_1a37496de8cac6579df76c7598e7252948)`()` | Returns a pointer to AddressIp_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetAddressIpOrNull`](#structFRHAPI__PexClientRequest_1a1aeaaf702089e7444634f2882b881dc7)`() const` | Returns a pointer to AddressIp_Optional, if it has been set, otherwise returns nullptr.
+`public inline FString * `[`GetAddressIpOrNull`](#structFRHAPI__PexClientRequest_1ac107f8faf5fab28efff6c9b23668346b)`()` | Returns a pointer to AddressIp_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetAddressIpOrNull`](#structFRHAPI__PexClientRequest_1a6795441a3e065f48d9f7f4b3e2ce0938)`() const` | Returns a pointer to AddressIp_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetAddressIp`](#structFRHAPI__PexClientRequest_1ae94f8091eeffc6631a018138d395b5a1)`(const FString & NewValue)` | Sets the value of AddressIp_Optional and also sets AddressIp_IsSet to true.
 `public inline void `[`SetAddressIp`](#structFRHAPI__PexClientRequest_1a7bdb9874c61b213057db7faa0acead45)`(FString && NewValue)` | Sets the value of AddressIp_Optional and also sets AddressIp_IsSet to true using move semantics.
 `public inline void `[`ClearAddressIp`](#structFRHAPI__PexClientRequest_1a54bb3b51bb967877550fcc2d31154f4c)`()` | Clears the value of AddressIp_Optional and sets AddressIp_IsSet to false.
 `public inline bool `[`IsAddressIpSet`](#structFRHAPI__PexClientRequest_1a28eedc4342fe3b401c58f4c17381629b)`() const` | Checks whether AddressIp_Optional has been set.
 `public inline void `[`SetAddressIpToNull`](#structFRHAPI__PexClientRequest_1ad60219f754a80c0b495bcb8e0be2a623)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsAddressIpNull`](#structFRHAPI__PexClientRequest_1a64ed20708b8a59452dfe9bf29b5b7f5c)`() const` | Checks whether AddressIp_Optional is set to null.
-`public inline FString & `[`GetMapName`](#structFRHAPI__PexClientRequest_1a403329dd4dc4484e46bb68e479b2bc4a)`()` | Gets the value of MapName_Optional, regardless of it having been set.
-`public inline const FString & `[`GetMapName`](#structFRHAPI__PexClientRequest_1ad56eb50cf5d561e329855979b5ee9c3c)`() const` | Gets the value of MapName_Optional, regardless of it having been set.
-`public inline const FString & `[`GetMapName`](#structFRHAPI__PexClientRequest_1aff7eafb2d7d115bfb4734b74359858a2)`(const FString & DefaultValue) const` | Gets the value of MapName_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FString & `[`GetMapName`](#structFRHAPI__PexClientRequest_1a9c1fe27dd688620cdc6cd792e13fbf56)`()` | Gets the value of MapName_Optional, regardless of it having been set.
+`public inline const FString & `[`GetMapName`](#structFRHAPI__PexClientRequest_1a9a5a980da3c57994d06b92c847d1769e)`() const` | Gets the value of MapName_Optional, regardless of it having been set.
+`public inline const FString & `[`GetMapName`](#structFRHAPI__PexClientRequest_1a837b7230a58fdf66c580568d9ea60db0)`(const FString & DefaultValue) const` | Gets the value of MapName_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetMapName`](#structFRHAPI__PexClientRequest_1aedb62742a76a9fa6e2a75422132f0efa)`(FString & OutValue) const` | Fills OutValue with the value of MapName_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetMapNameOrNull`](#structFRHAPI__PexClientRequest_1a8fe1e90a7d610ca2757c2e7ad8650c8a)`()` | Returns a pointer to MapName_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetMapNameOrNull`](#structFRHAPI__PexClientRequest_1a8e0ed623d0f90d084f769bf5a3a0020f)`() const` | Returns a pointer to MapName_Optional, if it has been set, otherwise returns nullptr.
+`public inline FString * `[`GetMapNameOrNull`](#structFRHAPI__PexClientRequest_1a1e6fd77cde5377bed57578b71c94e1de)`()` | Returns a pointer to MapName_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetMapNameOrNull`](#structFRHAPI__PexClientRequest_1a94014f3fcbf6a350c018934679052f09)`() const` | Returns a pointer to MapName_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetMapName`](#structFRHAPI__PexClientRequest_1a489ebb8a811c4c6f501529ebd17f94c7)`(const FString & NewValue)` | Sets the value of MapName_Optional and also sets MapName_IsSet to true.
 `public inline void `[`SetMapName`](#structFRHAPI__PexClientRequest_1a0a98419835e01896c22f599eb7f5f0fb)`(FString && NewValue)` | Sets the value of MapName_Optional and also sets MapName_IsSet to true using move semantics.
 `public inline void `[`ClearMapName`](#structFRHAPI__PexClientRequest_1a963cc470b850429c03b9e0d087bcf8a3)`()` | Clears the value of MapName_Optional and sets MapName_IsSet to false.
 `public inline bool `[`IsMapNameSet`](#structFRHAPI__PexClientRequest_1aa54ff5035ef12d7fbf43a5c56a71808b)`() const` | Checks whether MapName_Optional has been set.
 `public inline void `[`SetMapNameToNull`](#structFRHAPI__PexClientRequest_1a90d519ee7002089032e8ea0e8a8784df)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsMapNameNull`](#structFRHAPI__PexClientRequest_1a51cd4e2b4d39dae8a56774f798499a6a)`() const` | Checks whether MapName_Optional is set to null.
-`public inline FString & `[`GetGameMode`](#structFRHAPI__PexClientRequest_1a287cee2353eb08ea8662982cda0e32c5)`()` | Gets the value of GameMode_Optional, regardless of it having been set.
-`public inline const FString & `[`GetGameMode`](#structFRHAPI__PexClientRequest_1ad36a35d88989e6518c448657e5f53358)`() const` | Gets the value of GameMode_Optional, regardless of it having been set.
-`public inline const FString & `[`GetGameMode`](#structFRHAPI__PexClientRequest_1a20d6d4381b98b1abca35a0870e38bf9f)`(const FString & DefaultValue) const` | Gets the value of GameMode_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FString & `[`GetGameMode`](#structFRHAPI__PexClientRequest_1a2b50591ff422f1588626ce1f874f401b)`()` | Gets the value of GameMode_Optional, regardless of it having been set.
+`public inline const FString & `[`GetGameMode`](#structFRHAPI__PexClientRequest_1a47d7dcd18130ba7887ca7fa4d7b75bd9)`() const` | Gets the value of GameMode_Optional, regardless of it having been set.
+`public inline const FString & `[`GetGameMode`](#structFRHAPI__PexClientRequest_1a26282f3033c4962f53a842dccf6a1d5e)`(const FString & DefaultValue) const` | Gets the value of GameMode_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetGameMode`](#structFRHAPI__PexClientRequest_1a4295fbe208a65d7aad0b615c359f425f)`(FString & OutValue) const` | Fills OutValue with the value of GameMode_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetGameModeOrNull`](#structFRHAPI__PexClientRequest_1a59b9f6419a6fb044d640ac043c0fd576)`()` | Returns a pointer to GameMode_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetGameModeOrNull`](#structFRHAPI__PexClientRequest_1ac7b19aba67015fc735950f5f9725e0e0)`() const` | Returns a pointer to GameMode_Optional, if it has been set, otherwise returns nullptr.
+`public inline FString * `[`GetGameModeOrNull`](#structFRHAPI__PexClientRequest_1ac6c692f76cf88c9cfefe4816799dc1be)`()` | Returns a pointer to GameMode_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetGameModeOrNull`](#structFRHAPI__PexClientRequest_1a1bd32abb5a02db87bf5d5c4e162bacd1)`() const` | Returns a pointer to GameMode_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetGameMode`](#structFRHAPI__PexClientRequest_1a230487f41ae5a70c9e4aebf506529045)`(const FString & NewValue)` | Sets the value of GameMode_Optional and also sets GameMode_IsSet to true.
 `public inline void `[`SetGameMode`](#structFRHAPI__PexClientRequest_1a843b6de278c975e32533609bdf86a02d)`(FString && NewValue)` | Sets the value of GameMode_Optional and also sets GameMode_IsSet to true using move semantics.
 `public inline void `[`ClearGameMode`](#structFRHAPI__PexClientRequest_1af7b1ce293ee89720211c28c5ba5f4251)`()` | Clears the value of GameMode_Optional and sets GameMode_IsSet to false.
 `public inline bool `[`IsGameModeSet`](#structFRHAPI__PexClientRequest_1a9dd9c7a75fa2140e2a6016db304659dc)`() const` | Checks whether GameMode_Optional has been set.
 `public inline void `[`SetGameModeToNull`](#structFRHAPI__PexClientRequest_1a374bc033d91cf2bd01e2d8489681492c)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsGameModeNull`](#structFRHAPI__PexClientRequest_1a39d6b90e40e2c5405486768bd212b2fc)`() const` | Checks whether GameMode_Optional is set to null.
-`public inline FString & `[`GetMatchmakingProfileId`](#structFRHAPI__PexClientRequest_1a3cf29350e2c24ae6b1a166c7cde4e591)`()` | Gets the value of MatchmakingProfileId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetMatchmakingProfileId`](#structFRHAPI__PexClientRequest_1a6a6da2fcaff8cde7c278308af9c88344)`() const` | Gets the value of MatchmakingProfileId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetMatchmakingProfileId`](#structFRHAPI__PexClientRequest_1a4025656ed7e8249b955ffd7dcdaba0ad)`(const FString & DefaultValue) const` | Gets the value of MatchmakingProfileId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FString & `[`GetMatchmakingProfileId`](#structFRHAPI__PexClientRequest_1a5e86ca0e5fd78ed170e8b5fa3652d700)`()` | Gets the value of MatchmakingProfileId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetMatchmakingProfileId`](#structFRHAPI__PexClientRequest_1ae8efe6f0f7de778d918cf0e51b9d604b)`() const` | Gets the value of MatchmakingProfileId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetMatchmakingProfileId`](#structFRHAPI__PexClientRequest_1a50641a5fa3d175fe7cbd5119968e5f45)`(const FString & DefaultValue) const` | Gets the value of MatchmakingProfileId_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetMatchmakingProfileId`](#structFRHAPI__PexClientRequest_1ae29aecfa9451efe5887e67d08670caec)`(FString & OutValue) const` | Fills OutValue with the value of MatchmakingProfileId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetMatchmakingProfileIdOrNull`](#structFRHAPI__PexClientRequest_1a45c68c58366fe3ecfcf67ff652128e54)`()` | Returns a pointer to MatchmakingProfileId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetMatchmakingProfileIdOrNull`](#structFRHAPI__PexClientRequest_1a50aac1fd1c2e2a22c72217e45c99cbe6)`() const` | Returns a pointer to MatchmakingProfileId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FString * `[`GetMatchmakingProfileIdOrNull`](#structFRHAPI__PexClientRequest_1a4b3eeebf5f1f6af15b3bf555c4508b2b)`()` | Returns a pointer to MatchmakingProfileId_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetMatchmakingProfileIdOrNull`](#structFRHAPI__PexClientRequest_1a4071e9ee063a3d308f28e72236d0a2e7)`() const` | Returns a pointer to MatchmakingProfileId_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetMatchmakingProfileId`](#structFRHAPI__PexClientRequest_1a189b9cdb5ec96abe1ceeed4f6737a63f)`(const FString & NewValue)` | Sets the value of MatchmakingProfileId_Optional and also sets MatchmakingProfileId_IsSet to true.
 `public inline void `[`SetMatchmakingProfileId`](#structFRHAPI__PexClientRequest_1ae6ef53be225665a182cb5f5c3f00308f)`(FString && NewValue)` | Sets the value of MatchmakingProfileId_Optional and also sets MatchmakingProfileId_IsSet to true using move semantics.
 `public inline void `[`ClearMatchmakingProfileId`](#structFRHAPI__PexClientRequest_1a8b679893b231e747232eee23847b792f)`()` | Clears the value of MatchmakingProfileId_Optional and sets MatchmakingProfileId_IsSet to false.
 `public inline bool `[`IsMatchmakingProfileIdSet`](#structFRHAPI__PexClientRequest_1ad448343525762005fab0d9b741a2b1f6)`() const` | Checks whether MatchmakingProfileId_Optional has been set.
 `public inline void `[`SetMatchmakingProfileIdToNull`](#structFRHAPI__PexClientRequest_1a727060ed9794f02fc6b62c8f7ef8d2e5)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsMatchmakingProfileIdNull`](#structFRHAPI__PexClientRequest_1a40e94700c9d1158ed0c33c68d30576a0)`() const` | Checks whether MatchmakingProfileId_Optional is set to null.
-`public inline int32 & `[`GetExpectedTeamSize`](#structFRHAPI__PexClientRequest_1a519c6c0ea4f80689d8a8f1baa86f7269)`()` | Gets the value of ExpectedTeamSize_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetExpectedTeamSize`](#structFRHAPI__PexClientRequest_1a7139989ec25e79db9ae9e7fe3c0deeed)`() const` | Gets the value of ExpectedTeamSize_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetExpectedTeamSize`](#structFRHAPI__PexClientRequest_1a426277a8cfa97f54a1d3ddbb3a028250)`(const int32 & DefaultValue) const` | Gets the value of ExpectedTeamSize_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline int32 & `[`GetExpectedTeamSize`](#structFRHAPI__PexClientRequest_1a8d574d00f4a25a0ba6a24f568fd9d62c)`()` | Gets the value of ExpectedTeamSize_Optional, regardless of it having been set.
+`public inline const int32 & `[`GetExpectedTeamSize`](#structFRHAPI__PexClientRequest_1a6a887be1351c464b4bb5e4fa407b48c6)`() const` | Gets the value of ExpectedTeamSize_Optional, regardless of it having been set.
+`public inline const int32 & `[`GetExpectedTeamSize`](#structFRHAPI__PexClientRequest_1a498ca1eb97767e1cce509eb0cb61939e)`(const int32 & DefaultValue) const` | Gets the value of ExpectedTeamSize_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetExpectedTeamSize`](#structFRHAPI__PexClientRequest_1aff9f94539524e447ab5597df879c2806)`(int32 & OutValue) const` | Fills OutValue with the value of ExpectedTeamSize_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetExpectedTeamSizeOrNull`](#structFRHAPI__PexClientRequest_1acca857b5f84e1961c3c284568627e5f0)`()` | Returns a pointer to ExpectedTeamSize_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetExpectedTeamSizeOrNull`](#structFRHAPI__PexClientRequest_1a0ba661a95028ca4d98381025242d8255)`() const` | Returns a pointer to ExpectedTeamSize_Optional, if it has been set, otherwise returns nullptr.
+`public inline int32 * `[`GetExpectedTeamSizeOrNull`](#structFRHAPI__PexClientRequest_1a301106c9c709702999c3497791687309)`()` | Returns a pointer to ExpectedTeamSize_Optional, if it has been set, otherwise returns nullptr.
+`public inline const int32 * `[`GetExpectedTeamSizeOrNull`](#structFRHAPI__PexClientRequest_1abe056651b33951d850c7f8b3e8290c8f)`() const` | Returns a pointer to ExpectedTeamSize_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetExpectedTeamSize`](#structFRHAPI__PexClientRequest_1ae09f7b3c475fb4b4e09888d2ebc8f258)`(const int32 & NewValue)` | Sets the value of ExpectedTeamSize_Optional and also sets ExpectedTeamSize_IsSet to true.
 `public inline void `[`SetExpectedTeamSize`](#structFRHAPI__PexClientRequest_1aba9a6f6b236e92f8433360b5421edc9c)`(int32 && NewValue)` | Sets the value of ExpectedTeamSize_Optional and also sets ExpectedTeamSize_IsSet to true using move semantics.
 `public inline void `[`ClearExpectedTeamSize`](#structFRHAPI__PexClientRequest_1a4ea932954c937e32aeb093c68f525c1e)`()` | Clears the value of ExpectedTeamSize_Optional and sets ExpectedTeamSize_IsSet to false.
@@ -530,12 +530,12 @@ struct FRHAPI_PexClientRequest
 `public inline void `[`SetExpectedTeamSizeToDefault`](#structFRHAPI__PexClientRequest_1aa66c72816f263a69cee3c24da166eefb)`()` | Sets the value of ExpectedTeamSize_Optional to its default and also sets ExpectedTeamSize_IsSet to true.
 `public inline void `[`SetExpectedTeamSizeToNull`](#structFRHAPI__PexClientRequest_1a634c332230135c28b6d9336f8d7bffa5)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsExpectedTeamSizeNull`](#structFRHAPI__PexClientRequest_1a678c3dd18fcb1198a57a0cf6d24ef1b1)`() const` | Checks whether ExpectedTeamSize_Optional is set to null.
-`public inline int32 & `[`GetExpectedPlayerCount`](#structFRHAPI__PexClientRequest_1abe9a1ee4076308cad3558254425302f2)`()` | Gets the value of ExpectedPlayerCount_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetExpectedPlayerCount`](#structFRHAPI__PexClientRequest_1a468213bf6bc5b92c92de6c318145cc89)`() const` | Gets the value of ExpectedPlayerCount_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetExpectedPlayerCount`](#structFRHAPI__PexClientRequest_1aa4677f1bef832567a5c451315e617c83)`(const int32 & DefaultValue) const` | Gets the value of ExpectedPlayerCount_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline int32 & `[`GetExpectedPlayerCount`](#structFRHAPI__PexClientRequest_1a727e83472c63d9decae43cca67c8074a)`()` | Gets the value of ExpectedPlayerCount_Optional, regardless of it having been set.
+`public inline const int32 & `[`GetExpectedPlayerCount`](#structFRHAPI__PexClientRequest_1a047786a8dfae6a69e3ac46094b75e47d)`() const` | Gets the value of ExpectedPlayerCount_Optional, regardless of it having been set.
+`public inline const int32 & `[`GetExpectedPlayerCount`](#structFRHAPI__PexClientRequest_1a9664700082763c2f12ba5d828cdac956)`(const int32 & DefaultValue) const` | Gets the value of ExpectedPlayerCount_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetExpectedPlayerCount`](#structFRHAPI__PexClientRequest_1aeac6b75d5363a2b1eec36d7b7552b06c)`(int32 & OutValue) const` | Fills OutValue with the value of ExpectedPlayerCount_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetExpectedPlayerCountOrNull`](#structFRHAPI__PexClientRequest_1a0cb20e2af1dd8f722764cbd274e44fbd)`()` | Returns a pointer to ExpectedPlayerCount_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetExpectedPlayerCountOrNull`](#structFRHAPI__PexClientRequest_1aa6a1495d7a2d1c56a91d2b62b7b7827d)`() const` | Returns a pointer to ExpectedPlayerCount_Optional, if it has been set, otherwise returns nullptr.
+`public inline int32 * `[`GetExpectedPlayerCountOrNull`](#structFRHAPI__PexClientRequest_1a3ce230f9a1dfda02ac31746ebda0e1a1)`()` | Returns a pointer to ExpectedPlayerCount_Optional, if it has been set, otherwise returns nullptr.
+`public inline const int32 * `[`GetExpectedPlayerCountOrNull`](#structFRHAPI__PexClientRequest_1aaaba0c040e5d0fd09591144010703303)`() const` | Returns a pointer to ExpectedPlayerCount_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetExpectedPlayerCount`](#structFRHAPI__PexClientRequest_1a194dd950505575d24aaf482df68ca55d)`(const int32 & NewValue)` | Sets the value of ExpectedPlayerCount_Optional and also sets ExpectedPlayerCount_IsSet to true.
 `public inline void `[`SetExpectedPlayerCount`](#structFRHAPI__PexClientRequest_1a7d93e97db0e44a3a353481a5110fa8c8)`(int32 && NewValue)` | Sets the value of ExpectedPlayerCount_Optional and also sets ExpectedPlayerCount_IsSet to true using move semantics.
 `public inline void `[`ClearExpectedPlayerCount`](#structFRHAPI__PexClientRequest_1a4e87fd7da16f0d3b78f8b68caed510e0)`()` | Clears the value of ExpectedPlayerCount_Optional and sets ExpectedPlayerCount_IsSet to false.
@@ -544,80 +544,80 @@ struct FRHAPI_PexClientRequest
 `public inline void `[`SetExpectedPlayerCountToDefault`](#structFRHAPI__PexClientRequest_1aec0866c4b9eb220c3cd386acf2bf4222)`()` | Sets the value of ExpectedPlayerCount_Optional to its default and also sets ExpectedPlayerCount_IsSet to true.
 `public inline void `[`SetExpectedPlayerCountToNull`](#structFRHAPI__PexClientRequest_1a7357501360aa6c24821c3eddfafb6714)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsExpectedPlayerCountNull`](#structFRHAPI__PexClientRequest_1a28b79b3b394b0d5a787b5a6a72468098)`() const` | Checks whether ExpectedPlayerCount_Optional is set to null.
-`public inline FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__PexClientRequest_1ae9b800019e1e585b865c13dece4bf81d)`()` | Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__PexClientRequest_1a631aa83696d250877e0f638d79cdf725)`() const` | Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__PexClientRequest_1a1ea7ca2247555bad82430b1508ee92e9)`(const FGuid & DefaultValue) const` | Gets the value of HostPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__PexClientRequest_1a4aa36a86691c5c7d8a11046f5d48237d)`()` | Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
+`public inline const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__PexClientRequest_1aedcd38faba5fbae3b8fc532fe3362756)`() const` | Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
+`public inline const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__PexClientRequest_1ae80fb7bd43bd30ff863d1cb40011ce87)`(const FGuid & DefaultValue) const` | Gets the value of HostPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetHostPlayerUuid`](#structFRHAPI__PexClientRequest_1ab4ee69c5611bf59b0d557585b33e5394)`(FGuid & OutValue) const` | Fills OutValue with the value of HostPlayerUuid_Optional and returns true if it has been set, otherwise returns false.
-`public inline FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__PexClientRequest_1a48585205a3032e84532e04f433eb75ee)`()` | Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__PexClientRequest_1a04dc9657ac85a2d77671d55c3641d38a)`() const` | Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__PexClientRequest_1aa803675da658f0e6a7507c4d10d818ad)`()` | Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__PexClientRequest_1ab197deff0c7fa818819e437203c7acbc)`() const` | Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetHostPlayerUuid`](#structFRHAPI__PexClientRequest_1abf0126268347466d4d80aad9cae6a22c)`(const FGuid & NewValue)` | Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true.
 `public inline void `[`SetHostPlayerUuid`](#structFRHAPI__PexClientRequest_1a26f817084c5f9b54e74191fb4802cc25)`(FGuid && NewValue)` | Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true using move semantics.
 `public inline void `[`ClearHostPlayerUuid`](#structFRHAPI__PexClientRequest_1ac36664b424e8b83acaaeb79906aece96)`()` | Clears the value of HostPlayerUuid_Optional and sets HostPlayerUuid_IsSet to false.
 `public inline bool `[`IsHostPlayerUuidSet`](#structFRHAPI__PexClientRequest_1abf24da10fddbfbfe626b6e9b60ef4876)`() const` | Checks whether HostPlayerUuid_Optional has been set.
 `public inline void `[`SetHostPlayerUuidToNull`](#structFRHAPI__PexClientRequest_1a5c9b714dcb8452dce920906e9244a275)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsHostPlayerUuidNull`](#structFRHAPI__PexClientRequest_1a4317fbb4252afc05a75f91dcad279451)`() const` | Checks whether HostPlayerUuid_Optional is set to null.
-`public inline FGuid & `[`GetOwningPlayerUuid`](#structFRHAPI__PexClientRequest_1a713a4d2c4ef1038d6ce1d3192305c73c)`()` | Gets the value of OwningPlayerUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetOwningPlayerUuid`](#structFRHAPI__PexClientRequest_1a3bc1fcb990bb9d5e071f6570381e657b)`() const` | Gets the value of OwningPlayerUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetOwningPlayerUuid`](#structFRHAPI__PexClientRequest_1abf0a43d3fb60ca78863e6c2d758a3fac)`(const FGuid & DefaultValue) const` | Gets the value of OwningPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FGuid & `[`GetOwningPlayerUuid`](#structFRHAPI__PexClientRequest_1a6e0c31beaf4964e2eaf2a940f870c563)`()` | Gets the value of OwningPlayerUuid_Optional, regardless of it having been set.
+`public inline const FGuid & `[`GetOwningPlayerUuid`](#structFRHAPI__PexClientRequest_1ac35dde58d8b4c28096cf3cab2ef544de)`() const` | Gets the value of OwningPlayerUuid_Optional, regardless of it having been set.
+`public inline const FGuid & `[`GetOwningPlayerUuid`](#structFRHAPI__PexClientRequest_1afbc7a361825dbcfbdd1e6007aab37ab7)`(const FGuid & DefaultValue) const` | Gets the value of OwningPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetOwningPlayerUuid`](#structFRHAPI__PexClientRequest_1aa12b77e7726272c61f384dc64c0e8415)`(FGuid & OutValue) const` | Fills OutValue with the value of OwningPlayerUuid_Optional and returns true if it has been set, otherwise returns false.
-`public inline FGuid * `[`GetOwningPlayerUuidOrNull`](#structFRHAPI__PexClientRequest_1a3d2b2b99cb7f275f932f699ae29caa30)`()` | Returns a pointer to OwningPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FGuid * `[`GetOwningPlayerUuidOrNull`](#structFRHAPI__PexClientRequest_1afc78ab6db1f4af997bdc3fc8e144ec73)`() const` | Returns a pointer to OwningPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FGuid * `[`GetOwningPlayerUuidOrNull`](#structFRHAPI__PexClientRequest_1a31c2a7a33331a33f836fd204abdbaccb)`()` | Returns a pointer to OwningPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FGuid * `[`GetOwningPlayerUuidOrNull`](#structFRHAPI__PexClientRequest_1a58c732a601873f662a47cede96c40267)`() const` | Returns a pointer to OwningPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetOwningPlayerUuid`](#structFRHAPI__PexClientRequest_1a42961001c0fb1492a53e47571b1b7c03)`(const FGuid & NewValue)` | Sets the value of OwningPlayerUuid_Optional and also sets OwningPlayerUuid_IsSet to true.
 `public inline void `[`SetOwningPlayerUuid`](#structFRHAPI__PexClientRequest_1af85cd6e3f97ebfe84a265fb6eb850186)`(FGuid && NewValue)` | Sets the value of OwningPlayerUuid_Optional and also sets OwningPlayerUuid_IsSet to true using move semantics.
 `public inline void `[`ClearOwningPlayerUuid`](#structFRHAPI__PexClientRequest_1a51ce3fe95326e8a5d68b00b2920c9d52)`()` | Clears the value of OwningPlayerUuid_Optional and sets OwningPlayerUuid_IsSet to false.
 `public inline bool `[`IsOwningPlayerUuidSet`](#structFRHAPI__PexClientRequest_1a4ff52fae2d7887c9c4699679a5f22ce5)`() const` | Checks whether OwningPlayerUuid_Optional has been set.
 `public inline void `[`SetOwningPlayerUuidToNull`](#structFRHAPI__PexClientRequest_1aacf42b9b6a75f21c7832a8d284ccac7a)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsOwningPlayerUuidNull`](#structFRHAPI__PexClientRequest_1a057c7bcb2770616c32863dcf3aeae642)`() const` | Checks whether OwningPlayerUuid_Optional is set to null.
-`public inline FString & `[`GetVersion`](#structFRHAPI__PexClientRequest_1a2cd0b26864da3fa4958244851e35281c)`()` | Gets the value of Version_Optional, regardless of it having been set.
-`public inline const FString & `[`GetVersion`](#structFRHAPI__PexClientRequest_1a09605daf4e59d9d2e3d775fdb565a9fa)`() const` | Gets the value of Version_Optional, regardless of it having been set.
-`public inline const FString & `[`GetVersion`](#structFRHAPI__PexClientRequest_1acf66fbb90e87cf922c77cc92a5a966f2)`(const FString & DefaultValue) const` | Gets the value of Version_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FString & `[`GetVersion`](#structFRHAPI__PexClientRequest_1a5a4aa9151c9438af35336222976c40a9)`()` | Gets the value of Version_Optional, regardless of it having been set.
+`public inline const FString & `[`GetVersion`](#structFRHAPI__PexClientRequest_1adcb5b840cc1bf771bf29154fba3f8633)`() const` | Gets the value of Version_Optional, regardless of it having been set.
+`public inline const FString & `[`GetVersion`](#structFRHAPI__PexClientRequest_1a128595f52bedec0e46012bde477d4e15)`(const FString & DefaultValue) const` | Gets the value of Version_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetVersion`](#structFRHAPI__PexClientRequest_1abb84c08371107cb08884c406a27e6885)`(FString & OutValue) const` | Fills OutValue with the value of Version_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetVersionOrNull`](#structFRHAPI__PexClientRequest_1a60a2f29331bc19c2c53a014ebd34ba95)`()` | Returns a pointer to Version_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetVersionOrNull`](#structFRHAPI__PexClientRequest_1a6dd57a88ef93d7e2447337f16e67c3d9)`() const` | Returns a pointer to Version_Optional, if it has been set, otherwise returns nullptr.
+`public inline FString * `[`GetVersionOrNull`](#structFRHAPI__PexClientRequest_1a7c6c25e530aa768aa3d5c8a96fff15eb)`()` | Returns a pointer to Version_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetVersionOrNull`](#structFRHAPI__PexClientRequest_1a6dc9a829de3ff55136bc99bccc070ca0)`() const` | Returns a pointer to Version_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetVersion`](#structFRHAPI__PexClientRequest_1a6eeee7afe1eb52489499d14f86e35fb9)`(const FString & NewValue)` | Sets the value of Version_Optional and also sets Version_IsSet to true.
 `public inline void `[`SetVersion`](#structFRHAPI__PexClientRequest_1af1c669871a363ee6ec14ee9e3e46f03a)`(FString && NewValue)` | Sets the value of Version_Optional and also sets Version_IsSet to true using move semantics.
 `public inline void `[`ClearVersion`](#structFRHAPI__PexClientRequest_1ae69ae0000423ea5f7532db670d747452)`()` | Clears the value of Version_Optional and sets Version_IsSet to false.
 `public inline bool `[`IsVersionSet`](#structFRHAPI__PexClientRequest_1aa9816453b7fc106a138b8903291bc4d1)`() const` | Checks whether Version_Optional has been set.
 `public inline void `[`SetVersionToNull`](#structFRHAPI__PexClientRequest_1a2a0dbdc2e7dad1cb8f87548b011ac3c1)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsVersionNull`](#structFRHAPI__PexClientRequest_1a85981cea251f0783e5928b526ed88e43)`() const` | Checks whether Version_Optional is set to null.
-`public inline FString & `[`GetDeviceInfo`](#structFRHAPI__PexClientRequest_1a694e8ee42f0beb101ebfa39e825ad214)`()` | Gets the value of DeviceInfo_Optional, regardless of it having been set.
-`public inline const FString & `[`GetDeviceInfo`](#structFRHAPI__PexClientRequest_1a4096ec33e66b720927b9573859a433d6)`() const` | Gets the value of DeviceInfo_Optional, regardless of it having been set.
-`public inline const FString & `[`GetDeviceInfo`](#structFRHAPI__PexClientRequest_1a63c82cef17660a56e64a3f48a9e0fe02)`(const FString & DefaultValue) const` | Gets the value of DeviceInfo_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FString & `[`GetDeviceInfo`](#structFRHAPI__PexClientRequest_1a147151530d463460554b91a80a664156)`()` | Gets the value of DeviceInfo_Optional, regardless of it having been set.
+`public inline const FString & `[`GetDeviceInfo`](#structFRHAPI__PexClientRequest_1a76108731f074c98d44c94a3c8917ecf2)`() const` | Gets the value of DeviceInfo_Optional, regardless of it having been set.
+`public inline const FString & `[`GetDeviceInfo`](#structFRHAPI__PexClientRequest_1a1a5ba19b097041ce217d223c85d8d1d6)`(const FString & DefaultValue) const` | Gets the value of DeviceInfo_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetDeviceInfo`](#structFRHAPI__PexClientRequest_1ae0a3fadd46a3b2a9951629a67a2534dc)`(FString & OutValue) const` | Fills OutValue with the value of DeviceInfo_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetDeviceInfoOrNull`](#structFRHAPI__PexClientRequest_1a7e4119c632792388d3cc006060c3a212)`()` | Returns a pointer to DeviceInfo_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetDeviceInfoOrNull`](#structFRHAPI__PexClientRequest_1a2afc99ed562d26309187715eca5a8fe6)`() const` | Returns a pointer to DeviceInfo_Optional, if it has been set, otherwise returns nullptr.
+`public inline FString * `[`GetDeviceInfoOrNull`](#structFRHAPI__PexClientRequest_1a4d5559fcea2a9d34136cdfccf1c757f8)`()` | Returns a pointer to DeviceInfo_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetDeviceInfoOrNull`](#structFRHAPI__PexClientRequest_1ad19e35a3d85ea481611609b1c705119b)`() const` | Returns a pointer to DeviceInfo_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetDeviceInfo`](#structFRHAPI__PexClientRequest_1ae607fa2085a162780f5fbaf01ba4bb33)`(const FString & NewValue)` | Sets the value of DeviceInfo_Optional and also sets DeviceInfo_IsSet to true.
 `public inline void `[`SetDeviceInfo`](#structFRHAPI__PexClientRequest_1a024bbae196426bb281738e2bc074b0fe)`(FString && NewValue)` | Sets the value of DeviceInfo_Optional and also sets DeviceInfo_IsSet to true using move semantics.
 `public inline void `[`ClearDeviceInfo`](#structFRHAPI__PexClientRequest_1a68c8163846cc6db61272df071af66dc4)`()` | Clears the value of DeviceInfo_Optional and sets DeviceInfo_IsSet to false.
 `public inline bool `[`IsDeviceInfoSet`](#structFRHAPI__PexClientRequest_1aa3ee0b8d97f9e1e68f6f60988581c3e2)`() const` | Checks whether DeviceInfo_Optional has been set.
 `public inline void `[`SetDeviceInfoToNull`](#structFRHAPI__PexClientRequest_1a1ed44133cdcaa19a110e3aa2e1386cda)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsDeviceInfoNull`](#structFRHAPI__PexClientRequest_1a16c85d045d4de767b74e809e88553c3d)`() const` | Checks whether DeviceInfo_Optional is set to null.
-`public inline ERHAPI_MatchPlatform & `[`GetPlatformId`](#structFRHAPI__PexClientRequest_1a301a17ae582a28fdf4dfbf360a855d95)`()` | Gets the value of PlatformId_Optional, regardless of it having been set.
-`public inline const ERHAPI_MatchPlatform & `[`GetPlatformId`](#structFRHAPI__PexClientRequest_1a30c3818fdb0c6a85f28a5bbe0496a255)`() const` | Gets the value of PlatformId_Optional, regardless of it having been set.
-`public inline const ERHAPI_MatchPlatform & `[`GetPlatformId`](#structFRHAPI__PexClientRequest_1a684e27b3576cb45498158e13a889fda2)`(const ERHAPI_MatchPlatform & DefaultValue) const` | Gets the value of PlatformId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline ERHAPI_MatchPlatform & `[`GetPlatformId`](#structFRHAPI__PexClientRequest_1a5538454ca35d74c911cd05761b69c457)`()` | Gets the value of PlatformId_Optional, regardless of it having been set.
+`public inline const ERHAPI_MatchPlatform & `[`GetPlatformId`](#structFRHAPI__PexClientRequest_1aadb64f56f17bc3be6f9552d0644aac27)`() const` | Gets the value of PlatformId_Optional, regardless of it having been set.
+`public inline const ERHAPI_MatchPlatform & `[`GetPlatformId`](#structFRHAPI__PexClientRequest_1abb7ec3eec64bde30816b010a09b5984e)`(const ERHAPI_MatchPlatform & DefaultValue) const` | Gets the value of PlatformId_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetPlatformId`](#structFRHAPI__PexClientRequest_1ac95a6c8e80e48006727c92f90a8a71c4)`(ERHAPI_MatchPlatform & OutValue) const` | Fills OutValue with the value of PlatformId_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_MatchPlatform * `[`GetPlatformIdOrNull`](#structFRHAPI__PexClientRequest_1a27e34996b1bae4cdd6c7ccd173f3d6b4)`()` | Returns a pointer to PlatformId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_MatchPlatform * `[`GetPlatformIdOrNull`](#structFRHAPI__PexClientRequest_1ad3cf57d73d0af8678fed798c5d54c090)`() const` | Returns a pointer to PlatformId_Optional, if it has been set, otherwise returns nullptr.
+`public inline ERHAPI_MatchPlatform * `[`GetPlatformIdOrNull`](#structFRHAPI__PexClientRequest_1a5738998a0d87cb221172e83494f1d09b)`()` | Returns a pointer to PlatformId_Optional, if it has been set, otherwise returns nullptr.
+`public inline const ERHAPI_MatchPlatform * `[`GetPlatformIdOrNull`](#structFRHAPI__PexClientRequest_1aa622843a362f101612fa22717ee4727f)`() const` | Returns a pointer to PlatformId_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetPlatformId`](#structFRHAPI__PexClientRequest_1a9ad60d73fcf9ccd2b6b1f6cb9cc80259)`(const ERHAPI_MatchPlatform & NewValue)` | Sets the value of PlatformId_Optional and also sets PlatformId_IsSet to true.
 `public inline void `[`SetPlatformId`](#structFRHAPI__PexClientRequest_1a1ecf9cbd6714d5607afde92cc73fa375)`(ERHAPI_MatchPlatform && NewValue)` | Sets the value of PlatformId_Optional and also sets PlatformId_IsSet to true using move semantics.
 `public inline void `[`ClearPlatformId`](#structFRHAPI__PexClientRequest_1a75bc13228f379289efb4dee7791878ed)`()` | Clears the value of PlatformId_Optional and sets PlatformId_IsSet to false.
 `public inline bool `[`IsPlatformIdSet`](#structFRHAPI__PexClientRequest_1aa5ed340a4e6eb27111451f08dad92077)`() const` | Checks whether PlatformId_Optional has been set.
 `public inline void `[`SetPlatformIdToNull`](#structFRHAPI__PexClientRequest_1a4234e10ab5f74f1b0d9872a7c4e8fdb0)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsPlatformIdNull`](#structFRHAPI__PexClientRequest_1a0798eae8f6a0bb8fb97273173b6f6071)`() const` | Checks whether PlatformId_Optional is set to null.
-`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PexClientRequest_1aeb2121cfa290eb2712265768b24ea08a)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PexClientRequest_1a165c1b05e803ced01d10fe597e6084c1)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PexClientRequest_1a1d644665db13660cd43fbe7e3578d110)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PexClientRequest_1aba806346c2ac4bf07d4601b6c898a449)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PexClientRequest_1af1ddeb264faa18371880e28342ca83e6)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PexClientRequest_1a73fedc5713aa34815dcd5ac3e25784a0)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetCustomData`](#structFRHAPI__PexClientRequest_1a72b56d69df162535375106c92ab37bf2)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PexClientRequest_1a892b5f5510557f128f91c32e82ec6307)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PexClientRequest_1a1b09257893048b380acca57a4b3a2fb8)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PexClientRequest_1aa70d5974916fdefee4acbc51421683a7)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PexClientRequest_1a66536acb9c0c7c1015d30d7c11f71e2b)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetCustomData`](#structFRHAPI__PexClientRequest_1a0a9377db8bbb0505dc3e8ba766664259)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`SetCustomData`](#structFRHAPI__PexClientRequest_1a6faabae4715d02afb0a25729d97f2a66)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__PexClientRequest_1afd5b1cb95a7f80a3a5c623c7dd130477)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 `public inline bool `[`IsCustomDataSet`](#structFRHAPI__PexClientRequest_1adea0fbe8b1051cd7a5fa14342e90155a)`() const` | Checks whether CustomData_Optional has been set.
 `public inline void `[`SetCustomDataToNull`](#structFRHAPI__PexClientRequest_1af091d922a339154ff4a71ad218568ebd)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsCustomDataNull`](#structFRHAPI__PexClientRequest_1aadbe411e800ece20e1c16ef9a1c9ee12)`() const` | Checks whether CustomData_Optional is set to null.
-`public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__PexClientRequest_1a68ab84923101cff536c2b52188341d61)`()` | Gets the value of PlayerUuid.
-`public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__PexClientRequest_1ac5d025884c086ee07d5cd8a14b99ddbf)`() const` | Gets the value of PlayerUuid.
+`public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__PexClientRequest_1ac8d4cacaad59790a94620ae38d50d3ee)`()` | Gets the value of PlayerUuid.
+`public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__PexClientRequest_1a6c8a9e787126470bc3952baf13dc6be4)`() const` | Gets the value of PlayerUuid.
 `public inline void `[`SetPlayerUuid`](#structFRHAPI__PexClientRequest_1aedc6a6654c23fa5b5434e524f8c6b55e)`(const FGuid & NewValue)` | Sets the value of PlayerUuid.
 `public inline void `[`SetPlayerUuid`](#structFRHAPI__PexClientRequest_1a736dbbae75ba23b504df96cff2c3399d)`(FGuid && NewValue)` | Sets the value of PlayerUuid using move semantics.
 
@@ -1031,22 +1031,22 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PexClientRequest_1a24aee71cd8267e7c5fda27f05894bc6d)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PexClientRequest_1a24aee71cd8267e7c5fda27f05894bc6d"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PexClientRequest_1a9ebe2f4759a6a8bf28acfabe4d0965d5)`(TSharedRef< TJsonWriter<> > & Writer) const` <a id="structFRHAPI__PexClientRequest_1a9ebe2f4759a6a8bf28acfabe4d0965d5"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetFrameTime`](#structFRHAPI__PexClientRequest_1a689d4a860160c292f336476de53dc2cb)`()` <a id="structFRHAPI__PexClientRequest_1a689d4a860160c292f336476de53dc2cb"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetFrameTime`](#structFRHAPI__PexClientRequest_1ae779aaedf6282b3b87b5cb4c332edc3d)`()` <a id="structFRHAPI__PexClientRequest_1ae779aaedf6282b3b87b5cb4c332edc3d"></a>
 
 Gets the value of FrameTime_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetFrameTime`](#structFRHAPI__PexClientRequest_1a4fb04f07c9a51617053c6ad04cc018b0)`() const` <a id="structFRHAPI__PexClientRequest_1a4fb04f07c9a51617053c6ad04cc018b0"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetFrameTime`](#structFRHAPI__PexClientRequest_1a905319a5e19f8e6fed60611f37fde23d)`() const` <a id="structFRHAPI__PexClientRequest_1a905319a5e19f8e6fed60611f37fde23d"></a>
 
 Gets the value of FrameTime_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetFrameTime`](#structFRHAPI__PexClientRequest_1a1f16463263d408cd894816c84c7344d6)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a1f16463263d408cd894816c84c7344d6"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetFrameTime`](#structFRHAPI__PexClientRequest_1a9939445561b7bf795720baf9e3155d78)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a9939445561b7bf795720baf9e3155d78"></a>
 
 Gets the value of FrameTime_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -1054,11 +1054,11 @@ Gets the value of FrameTime_Optional, if it has been set, otherwise it returns D
 
 Fills OutValue with the value of FrameTime_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetFrameTimeOrNull`](#structFRHAPI__PexClientRequest_1a2498e776a6bd300cd9d70963e5901564)`()` <a id="structFRHAPI__PexClientRequest_1a2498e776a6bd300cd9d70963e5901564"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetFrameTimeOrNull`](#structFRHAPI__PexClientRequest_1ada252d20bca4f60502dadc011b7fb8e0)`()` <a id="structFRHAPI__PexClientRequest_1ada252d20bca4f60502dadc011b7fb8e0"></a>
 
 Returns a pointer to FrameTime_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetFrameTimeOrNull`](#structFRHAPI__PexClientRequest_1a6406c6306981c0d0a1b5062c42366fab)`() const` <a id="structFRHAPI__PexClientRequest_1a6406c6306981c0d0a1b5062c42366fab"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetFrameTimeOrNull`](#structFRHAPI__PexClientRequest_1a7f108054028a78bb87a75ff314d921bb)`() const` <a id="structFRHAPI__PexClientRequest_1a7f108054028a78bb87a75ff314d921bb"></a>
 
 Returns a pointer to FrameTime_Optional, if it has been set, otherwise returns nullptr.
 
@@ -1086,15 +1086,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether FrameTime_Optional is set to null.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetDeltaTime`](#structFRHAPI__PexClientRequest_1a10b7a0f0855e42f4abedf23044762bb1)`()` <a id="structFRHAPI__PexClientRequest_1a10b7a0f0855e42f4abedf23044762bb1"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetDeltaTime`](#structFRHAPI__PexClientRequest_1addf844ac18eddf9bbb63798ef5d32318)`()` <a id="structFRHAPI__PexClientRequest_1addf844ac18eddf9bbb63798ef5d32318"></a>
 
 Gets the value of DeltaTime_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetDeltaTime`](#structFRHAPI__PexClientRequest_1a15766bd601355783089b19e436099dbc)`() const` <a id="structFRHAPI__PexClientRequest_1a15766bd601355783089b19e436099dbc"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetDeltaTime`](#structFRHAPI__PexClientRequest_1a8c05f15a0f181c69fec13fad332162e6)`() const` <a id="structFRHAPI__PexClientRequest_1a8c05f15a0f181c69fec13fad332162e6"></a>
 
 Gets the value of DeltaTime_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetDeltaTime`](#structFRHAPI__PexClientRequest_1af1b622f7e98f68a1dba0953b2f5e8350)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1af1b622f7e98f68a1dba0953b2f5e8350"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetDeltaTime`](#structFRHAPI__PexClientRequest_1a71fb4334eda64ac6bafa1be6b5bc5e5c)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a71fb4334eda64ac6bafa1be6b5bc5e5c"></a>
 
 Gets the value of DeltaTime_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -1102,11 +1102,11 @@ Gets the value of DeltaTime_Optional, if it has been set, otherwise it returns D
 
 Fills OutValue with the value of DeltaTime_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetDeltaTimeOrNull`](#structFRHAPI__PexClientRequest_1a8526f223a0f96de6cc66b5219180ace0)`()` <a id="structFRHAPI__PexClientRequest_1a8526f223a0f96de6cc66b5219180ace0"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetDeltaTimeOrNull`](#structFRHAPI__PexClientRequest_1a5edeab3425f19589e5d23dd79fc58370)`()` <a id="structFRHAPI__PexClientRequest_1a5edeab3425f19589e5d23dd79fc58370"></a>
 
 Returns a pointer to DeltaTime_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetDeltaTimeOrNull`](#structFRHAPI__PexClientRequest_1ac754dcbe2c600177c526fac2104642d7)`() const` <a id="structFRHAPI__PexClientRequest_1ac754dcbe2c600177c526fac2104642d7"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetDeltaTimeOrNull`](#structFRHAPI__PexClientRequest_1aebfa6fb4f67f3cb5fbbf1eec19ebd902)`() const` <a id="structFRHAPI__PexClientRequest_1aebfa6fb4f67f3cb5fbbf1eec19ebd902"></a>
 
 Returns a pointer to DeltaTime_Optional, if it has been set, otherwise returns nullptr.
 
@@ -1134,15 +1134,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether DeltaTime_Optional is set to null.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTickCount`](#structFRHAPI__PexClientRequest_1a029e1a217837086d64c648db348b1184)`()` <a id="structFRHAPI__PexClientRequest_1a029e1a217837086d64c648db348b1184"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTickCount`](#structFRHAPI__PexClientRequest_1a633298165b4b528428e82e3926240ca4)`()` <a id="structFRHAPI__PexClientRequest_1a633298165b4b528428e82e3926240ca4"></a>
 
 Gets the value of TickCount_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTickCount`](#structFRHAPI__PexClientRequest_1a4e1d7bb555c954b29a9ba9ac932edcab)`() const` <a id="structFRHAPI__PexClientRequest_1a4e1d7bb555c954b29a9ba9ac932edcab"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTickCount`](#structFRHAPI__PexClientRequest_1ab32b2b77d6a87f2c430dd777cee5eb6f)`() const` <a id="structFRHAPI__PexClientRequest_1ab32b2b77d6a87f2c430dd777cee5eb6f"></a>
 
 Gets the value of TickCount_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTickCount`](#structFRHAPI__PexClientRequest_1a84741d9111957f689aa9b0af5703d8b8)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a84741d9111957f689aa9b0af5703d8b8"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTickCount`](#structFRHAPI__PexClientRequest_1a70f6ddd4623eec679a0ec0b98c614ec9)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a70f6ddd4623eec679a0ec0b98c614ec9"></a>
 
 Gets the value of TickCount_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -1150,11 +1150,11 @@ Gets the value of TickCount_Optional, if it has been set, otherwise it returns D
 
 Fills OutValue with the value of TickCount_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetTickCountOrNull`](#structFRHAPI__PexClientRequest_1a5242bfde85dee540a2d74860c9edf13d)`()` <a id="structFRHAPI__PexClientRequest_1a5242bfde85dee540a2d74860c9edf13d"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetTickCountOrNull`](#structFRHAPI__PexClientRequest_1a25084d87d4873f286f7e5d57fcafc393)`()` <a id="structFRHAPI__PexClientRequest_1a25084d87d4873f286f7e5d57fcafc393"></a>
 
 Returns a pointer to TickCount_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetTickCountOrNull`](#structFRHAPI__PexClientRequest_1a2952ceaa7cc7c43b2dbbae570e7b2000)`() const` <a id="structFRHAPI__PexClientRequest_1a2952ceaa7cc7c43b2dbbae570e7b2000"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetTickCountOrNull`](#structFRHAPI__PexClientRequest_1a9aa06a63c9ac9db5a7f99eb0a27470e9)`() const` <a id="structFRHAPI__PexClientRequest_1a9aa06a63c9ac9db5a7f99eb0a27470e9"></a>
 
 Returns a pointer to TickCount_Optional, if it has been set, otherwise returns nullptr.
 
@@ -1182,15 +1182,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether TickCount_Optional is set to null.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetDelayedTickCount`](#structFRHAPI__PexClientRequest_1a3f1e760bba484d7a83b921d47ffbe102)`()` <a id="structFRHAPI__PexClientRequest_1a3f1e760bba484d7a83b921d47ffbe102"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetDelayedTickCount`](#structFRHAPI__PexClientRequest_1a640393169f271451c29256f00f02287c)`()` <a id="structFRHAPI__PexClientRequest_1a640393169f271451c29256f00f02287c"></a>
 
 Gets the value of DelayedTickCount_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetDelayedTickCount`](#structFRHAPI__PexClientRequest_1a61d493eb1c8a1fee5e146da4ece42292)`() const` <a id="structFRHAPI__PexClientRequest_1a61d493eb1c8a1fee5e146da4ece42292"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetDelayedTickCount`](#structFRHAPI__PexClientRequest_1a54c4ba66452e7a932b7078b904988011)`() const` <a id="structFRHAPI__PexClientRequest_1a54c4ba66452e7a932b7078b904988011"></a>
 
 Gets the value of DelayedTickCount_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetDelayedTickCount`](#structFRHAPI__PexClientRequest_1a0050b34a2717ea29d0c6731204dcf67c)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a0050b34a2717ea29d0c6731204dcf67c"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetDelayedTickCount`](#structFRHAPI__PexClientRequest_1a5b6fb727ac0ddf8ada8b9ba332805162)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a5b6fb727ac0ddf8ada8b9ba332805162"></a>
 
 Gets the value of DelayedTickCount_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -1198,11 +1198,11 @@ Gets the value of DelayedTickCount_Optional, if it has been set, otherwise it re
 
 Fills OutValue with the value of DelayedTickCount_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetDelayedTickCountOrNull`](#structFRHAPI__PexClientRequest_1a277df6034ec35a30bf7c14d78150e3a9)`()` <a id="structFRHAPI__PexClientRequest_1a277df6034ec35a30bf7c14d78150e3a9"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetDelayedTickCountOrNull`](#structFRHAPI__PexClientRequest_1a502ca10268bcd32b50e828d698a2cc59)`()` <a id="structFRHAPI__PexClientRequest_1a502ca10268bcd32b50e828d698a2cc59"></a>
 
 Returns a pointer to DelayedTickCount_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetDelayedTickCountOrNull`](#structFRHAPI__PexClientRequest_1a2934db19c9c4847e7b160d44cec23217)`() const` <a id="structFRHAPI__PexClientRequest_1a2934db19c9c4847e7b160d44cec23217"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetDelayedTickCountOrNull`](#structFRHAPI__PexClientRequest_1af1fc2b0ccefd00a9315de63458e7c773)`() const` <a id="structFRHAPI__PexClientRequest_1af1fc2b0ccefd00a9315de63458e7c773"></a>
 
 Returns a pointer to DelayedTickCount_Optional, if it has been set, otherwise returns nullptr.
 
@@ -1230,15 +1230,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether DelayedTickCount_Optional is set to null.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetMemoryWs`](#structFRHAPI__PexClientRequest_1a7be6088eb92bb628bfd11bbf8a7fbac7)`()` <a id="structFRHAPI__PexClientRequest_1a7be6088eb92bb628bfd11bbf8a7fbac7"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetMemoryWs`](#structFRHAPI__PexClientRequest_1a69984b8874155b6fca6080f1c9968719)`()` <a id="structFRHAPI__PexClientRequest_1a69984b8874155b6fca6080f1c9968719"></a>
 
 Gets the value of MemoryWs_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetMemoryWs`](#structFRHAPI__PexClientRequest_1aeb0f88ad37d4adea0594d65a6da6fbc3)`() const` <a id="structFRHAPI__PexClientRequest_1aeb0f88ad37d4adea0594d65a6da6fbc3"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetMemoryWs`](#structFRHAPI__PexClientRequest_1aa7d7a97677b8ed518f3c3242c5fde9bd)`() const` <a id="structFRHAPI__PexClientRequest_1aa7d7a97677b8ed518f3c3242c5fde9bd"></a>
 
 Gets the value of MemoryWs_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetMemoryWs`](#structFRHAPI__PexClientRequest_1a99be664fffb0929d710ad8d4f882f17a)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a99be664fffb0929d710ad8d4f882f17a"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetMemoryWs`](#structFRHAPI__PexClientRequest_1a2abf5190d0e9d2a104fb358de5a9e1a1)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a2abf5190d0e9d2a104fb358de5a9e1a1"></a>
 
 Gets the value of MemoryWs_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -1246,11 +1246,11 @@ Gets the value of MemoryWs_Optional, if it has been set, otherwise it returns De
 
 Fills OutValue with the value of MemoryWs_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetMemoryWsOrNull`](#structFRHAPI__PexClientRequest_1a3bf8549cb6668e35969cb9e9bd46699a)`()` <a id="structFRHAPI__PexClientRequest_1a3bf8549cb6668e35969cb9e9bd46699a"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetMemoryWsOrNull`](#structFRHAPI__PexClientRequest_1aff15b7993b6642976c1c841a88b7dbce)`()` <a id="structFRHAPI__PexClientRequest_1aff15b7993b6642976c1c841a88b7dbce"></a>
 
 Returns a pointer to MemoryWs_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetMemoryWsOrNull`](#structFRHAPI__PexClientRequest_1aa3eaff836bb17520c5c65d67bb12b11c)`() const` <a id="structFRHAPI__PexClientRequest_1aa3eaff836bb17520c5c65d67bb12b11c"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetMemoryWsOrNull`](#structFRHAPI__PexClientRequest_1a832b6c92bc3f42a1a6fb7d69f65a5f97)`() const` <a id="structFRHAPI__PexClientRequest_1a832b6c92bc3f42a1a6fb7d69f65a5f97"></a>
 
 Returns a pointer to MemoryWs_Optional, if it has been set, otherwise returns nullptr.
 
@@ -1278,15 +1278,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether MemoryWs_Optional is set to null.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetMemoryVb`](#structFRHAPI__PexClientRequest_1a47b7ba10a28718aefc0b696a723eed80)`()` <a id="structFRHAPI__PexClientRequest_1a47b7ba10a28718aefc0b696a723eed80"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetMemoryVb`](#structFRHAPI__PexClientRequest_1ae71d1554b65fcfdabcfa8af5d32ec36f)`()` <a id="structFRHAPI__PexClientRequest_1ae71d1554b65fcfdabcfa8af5d32ec36f"></a>
 
 Gets the value of MemoryVb_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetMemoryVb`](#structFRHAPI__PexClientRequest_1a8512530958c5cd58d437604d49b77dd1)`() const` <a id="structFRHAPI__PexClientRequest_1a8512530958c5cd58d437604d49b77dd1"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetMemoryVb`](#structFRHAPI__PexClientRequest_1a2dbca36d510f9d67bf08d41a69c7c5d5)`() const` <a id="structFRHAPI__PexClientRequest_1a2dbca36d510f9d67bf08d41a69c7c5d5"></a>
 
 Gets the value of MemoryVb_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetMemoryVb`](#structFRHAPI__PexClientRequest_1a9487bacff05dddb929839427c7a63869)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a9487bacff05dddb929839427c7a63869"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetMemoryVb`](#structFRHAPI__PexClientRequest_1a12941840d39a3bc45a6afddeefd256f3)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a12941840d39a3bc45a6afddeefd256f3"></a>
 
 Gets the value of MemoryVb_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -1294,11 +1294,11 @@ Gets the value of MemoryVb_Optional, if it has been set, otherwise it returns De
 
 Fills OutValue with the value of MemoryVb_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetMemoryVbOrNull`](#structFRHAPI__PexClientRequest_1a35fd8384e673bd93093d38f0a6f03f9b)`()` <a id="structFRHAPI__PexClientRequest_1a35fd8384e673bd93093d38f0a6f03f9b"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetMemoryVbOrNull`](#structFRHAPI__PexClientRequest_1aef4631346d102c66ecffec45371ee839)`()` <a id="structFRHAPI__PexClientRequest_1aef4631346d102c66ecffec45371ee839"></a>
 
 Returns a pointer to MemoryVb_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetMemoryVbOrNull`](#structFRHAPI__PexClientRequest_1a7889524ceb6dffe696acc37027954810)`() const` <a id="structFRHAPI__PexClientRequest_1a7889524ceb6dffe696acc37027954810"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetMemoryVbOrNull`](#structFRHAPI__PexClientRequest_1a38450255726b53d366a4336f0a06be6b)`() const` <a id="structFRHAPI__PexClientRequest_1a38450255726b53d366a4336f0a06be6b"></a>
 
 Returns a pointer to MemoryVb_Optional, if it has been set, otherwise returns nullptr.
 
@@ -1326,15 +1326,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether MemoryVb_Optional is set to null.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetCpuProcess`](#structFRHAPI__PexClientRequest_1a4a5b84b4705f421eb89876c36d1a3a46)`()` <a id="structFRHAPI__PexClientRequest_1a4a5b84b4705f421eb89876c36d1a3a46"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetCpuProcess`](#structFRHAPI__PexClientRequest_1ad8edfc651efd23504bc398296314dc6f)`()` <a id="structFRHAPI__PexClientRequest_1ad8edfc651efd23504bc398296314dc6f"></a>
 
 Gets the value of CpuProcess_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetCpuProcess`](#structFRHAPI__PexClientRequest_1ab6daf56ca2053e6d1323fb6dfb50e9dc)`() const` <a id="structFRHAPI__PexClientRequest_1ab6daf56ca2053e6d1323fb6dfb50e9dc"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetCpuProcess`](#structFRHAPI__PexClientRequest_1a0b3cbc3147791877402418cc8e2bacaa)`() const` <a id="structFRHAPI__PexClientRequest_1a0b3cbc3147791877402418cc8e2bacaa"></a>
 
 Gets the value of CpuProcess_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetCpuProcess`](#structFRHAPI__PexClientRequest_1a6bb389dc758cbadf3b718b9dbc3dce5e)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a6bb389dc758cbadf3b718b9dbc3dce5e"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetCpuProcess`](#structFRHAPI__PexClientRequest_1a2028430c3e0089f922cbf1913206423e)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a2028430c3e0089f922cbf1913206423e"></a>
 
 Gets the value of CpuProcess_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -1342,11 +1342,11 @@ Gets the value of CpuProcess_Optional, if it has been set, otherwise it returns 
 
 Fills OutValue with the value of CpuProcess_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetCpuProcessOrNull`](#structFRHAPI__PexClientRequest_1ac4e3f2a335ab39bbbda55d1bedf67d4c)`()` <a id="structFRHAPI__PexClientRequest_1ac4e3f2a335ab39bbbda55d1bedf67d4c"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetCpuProcessOrNull`](#structFRHAPI__PexClientRequest_1a1d9051ad3acd8b1e3d44e74d13f04a0d)`()` <a id="structFRHAPI__PexClientRequest_1a1d9051ad3acd8b1e3d44e74d13f04a0d"></a>
 
 Returns a pointer to CpuProcess_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetCpuProcessOrNull`](#structFRHAPI__PexClientRequest_1a36248f1de6e281dd54225d650cd2144e)`() const` <a id="structFRHAPI__PexClientRequest_1a36248f1de6e281dd54225d650cd2144e"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetCpuProcessOrNull`](#structFRHAPI__PexClientRequest_1a52ba1d1922ad4c80d9c8a24bb2529c80)`() const` <a id="structFRHAPI__PexClientRequest_1a52ba1d1922ad4c80d9c8a24bb2529c80"></a>
 
 Returns a pointer to CpuProcess_Optional, if it has been set, otherwise returns nullptr.
 
@@ -1374,15 +1374,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether CpuProcess_Optional is set to null.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetPing`](#structFRHAPI__PexClientRequest_1ab9d59a72898a84fbfeb85ef6e46dd003)`()` <a id="structFRHAPI__PexClientRequest_1ab9d59a72898a84fbfeb85ef6e46dd003"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetPing`](#structFRHAPI__PexClientRequest_1a846ebe38aa3778c0f35c4f42eb677d63)`()` <a id="structFRHAPI__PexClientRequest_1a846ebe38aa3778c0f35c4f42eb677d63"></a>
 
 Gets the value of Ping_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetPing`](#structFRHAPI__PexClientRequest_1a6447a3f9f5aacbd0f3f3fa12bcb7083e)`() const` <a id="structFRHAPI__PexClientRequest_1a6447a3f9f5aacbd0f3f3fa12bcb7083e"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetPing`](#structFRHAPI__PexClientRequest_1ab43e607fc9efeff17dc73ec7394884b4)`() const` <a id="structFRHAPI__PexClientRequest_1ab43e607fc9efeff17dc73ec7394884b4"></a>
 
 Gets the value of Ping_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetPing`](#structFRHAPI__PexClientRequest_1a826df7329778f8a34b9e73142a343c15)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a826df7329778f8a34b9e73142a343c15"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetPing`](#structFRHAPI__PexClientRequest_1a6d42eda87441d4c05c6178855d3572fb)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a6d42eda87441d4c05c6178855d3572fb"></a>
 
 Gets the value of Ping_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -1390,11 +1390,11 @@ Gets the value of Ping_Optional, if it has been set, otherwise it returns Defaul
 
 Fills OutValue with the value of Ping_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetPingOrNull`](#structFRHAPI__PexClientRequest_1a247c83c0b1cec285503801860238b438)`()` <a id="structFRHAPI__PexClientRequest_1a247c83c0b1cec285503801860238b438"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetPingOrNull`](#structFRHAPI__PexClientRequest_1a0b21e2ab2576f801f8f97ca8d7e48577)`()` <a id="structFRHAPI__PexClientRequest_1a0b21e2ab2576f801f8f97ca8d7e48577"></a>
 
 Returns a pointer to Ping_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetPingOrNull`](#structFRHAPI__PexClientRequest_1ac76c882a76bca706d542c2ba64cad7fa)`() const` <a id="structFRHAPI__PexClientRequest_1ac76c882a76bca706d542c2ba64cad7fa"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetPingOrNull`](#structFRHAPI__PexClientRequest_1a793c857137724c8a4fa52dff68577b04)`() const` <a id="structFRHAPI__PexClientRequest_1a793c857137724c8a4fa52dff68577b04"></a>
 
 Returns a pointer to Ping_Optional, if it has been set, otherwise returns nullptr.
 
@@ -1422,15 +1422,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether Ping_Optional is set to null.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPackets`](#structFRHAPI__PexClientRequest_1aa6392ce6ad2ffb38cfeb078dee07652c)`()` <a id="structFRHAPI__PexClientRequest_1aa6392ce6ad2ffb38cfeb078dee07652c"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPackets`](#structFRHAPI__PexClientRequest_1adf54d830f87e48cb22b5efd5d0cfff55)`()` <a id="structFRHAPI__PexClientRequest_1adf54d830f87e48cb22b5efd5d0cfff55"></a>
 
 Gets the value of InPackets_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPackets`](#structFRHAPI__PexClientRequest_1a1533acb3ed7613dd35862fe7ca8900db)`() const` <a id="structFRHAPI__PexClientRequest_1a1533acb3ed7613dd35862fe7ca8900db"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPackets`](#structFRHAPI__PexClientRequest_1aebc1bfa57bcede5171bdb88c3f2c65ee)`() const` <a id="structFRHAPI__PexClientRequest_1aebc1bfa57bcede5171bdb88c3f2c65ee"></a>
 
 Gets the value of InPackets_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPackets`](#structFRHAPI__PexClientRequest_1a3b97089df8d99971acc7cc4803872fae)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a3b97089df8d99971acc7cc4803872fae"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPackets`](#structFRHAPI__PexClientRequest_1a127a8d684df60a33806bf645d273f15f)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a127a8d684df60a33806bf645d273f15f"></a>
 
 Gets the value of InPackets_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -1438,11 +1438,11 @@ Gets the value of InPackets_Optional, if it has been set, otherwise it returns D
 
 Fills OutValue with the value of InPackets_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetInPacketsOrNull`](#structFRHAPI__PexClientRequest_1a1c29569988beedd2284ab01326e3abee)`()` <a id="structFRHAPI__PexClientRequest_1a1c29569988beedd2284ab01326e3abee"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetInPacketsOrNull`](#structFRHAPI__PexClientRequest_1a7d4e79ea07c96012023d810510f110cb)`()` <a id="structFRHAPI__PexClientRequest_1a7d4e79ea07c96012023d810510f110cb"></a>
 
 Returns a pointer to InPackets_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetInPacketsOrNull`](#structFRHAPI__PexClientRequest_1a665e8c5d0c7a621eefd530bbeabf7369)`() const` <a id="structFRHAPI__PexClientRequest_1a665e8c5d0c7a621eefd530bbeabf7369"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetInPacketsOrNull`](#structFRHAPI__PexClientRequest_1ada38a2ca7c057e2dbb2e88fed3ec49da)`() const` <a id="structFRHAPI__PexClientRequest_1ada38a2ca7c057e2dbb2e88fed3ec49da"></a>
 
 Returns a pointer to InPackets_Optional, if it has been set, otherwise returns nullptr.
 
@@ -1470,15 +1470,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether InPackets_Optional is set to null.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPackets`](#structFRHAPI__PexClientRequest_1a142f2ac62e334eb7f04c49787a895548)`()` <a id="structFRHAPI__PexClientRequest_1a142f2ac62e334eb7f04c49787a895548"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPackets`](#structFRHAPI__PexClientRequest_1a5bc2db495ca911fe2e71a50c0cd28a83)`()` <a id="structFRHAPI__PexClientRequest_1a5bc2db495ca911fe2e71a50c0cd28a83"></a>
 
 Gets the value of OutPackets_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPackets`](#structFRHAPI__PexClientRequest_1a266608641d0d72f8afe3a62625553f79)`() const` <a id="structFRHAPI__PexClientRequest_1a266608641d0d72f8afe3a62625553f79"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPackets`](#structFRHAPI__PexClientRequest_1af46dad8d65eab6b8278f4bff3ef28056)`() const` <a id="structFRHAPI__PexClientRequest_1af46dad8d65eab6b8278f4bff3ef28056"></a>
 
 Gets the value of OutPackets_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPackets`](#structFRHAPI__PexClientRequest_1a2b7ecba2bdff8aa3c04a3288ac0c393d)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a2b7ecba2bdff8aa3c04a3288ac0c393d"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPackets`](#structFRHAPI__PexClientRequest_1a55df265359a69609da226056b332682c)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a55df265359a69609da226056b332682c"></a>
 
 Gets the value of OutPackets_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -1486,11 +1486,11 @@ Gets the value of OutPackets_Optional, if it has been set, otherwise it returns 
 
 Fills OutValue with the value of OutPackets_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetOutPacketsOrNull`](#structFRHAPI__PexClientRequest_1a5e788107856a9308a25f7515f76e24c9)`()` <a id="structFRHAPI__PexClientRequest_1a5e788107856a9308a25f7515f76e24c9"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetOutPacketsOrNull`](#structFRHAPI__PexClientRequest_1a272525c05e86cbf406ef6bbd73bfa844)`()` <a id="structFRHAPI__PexClientRequest_1a272525c05e86cbf406ef6bbd73bfa844"></a>
 
 Returns a pointer to OutPackets_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetOutPacketsOrNull`](#structFRHAPI__PexClientRequest_1a4536c844cadbbad2f28bf05a00134cd8)`() const` <a id="structFRHAPI__PexClientRequest_1a4536c844cadbbad2f28bf05a00134cd8"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetOutPacketsOrNull`](#structFRHAPI__PexClientRequest_1a5ceb6bc569b591eeccd4f097e4956de0)`() const` <a id="structFRHAPI__PexClientRequest_1a5ceb6bc569b591eeccd4f097e4956de0"></a>
 
 Returns a pointer to OutPackets_Optional, if it has been set, otherwise returns nullptr.
 
@@ -1518,15 +1518,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether OutPackets_Optional is set to null.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPackets`](#structFRHAPI__PexClientRequest_1aa3db57dc719c519e315140d62b404b2e)`()` <a id="structFRHAPI__PexClientRequest_1aa3db57dc719c519e315140d62b404b2e"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPackets`](#structFRHAPI__PexClientRequest_1aefc8b30abb9037b532329afb513ff9d3)`()` <a id="structFRHAPI__PexClientRequest_1aefc8b30abb9037b532329afb513ff9d3"></a>
 
 Gets the value of TotalPackets_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPackets`](#structFRHAPI__PexClientRequest_1a39179bfe0aea688633423a4b033f9730)`() const` <a id="structFRHAPI__PexClientRequest_1a39179bfe0aea688633423a4b033f9730"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPackets`](#structFRHAPI__PexClientRequest_1a75db246023094875a087754e52d6fcef)`() const` <a id="structFRHAPI__PexClientRequest_1a75db246023094875a087754e52d6fcef"></a>
 
 Gets the value of TotalPackets_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPackets`](#structFRHAPI__PexClientRequest_1a4d4d83a20264bbfe35d6cb641caa5fa6)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a4d4d83a20264bbfe35d6cb641caa5fa6"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPackets`](#structFRHAPI__PexClientRequest_1a90bf562f214347548a7e49842bf9ea17)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a90bf562f214347548a7e49842bf9ea17"></a>
 
 Gets the value of TotalPackets_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -1534,11 +1534,11 @@ Gets the value of TotalPackets_Optional, if it has been set, otherwise it return
 
 Fills OutValue with the value of TotalPackets_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetTotalPacketsOrNull`](#structFRHAPI__PexClientRequest_1aa9c038d602e85f5581a987540dc5cdf5)`()` <a id="structFRHAPI__PexClientRequest_1aa9c038d602e85f5581a987540dc5cdf5"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetTotalPacketsOrNull`](#structFRHAPI__PexClientRequest_1ac65ca0585e4c3f7e1cef2e17547aed9d)`()` <a id="structFRHAPI__PexClientRequest_1ac65ca0585e4c3f7e1cef2e17547aed9d"></a>
 
 Returns a pointer to TotalPackets_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetTotalPacketsOrNull`](#structFRHAPI__PexClientRequest_1a7d17b60e0e014f325ac994e2931421bb)`() const` <a id="structFRHAPI__PexClientRequest_1a7d17b60e0e014f325ac994e2931421bb"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetTotalPacketsOrNull`](#structFRHAPI__PexClientRequest_1a38d2558e11b33042ba5eb2d14ee8b14d)`() const` <a id="structFRHAPI__PexClientRequest_1a38d2558e11b33042ba5eb2d14ee8b14d"></a>
 
 Returns a pointer to TotalPackets_Optional, if it has been set, otherwise returns nullptr.
 
@@ -1566,15 +1566,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether TotalPackets_Optional is set to null.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPacketLoss`](#structFRHAPI__PexClientRequest_1aabadd0e9060fffac0a439c4c3f76e190)`()` <a id="structFRHAPI__PexClientRequest_1aabadd0e9060fffac0a439c4c3f76e190"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPacketLoss`](#structFRHAPI__PexClientRequest_1a20bde098a1828ce6b877f69ec3fbf5d8)`()` <a id="structFRHAPI__PexClientRequest_1a20bde098a1828ce6b877f69ec3fbf5d8"></a>
 
 Gets the value of InPacketLoss_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPacketLoss`](#structFRHAPI__PexClientRequest_1aca04796b2e75947acff3f4313787432a)`() const` <a id="structFRHAPI__PexClientRequest_1aca04796b2e75947acff3f4313787432a"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPacketLoss`](#structFRHAPI__PexClientRequest_1ab6bb05843ba4ef05159cdc0c3cf1a429)`() const` <a id="structFRHAPI__PexClientRequest_1ab6bb05843ba4ef05159cdc0c3cf1a429"></a>
 
 Gets the value of InPacketLoss_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPacketLoss`](#structFRHAPI__PexClientRequest_1a476e715151204588b5aa4b5bed6a42a5)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a476e715151204588b5aa4b5bed6a42a5"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPacketLoss`](#structFRHAPI__PexClientRequest_1a16450cd5f11e7ad4440a7ae3ca28584d)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a16450cd5f11e7ad4440a7ae3ca28584d"></a>
 
 Gets the value of InPacketLoss_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -1582,11 +1582,11 @@ Gets the value of InPacketLoss_Optional, if it has been set, otherwise it return
 
 Fills OutValue with the value of InPacketLoss_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetInPacketLossOrNull`](#structFRHAPI__PexClientRequest_1a3f1eb3c8a6af4bbd94d0ae6570d11877)`()` <a id="structFRHAPI__PexClientRequest_1a3f1eb3c8a6af4bbd94d0ae6570d11877"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetInPacketLossOrNull`](#structFRHAPI__PexClientRequest_1ad8d90a343af2d9f639078f51f7790732)`()` <a id="structFRHAPI__PexClientRequest_1ad8d90a343af2d9f639078f51f7790732"></a>
 
 Returns a pointer to InPacketLoss_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetInPacketLossOrNull`](#structFRHAPI__PexClientRequest_1a83daf86a1308bf3794b15c6e684b8671)`() const` <a id="structFRHAPI__PexClientRequest_1a83daf86a1308bf3794b15c6e684b8671"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetInPacketLossOrNull`](#structFRHAPI__PexClientRequest_1afe75c8e851da1047be295ddb2147ed60)`() const` <a id="structFRHAPI__PexClientRequest_1afe75c8e851da1047be295ddb2147ed60"></a>
 
 Returns a pointer to InPacketLoss_Optional, if it has been set, otherwise returns nullptr.
 
@@ -1614,15 +1614,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether InPacketLoss_Optional is set to null.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPacketLoss`](#structFRHAPI__PexClientRequest_1aa390710dbb5b157b4d1fed292acd15dc)`()` <a id="structFRHAPI__PexClientRequest_1aa390710dbb5b157b4d1fed292acd15dc"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPacketLoss`](#structFRHAPI__PexClientRequest_1a0dc203c4def738bca9614793485d41d3)`()` <a id="structFRHAPI__PexClientRequest_1a0dc203c4def738bca9614793485d41d3"></a>
 
 Gets the value of OutPacketLoss_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPacketLoss`](#structFRHAPI__PexClientRequest_1afaa83942ed294f5bd7ad1a3f9f475aad)`() const` <a id="structFRHAPI__PexClientRequest_1afaa83942ed294f5bd7ad1a3f9f475aad"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPacketLoss`](#structFRHAPI__PexClientRequest_1aaa01d77e155b67d0ab339b9100a2ae1d)`() const` <a id="structFRHAPI__PexClientRequest_1aaa01d77e155b67d0ab339b9100a2ae1d"></a>
 
 Gets the value of OutPacketLoss_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPacketLoss`](#structFRHAPI__PexClientRequest_1a0921aac03126313325604308300b36bc)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a0921aac03126313325604308300b36bc"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPacketLoss`](#structFRHAPI__PexClientRequest_1ab2d4b1b87b9df3608001758d1fd734fe)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1ab2d4b1b87b9df3608001758d1fd734fe"></a>
 
 Gets the value of OutPacketLoss_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -1630,11 +1630,11 @@ Gets the value of OutPacketLoss_Optional, if it has been set, otherwise it retur
 
 Fills OutValue with the value of OutPacketLoss_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetOutPacketLossOrNull`](#structFRHAPI__PexClientRequest_1a5745280faa7676ff5f5f48f04d420d22)`()` <a id="structFRHAPI__PexClientRequest_1a5745280faa7676ff5f5f48f04d420d22"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetOutPacketLossOrNull`](#structFRHAPI__PexClientRequest_1af08b4a1024486f74918ce811a43ed7fa)`()` <a id="structFRHAPI__PexClientRequest_1af08b4a1024486f74918ce811a43ed7fa"></a>
 
 Returns a pointer to OutPacketLoss_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetOutPacketLossOrNull`](#structFRHAPI__PexClientRequest_1ad28abdf8ab64f8139424ba362ff02201)`() const` <a id="structFRHAPI__PexClientRequest_1ad28abdf8ab64f8139424ba362ff02201"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetOutPacketLossOrNull`](#structFRHAPI__PexClientRequest_1a23abceeb4c403f0143fdb9e8e24e07d9)`() const` <a id="structFRHAPI__PexClientRequest_1a23abceeb4c403f0143fdb9e8e24e07d9"></a>
 
 Returns a pointer to OutPacketLoss_Optional, if it has been set, otherwise returns nullptr.
 
@@ -1662,15 +1662,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether OutPacketLoss_Optional is set to null.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPacketLoss`](#structFRHAPI__PexClientRequest_1a723d0ce408e9ad87b7372bd5d5b69424)`()` <a id="structFRHAPI__PexClientRequest_1a723d0ce408e9ad87b7372bd5d5b69424"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPacketLoss`](#structFRHAPI__PexClientRequest_1a1bd5e87a44115e03e24a0f010c2e1212)`()` <a id="structFRHAPI__PexClientRequest_1a1bd5e87a44115e03e24a0f010c2e1212"></a>
 
 Gets the value of TotalPacketLoss_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPacketLoss`](#structFRHAPI__PexClientRequest_1ae80cf865687caf45a67920e73219f808)`() const` <a id="structFRHAPI__PexClientRequest_1ae80cf865687caf45a67920e73219f808"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPacketLoss`](#structFRHAPI__PexClientRequest_1aebab30cc765842a2e465b77ef0670a1d)`() const` <a id="structFRHAPI__PexClientRequest_1aebab30cc765842a2e465b77ef0670a1d"></a>
 
 Gets the value of TotalPacketLoss_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPacketLoss`](#structFRHAPI__PexClientRequest_1ab47a3ef9a645027e3a1d2bf11e9d3e3d)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1ab47a3ef9a645027e3a1d2bf11e9d3e3d"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPacketLoss`](#structFRHAPI__PexClientRequest_1aa2bb1fdf01db8c5c8d3a144b4a21756c)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1aa2bb1fdf01db8c5c8d3a144b4a21756c"></a>
 
 Gets the value of TotalPacketLoss_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -1678,11 +1678,11 @@ Gets the value of TotalPacketLoss_Optional, if it has been set, otherwise it ret
 
 Fills OutValue with the value of TotalPacketLoss_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetTotalPacketLossOrNull`](#structFRHAPI__PexClientRequest_1a3207395e2b98ec2ab27c0a16f9d8a118)`()` <a id="structFRHAPI__PexClientRequest_1a3207395e2b98ec2ab27c0a16f9d8a118"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetTotalPacketLossOrNull`](#structFRHAPI__PexClientRequest_1a3370483d74a97424df6cb49ba46e1a07)`()` <a id="structFRHAPI__PexClientRequest_1a3370483d74a97424df6cb49ba46e1a07"></a>
 
 Returns a pointer to TotalPacketLoss_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetTotalPacketLossOrNull`](#structFRHAPI__PexClientRequest_1a758fef22d29776a5dbc048a0f95b8a36)`() const` <a id="structFRHAPI__PexClientRequest_1a758fef22d29776a5dbc048a0f95b8a36"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetTotalPacketLossOrNull`](#structFRHAPI__PexClientRequest_1a659425f5472c79bae0834d92984d50fa)`() const` <a id="structFRHAPI__PexClientRequest_1a659425f5472c79bae0834d92984d50fa"></a>
 
 Returns a pointer to TotalPacketLoss_Optional, if it has been set, otherwise returns nullptr.
 
@@ -1710,15 +1710,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether TotalPacketLoss_Optional is set to null.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPacketLossPct`](#structFRHAPI__PexClientRequest_1aa8414c2ccfce9c027d2521d430a56aa8)`()` <a id="structFRHAPI__PexClientRequest_1aa8414c2ccfce9c027d2521d430a56aa8"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPacketLossPct`](#structFRHAPI__PexClientRequest_1a2de29636eb87c11529a6b869b6bd6565)`()` <a id="structFRHAPI__PexClientRequest_1a2de29636eb87c11529a6b869b6bd6565"></a>
 
 Gets the value of InPacketLossPct_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPacketLossPct`](#structFRHAPI__PexClientRequest_1a2c13e8a1b1987afc4af621ee84c1abfc)`() const` <a id="structFRHAPI__PexClientRequest_1a2c13e8a1b1987afc4af621ee84c1abfc"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPacketLossPct`](#structFRHAPI__PexClientRequest_1a7b14b15e99d4be0cae8fdf19137418bf)`() const` <a id="structFRHAPI__PexClientRequest_1a7b14b15e99d4be0cae8fdf19137418bf"></a>
 
 Gets the value of InPacketLossPct_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPacketLossPct`](#structFRHAPI__PexClientRequest_1a4b9627ff37fd44973aa0eb843c1a162f)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a4b9627ff37fd44973aa0eb843c1a162f"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetInPacketLossPct`](#structFRHAPI__PexClientRequest_1af8e9adb831f7d8cfcad3d996e27cc882)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1af8e9adb831f7d8cfcad3d996e27cc882"></a>
 
 Gets the value of InPacketLossPct_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -1726,11 +1726,11 @@ Gets the value of InPacketLossPct_Optional, if it has been set, otherwise it ret
 
 Fills OutValue with the value of InPacketLossPct_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetInPacketLossPctOrNull`](#structFRHAPI__PexClientRequest_1a3ffd179e25ca77c4b9f5be71b7e2da81)`()` <a id="structFRHAPI__PexClientRequest_1a3ffd179e25ca77c4b9f5be71b7e2da81"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetInPacketLossPctOrNull`](#structFRHAPI__PexClientRequest_1ac814e36eff2e1bb578e1ba71187bd857)`()` <a id="structFRHAPI__PexClientRequest_1ac814e36eff2e1bb578e1ba71187bd857"></a>
 
 Returns a pointer to InPacketLossPct_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetInPacketLossPctOrNull`](#structFRHAPI__PexClientRequest_1ab0b67967befa461c025e00f751c02be9)`() const` <a id="structFRHAPI__PexClientRequest_1ab0b67967befa461c025e00f751c02be9"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetInPacketLossPctOrNull`](#structFRHAPI__PexClientRequest_1a4bcfdb83e5d975379db053e36515cd31)`() const` <a id="structFRHAPI__PexClientRequest_1a4bcfdb83e5d975379db053e36515cd31"></a>
 
 Returns a pointer to InPacketLossPct_Optional, if it has been set, otherwise returns nullptr.
 
@@ -1758,15 +1758,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether InPacketLossPct_Optional is set to null.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPacketLossPct`](#structFRHAPI__PexClientRequest_1ac7d42d19c9e0cef486486238db49ac36)`()` <a id="structFRHAPI__PexClientRequest_1ac7d42d19c9e0cef486486238db49ac36"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPacketLossPct`](#structFRHAPI__PexClientRequest_1a0aac80cfa6c83950ffb30fd8b614cb86)`()` <a id="structFRHAPI__PexClientRequest_1a0aac80cfa6c83950ffb30fd8b614cb86"></a>
 
 Gets the value of OutPacketLossPct_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPacketLossPct`](#structFRHAPI__PexClientRequest_1a5637d6b3e9f5ad35e8e3e9c29a551916)`() const` <a id="structFRHAPI__PexClientRequest_1a5637d6b3e9f5ad35e8e3e9c29a551916"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPacketLossPct`](#structFRHAPI__PexClientRequest_1aa92222716a7ad31059bbd573ccde37f9)`() const` <a id="structFRHAPI__PexClientRequest_1aa92222716a7ad31059bbd573ccde37f9"></a>
 
 Gets the value of OutPacketLossPct_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPacketLossPct`](#structFRHAPI__PexClientRequest_1a74a8fc0f2f316c71b852e6e54c0e9824)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a74a8fc0f2f316c71b852e6e54c0e9824"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetOutPacketLossPct`](#structFRHAPI__PexClientRequest_1a3aae83df9aa1d86b3f2ab3db5e9cc1a6)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a3aae83df9aa1d86b3f2ab3db5e9cc1a6"></a>
 
 Gets the value of OutPacketLossPct_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -1774,11 +1774,11 @@ Gets the value of OutPacketLossPct_Optional, if it has been set, otherwise it re
 
 Fills OutValue with the value of OutPacketLossPct_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetOutPacketLossPctOrNull`](#structFRHAPI__PexClientRequest_1a25ba4a6bb0bbb883efc5e07237549e2c)`()` <a id="structFRHAPI__PexClientRequest_1a25ba4a6bb0bbb883efc5e07237549e2c"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetOutPacketLossPctOrNull`](#structFRHAPI__PexClientRequest_1ada17c1e1b441241ecf3a99d81bc5c5d6)`()` <a id="structFRHAPI__PexClientRequest_1ada17c1e1b441241ecf3a99d81bc5c5d6"></a>
 
 Returns a pointer to OutPacketLossPct_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetOutPacketLossPctOrNull`](#structFRHAPI__PexClientRequest_1afd920f4db6487b97c8c657c53b5d1219)`() const` <a id="structFRHAPI__PexClientRequest_1afd920f4db6487b97c8c657c53b5d1219"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetOutPacketLossPctOrNull`](#structFRHAPI__PexClientRequest_1ae5b6b0431fc45c4d10aa178c746b8b92)`() const` <a id="structFRHAPI__PexClientRequest_1ae5b6b0431fc45c4d10aa178c746b8b92"></a>
 
 Returns a pointer to OutPacketLossPct_Optional, if it has been set, otherwise returns nullptr.
 
@@ -1806,15 +1806,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether OutPacketLossPct_Optional is set to null.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPacketLossPct`](#structFRHAPI__PexClientRequest_1a8f29cda846fde79cd6462448463b4f31)`()` <a id="structFRHAPI__PexClientRequest_1a8f29cda846fde79cd6462448463b4f31"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPacketLossPct`](#structFRHAPI__PexClientRequest_1a734a5e2ebc197476db3d00962cc2cae2)`()` <a id="structFRHAPI__PexClientRequest_1a734a5e2ebc197476db3d00962cc2cae2"></a>
 
 Gets the value of TotalPacketLossPct_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPacketLossPct`](#structFRHAPI__PexClientRequest_1aacc6ffbe45d453c0f4a01347f56c7994)`() const` <a id="structFRHAPI__PexClientRequest_1aacc6ffbe45d453c0f4a01347f56c7994"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPacketLossPct`](#structFRHAPI__PexClientRequest_1abd85fceddf7cd646cc9fcf08c4dea513)`() const` <a id="structFRHAPI__PexClientRequest_1abd85fceddf7cd646cc9fcf08c4dea513"></a>
 
 Gets the value of TotalPacketLossPct_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPacketLossPct`](#structFRHAPI__PexClientRequest_1a962391f3dbba6bcb893930abfcc1d28c)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a962391f3dbba6bcb893930abfcc1d28c"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetTotalPacketLossPct`](#structFRHAPI__PexClientRequest_1aef37735a09d5b9343d0d022361ddc66f)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1aef37735a09d5b9343d0d022361ddc66f"></a>
 
 Gets the value of TotalPacketLossPct_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -1822,11 +1822,11 @@ Gets the value of TotalPacketLossPct_Optional, if it has been set, otherwise it 
 
 Fills OutValue with the value of TotalPacketLossPct_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetTotalPacketLossPctOrNull`](#structFRHAPI__PexClientRequest_1a66d5f12825db65c4a04cecf396b31f05)`()` <a id="structFRHAPI__PexClientRequest_1a66d5f12825db65c4a04cecf396b31f05"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetTotalPacketLossPctOrNull`](#structFRHAPI__PexClientRequest_1ae1897e1731aa31630315646a1f1aab0c)`()` <a id="structFRHAPI__PexClientRequest_1ae1897e1731aa31630315646a1f1aab0c"></a>
 
 Returns a pointer to TotalPacketLossPct_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetTotalPacketLossPctOrNull`](#structFRHAPI__PexClientRequest_1acfcc3f176af49e9f393c77f2e510d3f5)`() const` <a id="structFRHAPI__PexClientRequest_1acfcc3f176af49e9f393c77f2e510d3f5"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetTotalPacketLossPctOrNull`](#structFRHAPI__PexClientRequest_1a98f7bee773e5ac1f08a8aeab9d50349c)`() const` <a id="structFRHAPI__PexClientRequest_1a98f7bee773e5ac1f08a8aeab9d50349c"></a>
 
 Returns a pointer to TotalPacketLossPct_Optional, if it has been set, otherwise returns nullptr.
 
@@ -1854,15 +1854,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether TotalPacketLossPct_Optional is set to null.
 
-#### `public inline `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & `[`GetTotalDisconnects`](#structFRHAPI__PexClientRequest_1a8205153332c2a206ffe2444dcc1345d4)`()` <a id="structFRHAPI__PexClientRequest_1a8205153332c2a206ffe2444dcc1345d4"></a>
+#### `public inline `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & `[`GetTotalDisconnects`](#structFRHAPI__PexClientRequest_1a1f8fb19417e6cb1475198fab98241a14)`()` <a id="structFRHAPI__PexClientRequest_1a1f8fb19417e6cb1475198fab98241a14"></a>
 
 Gets the value of TotalDisconnects_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & `[`GetTotalDisconnects`](#structFRHAPI__PexClientRequest_1a529fc0ce0674d39ec678079276939d36)`() const` <a id="structFRHAPI__PexClientRequest_1a529fc0ce0674d39ec678079276939d36"></a>
+#### `public inline const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & `[`GetTotalDisconnects`](#structFRHAPI__PexClientRequest_1ad3303b358b322f1d919cd7039f02b3d7)`() const` <a id="structFRHAPI__PexClientRequest_1ad3303b358b322f1d919cd7039f02b3d7"></a>
 
 Gets the value of TotalDisconnects_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & `[`GetTotalDisconnects`](#structFRHAPI__PexClientRequest_1aab214cb1429495d4b40644e3c759f610)`(const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1aab214cb1429495d4b40644e3c759f610"></a>
+#### `public inline const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & `[`GetTotalDisconnects`](#structFRHAPI__PexClientRequest_1ad3961f46eb43ea6a87e64419447469c6)`(const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1ad3961f46eb43ea6a87e64419447469c6"></a>
 
 Gets the value of TotalDisconnects_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -1870,11 +1870,11 @@ Gets the value of TotalDisconnects_Optional, if it has been set, otherwise it re
 
 Fills OutValue with the value of TotalDisconnects_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` * `[`GetTotalDisconnectsOrNull`](#structFRHAPI__PexClientRequest_1aa4e4053bdeb0b96fd42ad4ec19fd3d15)`()` <a id="structFRHAPI__PexClientRequest_1aa4e4053bdeb0b96fd42ad4ec19fd3d15"></a>
+#### `public inline `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` * `[`GetTotalDisconnectsOrNull`](#structFRHAPI__PexClientRequest_1a24ebf75af34917102f25593caf520f20)`()` <a id="structFRHAPI__PexClientRequest_1a24ebf75af34917102f25593caf520f20"></a>
 
 Returns a pointer to TotalDisconnects_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` * `[`GetTotalDisconnectsOrNull`](#structFRHAPI__PexClientRequest_1a1c3a07069f5938d2829b63500128fe26)`() const` <a id="structFRHAPI__PexClientRequest_1a1c3a07069f5938d2829b63500128fe26"></a>
+#### `public inline const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` * `[`GetTotalDisconnectsOrNull`](#structFRHAPI__PexClientRequest_1ab22f68c5f8ead2a4aae38d71b5bb9bef)`() const` <a id="structFRHAPI__PexClientRequest_1ab22f68c5f8ead2a4aae38d71b5bb9bef"></a>
 
 Returns a pointer to TotalDisconnects_Optional, if it has been set, otherwise returns nullptr.
 
@@ -1902,15 +1902,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether TotalDisconnects_Optional is set to null.
 
-#### `public inline `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & `[`GetMatchDuration`](#structFRHAPI__PexClientRequest_1a6bd9488066ad20996d2b1d02c7d9b3ec)`()` <a id="structFRHAPI__PexClientRequest_1a6bd9488066ad20996d2b1d02c7d9b3ec"></a>
+#### `public inline `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & `[`GetMatchDuration`](#structFRHAPI__PexClientRequest_1aee6db80c3572bdca95ab4d1432292ddf)`()` <a id="structFRHAPI__PexClientRequest_1aee6db80c3572bdca95ab4d1432292ddf"></a>
 
 Gets the value of MatchDuration_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & `[`GetMatchDuration`](#structFRHAPI__PexClientRequest_1a40565d5e851920da8631e1d25ac0f1db)`() const` <a id="structFRHAPI__PexClientRequest_1a40565d5e851920da8631e1d25ac0f1db"></a>
+#### `public inline const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & `[`GetMatchDuration`](#structFRHAPI__PexClientRequest_1ac7718bbca47ee98099ffe16354e1d898)`() const` <a id="structFRHAPI__PexClientRequest_1ac7718bbca47ee98099ffe16354e1d898"></a>
 
 Gets the value of MatchDuration_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & `[`GetMatchDuration`](#structFRHAPI__PexClientRequest_1a0375cbc7c6e9d4ed8f4d3f34dc86b3e6)`(const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a0375cbc7c6e9d4ed8f4d3f34dc86b3e6"></a>
+#### `public inline const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & `[`GetMatchDuration`](#structFRHAPI__PexClientRequest_1ad19dd3240c0e38d2c67c99b6f4947bf4)`(const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1ad19dd3240c0e38d2c67c99b6f4947bf4"></a>
 
 Gets the value of MatchDuration_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -1918,11 +1918,11 @@ Gets the value of MatchDuration_Optional, if it has been set, otherwise it retur
 
 Fills OutValue with the value of MatchDuration_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` * `[`GetMatchDurationOrNull`](#structFRHAPI__PexClientRequest_1aec5adfbe9eac5f51148c0f367bbbba55)`()` <a id="structFRHAPI__PexClientRequest_1aec5adfbe9eac5f51148c0f367bbbba55"></a>
+#### `public inline `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` * `[`GetMatchDurationOrNull`](#structFRHAPI__PexClientRequest_1ab5b654b06d77ee622ea693fe3759dbc1)`()` <a id="structFRHAPI__PexClientRequest_1ab5b654b06d77ee622ea693fe3759dbc1"></a>
 
 Returns a pointer to MatchDuration_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` * `[`GetMatchDurationOrNull`](#structFRHAPI__PexClientRequest_1ac9d33eb4bb8fcb60b1436b1987df7c67)`() const` <a id="structFRHAPI__PexClientRequest_1ac9d33eb4bb8fcb60b1436b1987df7c67"></a>
+#### `public inline const `[`FRHAPI_PexCount`](RHAPI_PexCount.md#structFRHAPI__PexCount)` * `[`GetMatchDurationOrNull`](#structFRHAPI__PexClientRequest_1a001ae326bf0214ee4e1d7ed0ebd14086)`() const` <a id="structFRHAPI__PexClientRequest_1a001ae326bf0214ee4e1d7ed0ebd14086"></a>
 
 Returns a pointer to MatchDuration_Optional, if it has been set, otherwise returns nullptr.
 
@@ -1950,15 +1950,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether MatchDuration_Optional is set to null.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetGameThreadTime`](#structFRHAPI__PexClientRequest_1adbd9b12768d8e107ea64da8a33157b4f)`()` <a id="structFRHAPI__PexClientRequest_1adbd9b12768d8e107ea64da8a33157b4f"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetGameThreadTime`](#structFRHAPI__PexClientRequest_1abacc15f8e353bfac9b6eb3c2e306ab4d)`()` <a id="structFRHAPI__PexClientRequest_1abacc15f8e353bfac9b6eb3c2e306ab4d"></a>
 
 Gets the value of GameThreadTime_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetGameThreadTime`](#structFRHAPI__PexClientRequest_1a962ed037405c0ed415847c74ebcfa3a6)`() const` <a id="structFRHAPI__PexClientRequest_1a962ed037405c0ed415847c74ebcfa3a6"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetGameThreadTime`](#structFRHAPI__PexClientRequest_1a319ae2b2efef18efa60cb032eb2a8b40)`() const` <a id="structFRHAPI__PexClientRequest_1a319ae2b2efef18efa60cb032eb2a8b40"></a>
 
 Gets the value of GameThreadTime_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetGameThreadTime`](#structFRHAPI__PexClientRequest_1a2dd7a2fed32f95667a33c4cd3e9db359)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a2dd7a2fed32f95667a33c4cd3e9db359"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetGameThreadTime`](#structFRHAPI__PexClientRequest_1a9855ccea48718d5fa09416b54106b90c)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a9855ccea48718d5fa09416b54106b90c"></a>
 
 Gets the value of GameThreadTime_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -1966,11 +1966,11 @@ Gets the value of GameThreadTime_Optional, if it has been set, otherwise it retu
 
 Fills OutValue with the value of GameThreadTime_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetGameThreadTimeOrNull`](#structFRHAPI__PexClientRequest_1a8a196582075a95bf8f680426c9eb9975)`()` <a id="structFRHAPI__PexClientRequest_1a8a196582075a95bf8f680426c9eb9975"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetGameThreadTimeOrNull`](#structFRHAPI__PexClientRequest_1a617487e9eeab994886952a6cf39b150b)`()` <a id="structFRHAPI__PexClientRequest_1a617487e9eeab994886952a6cf39b150b"></a>
 
 Returns a pointer to GameThreadTime_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetGameThreadTimeOrNull`](#structFRHAPI__PexClientRequest_1a5245fadabd1616486d1d8ce2c86cf7d4)`() const` <a id="structFRHAPI__PexClientRequest_1a5245fadabd1616486d1d8ce2c86cf7d4"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetGameThreadTimeOrNull`](#structFRHAPI__PexClientRequest_1af31c4b5b8d3c67c849c97630c7def02d)`() const` <a id="structFRHAPI__PexClientRequest_1af31c4b5b8d3c67c849c97630c7def02d"></a>
 
 Returns a pointer to GameThreadTime_Optional, if it has been set, otherwise returns nullptr.
 
@@ -1998,15 +1998,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether GameThreadTime_Optional is set to null.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetRenderThreadTime`](#structFRHAPI__PexClientRequest_1aa21d66241392b64b1d4c278393b671a3)`()` <a id="structFRHAPI__PexClientRequest_1aa21d66241392b64b1d4c278393b671a3"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetRenderThreadTime`](#structFRHAPI__PexClientRequest_1a36989ca95ba1849cf495b95ee66ffc7e)`()` <a id="structFRHAPI__PexClientRequest_1a36989ca95ba1849cf495b95ee66ffc7e"></a>
 
 Gets the value of RenderThreadTime_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetRenderThreadTime`](#structFRHAPI__PexClientRequest_1a30ea5e94be15a9aee885f528e9036223)`() const` <a id="structFRHAPI__PexClientRequest_1a30ea5e94be15a9aee885f528e9036223"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetRenderThreadTime`](#structFRHAPI__PexClientRequest_1a189a63fba3425cd6d0597aaff427fa67)`() const` <a id="structFRHAPI__PexClientRequest_1a189a63fba3425cd6d0597aaff427fa67"></a>
 
 Gets the value of RenderThreadTime_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetRenderThreadTime`](#structFRHAPI__PexClientRequest_1ae5e444e6d2b7ee2897c91f0f44dd82ff)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1ae5e444e6d2b7ee2897c91f0f44dd82ff"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetRenderThreadTime`](#structFRHAPI__PexClientRequest_1a8f3eb7b223b626cf0ea1930697efe4c5)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a8f3eb7b223b626cf0ea1930697efe4c5"></a>
 
 Gets the value of RenderThreadTime_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -2014,11 +2014,11 @@ Gets the value of RenderThreadTime_Optional, if it has been set, otherwise it re
 
 Fills OutValue with the value of RenderThreadTime_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetRenderThreadTimeOrNull`](#structFRHAPI__PexClientRequest_1a3c56ea960d9a8ed16472a22aff29aa37)`()` <a id="structFRHAPI__PexClientRequest_1a3c56ea960d9a8ed16472a22aff29aa37"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetRenderThreadTimeOrNull`](#structFRHAPI__PexClientRequest_1adcf8ae74ef1bc9b4608926ca4cd97d72)`()` <a id="structFRHAPI__PexClientRequest_1adcf8ae74ef1bc9b4608926ca4cd97d72"></a>
 
 Returns a pointer to RenderThreadTime_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetRenderThreadTimeOrNull`](#structFRHAPI__PexClientRequest_1a35fdd88d7c861333db977014ddc08cdf)`() const` <a id="structFRHAPI__PexClientRequest_1a35fdd88d7c861333db977014ddc08cdf"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetRenderThreadTimeOrNull`](#structFRHAPI__PexClientRequest_1abb324377a4d8f63a70678bb91de41fa2)`() const` <a id="structFRHAPI__PexClientRequest_1abb324377a4d8f63a70678bb91de41fa2"></a>
 
 Returns a pointer to RenderThreadTime_Optional, if it has been set, otherwise returns nullptr.
 
@@ -2046,15 +2046,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether RenderThreadTime_Optional is set to null.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetGpuTime`](#structFRHAPI__PexClientRequest_1a14753b84e8b38d6a1ad11383f4a27d86)`()` <a id="structFRHAPI__PexClientRequest_1a14753b84e8b38d6a1ad11383f4a27d86"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetGpuTime`](#structFRHAPI__PexClientRequest_1a3b9a49fab961a2dfffef15c1e39a63a1)`()` <a id="structFRHAPI__PexClientRequest_1a3b9a49fab961a2dfffef15c1e39a63a1"></a>
 
 Gets the value of GpuTime_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetGpuTime`](#structFRHAPI__PexClientRequest_1adbab5d202992e1b536025b9d4da570a0)`() const` <a id="structFRHAPI__PexClientRequest_1adbab5d202992e1b536025b9d4da570a0"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetGpuTime`](#structFRHAPI__PexClientRequest_1a1eade3525ffb01bd102d9f1beab7200e)`() const` <a id="structFRHAPI__PexClientRequest_1a1eade3525ffb01bd102d9f1beab7200e"></a>
 
 Gets the value of GpuTime_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetGpuTime`](#structFRHAPI__PexClientRequest_1afffc0209136bf75851febdcee2d620de)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1afffc0209136bf75851febdcee2d620de"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetGpuTime`](#structFRHAPI__PexClientRequest_1aa1e56a5c49c18a54e07820d6bf0bc60a)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1aa1e56a5c49c18a54e07820d6bf0bc60a"></a>
 
 Gets the value of GpuTime_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -2062,11 +2062,11 @@ Gets the value of GpuTime_Optional, if it has been set, otherwise it returns Def
 
 Fills OutValue with the value of GpuTime_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetGpuTimeOrNull`](#structFRHAPI__PexClientRequest_1ad436b76fda8098cbe2eb2670c247cca5)`()` <a id="structFRHAPI__PexClientRequest_1ad436b76fda8098cbe2eb2670c247cca5"></a>
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetGpuTimeOrNull`](#structFRHAPI__PexClientRequest_1a77acbcbc40c77db7bb0ea9794e4a53f2)`()` <a id="structFRHAPI__PexClientRequest_1a77acbcbc40c77db7bb0ea9794e4a53f2"></a>
 
 Returns a pointer to GpuTime_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetGpuTimeOrNull`](#structFRHAPI__PexClientRequest_1a08e3b933317cd5a2edea72a45c721cdf)`() const` <a id="structFRHAPI__PexClientRequest_1a08e3b933317cd5a2edea72a45c721cdf"></a>
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetGpuTimeOrNull`](#structFRHAPI__PexClientRequest_1acb5eeb3a6358b364bab1d264ef1c1f94)`() const` <a id="structFRHAPI__PexClientRequest_1acb5eeb3a6358b364bab1d264ef1c1f94"></a>
 
 Returns a pointer to GpuTime_Optional, if it has been set, otherwise returns nullptr.
 
@@ -2094,11 +2094,11 @@ Sets the value explicitly to be treated as null.
 
 Checks whether GpuTime_Optional is set to null.
 
-#### `public inline FString & `[`GetMatchId`](#structFRHAPI__PexClientRequest_1a03103f750dd0945b515e97aa5bf706b6)`()` <a id="structFRHAPI__PexClientRequest_1a03103f750dd0945b515e97aa5bf706b6"></a>
+#### `public inline FString & `[`GetMatchId`](#structFRHAPI__PexClientRequest_1aaed609e71fc09746805676d6ecb907c6)`()` <a id="structFRHAPI__PexClientRequest_1aaed609e71fc09746805676d6ecb907c6"></a>
 
 Gets the value of MatchId.
 
-#### `public inline const FString & `[`GetMatchId`](#structFRHAPI__PexClientRequest_1ab9f9ba6c0846d46041994a0b5e7035db)`() const` <a id="structFRHAPI__PexClientRequest_1ab9f9ba6c0846d46041994a0b5e7035db"></a>
+#### `public inline const FString & `[`GetMatchId`](#structFRHAPI__PexClientRequest_1ab689b538a79fd7d0190897a030b7bbda)`() const` <a id="structFRHAPI__PexClientRequest_1ab689b538a79fd7d0190897a030b7bbda"></a>
 
 Gets the value of MatchId.
 
@@ -2110,15 +2110,15 @@ Sets the value of MatchId.
 
 Sets the value of MatchId using move semantics.
 
-#### `public inline FString & `[`GetRegionId`](#structFRHAPI__PexClientRequest_1a36f209f0c2c2eb6a30f2b4fdc2567807)`()` <a id="structFRHAPI__PexClientRequest_1a36f209f0c2c2eb6a30f2b4fdc2567807"></a>
+#### `public inline FString & `[`GetRegionId`](#structFRHAPI__PexClientRequest_1ad0956771955e4d7d1b0c61962db08cb1)`()` <a id="structFRHAPI__PexClientRequest_1ad0956771955e4d7d1b0c61962db08cb1"></a>
 
 Gets the value of RegionId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRegionId`](#structFRHAPI__PexClientRequest_1a67e40d50736317466b87132d6cbdbb95)`() const` <a id="structFRHAPI__PexClientRequest_1a67e40d50736317466b87132d6cbdbb95"></a>
+#### `public inline const FString & `[`GetRegionId`](#structFRHAPI__PexClientRequest_1ab72fffffb327d281dc204d3a29eb4e13)`() const` <a id="structFRHAPI__PexClientRequest_1ab72fffffb327d281dc204d3a29eb4e13"></a>
 
 Gets the value of RegionId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRegionId`](#structFRHAPI__PexClientRequest_1ac11c5cfdfabbdf661156c2be945ac5e3)`(const FString & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1ac11c5cfdfabbdf661156c2be945ac5e3"></a>
+#### `public inline const FString & `[`GetRegionId`](#structFRHAPI__PexClientRequest_1ad1b81dca5a481f2e5fc1ae821c74cefd)`(const FString & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1ad1b81dca5a481f2e5fc1ae821c74cefd"></a>
 
 Gets the value of RegionId_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -2126,11 +2126,11 @@ Gets the value of RegionId_Optional, if it has been set, otherwise it returns De
 
 Fills OutValue with the value of RegionId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRegionIdOrNull`](#structFRHAPI__PexClientRequest_1a4ec40035cfe9d5abc211fb76c925a3cb)`()` <a id="structFRHAPI__PexClientRequest_1a4ec40035cfe9d5abc211fb76c925a3cb"></a>
+#### `public inline FString * `[`GetRegionIdOrNull`](#structFRHAPI__PexClientRequest_1a13794ad795d67f95def7dcb9226f21b2)`()` <a id="structFRHAPI__PexClientRequest_1a13794ad795d67f95def7dcb9226f21b2"></a>
 
 Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRegionIdOrNull`](#structFRHAPI__PexClientRequest_1aa84a8d8e3a10325efa23c9618e99b4b1)`() const` <a id="structFRHAPI__PexClientRequest_1aa84a8d8e3a10325efa23c9618e99b4b1"></a>
+#### `public inline const FString * `[`GetRegionIdOrNull`](#structFRHAPI__PexClientRequest_1a5a607188a0bc1c5529025ea490f26d25)`() const` <a id="structFRHAPI__PexClientRequest_1a5a607188a0bc1c5529025ea490f26d25"></a>
 
 Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr.
 
@@ -2158,15 +2158,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether RegionId_Optional is set to null.
 
-#### `public inline FString & `[`GetServerId`](#structFRHAPI__PexClientRequest_1ab4b979776aca2f1a6afd1a88a1e320b3)`()` <a id="structFRHAPI__PexClientRequest_1ab4b979776aca2f1a6afd1a88a1e320b3"></a>
+#### `public inline FString & `[`GetServerId`](#structFRHAPI__PexClientRequest_1a6b96b11e754d122dd958145fb5da2317)`()` <a id="structFRHAPI__PexClientRequest_1a6b96b11e754d122dd958145fb5da2317"></a>
 
 Gets the value of ServerId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetServerId`](#structFRHAPI__PexClientRequest_1a3f856143166ee2e6ef89e9ed462ae947)`() const` <a id="structFRHAPI__PexClientRequest_1a3f856143166ee2e6ef89e9ed462ae947"></a>
+#### `public inline const FString & `[`GetServerId`](#structFRHAPI__PexClientRequest_1a86b6825b9b15a37e6d0000222d9cd648)`() const` <a id="structFRHAPI__PexClientRequest_1a86b6825b9b15a37e6d0000222d9cd648"></a>
 
 Gets the value of ServerId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetServerId`](#structFRHAPI__PexClientRequest_1a0698781b2905d8d1113e53ce6bfb529f)`(const FString & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a0698781b2905d8d1113e53ce6bfb529f"></a>
+#### `public inline const FString & `[`GetServerId`](#structFRHAPI__PexClientRequest_1ad612398135682ef897e2dfc47772cea6)`(const FString & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1ad612398135682ef897e2dfc47772cea6"></a>
 
 Gets the value of ServerId_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -2174,11 +2174,11 @@ Gets the value of ServerId_Optional, if it has been set, otherwise it returns De
 
 Fills OutValue with the value of ServerId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetServerIdOrNull`](#structFRHAPI__PexClientRequest_1a126b5fb066db5ce4f7bafdacac6f0361)`()` <a id="structFRHAPI__PexClientRequest_1a126b5fb066db5ce4f7bafdacac6f0361"></a>
+#### `public inline FString * `[`GetServerIdOrNull`](#structFRHAPI__PexClientRequest_1ad900d88abeb6babdcd1fe5f7372eac17)`()` <a id="structFRHAPI__PexClientRequest_1ad900d88abeb6babdcd1fe5f7372eac17"></a>
 
 Returns a pointer to ServerId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetServerIdOrNull`](#structFRHAPI__PexClientRequest_1aa13a1f7a3c17377cc7d9bf818f81cdbf)`() const` <a id="structFRHAPI__PexClientRequest_1aa13a1f7a3c17377cc7d9bf818f81cdbf"></a>
+#### `public inline const FString * `[`GetServerIdOrNull`](#structFRHAPI__PexClientRequest_1aecca66bd1d15afd6d93f6d0441e5a897)`() const` <a id="structFRHAPI__PexClientRequest_1aecca66bd1d15afd6d93f6d0441e5a897"></a>
 
 Returns a pointer to ServerId_Optional, if it has been set, otherwise returns nullptr.
 
@@ -2206,15 +2206,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether ServerId_Optional is set to null.
 
-#### `public inline FString & `[`GetAllocationId`](#structFRHAPI__PexClientRequest_1a737dee55c111febcd274fb40bfbd7061)`()` <a id="structFRHAPI__PexClientRequest_1a737dee55c111febcd274fb40bfbd7061"></a>
+#### `public inline FString & `[`GetAllocationId`](#structFRHAPI__PexClientRequest_1a477e5ceb6e1d85c2ba1f99c88f77491f)`()` <a id="structFRHAPI__PexClientRequest_1a477e5ceb6e1d85c2ba1f99c88f77491f"></a>
 
 Gets the value of AllocationId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetAllocationId`](#structFRHAPI__PexClientRequest_1a8d84e38845c3ae8bfb7a2662831826f7)`() const` <a id="structFRHAPI__PexClientRequest_1a8d84e38845c3ae8bfb7a2662831826f7"></a>
+#### `public inline const FString & `[`GetAllocationId`](#structFRHAPI__PexClientRequest_1a51ef1abcc8ac012c761fda3f17d43e8d)`() const` <a id="structFRHAPI__PexClientRequest_1a51ef1abcc8ac012c761fda3f17d43e8d"></a>
 
 Gets the value of AllocationId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetAllocationId`](#structFRHAPI__PexClientRequest_1ab05786136d4b23a80e340e9607c00559)`(const FString & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1ab05786136d4b23a80e340e9607c00559"></a>
+#### `public inline const FString & `[`GetAllocationId`](#structFRHAPI__PexClientRequest_1a1f78670fd28c615f951a1c75d369f63c)`(const FString & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a1f78670fd28c615f951a1c75d369f63c"></a>
 
 Gets the value of AllocationId_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -2222,11 +2222,11 @@ Gets the value of AllocationId_Optional, if it has been set, otherwise it return
 
 Fills OutValue with the value of AllocationId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetAllocationIdOrNull`](#structFRHAPI__PexClientRequest_1af6f11ace2aabb3b7e6460aa5699f2d3b)`()` <a id="structFRHAPI__PexClientRequest_1af6f11ace2aabb3b7e6460aa5699f2d3b"></a>
+#### `public inline FString * `[`GetAllocationIdOrNull`](#structFRHAPI__PexClientRequest_1adbe0f4a8ead8c36b405bbcd34231b376)`()` <a id="structFRHAPI__PexClientRequest_1adbe0f4a8ead8c36b405bbcd34231b376"></a>
 
 Returns a pointer to AllocationId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetAllocationIdOrNull`](#structFRHAPI__PexClientRequest_1a975ec9228a8b2d694552e4df8e1b6bcb)`() const` <a id="structFRHAPI__PexClientRequest_1a975ec9228a8b2d694552e4df8e1b6bcb"></a>
+#### `public inline const FString * `[`GetAllocationIdOrNull`](#structFRHAPI__PexClientRequest_1a6668ad4218ffc343a18e9c508901a77d)`() const` <a id="structFRHAPI__PexClientRequest_1a6668ad4218ffc343a18e9c508901a77d"></a>
 
 Returns a pointer to AllocationId_Optional, if it has been set, otherwise returns nullptr.
 
@@ -2254,15 +2254,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether AllocationId_Optional is set to null.
 
-#### `public inline FString & `[`GetDatacenterProvider`](#structFRHAPI__PexClientRequest_1a689a2307210d5cff2486039f81321477)`()` <a id="structFRHAPI__PexClientRequest_1a689a2307210d5cff2486039f81321477"></a>
+#### `public inline FString & `[`GetDatacenterProvider`](#structFRHAPI__PexClientRequest_1a0370b50319cb15b0e7fcedd98e390ade)`()` <a id="structFRHAPI__PexClientRequest_1a0370b50319cb15b0e7fcedd98e390ade"></a>
 
 Gets the value of DatacenterProvider_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetDatacenterProvider`](#structFRHAPI__PexClientRequest_1a6f7433224aab455558d80b5075c1e514)`() const` <a id="structFRHAPI__PexClientRequest_1a6f7433224aab455558d80b5075c1e514"></a>
+#### `public inline const FString & `[`GetDatacenterProvider`](#structFRHAPI__PexClientRequest_1afc94a8f0d79c8227d75d8b857329565f)`() const` <a id="structFRHAPI__PexClientRequest_1afc94a8f0d79c8227d75d8b857329565f"></a>
 
 Gets the value of DatacenterProvider_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetDatacenterProvider`](#structFRHAPI__PexClientRequest_1a8389b28147fac321f1562148e3f4a35f)`(const FString & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a8389b28147fac321f1562148e3f4a35f"></a>
+#### `public inline const FString & `[`GetDatacenterProvider`](#structFRHAPI__PexClientRequest_1a50020547ab8d4b4f70f95bd378a18bcd)`(const FString & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a50020547ab8d4b4f70f95bd378a18bcd"></a>
 
 Gets the value of DatacenterProvider_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -2270,11 +2270,11 @@ Gets the value of DatacenterProvider_Optional, if it has been set, otherwise it 
 
 Fills OutValue with the value of DatacenterProvider_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetDatacenterProviderOrNull`](#structFRHAPI__PexClientRequest_1adcc1ed7e61774c60d394b7d72c9ce946)`()` <a id="structFRHAPI__PexClientRequest_1adcc1ed7e61774c60d394b7d72c9ce946"></a>
+#### `public inline FString * `[`GetDatacenterProviderOrNull`](#structFRHAPI__PexClientRequest_1a1e3e6197da7fd31e04b754d34ce2a467)`()` <a id="structFRHAPI__PexClientRequest_1a1e3e6197da7fd31e04b754d34ce2a467"></a>
 
 Returns a pointer to DatacenterProvider_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetDatacenterProviderOrNull`](#structFRHAPI__PexClientRequest_1a5298cbb51ba27057c1568ced7fa6322a)`() const` <a id="structFRHAPI__PexClientRequest_1a5298cbb51ba27057c1568ced7fa6322a"></a>
+#### `public inline const FString * `[`GetDatacenterProviderOrNull`](#structFRHAPI__PexClientRequest_1aa79a8a6a6af3c534a030d663647f1374)`() const` <a id="structFRHAPI__PexClientRequest_1aa79a8a6a6af3c534a030d663647f1374"></a>
 
 Returns a pointer to DatacenterProvider_Optional, if it has been set, otherwise returns nullptr.
 
@@ -2302,15 +2302,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether DatacenterProvider_Optional is set to null.
 
-#### `public inline FString & `[`GetDatacenterLocation`](#structFRHAPI__PexClientRequest_1a639d82f7ef2f98487ce70d7343660fa3)`()` <a id="structFRHAPI__PexClientRequest_1a639d82f7ef2f98487ce70d7343660fa3"></a>
+#### `public inline FString & `[`GetDatacenterLocation`](#structFRHAPI__PexClientRequest_1ad69164f200bb8bb01ece42ddcb4e7ecd)`()` <a id="structFRHAPI__PexClientRequest_1ad69164f200bb8bb01ece42ddcb4e7ecd"></a>
 
 Gets the value of DatacenterLocation_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetDatacenterLocation`](#structFRHAPI__PexClientRequest_1a62aa91f67e3db4ff7a95af8b17dbb10e)`() const` <a id="structFRHAPI__PexClientRequest_1a62aa91f67e3db4ff7a95af8b17dbb10e"></a>
+#### `public inline const FString & `[`GetDatacenterLocation`](#structFRHAPI__PexClientRequest_1ad02ab7c54b7cbe157b003cb9895bc8cd)`() const` <a id="structFRHAPI__PexClientRequest_1ad02ab7c54b7cbe157b003cb9895bc8cd"></a>
 
 Gets the value of DatacenterLocation_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetDatacenterLocation`](#structFRHAPI__PexClientRequest_1a7663c717428956b2eecf4442bfb16548)`(const FString & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a7663c717428956b2eecf4442bfb16548"></a>
+#### `public inline const FString & `[`GetDatacenterLocation`](#structFRHAPI__PexClientRequest_1a97e1b8847834cc9b0fb83e3fd199fc5c)`(const FString & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a97e1b8847834cc9b0fb83e3fd199fc5c"></a>
 
 Gets the value of DatacenterLocation_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -2318,11 +2318,11 @@ Gets the value of DatacenterLocation_Optional, if it has been set, otherwise it 
 
 Fills OutValue with the value of DatacenterLocation_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetDatacenterLocationOrNull`](#structFRHAPI__PexClientRequest_1ad137745f9a11fb45c8e1b58735db5be7)`()` <a id="structFRHAPI__PexClientRequest_1ad137745f9a11fb45c8e1b58735db5be7"></a>
+#### `public inline FString * `[`GetDatacenterLocationOrNull`](#structFRHAPI__PexClientRequest_1a6fb2d465cd9f539f388310319299bd0c)`()` <a id="structFRHAPI__PexClientRequest_1a6fb2d465cd9f539f388310319299bd0c"></a>
 
 Returns a pointer to DatacenterLocation_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetDatacenterLocationOrNull`](#structFRHAPI__PexClientRequest_1a42a793ceb288ce33c6310b8984678515)`() const` <a id="structFRHAPI__PexClientRequest_1a42a793ceb288ce33c6310b8984678515"></a>
+#### `public inline const FString * `[`GetDatacenterLocationOrNull`](#structFRHAPI__PexClientRequest_1a63c20377baf7627abcfb3ad2491f9347)`() const` <a id="structFRHAPI__PexClientRequest_1a63c20377baf7627abcfb3ad2491f9347"></a>
 
 Returns a pointer to DatacenterLocation_Optional, if it has been set, otherwise returns nullptr.
 
@@ -2350,15 +2350,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether DatacenterLocation_Optional is set to null.
 
-#### `public inline FString & `[`GetAddressIp`](#structFRHAPI__PexClientRequest_1ad2d603533aae78500f77e11f3e50a786)`()` <a id="structFRHAPI__PexClientRequest_1ad2d603533aae78500f77e11f3e50a786"></a>
+#### `public inline FString & `[`GetAddressIp`](#structFRHAPI__PexClientRequest_1a66ca598d39001375f6bf5ad7fe29229c)`()` <a id="structFRHAPI__PexClientRequest_1a66ca598d39001375f6bf5ad7fe29229c"></a>
 
 Gets the value of AddressIp_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetAddressIp`](#structFRHAPI__PexClientRequest_1a70678636b993e0e8e6e1c2cbeafe9db4)`() const` <a id="structFRHAPI__PexClientRequest_1a70678636b993e0e8e6e1c2cbeafe9db4"></a>
+#### `public inline const FString & `[`GetAddressIp`](#structFRHAPI__PexClientRequest_1a86c463966143055dd2fe43ade74f1108)`() const` <a id="structFRHAPI__PexClientRequest_1a86c463966143055dd2fe43ade74f1108"></a>
 
 Gets the value of AddressIp_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetAddressIp`](#structFRHAPI__PexClientRequest_1a542bd945cbf283bc98690e2355fd377e)`(const FString & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a542bd945cbf283bc98690e2355fd377e"></a>
+#### `public inline const FString & `[`GetAddressIp`](#structFRHAPI__PexClientRequest_1a0813d03dcfc6af96fbd8f84a6cfa1c33)`(const FString & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a0813d03dcfc6af96fbd8f84a6cfa1c33"></a>
 
 Gets the value of AddressIp_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -2366,11 +2366,11 @@ Gets the value of AddressIp_Optional, if it has been set, otherwise it returns D
 
 Fills OutValue with the value of AddressIp_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetAddressIpOrNull`](#structFRHAPI__PexClientRequest_1a37496de8cac6579df76c7598e7252948)`()` <a id="structFRHAPI__PexClientRequest_1a37496de8cac6579df76c7598e7252948"></a>
+#### `public inline FString * `[`GetAddressIpOrNull`](#structFRHAPI__PexClientRequest_1ac107f8faf5fab28efff6c9b23668346b)`()` <a id="structFRHAPI__PexClientRequest_1ac107f8faf5fab28efff6c9b23668346b"></a>
 
 Returns a pointer to AddressIp_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetAddressIpOrNull`](#structFRHAPI__PexClientRequest_1a1aeaaf702089e7444634f2882b881dc7)`() const` <a id="structFRHAPI__PexClientRequest_1a1aeaaf702089e7444634f2882b881dc7"></a>
+#### `public inline const FString * `[`GetAddressIpOrNull`](#structFRHAPI__PexClientRequest_1a6795441a3e065f48d9f7f4b3e2ce0938)`() const` <a id="structFRHAPI__PexClientRequest_1a6795441a3e065f48d9f7f4b3e2ce0938"></a>
 
 Returns a pointer to AddressIp_Optional, if it has been set, otherwise returns nullptr.
 
@@ -2398,15 +2398,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether AddressIp_Optional is set to null.
 
-#### `public inline FString & `[`GetMapName`](#structFRHAPI__PexClientRequest_1a403329dd4dc4484e46bb68e479b2bc4a)`()` <a id="structFRHAPI__PexClientRequest_1a403329dd4dc4484e46bb68e479b2bc4a"></a>
+#### `public inline FString & `[`GetMapName`](#structFRHAPI__PexClientRequest_1a9c1fe27dd688620cdc6cd792e13fbf56)`()` <a id="structFRHAPI__PexClientRequest_1a9c1fe27dd688620cdc6cd792e13fbf56"></a>
 
 Gets the value of MapName_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetMapName`](#structFRHAPI__PexClientRequest_1ad56eb50cf5d561e329855979b5ee9c3c)`() const` <a id="structFRHAPI__PexClientRequest_1ad56eb50cf5d561e329855979b5ee9c3c"></a>
+#### `public inline const FString & `[`GetMapName`](#structFRHAPI__PexClientRequest_1a9a5a980da3c57994d06b92c847d1769e)`() const` <a id="structFRHAPI__PexClientRequest_1a9a5a980da3c57994d06b92c847d1769e"></a>
 
 Gets the value of MapName_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetMapName`](#structFRHAPI__PexClientRequest_1aff7eafb2d7d115bfb4734b74359858a2)`(const FString & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1aff7eafb2d7d115bfb4734b74359858a2"></a>
+#### `public inline const FString & `[`GetMapName`](#structFRHAPI__PexClientRequest_1a837b7230a58fdf66c580568d9ea60db0)`(const FString & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a837b7230a58fdf66c580568d9ea60db0"></a>
 
 Gets the value of MapName_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -2414,11 +2414,11 @@ Gets the value of MapName_Optional, if it has been set, otherwise it returns Def
 
 Fills OutValue with the value of MapName_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetMapNameOrNull`](#structFRHAPI__PexClientRequest_1a8fe1e90a7d610ca2757c2e7ad8650c8a)`()` <a id="structFRHAPI__PexClientRequest_1a8fe1e90a7d610ca2757c2e7ad8650c8a"></a>
+#### `public inline FString * `[`GetMapNameOrNull`](#structFRHAPI__PexClientRequest_1a1e6fd77cde5377bed57578b71c94e1de)`()` <a id="structFRHAPI__PexClientRequest_1a1e6fd77cde5377bed57578b71c94e1de"></a>
 
 Returns a pointer to MapName_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetMapNameOrNull`](#structFRHAPI__PexClientRequest_1a8e0ed623d0f90d084f769bf5a3a0020f)`() const` <a id="structFRHAPI__PexClientRequest_1a8e0ed623d0f90d084f769bf5a3a0020f"></a>
+#### `public inline const FString * `[`GetMapNameOrNull`](#structFRHAPI__PexClientRequest_1a94014f3fcbf6a350c018934679052f09)`() const` <a id="structFRHAPI__PexClientRequest_1a94014f3fcbf6a350c018934679052f09"></a>
 
 Returns a pointer to MapName_Optional, if it has been set, otherwise returns nullptr.
 
@@ -2446,15 +2446,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether MapName_Optional is set to null.
 
-#### `public inline FString & `[`GetGameMode`](#structFRHAPI__PexClientRequest_1a287cee2353eb08ea8662982cda0e32c5)`()` <a id="structFRHAPI__PexClientRequest_1a287cee2353eb08ea8662982cda0e32c5"></a>
+#### `public inline FString & `[`GetGameMode`](#structFRHAPI__PexClientRequest_1a2b50591ff422f1588626ce1f874f401b)`()` <a id="structFRHAPI__PexClientRequest_1a2b50591ff422f1588626ce1f874f401b"></a>
 
 Gets the value of GameMode_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetGameMode`](#structFRHAPI__PexClientRequest_1ad36a35d88989e6518c448657e5f53358)`() const` <a id="structFRHAPI__PexClientRequest_1ad36a35d88989e6518c448657e5f53358"></a>
+#### `public inline const FString & `[`GetGameMode`](#structFRHAPI__PexClientRequest_1a47d7dcd18130ba7887ca7fa4d7b75bd9)`() const` <a id="structFRHAPI__PexClientRequest_1a47d7dcd18130ba7887ca7fa4d7b75bd9"></a>
 
 Gets the value of GameMode_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetGameMode`](#structFRHAPI__PexClientRequest_1a20d6d4381b98b1abca35a0870e38bf9f)`(const FString & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a20d6d4381b98b1abca35a0870e38bf9f"></a>
+#### `public inline const FString & `[`GetGameMode`](#structFRHAPI__PexClientRequest_1a26282f3033c4962f53a842dccf6a1d5e)`(const FString & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a26282f3033c4962f53a842dccf6a1d5e"></a>
 
 Gets the value of GameMode_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -2462,11 +2462,11 @@ Gets the value of GameMode_Optional, if it has been set, otherwise it returns De
 
 Fills OutValue with the value of GameMode_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetGameModeOrNull`](#structFRHAPI__PexClientRequest_1a59b9f6419a6fb044d640ac043c0fd576)`()` <a id="structFRHAPI__PexClientRequest_1a59b9f6419a6fb044d640ac043c0fd576"></a>
+#### `public inline FString * `[`GetGameModeOrNull`](#structFRHAPI__PexClientRequest_1ac6c692f76cf88c9cfefe4816799dc1be)`()` <a id="structFRHAPI__PexClientRequest_1ac6c692f76cf88c9cfefe4816799dc1be"></a>
 
 Returns a pointer to GameMode_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetGameModeOrNull`](#structFRHAPI__PexClientRequest_1ac7b19aba67015fc735950f5f9725e0e0)`() const` <a id="structFRHAPI__PexClientRequest_1ac7b19aba67015fc735950f5f9725e0e0"></a>
+#### `public inline const FString * `[`GetGameModeOrNull`](#structFRHAPI__PexClientRequest_1a1bd32abb5a02db87bf5d5c4e162bacd1)`() const` <a id="structFRHAPI__PexClientRequest_1a1bd32abb5a02db87bf5d5c4e162bacd1"></a>
 
 Returns a pointer to GameMode_Optional, if it has been set, otherwise returns nullptr.
 
@@ -2494,15 +2494,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether GameMode_Optional is set to null.
 
-#### `public inline FString & `[`GetMatchmakingProfileId`](#structFRHAPI__PexClientRequest_1a3cf29350e2c24ae6b1a166c7cde4e591)`()` <a id="structFRHAPI__PexClientRequest_1a3cf29350e2c24ae6b1a166c7cde4e591"></a>
+#### `public inline FString & `[`GetMatchmakingProfileId`](#structFRHAPI__PexClientRequest_1a5e86ca0e5fd78ed170e8b5fa3652d700)`()` <a id="structFRHAPI__PexClientRequest_1a5e86ca0e5fd78ed170e8b5fa3652d700"></a>
 
 Gets the value of MatchmakingProfileId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetMatchmakingProfileId`](#structFRHAPI__PexClientRequest_1a6a6da2fcaff8cde7c278308af9c88344)`() const` <a id="structFRHAPI__PexClientRequest_1a6a6da2fcaff8cde7c278308af9c88344"></a>
+#### `public inline const FString & `[`GetMatchmakingProfileId`](#structFRHAPI__PexClientRequest_1ae8efe6f0f7de778d918cf0e51b9d604b)`() const` <a id="structFRHAPI__PexClientRequest_1ae8efe6f0f7de778d918cf0e51b9d604b"></a>
 
 Gets the value of MatchmakingProfileId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetMatchmakingProfileId`](#structFRHAPI__PexClientRequest_1a4025656ed7e8249b955ffd7dcdaba0ad)`(const FString & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a4025656ed7e8249b955ffd7dcdaba0ad"></a>
+#### `public inline const FString & `[`GetMatchmakingProfileId`](#structFRHAPI__PexClientRequest_1a50641a5fa3d175fe7cbd5119968e5f45)`(const FString & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a50641a5fa3d175fe7cbd5119968e5f45"></a>
 
 Gets the value of MatchmakingProfileId_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -2510,11 +2510,11 @@ Gets the value of MatchmakingProfileId_Optional, if it has been set, otherwise i
 
 Fills OutValue with the value of MatchmakingProfileId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetMatchmakingProfileIdOrNull`](#structFRHAPI__PexClientRequest_1a45c68c58366fe3ecfcf67ff652128e54)`()` <a id="structFRHAPI__PexClientRequest_1a45c68c58366fe3ecfcf67ff652128e54"></a>
+#### `public inline FString * `[`GetMatchmakingProfileIdOrNull`](#structFRHAPI__PexClientRequest_1a4b3eeebf5f1f6af15b3bf555c4508b2b)`()` <a id="structFRHAPI__PexClientRequest_1a4b3eeebf5f1f6af15b3bf555c4508b2b"></a>
 
 Returns a pointer to MatchmakingProfileId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetMatchmakingProfileIdOrNull`](#structFRHAPI__PexClientRequest_1a50aac1fd1c2e2a22c72217e45c99cbe6)`() const` <a id="structFRHAPI__PexClientRequest_1a50aac1fd1c2e2a22c72217e45c99cbe6"></a>
+#### `public inline const FString * `[`GetMatchmakingProfileIdOrNull`](#structFRHAPI__PexClientRequest_1a4071e9ee063a3d308f28e72236d0a2e7)`() const` <a id="structFRHAPI__PexClientRequest_1a4071e9ee063a3d308f28e72236d0a2e7"></a>
 
 Returns a pointer to MatchmakingProfileId_Optional, if it has been set, otherwise returns nullptr.
 
@@ -2542,15 +2542,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether MatchmakingProfileId_Optional is set to null.
 
-#### `public inline int32 & `[`GetExpectedTeamSize`](#structFRHAPI__PexClientRequest_1a519c6c0ea4f80689d8a8f1baa86f7269)`()` <a id="structFRHAPI__PexClientRequest_1a519c6c0ea4f80689d8a8f1baa86f7269"></a>
+#### `public inline int32 & `[`GetExpectedTeamSize`](#structFRHAPI__PexClientRequest_1a8d574d00f4a25a0ba6a24f568fd9d62c)`()` <a id="structFRHAPI__PexClientRequest_1a8d574d00f4a25a0ba6a24f568fd9d62c"></a>
 
 Gets the value of ExpectedTeamSize_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetExpectedTeamSize`](#structFRHAPI__PexClientRequest_1a7139989ec25e79db9ae9e7fe3c0deeed)`() const` <a id="structFRHAPI__PexClientRequest_1a7139989ec25e79db9ae9e7fe3c0deeed"></a>
+#### `public inline const int32 & `[`GetExpectedTeamSize`](#structFRHAPI__PexClientRequest_1a6a887be1351c464b4bb5e4fa407b48c6)`() const` <a id="structFRHAPI__PexClientRequest_1a6a887be1351c464b4bb5e4fa407b48c6"></a>
 
 Gets the value of ExpectedTeamSize_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetExpectedTeamSize`](#structFRHAPI__PexClientRequest_1a426277a8cfa97f54a1d3ddbb3a028250)`(const int32 & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a426277a8cfa97f54a1d3ddbb3a028250"></a>
+#### `public inline const int32 & `[`GetExpectedTeamSize`](#structFRHAPI__PexClientRequest_1a498ca1eb97767e1cce509eb0cb61939e)`(const int32 & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a498ca1eb97767e1cce509eb0cb61939e"></a>
 
 Gets the value of ExpectedTeamSize_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -2558,11 +2558,11 @@ Gets the value of ExpectedTeamSize_Optional, if it has been set, otherwise it re
 
 Fills OutValue with the value of ExpectedTeamSize_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetExpectedTeamSizeOrNull`](#structFRHAPI__PexClientRequest_1acca857b5f84e1961c3c284568627e5f0)`()` <a id="structFRHAPI__PexClientRequest_1acca857b5f84e1961c3c284568627e5f0"></a>
+#### `public inline int32 * `[`GetExpectedTeamSizeOrNull`](#structFRHAPI__PexClientRequest_1a301106c9c709702999c3497791687309)`()` <a id="structFRHAPI__PexClientRequest_1a301106c9c709702999c3497791687309"></a>
 
 Returns a pointer to ExpectedTeamSize_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetExpectedTeamSizeOrNull`](#structFRHAPI__PexClientRequest_1a0ba661a95028ca4d98381025242d8255)`() const` <a id="structFRHAPI__PexClientRequest_1a0ba661a95028ca4d98381025242d8255"></a>
+#### `public inline const int32 * `[`GetExpectedTeamSizeOrNull`](#structFRHAPI__PexClientRequest_1abe056651b33951d850c7f8b3e8290c8f)`() const` <a id="structFRHAPI__PexClientRequest_1abe056651b33951d850c7f8b3e8290c8f"></a>
 
 Returns a pointer to ExpectedTeamSize_Optional, if it has been set, otherwise returns nullptr.
 
@@ -2598,15 +2598,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether ExpectedTeamSize_Optional is set to null.
 
-#### `public inline int32 & `[`GetExpectedPlayerCount`](#structFRHAPI__PexClientRequest_1abe9a1ee4076308cad3558254425302f2)`()` <a id="structFRHAPI__PexClientRequest_1abe9a1ee4076308cad3558254425302f2"></a>
+#### `public inline int32 & `[`GetExpectedPlayerCount`](#structFRHAPI__PexClientRequest_1a727e83472c63d9decae43cca67c8074a)`()` <a id="structFRHAPI__PexClientRequest_1a727e83472c63d9decae43cca67c8074a"></a>
 
 Gets the value of ExpectedPlayerCount_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetExpectedPlayerCount`](#structFRHAPI__PexClientRequest_1a468213bf6bc5b92c92de6c318145cc89)`() const` <a id="structFRHAPI__PexClientRequest_1a468213bf6bc5b92c92de6c318145cc89"></a>
+#### `public inline const int32 & `[`GetExpectedPlayerCount`](#structFRHAPI__PexClientRequest_1a047786a8dfae6a69e3ac46094b75e47d)`() const` <a id="structFRHAPI__PexClientRequest_1a047786a8dfae6a69e3ac46094b75e47d"></a>
 
 Gets the value of ExpectedPlayerCount_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetExpectedPlayerCount`](#structFRHAPI__PexClientRequest_1aa4677f1bef832567a5c451315e617c83)`(const int32 & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1aa4677f1bef832567a5c451315e617c83"></a>
+#### `public inline const int32 & `[`GetExpectedPlayerCount`](#structFRHAPI__PexClientRequest_1a9664700082763c2f12ba5d828cdac956)`(const int32 & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a9664700082763c2f12ba5d828cdac956"></a>
 
 Gets the value of ExpectedPlayerCount_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -2614,11 +2614,11 @@ Gets the value of ExpectedPlayerCount_Optional, if it has been set, otherwise it
 
 Fills OutValue with the value of ExpectedPlayerCount_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetExpectedPlayerCountOrNull`](#structFRHAPI__PexClientRequest_1a0cb20e2af1dd8f722764cbd274e44fbd)`()` <a id="structFRHAPI__PexClientRequest_1a0cb20e2af1dd8f722764cbd274e44fbd"></a>
+#### `public inline int32 * `[`GetExpectedPlayerCountOrNull`](#structFRHAPI__PexClientRequest_1a3ce230f9a1dfda02ac31746ebda0e1a1)`()` <a id="structFRHAPI__PexClientRequest_1a3ce230f9a1dfda02ac31746ebda0e1a1"></a>
 
 Returns a pointer to ExpectedPlayerCount_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetExpectedPlayerCountOrNull`](#structFRHAPI__PexClientRequest_1aa6a1495d7a2d1c56a91d2b62b7b7827d)`() const` <a id="structFRHAPI__PexClientRequest_1aa6a1495d7a2d1c56a91d2b62b7b7827d"></a>
+#### `public inline const int32 * `[`GetExpectedPlayerCountOrNull`](#structFRHAPI__PexClientRequest_1aaaba0c040e5d0fd09591144010703303)`() const` <a id="structFRHAPI__PexClientRequest_1aaaba0c040e5d0fd09591144010703303"></a>
 
 Returns a pointer to ExpectedPlayerCount_Optional, if it has been set, otherwise returns nullptr.
 
@@ -2654,15 +2654,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether ExpectedPlayerCount_Optional is set to null.
 
-#### `public inline FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__PexClientRequest_1ae9b800019e1e585b865c13dece4bf81d)`()` <a id="structFRHAPI__PexClientRequest_1ae9b800019e1e585b865c13dece4bf81d"></a>
+#### `public inline FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__PexClientRequest_1a4aa36a86691c5c7d8a11046f5d48237d)`()` <a id="structFRHAPI__PexClientRequest_1a4aa36a86691c5c7d8a11046f5d48237d"></a>
 
 Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__PexClientRequest_1a631aa83696d250877e0f638d79cdf725)`() const` <a id="structFRHAPI__PexClientRequest_1a631aa83696d250877e0f638d79cdf725"></a>
+#### `public inline const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__PexClientRequest_1aedcd38faba5fbae3b8fc532fe3362756)`() const` <a id="structFRHAPI__PexClientRequest_1aedcd38faba5fbae3b8fc532fe3362756"></a>
 
 Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__PexClientRequest_1a1ea7ca2247555bad82430b1508ee92e9)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a1ea7ca2247555bad82430b1508ee92e9"></a>
+#### `public inline const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__PexClientRequest_1ae80fb7bd43bd30ff863d1cb40011ce87)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1ae80fb7bd43bd30ff863d1cb40011ce87"></a>
 
 Gets the value of HostPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -2670,11 +2670,11 @@ Gets the value of HostPlayerUuid_Optional, if it has been set, otherwise it retu
 
 Fills OutValue with the value of HostPlayerUuid_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__PexClientRequest_1a48585205a3032e84532e04f433eb75ee)`()` <a id="structFRHAPI__PexClientRequest_1a48585205a3032e84532e04f433eb75ee"></a>
+#### `public inline FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__PexClientRequest_1aa803675da658f0e6a7507c4d10d818ad)`()` <a id="structFRHAPI__PexClientRequest_1aa803675da658f0e6a7507c4d10d818ad"></a>
 
 Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__PexClientRequest_1a04dc9657ac85a2d77671d55c3641d38a)`() const` <a id="structFRHAPI__PexClientRequest_1a04dc9657ac85a2d77671d55c3641d38a"></a>
+#### `public inline const FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__PexClientRequest_1ab197deff0c7fa818819e437203c7acbc)`() const` <a id="structFRHAPI__PexClientRequest_1ab197deff0c7fa818819e437203c7acbc"></a>
 
 Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 
@@ -2702,15 +2702,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether HostPlayerUuid_Optional is set to null.
 
-#### `public inline FGuid & `[`GetOwningPlayerUuid`](#structFRHAPI__PexClientRequest_1a713a4d2c4ef1038d6ce1d3192305c73c)`()` <a id="structFRHAPI__PexClientRequest_1a713a4d2c4ef1038d6ce1d3192305c73c"></a>
+#### `public inline FGuid & `[`GetOwningPlayerUuid`](#structFRHAPI__PexClientRequest_1a6e0c31beaf4964e2eaf2a940f870c563)`()` <a id="structFRHAPI__PexClientRequest_1a6e0c31beaf4964e2eaf2a940f870c563"></a>
 
 Gets the value of OwningPlayerUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetOwningPlayerUuid`](#structFRHAPI__PexClientRequest_1a3bc1fcb990bb9d5e071f6570381e657b)`() const` <a id="structFRHAPI__PexClientRequest_1a3bc1fcb990bb9d5e071f6570381e657b"></a>
+#### `public inline const FGuid & `[`GetOwningPlayerUuid`](#structFRHAPI__PexClientRequest_1ac35dde58d8b4c28096cf3cab2ef544de)`() const` <a id="structFRHAPI__PexClientRequest_1ac35dde58d8b4c28096cf3cab2ef544de"></a>
 
 Gets the value of OwningPlayerUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetOwningPlayerUuid`](#structFRHAPI__PexClientRequest_1abf0a43d3fb60ca78863e6c2d758a3fac)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1abf0a43d3fb60ca78863e6c2d758a3fac"></a>
+#### `public inline const FGuid & `[`GetOwningPlayerUuid`](#structFRHAPI__PexClientRequest_1afbc7a361825dbcfbdd1e6007aab37ab7)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1afbc7a361825dbcfbdd1e6007aab37ab7"></a>
 
 Gets the value of OwningPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -2718,11 +2718,11 @@ Gets the value of OwningPlayerUuid_Optional, if it has been set, otherwise it re
 
 Fills OutValue with the value of OwningPlayerUuid_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FGuid * `[`GetOwningPlayerUuidOrNull`](#structFRHAPI__PexClientRequest_1a3d2b2b99cb7f275f932f699ae29caa30)`()` <a id="structFRHAPI__PexClientRequest_1a3d2b2b99cb7f275f932f699ae29caa30"></a>
+#### `public inline FGuid * `[`GetOwningPlayerUuidOrNull`](#structFRHAPI__PexClientRequest_1a31c2a7a33331a33f836fd204abdbaccb)`()` <a id="structFRHAPI__PexClientRequest_1a31c2a7a33331a33f836fd204abdbaccb"></a>
 
 Returns a pointer to OwningPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FGuid * `[`GetOwningPlayerUuidOrNull`](#structFRHAPI__PexClientRequest_1afc78ab6db1f4af997bdc3fc8e144ec73)`() const` <a id="structFRHAPI__PexClientRequest_1afc78ab6db1f4af997bdc3fc8e144ec73"></a>
+#### `public inline const FGuid * `[`GetOwningPlayerUuidOrNull`](#structFRHAPI__PexClientRequest_1a58c732a601873f662a47cede96c40267)`() const` <a id="structFRHAPI__PexClientRequest_1a58c732a601873f662a47cede96c40267"></a>
 
 Returns a pointer to OwningPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 
@@ -2750,15 +2750,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether OwningPlayerUuid_Optional is set to null.
 
-#### `public inline FString & `[`GetVersion`](#structFRHAPI__PexClientRequest_1a2cd0b26864da3fa4958244851e35281c)`()` <a id="structFRHAPI__PexClientRequest_1a2cd0b26864da3fa4958244851e35281c"></a>
+#### `public inline FString & `[`GetVersion`](#structFRHAPI__PexClientRequest_1a5a4aa9151c9438af35336222976c40a9)`()` <a id="structFRHAPI__PexClientRequest_1a5a4aa9151c9438af35336222976c40a9"></a>
 
 Gets the value of Version_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetVersion`](#structFRHAPI__PexClientRequest_1a09605daf4e59d9d2e3d775fdb565a9fa)`() const` <a id="structFRHAPI__PexClientRequest_1a09605daf4e59d9d2e3d775fdb565a9fa"></a>
+#### `public inline const FString & `[`GetVersion`](#structFRHAPI__PexClientRequest_1adcb5b840cc1bf771bf29154fba3f8633)`() const` <a id="structFRHAPI__PexClientRequest_1adcb5b840cc1bf771bf29154fba3f8633"></a>
 
 Gets the value of Version_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetVersion`](#structFRHAPI__PexClientRequest_1acf66fbb90e87cf922c77cc92a5a966f2)`(const FString & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1acf66fbb90e87cf922c77cc92a5a966f2"></a>
+#### `public inline const FString & `[`GetVersion`](#structFRHAPI__PexClientRequest_1a128595f52bedec0e46012bde477d4e15)`(const FString & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a128595f52bedec0e46012bde477d4e15"></a>
 
 Gets the value of Version_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -2766,11 +2766,11 @@ Gets the value of Version_Optional, if it has been set, otherwise it returns Def
 
 Fills OutValue with the value of Version_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetVersionOrNull`](#structFRHAPI__PexClientRequest_1a60a2f29331bc19c2c53a014ebd34ba95)`()` <a id="structFRHAPI__PexClientRequest_1a60a2f29331bc19c2c53a014ebd34ba95"></a>
+#### `public inline FString * `[`GetVersionOrNull`](#structFRHAPI__PexClientRequest_1a7c6c25e530aa768aa3d5c8a96fff15eb)`()` <a id="structFRHAPI__PexClientRequest_1a7c6c25e530aa768aa3d5c8a96fff15eb"></a>
 
 Returns a pointer to Version_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetVersionOrNull`](#structFRHAPI__PexClientRequest_1a6dd57a88ef93d7e2447337f16e67c3d9)`() const` <a id="structFRHAPI__PexClientRequest_1a6dd57a88ef93d7e2447337f16e67c3d9"></a>
+#### `public inline const FString * `[`GetVersionOrNull`](#structFRHAPI__PexClientRequest_1a6dc9a829de3ff55136bc99bccc070ca0)`() const` <a id="structFRHAPI__PexClientRequest_1a6dc9a829de3ff55136bc99bccc070ca0"></a>
 
 Returns a pointer to Version_Optional, if it has been set, otherwise returns nullptr.
 
@@ -2798,15 +2798,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether Version_Optional is set to null.
 
-#### `public inline FString & `[`GetDeviceInfo`](#structFRHAPI__PexClientRequest_1a694e8ee42f0beb101ebfa39e825ad214)`()` <a id="structFRHAPI__PexClientRequest_1a694e8ee42f0beb101ebfa39e825ad214"></a>
+#### `public inline FString & `[`GetDeviceInfo`](#structFRHAPI__PexClientRequest_1a147151530d463460554b91a80a664156)`()` <a id="structFRHAPI__PexClientRequest_1a147151530d463460554b91a80a664156"></a>
 
 Gets the value of DeviceInfo_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetDeviceInfo`](#structFRHAPI__PexClientRequest_1a4096ec33e66b720927b9573859a433d6)`() const` <a id="structFRHAPI__PexClientRequest_1a4096ec33e66b720927b9573859a433d6"></a>
+#### `public inline const FString & `[`GetDeviceInfo`](#structFRHAPI__PexClientRequest_1a76108731f074c98d44c94a3c8917ecf2)`() const` <a id="structFRHAPI__PexClientRequest_1a76108731f074c98d44c94a3c8917ecf2"></a>
 
 Gets the value of DeviceInfo_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetDeviceInfo`](#structFRHAPI__PexClientRequest_1a63c82cef17660a56e64a3f48a9e0fe02)`(const FString & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a63c82cef17660a56e64a3f48a9e0fe02"></a>
+#### `public inline const FString & `[`GetDeviceInfo`](#structFRHAPI__PexClientRequest_1a1a5ba19b097041ce217d223c85d8d1d6)`(const FString & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a1a5ba19b097041ce217d223c85d8d1d6"></a>
 
 Gets the value of DeviceInfo_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -2814,11 +2814,11 @@ Gets the value of DeviceInfo_Optional, if it has been set, otherwise it returns 
 
 Fills OutValue with the value of DeviceInfo_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetDeviceInfoOrNull`](#structFRHAPI__PexClientRequest_1a7e4119c632792388d3cc006060c3a212)`()` <a id="structFRHAPI__PexClientRequest_1a7e4119c632792388d3cc006060c3a212"></a>
+#### `public inline FString * `[`GetDeviceInfoOrNull`](#structFRHAPI__PexClientRequest_1a4d5559fcea2a9d34136cdfccf1c757f8)`()` <a id="structFRHAPI__PexClientRequest_1a4d5559fcea2a9d34136cdfccf1c757f8"></a>
 
 Returns a pointer to DeviceInfo_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetDeviceInfoOrNull`](#structFRHAPI__PexClientRequest_1a2afc99ed562d26309187715eca5a8fe6)`() const` <a id="structFRHAPI__PexClientRequest_1a2afc99ed562d26309187715eca5a8fe6"></a>
+#### `public inline const FString * `[`GetDeviceInfoOrNull`](#structFRHAPI__PexClientRequest_1ad19e35a3d85ea481611609b1c705119b)`() const` <a id="structFRHAPI__PexClientRequest_1ad19e35a3d85ea481611609b1c705119b"></a>
 
 Returns a pointer to DeviceInfo_Optional, if it has been set, otherwise returns nullptr.
 
@@ -2846,15 +2846,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether DeviceInfo_Optional is set to null.
 
-#### `public inline ERHAPI_MatchPlatform & `[`GetPlatformId`](#structFRHAPI__PexClientRequest_1a301a17ae582a28fdf4dfbf360a855d95)`()` <a id="structFRHAPI__PexClientRequest_1a301a17ae582a28fdf4dfbf360a855d95"></a>
+#### `public inline ERHAPI_MatchPlatform & `[`GetPlatformId`](#structFRHAPI__PexClientRequest_1a5538454ca35d74c911cd05761b69c457)`()` <a id="structFRHAPI__PexClientRequest_1a5538454ca35d74c911cd05761b69c457"></a>
 
 Gets the value of PlatformId_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_MatchPlatform & `[`GetPlatformId`](#structFRHAPI__PexClientRequest_1a30c3818fdb0c6a85f28a5bbe0496a255)`() const` <a id="structFRHAPI__PexClientRequest_1a30c3818fdb0c6a85f28a5bbe0496a255"></a>
+#### `public inline const ERHAPI_MatchPlatform & `[`GetPlatformId`](#structFRHAPI__PexClientRequest_1aadb64f56f17bc3be6f9552d0644aac27)`() const` <a id="structFRHAPI__PexClientRequest_1aadb64f56f17bc3be6f9552d0644aac27"></a>
 
 Gets the value of PlatformId_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_MatchPlatform & `[`GetPlatformId`](#structFRHAPI__PexClientRequest_1a684e27b3576cb45498158e13a889fda2)`(const ERHAPI_MatchPlatform & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a684e27b3576cb45498158e13a889fda2"></a>
+#### `public inline const ERHAPI_MatchPlatform & `[`GetPlatformId`](#structFRHAPI__PexClientRequest_1abb7ec3eec64bde30816b010a09b5984e)`(const ERHAPI_MatchPlatform & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1abb7ec3eec64bde30816b010a09b5984e"></a>
 
 Gets the value of PlatformId_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -2862,11 +2862,11 @@ Gets the value of PlatformId_Optional, if it has been set, otherwise it returns 
 
 Fills OutValue with the value of PlatformId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline ERHAPI_MatchPlatform * `[`GetPlatformIdOrNull`](#structFRHAPI__PexClientRequest_1a27e34996b1bae4cdd6c7ccd173f3d6b4)`()` <a id="structFRHAPI__PexClientRequest_1a27e34996b1bae4cdd6c7ccd173f3d6b4"></a>
+#### `public inline ERHAPI_MatchPlatform * `[`GetPlatformIdOrNull`](#structFRHAPI__PexClientRequest_1a5738998a0d87cb221172e83494f1d09b)`()` <a id="structFRHAPI__PexClientRequest_1a5738998a0d87cb221172e83494f1d09b"></a>
 
 Returns a pointer to PlatformId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const ERHAPI_MatchPlatform * `[`GetPlatformIdOrNull`](#structFRHAPI__PexClientRequest_1ad3cf57d73d0af8678fed798c5d54c090)`() const` <a id="structFRHAPI__PexClientRequest_1ad3cf57d73d0af8678fed798c5d54c090"></a>
+#### `public inline const ERHAPI_MatchPlatform * `[`GetPlatformIdOrNull`](#structFRHAPI__PexClientRequest_1aa622843a362f101612fa22717ee4727f)`() const` <a id="structFRHAPI__PexClientRequest_1aa622843a362f101612fa22717ee4727f"></a>
 
 Returns a pointer to PlatformId_Optional, if it has been set, otherwise returns nullptr.
 
@@ -2894,15 +2894,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether PlatformId_Optional is set to null.
 
-#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PexClientRequest_1aeb2121cfa290eb2712265768b24ea08a)`()` <a id="structFRHAPI__PexClientRequest_1aeb2121cfa290eb2712265768b24ea08a"></a>
+#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PexClientRequest_1aba806346c2ac4bf07d4601b6c898a449)`()` <a id="structFRHAPI__PexClientRequest_1aba806346c2ac4bf07d4601b6c898a449"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PexClientRequest_1a165c1b05e803ced01d10fe597e6084c1)`() const` <a id="structFRHAPI__PexClientRequest_1a165c1b05e803ced01d10fe597e6084c1"></a>
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PexClientRequest_1af1ddeb264faa18371880e28342ca83e6)`() const` <a id="structFRHAPI__PexClientRequest_1af1ddeb264faa18371880e28342ca83e6"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PexClientRequest_1a1d644665db13660cd43fbe7e3578d110)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a1d644665db13660cd43fbe7e3578d110"></a>
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PexClientRequest_1a73fedc5713aa34815dcd5ac3e25784a0)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__PexClientRequest_1a73fedc5713aa34815dcd5ac3e25784a0"></a>
 
 Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -2910,11 +2910,11 @@ Gets the value of CustomData_Optional, if it has been set, otherwise it returns 
 
 Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PexClientRequest_1a892b5f5510557f128f91c32e82ec6307)`()` <a id="structFRHAPI__PexClientRequest_1a892b5f5510557f128f91c32e82ec6307"></a>
+#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PexClientRequest_1aa70d5974916fdefee4acbc51421683a7)`()` <a id="structFRHAPI__PexClientRequest_1aa70d5974916fdefee4acbc51421683a7"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PexClientRequest_1a1b09257893048b380acca57a4b3a2fb8)`() const` <a id="structFRHAPI__PexClientRequest_1a1b09257893048b380acca57a4b3a2fb8"></a>
+#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PexClientRequest_1a66536acb9c0c7c1015d30d7c11f71e2b)`() const` <a id="structFRHAPI__PexClientRequest_1a66536acb9c0c7c1015d30d7c11f71e2b"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
@@ -2942,11 +2942,11 @@ Sets the value explicitly to be treated as null.
 
 Checks whether CustomData_Optional is set to null.
 
-#### `public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__PexClientRequest_1a68ab84923101cff536c2b52188341d61)`()` <a id="structFRHAPI__PexClientRequest_1a68ab84923101cff536c2b52188341d61"></a>
+#### `public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__PexClientRequest_1ac8d4cacaad59790a94620ae38d50d3ee)`()` <a id="structFRHAPI__PexClientRequest_1ac8d4cacaad59790a94620ae38d50d3ee"></a>
 
 Gets the value of PlayerUuid.
 
-#### `public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__PexClientRequest_1ac5d025884c086ee07d5cd8a14b99ddbf)`() const` <a id="structFRHAPI__PexClientRequest_1ac5d025884c086ee07d5cd8a14b99ddbf"></a>
+#### `public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__PexClientRequest_1a6c8a9e787126470bc3952baf13dc6be4)`() const` <a id="structFRHAPI__PexClientRequest_1a6c8a9e787126470bc3952baf13dc6be4"></a>
 
 Gets the value of PlayerUuid.
 

@@ -27,27 +27,27 @@ Inventory Session for a Player.
 `public TArray< int32 > `[`AppliedDurableLoot_Optional`](#structFRHAPI__InventorySession_1a030b2590e3b6f227f40108949604cfcf) | Durable Loot that has been applied when this Inventory Session was created.
 `public bool `[`AppliedDurableLoot_IsSet`](#structFRHAPI__InventorySession_1a7b4edec20f92776ba5f623561cd07b5e) | true if AppliedDurableLoot_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__InventorySession_1a7591201a9617ed63b8ad4d09dfd1669e)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__InventorySession_1a1f300aabddedfa1b42484ab38d90de96)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetSessionId`](#structFRHAPI__InventorySession_1a10cb51533bbbc8244080e85e17c09a76)`()` | Gets the value of SessionId.
-`public inline const FString & `[`GetSessionId`](#structFRHAPI__InventorySession_1a202175283db4a05dd154c881b985eff4)`() const` | Gets the value of SessionId.
+`public virtual void `[`WriteJson`](#structFRHAPI__InventorySession_1a9fb8cd44da21f9edb04d2177ab792381)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline FString & `[`GetSessionId`](#structFRHAPI__InventorySession_1a204b0a63c486799abf9d46c7fae3b788)`()` | Gets the value of SessionId.
+`public inline const FString & `[`GetSessionId`](#structFRHAPI__InventorySession_1aea9666f1302fb37dcb6783a4db4f127b)`() const` | Gets the value of SessionId.
 `public inline void `[`SetSessionId`](#structFRHAPI__InventorySession_1a8ed146adebc1ae3d31284f5e880ae93f)`(const FString & NewValue)` | Sets the value of SessionId.
 `public inline void `[`SetSessionId`](#structFRHAPI__InventorySession_1aa4bd09bdb7cf73d635d15e10652542dd)`(FString && NewValue)` | Sets the value of SessionId using move semantics.
-`public inline ERHAPI_Platform & `[`GetSessionPlatform`](#structFRHAPI__InventorySession_1a20a6232c95b09797a1510a1a2ac1fc7d)`()` | Gets the value of SessionPlatform_Optional, regardless of it having been set.
-`public inline const ERHAPI_Platform & `[`GetSessionPlatform`](#structFRHAPI__InventorySession_1a5f3d3d0b80da74d07ee84faf95ee5431)`() const` | Gets the value of SessionPlatform_Optional, regardless of it having been set.
-`public inline const ERHAPI_Platform & `[`GetSessionPlatform`](#structFRHAPI__InventorySession_1ad1311408a74721f8317b0ac9826d75df)`(const ERHAPI_Platform & DefaultValue) const` | Gets the value of SessionPlatform_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline ERHAPI_Platform & `[`GetSessionPlatform`](#structFRHAPI__InventorySession_1a41bf6463983bf17db91d1d19a2fdefb6)`()` | Gets the value of SessionPlatform_Optional, regardless of it having been set.
+`public inline const ERHAPI_Platform & `[`GetSessionPlatform`](#structFRHAPI__InventorySession_1a71a2f0c72b4ebb33da68793520a6a65b)`() const` | Gets the value of SessionPlatform_Optional, regardless of it having been set.
+`public inline const ERHAPI_Platform & `[`GetSessionPlatform`](#structFRHAPI__InventorySession_1aae71215cefcebdfe40bdbbb16e9c2179)`(const ERHAPI_Platform & DefaultValue) const` | Gets the value of SessionPlatform_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetSessionPlatform`](#structFRHAPI__InventorySession_1a6eac73db464ca0efa6942e7b247992f3)`(ERHAPI_Platform & OutValue) const` | Fills OutValue with the value of SessionPlatform_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_Platform * `[`GetSessionPlatformOrNull`](#structFRHAPI__InventorySession_1a45eb5a36fa089ca350d0738ac1342e86)`()` | Returns a pointer to SessionPlatform_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_Platform * `[`GetSessionPlatformOrNull`](#structFRHAPI__InventorySession_1a775b96b8deafb53540f45fb6e7e1d029)`() const` | Returns a pointer to SessionPlatform_Optional, if it has been set, otherwise returns nullptr.
+`public inline ERHAPI_Platform * `[`GetSessionPlatformOrNull`](#structFRHAPI__InventorySession_1a57b2df90cfc47c499ddcc9dee5aad871)`()` | Returns a pointer to SessionPlatform_Optional, if it has been set, otherwise returns nullptr.
+`public inline const ERHAPI_Platform * `[`GetSessionPlatformOrNull`](#structFRHAPI__InventorySession_1ac123d0978397211f3d640273b91af6d5)`() const` | Returns a pointer to SessionPlatform_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetSessionPlatform`](#structFRHAPI__InventorySession_1ab20b0ecc3e1f8d2eb77f9fc292d072bf)`(const ERHAPI_Platform & NewValue)` | Sets the value of SessionPlatform_Optional and also sets SessionPlatform_IsSet to true.
 `public inline void `[`SetSessionPlatform`](#structFRHAPI__InventorySession_1ac779a5d691a5a6aec54ec8d6df8c7057)`(ERHAPI_Platform && NewValue)` | Sets the value of SessionPlatform_Optional and also sets SessionPlatform_IsSet to true using move semantics.
 `public inline void `[`ClearSessionPlatform`](#structFRHAPI__InventorySession_1a6606ed602284d4255e6bfc613d7e0619)`()` | Clears the value of SessionPlatform_Optional and sets SessionPlatform_IsSet to false.
 `public inline bool `[`IsSessionPlatformSet`](#structFRHAPI__InventorySession_1a9e3c423febc4598d064a3382b664c867)`() const` | Checks whether SessionPlatform_Optional has been set.
-`public inline TArray< int32 > & `[`GetAppliedDurableLoot`](#structFRHAPI__InventorySession_1aaa3a59128de3317f5d52ecaee8e89914)`()` | Gets the value of AppliedDurableLoot_Optional, regardless of it having been set.
-`public inline const TArray< int32 > & `[`GetAppliedDurableLoot`](#structFRHAPI__InventorySession_1ae08db78edf3f9de2bd870863608f01be)`() const` | Gets the value of AppliedDurableLoot_Optional, regardless of it having been set.
-`public inline const TArray< int32 > & `[`GetAppliedDurableLoot`](#structFRHAPI__InventorySession_1ac5f83cdf5324dd27e3157bcf4ecae4e0)`(const TArray< int32 > & DefaultValue) const` | Gets the value of AppliedDurableLoot_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline TArray< int32 > & `[`GetAppliedDurableLoot`](#structFRHAPI__InventorySession_1ac3fcc5d768a066962acf15759ed09010)`()` | Gets the value of AppliedDurableLoot_Optional, regardless of it having been set.
+`public inline const TArray< int32 > & `[`GetAppliedDurableLoot`](#structFRHAPI__InventorySession_1ad2d6bb793233653c0e52fc2cff437f70)`() const` | Gets the value of AppliedDurableLoot_Optional, regardless of it having been set.
+`public inline const TArray< int32 > & `[`GetAppliedDurableLoot`](#structFRHAPI__InventorySession_1a186373fc0ba4cae1e012c6068788c7b4)`(const TArray< int32 > & DefaultValue) const` | Gets the value of AppliedDurableLoot_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetAppliedDurableLoot`](#structFRHAPI__InventorySession_1a19b3b9f32380d4a9e1dd821fec1b0f4a)`(TArray< int32 > & OutValue) const` | Fills OutValue with the value of AppliedDurableLoot_Optional and returns true if it has been set, otherwise returns false.
-`public inline TArray< int32 > * `[`GetAppliedDurableLootOrNull`](#structFRHAPI__InventorySession_1aec8ec744eab2b5905327d176125b57e1)`()` | Returns a pointer to AppliedDurableLoot_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TArray< int32 > * `[`GetAppliedDurableLootOrNull`](#structFRHAPI__InventorySession_1ab3d2bd70b737c587bff6d5060f528657)`() const` | Returns a pointer to AppliedDurableLoot_Optional, if it has been set, otherwise returns nullptr.
+`public inline TArray< int32 > * `[`GetAppliedDurableLootOrNull`](#structFRHAPI__InventorySession_1abd2f0a572de5de70661a3ff2dbfa9677)`()` | Returns a pointer to AppliedDurableLoot_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TArray< int32 > * `[`GetAppliedDurableLootOrNull`](#structFRHAPI__InventorySession_1ae41f08d4bd5b69987e626f1f496ec107)`() const` | Returns a pointer to AppliedDurableLoot_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetAppliedDurableLoot`](#structFRHAPI__InventorySession_1a13007475fc84667192dba28835f7afc7)`(const TArray< int32 > & NewValue)` | Sets the value of AppliedDurableLoot_Optional and also sets AppliedDurableLoot_IsSet to true.
 `public inline void `[`SetAppliedDurableLoot`](#structFRHAPI__InventorySession_1a49da841d9ac91436d0f25415bbc62f84)`(TArray< int32 > && NewValue)` | Sets the value of AppliedDurableLoot_Optional and also sets AppliedDurableLoot_IsSet to true using move semantics.
 `public inline void `[`ClearAppliedDurableLoot`](#structFRHAPI__InventorySession_1a6b43aeccd15ffee5e76a5fde895610d5)`()` | Clears the value of AppliedDurableLoot_Optional and sets AppliedDurableLoot_IsSet to false.
@@ -85,18 +85,18 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__InventorySession_1a1f300aabddedfa1b42484ab38d90de96)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__InventorySession_1a1f300aabddedfa1b42484ab38d90de96"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__InventorySession_1a9fb8cd44da21f9edb04d2177ab792381)`(TSharedRef< TJsonWriter<> > & Writer) const` <a id="structFRHAPI__InventorySession_1a9fb8cd44da21f9edb04d2177ab792381"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetSessionId`](#structFRHAPI__InventorySession_1a10cb51533bbbc8244080e85e17c09a76)`()` <a id="structFRHAPI__InventorySession_1a10cb51533bbbc8244080e85e17c09a76"></a>
+#### `public inline FString & `[`GetSessionId`](#structFRHAPI__InventorySession_1a204b0a63c486799abf9d46c7fae3b788)`()` <a id="structFRHAPI__InventorySession_1a204b0a63c486799abf9d46c7fae3b788"></a>
 
 Gets the value of SessionId.
 
-#### `public inline const FString & `[`GetSessionId`](#structFRHAPI__InventorySession_1a202175283db4a05dd154c881b985eff4)`() const` <a id="structFRHAPI__InventorySession_1a202175283db4a05dd154c881b985eff4"></a>
+#### `public inline const FString & `[`GetSessionId`](#structFRHAPI__InventorySession_1aea9666f1302fb37dcb6783a4db4f127b)`() const` <a id="structFRHAPI__InventorySession_1aea9666f1302fb37dcb6783a4db4f127b"></a>
 
 Gets the value of SessionId.
 
@@ -108,15 +108,15 @@ Sets the value of SessionId.
 
 Sets the value of SessionId using move semantics.
 
-#### `public inline ERHAPI_Platform & `[`GetSessionPlatform`](#structFRHAPI__InventorySession_1a20a6232c95b09797a1510a1a2ac1fc7d)`()` <a id="structFRHAPI__InventorySession_1a20a6232c95b09797a1510a1a2ac1fc7d"></a>
+#### `public inline ERHAPI_Platform & `[`GetSessionPlatform`](#structFRHAPI__InventorySession_1a41bf6463983bf17db91d1d19a2fdefb6)`()` <a id="structFRHAPI__InventorySession_1a41bf6463983bf17db91d1d19a2fdefb6"></a>
 
 Gets the value of SessionPlatform_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_Platform & `[`GetSessionPlatform`](#structFRHAPI__InventorySession_1a5f3d3d0b80da74d07ee84faf95ee5431)`() const` <a id="structFRHAPI__InventorySession_1a5f3d3d0b80da74d07ee84faf95ee5431"></a>
+#### `public inline const ERHAPI_Platform & `[`GetSessionPlatform`](#structFRHAPI__InventorySession_1a71a2f0c72b4ebb33da68793520a6a65b)`() const` <a id="structFRHAPI__InventorySession_1a71a2f0c72b4ebb33da68793520a6a65b"></a>
 
 Gets the value of SessionPlatform_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_Platform & `[`GetSessionPlatform`](#structFRHAPI__InventorySession_1ad1311408a74721f8317b0ac9826d75df)`(const ERHAPI_Platform & DefaultValue) const` <a id="structFRHAPI__InventorySession_1ad1311408a74721f8317b0ac9826d75df"></a>
+#### `public inline const ERHAPI_Platform & `[`GetSessionPlatform`](#structFRHAPI__InventorySession_1aae71215cefcebdfe40bdbbb16e9c2179)`(const ERHAPI_Platform & DefaultValue) const` <a id="structFRHAPI__InventorySession_1aae71215cefcebdfe40bdbbb16e9c2179"></a>
 
 Gets the value of SessionPlatform_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -124,11 +124,11 @@ Gets the value of SessionPlatform_Optional, if it has been set, otherwise it ret
 
 Fills OutValue with the value of SessionPlatform_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline ERHAPI_Platform * `[`GetSessionPlatformOrNull`](#structFRHAPI__InventorySession_1a45eb5a36fa089ca350d0738ac1342e86)`()` <a id="structFRHAPI__InventorySession_1a45eb5a36fa089ca350d0738ac1342e86"></a>
+#### `public inline ERHAPI_Platform * `[`GetSessionPlatformOrNull`](#structFRHAPI__InventorySession_1a57b2df90cfc47c499ddcc9dee5aad871)`()` <a id="structFRHAPI__InventorySession_1a57b2df90cfc47c499ddcc9dee5aad871"></a>
 
 Returns a pointer to SessionPlatform_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const ERHAPI_Platform * `[`GetSessionPlatformOrNull`](#structFRHAPI__InventorySession_1a775b96b8deafb53540f45fb6e7e1d029)`() const` <a id="structFRHAPI__InventorySession_1a775b96b8deafb53540f45fb6e7e1d029"></a>
+#### `public inline const ERHAPI_Platform * `[`GetSessionPlatformOrNull`](#structFRHAPI__InventorySession_1ac123d0978397211f3d640273b91af6d5)`() const` <a id="structFRHAPI__InventorySession_1ac123d0978397211f3d640273b91af6d5"></a>
 
 Returns a pointer to SessionPlatform_Optional, if it has been set, otherwise returns nullptr.
 
@@ -148,15 +148,15 @@ Clears the value of SessionPlatform_Optional and sets SessionPlatform_IsSet to f
 
 Checks whether SessionPlatform_Optional has been set.
 
-#### `public inline TArray< int32 > & `[`GetAppliedDurableLoot`](#structFRHAPI__InventorySession_1aaa3a59128de3317f5d52ecaee8e89914)`()` <a id="structFRHAPI__InventorySession_1aaa3a59128de3317f5d52ecaee8e89914"></a>
+#### `public inline TArray< int32 > & `[`GetAppliedDurableLoot`](#structFRHAPI__InventorySession_1ac3fcc5d768a066962acf15759ed09010)`()` <a id="structFRHAPI__InventorySession_1ac3fcc5d768a066962acf15759ed09010"></a>
 
 Gets the value of AppliedDurableLoot_Optional, regardless of it having been set.
 
-#### `public inline const TArray< int32 > & `[`GetAppliedDurableLoot`](#structFRHAPI__InventorySession_1ae08db78edf3f9de2bd870863608f01be)`() const` <a id="structFRHAPI__InventorySession_1ae08db78edf3f9de2bd870863608f01be"></a>
+#### `public inline const TArray< int32 > & `[`GetAppliedDurableLoot`](#structFRHAPI__InventorySession_1ad2d6bb793233653c0e52fc2cff437f70)`() const` <a id="structFRHAPI__InventorySession_1ad2d6bb793233653c0e52fc2cff437f70"></a>
 
 Gets the value of AppliedDurableLoot_Optional, regardless of it having been set.
 
-#### `public inline const TArray< int32 > & `[`GetAppliedDurableLoot`](#structFRHAPI__InventorySession_1ac5f83cdf5324dd27e3157bcf4ecae4e0)`(const TArray< int32 > & DefaultValue) const` <a id="structFRHAPI__InventorySession_1ac5f83cdf5324dd27e3157bcf4ecae4e0"></a>
+#### `public inline const TArray< int32 > & `[`GetAppliedDurableLoot`](#structFRHAPI__InventorySession_1a186373fc0ba4cae1e012c6068788c7b4)`(const TArray< int32 > & DefaultValue) const` <a id="structFRHAPI__InventorySession_1a186373fc0ba4cae1e012c6068788c7b4"></a>
 
 Gets the value of AppliedDurableLoot_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -164,11 +164,11 @@ Gets the value of AppliedDurableLoot_Optional, if it has been set, otherwise it 
 
 Fills OutValue with the value of AppliedDurableLoot_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TArray< int32 > * `[`GetAppliedDurableLootOrNull`](#structFRHAPI__InventorySession_1aec8ec744eab2b5905327d176125b57e1)`()` <a id="structFRHAPI__InventorySession_1aec8ec744eab2b5905327d176125b57e1"></a>
+#### `public inline TArray< int32 > * `[`GetAppliedDurableLootOrNull`](#structFRHAPI__InventorySession_1abd2f0a572de5de70661a3ff2dbfa9677)`()` <a id="structFRHAPI__InventorySession_1abd2f0a572de5de70661a3ff2dbfa9677"></a>
 
 Returns a pointer to AppliedDurableLoot_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TArray< int32 > * `[`GetAppliedDurableLootOrNull`](#structFRHAPI__InventorySession_1ab3d2bd70b737c587bff6d5060f528657)`() const` <a id="structFRHAPI__InventorySession_1ab3d2bd70b737c587bff6d5060f528657"></a>
+#### `public inline const TArray< int32 > * `[`GetAppliedDurableLootOrNull`](#structFRHAPI__InventorySession_1ae41f08d4bd5b69987e626f1f496ec107)`() const` <a id="structFRHAPI__InventorySession_1ae41f08d4bd5b69987e626f1f496ec107"></a>
 
 Returns a pointer to AppliedDurableLoot_Optional, if it has been set, otherwise returns nullptr.
 

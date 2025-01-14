@@ -22,15 +22,15 @@ struct FRHAPI_BackfillTeam
 `public int32 `[`PlayersRequired`](#structFRHAPI__BackfillTeam_1a72823c33bcf556c5082c0b332f17fc78) | The number of players we want to backfill.
 `public int32 `[`TeamId`](#structFRHAPI__BackfillTeam_1afcd2c20abecc7b477e720e5acd45a714) | Id for the team that requires backfilled players.
 `public virtual bool `[`FromJson`](#structFRHAPI__BackfillTeam_1ad85782569b80df848b47ce7b407ee409)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__BackfillTeam_1ab8c8ec881c12ad3cd1ea889dc1b9a0cf)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline int32 & `[`GetPlayersRequired`](#structFRHAPI__BackfillTeam_1a253eeecedf2f345cc05cbbfc75b6f9b1)`()` | Gets the value of PlayersRequired.
-`public inline const int32 & `[`GetPlayersRequired`](#structFRHAPI__BackfillTeam_1a57c08eca078b8af22a2f17efda5a35c8)`() const` | Gets the value of PlayersRequired.
+`public virtual void `[`WriteJson`](#structFRHAPI__BackfillTeam_1accf1e9cfbadfa4061aedf8984c8be2cb)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline int32 & `[`GetPlayersRequired`](#structFRHAPI__BackfillTeam_1a20fbccd6ac563b6cf5c096ed9bac097b)`()` | Gets the value of PlayersRequired.
+`public inline const int32 & `[`GetPlayersRequired`](#structFRHAPI__BackfillTeam_1acd62c818112d8f47ffc7439c29fa2c87)`() const` | Gets the value of PlayersRequired.
 `public inline void `[`SetPlayersRequired`](#structFRHAPI__BackfillTeam_1aed64aa333297dcaa4240a81c2ab76b99)`(const int32 & NewValue)` | Sets the value of PlayersRequired.
 `public inline void `[`SetPlayersRequired`](#structFRHAPI__BackfillTeam_1a0ab0406925dab6f5ca45cd962417d85a)`(int32 && NewValue)` | Sets the value of PlayersRequired using move semantics.
 `public inline bool `[`IsPlayersRequiredDefaultValue`](#structFRHAPI__BackfillTeam_1a64293b1e09f0ca637ffba8fae0a371d2)`() const` | Returns true if PlayersRequired matches the default value.
 `public inline void `[`SetPlayersRequiredToDefault`](#structFRHAPI__BackfillTeam_1a85eed60c7d5390558f0d38df6dce2eaf)`()` | Sets the value of PlayersRequired to its default
-`public inline int32 & `[`GetTeamId`](#structFRHAPI__BackfillTeam_1aa4d27f9fa4149a32be552632ca2d0972)`()` | Gets the value of TeamId.
-`public inline const int32 & `[`GetTeamId`](#structFRHAPI__BackfillTeam_1a7eed8d80b3b8a21939eeae5abc99cb17)`() const` | Gets the value of TeamId.
+`public inline int32 & `[`GetTeamId`](#structFRHAPI__BackfillTeam_1a013f6105df32df4e2c1d81cd89b3ded3)`()` | Gets the value of TeamId.
+`public inline const int32 & `[`GetTeamId`](#structFRHAPI__BackfillTeam_1a1ef59cd7bef7254fb8aa149f086c2178)`() const` | Gets the value of TeamId.
 `public inline void `[`SetTeamId`](#structFRHAPI__BackfillTeam_1aeea5f2ea122602b3bfe1fe4a53ea6647)`(const int32 & NewValue)` | Sets the value of TeamId.
 `public inline void `[`SetTeamId`](#structFRHAPI__BackfillTeam_1ab7bad2a71d7d52bb89b3f108cee52474)`(int32 && NewValue)` | Sets the value of TeamId using move semantics.
 `public inline bool `[`IsTeamIdDefaultValue`](#structFRHAPI__BackfillTeam_1ae4f0e6536aac48c49b9bf2a40c24aaff)`() const` | Returns true if TeamId matches the default value.
@@ -56,18 +56,18 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__BackfillTeam_1ab8c8ec881c12ad3cd1ea889dc1b9a0cf)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__BackfillTeam_1ab8c8ec881c12ad3cd1ea889dc1b9a0cf"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__BackfillTeam_1accf1e9cfbadfa4061aedf8984c8be2cb)`(TSharedRef< TJsonWriter<> > & Writer) const` <a id="structFRHAPI__BackfillTeam_1accf1e9cfbadfa4061aedf8984c8be2cb"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline int32 & `[`GetPlayersRequired`](#structFRHAPI__BackfillTeam_1a253eeecedf2f345cc05cbbfc75b6f9b1)`()` <a id="structFRHAPI__BackfillTeam_1a253eeecedf2f345cc05cbbfc75b6f9b1"></a>
+#### `public inline int32 & `[`GetPlayersRequired`](#structFRHAPI__BackfillTeam_1a20fbccd6ac563b6cf5c096ed9bac097b)`()` <a id="structFRHAPI__BackfillTeam_1a20fbccd6ac563b6cf5c096ed9bac097b"></a>
 
 Gets the value of PlayersRequired.
 
-#### `public inline const int32 & `[`GetPlayersRequired`](#structFRHAPI__BackfillTeam_1a57c08eca078b8af22a2f17efda5a35c8)`() const` <a id="structFRHAPI__BackfillTeam_1a57c08eca078b8af22a2f17efda5a35c8"></a>
+#### `public inline const int32 & `[`GetPlayersRequired`](#structFRHAPI__BackfillTeam_1acd62c818112d8f47ffc7439c29fa2c87)`() const` <a id="structFRHAPI__BackfillTeam_1acd62c818112d8f47ffc7439c29fa2c87"></a>
 
 Gets the value of PlayersRequired.
 
@@ -87,11 +87,11 @@ Returns true if PlayersRequired matches the default value.
 
 Sets the value of PlayersRequired to its default
 
-#### `public inline int32 & `[`GetTeamId`](#structFRHAPI__BackfillTeam_1aa4d27f9fa4149a32be552632ca2d0972)`()` <a id="structFRHAPI__BackfillTeam_1aa4d27f9fa4149a32be552632ca2d0972"></a>
+#### `public inline int32 & `[`GetTeamId`](#structFRHAPI__BackfillTeam_1a013f6105df32df4e2c1d81cd89b3ded3)`()` <a id="structFRHAPI__BackfillTeam_1a013f6105df32df4e2c1d81cd89b3ded3"></a>
 
 Gets the value of TeamId.
 
-#### `public inline const int32 & `[`GetTeamId`](#structFRHAPI__BackfillTeam_1a7eed8d80b3b8a21939eeae5abc99cb17)`() const` <a id="structFRHAPI__BackfillTeam_1a7eed8d80b3b8a21939eeae5abc99cb17"></a>
+#### `public inline const int32 & `[`GetTeamId`](#structFRHAPI__BackfillTeam_1a1ef59cd7bef7254fb8aa149f086c2178)`() const` <a id="structFRHAPI__BackfillTeam_1a1ef59cd7bef7254fb8aa149f086c2178"></a>
 
 Gets the value of TeamId.
 

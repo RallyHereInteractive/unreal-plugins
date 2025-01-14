@@ -108,29 +108,29 @@ Server Bootstrapper for the Game Instance.
 `public virtual bool `[`IsTickable`](#classURH__GameInstanceServerBootstrapper_1a806c9027d05eece8eed4ebb5ea3838de)`() const` | Whether or not to tick this object.
 `public virtual TStatId `[`GetStatId`](#classURH__GameInstanceServerBootstrapper_1ace60b33a55d1acdc8c07c42fc6f495e3)`() const` | What stat id to use to report for the tick.
 `public inline virtual FAuthContextPtr `[`GetAuthContext`](#classURH__GameInstanceServerBootstrapper_1a55b7b631d0d985ed2b86cfa8ccfb3690)`() const` | Provides the auth context this bootstrapper owns.
-`public inline virtual TSharedPtr< class IAnalyticsProvider > `[`GetAnalyticsProvider`](#classURH__GameInstanceServerBootstrapper_1a3b8760a66ce261f2c4651298a8012097)`() const` | Get the Analytics Provider.
-`public inline virtual `[`URH_OnlineSession`](Session.md#classURH__OnlineSession)` * `[`GetSession`](#classURH__GameInstanceServerBootstrapper_1a2ee4a4f52cbb85e077b2ffb2459f2c3e)`() const` | Get the current bootstrapping mode.
+`public inline virtual TSharedPtr< class IAnalyticsProvider > `[`GetAnalyticsProvider`](#classURH__GameInstanceServerBootstrapper_1abec5f46792b8db318c96b8004f40a693)`() const` | Get the Analytics Provider.
+`public inline virtual `[`URH_OnlineSession`](Session.md#classURH__OnlineSession)` * `[`GetSession`](#classURH__GameInstanceServerBootstrapper_1a1a4abd39217c117631a28913207f4568)`() const` | Get the current bootstrapping mode.
 `public inline virtual FAuthContextPtr `[`GetSessionAuthContext`](#classURH__GameInstanceServerBootstrapper_1a3c8ddb006bbc3dea378d179e51be5b62)`() const` | Gets the auth context to use for API calls for the session owner.
 `public virtual void `[`ImportAPISession`](#classURH__GameInstanceServerBootstrapper_1a374284e48119f0092acb4a0da5634215)`(const `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` & Session)` | Imports a session object from the API into the owner (ex: from polling).
 `public virtual void `[`ImportAPITemplate`](#classURH__GameInstanceServerBootstrapper_1a9cfc35913bd38f0fd8f090428c6971d4)`(const `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template)` | Imports the template into the owner's template list (ex: from polling).
 `public virtual void `[`ReconcileAPISessions`](#classURH__GameInstanceServerBootstrapper_1a30545d8b52b8fdfe6ebbff321514e929)`(const TArray< FString > & SessionIds,const TOptional< FString > & ETag)` | Updates the list of sessions to only those that are active.
 `public virtual void `[`ReconcileAPITemplates`](#classURH__GameInstanceServerBootstrapper_1a3f046c14798943a59bcb268c75e02e6c)`(const TArray< FString > & InTemplates,const TOptional< FString > & ETag)` | Updates the list of session templates to those that are active.
-`public virtual class `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__GameInstanceServerBootstrapper_1ac1a7eee0c5d62a932aba1d57520fba59)`() const` | Gets the PlayerInfo Subsystem.
-`public virtual IOnlineSubsystem * `[`GetOSS`](#classURH__GameInstanceServerBootstrapper_1afdc3030fd174d1a570231dcad8429265)`() const` | Gets the Online Subsystem to use for OSS calls.
+`public virtual class `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__GameInstanceServerBootstrapper_1af9df0ebc7470101ee1d40cdb58e6527b)`() const` | Gets the PlayerInfo Subsystem.
+`public virtual IOnlineSubsystem * `[`GetOSS`](#classURH__GameInstanceServerBootstrapper_1afef323718d396fc0cde3b69300148ffc)`() const` | Gets the Online Subsystem to use for OSS calls.
 `public virtual FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classURH__GameInstanceServerBootstrapper_1ab21f0bba37ec5caa75fe83379da54074)`() const` | Gets the Online Subsystem Unique Id to use for OSS calls.
 `public virtual FPlatformUserId `[`GetOSSPlatformUserId`](#classURH__GameInstanceServerBootstrapper_1a0c31da8cfe9dcfcb2c8988e870e26931)`() const` | Gets the Online Subsystem PlatformUserId to use for OSS calls (equivalent to controller index)
-`public inline virtual TOptional< FString > `[`GetETagForAllTemplatesPoll`](#classURH__GameInstanceServerBootstrapper_1ac1eaa7cf3cda91a7a1f412dfe5246fa8)`() const` | Gets the etag to use for a "Get all Templates" type query.
-`public inline virtual TOptional< FString > `[`GetETagForAllSessionsPoll`](#classURH__GameInstanceServerBootstrapper_1ae10409319fa6d2264e124e65a8c9bf8e)`() const` | Gets the etag to use for a "Get all Sessions" type query.
-`public inline virtual TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classURH__GameInstanceServerBootstrapper_1ac2f94216aa37e0981cbb72db9e8a9f10)`() const` | Used to get all sessions, primarily for get all sessions polling where etag matches.
-`public virtual `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`GetSessionById`](#classURH__GameInstanceServerBootstrapper_1abe0dcf495d31dfbd8876d63feab05ad5)`(const FString & SessionId) const` | Gets a session by its id.
+`public inline virtual TOptional< FString > `[`GetETagForAllTemplatesPoll`](#classURH__GameInstanceServerBootstrapper_1a8953399c090da52f0903cd5e6cec0247)`() const` | Gets the etag to use for a "Get all Templates" type query.
+`public inline virtual TOptional< FString > `[`GetETagForAllSessionsPoll`](#classURH__GameInstanceServerBootstrapper_1adff7a5e92b0efc48576349d25fd51a81)`() const` | Gets the etag to use for a "Get all Sessions" type query.
+`public inline virtual TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classURH__GameInstanceServerBootstrapper_1a5b4fbd60f8f1f0c34f47570b1a7250f1)`() const` | Used to get all sessions, primarily for get all sessions polling where etag matches.
+`public virtual `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`GetSessionById`](#classURH__GameInstanceServerBootstrapper_1a76214bcf77e8597e335462954c7e2f93)`(const FString & SessionId) const` | Gets a session by its id.
 `public virtual void `[`RemoveSessionById`](#classURH__GameInstanceServerBootstrapper_1a493191c1aab0553e34f0dcf4c05f8f22)`(const FString & SessionId)` | Removes a cached session for the local player, this does NOT try to leave it.
 `public virtual bool `[`GetTemplate`](#classURH__GameInstanceServerBootstrapper_1a62d69a1d7e7021f03557dff715e6179d)`(const FString & Type,`[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template) const` | Gets a session template by type.
-`public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__GameInstanceServerBootstrapper_1aec9f89849a3865282935f12646e98255)`(const FString & SessionId) const` | Gets the platform synchronization object using the rally here session id.
-`public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__GameInstanceServerBootstrapper_1a2c2d7c9b2b38fca62aba5ba8e642797b)`(const FUniqueNetIdRepl & PlatformSessionId) const` | Gets the platform synchronization object using the platform session id.
-`public inline const `[`FRH_BootstrappingResult`](GameInstance.md#structFRH__BootstrappingResult)` & `[`GetBootstrappingResult`](#classURH__GameInstanceServerBootstrapper_1aa61e1f51c28e5437d220362e652e4156)`() const` | Gets the bootstrapping result from this bootstrapper.
-`public inline virtual TOptional< FString > `[`GetBoundAllocationId`](#classURH__GameInstanceServerBootstrapper_1afc0a4f4f72556a0b713b0bf5f1442eb7)`() const` | Gets the allocation id this session owner is bound to, if any. Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view.
-`public inline virtual TOptional< FString > `[`GetBoundSessionId`](#classURH__GameInstanceServerBootstrapper_1ac98b9870f8bd64413cf72f4d00d38447)`() const` | Gets the session id this session owner is bound to, if any. Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view.
-`public inline virtual TOptional< FString > `[`GetBoundInstanceId`](#classURH__GameInstanceServerBootstrapper_1a33402e7dd26b4a226f7615749184303b)`() const` | Gets the instance id this session owner is bound to, if any. Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view.
+`public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__GameInstanceServerBootstrapper_1a2b070ade3834276812e317b0a8b75b36)`(const FString & SessionId) const` | Gets the platform synchronization object using the rally here session id.
+`public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__GameInstanceServerBootstrapper_1a9444efa269f80489f2a4f156fed728fe)`(const FUniqueNetIdRepl & PlatformSessionId) const` | Gets the platform synchronization object using the platform session id.
+`public inline const `[`FRH_BootstrappingResult`](GameInstance.md#structFRH__BootstrappingResult)` & `[`GetBootstrappingResult`](#classURH__GameInstanceServerBootstrapper_1a63db439ea86d909fea356d10f28a104d)`() const` | Gets the bootstrapping result from this bootstrapper.
+`public inline virtual TOptional< FString > `[`GetBoundAllocationId`](#classURH__GameInstanceServerBootstrapper_1a0abed1bbea6b3242fe8f72f043ff7f39)`() const` | Gets the allocation id this session owner is bound to, if any. Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view.
+`public inline virtual TOptional< FString > `[`GetBoundSessionId`](#classURH__GameInstanceServerBootstrapper_1a8325867e4854e6526f22d5d488939b93)`() const` | Gets the session id this session owner is bound to, if any. Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view.
+`public inline virtual TOptional< FString > `[`GetBoundInstanceId`](#classURH__GameInstanceServerBootstrapper_1a1769a57b7333c09514d3bf1f83f1895d)`() const` | Gets the instance id this session owner is bound to, if any. Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view.
 `public virtual bool `[`CanAutoUploadServerFiles`](#classURH__GameInstanceServerBootstrapper_1a9cfd09c543c9435af1a994d400d5c564)`() const` | Gets the directory to use for uploading files for this bootstrapper.
 `public virtual `[`FRH_RemoteFileApiDirectory`](Common.md#structFRH__RemoteFileApiDirectory)` `[`GetAutoUploadDirectory`](#classURH__GameInstanceServerBootstrapper_1a482bf6b82fcc70879d897f4de4fbc21b)`(bool bDeveloperFile) const` | Gets the directory to use for uploading files for this bootstrapper.
 `public virtual void `[`ConditionalAutoUploadLogFile`](#classURH__GameInstanceServerBootstrapper_1a77257d8a5d5c426286fbf301fec96171)`() const` | Capture and upload log file based on settings.
@@ -253,11 +253,11 @@ What stat id to use to report for the tick.
 
 Provides the auth context this bootstrapper owns.
 
-#### `public inline virtual TSharedPtr< class IAnalyticsProvider > `[`GetAnalyticsProvider`](#classURH__GameInstanceServerBootstrapper_1a3b8760a66ce261f2c4651298a8012097)`() const` <a id="classURH__GameInstanceServerBootstrapper_1a3b8760a66ce261f2c4651298a8012097"></a>
+#### `public inline virtual TSharedPtr< class IAnalyticsProvider > `[`GetAnalyticsProvider`](#classURH__GameInstanceServerBootstrapper_1abec5f46792b8db318c96b8004f40a693)`() const` <a id="classURH__GameInstanceServerBootstrapper_1abec5f46792b8db318c96b8004f40a693"></a>
 
 Get the Analytics Provider.
 
-#### `public inline virtual `[`URH_OnlineSession`](Session.md#classURH__OnlineSession)` * `[`GetSession`](#classURH__GameInstanceServerBootstrapper_1a2ee4a4f52cbb85e077b2ffb2459f2c3e)`() const` <a id="classURH__GameInstanceServerBootstrapper_1a2ee4a4f52cbb85e077b2ffb2459f2c3e"></a>
+#### `public inline virtual `[`URH_OnlineSession`](Session.md#classURH__OnlineSession)` * `[`GetSession`](#classURH__GameInstanceServerBootstrapper_1a1a4abd39217c117631a28913207f4568)`() const` <a id="classURH__GameInstanceServerBootstrapper_1a1a4abd39217c117631a28913207f4568"></a>
 
 Get the current bootstrapping mode.
 
@@ -297,11 +297,11 @@ Updates the list of session templates to those that are active.
 
 * `ETag` The ETag to use for the update.
 
-#### `public virtual class `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__GameInstanceServerBootstrapper_1ac1a7eee0c5d62a932aba1d57520fba59)`() const` <a id="classURH__GameInstanceServerBootstrapper_1ac1a7eee0c5d62a932aba1d57520fba59"></a>
+#### `public virtual class `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__GameInstanceServerBootstrapper_1af9df0ebc7470101ee1d40cdb58e6527b)`() const` <a id="classURH__GameInstanceServerBootstrapper_1af9df0ebc7470101ee1d40cdb58e6527b"></a>
 
 Gets the PlayerInfo Subsystem.
 
-#### `public virtual IOnlineSubsystem * `[`GetOSS`](#classURH__GameInstanceServerBootstrapper_1afdc3030fd174d1a570231dcad8429265)`() const` <a id="classURH__GameInstanceServerBootstrapper_1afdc3030fd174d1a570231dcad8429265"></a>
+#### `public virtual IOnlineSubsystem * `[`GetOSS`](#classURH__GameInstanceServerBootstrapper_1afef323718d396fc0cde3b69300148ffc)`() const` <a id="classURH__GameInstanceServerBootstrapper_1afef323718d396fc0cde3b69300148ffc"></a>
 
 Gets the Online Subsystem to use for OSS calls.
 
@@ -313,19 +313,19 @@ Gets the Online Subsystem Unique Id to use for OSS calls.
 
 Gets the Online Subsystem PlatformUserId to use for OSS calls (equivalent to controller index)
 
-#### `public inline virtual TOptional< FString > `[`GetETagForAllTemplatesPoll`](#classURH__GameInstanceServerBootstrapper_1ac1eaa7cf3cda91a7a1f412dfe5246fa8)`() const` <a id="classURH__GameInstanceServerBootstrapper_1ac1eaa7cf3cda91a7a1f412dfe5246fa8"></a>
+#### `public inline virtual TOptional< FString > `[`GetETagForAllTemplatesPoll`](#classURH__GameInstanceServerBootstrapper_1a8953399c090da52f0903cd5e6cec0247)`() const` <a id="classURH__GameInstanceServerBootstrapper_1a8953399c090da52f0903cd5e6cec0247"></a>
 
 Gets the etag to use for a "Get all Templates" type query.
 
-#### `public inline virtual TOptional< FString > `[`GetETagForAllSessionsPoll`](#classURH__GameInstanceServerBootstrapper_1ae10409319fa6d2264e124e65a8c9bf8e)`() const` <a id="classURH__GameInstanceServerBootstrapper_1ae10409319fa6d2264e124e65a8c9bf8e"></a>
+#### `public inline virtual TOptional< FString > `[`GetETagForAllSessionsPoll`](#classURH__GameInstanceServerBootstrapper_1adff7a5e92b0efc48576349d25fd51a81)`() const` <a id="classURH__GameInstanceServerBootstrapper_1adff7a5e92b0efc48576349d25fd51a81"></a>
 
 Gets the etag to use for a "Get all Sessions" type query.
 
-#### `public inline virtual TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classURH__GameInstanceServerBootstrapper_1ac2f94216aa37e0981cbb72db9e8a9f10)`() const` <a id="classURH__GameInstanceServerBootstrapper_1ac2f94216aa37e0981cbb72db9e8a9f10"></a>
+#### `public inline virtual TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classURH__GameInstanceServerBootstrapper_1a5b4fbd60f8f1f0c34f47570b1a7250f1)`() const` <a id="classURH__GameInstanceServerBootstrapper_1a5b4fbd60f8f1f0c34f47570b1a7250f1"></a>
 
 Used to get all sessions, primarily for get all sessions polling where etag matches.
 
-#### `public virtual `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`GetSessionById`](#classURH__GameInstanceServerBootstrapper_1abe0dcf495d31dfbd8876d63feab05ad5)`(const FString & SessionId) const` <a id="classURH__GameInstanceServerBootstrapper_1abe0dcf495d31dfbd8876d63feab05ad5"></a>
+#### `public virtual `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`GetSessionById`](#classURH__GameInstanceServerBootstrapper_1a76214bcf77e8597e335462954c7e2f93)`(const FString & SessionId) const` <a id="classURH__GameInstanceServerBootstrapper_1a76214bcf77e8597e335462954c7e2f93"></a>
 
 Gets a session by its id.
 
@@ -354,27 +354,27 @@ Gets a session template by type.
 #### Returns
 If true, the template was found.
 
-#### `public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__GameInstanceServerBootstrapper_1aec9f89849a3865282935f12646e98255)`(const FString & SessionId) const` <a id="classURH__GameInstanceServerBootstrapper_1aec9f89849a3865282935f12646e98255"></a>
+#### `public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__GameInstanceServerBootstrapper_1a2b070ade3834276812e317b0a8b75b36)`(const FString & SessionId) const` <a id="classURH__GameInstanceServerBootstrapper_1a2b070ade3834276812e317b0a8b75b36"></a>
 
 Gets the platform synchronization object using the rally here session id.
 
-#### `public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__GameInstanceServerBootstrapper_1a2c2d7c9b2b38fca62aba5ba8e642797b)`(const FUniqueNetIdRepl & PlatformSessionId) const` <a id="classURH__GameInstanceServerBootstrapper_1a2c2d7c9b2b38fca62aba5ba8e642797b"></a>
+#### `public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__GameInstanceServerBootstrapper_1a9444efa269f80489f2a4f156fed728fe)`(const FUniqueNetIdRepl & PlatformSessionId) const` <a id="classURH__GameInstanceServerBootstrapper_1a9444efa269f80489f2a4f156fed728fe"></a>
 
 Gets the platform synchronization object using the platform session id.
 
-#### `public inline const `[`FRH_BootstrappingResult`](GameInstance.md#structFRH__BootstrappingResult)` & `[`GetBootstrappingResult`](#classURH__GameInstanceServerBootstrapper_1aa61e1f51c28e5437d220362e652e4156)`() const` <a id="classURH__GameInstanceServerBootstrapper_1aa61e1f51c28e5437d220362e652e4156"></a>
+#### `public inline const `[`FRH_BootstrappingResult`](GameInstance.md#structFRH__BootstrappingResult)` & `[`GetBootstrappingResult`](#classURH__GameInstanceServerBootstrapper_1a63db439ea86d909fea356d10f28a104d)`() const` <a id="classURH__GameInstanceServerBootstrapper_1a63db439ea86d909fea356d10f28a104d"></a>
 
 Gets the bootstrapping result from this bootstrapper.
 
-#### `public inline virtual TOptional< FString > `[`GetBoundAllocationId`](#classURH__GameInstanceServerBootstrapper_1afc0a4f4f72556a0b713b0bf5f1442eb7)`() const` <a id="classURH__GameInstanceServerBootstrapper_1afc0a4f4f72556a0b713b0bf5f1442eb7"></a>
+#### `public inline virtual TOptional< FString > `[`GetBoundAllocationId`](#classURH__GameInstanceServerBootstrapper_1a0abed1bbea6b3242fe8f72f043ff7f39)`() const` <a id="classURH__GameInstanceServerBootstrapper_1a0abed1bbea6b3242fe8f72f043ff7f39"></a>
 
 Gets the allocation id this session owner is bound to, if any. Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view.
 
-#### `public inline virtual TOptional< FString > `[`GetBoundSessionId`](#classURH__GameInstanceServerBootstrapper_1ac98b9870f8bd64413cf72f4d00d38447)`() const` <a id="classURH__GameInstanceServerBootstrapper_1ac98b9870f8bd64413cf72f4d00d38447"></a>
+#### `public inline virtual TOptional< FString > `[`GetBoundSessionId`](#classURH__GameInstanceServerBootstrapper_1a8325867e4854e6526f22d5d488939b93)`() const` <a id="classURH__GameInstanceServerBootstrapper_1a8325867e4854e6526f22d5d488939b93"></a>
 
 Gets the session id this session owner is bound to, if any. Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view.
 
-#### `public inline virtual TOptional< FString > `[`GetBoundInstanceId`](#classURH__GameInstanceServerBootstrapper_1a33402e7dd26b4a226f7615749184303b)`() const` <a id="classURH__GameInstanceServerBootstrapper_1a33402e7dd26b4a226f7615749184303b"></a>
+#### `public inline virtual TOptional< FString > `[`GetBoundInstanceId`](#classURH__GameInstanceServerBootstrapper_1a1769a57b7333c09514d3bf1f83f1895d)`() const` <a id="classURH__GameInstanceServerBootstrapper_1a1769a57b7333c09514d3bf1f83f1895d"></a>
 
 Gets the instance id this session owner is bound to, if any. Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view.
 
@@ -711,24 +711,24 @@ Subsystem for the Game Instance.
 `public inline virtual void `[`SetAuthContext`](#classURH__GameInstanceSubsystem_1a44eec7c5537ee9a698894eb16305b48e)`(FAuthContextPtr InAuthContext)` | Sets the Auth Context for the subsystem.
 `public inline FORCEINLINE FAuthContextPtr `[`GetAuthContext`](#classURH__GameInstanceSubsystem_1a06c1975379cda5e1dc794586d915de2f)`() const` | Gets the subsystems designated auth context.
 `public inline virtual void `[`SetAnalyticsProvider`](#classURH__GameInstanceSubsystem_1a42eb3698475a5227fca504c26525d314)`(TSharedPtr< class IAnalyticsProvider > InAnalyticsProvider)` | Sets the analytics provider for the subsystem.
-`public inline FORCEINLINE TSharedPtr< class IAnalyticsProvider > `[`GetAnalyticsProvider`](#classURH__GameInstanceSubsystem_1aa3ba1a8398b4003681e34501e7a20407)`() const` | Gets the instance's analytics provider to use.
-`public inline FORCEINLINE `[`URH_GameInstanceSessionSubsystem`](undefined.md#classURH__GameInstanceSessionSubsystem)` * `[`GetSessionSubsystem`](#classURH__GameInstanceSubsystem_1ab098d3ea9aef6d5b315ec5fcf7f78e83)`() const` | Gets the session subsystem on the instance.
-`public inline FORCEINLINE `[`URH_SessionBrowserCache`](Session.md#classURH__SessionBrowserCache)` * `[`GetSessionSearchCache`](#classURH__GameInstanceSubsystem_1a8a38b8faeb829636d20cd760171929f1)`() const` | Gets the session search cache on the instance.
-`public inline FORCEINLINE `[`URH_MatchmakingBrowserCache`](MatchmakingBrowser.md#classURH__MatchmakingBrowserCache)` * `[`GetMatchmakingCache`](#classURH__GameInstanceSubsystem_1a1a549e9bc6c17b15837a1def9b54e2d8)`() const` | Gets the matchmaking cache on the instance.
-`public inline FORCEINLINE `[`URH_GameInstanceServerBootstrapper`](GameInstance.md#classURH__GameInstanceServerBootstrapper)` * `[`GetServerBootstrapper`](#classURH__GameInstanceSubsystem_1a4171c2c1e8ee7f3482a0b6c94aade633)`() const` | Gets the server bootstrapper on the instance.
-`public inline FORCEINLINE `[`URH_GameInstanceClientBootstrapper`](GameInstance.md#classURH__GameInstanceClientBootstrapper)` * `[`GetClientBootstrapper`](#classURH__GameInstanceSubsystem_1a3a6db3ce596d74859d43cd61e4733367)`() const` | Gets the client boostrapper on the instance.
-`public inline FORCEINLINE `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__GameInstanceSubsystem_1a91eb2fe6e2fbce9f800c4459d64723b6)`() const` | Gets the player info subsystem on the instance.
-`public inline FORCEINLINE `[`URH_CatalogSubsystem`](Catalog.md#classURH__CatalogSubsystem)` * `[`GetCatalogSubsystem`](#classURH__GameInstanceSubsystem_1a4ef2732c8e56676018a76f91cbff6a6c)`() const` | Gets the catalog subsystem on the instance.
-`public inline FORCEINLINE `[`URH_ConfigSubsystem`](Config.md#classURH__ConfigSubsystem)` * `[`GetConfigSubsystem`](#classURH__GameInstanceSubsystem_1a0b03d54714a92991a2202c7e421e618c)`() const` | Gets the config subsystem on the instance.
-`public inline FORCEINLINE `[`URH_SettingsSubsystem`](Settings.md#classURH__SettingsSubsystem)` * `[`GetSettingsSubsystem`](#classURH__GameInstanceSubsystem_1aa38776b9a25d59f402ef9f7f7593ca88)`() const` | Gets the settings subsystem on the instance.
-`public inline FORCEINLINE `[`URH_MatchSubsystem`](Match.md#classURH__MatchSubsystem)` * `[`GetMatchSubsystem`](#classURH__GameInstanceSubsystem_1aacdc467e3f161d6fc30f6d44f38c05ff)`() const` | Gets the match subsystem on the instance.
-`public inline FORCEINLINE `[`URH_RemoteFileSubsystem`](File.md#classURH__RemoteFileSubsystem)` * `[`GetRemoteFileSubsystem`](#classURH__GameInstanceSubsystem_1aef4373b14ab4dbeddbd20ee256a4f775)`() const` | Gets the remote file subsystem on the instance.
+`public inline FORCEINLINE TSharedPtr< class IAnalyticsProvider > `[`GetAnalyticsProvider`](#classURH__GameInstanceSubsystem_1aaf26ccaf6e9c885523c236f2f15c530f)`() const` | Gets the instance's analytics provider to use.
+`public inline FORCEINLINE `[`URH_GameInstanceSessionSubsystem`](undefined.md#classURH__GameInstanceSessionSubsystem)` * `[`GetSessionSubsystem`](#classURH__GameInstanceSubsystem_1aed7241da7d1931e9c31aa0acdaf53101)`() const` | Gets the session subsystem on the instance.
+`public inline FORCEINLINE `[`URH_SessionBrowserCache`](Session.md#classURH__SessionBrowserCache)` * `[`GetSessionSearchCache`](#classURH__GameInstanceSubsystem_1a2467f0a1344b223cc5db67c28f3525c6)`() const` | Gets the session search cache on the instance.
+`public inline FORCEINLINE `[`URH_MatchmakingBrowserCache`](MatchmakingBrowser.md#classURH__MatchmakingBrowserCache)` * `[`GetMatchmakingCache`](#classURH__GameInstanceSubsystem_1a46237782dce84685db865569d320f4f0)`() const` | Gets the matchmaking cache on the instance.
+`public inline FORCEINLINE `[`URH_GameInstanceServerBootstrapper`](GameInstance.md#classURH__GameInstanceServerBootstrapper)` * `[`GetServerBootstrapper`](#classURH__GameInstanceSubsystem_1af2a79cc4f630eb6f4699e0e5d0f42647)`() const` | Gets the server bootstrapper on the instance.
+`public inline FORCEINLINE `[`URH_GameInstanceClientBootstrapper`](GameInstance.md#classURH__GameInstanceClientBootstrapper)` * `[`GetClientBootstrapper`](#classURH__GameInstanceSubsystem_1a786b16d166f2e9dfa0659e24d57495a4)`() const` | Gets the client boostrapper on the instance.
+`public inline FORCEINLINE `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__GameInstanceSubsystem_1a0c7789c0fe946871f6e0497557f494f2)`() const` | Gets the player info subsystem on the instance.
+`public inline FORCEINLINE `[`URH_CatalogSubsystem`](Catalog.md#classURH__CatalogSubsystem)` * `[`GetCatalogSubsystem`](#classURH__GameInstanceSubsystem_1a5c7a3a931097a91ea50376c22386b2d2)`() const` | Gets the catalog subsystem on the instance.
+`public inline FORCEINLINE `[`URH_ConfigSubsystem`](Config.md#classURH__ConfigSubsystem)` * `[`GetConfigSubsystem`](#classURH__GameInstanceSubsystem_1a199d6a714680b7ee31731bbd6a518c3e)`() const` | Gets the config subsystem on the instance.
+`public inline FORCEINLINE `[`URH_SettingsSubsystem`](Settings.md#classURH__SettingsSubsystem)` * `[`GetSettingsSubsystem`](#classURH__GameInstanceSubsystem_1afb65f400853e969dad9bb191043f1614)`() const` | Gets the settings subsystem on the instance.
+`public inline FORCEINLINE `[`URH_MatchSubsystem`](Match.md#classURH__MatchSubsystem)` * `[`GetMatchSubsystem`](#classURH__GameInstanceSubsystem_1af1e307ce8703fa96ce73485e81de4d46)`() const` | Gets the match subsystem on the instance.
+`public inline FORCEINLINE `[`URH_RemoteFileSubsystem`](File.md#classURH__RemoteFileSubsystem)` * `[`GetRemoteFileSubsystem`](#classURH__GameInstanceSubsystem_1a7a59712911e755b05c3c866355ee125e)`() const` | Gets the remote file subsystem on the instance.
 `public inline virtual bool `[`IsServerBootstrappingEnabled`](#classURH__GameInstanceSubsystem_1aeb44787c6b0cac3d121ae682ca77b191)`()` | Gets if server boostrapping is enabled.
 `public inline virtual bool `[`IsClientBootstrappingEnabled`](#classURH__GameInstanceSubsystem_1a2b838f400728010a6b525d6222cf3768)`()` | Gets if client boostrapping is enabled.
 `public virtual void `[`CustomEndpoint`](#classURH__GameInstanceSubsystem_1a0a69062a00fa3638f34752c643bd1a79)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const RallyHereAPI::FDelegate_CustomEndpointSend & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
 `public virtual void `[`CustomEndpoint`](#classURH__GameInstanceSubsystem_1a9f80933f5977a68e1d88ceef046b1c80)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDelegateBlock & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
 `public inline FString `[`GetLastKnownIPAddress`](#classURH__GameInstanceSubsystem_1aafe0f7d649e78a7785e1c68d351e490c)`() const` | Gets a last-known IP address for use with reporting.
-`public inline FSimpleMulticastDelegate & `[`GetOnLastKnownIpAddressUpdated`](#classURH__GameInstanceSubsystem_1a919b76273ea8f8e67da7d2ec40a332d4)`()` | Gets a delegate triggered if the last-known IP address is updated.
+`public inline FSimpleMulticastDelegate & `[`GetOnLastKnownIpAddressUpdated`](#classURH__GameInstanceSubsystem_1a819e9af945a2455f9340d365110dd3f9)`()` | Gets a delegate triggered if the last-known IP address is updated.
 `public virtual void `[`QueryIpAddressIfNeeded`](#classURH__GameInstanceSubsystem_1aa2e63aeac365862b5dbd7a787acd832c)`(bool bForce,FSimpleDelegate Delegate)` | Attempts to update the IP address.
 `protected FAuthContextPtr `[`AuthContext`](#classURH__GameInstanceSubsystem_1a8836a0620d1de84cc1383f20b38ab775) | Auth context used by the Game Instance Subsystem.
 `protected TSharedPtr< class IAnalyticsProvider > `[`AnalyticsProvider`](#classURH__GameInstanceSubsystem_1aae5830efe955343c08f88ce79747be51) | Analytics provider used by the Game Instance Subsystem.
@@ -754,7 +754,7 @@ Subsystem for the Game Instance.
 `protected bool `[`bEnableGameSessions`](#classURH__GameInstanceSubsystem_1a2dab4109584cbf2a44f01cb1e488f505) | If the Game Sessions are enabled.
 `protected bool `[`bEnableServerBootstrapper`](#classURH__GameInstanceSubsystem_1a2722842f55f1c5b68bacb822d7c64cb1) | If the Game Instance Server Bootstrapper is enabled.
 `protected bool `[`bEnableClientBootstrapper`](#classURH__GameInstanceSubsystem_1aca95d824ef892413cfaf6a88bf4aef33) | If the Game Instance Client Bootstrapper is enabled.
-`protected template<>`  <br/>`inline UClassToUse * `[`AddSubsystemPlugin`](#classURH__GameInstanceSubsystem_1a3b7e4d48f4487b7a53562eba2cd14e21)`(const FSoftClassPath & SubsystemClassPath)` | Adds a plugin to the Game Instance Subsystem.
+`protected template<>`  <br/>`inline UClassToUse * `[`AddSubsystemPlugin`](#classURH__GameInstanceSubsystem_1a2cb771d0cc6862196c090d4cf116ae7c)`(const FSoftClassPath & SubsystemClassPath)` | Adds a plugin to the Game Instance Subsystem.
 `protected inline virtual void `[`AddSubsystemPlugin`](#classURH__GameInstanceSubsystem_1a28a368a9d11a418a16ec56dab5a4a90c)`(`[`URH_GameInstanceSubsystemPlugin`](SubsystemBase.md#classURH__GameInstanceSubsystemPlugin)` * InPlugin)` | Adds a plugin to the Game Instance Subsystem.
 `protected virtual void `[`AppSuspendCallbackInGameThread`](#classURH__GameInstanceSubsystem_1a7ed49aacbd0e42e5bc4010dbd0ff2888)`()` | Handle application going into suspension (these involve the application losing focus).
 `protected virtual void `[`AppResumeCallbackInGameThread`](#classURH__GameInstanceSubsystem_1afa9adfbf1b12fd3d37e91ea99d4f81fe)`()` | Handle application resuming from suspension (these involve the application losing focus).
@@ -793,51 +793,51 @@ Sets the analytics provider for the subsystem.
 #### Parameters
 * `InAnalyticsProvider` The analytics provider to set with.
 
-#### `public inline FORCEINLINE TSharedPtr< class IAnalyticsProvider > `[`GetAnalyticsProvider`](#classURH__GameInstanceSubsystem_1aa3ba1a8398b4003681e34501e7a20407)`() const` <a id="classURH__GameInstanceSubsystem_1aa3ba1a8398b4003681e34501e7a20407"></a>
+#### `public inline FORCEINLINE TSharedPtr< class IAnalyticsProvider > `[`GetAnalyticsProvider`](#classURH__GameInstanceSubsystem_1aaf26ccaf6e9c885523c236f2f15c530f)`() const` <a id="classURH__GameInstanceSubsystem_1aaf26ccaf6e9c885523c236f2f15c530f"></a>
 
 Gets the instance's analytics provider to use.
 
-#### `public inline FORCEINLINE `[`URH_GameInstanceSessionSubsystem`](undefined.md#classURH__GameInstanceSessionSubsystem)` * `[`GetSessionSubsystem`](#classURH__GameInstanceSubsystem_1ab098d3ea9aef6d5b315ec5fcf7f78e83)`() const` <a id="classURH__GameInstanceSubsystem_1ab098d3ea9aef6d5b315ec5fcf7f78e83"></a>
+#### `public inline FORCEINLINE `[`URH_GameInstanceSessionSubsystem`](undefined.md#classURH__GameInstanceSessionSubsystem)` * `[`GetSessionSubsystem`](#classURH__GameInstanceSubsystem_1aed7241da7d1931e9c31aa0acdaf53101)`() const` <a id="classURH__GameInstanceSubsystem_1aed7241da7d1931e9c31aa0acdaf53101"></a>
 
 Gets the session subsystem on the instance.
 
-#### `public inline FORCEINLINE `[`URH_SessionBrowserCache`](Session.md#classURH__SessionBrowserCache)` * `[`GetSessionSearchCache`](#classURH__GameInstanceSubsystem_1a8a38b8faeb829636d20cd760171929f1)`() const` <a id="classURH__GameInstanceSubsystem_1a8a38b8faeb829636d20cd760171929f1"></a>
+#### `public inline FORCEINLINE `[`URH_SessionBrowserCache`](Session.md#classURH__SessionBrowserCache)` * `[`GetSessionSearchCache`](#classURH__GameInstanceSubsystem_1a2467f0a1344b223cc5db67c28f3525c6)`() const` <a id="classURH__GameInstanceSubsystem_1a2467f0a1344b223cc5db67c28f3525c6"></a>
 
 Gets the session search cache on the instance.
 
-#### `public inline FORCEINLINE `[`URH_MatchmakingBrowserCache`](MatchmakingBrowser.md#classURH__MatchmakingBrowserCache)` * `[`GetMatchmakingCache`](#classURH__GameInstanceSubsystem_1a1a549e9bc6c17b15837a1def9b54e2d8)`() const` <a id="classURH__GameInstanceSubsystem_1a1a549e9bc6c17b15837a1def9b54e2d8"></a>
+#### `public inline FORCEINLINE `[`URH_MatchmakingBrowserCache`](MatchmakingBrowser.md#classURH__MatchmakingBrowserCache)` * `[`GetMatchmakingCache`](#classURH__GameInstanceSubsystem_1a46237782dce84685db865569d320f4f0)`() const` <a id="classURH__GameInstanceSubsystem_1a46237782dce84685db865569d320f4f0"></a>
 
 Gets the matchmaking cache on the instance.
 
-#### `public inline FORCEINLINE `[`URH_GameInstanceServerBootstrapper`](GameInstance.md#classURH__GameInstanceServerBootstrapper)` * `[`GetServerBootstrapper`](#classURH__GameInstanceSubsystem_1a4171c2c1e8ee7f3482a0b6c94aade633)`() const` <a id="classURH__GameInstanceSubsystem_1a4171c2c1e8ee7f3482a0b6c94aade633"></a>
+#### `public inline FORCEINLINE `[`URH_GameInstanceServerBootstrapper`](GameInstance.md#classURH__GameInstanceServerBootstrapper)` * `[`GetServerBootstrapper`](#classURH__GameInstanceSubsystem_1af2a79cc4f630eb6f4699e0e5d0f42647)`() const` <a id="classURH__GameInstanceSubsystem_1af2a79cc4f630eb6f4699e0e5d0f42647"></a>
 
 Gets the server bootstrapper on the instance.
 
-#### `public inline FORCEINLINE `[`URH_GameInstanceClientBootstrapper`](GameInstance.md#classURH__GameInstanceClientBootstrapper)` * `[`GetClientBootstrapper`](#classURH__GameInstanceSubsystem_1a3a6db3ce596d74859d43cd61e4733367)`() const` <a id="classURH__GameInstanceSubsystem_1a3a6db3ce596d74859d43cd61e4733367"></a>
+#### `public inline FORCEINLINE `[`URH_GameInstanceClientBootstrapper`](GameInstance.md#classURH__GameInstanceClientBootstrapper)` * `[`GetClientBootstrapper`](#classURH__GameInstanceSubsystem_1a786b16d166f2e9dfa0659e24d57495a4)`() const` <a id="classURH__GameInstanceSubsystem_1a786b16d166f2e9dfa0659e24d57495a4"></a>
 
 Gets the client boostrapper on the instance.
 
-#### `public inline FORCEINLINE `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__GameInstanceSubsystem_1a91eb2fe6e2fbce9f800c4459d64723b6)`() const` <a id="classURH__GameInstanceSubsystem_1a91eb2fe6e2fbce9f800c4459d64723b6"></a>
+#### `public inline FORCEINLINE `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__GameInstanceSubsystem_1a0c7789c0fe946871f6e0497557f494f2)`() const` <a id="classURH__GameInstanceSubsystem_1a0c7789c0fe946871f6e0497557f494f2"></a>
 
 Gets the player info subsystem on the instance.
 
-#### `public inline FORCEINLINE `[`URH_CatalogSubsystem`](Catalog.md#classURH__CatalogSubsystem)` * `[`GetCatalogSubsystem`](#classURH__GameInstanceSubsystem_1a4ef2732c8e56676018a76f91cbff6a6c)`() const` <a id="classURH__GameInstanceSubsystem_1a4ef2732c8e56676018a76f91cbff6a6c"></a>
+#### `public inline FORCEINLINE `[`URH_CatalogSubsystem`](Catalog.md#classURH__CatalogSubsystem)` * `[`GetCatalogSubsystem`](#classURH__GameInstanceSubsystem_1a5c7a3a931097a91ea50376c22386b2d2)`() const` <a id="classURH__GameInstanceSubsystem_1a5c7a3a931097a91ea50376c22386b2d2"></a>
 
 Gets the catalog subsystem on the instance.
 
-#### `public inline FORCEINLINE `[`URH_ConfigSubsystem`](Config.md#classURH__ConfigSubsystem)` * `[`GetConfigSubsystem`](#classURH__GameInstanceSubsystem_1a0b03d54714a92991a2202c7e421e618c)`() const` <a id="classURH__GameInstanceSubsystem_1a0b03d54714a92991a2202c7e421e618c"></a>
+#### `public inline FORCEINLINE `[`URH_ConfigSubsystem`](Config.md#classURH__ConfigSubsystem)` * `[`GetConfigSubsystem`](#classURH__GameInstanceSubsystem_1a199d6a714680b7ee31731bbd6a518c3e)`() const` <a id="classURH__GameInstanceSubsystem_1a199d6a714680b7ee31731bbd6a518c3e"></a>
 
 Gets the config subsystem on the instance.
 
-#### `public inline FORCEINLINE `[`URH_SettingsSubsystem`](Settings.md#classURH__SettingsSubsystem)` * `[`GetSettingsSubsystem`](#classURH__GameInstanceSubsystem_1aa38776b9a25d59f402ef9f7f7593ca88)`() const` <a id="classURH__GameInstanceSubsystem_1aa38776b9a25d59f402ef9f7f7593ca88"></a>
+#### `public inline FORCEINLINE `[`URH_SettingsSubsystem`](Settings.md#classURH__SettingsSubsystem)` * `[`GetSettingsSubsystem`](#classURH__GameInstanceSubsystem_1afb65f400853e969dad9bb191043f1614)`() const` <a id="classURH__GameInstanceSubsystem_1afb65f400853e969dad9bb191043f1614"></a>
 
 Gets the settings subsystem on the instance.
 
-#### `public inline FORCEINLINE `[`URH_MatchSubsystem`](Match.md#classURH__MatchSubsystem)` * `[`GetMatchSubsystem`](#classURH__GameInstanceSubsystem_1aacdc467e3f161d6fc30f6d44f38c05ff)`() const` <a id="classURH__GameInstanceSubsystem_1aacdc467e3f161d6fc30f6d44f38c05ff"></a>
+#### `public inline FORCEINLINE `[`URH_MatchSubsystem`](Match.md#classURH__MatchSubsystem)` * `[`GetMatchSubsystem`](#classURH__GameInstanceSubsystem_1af1e307ce8703fa96ce73485e81de4d46)`() const` <a id="classURH__GameInstanceSubsystem_1af1e307ce8703fa96ce73485e81de4d46"></a>
 
 Gets the match subsystem on the instance.
 
-#### `public inline FORCEINLINE `[`URH_RemoteFileSubsystem`](File.md#classURH__RemoteFileSubsystem)` * `[`GetRemoteFileSubsystem`](#classURH__GameInstanceSubsystem_1aef4373b14ab4dbeddbd20ee256a4f775)`() const` <a id="classURH__GameInstanceSubsystem_1aef4373b14ab4dbeddbd20ee256a4f775"></a>
+#### `public inline FORCEINLINE `[`URH_RemoteFileSubsystem`](File.md#classURH__RemoteFileSubsystem)` * `[`GetRemoteFileSubsystem`](#classURH__GameInstanceSubsystem_1a7a59712911e755b05c3c866355ee125e)`() const` <a id="classURH__GameInstanceSubsystem_1a7a59712911e755b05c3c866355ee125e"></a>
 
 Gets the remote file subsystem on the instance.
 
@@ -874,7 +874,7 @@ Gets a last-known IP address for use with reporting.
 #### Returns
 The last-known IP address, if known, empty otherwise
 
-#### `public inline FSimpleMulticastDelegate & `[`GetOnLastKnownIpAddressUpdated`](#classURH__GameInstanceSubsystem_1a919b76273ea8f8e67da7d2ec40a332d4)`()` <a id="classURH__GameInstanceSubsystem_1a919b76273ea8f8e67da7d2ec40a332d4"></a>
+#### `public inline FSimpleMulticastDelegate & `[`GetOnLastKnownIpAddressUpdated`](#classURH__GameInstanceSubsystem_1a819e9af945a2455f9340d365110dd3f9)`()` <a id="classURH__GameInstanceSubsystem_1a819e9af945a2455f9340d365110dd3f9"></a>
 
 Gets a delegate triggered if the last-known IP address is updated.
 
@@ -978,7 +978,7 @@ If the Game Instance Server Bootstrapper is enabled.
 
 If the Game Instance Client Bootstrapper is enabled.
 
-#### `protected template<>`  <br/>`inline UClassToUse * `[`AddSubsystemPlugin`](#classURH__GameInstanceSubsystem_1a3b7e4d48f4487b7a53562eba2cd14e21)`(const FSoftClassPath & SubsystemClassPath)` <a id="classURH__GameInstanceSubsystem_1a3b7e4d48f4487b7a53562eba2cd14e21"></a>
+#### `protected template<>`  <br/>`inline UClassToUse * `[`AddSubsystemPlugin`](#classURH__GameInstanceSubsystem_1a2cb771d0cc6862196c090d4cf116ae7c)`(const FSoftClassPath & SubsystemClassPath)` <a id="classURH__GameInstanceSubsystem_1a2cb771d0cc6862196c090d4cf116ae7c"></a>
 
 Adds a plugin to the Game Instance Subsystem.
 

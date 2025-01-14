@@ -23,9 +23,9 @@ Request to update a person&#39;s info.
 --------------------------------|---------------------------------------------
 `public FString `[`Email`](#structFRHAPI__UpdatePersonInfoRequest_1af5a820fdad3bb4e59df07be959c7858e) | Email address to update to.
 `public virtual bool `[`FromJson`](#structFRHAPI__UpdatePersonInfoRequest_1ab271bcfd365918be206355786350fdf7)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__UpdatePersonInfoRequest_1a1bb8ac0bd4701974658495b231443f57)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1af78a67575dd9865d044c07949b497844)`()` | Gets the value of Email.
-`public inline const FString & `[`GetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1a45d6be43aae6a507a369fcd3a7bf6501)`() const` | Gets the value of Email.
+`public virtual void `[`WriteJson`](#structFRHAPI__UpdatePersonInfoRequest_1a63f485505325becbcb55927a87c0f332)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline FString & `[`GetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1ad0f247fd3b03dad68056712f909b3cb2)`()` | Gets the value of Email.
+`public inline const FString & `[`GetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1a0f1f5961a87ff49397de63847ca339a4)`() const` | Gets the value of Email.
 `public inline void `[`SetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1a645433b72c507ec2fe0e716b643527cb)`(const FString & NewValue)` | Sets the value of Email.
 `public inline void `[`SetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1a029fb9fdd039ad651f3afb5856dbd27f)`(FString && NewValue)` | Sets the value of Email using move semantics.
 
@@ -45,18 +45,18 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__UpdatePersonInfoRequest_1a1bb8ac0bd4701974658495b231443f57)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__UpdatePersonInfoRequest_1a1bb8ac0bd4701974658495b231443f57"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__UpdatePersonInfoRequest_1a63f485505325becbcb55927a87c0f332)`(TSharedRef< TJsonWriter<> > & Writer) const` <a id="structFRHAPI__UpdatePersonInfoRequest_1a63f485505325becbcb55927a87c0f332"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1af78a67575dd9865d044c07949b497844)`()` <a id="structFRHAPI__UpdatePersonInfoRequest_1af78a67575dd9865d044c07949b497844"></a>
+#### `public inline FString & `[`GetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1ad0f247fd3b03dad68056712f909b3cb2)`()` <a id="structFRHAPI__UpdatePersonInfoRequest_1ad0f247fd3b03dad68056712f909b3cb2"></a>
 
 Gets the value of Email.
 
-#### `public inline const FString & `[`GetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1a45d6be43aae6a507a369fcd3a7bf6501)`() const` <a id="structFRHAPI__UpdatePersonInfoRequest_1a45d6be43aae6a507a369fcd3a7bf6501"></a>
+#### `public inline const FString & `[`GetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1a0f1f5961a87ff49397de63847ca339a4)`() const` <a id="structFRHAPI__UpdatePersonInfoRequest_1a0f1f5961a87ff49397de63847ca339a4"></a>
 
 Gets the value of Email.
 

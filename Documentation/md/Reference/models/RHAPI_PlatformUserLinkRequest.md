@@ -36,73 +36,73 @@ Model for linking a platform user to the person of another platform user. This i
 `public FString `[`Credentials_Optional`](#structFRHAPI__PlatformUserLinkRequest_1ad67d77d8bb8f429327672630283e5f67) | Credentials to use for the leader. For most tokens, this will be the token itself.
 `public bool `[`Credentials_IsSet`](#structFRHAPI__PlatformUserLinkRequest_1acf658c5df72d03cae1a9d26c62b70eb2) | true if Credentials_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__PlatformUserLinkRequest_1a72868b888a0d61852c20345c63f01258)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PlatformUserLinkRequest_1a33ac8964d17a6cec118103cba2eaf52c)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FGuid & `[`GetLeaderPersonId`](#structFRHAPI__PlatformUserLinkRequest_1af29a68776b91f8cd0be9fd9447925270)`()` | Gets the value of LeaderPersonId_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetLeaderPersonId`](#structFRHAPI__PlatformUserLinkRequest_1ad8a928b8876a7ec7d8e3afc1ea930f3c)`() const` | Gets the value of LeaderPersonId_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetLeaderPersonId`](#structFRHAPI__PlatformUserLinkRequest_1a6bdf9ef3e2ddc6cd8773f2ab3b69cd25)`(const FGuid & DefaultValue) const` | Gets the value of LeaderPersonId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public virtual void `[`WriteJson`](#structFRHAPI__PlatformUserLinkRequest_1a20be36020378669b7e4c1a477ce3073a)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline FGuid & `[`GetLeaderPersonId`](#structFRHAPI__PlatformUserLinkRequest_1adff042eba5fec5cd0671fe259bde125f)`()` | Gets the value of LeaderPersonId_Optional, regardless of it having been set.
+`public inline const FGuid & `[`GetLeaderPersonId`](#structFRHAPI__PlatformUserLinkRequest_1a6727cde6368b4a4191609dd1dccb757e)`() const` | Gets the value of LeaderPersonId_Optional, regardless of it having been set.
+`public inline const FGuid & `[`GetLeaderPersonId`](#structFRHAPI__PlatformUserLinkRequest_1ae3372195de24edee147833a0586aad43)`(const FGuid & DefaultValue) const` | Gets the value of LeaderPersonId_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetLeaderPersonId`](#structFRHAPI__PlatformUserLinkRequest_1a76b37a4a2517601993661e9ff755900e)`(FGuid & OutValue) const` | Fills OutValue with the value of LeaderPersonId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FGuid * `[`GetLeaderPersonIdOrNull`](#structFRHAPI__PlatformUserLinkRequest_1ab7be40bd538b04b41a1f640ffb33c1fd)`()` | Returns a pointer to LeaderPersonId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FGuid * `[`GetLeaderPersonIdOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a218e903a9d5f85b50743eee9f7f95253)`() const` | Returns a pointer to LeaderPersonId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FGuid * `[`GetLeaderPersonIdOrNull`](#structFRHAPI__PlatformUserLinkRequest_1ac0c874d2ecab81b96fe7d357fc4f5360)`()` | Returns a pointer to LeaderPersonId_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FGuid * `[`GetLeaderPersonIdOrNull`](#structFRHAPI__PlatformUserLinkRequest_1aea00c4932258e7426f119583a20a486e)`() const` | Returns a pointer to LeaderPersonId_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetLeaderPersonId`](#structFRHAPI__PlatformUserLinkRequest_1aa19f8000c9d5810a2f5d9446164bcdc8)`(const FGuid & NewValue)` | Sets the value of LeaderPersonId_Optional and also sets LeaderPersonId_IsSet to true.
 `public inline void `[`SetLeaderPersonId`](#structFRHAPI__PlatformUserLinkRequest_1a16ca42a7cdeef58c022ff60e5153a970)`(FGuid && NewValue)` | Sets the value of LeaderPersonId_Optional and also sets LeaderPersonId_IsSet to true using move semantics.
 `public inline void `[`ClearLeaderPersonId`](#structFRHAPI__PlatformUserLinkRequest_1ab13deb4a9e3a159ff8e0e70143bd404d)`()` | Clears the value of LeaderPersonId_Optional and sets LeaderPersonId_IsSet to false.
 `public inline bool `[`IsLeaderPersonIdSet`](#structFRHAPI__PlatformUserLinkRequest_1aa10d42dcabe7174f1e6d15b57810edfe)`() const` | Checks whether LeaderPersonId_Optional has been set.
-`public inline ERHAPI_Platform & `[`GetLeaderPlatform`](#structFRHAPI__PlatformUserLinkRequest_1af236bea38fe8f20525dda4de1c464282)`()` | Gets the value of LeaderPlatform_Optional, regardless of it having been set.
-`public inline const ERHAPI_Platform & `[`GetLeaderPlatform`](#structFRHAPI__PlatformUserLinkRequest_1a23ab9d06537bf8efd20238592a029129)`() const` | Gets the value of LeaderPlatform_Optional, regardless of it having been set.
-`public inline const ERHAPI_Platform & `[`GetLeaderPlatform`](#structFRHAPI__PlatformUserLinkRequest_1a1d9f639886283ccb0e5f94d5f8b3d456)`(const ERHAPI_Platform & DefaultValue) const` | Gets the value of LeaderPlatform_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline ERHAPI_Platform & `[`GetLeaderPlatform`](#structFRHAPI__PlatformUserLinkRequest_1ae631df20d0bf51ab58cb03a8d23c571a)`()` | Gets the value of LeaderPlatform_Optional, regardless of it having been set.
+`public inline const ERHAPI_Platform & `[`GetLeaderPlatform`](#structFRHAPI__PlatformUserLinkRequest_1aeb2b74adbc20cdfbe467ef200135d60d)`() const` | Gets the value of LeaderPlatform_Optional, regardless of it having been set.
+`public inline const ERHAPI_Platform & `[`GetLeaderPlatform`](#structFRHAPI__PlatformUserLinkRequest_1a97efd2c556a8fe0ceec08ec4150baf91)`(const ERHAPI_Platform & DefaultValue) const` | Gets the value of LeaderPlatform_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetLeaderPlatform`](#structFRHAPI__PlatformUserLinkRequest_1adf252910ea1e7ee39d8398924de97f27)`(ERHAPI_Platform & OutValue) const` | Fills OutValue with the value of LeaderPlatform_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_Platform * `[`GetLeaderPlatformOrNull`](#structFRHAPI__PlatformUserLinkRequest_1ad5cd96974042e0e3df4b8b16f6705f91)`()` | Returns a pointer to LeaderPlatform_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_Platform * `[`GetLeaderPlatformOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a361206edb57d74f863392e6469dea1ba)`() const` | Returns a pointer to LeaderPlatform_Optional, if it has been set, otherwise returns nullptr.
+`public inline ERHAPI_Platform * `[`GetLeaderPlatformOrNull`](#structFRHAPI__PlatformUserLinkRequest_1ad06b4f631750d2910554897001ad1656)`()` | Returns a pointer to LeaderPlatform_Optional, if it has been set, otherwise returns nullptr.
+`public inline const ERHAPI_Platform * `[`GetLeaderPlatformOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a09562327a18a9c0ea2e35b81436b8de5)`() const` | Returns a pointer to LeaderPlatform_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetLeaderPlatform`](#structFRHAPI__PlatformUserLinkRequest_1a67dcb235cca28bcbe91826944dedb3db)`(const ERHAPI_Platform & NewValue)` | Sets the value of LeaderPlatform_Optional and also sets LeaderPlatform_IsSet to true.
 `public inline void `[`SetLeaderPlatform`](#structFRHAPI__PlatformUserLinkRequest_1a46307bea588e76c56b6aea2288d39ff2)`(ERHAPI_Platform && NewValue)` | Sets the value of LeaderPlatform_Optional and also sets LeaderPlatform_IsSet to true using move semantics.
 `public inline void `[`ClearLeaderPlatform`](#structFRHAPI__PlatformUserLinkRequest_1aa1d30c34349741d5f3ce9dae808c841c)`()` | Clears the value of LeaderPlatform_Optional and sets LeaderPlatform_IsSet to false.
 `public inline bool `[`IsLeaderPlatformSet`](#structFRHAPI__PlatformUserLinkRequest_1a9e069175b788a6bfd3d6207d34416d8b)`() const` | Checks whether LeaderPlatform_Optional has been set.
-`public inline FString & `[`GetLeaderPlatformUserId`](#structFRHAPI__PlatformUserLinkRequest_1a57b1e5eb9031c3a952551bf917875d6a)`()` | Gets the value of LeaderPlatformUserId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetLeaderPlatformUserId`](#structFRHAPI__PlatformUserLinkRequest_1a407e8d9fed238b82717d4558a9a41d19)`() const` | Gets the value of LeaderPlatformUserId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetLeaderPlatformUserId`](#structFRHAPI__PlatformUserLinkRequest_1ab092b1b558a945ca1f5a9d0a9ca774de)`(const FString & DefaultValue) const` | Gets the value of LeaderPlatformUserId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FString & `[`GetLeaderPlatformUserId`](#structFRHAPI__PlatformUserLinkRequest_1a753933421b332a95db2599903a40f553)`()` | Gets the value of LeaderPlatformUserId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetLeaderPlatformUserId`](#structFRHAPI__PlatformUserLinkRequest_1a07229102ac049c006eeebab2dce7f2cc)`() const` | Gets the value of LeaderPlatformUserId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetLeaderPlatformUserId`](#structFRHAPI__PlatformUserLinkRequest_1ac2682370c3c40c96469cec12a51eabd0)`(const FString & DefaultValue) const` | Gets the value of LeaderPlatformUserId_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetLeaderPlatformUserId`](#structFRHAPI__PlatformUserLinkRequest_1a5cd4b53c394fa21bc38def30aca9ec02)`(FString & OutValue) const` | Fills OutValue with the value of LeaderPlatformUserId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetLeaderPlatformUserIdOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a2c520c646fea393190d6def162afa950)`()` | Returns a pointer to LeaderPlatformUserId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetLeaderPlatformUserIdOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a64e98f2b566c57e6937c7805539aaf3b)`() const` | Returns a pointer to LeaderPlatformUserId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FString * `[`GetLeaderPlatformUserIdOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a4cbda90ded7ee14173ced4fa1efa0e34)`()` | Returns a pointer to LeaderPlatformUserId_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetLeaderPlatformUserIdOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a11e17cf0bf44ee02f4ed2514e87c1146)`() const` | Returns a pointer to LeaderPlatformUserId_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetLeaderPlatformUserId`](#structFRHAPI__PlatformUserLinkRequest_1ab9be28cd938531ed3d458bd162e76117)`(const FString & NewValue)` | Sets the value of LeaderPlatformUserId_Optional and also sets LeaderPlatformUserId_IsSet to true.
 `public inline void `[`SetLeaderPlatformUserId`](#structFRHAPI__PlatformUserLinkRequest_1a3742b14f40f7b6dbbde18ac3be60cbda)`(FString && NewValue)` | Sets the value of LeaderPlatformUserId_Optional and also sets LeaderPlatformUserId_IsSet to true using move semantics.
 `public inline void `[`ClearLeaderPlatformUserId`](#structFRHAPI__PlatformUserLinkRequest_1a58346c0dfc9303e74c49261abada7aa0)`()` | Clears the value of LeaderPlatformUserId_Optional and sets LeaderPlatformUserId_IsSet to false.
 `public inline bool `[`IsLeaderPlatformUserIdSet`](#structFRHAPI__PlatformUserLinkRequest_1a43effdde34a39e7908c772f3f85531d4)`() const` | Checks whether LeaderPlatformUserId_Optional has been set.
-`public inline ERHAPI_Platform & `[`GetFollowerPlatform`](#structFRHAPI__PlatformUserLinkRequest_1a2537c9d075b9d28765f612c33d46bccd)`()` | Gets the value of FollowerPlatform_Optional, regardless of it having been set.
-`public inline const ERHAPI_Platform & `[`GetFollowerPlatform`](#structFRHAPI__PlatformUserLinkRequest_1a04195386682e02b95bb8f470f0c96b01)`() const` | Gets the value of FollowerPlatform_Optional, regardless of it having been set.
-`public inline const ERHAPI_Platform & `[`GetFollowerPlatform`](#structFRHAPI__PlatformUserLinkRequest_1a1624cea2ab104c769b24873396cca319)`(const ERHAPI_Platform & DefaultValue) const` | Gets the value of FollowerPlatform_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline ERHAPI_Platform & `[`GetFollowerPlatform`](#structFRHAPI__PlatformUserLinkRequest_1aece290112815148219e42308a0d1da9c)`()` | Gets the value of FollowerPlatform_Optional, regardless of it having been set.
+`public inline const ERHAPI_Platform & `[`GetFollowerPlatform`](#structFRHAPI__PlatformUserLinkRequest_1a63ce67eb1a9a16f1f217be8839a70177)`() const` | Gets the value of FollowerPlatform_Optional, regardless of it having been set.
+`public inline const ERHAPI_Platform & `[`GetFollowerPlatform`](#structFRHAPI__PlatformUserLinkRequest_1a628ff43bd591d2eba71e90de7e297fb0)`(const ERHAPI_Platform & DefaultValue) const` | Gets the value of FollowerPlatform_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetFollowerPlatform`](#structFRHAPI__PlatformUserLinkRequest_1a3e5baceddc19666739d3e5ff66a60838)`(ERHAPI_Platform & OutValue) const` | Fills OutValue with the value of FollowerPlatform_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_Platform * `[`GetFollowerPlatformOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a04d516c6a3d8220f9fc2f29ac20a2824)`()` | Returns a pointer to FollowerPlatform_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_Platform * `[`GetFollowerPlatformOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a5501ace46b76e615e96a0d27ba4970b2)`() const` | Returns a pointer to FollowerPlatform_Optional, if it has been set, otherwise returns nullptr.
+`public inline ERHAPI_Platform * `[`GetFollowerPlatformOrNull`](#structFRHAPI__PlatformUserLinkRequest_1ad7aa02a2c4925b94c1b670618a9a45ea)`()` | Returns a pointer to FollowerPlatform_Optional, if it has been set, otherwise returns nullptr.
+`public inline const ERHAPI_Platform * `[`GetFollowerPlatformOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a7aa305fdd80a48ecd8fd7f4d0a9efefe)`() const` | Returns a pointer to FollowerPlatform_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetFollowerPlatform`](#structFRHAPI__PlatformUserLinkRequest_1aa9a670650e25ce18a8e27aa6d926a1e2)`(const ERHAPI_Platform & NewValue)` | Sets the value of FollowerPlatform_Optional and also sets FollowerPlatform_IsSet to true.
 `public inline void `[`SetFollowerPlatform`](#structFRHAPI__PlatformUserLinkRequest_1a17d00f589720677e7ee651759d60e4d2)`(ERHAPI_Platform && NewValue)` | Sets the value of FollowerPlatform_Optional and also sets FollowerPlatform_IsSet to true using move semantics.
 `public inline void `[`ClearFollowerPlatform`](#structFRHAPI__PlatformUserLinkRequest_1aafe929bfa9466221163555aba3174885)`()` | Clears the value of FollowerPlatform_Optional and sets FollowerPlatform_IsSet to false.
 `public inline bool `[`IsFollowerPlatformSet`](#structFRHAPI__PlatformUserLinkRequest_1ad66de44da408fab4a748d972db6f7343)`() const` | Checks whether FollowerPlatform_Optional has been set.
-`public inline FString & `[`GetFollowerPlatformUserId`](#structFRHAPI__PlatformUserLinkRequest_1a7172e8585cb78bb96e3b6943ec208303)`()` | Gets the value of FollowerPlatformUserId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetFollowerPlatformUserId`](#structFRHAPI__PlatformUserLinkRequest_1ae43d63968fa3d8aa9c0695f4bdd40494)`() const` | Gets the value of FollowerPlatformUserId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetFollowerPlatformUserId`](#structFRHAPI__PlatformUserLinkRequest_1ab499e33ad95bf9fa98a84ddfb038e0a6)`(const FString & DefaultValue) const` | Gets the value of FollowerPlatformUserId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FString & `[`GetFollowerPlatformUserId`](#structFRHAPI__PlatformUserLinkRequest_1a1c432b551931ee264ee0f454a1210b8d)`()` | Gets the value of FollowerPlatformUserId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetFollowerPlatformUserId`](#structFRHAPI__PlatformUserLinkRequest_1a9e64ce91efc5d5559b545809c12ecb2a)`() const` | Gets the value of FollowerPlatformUserId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetFollowerPlatformUserId`](#structFRHAPI__PlatformUserLinkRequest_1ab3082ca5f476631fa6f7bd667ff41f7c)`(const FString & DefaultValue) const` | Gets the value of FollowerPlatformUserId_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetFollowerPlatformUserId`](#structFRHAPI__PlatformUserLinkRequest_1a58ecdfecef0bcb0b134268f68fae144b)`(FString & OutValue) const` | Fills OutValue with the value of FollowerPlatformUserId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetFollowerPlatformUserIdOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a9e85e79c105aab1ca992b7cb6196495b)`()` | Returns a pointer to FollowerPlatformUserId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetFollowerPlatformUserIdOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a5854eae066e96c0e689aae7965ec1989)`() const` | Returns a pointer to FollowerPlatformUserId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FString * `[`GetFollowerPlatformUserIdOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a1d2eb464f4176a438fdcec8440781b80)`()` | Returns a pointer to FollowerPlatformUserId_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetFollowerPlatformUserIdOrNull`](#structFRHAPI__PlatformUserLinkRequest_1af6eafee09d49860e0a4e53c2ab228cf2)`() const` | Returns a pointer to FollowerPlatformUserId_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetFollowerPlatformUserId`](#structFRHAPI__PlatformUserLinkRequest_1aea2b38b14ca7598433cf74d9a0ba8517)`(const FString & NewValue)` | Sets the value of FollowerPlatformUserId_Optional and also sets FollowerPlatformUserId_IsSet to true.
 `public inline void `[`SetFollowerPlatformUserId`](#structFRHAPI__PlatformUserLinkRequest_1abca02bc0046d6dcb37fc915ebf9105e8)`(FString && NewValue)` | Sets the value of FollowerPlatformUserId_Optional and also sets FollowerPlatformUserId_IsSet to true using move semantics.
 `public inline void `[`ClearFollowerPlatformUserId`](#structFRHAPI__PlatformUserLinkRequest_1a5ac0bd5733f82d5d6089dad8ed3fcc7f)`()` | Clears the value of FollowerPlatformUserId_Optional and sets FollowerPlatformUserId_IsSet to false.
 `public inline bool `[`IsFollowerPlatformUserIdSet`](#structFRHAPI__PlatformUserLinkRequest_1a62b71f964cb4e3e41f2b0609c978171f)`() const` | Checks whether FollowerPlatformUserId_Optional has been set.
-`public inline FString & `[`GetScheme`](#structFRHAPI__PlatformUserLinkRequest_1ac118884908add3cf726577fd7885b601)`()` | Gets the value of Scheme_Optional, regardless of it having been set.
-`public inline const FString & `[`GetScheme`](#structFRHAPI__PlatformUserLinkRequest_1afa6f43a1c09f0cef9b1454fb5e44d094)`() const` | Gets the value of Scheme_Optional, regardless of it having been set.
-`public inline const FString & `[`GetScheme`](#structFRHAPI__PlatformUserLinkRequest_1a0033ba716165924189d30862c34d76c9)`(const FString & DefaultValue) const` | Gets the value of Scheme_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FString & `[`GetScheme`](#structFRHAPI__PlatformUserLinkRequest_1a26d3882187a7405c2ade25f4643ca490)`()` | Gets the value of Scheme_Optional, regardless of it having been set.
+`public inline const FString & `[`GetScheme`](#structFRHAPI__PlatformUserLinkRequest_1a0db48043120c7de4fe0767cdea2ab05f)`() const` | Gets the value of Scheme_Optional, regardless of it having been set.
+`public inline const FString & `[`GetScheme`](#structFRHAPI__PlatformUserLinkRequest_1a3ea468fd2cf7e4a381af2a2a1d02c1d1)`(const FString & DefaultValue) const` | Gets the value of Scheme_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetScheme`](#structFRHAPI__PlatformUserLinkRequest_1a117ddd05b4398569ea82aba13a986377)`(FString & OutValue) const` | Fills OutValue with the value of Scheme_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetSchemeOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a174a3891d817893f0213cd586263f0a6)`()` | Returns a pointer to Scheme_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetSchemeOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a349fbcb211ae0df876435e110bddda74)`() const` | Returns a pointer to Scheme_Optional, if it has been set, otherwise returns nullptr.
+`public inline FString * `[`GetSchemeOrNull`](#structFRHAPI__PlatformUserLinkRequest_1ac71e3c4659ef17511b0e8c408dba888e)`()` | Returns a pointer to Scheme_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetSchemeOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a41717ebdebe2050c8707f367cbce2285)`() const` | Returns a pointer to Scheme_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetScheme`](#structFRHAPI__PlatformUserLinkRequest_1a74c09bc3dec6e4e1e59e794143b33842)`(const FString & NewValue)` | Sets the value of Scheme_Optional and also sets Scheme_IsSet to true.
 `public inline void `[`SetScheme`](#structFRHAPI__PlatformUserLinkRequest_1acdff36a7be660c1ab34b6aea8c5571f2)`(FString && NewValue)` | Sets the value of Scheme_Optional and also sets Scheme_IsSet to true using move semantics.
 `public inline void `[`ClearScheme`](#structFRHAPI__PlatformUserLinkRequest_1ab043f5d34c7672228756b226a350cfa3)`()` | Clears the value of Scheme_Optional and sets Scheme_IsSet to false.
 `public inline bool `[`IsSchemeSet`](#structFRHAPI__PlatformUserLinkRequest_1a298a999553b6d760630def94f0b814b1)`() const` | Checks whether Scheme_Optional has been set.
-`public inline FString & `[`GetCredentials`](#structFRHAPI__PlatformUserLinkRequest_1aa388ea751a22e02e21c1c54f222bb0c5)`()` | Gets the value of Credentials_Optional, regardless of it having been set.
-`public inline const FString & `[`GetCredentials`](#structFRHAPI__PlatformUserLinkRequest_1a799b71f992858df46c622445b01a45fa)`() const` | Gets the value of Credentials_Optional, regardless of it having been set.
-`public inline const FString & `[`GetCredentials`](#structFRHAPI__PlatformUserLinkRequest_1a593c8460bea228e20eaa59278d5d703b)`(const FString & DefaultValue) const` | Gets the value of Credentials_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FString & `[`GetCredentials`](#structFRHAPI__PlatformUserLinkRequest_1a330025f5551a1845b2d3a3c7dd9a9564)`()` | Gets the value of Credentials_Optional, regardless of it having been set.
+`public inline const FString & `[`GetCredentials`](#structFRHAPI__PlatformUserLinkRequest_1ae36854f07cba8a3c16315eba9bad8fba)`() const` | Gets the value of Credentials_Optional, regardless of it having been set.
+`public inline const FString & `[`GetCredentials`](#structFRHAPI__PlatformUserLinkRequest_1a22700989afee40e26a9092a332f4bd65)`(const FString & DefaultValue) const` | Gets the value of Credentials_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetCredentials`](#structFRHAPI__PlatformUserLinkRequest_1aad0a61001cc1f52af2e0f8d623cfd19f)`(FString & OutValue) const` | Fills OutValue with the value of Credentials_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetCredentialsOrNull`](#structFRHAPI__PlatformUserLinkRequest_1af0f4c12ca09fb69d9a166637b61a96fd)`()` | Returns a pointer to Credentials_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetCredentialsOrNull`](#structFRHAPI__PlatformUserLinkRequest_1abc53cf5b381c47272fe3c0d99fef7973)`() const` | Returns a pointer to Credentials_Optional, if it has been set, otherwise returns nullptr.
+`public inline FString * `[`GetCredentialsOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a24d90eba261eb9e241fd98837dff52a2)`()` | Returns a pointer to Credentials_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetCredentialsOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a877a8f3df811250e2d269b2c26f7be50)`() const` | Returns a pointer to Credentials_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetCredentials`](#structFRHAPI__PlatformUserLinkRequest_1aed1e37484a51115ca54d3f86da95c5ca)`(const FString & NewValue)` | Sets the value of Credentials_Optional and also sets Credentials_IsSet to true.
 `public inline void `[`SetCredentials`](#structFRHAPI__PlatformUserLinkRequest_1aa410019e39a72d31a23acb15c78b4b07)`(FString && NewValue)` | Sets the value of Credentials_Optional and also sets Credentials_IsSet to true using move semantics.
 `public inline void `[`ClearCredentials`](#structFRHAPI__PlatformUserLinkRequest_1ad7fa27e74be09877d61d42d182d3fd51)`()` | Clears the value of Credentials_Optional and sets Credentials_IsSet to false.
@@ -176,22 +176,22 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PlatformUserLinkRequest_1a33ac8964d17a6cec118103cba2eaf52c)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PlatformUserLinkRequest_1a33ac8964d17a6cec118103cba2eaf52c"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PlatformUserLinkRequest_1a20be36020378669b7e4c1a477ce3073a)`(TSharedRef< TJsonWriter<> > & Writer) const` <a id="structFRHAPI__PlatformUserLinkRequest_1a20be36020378669b7e4c1a477ce3073a"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FGuid & `[`GetLeaderPersonId`](#structFRHAPI__PlatformUserLinkRequest_1af29a68776b91f8cd0be9fd9447925270)`()` <a id="structFRHAPI__PlatformUserLinkRequest_1af29a68776b91f8cd0be9fd9447925270"></a>
+#### `public inline FGuid & `[`GetLeaderPersonId`](#structFRHAPI__PlatformUserLinkRequest_1adff042eba5fec5cd0671fe259bde125f)`()` <a id="structFRHAPI__PlatformUserLinkRequest_1adff042eba5fec5cd0671fe259bde125f"></a>
 
 Gets the value of LeaderPersonId_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetLeaderPersonId`](#structFRHAPI__PlatformUserLinkRequest_1ad8a928b8876a7ec7d8e3afc1ea930f3c)`() const` <a id="structFRHAPI__PlatformUserLinkRequest_1ad8a928b8876a7ec7d8e3afc1ea930f3c"></a>
+#### `public inline const FGuid & `[`GetLeaderPersonId`](#structFRHAPI__PlatformUserLinkRequest_1a6727cde6368b4a4191609dd1dccb757e)`() const` <a id="structFRHAPI__PlatformUserLinkRequest_1a6727cde6368b4a4191609dd1dccb757e"></a>
 
 Gets the value of LeaderPersonId_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetLeaderPersonId`](#structFRHAPI__PlatformUserLinkRequest_1a6bdf9ef3e2ddc6cd8773f2ab3b69cd25)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__PlatformUserLinkRequest_1a6bdf9ef3e2ddc6cd8773f2ab3b69cd25"></a>
+#### `public inline const FGuid & `[`GetLeaderPersonId`](#structFRHAPI__PlatformUserLinkRequest_1ae3372195de24edee147833a0586aad43)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__PlatformUserLinkRequest_1ae3372195de24edee147833a0586aad43"></a>
 
 Gets the value of LeaderPersonId_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -199,11 +199,11 @@ Gets the value of LeaderPersonId_Optional, if it has been set, otherwise it retu
 
 Fills OutValue with the value of LeaderPersonId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FGuid * `[`GetLeaderPersonIdOrNull`](#structFRHAPI__PlatformUserLinkRequest_1ab7be40bd538b04b41a1f640ffb33c1fd)`()` <a id="structFRHAPI__PlatformUserLinkRequest_1ab7be40bd538b04b41a1f640ffb33c1fd"></a>
+#### `public inline FGuid * `[`GetLeaderPersonIdOrNull`](#structFRHAPI__PlatformUserLinkRequest_1ac0c874d2ecab81b96fe7d357fc4f5360)`()` <a id="structFRHAPI__PlatformUserLinkRequest_1ac0c874d2ecab81b96fe7d357fc4f5360"></a>
 
 Returns a pointer to LeaderPersonId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FGuid * `[`GetLeaderPersonIdOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a218e903a9d5f85b50743eee9f7f95253)`() const` <a id="structFRHAPI__PlatformUserLinkRequest_1a218e903a9d5f85b50743eee9f7f95253"></a>
+#### `public inline const FGuid * `[`GetLeaderPersonIdOrNull`](#structFRHAPI__PlatformUserLinkRequest_1aea00c4932258e7426f119583a20a486e)`() const` <a id="structFRHAPI__PlatformUserLinkRequest_1aea00c4932258e7426f119583a20a486e"></a>
 
 Returns a pointer to LeaderPersonId_Optional, if it has been set, otherwise returns nullptr.
 
@@ -223,15 +223,15 @@ Clears the value of LeaderPersonId_Optional and sets LeaderPersonId_IsSet to fal
 
 Checks whether LeaderPersonId_Optional has been set.
 
-#### `public inline ERHAPI_Platform & `[`GetLeaderPlatform`](#structFRHAPI__PlatformUserLinkRequest_1af236bea38fe8f20525dda4de1c464282)`()` <a id="structFRHAPI__PlatformUserLinkRequest_1af236bea38fe8f20525dda4de1c464282"></a>
+#### `public inline ERHAPI_Platform & `[`GetLeaderPlatform`](#structFRHAPI__PlatformUserLinkRequest_1ae631df20d0bf51ab58cb03a8d23c571a)`()` <a id="structFRHAPI__PlatformUserLinkRequest_1ae631df20d0bf51ab58cb03a8d23c571a"></a>
 
 Gets the value of LeaderPlatform_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_Platform & `[`GetLeaderPlatform`](#structFRHAPI__PlatformUserLinkRequest_1a23ab9d06537bf8efd20238592a029129)`() const` <a id="structFRHAPI__PlatformUserLinkRequest_1a23ab9d06537bf8efd20238592a029129"></a>
+#### `public inline const ERHAPI_Platform & `[`GetLeaderPlatform`](#structFRHAPI__PlatformUserLinkRequest_1aeb2b74adbc20cdfbe467ef200135d60d)`() const` <a id="structFRHAPI__PlatformUserLinkRequest_1aeb2b74adbc20cdfbe467ef200135d60d"></a>
 
 Gets the value of LeaderPlatform_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_Platform & `[`GetLeaderPlatform`](#structFRHAPI__PlatformUserLinkRequest_1a1d9f639886283ccb0e5f94d5f8b3d456)`(const ERHAPI_Platform & DefaultValue) const` <a id="structFRHAPI__PlatformUserLinkRequest_1a1d9f639886283ccb0e5f94d5f8b3d456"></a>
+#### `public inline const ERHAPI_Platform & `[`GetLeaderPlatform`](#structFRHAPI__PlatformUserLinkRequest_1a97efd2c556a8fe0ceec08ec4150baf91)`(const ERHAPI_Platform & DefaultValue) const` <a id="structFRHAPI__PlatformUserLinkRequest_1a97efd2c556a8fe0ceec08ec4150baf91"></a>
 
 Gets the value of LeaderPlatform_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -239,11 +239,11 @@ Gets the value of LeaderPlatform_Optional, if it has been set, otherwise it retu
 
 Fills OutValue with the value of LeaderPlatform_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline ERHAPI_Platform * `[`GetLeaderPlatformOrNull`](#structFRHAPI__PlatformUserLinkRequest_1ad5cd96974042e0e3df4b8b16f6705f91)`()` <a id="structFRHAPI__PlatformUserLinkRequest_1ad5cd96974042e0e3df4b8b16f6705f91"></a>
+#### `public inline ERHAPI_Platform * `[`GetLeaderPlatformOrNull`](#structFRHAPI__PlatformUserLinkRequest_1ad06b4f631750d2910554897001ad1656)`()` <a id="structFRHAPI__PlatformUserLinkRequest_1ad06b4f631750d2910554897001ad1656"></a>
 
 Returns a pointer to LeaderPlatform_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const ERHAPI_Platform * `[`GetLeaderPlatformOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a361206edb57d74f863392e6469dea1ba)`() const` <a id="structFRHAPI__PlatformUserLinkRequest_1a361206edb57d74f863392e6469dea1ba"></a>
+#### `public inline const ERHAPI_Platform * `[`GetLeaderPlatformOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a09562327a18a9c0ea2e35b81436b8de5)`() const` <a id="structFRHAPI__PlatformUserLinkRequest_1a09562327a18a9c0ea2e35b81436b8de5"></a>
 
 Returns a pointer to LeaderPlatform_Optional, if it has been set, otherwise returns nullptr.
 
@@ -263,15 +263,15 @@ Clears the value of LeaderPlatform_Optional and sets LeaderPlatform_IsSet to fal
 
 Checks whether LeaderPlatform_Optional has been set.
 
-#### `public inline FString & `[`GetLeaderPlatformUserId`](#structFRHAPI__PlatformUserLinkRequest_1a57b1e5eb9031c3a952551bf917875d6a)`()` <a id="structFRHAPI__PlatformUserLinkRequest_1a57b1e5eb9031c3a952551bf917875d6a"></a>
+#### `public inline FString & `[`GetLeaderPlatformUserId`](#structFRHAPI__PlatformUserLinkRequest_1a753933421b332a95db2599903a40f553)`()` <a id="structFRHAPI__PlatformUserLinkRequest_1a753933421b332a95db2599903a40f553"></a>
 
 Gets the value of LeaderPlatformUserId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetLeaderPlatformUserId`](#structFRHAPI__PlatformUserLinkRequest_1a407e8d9fed238b82717d4558a9a41d19)`() const` <a id="structFRHAPI__PlatformUserLinkRequest_1a407e8d9fed238b82717d4558a9a41d19"></a>
+#### `public inline const FString & `[`GetLeaderPlatformUserId`](#structFRHAPI__PlatformUserLinkRequest_1a07229102ac049c006eeebab2dce7f2cc)`() const` <a id="structFRHAPI__PlatformUserLinkRequest_1a07229102ac049c006eeebab2dce7f2cc"></a>
 
 Gets the value of LeaderPlatformUserId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetLeaderPlatformUserId`](#structFRHAPI__PlatformUserLinkRequest_1ab092b1b558a945ca1f5a9d0a9ca774de)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlatformUserLinkRequest_1ab092b1b558a945ca1f5a9d0a9ca774de"></a>
+#### `public inline const FString & `[`GetLeaderPlatformUserId`](#structFRHAPI__PlatformUserLinkRequest_1ac2682370c3c40c96469cec12a51eabd0)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlatformUserLinkRequest_1ac2682370c3c40c96469cec12a51eabd0"></a>
 
 Gets the value of LeaderPlatformUserId_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -279,11 +279,11 @@ Gets the value of LeaderPlatformUserId_Optional, if it has been set, otherwise i
 
 Fills OutValue with the value of LeaderPlatformUserId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetLeaderPlatformUserIdOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a2c520c646fea393190d6def162afa950)`()` <a id="structFRHAPI__PlatformUserLinkRequest_1a2c520c646fea393190d6def162afa950"></a>
+#### `public inline FString * `[`GetLeaderPlatformUserIdOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a4cbda90ded7ee14173ced4fa1efa0e34)`()` <a id="structFRHAPI__PlatformUserLinkRequest_1a4cbda90ded7ee14173ced4fa1efa0e34"></a>
 
 Returns a pointer to LeaderPlatformUserId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetLeaderPlatformUserIdOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a64e98f2b566c57e6937c7805539aaf3b)`() const` <a id="structFRHAPI__PlatformUserLinkRequest_1a64e98f2b566c57e6937c7805539aaf3b"></a>
+#### `public inline const FString * `[`GetLeaderPlatformUserIdOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a11e17cf0bf44ee02f4ed2514e87c1146)`() const` <a id="structFRHAPI__PlatformUserLinkRequest_1a11e17cf0bf44ee02f4ed2514e87c1146"></a>
 
 Returns a pointer to LeaderPlatformUserId_Optional, if it has been set, otherwise returns nullptr.
 
@@ -303,15 +303,15 @@ Clears the value of LeaderPlatformUserId_Optional and sets LeaderPlatformUserId_
 
 Checks whether LeaderPlatformUserId_Optional has been set.
 
-#### `public inline ERHAPI_Platform & `[`GetFollowerPlatform`](#structFRHAPI__PlatformUserLinkRequest_1a2537c9d075b9d28765f612c33d46bccd)`()` <a id="structFRHAPI__PlatformUserLinkRequest_1a2537c9d075b9d28765f612c33d46bccd"></a>
+#### `public inline ERHAPI_Platform & `[`GetFollowerPlatform`](#structFRHAPI__PlatformUserLinkRequest_1aece290112815148219e42308a0d1da9c)`()` <a id="structFRHAPI__PlatformUserLinkRequest_1aece290112815148219e42308a0d1da9c"></a>
 
 Gets the value of FollowerPlatform_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_Platform & `[`GetFollowerPlatform`](#structFRHAPI__PlatformUserLinkRequest_1a04195386682e02b95bb8f470f0c96b01)`() const` <a id="structFRHAPI__PlatformUserLinkRequest_1a04195386682e02b95bb8f470f0c96b01"></a>
+#### `public inline const ERHAPI_Platform & `[`GetFollowerPlatform`](#structFRHAPI__PlatformUserLinkRequest_1a63ce67eb1a9a16f1f217be8839a70177)`() const` <a id="structFRHAPI__PlatformUserLinkRequest_1a63ce67eb1a9a16f1f217be8839a70177"></a>
 
 Gets the value of FollowerPlatform_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_Platform & `[`GetFollowerPlatform`](#structFRHAPI__PlatformUserLinkRequest_1a1624cea2ab104c769b24873396cca319)`(const ERHAPI_Platform & DefaultValue) const` <a id="structFRHAPI__PlatformUserLinkRequest_1a1624cea2ab104c769b24873396cca319"></a>
+#### `public inline const ERHAPI_Platform & `[`GetFollowerPlatform`](#structFRHAPI__PlatformUserLinkRequest_1a628ff43bd591d2eba71e90de7e297fb0)`(const ERHAPI_Platform & DefaultValue) const` <a id="structFRHAPI__PlatformUserLinkRequest_1a628ff43bd591d2eba71e90de7e297fb0"></a>
 
 Gets the value of FollowerPlatform_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -319,11 +319,11 @@ Gets the value of FollowerPlatform_Optional, if it has been set, otherwise it re
 
 Fills OutValue with the value of FollowerPlatform_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline ERHAPI_Platform * `[`GetFollowerPlatformOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a04d516c6a3d8220f9fc2f29ac20a2824)`()` <a id="structFRHAPI__PlatformUserLinkRequest_1a04d516c6a3d8220f9fc2f29ac20a2824"></a>
+#### `public inline ERHAPI_Platform * `[`GetFollowerPlatformOrNull`](#structFRHAPI__PlatformUserLinkRequest_1ad7aa02a2c4925b94c1b670618a9a45ea)`()` <a id="structFRHAPI__PlatformUserLinkRequest_1ad7aa02a2c4925b94c1b670618a9a45ea"></a>
 
 Returns a pointer to FollowerPlatform_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const ERHAPI_Platform * `[`GetFollowerPlatformOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a5501ace46b76e615e96a0d27ba4970b2)`() const` <a id="structFRHAPI__PlatformUserLinkRequest_1a5501ace46b76e615e96a0d27ba4970b2"></a>
+#### `public inline const ERHAPI_Platform * `[`GetFollowerPlatformOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a7aa305fdd80a48ecd8fd7f4d0a9efefe)`() const` <a id="structFRHAPI__PlatformUserLinkRequest_1a7aa305fdd80a48ecd8fd7f4d0a9efefe"></a>
 
 Returns a pointer to FollowerPlatform_Optional, if it has been set, otherwise returns nullptr.
 
@@ -343,15 +343,15 @@ Clears the value of FollowerPlatform_Optional and sets FollowerPlatform_IsSet to
 
 Checks whether FollowerPlatform_Optional has been set.
 
-#### `public inline FString & `[`GetFollowerPlatformUserId`](#structFRHAPI__PlatformUserLinkRequest_1a7172e8585cb78bb96e3b6943ec208303)`()` <a id="structFRHAPI__PlatformUserLinkRequest_1a7172e8585cb78bb96e3b6943ec208303"></a>
+#### `public inline FString & `[`GetFollowerPlatformUserId`](#structFRHAPI__PlatformUserLinkRequest_1a1c432b551931ee264ee0f454a1210b8d)`()` <a id="structFRHAPI__PlatformUserLinkRequest_1a1c432b551931ee264ee0f454a1210b8d"></a>
 
 Gets the value of FollowerPlatformUserId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetFollowerPlatformUserId`](#structFRHAPI__PlatformUserLinkRequest_1ae43d63968fa3d8aa9c0695f4bdd40494)`() const` <a id="structFRHAPI__PlatformUserLinkRequest_1ae43d63968fa3d8aa9c0695f4bdd40494"></a>
+#### `public inline const FString & `[`GetFollowerPlatformUserId`](#structFRHAPI__PlatformUserLinkRequest_1a9e64ce91efc5d5559b545809c12ecb2a)`() const` <a id="structFRHAPI__PlatformUserLinkRequest_1a9e64ce91efc5d5559b545809c12ecb2a"></a>
 
 Gets the value of FollowerPlatformUserId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetFollowerPlatformUserId`](#structFRHAPI__PlatformUserLinkRequest_1ab499e33ad95bf9fa98a84ddfb038e0a6)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlatformUserLinkRequest_1ab499e33ad95bf9fa98a84ddfb038e0a6"></a>
+#### `public inline const FString & `[`GetFollowerPlatformUserId`](#structFRHAPI__PlatformUserLinkRequest_1ab3082ca5f476631fa6f7bd667ff41f7c)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlatformUserLinkRequest_1ab3082ca5f476631fa6f7bd667ff41f7c"></a>
 
 Gets the value of FollowerPlatformUserId_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -359,11 +359,11 @@ Gets the value of FollowerPlatformUserId_Optional, if it has been set, otherwise
 
 Fills OutValue with the value of FollowerPlatformUserId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetFollowerPlatformUserIdOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a9e85e79c105aab1ca992b7cb6196495b)`()` <a id="structFRHAPI__PlatformUserLinkRequest_1a9e85e79c105aab1ca992b7cb6196495b"></a>
+#### `public inline FString * `[`GetFollowerPlatformUserIdOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a1d2eb464f4176a438fdcec8440781b80)`()` <a id="structFRHAPI__PlatformUserLinkRequest_1a1d2eb464f4176a438fdcec8440781b80"></a>
 
 Returns a pointer to FollowerPlatformUserId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetFollowerPlatformUserIdOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a5854eae066e96c0e689aae7965ec1989)`() const` <a id="structFRHAPI__PlatformUserLinkRequest_1a5854eae066e96c0e689aae7965ec1989"></a>
+#### `public inline const FString * `[`GetFollowerPlatformUserIdOrNull`](#structFRHAPI__PlatformUserLinkRequest_1af6eafee09d49860e0a4e53c2ab228cf2)`() const` <a id="structFRHAPI__PlatformUserLinkRequest_1af6eafee09d49860e0a4e53c2ab228cf2"></a>
 
 Returns a pointer to FollowerPlatformUserId_Optional, if it has been set, otherwise returns nullptr.
 
@@ -383,15 +383,15 @@ Clears the value of FollowerPlatformUserId_Optional and sets FollowerPlatformUse
 
 Checks whether FollowerPlatformUserId_Optional has been set.
 
-#### `public inline FString & `[`GetScheme`](#structFRHAPI__PlatformUserLinkRequest_1ac118884908add3cf726577fd7885b601)`()` <a id="structFRHAPI__PlatformUserLinkRequest_1ac118884908add3cf726577fd7885b601"></a>
+#### `public inline FString & `[`GetScheme`](#structFRHAPI__PlatformUserLinkRequest_1a26d3882187a7405c2ade25f4643ca490)`()` <a id="structFRHAPI__PlatformUserLinkRequest_1a26d3882187a7405c2ade25f4643ca490"></a>
 
 Gets the value of Scheme_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetScheme`](#structFRHAPI__PlatformUserLinkRequest_1afa6f43a1c09f0cef9b1454fb5e44d094)`() const` <a id="structFRHAPI__PlatformUserLinkRequest_1afa6f43a1c09f0cef9b1454fb5e44d094"></a>
+#### `public inline const FString & `[`GetScheme`](#structFRHAPI__PlatformUserLinkRequest_1a0db48043120c7de4fe0767cdea2ab05f)`() const` <a id="structFRHAPI__PlatformUserLinkRequest_1a0db48043120c7de4fe0767cdea2ab05f"></a>
 
 Gets the value of Scheme_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetScheme`](#structFRHAPI__PlatformUserLinkRequest_1a0033ba716165924189d30862c34d76c9)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlatformUserLinkRequest_1a0033ba716165924189d30862c34d76c9"></a>
+#### `public inline const FString & `[`GetScheme`](#structFRHAPI__PlatformUserLinkRequest_1a3ea468fd2cf7e4a381af2a2a1d02c1d1)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlatformUserLinkRequest_1a3ea468fd2cf7e4a381af2a2a1d02c1d1"></a>
 
 Gets the value of Scheme_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -399,11 +399,11 @@ Gets the value of Scheme_Optional, if it has been set, otherwise it returns Defa
 
 Fills OutValue with the value of Scheme_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetSchemeOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a174a3891d817893f0213cd586263f0a6)`()` <a id="structFRHAPI__PlatformUserLinkRequest_1a174a3891d817893f0213cd586263f0a6"></a>
+#### `public inline FString * `[`GetSchemeOrNull`](#structFRHAPI__PlatformUserLinkRequest_1ac71e3c4659ef17511b0e8c408dba888e)`()` <a id="structFRHAPI__PlatformUserLinkRequest_1ac71e3c4659ef17511b0e8c408dba888e"></a>
 
 Returns a pointer to Scheme_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetSchemeOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a349fbcb211ae0df876435e110bddda74)`() const` <a id="structFRHAPI__PlatformUserLinkRequest_1a349fbcb211ae0df876435e110bddda74"></a>
+#### `public inline const FString * `[`GetSchemeOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a41717ebdebe2050c8707f367cbce2285)`() const` <a id="structFRHAPI__PlatformUserLinkRequest_1a41717ebdebe2050c8707f367cbce2285"></a>
 
 Returns a pointer to Scheme_Optional, if it has been set, otherwise returns nullptr.
 
@@ -423,15 +423,15 @@ Clears the value of Scheme_Optional and sets Scheme_IsSet to false.
 
 Checks whether Scheme_Optional has been set.
 
-#### `public inline FString & `[`GetCredentials`](#structFRHAPI__PlatformUserLinkRequest_1aa388ea751a22e02e21c1c54f222bb0c5)`()` <a id="structFRHAPI__PlatformUserLinkRequest_1aa388ea751a22e02e21c1c54f222bb0c5"></a>
+#### `public inline FString & `[`GetCredentials`](#structFRHAPI__PlatformUserLinkRequest_1a330025f5551a1845b2d3a3c7dd9a9564)`()` <a id="structFRHAPI__PlatformUserLinkRequest_1a330025f5551a1845b2d3a3c7dd9a9564"></a>
 
 Gets the value of Credentials_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetCredentials`](#structFRHAPI__PlatformUserLinkRequest_1a799b71f992858df46c622445b01a45fa)`() const` <a id="structFRHAPI__PlatformUserLinkRequest_1a799b71f992858df46c622445b01a45fa"></a>
+#### `public inline const FString & `[`GetCredentials`](#structFRHAPI__PlatformUserLinkRequest_1ae36854f07cba8a3c16315eba9bad8fba)`() const` <a id="structFRHAPI__PlatformUserLinkRequest_1ae36854f07cba8a3c16315eba9bad8fba"></a>
 
 Gets the value of Credentials_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetCredentials`](#structFRHAPI__PlatformUserLinkRequest_1a593c8460bea228e20eaa59278d5d703b)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlatformUserLinkRequest_1a593c8460bea228e20eaa59278d5d703b"></a>
+#### `public inline const FString & `[`GetCredentials`](#structFRHAPI__PlatformUserLinkRequest_1a22700989afee40e26a9092a332f4bd65)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlatformUserLinkRequest_1a22700989afee40e26a9092a332f4bd65"></a>
 
 Gets the value of Credentials_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -439,11 +439,11 @@ Gets the value of Credentials_Optional, if it has been set, otherwise it returns
 
 Fills OutValue with the value of Credentials_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetCredentialsOrNull`](#structFRHAPI__PlatformUserLinkRequest_1af0f4c12ca09fb69d9a166637b61a96fd)`()` <a id="structFRHAPI__PlatformUserLinkRequest_1af0f4c12ca09fb69d9a166637b61a96fd"></a>
+#### `public inline FString * `[`GetCredentialsOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a24d90eba261eb9e241fd98837dff52a2)`()` <a id="structFRHAPI__PlatformUserLinkRequest_1a24d90eba261eb9e241fd98837dff52a2"></a>
 
 Returns a pointer to Credentials_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetCredentialsOrNull`](#structFRHAPI__PlatformUserLinkRequest_1abc53cf5b381c47272fe3c0d99fef7973)`() const` <a id="structFRHAPI__PlatformUserLinkRequest_1abc53cf5b381c47272fe3c0d99fef7973"></a>
+#### `public inline const FString * `[`GetCredentialsOrNull`](#structFRHAPI__PlatformUserLinkRequest_1a877a8f3df811250e2d269b2c26f7be50)`() const` <a id="structFRHAPI__PlatformUserLinkRequest_1a877a8f3df811250e2d269b2c26f7be50"></a>
 
 Returns a pointer to Credentials_Optional, if it has been set, otherwise returns nullptr.
 

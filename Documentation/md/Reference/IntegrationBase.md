@@ -25,7 +25,7 @@ Module for the Rally Here Integration Layer.
 `public  `[`~FRallyHereIntegrationModule`](#classFRallyHereIntegrationModule_1a05fc3130408ed64a45219dfdaca29120)`() = default` | Default constructor.
 `public void `[`StartupModule`](#classFRallyHereIntegrationModule_1ac91ef7cb3468c0eb68c74069f99fa47b)`()` | Initializes the module.
 `public void `[`ShutdownModule`](#classFRallyHereIntegrationModule_1a537c97b39e36b257d3499bb8f88b2aff)`()` | Safely ends the module.
-`public inline `[`FRH_Integration`](IntegrationBase.md#classFRH__Integration)` & `[`GetIntegration`](#classFRallyHereIntegrationModule_1ab428b2c8db543b36835a636472d55ed8)`() const` | Gets the Integration class fromt he module.
+`public inline `[`FRH_Integration`](IntegrationBase.md#classFRH__Integration)` & `[`GetIntegration`](#classFRallyHereIntegrationModule_1aaef21e35927446c3e94902202f42e147)`() const` | Gets the Integration class fromt he module.
 
 ### Members
 
@@ -41,7 +41,7 @@ Initializes the module.
 
 Safely ends the module.
 
-#### `public inline `[`FRH_Integration`](IntegrationBase.md#classFRH__Integration)` & `[`GetIntegration`](#classFRallyHereIntegrationModule_1ab428b2c8db543b36835a636472d55ed8)`() const` <a id="classFRallyHereIntegrationModule_1ab428b2c8db543b36835a636472d55ed8"></a>
+#### `public inline `[`FRH_Integration`](IntegrationBase.md#classFRH__Integration)` & `[`GetIntegration`](#classFRallyHereIntegrationModule_1aaef21e35927446c3e94902202f42e147)`() const` <a id="classFRallyHereIntegrationModule_1aaef21e35927446c3e94902202f42e147"></a>
 
 Gets the Integration class fromt he module.
 
@@ -56,7 +56,7 @@ Main integration layer handler.
 `public  `[`FRH_Integration`](#classFRH__Integration_1ad429ec1c11342e1a32bc418f9c527c7f)`()` | 
 `public void `[`Initialize`](#classFRH__Integration_1a5406bc46c19e6268c00ace04a51e13af)`()` | Initialize the Integration layer.
 `public void `[`Uninitialize`](#classFRH__Integration_1affec69b27c9acf7015815812bbb6833f)`()` | Safely tears down the Integration layer.
-`public inline RallyHereAPI::FRallyHereAPIAll & `[`GetAPIs`](#classFRH__Integration_1a890bf9b414bc85d6c057a3b9158204ed)`()` | Gets all the APIs.
+`public inline RallyHereAPI::FRallyHereAPIAll & `[`GetAPIs`](#classFRH__Integration_1a0a548260454adbbfb24fa01e16631835)`()` | Gets all the APIs.
 `public inline HttpRetryManagerPtr `[`GetRetryManager`](#classFRH__Integration_1afc39eec959666867e8c4bae0de6ff862)`() const` | Gets Base Retry Manager for all RallyHereAPI calls.
 `public void `[`SetEnvironmentId`](#classFRH__Integration_1a2c35e2e9223d77db72f0fc4927a61cac)`(FString InEnvironmentId,const FString & Source)` | Sets the environment for he connection.
 `public FString `[`GetEnvironmentId`](#classFRH__Integration_1ad0d54cb4e8185064ab8feb5b8cfe1158)`()` | Get the current Environment Id (will run ResolveEnvironmentId if there isn't one)
@@ -74,8 +74,8 @@ Main integration layer handler.
 `public FString `[`GetClientSecret`](#classFRH__Integration_1ac50700a8ff4e112ed60171ffbf5817b7)`()` | Get the current client secret (will run ResolveClientSecret if there isn't one).
 `public void `[`ResolveClientSecret`](#classFRH__Integration_1a19706c54b4a17d6e82b3f86c22247be2)`()` | Check for a client secret across several sources and assign the first non-empty value to the APIs:
 `public inline void `[`LockClientSecret`](#classFRH__Integration_1aeb750cd617fad0b3ade042b7a7c1d54a)`(bool bLocked)` | Updates the locked status of the Client Secret.
-`public inline `[`FRH_WebRequests`](WebRequest.md#classFRH__WebRequests)` * `[`GetWebRequestTracker`](#classFRH__Integration_1a3b54823f537913d46a2266f9a4875a16)`() const` | Gets the Web Request Tracker.
-`public inline `[`FRH_Diagnostics`](Diagnostics.md#classFRH__Diagnostics)` * `[`GetDiagnostics`](#classFRH__Integration_1a0f7dc5599a89b010715dba506bb16288)`() const` | Gets the Diagnostic Reporter.
+`public inline `[`FRH_WebRequests`](WebRequest.md#classFRH__WebRequests)` * `[`GetWebRequestTracker`](#classFRH__Integration_1a6bc68d4736430acd92f8f31bd7915f73)`() const` | Gets the Web Request Tracker.
+`public inline `[`FRH_Diagnostics`](Diagnostics.md#classFRH__Diagnostics)` * `[`GetDiagnostics`](#classFRH__Integration_1a565e9fd1b1c6bccf06416b141fb3c314)`() const` | Gets the Diagnostic Reporter.
 `public inline FString `[`GetLastKnownIPAddress`](#classFRH__Integration_1ac4d8a9cc9069b4e33bf47138e913980d)`() const` | Gets a last-known IP address for use with reporting (this is a secondary global cache of the value on the RH_GameInstanceSubsystem)
 `public inline void `[`SetLastKnownIPAddress`](#classFRH__Integration_1a1f502f4e83c3d9025a724e66c1260205)`(const FString & InAddress)` | Sets a last-known IP address for use with reporting.
 
@@ -91,7 +91,7 @@ Initialize the Integration layer.
 
 Safely tears down the Integration layer.
 
-#### `public inline RallyHereAPI::FRallyHereAPIAll & `[`GetAPIs`](#classFRH__Integration_1a890bf9b414bc85d6c057a3b9158204ed)`()` <a id="classFRH__Integration_1a890bf9b414bc85d6c057a3b9158204ed"></a>
+#### `public inline RallyHereAPI::FRallyHereAPIAll & `[`GetAPIs`](#classFRH__Integration_1a0a548260454adbbfb24fa01e16631835)`()` <a id="classFRH__Integration_1a0a548260454adbbfb24fa01e16631835"></a>
 
 Gets all the APIs.
 
@@ -225,11 +225,11 @@ Updates the locked status of the Client Secret.
 #### Parameters
 * `bLocked` If locked, disables the ResolveClientSecret function.
 
-#### `public inline `[`FRH_WebRequests`](WebRequest.md#classFRH__WebRequests)` * `[`GetWebRequestTracker`](#classFRH__Integration_1a3b54823f537913d46a2266f9a4875a16)`() const` <a id="classFRH__Integration_1a3b54823f537913d46a2266f9a4875a16"></a>
+#### `public inline `[`FRH_WebRequests`](WebRequest.md#classFRH__WebRequests)` * `[`GetWebRequestTracker`](#classFRH__Integration_1a6bc68d4736430acd92f8f31bd7915f73)`() const` <a id="classFRH__Integration_1a6bc68d4736430acd92f8f31bd7915f73"></a>
 
 Gets the Web Request Tracker.
 
-#### `public inline `[`FRH_Diagnostics`](Diagnostics.md#classFRH__Diagnostics)` * `[`GetDiagnostics`](#classFRH__Integration_1a0f7dc5599a89b010715dba506bb16288)`() const` <a id="classFRH__Integration_1a0f7dc5599a89b010715dba506bb16288"></a>
+#### `public inline `[`FRH_Diagnostics`](Diagnostics.md#classFRH__Diagnostics)` * `[`GetDiagnostics`](#classFRH__Integration_1a565e9fd1b1c6bccf06416b141fb3c314)`() const` <a id="classFRH__Integration_1a565e9fd1b1c6bccf06416b141fb3c314"></a>
 
 Gets the Diagnostic Reporter.
 

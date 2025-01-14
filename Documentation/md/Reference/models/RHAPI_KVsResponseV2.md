@@ -27,33 +27,33 @@ struct FRHAPI_KVsResponseV2
 `public bool `[`KickBeforeHint_IsSet`](#structFRHAPI__KVsResponseV2_1a9b71da32e91425d77c18ca9e5cf798c7) | true if KickBeforeHint_Optional has been set to a value
 `public bool `[`KickBeforeHint_IsNull`](#structFRHAPI__KVsResponseV2_1af00bfc8ad61e88dbab2759c2453d8e11) | true if KickBeforeHint_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__KVsResponseV2_1ab70764bcb0234ac210e0af2e89d1a9f1)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__KVsResponseV2_1addb59feb10a26fdd037c10db30e65f52)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline TMap< FString, FString > & `[`GetKvs`](#structFRHAPI__KVsResponseV2_1a805b192903a3d77acb16adc1c3c06d4c)`()` | Gets the value of Kvs_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetKvs`](#structFRHAPI__KVsResponseV2_1abd4d41efec65e990026363e68cd87f3f)`() const` | Gets the value of Kvs_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetKvs`](#structFRHAPI__KVsResponseV2_1aad3d321cd8ace9aaf491aaaf71c1dea1)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of Kvs_Optional, if it has been set, otherwise it returns DefaultValue.
+`public virtual void `[`WriteJson`](#structFRHAPI__KVsResponseV2_1a7b514a4962a8c678ecb406ffc5e6a6f9)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline TMap< FString, FString > & `[`GetKvs`](#structFRHAPI__KVsResponseV2_1ac673fbd3f895f289e0cbbe603ce61a62)`()` | Gets the value of Kvs_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetKvs`](#structFRHAPI__KVsResponseV2_1a4e841c58de28adba247b47637979962f)`() const` | Gets the value of Kvs_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetKvs`](#structFRHAPI__KVsResponseV2_1a30d25655d95dac0e228664598e392679)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of Kvs_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetKvs`](#structFRHAPI__KVsResponseV2_1a1a71151b149264d149a91f50e8e9f9e4)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of Kvs_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, FString > * `[`GetKvsOrNull`](#structFRHAPI__KVsResponseV2_1ab7793ec6478bc293efbd506f84945727)`()` | Returns a pointer to Kvs_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, FString > * `[`GetKvsOrNull`](#structFRHAPI__KVsResponseV2_1a6e04dd037f69c481f45411c240042941)`() const` | Returns a pointer to Kvs_Optional, if it has been set, otherwise returns nullptr.
+`public inline TMap< FString, FString > * `[`GetKvsOrNull`](#structFRHAPI__KVsResponseV2_1aa6f6884bbac10570e60140bef8c2afb1)`()` | Returns a pointer to Kvs_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TMap< FString, FString > * `[`GetKvsOrNull`](#structFRHAPI__KVsResponseV2_1aa69e32db8d85a461579dad6cd00dd40e)`() const` | Returns a pointer to Kvs_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetKvs`](#structFRHAPI__KVsResponseV2_1a5ba628f1c8fbc3305afcd0151f0ec000)`(const TMap< FString, FString > & NewValue)` | Sets the value of Kvs_Optional and also sets Kvs_IsSet to true.
 `public inline void `[`SetKvs`](#structFRHAPI__KVsResponseV2_1a8d8f045aaf79967b3b841a260089d040)`(TMap< FString, FString > && NewValue)` | Sets the value of Kvs_Optional and also sets Kvs_IsSet to true using move semantics.
 `public inline void `[`ClearKvs`](#structFRHAPI__KVsResponseV2_1a8777e5cde5028f594e27db29dae4bab2)`()` | Clears the value of Kvs_Optional and sets Kvs_IsSet to false.
 `public inline bool `[`IsKvsSet`](#structFRHAPI__KVsResponseV2_1a0389804bfba6a613ffd081ccb0ba4286)`() const` | Checks whether Kvs_Optional has been set.
-`public inline TMap< FString, FString > & `[`GetSecretKvs`](#structFRHAPI__KVsResponseV2_1a81cd82fb9b2da0778444a748eae40c88)`()` | Gets the value of SecretKvs_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetSecretKvs`](#structFRHAPI__KVsResponseV2_1ad210dbd7182922231a12c971086e5b73)`() const` | Gets the value of SecretKvs_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetSecretKvs`](#structFRHAPI__KVsResponseV2_1a172ff1b4f67547c107b424a469ce7ea6)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of SecretKvs_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline TMap< FString, FString > & `[`GetSecretKvs`](#structFRHAPI__KVsResponseV2_1a5049108b0f303e95e6c661ea1523c6b5)`()` | Gets the value of SecretKvs_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetSecretKvs`](#structFRHAPI__KVsResponseV2_1a15d567121ffec10881795052ed9a9f3d)`() const` | Gets the value of SecretKvs_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetSecretKvs`](#structFRHAPI__KVsResponseV2_1ab9eb87416074988e34c8bee0655c0f6b)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of SecretKvs_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetSecretKvs`](#structFRHAPI__KVsResponseV2_1a4c060960fdd938171b48f81fd8023af4)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of SecretKvs_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, FString > * `[`GetSecretKvsOrNull`](#structFRHAPI__KVsResponseV2_1a7b3179143300d24a14c3e1411c64e4c1)`()` | Returns a pointer to SecretKvs_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, FString > * `[`GetSecretKvsOrNull`](#structFRHAPI__KVsResponseV2_1a0557b9d9e655ea2dc50dcb21e30d5b2a)`() const` | Returns a pointer to SecretKvs_Optional, if it has been set, otherwise returns nullptr.
+`public inline TMap< FString, FString > * `[`GetSecretKvsOrNull`](#structFRHAPI__KVsResponseV2_1a6d640f43d482e408a15a8d1ba9abdddd)`()` | Returns a pointer to SecretKvs_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TMap< FString, FString > * `[`GetSecretKvsOrNull`](#structFRHAPI__KVsResponseV2_1a8e19fb579974840590c4102981c45015)`() const` | Returns a pointer to SecretKvs_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetSecretKvs`](#structFRHAPI__KVsResponseV2_1ace017fbf13868fd79c520f2e0480f009)`(const TMap< FString, FString > & NewValue)` | Sets the value of SecretKvs_Optional and also sets SecretKvs_IsSet to true.
 `public inline void `[`SetSecretKvs`](#structFRHAPI__KVsResponseV2_1afca79ef23c8f802c124bc86c58d44107)`(TMap< FString, FString > && NewValue)` | Sets the value of SecretKvs_Optional and also sets SecretKvs_IsSet to true using move semantics.
 `public inline void `[`ClearSecretKvs`](#structFRHAPI__KVsResponseV2_1aaa15339436ec513d1e51e1900394c473)`()` | Clears the value of SecretKvs_Optional and sets SecretKvs_IsSet to false.
 `public inline bool `[`IsSecretKvsSet`](#structFRHAPI__KVsResponseV2_1aefb72886828150897f237615dc781017)`() const` | Checks whether SecretKvs_Optional has been set.
-`public inline FDateTime & `[`GetKickBeforeHint`](#structFRHAPI__KVsResponseV2_1afbe8886c5df11e53c4026b26557ef52e)`()` | Gets the value of KickBeforeHint_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetKickBeforeHint`](#structFRHAPI__KVsResponseV2_1ac4168f09c7544ec654a23b64007cf5f8)`() const` | Gets the value of KickBeforeHint_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetKickBeforeHint`](#structFRHAPI__KVsResponseV2_1ace49dbe74ffe1345f229267a3117f7ca)`(const FDateTime & DefaultValue) const` | Gets the value of KickBeforeHint_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FDateTime & `[`GetKickBeforeHint`](#structFRHAPI__KVsResponseV2_1a6ab27e74efd440e261967c7f0b994527)`()` | Gets the value of KickBeforeHint_Optional, regardless of it having been set.
+`public inline const FDateTime & `[`GetKickBeforeHint`](#structFRHAPI__KVsResponseV2_1a6ac373a5370af0531a6063f251428aa3)`() const` | Gets the value of KickBeforeHint_Optional, regardless of it having been set.
+`public inline const FDateTime & `[`GetKickBeforeHint`](#structFRHAPI__KVsResponseV2_1acf3fd21a515780bc7a5f8b98c41389de)`(const FDateTime & DefaultValue) const` | Gets the value of KickBeforeHint_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetKickBeforeHint`](#structFRHAPI__KVsResponseV2_1add80d3e8abf1a17fc5c9aa5a1f21b5cd)`(FDateTime & OutValue) const` | Fills OutValue with the value of KickBeforeHint_Optional and returns true if it has been set, otherwise returns false.
-`public inline FDateTime * `[`GetKickBeforeHintOrNull`](#structFRHAPI__KVsResponseV2_1ac27b41c0262a8200ce1cdd87b3db953f)`()` | Returns a pointer to KickBeforeHint_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FDateTime * `[`GetKickBeforeHintOrNull`](#structFRHAPI__KVsResponseV2_1aa20747e849cfe502cf2edc540572b1f6)`() const` | Returns a pointer to KickBeforeHint_Optional, if it has been set, otherwise returns nullptr.
+`public inline FDateTime * `[`GetKickBeforeHintOrNull`](#structFRHAPI__KVsResponseV2_1abb667ea5591dff9e839a0ad4f80762dc)`()` | Returns a pointer to KickBeforeHint_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FDateTime * `[`GetKickBeforeHintOrNull`](#structFRHAPI__KVsResponseV2_1a3323d7a562945f9773de4d19ca9d339f)`() const` | Returns a pointer to KickBeforeHint_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetKickBeforeHint`](#structFRHAPI__KVsResponseV2_1a93f22fe919897974c5e80a6519a7eef9)`(const FDateTime & NewValue)` | Sets the value of KickBeforeHint_Optional and also sets KickBeforeHint_IsSet to true.
 `public inline void `[`SetKickBeforeHint`](#structFRHAPI__KVsResponseV2_1a6777c7f31ee98d28aa940cbd02c2b4f8)`(FDateTime && NewValue)` | Sets the value of KickBeforeHint_Optional and also sets KickBeforeHint_IsSet to true using move semantics.
 `public inline void `[`ClearKickBeforeHint`](#structFRHAPI__KVsResponseV2_1a5764ddc0e6aa98ef1acfbba00d0642fd)`()` | Clears the value of KickBeforeHint_Optional and sets KickBeforeHint_IsSet to false.
@@ -101,22 +101,22 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__KVsResponseV2_1addb59feb10a26fdd037c10db30e65f52)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__KVsResponseV2_1addb59feb10a26fdd037c10db30e65f52"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__KVsResponseV2_1a7b514a4962a8c678ecb406ffc5e6a6f9)`(TSharedRef< TJsonWriter<> > & Writer) const` <a id="structFRHAPI__KVsResponseV2_1a7b514a4962a8c678ecb406ffc5e6a6f9"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline TMap< FString, FString > & `[`GetKvs`](#structFRHAPI__KVsResponseV2_1a805b192903a3d77acb16adc1c3c06d4c)`()` <a id="structFRHAPI__KVsResponseV2_1a805b192903a3d77acb16adc1c3c06d4c"></a>
+#### `public inline TMap< FString, FString > & `[`GetKvs`](#structFRHAPI__KVsResponseV2_1ac673fbd3f895f289e0cbbe603ce61a62)`()` <a id="structFRHAPI__KVsResponseV2_1ac673fbd3f895f289e0cbbe603ce61a62"></a>
 
 Gets the value of Kvs_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetKvs`](#structFRHAPI__KVsResponseV2_1abd4d41efec65e990026363e68cd87f3f)`() const` <a id="structFRHAPI__KVsResponseV2_1abd4d41efec65e990026363e68cd87f3f"></a>
+#### `public inline const TMap< FString, FString > & `[`GetKvs`](#structFRHAPI__KVsResponseV2_1a4e841c58de28adba247b47637979962f)`() const` <a id="structFRHAPI__KVsResponseV2_1a4e841c58de28adba247b47637979962f"></a>
 
 Gets the value of Kvs_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetKvs`](#structFRHAPI__KVsResponseV2_1aad3d321cd8ace9aaf491aaaf71c1dea1)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__KVsResponseV2_1aad3d321cd8ace9aaf491aaaf71c1dea1"></a>
+#### `public inline const TMap< FString, FString > & `[`GetKvs`](#structFRHAPI__KVsResponseV2_1a30d25655d95dac0e228664598e392679)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__KVsResponseV2_1a30d25655d95dac0e228664598e392679"></a>
 
 Gets the value of Kvs_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -124,11 +124,11 @@ Gets the value of Kvs_Optional, if it has been set, otherwise it returns Default
 
 Fills OutValue with the value of Kvs_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, FString > * `[`GetKvsOrNull`](#structFRHAPI__KVsResponseV2_1ab7793ec6478bc293efbd506f84945727)`()` <a id="structFRHAPI__KVsResponseV2_1ab7793ec6478bc293efbd506f84945727"></a>
+#### `public inline TMap< FString, FString > * `[`GetKvsOrNull`](#structFRHAPI__KVsResponseV2_1aa6f6884bbac10570e60140bef8c2afb1)`()` <a id="structFRHAPI__KVsResponseV2_1aa6f6884bbac10570e60140bef8c2afb1"></a>
 
 Returns a pointer to Kvs_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, FString > * `[`GetKvsOrNull`](#structFRHAPI__KVsResponseV2_1a6e04dd037f69c481f45411c240042941)`() const` <a id="structFRHAPI__KVsResponseV2_1a6e04dd037f69c481f45411c240042941"></a>
+#### `public inline const TMap< FString, FString > * `[`GetKvsOrNull`](#structFRHAPI__KVsResponseV2_1aa69e32db8d85a461579dad6cd00dd40e)`() const` <a id="structFRHAPI__KVsResponseV2_1aa69e32db8d85a461579dad6cd00dd40e"></a>
 
 Returns a pointer to Kvs_Optional, if it has been set, otherwise returns nullptr.
 
@@ -148,15 +148,15 @@ Clears the value of Kvs_Optional and sets Kvs_IsSet to false.
 
 Checks whether Kvs_Optional has been set.
 
-#### `public inline TMap< FString, FString > & `[`GetSecretKvs`](#structFRHAPI__KVsResponseV2_1a81cd82fb9b2da0778444a748eae40c88)`()` <a id="structFRHAPI__KVsResponseV2_1a81cd82fb9b2da0778444a748eae40c88"></a>
+#### `public inline TMap< FString, FString > & `[`GetSecretKvs`](#structFRHAPI__KVsResponseV2_1a5049108b0f303e95e6c661ea1523c6b5)`()` <a id="structFRHAPI__KVsResponseV2_1a5049108b0f303e95e6c661ea1523c6b5"></a>
 
 Gets the value of SecretKvs_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetSecretKvs`](#structFRHAPI__KVsResponseV2_1ad210dbd7182922231a12c971086e5b73)`() const` <a id="structFRHAPI__KVsResponseV2_1ad210dbd7182922231a12c971086e5b73"></a>
+#### `public inline const TMap< FString, FString > & `[`GetSecretKvs`](#structFRHAPI__KVsResponseV2_1a15d567121ffec10881795052ed9a9f3d)`() const` <a id="structFRHAPI__KVsResponseV2_1a15d567121ffec10881795052ed9a9f3d"></a>
 
 Gets the value of SecretKvs_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetSecretKvs`](#structFRHAPI__KVsResponseV2_1a172ff1b4f67547c107b424a469ce7ea6)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__KVsResponseV2_1a172ff1b4f67547c107b424a469ce7ea6"></a>
+#### `public inline const TMap< FString, FString > & `[`GetSecretKvs`](#structFRHAPI__KVsResponseV2_1ab9eb87416074988e34c8bee0655c0f6b)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__KVsResponseV2_1ab9eb87416074988e34c8bee0655c0f6b"></a>
 
 Gets the value of SecretKvs_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -164,11 +164,11 @@ Gets the value of SecretKvs_Optional, if it has been set, otherwise it returns D
 
 Fills OutValue with the value of SecretKvs_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, FString > * `[`GetSecretKvsOrNull`](#structFRHAPI__KVsResponseV2_1a7b3179143300d24a14c3e1411c64e4c1)`()` <a id="structFRHAPI__KVsResponseV2_1a7b3179143300d24a14c3e1411c64e4c1"></a>
+#### `public inline TMap< FString, FString > * `[`GetSecretKvsOrNull`](#structFRHAPI__KVsResponseV2_1a6d640f43d482e408a15a8d1ba9abdddd)`()` <a id="structFRHAPI__KVsResponseV2_1a6d640f43d482e408a15a8d1ba9abdddd"></a>
 
 Returns a pointer to SecretKvs_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, FString > * `[`GetSecretKvsOrNull`](#structFRHAPI__KVsResponseV2_1a0557b9d9e655ea2dc50dcb21e30d5b2a)`() const` <a id="structFRHAPI__KVsResponseV2_1a0557b9d9e655ea2dc50dcb21e30d5b2a"></a>
+#### `public inline const TMap< FString, FString > * `[`GetSecretKvsOrNull`](#structFRHAPI__KVsResponseV2_1a8e19fb579974840590c4102981c45015)`() const` <a id="structFRHAPI__KVsResponseV2_1a8e19fb579974840590c4102981c45015"></a>
 
 Returns a pointer to SecretKvs_Optional, if it has been set, otherwise returns nullptr.
 
@@ -188,15 +188,15 @@ Clears the value of SecretKvs_Optional and sets SecretKvs_IsSet to false.
 
 Checks whether SecretKvs_Optional has been set.
 
-#### `public inline FDateTime & `[`GetKickBeforeHint`](#structFRHAPI__KVsResponseV2_1afbe8886c5df11e53c4026b26557ef52e)`()` <a id="structFRHAPI__KVsResponseV2_1afbe8886c5df11e53c4026b26557ef52e"></a>
+#### `public inline FDateTime & `[`GetKickBeforeHint`](#structFRHAPI__KVsResponseV2_1a6ab27e74efd440e261967c7f0b994527)`()` <a id="structFRHAPI__KVsResponseV2_1a6ab27e74efd440e261967c7f0b994527"></a>
 
 Gets the value of KickBeforeHint_Optional, regardless of it having been set.
 
-#### `public inline const FDateTime & `[`GetKickBeforeHint`](#structFRHAPI__KVsResponseV2_1ac4168f09c7544ec654a23b64007cf5f8)`() const` <a id="structFRHAPI__KVsResponseV2_1ac4168f09c7544ec654a23b64007cf5f8"></a>
+#### `public inline const FDateTime & `[`GetKickBeforeHint`](#structFRHAPI__KVsResponseV2_1a6ac373a5370af0531a6063f251428aa3)`() const` <a id="structFRHAPI__KVsResponseV2_1a6ac373a5370af0531a6063f251428aa3"></a>
 
 Gets the value of KickBeforeHint_Optional, regardless of it having been set.
 
-#### `public inline const FDateTime & `[`GetKickBeforeHint`](#structFRHAPI__KVsResponseV2_1ace49dbe74ffe1345f229267a3117f7ca)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__KVsResponseV2_1ace49dbe74ffe1345f229267a3117f7ca"></a>
+#### `public inline const FDateTime & `[`GetKickBeforeHint`](#structFRHAPI__KVsResponseV2_1acf3fd21a515780bc7a5f8b98c41389de)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__KVsResponseV2_1acf3fd21a515780bc7a5f8b98c41389de"></a>
 
 Gets the value of KickBeforeHint_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -204,11 +204,11 @@ Gets the value of KickBeforeHint_Optional, if it has been set, otherwise it retu
 
 Fills OutValue with the value of KickBeforeHint_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FDateTime * `[`GetKickBeforeHintOrNull`](#structFRHAPI__KVsResponseV2_1ac27b41c0262a8200ce1cdd87b3db953f)`()` <a id="structFRHAPI__KVsResponseV2_1ac27b41c0262a8200ce1cdd87b3db953f"></a>
+#### `public inline FDateTime * `[`GetKickBeforeHintOrNull`](#structFRHAPI__KVsResponseV2_1abb667ea5591dff9e839a0ad4f80762dc)`()` <a id="structFRHAPI__KVsResponseV2_1abb667ea5591dff9e839a0ad4f80762dc"></a>
 
 Returns a pointer to KickBeforeHint_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FDateTime * `[`GetKickBeforeHintOrNull`](#structFRHAPI__KVsResponseV2_1aa20747e849cfe502cf2edc540572b1f6)`() const` <a id="structFRHAPI__KVsResponseV2_1aa20747e849cfe502cf2edc540572b1f6"></a>
+#### `public inline const FDateTime * `[`GetKickBeforeHintOrNull`](#structFRHAPI__KVsResponseV2_1a3323d7a562945f9773de4d19ca9d339f)`() const` <a id="structFRHAPI__KVsResponseV2_1a3323d7a562945f9773de4d19ca9d339f"></a>
 
 Returns a pointer to KickBeforeHint_Optional, if it has been set, otherwise returns nullptr.
 

@@ -28,33 +28,33 @@ Model for doing operations on a specific person. If person information is not pr
 `public FString `[`PlatformUserId_Optional`](#structFRHAPI__PersonOperationRequest_1af4f1a5779f29fe1eda9997044899a999) | Platform User ID.
 `public bool `[`PlatformUserId_IsSet`](#structFRHAPI__PersonOperationRequest_1adb1d529a865b26be08d6556d6fc1f5ea) | true if PlatformUserId_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__PersonOperationRequest_1a508e7f112d7fa40f785c30f1fe4adae8)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PersonOperationRequest_1a916defd03ed47da9a3794a0ab3a8165a)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FGuid & `[`GetPersonId`](#structFRHAPI__PersonOperationRequest_1aa3a7a4118cd9a284530d9fdd42baac12)`()` | Gets the value of PersonId_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetPersonId`](#structFRHAPI__PersonOperationRequest_1a299415b9cb1cd476dd78fc60aa9d4a48)`() const` | Gets the value of PersonId_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetPersonId`](#structFRHAPI__PersonOperationRequest_1ab63abeed57719844488070474cc7cb64)`(const FGuid & DefaultValue) const` | Gets the value of PersonId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public virtual void `[`WriteJson`](#structFRHAPI__PersonOperationRequest_1abc901c8c248f5c67e9ad244cb004b85a)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline FGuid & `[`GetPersonId`](#structFRHAPI__PersonOperationRequest_1a2fe966173b441f299dffe296768718a1)`()` | Gets the value of PersonId_Optional, regardless of it having been set.
+`public inline const FGuid & `[`GetPersonId`](#structFRHAPI__PersonOperationRequest_1ad5acbb858ce08cbb4dbf776ba9660ec7)`() const` | Gets the value of PersonId_Optional, regardless of it having been set.
+`public inline const FGuid & `[`GetPersonId`](#structFRHAPI__PersonOperationRequest_1a94ea3e6320ecc537fd0347918029cc53)`(const FGuid & DefaultValue) const` | Gets the value of PersonId_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetPersonId`](#structFRHAPI__PersonOperationRequest_1af70465f93e2b970006c231eba739f1bb)`(FGuid & OutValue) const` | Fills OutValue with the value of PersonId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FGuid * `[`GetPersonIdOrNull`](#structFRHAPI__PersonOperationRequest_1a4596c143e7fae124c27f63ff20f6a741)`()` | Returns a pointer to PersonId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FGuid * `[`GetPersonIdOrNull`](#structFRHAPI__PersonOperationRequest_1a40ac5d5dc9f3af95e8d13dc757fb7bf7)`() const` | Returns a pointer to PersonId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FGuid * `[`GetPersonIdOrNull`](#structFRHAPI__PersonOperationRequest_1af7dba6eeb049d3f504c3dab6ac9825b2)`()` | Returns a pointer to PersonId_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FGuid * `[`GetPersonIdOrNull`](#structFRHAPI__PersonOperationRequest_1a889ed106459652deb18564bcf9b3e87c)`() const` | Returns a pointer to PersonId_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetPersonId`](#structFRHAPI__PersonOperationRequest_1a640a3e1a46e6a04b99b7fcd6c449f2fd)`(const FGuid & NewValue)` | Sets the value of PersonId_Optional and also sets PersonId_IsSet to true.
 `public inline void `[`SetPersonId`](#structFRHAPI__PersonOperationRequest_1a420f28e6d8010b054b0094c1a1fdd896)`(FGuid && NewValue)` | Sets the value of PersonId_Optional and also sets PersonId_IsSet to true using move semantics.
 `public inline void `[`ClearPersonId`](#structFRHAPI__PersonOperationRequest_1ac2c03e001d4f62bd0b981cdc7241dbc6)`()` | Clears the value of PersonId_Optional and sets PersonId_IsSet to false.
 `public inline bool `[`IsPersonIdSet`](#structFRHAPI__PersonOperationRequest_1ac885419990d53ad8aa5d44acf98e0fbf)`() const` | Checks whether PersonId_Optional has been set.
-`public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PersonOperationRequest_1ac36216b6e7057d49f3f60b3f871b8b48)`()` | Gets the value of Platform_Optional, regardless of it having been set.
-`public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PersonOperationRequest_1aa3a21f65d53736de908bc4c1df311a30)`() const` | Gets the value of Platform_Optional, regardless of it having been set.
-`public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PersonOperationRequest_1a2bcaae5858d8c2f1631ad4589d3b2dbe)`(const ERHAPI_Platform & DefaultValue) const` | Gets the value of Platform_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PersonOperationRequest_1a18fe752cc10a07c5a31c84ef4bfe612a)`()` | Gets the value of Platform_Optional, regardless of it having been set.
+`public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PersonOperationRequest_1ad7b24f602c235c9050eafd11dd90df9c)`() const` | Gets the value of Platform_Optional, regardless of it having been set.
+`public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PersonOperationRequest_1a06eabb7b6c133bee7105df5a46a9d2c4)`(const ERHAPI_Platform & DefaultValue) const` | Gets the value of Platform_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetPlatform`](#structFRHAPI__PersonOperationRequest_1abecefb6a8eb603736cef3685bb7813e0)`(ERHAPI_Platform & OutValue) const` | Fills OutValue with the value of Platform_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_Platform * `[`GetPlatformOrNull`](#structFRHAPI__PersonOperationRequest_1ad5e1d541bc690a045db7592879b91a21)`()` | Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_Platform * `[`GetPlatformOrNull`](#structFRHAPI__PersonOperationRequest_1ab5ff771d2207fde72ce75737370df9e3)`() const` | Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr.
+`public inline ERHAPI_Platform * `[`GetPlatformOrNull`](#structFRHAPI__PersonOperationRequest_1a90eb1502f803c02951d0f222d48ca798)`()` | Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr.
+`public inline const ERHAPI_Platform * `[`GetPlatformOrNull`](#structFRHAPI__PersonOperationRequest_1a5f676d95f92d33d1a6f989fd0e3a167c)`() const` | Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetPlatform`](#structFRHAPI__PersonOperationRequest_1a8bb77dd1ab8870ca11b8b4b551d88363)`(const ERHAPI_Platform & NewValue)` | Sets the value of Platform_Optional and also sets Platform_IsSet to true.
 `public inline void `[`SetPlatform`](#structFRHAPI__PersonOperationRequest_1ac707312348451b3e4e1ff9ce31d96f87)`(ERHAPI_Platform && NewValue)` | Sets the value of Platform_Optional and also sets Platform_IsSet to true using move semantics.
 `public inline void `[`ClearPlatform`](#structFRHAPI__PersonOperationRequest_1af12f90261c6b3e95b944e6b66a28200c)`()` | Clears the value of Platform_Optional and sets Platform_IsSet to false.
 `public inline bool `[`IsPlatformSet`](#structFRHAPI__PersonOperationRequest_1a4d60bdca1ebef717eb4e5a543fe1c818)`() const` | Checks whether Platform_Optional has been set.
-`public inline FString & `[`GetPlatformUserId`](#structFRHAPI__PersonOperationRequest_1a3e587eaac9a7dadd742a0c15b816134c)`()` | Gets the value of PlatformUserId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetPlatformUserId`](#structFRHAPI__PersonOperationRequest_1a7574d5cbcf83e3b97eba74446b4be52f)`() const` | Gets the value of PlatformUserId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetPlatformUserId`](#structFRHAPI__PersonOperationRequest_1aea305ac4c49eabbe6f3f3d25b53abb29)`(const FString & DefaultValue) const` | Gets the value of PlatformUserId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FString & `[`GetPlatformUserId`](#structFRHAPI__PersonOperationRequest_1a2df9bb8362f6edfa8f67cec37e27edc9)`()` | Gets the value of PlatformUserId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetPlatformUserId`](#structFRHAPI__PersonOperationRequest_1a0db55c1d6e14a7e5a7ded311041586a3)`() const` | Gets the value of PlatformUserId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetPlatformUserId`](#structFRHAPI__PersonOperationRequest_1a699c263e1ea3d66599c06b781490a5cd)`(const FString & DefaultValue) const` | Gets the value of PlatformUserId_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetPlatformUserId`](#structFRHAPI__PersonOperationRequest_1a6cea5361413ac46d3437521111938867)`(FString & OutValue) const` | Fills OutValue with the value of PlatformUserId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetPlatformUserIdOrNull`](#structFRHAPI__PersonOperationRequest_1a7d41e87c69fa225c651d8a204cf0fccd)`()` | Returns a pointer to PlatformUserId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetPlatformUserIdOrNull`](#structFRHAPI__PersonOperationRequest_1a36b0f01a57cc40316ecde49d19e5cf44)`() const` | Returns a pointer to PlatformUserId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FString * `[`GetPlatformUserIdOrNull`](#structFRHAPI__PersonOperationRequest_1a42793b8f197515e9c94cf0a552a7c2c7)`()` | Returns a pointer to PlatformUserId_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetPlatformUserIdOrNull`](#structFRHAPI__PersonOperationRequest_1a644d8a1aa24a44f7eee7381edea9f1d8)`() const` | Returns a pointer to PlatformUserId_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetPlatformUserId`](#structFRHAPI__PersonOperationRequest_1a72ae65cb129e1f7fd1fad8661dc5ee70)`(const FString & NewValue)` | Sets the value of PlatformUserId_Optional and also sets PlatformUserId_IsSet to true.
 `public inline void `[`SetPlatformUserId`](#structFRHAPI__PersonOperationRequest_1ac5bd9eef71ea7136ada6c128b6b59a3b)`(FString && NewValue)` | Sets the value of PlatformUserId_Optional and also sets PlatformUserId_IsSet to true using move semantics.
 `public inline void `[`ClearPlatformUserId`](#structFRHAPI__PersonOperationRequest_1a5cd8c5bb1cbb37055ff311f9392523c3)`()` | Clears the value of PlatformUserId_Optional and sets PlatformUserId_IsSet to false.
@@ -96,22 +96,22 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PersonOperationRequest_1a916defd03ed47da9a3794a0ab3a8165a)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PersonOperationRequest_1a916defd03ed47da9a3794a0ab3a8165a"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PersonOperationRequest_1abc901c8c248f5c67e9ad244cb004b85a)`(TSharedRef< TJsonWriter<> > & Writer) const` <a id="structFRHAPI__PersonOperationRequest_1abc901c8c248f5c67e9ad244cb004b85a"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FGuid & `[`GetPersonId`](#structFRHAPI__PersonOperationRequest_1aa3a7a4118cd9a284530d9fdd42baac12)`()` <a id="structFRHAPI__PersonOperationRequest_1aa3a7a4118cd9a284530d9fdd42baac12"></a>
+#### `public inline FGuid & `[`GetPersonId`](#structFRHAPI__PersonOperationRequest_1a2fe966173b441f299dffe296768718a1)`()` <a id="structFRHAPI__PersonOperationRequest_1a2fe966173b441f299dffe296768718a1"></a>
 
 Gets the value of PersonId_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetPersonId`](#structFRHAPI__PersonOperationRequest_1a299415b9cb1cd476dd78fc60aa9d4a48)`() const` <a id="structFRHAPI__PersonOperationRequest_1a299415b9cb1cd476dd78fc60aa9d4a48"></a>
+#### `public inline const FGuid & `[`GetPersonId`](#structFRHAPI__PersonOperationRequest_1ad5acbb858ce08cbb4dbf776ba9660ec7)`() const` <a id="structFRHAPI__PersonOperationRequest_1ad5acbb858ce08cbb4dbf776ba9660ec7"></a>
 
 Gets the value of PersonId_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetPersonId`](#structFRHAPI__PersonOperationRequest_1ab63abeed57719844488070474cc7cb64)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__PersonOperationRequest_1ab63abeed57719844488070474cc7cb64"></a>
+#### `public inline const FGuid & `[`GetPersonId`](#structFRHAPI__PersonOperationRequest_1a94ea3e6320ecc537fd0347918029cc53)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__PersonOperationRequest_1a94ea3e6320ecc537fd0347918029cc53"></a>
 
 Gets the value of PersonId_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -119,11 +119,11 @@ Gets the value of PersonId_Optional, if it has been set, otherwise it returns De
 
 Fills OutValue with the value of PersonId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FGuid * `[`GetPersonIdOrNull`](#structFRHAPI__PersonOperationRequest_1a4596c143e7fae124c27f63ff20f6a741)`()` <a id="structFRHAPI__PersonOperationRequest_1a4596c143e7fae124c27f63ff20f6a741"></a>
+#### `public inline FGuid * `[`GetPersonIdOrNull`](#structFRHAPI__PersonOperationRequest_1af7dba6eeb049d3f504c3dab6ac9825b2)`()` <a id="structFRHAPI__PersonOperationRequest_1af7dba6eeb049d3f504c3dab6ac9825b2"></a>
 
 Returns a pointer to PersonId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FGuid * `[`GetPersonIdOrNull`](#structFRHAPI__PersonOperationRequest_1a40ac5d5dc9f3af95e8d13dc757fb7bf7)`() const` <a id="structFRHAPI__PersonOperationRequest_1a40ac5d5dc9f3af95e8d13dc757fb7bf7"></a>
+#### `public inline const FGuid * `[`GetPersonIdOrNull`](#structFRHAPI__PersonOperationRequest_1a889ed106459652deb18564bcf9b3e87c)`() const` <a id="structFRHAPI__PersonOperationRequest_1a889ed106459652deb18564bcf9b3e87c"></a>
 
 Returns a pointer to PersonId_Optional, if it has been set, otherwise returns nullptr.
 
@@ -143,15 +143,15 @@ Clears the value of PersonId_Optional and sets PersonId_IsSet to false.
 
 Checks whether PersonId_Optional has been set.
 
-#### `public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PersonOperationRequest_1ac36216b6e7057d49f3f60b3f871b8b48)`()` <a id="structFRHAPI__PersonOperationRequest_1ac36216b6e7057d49f3f60b3f871b8b48"></a>
+#### `public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PersonOperationRequest_1a18fe752cc10a07c5a31c84ef4bfe612a)`()` <a id="structFRHAPI__PersonOperationRequest_1a18fe752cc10a07c5a31c84ef4bfe612a"></a>
 
 Gets the value of Platform_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PersonOperationRequest_1aa3a21f65d53736de908bc4c1df311a30)`() const` <a id="structFRHAPI__PersonOperationRequest_1aa3a21f65d53736de908bc4c1df311a30"></a>
+#### `public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PersonOperationRequest_1ad7b24f602c235c9050eafd11dd90df9c)`() const` <a id="structFRHAPI__PersonOperationRequest_1ad7b24f602c235c9050eafd11dd90df9c"></a>
 
 Gets the value of Platform_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PersonOperationRequest_1a2bcaae5858d8c2f1631ad4589d3b2dbe)`(const ERHAPI_Platform & DefaultValue) const` <a id="structFRHAPI__PersonOperationRequest_1a2bcaae5858d8c2f1631ad4589d3b2dbe"></a>
+#### `public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PersonOperationRequest_1a06eabb7b6c133bee7105df5a46a9d2c4)`(const ERHAPI_Platform & DefaultValue) const` <a id="structFRHAPI__PersonOperationRequest_1a06eabb7b6c133bee7105df5a46a9d2c4"></a>
 
 Gets the value of Platform_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -159,11 +159,11 @@ Gets the value of Platform_Optional, if it has been set, otherwise it returns De
 
 Fills OutValue with the value of Platform_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline ERHAPI_Platform * `[`GetPlatformOrNull`](#structFRHAPI__PersonOperationRequest_1ad5e1d541bc690a045db7592879b91a21)`()` <a id="structFRHAPI__PersonOperationRequest_1ad5e1d541bc690a045db7592879b91a21"></a>
+#### `public inline ERHAPI_Platform * `[`GetPlatformOrNull`](#structFRHAPI__PersonOperationRequest_1a90eb1502f803c02951d0f222d48ca798)`()` <a id="structFRHAPI__PersonOperationRequest_1a90eb1502f803c02951d0f222d48ca798"></a>
 
 Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const ERHAPI_Platform * `[`GetPlatformOrNull`](#structFRHAPI__PersonOperationRequest_1ab5ff771d2207fde72ce75737370df9e3)`() const` <a id="structFRHAPI__PersonOperationRequest_1ab5ff771d2207fde72ce75737370df9e3"></a>
+#### `public inline const ERHAPI_Platform * `[`GetPlatformOrNull`](#structFRHAPI__PersonOperationRequest_1a5f676d95f92d33d1a6f989fd0e3a167c)`() const` <a id="structFRHAPI__PersonOperationRequest_1a5f676d95f92d33d1a6f989fd0e3a167c"></a>
 
 Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr.
 
@@ -183,15 +183,15 @@ Clears the value of Platform_Optional and sets Platform_IsSet to false.
 
 Checks whether Platform_Optional has been set.
 
-#### `public inline FString & `[`GetPlatformUserId`](#structFRHAPI__PersonOperationRequest_1a3e587eaac9a7dadd742a0c15b816134c)`()` <a id="structFRHAPI__PersonOperationRequest_1a3e587eaac9a7dadd742a0c15b816134c"></a>
+#### `public inline FString & `[`GetPlatformUserId`](#structFRHAPI__PersonOperationRequest_1a2df9bb8362f6edfa8f67cec37e27edc9)`()` <a id="structFRHAPI__PersonOperationRequest_1a2df9bb8362f6edfa8f67cec37e27edc9"></a>
 
 Gets the value of PlatformUserId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetPlatformUserId`](#structFRHAPI__PersonOperationRequest_1a7574d5cbcf83e3b97eba74446b4be52f)`() const` <a id="structFRHAPI__PersonOperationRequest_1a7574d5cbcf83e3b97eba74446b4be52f"></a>
+#### `public inline const FString & `[`GetPlatformUserId`](#structFRHAPI__PersonOperationRequest_1a0db55c1d6e14a7e5a7ded311041586a3)`() const` <a id="structFRHAPI__PersonOperationRequest_1a0db55c1d6e14a7e5a7ded311041586a3"></a>
 
 Gets the value of PlatformUserId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetPlatformUserId`](#structFRHAPI__PersonOperationRequest_1aea305ac4c49eabbe6f3f3d25b53abb29)`(const FString & DefaultValue) const` <a id="structFRHAPI__PersonOperationRequest_1aea305ac4c49eabbe6f3f3d25b53abb29"></a>
+#### `public inline const FString & `[`GetPlatformUserId`](#structFRHAPI__PersonOperationRequest_1a699c263e1ea3d66599c06b781490a5cd)`(const FString & DefaultValue) const` <a id="structFRHAPI__PersonOperationRequest_1a699c263e1ea3d66599c06b781490a5cd"></a>
 
 Gets the value of PlatformUserId_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -199,11 +199,11 @@ Gets the value of PlatformUserId_Optional, if it has been set, otherwise it retu
 
 Fills OutValue with the value of PlatformUserId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetPlatformUserIdOrNull`](#structFRHAPI__PersonOperationRequest_1a7d41e87c69fa225c651d8a204cf0fccd)`()` <a id="structFRHAPI__PersonOperationRequest_1a7d41e87c69fa225c651d8a204cf0fccd"></a>
+#### `public inline FString * `[`GetPlatformUserIdOrNull`](#structFRHAPI__PersonOperationRequest_1a42793b8f197515e9c94cf0a552a7c2c7)`()` <a id="structFRHAPI__PersonOperationRequest_1a42793b8f197515e9c94cf0a552a7c2c7"></a>
 
 Returns a pointer to PlatformUserId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetPlatformUserIdOrNull`](#structFRHAPI__PersonOperationRequest_1a36b0f01a57cc40316ecde49d19e5cf44)`() const` <a id="structFRHAPI__PersonOperationRequest_1a36b0f01a57cc40316ecde49d19e5cf44"></a>
+#### `public inline const FString * `[`GetPlatformUserIdOrNull`](#structFRHAPI__PersonOperationRequest_1a644d8a1aa24a44f7eee7381edea9f1d8)`() const` <a id="structFRHAPI__PersonOperationRequest_1a644d8a1aa24a44f7eee7381edea9f1d8"></a>
 
 Returns a pointer to PlatformUserId_Optional, if it has been set, otherwise returns nullptr.
 

@@ -19,7 +19,7 @@ Base class for all RallyHereAPI data models.
 `public  `[`GENERATED_BODY`](#structFRHAPI__Model_1aa903e87a078f9bf7d2bb37b08d1a535a)`(WithNoDestructor)` | 
 `public inline virtual  `[`~FRHAPI_Model`](#structFRHAPI__Model_1ace9ebc0be8edfb46766c86c756630ee4)`()` | 
 `public inline virtual bool `[`FromJson`](#structFRHAPI__Model_1a96477760fd6707ecca6b56b8d151beab)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public inline virtual void `[`WriteJson`](#structFRHAPI__Model_1a1571819a105ad9b51e09b51d134c2d0a)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline virtual void `[`WriteJson`](#structFRHAPI__Model_1aa7bb63372d605c6a61cf815e992913a1)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 
 ### Members
 
@@ -37,7 +37,7 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public inline virtual void `[`WriteJson`](#structFRHAPI__Model_1a1571819a105ad9b51e09b51d134c2d0a)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__Model_1a1571819a105ad9b51e09b51d134c2d0a"></a>
+#### `public inline virtual void `[`WriteJson`](#structFRHAPI__Model_1aa7bb63372d605c6a61cf815e992913a1)`(TSharedRef< TJsonWriter<> > & Writer) const` <a id="structFRHAPI__Model_1aa7bb63372d605c6a61cf815e992913a1"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 

@@ -38,75 +38,75 @@ struct FRHAPI_RallyHereEvent
 `public bool `[`ClientIp_IsSet`](#structFRHAPI__RallyHereEvent_1a56c3da0774a79d8919fc56bfcb305e08) | true if ClientIp_Optional has been set to a value
 `public bool `[`ClientIp_IsNull`](#structFRHAPI__RallyHereEvent_1a1ddee9fd54f98d09813fbe9684689a54) | true if ClientIp_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__RallyHereEvent_1a765da0cc13e868c1d18fabf26f80a2e6)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__RallyHereEvent_1a9c95a2faa708fbe1466a82082c00622f)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FGuid & `[`GetEventUuid`](#structFRHAPI__RallyHereEvent_1a5aed540af10d37a0ca89ffbb27772a6a)`()` | Gets the value of EventUuid.
-`public inline const FGuid & `[`GetEventUuid`](#structFRHAPI__RallyHereEvent_1ae1ddab7e54e8cf26e0e6e933b099cf43)`() const` | Gets the value of EventUuid.
+`public virtual void `[`WriteJson`](#structFRHAPI__RallyHereEvent_1afcf1a5c2f43b2fd489c16e64db63b045)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline FGuid & `[`GetEventUuid`](#structFRHAPI__RallyHereEvent_1adcbdaea6172a0e3a6f895001f59fe6c9)`()` | Gets the value of EventUuid.
+`public inline const FGuid & `[`GetEventUuid`](#structFRHAPI__RallyHereEvent_1a279e43568f29e2b8cf9e74c6a121bb05)`() const` | Gets the value of EventUuid.
 `public inline void `[`SetEventUuid`](#structFRHAPI__RallyHereEvent_1a396709bc32cbc1a0f23456d84954c9c1)`(const FGuid & NewValue)` | Sets the value of EventUuid.
 `public inline void `[`SetEventUuid`](#structFRHAPI__RallyHereEvent_1a5b4e1070286b2dfbae5fbb0401616ebe)`(FGuid && NewValue)` | Sets the value of EventUuid using move semantics.
-`public inline FString & `[`GetEventName`](#structFRHAPI__RallyHereEvent_1a8c0b6b106b52c8226290baecc2116bec)`()` | Gets the value of EventName.
-`public inline const FString & `[`GetEventName`](#structFRHAPI__RallyHereEvent_1a6cbf1d4eae5f048fd0f5b0ef22071038)`() const` | Gets the value of EventName.
+`public inline FString & `[`GetEventName`](#structFRHAPI__RallyHereEvent_1ad495ec36a44a2a4ddcc18cdeba2d14f5)`()` | Gets the value of EventName.
+`public inline const FString & `[`GetEventName`](#structFRHAPI__RallyHereEvent_1a5285a7800f5a114089f14eb290b89e37)`() const` | Gets the value of EventName.
 `public inline void `[`SetEventName`](#structFRHAPI__RallyHereEvent_1a4536107b5501484f787e60c6d5a540a4)`(const FString & NewValue)` | Sets the value of EventName.
 `public inline void `[`SetEventName`](#structFRHAPI__RallyHereEvent_1ae34d3fe9bdc9317b8c85a73ddc044643)`(FString && NewValue)` | Sets the value of EventName using move semantics.
-`public inline FDateTime & `[`GetEventTimestamp`](#structFRHAPI__RallyHereEvent_1a9ab03712935c73f7d5f36c60429680d7)`()` | Gets the value of EventTimestamp.
-`public inline const FDateTime & `[`GetEventTimestamp`](#structFRHAPI__RallyHereEvent_1a5d65f5360e0bc88c4ea2374bee40d3e8)`() const` | Gets the value of EventTimestamp.
+`public inline FDateTime & `[`GetEventTimestamp`](#structFRHAPI__RallyHereEvent_1af40b64871b90813471bed8e5ad3234f9)`()` | Gets the value of EventTimestamp.
+`public inline const FDateTime & `[`GetEventTimestamp`](#structFRHAPI__RallyHereEvent_1af74cad014010130903422abf61aad53e)`() const` | Gets the value of EventTimestamp.
 `public inline void `[`SetEventTimestamp`](#structFRHAPI__RallyHereEvent_1ad744e60e7db52226124144e2f80c11b2)`(const FDateTime & NewValue)` | Sets the value of EventTimestamp.
 `public inline void `[`SetEventTimestamp`](#structFRHAPI__RallyHereEvent_1af789cce5b111cb47c4eb54a523c3eb06)`(FDateTime && NewValue)` | Sets the value of EventTimestamp using move semantics.
-`public inline `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetEventParams`](#structFRHAPI__RallyHereEvent_1a95c443fd41efaa6c87b03cdd0e000da8)`()` | Gets the value of EventParams.
-`public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetEventParams`](#structFRHAPI__RallyHereEvent_1a1e48980f6b66c8557163abd78c2d3b99)`() const` | Gets the value of EventParams.
+`public inline `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetEventParams`](#structFRHAPI__RallyHereEvent_1af73be4b9c91d98b7cf3f7050aed9aebd)`()` | Gets the value of EventParams.
+`public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetEventParams`](#structFRHAPI__RallyHereEvent_1aa0a3f67f6812b5005f2d473846ac8bc5)`() const` | Gets the value of EventParams.
 `public inline void `[`SetEventParams`](#structFRHAPI__RallyHereEvent_1a08c2e6d9dd626f97cb6c1737e103b6b5)`(const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & NewValue)` | Sets the value of EventParams.
 `public inline void `[`SetEventParams`](#structFRHAPI__RallyHereEvent_1a4bc9564556a4713a3517fa8183fc3084)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` && NewValue)` | Sets the value of EventParams using move semantics.
-`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__RallyHereEvent_1a2a3c3cf7de240af041d8f1ba45d94e06)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__RallyHereEvent_1a5f3b955cc1fb5cf52abaee4c9b6c4464)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__RallyHereEvent_1a1bee5d71f945eef8cd33e173ba874183)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__RallyHereEvent_1aa09f58f4733f89c1f1fdc183982b1a54)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__RallyHereEvent_1a1ad222caa601817fe1b6374a6ba02938)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__RallyHereEvent_1a4fde6e7ac787a5ee4c8c4d216ad9c98e)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetCustomData`](#structFRHAPI__RallyHereEvent_1a198a15f8de8b6425e1e1da62e29034b4)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__RallyHereEvent_1af38ea07540ec10ccb1900a2a08b77bf5)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__RallyHereEvent_1ac370b544c9034ecb2bb43da39e79825f)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__RallyHereEvent_1ae00f55d7f7119a8cba227ca9c36ab578)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__RallyHereEvent_1a0252cf2e119b2b179c8622072709569c)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetCustomData`](#structFRHAPI__RallyHereEvent_1a99199458b10bc3a7eaa380b475342ff4)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`SetCustomData`](#structFRHAPI__RallyHereEvent_1a44e51f9e055801f9e88b85274241026c)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__RallyHereEvent_1a25599661d7605c4bc5f94814ecdf0702)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 `public inline bool `[`IsCustomDataSet`](#structFRHAPI__RallyHereEvent_1ab67fdcd8b3b7f8ebf6e15a1eef16da80)`() const` | Checks whether CustomData_Optional has been set.
-`public inline FString & `[`GetUserId`](#structFRHAPI__RallyHereEvent_1adb44239472afd8b2a8039441094c05c1)`()` | Gets the value of UserId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetUserId`](#structFRHAPI__RallyHereEvent_1a1a27346dff8fd0948ebf422c50997026)`() const` | Gets the value of UserId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetUserId`](#structFRHAPI__RallyHereEvent_1a853454a8a4704e5de57d0a9e2da8c7ad)`(const FString & DefaultValue) const` | Gets the value of UserId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FString & `[`GetUserId`](#structFRHAPI__RallyHereEvent_1af75997a88b2d965ed1ec71dbe30992df)`()` | Gets the value of UserId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetUserId`](#structFRHAPI__RallyHereEvent_1a1ac2ab9d1518729c6b861b1ba6549863)`() const` | Gets the value of UserId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetUserId`](#structFRHAPI__RallyHereEvent_1a8488bd4df70d77229045ef4bacf5a90c)`(const FString & DefaultValue) const` | Gets the value of UserId_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetUserId`](#structFRHAPI__RallyHereEvent_1ac8218ee92acb2ca4d242f0f9caabd76b)`(FString & OutValue) const` | Fills OutValue with the value of UserId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetUserIdOrNull`](#structFRHAPI__RallyHereEvent_1afca2d0c7cc5d5e62c470d965be876374)`()` | Returns a pointer to UserId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetUserIdOrNull`](#structFRHAPI__RallyHereEvent_1a2cd6824c9639c46b50d68fdfc5442394)`() const` | Returns a pointer to UserId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FString * `[`GetUserIdOrNull`](#structFRHAPI__RallyHereEvent_1ab1dc4323364511949cf62e7d93209872)`()` | Returns a pointer to UserId_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetUserIdOrNull`](#structFRHAPI__RallyHereEvent_1a0e8d4e3f28900a59a21ba2bfb37bb683)`() const` | Returns a pointer to UserId_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetUserId`](#structFRHAPI__RallyHereEvent_1a2a9690b52b2b771917191ba9724c21e3)`(const FString & NewValue)` | Sets the value of UserId_Optional and also sets UserId_IsSet to true.
 `public inline void `[`SetUserId`](#structFRHAPI__RallyHereEvent_1abcb7d4fcfd6f2f3361d88d7271e67953)`(FString && NewValue)` | Sets the value of UserId_Optional and also sets UserId_IsSet to true using move semantics.
 `public inline void `[`ClearUserId`](#structFRHAPI__RallyHereEvent_1ab495ffdc4fcda047ecbd42e18bcfe97b)`()` | Clears the value of UserId_Optional and sets UserId_IsSet to false.
 `public inline bool `[`IsUserIdSet`](#structFRHAPI__RallyHereEvent_1a5078b43a1d557a02e15c9a282858d138)`() const` | Checks whether UserId_Optional has been set.
 `public inline void `[`SetUserIdToNull`](#structFRHAPI__RallyHereEvent_1a0fa91033d6e78837546bdcf5438478f2)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsUserIdNull`](#structFRHAPI__RallyHereEvent_1afbf7780f3139aa0ff54f7ac711d37624)`() const` | Checks whether UserId_Optional is set to null.
-`public inline FString & `[`GetSessionId`](#structFRHAPI__RallyHereEvent_1a203ffee4e765ade4f9a527bec51de331)`()` | Gets the value of SessionId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetSessionId`](#structFRHAPI__RallyHereEvent_1a1166b7897b1c281177efded34e2d1b78)`() const` | Gets the value of SessionId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetSessionId`](#structFRHAPI__RallyHereEvent_1aac2ff071abc4ac7bc0ee7ece61fdcba4)`(const FString & DefaultValue) const` | Gets the value of SessionId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FString & `[`GetSessionId`](#structFRHAPI__RallyHereEvent_1a6b7704e80fa0330d481bd1b1ad8020be)`()` | Gets the value of SessionId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetSessionId`](#structFRHAPI__RallyHereEvent_1a94f675d1d0e17b8050e6409c733e5270)`() const` | Gets the value of SessionId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetSessionId`](#structFRHAPI__RallyHereEvent_1a5e637c6cccd4dd0055f286525596ef0b)`(const FString & DefaultValue) const` | Gets the value of SessionId_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetSessionId`](#structFRHAPI__RallyHereEvent_1a4dde5360e236ab34956e90fed1e7cd17)`(FString & OutValue) const` | Fills OutValue with the value of SessionId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetSessionIdOrNull`](#structFRHAPI__RallyHereEvent_1aeb2d94dc72c8112eb514c3ae53e7f3eb)`()` | Returns a pointer to SessionId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetSessionIdOrNull`](#structFRHAPI__RallyHereEvent_1ac3623f6e68b7dccc5034c90190601817)`() const` | Returns a pointer to SessionId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FString * `[`GetSessionIdOrNull`](#structFRHAPI__RallyHereEvent_1a708124c1a34e7dc7feb383d66f899334)`()` | Returns a pointer to SessionId_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetSessionIdOrNull`](#structFRHAPI__RallyHereEvent_1a821156a999c223f46641da75eb019363)`() const` | Returns a pointer to SessionId_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetSessionId`](#structFRHAPI__RallyHereEvent_1aa4b53c7b39e6fc9a94ae684dbaef5ebd)`(const FString & NewValue)` | Sets the value of SessionId_Optional and also sets SessionId_IsSet to true.
 `public inline void `[`SetSessionId`](#structFRHAPI__RallyHereEvent_1ae51534e7cb56f9c2942cfa6f25c6f2d2)`(FString && NewValue)` | Sets the value of SessionId_Optional and also sets SessionId_IsSet to true using move semantics.
 `public inline void `[`ClearSessionId`](#structFRHAPI__RallyHereEvent_1a2fad37a84ed8eb2cbaac71c605d07e0d)`()` | Clears the value of SessionId_Optional and sets SessionId_IsSet to false.
 `public inline bool `[`IsSessionIdSet`](#structFRHAPI__RallyHereEvent_1ae9396c65b53db36abae0027cc0653f51)`() const` | Checks whether SessionId_Optional has been set.
 `public inline void `[`SetSessionIdToNull`](#structFRHAPI__RallyHereEvent_1aaab49b1030221accac1e68312467adb0)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsSessionIdNull`](#structFRHAPI__RallyHereEvent_1a307c70003b519d8ce29ac8fd10e8b5c3)`() const` | Checks whether SessionId_Optional is set to null.
-`public inline FString & `[`GetCorrelationId`](#structFRHAPI__RallyHereEvent_1ad3f3f6286d2b7e66942cccac82eab104)`()` | Gets the value of CorrelationId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetCorrelationId`](#structFRHAPI__RallyHereEvent_1ad9ebd7493ac5b15a6f4a9da7f540b5f5)`() const` | Gets the value of CorrelationId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetCorrelationId`](#structFRHAPI__RallyHereEvent_1ad4cd64dc3c86723e95621a5ea120c2f2)`(const FString & DefaultValue) const` | Gets the value of CorrelationId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FString & `[`GetCorrelationId`](#structFRHAPI__RallyHereEvent_1a1d4754deffc7554d19c800cb639ecbda)`()` | Gets the value of CorrelationId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetCorrelationId`](#structFRHAPI__RallyHereEvent_1a6777b631ef80471e6af69a9f7a1b8fcf)`() const` | Gets the value of CorrelationId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetCorrelationId`](#structFRHAPI__RallyHereEvent_1a7725a0e0920773a20e71532c41f706f7)`(const FString & DefaultValue) const` | Gets the value of CorrelationId_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetCorrelationId`](#structFRHAPI__RallyHereEvent_1ad678bb41eb6c48f528014ec9a06cb11c)`(FString & OutValue) const` | Fills OutValue with the value of CorrelationId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetCorrelationIdOrNull`](#structFRHAPI__RallyHereEvent_1a9f50bdfdc544f13ee69c23e6867a75c4)`()` | Returns a pointer to CorrelationId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetCorrelationIdOrNull`](#structFRHAPI__RallyHereEvent_1a28074f6106163ac7a791091fde1c270f)`() const` | Returns a pointer to CorrelationId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FString * `[`GetCorrelationIdOrNull`](#structFRHAPI__RallyHereEvent_1aa0bc629fc63255f91963abc3af1dae7f)`()` | Returns a pointer to CorrelationId_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetCorrelationIdOrNull`](#structFRHAPI__RallyHereEvent_1acd460f005ba5a77d97674cae6c70c58f)`() const` | Returns a pointer to CorrelationId_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetCorrelationId`](#structFRHAPI__RallyHereEvent_1a1d2243b20fb342fbe0f5b26d3ab40480)`(const FString & NewValue)` | Sets the value of CorrelationId_Optional and also sets CorrelationId_IsSet to true.
 `public inline void `[`SetCorrelationId`](#structFRHAPI__RallyHereEvent_1a13688d257b71b89dd1307a3e01ed6855)`(FString && NewValue)` | Sets the value of CorrelationId_Optional and also sets CorrelationId_IsSet to true using move semantics.
 `public inline void `[`ClearCorrelationId`](#structFRHAPI__RallyHereEvent_1a68b08b6136ad6f5fd85300d15478de1a)`()` | Clears the value of CorrelationId_Optional and sets CorrelationId_IsSet to false.
 `public inline bool `[`IsCorrelationIdSet`](#structFRHAPI__RallyHereEvent_1a175d498d357284e7e2cb3c83c842c564)`() const` | Checks whether CorrelationId_Optional has been set.
 `public inline void `[`SetCorrelationIdToNull`](#structFRHAPI__RallyHereEvent_1a9dae87001a2578ddf64e05b6954a17ed)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsCorrelationIdNull`](#structFRHAPI__RallyHereEvent_1a006272d7943c80e0cf9a0cb01c0e165d)`() const` | Checks whether CorrelationId_Optional is set to null.
-`public inline FString & `[`GetClientIp`](#structFRHAPI__RallyHereEvent_1ac092f2a6fe334c99c042bdce2b1f73dd)`()` | Gets the value of ClientIp_Optional, regardless of it having been set.
-`public inline const FString & `[`GetClientIp`](#structFRHAPI__RallyHereEvent_1ab507263c9320e21325d8a0e718cb5a3c)`() const` | Gets the value of ClientIp_Optional, regardless of it having been set.
-`public inline const FString & `[`GetClientIp`](#structFRHAPI__RallyHereEvent_1abbaafa7232b64ca1e2f63ca8e406dfe4)`(const FString & DefaultValue) const` | Gets the value of ClientIp_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FString & `[`GetClientIp`](#structFRHAPI__RallyHereEvent_1a6e4e4dc0bca8ee067c757af23b8ad48d)`()` | Gets the value of ClientIp_Optional, regardless of it having been set.
+`public inline const FString & `[`GetClientIp`](#structFRHAPI__RallyHereEvent_1a1c568cf725ebecde743e586b84b5a2cb)`() const` | Gets the value of ClientIp_Optional, regardless of it having been set.
+`public inline const FString & `[`GetClientIp`](#structFRHAPI__RallyHereEvent_1acebaf2aa77f68e7df2fbf7e5e534b63c)`(const FString & DefaultValue) const` | Gets the value of ClientIp_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetClientIp`](#structFRHAPI__RallyHereEvent_1a3ac76a980db707dbffed5ced7e7e861f)`(FString & OutValue) const` | Fills OutValue with the value of ClientIp_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetClientIpOrNull`](#structFRHAPI__RallyHereEvent_1ac0994db43ac4773ffd423a363674d079)`()` | Returns a pointer to ClientIp_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetClientIpOrNull`](#structFRHAPI__RallyHereEvent_1a230028ef3a4f98e62042fea3a052bbb7)`() const` | Returns a pointer to ClientIp_Optional, if it has been set, otherwise returns nullptr.
+`public inline FString * `[`GetClientIpOrNull`](#structFRHAPI__RallyHereEvent_1af67fb5c7f1f82060945ea905d3d5dac1)`()` | Returns a pointer to ClientIp_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetClientIpOrNull`](#structFRHAPI__RallyHereEvent_1a4a6d33cedd5db77709d52045bd3768f7)`() const` | Returns a pointer to ClientIp_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetClientIp`](#structFRHAPI__RallyHereEvent_1aaad8a4f0a0e033905c5a93ca91ce94fe)`(const FString & NewValue)` | Sets the value of ClientIp_Optional and also sets ClientIp_IsSet to true.
 `public inline void `[`SetClientIp`](#structFRHAPI__RallyHereEvent_1afa179a3782f6f417f8e8b1d2e45c3fde)`(FString && NewValue)` | Sets the value of ClientIp_Optional and also sets ClientIp_IsSet to true using move semantics.
 `public inline void `[`ClearClientIp`](#structFRHAPI__RallyHereEvent_1ae43d7fc176c0915100c8b39747953477)`()` | Clears the value of ClientIp_Optional and sets ClientIp_IsSet to false.
@@ -190,18 +190,18 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__RallyHereEvent_1a9c95a2faa708fbe1466a82082c00622f)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__RallyHereEvent_1a9c95a2faa708fbe1466a82082c00622f"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__RallyHereEvent_1afcf1a5c2f43b2fd489c16e64db63b045)`(TSharedRef< TJsonWriter<> > & Writer) const` <a id="structFRHAPI__RallyHereEvent_1afcf1a5c2f43b2fd489c16e64db63b045"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FGuid & `[`GetEventUuid`](#structFRHAPI__RallyHereEvent_1a5aed540af10d37a0ca89ffbb27772a6a)`()` <a id="structFRHAPI__RallyHereEvent_1a5aed540af10d37a0ca89ffbb27772a6a"></a>
+#### `public inline FGuid & `[`GetEventUuid`](#structFRHAPI__RallyHereEvent_1adcbdaea6172a0e3a6f895001f59fe6c9)`()` <a id="structFRHAPI__RallyHereEvent_1adcbdaea6172a0e3a6f895001f59fe6c9"></a>
 
 Gets the value of EventUuid.
 
-#### `public inline const FGuid & `[`GetEventUuid`](#structFRHAPI__RallyHereEvent_1ae1ddab7e54e8cf26e0e6e933b099cf43)`() const` <a id="structFRHAPI__RallyHereEvent_1ae1ddab7e54e8cf26e0e6e933b099cf43"></a>
+#### `public inline const FGuid & `[`GetEventUuid`](#structFRHAPI__RallyHereEvent_1a279e43568f29e2b8cf9e74c6a121bb05)`() const` <a id="structFRHAPI__RallyHereEvent_1a279e43568f29e2b8cf9e74c6a121bb05"></a>
 
 Gets the value of EventUuid.
 
@@ -213,11 +213,11 @@ Sets the value of EventUuid.
 
 Sets the value of EventUuid using move semantics.
 
-#### `public inline FString & `[`GetEventName`](#structFRHAPI__RallyHereEvent_1a8c0b6b106b52c8226290baecc2116bec)`()` <a id="structFRHAPI__RallyHereEvent_1a8c0b6b106b52c8226290baecc2116bec"></a>
+#### `public inline FString & `[`GetEventName`](#structFRHAPI__RallyHereEvent_1ad495ec36a44a2a4ddcc18cdeba2d14f5)`()` <a id="structFRHAPI__RallyHereEvent_1ad495ec36a44a2a4ddcc18cdeba2d14f5"></a>
 
 Gets the value of EventName.
 
-#### `public inline const FString & `[`GetEventName`](#structFRHAPI__RallyHereEvent_1a6cbf1d4eae5f048fd0f5b0ef22071038)`() const` <a id="structFRHAPI__RallyHereEvent_1a6cbf1d4eae5f048fd0f5b0ef22071038"></a>
+#### `public inline const FString & `[`GetEventName`](#structFRHAPI__RallyHereEvent_1a5285a7800f5a114089f14eb290b89e37)`() const` <a id="structFRHAPI__RallyHereEvent_1a5285a7800f5a114089f14eb290b89e37"></a>
 
 Gets the value of EventName.
 
@@ -229,11 +229,11 @@ Sets the value of EventName.
 
 Sets the value of EventName using move semantics.
 
-#### `public inline FDateTime & `[`GetEventTimestamp`](#structFRHAPI__RallyHereEvent_1a9ab03712935c73f7d5f36c60429680d7)`()` <a id="structFRHAPI__RallyHereEvent_1a9ab03712935c73f7d5f36c60429680d7"></a>
+#### `public inline FDateTime & `[`GetEventTimestamp`](#structFRHAPI__RallyHereEvent_1af40b64871b90813471bed8e5ad3234f9)`()` <a id="structFRHAPI__RallyHereEvent_1af40b64871b90813471bed8e5ad3234f9"></a>
 
 Gets the value of EventTimestamp.
 
-#### `public inline const FDateTime & `[`GetEventTimestamp`](#structFRHAPI__RallyHereEvent_1a5d65f5360e0bc88c4ea2374bee40d3e8)`() const` <a id="structFRHAPI__RallyHereEvent_1a5d65f5360e0bc88c4ea2374bee40d3e8"></a>
+#### `public inline const FDateTime & `[`GetEventTimestamp`](#structFRHAPI__RallyHereEvent_1af74cad014010130903422abf61aad53e)`() const` <a id="structFRHAPI__RallyHereEvent_1af74cad014010130903422abf61aad53e"></a>
 
 Gets the value of EventTimestamp.
 
@@ -245,11 +245,11 @@ Sets the value of EventTimestamp.
 
 Sets the value of EventTimestamp using move semantics.
 
-#### `public inline `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetEventParams`](#structFRHAPI__RallyHereEvent_1a95c443fd41efaa6c87b03cdd0e000da8)`()` <a id="structFRHAPI__RallyHereEvent_1a95c443fd41efaa6c87b03cdd0e000da8"></a>
+#### `public inline `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetEventParams`](#structFRHAPI__RallyHereEvent_1af73be4b9c91d98b7cf3f7050aed9aebd)`()` <a id="structFRHAPI__RallyHereEvent_1af73be4b9c91d98b7cf3f7050aed9aebd"></a>
 
 Gets the value of EventParams.
 
-#### `public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetEventParams`](#structFRHAPI__RallyHereEvent_1a1e48980f6b66c8557163abd78c2d3b99)`() const` <a id="structFRHAPI__RallyHereEvent_1a1e48980f6b66c8557163abd78c2d3b99"></a>
+#### `public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetEventParams`](#structFRHAPI__RallyHereEvent_1aa0a3f67f6812b5005f2d473846ac8bc5)`() const` <a id="structFRHAPI__RallyHereEvent_1aa0a3f67f6812b5005f2d473846ac8bc5"></a>
 
 Gets the value of EventParams.
 
@@ -261,15 +261,15 @@ Sets the value of EventParams.
 
 Sets the value of EventParams using move semantics.
 
-#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__RallyHereEvent_1a2a3c3cf7de240af041d8f1ba45d94e06)`()` <a id="structFRHAPI__RallyHereEvent_1a2a3c3cf7de240af041d8f1ba45d94e06"></a>
+#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__RallyHereEvent_1aa09f58f4733f89c1f1fdc183982b1a54)`()` <a id="structFRHAPI__RallyHereEvent_1aa09f58f4733f89c1f1fdc183982b1a54"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__RallyHereEvent_1a5f3b955cc1fb5cf52abaee4c9b6c4464)`() const` <a id="structFRHAPI__RallyHereEvent_1a5f3b955cc1fb5cf52abaee4c9b6c4464"></a>
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__RallyHereEvent_1a1ad222caa601817fe1b6374a6ba02938)`() const` <a id="structFRHAPI__RallyHereEvent_1a1ad222caa601817fe1b6374a6ba02938"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__RallyHereEvent_1a1bee5d71f945eef8cd33e173ba874183)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__RallyHereEvent_1a1bee5d71f945eef8cd33e173ba874183"></a>
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__RallyHereEvent_1a4fde6e7ac787a5ee4c8c4d216ad9c98e)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__RallyHereEvent_1a4fde6e7ac787a5ee4c8c4d216ad9c98e"></a>
 
 Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -277,11 +277,11 @@ Gets the value of CustomData_Optional, if it has been set, otherwise it returns 
 
 Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__RallyHereEvent_1af38ea07540ec10ccb1900a2a08b77bf5)`()` <a id="structFRHAPI__RallyHereEvent_1af38ea07540ec10ccb1900a2a08b77bf5"></a>
+#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__RallyHereEvent_1ae00f55d7f7119a8cba227ca9c36ab578)`()` <a id="structFRHAPI__RallyHereEvent_1ae00f55d7f7119a8cba227ca9c36ab578"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__RallyHereEvent_1ac370b544c9034ecb2bb43da39e79825f)`() const` <a id="structFRHAPI__RallyHereEvent_1ac370b544c9034ecb2bb43da39e79825f"></a>
+#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__RallyHereEvent_1a0252cf2e119b2b179c8622072709569c)`() const` <a id="structFRHAPI__RallyHereEvent_1a0252cf2e119b2b179c8622072709569c"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
@@ -301,15 +301,15 @@ Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
 Checks whether CustomData_Optional has been set.
 
-#### `public inline FString & `[`GetUserId`](#structFRHAPI__RallyHereEvent_1adb44239472afd8b2a8039441094c05c1)`()` <a id="structFRHAPI__RallyHereEvent_1adb44239472afd8b2a8039441094c05c1"></a>
+#### `public inline FString & `[`GetUserId`](#structFRHAPI__RallyHereEvent_1af75997a88b2d965ed1ec71dbe30992df)`()` <a id="structFRHAPI__RallyHereEvent_1af75997a88b2d965ed1ec71dbe30992df"></a>
 
 Gets the value of UserId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetUserId`](#structFRHAPI__RallyHereEvent_1a1a27346dff8fd0948ebf422c50997026)`() const` <a id="structFRHAPI__RallyHereEvent_1a1a27346dff8fd0948ebf422c50997026"></a>
+#### `public inline const FString & `[`GetUserId`](#structFRHAPI__RallyHereEvent_1a1ac2ab9d1518729c6b861b1ba6549863)`() const` <a id="structFRHAPI__RallyHereEvent_1a1ac2ab9d1518729c6b861b1ba6549863"></a>
 
 Gets the value of UserId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetUserId`](#structFRHAPI__RallyHereEvent_1a853454a8a4704e5de57d0a9e2da8c7ad)`(const FString & DefaultValue) const` <a id="structFRHAPI__RallyHereEvent_1a853454a8a4704e5de57d0a9e2da8c7ad"></a>
+#### `public inline const FString & `[`GetUserId`](#structFRHAPI__RallyHereEvent_1a8488bd4df70d77229045ef4bacf5a90c)`(const FString & DefaultValue) const` <a id="structFRHAPI__RallyHereEvent_1a8488bd4df70d77229045ef4bacf5a90c"></a>
 
 Gets the value of UserId_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -317,11 +317,11 @@ Gets the value of UserId_Optional, if it has been set, otherwise it returns Defa
 
 Fills OutValue with the value of UserId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetUserIdOrNull`](#structFRHAPI__RallyHereEvent_1afca2d0c7cc5d5e62c470d965be876374)`()` <a id="structFRHAPI__RallyHereEvent_1afca2d0c7cc5d5e62c470d965be876374"></a>
+#### `public inline FString * `[`GetUserIdOrNull`](#structFRHAPI__RallyHereEvent_1ab1dc4323364511949cf62e7d93209872)`()` <a id="structFRHAPI__RallyHereEvent_1ab1dc4323364511949cf62e7d93209872"></a>
 
 Returns a pointer to UserId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetUserIdOrNull`](#structFRHAPI__RallyHereEvent_1a2cd6824c9639c46b50d68fdfc5442394)`() const` <a id="structFRHAPI__RallyHereEvent_1a2cd6824c9639c46b50d68fdfc5442394"></a>
+#### `public inline const FString * `[`GetUserIdOrNull`](#structFRHAPI__RallyHereEvent_1a0e8d4e3f28900a59a21ba2bfb37bb683)`() const` <a id="structFRHAPI__RallyHereEvent_1a0e8d4e3f28900a59a21ba2bfb37bb683"></a>
 
 Returns a pointer to UserId_Optional, if it has been set, otherwise returns nullptr.
 
@@ -349,15 +349,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether UserId_Optional is set to null.
 
-#### `public inline FString & `[`GetSessionId`](#structFRHAPI__RallyHereEvent_1a203ffee4e765ade4f9a527bec51de331)`()` <a id="structFRHAPI__RallyHereEvent_1a203ffee4e765ade4f9a527bec51de331"></a>
+#### `public inline FString & `[`GetSessionId`](#structFRHAPI__RallyHereEvent_1a6b7704e80fa0330d481bd1b1ad8020be)`()` <a id="structFRHAPI__RallyHereEvent_1a6b7704e80fa0330d481bd1b1ad8020be"></a>
 
 Gets the value of SessionId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetSessionId`](#structFRHAPI__RallyHereEvent_1a1166b7897b1c281177efded34e2d1b78)`() const` <a id="structFRHAPI__RallyHereEvent_1a1166b7897b1c281177efded34e2d1b78"></a>
+#### `public inline const FString & `[`GetSessionId`](#structFRHAPI__RallyHereEvent_1a94f675d1d0e17b8050e6409c733e5270)`() const` <a id="structFRHAPI__RallyHereEvent_1a94f675d1d0e17b8050e6409c733e5270"></a>
 
 Gets the value of SessionId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetSessionId`](#structFRHAPI__RallyHereEvent_1aac2ff071abc4ac7bc0ee7ece61fdcba4)`(const FString & DefaultValue) const` <a id="structFRHAPI__RallyHereEvent_1aac2ff071abc4ac7bc0ee7ece61fdcba4"></a>
+#### `public inline const FString & `[`GetSessionId`](#structFRHAPI__RallyHereEvent_1a5e637c6cccd4dd0055f286525596ef0b)`(const FString & DefaultValue) const` <a id="structFRHAPI__RallyHereEvent_1a5e637c6cccd4dd0055f286525596ef0b"></a>
 
 Gets the value of SessionId_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -365,11 +365,11 @@ Gets the value of SessionId_Optional, if it has been set, otherwise it returns D
 
 Fills OutValue with the value of SessionId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetSessionIdOrNull`](#structFRHAPI__RallyHereEvent_1aeb2d94dc72c8112eb514c3ae53e7f3eb)`()` <a id="structFRHAPI__RallyHereEvent_1aeb2d94dc72c8112eb514c3ae53e7f3eb"></a>
+#### `public inline FString * `[`GetSessionIdOrNull`](#structFRHAPI__RallyHereEvent_1a708124c1a34e7dc7feb383d66f899334)`()` <a id="structFRHAPI__RallyHereEvent_1a708124c1a34e7dc7feb383d66f899334"></a>
 
 Returns a pointer to SessionId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetSessionIdOrNull`](#structFRHAPI__RallyHereEvent_1ac3623f6e68b7dccc5034c90190601817)`() const` <a id="structFRHAPI__RallyHereEvent_1ac3623f6e68b7dccc5034c90190601817"></a>
+#### `public inline const FString * `[`GetSessionIdOrNull`](#structFRHAPI__RallyHereEvent_1a821156a999c223f46641da75eb019363)`() const` <a id="structFRHAPI__RallyHereEvent_1a821156a999c223f46641da75eb019363"></a>
 
 Returns a pointer to SessionId_Optional, if it has been set, otherwise returns nullptr.
 
@@ -397,15 +397,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether SessionId_Optional is set to null.
 
-#### `public inline FString & `[`GetCorrelationId`](#structFRHAPI__RallyHereEvent_1ad3f3f6286d2b7e66942cccac82eab104)`()` <a id="structFRHAPI__RallyHereEvent_1ad3f3f6286d2b7e66942cccac82eab104"></a>
+#### `public inline FString & `[`GetCorrelationId`](#structFRHAPI__RallyHereEvent_1a1d4754deffc7554d19c800cb639ecbda)`()` <a id="structFRHAPI__RallyHereEvent_1a1d4754deffc7554d19c800cb639ecbda"></a>
 
 Gets the value of CorrelationId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetCorrelationId`](#structFRHAPI__RallyHereEvent_1ad9ebd7493ac5b15a6f4a9da7f540b5f5)`() const` <a id="structFRHAPI__RallyHereEvent_1ad9ebd7493ac5b15a6f4a9da7f540b5f5"></a>
+#### `public inline const FString & `[`GetCorrelationId`](#structFRHAPI__RallyHereEvent_1a6777b631ef80471e6af69a9f7a1b8fcf)`() const` <a id="structFRHAPI__RallyHereEvent_1a6777b631ef80471e6af69a9f7a1b8fcf"></a>
 
 Gets the value of CorrelationId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetCorrelationId`](#structFRHAPI__RallyHereEvent_1ad4cd64dc3c86723e95621a5ea120c2f2)`(const FString & DefaultValue) const` <a id="structFRHAPI__RallyHereEvent_1ad4cd64dc3c86723e95621a5ea120c2f2"></a>
+#### `public inline const FString & `[`GetCorrelationId`](#structFRHAPI__RallyHereEvent_1a7725a0e0920773a20e71532c41f706f7)`(const FString & DefaultValue) const` <a id="structFRHAPI__RallyHereEvent_1a7725a0e0920773a20e71532c41f706f7"></a>
 
 Gets the value of CorrelationId_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -413,11 +413,11 @@ Gets the value of CorrelationId_Optional, if it has been set, otherwise it retur
 
 Fills OutValue with the value of CorrelationId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetCorrelationIdOrNull`](#structFRHAPI__RallyHereEvent_1a9f50bdfdc544f13ee69c23e6867a75c4)`()` <a id="structFRHAPI__RallyHereEvent_1a9f50bdfdc544f13ee69c23e6867a75c4"></a>
+#### `public inline FString * `[`GetCorrelationIdOrNull`](#structFRHAPI__RallyHereEvent_1aa0bc629fc63255f91963abc3af1dae7f)`()` <a id="structFRHAPI__RallyHereEvent_1aa0bc629fc63255f91963abc3af1dae7f"></a>
 
 Returns a pointer to CorrelationId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetCorrelationIdOrNull`](#structFRHAPI__RallyHereEvent_1a28074f6106163ac7a791091fde1c270f)`() const` <a id="structFRHAPI__RallyHereEvent_1a28074f6106163ac7a791091fde1c270f"></a>
+#### `public inline const FString * `[`GetCorrelationIdOrNull`](#structFRHAPI__RallyHereEvent_1acd460f005ba5a77d97674cae6c70c58f)`() const` <a id="structFRHAPI__RallyHereEvent_1acd460f005ba5a77d97674cae6c70c58f"></a>
 
 Returns a pointer to CorrelationId_Optional, if it has been set, otherwise returns nullptr.
 
@@ -445,15 +445,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether CorrelationId_Optional is set to null.
 
-#### `public inline FString & `[`GetClientIp`](#structFRHAPI__RallyHereEvent_1ac092f2a6fe334c99c042bdce2b1f73dd)`()` <a id="structFRHAPI__RallyHereEvent_1ac092f2a6fe334c99c042bdce2b1f73dd"></a>
+#### `public inline FString & `[`GetClientIp`](#structFRHAPI__RallyHereEvent_1a6e4e4dc0bca8ee067c757af23b8ad48d)`()` <a id="structFRHAPI__RallyHereEvent_1a6e4e4dc0bca8ee067c757af23b8ad48d"></a>
 
 Gets the value of ClientIp_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetClientIp`](#structFRHAPI__RallyHereEvent_1ab507263c9320e21325d8a0e718cb5a3c)`() const` <a id="structFRHAPI__RallyHereEvent_1ab507263c9320e21325d8a0e718cb5a3c"></a>
+#### `public inline const FString & `[`GetClientIp`](#structFRHAPI__RallyHereEvent_1a1c568cf725ebecde743e586b84b5a2cb)`() const` <a id="structFRHAPI__RallyHereEvent_1a1c568cf725ebecde743e586b84b5a2cb"></a>
 
 Gets the value of ClientIp_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetClientIp`](#structFRHAPI__RallyHereEvent_1abbaafa7232b64ca1e2f63ca8e406dfe4)`(const FString & DefaultValue) const` <a id="structFRHAPI__RallyHereEvent_1abbaafa7232b64ca1e2f63ca8e406dfe4"></a>
+#### `public inline const FString & `[`GetClientIp`](#structFRHAPI__RallyHereEvent_1acebaf2aa77f68e7df2fbf7e5e534b63c)`(const FString & DefaultValue) const` <a id="structFRHAPI__RallyHereEvent_1acebaf2aa77f68e7df2fbf7e5e534b63c"></a>
 
 Gets the value of ClientIp_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -461,11 +461,11 @@ Gets the value of ClientIp_Optional, if it has been set, otherwise it returns De
 
 Fills OutValue with the value of ClientIp_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetClientIpOrNull`](#structFRHAPI__RallyHereEvent_1ac0994db43ac4773ffd423a363674d079)`()` <a id="structFRHAPI__RallyHereEvent_1ac0994db43ac4773ffd423a363674d079"></a>
+#### `public inline FString * `[`GetClientIpOrNull`](#structFRHAPI__RallyHereEvent_1af67fb5c7f1f82060945ea905d3d5dac1)`()` <a id="structFRHAPI__RallyHereEvent_1af67fb5c7f1f82060945ea905d3d5dac1"></a>
 
 Returns a pointer to ClientIp_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetClientIpOrNull`](#structFRHAPI__RallyHereEvent_1a230028ef3a4f98e62042fea3a052bbb7)`() const` <a id="structFRHAPI__RallyHereEvent_1a230028ef3a4f98e62042fea3a052bbb7"></a>
+#### `public inline const FString * `[`GetClientIpOrNull`](#structFRHAPI__RallyHereEvent_1a4a6d33cedd5db77709d52045bd3768f7)`() const` <a id="structFRHAPI__RallyHereEvent_1a4a6d33cedd5db77709d52045bd3768f7"></a>
 
 Returns a pointer to ClientIp_Optional, if it has been set, otherwise returns nullptr.
 

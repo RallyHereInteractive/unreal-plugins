@@ -71,13 +71,13 @@ struct FRHAPI_PexHostScores
 `public bool `[`TotalUniquePlayersScore_IsSet`](#structFRHAPI__PexHostScores_1a7d054ed5f6051fb066a7384adb3793ba) | true if TotalUniquePlayersScore_Optional has been set to a value
 `public bool `[`TotalUniquePlayersScore_IsNull`](#structFRHAPI__PexHostScores_1acb296a6f119bcf542339d44b9e63bfa1) | true if TotalUniquePlayersScore_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__PexHostScores_1a0591ce25eac38f1ceb244d0e7b2a19f4)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__PexHostScores_1ad0ca27fe82be75773d71160a7c8544b6)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline bool & `[`GetOverallMatchScore`](#structFRHAPI__PexHostScores_1a38041472f6011df83f12c43d0b2e744c)`()` | Gets the value of OverallMatchScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetOverallMatchScore`](#structFRHAPI__PexHostScores_1affff43ab029dc1cd9c5af19f99d21284)`() const` | Gets the value of OverallMatchScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetOverallMatchScore`](#structFRHAPI__PexHostScores_1a094f9712bcc09b9e3f4b9150c5381bec)`(const bool & DefaultValue) const` | Gets the value of OverallMatchScore_Optional, if it has been set, otherwise it returns DefaultValue.
+`public virtual void `[`WriteJson`](#structFRHAPI__PexHostScores_1a413aa4483247d5c5b9ac1d6c11928567)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline bool & `[`GetOverallMatchScore`](#structFRHAPI__PexHostScores_1a4a52f51aa1aa02a823906a9bfdfc80fb)`()` | Gets the value of OverallMatchScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetOverallMatchScore`](#structFRHAPI__PexHostScores_1a27f3e22170ca3e6f76bf24bb3617b2fb)`() const` | Gets the value of OverallMatchScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetOverallMatchScore`](#structFRHAPI__PexHostScores_1a7d74e770fef3c208ef96a3c5d6fb84d3)`(const bool & DefaultValue) const` | Gets the value of OverallMatchScore_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetOverallMatchScore`](#structFRHAPI__PexHostScores_1a1621bc5fe5a3804a3a1c53bcc5773ef7)`(bool & OutValue) const` | Fills OutValue with the value of OverallMatchScore_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetOverallMatchScoreOrNull`](#structFRHAPI__PexHostScores_1aa6a1c3eb7923ea9257298913f604ed1b)`()` | Returns a pointer to OverallMatchScore_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetOverallMatchScoreOrNull`](#structFRHAPI__PexHostScores_1a1124fb0ebf8b26af44b91dac389cb443)`() const` | Returns a pointer to OverallMatchScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline bool * `[`GetOverallMatchScoreOrNull`](#structFRHAPI__PexHostScores_1a2f769264d5a5941f54bd87e9ab211fcf)`()` | Returns a pointer to OverallMatchScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline const bool * `[`GetOverallMatchScoreOrNull`](#structFRHAPI__PexHostScores_1a495903bbf62601a1b0e0bd1ceb1d5e10)`() const` | Returns a pointer to OverallMatchScore_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetOverallMatchScore`](#structFRHAPI__PexHostScores_1acedeedf55d5d0664f6e6be7204289780)`(const bool & NewValue)` | Sets the value of OverallMatchScore_Optional and also sets OverallMatchScore_IsSet to true.
 `public inline void `[`SetOverallMatchScore`](#structFRHAPI__PexHostScores_1a8289904c8e24e11a29e94ce479ead99b)`(bool && NewValue)` | Sets the value of OverallMatchScore_Optional and also sets OverallMatchScore_IsSet to true using move semantics.
 `public inline void `[`ClearOverallMatchScore`](#structFRHAPI__PexHostScores_1a6b6aa08564a447eb4bc42189c0c6e368)`()` | Clears the value of OverallMatchScore_Optional and sets OverallMatchScore_IsSet to false.
@@ -86,12 +86,12 @@ struct FRHAPI_PexHostScores
 `public inline void `[`SetOverallMatchScoreToDefault`](#structFRHAPI__PexHostScores_1a310c7612e10897d89af49b288532bcc3)`()` | Sets the value of OverallMatchScore_Optional to its default and also sets OverallMatchScore_IsSet to true.
 `public inline void `[`SetOverallMatchScoreToNull`](#structFRHAPI__PexHostScores_1af9be1ea494a85d5d1a30d2475f2e9c78)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsOverallMatchScoreNull`](#structFRHAPI__PexHostScores_1ab8eeb3c8b099391fc5b49dc6f8ecc59a)`() const` | Checks whether OverallMatchScore_Optional is set to null.
-`public inline bool & `[`GetAppScore`](#structFRHAPI__PexHostScores_1a47f17a28f729e35b351c8d2a94aaff24)`()` | Gets the value of AppScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetAppScore`](#structFRHAPI__PexHostScores_1a8a852a0ad1a33a25a3509d8f516146ab)`() const` | Gets the value of AppScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetAppScore`](#structFRHAPI__PexHostScores_1a774245166d79be7bd13e491085c82b99)`(const bool & DefaultValue) const` | Gets the value of AppScore_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool & `[`GetAppScore`](#structFRHAPI__PexHostScores_1a98c88a2ad0b668d531d3a3cbe80bda9c)`()` | Gets the value of AppScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetAppScore`](#structFRHAPI__PexHostScores_1a309c76d6a8b98c6af4a42c5246fe7b7b)`() const` | Gets the value of AppScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetAppScore`](#structFRHAPI__PexHostScores_1af8d3cace5cb8440fd4a439efc3d769de)`(const bool & DefaultValue) const` | Gets the value of AppScore_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetAppScore`](#structFRHAPI__PexHostScores_1a5af9ec39c106e7157794f286b8bc46e0)`(bool & OutValue) const` | Fills OutValue with the value of AppScore_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetAppScoreOrNull`](#structFRHAPI__PexHostScores_1aaa74b34f2e5ecc84962d022809eb9f2e)`()` | Returns a pointer to AppScore_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetAppScoreOrNull`](#structFRHAPI__PexHostScores_1a97a531391c526d022182a5985efa132c)`() const` | Returns a pointer to AppScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline bool * `[`GetAppScoreOrNull`](#structFRHAPI__PexHostScores_1a12d907b07acd4c2edb515892a8f76896)`()` | Returns a pointer to AppScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline const bool * `[`GetAppScoreOrNull`](#structFRHAPI__PexHostScores_1ac7844fa871aef71c0d3d0f8e2535bf32)`() const` | Returns a pointer to AppScore_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetAppScore`](#structFRHAPI__PexHostScores_1ada139b7d37eabc2363519f0128edb906)`(const bool & NewValue)` | Sets the value of AppScore_Optional and also sets AppScore_IsSet to true.
 `public inline void `[`SetAppScore`](#structFRHAPI__PexHostScores_1a5b3c5c539b1a115235de17d7ebecc80e)`(bool && NewValue)` | Sets the value of AppScore_Optional and also sets AppScore_IsSet to true using move semantics.
 `public inline void `[`ClearAppScore`](#structFRHAPI__PexHostScores_1ada1863644ebd9a8a7aeb4a0493677667)`()` | Clears the value of AppScore_Optional and sets AppScore_IsSet to false.
@@ -100,12 +100,12 @@ struct FRHAPI_PexHostScores
 `public inline void `[`SetAppScoreToDefault`](#structFRHAPI__PexHostScores_1a94f9f53f84c0a19d1ebd3bd282db83c2)`()` | Sets the value of AppScore_Optional to its default and also sets AppScore_IsSet to true.
 `public inline void `[`SetAppScoreToNull`](#structFRHAPI__PexHostScores_1a9e9110672b1f645837dda644a0e7c831)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsAppScoreNull`](#structFRHAPI__PexHostScores_1af6e21b846eac628222603b8ab7d0c913)`() const` | Checks whether AppScore_Optional is set to null.
-`public inline bool & `[`GetGameplayScore`](#structFRHAPI__PexHostScores_1a91c12cc28ce927cb0cf6c9cad93ece77)`()` | Gets the value of GameplayScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetGameplayScore`](#structFRHAPI__PexHostScores_1a2910f38a6df9749595c3e9e4b6a75ed9)`() const` | Gets the value of GameplayScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetGameplayScore`](#structFRHAPI__PexHostScores_1abe1d7819f5e4645f44b1d5411d750e23)`(const bool & DefaultValue) const` | Gets the value of GameplayScore_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool & `[`GetGameplayScore`](#structFRHAPI__PexHostScores_1a851f9cb89aaa36866cbce57f4e07e18c)`()` | Gets the value of GameplayScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetGameplayScore`](#structFRHAPI__PexHostScores_1a146b02d058292aa6be6204f7c3822d2d)`() const` | Gets the value of GameplayScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetGameplayScore`](#structFRHAPI__PexHostScores_1a48c3cd177dd0ba9eb765c207258d23a5)`(const bool & DefaultValue) const` | Gets the value of GameplayScore_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetGameplayScore`](#structFRHAPI__PexHostScores_1a9777261598a3f2348948728f8dd78cb1)`(bool & OutValue) const` | Fills OutValue with the value of GameplayScore_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetGameplayScoreOrNull`](#structFRHAPI__PexHostScores_1ab4610984310dc327367dbe579abdc81a)`()` | Returns a pointer to GameplayScore_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetGameplayScoreOrNull`](#structFRHAPI__PexHostScores_1ad18ba50652fc27eddaeb0106ba4454f3)`() const` | Returns a pointer to GameplayScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline bool * `[`GetGameplayScoreOrNull`](#structFRHAPI__PexHostScores_1a2e820911b7563ea4c2ce3c3bd21cd9e3)`()` | Returns a pointer to GameplayScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline const bool * `[`GetGameplayScoreOrNull`](#structFRHAPI__PexHostScores_1ad0d0ec80d3ed6640c62fb50f89d37a02)`() const` | Returns a pointer to GameplayScore_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetGameplayScore`](#structFRHAPI__PexHostScores_1a2761c350dc28d1dfa9b9dcca11e5a48b)`(const bool & NewValue)` | Sets the value of GameplayScore_Optional and also sets GameplayScore_IsSet to true.
 `public inline void `[`SetGameplayScore`](#structFRHAPI__PexHostScores_1aec95423512c4ce44ffadb2ddd191a680)`(bool && NewValue)` | Sets the value of GameplayScore_Optional and also sets GameplayScore_IsSet to true using move semantics.
 `public inline void `[`ClearGameplayScore`](#structFRHAPI__PexHostScores_1accd8517b71a33afa199cb85564e2557e)`()` | Clears the value of GameplayScore_Optional and sets GameplayScore_IsSet to false.
@@ -114,12 +114,12 @@ struct FRHAPI_PexHostScores
 `public inline void `[`SetGameplayScoreToDefault`](#structFRHAPI__PexHostScores_1a27e257558e1ab22f987dbca8d0f29906)`()` | Sets the value of GameplayScore_Optional to its default and also sets GameplayScore_IsSet to true.
 `public inline void `[`SetGameplayScoreToNull`](#structFRHAPI__PexHostScores_1afd4145cc65ea3c6da4b86933aad59bb1)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsGameplayScoreNull`](#structFRHAPI__PexHostScores_1a4261de8db1915645df73a84f9c36bc20)`() const` | Checks whether GameplayScore_Optional is set to null.
-`public inline bool & `[`GetNetworkScore`](#structFRHAPI__PexHostScores_1a618b1f177f790412c37112ca1ed9bafb)`()` | Gets the value of NetworkScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetNetworkScore`](#structFRHAPI__PexHostScores_1ae0266b0cff69ce7fac3f8470f12a6918)`() const` | Gets the value of NetworkScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetNetworkScore`](#structFRHAPI__PexHostScores_1a84a0346979f741edec15087e6ff6f773)`(const bool & DefaultValue) const` | Gets the value of NetworkScore_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool & `[`GetNetworkScore`](#structFRHAPI__PexHostScores_1ade34036582285ee1fbe23bdefadccca0)`()` | Gets the value of NetworkScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetNetworkScore`](#structFRHAPI__PexHostScores_1acf5f2ab2d19862b31f7977a611f8a152)`() const` | Gets the value of NetworkScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetNetworkScore`](#structFRHAPI__PexHostScores_1a46a88ceb97dc77480788678c01c5dd9a)`(const bool & DefaultValue) const` | Gets the value of NetworkScore_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetNetworkScore`](#structFRHAPI__PexHostScores_1a8331ef9777ef80c7fd7b5cf8a0160c23)`(bool & OutValue) const` | Fills OutValue with the value of NetworkScore_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetNetworkScoreOrNull`](#structFRHAPI__PexHostScores_1adab87f62ea19efe369150e112d91511a)`()` | Returns a pointer to NetworkScore_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetNetworkScoreOrNull`](#structFRHAPI__PexHostScores_1a6fedfcdc0122d960811178e3b2e3adcc)`() const` | Returns a pointer to NetworkScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline bool * `[`GetNetworkScoreOrNull`](#structFRHAPI__PexHostScores_1a23acb3d0ae41404b58a49600116b4cdc)`()` | Returns a pointer to NetworkScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline const bool * `[`GetNetworkScoreOrNull`](#structFRHAPI__PexHostScores_1a547294d61f9568702e1f66f3332cca9b)`() const` | Returns a pointer to NetworkScore_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetNetworkScore`](#structFRHAPI__PexHostScores_1abf1d562172d74c3db6ed1a816f5bf44c)`(const bool & NewValue)` | Sets the value of NetworkScore_Optional and also sets NetworkScore_IsSet to true.
 `public inline void `[`SetNetworkScore`](#structFRHAPI__PexHostScores_1ad54c7db0cd811425c890b7e3abe41835)`(bool && NewValue)` | Sets the value of NetworkScore_Optional and also sets NetworkScore_IsSet to true using move semantics.
 `public inline void `[`ClearNetworkScore`](#structFRHAPI__PexHostScores_1a06acbb7d0e6ba049c2e4bd74665b010f)`()` | Clears the value of NetworkScore_Optional and sets NetworkScore_IsSet to false.
@@ -128,12 +128,12 @@ struct FRHAPI_PexHostScores
 `public inline void `[`SetNetworkScoreToDefault`](#structFRHAPI__PexHostScores_1a287aab549c94ee8596b559edbf1acc38)`()` | Sets the value of NetworkScore_Optional to its default and also sets NetworkScore_IsSet to true.
 `public inline void `[`SetNetworkScoreToNull`](#structFRHAPI__PexHostScores_1a8e031511a13b079d2f90871edf7bf88d)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsNetworkScoreNull`](#structFRHAPI__PexHostScores_1abd8fccdd34eda1248b328bf7bf7f110d)`() const` | Checks whether NetworkScore_Optional is set to null.
-`public inline bool & `[`GetConnectionCountScore`](#structFRHAPI__PexHostScores_1a6aedf0c67d8f6fa80f424746a8c62062)`()` | Gets the value of ConnectionCountScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetConnectionCountScore`](#structFRHAPI__PexHostScores_1a287c60ab8272df56a4b9bc28d2a5ce36)`() const` | Gets the value of ConnectionCountScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetConnectionCountScore`](#structFRHAPI__PexHostScores_1aa3384b824299f179996174e883b9fc74)`(const bool & DefaultValue) const` | Gets the value of ConnectionCountScore_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool & `[`GetConnectionCountScore`](#structFRHAPI__PexHostScores_1ab33094a40d6fece938d87eb2877dc44c)`()` | Gets the value of ConnectionCountScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetConnectionCountScore`](#structFRHAPI__PexHostScores_1aee5af3c50c1da3b01415f07d675ab0c7)`() const` | Gets the value of ConnectionCountScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetConnectionCountScore`](#structFRHAPI__PexHostScores_1aedfaea5f74d8155d281be756413c5038)`(const bool & DefaultValue) const` | Gets the value of ConnectionCountScore_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetConnectionCountScore`](#structFRHAPI__PexHostScores_1a9c9ed8b9d9718f00c2d6fcc1e809a5cb)`(bool & OutValue) const` | Fills OutValue with the value of ConnectionCountScore_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetConnectionCountScoreOrNull`](#structFRHAPI__PexHostScores_1ab2644c1dd1864f16b7d5e09ffb580a82)`()` | Returns a pointer to ConnectionCountScore_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetConnectionCountScoreOrNull`](#structFRHAPI__PexHostScores_1ab10d543ea2d51a320a5472c9fc5f07d9)`() const` | Returns a pointer to ConnectionCountScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline bool * `[`GetConnectionCountScoreOrNull`](#structFRHAPI__PexHostScores_1a9983b613dee0b95fa79a2d327034a232)`()` | Returns a pointer to ConnectionCountScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline const bool * `[`GetConnectionCountScoreOrNull`](#structFRHAPI__PexHostScores_1a16ebc1ea1ede2210286dec3541442279)`() const` | Returns a pointer to ConnectionCountScore_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetConnectionCountScore`](#structFRHAPI__PexHostScores_1ae56bff58b05c9a9cae696baf5ec85b21)`(const bool & NewValue)` | Sets the value of ConnectionCountScore_Optional and also sets ConnectionCountScore_IsSet to true.
 `public inline void `[`SetConnectionCountScore`](#structFRHAPI__PexHostScores_1a18b02cc99efcfd36f1870e6eb985cba9)`(bool && NewValue)` | Sets the value of ConnectionCountScore_Optional and also sets ConnectionCountScore_IsSet to true using move semantics.
 `public inline void `[`ClearConnectionCountScore`](#structFRHAPI__PexHostScores_1a2797b561ff0e5c32f76b7d139cb3fcb2)`()` | Clears the value of ConnectionCountScore_Optional and sets ConnectionCountScore_IsSet to false.
@@ -142,12 +142,12 @@ struct FRHAPI_PexHostScores
 `public inline void `[`SetConnectionCountScoreToDefault`](#structFRHAPI__PexHostScores_1af23174e3f0e6a489da64c758b525e78d)`()` | Sets the value of ConnectionCountScore_Optional to its default and also sets ConnectionCountScore_IsSet to true.
 `public inline void `[`SetConnectionCountScoreToNull`](#structFRHAPI__PexHostScores_1ac68d6b836fc3232eaea4fedc564d4af4)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsConnectionCountScoreNull`](#structFRHAPI__PexHostScores_1a125dbe4034508d923930a1c049fb60df)`() const` | Checks whether ConnectionCountScore_Optional is set to null.
-`public inline bool & `[`GetFrameTimeScore`](#structFRHAPI__PexHostScores_1ac6382b97201484ea920fa52c9527c974)`()` | Gets the value of FrameTimeScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetFrameTimeScore`](#structFRHAPI__PexHostScores_1a58df69327517065d3d0c78aca595ae14)`() const` | Gets the value of FrameTimeScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetFrameTimeScore`](#structFRHAPI__PexHostScores_1a85fcc84ddc97153a9f5132880911dfff)`(const bool & DefaultValue) const` | Gets the value of FrameTimeScore_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool & `[`GetFrameTimeScore`](#structFRHAPI__PexHostScores_1a903d219fb491098193f2e820ba3739ed)`()` | Gets the value of FrameTimeScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetFrameTimeScore`](#structFRHAPI__PexHostScores_1ae9f57f3e60383dc573d7597962ac5383)`() const` | Gets the value of FrameTimeScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetFrameTimeScore`](#structFRHAPI__PexHostScores_1ac7589b9112e421bec35f3cb55900e0b5)`(const bool & DefaultValue) const` | Gets the value of FrameTimeScore_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetFrameTimeScore`](#structFRHAPI__PexHostScores_1a6ade55e5916b7cdb1656d208b9860173)`(bool & OutValue) const` | Fills OutValue with the value of FrameTimeScore_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetFrameTimeScoreOrNull`](#structFRHAPI__PexHostScores_1a8851abb972bcc2aa3c127eb19079f0a4)`()` | Returns a pointer to FrameTimeScore_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetFrameTimeScoreOrNull`](#structFRHAPI__PexHostScores_1a9ee320eff2c08c7240ac9673c4ce04c0)`() const` | Returns a pointer to FrameTimeScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline bool * `[`GetFrameTimeScoreOrNull`](#structFRHAPI__PexHostScores_1af5e3e34455f0a87e347cc6bb8cac5c21)`()` | Returns a pointer to FrameTimeScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline const bool * `[`GetFrameTimeScoreOrNull`](#structFRHAPI__PexHostScores_1a2adce0af416c15c189189c9873ae8b91)`() const` | Returns a pointer to FrameTimeScore_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetFrameTimeScore`](#structFRHAPI__PexHostScores_1a114b529ba0e1d8eb0b5f0dc4b227dcc0)`(const bool & NewValue)` | Sets the value of FrameTimeScore_Optional and also sets FrameTimeScore_IsSet to true.
 `public inline void `[`SetFrameTimeScore`](#structFRHAPI__PexHostScores_1ab31ce0f16ae631b5b11e7e770f2de658)`(bool && NewValue)` | Sets the value of FrameTimeScore_Optional and also sets FrameTimeScore_IsSet to true using move semantics.
 `public inline void `[`ClearFrameTimeScore`](#structFRHAPI__PexHostScores_1a226235dcb265d835ac44335280ee58dc)`()` | Clears the value of FrameTimeScore_Optional and sets FrameTimeScore_IsSet to false.
@@ -156,12 +156,12 @@ struct FRHAPI_PexHostScores
 `public inline void `[`SetFrameTimeScoreToDefault`](#structFRHAPI__PexHostScores_1a5e39afe890e1f0920b49ddb0766c19e1)`()` | Sets the value of FrameTimeScore_Optional to its default and also sets FrameTimeScore_IsSet to true.
 `public inline void `[`SetFrameTimeScoreToNull`](#structFRHAPI__PexHostScores_1a24560125b17d533f51ffe137a43e4632)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsFrameTimeScoreNull`](#structFRHAPI__PexHostScores_1afdd0fcecdd5d4c3382636cf8fdc2e504)`() const` | Checks whether FrameTimeScore_Optional is set to null.
-`public inline bool & `[`GetDeltaTimeScore`](#structFRHAPI__PexHostScores_1a73af9f541daed428a47001129b705d5f)`()` | Gets the value of DeltaTimeScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetDeltaTimeScore`](#structFRHAPI__PexHostScores_1aee3fb8ba4ae9c358953d9348119244d3)`() const` | Gets the value of DeltaTimeScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetDeltaTimeScore`](#structFRHAPI__PexHostScores_1a7395627a371aec882354ddcb2e206bae)`(const bool & DefaultValue) const` | Gets the value of DeltaTimeScore_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool & `[`GetDeltaTimeScore`](#structFRHAPI__PexHostScores_1a9f23600acd68b925f831ee11d086b6df)`()` | Gets the value of DeltaTimeScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetDeltaTimeScore`](#structFRHAPI__PexHostScores_1a617ea8fe4754edf1db91bdb41c3379bd)`() const` | Gets the value of DeltaTimeScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetDeltaTimeScore`](#structFRHAPI__PexHostScores_1a94926a0b436d7d8d300627651aa11af2)`(const bool & DefaultValue) const` | Gets the value of DeltaTimeScore_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetDeltaTimeScore`](#structFRHAPI__PexHostScores_1a9f00a12d0f33841fd5b02e36a918dc5f)`(bool & OutValue) const` | Fills OutValue with the value of DeltaTimeScore_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetDeltaTimeScoreOrNull`](#structFRHAPI__PexHostScores_1aec9f57b0733c7520103507d7cc59fefb)`()` | Returns a pointer to DeltaTimeScore_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetDeltaTimeScoreOrNull`](#structFRHAPI__PexHostScores_1a23dd527d79077140ea0c125e3ad283b7)`() const` | Returns a pointer to DeltaTimeScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline bool * `[`GetDeltaTimeScoreOrNull`](#structFRHAPI__PexHostScores_1a615a3a9116ac7fabb2e9247b354697aa)`()` | Returns a pointer to DeltaTimeScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline const bool * `[`GetDeltaTimeScoreOrNull`](#structFRHAPI__PexHostScores_1a2ddc1f97f433589ca8bb7a20517fa19e)`() const` | Returns a pointer to DeltaTimeScore_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetDeltaTimeScore`](#structFRHAPI__PexHostScores_1a1e9f8c24df6283f0ccd62995bb92e36b)`(const bool & NewValue)` | Sets the value of DeltaTimeScore_Optional and also sets DeltaTimeScore_IsSet to true.
 `public inline void `[`SetDeltaTimeScore`](#structFRHAPI__PexHostScores_1ae53b544d5d669be084b6c0605bbb3cde)`(bool && NewValue)` | Sets the value of DeltaTimeScore_Optional and also sets DeltaTimeScore_IsSet to true using move semantics.
 `public inline void `[`ClearDeltaTimeScore`](#structFRHAPI__PexHostScores_1a67bbc9f2f03b3504159e5d34e910f2e4)`()` | Clears the value of DeltaTimeScore_Optional and sets DeltaTimeScore_IsSet to false.
@@ -170,12 +170,12 @@ struct FRHAPI_PexHostScores
 `public inline void `[`SetDeltaTimeScoreToDefault`](#structFRHAPI__PexHostScores_1acd0be6016d56130d3fdb68a57b409746)`()` | Sets the value of DeltaTimeScore_Optional to its default and also sets DeltaTimeScore_IsSet to true.
 `public inline void `[`SetDeltaTimeScoreToNull`](#structFRHAPI__PexHostScores_1a30fe785baf15c5e3fd7d8449d7efd476)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsDeltaTimeScoreNull`](#structFRHAPI__PexHostScores_1ace20e2ca88d6aef6ffbdbb363455df61)`() const` | Checks whether DeltaTimeScore_Optional is set to null.
-`public inline bool & `[`GetTickCountScore`](#structFRHAPI__PexHostScores_1a2ffd3715d2bb46f6d3e9ed50ab4cbabc)`()` | Gets the value of TickCountScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetTickCountScore`](#structFRHAPI__PexHostScores_1a597fac37341e4d2923b03c2b60eff34d)`() const` | Gets the value of TickCountScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetTickCountScore`](#structFRHAPI__PexHostScores_1a6a4e00348e7097cc385b12dff3479278)`(const bool & DefaultValue) const` | Gets the value of TickCountScore_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool & `[`GetTickCountScore`](#structFRHAPI__PexHostScores_1a9fd77158dd8ddcdde5386faaa8525281)`()` | Gets the value of TickCountScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetTickCountScore`](#structFRHAPI__PexHostScores_1a899cf244691e02e7ee74b28997e13e83)`() const` | Gets the value of TickCountScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetTickCountScore`](#structFRHAPI__PexHostScores_1a6c0959ae1591d912e8105e8497789867)`(const bool & DefaultValue) const` | Gets the value of TickCountScore_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetTickCountScore`](#structFRHAPI__PexHostScores_1a8fb95556139dc40993619e31e3d05688)`(bool & OutValue) const` | Fills OutValue with the value of TickCountScore_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetTickCountScoreOrNull`](#structFRHAPI__PexHostScores_1afa5c8a7bfd49dfc8d9c41a63565e2ed6)`()` | Returns a pointer to TickCountScore_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetTickCountScoreOrNull`](#structFRHAPI__PexHostScores_1a37b1eb9472d6636a7ec9fce9893a6745)`() const` | Returns a pointer to TickCountScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline bool * `[`GetTickCountScoreOrNull`](#structFRHAPI__PexHostScores_1a4b143eb7255af386e25c6a6fade795b2)`()` | Returns a pointer to TickCountScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline const bool * `[`GetTickCountScoreOrNull`](#structFRHAPI__PexHostScores_1a102f4a65ba4c077ccc5492e05a2ef435)`() const` | Returns a pointer to TickCountScore_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetTickCountScore`](#structFRHAPI__PexHostScores_1a8ab603e5f6b8685e00831f89b295b664)`(const bool & NewValue)` | Sets the value of TickCountScore_Optional and also sets TickCountScore_IsSet to true.
 `public inline void `[`SetTickCountScore`](#structFRHAPI__PexHostScores_1a732c0d655405c97287cd8b9332baf665)`(bool && NewValue)` | Sets the value of TickCountScore_Optional and also sets TickCountScore_IsSet to true using move semantics.
 `public inline void `[`ClearTickCountScore`](#structFRHAPI__PexHostScores_1ac42b768b5bf71a3bc1e0f45e117eed39)`()` | Clears the value of TickCountScore_Optional and sets TickCountScore_IsSet to false.
@@ -184,12 +184,12 @@ struct FRHAPI_PexHostScores
 `public inline void `[`SetTickCountScoreToDefault`](#structFRHAPI__PexHostScores_1a62a210a36454002ffef11afa5c7d8b78)`()` | Sets the value of TickCountScore_Optional to its default and also sets TickCountScore_IsSet to true.
 `public inline void `[`SetTickCountScoreToNull`](#structFRHAPI__PexHostScores_1a23f13c18f84024765d5234fdc30e439f)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsTickCountScoreNull`](#structFRHAPI__PexHostScores_1aee3ddde154b83f1dbde0f9e96b442be3)`() const` | Checks whether TickCountScore_Optional is set to null.
-`public inline bool & `[`GetDelayedTickCountScore`](#structFRHAPI__PexHostScores_1ab3d47da3b0f629d85103108c80b6611a)`()` | Gets the value of DelayedTickCountScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetDelayedTickCountScore`](#structFRHAPI__PexHostScores_1ab9ea78b9a74bf8dd3ef9b1ea2854df85)`() const` | Gets the value of DelayedTickCountScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetDelayedTickCountScore`](#structFRHAPI__PexHostScores_1a9db81a3ccca8f237733a932948ca1e8b)`(const bool & DefaultValue) const` | Gets the value of DelayedTickCountScore_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool & `[`GetDelayedTickCountScore`](#structFRHAPI__PexHostScores_1a3f5a44d06100900f490a649521cec712)`()` | Gets the value of DelayedTickCountScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetDelayedTickCountScore`](#structFRHAPI__PexHostScores_1a95bffa503a506bc7903e99de172f9fc5)`() const` | Gets the value of DelayedTickCountScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetDelayedTickCountScore`](#structFRHAPI__PexHostScores_1a86012fc31440096a03d2a3f1820b9439)`(const bool & DefaultValue) const` | Gets the value of DelayedTickCountScore_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetDelayedTickCountScore`](#structFRHAPI__PexHostScores_1ab9e66ebacc9628ce922de7be9fd8b506)`(bool & OutValue) const` | Fills OutValue with the value of DelayedTickCountScore_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetDelayedTickCountScoreOrNull`](#structFRHAPI__PexHostScores_1af622a44b4dcfb7be8f80ade6c14a061b)`()` | Returns a pointer to DelayedTickCountScore_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetDelayedTickCountScoreOrNull`](#structFRHAPI__PexHostScores_1ac4540e7cdd1beb6fec97fd92f7495c58)`() const` | Returns a pointer to DelayedTickCountScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline bool * `[`GetDelayedTickCountScoreOrNull`](#structFRHAPI__PexHostScores_1a7c7f3d72d3cd6614048269a88be916da)`()` | Returns a pointer to DelayedTickCountScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline const bool * `[`GetDelayedTickCountScoreOrNull`](#structFRHAPI__PexHostScores_1a780a4f0d89602b12e41746c88f784164)`() const` | Returns a pointer to DelayedTickCountScore_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetDelayedTickCountScore`](#structFRHAPI__PexHostScores_1adb247943a69aa4f1b1a1a16550a41919)`(const bool & NewValue)` | Sets the value of DelayedTickCountScore_Optional and also sets DelayedTickCountScore_IsSet to true.
 `public inline void `[`SetDelayedTickCountScore`](#structFRHAPI__PexHostScores_1ac2a871dad7a6c53e7c3302bf5b0e12c1)`(bool && NewValue)` | Sets the value of DelayedTickCountScore_Optional and also sets DelayedTickCountScore_IsSet to true using move semantics.
 `public inline void `[`ClearDelayedTickCountScore`](#structFRHAPI__PexHostScores_1a87b86ee1fbbd1db7ecef7202833537c1)`()` | Clears the value of DelayedTickCountScore_Optional and sets DelayedTickCountScore_IsSet to false.
@@ -198,12 +198,12 @@ struct FRHAPI_PexHostScores
 `public inline void `[`SetDelayedTickCountScoreToDefault`](#structFRHAPI__PexHostScores_1aabcfd8747b41be6336e457aa7634f24d)`()` | Sets the value of DelayedTickCountScore_Optional to its default and also sets DelayedTickCountScore_IsSet to true.
 `public inline void `[`SetDelayedTickCountScoreToNull`](#structFRHAPI__PexHostScores_1a4d1da9f60398f32e158a8dcc83eac517)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsDelayedTickCountScoreNull`](#structFRHAPI__PexHostScores_1a620f3ea97936b398d4ac640236de856f)`() const` | Checks whether DelayedTickCountScore_Optional is set to null.
-`public inline bool & `[`GetMemoryWsScore`](#structFRHAPI__PexHostScores_1a832cb08d3b9f71683de97e4fd4de9e0e)`()` | Gets the value of MemoryWsScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetMemoryWsScore`](#structFRHAPI__PexHostScores_1a458dccc3bcad44636156b0966ae4a515)`() const` | Gets the value of MemoryWsScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetMemoryWsScore`](#structFRHAPI__PexHostScores_1a0ce6f7d9b347b23e57af616a10323225)`(const bool & DefaultValue) const` | Gets the value of MemoryWsScore_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool & `[`GetMemoryWsScore`](#structFRHAPI__PexHostScores_1a8defc9754d89061fefe1fc99325be954)`()` | Gets the value of MemoryWsScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetMemoryWsScore`](#structFRHAPI__PexHostScores_1a0a55adf796133b5cfd6005ffd9bec8fc)`() const` | Gets the value of MemoryWsScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetMemoryWsScore`](#structFRHAPI__PexHostScores_1affe90ba0232a20f50863f8ab3f994d01)`(const bool & DefaultValue) const` | Gets the value of MemoryWsScore_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetMemoryWsScore`](#structFRHAPI__PexHostScores_1ae2fc0d97a7ef816f93c974380133e7f1)`(bool & OutValue) const` | Fills OutValue with the value of MemoryWsScore_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetMemoryWsScoreOrNull`](#structFRHAPI__PexHostScores_1a3a2d8787d4f4faeeff77a43c2ee2c88a)`()` | Returns a pointer to MemoryWsScore_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetMemoryWsScoreOrNull`](#structFRHAPI__PexHostScores_1a875ac8cd0caadd761fc258899f8675f8)`() const` | Returns a pointer to MemoryWsScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline bool * `[`GetMemoryWsScoreOrNull`](#structFRHAPI__PexHostScores_1a17e866bb3dd1f7a33953665a8fbb2a42)`()` | Returns a pointer to MemoryWsScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline const bool * `[`GetMemoryWsScoreOrNull`](#structFRHAPI__PexHostScores_1a1b54438f78d4faa1594ff9de3dad6dec)`() const` | Returns a pointer to MemoryWsScore_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetMemoryWsScore`](#structFRHAPI__PexHostScores_1a5e81b1094924f96ada9ec7b72827cb8b)`(const bool & NewValue)` | Sets the value of MemoryWsScore_Optional and also sets MemoryWsScore_IsSet to true.
 `public inline void `[`SetMemoryWsScore`](#structFRHAPI__PexHostScores_1ad47abe20023267813003d34233031e85)`(bool && NewValue)` | Sets the value of MemoryWsScore_Optional and also sets MemoryWsScore_IsSet to true using move semantics.
 `public inline void `[`ClearMemoryWsScore`](#structFRHAPI__PexHostScores_1a1f4f6dbef4c61c16a376e49325056f63)`()` | Clears the value of MemoryWsScore_Optional and sets MemoryWsScore_IsSet to false.
@@ -212,12 +212,12 @@ struct FRHAPI_PexHostScores
 `public inline void `[`SetMemoryWsScoreToDefault`](#structFRHAPI__PexHostScores_1ab097ae58260a56d7c4b362a856ed3dc0)`()` | Sets the value of MemoryWsScore_Optional to its default and also sets MemoryWsScore_IsSet to true.
 `public inline void `[`SetMemoryWsScoreToNull`](#structFRHAPI__PexHostScores_1a42ca63c45e5d4251eef0f6ba5c7c157a)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsMemoryWsScoreNull`](#structFRHAPI__PexHostScores_1a20c0fcb175e5810e4c2eb7d3534ffede)`() const` | Checks whether MemoryWsScore_Optional is set to null.
-`public inline bool & `[`GetMemoryVbScore`](#structFRHAPI__PexHostScores_1aa64d18ca15753dd6e13ea88eb7c71980)`()` | Gets the value of MemoryVbScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetMemoryVbScore`](#structFRHAPI__PexHostScores_1af41ef3c14f1d2163aacd8e04c4e3b600)`() const` | Gets the value of MemoryVbScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetMemoryVbScore`](#structFRHAPI__PexHostScores_1a86d7cb9b3b0f0e47160a91094890e972)`(const bool & DefaultValue) const` | Gets the value of MemoryVbScore_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool & `[`GetMemoryVbScore`](#structFRHAPI__PexHostScores_1a33ce654e56e0b46067d22a0c995b9f7e)`()` | Gets the value of MemoryVbScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetMemoryVbScore`](#structFRHAPI__PexHostScores_1a7e76a24542956bb7b085d38cccf7cf85)`() const` | Gets the value of MemoryVbScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetMemoryVbScore`](#structFRHAPI__PexHostScores_1a1817e49d7dd0d0654b7500e1ef0bd7bf)`(const bool & DefaultValue) const` | Gets the value of MemoryVbScore_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetMemoryVbScore`](#structFRHAPI__PexHostScores_1a2505a31f5a2e199312294f24c9b947bc)`(bool & OutValue) const` | Fills OutValue with the value of MemoryVbScore_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetMemoryVbScoreOrNull`](#structFRHAPI__PexHostScores_1aa71f5baaaeab59277bfbdd37571b2a0d)`()` | Returns a pointer to MemoryVbScore_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetMemoryVbScoreOrNull`](#structFRHAPI__PexHostScores_1a76d39ef0225b8dbdc2fafb033b1f8b62)`() const` | Returns a pointer to MemoryVbScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline bool * `[`GetMemoryVbScoreOrNull`](#structFRHAPI__PexHostScores_1a7360205860077fe3360442d0f0328950)`()` | Returns a pointer to MemoryVbScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline const bool * `[`GetMemoryVbScoreOrNull`](#structFRHAPI__PexHostScores_1a9766ed00c545307564748535bc287dc9)`() const` | Returns a pointer to MemoryVbScore_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetMemoryVbScore`](#structFRHAPI__PexHostScores_1a2d0a8ca79ccc02474479e646efd3a6ad)`(const bool & NewValue)` | Sets the value of MemoryVbScore_Optional and also sets MemoryVbScore_IsSet to true.
 `public inline void `[`SetMemoryVbScore`](#structFRHAPI__PexHostScores_1a1892d98d90bcfeea73b2c2b20fb04e16)`(bool && NewValue)` | Sets the value of MemoryVbScore_Optional and also sets MemoryVbScore_IsSet to true using move semantics.
 `public inline void `[`ClearMemoryVbScore`](#structFRHAPI__PexHostScores_1a2114a9a5ac427c2dbc43ae3f92ccfab7)`()` | Clears the value of MemoryVbScore_Optional and sets MemoryVbScore_IsSet to false.
@@ -226,12 +226,12 @@ struct FRHAPI_PexHostScores
 `public inline void `[`SetMemoryVbScoreToDefault`](#structFRHAPI__PexHostScores_1a92e8dda13e497bcc042db5095feef373)`()` | Sets the value of MemoryVbScore_Optional to its default and also sets MemoryVbScore_IsSet to true.
 `public inline void `[`SetMemoryVbScoreToNull`](#structFRHAPI__PexHostScores_1ae0e7d75b56cf4ffbdacb09d46a3c9776)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsMemoryVbScoreNull`](#structFRHAPI__PexHostScores_1abc22aa6e9d55407a3d4e45274670b0fa)`() const` | Checks whether MemoryVbScore_Optional is set to null.
-`public inline bool & `[`GetCpuProcessScore`](#structFRHAPI__PexHostScores_1a430bcc78c1026418c8c1f4b1486c56ee)`()` | Gets the value of CpuProcessScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetCpuProcessScore`](#structFRHAPI__PexHostScores_1a9802d626bf2fc7614192992c7d584cc7)`() const` | Gets the value of CpuProcessScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetCpuProcessScore`](#structFRHAPI__PexHostScores_1a9e31d28e49769eadcb42f0967e63d2fc)`(const bool & DefaultValue) const` | Gets the value of CpuProcessScore_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool & `[`GetCpuProcessScore`](#structFRHAPI__PexHostScores_1afe3cbbc22f8e32ee9bf5154343a2be18)`()` | Gets the value of CpuProcessScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetCpuProcessScore`](#structFRHAPI__PexHostScores_1aba586406c5e7de590ae4036e37f6a33b)`() const` | Gets the value of CpuProcessScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetCpuProcessScore`](#structFRHAPI__PexHostScores_1ac2dc66f54129746e0170c64df9c8a75c)`(const bool & DefaultValue) const` | Gets the value of CpuProcessScore_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetCpuProcessScore`](#structFRHAPI__PexHostScores_1aacc6ef9b32e137a2d51865b2ff346596)`(bool & OutValue) const` | Fills OutValue with the value of CpuProcessScore_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetCpuProcessScoreOrNull`](#structFRHAPI__PexHostScores_1af46abd1e3a467b077cdcdf85a5efbafb)`()` | Returns a pointer to CpuProcessScore_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetCpuProcessScoreOrNull`](#structFRHAPI__PexHostScores_1adef369d71cf1b4d378ba77cce1338de4)`() const` | Returns a pointer to CpuProcessScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline bool * `[`GetCpuProcessScoreOrNull`](#structFRHAPI__PexHostScores_1a5f622816400ffae30c32fbd7899b6b30)`()` | Returns a pointer to CpuProcessScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline const bool * `[`GetCpuProcessScoreOrNull`](#structFRHAPI__PexHostScores_1adcd9bca7221f19fbe741bb99a23e13f9)`() const` | Returns a pointer to CpuProcessScore_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetCpuProcessScore`](#structFRHAPI__PexHostScores_1aee7f878dc572e9b8da9ec3b78fb39a81)`(const bool & NewValue)` | Sets the value of CpuProcessScore_Optional and also sets CpuProcessScore_IsSet to true.
 `public inline void `[`SetCpuProcessScore`](#structFRHAPI__PexHostScores_1a1b163e40d377953eb2525190c589bd64)`(bool && NewValue)` | Sets the value of CpuProcessScore_Optional and also sets CpuProcessScore_IsSet to true using move semantics.
 `public inline void `[`ClearCpuProcessScore`](#structFRHAPI__PexHostScores_1aa039752151223b6601b54bd9b30be7b6)`()` | Clears the value of CpuProcessScore_Optional and sets CpuProcessScore_IsSet to false.
@@ -240,12 +240,12 @@ struct FRHAPI_PexHostScores
 `public inline void `[`SetCpuProcessScoreToDefault`](#structFRHAPI__PexHostScores_1a49badf41a13877e895e26eb9fc9d13c6)`()` | Sets the value of CpuProcessScore_Optional to its default and also sets CpuProcessScore_IsSet to true.
 `public inline void `[`SetCpuProcessScoreToNull`](#structFRHAPI__PexHostScores_1a6ae01099ab00b953af99e2cb9419c17c)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsCpuProcessScoreNull`](#structFRHAPI__PexHostScores_1afc752d797426426346263732f56532e9)`() const` | Checks whether CpuProcessScore_Optional is set to null.
-`public inline bool & `[`GetPingScore`](#structFRHAPI__PexHostScores_1adf17ddc1f23f0370f3f9f8eeaa2fdddb)`()` | Gets the value of PingScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetPingScore`](#structFRHAPI__PexHostScores_1a37e54f036bfb01b9acd26d2be746b379)`() const` | Gets the value of PingScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetPingScore`](#structFRHAPI__PexHostScores_1a04e421643306dd01aee58bbd1907f8e1)`(const bool & DefaultValue) const` | Gets the value of PingScore_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool & `[`GetPingScore`](#structFRHAPI__PexHostScores_1ab2837441409ff6e6a1dc1513cc8de6c9)`()` | Gets the value of PingScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetPingScore`](#structFRHAPI__PexHostScores_1adc4c45f23ec01ce78080e78757197bb7)`() const` | Gets the value of PingScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetPingScore`](#structFRHAPI__PexHostScores_1a1a2cdd0609c9fc9a3b3c72b6bfe90980)`(const bool & DefaultValue) const` | Gets the value of PingScore_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetPingScore`](#structFRHAPI__PexHostScores_1a750e70539c0658107ea6c049b4ec12d3)`(bool & OutValue) const` | Fills OutValue with the value of PingScore_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetPingScoreOrNull`](#structFRHAPI__PexHostScores_1a6db663648e2b2050e97bb2caeb5f9c2e)`()` | Returns a pointer to PingScore_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetPingScoreOrNull`](#structFRHAPI__PexHostScores_1a0a1df5dc8c7b73439c407426706578ef)`() const` | Returns a pointer to PingScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline bool * `[`GetPingScoreOrNull`](#structFRHAPI__PexHostScores_1a0c151270ee59a0e80c0afd99c0960ba4)`()` | Returns a pointer to PingScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline const bool * `[`GetPingScoreOrNull`](#structFRHAPI__PexHostScores_1a246760697b3855f4e0f47a505ce48ad9)`() const` | Returns a pointer to PingScore_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetPingScore`](#structFRHAPI__PexHostScores_1a4cc1956046012cc3b9d3776b2190e799)`(const bool & NewValue)` | Sets the value of PingScore_Optional and also sets PingScore_IsSet to true.
 `public inline void `[`SetPingScore`](#structFRHAPI__PexHostScores_1a76d61601a6af42530998f33d2a68cd31)`(bool && NewValue)` | Sets the value of PingScore_Optional and also sets PingScore_IsSet to true using move semantics.
 `public inline void `[`ClearPingScore`](#structFRHAPI__PexHostScores_1ae7f23c24267bab5cd3cbcc08be68198a)`()` | Clears the value of PingScore_Optional and sets PingScore_IsSet to false.
@@ -254,12 +254,12 @@ struct FRHAPI_PexHostScores
 `public inline void `[`SetPingScoreToDefault`](#structFRHAPI__PexHostScores_1ad0fc057554f5341aa0dad14c16aed903)`()` | Sets the value of PingScore_Optional to its default and also sets PingScore_IsSet to true.
 `public inline void `[`SetPingScoreToNull`](#structFRHAPI__PexHostScores_1a91a19263f5aa006c054878bbae1dd8bc)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsPingScoreNull`](#structFRHAPI__PexHostScores_1abbf6767f5e6943637aeeb948931a1608)`() const` | Checks whether PingScore_Optional is set to null.
-`public inline bool & `[`GetInPacketLossScore`](#structFRHAPI__PexHostScores_1a5e947cc92337be90906513f8437ced4c)`()` | Gets the value of InPacketLossScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetInPacketLossScore`](#structFRHAPI__PexHostScores_1ab7f16d85bb73cb327baaf9387967a20d)`() const` | Gets the value of InPacketLossScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetInPacketLossScore`](#structFRHAPI__PexHostScores_1ad1ce4f9c95f82bd1781203472272fddf)`(const bool & DefaultValue) const` | Gets the value of InPacketLossScore_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool & `[`GetInPacketLossScore`](#structFRHAPI__PexHostScores_1a10820e534da80979db3aba34bb33b5c2)`()` | Gets the value of InPacketLossScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetInPacketLossScore`](#structFRHAPI__PexHostScores_1a819b193d19db6b8cd3ee7dedef076e94)`() const` | Gets the value of InPacketLossScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetInPacketLossScore`](#structFRHAPI__PexHostScores_1a792820872243c8da87b75badeda6d877)`(const bool & DefaultValue) const` | Gets the value of InPacketLossScore_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetInPacketLossScore`](#structFRHAPI__PexHostScores_1ad737bb4374358e7749a4b1e5e88de070)`(bool & OutValue) const` | Fills OutValue with the value of InPacketLossScore_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetInPacketLossScoreOrNull`](#structFRHAPI__PexHostScores_1a6321f0c1aafb5d48f9e57d09f5b03778)`()` | Returns a pointer to InPacketLossScore_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetInPacketLossScoreOrNull`](#structFRHAPI__PexHostScores_1a6a7d22863f30c5e7a6417f0435eaca31)`() const` | Returns a pointer to InPacketLossScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline bool * `[`GetInPacketLossScoreOrNull`](#structFRHAPI__PexHostScores_1adad1d591b73e63ae7b80969d4647b0b9)`()` | Returns a pointer to InPacketLossScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline const bool * `[`GetInPacketLossScoreOrNull`](#structFRHAPI__PexHostScores_1ae34704936456a2677fecc686ac4f39d8)`() const` | Returns a pointer to InPacketLossScore_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetInPacketLossScore`](#structFRHAPI__PexHostScores_1aa36eb7c5493d18da210f873e70617d35)`(const bool & NewValue)` | Sets the value of InPacketLossScore_Optional and also sets InPacketLossScore_IsSet to true.
 `public inline void `[`SetInPacketLossScore`](#structFRHAPI__PexHostScores_1a7eb50ee8c4bd290730b91b07642d390b)`(bool && NewValue)` | Sets the value of InPacketLossScore_Optional and also sets InPacketLossScore_IsSet to true using move semantics.
 `public inline void `[`ClearInPacketLossScore`](#structFRHAPI__PexHostScores_1a3e79efe4a66abb41af25d1277724c652)`()` | Clears the value of InPacketLossScore_Optional and sets InPacketLossScore_IsSet to false.
@@ -268,12 +268,12 @@ struct FRHAPI_PexHostScores
 `public inline void `[`SetInPacketLossScoreToDefault`](#structFRHAPI__PexHostScores_1a31740b138bd23165b52c03d5dd7ad143)`()` | Sets the value of InPacketLossScore_Optional to its default and also sets InPacketLossScore_IsSet to true.
 `public inline void `[`SetInPacketLossScoreToNull`](#structFRHAPI__PexHostScores_1acc94893fdb574c279d2d0a0043aa68cd)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsInPacketLossScoreNull`](#structFRHAPI__PexHostScores_1a9b1e24b016d76ef5e054ce93f9200705)`() const` | Checks whether InPacketLossScore_Optional is set to null.
-`public inline bool & `[`GetOutPacketLossScore`](#structFRHAPI__PexHostScores_1a4a8ca1aa423b4a1bbe3958198b40c68e)`()` | Gets the value of OutPacketLossScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetOutPacketLossScore`](#structFRHAPI__PexHostScores_1a8ac25d442873856a6c7233344d388020)`() const` | Gets the value of OutPacketLossScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetOutPacketLossScore`](#structFRHAPI__PexHostScores_1afd4fdf23e5a6d479b7185b78e1b754ba)`(const bool & DefaultValue) const` | Gets the value of OutPacketLossScore_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool & `[`GetOutPacketLossScore`](#structFRHAPI__PexHostScores_1a3cefb01e13b85b79964d416ffbb1eaaa)`()` | Gets the value of OutPacketLossScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetOutPacketLossScore`](#structFRHAPI__PexHostScores_1a946ced16ac1dd9eeec8a38577556334e)`() const` | Gets the value of OutPacketLossScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetOutPacketLossScore`](#structFRHAPI__PexHostScores_1a7693df36377e4dac8365b9df66122c65)`(const bool & DefaultValue) const` | Gets the value of OutPacketLossScore_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetOutPacketLossScore`](#structFRHAPI__PexHostScores_1a9a3a5a0b922b3d070b4bdd62fd00d39d)`(bool & OutValue) const` | Fills OutValue with the value of OutPacketLossScore_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetOutPacketLossScoreOrNull`](#structFRHAPI__PexHostScores_1aca3391498cd406fb5483768de8ee3c0f)`()` | Returns a pointer to OutPacketLossScore_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetOutPacketLossScoreOrNull`](#structFRHAPI__PexHostScores_1af35433309142c40369e0bd1ae82143f1)`() const` | Returns a pointer to OutPacketLossScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline bool * `[`GetOutPacketLossScoreOrNull`](#structFRHAPI__PexHostScores_1aba46f8201d677acc8b6f1ae2c0bc1e7a)`()` | Returns a pointer to OutPacketLossScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline const bool * `[`GetOutPacketLossScoreOrNull`](#structFRHAPI__PexHostScores_1ac9f113f3ea43e0d970e4071227728ea7)`() const` | Returns a pointer to OutPacketLossScore_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetOutPacketLossScore`](#structFRHAPI__PexHostScores_1a60900f1a02aec029f54aaa003670de4c)`(const bool & NewValue)` | Sets the value of OutPacketLossScore_Optional and also sets OutPacketLossScore_IsSet to true.
 `public inline void `[`SetOutPacketLossScore`](#structFRHAPI__PexHostScores_1a9d826d80502ba1a06a5725f6cfac0449)`(bool && NewValue)` | Sets the value of OutPacketLossScore_Optional and also sets OutPacketLossScore_IsSet to true using move semantics.
 `public inline void `[`ClearOutPacketLossScore`](#structFRHAPI__PexHostScores_1a3fd21cc4d4280ec9f90f584a4a2de4fc)`()` | Clears the value of OutPacketLossScore_Optional and sets OutPacketLossScore_IsSet to false.
@@ -282,12 +282,12 @@ struct FRHAPI_PexHostScores
 `public inline void `[`SetOutPacketLossScoreToDefault`](#structFRHAPI__PexHostScores_1a02e557c9b13f57174cc1f62e746b6e4f)`()` | Sets the value of OutPacketLossScore_Optional to its default and also sets OutPacketLossScore_IsSet to true.
 `public inline void `[`SetOutPacketLossScoreToNull`](#structFRHAPI__PexHostScores_1a7cc9df155598de75516121120bee7fb2)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsOutPacketLossScoreNull`](#structFRHAPI__PexHostScores_1a188831c12a9dbd386aaa6cbac7f5fef0)`() const` | Checks whether OutPacketLossScore_Optional is set to null.
-`public inline bool & `[`GetTotalDisconnectsScore`](#structFRHAPI__PexHostScores_1a6d38e90b54f97430d763230f2d5877d8)`()` | Gets the value of TotalDisconnectsScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetTotalDisconnectsScore`](#structFRHAPI__PexHostScores_1af9dda352a841a2fc37a58e1bed96996b)`() const` | Gets the value of TotalDisconnectsScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetTotalDisconnectsScore`](#structFRHAPI__PexHostScores_1a7de978be8e1a4d02397d515b779b3f3d)`(const bool & DefaultValue) const` | Gets the value of TotalDisconnectsScore_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool & `[`GetTotalDisconnectsScore`](#structFRHAPI__PexHostScores_1a2f9d80f7aed2bf5da90eb027862ff1c5)`()` | Gets the value of TotalDisconnectsScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetTotalDisconnectsScore`](#structFRHAPI__PexHostScores_1ab8840ba36975cb35833054d88e9233a1)`() const` | Gets the value of TotalDisconnectsScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetTotalDisconnectsScore`](#structFRHAPI__PexHostScores_1ac5e935ea5a8e161ad0af11df0ae79516)`(const bool & DefaultValue) const` | Gets the value of TotalDisconnectsScore_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetTotalDisconnectsScore`](#structFRHAPI__PexHostScores_1a69d6d48b4d007ce46b68416e16b8a813)`(bool & OutValue) const` | Fills OutValue with the value of TotalDisconnectsScore_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetTotalDisconnectsScoreOrNull`](#structFRHAPI__PexHostScores_1a3b537c4aad424d80d3389dee6393b3ad)`()` | Returns a pointer to TotalDisconnectsScore_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetTotalDisconnectsScoreOrNull`](#structFRHAPI__PexHostScores_1a59b9f80dae280a3878576b2c9390f59f)`() const` | Returns a pointer to TotalDisconnectsScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline bool * `[`GetTotalDisconnectsScoreOrNull`](#structFRHAPI__PexHostScores_1ab1b2ee4ded2d9061a78bae29047d6afb)`()` | Returns a pointer to TotalDisconnectsScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline const bool * `[`GetTotalDisconnectsScoreOrNull`](#structFRHAPI__PexHostScores_1a81456be5a5d3dc4b03e4f345452060d5)`() const` | Returns a pointer to TotalDisconnectsScore_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetTotalDisconnectsScore`](#structFRHAPI__PexHostScores_1aeb7c03e0a1a7c7a829a1954207416b1f)`(const bool & NewValue)` | Sets the value of TotalDisconnectsScore_Optional and also sets TotalDisconnectsScore_IsSet to true.
 `public inline void `[`SetTotalDisconnectsScore`](#structFRHAPI__PexHostScores_1ae6fa4830d45bb0cdb17b9f7cf2e3ff0f)`(bool && NewValue)` | Sets the value of TotalDisconnectsScore_Optional and also sets TotalDisconnectsScore_IsSet to true using move semantics.
 `public inline void `[`ClearTotalDisconnectsScore`](#structFRHAPI__PexHostScores_1a70d8d34670989e2d9a934a9dc4bba6e1)`()` | Clears the value of TotalDisconnectsScore_Optional and sets TotalDisconnectsScore_IsSet to false.
@@ -296,12 +296,12 @@ struct FRHAPI_PexHostScores
 `public inline void `[`SetTotalDisconnectsScoreToDefault`](#structFRHAPI__PexHostScores_1a2bc790f3d761cc24c823342bb72a81da)`()` | Sets the value of TotalDisconnectsScore_Optional to its default and also sets TotalDisconnectsScore_IsSet to true.
 `public inline void `[`SetTotalDisconnectsScoreToNull`](#structFRHAPI__PexHostScores_1a4460bae983be41aefe2d09e0d5648f27)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsTotalDisconnectsScoreNull`](#structFRHAPI__PexHostScores_1a48b493ed5e5ed31cb5a33142248e32b6)`() const` | Checks whether TotalDisconnectsScore_Optional is set to null.
-`public inline bool & `[`GetTotalUniquePlayersScore`](#structFRHAPI__PexHostScores_1a2038c3c3e53af24639eac0fb40fc3056)`()` | Gets the value of TotalUniquePlayersScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetTotalUniquePlayersScore`](#structFRHAPI__PexHostScores_1acf12737454cf816e03056ea6e410a6f6)`() const` | Gets the value of TotalUniquePlayersScore_Optional, regardless of it having been set.
-`public inline const bool & `[`GetTotalUniquePlayersScore`](#structFRHAPI__PexHostScores_1a0ea1e32b1c632107d3cf010025739572)`(const bool & DefaultValue) const` | Gets the value of TotalUniquePlayersScore_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool & `[`GetTotalUniquePlayersScore`](#structFRHAPI__PexHostScores_1a778c4ea96e2fced238d4ff24ac4bf177)`()` | Gets the value of TotalUniquePlayersScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetTotalUniquePlayersScore`](#structFRHAPI__PexHostScores_1aff3807fe556fbb5fc5620e1e57e75aa1)`() const` | Gets the value of TotalUniquePlayersScore_Optional, regardless of it having been set.
+`public inline const bool & `[`GetTotalUniquePlayersScore`](#structFRHAPI__PexHostScores_1a18c768e1ddf1b02b30421540dc122499)`(const bool & DefaultValue) const` | Gets the value of TotalUniquePlayersScore_Optional, if it has been set, otherwise it returns DefaultValue.
 `public inline bool `[`GetTotalUniquePlayersScore`](#structFRHAPI__PexHostScores_1ae2f4f74883fbdf96f3b8da78c5df6204)`(bool & OutValue) const` | Fills OutValue with the value of TotalUniquePlayersScore_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetTotalUniquePlayersScoreOrNull`](#structFRHAPI__PexHostScores_1a0264c3f8db778821df5d4ec98fc89126)`()` | Returns a pointer to TotalUniquePlayersScore_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetTotalUniquePlayersScoreOrNull`](#structFRHAPI__PexHostScores_1a8425bb2b9287a1c728dc0a53647c2775)`() const` | Returns a pointer to TotalUniquePlayersScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline bool * `[`GetTotalUniquePlayersScoreOrNull`](#structFRHAPI__PexHostScores_1a20c5296269db0248fcad2f8090e9368b)`()` | Returns a pointer to TotalUniquePlayersScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline const bool * `[`GetTotalUniquePlayersScoreOrNull`](#structFRHAPI__PexHostScores_1a5658fb5761f5ea4b608f3c6c150511a1)`() const` | Returns a pointer to TotalUniquePlayersScore_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetTotalUniquePlayersScore`](#structFRHAPI__PexHostScores_1a72af9bc005b0f0e75cb0b3c4568463ef)`(const bool & NewValue)` | Sets the value of TotalUniquePlayersScore_Optional and also sets TotalUniquePlayersScore_IsSet to true.
 `public inline void `[`SetTotalUniquePlayersScore`](#structFRHAPI__PexHostScores_1aa5f2fa6ca65f505f0426ef6cc0b53c1d)`(bool && NewValue)` | Sets the value of TotalUniquePlayersScore_Optional and also sets TotalUniquePlayersScore_IsSet to true using move semantics.
 `public inline void `[`ClearTotalUniquePlayersScore`](#structFRHAPI__PexHostScores_1ae835e06975fb577095b07f94b57cef39)`()` | Clears the value of TotalUniquePlayersScore_Optional and sets TotalUniquePlayersScore_IsSet to false.
@@ -493,22 +493,22 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__PexHostScores_1ad0ca27fe82be75773d71160a7c8544b6)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__PexHostScores_1ad0ca27fe82be75773d71160a7c8544b6"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__PexHostScores_1a413aa4483247d5c5b9ac1d6c11928567)`(TSharedRef< TJsonWriter<> > & Writer) const` <a id="structFRHAPI__PexHostScores_1a413aa4483247d5c5b9ac1d6c11928567"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline bool & `[`GetOverallMatchScore`](#structFRHAPI__PexHostScores_1a38041472f6011df83f12c43d0b2e744c)`()` <a id="structFRHAPI__PexHostScores_1a38041472f6011df83f12c43d0b2e744c"></a>
+#### `public inline bool & `[`GetOverallMatchScore`](#structFRHAPI__PexHostScores_1a4a52f51aa1aa02a823906a9bfdfc80fb)`()` <a id="structFRHAPI__PexHostScores_1a4a52f51aa1aa02a823906a9bfdfc80fb"></a>
 
 Gets the value of OverallMatchScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetOverallMatchScore`](#structFRHAPI__PexHostScores_1affff43ab029dc1cd9c5af19f99d21284)`() const` <a id="structFRHAPI__PexHostScores_1affff43ab029dc1cd9c5af19f99d21284"></a>
+#### `public inline const bool & `[`GetOverallMatchScore`](#structFRHAPI__PexHostScores_1a27f3e22170ca3e6f76bf24bb3617b2fb)`() const` <a id="structFRHAPI__PexHostScores_1a27f3e22170ca3e6f76bf24bb3617b2fb"></a>
 
 Gets the value of OverallMatchScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetOverallMatchScore`](#structFRHAPI__PexHostScores_1a094f9712bcc09b9e3f4b9150c5381bec)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1a094f9712bcc09b9e3f4b9150c5381bec"></a>
+#### `public inline const bool & `[`GetOverallMatchScore`](#structFRHAPI__PexHostScores_1a7d74e770fef3c208ef96a3c5d6fb84d3)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1a7d74e770fef3c208ef96a3c5d6fb84d3"></a>
 
 Gets the value of OverallMatchScore_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -516,11 +516,11 @@ Gets the value of OverallMatchScore_Optional, if it has been set, otherwise it r
 
 Fills OutValue with the value of OverallMatchScore_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetOverallMatchScoreOrNull`](#structFRHAPI__PexHostScores_1aa6a1c3eb7923ea9257298913f604ed1b)`()` <a id="structFRHAPI__PexHostScores_1aa6a1c3eb7923ea9257298913f604ed1b"></a>
+#### `public inline bool * `[`GetOverallMatchScoreOrNull`](#structFRHAPI__PexHostScores_1a2f769264d5a5941f54bd87e9ab211fcf)`()` <a id="structFRHAPI__PexHostScores_1a2f769264d5a5941f54bd87e9ab211fcf"></a>
 
 Returns a pointer to OverallMatchScore_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetOverallMatchScoreOrNull`](#structFRHAPI__PexHostScores_1a1124fb0ebf8b26af44b91dac389cb443)`() const` <a id="structFRHAPI__PexHostScores_1a1124fb0ebf8b26af44b91dac389cb443"></a>
+#### `public inline const bool * `[`GetOverallMatchScoreOrNull`](#structFRHAPI__PexHostScores_1a495903bbf62601a1b0e0bd1ceb1d5e10)`() const` <a id="structFRHAPI__PexHostScores_1a495903bbf62601a1b0e0bd1ceb1d5e10"></a>
 
 Returns a pointer to OverallMatchScore_Optional, if it has been set, otherwise returns nullptr.
 
@@ -556,15 +556,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether OverallMatchScore_Optional is set to null.
 
-#### `public inline bool & `[`GetAppScore`](#structFRHAPI__PexHostScores_1a47f17a28f729e35b351c8d2a94aaff24)`()` <a id="structFRHAPI__PexHostScores_1a47f17a28f729e35b351c8d2a94aaff24"></a>
+#### `public inline bool & `[`GetAppScore`](#structFRHAPI__PexHostScores_1a98c88a2ad0b668d531d3a3cbe80bda9c)`()` <a id="structFRHAPI__PexHostScores_1a98c88a2ad0b668d531d3a3cbe80bda9c"></a>
 
 Gets the value of AppScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetAppScore`](#structFRHAPI__PexHostScores_1a8a852a0ad1a33a25a3509d8f516146ab)`() const` <a id="structFRHAPI__PexHostScores_1a8a852a0ad1a33a25a3509d8f516146ab"></a>
+#### `public inline const bool & `[`GetAppScore`](#structFRHAPI__PexHostScores_1a309c76d6a8b98c6af4a42c5246fe7b7b)`() const` <a id="structFRHAPI__PexHostScores_1a309c76d6a8b98c6af4a42c5246fe7b7b"></a>
 
 Gets the value of AppScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetAppScore`](#structFRHAPI__PexHostScores_1a774245166d79be7bd13e491085c82b99)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1a774245166d79be7bd13e491085c82b99"></a>
+#### `public inline const bool & `[`GetAppScore`](#structFRHAPI__PexHostScores_1af8d3cace5cb8440fd4a439efc3d769de)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1af8d3cace5cb8440fd4a439efc3d769de"></a>
 
 Gets the value of AppScore_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -572,11 +572,11 @@ Gets the value of AppScore_Optional, if it has been set, otherwise it returns De
 
 Fills OutValue with the value of AppScore_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetAppScoreOrNull`](#structFRHAPI__PexHostScores_1aaa74b34f2e5ecc84962d022809eb9f2e)`()` <a id="structFRHAPI__PexHostScores_1aaa74b34f2e5ecc84962d022809eb9f2e"></a>
+#### `public inline bool * `[`GetAppScoreOrNull`](#structFRHAPI__PexHostScores_1a12d907b07acd4c2edb515892a8f76896)`()` <a id="structFRHAPI__PexHostScores_1a12d907b07acd4c2edb515892a8f76896"></a>
 
 Returns a pointer to AppScore_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetAppScoreOrNull`](#structFRHAPI__PexHostScores_1a97a531391c526d022182a5985efa132c)`() const` <a id="structFRHAPI__PexHostScores_1a97a531391c526d022182a5985efa132c"></a>
+#### `public inline const bool * `[`GetAppScoreOrNull`](#structFRHAPI__PexHostScores_1ac7844fa871aef71c0d3d0f8e2535bf32)`() const` <a id="structFRHAPI__PexHostScores_1ac7844fa871aef71c0d3d0f8e2535bf32"></a>
 
 Returns a pointer to AppScore_Optional, if it has been set, otherwise returns nullptr.
 
@@ -612,15 +612,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether AppScore_Optional is set to null.
 
-#### `public inline bool & `[`GetGameplayScore`](#structFRHAPI__PexHostScores_1a91c12cc28ce927cb0cf6c9cad93ece77)`()` <a id="structFRHAPI__PexHostScores_1a91c12cc28ce927cb0cf6c9cad93ece77"></a>
+#### `public inline bool & `[`GetGameplayScore`](#structFRHAPI__PexHostScores_1a851f9cb89aaa36866cbce57f4e07e18c)`()` <a id="structFRHAPI__PexHostScores_1a851f9cb89aaa36866cbce57f4e07e18c"></a>
 
 Gets the value of GameplayScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetGameplayScore`](#structFRHAPI__PexHostScores_1a2910f38a6df9749595c3e9e4b6a75ed9)`() const` <a id="structFRHAPI__PexHostScores_1a2910f38a6df9749595c3e9e4b6a75ed9"></a>
+#### `public inline const bool & `[`GetGameplayScore`](#structFRHAPI__PexHostScores_1a146b02d058292aa6be6204f7c3822d2d)`() const` <a id="structFRHAPI__PexHostScores_1a146b02d058292aa6be6204f7c3822d2d"></a>
 
 Gets the value of GameplayScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetGameplayScore`](#structFRHAPI__PexHostScores_1abe1d7819f5e4645f44b1d5411d750e23)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1abe1d7819f5e4645f44b1d5411d750e23"></a>
+#### `public inline const bool & `[`GetGameplayScore`](#structFRHAPI__PexHostScores_1a48c3cd177dd0ba9eb765c207258d23a5)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1a48c3cd177dd0ba9eb765c207258d23a5"></a>
 
 Gets the value of GameplayScore_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -628,11 +628,11 @@ Gets the value of GameplayScore_Optional, if it has been set, otherwise it retur
 
 Fills OutValue with the value of GameplayScore_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetGameplayScoreOrNull`](#structFRHAPI__PexHostScores_1ab4610984310dc327367dbe579abdc81a)`()` <a id="structFRHAPI__PexHostScores_1ab4610984310dc327367dbe579abdc81a"></a>
+#### `public inline bool * `[`GetGameplayScoreOrNull`](#structFRHAPI__PexHostScores_1a2e820911b7563ea4c2ce3c3bd21cd9e3)`()` <a id="structFRHAPI__PexHostScores_1a2e820911b7563ea4c2ce3c3bd21cd9e3"></a>
 
 Returns a pointer to GameplayScore_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetGameplayScoreOrNull`](#structFRHAPI__PexHostScores_1ad18ba50652fc27eddaeb0106ba4454f3)`() const` <a id="structFRHAPI__PexHostScores_1ad18ba50652fc27eddaeb0106ba4454f3"></a>
+#### `public inline const bool * `[`GetGameplayScoreOrNull`](#structFRHAPI__PexHostScores_1ad0d0ec80d3ed6640c62fb50f89d37a02)`() const` <a id="structFRHAPI__PexHostScores_1ad0d0ec80d3ed6640c62fb50f89d37a02"></a>
 
 Returns a pointer to GameplayScore_Optional, if it has been set, otherwise returns nullptr.
 
@@ -668,15 +668,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether GameplayScore_Optional is set to null.
 
-#### `public inline bool & `[`GetNetworkScore`](#structFRHAPI__PexHostScores_1a618b1f177f790412c37112ca1ed9bafb)`()` <a id="structFRHAPI__PexHostScores_1a618b1f177f790412c37112ca1ed9bafb"></a>
+#### `public inline bool & `[`GetNetworkScore`](#structFRHAPI__PexHostScores_1ade34036582285ee1fbe23bdefadccca0)`()` <a id="structFRHAPI__PexHostScores_1ade34036582285ee1fbe23bdefadccca0"></a>
 
 Gets the value of NetworkScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetNetworkScore`](#structFRHAPI__PexHostScores_1ae0266b0cff69ce7fac3f8470f12a6918)`() const` <a id="structFRHAPI__PexHostScores_1ae0266b0cff69ce7fac3f8470f12a6918"></a>
+#### `public inline const bool & `[`GetNetworkScore`](#structFRHAPI__PexHostScores_1acf5f2ab2d19862b31f7977a611f8a152)`() const` <a id="structFRHAPI__PexHostScores_1acf5f2ab2d19862b31f7977a611f8a152"></a>
 
 Gets the value of NetworkScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetNetworkScore`](#structFRHAPI__PexHostScores_1a84a0346979f741edec15087e6ff6f773)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1a84a0346979f741edec15087e6ff6f773"></a>
+#### `public inline const bool & `[`GetNetworkScore`](#structFRHAPI__PexHostScores_1a46a88ceb97dc77480788678c01c5dd9a)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1a46a88ceb97dc77480788678c01c5dd9a"></a>
 
 Gets the value of NetworkScore_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -684,11 +684,11 @@ Gets the value of NetworkScore_Optional, if it has been set, otherwise it return
 
 Fills OutValue with the value of NetworkScore_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetNetworkScoreOrNull`](#structFRHAPI__PexHostScores_1adab87f62ea19efe369150e112d91511a)`()` <a id="structFRHAPI__PexHostScores_1adab87f62ea19efe369150e112d91511a"></a>
+#### `public inline bool * `[`GetNetworkScoreOrNull`](#structFRHAPI__PexHostScores_1a23acb3d0ae41404b58a49600116b4cdc)`()` <a id="structFRHAPI__PexHostScores_1a23acb3d0ae41404b58a49600116b4cdc"></a>
 
 Returns a pointer to NetworkScore_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetNetworkScoreOrNull`](#structFRHAPI__PexHostScores_1a6fedfcdc0122d960811178e3b2e3adcc)`() const` <a id="structFRHAPI__PexHostScores_1a6fedfcdc0122d960811178e3b2e3adcc"></a>
+#### `public inline const bool * `[`GetNetworkScoreOrNull`](#structFRHAPI__PexHostScores_1a547294d61f9568702e1f66f3332cca9b)`() const` <a id="structFRHAPI__PexHostScores_1a547294d61f9568702e1f66f3332cca9b"></a>
 
 Returns a pointer to NetworkScore_Optional, if it has been set, otherwise returns nullptr.
 
@@ -724,15 +724,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether NetworkScore_Optional is set to null.
 
-#### `public inline bool & `[`GetConnectionCountScore`](#structFRHAPI__PexHostScores_1a6aedf0c67d8f6fa80f424746a8c62062)`()` <a id="structFRHAPI__PexHostScores_1a6aedf0c67d8f6fa80f424746a8c62062"></a>
+#### `public inline bool & `[`GetConnectionCountScore`](#structFRHAPI__PexHostScores_1ab33094a40d6fece938d87eb2877dc44c)`()` <a id="structFRHAPI__PexHostScores_1ab33094a40d6fece938d87eb2877dc44c"></a>
 
 Gets the value of ConnectionCountScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetConnectionCountScore`](#structFRHAPI__PexHostScores_1a287c60ab8272df56a4b9bc28d2a5ce36)`() const` <a id="structFRHAPI__PexHostScores_1a287c60ab8272df56a4b9bc28d2a5ce36"></a>
+#### `public inline const bool & `[`GetConnectionCountScore`](#structFRHAPI__PexHostScores_1aee5af3c50c1da3b01415f07d675ab0c7)`() const` <a id="structFRHAPI__PexHostScores_1aee5af3c50c1da3b01415f07d675ab0c7"></a>
 
 Gets the value of ConnectionCountScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetConnectionCountScore`](#structFRHAPI__PexHostScores_1aa3384b824299f179996174e883b9fc74)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1aa3384b824299f179996174e883b9fc74"></a>
+#### `public inline const bool & `[`GetConnectionCountScore`](#structFRHAPI__PexHostScores_1aedfaea5f74d8155d281be756413c5038)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1aedfaea5f74d8155d281be756413c5038"></a>
 
 Gets the value of ConnectionCountScore_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -740,11 +740,11 @@ Gets the value of ConnectionCountScore_Optional, if it has been set, otherwise i
 
 Fills OutValue with the value of ConnectionCountScore_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetConnectionCountScoreOrNull`](#structFRHAPI__PexHostScores_1ab2644c1dd1864f16b7d5e09ffb580a82)`()` <a id="structFRHAPI__PexHostScores_1ab2644c1dd1864f16b7d5e09ffb580a82"></a>
+#### `public inline bool * `[`GetConnectionCountScoreOrNull`](#structFRHAPI__PexHostScores_1a9983b613dee0b95fa79a2d327034a232)`()` <a id="structFRHAPI__PexHostScores_1a9983b613dee0b95fa79a2d327034a232"></a>
 
 Returns a pointer to ConnectionCountScore_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetConnectionCountScoreOrNull`](#structFRHAPI__PexHostScores_1ab10d543ea2d51a320a5472c9fc5f07d9)`() const` <a id="structFRHAPI__PexHostScores_1ab10d543ea2d51a320a5472c9fc5f07d9"></a>
+#### `public inline const bool * `[`GetConnectionCountScoreOrNull`](#structFRHAPI__PexHostScores_1a16ebc1ea1ede2210286dec3541442279)`() const` <a id="structFRHAPI__PexHostScores_1a16ebc1ea1ede2210286dec3541442279"></a>
 
 Returns a pointer to ConnectionCountScore_Optional, if it has been set, otherwise returns nullptr.
 
@@ -780,15 +780,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether ConnectionCountScore_Optional is set to null.
 
-#### `public inline bool & `[`GetFrameTimeScore`](#structFRHAPI__PexHostScores_1ac6382b97201484ea920fa52c9527c974)`()` <a id="structFRHAPI__PexHostScores_1ac6382b97201484ea920fa52c9527c974"></a>
+#### `public inline bool & `[`GetFrameTimeScore`](#structFRHAPI__PexHostScores_1a903d219fb491098193f2e820ba3739ed)`()` <a id="structFRHAPI__PexHostScores_1a903d219fb491098193f2e820ba3739ed"></a>
 
 Gets the value of FrameTimeScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetFrameTimeScore`](#structFRHAPI__PexHostScores_1a58df69327517065d3d0c78aca595ae14)`() const` <a id="structFRHAPI__PexHostScores_1a58df69327517065d3d0c78aca595ae14"></a>
+#### `public inline const bool & `[`GetFrameTimeScore`](#structFRHAPI__PexHostScores_1ae9f57f3e60383dc573d7597962ac5383)`() const` <a id="structFRHAPI__PexHostScores_1ae9f57f3e60383dc573d7597962ac5383"></a>
 
 Gets the value of FrameTimeScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetFrameTimeScore`](#structFRHAPI__PexHostScores_1a85fcc84ddc97153a9f5132880911dfff)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1a85fcc84ddc97153a9f5132880911dfff"></a>
+#### `public inline const bool & `[`GetFrameTimeScore`](#structFRHAPI__PexHostScores_1ac7589b9112e421bec35f3cb55900e0b5)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1ac7589b9112e421bec35f3cb55900e0b5"></a>
 
 Gets the value of FrameTimeScore_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -796,11 +796,11 @@ Gets the value of FrameTimeScore_Optional, if it has been set, otherwise it retu
 
 Fills OutValue with the value of FrameTimeScore_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetFrameTimeScoreOrNull`](#structFRHAPI__PexHostScores_1a8851abb972bcc2aa3c127eb19079f0a4)`()` <a id="structFRHAPI__PexHostScores_1a8851abb972bcc2aa3c127eb19079f0a4"></a>
+#### `public inline bool * `[`GetFrameTimeScoreOrNull`](#structFRHAPI__PexHostScores_1af5e3e34455f0a87e347cc6bb8cac5c21)`()` <a id="structFRHAPI__PexHostScores_1af5e3e34455f0a87e347cc6bb8cac5c21"></a>
 
 Returns a pointer to FrameTimeScore_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetFrameTimeScoreOrNull`](#structFRHAPI__PexHostScores_1a9ee320eff2c08c7240ac9673c4ce04c0)`() const` <a id="structFRHAPI__PexHostScores_1a9ee320eff2c08c7240ac9673c4ce04c0"></a>
+#### `public inline const bool * `[`GetFrameTimeScoreOrNull`](#structFRHAPI__PexHostScores_1a2adce0af416c15c189189c9873ae8b91)`() const` <a id="structFRHAPI__PexHostScores_1a2adce0af416c15c189189c9873ae8b91"></a>
 
 Returns a pointer to FrameTimeScore_Optional, if it has been set, otherwise returns nullptr.
 
@@ -836,15 +836,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether FrameTimeScore_Optional is set to null.
 
-#### `public inline bool & `[`GetDeltaTimeScore`](#structFRHAPI__PexHostScores_1a73af9f541daed428a47001129b705d5f)`()` <a id="structFRHAPI__PexHostScores_1a73af9f541daed428a47001129b705d5f"></a>
+#### `public inline bool & `[`GetDeltaTimeScore`](#structFRHAPI__PexHostScores_1a9f23600acd68b925f831ee11d086b6df)`()` <a id="structFRHAPI__PexHostScores_1a9f23600acd68b925f831ee11d086b6df"></a>
 
 Gets the value of DeltaTimeScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetDeltaTimeScore`](#structFRHAPI__PexHostScores_1aee3fb8ba4ae9c358953d9348119244d3)`() const` <a id="structFRHAPI__PexHostScores_1aee3fb8ba4ae9c358953d9348119244d3"></a>
+#### `public inline const bool & `[`GetDeltaTimeScore`](#structFRHAPI__PexHostScores_1a617ea8fe4754edf1db91bdb41c3379bd)`() const` <a id="structFRHAPI__PexHostScores_1a617ea8fe4754edf1db91bdb41c3379bd"></a>
 
 Gets the value of DeltaTimeScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetDeltaTimeScore`](#structFRHAPI__PexHostScores_1a7395627a371aec882354ddcb2e206bae)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1a7395627a371aec882354ddcb2e206bae"></a>
+#### `public inline const bool & `[`GetDeltaTimeScore`](#structFRHAPI__PexHostScores_1a94926a0b436d7d8d300627651aa11af2)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1a94926a0b436d7d8d300627651aa11af2"></a>
 
 Gets the value of DeltaTimeScore_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -852,11 +852,11 @@ Gets the value of DeltaTimeScore_Optional, if it has been set, otherwise it retu
 
 Fills OutValue with the value of DeltaTimeScore_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetDeltaTimeScoreOrNull`](#structFRHAPI__PexHostScores_1aec9f57b0733c7520103507d7cc59fefb)`()` <a id="structFRHAPI__PexHostScores_1aec9f57b0733c7520103507d7cc59fefb"></a>
+#### `public inline bool * `[`GetDeltaTimeScoreOrNull`](#structFRHAPI__PexHostScores_1a615a3a9116ac7fabb2e9247b354697aa)`()` <a id="structFRHAPI__PexHostScores_1a615a3a9116ac7fabb2e9247b354697aa"></a>
 
 Returns a pointer to DeltaTimeScore_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetDeltaTimeScoreOrNull`](#structFRHAPI__PexHostScores_1a23dd527d79077140ea0c125e3ad283b7)`() const` <a id="structFRHAPI__PexHostScores_1a23dd527d79077140ea0c125e3ad283b7"></a>
+#### `public inline const bool * `[`GetDeltaTimeScoreOrNull`](#structFRHAPI__PexHostScores_1a2ddc1f97f433589ca8bb7a20517fa19e)`() const` <a id="structFRHAPI__PexHostScores_1a2ddc1f97f433589ca8bb7a20517fa19e"></a>
 
 Returns a pointer to DeltaTimeScore_Optional, if it has been set, otherwise returns nullptr.
 
@@ -892,15 +892,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether DeltaTimeScore_Optional is set to null.
 
-#### `public inline bool & `[`GetTickCountScore`](#structFRHAPI__PexHostScores_1a2ffd3715d2bb46f6d3e9ed50ab4cbabc)`()` <a id="structFRHAPI__PexHostScores_1a2ffd3715d2bb46f6d3e9ed50ab4cbabc"></a>
+#### `public inline bool & `[`GetTickCountScore`](#structFRHAPI__PexHostScores_1a9fd77158dd8ddcdde5386faaa8525281)`()` <a id="structFRHAPI__PexHostScores_1a9fd77158dd8ddcdde5386faaa8525281"></a>
 
 Gets the value of TickCountScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetTickCountScore`](#structFRHAPI__PexHostScores_1a597fac37341e4d2923b03c2b60eff34d)`() const` <a id="structFRHAPI__PexHostScores_1a597fac37341e4d2923b03c2b60eff34d"></a>
+#### `public inline const bool & `[`GetTickCountScore`](#structFRHAPI__PexHostScores_1a899cf244691e02e7ee74b28997e13e83)`() const` <a id="structFRHAPI__PexHostScores_1a899cf244691e02e7ee74b28997e13e83"></a>
 
 Gets the value of TickCountScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetTickCountScore`](#structFRHAPI__PexHostScores_1a6a4e00348e7097cc385b12dff3479278)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1a6a4e00348e7097cc385b12dff3479278"></a>
+#### `public inline const bool & `[`GetTickCountScore`](#structFRHAPI__PexHostScores_1a6c0959ae1591d912e8105e8497789867)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1a6c0959ae1591d912e8105e8497789867"></a>
 
 Gets the value of TickCountScore_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -908,11 +908,11 @@ Gets the value of TickCountScore_Optional, if it has been set, otherwise it retu
 
 Fills OutValue with the value of TickCountScore_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetTickCountScoreOrNull`](#structFRHAPI__PexHostScores_1afa5c8a7bfd49dfc8d9c41a63565e2ed6)`()` <a id="structFRHAPI__PexHostScores_1afa5c8a7bfd49dfc8d9c41a63565e2ed6"></a>
+#### `public inline bool * `[`GetTickCountScoreOrNull`](#structFRHAPI__PexHostScores_1a4b143eb7255af386e25c6a6fade795b2)`()` <a id="structFRHAPI__PexHostScores_1a4b143eb7255af386e25c6a6fade795b2"></a>
 
 Returns a pointer to TickCountScore_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetTickCountScoreOrNull`](#structFRHAPI__PexHostScores_1a37b1eb9472d6636a7ec9fce9893a6745)`() const` <a id="structFRHAPI__PexHostScores_1a37b1eb9472d6636a7ec9fce9893a6745"></a>
+#### `public inline const bool * `[`GetTickCountScoreOrNull`](#structFRHAPI__PexHostScores_1a102f4a65ba4c077ccc5492e05a2ef435)`() const` <a id="structFRHAPI__PexHostScores_1a102f4a65ba4c077ccc5492e05a2ef435"></a>
 
 Returns a pointer to TickCountScore_Optional, if it has been set, otherwise returns nullptr.
 
@@ -948,15 +948,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether TickCountScore_Optional is set to null.
 
-#### `public inline bool & `[`GetDelayedTickCountScore`](#structFRHAPI__PexHostScores_1ab3d47da3b0f629d85103108c80b6611a)`()` <a id="structFRHAPI__PexHostScores_1ab3d47da3b0f629d85103108c80b6611a"></a>
+#### `public inline bool & `[`GetDelayedTickCountScore`](#structFRHAPI__PexHostScores_1a3f5a44d06100900f490a649521cec712)`()` <a id="structFRHAPI__PexHostScores_1a3f5a44d06100900f490a649521cec712"></a>
 
 Gets the value of DelayedTickCountScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetDelayedTickCountScore`](#structFRHAPI__PexHostScores_1ab9ea78b9a74bf8dd3ef9b1ea2854df85)`() const` <a id="structFRHAPI__PexHostScores_1ab9ea78b9a74bf8dd3ef9b1ea2854df85"></a>
+#### `public inline const bool & `[`GetDelayedTickCountScore`](#structFRHAPI__PexHostScores_1a95bffa503a506bc7903e99de172f9fc5)`() const` <a id="structFRHAPI__PexHostScores_1a95bffa503a506bc7903e99de172f9fc5"></a>
 
 Gets the value of DelayedTickCountScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetDelayedTickCountScore`](#structFRHAPI__PexHostScores_1a9db81a3ccca8f237733a932948ca1e8b)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1a9db81a3ccca8f237733a932948ca1e8b"></a>
+#### `public inline const bool & `[`GetDelayedTickCountScore`](#structFRHAPI__PexHostScores_1a86012fc31440096a03d2a3f1820b9439)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1a86012fc31440096a03d2a3f1820b9439"></a>
 
 Gets the value of DelayedTickCountScore_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -964,11 +964,11 @@ Gets the value of DelayedTickCountScore_Optional, if it has been set, otherwise 
 
 Fills OutValue with the value of DelayedTickCountScore_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetDelayedTickCountScoreOrNull`](#structFRHAPI__PexHostScores_1af622a44b4dcfb7be8f80ade6c14a061b)`()` <a id="structFRHAPI__PexHostScores_1af622a44b4dcfb7be8f80ade6c14a061b"></a>
+#### `public inline bool * `[`GetDelayedTickCountScoreOrNull`](#structFRHAPI__PexHostScores_1a7c7f3d72d3cd6614048269a88be916da)`()` <a id="structFRHAPI__PexHostScores_1a7c7f3d72d3cd6614048269a88be916da"></a>
 
 Returns a pointer to DelayedTickCountScore_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetDelayedTickCountScoreOrNull`](#structFRHAPI__PexHostScores_1ac4540e7cdd1beb6fec97fd92f7495c58)`() const` <a id="structFRHAPI__PexHostScores_1ac4540e7cdd1beb6fec97fd92f7495c58"></a>
+#### `public inline const bool * `[`GetDelayedTickCountScoreOrNull`](#structFRHAPI__PexHostScores_1a780a4f0d89602b12e41746c88f784164)`() const` <a id="structFRHAPI__PexHostScores_1a780a4f0d89602b12e41746c88f784164"></a>
 
 Returns a pointer to DelayedTickCountScore_Optional, if it has been set, otherwise returns nullptr.
 
@@ -1004,15 +1004,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether DelayedTickCountScore_Optional is set to null.
 
-#### `public inline bool & `[`GetMemoryWsScore`](#structFRHAPI__PexHostScores_1a832cb08d3b9f71683de97e4fd4de9e0e)`()` <a id="structFRHAPI__PexHostScores_1a832cb08d3b9f71683de97e4fd4de9e0e"></a>
+#### `public inline bool & `[`GetMemoryWsScore`](#structFRHAPI__PexHostScores_1a8defc9754d89061fefe1fc99325be954)`()` <a id="structFRHAPI__PexHostScores_1a8defc9754d89061fefe1fc99325be954"></a>
 
 Gets the value of MemoryWsScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetMemoryWsScore`](#structFRHAPI__PexHostScores_1a458dccc3bcad44636156b0966ae4a515)`() const` <a id="structFRHAPI__PexHostScores_1a458dccc3bcad44636156b0966ae4a515"></a>
+#### `public inline const bool & `[`GetMemoryWsScore`](#structFRHAPI__PexHostScores_1a0a55adf796133b5cfd6005ffd9bec8fc)`() const` <a id="structFRHAPI__PexHostScores_1a0a55adf796133b5cfd6005ffd9bec8fc"></a>
 
 Gets the value of MemoryWsScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetMemoryWsScore`](#structFRHAPI__PexHostScores_1a0ce6f7d9b347b23e57af616a10323225)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1a0ce6f7d9b347b23e57af616a10323225"></a>
+#### `public inline const bool & `[`GetMemoryWsScore`](#structFRHAPI__PexHostScores_1affe90ba0232a20f50863f8ab3f994d01)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1affe90ba0232a20f50863f8ab3f994d01"></a>
 
 Gets the value of MemoryWsScore_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -1020,11 +1020,11 @@ Gets the value of MemoryWsScore_Optional, if it has been set, otherwise it retur
 
 Fills OutValue with the value of MemoryWsScore_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetMemoryWsScoreOrNull`](#structFRHAPI__PexHostScores_1a3a2d8787d4f4faeeff77a43c2ee2c88a)`()` <a id="structFRHAPI__PexHostScores_1a3a2d8787d4f4faeeff77a43c2ee2c88a"></a>
+#### `public inline bool * `[`GetMemoryWsScoreOrNull`](#structFRHAPI__PexHostScores_1a17e866bb3dd1f7a33953665a8fbb2a42)`()` <a id="structFRHAPI__PexHostScores_1a17e866bb3dd1f7a33953665a8fbb2a42"></a>
 
 Returns a pointer to MemoryWsScore_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetMemoryWsScoreOrNull`](#structFRHAPI__PexHostScores_1a875ac8cd0caadd761fc258899f8675f8)`() const` <a id="structFRHAPI__PexHostScores_1a875ac8cd0caadd761fc258899f8675f8"></a>
+#### `public inline const bool * `[`GetMemoryWsScoreOrNull`](#structFRHAPI__PexHostScores_1a1b54438f78d4faa1594ff9de3dad6dec)`() const` <a id="structFRHAPI__PexHostScores_1a1b54438f78d4faa1594ff9de3dad6dec"></a>
 
 Returns a pointer to MemoryWsScore_Optional, if it has been set, otherwise returns nullptr.
 
@@ -1060,15 +1060,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether MemoryWsScore_Optional is set to null.
 
-#### `public inline bool & `[`GetMemoryVbScore`](#structFRHAPI__PexHostScores_1aa64d18ca15753dd6e13ea88eb7c71980)`()` <a id="structFRHAPI__PexHostScores_1aa64d18ca15753dd6e13ea88eb7c71980"></a>
+#### `public inline bool & `[`GetMemoryVbScore`](#structFRHAPI__PexHostScores_1a33ce654e56e0b46067d22a0c995b9f7e)`()` <a id="structFRHAPI__PexHostScores_1a33ce654e56e0b46067d22a0c995b9f7e"></a>
 
 Gets the value of MemoryVbScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetMemoryVbScore`](#structFRHAPI__PexHostScores_1af41ef3c14f1d2163aacd8e04c4e3b600)`() const` <a id="structFRHAPI__PexHostScores_1af41ef3c14f1d2163aacd8e04c4e3b600"></a>
+#### `public inline const bool & `[`GetMemoryVbScore`](#structFRHAPI__PexHostScores_1a7e76a24542956bb7b085d38cccf7cf85)`() const` <a id="structFRHAPI__PexHostScores_1a7e76a24542956bb7b085d38cccf7cf85"></a>
 
 Gets the value of MemoryVbScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetMemoryVbScore`](#structFRHAPI__PexHostScores_1a86d7cb9b3b0f0e47160a91094890e972)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1a86d7cb9b3b0f0e47160a91094890e972"></a>
+#### `public inline const bool & `[`GetMemoryVbScore`](#structFRHAPI__PexHostScores_1a1817e49d7dd0d0654b7500e1ef0bd7bf)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1a1817e49d7dd0d0654b7500e1ef0bd7bf"></a>
 
 Gets the value of MemoryVbScore_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -1076,11 +1076,11 @@ Gets the value of MemoryVbScore_Optional, if it has been set, otherwise it retur
 
 Fills OutValue with the value of MemoryVbScore_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetMemoryVbScoreOrNull`](#structFRHAPI__PexHostScores_1aa71f5baaaeab59277bfbdd37571b2a0d)`()` <a id="structFRHAPI__PexHostScores_1aa71f5baaaeab59277bfbdd37571b2a0d"></a>
+#### `public inline bool * `[`GetMemoryVbScoreOrNull`](#structFRHAPI__PexHostScores_1a7360205860077fe3360442d0f0328950)`()` <a id="structFRHAPI__PexHostScores_1a7360205860077fe3360442d0f0328950"></a>
 
 Returns a pointer to MemoryVbScore_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetMemoryVbScoreOrNull`](#structFRHAPI__PexHostScores_1a76d39ef0225b8dbdc2fafb033b1f8b62)`() const` <a id="structFRHAPI__PexHostScores_1a76d39ef0225b8dbdc2fafb033b1f8b62"></a>
+#### `public inline const bool * `[`GetMemoryVbScoreOrNull`](#structFRHAPI__PexHostScores_1a9766ed00c545307564748535bc287dc9)`() const` <a id="structFRHAPI__PexHostScores_1a9766ed00c545307564748535bc287dc9"></a>
 
 Returns a pointer to MemoryVbScore_Optional, if it has been set, otherwise returns nullptr.
 
@@ -1116,15 +1116,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether MemoryVbScore_Optional is set to null.
 
-#### `public inline bool & `[`GetCpuProcessScore`](#structFRHAPI__PexHostScores_1a430bcc78c1026418c8c1f4b1486c56ee)`()` <a id="structFRHAPI__PexHostScores_1a430bcc78c1026418c8c1f4b1486c56ee"></a>
+#### `public inline bool & `[`GetCpuProcessScore`](#structFRHAPI__PexHostScores_1afe3cbbc22f8e32ee9bf5154343a2be18)`()` <a id="structFRHAPI__PexHostScores_1afe3cbbc22f8e32ee9bf5154343a2be18"></a>
 
 Gets the value of CpuProcessScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetCpuProcessScore`](#structFRHAPI__PexHostScores_1a9802d626bf2fc7614192992c7d584cc7)`() const` <a id="structFRHAPI__PexHostScores_1a9802d626bf2fc7614192992c7d584cc7"></a>
+#### `public inline const bool & `[`GetCpuProcessScore`](#structFRHAPI__PexHostScores_1aba586406c5e7de590ae4036e37f6a33b)`() const` <a id="structFRHAPI__PexHostScores_1aba586406c5e7de590ae4036e37f6a33b"></a>
 
 Gets the value of CpuProcessScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetCpuProcessScore`](#structFRHAPI__PexHostScores_1a9e31d28e49769eadcb42f0967e63d2fc)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1a9e31d28e49769eadcb42f0967e63d2fc"></a>
+#### `public inline const bool & `[`GetCpuProcessScore`](#structFRHAPI__PexHostScores_1ac2dc66f54129746e0170c64df9c8a75c)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1ac2dc66f54129746e0170c64df9c8a75c"></a>
 
 Gets the value of CpuProcessScore_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -1132,11 +1132,11 @@ Gets the value of CpuProcessScore_Optional, if it has been set, otherwise it ret
 
 Fills OutValue with the value of CpuProcessScore_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetCpuProcessScoreOrNull`](#structFRHAPI__PexHostScores_1af46abd1e3a467b077cdcdf85a5efbafb)`()` <a id="structFRHAPI__PexHostScores_1af46abd1e3a467b077cdcdf85a5efbafb"></a>
+#### `public inline bool * `[`GetCpuProcessScoreOrNull`](#structFRHAPI__PexHostScores_1a5f622816400ffae30c32fbd7899b6b30)`()` <a id="structFRHAPI__PexHostScores_1a5f622816400ffae30c32fbd7899b6b30"></a>
 
 Returns a pointer to CpuProcessScore_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetCpuProcessScoreOrNull`](#structFRHAPI__PexHostScores_1adef369d71cf1b4d378ba77cce1338de4)`() const` <a id="structFRHAPI__PexHostScores_1adef369d71cf1b4d378ba77cce1338de4"></a>
+#### `public inline const bool * `[`GetCpuProcessScoreOrNull`](#structFRHAPI__PexHostScores_1adcd9bca7221f19fbe741bb99a23e13f9)`() const` <a id="structFRHAPI__PexHostScores_1adcd9bca7221f19fbe741bb99a23e13f9"></a>
 
 Returns a pointer to CpuProcessScore_Optional, if it has been set, otherwise returns nullptr.
 
@@ -1172,15 +1172,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether CpuProcessScore_Optional is set to null.
 
-#### `public inline bool & `[`GetPingScore`](#structFRHAPI__PexHostScores_1adf17ddc1f23f0370f3f9f8eeaa2fdddb)`()` <a id="structFRHAPI__PexHostScores_1adf17ddc1f23f0370f3f9f8eeaa2fdddb"></a>
+#### `public inline bool & `[`GetPingScore`](#structFRHAPI__PexHostScores_1ab2837441409ff6e6a1dc1513cc8de6c9)`()` <a id="structFRHAPI__PexHostScores_1ab2837441409ff6e6a1dc1513cc8de6c9"></a>
 
 Gets the value of PingScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetPingScore`](#structFRHAPI__PexHostScores_1a37e54f036bfb01b9acd26d2be746b379)`() const` <a id="structFRHAPI__PexHostScores_1a37e54f036bfb01b9acd26d2be746b379"></a>
+#### `public inline const bool & `[`GetPingScore`](#structFRHAPI__PexHostScores_1adc4c45f23ec01ce78080e78757197bb7)`() const` <a id="structFRHAPI__PexHostScores_1adc4c45f23ec01ce78080e78757197bb7"></a>
 
 Gets the value of PingScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetPingScore`](#structFRHAPI__PexHostScores_1a04e421643306dd01aee58bbd1907f8e1)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1a04e421643306dd01aee58bbd1907f8e1"></a>
+#### `public inline const bool & `[`GetPingScore`](#structFRHAPI__PexHostScores_1a1a2cdd0609c9fc9a3b3c72b6bfe90980)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1a1a2cdd0609c9fc9a3b3c72b6bfe90980"></a>
 
 Gets the value of PingScore_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -1188,11 +1188,11 @@ Gets the value of PingScore_Optional, if it has been set, otherwise it returns D
 
 Fills OutValue with the value of PingScore_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetPingScoreOrNull`](#structFRHAPI__PexHostScores_1a6db663648e2b2050e97bb2caeb5f9c2e)`()` <a id="structFRHAPI__PexHostScores_1a6db663648e2b2050e97bb2caeb5f9c2e"></a>
+#### `public inline bool * `[`GetPingScoreOrNull`](#structFRHAPI__PexHostScores_1a0c151270ee59a0e80c0afd99c0960ba4)`()` <a id="structFRHAPI__PexHostScores_1a0c151270ee59a0e80c0afd99c0960ba4"></a>
 
 Returns a pointer to PingScore_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetPingScoreOrNull`](#structFRHAPI__PexHostScores_1a0a1df5dc8c7b73439c407426706578ef)`() const` <a id="structFRHAPI__PexHostScores_1a0a1df5dc8c7b73439c407426706578ef"></a>
+#### `public inline const bool * `[`GetPingScoreOrNull`](#structFRHAPI__PexHostScores_1a246760697b3855f4e0f47a505ce48ad9)`() const` <a id="structFRHAPI__PexHostScores_1a246760697b3855f4e0f47a505ce48ad9"></a>
 
 Returns a pointer to PingScore_Optional, if it has been set, otherwise returns nullptr.
 
@@ -1228,15 +1228,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether PingScore_Optional is set to null.
 
-#### `public inline bool & `[`GetInPacketLossScore`](#structFRHAPI__PexHostScores_1a5e947cc92337be90906513f8437ced4c)`()` <a id="structFRHAPI__PexHostScores_1a5e947cc92337be90906513f8437ced4c"></a>
+#### `public inline bool & `[`GetInPacketLossScore`](#structFRHAPI__PexHostScores_1a10820e534da80979db3aba34bb33b5c2)`()` <a id="structFRHAPI__PexHostScores_1a10820e534da80979db3aba34bb33b5c2"></a>
 
 Gets the value of InPacketLossScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetInPacketLossScore`](#structFRHAPI__PexHostScores_1ab7f16d85bb73cb327baaf9387967a20d)`() const` <a id="structFRHAPI__PexHostScores_1ab7f16d85bb73cb327baaf9387967a20d"></a>
+#### `public inline const bool & `[`GetInPacketLossScore`](#structFRHAPI__PexHostScores_1a819b193d19db6b8cd3ee7dedef076e94)`() const` <a id="structFRHAPI__PexHostScores_1a819b193d19db6b8cd3ee7dedef076e94"></a>
 
 Gets the value of InPacketLossScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetInPacketLossScore`](#structFRHAPI__PexHostScores_1ad1ce4f9c95f82bd1781203472272fddf)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1ad1ce4f9c95f82bd1781203472272fddf"></a>
+#### `public inline const bool & `[`GetInPacketLossScore`](#structFRHAPI__PexHostScores_1a792820872243c8da87b75badeda6d877)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1a792820872243c8da87b75badeda6d877"></a>
 
 Gets the value of InPacketLossScore_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -1244,11 +1244,11 @@ Gets the value of InPacketLossScore_Optional, if it has been set, otherwise it r
 
 Fills OutValue with the value of InPacketLossScore_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetInPacketLossScoreOrNull`](#structFRHAPI__PexHostScores_1a6321f0c1aafb5d48f9e57d09f5b03778)`()` <a id="structFRHAPI__PexHostScores_1a6321f0c1aafb5d48f9e57d09f5b03778"></a>
+#### `public inline bool * `[`GetInPacketLossScoreOrNull`](#structFRHAPI__PexHostScores_1adad1d591b73e63ae7b80969d4647b0b9)`()` <a id="structFRHAPI__PexHostScores_1adad1d591b73e63ae7b80969d4647b0b9"></a>
 
 Returns a pointer to InPacketLossScore_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetInPacketLossScoreOrNull`](#structFRHAPI__PexHostScores_1a6a7d22863f30c5e7a6417f0435eaca31)`() const` <a id="structFRHAPI__PexHostScores_1a6a7d22863f30c5e7a6417f0435eaca31"></a>
+#### `public inline const bool * `[`GetInPacketLossScoreOrNull`](#structFRHAPI__PexHostScores_1ae34704936456a2677fecc686ac4f39d8)`() const` <a id="structFRHAPI__PexHostScores_1ae34704936456a2677fecc686ac4f39d8"></a>
 
 Returns a pointer to InPacketLossScore_Optional, if it has been set, otherwise returns nullptr.
 
@@ -1284,15 +1284,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether InPacketLossScore_Optional is set to null.
 
-#### `public inline bool & `[`GetOutPacketLossScore`](#structFRHAPI__PexHostScores_1a4a8ca1aa423b4a1bbe3958198b40c68e)`()` <a id="structFRHAPI__PexHostScores_1a4a8ca1aa423b4a1bbe3958198b40c68e"></a>
+#### `public inline bool & `[`GetOutPacketLossScore`](#structFRHAPI__PexHostScores_1a3cefb01e13b85b79964d416ffbb1eaaa)`()` <a id="structFRHAPI__PexHostScores_1a3cefb01e13b85b79964d416ffbb1eaaa"></a>
 
 Gets the value of OutPacketLossScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetOutPacketLossScore`](#structFRHAPI__PexHostScores_1a8ac25d442873856a6c7233344d388020)`() const` <a id="structFRHAPI__PexHostScores_1a8ac25d442873856a6c7233344d388020"></a>
+#### `public inline const bool & `[`GetOutPacketLossScore`](#structFRHAPI__PexHostScores_1a946ced16ac1dd9eeec8a38577556334e)`() const` <a id="structFRHAPI__PexHostScores_1a946ced16ac1dd9eeec8a38577556334e"></a>
 
 Gets the value of OutPacketLossScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetOutPacketLossScore`](#structFRHAPI__PexHostScores_1afd4fdf23e5a6d479b7185b78e1b754ba)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1afd4fdf23e5a6d479b7185b78e1b754ba"></a>
+#### `public inline const bool & `[`GetOutPacketLossScore`](#structFRHAPI__PexHostScores_1a7693df36377e4dac8365b9df66122c65)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1a7693df36377e4dac8365b9df66122c65"></a>
 
 Gets the value of OutPacketLossScore_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -1300,11 +1300,11 @@ Gets the value of OutPacketLossScore_Optional, if it has been set, otherwise it 
 
 Fills OutValue with the value of OutPacketLossScore_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetOutPacketLossScoreOrNull`](#structFRHAPI__PexHostScores_1aca3391498cd406fb5483768de8ee3c0f)`()` <a id="structFRHAPI__PexHostScores_1aca3391498cd406fb5483768de8ee3c0f"></a>
+#### `public inline bool * `[`GetOutPacketLossScoreOrNull`](#structFRHAPI__PexHostScores_1aba46f8201d677acc8b6f1ae2c0bc1e7a)`()` <a id="structFRHAPI__PexHostScores_1aba46f8201d677acc8b6f1ae2c0bc1e7a"></a>
 
 Returns a pointer to OutPacketLossScore_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetOutPacketLossScoreOrNull`](#structFRHAPI__PexHostScores_1af35433309142c40369e0bd1ae82143f1)`() const` <a id="structFRHAPI__PexHostScores_1af35433309142c40369e0bd1ae82143f1"></a>
+#### `public inline const bool * `[`GetOutPacketLossScoreOrNull`](#structFRHAPI__PexHostScores_1ac9f113f3ea43e0d970e4071227728ea7)`() const` <a id="structFRHAPI__PexHostScores_1ac9f113f3ea43e0d970e4071227728ea7"></a>
 
 Returns a pointer to OutPacketLossScore_Optional, if it has been set, otherwise returns nullptr.
 
@@ -1340,15 +1340,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether OutPacketLossScore_Optional is set to null.
 
-#### `public inline bool & `[`GetTotalDisconnectsScore`](#structFRHAPI__PexHostScores_1a6d38e90b54f97430d763230f2d5877d8)`()` <a id="structFRHAPI__PexHostScores_1a6d38e90b54f97430d763230f2d5877d8"></a>
+#### `public inline bool & `[`GetTotalDisconnectsScore`](#structFRHAPI__PexHostScores_1a2f9d80f7aed2bf5da90eb027862ff1c5)`()` <a id="structFRHAPI__PexHostScores_1a2f9d80f7aed2bf5da90eb027862ff1c5"></a>
 
 Gets the value of TotalDisconnectsScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetTotalDisconnectsScore`](#structFRHAPI__PexHostScores_1af9dda352a841a2fc37a58e1bed96996b)`() const` <a id="structFRHAPI__PexHostScores_1af9dda352a841a2fc37a58e1bed96996b"></a>
+#### `public inline const bool & `[`GetTotalDisconnectsScore`](#structFRHAPI__PexHostScores_1ab8840ba36975cb35833054d88e9233a1)`() const` <a id="structFRHAPI__PexHostScores_1ab8840ba36975cb35833054d88e9233a1"></a>
 
 Gets the value of TotalDisconnectsScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetTotalDisconnectsScore`](#structFRHAPI__PexHostScores_1a7de978be8e1a4d02397d515b779b3f3d)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1a7de978be8e1a4d02397d515b779b3f3d"></a>
+#### `public inline const bool & `[`GetTotalDisconnectsScore`](#structFRHAPI__PexHostScores_1ac5e935ea5a8e161ad0af11df0ae79516)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1ac5e935ea5a8e161ad0af11df0ae79516"></a>
 
 Gets the value of TotalDisconnectsScore_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -1356,11 +1356,11 @@ Gets the value of TotalDisconnectsScore_Optional, if it has been set, otherwise 
 
 Fills OutValue with the value of TotalDisconnectsScore_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetTotalDisconnectsScoreOrNull`](#structFRHAPI__PexHostScores_1a3b537c4aad424d80d3389dee6393b3ad)`()` <a id="structFRHAPI__PexHostScores_1a3b537c4aad424d80d3389dee6393b3ad"></a>
+#### `public inline bool * `[`GetTotalDisconnectsScoreOrNull`](#structFRHAPI__PexHostScores_1ab1b2ee4ded2d9061a78bae29047d6afb)`()` <a id="structFRHAPI__PexHostScores_1ab1b2ee4ded2d9061a78bae29047d6afb"></a>
 
 Returns a pointer to TotalDisconnectsScore_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetTotalDisconnectsScoreOrNull`](#structFRHAPI__PexHostScores_1a59b9f80dae280a3878576b2c9390f59f)`() const` <a id="structFRHAPI__PexHostScores_1a59b9f80dae280a3878576b2c9390f59f"></a>
+#### `public inline const bool * `[`GetTotalDisconnectsScoreOrNull`](#structFRHAPI__PexHostScores_1a81456be5a5d3dc4b03e4f345452060d5)`() const` <a id="structFRHAPI__PexHostScores_1a81456be5a5d3dc4b03e4f345452060d5"></a>
 
 Returns a pointer to TotalDisconnectsScore_Optional, if it has been set, otherwise returns nullptr.
 
@@ -1396,15 +1396,15 @@ Sets the value explicitly to be treated as null.
 
 Checks whether TotalDisconnectsScore_Optional is set to null.
 
-#### `public inline bool & `[`GetTotalUniquePlayersScore`](#structFRHAPI__PexHostScores_1a2038c3c3e53af24639eac0fb40fc3056)`()` <a id="structFRHAPI__PexHostScores_1a2038c3c3e53af24639eac0fb40fc3056"></a>
+#### `public inline bool & `[`GetTotalUniquePlayersScore`](#structFRHAPI__PexHostScores_1a778c4ea96e2fced238d4ff24ac4bf177)`()` <a id="structFRHAPI__PexHostScores_1a778c4ea96e2fced238d4ff24ac4bf177"></a>
 
 Gets the value of TotalUniquePlayersScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetTotalUniquePlayersScore`](#structFRHAPI__PexHostScores_1acf12737454cf816e03056ea6e410a6f6)`() const` <a id="structFRHAPI__PexHostScores_1acf12737454cf816e03056ea6e410a6f6"></a>
+#### `public inline const bool & `[`GetTotalUniquePlayersScore`](#structFRHAPI__PexHostScores_1aff3807fe556fbb5fc5620e1e57e75aa1)`() const` <a id="structFRHAPI__PexHostScores_1aff3807fe556fbb5fc5620e1e57e75aa1"></a>
 
 Gets the value of TotalUniquePlayersScore_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetTotalUniquePlayersScore`](#structFRHAPI__PexHostScores_1a0ea1e32b1c632107d3cf010025739572)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1a0ea1e32b1c632107d3cf010025739572"></a>
+#### `public inline const bool & `[`GetTotalUniquePlayersScore`](#structFRHAPI__PexHostScores_1a18c768e1ddf1b02b30421540dc122499)`(const bool & DefaultValue) const` <a id="structFRHAPI__PexHostScores_1a18c768e1ddf1b02b30421540dc122499"></a>
 
 Gets the value of TotalUniquePlayersScore_Optional, if it has been set, otherwise it returns DefaultValue.
 
@@ -1412,11 +1412,11 @@ Gets the value of TotalUniquePlayersScore_Optional, if it has been set, otherwis
 
 Fills OutValue with the value of TotalUniquePlayersScore_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetTotalUniquePlayersScoreOrNull`](#structFRHAPI__PexHostScores_1a0264c3f8db778821df5d4ec98fc89126)`()` <a id="structFRHAPI__PexHostScores_1a0264c3f8db778821df5d4ec98fc89126"></a>
+#### `public inline bool * `[`GetTotalUniquePlayersScoreOrNull`](#structFRHAPI__PexHostScores_1a20c5296269db0248fcad2f8090e9368b)`()` <a id="structFRHAPI__PexHostScores_1a20c5296269db0248fcad2f8090e9368b"></a>
 
 Returns a pointer to TotalUniquePlayersScore_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetTotalUniquePlayersScoreOrNull`](#structFRHAPI__PexHostScores_1a8425bb2b9287a1c728dc0a53647c2775)`() const` <a id="structFRHAPI__PexHostScores_1a8425bb2b9287a1c728dc0a53647c2775"></a>
+#### `public inline const bool * `[`GetTotalUniquePlayersScoreOrNull`](#structFRHAPI__PexHostScores_1a5658fb5761f5ea4b608f3c6c150511a1)`() const` <a id="structFRHAPI__PexHostScores_1a5658fb5761f5ea4b608f3c6c150511a1"></a>
 
 Returns a pointer to TotalUniquePlayersScore_Optional, if it has been set, otherwise returns nullptr.
 

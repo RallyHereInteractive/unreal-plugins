@@ -23,9 +23,9 @@ List of Key Claims available to the player.
 --------------------------------|---------------------------------------------
 `public TArray< `[`FRHAPI_KeyClaim`](RHAPI_KeyClaim.md#structFRHAPI__KeyClaim)` > `[`Claims`](#structFRHAPI__KeyClaims_1adebd7612d1a529f391a1d643b58be263) | List of Key Claims available to the Player.
 `public virtual bool `[`FromJson`](#structFRHAPI__KeyClaims_1a415bb77e5a63d0522e4ba3f75228c21f)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
-`public virtual void `[`WriteJson`](#structFRHAPI__KeyClaims_1a2e1d99c5ef3f15ca8d99bca608ad9221)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline TArray< `[`FRHAPI_KeyClaim`](RHAPI_KeyClaim.md#structFRHAPI__KeyClaim)` > & `[`GetClaims`](#structFRHAPI__KeyClaims_1a238768f96e700f779de67374bc77da86)`()` | Gets the value of Claims.
-`public inline const TArray< `[`FRHAPI_KeyClaim`](RHAPI_KeyClaim.md#structFRHAPI__KeyClaim)` > & `[`GetClaims`](#structFRHAPI__KeyClaims_1a54c92646bf5dd2ec2db58a29cafc1a49)`() const` | Gets the value of Claims.
+`public virtual void `[`WriteJson`](#structFRHAPI__KeyClaims_1a4e625726fc987776b1d794298584d390)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline TArray< `[`FRHAPI_KeyClaim`](RHAPI_KeyClaim.md#structFRHAPI__KeyClaim)` > & `[`GetClaims`](#structFRHAPI__KeyClaims_1ab94468b95f59454e40bb8eb78a65bf7e)`()` | Gets the value of Claims.
+`public inline const TArray< `[`FRHAPI_KeyClaim`](RHAPI_KeyClaim.md#structFRHAPI__KeyClaim)` > & `[`GetClaims`](#structFRHAPI__KeyClaims_1abaee8dce32e5f083b7c01b52927df71b)`() const` | Gets the value of Claims.
 `public inline void `[`SetClaims`](#structFRHAPI__KeyClaims_1a650a9f6b6c55d1374be035fff8c71a08)`(const TArray< `[`FRHAPI_KeyClaim`](RHAPI_KeyClaim.md#structFRHAPI__KeyClaim)` > & NewValue)` | Sets the value of Claims.
 `public inline void `[`SetClaims`](#structFRHAPI__KeyClaims_1a344b62ed098251c4036b106236a0c273)`(TArray< `[`FRHAPI_KeyClaim`](RHAPI_KeyClaim.md#structFRHAPI__KeyClaim)` > && NewValue)` | Sets the value of Claims using move semantics.
 
@@ -45,18 +45,18 @@ Fills this object with data from the passed in JSON.
 #### Returns
 true if parsing of the JSON data was successful.
 
-#### `public virtual void `[`WriteJson`](#structFRHAPI__KeyClaims_1a2e1d99c5ef3f15ca8d99bca608ad9221)`(TSharedRef< TJsonWriter<>> & Writer) const` <a id="structFRHAPI__KeyClaims_1a2e1d99c5ef3f15ca8d99bca608ad9221"></a>
+#### `public virtual void `[`WriteJson`](#structFRHAPI__KeyClaims_1a4e625726fc987776b1d794298584d390)`(TSharedRef< TJsonWriter<> > & Writer) const` <a id="structFRHAPI__KeyClaims_1a4e625726fc987776b1d794298584d390"></a>
 
 Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline TArray< `[`FRHAPI_KeyClaim`](RHAPI_KeyClaim.md#structFRHAPI__KeyClaim)` > & `[`GetClaims`](#structFRHAPI__KeyClaims_1a238768f96e700f779de67374bc77da86)`()` <a id="structFRHAPI__KeyClaims_1a238768f96e700f779de67374bc77da86"></a>
+#### `public inline TArray< `[`FRHAPI_KeyClaim`](RHAPI_KeyClaim.md#structFRHAPI__KeyClaim)` > & `[`GetClaims`](#structFRHAPI__KeyClaims_1ab94468b95f59454e40bb8eb78a65bf7e)`()` <a id="structFRHAPI__KeyClaims_1ab94468b95f59454e40bb8eb78a65bf7e"></a>
 
 Gets the value of Claims.
 
-#### `public inline const TArray< `[`FRHAPI_KeyClaim`](RHAPI_KeyClaim.md#structFRHAPI__KeyClaim)` > & `[`GetClaims`](#structFRHAPI__KeyClaims_1a54c92646bf5dd2ec2db58a29cafc1a49)`() const` <a id="structFRHAPI__KeyClaims_1a54c92646bf5dd2ec2db58a29cafc1a49"></a>
+#### `public inline const TArray< `[`FRHAPI_KeyClaim`](RHAPI_KeyClaim.md#structFRHAPI__KeyClaim)` > & `[`GetClaims`](#structFRHAPI__KeyClaims_1abaee8dce32e5f083b7c01b52927df71b)`() const` <a id="structFRHAPI__KeyClaims_1abaee8dce32e5f083b7c01b52927df71b"></a>
 
 Gets the value of Claims.
 

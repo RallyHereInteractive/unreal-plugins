@@ -26,22 +26,22 @@ Class to handle executing and tracking low-level Http Web Requests.
 `public  `[`FRH_WebRequests`](#classFRH__WebRequests_1a6bd3f313618ea335e953e4ae73f2451e)`()` | 
 `public void `[`Initialize`](#classFRH__WebRequests_1aa8eac9764a88b64c29ccb7cb51c4d622)`(RallyHereAPI::FRallyHereAPIAll * InAPIs)` | Initialize the Web Request system.
 `public void `[`Uninitialize`](#classFRH__WebRequests_1a382793a98b70e46a8c91d68e916eec79)`()` | Safely tears down the Web Request system.
-`public const TDoubleLinkedList< TSharedPtr< `[`FRH_WebRequest`](WebRequest.md#structFRH__WebRequest)` > > & `[`GetTrackedRequests`](#classFRH__WebRequests_1a1007d0f3a728a313542c0102429fa025)`() const` | Gets all of the requests that have been tracked.
-`public const `[`FRH_WebRequest`](WebRequest.md#structFRH__WebRequest)` * `[`GetTrackedRequestById`](#classFRH__WebRequests_1a7e6cd0b2db53bb9a2f5ac674d024e18a)`(const FGuid & id) const` | Gets a specific request that has been tracked.
+`public const TDoubleLinkedList< TSharedPtr< `[`FRH_WebRequest`](WebRequest.md#structFRH__WebRequest)` > > & `[`GetTrackedRequests`](#classFRH__WebRequests_1a151a0ec83e69a931e97de9f9abb99563)`() const` | Gets all of the requests that have been tracked.
+`public const `[`FRH_WebRequest`](WebRequest.md#structFRH__WebRequest)` * `[`GetTrackedRequestById`](#classFRH__WebRequests_1a87b9f4974ac571391bb23b48174b68b2)`(const FGuid & id) const` | Gets a specific request that has been tracked.
 `public inline void `[`ClearTrackedRequests`](#classFRH__WebRequests_1a74effd6ec52cc0277dfbf74280d0b70e)`()` | Clears all tracked requests out.
-`public const TArray< FName > `[`GetAPINames`](#classFRH__WebRequests_1a445f4f1da7eed1b0f83d72e01b6b19ff)`() const` | Gets the list of all APIs able to be tracked.
+`public const TArray< FName > `[`GetAPINames`](#classFRH__WebRequests_1a73376cebeebaef767ad2743f7df9f2e6)`() const` | Gets the list of all APIs able to be tracked.
 `public bool `[`GetLogAllWebRequests`](#classFRH__WebRequests_1ae17e6a97581a4e03b1342f792c5e90ed)`() const` | Gets if we are currently logging web requests from all APIs.
 `public void `[`SetLogAllWebRequests`](#classFRH__WebRequests_1a938ee62e398c42ffab1b1bf02b809530)`(bool bValue)` | Sets logging web requests for all APIs.
 `public FString `[`FormatWebRequestToJsonBlob`](#classFRH__WebRequests_1aa04c3d05ffaabb74d76bffe6ea96dac5)`(const `[`FRH_WebRequest`](WebRequest.md#structFRH__WebRequest)` & request) const` | Converts a Web Request to a string in JSON format.
-`public TSharedPtr< FJsonObject > `[`LogTrackedWebRequestsToJSON`](#classFRH__WebRequests_1ab749e824dbdfe71df5263f06eac89967)`() const` | Logs all tracked request to a specified file.
+`public TSharedPtr< FJsonObject > `[`LogTrackedWebRequestsToJSON`](#classFRH__WebRequests_1a607bebd446f568f5a02bf9b655db47a5)`() const` | Logs all tracked request to a specified file.
 `public inline FORCEINLINE bool `[`GetLogWebRequests`](#classFRH__WebRequests_1a4754abff6242738e32ed65763be2b104)`(const FName & APIName) const` | Gets if a specific API is being logged currently.
 `public inline FORCEINLINE void `[`SetLogWebRequests`](#classFRH__WebRequests_1a400485994e0446ffdb240543cc829116)`(const FName & APIName,bool bValue)` | Sets logging for a specific API.
 `public inline FORCEINLINE bool `[`GetIsRetainingWebRequests`](#classFRH__WebRequests_1a7f81dfc689eead12123790431fd76b34)`() const` | Get whether web requests should be cached indefinitely or cleared after reaching the cache limit.
 `public inline FORCEINLINE void `[`SetIsRetainingWebRequests`](#classFRH__WebRequests_1af312673a93b7b16cf1661606237837ee)`(bool bValue)` | Set whether web requests should be cached indefinitely or cleared after reaching the cache limit.
-`public inline const TMap< FName, int32 > `[`GetAPINameToCallCountMap`](#classFRH__WebRequests_1abcb430aac4da7a8b12fc4e3d4a4735fa)`() const` | Get the map that tracks all-time call count for each API.
-`public inline const TMap< FName, int32 > `[`GetSimplifiedPathToCallCountMap`](#classFRH__WebRequests_1aed90013183d6a6ec2b05d621a2f3a9b3)`() const` | Get the map that tracks all-time call count for each generic URL.
+`public inline const TMap< FName, int32 > `[`GetAPINameToCallCountMap`](#classFRH__WebRequests_1a602ea95637973c6ae9b2383c293b5d73)`() const` | Get the map that tracks all-time call count for each API.
+`public inline const TMap< FName, int32 > `[`GetSimplifiedPathToCallCountMap`](#classFRH__WebRequests_1a6d4c1548f95bbbdab829256dd60cf480)`() const` | Get the map that tracks all-time call count for each generic URL.
 `public void `[`GetRecentCallCountMaps`](#classFRH__WebRequests_1ab93ed7476bba71269269d3d364189f86)`(TMap< FName, int32 > * OutAPIRecentCallCountMap,TMap< FName, int32 > * OutURLRecentCallCountMap) const` | Get the maps that track call counts in the last 60s.
-`public void `[`DetectRecentBursts`](#classFRH__WebRequests_1a64e8ecf52cf4760ab79f033ba0ef66e0)`(TMap< FName, TTuple< int32, int32 >> * OutBurstMapByAPIName,TMap< FName, TTuple< int32, int32 >> * OutBurstMapByURL) const` | Detects bursts in recent call counts (last 60s). The time and count thresholds for burst detection are specified by BurstCountThreshold and BurstTimeThreshold.
+`public void `[`DetectRecentBursts`](#classFRH__WebRequests_1af3083da4f31ef0f05327ed4493590f7d)`(TMap< FName, TTuple< int32, int32 > > * OutBurstMapByAPIName,TMap< FName, TTuple< int32, int32 > > * OutBurstMapByURL) const` | Detects bursts in recent call counts (last 60s). The time and count thresholds for burst detection are specified by BurstCountThreshold and BurstTimeThreshold.
 
 ### Members
 
@@ -58,11 +58,11 @@ Initialize the Web Request system.
 
 Safely tears down the Web Request system.
 
-#### `public const TDoubleLinkedList< TSharedPtr< `[`FRH_WebRequest`](WebRequest.md#structFRH__WebRequest)` > > & `[`GetTrackedRequests`](#classFRH__WebRequests_1a1007d0f3a728a313542c0102429fa025)`() const` <a id="classFRH__WebRequests_1a1007d0f3a728a313542c0102429fa025"></a>
+#### `public const TDoubleLinkedList< TSharedPtr< `[`FRH_WebRequest`](WebRequest.md#structFRH__WebRequest)` > > & `[`GetTrackedRequests`](#classFRH__WebRequests_1a151a0ec83e69a931e97de9f9abb99563)`() const` <a id="classFRH__WebRequests_1a151a0ec83e69a931e97de9f9abb99563"></a>
 
 Gets all of the requests that have been tracked.
 
-#### `public const `[`FRH_WebRequest`](WebRequest.md#structFRH__WebRequest)` * `[`GetTrackedRequestById`](#classFRH__WebRequests_1a7e6cd0b2db53bb9a2f5ac674d024e18a)`(const FGuid & id) const` <a id="classFRH__WebRequests_1a7e6cd0b2db53bb9a2f5ac674d024e18a"></a>
+#### `public const `[`FRH_WebRequest`](WebRequest.md#structFRH__WebRequest)` * `[`GetTrackedRequestById`](#classFRH__WebRequests_1a87b9f4974ac571391bb23b48174b68b2)`(const FGuid & id) const` <a id="classFRH__WebRequests_1a87b9f4974ac571391bb23b48174b68b2"></a>
 
 Gets a specific request that has been tracked.
 
@@ -73,7 +73,7 @@ Gets a specific request that has been tracked.
 
 Clears all tracked requests out.
 
-#### `public const TArray< FName > `[`GetAPINames`](#classFRH__WebRequests_1a445f4f1da7eed1b0f83d72e01b6b19ff)`() const` <a id="classFRH__WebRequests_1a445f4f1da7eed1b0f83d72e01b6b19ff"></a>
+#### `public const TArray< FName > `[`GetAPINames`](#classFRH__WebRequests_1a73376cebeebaef767ad2743f7df9f2e6)`() const` <a id="classFRH__WebRequests_1a73376cebeebaef767ad2743f7df9f2e6"></a>
 
 Gets the list of all APIs able to be tracked.
 
@@ -98,7 +98,7 @@ Converts a Web Request to a string in JSON format.
 #### Returns
 String of the request in JSON format.
 
-#### `public TSharedPtr< FJsonObject > `[`LogTrackedWebRequestsToJSON`](#classFRH__WebRequests_1ab749e824dbdfe71df5263f06eac89967)`() const` <a id="classFRH__WebRequests_1ab749e824dbdfe71df5263f06eac89967"></a>
+#### `public TSharedPtr< FJsonObject > `[`LogTrackedWebRequestsToJSON`](#classFRH__WebRequests_1a607bebd446f568f5a02bf9b655db47a5)`() const` <a id="classFRH__WebRequests_1a607bebd446f568f5a02bf9b655db47a5"></a>
 
 Logs all tracked request to a specified file.
 
@@ -135,11 +135,11 @@ Set whether web requests should be cached indefinitely or cleared after reaching
 #### Parameters
 * `bValue` if true, requests are retained, if not, they are cleared upon reaching the cache limit.
 
-#### `public inline const TMap< FName, int32 > `[`GetAPINameToCallCountMap`](#classFRH__WebRequests_1abcb430aac4da7a8b12fc4e3d4a4735fa)`() const` <a id="classFRH__WebRequests_1abcb430aac4da7a8b12fc4e3d4a4735fa"></a>
+#### `public inline const TMap< FName, int32 > `[`GetAPINameToCallCountMap`](#classFRH__WebRequests_1a602ea95637973c6ae9b2383c293b5d73)`() const` <a id="classFRH__WebRequests_1a602ea95637973c6ae9b2383c293b5d73"></a>
 
 Get the map that tracks all-time call count for each API.
 
-#### `public inline const TMap< FName, int32 > `[`GetSimplifiedPathToCallCountMap`](#classFRH__WebRequests_1aed90013183d6a6ec2b05d621a2f3a9b3)`() const` <a id="classFRH__WebRequests_1aed90013183d6a6ec2b05d621a2f3a9b3"></a>
+#### `public inline const TMap< FName, int32 > `[`GetSimplifiedPathToCallCountMap`](#classFRH__WebRequests_1a6d4c1548f95bbbdab829256dd60cf480)`() const` <a id="classFRH__WebRequests_1a6d4c1548f95bbbdab829256dd60cf480"></a>
 
 Get the map that tracks all-time call count for each generic URL.
 
@@ -152,7 +152,7 @@ Get the maps that track call counts in the last 60s.
 
 * `OutURLRecentCallCountMap` Pointer to output call count map by Simplified Paths
 
-#### `public void `[`DetectRecentBursts`](#classFRH__WebRequests_1a64e8ecf52cf4760ab79f033ba0ef66e0)`(TMap< FName, TTuple< int32, int32 >> * OutBurstMapByAPIName,TMap< FName, TTuple< int32, int32 >> * OutBurstMapByURL) const` <a id="classFRH__WebRequests_1a64e8ecf52cf4760ab79f033ba0ef66e0"></a>
+#### `public void `[`DetectRecentBursts`](#classFRH__WebRequests_1af3083da4f31ef0f05327ed4493590f7d)`(TMap< FName, TTuple< int32, int32 > > * OutBurstMapByAPIName,TMap< FName, TTuple< int32, int32 > > * OutBurstMapByURL) const` <a id="classFRH__WebRequests_1af3083da4f31ef0f05327ed4493590f7d"></a>
 
 Detects bursts in recent call counts (last 60s). The time and count thresholds for burst detection are specified by BurstCountThreshold and BurstTimeThreshold.
 
