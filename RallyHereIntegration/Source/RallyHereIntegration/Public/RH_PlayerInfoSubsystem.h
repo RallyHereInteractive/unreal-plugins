@@ -192,6 +192,17 @@ public:
 	void BLUEPRINT_RequestUpdate(bool bForceUpdate, const FRH_OnRequestPlayerInfoSubobjectDynamicDelegate& Delegate) { RequestUpdate(bForceUpdate, Delegate); }
 
 	/**
+	* @brief Enqueues an update request for the players information from the RallyHere API.
+	* @param [in] StaleThreshold If set, will force a re-request of the players information if the last updated time was more than the threshold.
+	* @param [in] bForceRefresh If true, will force a re-request of the players information.
+	* @param [in] Delegate Callback delegate for the request.
+	*/
+	virtual void RequestUpdateIfStale(const FTimespan& StaleThreshold = FTimespan(), bool bForceRefresh = false, const FRH_OnRequestPlayerInfoSubobjectDelegateBlock& Delegate = FRH_OnRequestPlayerInfoSubobjectDelegateBlock());
+	/** @private */
+	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Presence", meta = (DisplayName = "Get Presence Async", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_RequestUpdateIfStale(const FTimespan& StaleThreshold, bool bForceRefresh, const FRH_OnRequestPlayerInfoSubobjectDynamicDelegate& Delegate) { RequestUpdateIfStale(StaleThreshold, bForceRefresh, Delegate); }
+	
+	/**
 	* @brief Updates the poll status to be active or inactive based on if it should currently be polling.
 	* @param [in] bForceUpdate If true, immediately requests an update rather than waiting for the next poll time. WARNING: Use this sparingly
 	*/
