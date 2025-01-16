@@ -29,6 +29,9 @@ void FRHAPI_InventoryRecord::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (LegacyInventoryId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("legacy_inventory_id"));
+		if (LegacyInventoryId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, LegacyInventoryId_Optional);
 	}
 	if (Bucket_IsSet)
@@ -43,11 +46,17 @@ void FRHAPI_InventoryRecord::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (Expires_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("expires"));
+		if (Expires_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, Expires_Optional);
 	}
 	if (CustomData_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("custom_data"));
+		if (CustomData_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
 	}
 	Writer->WriteObjectEnd();
@@ -70,7 +79,8 @@ bool FRHAPI_InventoryRecord::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonLegacyInventoryIdField = (*Object)->TryGetField(TEXT("legacy_inventory_id"));
 	if (JsonLegacyInventoryIdField.IsValid())
 	{
-		LegacyInventoryId_IsSet = TryGetJsonValue(JsonLegacyInventoryIdField, LegacyInventoryId_Optional);
+		LegacyInventoryId_IsNull = JsonLegacyInventoryIdField->IsNull();
+		LegacyInventoryId_IsSet = LegacyInventoryId_IsNull || TryGetJsonValue(JsonLegacyInventoryIdField, LegacyInventoryId_Optional);
 		ParseSuccess &= LegacyInventoryId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonBucketField = (*Object)->TryGetField(TEXT("bucket"));
@@ -88,13 +98,15 @@ bool FRHAPI_InventoryRecord::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonExpiresField = (*Object)->TryGetField(TEXT("expires"));
 	if (JsonExpiresField.IsValid())
 	{
-		Expires_IsSet = TryGetJsonValue(JsonExpiresField, Expires_Optional);
+		Expires_IsNull = JsonExpiresField->IsNull();
+		Expires_IsSet = Expires_IsNull || TryGetJsonValue(JsonExpiresField, Expires_Optional);
 		ParseSuccess &= Expires_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
 	if (JsonCustomDataField.IsValid())
 	{
-		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
+		CustomData_IsNull = JsonCustomDataField->IsNull();
+		CustomData_IsSet = CustomData_IsNull || TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;
 	}
 

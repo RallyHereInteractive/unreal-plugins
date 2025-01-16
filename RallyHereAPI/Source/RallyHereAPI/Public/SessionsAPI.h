@@ -282,17 +282,17 @@ struct RALLYHEREAPI_API FResponse_AddPlatformSessionToRallyHereSession : public 
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-	/* Response 409
-	Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
-	*/
-	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
-	/* Number of seconds after which to retry the request */
-	TOptional<int32> GetHeader409_RetryAfter() const;
-
 	/* Response 422
 	Validation Error
 	*/
 	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+	/* Response 503
+	Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
+	*/
+	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Number of seconds after which to retry the request */
+	TOptional<int32> GetHeader503_RetryAfter() const;
 
 };
 
@@ -1170,17 +1170,17 @@ struct RALLYHEREAPI_API FResponse_DeletePlatformSessionFromRallyHereSession : pu
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-	/* Response 409
-	Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
-	*/
-	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
-	/* Number of seconds after which to retry the request */
-	TOptional<int32> GetHeader409_RetryAfter() const;
-
 	/* Response 422
 	Validation Error
 	*/
 	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+	/* Response 503
+	Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
+	*/
+	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Number of seconds after which to retry the request */
+	TOptional<int32> GetHeader503_RetryAfter() const;
 
 };
 
@@ -5321,17 +5321,17 @@ struct RALLYHEREAPI_API FResponse_JoinSessionByPlatformSessionByUuid : public FR
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-	/* Response 409
-	Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
-	*/
-	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
-	/* Number of seconds after which to retry the request */
-	TOptional<int32> GetHeader409_RetryAfter() const;
-
 	/* Response 422
 	Validation Error
 	*/
 	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+	/* Response 503
+	Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
+	*/
+	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Number of seconds after which to retry the request */
+	TOptional<int32> GetHeader503_RetryAfter() const;
 
 };
 
@@ -5461,17 +5461,17 @@ struct RALLYHEREAPI_API FResponse_JoinSessionByPlatformSessionIdSelf : public FR
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-	/* Response 409
-	Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
-	*/
-	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
-	/* Number of seconds after which to retry the request */
-	TOptional<int32> GetHeader409_RetryAfter() const;
-
 	/* Response 422
 	Validation Error
 	*/
 	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+	/* Response 503
+	Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
+	*/
+	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Number of seconds after which to retry the request */
+	TOptional<int32> GetHeader503_RetryAfter() const;
 
 };
 
@@ -6241,17 +6241,17 @@ struct RALLYHEREAPI_API FResponse_LeaveSessionByPlatformSessionByUuid : public F
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-	/* Response 409
-	Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
-	*/
-	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
-	/* Number of seconds after which to retry the request */
-	TOptional<int32> GetHeader409_RetryAfter() const;
-
 	/* Response 422
 	Validation Error
 	*/
 	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+	/* Response 503
+	Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
+	*/
+	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Number of seconds after which to retry the request */
+	TOptional<int32> GetHeader503_RetryAfter() const;
 
 };
 
@@ -6352,17 +6352,17 @@ struct RALLYHEREAPI_API FResponse_LeaveSessionByPlatformSessionSelf : public FRe
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
-	/* Response 409
-	Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
-	*/
-	bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
-	/* Number of seconds after which to retry the request */
-	TOptional<int32> GetHeader409_RetryAfter() const;
-
 	/* Response 422
 	Validation Error
 	*/
 	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+	/* Response 503
+	Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
+	*/
+	bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+	/* Number of seconds after which to retry the request */
+	TOptional<int32> GetHeader503_RetryAfter() const;
 
 };
 

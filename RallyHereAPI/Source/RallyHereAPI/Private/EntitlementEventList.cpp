@@ -27,6 +27,9 @@ void FRHAPI_EntitlementEventList::WriteJson(TSharedRef<TJsonWriter<>>& Writer) c
 	if (Cursor_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("cursor"));
+		if (Cursor_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, Cursor_Optional);
 	}
 	Writer->WriteObjectEnd();
@@ -46,7 +49,8 @@ bool FRHAPI_EntitlementEventList::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 	const TSharedPtr<FJsonValue> JsonCursorField = (*Object)->TryGetField(TEXT("cursor"));
 	if (JsonCursorField.IsValid())
 	{
-		Cursor_IsSet = TryGetJsonValue(JsonCursorField, Cursor_Optional);
+		Cursor_IsNull = JsonCursorField->IsNull();
+		Cursor_IsSet = Cursor_IsNull || TryGetJsonValue(JsonCursorField, Cursor_Optional);
 		ParseSuccess &= Cursor_IsSet;
 	}
 

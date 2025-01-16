@@ -51,7 +51,6 @@ struct RALLYHEREAPI_API FRequest_GetPlayerPresencePublicById : public FRequest
 	TSharedPtr<FAuthContext> AuthContext;
 	/* A valid integer identifying a player. Rejects UUID player identification. */
 	int32 PlayerId = 0;
-	TOptional<bool> UseCache;
 	/* If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed. */
 	TOptional<FString> IfNoneMatch;
 };
@@ -180,7 +179,6 @@ struct RALLYHEREAPI_API FRequest_GetPlayerPresencePublicByUuid : public FRequest
 	TSharedPtr<FAuthContext> AuthContext;
 	/* A valid UUID identifying a player. Rejects integer player identification. */
 	FGuid PlayerUuid;
-	TOptional<bool> UseCache;
 	/* If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed. */
 	TOptional<FString> IfNoneMatch;
 };
@@ -306,13 +304,12 @@ struct RALLYHEREAPI_API FRequest_GetPlayerPresenceSelf : public FRequest
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	TOptional<bool> UseCache;
 };
 
 /** The response type for FRequest_GetPlayerPresenceSelf */
-struct RALLYHEREAPI_API FResponse_GetPlayerPresenceSelf : public FResponseAccessorTemplate<FRHAPI_PlayerPresence, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_GetPlayerPresenceSelf : public FResponseAccessorTemplate<FRHAPI_PlayerPresence, FRHAPI_HzApiErrorModel>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PlayerPresence, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerPresence, FRHAPI_HzApiErrorModel> Super;
 
 	FResponse_GetPlayerPresenceSelf(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetPlayerPresenceSelf() = default;
@@ -366,11 +363,6 @@ struct RALLYHEREAPI_API FResponse_GetPlayerPresenceSelf : public FResponseAccess
 	Forbidden
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
@@ -515,7 +507,6 @@ struct RALLYHEREAPI_API FRequest_UpdatePlayerPresenceSelf : public FRequest
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FRHAPI_PlayerPresenceUpdateSelf PlayerPresenceUpdateSelf;
-	TOptional<bool> UseCache;
 };
 
 /** The response type for FRequest_UpdatePlayerPresenceSelf */

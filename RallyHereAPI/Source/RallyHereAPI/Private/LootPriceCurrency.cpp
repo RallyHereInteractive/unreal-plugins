@@ -27,6 +27,9 @@ void FRHAPI_LootPriceCurrency::WriteJson(TSharedRef<TJsonWriter<>>& Writer) cons
 	if (PriceLegacyItemId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("price_legacy_item_id"));
+		if (PriceLegacyItemId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, PriceLegacyItemId_Optional);
 	}
 	Writer->WriteIdentifierPrefix(TEXT("current_price"));
@@ -34,6 +37,9 @@ void FRHAPI_LootPriceCurrency::WriteJson(TSharedRef<TJsonWriter<>>& Writer) cons
 	if (OriginalPrice_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("original_price"));
+		if (OriginalPrice_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, OriginalPrice_Optional);
 	}
 	Writer->WriteObjectEnd();
@@ -53,7 +59,8 @@ bool FRHAPI_LootPriceCurrency::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonPriceLegacyItemIdField = (*Object)->TryGetField(TEXT("price_legacy_item_id"));
 	if (JsonPriceLegacyItemIdField.IsValid())
 	{
-		PriceLegacyItemId_IsSet = TryGetJsonValue(JsonPriceLegacyItemIdField, PriceLegacyItemId_Optional);
+		PriceLegacyItemId_IsNull = JsonPriceLegacyItemIdField->IsNull();
+		PriceLegacyItemId_IsSet = PriceLegacyItemId_IsNull || TryGetJsonValue(JsonPriceLegacyItemIdField, PriceLegacyItemId_Optional);
 		ParseSuccess &= PriceLegacyItemId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCurrentPriceField = (*Object)->TryGetField(TEXT("current_price"));
@@ -62,7 +69,8 @@ bool FRHAPI_LootPriceCurrency::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonOriginalPriceField = (*Object)->TryGetField(TEXT("original_price"));
 	if (JsonOriginalPriceField.IsValid())
 	{
-		OriginalPrice_IsSet = TryGetJsonValue(JsonOriginalPriceField, OriginalPrice_Optional);
+		OriginalPrice_IsNull = JsonOriginalPriceField->IsNull();
+		OriginalPrice_IsSet = OriginalPrice_IsNull || TryGetJsonValue(JsonOriginalPriceField, OriginalPrice_Optional);
 		ParseSuccess &= OriginalPrice_IsSet;
 	}
 

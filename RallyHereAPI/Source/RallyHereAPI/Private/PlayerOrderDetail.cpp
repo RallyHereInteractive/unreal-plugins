@@ -27,16 +27,25 @@ void FRHAPI_PlayerOrderDetail::WriteJson(TSharedRef<TJsonWriter<>>& Writer) cons
 	if (LootId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("loot_id"));
+		if (LootId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, LootId_Optional);
 	}
 	if (InvChange_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("inv_change"));
+		if (InvChange_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, InvChange_Optional);
 	}
 	if (Order_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("order"));
+		if (Order_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, Order_Optional);
 	}
 	Writer->WriteObjectEnd();
@@ -56,19 +65,22 @@ bool FRHAPI_PlayerOrderDetail::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonLootIdField = (*Object)->TryGetField(TEXT("loot_id"));
 	if (JsonLootIdField.IsValid())
 	{
-		LootId_IsSet = TryGetJsonValue(JsonLootIdField, LootId_Optional);
+		LootId_IsNull = JsonLootIdField->IsNull();
+		LootId_IsSet = LootId_IsNull || TryGetJsonValue(JsonLootIdField, LootId_Optional);
 		ParseSuccess &= LootId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonInvChangeField = (*Object)->TryGetField(TEXT("inv_change"));
 	if (JsonInvChangeField.IsValid())
 	{
-		InvChange_IsSet = TryGetJsonValue(JsonInvChangeField, InvChange_Optional);
+		InvChange_IsNull = JsonInvChangeField->IsNull();
+		InvChange_IsSet = InvChange_IsNull || TryGetJsonValue(JsonInvChangeField, InvChange_Optional);
 		ParseSuccess &= InvChange_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonOrderField = (*Object)->TryGetField(TEXT("order"));
 	if (JsonOrderField.IsValid())
 	{
-		Order_IsSet = TryGetJsonValue(JsonOrderField, Order_Optional);
+		Order_IsNull = JsonOrderField->IsNull();
+		Order_IsSet = Order_IsNull || TryGetJsonValue(JsonOrderField, Order_Optional);
 		ParseSuccess &= Order_IsSet;
 	}
 

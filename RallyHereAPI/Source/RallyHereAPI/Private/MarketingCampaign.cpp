@@ -29,6 +29,9 @@ void FRHAPI_MarketingCampaign::WriteJson(TSharedRef<TJsonWriter<>>& Writer) cons
 	if (PortalId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("portal_id"));
+		if (PortalId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, EnumToString(PortalId_Optional));
 	}
 	Writer->WriteIdentifierPrefix(TEXT("key_types"));
@@ -36,11 +39,17 @@ void FRHAPI_MarketingCampaign::WriteJson(TSharedRef<TJsonWriter<>>& Writer) cons
 	if (CreatedOn_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("created_on"));
+		if (CreatedOn_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, CreatedOn_Optional);
 	}
 	if (LastModifiedOn_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("last_modified_on"));
+		if (LastModifiedOn_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, LastModifiedOn_Optional);
 	}
 	Writer->WriteObjectEnd();
@@ -63,7 +72,8 @@ bool FRHAPI_MarketingCampaign::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonPortalIdField = (*Object)->TryGetField(TEXT("portal_id"));
 	if (JsonPortalIdField.IsValid())
 	{
-		PortalId_IsSet = TryGetJsonValue(JsonPortalIdField, PortalId_Optional);
+		PortalId_IsNull = JsonPortalIdField->IsNull();
+		PortalId_IsSet = PortalId_IsNull || TryGetJsonValue(JsonPortalIdField, PortalId_Optional);
 		ParseSuccess &= PortalId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonKeyTypesField = (*Object)->TryGetField(TEXT("key_types"));
@@ -72,13 +82,15 @@ bool FRHAPI_MarketingCampaign::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonCreatedOnField = (*Object)->TryGetField(TEXT("created_on"));
 	if (JsonCreatedOnField.IsValid())
 	{
-		CreatedOn_IsSet = TryGetJsonValue(JsonCreatedOnField, CreatedOn_Optional);
+		CreatedOn_IsNull = JsonCreatedOnField->IsNull();
+		CreatedOn_IsSet = CreatedOn_IsNull || TryGetJsonValue(JsonCreatedOnField, CreatedOn_Optional);
 		ParseSuccess &= CreatedOn_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonLastModifiedOnField = (*Object)->TryGetField(TEXT("last_modified_on"));
 	if (JsonLastModifiedOnField.IsValid())
 	{
-		LastModifiedOn_IsSet = TryGetJsonValue(JsonLastModifiedOnField, LastModifiedOn_Optional);
+		LastModifiedOn_IsNull = JsonLastModifiedOnField->IsNull();
+		LastModifiedOn_IsSet = LastModifiedOn_IsNull || TryGetJsonValue(JsonLastModifiedOnField, LastModifiedOn_Optional);
 		ParseSuccess &= LastModifiedOn_IsSet;
 	}
 

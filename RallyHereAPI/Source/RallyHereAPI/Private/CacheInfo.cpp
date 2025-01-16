@@ -24,11 +24,6 @@ void FRHAPI_CacheInfo::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	Writer->WriteObjectStart();
 	Writer->WriteIdentifierPrefix(TEXT("etag"));
 	RallyHereAPI::WriteJsonValue(Writer, Etag);
-	if (StrRep_IsSet)
-	{
-		Writer->WriteIdentifierPrefix(TEXT("str_rep"));
-		RallyHereAPI::WriteJsonValue(Writer, StrRep_Optional);
-	}
 	Writer->WriteObjectEnd();
 }
 
@@ -43,12 +38,6 @@ bool FRHAPI_CacheInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonEtagField = (*Object)->TryGetField(TEXT("etag"));
 	const bool Etag_IsValid = JsonEtagField.IsValid() && (!JsonEtagField->IsNull() && TryGetJsonValue(JsonEtagField, Etag));
 	ParseSuccess &= Etag_IsValid; 
-	const TSharedPtr<FJsonValue> JsonStrRepField = (*Object)->TryGetField(TEXT("str_rep"));
-	if (JsonStrRepField.IsValid())
-	{
-		StrRep_IsSet = TryGetJsonValue(JsonStrRepField, StrRep_Optional);
-		ParseSuccess &= StrRep_IsSet;
-	}
 
 	return ParseSuccess;
 }

@@ -69,12 +69,14 @@ struct RALLYHEREAPI_API FRHAPI_Vendor : public FRHAPI_Model
 	/** @brief Checks whether CustomData_Optional has been set */
 	bool IsCustomDataSet() const { return CustomData_IsSet; }
 
-	/** @brief The Vendor UUID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid VendorUuid_Optional{  };
 	/** @brief true if VendorUuid_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool VendorUuid_IsSet{ false };
+	/** @brief true if VendorUuid_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool VendorUuid_IsNull{ false };
 	/** @brief Gets the value of VendorUuid_Optional, regardless of it having been set */
 	FGuid& GetVendorUuid() { return VendorUuid_Optional; }
 	/** @brief Gets the value of VendorUuid_Optional, regardless of it having been set */
@@ -82,21 +84,24 @@ struct RALLYHEREAPI_API FRHAPI_Vendor : public FRHAPI_Model
 	/** @brief Gets the value of VendorUuid_Optional, if it has been set, otherwise it returns DefaultValue */
 	const FGuid& GetVendorUuid(const FGuid& DefaultValue) const { if (VendorUuid_IsSet) return VendorUuid_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of VendorUuid_Optional and returns true if it has been set, otherwise returns false */
-	bool GetVendorUuid(FGuid& OutValue) const { if (VendorUuid_IsSet) OutValue = VendorUuid_Optional; return VendorUuid_IsSet; }
+	bool GetVendorUuid(FGuid& OutValue) const { if (VendorUuid_IsSet && !VendorUuid_IsNull) OutValue = VendorUuid_Optional; return VendorUuid_IsSet; }
 	/** @brief Returns a pointer to VendorUuid_Optional, if it has been set, otherwise returns nullptr */
-	FGuid* GetVendorUuidOrNull() { if (VendorUuid_IsSet) return (&VendorUuid_Optional); return nullptr; }
+	FGuid* GetVendorUuidOrNull() { if (VendorUuid_IsSet) return (VendorUuid_IsNull ? nullptr : &VendorUuid_Optional); return nullptr; }
 	/** @brief Returns a pointer to VendorUuid_Optional, if it has been set, otherwise returns nullptr */
-	const FGuid* GetVendorUuidOrNull() const { if (VendorUuid_IsSet) return (&VendorUuid_Optional); return nullptr; }
+	const FGuid* GetVendorUuidOrNull() const { if (VendorUuid_IsSet) return (VendorUuid_IsNull ? nullptr : &VendorUuid_Optional); return nullptr; }
 	/** @brief Sets the value of VendorUuid_Optional and also sets VendorUuid_IsSet to true */
-	void SetVendorUuid(const FGuid& NewValue) { VendorUuid_Optional = NewValue; VendorUuid_IsSet = true;  }
+	void SetVendorUuid(const FGuid& NewValue) { VendorUuid_Optional = NewValue; VendorUuid_IsSet = true; VendorUuid_IsNull = false; }
 	/** @brief Sets the value of VendorUuid_Optional and also sets VendorUuid_IsSet to true using move semantics */
-	void SetVendorUuid(FGuid&& NewValue) { VendorUuid_Optional = NewValue; VendorUuid_IsSet = true;  }
+	void SetVendorUuid(FGuid&& NewValue) { VendorUuid_Optional = NewValue; VendorUuid_IsSet = true; VendorUuid_IsNull = false; }
 	/** @brief Clears the value of VendorUuid_Optional and sets VendorUuid_IsSet to false */
-	void ClearVendorUuid() { VendorUuid_IsSet = false;  }
+	void ClearVendorUuid() { VendorUuid_IsSet = false; VendorUuid_IsNull = false; }
 	/** @brief Checks whether VendorUuid_Optional has been set */
 	bool IsVendorUuidSet() const { return VendorUuid_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetVendorUuidToNull() { VendorUuid_IsSet = true; VendorUuid_IsNull = true; }
+	/** @brief Checks whether VendorUuid_Optional is set to null */
+	bool IsVendorUuidNull() const { return VendorUuid_IsSet && VendorUuid_IsNull; }
 
-	/** @brief Determines how the Vendor fulfills the loot */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_VendorType Type_Optional{  };
 	/** @brief true if Type_Optional has been set to a value */
@@ -210,12 +215,14 @@ struct RALLYHEREAPI_API FRHAPI_Vendor : public FRHAPI_Model
 	/** @brief Checks whether Loot_Optional has been set */
 	bool IsLootSet() const { return Loot_IsSet; }
 
-	/** @brief Cache info for the Vendor. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_CacheInfo CacheInfo_Optional{  };
 	/** @brief true if CacheInfo_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool CacheInfo_IsSet{ false };
+	/** @brief true if CacheInfo_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool CacheInfo_IsNull{ false };
 	/** @brief Gets the value of CacheInfo_Optional, regardless of it having been set */
 	FRHAPI_CacheInfo& GetCacheInfo() { return CacheInfo_Optional; }
 	/** @brief Gets the value of CacheInfo_Optional, regardless of it having been set */
@@ -223,19 +230,23 @@ struct RALLYHEREAPI_API FRHAPI_Vendor : public FRHAPI_Model
 	/** @brief Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue */
 	const FRHAPI_CacheInfo& GetCacheInfo(const FRHAPI_CacheInfo& DefaultValue) const { if (CacheInfo_IsSet) return CacheInfo_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false */
-	bool GetCacheInfo(FRHAPI_CacheInfo& OutValue) const { if (CacheInfo_IsSet) OutValue = CacheInfo_Optional; return CacheInfo_IsSet; }
+	bool GetCacheInfo(FRHAPI_CacheInfo& OutValue) const { if (CacheInfo_IsSet && !CacheInfo_IsNull) OutValue = CacheInfo_Optional; return CacheInfo_IsSet; }
 	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_CacheInfo* GetCacheInfoOrNull() { if (CacheInfo_IsSet) return (&CacheInfo_Optional); return nullptr; }
+	FRHAPI_CacheInfo* GetCacheInfoOrNull() { if (CacheInfo_IsSet) return (CacheInfo_IsNull ? nullptr : &CacheInfo_Optional); return nullptr; }
 	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return (&CacheInfo_Optional); return nullptr; }
+	const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return (CacheInfo_IsNull ? nullptr : &CacheInfo_Optional); return nullptr; }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true */
-	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
+	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; CacheInfo_IsNull = false; }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
-	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
+	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; CacheInfo_IsNull = false; }
 	/** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
-	void ClearCacheInfo() { CacheInfo_IsSet = false;  }
+	void ClearCacheInfo() { CacheInfo_IsSet = false; CacheInfo_IsNull = false; }
 	/** @brief Checks whether CacheInfo_Optional has been set */
 	bool IsCacheInfoSet() const { return CacheInfo_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetCacheInfoToNull() { CacheInfo_IsSet = true; CacheInfo_IsNull = true; }
+	/** @brief Checks whether CacheInfo_Optional is set to null */
+	bool IsCacheInfoNull() const { return CacheInfo_IsSet && CacheInfo_IsNull; }
 };
 
 /** @} */

@@ -10,21 +10,19 @@
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
 #include "InventoryBucket.h"
-#include "PlayerOrderDetail.h"
-#include "PlayerOrderEntryResult.h"
 #include "PlayerOrderEntryType.h"
 #include "PurchasePrice.h"
-#include "PlayerOrderEntry.generated.h"
+#include "PlayerOrderEntryCreateOutput.generated.h"
 
-/** @defgroup RHAPI_PlayerOrderEntry RallyHere API Model PlayerOrderEntry
+/** @defgroup RHAPI_PlayerOrderEntryCreateOutput RallyHere API Model PlayerOrderEntryCreateOutput
  *  @{
  */
 
 /**
- * @brief Represents a line item in the Player Order and the results of the line item.
+ * @brief Request to create a Player Order Entry.
  */
 USTRUCT(BlueprintType)
-struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntry : public FRHAPI_Model
+struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntryCreateOutput : public FRHAPI_Model
 {
 	GENERATED_BODY()
 
@@ -554,70 +552,38 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntry : public FRHAPI_Model
 	/** @brief Checks whether CustomData_Optional is set to null */
 	bool IsCustomDataNull() const { return CustomData_IsSet && CustomData_IsNull; }
 
-	/** @brief Unique Identifier for the Order Entry. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FString EntryId{  };
-	/** @brief Gets the value of EntryId */
-	FString& GetEntryId() { return EntryId; }
-	/** @brief Gets the value of EntryId */
-	const FString& GetEntryId() const { return EntryId; }
-	/** @brief Sets the value of EntryId */
-	void SetEntryId(const FString& NewValue) { EntryId = NewValue;   }
-	/** @brief Sets the value of EntryId using move semantics */
-	void SetEntryId(FString&& NewValue) { EntryId = NewValue;   }
-
+	FString EntryId_Optional{  };
+	/** @brief true if EntryId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	ERHAPI_PlayerOrderEntryResult Result_Optional{  };
-	/** @brief true if Result_Optional has been set to a value */
+	bool EntryId_IsSet{ false };
+	/** @brief true if EntryId_Optional has been explicitly set to null */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool Result_IsSet{ false };
-	/** @brief Gets the value of Result_Optional, regardless of it having been set */
-	ERHAPI_PlayerOrderEntryResult& GetResult() { return Result_Optional; }
-	/** @brief Gets the value of Result_Optional, regardless of it having been set */
-	const ERHAPI_PlayerOrderEntryResult& GetResult() const { return Result_Optional; }
-	/** @brief Gets the value of Result_Optional, if it has been set, otherwise it returns DefaultValue */
-	const ERHAPI_PlayerOrderEntryResult& GetResult(const ERHAPI_PlayerOrderEntryResult& DefaultValue) const { if (Result_IsSet) return Result_Optional; return DefaultValue; }
-	/** @brief Fills OutValue with the value of Result_Optional and returns true if it has been set, otherwise returns false */
-	bool GetResult(ERHAPI_PlayerOrderEntryResult& OutValue) const { if (Result_IsSet) OutValue = Result_Optional; return Result_IsSet; }
-	/** @brief Returns a pointer to Result_Optional, if it has been set, otherwise returns nullptr */
-	ERHAPI_PlayerOrderEntryResult* GetResultOrNull() { if (Result_IsSet) return (&Result_Optional); return nullptr; }
-	/** @brief Returns a pointer to Result_Optional, if it has been set, otherwise returns nullptr */
-	const ERHAPI_PlayerOrderEntryResult* GetResultOrNull() const { if (Result_IsSet) return (&Result_Optional); return nullptr; }
-	/** @brief Sets the value of Result_Optional and also sets Result_IsSet to true */
-	void SetResult(const ERHAPI_PlayerOrderEntryResult& NewValue) { Result_Optional = NewValue; Result_IsSet = true;  }
-	/** @brief Sets the value of Result_Optional and also sets Result_IsSet to true using move semantics */
-	void SetResult(ERHAPI_PlayerOrderEntryResult&& NewValue) { Result_Optional = NewValue; Result_IsSet = true;  }
-	/** @brief Clears the value of Result_Optional and sets Result_IsSet to false */
-	void ClearResult() { Result_IsSet = false;  }
-	/** @brief Checks whether Result_Optional has been set */
-	bool IsResultSet() const { return Result_IsSet; }
-
-	/** @brief Details for the Order Entry. */
-	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	TArray<FRHAPI_PlayerOrderDetail> Details_Optional{  };
-	/** @brief true if Details_Optional has been set to a value */
-	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool Details_IsSet{ false };
-	/** @brief Gets the value of Details_Optional, regardless of it having been set */
-	TArray<FRHAPI_PlayerOrderDetail>& GetDetails() { return Details_Optional; }
-	/** @brief Gets the value of Details_Optional, regardless of it having been set */
-	const TArray<FRHAPI_PlayerOrderDetail>& GetDetails() const { return Details_Optional; }
-	/** @brief Gets the value of Details_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TArray<FRHAPI_PlayerOrderDetail>& GetDetails(const TArray<FRHAPI_PlayerOrderDetail>& DefaultValue) const { if (Details_IsSet) return Details_Optional; return DefaultValue; }
-	/** @brief Fills OutValue with the value of Details_Optional and returns true if it has been set, otherwise returns false */
-	bool GetDetails(TArray<FRHAPI_PlayerOrderDetail>& OutValue) const { if (Details_IsSet) OutValue = Details_Optional; return Details_IsSet; }
-	/** @brief Returns a pointer to Details_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FRHAPI_PlayerOrderDetail>* GetDetailsOrNull() { if (Details_IsSet) return (&Details_Optional); return nullptr; }
-	/** @brief Returns a pointer to Details_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FRHAPI_PlayerOrderDetail>* GetDetailsOrNull() const { if (Details_IsSet) return (&Details_Optional); return nullptr; }
-	/** @brief Sets the value of Details_Optional and also sets Details_IsSet to true */
-	void SetDetails(const TArray<FRHAPI_PlayerOrderDetail>& NewValue) { Details_Optional = NewValue; Details_IsSet = true;  }
-	/** @brief Sets the value of Details_Optional and also sets Details_IsSet to true using move semantics */
-	void SetDetails(TArray<FRHAPI_PlayerOrderDetail>&& NewValue) { Details_Optional = NewValue; Details_IsSet = true;  }
-	/** @brief Clears the value of Details_Optional and sets Details_IsSet to false */
-	void ClearDetails() { Details_IsSet = false;  }
-	/** @brief Checks whether Details_Optional has been set */
-	bool IsDetailsSet() const { return Details_IsSet; }
+	bool EntryId_IsNull{ false };
+	/** @brief Gets the value of EntryId_Optional, regardless of it having been set */
+	FString& GetEntryId() { return EntryId_Optional; }
+	/** @brief Gets the value of EntryId_Optional, regardless of it having been set */
+	const FString& GetEntryId() const { return EntryId_Optional; }
+	/** @brief Gets the value of EntryId_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetEntryId(const FString& DefaultValue) const { if (EntryId_IsSet) return EntryId_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of EntryId_Optional and returns true if it has been set, otherwise returns false */
+	bool GetEntryId(FString& OutValue) const { if (EntryId_IsSet && !EntryId_IsNull) OutValue = EntryId_Optional; return EntryId_IsSet; }
+	/** @brief Returns a pointer to EntryId_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetEntryIdOrNull() { if (EntryId_IsSet) return (EntryId_IsNull ? nullptr : &EntryId_Optional); return nullptr; }
+	/** @brief Returns a pointer to EntryId_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetEntryIdOrNull() const { if (EntryId_IsSet) return (EntryId_IsNull ? nullptr : &EntryId_Optional); return nullptr; }
+	/** @brief Sets the value of EntryId_Optional and also sets EntryId_IsSet to true */
+	void SetEntryId(const FString& NewValue) { EntryId_Optional = NewValue; EntryId_IsSet = true; EntryId_IsNull = false; }
+	/** @brief Sets the value of EntryId_Optional and also sets EntryId_IsSet to true using move semantics */
+	void SetEntryId(FString&& NewValue) { EntryId_Optional = NewValue; EntryId_IsSet = true; EntryId_IsNull = false; }
+	/** @brief Clears the value of EntryId_Optional and sets EntryId_IsSet to false */
+	void ClearEntryId() { EntryId_IsSet = false; EntryId_IsNull = false; }
+	/** @brief Checks whether EntryId_Optional has been set */
+	bool IsEntryIdSet() const { return EntryId_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetEntryIdToNull() { EntryId_IsSet = true; EntryId_IsNull = true; }
+	/** @brief Checks whether EntryId_Optional is set to null */
+	bool IsEntryIdNull() const { return EntryId_IsSet && EntryId_IsNull; }
 };
 
 /** @} */

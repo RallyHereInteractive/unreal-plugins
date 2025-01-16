@@ -10,7 +10,7 @@
 #include "CoreMinimal.h"
 #include "RallyHereAPIAuthContext.h"
 #include "RallyHereAPIHelpers.h"
-#include "Platform.h"
+#include "InventoryPlatform.h"
 #include "Catalog.h"
 #include "HTTPValidationError.h"
 #include "HzApiErrorModel.h"
@@ -198,7 +198,7 @@ struct RALLYHEREAPI_API FRequest_GetCatalogEntitlementSku : public FRequest
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	ERHAPI_Platform Platform;
+	ERHAPI_InventoryPlatform Platform;
 	FString Sku;
 	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
 	TOptional<FString> IfNoneMatch;

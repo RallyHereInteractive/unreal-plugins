@@ -25,16 +25,25 @@ void FRHAPI_InventoryPageMeta::WriteJson(TSharedRef<TJsonWriter<>>& Writer) cons
 	if (StartingPosition_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("starting_position"));
+		if (StartingPosition_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, StartingPosition_Optional);
 	}
 	if (Cursor_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("cursor"));
+		if (Cursor_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, Cursor_Optional);
 	}
 	if (Sort_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("sort"));
+		if (Sort_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, EnumToString(Sort_Optional));
 	}
 	if (Limit_IsSet)
@@ -56,19 +65,22 @@ bool FRHAPI_InventoryPageMeta::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonStartingPositionField = (*Object)->TryGetField(TEXT("starting_position"));
 	if (JsonStartingPositionField.IsValid())
 	{
-		StartingPosition_IsSet = TryGetJsonValue(JsonStartingPositionField, StartingPosition_Optional);
+		StartingPosition_IsNull = JsonStartingPositionField->IsNull();
+		StartingPosition_IsSet = StartingPosition_IsNull || TryGetJsonValue(JsonStartingPositionField, StartingPosition_Optional);
 		ParseSuccess &= StartingPosition_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCursorField = (*Object)->TryGetField(TEXT("cursor"));
 	if (JsonCursorField.IsValid())
 	{
-		Cursor_IsSet = TryGetJsonValue(JsonCursorField, Cursor_Optional);
+		Cursor_IsNull = JsonCursorField->IsNull();
+		Cursor_IsSet = Cursor_IsNull || TryGetJsonValue(JsonCursorField, Cursor_Optional);
 		ParseSuccess &= Cursor_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonSortField = (*Object)->TryGetField(TEXT("sort"));
 	if (JsonSortField.IsValid())
 	{
-		Sort_IsSet = TryGetJsonValue(JsonSortField, Sort_Optional);
+		Sort_IsNull = JsonSortField->IsNull();
+		Sort_IsSet = Sort_IsNull || TryGetJsonValue(JsonSortField, Sort_Optional);
 		ParseSuccess &= Sort_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonLimitField = (*Object)->TryGetField(TEXT("limit"));

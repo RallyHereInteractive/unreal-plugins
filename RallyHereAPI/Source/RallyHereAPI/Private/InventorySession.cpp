@@ -27,6 +27,9 @@ void FRHAPI_InventorySession::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (SessionPlatform_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("session_platform"));
+		if (SessionPlatform_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, EnumToString(SessionPlatform_Optional));
 	}
 	if (AppliedDurableLoot_IsSet)
@@ -51,7 +54,8 @@ bool FRHAPI_InventorySession::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonSessionPlatformField = (*Object)->TryGetField(TEXT("session_platform"));
 	if (JsonSessionPlatformField.IsValid())
 	{
-		SessionPlatform_IsSet = TryGetJsonValue(JsonSessionPlatformField, SessionPlatform_Optional);
+		SessionPlatform_IsNull = JsonSessionPlatformField->IsNull();
+		SessionPlatform_IsSet = SessionPlatform_IsNull || TryGetJsonValue(JsonSessionPlatformField, SessionPlatform_Optional);
 		ParseSuccess &= SessionPlatform_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonAppliedDurableLootField = (*Object)->TryGetField(TEXT("applied_durable_loot"));

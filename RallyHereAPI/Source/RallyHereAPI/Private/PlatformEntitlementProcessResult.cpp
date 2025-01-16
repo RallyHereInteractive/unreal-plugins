@@ -38,6 +38,9 @@ void FRHAPI_PlatformEntitlementProcessResult::WriteJson(TSharedRef<TJsonWriter<>
 	if (ErrorCode_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("error_code"));
+		if (ErrorCode_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, ErrorCode_Optional);
 	}
 	if (ClientEntitlements_IsSet)
@@ -91,7 +94,8 @@ bool FRHAPI_PlatformEntitlementProcessResult::FromJson(const TSharedPtr<FJsonVal
 	const TSharedPtr<FJsonValue> JsonErrorCodeField = (*Object)->TryGetField(TEXT("error_code"));
 	if (JsonErrorCodeField.IsValid())
 	{
-		ErrorCode_IsSet = TryGetJsonValue(JsonErrorCodeField, ErrorCode_Optional);
+		ErrorCode_IsNull = JsonErrorCodeField->IsNull();
+		ErrorCode_IsSet = ErrorCode_IsNull || TryGetJsonValue(JsonErrorCodeField, ErrorCode_Optional);
 		ParseSuccess &= ErrorCode_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonClientEntitlementsField = (*Object)->TryGetField(TEXT("client_entitlements"));

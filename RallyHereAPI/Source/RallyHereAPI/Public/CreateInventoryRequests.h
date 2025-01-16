@@ -41,7 +41,6 @@ struct RALLYHEREAPI_API FRHAPI_CreateInventoryRequests : public FRHAPI_Model
 	*/
 	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-	/** @brief Source of this Inventory Operation. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_Source Source_Optional{  };
 	/** @brief true if Source_Optional has been set to a value */
@@ -68,12 +67,14 @@ struct RALLYHEREAPI_API FRHAPI_CreateInventoryRequests : public FRHAPI_Model
 	/** @brief Checks whether Source_Optional has been set */
 	bool IsSourceSet() const { return Source_IsSet; }
 
-	/** @brief Arbitrary UUID that can be used by clients to correlate Order requests with Order responses. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid ClientOrderRefId_Optional{  };
 	/** @brief true if ClientOrderRefId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ClientOrderRefId_IsSet{ false };
+	/** @brief true if ClientOrderRefId_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool ClientOrderRefId_IsNull{ false };
 	/** @brief Gets the value of ClientOrderRefId_Optional, regardless of it having been set */
 	FGuid& GetClientOrderRefId() { return ClientOrderRefId_Optional; }
 	/** @brief Gets the value of ClientOrderRefId_Optional, regardless of it having been set */
@@ -81,19 +82,23 @@ struct RALLYHEREAPI_API FRHAPI_CreateInventoryRequests : public FRHAPI_Model
 	/** @brief Gets the value of ClientOrderRefId_Optional, if it has been set, otherwise it returns DefaultValue */
 	const FGuid& GetClientOrderRefId(const FGuid& DefaultValue) const { if (ClientOrderRefId_IsSet) return ClientOrderRefId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of ClientOrderRefId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetClientOrderRefId(FGuid& OutValue) const { if (ClientOrderRefId_IsSet) OutValue = ClientOrderRefId_Optional; return ClientOrderRefId_IsSet; }
+	bool GetClientOrderRefId(FGuid& OutValue) const { if (ClientOrderRefId_IsSet && !ClientOrderRefId_IsNull) OutValue = ClientOrderRefId_Optional; return ClientOrderRefId_IsSet; }
 	/** @brief Returns a pointer to ClientOrderRefId_Optional, if it has been set, otherwise returns nullptr */
-	FGuid* GetClientOrderRefIdOrNull() { if (ClientOrderRefId_IsSet) return (&ClientOrderRefId_Optional); return nullptr; }
+	FGuid* GetClientOrderRefIdOrNull() { if (ClientOrderRefId_IsSet) return (ClientOrderRefId_IsNull ? nullptr : &ClientOrderRefId_Optional); return nullptr; }
 	/** @brief Returns a pointer to ClientOrderRefId_Optional, if it has been set, otherwise returns nullptr */
-	const FGuid* GetClientOrderRefIdOrNull() const { if (ClientOrderRefId_IsSet) return (&ClientOrderRefId_Optional); return nullptr; }
+	const FGuid* GetClientOrderRefIdOrNull() const { if (ClientOrderRefId_IsSet) return (ClientOrderRefId_IsNull ? nullptr : &ClientOrderRefId_Optional); return nullptr; }
 	/** @brief Sets the value of ClientOrderRefId_Optional and also sets ClientOrderRefId_IsSet to true */
-	void SetClientOrderRefId(const FGuid& NewValue) { ClientOrderRefId_Optional = NewValue; ClientOrderRefId_IsSet = true;  }
+	void SetClientOrderRefId(const FGuid& NewValue) { ClientOrderRefId_Optional = NewValue; ClientOrderRefId_IsSet = true; ClientOrderRefId_IsNull = false; }
 	/** @brief Sets the value of ClientOrderRefId_Optional and also sets ClientOrderRefId_IsSet to true using move semantics */
-	void SetClientOrderRefId(FGuid&& NewValue) { ClientOrderRefId_Optional = NewValue; ClientOrderRefId_IsSet = true;  }
+	void SetClientOrderRefId(FGuid&& NewValue) { ClientOrderRefId_Optional = NewValue; ClientOrderRefId_IsSet = true; ClientOrderRefId_IsNull = false; }
 	/** @brief Clears the value of ClientOrderRefId_Optional and sets ClientOrderRefId_IsSet to false */
-	void ClearClientOrderRefId() { ClientOrderRefId_IsSet = false;  }
+	void ClearClientOrderRefId() { ClientOrderRefId_IsSet = false; ClientOrderRefId_IsNull = false; }
 	/** @brief Checks whether ClientOrderRefId_Optional has been set */
 	bool IsClientOrderRefIdSet() const { return ClientOrderRefId_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetClientOrderRefIdToNull() { ClientOrderRefId_IsSet = true; ClientOrderRefId_IsNull = true; }
+	/** @brief Checks whether ClientOrderRefId_Optional is set to null */
+	bool IsClientOrderRefIdNull() const { return ClientOrderRefId_IsSet && ClientOrderRefId_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_CreateInventoryRequest> Inventory{  };

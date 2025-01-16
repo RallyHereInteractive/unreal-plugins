@@ -29,16 +29,25 @@ void FRHAPI_LootEntitlement::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (RefundLootId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("refund_loot_id"));
+		if (RefundLootId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, RefundLootId_Optional);
 	}
 	if (ChargebackLootId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("chargeback_loot_id"));
+		if (ChargebackLootId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, ChargebackLootId_Optional);
 	}
 	if (ChargebackReversalLootId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("chargeback_reversal_loot_id"));
+		if (ChargebackReversalLootId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, ChargebackReversalLootId_Optional);
 	}
 	Writer->WriteObjectEnd();
@@ -61,19 +70,22 @@ bool FRHAPI_LootEntitlement::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonRefundLootIdField = (*Object)->TryGetField(TEXT("refund_loot_id"));
 	if (JsonRefundLootIdField.IsValid())
 	{
-		RefundLootId_IsSet = TryGetJsonValue(JsonRefundLootIdField, RefundLootId_Optional);
+		RefundLootId_IsNull = JsonRefundLootIdField->IsNull();
+		RefundLootId_IsSet = RefundLootId_IsNull || TryGetJsonValue(JsonRefundLootIdField, RefundLootId_Optional);
 		ParseSuccess &= RefundLootId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonChargebackLootIdField = (*Object)->TryGetField(TEXT("chargeback_loot_id"));
 	if (JsonChargebackLootIdField.IsValid())
 	{
-		ChargebackLootId_IsSet = TryGetJsonValue(JsonChargebackLootIdField, ChargebackLootId_Optional);
+		ChargebackLootId_IsNull = JsonChargebackLootIdField->IsNull();
+		ChargebackLootId_IsSet = ChargebackLootId_IsNull || TryGetJsonValue(JsonChargebackLootIdField, ChargebackLootId_Optional);
 		ParseSuccess &= ChargebackLootId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonChargebackReversalLootIdField = (*Object)->TryGetField(TEXT("chargeback_reversal_loot_id"));
 	if (JsonChargebackReversalLootIdField.IsValid())
 	{
-		ChargebackReversalLootId_IsSet = TryGetJsonValue(JsonChargebackReversalLootIdField, ChargebackReversalLootId_Optional);
+		ChargebackReversalLootId_IsNull = JsonChargebackReversalLootIdField->IsNull();
+		ChargebackReversalLootId_IsSet = ChargebackReversalLootId_IsNull || TryGetJsonValue(JsonChargebackReversalLootIdField, ChargebackReversalLootId_Optional);
 		ParseSuccess &= ChargebackReversalLootId_IsSet;
 	}
 

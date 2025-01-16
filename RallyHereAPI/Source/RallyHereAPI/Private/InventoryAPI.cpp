@@ -1267,7 +1267,7 @@ bool FRequest_CreateNewPlayerOrder::SetupHttpRequest(const FHttpRequestRef& Http
 		FString JsonBody;
 		TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
 
-		WriteJsonValue(Writer, PlayerOrderCreate);
+		WriteJsonValue(Writer, PlayerOrderCreateInput);
 		Writer->Close();
 
 		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
@@ -1275,11 +1275,11 @@ bool FRequest_CreateNewPlayerOrder::SetupHttpRequest(const FHttpRequestRef& Http
 	}
 	else if (Consumes.Contains(TEXT("multipart/form-data")))
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateNewPlayerOrder - Body parameter (FRHAPI_PlayerOrderCreate) was ignored, not supported in multipart form"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateNewPlayerOrder - Body parameter (FRHAPI_PlayerOrderCreateInput) was ignored, not supported in multipart form"));
 	}
 	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateNewPlayerOrder - Body parameter (FRHAPI_PlayerOrderCreate) was ignored, not supported in urlencoded requests"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateNewPlayerOrder - Body parameter (FRHAPI_PlayerOrderCreateInput) was ignored, not supported in urlencoded requests"));
 	}
 	else
 	{
@@ -1346,7 +1346,7 @@ bool FResponse_CreateNewPlayerOrder::TryGetContentFor200(FRHAPI_PlayerOrder& Out
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_CreateNewPlayerOrder::TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const
+bool FResponse_CreateNewPlayerOrder::TryGetContentFor202(FRHAPI_PlayerOrderCreateOutput& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 202)
@@ -1401,11 +1401,11 @@ bool FResponse_CreateNewPlayerOrder::FromJson(const TSharedPtr<FJsonValue>& Json
 		case 202:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_PlayerOrderCreate Object;
+				FRHAPI_PlayerOrderCreateOutput Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_PlayerOrderCreate>(Object);
+				ParsedContent.Set<FRHAPI_PlayerOrderCreateOutput>(Object);
 				break;
 			} 
 		case 403:
@@ -1571,7 +1571,7 @@ bool FRequest_CreateNewPlayerOrderSelf::SetupHttpRequest(const FHttpRequestRef& 
 		FString JsonBody;
 		TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
 
-		WriteJsonValue(Writer, PlayerOrderCreate);
+		WriteJsonValue(Writer, PlayerOrderCreateInput);
 		Writer->Close();
 
 		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
@@ -1579,11 +1579,11 @@ bool FRequest_CreateNewPlayerOrderSelf::SetupHttpRequest(const FHttpRequestRef& 
 	}
 	else if (Consumes.Contains(TEXT("multipart/form-data")))
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateNewPlayerOrderSelf - Body parameter (FRHAPI_PlayerOrderCreate) was ignored, not supported in multipart form"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateNewPlayerOrderSelf - Body parameter (FRHAPI_PlayerOrderCreateInput) was ignored, not supported in multipart form"));
 	}
 	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateNewPlayerOrderSelf - Body parameter (FRHAPI_PlayerOrderCreate) was ignored, not supported in urlencoded requests"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateNewPlayerOrderSelf - Body parameter (FRHAPI_PlayerOrderCreateInput) was ignored, not supported in urlencoded requests"));
 	}
 	else
 	{
@@ -1650,7 +1650,7 @@ bool FResponse_CreateNewPlayerOrderSelf::TryGetContentFor200(FRHAPI_PlayerOrder&
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_CreateNewPlayerOrderSelf::TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const
+bool FResponse_CreateNewPlayerOrderSelf::TryGetContentFor202(FRHAPI_PlayerOrderCreateOutput& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 202)
@@ -1705,11 +1705,11 @@ bool FResponse_CreateNewPlayerOrderSelf::FromJson(const TSharedPtr<FJsonValue>& 
 		case 202:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_PlayerOrderCreate Object;
+				FRHAPI_PlayerOrderCreateOutput Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_PlayerOrderCreate>(Object);
+				ParsedContent.Set<FRHAPI_PlayerOrderCreateOutput>(Object);
 				break;
 			} 
 		case 403:
@@ -1880,7 +1880,7 @@ bool FRequest_CreateNewPlayerUuidOrder::SetupHttpRequest(const FHttpRequestRef& 
 		FString JsonBody;
 		TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
 
-		WriteJsonValue(Writer, PlayerOrderCreate);
+		WriteJsonValue(Writer, PlayerOrderCreateInput);
 		Writer->Close();
 
 		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
@@ -1888,11 +1888,11 @@ bool FRequest_CreateNewPlayerUuidOrder::SetupHttpRequest(const FHttpRequestRef& 
 	}
 	else if (Consumes.Contains(TEXT("multipart/form-data")))
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateNewPlayerUuidOrder - Body parameter (FRHAPI_PlayerOrderCreate) was ignored, not supported in multipart form"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateNewPlayerUuidOrder - Body parameter (FRHAPI_PlayerOrderCreateInput) was ignored, not supported in multipart form"));
 	}
 	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateNewPlayerUuidOrder - Body parameter (FRHAPI_PlayerOrderCreate) was ignored, not supported in urlencoded requests"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateNewPlayerUuidOrder - Body parameter (FRHAPI_PlayerOrderCreateInput) was ignored, not supported in urlencoded requests"));
 	}
 	else
 	{
@@ -1959,7 +1959,7 @@ bool FResponse_CreateNewPlayerUuidOrder::TryGetContentFor200(FRHAPI_PlayerOrder&
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_CreateNewPlayerUuidOrder::TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const
+bool FResponse_CreateNewPlayerUuidOrder::TryGetContentFor202(FRHAPI_PlayerOrderCreateOutput& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 202)
@@ -2014,11 +2014,11 @@ bool FResponse_CreateNewPlayerUuidOrder::FromJson(const TSharedPtr<FJsonValue>& 
 		case 202:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_PlayerOrderCreate Object;
+				FRHAPI_PlayerOrderCreateOutput Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_PlayerOrderCreate>(Object);
+				ParsedContent.Set<FRHAPI_PlayerOrderCreateOutput>(Object);
 				break;
 			} 
 		case 403:
@@ -2184,7 +2184,7 @@ bool FRequest_CreateNewPlayerUuidOrderSelf::SetupHttpRequest(const FHttpRequestR
 		FString JsonBody;
 		TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
 
-		WriteJsonValue(Writer, PlayerOrderCreate);
+		WriteJsonValue(Writer, PlayerOrderCreateInput);
 		Writer->Close();
 
 		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
@@ -2192,11 +2192,11 @@ bool FRequest_CreateNewPlayerUuidOrderSelf::SetupHttpRequest(const FHttpRequestR
 	}
 	else if (Consumes.Contains(TEXT("multipart/form-data")))
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateNewPlayerUuidOrderSelf - Body parameter (FRHAPI_PlayerOrderCreate) was ignored, not supported in multipart form"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateNewPlayerUuidOrderSelf - Body parameter (FRHAPI_PlayerOrderCreateInput) was ignored, not supported in multipart form"));
 	}
 	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateNewPlayerUuidOrderSelf - Body parameter (FRHAPI_PlayerOrderCreate) was ignored, not supported in urlencoded requests"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateNewPlayerUuidOrderSelf - Body parameter (FRHAPI_PlayerOrderCreateInput) was ignored, not supported in urlencoded requests"));
 	}
 	else
 	{
@@ -2263,7 +2263,7 @@ bool FResponse_CreateNewPlayerUuidOrderSelf::TryGetContentFor200(FRHAPI_PlayerOr
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_CreateNewPlayerUuidOrderSelf::TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const
+bool FResponse_CreateNewPlayerUuidOrderSelf::TryGetContentFor202(FRHAPI_PlayerOrderCreateOutput& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 202)
@@ -2318,11 +2318,11 @@ bool FResponse_CreateNewPlayerUuidOrderSelf::FromJson(const TSharedPtr<FJsonValu
 		case 202:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_PlayerOrderCreate Object;
+				FRHAPI_PlayerOrderCreateOutput Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_PlayerOrderCreate>(Object);
+				ParsedContent.Set<FRHAPI_PlayerOrderCreateOutput>(Object);
 				break;
 			} 
 		case 403:
@@ -2572,7 +2572,7 @@ bool FResponse_CreatePlayerInventory::TryGetContentFor200(FRHAPI_PlayerOrder& Ou
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_CreatePlayerInventory::TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const
+bool FResponse_CreatePlayerInventory::TryGetContentFor202(FRHAPI_PlayerOrderCreateOutput& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 202)
@@ -2627,11 +2627,11 @@ bool FResponse_CreatePlayerInventory::FromJson(const TSharedPtr<FJsonValue>& Jso
 		case 202:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_PlayerOrderCreate Object;
+				FRHAPI_PlayerOrderCreateOutput Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_PlayerOrderCreate>(Object);
+				ParsedContent.Set<FRHAPI_PlayerOrderCreateOutput>(Object);
 				break;
 			} 
 		case 403:
@@ -2876,7 +2876,7 @@ bool FResponse_CreatePlayerInventorySelf::TryGetContentFor200(FRHAPI_PlayerOrder
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_CreatePlayerInventorySelf::TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const
+bool FResponse_CreatePlayerInventorySelf::TryGetContentFor202(FRHAPI_PlayerOrderCreateOutput& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 202)
@@ -2931,11 +2931,11 @@ bool FResponse_CreatePlayerInventorySelf::FromJson(const TSharedPtr<FJsonValue>&
 		case 202:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_PlayerOrderCreate Object;
+				FRHAPI_PlayerOrderCreateOutput Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_PlayerOrderCreate>(Object);
+				ParsedContent.Set<FRHAPI_PlayerOrderCreateOutput>(Object);
 				break;
 			} 
 		case 403:
@@ -3185,7 +3185,7 @@ bool FResponse_CreatePlayerInventoryUuid::TryGetContentFor200(FRHAPI_PlayerOrder
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_CreatePlayerInventoryUuid::TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const
+bool FResponse_CreatePlayerInventoryUuid::TryGetContentFor202(FRHAPI_PlayerOrderCreateOutput& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 202)
@@ -3240,11 +3240,11 @@ bool FResponse_CreatePlayerInventoryUuid::FromJson(const TSharedPtr<FJsonValue>&
 		case 202:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_PlayerOrderCreate Object;
+				FRHAPI_PlayerOrderCreateOutput Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_PlayerOrderCreate>(Object);
+				ParsedContent.Set<FRHAPI_PlayerOrderCreateOutput>(Object);
 				break;
 			} 
 		case 403:
@@ -3489,7 +3489,7 @@ bool FResponse_CreatePlayerInventoryUuidSelf::TryGetContentFor200(FRHAPI_PlayerO
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_CreatePlayerInventoryUuidSelf::TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const
+bool FResponse_CreatePlayerInventoryUuidSelf::TryGetContentFor202(FRHAPI_PlayerOrderCreateOutput& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 202)
@@ -3544,11 +3544,11 @@ bool FResponse_CreatePlayerInventoryUuidSelf::FromJson(const TSharedPtr<FJsonVal
 		case 202:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_PlayerOrderCreate Object;
+				FRHAPI_PlayerOrderCreateOutput Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_PlayerOrderCreate>(Object);
+				ParsedContent.Set<FRHAPI_PlayerOrderCreateOutput>(Object);
 				break;
 			} 
 		case 403:
@@ -9820,7 +9820,7 @@ bool FResponse_ModifyManyPlayerInventory::TryGetContentFor200(FRHAPI_PlayerOrder
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_ModifyManyPlayerInventory::TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const
+bool FResponse_ModifyManyPlayerInventory::TryGetContentFor202(FRHAPI_PlayerOrderCreateOutput& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 202)
@@ -9875,11 +9875,11 @@ bool FResponse_ModifyManyPlayerInventory::FromJson(const TSharedPtr<FJsonValue>&
 		case 202:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_PlayerOrderCreate Object;
+				FRHAPI_PlayerOrderCreateOutput Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_PlayerOrderCreate>(Object);
+				ParsedContent.Set<FRHAPI_PlayerOrderCreateOutput>(Object);
 				break;
 			} 
 		case 403:
@@ -10124,7 +10124,7 @@ bool FResponse_ModifyManyPlayerInventorySelf::TryGetContentFor200(FRHAPI_PlayerO
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_ModifyManyPlayerInventorySelf::TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const
+bool FResponse_ModifyManyPlayerInventorySelf::TryGetContentFor202(FRHAPI_PlayerOrderCreateOutput& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 202)
@@ -10179,11 +10179,11 @@ bool FResponse_ModifyManyPlayerInventorySelf::FromJson(const TSharedPtr<FJsonVal
 		case 202:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_PlayerOrderCreate Object;
+				FRHAPI_PlayerOrderCreateOutput Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_PlayerOrderCreate>(Object);
+				ParsedContent.Set<FRHAPI_PlayerOrderCreateOutput>(Object);
 				break;
 			} 
 		case 403:
@@ -10433,7 +10433,7 @@ bool FResponse_ModifyManyPlayerInventoryUuid::TryGetContentFor200(FRHAPI_PlayerO
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_ModifyManyPlayerInventoryUuid::TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const
+bool FResponse_ModifyManyPlayerInventoryUuid::TryGetContentFor202(FRHAPI_PlayerOrderCreateOutput& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 202)
@@ -10488,11 +10488,11 @@ bool FResponse_ModifyManyPlayerInventoryUuid::FromJson(const TSharedPtr<FJsonVal
 		case 202:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_PlayerOrderCreate Object;
+				FRHAPI_PlayerOrderCreateOutput Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_PlayerOrderCreate>(Object);
+				ParsedContent.Set<FRHAPI_PlayerOrderCreateOutput>(Object);
 				break;
 			} 
 		case 403:
@@ -10737,7 +10737,7 @@ bool FResponse_ModifyManyPlayerInventoryUuidSelf::TryGetContentFor200(FRHAPI_Pla
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_ModifyManyPlayerInventoryUuidSelf::TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const
+bool FResponse_ModifyManyPlayerInventoryUuidSelf::TryGetContentFor202(FRHAPI_PlayerOrderCreateOutput& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 202)
@@ -10792,11 +10792,11 @@ bool FResponse_ModifyManyPlayerInventoryUuidSelf::FromJson(const TSharedPtr<FJso
 		case 202:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_PlayerOrderCreate Object;
+				FRHAPI_PlayerOrderCreateOutput Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_PlayerOrderCreate>(Object);
+				ParsedContent.Set<FRHAPI_PlayerOrderCreateOutput>(Object);
 				break;
 			} 
 		case 403:
@@ -11047,7 +11047,7 @@ bool FResponse_ModifyPlayerInventory::TryGetContentFor200(FRHAPI_PlayerOrder& Ou
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_ModifyPlayerInventory::TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const
+bool FResponse_ModifyPlayerInventory::TryGetContentFor202(FRHAPI_PlayerOrderCreateOutput& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 202)
@@ -11102,11 +11102,11 @@ bool FResponse_ModifyPlayerInventory::FromJson(const TSharedPtr<FJsonValue>& Jso
 		case 202:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_PlayerOrderCreate Object;
+				FRHAPI_PlayerOrderCreateOutput Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_PlayerOrderCreate>(Object);
+				ParsedContent.Set<FRHAPI_PlayerOrderCreateOutput>(Object);
 				break;
 			} 
 		case 403:
@@ -11356,7 +11356,7 @@ bool FResponse_ModifyPlayerInventorySelf::TryGetContentFor200(FRHAPI_PlayerOrder
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_ModifyPlayerInventorySelf::TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const
+bool FResponse_ModifyPlayerInventorySelf::TryGetContentFor202(FRHAPI_PlayerOrderCreateOutput& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 202)
@@ -11411,11 +11411,11 @@ bool FResponse_ModifyPlayerInventorySelf::FromJson(const TSharedPtr<FJsonValue>&
 		case 202:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_PlayerOrderCreate Object;
+				FRHAPI_PlayerOrderCreateOutput Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_PlayerOrderCreate>(Object);
+				ParsedContent.Set<FRHAPI_PlayerOrderCreateOutput>(Object);
 				break;
 			} 
 		case 403:
@@ -11666,7 +11666,7 @@ bool FResponse_ModifyPlayerInventoryUuid::TryGetContentFor200(FRHAPI_PlayerOrder
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_ModifyPlayerInventoryUuid::TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const
+bool FResponse_ModifyPlayerInventoryUuid::TryGetContentFor202(FRHAPI_PlayerOrderCreateOutput& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 202)
@@ -11721,11 +11721,11 @@ bool FResponse_ModifyPlayerInventoryUuid::FromJson(const TSharedPtr<FJsonValue>&
 		case 202:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_PlayerOrderCreate Object;
+				FRHAPI_PlayerOrderCreateOutput Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_PlayerOrderCreate>(Object);
+				ParsedContent.Set<FRHAPI_PlayerOrderCreateOutput>(Object);
 				break;
 			} 
 		case 403:
@@ -11975,7 +11975,7 @@ bool FResponse_ModifyPlayerInventoryUuidSelf::TryGetContentFor200(FRHAPI_PlayerO
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_ModifyPlayerInventoryUuidSelf::TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const
+bool FResponse_ModifyPlayerInventoryUuidSelf::TryGetContentFor202(FRHAPI_PlayerOrderCreateOutput& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 202)
@@ -12030,11 +12030,11 @@ bool FResponse_ModifyPlayerInventoryUuidSelf::FromJson(const TSharedPtr<FJsonVal
 		case 202:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_PlayerOrderCreate Object;
+				FRHAPI_PlayerOrderCreateOutput Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_PlayerOrderCreate>(Object);
+				ParsedContent.Set<FRHAPI_PlayerOrderCreateOutput>(Object);
 				break;
 			} 
 		case 403:

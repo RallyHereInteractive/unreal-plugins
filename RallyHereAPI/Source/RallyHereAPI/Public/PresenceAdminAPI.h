@@ -51,13 +51,12 @@ struct RALLYHEREAPI_API FRequest_AdminGetKnownPlatforms : public FRequest
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	TOptional<bool> UseCache;
 };
 
 /** The response type for FRequest_AdminGetKnownPlatforms */
-struct RALLYHEREAPI_API FResponse_AdminGetKnownPlatforms : public FResponseAccessorTemplate<FRHAPI_Platforms, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_AdminGetKnownPlatforms : public FResponseAccessorTemplate<FRHAPI_Platforms, FRHAPI_HzApiErrorModel>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_Platforms, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_Platforms, FRHAPI_HzApiErrorModel> Super;
 
 	FResponse_AdminGetKnownPlatforms(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_AdminGetKnownPlatforms() = default;
@@ -95,11 +94,6 @@ struct RALLYHEREAPI_API FResponse_AdminGetKnownPlatforms : public FResponseAcces
 	Forbidden
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
@@ -156,7 +150,6 @@ struct RALLYHEREAPI_API FRequest_AdminGetPlayerPresence : public FRequest
 	TSharedPtr<FAuthContext> AuthContext;
 	/* A valid UUID identifying a player. Rejects integer player identification. */
 	FGuid PlayerUuid;
-	TOptional<bool> UseCache;
 };
 
 /** The response type for FRequest_AdminGetPlayerPresence */
@@ -266,7 +259,6 @@ struct RALLYHEREAPI_API FRequest_AdminGetPlayerPresenceId : public FRequest
 	TSharedPtr<FAuthContext> AuthContext;
 	/* A valid integer identifying a player. Rejects UUID player identification. */
 	int32 PlayerId = 0;
-	TOptional<bool> UseCache;
 };
 
 /** The response type for FRequest_AdminGetPlayerPresenceId */
@@ -379,7 +371,6 @@ struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcu : public FRequest
 	TSharedPtr<FAuthContext> AuthContext;
 	FDateTime Begin;
 	FDateTime End;
-	TOptional<bool> UseCache;
 };
 
 /** The response type for FRequest_AdminGetRequestingCcu */
@@ -483,7 +474,6 @@ struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuAllPlatformCombined : publ
 	TSharedPtr<FAuthContext> AuthContext;
 	FDateTime Begin;
 	FDateTime End;
-	TOptional<bool> UseCache;
 };
 
 /** The response type for FRequest_AdminGetRequestingCcuAllPlatformCombined */
@@ -587,7 +577,6 @@ struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuAllPlatformIndividual : pu
 	TSharedPtr<FAuthContext> AuthContext;
 	FDateTime Begin;
 	FDateTime End;
-	TOptional<bool> UseCache;
 };
 
 /** The response type for FRequest_AdminGetRequestingCcuAllPlatformIndividual */
@@ -693,7 +682,6 @@ struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuIndividual : public FReque
 	TSharedPtr<FAuthContext> AuthContext;
 	FDateTime Begin;
 	FDateTime End;
-	TOptional<bool> UseCache;
 };
 
 /** The response type for FRequest_AdminGetRequestingCcuIndividual */
@@ -798,7 +786,6 @@ struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuPlatformCombined : public 
 	FString Platform;
 	FDateTime Begin;
 	FDateTime End;
-	TOptional<bool> UseCache;
 };
 
 /** The response type for FRequest_AdminGetRequestingCcuPlatformCombined */
@@ -903,7 +890,6 @@ struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuPlatformIndividual : publi
 	FString Platform;
 	FDateTime Begin;
 	FDateTime End;
-	TOptional<bool> UseCache;
 };
 
 /** The response type for FRequest_AdminGetRequestingCcuPlatformIndividual */
@@ -1011,7 +997,6 @@ struct RALLYHEREAPI_API FRequest_AdminGetTotalCcu : public FRequest
 	TSharedPtr<FAuthContext> AuthContext;
 	FDateTime Begin;
 	FDateTime End;
-	TOptional<bool> UseCache;
 };
 
 /** The response type for FRequest_AdminGetTotalCcu */
@@ -1115,7 +1100,6 @@ struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuAllPlatformCombined : public FR
 	TSharedPtr<FAuthContext> AuthContext;
 	FDateTime Begin;
 	FDateTime End;
-	TOptional<bool> UseCache;
 };
 
 /** The response type for FRequest_AdminGetTotalCcuAllPlatformCombined */
@@ -1219,7 +1203,6 @@ struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuAllPlatformIndividual : public 
 	TSharedPtr<FAuthContext> AuthContext;
 	FDateTime Begin;
 	FDateTime End;
-	TOptional<bool> UseCache;
 };
 
 /** The response type for FRequest_AdminGetTotalCcuAllPlatformIndividual */
@@ -1325,7 +1308,6 @@ struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuIndividual : public FRequest
 	TSharedPtr<FAuthContext> AuthContext;
 	FDateTime Begin;
 	FDateTime End;
-	TOptional<bool> UseCache;
 };
 
 /** The response type for FRequest_AdminGetTotalCcuIndividual */
@@ -1430,7 +1412,6 @@ struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuPlatformCombined : public FRequ
 	FString Platform;
 	FDateTime Begin;
 	FDateTime End;
-	TOptional<bool> UseCache;
 };
 
 /** The response type for FRequest_AdminGetTotalCcuPlatformCombined */
@@ -1535,7 +1516,6 @@ struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuPlatformIndividual : public FRe
 	FString Platform;
 	FDateTime Begin;
 	FDateTime End;
-	TOptional<bool> UseCache;
 };
 
 /** The response type for FRequest_AdminGetTotalCcuPlatformIndividual */
@@ -1643,7 +1623,6 @@ struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcu : public FRequest
 	TSharedPtr<FAuthContext> AuthContext;
 	FDateTime Begin;
 	FDateTime End;
-	TOptional<bool> UseCache;
 };
 
 /** The response type for FRequest_AdminGetUpdatingCcu */
@@ -1747,7 +1726,6 @@ struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuAllPlatformCombined : public
 	TSharedPtr<FAuthContext> AuthContext;
 	FDateTime Begin;
 	FDateTime End;
-	TOptional<bool> UseCache;
 };
 
 /** The response type for FRequest_AdminGetUpdatingCcuAllPlatformCombined */
@@ -1851,7 +1829,6 @@ struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuAllPlatformIndividual : publ
 	TSharedPtr<FAuthContext> AuthContext;
 	FDateTime Begin;
 	FDateTime End;
-	TOptional<bool> UseCache;
 };
 
 /** The response type for FRequest_AdminGetUpdatingCcuAllPlatformIndividual */
@@ -1957,7 +1934,6 @@ struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuIndividual : public FRequest
 	TSharedPtr<FAuthContext> AuthContext;
 	FDateTime Begin;
 	FDateTime End;
-	TOptional<bool> UseCache;
 };
 
 /** The response type for FRequest_AdminGetUpdatingCcuIndividual */
@@ -2062,7 +2038,6 @@ struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuPlatformCombined : public FR
 	FString Platform;
 	FDateTime Begin;
 	FDateTime End;
-	TOptional<bool> UseCache;
 };
 
 /** The response type for FRequest_AdminGetUpdatingCcuPlatformCombined */
@@ -2167,7 +2142,6 @@ struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuPlatformIndividual : public 
 	FString Platform;
 	FDateTime Begin;
 	FDateTime End;
-	TOptional<bool> UseCache;
 };
 
 /** The response type for FRequest_AdminGetUpdatingCcuPlatformIndividual */
@@ -2273,7 +2247,6 @@ struct RALLYHEREAPI_API FRequest_AdminUpdatePlayerLastSeen : public FRequest
 	/* A valid UUID identifying a player. Rejects integer player identification. */
 	FGuid PlayerUuid;
 	FRHAPI_PlayerLastSeenUpdate PlayerLastSeenUpdate;
-	TOptional<bool> UseCache;
 };
 
 /** The response type for FRequest_AdminUpdatePlayerLastSeen */
@@ -2388,7 +2361,6 @@ struct RALLYHEREAPI_API FRequest_AdminUpdatePlayerLastSeenId : public FRequest
 	/* A valid integer identifying a player. Rejects UUID player identification. */
 	int32 PlayerId = 0;
 	FRHAPI_PlayerLastSeenUpdate PlayerLastSeenUpdate;
-	TOptional<bool> UseCache;
 };
 
 /** The response type for FRequest_AdminUpdatePlayerLastSeenId */

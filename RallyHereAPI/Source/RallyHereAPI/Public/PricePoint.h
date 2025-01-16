@@ -68,12 +68,14 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
 	/** @brief Checks whether CustomData_Optional has been set */
 	bool IsCustomDataSet() const { return CustomData_IsSet; }
 
-	/** @brief The name of the Price Point. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Name_Optional{  };
 	/** @brief true if Name_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Name_IsSet{ false };
+	/** @brief true if Name_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Name_IsNull{ false };
 	/** @brief Gets the value of Name_Optional, regardless of it having been set */
 	FString& GetName() { return Name_Optional; }
 	/** @brief Gets the value of Name_Optional, regardless of it having been set */
@@ -81,19 +83,23 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
 	/** @brief Gets the value of Name_Optional, if it has been set, otherwise it returns DefaultValue */
 	const FString& GetName(const FString& DefaultValue) const { if (Name_IsSet) return Name_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Name_Optional and returns true if it has been set, otherwise returns false */
-	bool GetName(FString& OutValue) const { if (Name_IsSet) OutValue = Name_Optional; return Name_IsSet; }
+	bool GetName(FString& OutValue) const { if (Name_IsSet && !Name_IsNull) OutValue = Name_Optional; return Name_IsSet; }
 	/** @brief Returns a pointer to Name_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetNameOrNull() { if (Name_IsSet) return (&Name_Optional); return nullptr; }
+	FString* GetNameOrNull() { if (Name_IsSet) return (Name_IsNull ? nullptr : &Name_Optional); return nullptr; }
 	/** @brief Returns a pointer to Name_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetNameOrNull() const { if (Name_IsSet) return (&Name_Optional); return nullptr; }
+	const FString* GetNameOrNull() const { if (Name_IsSet) return (Name_IsNull ? nullptr : &Name_Optional); return nullptr; }
 	/** @brief Sets the value of Name_Optional and also sets Name_IsSet to true */
-	void SetName(const FString& NewValue) { Name_Optional = NewValue; Name_IsSet = true;  }
+	void SetName(const FString& NewValue) { Name_Optional = NewValue; Name_IsSet = true; Name_IsNull = false; }
 	/** @brief Sets the value of Name_Optional and also sets Name_IsSet to true using move semantics */
-	void SetName(FString&& NewValue) { Name_Optional = NewValue; Name_IsSet = true;  }
+	void SetName(FString&& NewValue) { Name_Optional = NewValue; Name_IsSet = true; Name_IsNull = false; }
 	/** @brief Clears the value of Name_Optional and sets Name_IsSet to false */
-	void ClearName() { Name_IsSet = false;  }
+	void ClearName() { Name_IsSet = false; Name_IsNull = false; }
 	/** @brief Checks whether Name_Optional has been set */
 	bool IsNameSet() const { return Name_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetNameToNull() { Name_IsSet = true; Name_IsNull = true; }
+	/** @brief Checks whether Name_Optional is set to null */
+	bool IsNameNull() const { return Name_IsSet && Name_IsNull; }
 
 	/** @brief Forces the quantity to be equal to a quantity on a Price Breakpoint. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -211,12 +217,14 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
 	/** @brief Checks whether PreSaleBreakpoints_Optional has been set */
 	bool IsPreSaleBreakpointsSet() const { return PreSaleBreakpoints_IsSet; }
 
-	/** @brief Cache info for the Price Point. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_CacheInfo CacheInfo_Optional{  };
 	/** @brief true if CacheInfo_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool CacheInfo_IsSet{ false };
+	/** @brief true if CacheInfo_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool CacheInfo_IsNull{ false };
 	/** @brief Gets the value of CacheInfo_Optional, regardless of it having been set */
 	FRHAPI_CacheInfo& GetCacheInfo() { return CacheInfo_Optional; }
 	/** @brief Gets the value of CacheInfo_Optional, regardless of it having been set */
@@ -224,19 +232,23 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
 	/** @brief Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue */
 	const FRHAPI_CacheInfo& GetCacheInfo(const FRHAPI_CacheInfo& DefaultValue) const { if (CacheInfo_IsSet) return CacheInfo_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false */
-	bool GetCacheInfo(FRHAPI_CacheInfo& OutValue) const { if (CacheInfo_IsSet) OutValue = CacheInfo_Optional; return CacheInfo_IsSet; }
+	bool GetCacheInfo(FRHAPI_CacheInfo& OutValue) const { if (CacheInfo_IsSet && !CacheInfo_IsNull) OutValue = CacheInfo_Optional; return CacheInfo_IsSet; }
 	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_CacheInfo* GetCacheInfoOrNull() { if (CacheInfo_IsSet) return (&CacheInfo_Optional); return nullptr; }
+	FRHAPI_CacheInfo* GetCacheInfoOrNull() { if (CacheInfo_IsSet) return (CacheInfo_IsNull ? nullptr : &CacheInfo_Optional); return nullptr; }
 	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return (&CacheInfo_Optional); return nullptr; }
+	const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return (CacheInfo_IsNull ? nullptr : &CacheInfo_Optional); return nullptr; }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true */
-	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
+	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; CacheInfo_IsNull = false; }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
-	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
+	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; CacheInfo_IsNull = false; }
 	/** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
-	void ClearCacheInfo() { CacheInfo_IsSet = false;  }
+	void ClearCacheInfo() { CacheInfo_IsSet = false; CacheInfo_IsNull = false; }
 	/** @brief Checks whether CacheInfo_Optional has been set */
 	bool IsCacheInfoSet() const { return CacheInfo_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetCacheInfoToNull() { CacheInfo_IsSet = true; CacheInfo_IsNull = true; }
+	/** @brief Checks whether CacheInfo_Optional is set to null */
+	bool IsCacheInfoNull() const { return CacheInfo_IsSet && CacheInfo_IsNull; }
 };
 
 /** @} */

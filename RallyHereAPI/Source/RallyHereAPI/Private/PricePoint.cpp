@@ -30,6 +30,9 @@ void FRHAPI_PricePoint::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (Name_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("name"));
+		if (Name_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, Name_Optional);
 	}
 	if (StrictFlag_IsSet)
@@ -55,6 +58,9 @@ void FRHAPI_PricePoint::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (CacheInfo_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("cache_info"));
+		if (CacheInfo_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, CacheInfo_Optional);
 	}
 	Writer->WriteObjectEnd();
@@ -77,7 +83,8 @@ bool FRHAPI_PricePoint::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonNameField = (*Object)->TryGetField(TEXT("name"));
 	if (JsonNameField.IsValid())
 	{
-		Name_IsSet = TryGetJsonValue(JsonNameField, Name_Optional);
+		Name_IsNull = JsonNameField->IsNull();
+		Name_IsSet = Name_IsNull || TryGetJsonValue(JsonNameField, Name_Optional);
 		ParseSuccess &= Name_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonStrictFlagField = (*Object)->TryGetField(TEXT("strict_flag"));
@@ -107,7 +114,8 @@ bool FRHAPI_PricePoint::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
 	if (JsonCacheInfoField.IsValid())
 	{
-		CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
+		CacheInfo_IsNull = JsonCacheInfoField->IsNull();
+		CacheInfo_IsSet = CacheInfo_IsNull || TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
 		ParseSuccess &= CacheInfo_IsSet;
 	}
 

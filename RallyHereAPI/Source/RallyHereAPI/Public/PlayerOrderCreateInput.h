@@ -9,20 +9,20 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "PlayerOrderEntry.h"
+#include "PlayerOrderEntryCreateInput.h"
 #include "Portal.h"
 #include "Source.h"
-#include "PlayerOrder.generated.h"
+#include "PlayerOrderCreateInput.generated.h"
 
-/** @defgroup RHAPI_PlayerOrder RallyHere API Model PlayerOrder
+/** @defgroup RHAPI_PlayerOrderCreateInput RallyHere API Model PlayerOrderCreateInput
  *  @{
  */
 
 /**
- * @brief Represents a Player Order.
+ * @brief Create a new Player Order.  &lt;b&gt;Note: &#x60;use_inventory_bucket&#x60; will be ignored on the PlayerOrderEntryCreate if the &#x60;source&#x60; equals &#x60;CLIENT&#x60;.&lt;/b&gt;
  */
 USTRUCT(BlueprintType)
-struct RALLYHEREAPI_API FRHAPI_PlayerOrder : public FRHAPI_Model
+struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreateInput : public FRHAPI_Model
 {
 	GENERATED_BODY()
 
@@ -264,53 +264,50 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrder : public FRHAPI_Model
 	/** @brief Sets the value of IsTransaction_Optional to its default and also sets IsTransaction_IsSet to true */
 	void SetIsTransactionToDefault() { SetIsTransaction(false); }
 
-	/** @brief Unique Identifier for the Order. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FString OrderId{  };
-	/** @brief Gets the value of OrderId */
-	FString& GetOrderId() { return OrderId; }
-	/** @brief Gets the value of OrderId */
-	const FString& GetOrderId() const { return OrderId; }
-	/** @brief Sets the value of OrderId */
-	void SetOrderId(const FString& NewValue) { OrderId = NewValue;   }
-	/** @brief Sets the value of OrderId using move semantics */
-	void SetOrderId(FString&& NewValue) { OrderId = NewValue;   }
-
-	/** @brief Player UUID of the Player this Player Order belongs to. */
+	FString OrderId_Optional{  };
+	/** @brief true if OrderId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FGuid PlayerUuid{  };
-	/** @brief Gets the value of PlayerUuid */
-	FGuid& GetPlayerUuid() { return PlayerUuid; }
-	/** @brief Gets the value of PlayerUuid */
-	const FGuid& GetPlayerUuid() const { return PlayerUuid; }
-	/** @brief Sets the value of PlayerUuid */
-	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;   }
-	/** @brief Sets the value of PlayerUuid using move semantics */
-	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;   }
-
-	/** @brief Time the Player Order was created. */
+	bool OrderId_IsSet{ false };
+	/** @brief true if OrderId_Optional has been explicitly set to null */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FDateTime CreatedTime{  };
-	/** @brief Gets the value of CreatedTime */
-	FDateTime& GetCreatedTime() { return CreatedTime; }
-	/** @brief Gets the value of CreatedTime */
-	const FDateTime& GetCreatedTime() const { return CreatedTime; }
-	/** @brief Sets the value of CreatedTime */
-	void SetCreatedTime(const FDateTime& NewValue) { CreatedTime = NewValue;   }
-	/** @brief Sets the value of CreatedTime using move semantics */
-	void SetCreatedTime(FDateTime&& NewValue) { CreatedTime = NewValue;   }
+	bool OrderId_IsNull{ false };
+	/** @brief Gets the value of OrderId_Optional, regardless of it having been set */
+	FString& GetOrderId() { return OrderId_Optional; }
+	/** @brief Gets the value of OrderId_Optional, regardless of it having been set */
+	const FString& GetOrderId() const { return OrderId_Optional; }
+	/** @brief Gets the value of OrderId_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetOrderId(const FString& DefaultValue) const { if (OrderId_IsSet) return OrderId_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of OrderId_Optional and returns true if it has been set, otherwise returns false */
+	bool GetOrderId(FString& OutValue) const { if (OrderId_IsSet && !OrderId_IsNull) OutValue = OrderId_Optional; return OrderId_IsSet; }
+	/** @brief Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetOrderIdOrNull() { if (OrderId_IsSet) return (OrderId_IsNull ? nullptr : &OrderId_Optional); return nullptr; }
+	/** @brief Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetOrderIdOrNull() const { if (OrderId_IsSet) return (OrderId_IsNull ? nullptr : &OrderId_Optional); return nullptr; }
+	/** @brief Sets the value of OrderId_Optional and also sets OrderId_IsSet to true */
+	void SetOrderId(const FString& NewValue) { OrderId_Optional = NewValue; OrderId_IsSet = true; OrderId_IsNull = false; }
+	/** @brief Sets the value of OrderId_Optional and also sets OrderId_IsSet to true using move semantics */
+	void SetOrderId(FString&& NewValue) { OrderId_Optional = NewValue; OrderId_IsSet = true; OrderId_IsNull = false; }
+	/** @brief Clears the value of OrderId_Optional and sets OrderId_IsSet to false */
+	void ClearOrderId() { OrderId_IsSet = false; OrderId_IsNull = false; }
+	/** @brief Checks whether OrderId_Optional has been set */
+	bool IsOrderIdSet() const { return OrderId_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetOrderIdToNull() { OrderId_IsSet = true; OrderId_IsNull = true; }
+	/** @brief Checks whether OrderId_Optional is set to null */
+	bool IsOrderIdNull() const { return OrderId_IsSet && OrderId_IsNull; }
 
 	/** @brief List of Player Order Entries for the Player Order. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	TArray<FRHAPI_PlayerOrderEntry> Entries{  };
+	TArray<FRHAPI_PlayerOrderEntryCreateInput> Entries{  };
 	/** @brief Gets the value of Entries */
-	TArray<FRHAPI_PlayerOrderEntry>& GetEntries() { return Entries; }
+	TArray<FRHAPI_PlayerOrderEntryCreateInput>& GetEntries() { return Entries; }
 	/** @brief Gets the value of Entries */
-	const TArray<FRHAPI_PlayerOrderEntry>& GetEntries() const { return Entries; }
+	const TArray<FRHAPI_PlayerOrderEntryCreateInput>& GetEntries() const { return Entries; }
 	/** @brief Sets the value of Entries */
-	void SetEntries(const TArray<FRHAPI_PlayerOrderEntry>& NewValue) { Entries = NewValue;   }
+	void SetEntries(const TArray<FRHAPI_PlayerOrderEntryCreateInput>& NewValue) { Entries = NewValue;   }
 	/** @brief Sets the value of Entries using move semantics */
-	void SetEntries(TArray<FRHAPI_PlayerOrderEntry>&& NewValue) { Entries = NewValue;   }
+	void SetEntries(TArray<FRHAPI_PlayerOrderEntryCreateInput>&& NewValue) { Entries = NewValue;   }
 };
 
 /** @} */

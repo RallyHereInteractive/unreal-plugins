@@ -70,18 +70,33 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayerUpdateRequest : public FRHAPI_Model
 
 	/** @brief Which team the player should be on */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 TeamId{ 0 };
-	/** @brief Gets the value of TeamId */
-	int32& GetTeamId() { return TeamId; }
-	/** @brief Gets the value of TeamId */
-	const int32& GetTeamId() const { return TeamId; }
-	/** @brief Sets the value of TeamId */
-	void SetTeamId(const int32& NewValue) { TeamId = NewValue;   }
-	/** @brief Sets the value of TeamId using move semantics */
-	void SetTeamId(int32&& NewValue) { TeamId = NewValue;   }
-	/** @brief Returns true if TeamId matches the default value */
-	bool IsTeamIdDefaultValue() const { return TeamId == 0; }
-	/** @brief Sets the value of TeamId to its default  */
+	int32 TeamId_Optional{ 0 };
+	/** @brief true if TeamId_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool TeamId_IsSet{ false };
+	/** @brief Gets the value of TeamId_Optional, regardless of it having been set */
+	int32& GetTeamId() { return TeamId_Optional; }
+	/** @brief Gets the value of TeamId_Optional, regardless of it having been set */
+	const int32& GetTeamId() const { return TeamId_Optional; }
+	/** @brief Gets the value of TeamId_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetTeamId(const int32& DefaultValue) const { if (TeamId_IsSet) return TeamId_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of TeamId_Optional and returns true if it has been set, otherwise returns false */
+	bool GetTeamId(int32& OutValue) const { if (TeamId_IsSet) OutValue = TeamId_Optional; return TeamId_IsSet; }
+	/** @brief Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetTeamIdOrNull() { if (TeamId_IsSet) return (&TeamId_Optional); return nullptr; }
+	/** @brief Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetTeamIdOrNull() const { if (TeamId_IsSet) return (&TeamId_Optional); return nullptr; }
+	/** @brief Sets the value of TeamId_Optional and also sets TeamId_IsSet to true */
+	void SetTeamId(const int32& NewValue) { TeamId_Optional = NewValue; TeamId_IsSet = true;  }
+	/** @brief Sets the value of TeamId_Optional and also sets TeamId_IsSet to true using move semantics */
+	void SetTeamId(int32&& NewValue) { TeamId_Optional = NewValue; TeamId_IsSet = true;  }
+	/** @brief Clears the value of TeamId_Optional and sets TeamId_IsSet to false */
+	void ClearTeamId() { TeamId_Optional = 0; TeamId_IsSet = false;  }
+	/** @brief Checks whether TeamId_Optional has been set */
+	bool IsTeamIdSet() const { return TeamId_IsSet; }
+	/** @brief Returns true if TeamId_Optional is set and matches the default value */
+	bool IsTeamIdDefaultValue() const { return TeamId_IsSet && TeamId_Optional == 0; }
+	/** @brief Sets the value of TeamId_Optional to its default and also sets TeamId_IsSet to true */
 	void SetTeamIdToDefault() { SetTeamId(0); }
 
 	/** @brief player-defined custom data */

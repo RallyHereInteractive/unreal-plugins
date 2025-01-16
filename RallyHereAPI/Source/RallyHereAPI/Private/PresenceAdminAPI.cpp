@@ -112,14 +112,6 @@ FName FRequest_AdminGetKnownPlatforms::GetSimplifiedPathWithVerb() const
 FString FRequest_AdminGetKnownPlatforms::ComputePath() const
 {
 	FString Path = GetSimplifiedPath().ToString();
-	TArray<FString> QueryParams;
-	if(UseCache.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("use_cache=")) + ToUrlString(UseCache.GetValue()));
-	}
-	Path += TCHAR('?');
-	Path += FString::Join(QueryParams, TEXT("&"));
-
 	return Path;
 }
 
@@ -168,8 +160,6 @@ FString FResponse_AdminGetKnownPlatforms::GetHttpResponseCodeDescription(EHttpRe
 		return TEXT("Successful Response");
 	case 403:
 		return TEXT("Forbidden");
-	case 422:
-		return TEXT("Validation Error");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -190,8 +180,6 @@ bool FResponse_AdminGetKnownPlatforms::ParseHeaders()
 	case 200:
 		break;
 	case 403:
-		break;
-	case 422:
 		break;
 	default:
 		break;
@@ -224,18 +212,6 @@ bool FResponse_AdminGetKnownPlatforms::TryGetContentFor403(FRHAPI_HzApiErrorMode
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_AdminGetKnownPlatforms::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
-{
-	// if this is not the correct response code, fail quickly.
-	if ((int)GetHttpResponseCode() != 422)
-	{
-		return false;
-	}
-
-	// forward on to type only handler
-	return TryGetContent(OutContent);
-}
-
 bool FResponse_AdminGetKnownPlatforms::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	bool bParsed = false;
@@ -260,16 +236,6 @@ bool FResponse_AdminGetKnownPlatforms::FromJson(const TSharedPtr<FJsonValue>& Js
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
-				break;
-			} 
-		case 422:
-			{
-				// parse into the structured data format from the json object
-				FRHAPI_HTTPValidationError Object;
-				bParsed = TryGetJsonValue(JsonValue, Object);
-				
-				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -391,14 +357,6 @@ FString FRequest_AdminGetPlayerPresence::ComputePath() const
 	};
 
 	FString Path = FString::Format(TEXT("/presence/v1/admin/player/uuid/{player_uuid}/presence"), PathParams);
-
-	TArray<FString> QueryParams;
-	if(UseCache.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("use_cache=")) + ToUrlString(UseCache.GetValue()));
-	}
-	Path += TCHAR('?');
-	Path += FString::Join(QueryParams, TEXT("&"));
 
 	return Path;
 }
@@ -698,14 +656,6 @@ FString FRequest_AdminGetPlayerPresenceId::ComputePath() const
 
 	FString Path = FString::Format(TEXT("/presence/v1/admin/player/id/{player_id}/presence"), PathParams);
 
-	TArray<FString> QueryParams;
-	if(UseCache.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("use_cache=")) + ToUrlString(UseCache.GetValue()));
-	}
-	Path += TCHAR('?');
-	Path += FString::Join(QueryParams, TEXT("&"));
-
 	return Path;
 }
 
@@ -1002,10 +952,6 @@ FString FRequest_AdminGetRequestingCcu::ComputePath() const
 	TArray<FString> QueryParams;
 	QueryParams.Add(FString(TEXT("begin=")) + ToUrlString(Begin));
 	QueryParams.Add(FString(TEXT("end=")) + ToUrlString(End));
-	if(UseCache.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("use_cache=")) + ToUrlString(UseCache.GetValue()));
-	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));
 
@@ -1279,10 +1225,6 @@ FString FRequest_AdminGetRequestingCcuAllPlatformCombined::ComputePath() const
 	TArray<FString> QueryParams;
 	QueryParams.Add(FString(TEXT("begin=")) + ToUrlString(Begin));
 	QueryParams.Add(FString(TEXT("end=")) + ToUrlString(End));
-	if(UseCache.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("use_cache=")) + ToUrlString(UseCache.GetValue()));
-	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));
 
@@ -1556,10 +1498,6 @@ FString FRequest_AdminGetRequestingCcuAllPlatformIndividual::ComputePath() const
 	TArray<FString> QueryParams;
 	QueryParams.Add(FString(TEXT("begin=")) + ToUrlString(Begin));
 	QueryParams.Add(FString(TEXT("end=")) + ToUrlString(End));
-	if(UseCache.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("use_cache=")) + ToUrlString(UseCache.GetValue()));
-	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));
 
@@ -1833,10 +1771,6 @@ FString FRequest_AdminGetRequestingCcuIndividual::ComputePath() const
 	TArray<FString> QueryParams;
 	QueryParams.Add(FString(TEXT("begin=")) + ToUrlString(Begin));
 	QueryParams.Add(FString(TEXT("end=")) + ToUrlString(End));
-	if(UseCache.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("use_cache=")) + ToUrlString(UseCache.GetValue()));
-	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));
 
@@ -2115,10 +2049,6 @@ FString FRequest_AdminGetRequestingCcuPlatformCombined::ComputePath() const
 	TArray<FString> QueryParams;
 	QueryParams.Add(FString(TEXT("begin=")) + ToUrlString(Begin));
 	QueryParams.Add(FString(TEXT("end=")) + ToUrlString(End));
-	if(UseCache.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("use_cache=")) + ToUrlString(UseCache.GetValue()));
-	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));
 
@@ -2397,10 +2327,6 @@ FString FRequest_AdminGetRequestingCcuPlatformIndividual::ComputePath() const
 	TArray<FString> QueryParams;
 	QueryParams.Add(FString(TEXT("begin=")) + ToUrlString(Begin));
 	QueryParams.Add(FString(TEXT("end=")) + ToUrlString(End));
-	if(UseCache.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("use_cache=")) + ToUrlString(UseCache.GetValue()));
-	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));
 
@@ -2674,10 +2600,6 @@ FString FRequest_AdminGetTotalCcu::ComputePath() const
 	TArray<FString> QueryParams;
 	QueryParams.Add(FString(TEXT("begin=")) + ToUrlString(Begin));
 	QueryParams.Add(FString(TEXT("end=")) + ToUrlString(End));
-	if(UseCache.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("use_cache=")) + ToUrlString(UseCache.GetValue()));
-	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));
 
@@ -2951,10 +2873,6 @@ FString FRequest_AdminGetTotalCcuAllPlatformCombined::ComputePath() const
 	TArray<FString> QueryParams;
 	QueryParams.Add(FString(TEXT("begin=")) + ToUrlString(Begin));
 	QueryParams.Add(FString(TEXT("end=")) + ToUrlString(End));
-	if(UseCache.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("use_cache=")) + ToUrlString(UseCache.GetValue()));
-	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));
 
@@ -3228,10 +3146,6 @@ FString FRequest_AdminGetTotalCcuAllPlatformIndividual::ComputePath() const
 	TArray<FString> QueryParams;
 	QueryParams.Add(FString(TEXT("begin=")) + ToUrlString(Begin));
 	QueryParams.Add(FString(TEXT("end=")) + ToUrlString(End));
-	if(UseCache.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("use_cache=")) + ToUrlString(UseCache.GetValue()));
-	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));
 
@@ -3505,10 +3419,6 @@ FString FRequest_AdminGetTotalCcuIndividual::ComputePath() const
 	TArray<FString> QueryParams;
 	QueryParams.Add(FString(TEXT("begin=")) + ToUrlString(Begin));
 	QueryParams.Add(FString(TEXT("end=")) + ToUrlString(End));
-	if(UseCache.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("use_cache=")) + ToUrlString(UseCache.GetValue()));
-	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));
 
@@ -3787,10 +3697,6 @@ FString FRequest_AdminGetTotalCcuPlatformCombined::ComputePath() const
 	TArray<FString> QueryParams;
 	QueryParams.Add(FString(TEXT("begin=")) + ToUrlString(Begin));
 	QueryParams.Add(FString(TEXT("end=")) + ToUrlString(End));
-	if(UseCache.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("use_cache=")) + ToUrlString(UseCache.GetValue()));
-	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));
 
@@ -4069,10 +3975,6 @@ FString FRequest_AdminGetTotalCcuPlatformIndividual::ComputePath() const
 	TArray<FString> QueryParams;
 	QueryParams.Add(FString(TEXT("begin=")) + ToUrlString(Begin));
 	QueryParams.Add(FString(TEXT("end=")) + ToUrlString(End));
-	if(UseCache.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("use_cache=")) + ToUrlString(UseCache.GetValue()));
-	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));
 
@@ -4346,10 +4248,6 @@ FString FRequest_AdminGetUpdatingCcu::ComputePath() const
 	TArray<FString> QueryParams;
 	QueryParams.Add(FString(TEXT("begin=")) + ToUrlString(Begin));
 	QueryParams.Add(FString(TEXT("end=")) + ToUrlString(End));
-	if(UseCache.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("use_cache=")) + ToUrlString(UseCache.GetValue()));
-	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));
 
@@ -4623,10 +4521,6 @@ FString FRequest_AdminGetUpdatingCcuAllPlatformCombined::ComputePath() const
 	TArray<FString> QueryParams;
 	QueryParams.Add(FString(TEXT("begin=")) + ToUrlString(Begin));
 	QueryParams.Add(FString(TEXT("end=")) + ToUrlString(End));
-	if(UseCache.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("use_cache=")) + ToUrlString(UseCache.GetValue()));
-	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));
 
@@ -4900,10 +4794,6 @@ FString FRequest_AdminGetUpdatingCcuAllPlatformIndividual::ComputePath() const
 	TArray<FString> QueryParams;
 	QueryParams.Add(FString(TEXT("begin=")) + ToUrlString(Begin));
 	QueryParams.Add(FString(TEXT("end=")) + ToUrlString(End));
-	if(UseCache.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("use_cache=")) + ToUrlString(UseCache.GetValue()));
-	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));
 
@@ -5177,10 +5067,6 @@ FString FRequest_AdminGetUpdatingCcuIndividual::ComputePath() const
 	TArray<FString> QueryParams;
 	QueryParams.Add(FString(TEXT("begin=")) + ToUrlString(Begin));
 	QueryParams.Add(FString(TEXT("end=")) + ToUrlString(End));
-	if(UseCache.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("use_cache=")) + ToUrlString(UseCache.GetValue()));
-	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));
 
@@ -5459,10 +5345,6 @@ FString FRequest_AdminGetUpdatingCcuPlatformCombined::ComputePath() const
 	TArray<FString> QueryParams;
 	QueryParams.Add(FString(TEXT("begin=")) + ToUrlString(Begin));
 	QueryParams.Add(FString(TEXT("end=")) + ToUrlString(End));
-	if(UseCache.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("use_cache=")) + ToUrlString(UseCache.GetValue()));
-	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));
 
@@ -5741,10 +5623,6 @@ FString FRequest_AdminGetUpdatingCcuPlatformIndividual::ComputePath() const
 	TArray<FString> QueryParams;
 	QueryParams.Add(FString(TEXT("begin=")) + ToUrlString(Begin));
 	QueryParams.Add(FString(TEXT("end=")) + ToUrlString(End));
-	if(UseCache.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("use_cache=")) + ToUrlString(UseCache.GetValue()));
-	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));
 
@@ -6020,14 +5898,6 @@ FString FRequest_AdminUpdatePlayerLastSeen::ComputePath() const
 
 	FString Path = FString::Format(TEXT("/presence/v1/admin/player/uuid/{player_uuid}/last_seen"), PathParams);
 
-	TArray<FString> QueryParams;
-	if(UseCache.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("use_cache=")) + ToUrlString(UseCache.GetValue()));
-	}
-	Path += TCHAR('?');
-	Path += FString::Join(QueryParams, TEXT("&"));
-
 	return Path;
 }
 
@@ -6294,14 +6164,6 @@ FString FRequest_AdminUpdatePlayerLastSeenId::ComputePath() const
 	};
 
 	FString Path = FString::Format(TEXT("/presence/v1/admin/player/id/{player_id}/last_seen"), PathParams);
-
-	TArray<FString> QueryParams;
-	if(UseCache.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("use_cache=")) + ToUrlString(UseCache.GetValue()));
-	}
-	Path += TCHAR('?');
-	Path += FString::Join(QueryParams, TEXT("&"));
 
 	return Path;
 }

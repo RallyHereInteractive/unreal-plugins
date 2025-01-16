@@ -13,7 +13,7 @@
 
 
 /**
- * @brief An enumeration.
+ * @brief 
  */
 UENUM(BlueprintType)
 enum class ERHAPI_Portal : uint8

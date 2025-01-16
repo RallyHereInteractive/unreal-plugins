@@ -35,16 +35,25 @@ void FRHAPI_UpdateInventoryRequestById::WriteJson(TSharedRef<TJsonWriter<>>& Wri
 	if (Expires_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("expires"));
+		if (Expires_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, Expires_Optional);
 	}
 	if (CustomData_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("custom_data"));
+		if (CustomData_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
 	}
 	if (ItemId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("item_id"));
+		if (ItemId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, ItemId_Optional);
 	}
 	Writer->WriteIdentifierPrefix(TEXT("inventory_id"));
@@ -75,19 +84,22 @@ bool FRHAPI_UpdateInventoryRequestById::FromJson(const TSharedPtr<FJsonValue>& J
 	const TSharedPtr<FJsonValue> JsonExpiresField = (*Object)->TryGetField(TEXT("expires"));
 	if (JsonExpiresField.IsValid())
 	{
-		Expires_IsSet = TryGetJsonValue(JsonExpiresField, Expires_Optional);
+		Expires_IsNull = JsonExpiresField->IsNull();
+		Expires_IsSet = Expires_IsNull || TryGetJsonValue(JsonExpiresField, Expires_Optional);
 		ParseSuccess &= Expires_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
 	if (JsonCustomDataField.IsValid())
 	{
-		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
+		CustomData_IsNull = JsonCustomDataField->IsNull();
+		CustomData_IsSet = CustomData_IsNull || TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonItemIdField = (*Object)->TryGetField(TEXT("item_id"));
 	if (JsonItemIdField.IsValid())
 	{
-		ItemId_IsSet = TryGetJsonValue(JsonItemIdField, ItemId_Optional);
+		ItemId_IsNull = JsonItemIdField->IsNull();
+		ItemId_IsSet = ItemId_IsNull || TryGetJsonValue(JsonItemIdField, ItemId_Optional);
 		ParseSuccess &= ItemId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonInventoryIdField = (*Object)->TryGetField(TEXT("inventory_id"));

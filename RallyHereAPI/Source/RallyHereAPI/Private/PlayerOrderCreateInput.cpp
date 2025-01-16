@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 
-#include "PlayerOrder.h"
+#include "PlayerOrderCreateInput.h"
 #include "RallyHereAPIModule.h"
 #include "RallyHereAPIHelpers.h"
 #include "Templates/SharedPointer.h"
@@ -17,9 +17,9 @@ using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
 ////////////////////////////////////////////////////
-// Implementation for FRHAPI_PlayerOrder
+// Implementation for FRHAPI_PlayerOrderCreateInput
 
-void FRHAPI_PlayerOrder::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
+void FRHAPI_PlayerOrderCreateInput::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
 	Writer->WriteObjectStart();
 	if (Source_IsSet)
@@ -72,18 +72,20 @@ void FRHAPI_PlayerOrder::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		Writer->WriteIdentifierPrefix(TEXT("is_transaction"));
 		RallyHereAPI::WriteJsonValue(Writer, IsTransaction_Optional);
 	}
-	Writer->WriteIdentifierPrefix(TEXT("order_id"));
-	RallyHereAPI::WriteJsonValue(Writer, OrderId);
-	Writer->WriteIdentifierPrefix(TEXT("player_uuid"));
-	RallyHereAPI::WriteJsonValue(Writer, PlayerUuid);
-	Writer->WriteIdentifierPrefix(TEXT("created_time"));
-	RallyHereAPI::WriteJsonValue(Writer, CreatedTime);
+	if (OrderId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("order_id"));
+		if (OrderId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, OrderId_Optional);
+	}
 	Writer->WriteIdentifierPrefix(TEXT("entries"));
 	RallyHereAPI::WriteJsonValue(Writer, Entries);
 	Writer->WriteObjectEnd();
 }
 
-bool FRHAPI_PlayerOrder::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FRHAPI_PlayerOrderCreateInput::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	const TSharedPtr<FJsonObject>* Object;
 	if (!JsonValue->TryGetObject(Object))
@@ -139,14 +141,12 @@ bool FRHAPI_PlayerOrder::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ParseSuccess &= IsTransaction_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonOrderIdField = (*Object)->TryGetField(TEXT("order_id"));
-	const bool OrderId_IsValid = JsonOrderIdField.IsValid() && (!JsonOrderIdField->IsNull() && TryGetJsonValue(JsonOrderIdField, OrderId));
-	ParseSuccess &= OrderId_IsValid; 
-	const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
-	const bool PlayerUuid_IsValid = JsonPlayerUuidField.IsValid() && (!JsonPlayerUuidField->IsNull() && TryGetJsonValue(JsonPlayerUuidField, PlayerUuid));
-	ParseSuccess &= PlayerUuid_IsValid; 
-	const TSharedPtr<FJsonValue> JsonCreatedTimeField = (*Object)->TryGetField(TEXT("created_time"));
-	const bool CreatedTime_IsValid = JsonCreatedTimeField.IsValid() && (!JsonCreatedTimeField->IsNull() && TryGetJsonValue(JsonCreatedTimeField, CreatedTime));
-	ParseSuccess &= CreatedTime_IsValid; 
+	if (JsonOrderIdField.IsValid())
+	{
+		OrderId_IsNull = JsonOrderIdField->IsNull();
+		OrderId_IsSet = OrderId_IsNull || TryGetJsonValue(JsonOrderIdField, OrderId_Optional);
+		ParseSuccess &= OrderId_IsSet;
+	}
 	const TSharedPtr<FJsonValue> JsonEntriesField = (*Object)->TryGetField(TEXT("entries"));
 	const bool Entries_IsValid = JsonEntriesField.IsValid() && (!JsonEntriesField->IsNull() && TryGetJsonValue(JsonEntriesField, Entries));
 	ParseSuccess &= Entries_IsValid; 

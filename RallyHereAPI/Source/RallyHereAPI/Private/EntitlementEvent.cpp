@@ -29,15 +29,24 @@ void FRHAPI_EntitlementEvent::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (EntitlementType_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("entitlement_type"));
+		if (EntitlementType_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, EnumToString(EntitlementType_Optional));
 	}
 	Writer->WriteIdentifierPrefix(TEXT("status"));
 	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Status));
 	Writer->WriteIdentifierPrefix(TEXT("player_uuid"));
+	if (PlayerUuid_IsNull)
+		WriteJsonValue(Writer, nullptr);
+	else
 	RallyHereAPI::WriteJsonValue(Writer, PlayerUuid);
 	if (PlayerId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("player_id"));
+		if (PlayerId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, PlayerId_Optional);
 	}
 	Writer->WriteIdentifierPrefix(TEXT("platform"));
@@ -51,26 +60,41 @@ void FRHAPI_EntitlementEvent::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (PlatformTransactionId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("platform_transaction_id"));
+		if (PlatformTransactionId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, PlatformTransactionId_Optional);
 	}
 	if (PlatformData_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("platform_data"));
+		if (PlatformData_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, PlatformData_Optional);
 	}
 	if (OrderId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("order_id"));
+		if (OrderId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, OrderId_Optional);
 	}
 	if (LootId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("loot_id"));
+		if (LootId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, LootId_Optional);
 	}
 	if (KeyClaimUuid_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("key_claim_uuid"));
+		if (KeyClaimUuid_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, KeyClaimUuid_Optional);
 	}
 	Writer->WriteIdentifierPrefix(TEXT("created"));
@@ -97,19 +121,22 @@ bool FRHAPI_EntitlementEvent::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonEntitlementTypeField = (*Object)->TryGetField(TEXT("entitlement_type"));
 	if (JsonEntitlementTypeField.IsValid())
 	{
-		EntitlementType_IsSet = TryGetJsonValue(JsonEntitlementTypeField, EntitlementType_Optional);
+		EntitlementType_IsNull = JsonEntitlementTypeField->IsNull();
+		EntitlementType_IsSet = EntitlementType_IsNull || TryGetJsonValue(JsonEntitlementTypeField, EntitlementType_Optional);
 		ParseSuccess &= EntitlementType_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonStatusField = (*Object)->TryGetField(TEXT("status"));
 	const bool Status_IsValid = JsonStatusField.IsValid() && (!JsonStatusField->IsNull() && TryGetJsonValue(JsonStatusField, Status));
 	ParseSuccess &= Status_IsValid; 
 	const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
-	const bool PlayerUuid_IsValid = JsonPlayerUuidField.IsValid() && (!JsonPlayerUuidField->IsNull() && TryGetJsonValue(JsonPlayerUuidField, PlayerUuid));
+	PlayerUuid_IsNull = JsonPlayerUuidField != nullptr && JsonPlayerUuidField->IsNull();
+	const bool PlayerUuid_IsValid = JsonPlayerUuidField.IsValid() && (PlayerUuid_IsNull|| TryGetJsonValue(JsonPlayerUuidField, PlayerUuid));
 	ParseSuccess &= PlayerUuid_IsValid; 
 	const TSharedPtr<FJsonValue> JsonPlayerIdField = (*Object)->TryGetField(TEXT("player_id"));
 	if (JsonPlayerIdField.IsValid())
 	{
-		PlayerId_IsSet = TryGetJsonValue(JsonPlayerIdField, PlayerId_Optional);
+		PlayerId_IsNull = JsonPlayerIdField->IsNull();
+		PlayerId_IsSet = PlayerId_IsNull || TryGetJsonValue(JsonPlayerIdField, PlayerId_Optional);
 		ParseSuccess &= PlayerId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlatformField = (*Object)->TryGetField(TEXT("platform"));
@@ -127,31 +154,36 @@ bool FRHAPI_EntitlementEvent::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonPlatformTransactionIdField = (*Object)->TryGetField(TEXT("platform_transaction_id"));
 	if (JsonPlatformTransactionIdField.IsValid())
 	{
-		PlatformTransactionId_IsSet = TryGetJsonValue(JsonPlatformTransactionIdField, PlatformTransactionId_Optional);
+		PlatformTransactionId_IsNull = JsonPlatformTransactionIdField->IsNull();
+		PlatformTransactionId_IsSet = PlatformTransactionId_IsNull || TryGetJsonValue(JsonPlatformTransactionIdField, PlatformTransactionId_Optional);
 		ParseSuccess &= PlatformTransactionId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlatformDataField = (*Object)->TryGetField(TEXT("platform_data"));
 	if (JsonPlatformDataField.IsValid())
 	{
-		PlatformData_IsSet = TryGetJsonValue(JsonPlatformDataField, PlatformData_Optional);
+		PlatformData_IsNull = JsonPlatformDataField->IsNull();
+		PlatformData_IsSet = PlatformData_IsNull || TryGetJsonValue(JsonPlatformDataField, PlatformData_Optional);
 		ParseSuccess &= PlatformData_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonOrderIdField = (*Object)->TryGetField(TEXT("order_id"));
 	if (JsonOrderIdField.IsValid())
 	{
-		OrderId_IsSet = TryGetJsonValue(JsonOrderIdField, OrderId_Optional);
+		OrderId_IsNull = JsonOrderIdField->IsNull();
+		OrderId_IsSet = OrderId_IsNull || TryGetJsonValue(JsonOrderIdField, OrderId_Optional);
 		ParseSuccess &= OrderId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonLootIdField = (*Object)->TryGetField(TEXT("loot_id"));
 	if (JsonLootIdField.IsValid())
 	{
-		LootId_IsSet = TryGetJsonValue(JsonLootIdField, LootId_Optional);
+		LootId_IsNull = JsonLootIdField->IsNull();
+		LootId_IsSet = LootId_IsNull || TryGetJsonValue(JsonLootIdField, LootId_Optional);
 		ParseSuccess &= LootId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonKeyClaimUuidField = (*Object)->TryGetField(TEXT("key_claim_uuid"));
 	if (JsonKeyClaimUuidField.IsValid())
 	{
-		KeyClaimUuid_IsSet = TryGetJsonValue(JsonKeyClaimUuidField, KeyClaimUuid_Optional);
+		KeyClaimUuid_IsNull = JsonKeyClaimUuidField->IsNull();
+		KeyClaimUuid_IsSet = KeyClaimUuid_IsNull || TryGetJsonValue(JsonKeyClaimUuidField, KeyClaimUuid_Optional);
 		ParseSuccess &= KeyClaimUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCreatedField = (*Object)->TryGetField(TEXT("created"));
