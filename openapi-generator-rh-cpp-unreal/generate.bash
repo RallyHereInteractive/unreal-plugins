@@ -43,7 +43,7 @@ set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters
 
 ########################################
 # Download openapi-generator-cli
-curl https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.8.0/openapi-generator-cli-7.8.0.jar --create-dirs -o bin/openapi-generator-cli.jar
+curl https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.10.0/openapi-generator-cli-7.10.0.jar --create-dirs -o bin/openapi-generator-cli.jar
 
 ########################################
 # Build the rh-cpp-ue4 generator
@@ -68,7 +68,24 @@ if [[ $OPENAPI_SPEC_LOCATION == http* ]]; then
 else
     cp "$OPENAPI_SPEC_LOCATION" $TEMP_DIR/openapi.json
 fi
-jq '.openapi = "3.0.3"' $TEMP_DIR/openapi.json > $TEMP_DIR/openapi_converted.json
+
+# remove the `propertyNames` from 3.1 spec, and set version as 3.0.3
+jq '
+  walk(
+    if type == "object" and has("components") then 
+      .components.schemas |= with_entries(
+        .value |= walk(
+          if type == "object" and has("propertyNames") then 
+            del(.propertyNames) 
+          else . 
+          end
+        )
+      )
+    else . 
+    end
+  ) | 
+  .openapi = "3.0.3"
+' $TEMP_DIR/openapi.json > $TEMP_DIR/openapi_converted.json
 
 # Clean the output directory
 TEMP_OUTPUT_DIR=$TEMP_DIR/output
