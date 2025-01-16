@@ -25,9 +25,9 @@ Entitlement for a platform. This takes in a sku and platform entitlement id and 
 `public FString `[`PlatformEntitlementId`](#structFRHAPI__PlatformEntitlement_1a1f0da440869af28c6c1fa699f6a203c3) | unique identifier for this purchased item (instance owned by this user)
 `public int32 `[`Quantity_Optional`](#structFRHAPI__PlatformEntitlement_1a2b26f0881eee1e31938f8b08dd6b8213) | number purchased
 `public bool `[`Quantity_IsSet`](#structFRHAPI__PlatformEntitlement_1ae90d971477356498b773361d21b0aec5) | true if Quantity_Optional has been set to a value
-`public ERHAPI_EntitlementStatus `[`Status_Optional`](#structFRHAPI__PlatformEntitlement_1a790f0f33a52b22044781553c8dc89e9c) | status of this entitlement
+`public ERHAPI_EntitlementStatus `[`Status_Optional`](#structFRHAPI__PlatformEntitlement_1a790f0f33a52b22044781553c8dc89e9c) | 
 `public bool `[`Status_IsSet`](#structFRHAPI__PlatformEntitlement_1adfaea0a1a88f96e0df831b5317fb9727) | true if Status_Optional has been set to a value
-`public ERHAPI_EntitlementErrorCode `[`ErrorCode_Optional`](#structFRHAPI__PlatformEntitlement_1abc192a6b19ae2f8d78e3ab8f2bd327ad) | Error code for this entitlement.
+`public ERHAPI_EntitlementErrorCode `[`ErrorCode_Optional`](#structFRHAPI__PlatformEntitlement_1abc192a6b19ae2f8d78e3ab8f2bd327ad) | 
 `public bool `[`ErrorCode_IsSet`](#structFRHAPI__PlatformEntitlement_1a158a8da1519ab450f6b69a06c39125e4) | true if ErrorCode_Optional has been set to a value
 `public FString `[`OrderId_Optional`](#structFRHAPI__PlatformEntitlement_1a6ccc74894efd1734a3039280c70e2cb4) | Order ID for this entitlement.
 `public bool `[`OrderId_IsSet`](#structFRHAPI__PlatformEntitlement_1a2f2afbbb21016ec66a725cfe7d1406a6) | true if OrderId_Optional has been set to a value
@@ -104,15 +104,11 @@ true if Quantity_Optional has been set to a value
 
 #### `public ERHAPI_EntitlementStatus `[`Status_Optional`](#structFRHAPI__PlatformEntitlement_1a790f0f33a52b22044781553c8dc89e9c) <a id="structFRHAPI__PlatformEntitlement_1a790f0f33a52b22044781553c8dc89e9c"></a>
 
-status of this entitlement
-
 #### `public bool `[`Status_IsSet`](#structFRHAPI__PlatformEntitlement_1adfaea0a1a88f96e0df831b5317fb9727) <a id="structFRHAPI__PlatformEntitlement_1adfaea0a1a88f96e0df831b5317fb9727"></a>
 
 true if Status_Optional has been set to a value
 
 #### `public ERHAPI_EntitlementErrorCode `[`ErrorCode_Optional`](#structFRHAPI__PlatformEntitlement_1abc192a6b19ae2f8d78e3ab8f2bd327ad) <a id="structFRHAPI__PlatformEntitlement_1abc192a6b19ae2f8d78e3ab8f2bd327ad"></a>
-
-Error code for this entitlement.
 
 #### `public bool `[`ErrorCode_IsSet`](#structFRHAPI__PlatformEntitlement_1a158a8da1519ab450f6b69a06c39125e4) <a id="structFRHAPI__PlatformEntitlement_1a158a8da1519ab450f6b69a06c39125e4"></a>
 

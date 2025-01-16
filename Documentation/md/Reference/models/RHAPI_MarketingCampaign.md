@@ -23,13 +23,16 @@ A Marketing Campaign is a set of external keys that can be claimed by players.Th
 --------------------------------|---------------------------------------------
 `public FGuid `[`Uuid`](#structFRHAPI__MarketingCampaign_1a589be2b0982738de14e8d98b16436a64) | The unique identifier for the Marketing Campaign.
 `public FString `[`Name`](#structFRHAPI__MarketingCampaign_1a99687e46e9281d06d4c5c295d6bc42a5) | The name of the Marketing Campaign.
-`public ERHAPI_Portal `[`PortalId_Optional`](#structFRHAPI__MarketingCampaign_1a31b0b077ed1ad08557c16d620802c1b4) | Platform for the Marketing Campaign.
+`public ERHAPI_Portal `[`PortalId_Optional`](#structFRHAPI__MarketingCampaign_1a31b0b077ed1ad08557c16d620802c1b4) | 
 `public bool `[`PortalId_IsSet`](#structFRHAPI__MarketingCampaign_1a91a202384b8e443bfabf183ef18fe555) | true if PortalId_Optional has been set to a value
+`public bool `[`PortalId_IsNull`](#structFRHAPI__MarketingCampaign_1a999a53262c1fe09daa5c73fbd7398982) | true if PortalId_Optional has been explicitly set to null
 `public TArray< `[`FRHAPI_KeyType`](RHAPI_KeyType.md#structFRHAPI__KeyType)` > `[`KeyTypes`](#structFRHAPI__MarketingCampaign_1ac277f1290b832a4d25e273b803263187) | The types of keys that can be claimed from this campaign.
-`public FString `[`CreatedOn_Optional`](#structFRHAPI__MarketingCampaign_1ab6949176b14e548b9b2d7055e733d5e5) | The time the MarketingCampaign was created.
+`public FString `[`CreatedOn_Optional`](#structFRHAPI__MarketingCampaign_1ab6949176b14e548b9b2d7055e733d5e5) | 
 `public bool `[`CreatedOn_IsSet`](#structFRHAPI__MarketingCampaign_1a7ada46f3e46bb0c26d381a399176aecd) | true if CreatedOn_Optional has been set to a value
-`public FString `[`LastModifiedOn_Optional`](#structFRHAPI__MarketingCampaign_1ae169c5a829c7a9335301a8896e250749) | The time the MarketingCampaign was last modified.
+`public bool `[`CreatedOn_IsNull`](#structFRHAPI__MarketingCampaign_1a5cbf65d1620035e77304954a4ee2b1f7) | true if CreatedOn_Optional has been explicitly set to null
+`public FString `[`LastModifiedOn_Optional`](#structFRHAPI__MarketingCampaign_1ae169c5a829c7a9335301a8896e250749) | 
 `public bool `[`LastModifiedOn_IsSet`](#structFRHAPI__MarketingCampaign_1aa6039d64c799ad7309e69d7ebb67084a) | true if LastModifiedOn_Optional has been set to a value
+`public bool `[`LastModifiedOn_IsNull`](#structFRHAPI__MarketingCampaign_1a0925045d837d2de0d73ced9e5353dfb3) | true if LastModifiedOn_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__MarketingCampaign_1af66e5db4ed8a79d90a4ac062d70a0712)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__MarketingCampaign_1a0f3acc9577bc89ba48a62ca2b3d8c6df)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FGuid & `[`GetUuid`](#structFRHAPI__MarketingCampaign_1a021904c12dbc7c74c447c0e435bece6f)`()` | Gets the value of Uuid.
@@ -50,6 +53,8 @@ A Marketing Campaign is a set of external keys that can be claimed by players.Th
 `public inline void `[`SetPortalId`](#structFRHAPI__MarketingCampaign_1a166990b58e244fa580a14ecb4c7a82c5)`(ERHAPI_Portal && NewValue)` | Sets the value of PortalId_Optional and also sets PortalId_IsSet to true using move semantics.
 `public inline void `[`ClearPortalId`](#structFRHAPI__MarketingCampaign_1a18a4f2fa4cfe73481188dd0d065b2899)`()` | Clears the value of PortalId_Optional and sets PortalId_IsSet to false.
 `public inline bool `[`IsPortalIdSet`](#structFRHAPI__MarketingCampaign_1a1c2be5b531d3579c5dae2e8bd39704c3)`() const` | Checks whether PortalId_Optional has been set.
+`public inline void `[`SetPortalIdToNull`](#structFRHAPI__MarketingCampaign_1add3103c0e6a4c707fde6023b0f941180)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsPortalIdNull`](#structFRHAPI__MarketingCampaign_1ae9c0061a723eed333f7113da0262af70)`() const` | Checks whether PortalId_Optional is set to null.
 `public inline TArray< `[`FRHAPI_KeyType`](RHAPI_KeyType.md#structFRHAPI__KeyType)` > & `[`GetKeyTypes`](#structFRHAPI__MarketingCampaign_1a67f905ccd05b819ed42983b7d4c7436f)`()` | Gets the value of KeyTypes.
 `public inline const TArray< `[`FRHAPI_KeyType`](RHAPI_KeyType.md#structFRHAPI__KeyType)` > & `[`GetKeyTypes`](#structFRHAPI__MarketingCampaign_1a1980e832cb20ec3ade39db4a86178efb)`() const` | Gets the value of KeyTypes.
 `public inline void `[`SetKeyTypes`](#structFRHAPI__MarketingCampaign_1a12eccfc6a4324cea720b7b0c52f5286c)`(const TArray< `[`FRHAPI_KeyType`](RHAPI_KeyType.md#structFRHAPI__KeyType)` > & NewValue)` | Sets the value of KeyTypes.
@@ -64,6 +69,8 @@ A Marketing Campaign is a set of external keys that can be claimed by players.Th
 `public inline void `[`SetCreatedOn`](#structFRHAPI__MarketingCampaign_1a12eac65c30b80961096e75080ff4389b)`(FString && NewValue)` | Sets the value of CreatedOn_Optional and also sets CreatedOn_IsSet to true using move semantics.
 `public inline void `[`ClearCreatedOn`](#structFRHAPI__MarketingCampaign_1af2065e3b9fe351f08930a45f42c57a1f)`()` | Clears the value of CreatedOn_Optional and sets CreatedOn_IsSet to false.
 `public inline bool `[`IsCreatedOnSet`](#structFRHAPI__MarketingCampaign_1ac874e3ab4407a92a9aa32e5d61c650cf)`() const` | Checks whether CreatedOn_Optional has been set.
+`public inline void `[`SetCreatedOnToNull`](#structFRHAPI__MarketingCampaign_1af8b63ef1468ae4bd55ff7d5fba22d427)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsCreatedOnNull`](#structFRHAPI__MarketingCampaign_1ad4b4b80c4e386f313f440bf887194456)`() const` | Checks whether CreatedOn_Optional is set to null.
 `public inline FString & `[`GetLastModifiedOn`](#structFRHAPI__MarketingCampaign_1ae456d555069976b3a0dddb7b1358f566)`()` | Gets the value of LastModifiedOn_Optional, regardless of it having been set.
 `public inline const FString & `[`GetLastModifiedOn`](#structFRHAPI__MarketingCampaign_1a38d499a1c8d0df6334207d43cc36d884)`() const` | Gets the value of LastModifiedOn_Optional, regardless of it having been set.
 `public inline const FString & `[`GetLastModifiedOn`](#structFRHAPI__MarketingCampaign_1aa88ca672b70bbd332adf6c5456bd56aa)`(const FString & DefaultValue) const` | Gets the value of LastModifiedOn_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -74,6 +81,8 @@ A Marketing Campaign is a set of external keys that can be claimed by players.Th
 `public inline void `[`SetLastModifiedOn`](#structFRHAPI__MarketingCampaign_1a86861434091b0ddae3034fb6a4caad27)`(FString && NewValue)` | Sets the value of LastModifiedOn_Optional and also sets LastModifiedOn_IsSet to true using move semantics.
 `public inline void `[`ClearLastModifiedOn`](#structFRHAPI__MarketingCampaign_1aa16796a166b316f0d75b6a9f6f667d21)`()` | Clears the value of LastModifiedOn_Optional and sets LastModifiedOn_IsSet to false.
 `public inline bool `[`IsLastModifiedOnSet`](#structFRHAPI__MarketingCampaign_1a2a38ad5f9de88d12365f0cb2d9bae1ec)`() const` | Checks whether LastModifiedOn_Optional has been set.
+`public inline void `[`SetLastModifiedOnToNull`](#structFRHAPI__MarketingCampaign_1a2f6870cdf2e62c9dfa9c0af7e67023e5)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsLastModifiedOnNull`](#structFRHAPI__MarketingCampaign_1a6f3627afa8be8ed0d280559c68d2d4fc)`() const` | Checks whether LastModifiedOn_Optional is set to null.
 
 ### Members
 
@@ -87,11 +96,13 @@ The name of the Marketing Campaign.
 
 #### `public ERHAPI_Portal `[`PortalId_Optional`](#structFRHAPI__MarketingCampaign_1a31b0b077ed1ad08557c16d620802c1b4) <a id="structFRHAPI__MarketingCampaign_1a31b0b077ed1ad08557c16d620802c1b4"></a>
 
-Platform for the Marketing Campaign.
-
 #### `public bool `[`PortalId_IsSet`](#structFRHAPI__MarketingCampaign_1a91a202384b8e443bfabf183ef18fe555) <a id="structFRHAPI__MarketingCampaign_1a91a202384b8e443bfabf183ef18fe555"></a>
 
 true if PortalId_Optional has been set to a value
+
+#### `public bool `[`PortalId_IsNull`](#structFRHAPI__MarketingCampaign_1a999a53262c1fe09daa5c73fbd7398982) <a id="structFRHAPI__MarketingCampaign_1a999a53262c1fe09daa5c73fbd7398982"></a>
+
+true if PortalId_Optional has been explicitly set to null
 
 #### `public TArray< `[`FRHAPI_KeyType`](RHAPI_KeyType.md#structFRHAPI__KeyType)` > `[`KeyTypes`](#structFRHAPI__MarketingCampaign_1ac277f1290b832a4d25e273b803263187) <a id="structFRHAPI__MarketingCampaign_1ac277f1290b832a4d25e273b803263187"></a>
 
@@ -99,19 +110,23 @@ The types of keys that can be claimed from this campaign.
 
 #### `public FString `[`CreatedOn_Optional`](#structFRHAPI__MarketingCampaign_1ab6949176b14e548b9b2d7055e733d5e5) <a id="structFRHAPI__MarketingCampaign_1ab6949176b14e548b9b2d7055e733d5e5"></a>
 
-The time the MarketingCampaign was created.
-
 #### `public bool `[`CreatedOn_IsSet`](#structFRHAPI__MarketingCampaign_1a7ada46f3e46bb0c26d381a399176aecd) <a id="structFRHAPI__MarketingCampaign_1a7ada46f3e46bb0c26d381a399176aecd"></a>
 
 true if CreatedOn_Optional has been set to a value
 
-#### `public FString `[`LastModifiedOn_Optional`](#structFRHAPI__MarketingCampaign_1ae169c5a829c7a9335301a8896e250749) <a id="structFRHAPI__MarketingCampaign_1ae169c5a829c7a9335301a8896e250749"></a>
+#### `public bool `[`CreatedOn_IsNull`](#structFRHAPI__MarketingCampaign_1a5cbf65d1620035e77304954a4ee2b1f7) <a id="structFRHAPI__MarketingCampaign_1a5cbf65d1620035e77304954a4ee2b1f7"></a>
 
-The time the MarketingCampaign was last modified.
+true if CreatedOn_Optional has been explicitly set to null
+
+#### `public FString `[`LastModifiedOn_Optional`](#structFRHAPI__MarketingCampaign_1ae169c5a829c7a9335301a8896e250749) <a id="structFRHAPI__MarketingCampaign_1ae169c5a829c7a9335301a8896e250749"></a>
 
 #### `public bool `[`LastModifiedOn_IsSet`](#structFRHAPI__MarketingCampaign_1aa6039d64c799ad7309e69d7ebb67084a) <a id="structFRHAPI__MarketingCampaign_1aa6039d64c799ad7309e69d7ebb67084a"></a>
 
 true if LastModifiedOn_Optional has been set to a value
+
+#### `public bool `[`LastModifiedOn_IsNull`](#structFRHAPI__MarketingCampaign_1a0925045d837d2de0d73ced9e5353dfb3) <a id="structFRHAPI__MarketingCampaign_1a0925045d837d2de0d73ced9e5353dfb3"></a>
+
+true if LastModifiedOn_Optional has been explicitly set to null
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__MarketingCampaign_1af66e5db4ed8a79d90a4ac062d70a0712)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__MarketingCampaign_1af66e5db4ed8a79d90a4ac062d70a0712"></a>
 
@@ -202,6 +217,14 @@ Clears the value of PortalId_Optional and sets PortalId_IsSet to false.
 
 Checks whether PortalId_Optional has been set.
 
+#### `public inline void `[`SetPortalIdToNull`](#structFRHAPI__MarketingCampaign_1add3103c0e6a4c707fde6023b0f941180)`()` <a id="structFRHAPI__MarketingCampaign_1add3103c0e6a4c707fde6023b0f941180"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsPortalIdNull`](#structFRHAPI__MarketingCampaign_1ae9c0061a723eed333f7113da0262af70)`() const` <a id="structFRHAPI__MarketingCampaign_1ae9c0061a723eed333f7113da0262af70"></a>
+
+Checks whether PortalId_Optional is set to null.
+
 #### `public inline TArray< `[`FRHAPI_KeyType`](RHAPI_KeyType.md#structFRHAPI__KeyType)` > & `[`GetKeyTypes`](#structFRHAPI__MarketingCampaign_1a67f905ccd05b819ed42983b7d4c7436f)`()` <a id="structFRHAPI__MarketingCampaign_1a67f905ccd05b819ed42983b7d4c7436f"></a>
 
 Gets the value of KeyTypes.
@@ -258,6 +281,14 @@ Clears the value of CreatedOn_Optional and sets CreatedOn_IsSet to false.
 
 Checks whether CreatedOn_Optional has been set.
 
+#### `public inline void `[`SetCreatedOnToNull`](#structFRHAPI__MarketingCampaign_1af8b63ef1468ae4bd55ff7d5fba22d427)`()` <a id="structFRHAPI__MarketingCampaign_1af8b63ef1468ae4bd55ff7d5fba22d427"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsCreatedOnNull`](#structFRHAPI__MarketingCampaign_1ad4b4b80c4e386f313f440bf887194456)`() const` <a id="structFRHAPI__MarketingCampaign_1ad4b4b80c4e386f313f440bf887194456"></a>
+
+Checks whether CreatedOn_Optional is set to null.
+
 #### `public inline FString & `[`GetLastModifiedOn`](#structFRHAPI__MarketingCampaign_1ae456d555069976b3a0dddb7b1358f566)`()` <a id="structFRHAPI__MarketingCampaign_1ae456d555069976b3a0dddb7b1358f566"></a>
 
 Gets the value of LastModifiedOn_Optional, regardless of it having been set.
@@ -297,4 +328,12 @@ Clears the value of LastModifiedOn_Optional and sets LastModifiedOn_IsSet to fal
 #### `public inline bool `[`IsLastModifiedOnSet`](#structFRHAPI__MarketingCampaign_1a2a38ad5f9de88d12365f0cb2d9bae1ec)`() const` <a id="structFRHAPI__MarketingCampaign_1a2a38ad5f9de88d12365f0cb2d9bae1ec"></a>
 
 Checks whether LastModifiedOn_Optional has been set.
+
+#### `public inline void `[`SetLastModifiedOnToNull`](#structFRHAPI__MarketingCampaign_1a2f6870cdf2e62c9dfa9c0af7e67023e5)`()` <a id="structFRHAPI__MarketingCampaign_1a2f6870cdf2e62c9dfa9c0af7e67023e5"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsLastModifiedOnNull`](#structFRHAPI__MarketingCampaign_1a6f3627afa8be8ed0d280559c68d2d4fc)`() const` <a id="structFRHAPI__MarketingCampaign_1a6f3627afa8be8ed0d280559c68d2d4fc"></a>
+
+Checks whether LastModifiedOn_Optional is set to null.
 

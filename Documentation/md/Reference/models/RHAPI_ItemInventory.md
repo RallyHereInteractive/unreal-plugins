@@ -23,8 +23,9 @@ Inventory of a particular Item for a Player organized by Inventory ID.
 --------------------------------|---------------------------------------------
 `public TMap< FString, `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` > `[`Records_Optional`](#structFRHAPI__ItemInventory_1a548463781c0d9871f74200a6315d626e) | Inventory Records for this Item Inventory.
 `public bool `[`Records_IsSet`](#structFRHAPI__ItemInventory_1a20a2b8f2e7cb28935490ba84be545c50) | true if Records_Optional has been set to a value
-`public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__ItemInventory_1ac5ef0da6d8904d817332aa333f9830f4) | Cache Info for this Item Inventory.
+`public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__ItemInventory_1ac5ef0da6d8904d817332aa333f9830f4) | 
 `public bool `[`CacheInfo_IsSet`](#structFRHAPI__ItemInventory_1a3ab9e2706967d2b32107441242c7ef86) | true if CacheInfo_Optional has been set to a value
+`public bool `[`CacheInfo_IsNull`](#structFRHAPI__ItemInventory_1a1489c45009d3d6b42475de33259eaf91) | true if CacheInfo_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__ItemInventory_1a8f6befec16b8f4e21d395a8fd1e2db4a)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__ItemInventory_1ab0ff966fd6f2d0d59d0ef926ccb69e16)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TMap< FString, `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` > & `[`GetRecords`](#structFRHAPI__ItemInventory_1abee56df0d996c6e4305f4ea8bd96ae1c)`()` | Gets the value of Records_Optional, regardless of it having been set.
@@ -47,6 +48,8 @@ Inventory of a particular Item for a Player organized by Inventory ID.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__ItemInventory_1a9cea9b7fcb4bcf348efaf15fe2a40d2e)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__ItemInventory_1ab687f12dbfe18e1624272af2066d0437)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__ItemInventory_1af664390e86c490f51516f3f7ca86b3e3)`() const` | Checks whether CacheInfo_Optional has been set.
+`public inline void `[`SetCacheInfoToNull`](#structFRHAPI__ItemInventory_1adc5d335da1962b7fc4d96fa2c46fba86)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsCacheInfoNull`](#structFRHAPI__ItemInventory_1a8c610133572c6c18b31cc0cb32784cd5)`() const` | Checks whether CacheInfo_Optional is set to null.
 
 ### Members
 
@@ -60,11 +63,13 @@ true if Records_Optional has been set to a value
 
 #### `public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__ItemInventory_1ac5ef0da6d8904d817332aa333f9830f4) <a id="structFRHAPI__ItemInventory_1ac5ef0da6d8904d817332aa333f9830f4"></a>
 
-Cache Info for this Item Inventory.
-
 #### `public bool `[`CacheInfo_IsSet`](#structFRHAPI__ItemInventory_1a3ab9e2706967d2b32107441242c7ef86) <a id="structFRHAPI__ItemInventory_1a3ab9e2706967d2b32107441242c7ef86"></a>
 
 true if CacheInfo_Optional has been set to a value
+
+#### `public bool `[`CacheInfo_IsNull`](#structFRHAPI__ItemInventory_1a1489c45009d3d6b42475de33259eaf91) <a id="structFRHAPI__ItemInventory_1a1489c45009d3d6b42475de33259eaf91"></a>
+
+true if CacheInfo_Optional has been explicitly set to null
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__ItemInventory_1a8f6befec16b8f4e21d395a8fd1e2db4a)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__ItemInventory_1a8f6befec16b8f4e21d395a8fd1e2db4a"></a>
 
@@ -162,4 +167,12 @@ Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 #### `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__ItemInventory_1af664390e86c490f51516f3f7ca86b3e3)`() const` <a id="structFRHAPI__ItemInventory_1af664390e86c490f51516f3f7ca86b3e3"></a>
 
 Checks whether CacheInfo_Optional has been set.
+
+#### `public inline void `[`SetCacheInfoToNull`](#structFRHAPI__ItemInventory_1adc5d335da1962b7fc4d96fa2c46fba86)`()` <a id="structFRHAPI__ItemInventory_1adc5d335da1962b7fc4d96fa2c46fba86"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsCacheInfoNull`](#structFRHAPI__ItemInventory_1a8c610133572c6c18b31cc0cb32784cd5)`() const` <a id="structFRHAPI__ItemInventory_1a8c610133572c6c18b31cc0cb32784cd5"></a>
+
+Checks whether CacheInfo_Optional is set to null.
 

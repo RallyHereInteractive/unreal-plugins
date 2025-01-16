@@ -22,18 +22,19 @@ Result of processing a platform entitlement.
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public FString `[`RequestId`](#structFRHAPI__PlatformEntitlementProcessResult_1ae996578068367b465028369b1e127b3e) | unique id to allow tracking the request
-`public ERHAPI_ClientType `[`ClientType`](#structFRHAPI__PlatformEntitlementProcessResult_1a617fe403bc85562d6bd5085c2b72fe00) | client type this purchase was made on
+`public ERHAPI_ClientType `[`ClientType`](#structFRHAPI__PlatformEntitlementProcessResult_1a617fe403bc85562d6bd5085c2b72fe00) | 
 `public FString `[`TransactionId`](#structFRHAPI__PlatformEntitlementProcessResult_1ac4e5064b8dd8dce73c0d93ff4bc196d8) | unique id for this transaction on the platform
-`public ERHAPI_PlatformRegion `[`PlatformRegion`](#structFRHAPI__PlatformEntitlementProcessResult_1adb311eefbbc7b0e7e34a2189e7c2edaf) | region this purchase was made in
+`public ERHAPI_PlatformRegion `[`PlatformRegion`](#structFRHAPI__PlatformEntitlementProcessResult_1adb311eefbbc7b0e7e34a2189e7c2edaf) | 
 `public FString `[`Status_Optional`](#structFRHAPI__PlatformEntitlementProcessResult_1a8d74f677f67627a8b0a1367d99655fdf) | status of this result
 `public bool `[`Status_IsSet`](#structFRHAPI__PlatformEntitlementProcessResult_1abca3d4ab6149c9cb2998b0b41ed8ef7c) | true if Status_Optional has been set to a value
-`public FString `[`ErrorCode_Optional`](#structFRHAPI__PlatformEntitlementProcessResult_1aae6a30857286c415c7961ae56e4792e9) | Error code for failures not associated with a specific entitlement.
+`public FString `[`ErrorCode_Optional`](#structFRHAPI__PlatformEntitlementProcessResult_1aae6a30857286c415c7961ae56e4792e9) | 
 `public bool `[`ErrorCode_IsSet`](#structFRHAPI__PlatformEntitlementProcessResult_1aee512a01a4abab2afb14b0b2ca678efe) | true if ErrorCode_Optional has been set to a value
+`public bool `[`ErrorCode_IsNull`](#structFRHAPI__PlatformEntitlementProcessResult_1ac0d46664bf21c3083f0b83f6a4f13c5f) | true if ErrorCode_Optional has been explicitly set to null
 `public TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > `[`ClientEntitlements_Optional`](#structFRHAPI__PlatformEntitlementProcessResult_1ab364b54bdebc6777f9ffe6e046161b6c) | Client entitlements that have been processed.
 `public bool `[`ClientEntitlements_IsSet`](#structFRHAPI__PlatformEntitlementProcessResult_1a53fc5f42cd21746352e77d4e11ff1e35) | true if ClientEntitlements_Optional has been set to a value
 `public TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > `[`ServerEntitlements_Optional`](#structFRHAPI__PlatformEntitlementProcessResult_1aa5c0162acdebd1b679a3a532480f56f1) | Server entitlements that have been processed.
 `public bool `[`ServerEntitlements_IsSet`](#structFRHAPI__PlatformEntitlementProcessResult_1a7811dbb2ed9aa8c86ebf55e7b65a5f1f) | true if ServerEntitlements_Optional has been set to a value
-`public ERHAPI_Platform `[`PlatformId`](#structFRHAPI__PlatformEntitlementProcessResult_1a3942cf5bfee604460bfb00c0bda56728) | Platform these transactions were processed on.
+`public ERHAPI_InventoryPlatform `[`PlatformId`](#structFRHAPI__PlatformEntitlementProcessResult_1a3d9c101ea96330d129568c76c2821def) | 
 `public FString `[`PlatformUserId`](#structFRHAPI__PlatformEntitlementProcessResult_1a5e27e7e6c68e086ec3a2eb805c2d6488) | Unique identifier for the platform user that processed this entitlement.
 `public bool `[`SkippedServerEntitlements_Optional`](#structFRHAPI__PlatformEntitlementProcessResult_1aedc8e7425204af954d95b39faaef2e53) | True if the server entitlements were skipped.
 `public bool `[`SkippedServerEntitlements_IsSet`](#structFRHAPI__PlatformEntitlementProcessResult_1a1588a5d0d180aff1f81430371a93a6e0) | true if SkippedServerEntitlements_Optional has been set to a value
@@ -77,6 +78,8 @@ Result of processing a platform entitlement.
 `public inline void `[`SetErrorCode`](#structFRHAPI__PlatformEntitlementProcessResult_1ad34ba6e275d1e94533c55a375b3c2107)`(FString && NewValue)` | Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true using move semantics.
 `public inline void `[`ClearErrorCode`](#structFRHAPI__PlatformEntitlementProcessResult_1a93ec866a89fb160d53864189c43c91ce)`()` | Clears the value of ErrorCode_Optional and sets ErrorCode_IsSet to false.
 `public inline bool `[`IsErrorCodeSet`](#structFRHAPI__PlatformEntitlementProcessResult_1a64cd1c7350f84bcd82bc0c92ddadc6df)`() const` | Checks whether ErrorCode_Optional has been set.
+`public inline void `[`SetErrorCodeToNull`](#structFRHAPI__PlatformEntitlementProcessResult_1a255615346acd5437cec43b828e6bf255)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsErrorCodeNull`](#structFRHAPI__PlatformEntitlementProcessResult_1afad91a3cfba33d54fe31a2c408f0c326)`() const` | Checks whether ErrorCode_Optional is set to null.
 `public inline TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & `[`GetClientEntitlements`](#structFRHAPI__PlatformEntitlementProcessResult_1a9b0e13fbfb32b9855960599dd87d033b)`()` | Gets the value of ClientEntitlements_Optional, regardless of it having been set.
 `public inline const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & `[`GetClientEntitlements`](#structFRHAPI__PlatformEntitlementProcessResult_1a583f9148ee28314977c95e8e65884046)`() const` | Gets the value of ClientEntitlements_Optional, regardless of it having been set.
 `public inline const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & `[`GetClientEntitlements`](#structFRHAPI__PlatformEntitlementProcessResult_1a286d986959ca09856965b5cbab000b49)`(const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & DefaultValue) const` | Gets the value of ClientEntitlements_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -97,10 +100,10 @@ Result of processing a platform entitlement.
 `public inline void `[`SetServerEntitlements`](#structFRHAPI__PlatformEntitlementProcessResult_1afcffdc50adb7bbb283bc5159774708a1)`(TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > && NewValue)` | Sets the value of ServerEntitlements_Optional and also sets ServerEntitlements_IsSet to true using move semantics.
 `public inline void `[`ClearServerEntitlements`](#structFRHAPI__PlatformEntitlementProcessResult_1aa079715cdcbcf91c7ce6dc1f2bc5f0d6)`()` | Clears the value of ServerEntitlements_Optional and sets ServerEntitlements_IsSet to false.
 `public inline bool `[`IsServerEntitlementsSet`](#structFRHAPI__PlatformEntitlementProcessResult_1aa702227046e5e3a103fbb4218ef9f464)`() const` | Checks whether ServerEntitlements_Optional has been set.
-`public inline ERHAPI_Platform & `[`GetPlatformId`](#structFRHAPI__PlatformEntitlementProcessResult_1a81e4a8a554a1a8a6680baedaaecf2369)`()` | Gets the value of PlatformId.
-`public inline const ERHAPI_Platform & `[`GetPlatformId`](#structFRHAPI__PlatformEntitlementProcessResult_1af25167ccd3e90cd0f73496f428c9f97a)`() const` | Gets the value of PlatformId.
-`public inline void `[`SetPlatformId`](#structFRHAPI__PlatformEntitlementProcessResult_1a58347440bfd05f90d90b163a54a87a31)`(const ERHAPI_Platform & NewValue)` | Sets the value of PlatformId.
-`public inline void `[`SetPlatformId`](#structFRHAPI__PlatformEntitlementProcessResult_1adff47140afff66174b95b83c694c71e9)`(ERHAPI_Platform && NewValue)` | Sets the value of PlatformId using move semantics.
+`public inline ERHAPI_InventoryPlatform & `[`GetPlatformId`](#structFRHAPI__PlatformEntitlementProcessResult_1a39973154263b4f509d5614220d162a4b)`()` | Gets the value of PlatformId.
+`public inline const ERHAPI_InventoryPlatform & `[`GetPlatformId`](#structFRHAPI__PlatformEntitlementProcessResult_1aa2e7ff09722049b18e46303d7051fc15)`() const` | Gets the value of PlatformId.
+`public inline void `[`SetPlatformId`](#structFRHAPI__PlatformEntitlementProcessResult_1a146174ec55998c7c4ca97a41c88e640a)`(const ERHAPI_InventoryPlatform & NewValue)` | Sets the value of PlatformId.
+`public inline void `[`SetPlatformId`](#structFRHAPI__PlatformEntitlementProcessResult_1a583e9876f4969331bab5654e1f6383bf)`(ERHAPI_InventoryPlatform && NewValue)` | Sets the value of PlatformId using move semantics.
 `public inline FString & `[`GetPlatformUserId`](#structFRHAPI__PlatformEntitlementProcessResult_1af59fcdb045feaab9f2f4f13b2d806f53)`()` | Gets the value of PlatformUserId.
 `public inline const FString & `[`GetPlatformUserId`](#structFRHAPI__PlatformEntitlementProcessResult_1a3b970b434ca0eda5d35f44bbaec11dfb)`() const` | Gets the value of PlatformUserId.
 `public inline void `[`SetPlatformUserId`](#structFRHAPI__PlatformEntitlementProcessResult_1aeb0f248cba82b79677a170499a439acb)`(const FString & NewValue)` | Sets the value of PlatformUserId.
@@ -126,15 +129,11 @@ unique id to allow tracking the request
 
 #### `public ERHAPI_ClientType `[`ClientType`](#structFRHAPI__PlatformEntitlementProcessResult_1a617fe403bc85562d6bd5085c2b72fe00) <a id="structFRHAPI__PlatformEntitlementProcessResult_1a617fe403bc85562d6bd5085c2b72fe00"></a>
 
-client type this purchase was made on
-
 #### `public FString `[`TransactionId`](#structFRHAPI__PlatformEntitlementProcessResult_1ac4e5064b8dd8dce73c0d93ff4bc196d8) <a id="structFRHAPI__PlatformEntitlementProcessResult_1ac4e5064b8dd8dce73c0d93ff4bc196d8"></a>
 
 unique id for this transaction on the platform
 
 #### `public ERHAPI_PlatformRegion `[`PlatformRegion`](#structFRHAPI__PlatformEntitlementProcessResult_1adb311eefbbc7b0e7e34a2189e7c2edaf) <a id="structFRHAPI__PlatformEntitlementProcessResult_1adb311eefbbc7b0e7e34a2189e7c2edaf"></a>
-
-region this purchase was made in
 
 #### `public FString `[`Status_Optional`](#structFRHAPI__PlatformEntitlementProcessResult_1a8d74f677f67627a8b0a1367d99655fdf) <a id="structFRHAPI__PlatformEntitlementProcessResult_1a8d74f677f67627a8b0a1367d99655fdf"></a>
 
@@ -146,11 +145,13 @@ true if Status_Optional has been set to a value
 
 #### `public FString `[`ErrorCode_Optional`](#structFRHAPI__PlatformEntitlementProcessResult_1aae6a30857286c415c7961ae56e4792e9) <a id="structFRHAPI__PlatformEntitlementProcessResult_1aae6a30857286c415c7961ae56e4792e9"></a>
 
-Error code for failures not associated with a specific entitlement.
-
 #### `public bool `[`ErrorCode_IsSet`](#structFRHAPI__PlatformEntitlementProcessResult_1aee512a01a4abab2afb14b0b2ca678efe) <a id="structFRHAPI__PlatformEntitlementProcessResult_1aee512a01a4abab2afb14b0b2ca678efe"></a>
 
 true if ErrorCode_Optional has been set to a value
+
+#### `public bool `[`ErrorCode_IsNull`](#structFRHAPI__PlatformEntitlementProcessResult_1ac0d46664bf21c3083f0b83f6a4f13c5f) <a id="structFRHAPI__PlatformEntitlementProcessResult_1ac0d46664bf21c3083f0b83f6a4f13c5f"></a>
+
+true if ErrorCode_Optional has been explicitly set to null
 
 #### `public TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > `[`ClientEntitlements_Optional`](#structFRHAPI__PlatformEntitlementProcessResult_1ab364b54bdebc6777f9ffe6e046161b6c) <a id="structFRHAPI__PlatformEntitlementProcessResult_1ab364b54bdebc6777f9ffe6e046161b6c"></a>
 
@@ -168,9 +169,7 @@ Server entitlements that have been processed.
 
 true if ServerEntitlements_Optional has been set to a value
 
-#### `public ERHAPI_Platform `[`PlatformId`](#structFRHAPI__PlatformEntitlementProcessResult_1a3942cf5bfee604460bfb00c0bda56728) <a id="structFRHAPI__PlatformEntitlementProcessResult_1a3942cf5bfee604460bfb00c0bda56728"></a>
-
-Platform these transactions were processed on.
+#### `public ERHAPI_InventoryPlatform `[`PlatformId`](#structFRHAPI__PlatformEntitlementProcessResult_1a3d9c101ea96330d129568c76c2821def) <a id="structFRHAPI__PlatformEntitlementProcessResult_1a3d9c101ea96330d129568c76c2821def"></a>
 
 #### `public FString `[`PlatformUserId`](#structFRHAPI__PlatformEntitlementProcessResult_1a5e27e7e6c68e086ec3a2eb805c2d6488) <a id="structFRHAPI__PlatformEntitlementProcessResult_1a5e27e7e6c68e086ec3a2eb805c2d6488"></a>
 
@@ -353,6 +352,14 @@ Clears the value of ErrorCode_Optional and sets ErrorCode_IsSet to false.
 
 Checks whether ErrorCode_Optional has been set.
 
+#### `public inline void `[`SetErrorCodeToNull`](#structFRHAPI__PlatformEntitlementProcessResult_1a255615346acd5437cec43b828e6bf255)`()` <a id="structFRHAPI__PlatformEntitlementProcessResult_1a255615346acd5437cec43b828e6bf255"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsErrorCodeNull`](#structFRHAPI__PlatformEntitlementProcessResult_1afad91a3cfba33d54fe31a2c408f0c326)`() const` <a id="structFRHAPI__PlatformEntitlementProcessResult_1afad91a3cfba33d54fe31a2c408f0c326"></a>
+
+Checks whether ErrorCode_Optional is set to null.
+
 #### `public inline TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & `[`GetClientEntitlements`](#structFRHAPI__PlatformEntitlementProcessResult_1a9b0e13fbfb32b9855960599dd87d033b)`()` <a id="structFRHAPI__PlatformEntitlementProcessResult_1a9b0e13fbfb32b9855960599dd87d033b"></a>
 
 Gets the value of ClientEntitlements_Optional, regardless of it having been set.
@@ -433,19 +440,19 @@ Clears the value of ServerEntitlements_Optional and sets ServerEntitlements_IsSe
 
 Checks whether ServerEntitlements_Optional has been set.
 
-#### `public inline ERHAPI_Platform & `[`GetPlatformId`](#structFRHAPI__PlatformEntitlementProcessResult_1a81e4a8a554a1a8a6680baedaaecf2369)`()` <a id="structFRHAPI__PlatformEntitlementProcessResult_1a81e4a8a554a1a8a6680baedaaecf2369"></a>
+#### `public inline ERHAPI_InventoryPlatform & `[`GetPlatformId`](#structFRHAPI__PlatformEntitlementProcessResult_1a39973154263b4f509d5614220d162a4b)`()` <a id="structFRHAPI__PlatformEntitlementProcessResult_1a39973154263b4f509d5614220d162a4b"></a>
 
 Gets the value of PlatformId.
 
-#### `public inline const ERHAPI_Platform & `[`GetPlatformId`](#structFRHAPI__PlatformEntitlementProcessResult_1af25167ccd3e90cd0f73496f428c9f97a)`() const` <a id="structFRHAPI__PlatformEntitlementProcessResult_1af25167ccd3e90cd0f73496f428c9f97a"></a>
+#### `public inline const ERHAPI_InventoryPlatform & `[`GetPlatformId`](#structFRHAPI__PlatformEntitlementProcessResult_1aa2e7ff09722049b18e46303d7051fc15)`() const` <a id="structFRHAPI__PlatformEntitlementProcessResult_1aa2e7ff09722049b18e46303d7051fc15"></a>
 
 Gets the value of PlatformId.
 
-#### `public inline void `[`SetPlatformId`](#structFRHAPI__PlatformEntitlementProcessResult_1a58347440bfd05f90d90b163a54a87a31)`(const ERHAPI_Platform & NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessResult_1a58347440bfd05f90d90b163a54a87a31"></a>
+#### `public inline void `[`SetPlatformId`](#structFRHAPI__PlatformEntitlementProcessResult_1a146174ec55998c7c4ca97a41c88e640a)`(const ERHAPI_InventoryPlatform & NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessResult_1a146174ec55998c7c4ca97a41c88e640a"></a>
 
 Sets the value of PlatformId.
 
-#### `public inline void `[`SetPlatformId`](#structFRHAPI__PlatformEntitlementProcessResult_1adff47140afff66174b95b83c694c71e9)`(ERHAPI_Platform && NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessResult_1adff47140afff66174b95b83c694c71e9"></a>
+#### `public inline void `[`SetPlatformId`](#structFRHAPI__PlatformEntitlementProcessResult_1a583e9876f4969331bab5654e1f6383bf)`(ERHAPI_InventoryPlatform && NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessResult_1a583e9876f4969331bab5654e1f6383bf"></a>
 
 Sets the value of PlatformId using move semantics.
 

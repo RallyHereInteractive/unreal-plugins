@@ -23,7 +23,7 @@ A collection of Player Orders.
 --------------------------------|---------------------------------------------
 `public TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > `[`Data_Optional`](#structFRHAPI__PlayerOrdersResponse_1a9b5ab0f08df600c223c5be96df84401d) | A collection of Player Orders.
 `public bool `[`Data_IsSet`](#structFRHAPI__PlayerOrdersResponse_1a53ee2928956e233c882bcc3352ae89ac) | true if Data_Optional has been set to a value
-`public `[`FRHAPI_InventoryPageMeta`](RHAPI_InventoryPageMeta.md#structFRHAPI__InventoryPageMeta)` `[`Page`](#structFRHAPI__PlayerOrdersResponse_1a8a09919a81cb7fba37cf1166d9b60f2a) | Page metadata for the Player Orders.
+`public `[`FRHAPI_InventoryPageMeta`](RHAPI_InventoryPageMeta.md#structFRHAPI__InventoryPageMeta)` `[`Page`](#structFRHAPI__PlayerOrdersResponse_1a8a09919a81cb7fba37cf1166d9b60f2a) | 
 `public virtual bool `[`FromJson`](#structFRHAPI__PlayerOrdersResponse_1a9dc4eaa4b221602b7da012d3c5be0b30)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PlayerOrdersResponse_1adb587156447ab4c9163ed9df3e4f7b22)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > & `[`GetData`](#structFRHAPI__PlayerOrdersResponse_1a022df809138801a378acb6b6dd14ac59)`()` | Gets the value of Data_Optional, regardless of it having been set.
@@ -52,8 +52,6 @@ A collection of Player Orders.
 true if Data_Optional has been set to a value
 
 #### `public `[`FRHAPI_InventoryPageMeta`](RHAPI_InventoryPageMeta.md#structFRHAPI__InventoryPageMeta)` `[`Page`](#structFRHAPI__PlayerOrdersResponse_1a8a09919a81cb7fba37cf1166d9b60f2a) <a id="structFRHAPI__PlayerOrdersResponse_1a8a09919a81cb7fba37cf1166d9b60f2a"></a>
-
-Page metadata for the Player Orders.
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__PlayerOrdersResponse_1a9dc4eaa4b221602b7da012d3c5be0b30)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlayerOrdersResponse_1a9dc4eaa4b221602b7da012d3c5be0b30"></a>
 

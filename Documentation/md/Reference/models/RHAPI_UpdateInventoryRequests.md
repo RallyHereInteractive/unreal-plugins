@@ -21,10 +21,11 @@ Collection of Update Inventory Requests. The Inventory referenced in the Update 
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public ERHAPI_Source `[`Source_Optional`](#structFRHAPI__UpdateInventoryRequests_1aeb907459f6fdd297e4c2a2965497c042) | Source of this Inventory Operation.
+`public ERHAPI_Source `[`Source_Optional`](#structFRHAPI__UpdateInventoryRequests_1aeb907459f6fdd297e4c2a2965497c042) | 
 `public bool `[`Source_IsSet`](#structFRHAPI__UpdateInventoryRequests_1a69f45a9cdcfd48725804c00c0b7e7d14) | true if Source_Optional has been set to a value
-`public FGuid `[`ClientOrderRefId_Optional`](#structFRHAPI__UpdateInventoryRequests_1a032df68ee260eda15df5902f492ddf46) | Arbitrary UUID that can be used by clients to correlate Order requests with Order responses.
+`public FGuid `[`ClientOrderRefId_Optional`](#structFRHAPI__UpdateInventoryRequests_1a032df68ee260eda15df5902f492ddf46) | 
 `public bool `[`ClientOrderRefId_IsSet`](#structFRHAPI__UpdateInventoryRequests_1aa229f9716e5436352f6c4de7d30be686) | true if ClientOrderRefId_Optional has been set to a value
+`public bool `[`ClientOrderRefId_IsNull`](#structFRHAPI__UpdateInventoryRequests_1a73e89ff8fb68cf673eb449427a6c0eed) | true if ClientOrderRefId_Optional has been explicitly set to null
 `public TArray< `[`FRHAPI_UpdateInventoryRequestById`](RHAPI_UpdateInventoryRequestById.md#structFRHAPI__UpdateInventoryRequestById)` > `[`Inventory`](#structFRHAPI__UpdateInventoryRequests_1a51da6b11026ca23fba9c45f0a5eb972f) | Collection of Update Inventory Requests.
 `public virtual bool `[`FromJson`](#structFRHAPI__UpdateInventoryRequests_1a41f676c8b0a3c0312017ae1c5211812f)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__UpdateInventoryRequests_1add35068252cf2a9034902f402c4be1e0)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
@@ -48,6 +49,8 @@ Collection of Update Inventory Requests. The Inventory referenced in the Update 
 `public inline void `[`SetClientOrderRefId`](#structFRHAPI__UpdateInventoryRequests_1a428225f0d11f648bf6138fa6a17afbf4)`(FGuid && NewValue)` | Sets the value of ClientOrderRefId_Optional and also sets ClientOrderRefId_IsSet to true using move semantics.
 `public inline void `[`ClearClientOrderRefId`](#structFRHAPI__UpdateInventoryRequests_1a9d2c82a14e5d4c2df1501637be55e602)`()` | Clears the value of ClientOrderRefId_Optional and sets ClientOrderRefId_IsSet to false.
 `public inline bool `[`IsClientOrderRefIdSet`](#structFRHAPI__UpdateInventoryRequests_1a0fe0fe1b5abafd9b11cdb8885e30241e)`() const` | Checks whether ClientOrderRefId_Optional has been set.
+`public inline void `[`SetClientOrderRefIdToNull`](#structFRHAPI__UpdateInventoryRequests_1ab6a2d0fa2af90893df420e8d1c116a2e)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsClientOrderRefIdNull`](#structFRHAPI__UpdateInventoryRequests_1a944d7d89adf0efcf6a49b89408b34936)`() const` | Checks whether ClientOrderRefId_Optional is set to null.
 `public inline TArray< `[`FRHAPI_UpdateInventoryRequestById`](RHAPI_UpdateInventoryRequestById.md#structFRHAPI__UpdateInventoryRequestById)` > & `[`GetInventory`](#structFRHAPI__UpdateInventoryRequests_1aad6707dde40259d0990ae5e7ae83df0d)`()` | Gets the value of Inventory.
 `public inline const TArray< `[`FRHAPI_UpdateInventoryRequestById`](RHAPI_UpdateInventoryRequestById.md#structFRHAPI__UpdateInventoryRequestById)` > & `[`GetInventory`](#structFRHAPI__UpdateInventoryRequests_1a9f963a7dae3454b949140e76a3269d37)`() const` | Gets the value of Inventory.
 `public inline void `[`SetInventory`](#structFRHAPI__UpdateInventoryRequests_1a1aa66c687421317e059a578b981c7f25)`(const TArray< `[`FRHAPI_UpdateInventoryRequestById`](RHAPI_UpdateInventoryRequestById.md#structFRHAPI__UpdateInventoryRequestById)` > & NewValue)` | Sets the value of Inventory.
@@ -57,19 +60,19 @@ Collection of Update Inventory Requests. The Inventory referenced in the Update 
 
 #### `public ERHAPI_Source `[`Source_Optional`](#structFRHAPI__UpdateInventoryRequests_1aeb907459f6fdd297e4c2a2965497c042) <a id="structFRHAPI__UpdateInventoryRequests_1aeb907459f6fdd297e4c2a2965497c042"></a>
 
-Source of this Inventory Operation.
-
 #### `public bool `[`Source_IsSet`](#structFRHAPI__UpdateInventoryRequests_1a69f45a9cdcfd48725804c00c0b7e7d14) <a id="structFRHAPI__UpdateInventoryRequests_1a69f45a9cdcfd48725804c00c0b7e7d14"></a>
 
 true if Source_Optional has been set to a value
 
 #### `public FGuid `[`ClientOrderRefId_Optional`](#structFRHAPI__UpdateInventoryRequests_1a032df68ee260eda15df5902f492ddf46) <a id="structFRHAPI__UpdateInventoryRequests_1a032df68ee260eda15df5902f492ddf46"></a>
 
-Arbitrary UUID that can be used by clients to correlate Order requests with Order responses.
-
 #### `public bool `[`ClientOrderRefId_IsSet`](#structFRHAPI__UpdateInventoryRequests_1aa229f9716e5436352f6c4de7d30be686) <a id="structFRHAPI__UpdateInventoryRequests_1aa229f9716e5436352f6c4de7d30be686"></a>
 
 true if ClientOrderRefId_Optional has been set to a value
+
+#### `public bool `[`ClientOrderRefId_IsNull`](#structFRHAPI__UpdateInventoryRequests_1a73e89ff8fb68cf673eb449427a6c0eed) <a id="structFRHAPI__UpdateInventoryRequests_1a73e89ff8fb68cf673eb449427a6c0eed"></a>
+
+true if ClientOrderRefId_Optional has been explicitly set to null
 
 #### `public TArray< `[`FRHAPI_UpdateInventoryRequestById`](RHAPI_UpdateInventoryRequestById.md#structFRHAPI__UpdateInventoryRequestById)` > `[`Inventory`](#structFRHAPI__UpdateInventoryRequests_1a51da6b11026ca23fba9c45f0a5eb972f) <a id="structFRHAPI__UpdateInventoryRequests_1a51da6b11026ca23fba9c45f0a5eb972f"></a>
 
@@ -171,6 +174,14 @@ Clears the value of ClientOrderRefId_Optional and sets ClientOrderRefId_IsSet to
 #### `public inline bool `[`IsClientOrderRefIdSet`](#structFRHAPI__UpdateInventoryRequests_1a0fe0fe1b5abafd9b11cdb8885e30241e)`() const` <a id="structFRHAPI__UpdateInventoryRequests_1a0fe0fe1b5abafd9b11cdb8885e30241e"></a>
 
 Checks whether ClientOrderRefId_Optional has been set.
+
+#### `public inline void `[`SetClientOrderRefIdToNull`](#structFRHAPI__UpdateInventoryRequests_1ab6a2d0fa2af90893df420e8d1c116a2e)`()` <a id="structFRHAPI__UpdateInventoryRequests_1ab6a2d0fa2af90893df420e8d1c116a2e"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsClientOrderRefIdNull`](#structFRHAPI__UpdateInventoryRequests_1a944d7d89adf0efcf6a49b89408b34936)`() const` <a id="structFRHAPI__UpdateInventoryRequests_1a944d7d89adf0efcf6a49b89408b34936"></a>
+
+Checks whether ClientOrderRefId_Optional is set to null.
 
 #### `public inline TArray< `[`FRHAPI_UpdateInventoryRequestById`](RHAPI_UpdateInventoryRequestById.md#structFRHAPI__UpdateInventoryRequestById)` > & `[`GetInventory`](#structFRHAPI__UpdateInventoryRequests_1aad6707dde40259d0990ae5e7ae83df0d)`()` <a id="structFRHAPI__UpdateInventoryRequests_1aad6707dde40259d0990ae5e7ae83df0d"></a>
 

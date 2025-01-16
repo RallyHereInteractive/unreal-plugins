@@ -25,6 +25,7 @@ A collection of XP Tables. Each table is a collection of XP Levels from 1 to N. 
 `public bool `[`XpTables_IsSet`](#structFRHAPI__XpTables_1aa061df042a1720cd499d4a68be0e5957) | true if XpTables_Optional has been set to a value
 `public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__XpTables_1ad6486b25138e6eaa3a16b8c113f469ac) | 
 `public bool `[`CacheInfo_IsSet`](#structFRHAPI__XpTables_1a4465262732b3575e599b9fdaedfa630d) | true if CacheInfo_Optional has been set to a value
+`public bool `[`CacheInfo_IsNull`](#structFRHAPI__XpTables_1a60b32c534ec4bcb8870d5a30600a6ca5) | true if CacheInfo_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__XpTables_1af0a2faf4dc82e5c5d9104ec4a2131ed7)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__XpTables_1a0eb05bf62accec091144b0236028ba52)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TMap< FString, `[`FRHAPI_XpTable`](RHAPI_XpTable.md#structFRHAPI__XpTable)` > & `[`GetXpTables`](#structFRHAPI__XpTables_1a290eb3b9bd7af03f09aef9045b78d509)`()` | Gets the value of XpTables_Optional, regardless of it having been set.
@@ -47,6 +48,8 @@ A collection of XP Tables. Each table is a collection of XP Levels from 1 to N. 
 `public inline void `[`SetCacheInfo`](#structFRHAPI__XpTables_1ab3779022164a1e254b11cd7f06464faf)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__XpTables_1a95f676a52f3ffb25429170bd6b5977c1)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__XpTables_1ae200761dae8b5171c1fd71b25a27261e)`() const` | Checks whether CacheInfo_Optional has been set.
+`public inline void `[`SetCacheInfoToNull`](#structFRHAPI__XpTables_1a382a268a40f55b0442831cca4a93fd00)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsCacheInfoNull`](#structFRHAPI__XpTables_1af9419b4010a7f900bbd71c52396330aa)`() const` | Checks whether CacheInfo_Optional is set to null.
 
 ### Members
 
@@ -61,6 +64,10 @@ true if XpTables_Optional has been set to a value
 #### `public bool `[`CacheInfo_IsSet`](#structFRHAPI__XpTables_1a4465262732b3575e599b9fdaedfa630d) <a id="structFRHAPI__XpTables_1a4465262732b3575e599b9fdaedfa630d"></a>
 
 true if CacheInfo_Optional has been set to a value
+
+#### `public bool `[`CacheInfo_IsNull`](#structFRHAPI__XpTables_1a60b32c534ec4bcb8870d5a30600a6ca5) <a id="structFRHAPI__XpTables_1a60b32c534ec4bcb8870d5a30600a6ca5"></a>
+
+true if CacheInfo_Optional has been explicitly set to null
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__XpTables_1af0a2faf4dc82e5c5d9104ec4a2131ed7)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__XpTables_1af0a2faf4dc82e5c5d9104ec4a2131ed7"></a>
 
@@ -158,4 +165,12 @@ Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 #### `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__XpTables_1ae200761dae8b5171c1fd71b25a27261e)`() const` <a id="structFRHAPI__XpTables_1ae200761dae8b5171c1fd71b25a27261e"></a>
 
 Checks whether CacheInfo_Optional has been set.
+
+#### `public inline void `[`SetCacheInfoToNull`](#structFRHAPI__XpTables_1a382a268a40f55b0442831cca4a93fd00)`()` <a id="structFRHAPI__XpTables_1a382a268a40f55b0442831cca4a93fd00"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsCacheInfoNull`](#structFRHAPI__XpTables_1af9419b4010a7f900bbd71c52396330aa)`() const` <a id="structFRHAPI__XpTables_1af9419b4010a7f900bbd71c52396330aa"></a>
+
+Checks whether CacheInfo_Optional is set to null.
 

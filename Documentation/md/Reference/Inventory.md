@@ -506,7 +506,7 @@ Inventory Subsystem created per player for tracking and updating player inventor
 `protected inline void `[`BroadcastOnInventoryCacheUpdated`](#classURH__PlayerInventory_1a549a0f5600fc0957e61dfa3b6b75b997)`(const TArray< int32 > & ItemIds)` | Helper function to broadcast inventory changes.
 `protected void `[`OnUserChanged`](#classURH__PlayerInventory_1ac429492f3cc9736fc88744dcd53fca03)`()` | Callback that occurs whenever the local player this subsystem is associated with changes.
 `protected void `[`InitPropertiesWithDefaultValues`](#classURH__PlayerInventory_1a98ee25be3e5fcdd1ccf481bf12b7d0a0)`()` | Initializes the subsystem with defaults for its cached data.
-`protected void `[`PopulateInstanceData`](#classURH__PlayerInventory_1a666fc902c1fe23954714cb660eac948b)`(`[`FRHAPI_PlayerOrderCreate`](RHAPI_PlayerOrderCreate.md#structFRHAPI__PlayerOrderCreate)` & PlayerOrderCreate) const` | Adds instance specific data to an Player Order.
+`protected void `[`PopulateInstanceData`](#classURH__PlayerInventory_1a666fc902c1fe23954714cb660eac948b)`(FRHAPI_PlayerOrderCreate & PlayerOrderCreate) const` | Adds instance specific data to an Player Order.
 `protected void `[`CreatePlayerOrderResponse`](#classURH__PlayerInventory_1afa2e5cb7cc7266afe1f33851cef008e3)`(const TCreateOrder::Response & Resp,const FRH_OrderResultBlock Delegate,const TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > OrderEntries)` | Handles the response to a Create Player Order call.
 `protected void `[`RedeemPromoCodeResponse`](#classURH__PlayerInventory_1a4158aff1ace8179824d768f12389919c)`(const TCreateOrder::Response & Resp,const FRH_PromoCodeResultBlock Delegate,const FString PromoCode)` | Handles the response to a Redeem Promo Code call.
 `protected void `[`HandleCreateInventorySession`](#classURH__PlayerInventory_1a2d5dc041893d81c3afe017ed06b2f21c)`(const RallyHereAPI::FResponse_CreateNewInventorySessionByPlayerUuid & Response,const FRH_OnInventorySessionUpdateDelegateBlock Delegate)` | Handles the response to a Create Inventory Session call.
@@ -514,7 +514,7 @@ Inventory Subsystem created per player for tracking and updating player inventor
 `protected void `[`HandleGetInventory`](#classURH__PlayerInventory_1ad7274cd6de55fd492593ba6640627b4e)`(const RallyHereAPI::FResponse_GetPlayerInventoryUuid & Response,const TArray< int32 > ItemIds,const FRH_OnInventoryUpdateDelegateBlock Delegate)` | Handles the response to a Get Inventory call.
 `protected void `[`HandleCreateInventory`](#classURH__PlayerInventory_1a67a9683f2d48eb8d1f3af34703f5876c)`(const RallyHereAPI::FResponse_CreatePlayerInventoryUuid & Response,const FRH_OnInventoryUpdateDelegateBlock Delegate)` | Handles the response to a Create Inventory call.
 `protected void `[`HandleUpdateInventory`](#classURH__PlayerInventory_1a80d5fdb6953bb1378b75c511fae170c4)`(const RallyHereAPI::FResponse_ModifyManyPlayerInventoryUuid & Response,const FRH_OnInventoryUpdateDelegateBlock Delegate)` | Handles the response to a Update Inventory call.
-`protected void `[`WriteOrderEntries`](#classURH__PlayerInventory_1a2588a2da983cd5d5d20d0b3bad876869)`(TArray< `[`FRHAPI_PlayerOrderEntryCreate`](RHAPI_PlayerOrderEntryCreate.md#structFRHAPI__PlayerOrderEntryCreate)` > & Entries,const TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > & OrderEntries)` | Converts the class of Order Entries to the struct used by the API system for calls.
+`protected void `[`WriteOrderEntries`](#classURH__PlayerInventory_1a2588a2da983cd5d5d20d0b3bad876869)`(TArray< FRHAPI_PlayerOrderEntryCreate > & Entries,const TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > & OrderEntries)` | Converts the class of Order Entries to the struct used by the API system for calls.
 `protected void `[`UpdateInventoryFromOrderDetails`](#classURH__PlayerInventory_1ae0df47f4fda770275400e4f08c2d77e4)`(const TArray< `[`FRHAPI_PlayerOrderDetail`](RHAPI_PlayerOrderDetail.md#structFRHAPI__PlayerOrderDetail)` > & OrderDetails)` | Updates the cached inventory with data from an incoming order.
 `protected void `[`GetInventoryCount_INTERNAL`](#classURH__PlayerInventory_1a051af5a05a0ea4574572a649b7d1eb09)`(`[`URH_CatalogItem`](Catalog.md#classURH__CatalogItem)` * Item,const FRH_GetInventoryCountBlock & Delegate) const` | Internal helper function to complete Get Inventory Count.
 `protected void `[`IsInventoryItemOwned_INTERNAL`](#classURH__PlayerInventory_1a8214e3be4acaa58fb4333d4517adbbac)`(`[`URH_CatalogItem`](Catalog.md#classURH__CatalogItem)` * Item,const FRH_GetInventoryStateBlock & Delegate) const` | Internal helper function to complete Is Inventory Item Owned.
@@ -944,7 +944,7 @@ Callback that occurs whenever the local player this subsystem is associated with
 
 Initializes the subsystem with defaults for its cached data.
 
-#### `protected void `[`PopulateInstanceData`](#classURH__PlayerInventory_1a666fc902c1fe23954714cb660eac948b)`(`[`FRHAPI_PlayerOrderCreate`](RHAPI_PlayerOrderCreate.md#structFRHAPI__PlayerOrderCreate)` & PlayerOrderCreate) const` <a id="classURH__PlayerInventory_1a666fc902c1fe23954714cb660eac948b"></a>
+#### `protected void `[`PopulateInstanceData`](#classURH__PlayerInventory_1a666fc902c1fe23954714cb660eac948b)`(FRHAPI_PlayerOrderCreate & PlayerOrderCreate) const` <a id="classURH__PlayerInventory_1a666fc902c1fe23954714cb660eac948b"></a>
 
 Adds instance specific data to an Player Order.
 
@@ -1020,7 +1020,7 @@ Handles the response to a Update Inventory call.
 
 * `Delegate` Delegate passed in for original call to respond to when call completes.
 
-#### `protected void `[`WriteOrderEntries`](#classURH__PlayerInventory_1a2588a2da983cd5d5d20d0b3bad876869)`(TArray< `[`FRHAPI_PlayerOrderEntryCreate`](RHAPI_PlayerOrderEntryCreate.md#structFRHAPI__PlayerOrderEntryCreate)` > & Entries,const TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > & OrderEntries)` <a id="classURH__PlayerInventory_1a2588a2da983cd5d5d20d0b3bad876869"></a>
+#### `protected void `[`WriteOrderEntries`](#classURH__PlayerInventory_1a2588a2da983cd5d5d20d0b3bad876869)`(TArray< FRHAPI_PlayerOrderEntryCreate > & Entries,const TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > & OrderEntries)` <a id="classURH__PlayerInventory_1a2588a2da983cd5d5d20d0b3bad876869"></a>
 
 Converts the class of Order Entries to the struct used by the API system for calls.
 

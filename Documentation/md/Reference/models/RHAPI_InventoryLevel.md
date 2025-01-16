@@ -20,8 +20,9 @@ struct FRHAPI_InventoryLevel
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public FGuid `[`ItemUuid`](#structFRHAPI__InventoryLevel_1a25e5ac67b415e1c3d564c4b271a8027c) | Item UUID for this Inventory Level.
-`public int32 `[`ItemId_Optional`](#structFRHAPI__InventoryLevel_1a032ab73c9af91959835aa6cd48351381) | Item ID for this Inventory Level.
+`public int32 `[`ItemId_Optional`](#structFRHAPI__InventoryLevel_1a032ab73c9af91959835aa6cd48351381) | 
 `public bool `[`ItemId_IsSet`](#structFRHAPI__InventoryLevel_1a1ddf1bbffd0aee35ba8c17a54573463e) | true if ItemId_Optional has been set to a value
+`public bool `[`ItemId_IsNull`](#structFRHAPI__InventoryLevel_1aa4b9543ddfbe2c26012a006b13a47c00) | true if ItemId_Optional has been explicitly set to null
 `public int32 `[`Level`](#structFRHAPI__InventoryLevel_1a03437c0bcebbcd26ef132ab25357ef3d) | Current Level.
 `public int32 `[`Count`](#structFRHAPI__InventoryLevel_1a4643b03ef0f1fbd190d941f01088fdcb) | Current quantity.
 `public int32 `[`CountForNextLevel`](#structFRHAPI__InventoryLevel_1ad81eff4d836fc895fa7ab105d966848a) | Quantity required for the next level.
@@ -43,6 +44,8 @@ struct FRHAPI_InventoryLevel
 `public inline bool `[`IsItemIdSet`](#structFRHAPI__InventoryLevel_1abacd2f218c4c155a34c3a490ec8936fc)`() const` | Checks whether ItemId_Optional has been set.
 `public inline bool `[`IsItemIdDefaultValue`](#structFRHAPI__InventoryLevel_1af3926ae11337314929e934d92661573c)`() const` | Returns true if ItemId_Optional is set and matches the default value.
 `public inline void `[`SetItemIdToDefault`](#structFRHAPI__InventoryLevel_1a82349b5435ca6231ba9ecc6d3b4d58c4)`()` | Sets the value of ItemId_Optional to its default and also sets ItemId_IsSet to true.
+`public inline void `[`SetItemIdToNull`](#structFRHAPI__InventoryLevel_1a29740f24ad5521719670a93f4aec4e48)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsItemIdNull`](#structFRHAPI__InventoryLevel_1a925af2e6029e4e28556a0ebb4a5e66eb)`() const` | Checks whether ItemId_Optional is set to null.
 `public inline int32 & `[`GetLevel`](#structFRHAPI__InventoryLevel_1a65bb4122bc6364952d85d4e1c77d1a0e)`()` | Gets the value of Level.
 `public inline const int32 & `[`GetLevel`](#structFRHAPI__InventoryLevel_1a032d18379b8c9f3f4c6f7d497367cb4d)`() const` | Gets the value of Level.
 `public inline void `[`SetLevel`](#structFRHAPI__InventoryLevel_1ac61dc72dea5118abfd008a1e6ba72224)`(const int32 & NewValue)` | Sets the value of Level.
@@ -70,11 +73,13 @@ Item UUID for this Inventory Level.
 
 #### `public int32 `[`ItemId_Optional`](#structFRHAPI__InventoryLevel_1a032ab73c9af91959835aa6cd48351381) <a id="structFRHAPI__InventoryLevel_1a032ab73c9af91959835aa6cd48351381"></a>
 
-Item ID for this Inventory Level.
-
 #### `public bool `[`ItemId_IsSet`](#structFRHAPI__InventoryLevel_1a1ddf1bbffd0aee35ba8c17a54573463e) <a id="structFRHAPI__InventoryLevel_1a1ddf1bbffd0aee35ba8c17a54573463e"></a>
 
 true if ItemId_Optional has been set to a value
+
+#### `public bool `[`ItemId_IsNull`](#structFRHAPI__InventoryLevel_1aa4b9543ddfbe2c26012a006b13a47c00) <a id="structFRHAPI__InventoryLevel_1aa4b9543ddfbe2c26012a006b13a47c00"></a>
+
+true if ItemId_Optional has been explicitly set to null
 
 #### `public int32 `[`Level`](#structFRHAPI__InventoryLevel_1a03437c0bcebbcd26ef132ab25357ef3d) <a id="structFRHAPI__InventoryLevel_1a03437c0bcebbcd26ef132ab25357ef3d"></a>
 
@@ -168,6 +173,14 @@ Returns true if ItemId_Optional is set and matches the default value.
 #### `public inline void `[`SetItemIdToDefault`](#structFRHAPI__InventoryLevel_1a82349b5435ca6231ba9ecc6d3b4d58c4)`()` <a id="structFRHAPI__InventoryLevel_1a82349b5435ca6231ba9ecc6d3b4d58c4"></a>
 
 Sets the value of ItemId_Optional to its default and also sets ItemId_IsSet to true.
+
+#### `public inline void `[`SetItemIdToNull`](#structFRHAPI__InventoryLevel_1a29740f24ad5521719670a93f4aec4e48)`()` <a id="structFRHAPI__InventoryLevel_1a29740f24ad5521719670a93f4aec4e48"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsItemIdNull`](#structFRHAPI__InventoryLevel_1a925af2e6029e4e28556a0ebb4a5e66eb)`() const` <a id="structFRHAPI__InventoryLevel_1a925af2e6029e4e28556a0ebb4a5e66eb"></a>
+
+Checks whether ItemId_Optional is set to null.
 
 #### `public inline int32 & `[`GetLevel`](#structFRHAPI__InventoryLevel_1a65bb4122bc6364952d85d4e1c77d1a0e)`()` <a id="structFRHAPI__InventoryLevel_1a65bb4122bc6364952d85d4e1c77d1a0e"></a>
 

@@ -23,12 +23,14 @@ A collection of XP Levels from 1 to N. Each level has a minimum XP value.
 --------------------------------|---------------------------------------------
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__XpTable_1af1d0f6100d26e90a9c94c41d719bbab4) | Custom data associated with the resource.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__XpTable_1a91f78eae595931b545702560639fe2b1) | true if CustomData_Optional has been set to a value
-`public FGuid `[`XpUuid_Optional`](#structFRHAPI__XpTable_1acb2f31eb7fa32f1056dcfd64a90f0e95) | The XP Table UUID.
+`public FGuid `[`XpUuid_Optional`](#structFRHAPI__XpTable_1acb2f31eb7fa32f1056dcfd64a90f0e95) | 
 `public bool `[`XpUuid_IsSet`](#structFRHAPI__XpTable_1aa14640432399209965372fa806902813) | true if XpUuid_Optional has been set to a value
+`public bool `[`XpUuid_IsNull`](#structFRHAPI__XpTable_1a190c3a6476609af4000514d1839732af) | true if XpUuid_Optional has been explicitly set to null
 `public TMap< FString, int32 > `[`XpEntries_Optional`](#structFRHAPI__XpTable_1a6fce5a0a8d2d65c0049771d51bf6b2cf) | 
 `public bool `[`XpEntries_IsSet`](#structFRHAPI__XpTable_1a0d1d82acc42c1ad029117cd1ea15cb12) | true if XpEntries_Optional has been set to a value
 `public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__XpTable_1a0785200adbf808bdd25fab3cb5f01b0b) | 
 `public bool `[`CacheInfo_IsSet`](#structFRHAPI__XpTable_1a90dc3ba87a1ecdef6402df456d2389f8) | true if CacheInfo_Optional has been set to a value
+`public bool `[`CacheInfo_IsNull`](#structFRHAPI__XpTable_1af4eccd3dc47255dbbca263c04d57a623) | true if CacheInfo_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__XpTable_1a93218d75d5ca30eea726486a9f5d9646)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__XpTable_1a61c4cbe9dae0d8cbebd2a6b873c76d14)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__XpTable_1accc47d6ae9f1fbdb47a6dbeced7570ab)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
@@ -51,6 +53,8 @@ A collection of XP Levels from 1 to N. Each level has a minimum XP value.
 `public inline void `[`SetXpUuid`](#structFRHAPI__XpTable_1a6004024ca9a2b27ce968ec767e212bf1)`(FGuid && NewValue)` | Sets the value of XpUuid_Optional and also sets XpUuid_IsSet to true using move semantics.
 `public inline void `[`ClearXpUuid`](#structFRHAPI__XpTable_1acb556ad5b7af78430e60dc1f7ffa63ae)`()` | Clears the value of XpUuid_Optional and sets XpUuid_IsSet to false.
 `public inline bool `[`IsXpUuidSet`](#structFRHAPI__XpTable_1ab638cd3628fdfef2ce62e1f8b508bcc8)`() const` | Checks whether XpUuid_Optional has been set.
+`public inline void `[`SetXpUuidToNull`](#structFRHAPI__XpTable_1a46750a4a4f128ea01157a1ea5eb770c4)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsXpUuidNull`](#structFRHAPI__XpTable_1a99ca3d2efb08c5323158529648bdd917)`() const` | Checks whether XpUuid_Optional is set to null.
 `public inline TMap< FString, int32 > & `[`GetXpEntries`](#structFRHAPI__XpTable_1ac03c7a11e96cb91a34f01bd77a8fd63e)`()` | Gets the value of XpEntries_Optional, regardless of it having been set.
 `public inline const TMap< FString, int32 > & `[`GetXpEntries`](#structFRHAPI__XpTable_1ace6218b7f369af822e057d1f5afbe03b)`() const` | Gets the value of XpEntries_Optional, regardless of it having been set.
 `public inline const TMap< FString, int32 > & `[`GetXpEntries`](#structFRHAPI__XpTable_1a35e989cee0cc81c221a08fd3c308841b)`(const TMap< FString, int32 > & DefaultValue) const` | Gets the value of XpEntries_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -71,6 +75,8 @@ A collection of XP Levels from 1 to N. Each level has a minimum XP value.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__XpTable_1ab8df1d7f48b45ceaa9c27f508dcbac3d)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__XpTable_1aa5ecb7e76cf1ff2ad80407b03a12f840)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__XpTable_1acb93c51e056a0a6093982f33b56e3e5c)`() const` | Checks whether CacheInfo_Optional has been set.
+`public inline void `[`SetCacheInfoToNull`](#structFRHAPI__XpTable_1aeb918b22d1780319eb2f7eb5603f6857)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsCacheInfoNull`](#structFRHAPI__XpTable_1a2910a6fb611c8ff2f7c470b75d7e53a7)`() const` | Checks whether CacheInfo_Optional is set to null.
 
 ### Members
 
@@ -84,11 +90,13 @@ true if CustomData_Optional has been set to a value
 
 #### `public FGuid `[`XpUuid_Optional`](#structFRHAPI__XpTable_1acb2f31eb7fa32f1056dcfd64a90f0e95) <a id="structFRHAPI__XpTable_1acb2f31eb7fa32f1056dcfd64a90f0e95"></a>
 
-The XP Table UUID.
-
 #### `public bool `[`XpUuid_IsSet`](#structFRHAPI__XpTable_1aa14640432399209965372fa806902813) <a id="structFRHAPI__XpTable_1aa14640432399209965372fa806902813"></a>
 
 true if XpUuid_Optional has been set to a value
+
+#### `public bool `[`XpUuid_IsNull`](#structFRHAPI__XpTable_1a190c3a6476609af4000514d1839732af) <a id="structFRHAPI__XpTable_1a190c3a6476609af4000514d1839732af"></a>
+
+true if XpUuid_Optional has been explicitly set to null
 
 #### `public TMap< FString, int32 > `[`XpEntries_Optional`](#structFRHAPI__XpTable_1a6fce5a0a8d2d65c0049771d51bf6b2cf) <a id="structFRHAPI__XpTable_1a6fce5a0a8d2d65c0049771d51bf6b2cf"></a>
 
@@ -101,6 +109,10 @@ true if XpEntries_Optional has been set to a value
 #### `public bool `[`CacheInfo_IsSet`](#structFRHAPI__XpTable_1a90dc3ba87a1ecdef6402df456d2389f8) <a id="structFRHAPI__XpTable_1a90dc3ba87a1ecdef6402df456d2389f8"></a>
 
 true if CacheInfo_Optional has been set to a value
+
+#### `public bool `[`CacheInfo_IsNull`](#structFRHAPI__XpTable_1af4eccd3dc47255dbbca263c04d57a623) <a id="structFRHAPI__XpTable_1af4eccd3dc47255dbbca263c04d57a623"></a>
+
+true if CacheInfo_Optional has been explicitly set to null
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__XpTable_1a93218d75d5ca30eea726486a9f5d9646)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__XpTable_1a93218d75d5ca30eea726486a9f5d9646"></a>
 
@@ -199,6 +211,14 @@ Clears the value of XpUuid_Optional and sets XpUuid_IsSet to false.
 
 Checks whether XpUuid_Optional has been set.
 
+#### `public inline void `[`SetXpUuidToNull`](#structFRHAPI__XpTable_1a46750a4a4f128ea01157a1ea5eb770c4)`()` <a id="structFRHAPI__XpTable_1a46750a4a4f128ea01157a1ea5eb770c4"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsXpUuidNull`](#structFRHAPI__XpTable_1a99ca3d2efb08c5323158529648bdd917)`() const` <a id="structFRHAPI__XpTable_1a99ca3d2efb08c5323158529648bdd917"></a>
+
+Checks whether XpUuid_Optional is set to null.
+
 #### `public inline TMap< FString, int32 > & `[`GetXpEntries`](#structFRHAPI__XpTable_1ac03c7a11e96cb91a34f01bd77a8fd63e)`()` <a id="structFRHAPI__XpTable_1ac03c7a11e96cb91a34f01bd77a8fd63e"></a>
 
 Gets the value of XpEntries_Optional, regardless of it having been set.
@@ -278,4 +298,12 @@ Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 #### `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__XpTable_1acb93c51e056a0a6093982f33b56e3e5c)`() const` <a id="structFRHAPI__XpTable_1acb93c51e056a0a6093982f33b56e3e5c"></a>
 
 Checks whether CacheInfo_Optional has been set.
+
+#### `public inline void `[`SetCacheInfoToNull`](#structFRHAPI__XpTable_1aeb918b22d1780319eb2f7eb5603f6857)`()` <a id="structFRHAPI__XpTable_1aeb918b22d1780319eb2f7eb5603f6857"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsCacheInfoNull`](#structFRHAPI__XpTable_1a2910a6fb611c8ff2f7c470b75d7e53a7)`() const` <a id="structFRHAPI__XpTable_1a2910a6fb611c8ff2f7c470b75d7e53a7"></a>
+
+Checks whether CacheInfo_Optional is set to null.
 

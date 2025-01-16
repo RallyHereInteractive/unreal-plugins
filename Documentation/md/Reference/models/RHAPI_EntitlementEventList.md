@@ -20,8 +20,9 @@ struct FRHAPI_EntitlementEventList
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public TArray< `[`FRHAPI_EntitlementEvent`](RHAPI_EntitlementEvent.md#structFRHAPI__EntitlementEvent)` > `[`Events`](#structFRHAPI__EntitlementEventList_1a3f05027a0a92306457e4e110ac0bb94f) | The list of events.
-`public FString `[`Cursor_Optional`](#structFRHAPI__EntitlementEventList_1a408ef5f5bcc7a30ccd70aef3dc2b725b) | The cursor for the next page of events.
+`public FString `[`Cursor_Optional`](#structFRHAPI__EntitlementEventList_1a408ef5f5bcc7a30ccd70aef3dc2b725b) | 
 `public bool `[`Cursor_IsSet`](#structFRHAPI__EntitlementEventList_1ac03319ea77109225c8aab85baac83423) | true if Cursor_Optional has been set to a value
+`public bool `[`Cursor_IsNull`](#structFRHAPI__EntitlementEventList_1aa42cafaf52f0066382ec888a00a32f87) | true if Cursor_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__EntitlementEventList_1ad02c5e9cf0c7f78082a43a7c6df53f82)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__EntitlementEventList_1a508ba63137f25f37784c7de9c6fd9c1e)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< `[`FRHAPI_EntitlementEvent`](RHAPI_EntitlementEvent.md#structFRHAPI__EntitlementEvent)` > & `[`GetEvents`](#structFRHAPI__EntitlementEventList_1a69c7fbb228aff4e5c377a8e2b67a7d7f)`()` | Gets the value of Events.
@@ -38,6 +39,8 @@ struct FRHAPI_EntitlementEventList
 `public inline void `[`SetCursor`](#structFRHAPI__EntitlementEventList_1a5cf732a8165b81e2ddde2435ad36cc3d)`(FString && NewValue)` | Sets the value of Cursor_Optional and also sets Cursor_IsSet to true using move semantics.
 `public inline void `[`ClearCursor`](#structFRHAPI__EntitlementEventList_1ad53ca1646a6b5f74c4fcc9fd64d63c0f)`()` | Clears the value of Cursor_Optional and sets Cursor_IsSet to false.
 `public inline bool `[`IsCursorSet`](#structFRHAPI__EntitlementEventList_1a495d29458e447466a5d54cabb0559b5b)`() const` | Checks whether Cursor_Optional has been set.
+`public inline void `[`SetCursorToNull`](#structFRHAPI__EntitlementEventList_1a676b28581f03278cd9123fe9aa40cd50)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsCursorNull`](#structFRHAPI__EntitlementEventList_1a248cf19359da14a0e0d109dd90dded77)`() const` | Checks whether Cursor_Optional is set to null.
 
 ### Members
 
@@ -47,11 +50,13 @@ The list of events.
 
 #### `public FString `[`Cursor_Optional`](#structFRHAPI__EntitlementEventList_1a408ef5f5bcc7a30ccd70aef3dc2b725b) <a id="structFRHAPI__EntitlementEventList_1a408ef5f5bcc7a30ccd70aef3dc2b725b"></a>
 
-The cursor for the next page of events.
-
 #### `public bool `[`Cursor_IsSet`](#structFRHAPI__EntitlementEventList_1ac03319ea77109225c8aab85baac83423) <a id="structFRHAPI__EntitlementEventList_1ac03319ea77109225c8aab85baac83423"></a>
 
 true if Cursor_Optional has been set to a value
+
+#### `public bool `[`Cursor_IsNull`](#structFRHAPI__EntitlementEventList_1aa42cafaf52f0066382ec888a00a32f87) <a id="structFRHAPI__EntitlementEventList_1aa42cafaf52f0066382ec888a00a32f87"></a>
+
+true if Cursor_Optional has been explicitly set to null
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__EntitlementEventList_1ad02c5e9cf0c7f78082a43a7c6df53f82)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__EntitlementEventList_1ad02c5e9cf0c7f78082a43a7c6df53f82"></a>
 
@@ -125,4 +130,12 @@ Clears the value of Cursor_Optional and sets Cursor_IsSet to false.
 #### `public inline bool `[`IsCursorSet`](#structFRHAPI__EntitlementEventList_1a495d29458e447466a5d54cabb0559b5b)`() const` <a id="structFRHAPI__EntitlementEventList_1a495d29458e447466a5d54cabb0559b5b"></a>
 
 Checks whether Cursor_Optional has been set.
+
+#### `public inline void `[`SetCursorToNull`](#structFRHAPI__EntitlementEventList_1a676b28581f03278cd9123fe9aa40cd50)`()` <a id="structFRHAPI__EntitlementEventList_1a676b28581f03278cd9123fe9aa40cd50"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsCursorNull`](#structFRHAPI__EntitlementEventList_1a248cf19359da14a0e0d109dd90dded77)`() const` <a id="structFRHAPI__EntitlementEventList_1a248cf19359da14a0e0d109dd90dded77"></a>
+
+Checks whether Cursor_Optional is set to null.
 

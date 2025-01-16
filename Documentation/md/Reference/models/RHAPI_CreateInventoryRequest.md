@@ -21,14 +21,16 @@ Request to Create a new Inventory.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public ERHAPI_InventoryBucket `[`Bucket_Optional`](#structFRHAPI__CreateInventoryRequest_1a76f5a8d3c702966a17c7bc29e675ddf3) | Inventory Bucket for this Inventory Operation.
+`public ERHAPI_InventoryBucket `[`Bucket_Optional`](#structFRHAPI__CreateInventoryRequest_1a76f5a8d3c702966a17c7bc29e675ddf3) | 
 `public bool `[`Bucket_IsSet`](#structFRHAPI__CreateInventoryRequest_1a2ce32e4645f8267d3265ecb9b0cd77c4) | true if Bucket_Optional has been set to a value
 `public int32 `[`Count_Optional`](#structFRHAPI__CreateInventoryRequest_1add764394cc2dc70fd1735a5e32cf42c7) | Count for this Inventory Operation.
 `public bool `[`Count_IsSet`](#structFRHAPI__CreateInventoryRequest_1a6b47666c8a735bd51280663d72724e74) | true if Count_Optional has been set to a value
 `public FDateTime `[`Expires_Optional`](#structFRHAPI__CreateInventoryRequest_1a41f1a997e28f8be5e66e682eb1332e7f) | Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone.
 `public bool `[`Expires_IsSet`](#structFRHAPI__CreateInventoryRequest_1ae7761ce45a85554d147a84c729dfbdbc) | true if Expires_Optional has been set to a value
-`public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__CreateInventoryRequest_1aa8b9cc39c3c1663ffc28e082263bd1a6) | Arbitrary data map that can be set to add additional data to Inventory.
+`public bool `[`Expires_IsNull`](#structFRHAPI__CreateInventoryRequest_1a8f61d04200cbedc5d54f73ebff7d7c33) | true if Expires_Optional has been explicitly set to null
+`public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__CreateInventoryRequest_1aa8b9cc39c3c1663ffc28e082263bd1a6) | 
 `public bool `[`CustomData_IsSet`](#structFRHAPI__CreateInventoryRequest_1aab3c76b73ebab73dff0bb8caefe3b94c) | true if CustomData_Optional has been set to a value
+`public bool `[`CustomData_IsNull`](#structFRHAPI__CreateInventoryRequest_1a8f339ac276bc5a89e5cc2a08f43e8423) | true if CustomData_Optional has been explicitly set to null
 `public int32 `[`ItemId`](#structFRHAPI__CreateInventoryRequest_1ac1d6ef6e996f613b1de9891c10f9a5e6) | 
 `public ERHAPI_CreateInventoryType `[`Type_Optional`](#structFRHAPI__CreateInventoryRequest_1a6b9eee826b685cd1dc669c98fb789719) | 
 `public bool `[`Type_IsSet`](#structFRHAPI__CreateInventoryRequest_1a75960a6ec28c5652a2c70632c5e792bc) | true if Type_Optional has been set to a value
@@ -66,6 +68,8 @@ Request to Create a new Inventory.
 `public inline void `[`SetExpires`](#structFRHAPI__CreateInventoryRequest_1a1e62242a47fe78359f199386333f4c9d)`(FDateTime && NewValue)` | Sets the value of Expires_Optional and also sets Expires_IsSet to true using move semantics.
 `public inline void `[`ClearExpires`](#structFRHAPI__CreateInventoryRequest_1a3ed93883ede8b9a88228ab07bcbc08e1)`()` | Clears the value of Expires_Optional and sets Expires_IsSet to false.
 `public inline bool `[`IsExpiresSet`](#structFRHAPI__CreateInventoryRequest_1aa8cbd2da78813e829a898f5642b4e34c)`() const` | Checks whether Expires_Optional has been set.
+`public inline void `[`SetExpiresToNull`](#structFRHAPI__CreateInventoryRequest_1ac2f44ad9f00d815172b43b003de23298)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsExpiresNull`](#structFRHAPI__CreateInventoryRequest_1afc042f72fcacbe0bde2ab23ee0c1544c)`() const` | Checks whether Expires_Optional is set to null.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__CreateInventoryRequest_1aac0e9b470be065187ef66b637a54ff79)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__CreateInventoryRequest_1a410faeb3f089af2512eedb4033e83c67)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__CreateInventoryRequest_1a00f2776d0f04688dfa95710cfb95fb8c)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -76,6 +80,8 @@ Request to Create a new Inventory.
 `public inline void `[`SetCustomData`](#structFRHAPI__CreateInventoryRequest_1a602c3972ab37bb0b18f217b51450e7d5)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__CreateInventoryRequest_1a1c28b8945d132420bcf24dbf79d90ae2)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 `public inline bool `[`IsCustomDataSet`](#structFRHAPI__CreateInventoryRequest_1a4fa2b48e4b2178ed4078b1c062c1f0f9)`() const` | Checks whether CustomData_Optional has been set.
+`public inline void `[`SetCustomDataToNull`](#structFRHAPI__CreateInventoryRequest_1af4849c7f0b5f8bf1b016acab4c856e72)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsCustomDataNull`](#structFRHAPI__CreateInventoryRequest_1aa5861bf08fbe0450aeb8341cf70bd8ce)`() const` | Checks whether CustomData_Optional is set to null.
 `public inline int32 & `[`GetItemId`](#structFRHAPI__CreateInventoryRequest_1a651c6dec6c20405f908cf9669eb9b122)`()` | Gets the value of ItemId.
 `public inline const int32 & `[`GetItemId`](#structFRHAPI__CreateInventoryRequest_1a02b61e8f44921fa141a826ac5fd7db46)`() const` | Gets the value of ItemId.
 `public inline void `[`SetItemId`](#structFRHAPI__CreateInventoryRequest_1a8f87fc533d5655f55e2f5c1f36a963c8)`(const int32 & NewValue)` | Sets the value of ItemId.
@@ -97,8 +103,6 @@ Request to Create a new Inventory.
 
 #### `public ERHAPI_InventoryBucket `[`Bucket_Optional`](#structFRHAPI__CreateInventoryRequest_1a76f5a8d3c702966a17c7bc29e675ddf3) <a id="structFRHAPI__CreateInventoryRequest_1a76f5a8d3c702966a17c7bc29e675ddf3"></a>
 
-Inventory Bucket for this Inventory Operation.
-
 #### `public bool `[`Bucket_IsSet`](#structFRHAPI__CreateInventoryRequest_1a2ce32e4645f8267d3265ecb9b0cd77c4) <a id="structFRHAPI__CreateInventoryRequest_1a2ce32e4645f8267d3265ecb9b0cd77c4"></a>
 
 true if Bucket_Optional has been set to a value
@@ -119,13 +123,19 @@ Datetime that enforces that a timezone is given. Unix timestamps are allowed and
 
 true if Expires_Optional has been set to a value
 
-#### `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__CreateInventoryRequest_1aa8b9cc39c3c1663ffc28e082263bd1a6) <a id="structFRHAPI__CreateInventoryRequest_1aa8b9cc39c3c1663ffc28e082263bd1a6"></a>
+#### `public bool `[`Expires_IsNull`](#structFRHAPI__CreateInventoryRequest_1a8f61d04200cbedc5d54f73ebff7d7c33) <a id="structFRHAPI__CreateInventoryRequest_1a8f61d04200cbedc5d54f73ebff7d7c33"></a>
 
-Arbitrary data map that can be set to add additional data to Inventory.
+true if Expires_Optional has been explicitly set to null
+
+#### `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__CreateInventoryRequest_1aa8b9cc39c3c1663ffc28e082263bd1a6) <a id="structFRHAPI__CreateInventoryRequest_1aa8b9cc39c3c1663ffc28e082263bd1a6"></a>
 
 #### `public bool `[`CustomData_IsSet`](#structFRHAPI__CreateInventoryRequest_1aab3c76b73ebab73dff0bb8caefe3b94c) <a id="structFRHAPI__CreateInventoryRequest_1aab3c76b73ebab73dff0bb8caefe3b94c"></a>
 
 true if CustomData_Optional has been set to a value
+
+#### `public bool `[`CustomData_IsNull`](#structFRHAPI__CreateInventoryRequest_1a8f339ac276bc5a89e5cc2a08f43e8423) <a id="structFRHAPI__CreateInventoryRequest_1a8f339ac276bc5a89e5cc2a08f43e8423"></a>
+
+true if CustomData_Optional has been explicitly set to null
 
 #### `public int32 `[`ItemId`](#structFRHAPI__CreateInventoryRequest_1ac1d6ef6e996f613b1de9891c10f9a5e6) <a id="structFRHAPI__CreateInventoryRequest_1ac1d6ef6e996f613b1de9891c10f9a5e6"></a>
 
@@ -280,6 +290,14 @@ Clears the value of Expires_Optional and sets Expires_IsSet to false.
 
 Checks whether Expires_Optional has been set.
 
+#### `public inline void `[`SetExpiresToNull`](#structFRHAPI__CreateInventoryRequest_1ac2f44ad9f00d815172b43b003de23298)`()` <a id="structFRHAPI__CreateInventoryRequest_1ac2f44ad9f00d815172b43b003de23298"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsExpiresNull`](#structFRHAPI__CreateInventoryRequest_1afc042f72fcacbe0bde2ab23ee0c1544c)`() const` <a id="structFRHAPI__CreateInventoryRequest_1afc042f72fcacbe0bde2ab23ee0c1544c"></a>
+
+Checks whether Expires_Optional is set to null.
+
 #### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__CreateInventoryRequest_1aac0e9b470be065187ef66b637a54ff79)`()` <a id="structFRHAPI__CreateInventoryRequest_1aac0e9b470be065187ef66b637a54ff79"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
@@ -319,6 +337,14 @@ Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 #### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__CreateInventoryRequest_1a4fa2b48e4b2178ed4078b1c062c1f0f9)`() const` <a id="structFRHAPI__CreateInventoryRequest_1a4fa2b48e4b2178ed4078b1c062c1f0f9"></a>
 
 Checks whether CustomData_Optional has been set.
+
+#### `public inline void `[`SetCustomDataToNull`](#structFRHAPI__CreateInventoryRequest_1af4849c7f0b5f8bf1b016acab4c856e72)`()` <a id="structFRHAPI__CreateInventoryRequest_1af4849c7f0b5f8bf1b016acab4c856e72"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsCustomDataNull`](#structFRHAPI__CreateInventoryRequest_1aa5861bf08fbe0450aeb8341cf70bd8ce)`() const` <a id="structFRHAPI__CreateInventoryRequest_1aa5861bf08fbe0450aeb8341cf70bd8ce"></a>
+
+Checks whether CustomData_Optional is set to null.
 
 #### `public inline int32 & `[`GetItemId`](#structFRHAPI__CreateInventoryRequest_1a651c6dec6c20405f908cf9669eb9b122)`()` <a id="structFRHAPI__CreateInventoryRequest_1a651c6dec6c20405f908cf9669eb9b122"></a>
 

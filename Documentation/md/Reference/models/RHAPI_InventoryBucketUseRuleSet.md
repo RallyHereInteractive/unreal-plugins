@@ -27,6 +27,7 @@ A collection of Inventory Bucket Use Rules.
 `public bool `[`Rules_IsSet`](#structFRHAPI__InventoryBucketUseRuleSet_1aa50ffc24695f9e0ff5d1e739e9d59468) | true if Rules_Optional has been set to a value
 `public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__InventoryBucketUseRuleSet_1a17b67b628e51e41059c636d81be35b61) | 
 `public bool `[`CacheInfo_IsSet`](#structFRHAPI__InventoryBucketUseRuleSet_1a4fa08d3e6e9d4463b4b8fbcc18f4eea4) | true if CacheInfo_Optional has been set to a value
+`public bool `[`CacheInfo_IsNull`](#structFRHAPI__InventoryBucketUseRuleSet_1a4501d5cab25fb14a1312499800db0bf0) | true if CacheInfo_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__InventoryBucketUseRuleSet_1a94866cd803b8072ea1f834fe63d0e82d)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__InventoryBucketUseRuleSet_1a15ef86b8274061ea40e4bed3acba51ae)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1a67c594ebc75e0e38e1aeb8dcf022097f)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
@@ -59,6 +60,8 @@ A collection of Inventory Bucket Use Rules.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSet_1af31d3e5fea551af46835596b4ba51aae)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSet_1ae67f10a6ce01ad498fd5ce97401c7c96)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__InventoryBucketUseRuleSet_1ac777862e467d1a00aaf7a3c64ff567a1)`() const` | Checks whether CacheInfo_Optional has been set.
+`public inline void `[`SetCacheInfoToNull`](#structFRHAPI__InventoryBucketUseRuleSet_1ac487c91f0fdb731299eb5741bbee311d)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsCacheInfoNull`](#structFRHAPI__InventoryBucketUseRuleSet_1a9f1a0cfb88f69e89a945bc62a9a8a950)`() const` | Checks whether CacheInfo_Optional is set to null.
 
 ### Members
 
@@ -81,6 +84,10 @@ true if Rules_Optional has been set to a value
 #### `public bool `[`CacheInfo_IsSet`](#structFRHAPI__InventoryBucketUseRuleSet_1a4fa08d3e6e9d4463b4b8fbcc18f4eea4) <a id="structFRHAPI__InventoryBucketUseRuleSet_1a4fa08d3e6e9d4463b4b8fbcc18f4eea4"></a>
 
 true if CacheInfo_Optional has been set to a value
+
+#### `public bool `[`CacheInfo_IsNull`](#structFRHAPI__InventoryBucketUseRuleSet_1a4501d5cab25fb14a1312499800db0bf0) <a id="structFRHAPI__InventoryBucketUseRuleSet_1a4501d5cab25fb14a1312499800db0bf0"></a>
+
+true if CacheInfo_Optional has been explicitly set to null
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__InventoryBucketUseRuleSet_1a94866cd803b8072ea1f834fe63d0e82d)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a94866cd803b8072ea1f834fe63d0e82d"></a>
 
@@ -218,4 +225,12 @@ Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 #### `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__InventoryBucketUseRuleSet_1ac777862e467d1a00aaf7a3c64ff567a1)`() const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1ac777862e467d1a00aaf7a3c64ff567a1"></a>
 
 Checks whether CacheInfo_Optional has been set.
+
+#### `public inline void `[`SetCacheInfoToNull`](#structFRHAPI__InventoryBucketUseRuleSet_1ac487c91f0fdb731299eb5741bbee311d)`()` <a id="structFRHAPI__InventoryBucketUseRuleSet_1ac487c91f0fdb731299eb5741bbee311d"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsCacheInfoNull`](#structFRHAPI__InventoryBucketUseRuleSet_1a9f1a0cfb88f69e89a945bc62a9a8a950)`() const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a9f1a0cfb88f69e89a945bc62a9a8a950"></a>
+
+Checks whether CacheInfo_Optional is set to null.
 
