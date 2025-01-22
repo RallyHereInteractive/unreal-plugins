@@ -676,7 +676,7 @@ Client Boostrapper for the Game Instance.
 --------------------------------|---------------------------------------------
 `public virtual void `[`Initialize`](#classURH__GameInstanceClientBootstrapper_1a8f9da19fce337aff49def7e901911d1d)`()` | Initialize the bootstrapper.
 `public virtual void `[`Deinitialize`](#classURH__GameInstanceClientBootstrapper_1ad42dfc555261d18e0e76eb25bc78726e)`()` | Deinitialize the bootstrapper.
-`public virtual void `[`CreateOfflineSession`](#classURH__GameInstanceClientBootstrapper_1ab258f384bc8485234a07af9c65f1489c)`()` | Utility function to create an offline session
+`public virtual `[`URH_OfflineSession`](Session.md#classURH__OfflineSession)` * `[`CreateOfflineSession`](#classURH__GameInstanceClientBootstrapper_1acf6983dfe81c1e8c44257fe662865955)`(const FString & SessionType,const int32 TeamId,const FString & SessionId)` | Utility function to create an offline session
 
 ### Members
 
@@ -688,7 +688,7 @@ Initialize the bootstrapper.
 
 Deinitialize the bootstrapper.
 
-#### `public virtual void `[`CreateOfflineSession`](#classURH__GameInstanceClientBootstrapper_1ab258f384bc8485234a07af9c65f1489c)`()` <a id="classURH__GameInstanceClientBootstrapper_1ab258f384bc8485234a07af9c65f1489c"></a>
+#### `public virtual `[`URH_OfflineSession`](Session.md#classURH__OfflineSession)` * `[`CreateOfflineSession`](#classURH__GameInstanceClientBootstrapper_1acf6983dfe81c1e8c44257fe662865955)`(const FString & SessionType,const int32 TeamId,const FString & SessionId)` <a id="classURH__GameInstanceClientBootstrapper_1acf6983dfe81c1e8c44257fe662865955"></a>
 
 Utility function to create an offline session
 
