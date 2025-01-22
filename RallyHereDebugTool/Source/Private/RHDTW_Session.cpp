@@ -1176,7 +1176,7 @@ void FRHDTW_Session::ImGuiDisplayLocalPlayerSessions(URH_GameInstanceSubsystem* 
 	{
 		if (pGISubsystem && pGISubsystem->GetClientBootstrapper())
 		{
-			pGISubsystem->GetClientBootstrapper()->CreateOfflineSession();
+			pGISubsystem->GetClientBootstrapper()->CreateOfflineSession(SelectedTemplateName, JoinByIdTeam);
 		}
 	}
 }

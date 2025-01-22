@@ -687,5 +687,5 @@ public:
 
 	/** Utility function to create an offline session */
 	UFUNCTION(BlueprintCallable, Category = "Session")
-	virtual void CreateOfflineSession();
+	virtual URH_OfflineSession* CreateOfflineSession(const FString& SessionType, const int32 TeamId = 0, const FString& SessionId = TEXT(""));
 };

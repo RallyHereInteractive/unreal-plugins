@@ -1846,34 +1846,27 @@ void URH_GameInstanceClientBootstrapper::Deinitialize()
 	Super::Deinitialize();
 }
 
-void URH_GameInstanceClientBootstrapper::CreateOfflineSession()
+URH_OfflineSession* URH_GameInstanceClientBootstrapper::CreateOfflineSession(const FString& SessionType, const int32 TeamId, const FString& SessionId)
 {
 	UGameInstance* pGameInstance = GetGameInstanceSubsystem()->GetGameInstance();
 	if (pGameInstance == nullptr)
 	{
 		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - No instance or host player to create offline map for"), ANSI_TO_TCHAR(__FUNCTION__));
-		return;
+		return nullptr;
 	}
 
 	FDateTime CreationTime = FDateTime::UtcNow();
 	FGuid HostPlayerUuid = FGuid();
 	FString CreationVersion = URH_JoinedSession::GetClientVersionForSession();
 
-	bool bListen = false;
-
-	FRHAPI_SessionTemplate TemplateInfo = {};
-	{
-		TemplateInfo.SessionType = RH_SessionCustomDataKeys::OfflineFlag;
-	}
-
 	// generate fake data
 	FRH_APISessionWithETag SessionWrapper;
 	FRHAPI_Session& SessionInfo = SessionWrapper.Data;
 
 	/* template type */
-	SessionInfo.Type = RH_SessionCustomDataKeys::OfflineFlag; // todo
+	SessionInfo.Type = SessionType; // todo
 	/* unique ID for this session within its type */
-	SessionInfo.SessionId = FGuid::NewGuid().ToString();
+	SessionInfo.SessionId = SessionId.IsEmpty() ? SessionId : FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphensLower);
 	/* Info about the current active instance for the session */
 	// SessionInfo.Instance
 	// SessionInfo.Match
@@ -1881,7 +1874,7 @@ void URH_GameInstanceClientBootstrapper::CreateOfflineSession()
 	//TOptional<FMatchmaking> Matchmaking;
 	//TOptional<FBrowser> Browser;
 	/* Is this session freely joinable by players without an invite? */
-	SessionInfo.Joinable = bListen;
+	SessionInfo.Joinable = false;
 	/* Players currently in the session */
 	{
 		const TArray<ULocalPlayer*> LocalPlayers = pGameInstance->GetLocalPlayers();
@@ -1931,6 +1924,8 @@ void URH_GameInstanceClientBootstrapper::CreateOfflineSession()
 	// pass to session interface
 	if (GetGameInstanceSubsystem()->GetSessionSubsystem())
 	{
+		URH_OfflineSession* SessionInstance = nullptr;
+		
 		auto LocalPlayers = GetGameInstanceSubsystem()->GetGameInstance()->GetLocalPlayers();
 		for (auto LP : LocalPlayers)
 		{
@@ -1938,13 +1933,16 @@ void URH_GameInstanceClientBootstrapper::CreateOfflineSession()
 			auto itLPSubsystem = LP->GetSubsystem<URH_LocalPlayerSubsystem>();
 			if (itLPSubsystem != nullptr)
 			{
-				// add the template
-				itLPSubsystem->GetSessionSubsystem()->ImportAPITemplate(TemplateInfo);
 				// add the session
 				itLPSubsystem->GetSessionSubsystem()->ImportAPISession(SessionWrapper);
+				SessionInstance = Cast<URH_OfflineSession>(itLPSubsystem->GetSessionSubsystem()->GetSessionById(SessionInfo.GetSessionId()));
 			}
 		}
+
+		return SessionInstance;
 	}
+
+	return nullptr;
 }
 
 
