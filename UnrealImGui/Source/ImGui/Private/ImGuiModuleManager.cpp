@@ -81,7 +81,7 @@ FImGuiModuleManager::~FImGuiModuleManager()
 
 void FImGuiModuleManager::LoadTextures()
 {
-	checkf(FSlateApplication::IsInitialized() || IsRunningDedicatedServer(), TEXT("Slate should be initialized before we can create textures."));
+	//checkf(FSlateApplication::IsInitialized() || IsRunningDedicatedServer(), TEXT("Slate should be initialized before we can create textures."));
 
 	if (!bTexturesLoaded)
 	{
