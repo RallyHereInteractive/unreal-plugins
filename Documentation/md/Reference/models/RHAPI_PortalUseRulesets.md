@@ -27,6 +27,7 @@ A collection of Portal Use Rulesets. A ruleset determine how item can be used ac
 `public bool `[`Rulesets_IsSet`](#structFRHAPI__PortalUseRulesets_1af1dfbf7c2f5dfaaa75cc60303089785d) | true if Rulesets_Optional has been set to a value
 `public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__PortalUseRulesets_1a33b35b8dba94fb6b57b83917906066df) | 
 `public bool `[`CacheInfo_IsSet`](#structFRHAPI__PortalUseRulesets_1abaf07d962636ced608504fcfb23756a6) | true if CacheInfo_Optional has been set to a value
+`public bool `[`CacheInfo_IsNull`](#structFRHAPI__PortalUseRulesets_1a488cdf78e20ebf9219ea734c8ad60a44) | true if CacheInfo_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__PortalUseRulesets_1a62d6e1de58449e156003bf07c2138e1f)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PortalUseRulesets_1afeb6ecbd38a8ef7418b4afc8472c125e)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PortalUseRulesets_1a370768c0d74e1d10c1bb79e201b8d7c8)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
@@ -59,6 +60,8 @@ A collection of Portal Use Rulesets. A ruleset determine how item can be used ac
 `public inline void `[`SetCacheInfo`](#structFRHAPI__PortalUseRulesets_1ae46e18e954ce092073570ceeec348298)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__PortalUseRulesets_1ad3d47a08a4ef6b99d014dae32e2158a0)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__PortalUseRulesets_1a60d1528545e09c16192bf626d68a5047)`() const` | Checks whether CacheInfo_Optional has been set.
+`public inline void `[`SetCacheInfoToNull`](#structFRHAPI__PortalUseRulesets_1a1b3cbb8e16695f4b0eea9eaa9aab3713)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsCacheInfoNull`](#structFRHAPI__PortalUseRulesets_1adf1596f0197f929bb10d3fb3a97f1bc3)`() const` | Checks whether CacheInfo_Optional is set to null.
 
 ### Members
 
@@ -81,6 +84,10 @@ true if Rulesets_Optional has been set to a value
 #### `public bool `[`CacheInfo_IsSet`](#structFRHAPI__PortalUseRulesets_1abaf07d962636ced608504fcfb23756a6) <a id="structFRHAPI__PortalUseRulesets_1abaf07d962636ced608504fcfb23756a6"></a>
 
 true if CacheInfo_Optional has been set to a value
+
+#### `public bool `[`CacheInfo_IsNull`](#structFRHAPI__PortalUseRulesets_1a488cdf78e20ebf9219ea734c8ad60a44) <a id="structFRHAPI__PortalUseRulesets_1a488cdf78e20ebf9219ea734c8ad60a44"></a>
+
+true if CacheInfo_Optional has been explicitly set to null
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__PortalUseRulesets_1a62d6e1de58449e156003bf07c2138e1f)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PortalUseRulesets_1a62d6e1de58449e156003bf07c2138e1f"></a>
 
@@ -218,4 +225,12 @@ Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 #### `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__PortalUseRulesets_1a60d1528545e09c16192bf626d68a5047)`() const` <a id="structFRHAPI__PortalUseRulesets_1a60d1528545e09c16192bf626d68a5047"></a>
 
 Checks whether CacheInfo_Optional has been set.
+
+#### `public inline void `[`SetCacheInfoToNull`](#structFRHAPI__PortalUseRulesets_1a1b3cbb8e16695f4b0eea9eaa9aab3713)`()` <a id="structFRHAPI__PortalUseRulesets_1a1b3cbb8e16695f4b0eea9eaa9aab3713"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsCacheInfoNull`](#structFRHAPI__PortalUseRulesets_1adf1596f0197f929bb10d3fb3a97f1bc3)`() const` <a id="structFRHAPI__PortalUseRulesets_1adf1596f0197f929bb10d3fb3a97f1bc3"></a>
+
+Checks whether CacheInfo_Optional is set to null.
 

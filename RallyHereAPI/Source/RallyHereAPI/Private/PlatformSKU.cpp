@@ -34,16 +34,25 @@ void FRHAPI_PlatformSKU::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (LootEntitlement_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("loot_entitlement"));
+		if (LootEntitlement_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, LootEntitlement_Optional);
 	}
 	if (ExternalKeyEntitlement_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("external_key_entitlement"));
+		if (ExternalKeyEntitlement_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, ExternalKeyEntitlement_Optional);
 	}
 	if (CacheInfo_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("cache_info"));
+		if (CacheInfo_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, CacheInfo_Optional);
 	}
 	Writer->WriteObjectEnd();
@@ -72,19 +81,22 @@ bool FRHAPI_PlatformSKU::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonLootEntitlementField = (*Object)->TryGetField(TEXT("loot_entitlement"));
 	if (JsonLootEntitlementField.IsValid())
 	{
-		LootEntitlement_IsSet = TryGetJsonValue(JsonLootEntitlementField, LootEntitlement_Optional);
+		LootEntitlement_IsNull = JsonLootEntitlementField->IsNull();
+		LootEntitlement_IsSet = LootEntitlement_IsNull || TryGetJsonValue(JsonLootEntitlementField, LootEntitlement_Optional);
 		ParseSuccess &= LootEntitlement_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonExternalKeyEntitlementField = (*Object)->TryGetField(TEXT("external_key_entitlement"));
 	if (JsonExternalKeyEntitlementField.IsValid())
 	{
-		ExternalKeyEntitlement_IsSet = TryGetJsonValue(JsonExternalKeyEntitlementField, ExternalKeyEntitlement_Optional);
+		ExternalKeyEntitlement_IsNull = JsonExternalKeyEntitlementField->IsNull();
+		ExternalKeyEntitlement_IsSet = ExternalKeyEntitlement_IsNull || TryGetJsonValue(JsonExternalKeyEntitlementField, ExternalKeyEntitlement_Optional);
 		ParseSuccess &= ExternalKeyEntitlement_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
 	if (JsonCacheInfoField.IsValid())
 	{
-		CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
+		CacheInfo_IsNull = JsonCacheInfoField->IsNull();
+		CacheInfo_IsSet = CacheInfo_IsNull || TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
 		ParseSuccess &= CacheInfo_IsSet;
 	}
 

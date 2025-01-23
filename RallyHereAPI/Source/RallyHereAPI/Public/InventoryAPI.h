@@ -20,7 +20,8 @@
 #include "InventorySessionCreateRequest.h"
 #include "InventorySessionCreateResponse.h"
 #include "PlayerOrder.h"
-#include "PlayerOrderCreate.h"
+#include "PlayerOrderCreateInput.h"
+#include "PlayerOrderCreateOutput.h"
 #include "PlayerOrdersResponse.h"
 #include "UpdateInventoryRequest.h"
 #include "UpdateInventoryRequests.h"
@@ -469,13 +470,13 @@ struct RALLYHEREAPI_API FRequest_CreateNewPlayerOrder : public FRequest
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	int32 PlayerId = 0;
-	FRHAPI_PlayerOrderCreate PlayerOrderCreate;
+	FRHAPI_PlayerOrderCreateInput PlayerOrderCreateInput;
 };
 
 /** The response type for FRequest_CreateNewPlayerOrder */
-struct RALLYHEREAPI_API FResponse_CreateNewPlayerOrder : public FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_CreateNewPlayerOrder : public FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreateOutput, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreateOutput, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_CreateNewPlayerOrder(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_CreateNewPlayerOrder() = default;
@@ -512,7 +513,7 @@ struct RALLYHEREAPI_API FResponse_CreateNewPlayerOrder : public FResponseAccesso
 	/* Response 202
 	Accepted
 	*/
-	bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+	bool TryGetContentFor202(FRHAPI_PlayerOrderCreateOutput& OutContent) const;
 
 	/* Response 403
 	Forbidden
@@ -578,13 +579,13 @@ struct RALLYHEREAPI_API FRequest_CreateNewPlayerOrderSelf : public FRequest
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_PlayerOrderCreate PlayerOrderCreate;
+	FRHAPI_PlayerOrderCreateInput PlayerOrderCreateInput;
 };
 
 /** The response type for FRequest_CreateNewPlayerOrderSelf */
-struct RALLYHEREAPI_API FResponse_CreateNewPlayerOrderSelf : public FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_CreateNewPlayerOrderSelf : public FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreateOutput, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreateOutput, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_CreateNewPlayerOrderSelf(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_CreateNewPlayerOrderSelf() = default;
@@ -621,7 +622,7 @@ struct RALLYHEREAPI_API FResponse_CreateNewPlayerOrderSelf : public FResponseAcc
 	/* Response 202
 	Accepted
 	*/
-	bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+	bool TryGetContentFor202(FRHAPI_PlayerOrderCreateOutput& OutContent) const;
 
 	/* Response 403
 	Forbidden
@@ -688,13 +689,13 @@ struct RALLYHEREAPI_API FRequest_CreateNewPlayerUuidOrder : public FRequest
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FGuid PlayerUuid;
-	FRHAPI_PlayerOrderCreate PlayerOrderCreate;
+	FRHAPI_PlayerOrderCreateInput PlayerOrderCreateInput;
 };
 
 /** The response type for FRequest_CreateNewPlayerUuidOrder */
-struct RALLYHEREAPI_API FResponse_CreateNewPlayerUuidOrder : public FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_CreateNewPlayerUuidOrder : public FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreateOutput, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreateOutput, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_CreateNewPlayerUuidOrder(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_CreateNewPlayerUuidOrder() = default;
@@ -731,7 +732,7 @@ struct RALLYHEREAPI_API FResponse_CreateNewPlayerUuidOrder : public FResponseAcc
 	/* Response 202
 	Accepted
 	*/
-	bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+	bool TryGetContentFor202(FRHAPI_PlayerOrderCreateOutput& OutContent) const;
 
 	/* Response 403
 	Forbidden
@@ -797,13 +798,13 @@ struct RALLYHEREAPI_API FRequest_CreateNewPlayerUuidOrderSelf : public FRequest
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_PlayerOrderCreate PlayerOrderCreate;
+	FRHAPI_PlayerOrderCreateInput PlayerOrderCreateInput;
 };
 
 /** The response type for FRequest_CreateNewPlayerUuidOrderSelf */
-struct RALLYHEREAPI_API FResponse_CreateNewPlayerUuidOrderSelf : public FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_CreateNewPlayerUuidOrderSelf : public FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreateOutput, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreateOutput, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_CreateNewPlayerUuidOrderSelf(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_CreateNewPlayerUuidOrderSelf() = default;
@@ -840,7 +841,7 @@ struct RALLYHEREAPI_API FResponse_CreateNewPlayerUuidOrderSelf : public FRespons
 	/* Response 202
 	Accepted
 	*/
-	bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+	bool TryGetContentFor202(FRHAPI_PlayerOrderCreateOutput& OutContent) const;
 
 	/* Response 403
 	Forbidden
@@ -909,9 +910,9 @@ struct RALLYHEREAPI_API FRequest_CreatePlayerInventory : public FRequest
 };
 
 /** The response type for FRequest_CreatePlayerInventory */
-struct RALLYHEREAPI_API FResponse_CreatePlayerInventory : public FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_CreatePlayerInventory : public FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreateOutput, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreateOutput, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_CreatePlayerInventory(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_CreatePlayerInventory() = default;
@@ -948,7 +949,7 @@ struct RALLYHEREAPI_API FResponse_CreatePlayerInventory : public FResponseAccess
 	/* Response 202
 	Accepted
 	*/
-	bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+	bool TryGetContentFor202(FRHAPI_PlayerOrderCreateOutput& OutContent) const;
 
 	/* Response 403
 	Forbidden
@@ -1016,9 +1017,9 @@ struct RALLYHEREAPI_API FRequest_CreatePlayerInventorySelf : public FRequest
 };
 
 /** The response type for FRequest_CreatePlayerInventorySelf */
-struct RALLYHEREAPI_API FResponse_CreatePlayerInventorySelf : public FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_CreatePlayerInventorySelf : public FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreateOutput, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreateOutput, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_CreatePlayerInventorySelf(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_CreatePlayerInventorySelf() = default;
@@ -1055,7 +1056,7 @@ struct RALLYHEREAPI_API FResponse_CreatePlayerInventorySelf : public FResponseAc
 	/* Response 202
 	Accepted
 	*/
-	bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+	bool TryGetContentFor202(FRHAPI_PlayerOrderCreateOutput& OutContent) const;
 
 	/* Response 403
 	Forbidden
@@ -1124,9 +1125,9 @@ struct RALLYHEREAPI_API FRequest_CreatePlayerInventoryUuid : public FRequest
 };
 
 /** The response type for FRequest_CreatePlayerInventoryUuid */
-struct RALLYHEREAPI_API FResponse_CreatePlayerInventoryUuid : public FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_CreatePlayerInventoryUuid : public FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreateOutput, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreateOutput, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_CreatePlayerInventoryUuid(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_CreatePlayerInventoryUuid() = default;
@@ -1163,7 +1164,7 @@ struct RALLYHEREAPI_API FResponse_CreatePlayerInventoryUuid : public FResponseAc
 	/* Response 202
 	Accepted
 	*/
-	bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+	bool TryGetContentFor202(FRHAPI_PlayerOrderCreateOutput& OutContent) const;
 
 	/* Response 403
 	Forbidden
@@ -1231,9 +1232,9 @@ struct RALLYHEREAPI_API FRequest_CreatePlayerInventoryUuidSelf : public FRequest
 };
 
 /** The response type for FRequest_CreatePlayerInventoryUuidSelf */
-struct RALLYHEREAPI_API FResponse_CreatePlayerInventoryUuidSelf : public FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_CreatePlayerInventoryUuidSelf : public FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreateOutput, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreateOutput, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_CreatePlayerInventoryUuidSelf(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_CreatePlayerInventoryUuidSelf() = default;
@@ -1270,7 +1271,7 @@ struct RALLYHEREAPI_API FResponse_CreatePlayerInventoryUuidSelf : public FRespon
 	/* Response 202
 	Accepted
 	*/
-	bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+	bool TryGetContentFor202(FRHAPI_PlayerOrderCreateOutput& OutContent) const;
 
 	/* Response 403
 	Forbidden
@@ -3523,9 +3524,9 @@ struct RALLYHEREAPI_API FRequest_ModifyManyPlayerInventory : public FRequest
 };
 
 /** The response type for FRequest_ModifyManyPlayerInventory */
-struct RALLYHEREAPI_API FResponse_ModifyManyPlayerInventory : public FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_ModifyManyPlayerInventory : public FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreateOutput, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreateOutput, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_ModifyManyPlayerInventory(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_ModifyManyPlayerInventory() = default;
@@ -3562,7 +3563,7 @@ struct RALLYHEREAPI_API FResponse_ModifyManyPlayerInventory : public FResponseAc
 	/* Response 202
 	Accepted
 	*/
-	bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+	bool TryGetContentFor202(FRHAPI_PlayerOrderCreateOutput& OutContent) const;
 
 	/* Response 403
 	Forbidden
@@ -3630,9 +3631,9 @@ struct RALLYHEREAPI_API FRequest_ModifyManyPlayerInventorySelf : public FRequest
 };
 
 /** The response type for FRequest_ModifyManyPlayerInventorySelf */
-struct RALLYHEREAPI_API FResponse_ModifyManyPlayerInventorySelf : public FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_ModifyManyPlayerInventorySelf : public FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreateOutput, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreateOutput, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_ModifyManyPlayerInventorySelf(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_ModifyManyPlayerInventorySelf() = default;
@@ -3669,7 +3670,7 @@ struct RALLYHEREAPI_API FResponse_ModifyManyPlayerInventorySelf : public FRespon
 	/* Response 202
 	Accepted
 	*/
-	bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+	bool TryGetContentFor202(FRHAPI_PlayerOrderCreateOutput& OutContent) const;
 
 	/* Response 403
 	Forbidden
@@ -3738,9 +3739,9 @@ struct RALLYHEREAPI_API FRequest_ModifyManyPlayerInventoryUuid : public FRequest
 };
 
 /** The response type for FRequest_ModifyManyPlayerInventoryUuid */
-struct RALLYHEREAPI_API FResponse_ModifyManyPlayerInventoryUuid : public FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_ModifyManyPlayerInventoryUuid : public FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreateOutput, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreateOutput, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_ModifyManyPlayerInventoryUuid(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_ModifyManyPlayerInventoryUuid() = default;
@@ -3777,7 +3778,7 @@ struct RALLYHEREAPI_API FResponse_ModifyManyPlayerInventoryUuid : public FRespon
 	/* Response 202
 	Accepted
 	*/
-	bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+	bool TryGetContentFor202(FRHAPI_PlayerOrderCreateOutput& OutContent) const;
 
 	/* Response 403
 	Forbidden
@@ -3845,9 +3846,9 @@ struct RALLYHEREAPI_API FRequest_ModifyManyPlayerInventoryUuidSelf : public FReq
 };
 
 /** The response type for FRequest_ModifyManyPlayerInventoryUuidSelf */
-struct RALLYHEREAPI_API FResponse_ModifyManyPlayerInventoryUuidSelf : public FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_ModifyManyPlayerInventoryUuidSelf : public FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreateOutput, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreateOutput, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_ModifyManyPlayerInventoryUuidSelf(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_ModifyManyPlayerInventoryUuidSelf() = default;
@@ -3884,7 +3885,7 @@ struct RALLYHEREAPI_API FResponse_ModifyManyPlayerInventoryUuidSelf : public FRe
 	/* Response 202
 	Accepted
 	*/
-	bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+	bool TryGetContentFor202(FRHAPI_PlayerOrderCreateOutput& OutContent) const;
 
 	/* Response 403
 	Forbidden
@@ -3954,9 +3955,9 @@ struct RALLYHEREAPI_API FRequest_ModifyPlayerInventory : public FRequest
 };
 
 /** The response type for FRequest_ModifyPlayerInventory */
-struct RALLYHEREAPI_API FResponse_ModifyPlayerInventory : public FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_ModifyPlayerInventory : public FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreateOutput, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreateOutput, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_ModifyPlayerInventory(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_ModifyPlayerInventory() = default;
@@ -3993,7 +3994,7 @@ struct RALLYHEREAPI_API FResponse_ModifyPlayerInventory : public FResponseAccess
 	/* Response 202
 	Accepted
 	*/
-	bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+	bool TryGetContentFor202(FRHAPI_PlayerOrderCreateOutput& OutContent) const;
 
 	/* Response 403
 	Forbidden
@@ -4062,9 +4063,9 @@ struct RALLYHEREAPI_API FRequest_ModifyPlayerInventorySelf : public FRequest
 };
 
 /** The response type for FRequest_ModifyPlayerInventorySelf */
-struct RALLYHEREAPI_API FResponse_ModifyPlayerInventorySelf : public FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_ModifyPlayerInventorySelf : public FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreateOutput, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreateOutput, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_ModifyPlayerInventorySelf(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_ModifyPlayerInventorySelf() = default;
@@ -4101,7 +4102,7 @@ struct RALLYHEREAPI_API FResponse_ModifyPlayerInventorySelf : public FResponseAc
 	/* Response 202
 	Accepted
 	*/
-	bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+	bool TryGetContentFor202(FRHAPI_PlayerOrderCreateOutput& OutContent) const;
 
 	/* Response 403
 	Forbidden
@@ -4171,9 +4172,9 @@ struct RALLYHEREAPI_API FRequest_ModifyPlayerInventoryUuid : public FRequest
 };
 
 /** The response type for FRequest_ModifyPlayerInventoryUuid */
-struct RALLYHEREAPI_API FResponse_ModifyPlayerInventoryUuid : public FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_ModifyPlayerInventoryUuid : public FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreateOutput, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreateOutput, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_ModifyPlayerInventoryUuid(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_ModifyPlayerInventoryUuid() = default;
@@ -4210,7 +4211,7 @@ struct RALLYHEREAPI_API FResponse_ModifyPlayerInventoryUuid : public FResponseAc
 	/* Response 202
 	Accepted
 	*/
-	bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+	bool TryGetContentFor202(FRHAPI_PlayerOrderCreateOutput& OutContent) const;
 
 	/* Response 403
 	Forbidden
@@ -4279,9 +4280,9 @@ struct RALLYHEREAPI_API FRequest_ModifyPlayerInventoryUuidSelf : public FRequest
 };
 
 /** The response type for FRequest_ModifyPlayerInventoryUuidSelf */
-struct RALLYHEREAPI_API FResponse_ModifyPlayerInventoryUuidSelf : public FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_ModifyPlayerInventoryUuidSelf : public FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreateOutput, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreate, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerOrder, FRHAPI_PlayerOrderCreateOutput, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_ModifyPlayerInventoryUuidSelf(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_ModifyPlayerInventoryUuidSelf() = default;
@@ -4318,7 +4319,7 @@ struct RALLYHEREAPI_API FResponse_ModifyPlayerInventoryUuidSelf : public FRespon
 	/* Response 202
 	Accepted
 	*/
-	bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+	bool TryGetContentFor202(FRHAPI_PlayerOrderCreateOutput& OutContent) const;
 
 	/* Response 403
 	Forbidden

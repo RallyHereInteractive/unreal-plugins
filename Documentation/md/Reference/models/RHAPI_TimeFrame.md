@@ -21,8 +21,9 @@ Time Frames are used to calculate the expiration of Inventory.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public FString `[`Name_Optional`](#structFRHAPI__TimeFrame_1a9f98d9b63bc7ed584b19f122871a6fce) | The name of the Time Frame.
+`public FString `[`Name_Optional`](#structFRHAPI__TimeFrame_1a9f98d9b63bc7ed584b19f122871a6fce) | 
 `public bool `[`Name_IsSet`](#structFRHAPI__TimeFrame_1a59a4d8fb084ba9df3aa0f8846cfec44f) | true if Name_Optional has been set to a value
+`public bool `[`Name_IsNull`](#structFRHAPI__TimeFrame_1aac9316344652a2706459b7dee08f1850) | true if Name_Optional has been explicitly set to null
 `public bool `[`Active_Optional`](#structFRHAPI__TimeFrame_1a977575282d88a38f08c66cab4b0bb1b1) | Whether or not the Time Frame is active.
 `public bool `[`Active_IsSet`](#structFRHAPI__TimeFrame_1a9331dfcec5f120169f0a6d9ab933964c) | true if Active_Optional has been set to a value
 `public int32 `[`Episode_Optional`](#structFRHAPI__TimeFrame_1a6f13c5bba3d4736c37c8dd34db523907) | 
@@ -31,10 +32,11 @@ Time Frames are used to calculate the expiration of Inventory.
 `public bool `[`EpisodeType_IsSet`](#structFRHAPI__TimeFrame_1a09b0cf40f95f9b13341f8cd0fdbc8d0b) | true if EpisodeType_Optional has been set to a value
 `public int32 `[`HourInterval_Optional`](#structFRHAPI__TimeFrame_1adcbfa15f184a815d088751cc18df818e) | Number of hours that this time frame lasts until restarting.0 interval means no repeating.
 `public bool `[`HourInterval_IsSet`](#structFRHAPI__TimeFrame_1a2bdacd12b2f852433aab7d081195de09) | true if HourInterval_Optional has been set to a value
-`public FDateTime `[`Start`](#structFRHAPI__TimeFrame_1a73cb11a548bd25c9db92a9aa4730ea7a) | Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone.
-`public FDateTime `[`End`](#structFRHAPI__TimeFrame_1ad3022631cc8ca9e042b21e579e1c7056) | Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone.
-`public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__TimeFrame_1a147c3051181706c6bdf0c078e9f8d44b) | Cache info for the Time Frame.
+`public FDateTime `[`Start`](#structFRHAPI__TimeFrame_1a73cb11a548bd25c9db92a9aa4730ea7a) | The current start of the Time Frame.
+`public FDateTime `[`End`](#structFRHAPI__TimeFrame_1ad3022631cc8ca9e042b21e579e1c7056) | The current end of the Time Frame.
+`public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__TimeFrame_1a147c3051181706c6bdf0c078e9f8d44b) | 
 `public bool `[`CacheInfo_IsSet`](#structFRHAPI__TimeFrame_1a35e7451323d4130ffdf6f1768334514e) | true if CacheInfo_Optional has been set to a value
+`public bool `[`CacheInfo_IsNull`](#structFRHAPI__TimeFrame_1a649148cd2fa99fdffb5c154feca6cd37) | true if CacheInfo_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__TimeFrame_1a8c5ba6096db5b29dd96e0eb9087defc9)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__TimeFrame_1a50919440f291883fb76d28b5e40a06fd)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetName`](#structFRHAPI__TimeFrame_1a952a4802a4d8042126e199ff7513d9d7)`()` | Gets the value of Name_Optional, regardless of it having been set.
@@ -47,6 +49,8 @@ Time Frames are used to calculate the expiration of Inventory.
 `public inline void `[`SetName`](#structFRHAPI__TimeFrame_1af76700d9c576a7d16b5b8d9db1c577a5)`(FString && NewValue)` | Sets the value of Name_Optional and also sets Name_IsSet to true using move semantics.
 `public inline void `[`ClearName`](#structFRHAPI__TimeFrame_1a581126a53e4cb04c4151c1454e79aded)`()` | Clears the value of Name_Optional and sets Name_IsSet to false.
 `public inline bool `[`IsNameSet`](#structFRHAPI__TimeFrame_1a94d84d4feee4fd1c4749b56d34286a49)`() const` | Checks whether Name_Optional has been set.
+`public inline void `[`SetNameToNull`](#structFRHAPI__TimeFrame_1a5bba1b22ae53f9bea9a5acb87999edf2)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsNameNull`](#structFRHAPI__TimeFrame_1a5c90282d8ff6289c08e69198c44df0d1)`() const` | Checks whether Name_Optional is set to null.
 `public inline bool & `[`GetActive`](#structFRHAPI__TimeFrame_1af833108f0d23810c755bf177389bbbcb)`()` | Gets the value of Active_Optional, regardless of it having been set.
 `public inline const bool & `[`GetActive`](#structFRHAPI__TimeFrame_1acc573477da397b8f53686c2a6edff9fd)`() const` | Gets the value of Active_Optional, regardless of it having been set.
 `public inline const bool & `[`GetActive`](#structFRHAPI__TimeFrame_1a090b519f7d31de0bf3e93b56a279d84d)`(const bool & DefaultValue) const` | Gets the value of Active_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -113,16 +117,20 @@ Time Frames are used to calculate the expiration of Inventory.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__TimeFrame_1a35c2ab3e943bf2e56280c6209c3d273d)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__TimeFrame_1a38a9e13c08ae05b91dd35621c129a2d1)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__TimeFrame_1af36cdcffec95df40a6502886271f1091)`() const` | Checks whether CacheInfo_Optional has been set.
+`public inline void `[`SetCacheInfoToNull`](#structFRHAPI__TimeFrame_1a4c19b9878b94a7d84b75bd090f54c7a1)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsCacheInfoNull`](#structFRHAPI__TimeFrame_1ab8cd20e9ccc5b95ee2c787e7f1f96b58)`() const` | Checks whether CacheInfo_Optional is set to null.
 
 ### Members
 
 #### `public FString `[`Name_Optional`](#structFRHAPI__TimeFrame_1a9f98d9b63bc7ed584b19f122871a6fce) <a id="structFRHAPI__TimeFrame_1a9f98d9b63bc7ed584b19f122871a6fce"></a>
 
-The name of the Time Frame.
-
 #### `public bool `[`Name_IsSet`](#structFRHAPI__TimeFrame_1a59a4d8fb084ba9df3aa0f8846cfec44f) <a id="structFRHAPI__TimeFrame_1a59a4d8fb084ba9df3aa0f8846cfec44f"></a>
 
 true if Name_Optional has been set to a value
+
+#### `public bool `[`Name_IsNull`](#structFRHAPI__TimeFrame_1aac9316344652a2706459b7dee08f1850) <a id="structFRHAPI__TimeFrame_1aac9316344652a2706459b7dee08f1850"></a>
+
+true if Name_Optional has been explicitly set to null
 
 #### `public bool `[`Active_Optional`](#structFRHAPI__TimeFrame_1a977575282d88a38f08c66cab4b0bb1b1) <a id="structFRHAPI__TimeFrame_1a977575282d88a38f08c66cab4b0bb1b1"></a>
 
@@ -154,19 +162,21 @@ true if HourInterval_Optional has been set to a value
 
 #### `public FDateTime `[`Start`](#structFRHAPI__TimeFrame_1a73cb11a548bd25c9db92a9aa4730ea7a) <a id="structFRHAPI__TimeFrame_1a73cb11a548bd25c9db92a9aa4730ea7a"></a>
 
-Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone.
+The current start of the Time Frame.
 
 #### `public FDateTime `[`End`](#structFRHAPI__TimeFrame_1ad3022631cc8ca9e042b21e579e1c7056) <a id="structFRHAPI__TimeFrame_1ad3022631cc8ca9e042b21e579e1c7056"></a>
 
-Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone.
+The current end of the Time Frame.
 
 #### `public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__TimeFrame_1a147c3051181706c6bdf0c078e9f8d44b) <a id="structFRHAPI__TimeFrame_1a147c3051181706c6bdf0c078e9f8d44b"></a>
-
-Cache info for the Time Frame.
 
 #### `public bool `[`CacheInfo_IsSet`](#structFRHAPI__TimeFrame_1a35e7451323d4130ffdf6f1768334514e) <a id="structFRHAPI__TimeFrame_1a35e7451323d4130ffdf6f1768334514e"></a>
 
 true if CacheInfo_Optional has been set to a value
+
+#### `public bool `[`CacheInfo_IsNull`](#structFRHAPI__TimeFrame_1a649148cd2fa99fdffb5c154feca6cd37) <a id="structFRHAPI__TimeFrame_1a649148cd2fa99fdffb5c154feca6cd37"></a>
+
+true if CacheInfo_Optional has been explicitly set to null
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__TimeFrame_1a8c5ba6096db5b29dd96e0eb9087defc9)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__TimeFrame_1a8c5ba6096db5b29dd96e0eb9087defc9"></a>
 
@@ -224,6 +234,14 @@ Clears the value of Name_Optional and sets Name_IsSet to false.
 #### `public inline bool `[`IsNameSet`](#structFRHAPI__TimeFrame_1a94d84d4feee4fd1c4749b56d34286a49)`() const` <a id="structFRHAPI__TimeFrame_1a94d84d4feee4fd1c4749b56d34286a49"></a>
 
 Checks whether Name_Optional has been set.
+
+#### `public inline void `[`SetNameToNull`](#structFRHAPI__TimeFrame_1a5bba1b22ae53f9bea9a5acb87999edf2)`()` <a id="structFRHAPI__TimeFrame_1a5bba1b22ae53f9bea9a5acb87999edf2"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsNameNull`](#structFRHAPI__TimeFrame_1a5c90282d8ff6289c08e69198c44df0d1)`() const` <a id="structFRHAPI__TimeFrame_1a5c90282d8ff6289c08e69198c44df0d1"></a>
+
+Checks whether Name_Optional is set to null.
 
 #### `public inline bool & `[`GetActive`](#structFRHAPI__TimeFrame_1af833108f0d23810c755bf177389bbbcb)`()` <a id="structFRHAPI__TimeFrame_1af833108f0d23810c755bf177389bbbcb"></a>
 
@@ -488,4 +506,12 @@ Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 #### `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__TimeFrame_1af36cdcffec95df40a6502886271f1091)`() const` <a id="structFRHAPI__TimeFrame_1af36cdcffec95df40a6502886271f1091"></a>
 
 Checks whether CacheInfo_Optional has been set.
+
+#### `public inline void `[`SetCacheInfoToNull`](#structFRHAPI__TimeFrame_1a4c19b9878b94a7d84b75bd090f54c7a1)`()` <a id="structFRHAPI__TimeFrame_1a4c19b9878b94a7d84b75bd090f54c7a1"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsCacheInfoNull`](#structFRHAPI__TimeFrame_1ab8cd20e9ccc5b95ee2c787e7f1f96b58)`() const` <a id="structFRHAPI__TimeFrame_1ab8cd20e9ccc5b95ee2c787e7f1f96b58"></a>
+
+Checks whether CacheInfo_Optional is set to null.
 

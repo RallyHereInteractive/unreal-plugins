@@ -23,7 +23,8 @@ A request body to update information about a player in a session.
 --------------------------------|---------------------------------------------
 `public ERHAPI_SessionPlayerStatus `[`Status_Optional`](#structFRHAPI__SessionPlayerUpdateRequest_1acf48279847beabc2877dcbdd6cd6267c) | Status that the player would like after the request is complete. Note that some join operations may promote the player from `member` to `leader`
 `public bool `[`Status_IsSet`](#structFRHAPI__SessionPlayerUpdateRequest_1ad1f3f4cc4681b79dee1b512dc42e02eb) | true if Status_Optional has been set to a value
-`public int32 `[`TeamId`](#structFRHAPI__SessionPlayerUpdateRequest_1aa56a7eab4923715500aefa8b8fbb941b) | Which team the player should be on.
+`public int32 `[`TeamId_Optional`](#structFRHAPI__SessionPlayerUpdateRequest_1a4cc23b7c854bf2d8d89d069fc4d84084) | Which team the player should be on.
+`public bool `[`TeamId_IsSet`](#structFRHAPI__SessionPlayerUpdateRequest_1ac60fd2908cb81150a0698947627b98be) | true if TeamId_Optional has been set to a value
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__SessionPlayerUpdateRequest_1a5413846e2f8ff07b8a34f6483807cadc) | player-defined custom data
 `public bool `[`CustomData_IsSet`](#structFRHAPI__SessionPlayerUpdateRequest_1a29f9f54c835b137b0f22c711cf8229bf) | true if CustomData_Optional has been set to a value
 `public ERHAPI_TeamOverflowAction `[`OverflowAction_Optional`](#structFRHAPI__SessionPlayerUpdateRequest_1a13e3e939ca8bf749c90b48164ea7b903) | How we should handle too many players being invited to the chosen team.
@@ -40,12 +41,18 @@ A request body to update information about a player in a session.
 `public inline void `[`SetStatus`](#structFRHAPI__SessionPlayerUpdateRequest_1a816b87e015243da632ef61eec6ffc31a)`(ERHAPI_SessionPlayerStatus && NewValue)` | Sets the value of Status_Optional and also sets Status_IsSet to true using move semantics.
 `public inline void `[`ClearStatus`](#structFRHAPI__SessionPlayerUpdateRequest_1a2905381b74dd71938e896ad9059c01ea)`()` | Clears the value of Status_Optional and sets Status_IsSet to false.
 `public inline bool `[`IsStatusSet`](#structFRHAPI__SessionPlayerUpdateRequest_1a5375deb528cb6b995d5cabb3510a85a9)`() const` | Checks whether Status_Optional has been set.
-`public inline int32 & `[`GetTeamId`](#structFRHAPI__SessionPlayerUpdateRequest_1a6833951c1c984fa3f987b42028cbcb1e)`()` | Gets the value of TeamId.
-`public inline const int32 & `[`GetTeamId`](#structFRHAPI__SessionPlayerUpdateRequest_1a74d36814025ef42da8527c1eafec61c6)`() const` | Gets the value of TeamId.
-`public inline void `[`SetTeamId`](#structFRHAPI__SessionPlayerUpdateRequest_1adc7b42f6fe4b84ecf34f130f15bd2b5e)`(const int32 & NewValue)` | Sets the value of TeamId.
-`public inline void `[`SetTeamId`](#structFRHAPI__SessionPlayerUpdateRequest_1af06239eaf8d674ba7a6e6a5c388740a8)`(int32 && NewValue)` | Sets the value of TeamId using move semantics.
-`public inline bool `[`IsTeamIdDefaultValue`](#structFRHAPI__SessionPlayerUpdateRequest_1a00cd4d137a38bad4d7cedb426c9618ea)`() const` | Returns true if TeamId matches the default value.
-`public inline void `[`SetTeamIdToDefault`](#structFRHAPI__SessionPlayerUpdateRequest_1a673d1ada9ca1f883dcee26c27c355d30)`()` | Sets the value of TeamId to its default
+`public inline int32 & `[`GetTeamId`](#structFRHAPI__SessionPlayerUpdateRequest_1a6833951c1c984fa3f987b42028cbcb1e)`()` | Gets the value of TeamId_Optional, regardless of it having been set.
+`public inline const int32 & `[`GetTeamId`](#structFRHAPI__SessionPlayerUpdateRequest_1a74d36814025ef42da8527c1eafec61c6)`() const` | Gets the value of TeamId_Optional, regardless of it having been set.
+`public inline const int32 & `[`GetTeamId`](#structFRHAPI__SessionPlayerUpdateRequest_1af79b408f84995de804cfb2bb297a5001)`(const int32 & DefaultValue) const` | Gets the value of TeamId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetTeamId`](#structFRHAPI__SessionPlayerUpdateRequest_1a21322d4662a54ce0a4b2bfb153e22ca5)`(int32 & OutValue) const` | Fills OutValue with the value of TeamId_Optional and returns true if it has been set, otherwise returns false.
+`public inline int32 * `[`GetTeamIdOrNull`](#structFRHAPI__SessionPlayerUpdateRequest_1a412bb16879dd0259f25789924ce8fe7a)`()` | Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr.
+`public inline const int32 * `[`GetTeamIdOrNull`](#structFRHAPI__SessionPlayerUpdateRequest_1a2c942ca4b89f8cff67058dae38631fc8)`() const` | Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetTeamId`](#structFRHAPI__SessionPlayerUpdateRequest_1adc7b42f6fe4b84ecf34f130f15bd2b5e)`(const int32 & NewValue)` | Sets the value of TeamId_Optional and also sets TeamId_IsSet to true.
+`public inline void `[`SetTeamId`](#structFRHAPI__SessionPlayerUpdateRequest_1af06239eaf8d674ba7a6e6a5c388740a8)`(int32 && NewValue)` | Sets the value of TeamId_Optional and also sets TeamId_IsSet to true using move semantics.
+`public inline void `[`ClearTeamId`](#structFRHAPI__SessionPlayerUpdateRequest_1a815eee4ffa231b16035bed481f283922)`()` | Clears the value of TeamId_Optional and sets TeamId_IsSet to false.
+`public inline bool `[`IsTeamIdSet`](#structFRHAPI__SessionPlayerUpdateRequest_1a536ecca62663bfdcb8912572423bd30e)`() const` | Checks whether TeamId_Optional has been set.
+`public inline bool `[`IsTeamIdDefaultValue`](#structFRHAPI__SessionPlayerUpdateRequest_1a00cd4d137a38bad4d7cedb426c9618ea)`() const` | Returns true if TeamId_Optional is set and matches the default value.
+`public inline void `[`SetTeamIdToDefault`](#structFRHAPI__SessionPlayerUpdateRequest_1a673d1ada9ca1f883dcee26c27c355d30)`()` | Sets the value of TeamId_Optional to its default and also sets TeamId_IsSet to true.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__SessionPlayerUpdateRequest_1a586317f14c4ed1320d3ffe9baf79581a)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__SessionPlayerUpdateRequest_1a3e8b07562e0e47a1110b1960e1cf7ce6)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__SessionPlayerUpdateRequest_1ac33af9f4417bfdd39bff87d68d1806c8)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -77,9 +84,13 @@ Status that the player would like after the request is complete. Note that some 
 
 true if Status_Optional has been set to a value
 
-#### `public int32 `[`TeamId`](#structFRHAPI__SessionPlayerUpdateRequest_1aa56a7eab4923715500aefa8b8fbb941b) <a id="structFRHAPI__SessionPlayerUpdateRequest_1aa56a7eab4923715500aefa8b8fbb941b"></a>
+#### `public int32 `[`TeamId_Optional`](#structFRHAPI__SessionPlayerUpdateRequest_1a4cc23b7c854bf2d8d89d069fc4d84084) <a id="structFRHAPI__SessionPlayerUpdateRequest_1a4cc23b7c854bf2d8d89d069fc4d84084"></a>
 
 Which team the player should be on.
+
+#### `public bool `[`TeamId_IsSet`](#structFRHAPI__SessionPlayerUpdateRequest_1ac60fd2908cb81150a0698947627b98be) <a id="structFRHAPI__SessionPlayerUpdateRequest_1ac60fd2908cb81150a0698947627b98be"></a>
+
+true if TeamId_Optional has been set to a value
 
 #### `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__SessionPlayerUpdateRequest_1a5413846e2f8ff07b8a34f6483807cadc) <a id="structFRHAPI__SessionPlayerUpdateRequest_1a5413846e2f8ff07b8a34f6483807cadc"></a>
 
@@ -156,27 +167,51 @@ Checks whether Status_Optional has been set.
 
 #### `public inline int32 & `[`GetTeamId`](#structFRHAPI__SessionPlayerUpdateRequest_1a6833951c1c984fa3f987b42028cbcb1e)`()` <a id="structFRHAPI__SessionPlayerUpdateRequest_1a6833951c1c984fa3f987b42028cbcb1e"></a>
 
-Gets the value of TeamId.
+Gets the value of TeamId_Optional, regardless of it having been set.
 
 #### `public inline const int32 & `[`GetTeamId`](#structFRHAPI__SessionPlayerUpdateRequest_1a74d36814025ef42da8527c1eafec61c6)`() const` <a id="structFRHAPI__SessionPlayerUpdateRequest_1a74d36814025ef42da8527c1eafec61c6"></a>
 
-Gets the value of TeamId.
+Gets the value of TeamId_Optional, regardless of it having been set.
+
+#### `public inline const int32 & `[`GetTeamId`](#structFRHAPI__SessionPlayerUpdateRequest_1af79b408f84995de804cfb2bb297a5001)`(const int32 & DefaultValue) const` <a id="structFRHAPI__SessionPlayerUpdateRequest_1af79b408f84995de804cfb2bb297a5001"></a>
+
+Gets the value of TeamId_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetTeamId`](#structFRHAPI__SessionPlayerUpdateRequest_1a21322d4662a54ce0a4b2bfb153e22ca5)`(int32 & OutValue) const` <a id="structFRHAPI__SessionPlayerUpdateRequest_1a21322d4662a54ce0a4b2bfb153e22ca5"></a>
+
+Fills OutValue with the value of TeamId_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline int32 * `[`GetTeamIdOrNull`](#structFRHAPI__SessionPlayerUpdateRequest_1a412bb16879dd0259f25789924ce8fe7a)`()` <a id="structFRHAPI__SessionPlayerUpdateRequest_1a412bb16879dd0259f25789924ce8fe7a"></a>
+
+Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const int32 * `[`GetTeamIdOrNull`](#structFRHAPI__SessionPlayerUpdateRequest_1a2c942ca4b89f8cff67058dae38631fc8)`() const` <a id="structFRHAPI__SessionPlayerUpdateRequest_1a2c942ca4b89f8cff67058dae38631fc8"></a>
+
+Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr.
 
 #### `public inline void `[`SetTeamId`](#structFRHAPI__SessionPlayerUpdateRequest_1adc7b42f6fe4b84ecf34f130f15bd2b5e)`(const int32 & NewValue)` <a id="structFRHAPI__SessionPlayerUpdateRequest_1adc7b42f6fe4b84ecf34f130f15bd2b5e"></a>
 
-Sets the value of TeamId.
+Sets the value of TeamId_Optional and also sets TeamId_IsSet to true.
 
 #### `public inline void `[`SetTeamId`](#structFRHAPI__SessionPlayerUpdateRequest_1af06239eaf8d674ba7a6e6a5c388740a8)`(int32 && NewValue)` <a id="structFRHAPI__SessionPlayerUpdateRequest_1af06239eaf8d674ba7a6e6a5c388740a8"></a>
 
-Sets the value of TeamId using move semantics.
+Sets the value of TeamId_Optional and also sets TeamId_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearTeamId`](#structFRHAPI__SessionPlayerUpdateRequest_1a815eee4ffa231b16035bed481f283922)`()` <a id="structFRHAPI__SessionPlayerUpdateRequest_1a815eee4ffa231b16035bed481f283922"></a>
+
+Clears the value of TeamId_Optional and sets TeamId_IsSet to false.
+
+#### `public inline bool `[`IsTeamIdSet`](#structFRHAPI__SessionPlayerUpdateRequest_1a536ecca62663bfdcb8912572423bd30e)`() const` <a id="structFRHAPI__SessionPlayerUpdateRequest_1a536ecca62663bfdcb8912572423bd30e"></a>
+
+Checks whether TeamId_Optional has been set.
 
 #### `public inline bool `[`IsTeamIdDefaultValue`](#structFRHAPI__SessionPlayerUpdateRequest_1a00cd4d137a38bad4d7cedb426c9618ea)`() const` <a id="structFRHAPI__SessionPlayerUpdateRequest_1a00cd4d137a38bad4d7cedb426c9618ea"></a>
 
-Returns true if TeamId matches the default value.
+Returns true if TeamId_Optional is set and matches the default value.
 
 #### `public inline void `[`SetTeamIdToDefault`](#structFRHAPI__SessionPlayerUpdateRequest_1a673d1ada9ca1f883dcee26c27c355d30)`()` <a id="structFRHAPI__SessionPlayerUpdateRequest_1a673d1ada9ca1f883dcee26c27c355d30"></a>
 
-Sets the value of TeamId to its default
+Sets the value of TeamId_Optional to its default and also sets TeamId_IsSet to true.
 
 #### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__SessionPlayerUpdateRequest_1a586317f14c4ed1320d3ffe9baf79581a)`()` <a id="structFRHAPI__SessionPlayerUpdateRequest_1a586317f14c4ed1320d3ffe9baf79581a"></a>
 

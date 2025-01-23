@@ -30,6 +30,9 @@ void FRHAPI_Loot::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (LootUuid_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("loot_uuid"));
+		if (LootUuid_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, LootUuid_Optional);
 	}
 	Writer->WriteIdentifierPrefix(TEXT("loot_id"));
@@ -39,31 +42,49 @@ void FRHAPI_Loot::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (VendorUuid_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("vendor_uuid"));
+		if (VendorUuid_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, VendorUuid_Optional);
 	}
 	if (ItemId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("item_id"));
+		if (ItemId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, ItemId_Optional);
 	}
 	if (ItemUuid_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("item_uuid"));
+		if (ItemUuid_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, ItemUuid_Optional);
 	}
 	if (Item_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("item"));
+		if (Item_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, Item_Optional);
 	}
 	if (SubVendorId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("sub_vendor_id"));
+		if (SubVendorId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, SubVendorId_Optional);
 	}
 	if (SubVendorUuid_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("sub_vendor_uuid"));
+		if (SubVendorUuid_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, SubVendorUuid_Optional);
 	}
 	if (Quantity_IsSet)
@@ -109,11 +130,17 @@ void FRHAPI_Loot::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (RequiredItemId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("required_item_id"));
+		if (RequiredItemId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, RequiredItemId_Optional);
 	}
 	if (RequiredItemUuid_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("required_item_uuid"));
+		if (RequiredItemUuid_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, RequiredItemUuid_Optional);
 	}
 	if (RequiredItemCount_IsSet)
@@ -134,6 +161,9 @@ void FRHAPI_Loot::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (EffectiveFrom_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("effective_from"));
+		if (EffectiveFrom_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, EffectiveFrom_Optional);
 	}
 	if (QuantityType_IsSet)
@@ -144,11 +174,17 @@ void FRHAPI_Loot::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (QuantityMultInventoryItemId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("quantity_mult_inventory_item_id"));
+		if (QuantityMultInventoryItemId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, QuantityMultInventoryItemId_Optional);
 	}
 	if (QuantityMultInventoryItemUuid_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("quantity_mult_inventory_item_uuid"));
+		if (QuantityMultInventoryItemUuid_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, QuantityMultInventoryItemUuid_Optional);
 	}
 	if (IsClaimableByClient_IsSet)
@@ -159,11 +195,17 @@ void FRHAPI_Loot::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (TimeFrameId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("time_frame_id"));
+		if (TimeFrameId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, TimeFrameId_Optional);
 	}
 	if (UseInventoryBucket_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("use_inventory_bucket"));
+		if (UseInventoryBucket_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, EnumToString(UseInventoryBucket_Optional));
 	}
 	if (XpQuantityTransformType_IsSet)
@@ -174,16 +216,25 @@ void FRHAPI_Loot::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (CurrentPricePointGuid_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("current_price_point_guid"));
+		if (CurrentPricePointGuid_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, CurrentPricePointGuid_Optional);
 	}
 	if (PreSalePricePointGuid_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("pre_sale_price_point_guid"));
+		if (PreSalePricePointGuid_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, PreSalePricePointGuid_Optional);
 	}
 	if (CacheInfo_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("cache_info"));
+		if (CacheInfo_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, CacheInfo_Optional);
 	}
 	if (HardQuantityMaximum_IsSet)
@@ -194,6 +245,9 @@ void FRHAPI_Loot::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (Price_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("price"));
+		if (Price_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, Price_Optional);
 	}
 	Writer->WriteObjectEnd();
@@ -216,7 +270,8 @@ bool FRHAPI_Loot::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonLootUuidField = (*Object)->TryGetField(TEXT("loot_uuid"));
 	if (JsonLootUuidField.IsValid())
 	{
-		LootUuid_IsSet = TryGetJsonValue(JsonLootUuidField, LootUuid_Optional);
+		LootUuid_IsNull = JsonLootUuidField->IsNull();
+		LootUuid_IsSet = LootUuid_IsNull || TryGetJsonValue(JsonLootUuidField, LootUuid_Optional);
 		ParseSuccess &= LootUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonLootIdField = (*Object)->TryGetField(TEXT("loot_id"));
@@ -228,37 +283,43 @@ bool FRHAPI_Loot::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonVendorUuidField = (*Object)->TryGetField(TEXT("vendor_uuid"));
 	if (JsonVendorUuidField.IsValid())
 	{
-		VendorUuid_IsSet = TryGetJsonValue(JsonVendorUuidField, VendorUuid_Optional);
+		VendorUuid_IsNull = JsonVendorUuidField->IsNull();
+		VendorUuid_IsSet = VendorUuid_IsNull || TryGetJsonValue(JsonVendorUuidField, VendorUuid_Optional);
 		ParseSuccess &= VendorUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonItemIdField = (*Object)->TryGetField(TEXT("item_id"));
 	if (JsonItemIdField.IsValid())
 	{
-		ItemId_IsSet = TryGetJsonValue(JsonItemIdField, ItemId_Optional);
+		ItemId_IsNull = JsonItemIdField->IsNull();
+		ItemId_IsSet = ItemId_IsNull || TryGetJsonValue(JsonItemIdField, ItemId_Optional);
 		ParseSuccess &= ItemId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonItemUuidField = (*Object)->TryGetField(TEXT("item_uuid"));
 	if (JsonItemUuidField.IsValid())
 	{
-		ItemUuid_IsSet = TryGetJsonValue(JsonItemUuidField, ItemUuid_Optional);
+		ItemUuid_IsNull = JsonItemUuidField->IsNull();
+		ItemUuid_IsSet = ItemUuid_IsNull || TryGetJsonValue(JsonItemUuidField, ItemUuid_Optional);
 		ParseSuccess &= ItemUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonItemField = (*Object)->TryGetField(TEXT("item"));
 	if (JsonItemField.IsValid())
 	{
-		Item_IsSet = TryGetJsonValue(JsonItemField, Item_Optional);
+		Item_IsNull = JsonItemField->IsNull();
+		Item_IsSet = Item_IsNull || TryGetJsonValue(JsonItemField, Item_Optional);
 		ParseSuccess &= Item_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonSubVendorIdField = (*Object)->TryGetField(TEXT("sub_vendor_id"));
 	if (JsonSubVendorIdField.IsValid())
 	{
-		SubVendorId_IsSet = TryGetJsonValue(JsonSubVendorIdField, SubVendorId_Optional);
+		SubVendorId_IsNull = JsonSubVendorIdField->IsNull();
+		SubVendorId_IsSet = SubVendorId_IsNull || TryGetJsonValue(JsonSubVendorIdField, SubVendorId_Optional);
 		ParseSuccess &= SubVendorId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonSubVendorUuidField = (*Object)->TryGetField(TEXT("sub_vendor_uuid"));
 	if (JsonSubVendorUuidField.IsValid())
 	{
-		SubVendorUuid_IsSet = TryGetJsonValue(JsonSubVendorUuidField, SubVendorUuid_Optional);
+		SubVendorUuid_IsNull = JsonSubVendorUuidField->IsNull();
+		SubVendorUuid_IsSet = SubVendorUuid_IsNull || TryGetJsonValue(JsonSubVendorUuidField, SubVendorUuid_Optional);
 		ParseSuccess &= SubVendorUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonQuantityField = (*Object)->TryGetField(TEXT("quantity"));
@@ -312,13 +373,15 @@ bool FRHAPI_Loot::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonRequiredItemIdField = (*Object)->TryGetField(TEXT("required_item_id"));
 	if (JsonRequiredItemIdField.IsValid())
 	{
-		RequiredItemId_IsSet = TryGetJsonValue(JsonRequiredItemIdField, RequiredItemId_Optional);
+		RequiredItemId_IsNull = JsonRequiredItemIdField->IsNull();
+		RequiredItemId_IsSet = RequiredItemId_IsNull || TryGetJsonValue(JsonRequiredItemIdField, RequiredItemId_Optional);
 		ParseSuccess &= RequiredItemId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonRequiredItemUuidField = (*Object)->TryGetField(TEXT("required_item_uuid"));
 	if (JsonRequiredItemUuidField.IsValid())
 	{
-		RequiredItemUuid_IsSet = TryGetJsonValue(JsonRequiredItemUuidField, RequiredItemUuid_Optional);
+		RequiredItemUuid_IsNull = JsonRequiredItemUuidField->IsNull();
+		RequiredItemUuid_IsSet = RequiredItemUuid_IsNull || TryGetJsonValue(JsonRequiredItemUuidField, RequiredItemUuid_Optional);
 		ParseSuccess &= RequiredItemUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonRequiredItemCountField = (*Object)->TryGetField(TEXT("required_item_count"));
@@ -342,7 +405,8 @@ bool FRHAPI_Loot::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonEffectiveFromField = (*Object)->TryGetField(TEXT("effective_from"));
 	if (JsonEffectiveFromField.IsValid())
 	{
-		EffectiveFrom_IsSet = TryGetJsonValue(JsonEffectiveFromField, EffectiveFrom_Optional);
+		EffectiveFrom_IsNull = JsonEffectiveFromField->IsNull();
+		EffectiveFrom_IsSet = EffectiveFrom_IsNull || TryGetJsonValue(JsonEffectiveFromField, EffectiveFrom_Optional);
 		ParseSuccess &= EffectiveFrom_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonQuantityTypeField = (*Object)->TryGetField(TEXT("quantity_type"));
@@ -354,13 +418,15 @@ bool FRHAPI_Loot::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonQuantityMultInventoryItemIdField = (*Object)->TryGetField(TEXT("quantity_mult_inventory_item_id"));
 	if (JsonQuantityMultInventoryItemIdField.IsValid())
 	{
-		QuantityMultInventoryItemId_IsSet = TryGetJsonValue(JsonQuantityMultInventoryItemIdField, QuantityMultInventoryItemId_Optional);
+		QuantityMultInventoryItemId_IsNull = JsonQuantityMultInventoryItemIdField->IsNull();
+		QuantityMultInventoryItemId_IsSet = QuantityMultInventoryItemId_IsNull || TryGetJsonValue(JsonQuantityMultInventoryItemIdField, QuantityMultInventoryItemId_Optional);
 		ParseSuccess &= QuantityMultInventoryItemId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonQuantityMultInventoryItemUuidField = (*Object)->TryGetField(TEXT("quantity_mult_inventory_item_uuid"));
 	if (JsonQuantityMultInventoryItemUuidField.IsValid())
 	{
-		QuantityMultInventoryItemUuid_IsSet = TryGetJsonValue(JsonQuantityMultInventoryItemUuidField, QuantityMultInventoryItemUuid_Optional);
+		QuantityMultInventoryItemUuid_IsNull = JsonQuantityMultInventoryItemUuidField->IsNull();
+		QuantityMultInventoryItemUuid_IsSet = QuantityMultInventoryItemUuid_IsNull || TryGetJsonValue(JsonQuantityMultInventoryItemUuidField, QuantityMultInventoryItemUuid_Optional);
 		ParseSuccess &= QuantityMultInventoryItemUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonIsClaimableByClientField = (*Object)->TryGetField(TEXT("is_claimable_by_client"));
@@ -372,13 +438,15 @@ bool FRHAPI_Loot::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonTimeFrameIdField = (*Object)->TryGetField(TEXT("time_frame_id"));
 	if (JsonTimeFrameIdField.IsValid())
 	{
-		TimeFrameId_IsSet = TryGetJsonValue(JsonTimeFrameIdField, TimeFrameId_Optional);
+		TimeFrameId_IsNull = JsonTimeFrameIdField->IsNull();
+		TimeFrameId_IsSet = TimeFrameId_IsNull || TryGetJsonValue(JsonTimeFrameIdField, TimeFrameId_Optional);
 		ParseSuccess &= TimeFrameId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonUseInventoryBucketField = (*Object)->TryGetField(TEXT("use_inventory_bucket"));
 	if (JsonUseInventoryBucketField.IsValid())
 	{
-		UseInventoryBucket_IsSet = TryGetJsonValue(JsonUseInventoryBucketField, UseInventoryBucket_Optional);
+		UseInventoryBucket_IsNull = JsonUseInventoryBucketField->IsNull();
+		UseInventoryBucket_IsSet = UseInventoryBucket_IsNull || TryGetJsonValue(JsonUseInventoryBucketField, UseInventoryBucket_Optional);
 		ParseSuccess &= UseInventoryBucket_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonXpQuantityTransformTypeField = (*Object)->TryGetField(TEXT("xp_quantity_transform_type"));
@@ -390,19 +458,22 @@ bool FRHAPI_Loot::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonCurrentPricePointGuidField = (*Object)->TryGetField(TEXT("current_price_point_guid"));
 	if (JsonCurrentPricePointGuidField.IsValid())
 	{
-		CurrentPricePointGuid_IsSet = TryGetJsonValue(JsonCurrentPricePointGuidField, CurrentPricePointGuid_Optional);
+		CurrentPricePointGuid_IsNull = JsonCurrentPricePointGuidField->IsNull();
+		CurrentPricePointGuid_IsSet = CurrentPricePointGuid_IsNull || TryGetJsonValue(JsonCurrentPricePointGuidField, CurrentPricePointGuid_Optional);
 		ParseSuccess &= CurrentPricePointGuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPreSalePricePointGuidField = (*Object)->TryGetField(TEXT("pre_sale_price_point_guid"));
 	if (JsonPreSalePricePointGuidField.IsValid())
 	{
-		PreSalePricePointGuid_IsSet = TryGetJsonValue(JsonPreSalePricePointGuidField, PreSalePricePointGuid_Optional);
+		PreSalePricePointGuid_IsNull = JsonPreSalePricePointGuidField->IsNull();
+		PreSalePricePointGuid_IsSet = PreSalePricePointGuid_IsNull || TryGetJsonValue(JsonPreSalePricePointGuidField, PreSalePricePointGuid_Optional);
 		ParseSuccess &= PreSalePricePointGuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
 	if (JsonCacheInfoField.IsValid())
 	{
-		CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
+		CacheInfo_IsNull = JsonCacheInfoField->IsNull();
+		CacheInfo_IsSet = CacheInfo_IsNull || TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
 		ParseSuccess &= CacheInfo_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonHardQuantityMaximumField = (*Object)->TryGetField(TEXT("hard_quantity_maximum"));
@@ -414,7 +485,8 @@ bool FRHAPI_Loot::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonPriceField = (*Object)->TryGetField(TEXT("price"));
 	if (JsonPriceField.IsValid())
 	{
-		Price_IsSet = TryGetJsonValue(JsonPriceField, Price_Optional);
+		Price_IsNull = JsonPriceField->IsNull();
+		Price_IsSet = Price_IsNull || TryGetJsonValue(JsonPriceField, Price_Optional);
 		ParseSuccess &= Price_IsSet;
 	}
 

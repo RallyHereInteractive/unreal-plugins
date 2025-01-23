@@ -22,11 +22,13 @@ One currency (of potentially multiple) that can be used for a purchase, and how 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public FGuid `[`PriceItemId`](#structFRHAPI__LootPriceCurrency_1a97e2aaf765f9eca2943892ead5e8759c) | The Item used as the currency for the purchase.
-`public int32 `[`PriceLegacyItemId_Optional`](#structFRHAPI__LootPriceCurrency_1ae6052d1c00c3dfdc6710483697a6a2cf) | The Item used as the currency for the purchase.
+`public int32 `[`PriceLegacyItemId_Optional`](#structFRHAPI__LootPriceCurrency_1ae6052d1c00c3dfdc6710483697a6a2cf) | 
 `public bool `[`PriceLegacyItemId_IsSet`](#structFRHAPI__LootPriceCurrency_1a45e7653798d3ea4905d7a3d8f45c03b9) | true if PriceLegacyItemId_Optional has been set to a value
+`public bool `[`PriceLegacyItemId_IsNull`](#structFRHAPI__LootPriceCurrency_1a0591c08253dfc6da241dc74b8c6caa6c) | true if PriceLegacyItemId_Optional has been explicitly set to null
 `public int32 `[`CurrentPrice`](#structFRHAPI__LootPriceCurrency_1a9dcc9c73026a9967b1fd784594868689) | The current amount of the item needed to use this price currency.
-`public int32 `[`OriginalPrice_Optional`](#structFRHAPI__LootPriceCurrency_1a5da3ba9a4150b4ccbf0517225c4a4615) | The amount of the item needed before the sale began.
+`public int32 `[`OriginalPrice_Optional`](#structFRHAPI__LootPriceCurrency_1a5da3ba9a4150b4ccbf0517225c4a4615) | 
 `public bool `[`OriginalPrice_IsSet`](#structFRHAPI__LootPriceCurrency_1aeb1c5edf1724195ec01858cfc7edcca9) | true if OriginalPrice_Optional has been set to a value
+`public bool `[`OriginalPrice_IsNull`](#structFRHAPI__LootPriceCurrency_1ab63a60fa98f23d2d6a9300a8c407ef80) | true if OriginalPrice_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__LootPriceCurrency_1a282ba62867e7214fcfa5a40fed8ad287)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__LootPriceCurrency_1a3cbff339690df570db49702606c2ff9d)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FGuid & `[`GetPriceItemId`](#structFRHAPI__LootPriceCurrency_1a50b5e908045e4781a656b9081abcd4f6)`()` | Gets the value of PriceItemId.
@@ -45,6 +47,8 @@ One currency (of potentially multiple) that can be used for a purchase, and how 
 `public inline bool `[`IsPriceLegacyItemIdSet`](#structFRHAPI__LootPriceCurrency_1afb869c81aa45e4e9db8483008dcb1bc0)`() const` | Checks whether PriceLegacyItemId_Optional has been set.
 `public inline bool `[`IsPriceLegacyItemIdDefaultValue`](#structFRHAPI__LootPriceCurrency_1af9f1d83df529dda55f3b686bfc16dd06)`() const` | Returns true if PriceLegacyItemId_Optional is set and matches the default value.
 `public inline void `[`SetPriceLegacyItemIdToDefault`](#structFRHAPI__LootPriceCurrency_1a1d1ed8b8461ec2f3d0f0b87c6b44b765)`()` | Sets the value of PriceLegacyItemId_Optional to its default and also sets PriceLegacyItemId_IsSet to true.
+`public inline void `[`SetPriceLegacyItemIdToNull`](#structFRHAPI__LootPriceCurrency_1ad04e8d8f2ea93855d1fff76e2839e9f1)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsPriceLegacyItemIdNull`](#structFRHAPI__LootPriceCurrency_1a34a4af41cdbda1e13a56a35955d1a6ac)`() const` | Checks whether PriceLegacyItemId_Optional is set to null.
 `public inline int32 & `[`GetCurrentPrice`](#structFRHAPI__LootPriceCurrency_1ab8a60975058ed8c77cab5996e3a53809)`()` | Gets the value of CurrentPrice.
 `public inline const int32 & `[`GetCurrentPrice`](#structFRHAPI__LootPriceCurrency_1acfc6a1f59dc65cd2de091186a6923ed6)`() const` | Gets the value of CurrentPrice.
 `public inline void `[`SetCurrentPrice`](#structFRHAPI__LootPriceCurrency_1ad8622ee4f7150d9059867f0c04d57a87)`(const int32 & NewValue)` | Sets the value of CurrentPrice.
@@ -63,6 +67,8 @@ One currency (of potentially multiple) that can be used for a purchase, and how 
 `public inline bool `[`IsOriginalPriceSet`](#structFRHAPI__LootPriceCurrency_1ad9ec20c4891dc02ca64281875b296ee1)`() const` | Checks whether OriginalPrice_Optional has been set.
 `public inline bool `[`IsOriginalPriceDefaultValue`](#structFRHAPI__LootPriceCurrency_1a6b387b52ccf1fac062d6f1e3ebd4ccc9)`() const` | Returns true if OriginalPrice_Optional is set and matches the default value.
 `public inline void `[`SetOriginalPriceToDefault`](#structFRHAPI__LootPriceCurrency_1aea69694ba237627de044b779bfae90a0)`()` | Sets the value of OriginalPrice_Optional to its default and also sets OriginalPrice_IsSet to true.
+`public inline void `[`SetOriginalPriceToNull`](#structFRHAPI__LootPriceCurrency_1a7bbc25769d59d8177746a59dcd5aa867)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsOriginalPriceNull`](#structFRHAPI__LootPriceCurrency_1a2d873f28d8db6a9a77913eb5fae765bd)`() const` | Checks whether OriginalPrice_Optional is set to null.
 
 ### Members
 
@@ -72,11 +78,13 @@ The Item used as the currency for the purchase.
 
 #### `public int32 `[`PriceLegacyItemId_Optional`](#structFRHAPI__LootPriceCurrency_1ae6052d1c00c3dfdc6710483697a6a2cf) <a id="structFRHAPI__LootPriceCurrency_1ae6052d1c00c3dfdc6710483697a6a2cf"></a>
 
-The Item used as the currency for the purchase.
-
 #### `public bool `[`PriceLegacyItemId_IsSet`](#structFRHAPI__LootPriceCurrency_1a45e7653798d3ea4905d7a3d8f45c03b9) <a id="structFRHAPI__LootPriceCurrency_1a45e7653798d3ea4905d7a3d8f45c03b9"></a>
 
 true if PriceLegacyItemId_Optional has been set to a value
+
+#### `public bool `[`PriceLegacyItemId_IsNull`](#structFRHAPI__LootPriceCurrency_1a0591c08253dfc6da241dc74b8c6caa6c) <a id="structFRHAPI__LootPriceCurrency_1a0591c08253dfc6da241dc74b8c6caa6c"></a>
+
+true if PriceLegacyItemId_Optional has been explicitly set to null
 
 #### `public int32 `[`CurrentPrice`](#structFRHAPI__LootPriceCurrency_1a9dcc9c73026a9967b1fd784594868689) <a id="structFRHAPI__LootPriceCurrency_1a9dcc9c73026a9967b1fd784594868689"></a>
 
@@ -84,11 +92,13 @@ The current amount of the item needed to use this price currency.
 
 #### `public int32 `[`OriginalPrice_Optional`](#structFRHAPI__LootPriceCurrency_1a5da3ba9a4150b4ccbf0517225c4a4615) <a id="structFRHAPI__LootPriceCurrency_1a5da3ba9a4150b4ccbf0517225c4a4615"></a>
 
-The amount of the item needed before the sale began.
-
 #### `public bool `[`OriginalPrice_IsSet`](#structFRHAPI__LootPriceCurrency_1aeb1c5edf1724195ec01858cfc7edcca9) <a id="structFRHAPI__LootPriceCurrency_1aeb1c5edf1724195ec01858cfc7edcca9"></a>
 
 true if OriginalPrice_Optional has been set to a value
+
+#### `public bool `[`OriginalPrice_IsNull`](#structFRHAPI__LootPriceCurrency_1ab63a60fa98f23d2d6a9300a8c407ef80) <a id="structFRHAPI__LootPriceCurrency_1ab63a60fa98f23d2d6a9300a8c407ef80"></a>
+
+true if OriginalPrice_Optional has been explicitly set to null
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__LootPriceCurrency_1a282ba62867e7214fcfa5a40fed8ad287)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__LootPriceCurrency_1a282ba62867e7214fcfa5a40fed8ad287"></a>
 
@@ -171,6 +181,14 @@ Returns true if PriceLegacyItemId_Optional is set and matches the default value.
 
 Sets the value of PriceLegacyItemId_Optional to its default and also sets PriceLegacyItemId_IsSet to true.
 
+#### `public inline void `[`SetPriceLegacyItemIdToNull`](#structFRHAPI__LootPriceCurrency_1ad04e8d8f2ea93855d1fff76e2839e9f1)`()` <a id="structFRHAPI__LootPriceCurrency_1ad04e8d8f2ea93855d1fff76e2839e9f1"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsPriceLegacyItemIdNull`](#structFRHAPI__LootPriceCurrency_1a34a4af41cdbda1e13a56a35955d1a6ac)`() const` <a id="structFRHAPI__LootPriceCurrency_1a34a4af41cdbda1e13a56a35955d1a6ac"></a>
+
+Checks whether PriceLegacyItemId_Optional is set to null.
+
 #### `public inline int32 & `[`GetCurrentPrice`](#structFRHAPI__LootPriceCurrency_1ab8a60975058ed8c77cab5996e3a53809)`()` <a id="structFRHAPI__LootPriceCurrency_1ab8a60975058ed8c77cab5996e3a53809"></a>
 
 Gets the value of CurrentPrice.
@@ -242,4 +260,12 @@ Returns true if OriginalPrice_Optional is set and matches the default value.
 #### `public inline void `[`SetOriginalPriceToDefault`](#structFRHAPI__LootPriceCurrency_1aea69694ba237627de044b779bfae90a0)`()` <a id="structFRHAPI__LootPriceCurrency_1aea69694ba237627de044b779bfae90a0"></a>
 
 Sets the value of OriginalPrice_Optional to its default and also sets OriginalPrice_IsSet to true.
+
+#### `public inline void `[`SetOriginalPriceToNull`](#structFRHAPI__LootPriceCurrency_1a7bbc25769d59d8177746a59dcd5aa867)`()` <a id="structFRHAPI__LootPriceCurrency_1a7bbc25769d59d8177746a59dcd5aa867"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsOriginalPriceNull`](#structFRHAPI__LootPriceCurrency_1a2d873f28d8db6a9a77913eb5fae765bd)`() const` <a id="structFRHAPI__LootPriceCurrency_1a2d873f28d8db6a9a77913eb5fae765bd"></a>
+
+Checks whether OriginalPrice_Optional is set to null.
 

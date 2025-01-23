@@ -25,6 +25,7 @@ A collection of Vendors by Vendor ID.
 `public bool `[`Vendors_IsSet`](#structFRHAPI__Vendors_1a8a31455ea201b24fee5c64979cb805c2) | true if Vendors_Optional has been set to a value
 `public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__Vendors_1aee885d293125555b4b4b1d77f07c86c6) | 
 `public bool `[`CacheInfo_IsSet`](#structFRHAPI__Vendors_1aaec0407be12287e3c6c8b446eee6e835) | true if CacheInfo_Optional has been set to a value
+`public bool `[`CacheInfo_IsNull`](#structFRHAPI__Vendors_1a7ce8bd7a0a04a24b75afc56787821708) | true if CacheInfo_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__Vendors_1a478fd25380182393b2547a4b9ffcc806)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__Vendors_1a3b89a6865d85c56c322e3e9f7e36ff0d)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > & `[`GetVendors`](#structFRHAPI__Vendors_1ad05ca4319f3cf8574bd6a9d965110687)`()` | Gets the value of Vendors_Optional, regardless of it having been set.
@@ -47,6 +48,8 @@ A collection of Vendors by Vendor ID.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__Vendors_1aba10303b3e5b18cda189db7e83ecd125)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__Vendors_1ae62d7b93e3f17f45b54c1d61b666a0c7)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__Vendors_1a2ddafe285c25e26f4b00c24462eacde2)`() const` | Checks whether CacheInfo_Optional has been set.
+`public inline void `[`SetCacheInfoToNull`](#structFRHAPI__Vendors_1a0640d192422bf13a80b069a36aa69b29)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsCacheInfoNull`](#structFRHAPI__Vendors_1a83a5c987fc7ea548455ea87a41b47bab)`() const` | Checks whether CacheInfo_Optional is set to null.
 
 ### Members
 
@@ -61,6 +64,10 @@ true if Vendors_Optional has been set to a value
 #### `public bool `[`CacheInfo_IsSet`](#structFRHAPI__Vendors_1aaec0407be12287e3c6c8b446eee6e835) <a id="structFRHAPI__Vendors_1aaec0407be12287e3c6c8b446eee6e835"></a>
 
 true if CacheInfo_Optional has been set to a value
+
+#### `public bool `[`CacheInfo_IsNull`](#structFRHAPI__Vendors_1a7ce8bd7a0a04a24b75afc56787821708) <a id="structFRHAPI__Vendors_1a7ce8bd7a0a04a24b75afc56787821708"></a>
+
+true if CacheInfo_Optional has been explicitly set to null
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__Vendors_1a478fd25380182393b2547a4b9ffcc806)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__Vendors_1a478fd25380182393b2547a4b9ffcc806"></a>
 
@@ -158,4 +165,12 @@ Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 #### `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__Vendors_1a2ddafe285c25e26f4b00c24462eacde2)`() const` <a id="structFRHAPI__Vendors_1a2ddafe285c25e26f4b00c24462eacde2"></a>
 
 Checks whether CacheInfo_Optional has been set.
+
+#### `public inline void `[`SetCacheInfoToNull`](#structFRHAPI__Vendors_1a0640d192422bf13a80b069a36aa69b29)`()` <a id="structFRHAPI__Vendors_1a0640d192422bf13a80b069a36aa69b29"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsCacheInfoNull`](#structFRHAPI__Vendors_1a83a5c987fc7ea548455ea87a41b47bab)`() const` <a id="structFRHAPI__Vendors_1a83a5c987fc7ea548455ea87a41b47bab"></a>
+
+Checks whether CacheInfo_Optional is set to null.
 

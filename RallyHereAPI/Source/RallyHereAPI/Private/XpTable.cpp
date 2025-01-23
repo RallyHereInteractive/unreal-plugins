@@ -30,6 +30,9 @@ void FRHAPI_XpTable::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (XpUuid_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("xp_uuid"));
+		if (XpUuid_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, XpUuid_Optional);
 	}
 	if (XpEntries_IsSet)
@@ -40,6 +43,9 @@ void FRHAPI_XpTable::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (CacheInfo_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("cache_info"));
+		if (CacheInfo_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, CacheInfo_Optional);
 	}
 	Writer->WriteObjectEnd();
@@ -62,7 +68,8 @@ bool FRHAPI_XpTable::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonXpUuidField = (*Object)->TryGetField(TEXT("xp_uuid"));
 	if (JsonXpUuidField.IsValid())
 	{
-		XpUuid_IsSet = TryGetJsonValue(JsonXpUuidField, XpUuid_Optional);
+		XpUuid_IsNull = JsonXpUuidField->IsNull();
+		XpUuid_IsSet = XpUuid_IsNull || TryGetJsonValue(JsonXpUuidField, XpUuid_Optional);
 		ParseSuccess &= XpUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonXpEntriesField = (*Object)->TryGetField(TEXT("xp_entries"));
@@ -74,7 +81,8 @@ bool FRHAPI_XpTable::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
 	if (JsonCacheInfoField.IsValid())
 	{
-		CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
+		CacheInfo_IsNull = JsonCacheInfoField->IsNull();
+		CacheInfo_IsSet = CacheInfo_IsNull || TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
 		ParseSuccess &= CacheInfo_IsSet;
 	}
 

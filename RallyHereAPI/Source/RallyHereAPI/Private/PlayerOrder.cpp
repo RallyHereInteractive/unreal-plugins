@@ -30,26 +30,41 @@ void FRHAPI_PlayerOrder::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (ClientOrderRefId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("client_order_ref_id"));
+		if (ClientOrderRefId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, ClientOrderRefId_Optional);
 	}
 	if (PortalId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("portal_id"));
+		if (PortalId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, EnumToString(PortalId_Optional));
 	}
 	if (PortalUserId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("portal_user_id"));
+		if (PortalUserId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, PortalUserId_Optional);
 	}
 	if (InstanceId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("instance_id"));
+		if (InstanceId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, InstanceId_Optional);
 	}
 	if (MatchId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("match_id"));
+		if (MatchId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, MatchId_Optional);
 	}
 	if (IsTransaction_IsSet)
@@ -85,31 +100,36 @@ bool FRHAPI_PlayerOrder::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonClientOrderRefIdField = (*Object)->TryGetField(TEXT("client_order_ref_id"));
 	if (JsonClientOrderRefIdField.IsValid())
 	{
-		ClientOrderRefId_IsSet = TryGetJsonValue(JsonClientOrderRefIdField, ClientOrderRefId_Optional);
+		ClientOrderRefId_IsNull = JsonClientOrderRefIdField->IsNull();
+		ClientOrderRefId_IsSet = ClientOrderRefId_IsNull || TryGetJsonValue(JsonClientOrderRefIdField, ClientOrderRefId_Optional);
 		ParseSuccess &= ClientOrderRefId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPortalIdField = (*Object)->TryGetField(TEXT("portal_id"));
 	if (JsonPortalIdField.IsValid())
 	{
-		PortalId_IsSet = TryGetJsonValue(JsonPortalIdField, PortalId_Optional);
+		PortalId_IsNull = JsonPortalIdField->IsNull();
+		PortalId_IsSet = PortalId_IsNull || TryGetJsonValue(JsonPortalIdField, PortalId_Optional);
 		ParseSuccess &= PortalId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPortalUserIdField = (*Object)->TryGetField(TEXT("portal_user_id"));
 	if (JsonPortalUserIdField.IsValid())
 	{
-		PortalUserId_IsSet = TryGetJsonValue(JsonPortalUserIdField, PortalUserId_Optional);
+		PortalUserId_IsNull = JsonPortalUserIdField->IsNull();
+		PortalUserId_IsSet = PortalUserId_IsNull || TryGetJsonValue(JsonPortalUserIdField, PortalUserId_Optional);
 		ParseSuccess &= PortalUserId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonInstanceIdField = (*Object)->TryGetField(TEXT("instance_id"));
 	if (JsonInstanceIdField.IsValid())
 	{
-		InstanceId_IsSet = TryGetJsonValue(JsonInstanceIdField, InstanceId_Optional);
+		InstanceId_IsNull = JsonInstanceIdField->IsNull();
+		InstanceId_IsSet = InstanceId_IsNull || TryGetJsonValue(JsonInstanceIdField, InstanceId_Optional);
 		ParseSuccess &= InstanceId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonMatchIdField = (*Object)->TryGetField(TEXT("match_id"));
 	if (JsonMatchIdField.IsValid())
 	{
-		MatchId_IsSet = TryGetJsonValue(JsonMatchIdField, MatchId_Optional);
+		MatchId_IsNull = JsonMatchIdField->IsNull();
+		MatchId_IsSet = MatchId_IsNull || TryGetJsonValue(JsonMatchIdField, MatchId_Optional);
 		ParseSuccess &= MatchId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonIsTransactionField = (*Object)->TryGetField(TEXT("is_transaction"));

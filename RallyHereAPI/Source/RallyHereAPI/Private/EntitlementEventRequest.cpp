@@ -27,11 +27,17 @@ void FRHAPI_EntitlementEventRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer
 	if (Status_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("status"));
+		if (Status_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, EnumToString(Status_Optional));
 	}
 	if (PlayerUuid_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("player_uuid"));
+		if (PlayerUuid_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, PlayerUuid_Optional);
 	}
 	Writer->WriteIdentifierPrefix(TEXT("platform"));
@@ -50,6 +56,9 @@ void FRHAPI_EntitlementEventRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer
 	if (PlatformData_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("platform_data"));
+		if (PlatformData_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, PlatformData_Optional);
 	}
 	Writer->WriteObjectEnd();
@@ -69,13 +78,15 @@ bool FRHAPI_EntitlementEventRequest::FromJson(const TSharedPtr<FJsonValue>& Json
 	const TSharedPtr<FJsonValue> JsonStatusField = (*Object)->TryGetField(TEXT("status"));
 	if (JsonStatusField.IsValid())
 	{
-		Status_IsSet = TryGetJsonValue(JsonStatusField, Status_Optional);
+		Status_IsNull = JsonStatusField->IsNull();
+		Status_IsSet = Status_IsNull || TryGetJsonValue(JsonStatusField, Status_Optional);
 		ParseSuccess &= Status_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
 	if (JsonPlayerUuidField.IsValid())
 	{
-		PlayerUuid_IsSet = TryGetJsonValue(JsonPlayerUuidField, PlayerUuid_Optional);
+		PlayerUuid_IsNull = JsonPlayerUuidField->IsNull();
+		PlayerUuid_IsSet = PlayerUuid_IsNull || TryGetJsonValue(JsonPlayerUuidField, PlayerUuid_Optional);
 		ParseSuccess &= PlayerUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlatformField = (*Object)->TryGetField(TEXT("platform"));
@@ -99,7 +110,8 @@ bool FRHAPI_EntitlementEventRequest::FromJson(const TSharedPtr<FJsonValue>& Json
 	const TSharedPtr<FJsonValue> JsonPlatformDataField = (*Object)->TryGetField(TEXT("platform_data"));
 	if (JsonPlatformDataField.IsValid())
 	{
-		PlatformData_IsSet = TryGetJsonValue(JsonPlatformDataField, PlatformData_Optional);
+		PlatformData_IsNull = JsonPlatformDataField->IsNull();
+		PlatformData_IsSet = PlatformData_IsNull || TryGetJsonValue(JsonPlatformDataField, PlatformData_Optional);
 		ParseSuccess &= PlatformData_IsSet;
 	}
 

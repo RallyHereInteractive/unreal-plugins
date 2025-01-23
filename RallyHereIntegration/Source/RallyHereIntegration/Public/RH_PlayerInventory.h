@@ -432,7 +432,7 @@ struct RALLYHEREINTEGRATION_API FRH_InventorySession
 	FString SessionId;
 	/** @brief The platform associated with the session. */
 	UPROPERTY(BlueprintReadOnly, Category = "Inventory Subsystem | Inventory Session")
-	ERHAPI_Platform SessionPlatform;
+	ERHAPI_InventoryPlatform SessionPlatform;
 	/** @brief The Order Id associated with any loot that may have been created when the session was created. */
 	UPROPERTY(BlueprintReadOnly, Category = "Inventory Subsystem | Inventory Session")
 	FString OrderId;
@@ -442,7 +442,7 @@ struct RALLYHEREINTEGRATION_API FRH_InventorySession
 	/** @brief Default constructor. */
 	FRH_InventorySession() :
 		SessionId(TEXT("")),
-		SessionPlatform(ERHAPI_Platform::Anon), // #RHTODO: Do we need a none option in this enum
+		SessionPlatform(ERHAPI_InventoryPlatform::Anon), // #RHTODO: Do we need a none option in this enum
 		OrderId(TEXT(""))
 	{
 
@@ -882,7 +882,7 @@ public:
 	* @param [in] Platform The platform to create the session for.
 	* @param [in] Delegate Callback delegate for creating the players session.
 	*/
-	void CreateInventorySession(const TOptional<ERHAPI_Platform> Platform, const FRH_OnInventorySessionUpdateDelegateBlock& Delegate = FRH_OnInventorySessionUpdateDelegate());
+	void CreateInventorySession(const TOptional<ERHAPI_InventoryPlatform> Platform, const FRH_OnInventorySessionUpdateDelegateBlock& Delegate = FRH_OnInventorySessionUpdateDelegate());
 	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Create Inventory Session", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_CreateInventorySession(const FRH_OnInventorySessionUpdateDynamicDelegate& Delegate) { return CreateInventorySession({}, Delegate); };
@@ -893,7 +893,7 @@ public:
 	* @param [in] Delegate Callback delegate for creating the players session.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Create Inventory Session For Platform", AutoCreateRefTerm = "PlatformName,Delegate"))
-	void BLUEPRINT_CreateInventorySessionForPlatform(const ERHAPI_Platform Platform, const FRH_OnInventorySessionUpdateDynamicDelegate& Delegate) { return CreateInventorySession(Platform, Delegate); };
+	void BLUEPRINT_CreateInventorySessionForPlatform(const ERHAPI_InventoryPlatform Platform, const FRH_OnInventorySessionUpdateDynamicDelegate& Delegate) { return CreateInventorySession(Platform, Delegate); };
 
 	/**
 	* @brief Calls the Inventory API to get the the inventory for the player.
@@ -1182,7 +1182,7 @@ protected:
 	 * @brief Adds instance specific data to an Player Order.
 	 * @param PlayerOrderCreate The Player order to add the data to.
 	 */
-	void PopulateInstanceData(FRHAPI_PlayerOrderCreate& PlayerOrderCreate) const;
+	void PopulateInstanceData(FRHAPI_PlayerOrderCreateInput& PlayerOrderCreate) const;
 	/**
 	* @brief Handles the response to a Create Player Order call.
 	* @param [in] Resp Response given for the call.
@@ -1233,7 +1233,7 @@ protected:
 	 * @param [out] Entries Struct based Order entries for submission.
 	 * @param [in] OrderEntries Class based Order entries for conversion.
 	 */
-	void WriteOrderEntries(TArray<FRHAPI_PlayerOrderEntryCreate>& Entries, const TArray<URH_PlayerOrderEntry*>& OrderEntries);
+	void WriteOrderEntries(TArray<FRHAPI_PlayerOrderEntryCreateInput>& Entries, const TArray<URH_PlayerOrderEntry*>& OrderEntries);
 	/**
 	 * @brief Updates the cached inventory with data from an incoming order.
 	 * @param OrderDetails The details of the incoming order.

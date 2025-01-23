@@ -41,7 +41,6 @@ struct RALLYHEREAPI_API FRHAPI_CreateInventoryRequest : public FRHAPI_Model
 	*/
 	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-	/** @brief Inventory Bucket for this Inventory Operation. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_InventoryBucket Bucket_Optional{  };
 	/** @brief true if Bucket_Optional has been set to a value */
@@ -105,6 +104,9 @@ struct RALLYHEREAPI_API FRHAPI_CreateInventoryRequest : public FRHAPI_Model
 	/** @brief true if Expires_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Expires_IsSet{ false };
+	/** @brief true if Expires_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Expires_IsNull{ false };
 	/** @brief Gets the value of Expires_Optional, regardless of it having been set */
 	FDateTime& GetExpires() { return Expires_Optional; }
 	/** @brief Gets the value of Expires_Optional, regardless of it having been set */
@@ -112,26 +114,32 @@ struct RALLYHEREAPI_API FRHAPI_CreateInventoryRequest : public FRHAPI_Model
 	/** @brief Gets the value of Expires_Optional, if it has been set, otherwise it returns DefaultValue */
 	const FDateTime& GetExpires(const FDateTime& DefaultValue) const { if (Expires_IsSet) return Expires_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Expires_Optional and returns true if it has been set, otherwise returns false */
-	bool GetExpires(FDateTime& OutValue) const { if (Expires_IsSet) OutValue = Expires_Optional; return Expires_IsSet; }
+	bool GetExpires(FDateTime& OutValue) const { if (Expires_IsSet && !Expires_IsNull) OutValue = Expires_Optional; return Expires_IsSet; }
 	/** @brief Returns a pointer to Expires_Optional, if it has been set, otherwise returns nullptr */
-	FDateTime* GetExpiresOrNull() { if (Expires_IsSet) return (&Expires_Optional); return nullptr; }
+	FDateTime* GetExpiresOrNull() { if (Expires_IsSet) return (Expires_IsNull ? nullptr : &Expires_Optional); return nullptr; }
 	/** @brief Returns a pointer to Expires_Optional, if it has been set, otherwise returns nullptr */
-	const FDateTime* GetExpiresOrNull() const { if (Expires_IsSet) return (&Expires_Optional); return nullptr; }
+	const FDateTime* GetExpiresOrNull() const { if (Expires_IsSet) return (Expires_IsNull ? nullptr : &Expires_Optional); return nullptr; }
 	/** @brief Sets the value of Expires_Optional and also sets Expires_IsSet to true */
-	void SetExpires(const FDateTime& NewValue) { Expires_Optional = NewValue; Expires_IsSet = true;  }
+	void SetExpires(const FDateTime& NewValue) { Expires_Optional = NewValue; Expires_IsSet = true; Expires_IsNull = false; }
 	/** @brief Sets the value of Expires_Optional and also sets Expires_IsSet to true using move semantics */
-	void SetExpires(FDateTime&& NewValue) { Expires_Optional = NewValue; Expires_IsSet = true;  }
+	void SetExpires(FDateTime&& NewValue) { Expires_Optional = NewValue; Expires_IsSet = true; Expires_IsNull = false; }
 	/** @brief Clears the value of Expires_Optional and sets Expires_IsSet to false */
-	void ClearExpires() { Expires_IsSet = false;  }
+	void ClearExpires() { Expires_IsSet = false; Expires_IsNull = false; }
 	/** @brief Checks whether Expires_Optional has been set */
 	bool IsExpiresSet() const { return Expires_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetExpiresToNull() { Expires_IsSet = true; Expires_IsNull = true; }
+	/** @brief Checks whether Expires_Optional is set to null */
+	bool IsExpiresNull() const { return Expires_IsSet && Expires_IsNull; }
 
-	/** @brief Arbitrary data map that can be set to add additional data to Inventory. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TMap<FString, FString> CustomData_Optional{  };
 	/** @brief true if CustomData_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool CustomData_IsSet{ false };
+	/** @brief true if CustomData_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool CustomData_IsNull{ false };
 	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
 	TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
 	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
@@ -139,19 +147,23 @@ struct RALLYHEREAPI_API FRHAPI_CreateInventoryRequest : public FRHAPI_Model
 	/** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
 	const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
-	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
+	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet && !CustomData_IsNull) OutValue = CustomData_Optional; return CustomData_IsSet; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
+	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (CustomData_IsNull ? nullptr : &CustomData_Optional); return nullptr; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
+	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (CustomData_IsNull ? nullptr : &CustomData_Optional); return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
+	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; CustomData_IsNull = false; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
-	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
+	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; CustomData_IsNull = false; }
 	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
-	void ClearCustomData() { CustomData_IsSet = false;  }
+	void ClearCustomData() { CustomData_IsSet = false; CustomData_IsNull = false; }
 	/** @brief Checks whether CustomData_Optional has been set */
 	bool IsCustomDataSet() const { return CustomData_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetCustomDataToNull() { CustomData_IsSet = true; CustomData_IsNull = true; }
+	/** @brief Checks whether CustomData_Optional is set to null */
+	bool IsCustomDataNull() const { return CustomData_IsSet && CustomData_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 ItemId{ 0 };

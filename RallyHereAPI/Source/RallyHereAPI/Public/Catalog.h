@@ -49,12 +49,14 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
 	*/
 	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-	/** @brief The XP Tables. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_XpTables XpTables_Optional{  };
 	/** @brief true if XpTables_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool XpTables_IsSet{ false };
+	/** @brief true if XpTables_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool XpTables_IsNull{ false };
 	/** @brief Gets the value of XpTables_Optional, regardless of it having been set */
 	FRHAPI_XpTables& GetXpTables() { return XpTables_Optional; }
 	/** @brief Gets the value of XpTables_Optional, regardless of it having been set */
@@ -62,26 +64,32 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
 	/** @brief Gets the value of XpTables_Optional, if it has been set, otherwise it returns DefaultValue */
 	const FRHAPI_XpTables& GetXpTables(const FRHAPI_XpTables& DefaultValue) const { if (XpTables_IsSet) return XpTables_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of XpTables_Optional and returns true if it has been set, otherwise returns false */
-	bool GetXpTables(FRHAPI_XpTables& OutValue) const { if (XpTables_IsSet) OutValue = XpTables_Optional; return XpTables_IsSet; }
+	bool GetXpTables(FRHAPI_XpTables& OutValue) const { if (XpTables_IsSet && !XpTables_IsNull) OutValue = XpTables_Optional; return XpTables_IsSet; }
 	/** @brief Returns a pointer to XpTables_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_XpTables* GetXpTablesOrNull() { if (XpTables_IsSet) return (&XpTables_Optional); return nullptr; }
+	FRHAPI_XpTables* GetXpTablesOrNull() { if (XpTables_IsSet) return (XpTables_IsNull ? nullptr : &XpTables_Optional); return nullptr; }
 	/** @brief Returns a pointer to XpTables_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_XpTables* GetXpTablesOrNull() const { if (XpTables_IsSet) return (&XpTables_Optional); return nullptr; }
+	const FRHAPI_XpTables* GetXpTablesOrNull() const { if (XpTables_IsSet) return (XpTables_IsNull ? nullptr : &XpTables_Optional); return nullptr; }
 	/** @brief Sets the value of XpTables_Optional and also sets XpTables_IsSet to true */
-	void SetXpTables(const FRHAPI_XpTables& NewValue) { XpTables_Optional = NewValue; XpTables_IsSet = true;  }
+	void SetXpTables(const FRHAPI_XpTables& NewValue) { XpTables_Optional = NewValue; XpTables_IsSet = true; XpTables_IsNull = false; }
 	/** @brief Sets the value of XpTables_Optional and also sets XpTables_IsSet to true using move semantics */
-	void SetXpTables(FRHAPI_XpTables&& NewValue) { XpTables_Optional = NewValue; XpTables_IsSet = true;  }
+	void SetXpTables(FRHAPI_XpTables&& NewValue) { XpTables_Optional = NewValue; XpTables_IsSet = true; XpTables_IsNull = false; }
 	/** @brief Clears the value of XpTables_Optional and sets XpTables_IsSet to false */
-	void ClearXpTables() { XpTables_IsSet = false;  }
+	void ClearXpTables() { XpTables_IsSet = false; XpTables_IsNull = false; }
 	/** @brief Checks whether XpTables_Optional has been set */
 	bool IsXpTablesSet() const { return XpTables_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetXpTablesToNull() { XpTables_IsSet = true; XpTables_IsNull = true; }
+	/** @brief Checks whether XpTables_Optional is set to null */
+	bool IsXpTablesNull() const { return XpTables_IsSet && XpTables_IsNull; }
 
-	/** @brief The Portal Use Rulesets. Use Inventory Bucket Use Rule Sets instead. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_PortalUseRulesets PortalUseRulesets_Optional{  };
 	/** @brief true if PortalUseRulesets_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PortalUseRulesets_IsSet{ false };
+	/** @brief true if PortalUseRulesets_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool PortalUseRulesets_IsNull{ false };
 	/** @brief Gets the value of PortalUseRulesets_Optional, regardless of it having been set */
 	FRHAPI_PortalUseRulesets& GetPortalUseRulesets() { return PortalUseRulesets_Optional; }
 	/** @brief Gets the value of PortalUseRulesets_Optional, regardless of it having been set */
@@ -89,26 +97,32 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
 	/** @brief Gets the value of PortalUseRulesets_Optional, if it has been set, otherwise it returns DefaultValue */
 	const FRHAPI_PortalUseRulesets& GetPortalUseRulesets(const FRHAPI_PortalUseRulesets& DefaultValue) const { if (PortalUseRulesets_IsSet) return PortalUseRulesets_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of PortalUseRulesets_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPortalUseRulesets(FRHAPI_PortalUseRulesets& OutValue) const { if (PortalUseRulesets_IsSet) OutValue = PortalUseRulesets_Optional; return PortalUseRulesets_IsSet; }
+	bool GetPortalUseRulesets(FRHAPI_PortalUseRulesets& OutValue) const { if (PortalUseRulesets_IsSet && !PortalUseRulesets_IsNull) OutValue = PortalUseRulesets_Optional; return PortalUseRulesets_IsSet; }
 	/** @brief Returns a pointer to PortalUseRulesets_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_PortalUseRulesets* GetPortalUseRulesetsOrNull() { if (PortalUseRulesets_IsSet) return (&PortalUseRulesets_Optional); return nullptr; }
+	FRHAPI_PortalUseRulesets* GetPortalUseRulesetsOrNull() { if (PortalUseRulesets_IsSet) return (PortalUseRulesets_IsNull ? nullptr : &PortalUseRulesets_Optional); return nullptr; }
 	/** @brief Returns a pointer to PortalUseRulesets_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_PortalUseRulesets* GetPortalUseRulesetsOrNull() const { if (PortalUseRulesets_IsSet) return (&PortalUseRulesets_Optional); return nullptr; }
+	const FRHAPI_PortalUseRulesets* GetPortalUseRulesetsOrNull() const { if (PortalUseRulesets_IsSet) return (PortalUseRulesets_IsNull ? nullptr : &PortalUseRulesets_Optional); return nullptr; }
 	/** @brief Sets the value of PortalUseRulesets_Optional and also sets PortalUseRulesets_IsSet to true */
-	void SetPortalUseRulesets(const FRHAPI_PortalUseRulesets& NewValue) { PortalUseRulesets_Optional = NewValue; PortalUseRulesets_IsSet = true;  }
+	void SetPortalUseRulesets(const FRHAPI_PortalUseRulesets& NewValue) { PortalUseRulesets_Optional = NewValue; PortalUseRulesets_IsSet = true; PortalUseRulesets_IsNull = false; }
 	/** @brief Sets the value of PortalUseRulesets_Optional and also sets PortalUseRulesets_IsSet to true using move semantics */
-	void SetPortalUseRulesets(FRHAPI_PortalUseRulesets&& NewValue) { PortalUseRulesets_Optional = NewValue; PortalUseRulesets_IsSet = true;  }
+	void SetPortalUseRulesets(FRHAPI_PortalUseRulesets&& NewValue) { PortalUseRulesets_Optional = NewValue; PortalUseRulesets_IsSet = true; PortalUseRulesets_IsNull = false; }
 	/** @brief Clears the value of PortalUseRulesets_Optional and sets PortalUseRulesets_IsSet to false */
-	void ClearPortalUseRulesets() { PortalUseRulesets_IsSet = false;  }
+	void ClearPortalUseRulesets() { PortalUseRulesets_IsSet = false; PortalUseRulesets_IsNull = false; }
 	/** @brief Checks whether PortalUseRulesets_Optional has been set */
 	bool IsPortalUseRulesetsSet() const { return PortalUseRulesets_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetPortalUseRulesetsToNull() { PortalUseRulesets_IsSet = true; PortalUseRulesets_IsNull = true; }
+	/** @brief Checks whether PortalUseRulesets_Optional is set to null */
+	bool IsPortalUseRulesetsNull() const { return PortalUseRulesets_IsSet && PortalUseRulesets_IsNull; }
 
-	/** @brief The rules on how to use Inventory Buckets. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_InventoryBucketUseRuleSets InventoryBucketUseRuleSets_Optional{  };
 	/** @brief true if InventoryBucketUseRuleSets_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool InventoryBucketUseRuleSets_IsSet{ false };
+	/** @brief true if InventoryBucketUseRuleSets_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool InventoryBucketUseRuleSets_IsNull{ false };
 	/** @brief Gets the value of InventoryBucketUseRuleSets_Optional, regardless of it having been set */
 	FRHAPI_InventoryBucketUseRuleSets& GetInventoryBucketUseRuleSets() { return InventoryBucketUseRuleSets_Optional; }
 	/** @brief Gets the value of InventoryBucketUseRuleSets_Optional, regardless of it having been set */
@@ -116,26 +130,32 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
 	/** @brief Gets the value of InventoryBucketUseRuleSets_Optional, if it has been set, otherwise it returns DefaultValue */
 	const FRHAPI_InventoryBucketUseRuleSets& GetInventoryBucketUseRuleSets(const FRHAPI_InventoryBucketUseRuleSets& DefaultValue) const { if (InventoryBucketUseRuleSets_IsSet) return InventoryBucketUseRuleSets_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of InventoryBucketUseRuleSets_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInventoryBucketUseRuleSets(FRHAPI_InventoryBucketUseRuleSets& OutValue) const { if (InventoryBucketUseRuleSets_IsSet) OutValue = InventoryBucketUseRuleSets_Optional; return InventoryBucketUseRuleSets_IsSet; }
+	bool GetInventoryBucketUseRuleSets(FRHAPI_InventoryBucketUseRuleSets& OutValue) const { if (InventoryBucketUseRuleSets_IsSet && !InventoryBucketUseRuleSets_IsNull) OutValue = InventoryBucketUseRuleSets_Optional; return InventoryBucketUseRuleSets_IsSet; }
 	/** @brief Returns a pointer to InventoryBucketUseRuleSets_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_InventoryBucketUseRuleSets* GetInventoryBucketUseRuleSetsOrNull() { if (InventoryBucketUseRuleSets_IsSet) return (&InventoryBucketUseRuleSets_Optional); return nullptr; }
+	FRHAPI_InventoryBucketUseRuleSets* GetInventoryBucketUseRuleSetsOrNull() { if (InventoryBucketUseRuleSets_IsSet) return (InventoryBucketUseRuleSets_IsNull ? nullptr : &InventoryBucketUseRuleSets_Optional); return nullptr; }
 	/** @brief Returns a pointer to InventoryBucketUseRuleSets_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_InventoryBucketUseRuleSets* GetInventoryBucketUseRuleSetsOrNull() const { if (InventoryBucketUseRuleSets_IsSet) return (&InventoryBucketUseRuleSets_Optional); return nullptr; }
+	const FRHAPI_InventoryBucketUseRuleSets* GetInventoryBucketUseRuleSetsOrNull() const { if (InventoryBucketUseRuleSets_IsSet) return (InventoryBucketUseRuleSets_IsNull ? nullptr : &InventoryBucketUseRuleSets_Optional); return nullptr; }
 	/** @brief Sets the value of InventoryBucketUseRuleSets_Optional and also sets InventoryBucketUseRuleSets_IsSet to true */
-	void SetInventoryBucketUseRuleSets(const FRHAPI_InventoryBucketUseRuleSets& NewValue) { InventoryBucketUseRuleSets_Optional = NewValue; InventoryBucketUseRuleSets_IsSet = true;  }
+	void SetInventoryBucketUseRuleSets(const FRHAPI_InventoryBucketUseRuleSets& NewValue) { InventoryBucketUseRuleSets_Optional = NewValue; InventoryBucketUseRuleSets_IsSet = true; InventoryBucketUseRuleSets_IsNull = false; }
 	/** @brief Sets the value of InventoryBucketUseRuleSets_Optional and also sets InventoryBucketUseRuleSets_IsSet to true using move semantics */
-	void SetInventoryBucketUseRuleSets(FRHAPI_InventoryBucketUseRuleSets&& NewValue) { InventoryBucketUseRuleSets_Optional = NewValue; InventoryBucketUseRuleSets_IsSet = true;  }
+	void SetInventoryBucketUseRuleSets(FRHAPI_InventoryBucketUseRuleSets&& NewValue) { InventoryBucketUseRuleSets_Optional = NewValue; InventoryBucketUseRuleSets_IsSet = true; InventoryBucketUseRuleSets_IsNull = false; }
 	/** @brief Clears the value of InventoryBucketUseRuleSets_Optional and sets InventoryBucketUseRuleSets_IsSet to false */
-	void ClearInventoryBucketUseRuleSets() { InventoryBucketUseRuleSets_IsSet = false;  }
+	void ClearInventoryBucketUseRuleSets() { InventoryBucketUseRuleSets_IsSet = false; InventoryBucketUseRuleSets_IsNull = false; }
 	/** @brief Checks whether InventoryBucketUseRuleSets_Optional has been set */
 	bool IsInventoryBucketUseRuleSetsSet() const { return InventoryBucketUseRuleSets_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInventoryBucketUseRuleSetsToNull() { InventoryBucketUseRuleSets_IsSet = true; InventoryBucketUseRuleSets_IsNull = true; }
+	/** @brief Checks whether InventoryBucketUseRuleSets_Optional is set to null */
+	bool IsInventoryBucketUseRuleSetsNull() const { return InventoryBucketUseRuleSets_IsSet && InventoryBucketUseRuleSets_IsNull; }
 
-	/** @brief The Vendors. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_Vendors Vendors_Optional{  };
 	/** @brief true if Vendors_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Vendors_IsSet{ false };
+	/** @brief true if Vendors_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Vendors_IsNull{ false };
 	/** @brief Gets the value of Vendors_Optional, regardless of it having been set */
 	FRHAPI_Vendors& GetVendors() { return Vendors_Optional; }
 	/** @brief Gets the value of Vendors_Optional, regardless of it having been set */
@@ -143,26 +163,32 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
 	/** @brief Gets the value of Vendors_Optional, if it has been set, otherwise it returns DefaultValue */
 	const FRHAPI_Vendors& GetVendors(const FRHAPI_Vendors& DefaultValue) const { if (Vendors_IsSet) return Vendors_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Vendors_Optional and returns true if it has been set, otherwise returns false */
-	bool GetVendors(FRHAPI_Vendors& OutValue) const { if (Vendors_IsSet) OutValue = Vendors_Optional; return Vendors_IsSet; }
+	bool GetVendors(FRHAPI_Vendors& OutValue) const { if (Vendors_IsSet && !Vendors_IsNull) OutValue = Vendors_Optional; return Vendors_IsSet; }
 	/** @brief Returns a pointer to Vendors_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_Vendors* GetVendorsOrNull() { if (Vendors_IsSet) return (&Vendors_Optional); return nullptr; }
+	FRHAPI_Vendors* GetVendorsOrNull() { if (Vendors_IsSet) return (Vendors_IsNull ? nullptr : &Vendors_Optional); return nullptr; }
 	/** @brief Returns a pointer to Vendors_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_Vendors* GetVendorsOrNull() const { if (Vendors_IsSet) return (&Vendors_Optional); return nullptr; }
+	const FRHAPI_Vendors* GetVendorsOrNull() const { if (Vendors_IsSet) return (Vendors_IsNull ? nullptr : &Vendors_Optional); return nullptr; }
 	/** @brief Sets the value of Vendors_Optional and also sets Vendors_IsSet to true */
-	void SetVendors(const FRHAPI_Vendors& NewValue) { Vendors_Optional = NewValue; Vendors_IsSet = true;  }
+	void SetVendors(const FRHAPI_Vendors& NewValue) { Vendors_Optional = NewValue; Vendors_IsSet = true; Vendors_IsNull = false; }
 	/** @brief Sets the value of Vendors_Optional and also sets Vendors_IsSet to true using move semantics */
-	void SetVendors(FRHAPI_Vendors&& NewValue) { Vendors_Optional = NewValue; Vendors_IsSet = true;  }
+	void SetVendors(FRHAPI_Vendors&& NewValue) { Vendors_Optional = NewValue; Vendors_IsSet = true; Vendors_IsNull = false; }
 	/** @brief Clears the value of Vendors_Optional and sets Vendors_IsSet to false */
-	void ClearVendors() { Vendors_IsSet = false;  }
+	void ClearVendors() { Vendors_IsSet = false; Vendors_IsNull = false; }
 	/** @brief Checks whether Vendors_Optional has been set */
 	bool IsVendorsSet() const { return Vendors_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetVendorsToNull() { Vendors_IsSet = true; Vendors_IsNull = true; }
+	/** @brief Checks whether Vendors_Optional is set to null */
+	bool IsVendorsNull() const { return Vendors_IsSet && Vendors_IsNull; }
 
-	/** @brief The Loots. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_Loots Loot_Optional{  };
 	/** @brief true if Loot_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Loot_IsSet{ false };
+	/** @brief true if Loot_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Loot_IsNull{ false };
 	/** @brief Gets the value of Loot_Optional, regardless of it having been set */
 	FRHAPI_Loots& GetLoot() { return Loot_Optional; }
 	/** @brief Gets the value of Loot_Optional, regardless of it having been set */
@@ -170,26 +196,32 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
 	/** @brief Gets the value of Loot_Optional, if it has been set, otherwise it returns DefaultValue */
 	const FRHAPI_Loots& GetLoot(const FRHAPI_Loots& DefaultValue) const { if (Loot_IsSet) return Loot_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Loot_Optional and returns true if it has been set, otherwise returns false */
-	bool GetLoot(FRHAPI_Loots& OutValue) const { if (Loot_IsSet) OutValue = Loot_Optional; return Loot_IsSet; }
+	bool GetLoot(FRHAPI_Loots& OutValue) const { if (Loot_IsSet && !Loot_IsNull) OutValue = Loot_Optional; return Loot_IsSet; }
 	/** @brief Returns a pointer to Loot_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_Loots* GetLootOrNull() { if (Loot_IsSet) return (&Loot_Optional); return nullptr; }
+	FRHAPI_Loots* GetLootOrNull() { if (Loot_IsSet) return (Loot_IsNull ? nullptr : &Loot_Optional); return nullptr; }
 	/** @brief Returns a pointer to Loot_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_Loots* GetLootOrNull() const { if (Loot_IsSet) return (&Loot_Optional); return nullptr; }
+	const FRHAPI_Loots* GetLootOrNull() const { if (Loot_IsSet) return (Loot_IsNull ? nullptr : &Loot_Optional); return nullptr; }
 	/** @brief Sets the value of Loot_Optional and also sets Loot_IsSet to true */
-	void SetLoot(const FRHAPI_Loots& NewValue) { Loot_Optional = NewValue; Loot_IsSet = true;  }
+	void SetLoot(const FRHAPI_Loots& NewValue) { Loot_Optional = NewValue; Loot_IsSet = true; Loot_IsNull = false; }
 	/** @brief Sets the value of Loot_Optional and also sets Loot_IsSet to true using move semantics */
-	void SetLoot(FRHAPI_Loots&& NewValue) { Loot_Optional = NewValue; Loot_IsSet = true;  }
+	void SetLoot(FRHAPI_Loots&& NewValue) { Loot_Optional = NewValue; Loot_IsSet = true; Loot_IsNull = false; }
 	/** @brief Clears the value of Loot_Optional and sets Loot_IsSet to false */
-	void ClearLoot() { Loot_IsSet = false;  }
+	void ClearLoot() { Loot_IsSet = false; Loot_IsNull = false; }
 	/** @brief Checks whether Loot_Optional has been set */
 	bool IsLootSet() const { return Loot_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetLootToNull() { Loot_IsSet = true; Loot_IsNull = true; }
+	/** @brief Checks whether Loot_Optional is set to null */
+	bool IsLootNull() const { return Loot_IsSet && Loot_IsNull; }
 
-	/** @brief The Items. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_Items Items_Optional{  };
 	/** @brief true if Items_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Items_IsSet{ false };
+	/** @brief true if Items_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Items_IsNull{ false };
 	/** @brief Gets the value of Items_Optional, regardless of it having been set */
 	FRHAPI_Items& GetItems() { return Items_Optional; }
 	/** @brief Gets the value of Items_Optional, regardless of it having been set */
@@ -197,26 +229,32 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
 	/** @brief Gets the value of Items_Optional, if it has been set, otherwise it returns DefaultValue */
 	const FRHAPI_Items& GetItems(const FRHAPI_Items& DefaultValue) const { if (Items_IsSet) return Items_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Items_Optional and returns true if it has been set, otherwise returns false */
-	bool GetItems(FRHAPI_Items& OutValue) const { if (Items_IsSet) OutValue = Items_Optional; return Items_IsSet; }
+	bool GetItems(FRHAPI_Items& OutValue) const { if (Items_IsSet && !Items_IsNull) OutValue = Items_Optional; return Items_IsSet; }
 	/** @brief Returns a pointer to Items_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_Items* GetItemsOrNull() { if (Items_IsSet) return (&Items_Optional); return nullptr; }
+	FRHAPI_Items* GetItemsOrNull() { if (Items_IsSet) return (Items_IsNull ? nullptr : &Items_Optional); return nullptr; }
 	/** @brief Returns a pointer to Items_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_Items* GetItemsOrNull() const { if (Items_IsSet) return (&Items_Optional); return nullptr; }
+	const FRHAPI_Items* GetItemsOrNull() const { if (Items_IsSet) return (Items_IsNull ? nullptr : &Items_Optional); return nullptr; }
 	/** @brief Sets the value of Items_Optional and also sets Items_IsSet to true */
-	void SetItems(const FRHAPI_Items& NewValue) { Items_Optional = NewValue; Items_IsSet = true;  }
+	void SetItems(const FRHAPI_Items& NewValue) { Items_Optional = NewValue; Items_IsSet = true; Items_IsNull = false; }
 	/** @brief Sets the value of Items_Optional and also sets Items_IsSet to true using move semantics */
-	void SetItems(FRHAPI_Items&& NewValue) { Items_Optional = NewValue; Items_IsSet = true;  }
+	void SetItems(FRHAPI_Items&& NewValue) { Items_Optional = NewValue; Items_IsSet = true; Items_IsNull = false; }
 	/** @brief Clears the value of Items_Optional and sets Items_IsSet to false */
-	void ClearItems() { Items_IsSet = false;  }
+	void ClearItems() { Items_IsSet = false; Items_IsNull = false; }
 	/** @brief Checks whether Items_Optional has been set */
 	bool IsItemsSet() const { return Items_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetItemsToNull() { Items_IsSet = true; Items_IsNull = true; }
+	/** @brief Checks whether Items_Optional is set to null */
+	bool IsItemsNull() const { return Items_IsSet && Items_IsNull; }
 
-	/** @brief The Price Points. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_PricePoints PricePoints_Optional{  };
 	/** @brief true if PricePoints_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PricePoints_IsSet{ false };
+	/** @brief true if PricePoints_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool PricePoints_IsNull{ false };
 	/** @brief Gets the value of PricePoints_Optional, regardless of it having been set */
 	FRHAPI_PricePoints& GetPricePoints() { return PricePoints_Optional; }
 	/** @brief Gets the value of PricePoints_Optional, regardless of it having been set */
@@ -224,26 +262,32 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
 	/** @brief Gets the value of PricePoints_Optional, if it has been set, otherwise it returns DefaultValue */
 	const FRHAPI_PricePoints& GetPricePoints(const FRHAPI_PricePoints& DefaultValue) const { if (PricePoints_IsSet) return PricePoints_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of PricePoints_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPricePoints(FRHAPI_PricePoints& OutValue) const { if (PricePoints_IsSet) OutValue = PricePoints_Optional; return PricePoints_IsSet; }
+	bool GetPricePoints(FRHAPI_PricePoints& OutValue) const { if (PricePoints_IsSet && !PricePoints_IsNull) OutValue = PricePoints_Optional; return PricePoints_IsSet; }
 	/** @brief Returns a pointer to PricePoints_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_PricePoints* GetPricePointsOrNull() { if (PricePoints_IsSet) return (&PricePoints_Optional); return nullptr; }
+	FRHAPI_PricePoints* GetPricePointsOrNull() { if (PricePoints_IsSet) return (PricePoints_IsNull ? nullptr : &PricePoints_Optional); return nullptr; }
 	/** @brief Returns a pointer to PricePoints_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_PricePoints* GetPricePointsOrNull() const { if (PricePoints_IsSet) return (&PricePoints_Optional); return nullptr; }
+	const FRHAPI_PricePoints* GetPricePointsOrNull() const { if (PricePoints_IsSet) return (PricePoints_IsNull ? nullptr : &PricePoints_Optional); return nullptr; }
 	/** @brief Sets the value of PricePoints_Optional and also sets PricePoints_IsSet to true */
-	void SetPricePoints(const FRHAPI_PricePoints& NewValue) { PricePoints_Optional = NewValue; PricePoints_IsSet = true;  }
+	void SetPricePoints(const FRHAPI_PricePoints& NewValue) { PricePoints_Optional = NewValue; PricePoints_IsSet = true; PricePoints_IsNull = false; }
 	/** @brief Sets the value of PricePoints_Optional and also sets PricePoints_IsSet to true using move semantics */
-	void SetPricePoints(FRHAPI_PricePoints&& NewValue) { PricePoints_Optional = NewValue; PricePoints_IsSet = true;  }
+	void SetPricePoints(FRHAPI_PricePoints&& NewValue) { PricePoints_Optional = NewValue; PricePoints_IsSet = true; PricePoints_IsNull = false; }
 	/** @brief Clears the value of PricePoints_Optional and sets PricePoints_IsSet to false */
-	void ClearPricePoints() { PricePoints_IsSet = false;  }
+	void ClearPricePoints() { PricePoints_IsSet = false; PricePoints_IsNull = false; }
 	/** @brief Checks whether PricePoints_Optional has been set */
 	bool IsPricePointsSet() const { return PricePoints_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetPricePointsToNull() { PricePoints_IsSet = true; PricePoints_IsNull = true; }
+	/** @brief Checks whether PricePoints_Optional is set to null */
+	bool IsPricePointsNull() const { return PricePoints_IsSet && PricePoints_IsNull; }
 
-	/** @brief The Time Frames. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_TimeFrames TimeFrames_Optional{  };
 	/** @brief true if TimeFrames_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool TimeFrames_IsSet{ false };
+	/** @brief true if TimeFrames_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool TimeFrames_IsNull{ false };
 	/** @brief Gets the value of TimeFrames_Optional, regardless of it having been set */
 	FRHAPI_TimeFrames& GetTimeFrames() { return TimeFrames_Optional; }
 	/** @brief Gets the value of TimeFrames_Optional, regardless of it having been set */
@@ -251,26 +295,32 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
 	/** @brief Gets the value of TimeFrames_Optional, if it has been set, otherwise it returns DefaultValue */
 	const FRHAPI_TimeFrames& GetTimeFrames(const FRHAPI_TimeFrames& DefaultValue) const { if (TimeFrames_IsSet) return TimeFrames_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of TimeFrames_Optional and returns true if it has been set, otherwise returns false */
-	bool GetTimeFrames(FRHAPI_TimeFrames& OutValue) const { if (TimeFrames_IsSet) OutValue = TimeFrames_Optional; return TimeFrames_IsSet; }
+	bool GetTimeFrames(FRHAPI_TimeFrames& OutValue) const { if (TimeFrames_IsSet && !TimeFrames_IsNull) OutValue = TimeFrames_Optional; return TimeFrames_IsSet; }
 	/** @brief Returns a pointer to TimeFrames_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_TimeFrames* GetTimeFramesOrNull() { if (TimeFrames_IsSet) return (&TimeFrames_Optional); return nullptr; }
+	FRHAPI_TimeFrames* GetTimeFramesOrNull() { if (TimeFrames_IsSet) return (TimeFrames_IsNull ? nullptr : &TimeFrames_Optional); return nullptr; }
 	/** @brief Returns a pointer to TimeFrames_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_TimeFrames* GetTimeFramesOrNull() const { if (TimeFrames_IsSet) return (&TimeFrames_Optional); return nullptr; }
+	const FRHAPI_TimeFrames* GetTimeFramesOrNull() const { if (TimeFrames_IsSet) return (TimeFrames_IsNull ? nullptr : &TimeFrames_Optional); return nullptr; }
 	/** @brief Sets the value of TimeFrames_Optional and also sets TimeFrames_IsSet to true */
-	void SetTimeFrames(const FRHAPI_TimeFrames& NewValue) { TimeFrames_Optional = NewValue; TimeFrames_IsSet = true;  }
+	void SetTimeFrames(const FRHAPI_TimeFrames& NewValue) { TimeFrames_Optional = NewValue; TimeFrames_IsSet = true; TimeFrames_IsNull = false; }
 	/** @brief Sets the value of TimeFrames_Optional and also sets TimeFrames_IsSet to true using move semantics */
-	void SetTimeFrames(FRHAPI_TimeFrames&& NewValue) { TimeFrames_Optional = NewValue; TimeFrames_IsSet = true;  }
+	void SetTimeFrames(FRHAPI_TimeFrames&& NewValue) { TimeFrames_Optional = NewValue; TimeFrames_IsSet = true; TimeFrames_IsNull = false; }
 	/** @brief Clears the value of TimeFrames_Optional and sets TimeFrames_IsSet to false */
-	void ClearTimeFrames() { TimeFrames_IsSet = false;  }
+	void ClearTimeFrames() { TimeFrames_IsSet = false; TimeFrames_IsNull = false; }
 	/** @brief Checks whether TimeFrames_Optional has been set */
 	bool IsTimeFramesSet() const { return TimeFrames_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetTimeFramesToNull() { TimeFrames_IsSet = true; TimeFrames_IsNull = true; }
+	/** @brief Checks whether TimeFrames_Optional is set to null */
+	bool IsTimeFramesNull() const { return TimeFrames_IsSet && TimeFrames_IsNull; }
 
-	/** @brief The Platform SKUs. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_PlatformSKUs Skus_Optional{  };
 	/** @brief true if Skus_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Skus_IsSet{ false };
+	/** @brief true if Skus_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Skus_IsNull{ false };
 	/** @brief Gets the value of Skus_Optional, regardless of it having been set */
 	FRHAPI_PlatformSKUs& GetSkus() { return Skus_Optional; }
 	/** @brief Gets the value of Skus_Optional, regardless of it having been set */
@@ -278,26 +328,32 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
 	/** @brief Gets the value of Skus_Optional, if it has been set, otherwise it returns DefaultValue */
 	const FRHAPI_PlatformSKUs& GetSkus(const FRHAPI_PlatformSKUs& DefaultValue) const { if (Skus_IsSet) return Skus_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Skus_Optional and returns true if it has been set, otherwise returns false */
-	bool GetSkus(FRHAPI_PlatformSKUs& OutValue) const { if (Skus_IsSet) OutValue = Skus_Optional; return Skus_IsSet; }
+	bool GetSkus(FRHAPI_PlatformSKUs& OutValue) const { if (Skus_IsSet && !Skus_IsNull) OutValue = Skus_Optional; return Skus_IsSet; }
 	/** @brief Returns a pointer to Skus_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_PlatformSKUs* GetSkusOrNull() { if (Skus_IsSet) return (&Skus_Optional); return nullptr; }
+	FRHAPI_PlatformSKUs* GetSkusOrNull() { if (Skus_IsSet) return (Skus_IsNull ? nullptr : &Skus_Optional); return nullptr; }
 	/** @brief Returns a pointer to Skus_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_PlatformSKUs* GetSkusOrNull() const { if (Skus_IsSet) return (&Skus_Optional); return nullptr; }
+	const FRHAPI_PlatformSKUs* GetSkusOrNull() const { if (Skus_IsSet) return (Skus_IsNull ? nullptr : &Skus_Optional); return nullptr; }
 	/** @brief Sets the value of Skus_Optional and also sets Skus_IsSet to true */
-	void SetSkus(const FRHAPI_PlatformSKUs& NewValue) { Skus_Optional = NewValue; Skus_IsSet = true;  }
+	void SetSkus(const FRHAPI_PlatformSKUs& NewValue) { Skus_Optional = NewValue; Skus_IsSet = true; Skus_IsNull = false; }
 	/** @brief Sets the value of Skus_Optional and also sets Skus_IsSet to true using move semantics */
-	void SetSkus(FRHAPI_PlatformSKUs&& NewValue) { Skus_Optional = NewValue; Skus_IsSet = true;  }
+	void SetSkus(FRHAPI_PlatformSKUs&& NewValue) { Skus_Optional = NewValue; Skus_IsSet = true; Skus_IsNull = false; }
 	/** @brief Clears the value of Skus_Optional and sets Skus_IsSet to false */
-	void ClearSkus() { Skus_IsSet = false;  }
+	void ClearSkus() { Skus_IsSet = false; Skus_IsNull = false; }
 	/** @brief Checks whether Skus_Optional has been set */
 	bool IsSkusSet() const { return Skus_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetSkusToNull() { Skus_IsSet = true; Skus_IsNull = true; }
+	/** @brief Checks whether Skus_Optional is set to null */
+	bool IsSkusNull() const { return Skus_IsSet && Skus_IsNull; }
 
-	/** @brief Cache info for the Catalog. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_CacheInfo CacheInfo_Optional{  };
 	/** @brief true if CacheInfo_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool CacheInfo_IsSet{ false };
+	/** @brief true if CacheInfo_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool CacheInfo_IsNull{ false };
 	/** @brief Gets the value of CacheInfo_Optional, regardless of it having been set */
 	FRHAPI_CacheInfo& GetCacheInfo() { return CacheInfo_Optional; }
 	/** @brief Gets the value of CacheInfo_Optional, regardless of it having been set */
@@ -305,19 +361,23 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
 	/** @brief Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue */
 	const FRHAPI_CacheInfo& GetCacheInfo(const FRHAPI_CacheInfo& DefaultValue) const { if (CacheInfo_IsSet) return CacheInfo_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false */
-	bool GetCacheInfo(FRHAPI_CacheInfo& OutValue) const { if (CacheInfo_IsSet) OutValue = CacheInfo_Optional; return CacheInfo_IsSet; }
+	bool GetCacheInfo(FRHAPI_CacheInfo& OutValue) const { if (CacheInfo_IsSet && !CacheInfo_IsNull) OutValue = CacheInfo_Optional; return CacheInfo_IsSet; }
 	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_CacheInfo* GetCacheInfoOrNull() { if (CacheInfo_IsSet) return (&CacheInfo_Optional); return nullptr; }
+	FRHAPI_CacheInfo* GetCacheInfoOrNull() { if (CacheInfo_IsSet) return (CacheInfo_IsNull ? nullptr : &CacheInfo_Optional); return nullptr; }
 	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return (&CacheInfo_Optional); return nullptr; }
+	const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return (CacheInfo_IsNull ? nullptr : &CacheInfo_Optional); return nullptr; }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true */
-	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
+	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; CacheInfo_IsNull = false; }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
-	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true;  }
+	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; CacheInfo_IsNull = false; }
 	/** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
-	void ClearCacheInfo() { CacheInfo_IsSet = false;  }
+	void ClearCacheInfo() { CacheInfo_IsSet = false; CacheInfo_IsNull = false; }
 	/** @brief Checks whether CacheInfo_Optional has been set */
 	bool IsCacheInfoSet() const { return CacheInfo_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetCacheInfoToNull() { CacheInfo_IsSet = true; CacheInfo_IsNull = true; }
+	/** @brief Checks whether CacheInfo_Optional is set to null */
+	bool IsCacheInfoNull() const { return CacheInfo_IsSet && CacheInfo_IsNull; }
 };
 
 /** @} */

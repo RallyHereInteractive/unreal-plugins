@@ -25,6 +25,7 @@ A collection of Loot by Loot ID.
 `public bool `[`Loot_IsSet`](#structFRHAPI__Loots_1aa7ed2ed6741384575d2557cb342ec7a1) | true if Loot_Optional has been set to a value
 `public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__Loots_1a13d10491990bc6f649a265c4917177d3) | 
 `public bool `[`CacheInfo_IsSet`](#structFRHAPI__Loots_1adec9f7b70b552038068b82807aa0792c) | true if CacheInfo_Optional has been set to a value
+`public bool `[`CacheInfo_IsNull`](#structFRHAPI__Loots_1a07727ba89c62503567d165bc8f528983) | true if CacheInfo_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__Loots_1a9ac2821309e9fcc06b800d1aa0009584)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__Loots_1aceb6fd14d810831adae96bd7364fc5f6)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > & `[`GetLoot`](#structFRHAPI__Loots_1a4a10dd00d92186318ccfb7b7d9254322)`()` | Gets the value of Loot_Optional, regardless of it having been set.
@@ -47,6 +48,8 @@ A collection of Loot by Loot ID.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__Loots_1ab8d2bf1fce096833f34b121301166b48)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__Loots_1ab10398ad09e903163371c6cb2f3ad18d)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__Loots_1ad839bbaf202df749e589a61bcbe1f895)`() const` | Checks whether CacheInfo_Optional has been set.
+`public inline void `[`SetCacheInfoToNull`](#structFRHAPI__Loots_1abe8040ea760dee6131343a35634fd1ee)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsCacheInfoNull`](#structFRHAPI__Loots_1a1ccb173745e1cc99209c598b05eea796)`() const` | Checks whether CacheInfo_Optional is set to null.
 
 ### Members
 
@@ -61,6 +64,10 @@ true if Loot_Optional has been set to a value
 #### `public bool `[`CacheInfo_IsSet`](#structFRHAPI__Loots_1adec9f7b70b552038068b82807aa0792c) <a id="structFRHAPI__Loots_1adec9f7b70b552038068b82807aa0792c"></a>
 
 true if CacheInfo_Optional has been set to a value
+
+#### `public bool `[`CacheInfo_IsNull`](#structFRHAPI__Loots_1a07727ba89c62503567d165bc8f528983) <a id="structFRHAPI__Loots_1a07727ba89c62503567d165bc8f528983"></a>
+
+true if CacheInfo_Optional has been explicitly set to null
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__Loots_1a9ac2821309e9fcc06b800d1aa0009584)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__Loots_1a9ac2821309e9fcc06b800d1aa0009584"></a>
 
@@ -158,4 +165,12 @@ Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 #### `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__Loots_1ad839bbaf202df749e589a61bcbe1f895)`() const` <a id="structFRHAPI__Loots_1ad839bbaf202df749e589a61bcbe1f895"></a>
 
 Checks whether CacheInfo_Optional has been set.
+
+#### `public inline void `[`SetCacheInfoToNull`](#structFRHAPI__Loots_1abe8040ea760dee6131343a35634fd1ee)`()` <a id="structFRHAPI__Loots_1abe8040ea760dee6131343a35634fd1ee"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsCacheInfoNull`](#structFRHAPI__Loots_1a1ccb173745e1cc99209c598b05eea796)`() const` <a id="structFRHAPI__Loots_1a1ccb173745e1cc99209c598b05eea796"></a>
+
+Checks whether CacheInfo_Optional is set to null.
 

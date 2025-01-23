@@ -23,9 +23,10 @@ A collection of Loot and how to fulfill them.
 --------------------------------|---------------------------------------------
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__Vendor_1ad1fd7d01d6c9003ad84a5e58e8b638f5) | Custom data associated with the resource.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__Vendor_1a2c1b1b4781dae86fc8d06815eb882ae2) | true if CustomData_Optional has been set to a value
-`public FGuid `[`VendorUuid_Optional`](#structFRHAPI__Vendor_1a19f4b7dd00d5e1e14767e0913b5b2c57) | The Vendor UUID.
+`public FGuid `[`VendorUuid_Optional`](#structFRHAPI__Vendor_1a19f4b7dd00d5e1e14767e0913b5b2c57) | 
 `public bool `[`VendorUuid_IsSet`](#structFRHAPI__Vendor_1a492f4a102e5132fc7532ba567d1925da) | true if VendorUuid_Optional has been set to a value
-`public ERHAPI_VendorType `[`Type_Optional`](#structFRHAPI__Vendor_1a5679543c05b7c35a6b7f9dfb45e82782) | Determines how the Vendor fulfills the loot.
+`public bool `[`VendorUuid_IsNull`](#structFRHAPI__Vendor_1a8c672192a79c63b0fd424a1d053ad963) | true if VendorUuid_Optional has been explicitly set to null
+`public ERHAPI_VendorType `[`Type_Optional`](#structFRHAPI__Vendor_1a5679543c05b7c35a6b7f9dfb45e82782) | 
 `public bool `[`Type_IsSet`](#structFRHAPI__Vendor_1a2b43a4bd9314bb4dda95366e7465eab2) | true if Type_Optional has been set to a value
 `public int32 `[`LegacyType_Optional`](#structFRHAPI__Vendor_1a7ddc9fd486f80acdd94206d576727874) | 
 `public bool `[`LegacyType_IsSet`](#structFRHAPI__Vendor_1a3eff8bffdc3807d97e3e6a92802e1f6d) | true if LegacyType_Optional has been set to a value
@@ -33,8 +34,9 @@ A collection of Loot and how to fulfill them.
 `public bool `[`LegacyConfigVersion_IsSet`](#structFRHAPI__Vendor_1a470fecdc7ab9ab86933c50c02fbbbf98) | true if LegacyConfigVersion_Optional has been set to a value
 `public TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > `[`Loot_Optional`](#structFRHAPI__Vendor_1a199a358c2b66f0c42a3c81bc12b8ef4b) | The Loot the Vendor will fulfill mapped by Loot ID.
 `public bool `[`Loot_IsSet`](#structFRHAPI__Vendor_1a49cb8534ae895d0dbbb4718e49bc5d0d) | true if Loot_Optional has been set to a value
-`public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__Vendor_1a186c1479137c03910236ca2dec11939e) | Cache info for the Vendor.
+`public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__Vendor_1a186c1479137c03910236ca2dec11939e) | 
 `public bool `[`CacheInfo_IsSet`](#structFRHAPI__Vendor_1a02cff5941552eb97b863c0504e9279ed) | true if CacheInfo_Optional has been set to a value
+`public bool `[`CacheInfo_IsNull`](#structFRHAPI__Vendor_1a3e636f389bd556a9dbdc72808845c9f8) | true if CacheInfo_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__Vendor_1a738b5fac41b67022677ef3d8974d8b7e)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__Vendor_1ad7ad6a81717917683200addaf9ef1402)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Vendor_1ada5427138d2c24fcab1e006a4a812aa0)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
@@ -57,6 +59,8 @@ A collection of Loot and how to fulfill them.
 `public inline void `[`SetVendorUuid`](#structFRHAPI__Vendor_1acc0fbea9ca9e866dc61600c8f83bc6ba)`(FGuid && NewValue)` | Sets the value of VendorUuid_Optional and also sets VendorUuid_IsSet to true using move semantics.
 `public inline void `[`ClearVendorUuid`](#structFRHAPI__Vendor_1abf17b70aaa40c7c92456dd853564d0b9)`()` | Clears the value of VendorUuid_Optional and sets VendorUuid_IsSet to false.
 `public inline bool `[`IsVendorUuidSet`](#structFRHAPI__Vendor_1a9401b091e4ebd0f5b66fdd631ae74e24)`() const` | Checks whether VendorUuid_Optional has been set.
+`public inline void `[`SetVendorUuidToNull`](#structFRHAPI__Vendor_1a6c4766310ca9fb92de437fba14cda252)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsVendorUuidNull`](#structFRHAPI__Vendor_1a47a47089e119586a74fbaf5d2516a23e)`() const` | Checks whether VendorUuid_Optional is set to null.
 `public inline ERHAPI_VendorType & `[`GetType`](#structFRHAPI__Vendor_1aa600338c511cccf722cec9acea3c2d3a)`()` | Gets the value of Type_Optional, regardless of it having been set.
 `public inline const ERHAPI_VendorType & `[`GetType`](#structFRHAPI__Vendor_1ab8256cfb30c3248f3393a2f7b6997f9a)`() const` | Gets the value of Type_Optional, regardless of it having been set.
 `public inline const ERHAPI_VendorType & `[`GetType`](#structFRHAPI__Vendor_1a9bac44f36442eee00f48301afad12a92)`(const ERHAPI_VendorType & DefaultValue) const` | Gets the value of Type_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -111,6 +115,8 @@ A collection of Loot and how to fulfill them.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__Vendor_1a3b545d4a0818a241f3d9b584e8cae7c4)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__Vendor_1aab46ead254eea4bde0f552f352c5e2ad)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__Vendor_1a1ddb94d541a39e9d4461e8bcff3a8249)`() const` | Checks whether CacheInfo_Optional has been set.
+`public inline void `[`SetCacheInfoToNull`](#structFRHAPI__Vendor_1a771414af2c18eedcc4a96cb6a52d5ca9)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsCacheInfoNull`](#structFRHAPI__Vendor_1a2ab7be4de48f29dc0494f1acb5e5331a)`() const` | Checks whether CacheInfo_Optional is set to null.
 
 ### Members
 
@@ -124,15 +130,15 @@ true if CustomData_Optional has been set to a value
 
 #### `public FGuid `[`VendorUuid_Optional`](#structFRHAPI__Vendor_1a19f4b7dd00d5e1e14767e0913b5b2c57) <a id="structFRHAPI__Vendor_1a19f4b7dd00d5e1e14767e0913b5b2c57"></a>
 
-The Vendor UUID.
-
 #### `public bool `[`VendorUuid_IsSet`](#structFRHAPI__Vendor_1a492f4a102e5132fc7532ba567d1925da) <a id="structFRHAPI__Vendor_1a492f4a102e5132fc7532ba567d1925da"></a>
 
 true if VendorUuid_Optional has been set to a value
 
-#### `public ERHAPI_VendorType `[`Type_Optional`](#structFRHAPI__Vendor_1a5679543c05b7c35a6b7f9dfb45e82782) <a id="structFRHAPI__Vendor_1a5679543c05b7c35a6b7f9dfb45e82782"></a>
+#### `public bool `[`VendorUuid_IsNull`](#structFRHAPI__Vendor_1a8c672192a79c63b0fd424a1d053ad963) <a id="structFRHAPI__Vendor_1a8c672192a79c63b0fd424a1d053ad963"></a>
 
-Determines how the Vendor fulfills the loot.
+true if VendorUuid_Optional has been explicitly set to null
+
+#### `public ERHAPI_VendorType `[`Type_Optional`](#structFRHAPI__Vendor_1a5679543c05b7c35a6b7f9dfb45e82782) <a id="structFRHAPI__Vendor_1a5679543c05b7c35a6b7f9dfb45e82782"></a>
 
 #### `public bool `[`Type_IsSet`](#structFRHAPI__Vendor_1a2b43a4bd9314bb4dda95366e7465eab2) <a id="structFRHAPI__Vendor_1a2b43a4bd9314bb4dda95366e7465eab2"></a>
 
@@ -160,11 +166,13 @@ true if Loot_Optional has been set to a value
 
 #### `public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__Vendor_1a186c1479137c03910236ca2dec11939e) <a id="structFRHAPI__Vendor_1a186c1479137c03910236ca2dec11939e"></a>
 
-Cache info for the Vendor.
-
 #### `public bool `[`CacheInfo_IsSet`](#structFRHAPI__Vendor_1a02cff5941552eb97b863c0504e9279ed) <a id="structFRHAPI__Vendor_1a02cff5941552eb97b863c0504e9279ed"></a>
 
 true if CacheInfo_Optional has been set to a value
+
+#### `public bool `[`CacheInfo_IsNull`](#structFRHAPI__Vendor_1a3e636f389bd556a9dbdc72808845c9f8) <a id="structFRHAPI__Vendor_1a3e636f389bd556a9dbdc72808845c9f8"></a>
+
+true if CacheInfo_Optional has been explicitly set to null
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__Vendor_1a738b5fac41b67022677ef3d8974d8b7e)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__Vendor_1a738b5fac41b67022677ef3d8974d8b7e"></a>
 
@@ -262,6 +270,14 @@ Clears the value of VendorUuid_Optional and sets VendorUuid_IsSet to false.
 #### `public inline bool `[`IsVendorUuidSet`](#structFRHAPI__Vendor_1a9401b091e4ebd0f5b66fdd631ae74e24)`() const` <a id="structFRHAPI__Vendor_1a9401b091e4ebd0f5b66fdd631ae74e24"></a>
 
 Checks whether VendorUuid_Optional has been set.
+
+#### `public inline void `[`SetVendorUuidToNull`](#structFRHAPI__Vendor_1a6c4766310ca9fb92de437fba14cda252)`()` <a id="structFRHAPI__Vendor_1a6c4766310ca9fb92de437fba14cda252"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsVendorUuidNull`](#structFRHAPI__Vendor_1a47a47089e119586a74fbaf5d2516a23e)`() const` <a id="structFRHAPI__Vendor_1a47a47089e119586a74fbaf5d2516a23e"></a>
+
+Checks whether VendorUuid_Optional is set to null.
 
 #### `public inline ERHAPI_VendorType & `[`GetType`](#structFRHAPI__Vendor_1aa600338c511cccf722cec9acea3c2d3a)`()` <a id="structFRHAPI__Vendor_1aa600338c511cccf722cec9acea3c2d3a"></a>
 
@@ -478,4 +494,12 @@ Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 #### `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__Vendor_1a1ddb94d541a39e9d4461e8bcff3a8249)`() const` <a id="structFRHAPI__Vendor_1a1ddb94d541a39e9d4461e8bcff3a8249"></a>
 
 Checks whether CacheInfo_Optional has been set.
+
+#### `public inline void `[`SetCacheInfoToNull`](#structFRHAPI__Vendor_1a771414af2c18eedcc4a96cb6a52d5ca9)`()` <a id="structFRHAPI__Vendor_1a771414af2c18eedcc4a96cb6a52d5ca9"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsCacheInfoNull`](#structFRHAPI__Vendor_1a2ab7be4de48f29dc0494f1acb5e5331a)`() const` <a id="structFRHAPI__Vendor_1a2ab7be4de48f29dc0494f1acb5e5331a"></a>
+
+Checks whether CacheInfo_Optional is set to null.
 

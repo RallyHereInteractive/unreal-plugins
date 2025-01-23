@@ -105,6 +105,7 @@ Private/InventoryLevel.cpp
 Private/InventoryLevels.cpp
 Private/InventoryOperation.cpp
 Private/InventoryPageMeta.cpp
+Private/InventoryPlatform.cpp
 Private/InventoryRecord.cpp
 Private/InventorySelector.cpp
 Private/InventorySession.cpp
@@ -238,11 +239,13 @@ Private/PlayerIterateResponse.cpp
 Private/PlayerLastSeenUpdate.cpp
 Private/PlayerLinkedPortalsResponse.cpp
 Private/PlayerOrder.cpp
-Private/PlayerOrderCreate.cpp
+Private/PlayerOrderCreateInput.cpp
+Private/PlayerOrderCreateOutput.cpp
 Private/PlayerOrderDetail.cpp
 Private/PlayerOrderDetailType.cpp
 Private/PlayerOrderEntry.cpp
-Private/PlayerOrderEntryCreate.cpp
+Private/PlayerOrderEntryCreateInput.cpp
+Private/PlayerOrderEntryCreateOutput.cpp
 Private/PlayerOrderEntryResult.cpp
 Private/PlayerOrderEntryType.cpp
 Private/PlayerOrdersResponse.cpp
@@ -484,6 +487,7 @@ Public/InventoryLevel.h
 Public/InventoryLevels.h
 Public/InventoryOperation.h
 Public/InventoryPageMeta.h
+Public/InventoryPlatform.h
 Public/InventoryRecord.h
 Public/InventorySelector.h
 Public/InventorySession.h
@@ -617,11 +621,13 @@ Public/PlayerIterateResponse.h
 Public/PlayerLastSeenUpdate.h
 Public/PlayerLinkedPortalsResponse.h
 Public/PlayerOrder.h
-Public/PlayerOrderCreate.h
+Public/PlayerOrderCreateInput.h
+Public/PlayerOrderCreateOutput.h
 Public/PlayerOrderDetail.h
 Public/PlayerOrderDetailType.h
 Public/PlayerOrderEntry.h
-Public/PlayerOrderEntryCreate.h
+Public/PlayerOrderEntryCreateInput.h
+Public/PlayerOrderEntryCreateOutput.h
 Public/PlayerOrderEntryResult.h
 Public/PlayerOrderEntryType.h
 Public/PlayerOrdersResponse.h

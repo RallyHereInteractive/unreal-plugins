@@ -23,14 +23,17 @@ Platform SKU that can be converted to inventory or keys.
 --------------------------------|---------------------------------------------
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__PlatformSKU_1ab26debe0ff1c24b61599980b44812b2b) | Custom data associated with the resource.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__PlatformSKU_1ad5828116f650ea7901ae60a78f2e9d7a) | true if CustomData_Optional has been set to a value
-`public ERHAPI_Platform `[`Platform`](#structFRHAPI__PlatformSKU_1a422e4dab6d9fbd3f7de8fcb900ada969) | The platform of the SKU.
+`public ERHAPI_InventoryPlatform `[`Platform`](#structFRHAPI__PlatformSKU_1a37559d3f68078032b7a85a324b0912a7) | 
 `public FString `[`Sku`](#structFRHAPI__PlatformSKU_1af2131a88628854eb0064c95508075269) | The SKU of the platform.
-`public `[`FRHAPI_LootEntitlement`](RHAPI_LootEntitlement.md#structFRHAPI__LootEntitlement)` `[`LootEntitlement_Optional`](#structFRHAPI__PlatformSKU_1ac971f3a8d5c5b954f6d1fc53bde49b5b) | The Loot that will be granted to the player.
+`public `[`FRHAPI_LootEntitlement`](RHAPI_LootEntitlement.md#structFRHAPI__LootEntitlement)` `[`LootEntitlement_Optional`](#structFRHAPI__PlatformSKU_1ac971f3a8d5c5b954f6d1fc53bde49b5b) | 
 `public bool `[`LootEntitlement_IsSet`](#structFRHAPI__PlatformSKU_1a3a9315ed369499d5167e2c87ab9b8d85) | true if LootEntitlement_Optional has been set to a value
-`public `[`FRHAPI_ExternalKeyEntitlement`](RHAPI_ExternalKeyEntitlement.md#structFRHAPI__ExternalKeyEntitlement)` `[`ExternalKeyEntitlement_Optional`](#structFRHAPI__PlatformSKU_1abf0202192f57100b48733c4d5836f5fe) | The External Key Entitlement.
+`public bool `[`LootEntitlement_IsNull`](#structFRHAPI__PlatformSKU_1a47e64e6988e8fba1586b03a087f7bdb6) | true if LootEntitlement_Optional has been explicitly set to null
+`public `[`FRHAPI_ExternalKeyEntitlement`](RHAPI_ExternalKeyEntitlement.md#structFRHAPI__ExternalKeyEntitlement)` `[`ExternalKeyEntitlement_Optional`](#structFRHAPI__PlatformSKU_1abf0202192f57100b48733c4d5836f5fe) | 
 `public bool `[`ExternalKeyEntitlement_IsSet`](#structFRHAPI__PlatformSKU_1ab55ca7403fec640d81121324e41a2e5d) | true if ExternalKeyEntitlement_Optional has been set to a value
-`public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__PlatformSKU_1ab26bc7287f433868876e7ee8ebd78a48) | Cache info for the Platform SKUs.
+`public bool `[`ExternalKeyEntitlement_IsNull`](#structFRHAPI__PlatformSKU_1abfe668ff8a6ccec21c585a2578d05b8f) | true if ExternalKeyEntitlement_Optional has been explicitly set to null
+`public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__PlatformSKU_1ab26bc7287f433868876e7ee8ebd78a48) | 
 `public bool `[`CacheInfo_IsSet`](#structFRHAPI__PlatformSKU_1a232a45f2e5f3c34b5021ea0bf05a9c06) | true if CacheInfo_Optional has been set to a value
+`public bool `[`CacheInfo_IsNull`](#structFRHAPI__PlatformSKU_1adbdde2a2cc53ad3b89c5aabadccbcf4b) | true if CacheInfo_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__PlatformSKU_1a5bd16afdbc1a8f427b55df109045bca2)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PlatformSKU_1ad6f9069526fb0ca26ac5acfb5d746551)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlatformSKU_1adfc8c63b2b18b272136ff17101262819)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
@@ -43,10 +46,10 @@ Platform SKU that can be converted to inventory or keys.
 `public inline void `[`SetCustomData`](#structFRHAPI__PlatformSKU_1a97ef3918c80a8b544067db5b03420894)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__PlatformSKU_1aa09b2510aa16d25b7ca3745df479beda)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 `public inline bool `[`IsCustomDataSet`](#structFRHAPI__PlatformSKU_1aeb8fd03b1ec7c1de542c21403a6145e4)`() const` | Checks whether CustomData_Optional has been set.
-`public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PlatformSKU_1a95dca308424a4cdc918b07e5830f94a8)`()` | Gets the value of Platform.
-`public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PlatformSKU_1a265e263c42b02d0af2c72467219bff68)`() const` | Gets the value of Platform.
-`public inline void `[`SetPlatform`](#structFRHAPI__PlatformSKU_1a71c25cc2e0edade592d12afbbc3b56ab)`(const ERHAPI_Platform & NewValue)` | Sets the value of Platform.
-`public inline void `[`SetPlatform`](#structFRHAPI__PlatformSKU_1a694174e17aa8c1d5fc4c801b25880ab8)`(ERHAPI_Platform && NewValue)` | Sets the value of Platform using move semantics.
+`public inline ERHAPI_InventoryPlatform & `[`GetPlatform`](#structFRHAPI__PlatformSKU_1a78431c9dd2302cb87eadaaf351af221d)`()` | Gets the value of Platform.
+`public inline const ERHAPI_InventoryPlatform & `[`GetPlatform`](#structFRHAPI__PlatformSKU_1ae9ab103b40db081515dfdd07fd351668)`() const` | Gets the value of Platform.
+`public inline void `[`SetPlatform`](#structFRHAPI__PlatformSKU_1a0d7cf4d6afc00f0653e0ae93a1c66913)`(const ERHAPI_InventoryPlatform & NewValue)` | Sets the value of Platform.
+`public inline void `[`SetPlatform`](#structFRHAPI__PlatformSKU_1aae382f98aedf563c76965ad57cfa70c6)`(ERHAPI_InventoryPlatform && NewValue)` | Sets the value of Platform using move semantics.
 `public inline FString & `[`GetSku`](#structFRHAPI__PlatformSKU_1ad96c653beee9066f96509344891f85b3)`()` | Gets the value of Sku.
 `public inline const FString & `[`GetSku`](#structFRHAPI__PlatformSKU_1a394a253fa753dd96fdee62e00d440599)`() const` | Gets the value of Sku.
 `public inline void `[`SetSku`](#structFRHAPI__PlatformSKU_1aca7257815422f1a54091fb8b6eefce05)`(const FString & NewValue)` | Sets the value of Sku.
@@ -61,6 +64,8 @@ Platform SKU that can be converted to inventory or keys.
 `public inline void `[`SetLootEntitlement`](#structFRHAPI__PlatformSKU_1a5db09a117f0070122cc317cda28624e8)`(`[`FRHAPI_LootEntitlement`](RHAPI_LootEntitlement.md#structFRHAPI__LootEntitlement)` && NewValue)` | Sets the value of LootEntitlement_Optional and also sets LootEntitlement_IsSet to true using move semantics.
 `public inline void `[`ClearLootEntitlement`](#structFRHAPI__PlatformSKU_1af1e076aab333782b9c61fa0b34a7bc5c)`()` | Clears the value of LootEntitlement_Optional and sets LootEntitlement_IsSet to false.
 `public inline bool `[`IsLootEntitlementSet`](#structFRHAPI__PlatformSKU_1aa13805e01a13a7cf9a2a4f85287f5e71)`() const` | Checks whether LootEntitlement_Optional has been set.
+`public inline void `[`SetLootEntitlementToNull`](#structFRHAPI__PlatformSKU_1a7dea6aa2d0e36e410dc60c41e406bc6e)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsLootEntitlementNull`](#structFRHAPI__PlatformSKU_1ad5a1ad637576303767e9fce389d8a8ab)`() const` | Checks whether LootEntitlement_Optional is set to null.
 `public inline `[`FRHAPI_ExternalKeyEntitlement`](RHAPI_ExternalKeyEntitlement.md#structFRHAPI__ExternalKeyEntitlement)` & `[`GetExternalKeyEntitlement`](#structFRHAPI__PlatformSKU_1a1268617dde3d573d10562488f2a36ae5)`()` | Gets the value of ExternalKeyEntitlement_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_ExternalKeyEntitlement`](RHAPI_ExternalKeyEntitlement.md#structFRHAPI__ExternalKeyEntitlement)` & `[`GetExternalKeyEntitlement`](#structFRHAPI__PlatformSKU_1a6db86ba3f7353a36724f2ebb5a04c81d)`() const` | Gets the value of ExternalKeyEntitlement_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_ExternalKeyEntitlement`](RHAPI_ExternalKeyEntitlement.md#structFRHAPI__ExternalKeyEntitlement)` & `[`GetExternalKeyEntitlement`](#structFRHAPI__PlatformSKU_1a42b7ce58549eae4b8f7e505bb2a5389d)`(const `[`FRHAPI_ExternalKeyEntitlement`](RHAPI_ExternalKeyEntitlement.md#structFRHAPI__ExternalKeyEntitlement)` & DefaultValue) const` | Gets the value of ExternalKeyEntitlement_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -71,6 +76,8 @@ Platform SKU that can be converted to inventory or keys.
 `public inline void `[`SetExternalKeyEntitlement`](#structFRHAPI__PlatformSKU_1a3f1013353632e48d9631c3f2a37eec1c)`(`[`FRHAPI_ExternalKeyEntitlement`](RHAPI_ExternalKeyEntitlement.md#structFRHAPI__ExternalKeyEntitlement)` && NewValue)` | Sets the value of ExternalKeyEntitlement_Optional and also sets ExternalKeyEntitlement_IsSet to true using move semantics.
 `public inline void `[`ClearExternalKeyEntitlement`](#structFRHAPI__PlatformSKU_1ad94aaa0ca142a3cf1c91c8e4e5972a1b)`()` | Clears the value of ExternalKeyEntitlement_Optional and sets ExternalKeyEntitlement_IsSet to false.
 `public inline bool `[`IsExternalKeyEntitlementSet`](#structFRHAPI__PlatformSKU_1a14ba33df0da1f695cd268a01329e0685)`() const` | Checks whether ExternalKeyEntitlement_Optional has been set.
+`public inline void `[`SetExternalKeyEntitlementToNull`](#structFRHAPI__PlatformSKU_1a7f67e933d6c5eb1f37518f6726eaad18)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsExternalKeyEntitlementNull`](#structFRHAPI__PlatformSKU_1a32247a9b31e11ead22e73a7dcdb5f0ac)`() const` | Checks whether ExternalKeyEntitlement_Optional is set to null.
 `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__PlatformSKU_1a5a1cbcc144207476856952768fb46718)`()` | Gets the value of CacheInfo_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__PlatformSKU_1a0a9e843df977e42124462e3d6de2a46f)`() const` | Gets the value of CacheInfo_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__PlatformSKU_1ae20c75e1560982fef9a6fd7d5f4d5d41)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` | Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -81,6 +88,8 @@ Platform SKU that can be converted to inventory or keys.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__PlatformSKU_1a5fc849418578a1a3716fcbffc7423005)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__PlatformSKU_1a2eb6371d0f542e17466b83ab32efca14)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__PlatformSKU_1ae3201d40874ea86f078b1410cfe8502e)`() const` | Checks whether CacheInfo_Optional has been set.
+`public inline void `[`SetCacheInfoToNull`](#structFRHAPI__PlatformSKU_1ad0382e0f45c261a04662f4d5fa8ac617)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsCacheInfoNull`](#structFRHAPI__PlatformSKU_1aa092a421b3f7f10684d126fd146c6e2e)`() const` | Checks whether CacheInfo_Optional is set to null.
 
 ### Members
 
@@ -92,9 +101,7 @@ Custom data associated with the resource.
 
 true if CustomData_Optional has been set to a value
 
-#### `public ERHAPI_Platform `[`Platform`](#structFRHAPI__PlatformSKU_1a422e4dab6d9fbd3f7de8fcb900ada969) <a id="structFRHAPI__PlatformSKU_1a422e4dab6d9fbd3f7de8fcb900ada969"></a>
-
-The platform of the SKU.
+#### `public ERHAPI_InventoryPlatform `[`Platform`](#structFRHAPI__PlatformSKU_1a37559d3f68078032b7a85a324b0912a7) <a id="structFRHAPI__PlatformSKU_1a37559d3f68078032b7a85a324b0912a7"></a>
 
 #### `public FString `[`Sku`](#structFRHAPI__PlatformSKU_1af2131a88628854eb0064c95508075269) <a id="structFRHAPI__PlatformSKU_1af2131a88628854eb0064c95508075269"></a>
 
@@ -102,27 +109,33 @@ The SKU of the platform.
 
 #### `public `[`FRHAPI_LootEntitlement`](RHAPI_LootEntitlement.md#structFRHAPI__LootEntitlement)` `[`LootEntitlement_Optional`](#structFRHAPI__PlatformSKU_1ac971f3a8d5c5b954f6d1fc53bde49b5b) <a id="structFRHAPI__PlatformSKU_1ac971f3a8d5c5b954f6d1fc53bde49b5b"></a>
 
-The Loot that will be granted to the player.
-
 #### `public bool `[`LootEntitlement_IsSet`](#structFRHAPI__PlatformSKU_1a3a9315ed369499d5167e2c87ab9b8d85) <a id="structFRHAPI__PlatformSKU_1a3a9315ed369499d5167e2c87ab9b8d85"></a>
 
 true if LootEntitlement_Optional has been set to a value
 
-#### `public `[`FRHAPI_ExternalKeyEntitlement`](RHAPI_ExternalKeyEntitlement.md#structFRHAPI__ExternalKeyEntitlement)` `[`ExternalKeyEntitlement_Optional`](#structFRHAPI__PlatformSKU_1abf0202192f57100b48733c4d5836f5fe) <a id="structFRHAPI__PlatformSKU_1abf0202192f57100b48733c4d5836f5fe"></a>
+#### `public bool `[`LootEntitlement_IsNull`](#structFRHAPI__PlatformSKU_1a47e64e6988e8fba1586b03a087f7bdb6) <a id="structFRHAPI__PlatformSKU_1a47e64e6988e8fba1586b03a087f7bdb6"></a>
 
-The External Key Entitlement.
+true if LootEntitlement_Optional has been explicitly set to null
+
+#### `public `[`FRHAPI_ExternalKeyEntitlement`](RHAPI_ExternalKeyEntitlement.md#structFRHAPI__ExternalKeyEntitlement)` `[`ExternalKeyEntitlement_Optional`](#structFRHAPI__PlatformSKU_1abf0202192f57100b48733c4d5836f5fe) <a id="structFRHAPI__PlatformSKU_1abf0202192f57100b48733c4d5836f5fe"></a>
 
 #### `public bool `[`ExternalKeyEntitlement_IsSet`](#structFRHAPI__PlatformSKU_1ab55ca7403fec640d81121324e41a2e5d) <a id="structFRHAPI__PlatformSKU_1ab55ca7403fec640d81121324e41a2e5d"></a>
 
 true if ExternalKeyEntitlement_Optional has been set to a value
 
-#### `public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__PlatformSKU_1ab26bc7287f433868876e7ee8ebd78a48) <a id="structFRHAPI__PlatformSKU_1ab26bc7287f433868876e7ee8ebd78a48"></a>
+#### `public bool `[`ExternalKeyEntitlement_IsNull`](#structFRHAPI__PlatformSKU_1abfe668ff8a6ccec21c585a2578d05b8f) <a id="structFRHAPI__PlatformSKU_1abfe668ff8a6ccec21c585a2578d05b8f"></a>
 
-Cache info for the Platform SKUs.
+true if ExternalKeyEntitlement_Optional has been explicitly set to null
+
+#### `public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__PlatformSKU_1ab26bc7287f433868876e7ee8ebd78a48) <a id="structFRHAPI__PlatformSKU_1ab26bc7287f433868876e7ee8ebd78a48"></a>
 
 #### `public bool `[`CacheInfo_IsSet`](#structFRHAPI__PlatformSKU_1a232a45f2e5f3c34b5021ea0bf05a9c06) <a id="structFRHAPI__PlatformSKU_1a232a45f2e5f3c34b5021ea0bf05a9c06"></a>
 
 true if CacheInfo_Optional has been set to a value
+
+#### `public bool `[`CacheInfo_IsNull`](#structFRHAPI__PlatformSKU_1adbdde2a2cc53ad3b89c5aabadccbcf4b) <a id="structFRHAPI__PlatformSKU_1adbdde2a2cc53ad3b89c5aabadccbcf4b"></a>
+
+true if CacheInfo_Optional has been explicitly set to null
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__PlatformSKU_1a5bd16afdbc1a8f427b55df109045bca2)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlatformSKU_1a5bd16afdbc1a8f427b55df109045bca2"></a>
 
@@ -181,19 +194,19 @@ Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
 Checks whether CustomData_Optional has been set.
 
-#### `public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PlatformSKU_1a95dca308424a4cdc918b07e5830f94a8)`()` <a id="structFRHAPI__PlatformSKU_1a95dca308424a4cdc918b07e5830f94a8"></a>
+#### `public inline ERHAPI_InventoryPlatform & `[`GetPlatform`](#structFRHAPI__PlatformSKU_1a78431c9dd2302cb87eadaaf351af221d)`()` <a id="structFRHAPI__PlatformSKU_1a78431c9dd2302cb87eadaaf351af221d"></a>
 
 Gets the value of Platform.
 
-#### `public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PlatformSKU_1a265e263c42b02d0af2c72467219bff68)`() const` <a id="structFRHAPI__PlatformSKU_1a265e263c42b02d0af2c72467219bff68"></a>
+#### `public inline const ERHAPI_InventoryPlatform & `[`GetPlatform`](#structFRHAPI__PlatformSKU_1ae9ab103b40db081515dfdd07fd351668)`() const` <a id="structFRHAPI__PlatformSKU_1ae9ab103b40db081515dfdd07fd351668"></a>
 
 Gets the value of Platform.
 
-#### `public inline void `[`SetPlatform`](#structFRHAPI__PlatformSKU_1a71c25cc2e0edade592d12afbbc3b56ab)`(const ERHAPI_Platform & NewValue)` <a id="structFRHAPI__PlatformSKU_1a71c25cc2e0edade592d12afbbc3b56ab"></a>
+#### `public inline void `[`SetPlatform`](#structFRHAPI__PlatformSKU_1a0d7cf4d6afc00f0653e0ae93a1c66913)`(const ERHAPI_InventoryPlatform & NewValue)` <a id="structFRHAPI__PlatformSKU_1a0d7cf4d6afc00f0653e0ae93a1c66913"></a>
 
 Sets the value of Platform.
 
-#### `public inline void `[`SetPlatform`](#structFRHAPI__PlatformSKU_1a694174e17aa8c1d5fc4c801b25880ab8)`(ERHAPI_Platform && NewValue)` <a id="structFRHAPI__PlatformSKU_1a694174e17aa8c1d5fc4c801b25880ab8"></a>
+#### `public inline void `[`SetPlatform`](#structFRHAPI__PlatformSKU_1aae382f98aedf563c76965ad57cfa70c6)`(ERHAPI_InventoryPlatform && NewValue)` <a id="structFRHAPI__PlatformSKU_1aae382f98aedf563c76965ad57cfa70c6"></a>
 
 Sets the value of Platform using move semantics.
 
@@ -253,6 +266,14 @@ Clears the value of LootEntitlement_Optional and sets LootEntitlement_IsSet to f
 
 Checks whether LootEntitlement_Optional has been set.
 
+#### `public inline void `[`SetLootEntitlementToNull`](#structFRHAPI__PlatformSKU_1a7dea6aa2d0e36e410dc60c41e406bc6e)`()` <a id="structFRHAPI__PlatformSKU_1a7dea6aa2d0e36e410dc60c41e406bc6e"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsLootEntitlementNull`](#structFRHAPI__PlatformSKU_1ad5a1ad637576303767e9fce389d8a8ab)`() const` <a id="structFRHAPI__PlatformSKU_1ad5a1ad637576303767e9fce389d8a8ab"></a>
+
+Checks whether LootEntitlement_Optional is set to null.
+
 #### `public inline `[`FRHAPI_ExternalKeyEntitlement`](RHAPI_ExternalKeyEntitlement.md#structFRHAPI__ExternalKeyEntitlement)` & `[`GetExternalKeyEntitlement`](#structFRHAPI__PlatformSKU_1a1268617dde3d573d10562488f2a36ae5)`()` <a id="structFRHAPI__PlatformSKU_1a1268617dde3d573d10562488f2a36ae5"></a>
 
 Gets the value of ExternalKeyEntitlement_Optional, regardless of it having been set.
@@ -293,6 +314,14 @@ Clears the value of ExternalKeyEntitlement_Optional and sets ExternalKeyEntitlem
 
 Checks whether ExternalKeyEntitlement_Optional has been set.
 
+#### `public inline void `[`SetExternalKeyEntitlementToNull`](#structFRHAPI__PlatformSKU_1a7f67e933d6c5eb1f37518f6726eaad18)`()` <a id="structFRHAPI__PlatformSKU_1a7f67e933d6c5eb1f37518f6726eaad18"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsExternalKeyEntitlementNull`](#structFRHAPI__PlatformSKU_1a32247a9b31e11ead22e73a7dcdb5f0ac)`() const` <a id="structFRHAPI__PlatformSKU_1a32247a9b31e11ead22e73a7dcdb5f0ac"></a>
+
+Checks whether ExternalKeyEntitlement_Optional is set to null.
+
 #### `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__PlatformSKU_1a5a1cbcc144207476856952768fb46718)`()` <a id="structFRHAPI__PlatformSKU_1a5a1cbcc144207476856952768fb46718"></a>
 
 Gets the value of CacheInfo_Optional, regardless of it having been set.
@@ -332,4 +361,12 @@ Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 #### `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__PlatformSKU_1ae3201d40874ea86f078b1410cfe8502e)`() const` <a id="structFRHAPI__PlatformSKU_1ae3201d40874ea86f078b1410cfe8502e"></a>
 
 Checks whether CacheInfo_Optional has been set.
+
+#### `public inline void `[`SetCacheInfoToNull`](#structFRHAPI__PlatformSKU_1ad0382e0f45c261a04662f4d5fa8ac617)`()` <a id="structFRHAPI__PlatformSKU_1ad0382e0f45c261a04662f4d5fa8ac617"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsCacheInfoNull`](#structFRHAPI__PlatformSKU_1aa092a421b3f7f10684d126fd146c6e2e)`() const` <a id="structFRHAPI__PlatformSKU_1aa092a421b3f7f10684d126fd146c6e2e"></a>
+
+Checks whether CacheInfo_Optional is set to null.
 

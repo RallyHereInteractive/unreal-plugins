@@ -21,26 +21,36 @@ Full list of all loaded objects for the catalog. Organized in a normalized model
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public `[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` `[`XpTables_Optional`](#structFRHAPI__Catalog_1af4f0cd76a893a7e28a5434d8bcd18d23) | The XP Tables.
+`public `[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` `[`XpTables_Optional`](#structFRHAPI__Catalog_1af4f0cd76a893a7e28a5434d8bcd18d23) | 
 `public bool `[`XpTables_IsSet`](#structFRHAPI__Catalog_1af90b7e5ba57c9a0494cebca385d57554) | true if XpTables_Optional has been set to a value
-`public `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` `[`PortalUseRulesets_Optional`](#structFRHAPI__Catalog_1a5c1bc6fb261f498f6a9cb2b53678ada7) | The Portal Use Rulesets. Use Inventory Bucket Use Rule Sets instead.
+`public bool `[`XpTables_IsNull`](#structFRHAPI__Catalog_1a0bdfbf4306063ee77040f7e7910f63ec) | true if XpTables_Optional has been explicitly set to null
+`public `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` `[`PortalUseRulesets_Optional`](#structFRHAPI__Catalog_1a5c1bc6fb261f498f6a9cb2b53678ada7) | 
 `public bool `[`PortalUseRulesets_IsSet`](#structFRHAPI__Catalog_1aa2b91b29308df30644270d464ed59c1a) | true if PortalUseRulesets_Optional has been set to a value
-`public `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` `[`InventoryBucketUseRuleSets_Optional`](#structFRHAPI__Catalog_1a9b851c0b6519aede6992d0d9bba421fe) | The rules on how to use Inventory Buckets.
+`public bool `[`PortalUseRulesets_IsNull`](#structFRHAPI__Catalog_1ac210d5a8cfd79065ed5ac36716e54d80) | true if PortalUseRulesets_Optional has been explicitly set to null
+`public `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` `[`InventoryBucketUseRuleSets_Optional`](#structFRHAPI__Catalog_1a9b851c0b6519aede6992d0d9bba421fe) | 
 `public bool `[`InventoryBucketUseRuleSets_IsSet`](#structFRHAPI__Catalog_1a0586281245ad51f50f42b97a66226541) | true if InventoryBucketUseRuleSets_Optional has been set to a value
-`public `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` `[`Vendors_Optional`](#structFRHAPI__Catalog_1a1f4638b8bf02a2bf9dcd96d8371b184b) | The Vendors.
+`public bool `[`InventoryBucketUseRuleSets_IsNull`](#structFRHAPI__Catalog_1ad694ee3ea96e646d9e6ff7411305f7c4) | true if InventoryBucketUseRuleSets_Optional has been explicitly set to null
+`public `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` `[`Vendors_Optional`](#structFRHAPI__Catalog_1a1f4638b8bf02a2bf9dcd96d8371b184b) | 
 `public bool `[`Vendors_IsSet`](#structFRHAPI__Catalog_1a7825696f94603a9c682c871ea2ffdf48) | true if Vendors_Optional has been set to a value
-`public `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` `[`Loot_Optional`](#structFRHAPI__Catalog_1a1de575ff599e2024bad49cc64f3c85c1) | The Loots.
+`public bool `[`Vendors_IsNull`](#structFRHAPI__Catalog_1a880e3f68dfbff71a623e0afd8f6f718e) | true if Vendors_Optional has been explicitly set to null
+`public `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` `[`Loot_Optional`](#structFRHAPI__Catalog_1a1de575ff599e2024bad49cc64f3c85c1) | 
 `public bool `[`Loot_IsSet`](#structFRHAPI__Catalog_1aff1762bd9da5b9e4b538134c4f274458) | true if Loot_Optional has been set to a value
-`public `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` `[`Items_Optional`](#structFRHAPI__Catalog_1aadceaa0da05b125011e20fff72327a47) | The Items.
+`public bool `[`Loot_IsNull`](#structFRHAPI__Catalog_1a9e98bf35fc776b0fe14b5787540951b2) | true if Loot_Optional has been explicitly set to null
+`public `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` `[`Items_Optional`](#structFRHAPI__Catalog_1aadceaa0da05b125011e20fff72327a47) | 
 `public bool `[`Items_IsSet`](#structFRHAPI__Catalog_1add54c8f6b30746e9e2fc5589e1670020) | true if Items_Optional has been set to a value
-`public `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` `[`PricePoints_Optional`](#structFRHAPI__Catalog_1a509fa6f65b75105aa8d3e7abed6f22c4) | The Price Points.
+`public bool `[`Items_IsNull`](#structFRHAPI__Catalog_1a5e9d3c24103852a3aa180cf0c322c48b) | true if Items_Optional has been explicitly set to null
+`public `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` `[`PricePoints_Optional`](#structFRHAPI__Catalog_1a509fa6f65b75105aa8d3e7abed6f22c4) | 
 `public bool `[`PricePoints_IsSet`](#structFRHAPI__Catalog_1a374717ee3e59783724b9f7626bf107b0) | true if PricePoints_Optional has been set to a value
-`public `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` `[`TimeFrames_Optional`](#structFRHAPI__Catalog_1abaaeb0cae5fcc66283a5a88005569a25) | The Time Frames.
+`public bool `[`PricePoints_IsNull`](#structFRHAPI__Catalog_1a05bd4e2bae23499d2664c47aedf7f48a) | true if PricePoints_Optional has been explicitly set to null
+`public `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` `[`TimeFrames_Optional`](#structFRHAPI__Catalog_1abaaeb0cae5fcc66283a5a88005569a25) | 
 `public bool `[`TimeFrames_IsSet`](#structFRHAPI__Catalog_1a0152d227f29fbba74e728eba75f2a4b9) | true if TimeFrames_Optional has been set to a value
-`public `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` `[`Skus_Optional`](#structFRHAPI__Catalog_1ad0b904c73c45e324ed314ca93dc213fb) | The Platform SKUs.
+`public bool `[`TimeFrames_IsNull`](#structFRHAPI__Catalog_1a0bcdfdf892ed4b7718ba61005855352a) | true if TimeFrames_Optional has been explicitly set to null
+`public `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` `[`Skus_Optional`](#structFRHAPI__Catalog_1ad0b904c73c45e324ed314ca93dc213fb) | 
 `public bool `[`Skus_IsSet`](#structFRHAPI__Catalog_1ab7c1c1bb089e8e7d18bd75da56bbc462) | true if Skus_Optional has been set to a value
-`public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__Catalog_1a44d0ba982a4d410b0b93ccaca10970ae) | Cache info for the Catalog.
+`public bool `[`Skus_IsNull`](#structFRHAPI__Catalog_1a58adabb0d000bd34e850ba9131df4960) | true if Skus_Optional has been explicitly set to null
+`public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__Catalog_1a44d0ba982a4d410b0b93ccaca10970ae) | 
 `public bool `[`CacheInfo_IsSet`](#structFRHAPI__Catalog_1af1aa2319fa555fe776de228ccaafc079) | true if CacheInfo_Optional has been set to a value
+`public bool `[`CacheInfo_IsNull`](#structFRHAPI__Catalog_1a4f64c3f7dfa1eb17e7fbeb8e345cd8f5) | true if CacheInfo_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__Catalog_1a25a9042dbb57666656d59bdbc377efb6)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__Catalog_1a4c6d29ba9084db26f01f25e27e991e0f)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline `[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` & `[`GetXpTables`](#structFRHAPI__Catalog_1a6bd928540304c1c3f4e1f9e10e328734)`()` | Gets the value of XpTables_Optional, regardless of it having been set.
@@ -53,6 +63,8 @@ Full list of all loaded objects for the catalog. Organized in a normalized model
 `public inline void `[`SetXpTables`](#structFRHAPI__Catalog_1a1747a97fc306dced01735929cc511c05)`(`[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` && NewValue)` | Sets the value of XpTables_Optional and also sets XpTables_IsSet to true using move semantics.
 `public inline void `[`ClearXpTables`](#structFRHAPI__Catalog_1a312a992dab0e537045c9cedbffdb4058)`()` | Clears the value of XpTables_Optional and sets XpTables_IsSet to false.
 `public inline bool `[`IsXpTablesSet`](#structFRHAPI__Catalog_1aee97765fe3423e51681891d6170ae22b)`() const` | Checks whether XpTables_Optional has been set.
+`public inline void `[`SetXpTablesToNull`](#structFRHAPI__Catalog_1ad0f07f65359874863816fd94e57ecc28)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsXpTablesNull`](#structFRHAPI__Catalog_1a5e803a894f5473c5943e6e70ef8cd273)`() const` | Checks whether XpTables_Optional is set to null.
 `public inline `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` & `[`GetPortalUseRulesets`](#structFRHAPI__Catalog_1ae0555b6ae65c08d3d56e48a7ffb47e78)`()` | Gets the value of PortalUseRulesets_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` & `[`GetPortalUseRulesets`](#structFRHAPI__Catalog_1abe93af77efb46d3e111bac9c3e78bca4)`() const` | Gets the value of PortalUseRulesets_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` & `[`GetPortalUseRulesets`](#structFRHAPI__Catalog_1a130bb819fd4d822537cd8a3031410dce)`(const `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` & DefaultValue) const` | Gets the value of PortalUseRulesets_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -63,6 +75,8 @@ Full list of all loaded objects for the catalog. Organized in a normalized model
 `public inline void `[`SetPortalUseRulesets`](#structFRHAPI__Catalog_1a65db921d2d30ae00e1d8ad64a8ad37d9)`(`[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` && NewValue)` | Sets the value of PortalUseRulesets_Optional and also sets PortalUseRulesets_IsSet to true using move semantics.
 `public inline void `[`ClearPortalUseRulesets`](#structFRHAPI__Catalog_1a019fbe65af45baa13186e4e1f87ea585)`()` | Clears the value of PortalUseRulesets_Optional and sets PortalUseRulesets_IsSet to false.
 `public inline bool `[`IsPortalUseRulesetsSet`](#structFRHAPI__Catalog_1a0cf948a11f864b607b88a1dcdd1fdbb3)`() const` | Checks whether PortalUseRulesets_Optional has been set.
+`public inline void `[`SetPortalUseRulesetsToNull`](#structFRHAPI__Catalog_1a61abc4890c1c7e422d859d30090e28e1)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsPortalUseRulesetsNull`](#structFRHAPI__Catalog_1a7132e44acca19d28231fbe1ce00d8a98)`() const` | Checks whether PortalUseRulesets_Optional is set to null.
 `public inline `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` & `[`GetInventoryBucketUseRuleSets`](#structFRHAPI__Catalog_1a4b33af56baed676c51c742c52183c175)`()` | Gets the value of InventoryBucketUseRuleSets_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` & `[`GetInventoryBucketUseRuleSets`](#structFRHAPI__Catalog_1ab80f8081fe215bc503fa1642e49e9021)`() const` | Gets the value of InventoryBucketUseRuleSets_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` & `[`GetInventoryBucketUseRuleSets`](#structFRHAPI__Catalog_1a8f0554e0673b7200cdb34b8697c007d2)`(const `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` & DefaultValue) const` | Gets the value of InventoryBucketUseRuleSets_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -73,6 +87,8 @@ Full list of all loaded objects for the catalog. Organized in a normalized model
 `public inline void `[`SetInventoryBucketUseRuleSets`](#structFRHAPI__Catalog_1ad8768eb7fe37c593e5b2fc1ce6912768)`(`[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` && NewValue)` | Sets the value of InventoryBucketUseRuleSets_Optional and also sets InventoryBucketUseRuleSets_IsSet to true using move semantics.
 `public inline void `[`ClearInventoryBucketUseRuleSets`](#structFRHAPI__Catalog_1a2ce7f945184d3e78b03c850dcac1d6e7)`()` | Clears the value of InventoryBucketUseRuleSets_Optional and sets InventoryBucketUseRuleSets_IsSet to false.
 `public inline bool `[`IsInventoryBucketUseRuleSetsSet`](#structFRHAPI__Catalog_1a83a7cf004bfedfbd1724be59b78ed4f4)`() const` | Checks whether InventoryBucketUseRuleSets_Optional has been set.
+`public inline void `[`SetInventoryBucketUseRuleSetsToNull`](#structFRHAPI__Catalog_1a12b3a78f52218d3d4599ab1c38773d93)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsInventoryBucketUseRuleSetsNull`](#structFRHAPI__Catalog_1a8a1d344b5231b435a8fb761807d89553)`() const` | Checks whether InventoryBucketUseRuleSets_Optional is set to null.
 `public inline `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` & `[`GetVendors`](#structFRHAPI__Catalog_1a64d67996d1fc2c98bf369f53a4b90f32)`()` | Gets the value of Vendors_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` & `[`GetVendors`](#structFRHAPI__Catalog_1ae099679c1cf706c2bee0409631da2bc5)`() const` | Gets the value of Vendors_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` & `[`GetVendors`](#structFRHAPI__Catalog_1a12ccd3e247baf0c57e9ad5e74abb51a3)`(const `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` & DefaultValue) const` | Gets the value of Vendors_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -83,6 +99,8 @@ Full list of all loaded objects for the catalog. Organized in a normalized model
 `public inline void `[`SetVendors`](#structFRHAPI__Catalog_1ae9155c776c0721c7118b1fe18f0b2a86)`(`[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` && NewValue)` | Sets the value of Vendors_Optional and also sets Vendors_IsSet to true using move semantics.
 `public inline void `[`ClearVendors`](#structFRHAPI__Catalog_1af2e2f21c8d75068e489bac4925c03e8b)`()` | Clears the value of Vendors_Optional and sets Vendors_IsSet to false.
 `public inline bool `[`IsVendorsSet`](#structFRHAPI__Catalog_1aa8a9182d29955a8ddfe31365352b6afe)`() const` | Checks whether Vendors_Optional has been set.
+`public inline void `[`SetVendorsToNull`](#structFRHAPI__Catalog_1a2ae1f2aed94f3e5755414b87a12accc2)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsVendorsNull`](#structFRHAPI__Catalog_1aed08870996d53781cc7bb203c0225818)`() const` | Checks whether Vendors_Optional is set to null.
 `public inline `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` & `[`GetLoot`](#structFRHAPI__Catalog_1afbe85a4a43862447853b6ce623835d86)`()` | Gets the value of Loot_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` & `[`GetLoot`](#structFRHAPI__Catalog_1a1dbce9d8df77ac393b85a22d77d33463)`() const` | Gets the value of Loot_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` & `[`GetLoot`](#structFRHAPI__Catalog_1a775201a0dd0c47b8f02872aec014d74c)`(const `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` & DefaultValue) const` | Gets the value of Loot_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -93,6 +111,8 @@ Full list of all loaded objects for the catalog. Organized in a normalized model
 `public inline void `[`SetLoot`](#structFRHAPI__Catalog_1ae75142bbc46e356b28da60c53c3a70d5)`(`[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` && NewValue)` | Sets the value of Loot_Optional and also sets Loot_IsSet to true using move semantics.
 `public inline void `[`ClearLoot`](#structFRHAPI__Catalog_1ace1be3d5346d254d6761503a7830e988)`()` | Clears the value of Loot_Optional and sets Loot_IsSet to false.
 `public inline bool `[`IsLootSet`](#structFRHAPI__Catalog_1a4c0d697ac505e4aeeddc8d941e24bdd6)`() const` | Checks whether Loot_Optional has been set.
+`public inline void `[`SetLootToNull`](#structFRHAPI__Catalog_1acd424493e425a45ecd3061a46a044ebc)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsLootNull`](#structFRHAPI__Catalog_1a468f22db8c4ac2ab4ae464355e5f6526)`() const` | Checks whether Loot_Optional is set to null.
 `public inline `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` & `[`GetItems`](#structFRHAPI__Catalog_1a1cac251d88c1c0717bdf808a7ed5a37d)`()` | Gets the value of Items_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` & `[`GetItems`](#structFRHAPI__Catalog_1ae67115a85d11e2d01a56bc2f89e08fce)`() const` | Gets the value of Items_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` & `[`GetItems`](#structFRHAPI__Catalog_1a038e63e6f5a062546305e33913e5b9d5)`(const `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` & DefaultValue) const` | Gets the value of Items_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -103,6 +123,8 @@ Full list of all loaded objects for the catalog. Organized in a normalized model
 `public inline void `[`SetItems`](#structFRHAPI__Catalog_1a2f6dbd1a624a643126e5263658f28a48)`(`[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` && NewValue)` | Sets the value of Items_Optional and also sets Items_IsSet to true using move semantics.
 `public inline void `[`ClearItems`](#structFRHAPI__Catalog_1a4113d168029b287a1f20959aebdec398)`()` | Clears the value of Items_Optional and sets Items_IsSet to false.
 `public inline bool `[`IsItemsSet`](#structFRHAPI__Catalog_1a101cc8a5d1104bff025b3f334d84b691)`() const` | Checks whether Items_Optional has been set.
+`public inline void `[`SetItemsToNull`](#structFRHAPI__Catalog_1a1e6fa8818f2629023a2fff88bbb0450f)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsItemsNull`](#structFRHAPI__Catalog_1a22be9a69e1d1577fe8885e7263439c54)`() const` | Checks whether Items_Optional is set to null.
 `public inline `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` & `[`GetPricePoints`](#structFRHAPI__Catalog_1ae0eca8bbadedebe2a11030ee9b2fa4e1)`()` | Gets the value of PricePoints_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` & `[`GetPricePoints`](#structFRHAPI__Catalog_1ac288a11987efb053fc8795f6c53dcac7)`() const` | Gets the value of PricePoints_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` & `[`GetPricePoints`](#structFRHAPI__Catalog_1af89627ea3ec8fe8e97ba329a3177bbf8)`(const `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` & DefaultValue) const` | Gets the value of PricePoints_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -113,6 +135,8 @@ Full list of all loaded objects for the catalog. Organized in a normalized model
 `public inline void `[`SetPricePoints`](#structFRHAPI__Catalog_1a9fbaaa1c7cb3cf735a56dbebcfa238a5)`(`[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` && NewValue)` | Sets the value of PricePoints_Optional and also sets PricePoints_IsSet to true using move semantics.
 `public inline void `[`ClearPricePoints`](#structFRHAPI__Catalog_1ab66a478aca1f7c7e14fa71ed0fe198a5)`()` | Clears the value of PricePoints_Optional and sets PricePoints_IsSet to false.
 `public inline bool `[`IsPricePointsSet`](#structFRHAPI__Catalog_1a2d3326fef606ea63198dd9af58487254)`() const` | Checks whether PricePoints_Optional has been set.
+`public inline void `[`SetPricePointsToNull`](#structFRHAPI__Catalog_1a23e2d08e818e84194a05dabf4c20a865)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsPricePointsNull`](#structFRHAPI__Catalog_1ad111897f8b34c6314dc7a8ad6ea3cb67)`() const` | Checks whether PricePoints_Optional is set to null.
 `public inline `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` & `[`GetTimeFrames`](#structFRHAPI__Catalog_1ae0d04ad6ed7e83038fcce80673c8a4d2)`()` | Gets the value of TimeFrames_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` & `[`GetTimeFrames`](#structFRHAPI__Catalog_1a34fad808cbe3b5fc1bff3fbc8d0ddd78)`() const` | Gets the value of TimeFrames_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` & `[`GetTimeFrames`](#structFRHAPI__Catalog_1ab982d1f028dd5d05ef35691af8e82a8e)`(const `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` & DefaultValue) const` | Gets the value of TimeFrames_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -123,6 +147,8 @@ Full list of all loaded objects for the catalog. Organized in a normalized model
 `public inline void `[`SetTimeFrames`](#structFRHAPI__Catalog_1ae13db96f537750ca340aa3e1b0291ed9)`(`[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` && NewValue)` | Sets the value of TimeFrames_Optional and also sets TimeFrames_IsSet to true using move semantics.
 `public inline void `[`ClearTimeFrames`](#structFRHAPI__Catalog_1ac3f2252f7dd6be43359b67c6a264cde5)`()` | Clears the value of TimeFrames_Optional and sets TimeFrames_IsSet to false.
 `public inline bool `[`IsTimeFramesSet`](#structFRHAPI__Catalog_1a5e728abf43f75208f41a27a8be18b05d)`() const` | Checks whether TimeFrames_Optional has been set.
+`public inline void `[`SetTimeFramesToNull`](#structFRHAPI__Catalog_1a196fb026ce590cd409e4488b83399ebd)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsTimeFramesNull`](#structFRHAPI__Catalog_1aacce42554e7ece554049f9f1126fb121)`() const` | Checks whether TimeFrames_Optional is set to null.
 `public inline `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` & `[`GetSkus`](#structFRHAPI__Catalog_1a53e4d20e6002876f5b43ef51a4b90d78)`()` | Gets the value of Skus_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` & `[`GetSkus`](#structFRHAPI__Catalog_1a3b7514f2c3a2a1fd8d5bdc045678cb85)`() const` | Gets the value of Skus_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` & `[`GetSkus`](#structFRHAPI__Catalog_1a916ac1232ab4e68d034d438d5e83ec7c)`(const `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` & DefaultValue) const` | Gets the value of Skus_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -133,6 +159,8 @@ Full list of all loaded objects for the catalog. Organized in a normalized model
 `public inline void `[`SetSkus`](#structFRHAPI__Catalog_1a90a23fabcd446b00d91ab9c5db08a78a)`(`[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` && NewValue)` | Sets the value of Skus_Optional and also sets Skus_IsSet to true using move semantics.
 `public inline void `[`ClearSkus`](#structFRHAPI__Catalog_1a765461b15f5b17e1425f262afc0940a2)`()` | Clears the value of Skus_Optional and sets Skus_IsSet to false.
 `public inline bool `[`IsSkusSet`](#structFRHAPI__Catalog_1a4603e9835f522e7df4cfa3515d612b87)`() const` | Checks whether Skus_Optional has been set.
+`public inline void `[`SetSkusToNull`](#structFRHAPI__Catalog_1aeee52e1f406b51c528860f3766ec7934)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsSkusNull`](#structFRHAPI__Catalog_1a7fe2711b269d8160ddc80b9444f2afde)`() const` | Checks whether Skus_Optional is set to null.
 `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Catalog_1a9b31d9b09b6ace54995dff359a0ccaa1)`()` | Gets the value of CacheInfo_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Catalog_1a93e905be9ed95b6d651cba222813b41c)`() const` | Gets the value of CacheInfo_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Catalog_1a43facd716dcdb4c600752f76a766e05f)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` | Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -143,88 +171,110 @@ Full list of all loaded objects for the catalog. Organized in a normalized model
 `public inline void `[`SetCacheInfo`](#structFRHAPI__Catalog_1ade8ddd18bc6b39433348092fff3471b4)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__Catalog_1a06e23285bc21a8cbee8b3e247cfbf7a9)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__Catalog_1a16c8e55bcacaf94092e48c0592172f51)`() const` | Checks whether CacheInfo_Optional has been set.
+`public inline void `[`SetCacheInfoToNull`](#structFRHAPI__Catalog_1ab841d85836bf65f838b5255a3a346ebc)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsCacheInfoNull`](#structFRHAPI__Catalog_1a8420c3fffcdfb4e4be08d59672c8b282)`() const` | Checks whether CacheInfo_Optional is set to null.
 
 ### Members
 
 #### `public `[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` `[`XpTables_Optional`](#structFRHAPI__Catalog_1af4f0cd76a893a7e28a5434d8bcd18d23) <a id="structFRHAPI__Catalog_1af4f0cd76a893a7e28a5434d8bcd18d23"></a>
 
-The XP Tables.
-
 #### `public bool `[`XpTables_IsSet`](#structFRHAPI__Catalog_1af90b7e5ba57c9a0494cebca385d57554) <a id="structFRHAPI__Catalog_1af90b7e5ba57c9a0494cebca385d57554"></a>
 
 true if XpTables_Optional has been set to a value
 
-#### `public `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` `[`PortalUseRulesets_Optional`](#structFRHAPI__Catalog_1a5c1bc6fb261f498f6a9cb2b53678ada7) <a id="structFRHAPI__Catalog_1a5c1bc6fb261f498f6a9cb2b53678ada7"></a>
+#### `public bool `[`XpTables_IsNull`](#structFRHAPI__Catalog_1a0bdfbf4306063ee77040f7e7910f63ec) <a id="structFRHAPI__Catalog_1a0bdfbf4306063ee77040f7e7910f63ec"></a>
 
-The Portal Use Rulesets. Use Inventory Bucket Use Rule Sets instead.
+true if XpTables_Optional has been explicitly set to null
+
+#### `public `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` `[`PortalUseRulesets_Optional`](#structFRHAPI__Catalog_1a5c1bc6fb261f498f6a9cb2b53678ada7) <a id="structFRHAPI__Catalog_1a5c1bc6fb261f498f6a9cb2b53678ada7"></a>
 
 #### `public bool `[`PortalUseRulesets_IsSet`](#structFRHAPI__Catalog_1aa2b91b29308df30644270d464ed59c1a) <a id="structFRHAPI__Catalog_1aa2b91b29308df30644270d464ed59c1a"></a>
 
 true if PortalUseRulesets_Optional has been set to a value
 
-#### `public `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` `[`InventoryBucketUseRuleSets_Optional`](#structFRHAPI__Catalog_1a9b851c0b6519aede6992d0d9bba421fe) <a id="structFRHAPI__Catalog_1a9b851c0b6519aede6992d0d9bba421fe"></a>
+#### `public bool `[`PortalUseRulesets_IsNull`](#structFRHAPI__Catalog_1ac210d5a8cfd79065ed5ac36716e54d80) <a id="structFRHAPI__Catalog_1ac210d5a8cfd79065ed5ac36716e54d80"></a>
 
-The rules on how to use Inventory Buckets.
+true if PortalUseRulesets_Optional has been explicitly set to null
+
+#### `public `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` `[`InventoryBucketUseRuleSets_Optional`](#structFRHAPI__Catalog_1a9b851c0b6519aede6992d0d9bba421fe) <a id="structFRHAPI__Catalog_1a9b851c0b6519aede6992d0d9bba421fe"></a>
 
 #### `public bool `[`InventoryBucketUseRuleSets_IsSet`](#structFRHAPI__Catalog_1a0586281245ad51f50f42b97a66226541) <a id="structFRHAPI__Catalog_1a0586281245ad51f50f42b97a66226541"></a>
 
 true if InventoryBucketUseRuleSets_Optional has been set to a value
 
-#### `public `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` `[`Vendors_Optional`](#structFRHAPI__Catalog_1a1f4638b8bf02a2bf9dcd96d8371b184b) <a id="structFRHAPI__Catalog_1a1f4638b8bf02a2bf9dcd96d8371b184b"></a>
+#### `public bool `[`InventoryBucketUseRuleSets_IsNull`](#structFRHAPI__Catalog_1ad694ee3ea96e646d9e6ff7411305f7c4) <a id="structFRHAPI__Catalog_1ad694ee3ea96e646d9e6ff7411305f7c4"></a>
 
-The Vendors.
+true if InventoryBucketUseRuleSets_Optional has been explicitly set to null
+
+#### `public `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` `[`Vendors_Optional`](#structFRHAPI__Catalog_1a1f4638b8bf02a2bf9dcd96d8371b184b) <a id="structFRHAPI__Catalog_1a1f4638b8bf02a2bf9dcd96d8371b184b"></a>
 
 #### `public bool `[`Vendors_IsSet`](#structFRHAPI__Catalog_1a7825696f94603a9c682c871ea2ffdf48) <a id="structFRHAPI__Catalog_1a7825696f94603a9c682c871ea2ffdf48"></a>
 
 true if Vendors_Optional has been set to a value
 
-#### `public `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` `[`Loot_Optional`](#structFRHAPI__Catalog_1a1de575ff599e2024bad49cc64f3c85c1) <a id="structFRHAPI__Catalog_1a1de575ff599e2024bad49cc64f3c85c1"></a>
+#### `public bool `[`Vendors_IsNull`](#structFRHAPI__Catalog_1a880e3f68dfbff71a623e0afd8f6f718e) <a id="structFRHAPI__Catalog_1a880e3f68dfbff71a623e0afd8f6f718e"></a>
 
-The Loots.
+true if Vendors_Optional has been explicitly set to null
+
+#### `public `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` `[`Loot_Optional`](#structFRHAPI__Catalog_1a1de575ff599e2024bad49cc64f3c85c1) <a id="structFRHAPI__Catalog_1a1de575ff599e2024bad49cc64f3c85c1"></a>
 
 #### `public bool `[`Loot_IsSet`](#structFRHAPI__Catalog_1aff1762bd9da5b9e4b538134c4f274458) <a id="structFRHAPI__Catalog_1aff1762bd9da5b9e4b538134c4f274458"></a>
 
 true if Loot_Optional has been set to a value
 
-#### `public `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` `[`Items_Optional`](#structFRHAPI__Catalog_1aadceaa0da05b125011e20fff72327a47) <a id="structFRHAPI__Catalog_1aadceaa0da05b125011e20fff72327a47"></a>
+#### `public bool `[`Loot_IsNull`](#structFRHAPI__Catalog_1a9e98bf35fc776b0fe14b5787540951b2) <a id="structFRHAPI__Catalog_1a9e98bf35fc776b0fe14b5787540951b2"></a>
 
-The Items.
+true if Loot_Optional has been explicitly set to null
+
+#### `public `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` `[`Items_Optional`](#structFRHAPI__Catalog_1aadceaa0da05b125011e20fff72327a47) <a id="structFRHAPI__Catalog_1aadceaa0da05b125011e20fff72327a47"></a>
 
 #### `public bool `[`Items_IsSet`](#structFRHAPI__Catalog_1add54c8f6b30746e9e2fc5589e1670020) <a id="structFRHAPI__Catalog_1add54c8f6b30746e9e2fc5589e1670020"></a>
 
 true if Items_Optional has been set to a value
 
-#### `public `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` `[`PricePoints_Optional`](#structFRHAPI__Catalog_1a509fa6f65b75105aa8d3e7abed6f22c4) <a id="structFRHAPI__Catalog_1a509fa6f65b75105aa8d3e7abed6f22c4"></a>
+#### `public bool `[`Items_IsNull`](#structFRHAPI__Catalog_1a5e9d3c24103852a3aa180cf0c322c48b) <a id="structFRHAPI__Catalog_1a5e9d3c24103852a3aa180cf0c322c48b"></a>
 
-The Price Points.
+true if Items_Optional has been explicitly set to null
+
+#### `public `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` `[`PricePoints_Optional`](#structFRHAPI__Catalog_1a509fa6f65b75105aa8d3e7abed6f22c4) <a id="structFRHAPI__Catalog_1a509fa6f65b75105aa8d3e7abed6f22c4"></a>
 
 #### `public bool `[`PricePoints_IsSet`](#structFRHAPI__Catalog_1a374717ee3e59783724b9f7626bf107b0) <a id="structFRHAPI__Catalog_1a374717ee3e59783724b9f7626bf107b0"></a>
 
 true if PricePoints_Optional has been set to a value
 
-#### `public `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` `[`TimeFrames_Optional`](#structFRHAPI__Catalog_1abaaeb0cae5fcc66283a5a88005569a25) <a id="structFRHAPI__Catalog_1abaaeb0cae5fcc66283a5a88005569a25"></a>
+#### `public bool `[`PricePoints_IsNull`](#structFRHAPI__Catalog_1a05bd4e2bae23499d2664c47aedf7f48a) <a id="structFRHAPI__Catalog_1a05bd4e2bae23499d2664c47aedf7f48a"></a>
 
-The Time Frames.
+true if PricePoints_Optional has been explicitly set to null
+
+#### `public `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` `[`TimeFrames_Optional`](#structFRHAPI__Catalog_1abaaeb0cae5fcc66283a5a88005569a25) <a id="structFRHAPI__Catalog_1abaaeb0cae5fcc66283a5a88005569a25"></a>
 
 #### `public bool `[`TimeFrames_IsSet`](#structFRHAPI__Catalog_1a0152d227f29fbba74e728eba75f2a4b9) <a id="structFRHAPI__Catalog_1a0152d227f29fbba74e728eba75f2a4b9"></a>
 
 true if TimeFrames_Optional has been set to a value
 
-#### `public `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` `[`Skus_Optional`](#structFRHAPI__Catalog_1ad0b904c73c45e324ed314ca93dc213fb) <a id="structFRHAPI__Catalog_1ad0b904c73c45e324ed314ca93dc213fb"></a>
+#### `public bool `[`TimeFrames_IsNull`](#structFRHAPI__Catalog_1a0bcdfdf892ed4b7718ba61005855352a) <a id="structFRHAPI__Catalog_1a0bcdfdf892ed4b7718ba61005855352a"></a>
 
-The Platform SKUs.
+true if TimeFrames_Optional has been explicitly set to null
+
+#### `public `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` `[`Skus_Optional`](#structFRHAPI__Catalog_1ad0b904c73c45e324ed314ca93dc213fb) <a id="structFRHAPI__Catalog_1ad0b904c73c45e324ed314ca93dc213fb"></a>
 
 #### `public bool `[`Skus_IsSet`](#structFRHAPI__Catalog_1ab7c1c1bb089e8e7d18bd75da56bbc462) <a id="structFRHAPI__Catalog_1ab7c1c1bb089e8e7d18bd75da56bbc462"></a>
 
 true if Skus_Optional has been set to a value
 
-#### `public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__Catalog_1a44d0ba982a4d410b0b93ccaca10970ae) <a id="structFRHAPI__Catalog_1a44d0ba982a4d410b0b93ccaca10970ae"></a>
+#### `public bool `[`Skus_IsNull`](#structFRHAPI__Catalog_1a58adabb0d000bd34e850ba9131df4960) <a id="structFRHAPI__Catalog_1a58adabb0d000bd34e850ba9131df4960"></a>
 
-Cache info for the Catalog.
+true if Skus_Optional has been explicitly set to null
+
+#### `public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__Catalog_1a44d0ba982a4d410b0b93ccaca10970ae) <a id="structFRHAPI__Catalog_1a44d0ba982a4d410b0b93ccaca10970ae"></a>
 
 #### `public bool `[`CacheInfo_IsSet`](#structFRHAPI__Catalog_1af1aa2319fa555fe776de228ccaafc079) <a id="structFRHAPI__Catalog_1af1aa2319fa555fe776de228ccaafc079"></a>
 
 true if CacheInfo_Optional has been set to a value
+
+#### `public bool `[`CacheInfo_IsNull`](#structFRHAPI__Catalog_1a4f64c3f7dfa1eb17e7fbeb8e345cd8f5) <a id="structFRHAPI__Catalog_1a4f64c3f7dfa1eb17e7fbeb8e345cd8f5"></a>
+
+true if CacheInfo_Optional has been explicitly set to null
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__Catalog_1a25a9042dbb57666656d59bdbc377efb6)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__Catalog_1a25a9042dbb57666656d59bdbc377efb6"></a>
 
@@ -283,6 +333,14 @@ Clears the value of XpTables_Optional and sets XpTables_IsSet to false.
 
 Checks whether XpTables_Optional has been set.
 
+#### `public inline void `[`SetXpTablesToNull`](#structFRHAPI__Catalog_1ad0f07f65359874863816fd94e57ecc28)`()` <a id="structFRHAPI__Catalog_1ad0f07f65359874863816fd94e57ecc28"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsXpTablesNull`](#structFRHAPI__Catalog_1a5e803a894f5473c5943e6e70ef8cd273)`() const` <a id="structFRHAPI__Catalog_1a5e803a894f5473c5943e6e70ef8cd273"></a>
+
+Checks whether XpTables_Optional is set to null.
+
 #### `public inline `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` & `[`GetPortalUseRulesets`](#structFRHAPI__Catalog_1ae0555b6ae65c08d3d56e48a7ffb47e78)`()` <a id="structFRHAPI__Catalog_1ae0555b6ae65c08d3d56e48a7ffb47e78"></a>
 
 Gets the value of PortalUseRulesets_Optional, regardless of it having been set.
@@ -322,6 +380,14 @@ Clears the value of PortalUseRulesets_Optional and sets PortalUseRulesets_IsSet 
 #### `public inline bool `[`IsPortalUseRulesetsSet`](#structFRHAPI__Catalog_1a0cf948a11f864b607b88a1dcdd1fdbb3)`() const` <a id="structFRHAPI__Catalog_1a0cf948a11f864b607b88a1dcdd1fdbb3"></a>
 
 Checks whether PortalUseRulesets_Optional has been set.
+
+#### `public inline void `[`SetPortalUseRulesetsToNull`](#structFRHAPI__Catalog_1a61abc4890c1c7e422d859d30090e28e1)`()` <a id="structFRHAPI__Catalog_1a61abc4890c1c7e422d859d30090e28e1"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsPortalUseRulesetsNull`](#structFRHAPI__Catalog_1a7132e44acca19d28231fbe1ce00d8a98)`() const` <a id="structFRHAPI__Catalog_1a7132e44acca19d28231fbe1ce00d8a98"></a>
+
+Checks whether PortalUseRulesets_Optional is set to null.
 
 #### `public inline `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` & `[`GetInventoryBucketUseRuleSets`](#structFRHAPI__Catalog_1a4b33af56baed676c51c742c52183c175)`()` <a id="structFRHAPI__Catalog_1a4b33af56baed676c51c742c52183c175"></a>
 
@@ -363,6 +429,14 @@ Clears the value of InventoryBucketUseRuleSets_Optional and sets InventoryBucket
 
 Checks whether InventoryBucketUseRuleSets_Optional has been set.
 
+#### `public inline void `[`SetInventoryBucketUseRuleSetsToNull`](#structFRHAPI__Catalog_1a12b3a78f52218d3d4599ab1c38773d93)`()` <a id="structFRHAPI__Catalog_1a12b3a78f52218d3d4599ab1c38773d93"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsInventoryBucketUseRuleSetsNull`](#structFRHAPI__Catalog_1a8a1d344b5231b435a8fb761807d89553)`() const` <a id="structFRHAPI__Catalog_1a8a1d344b5231b435a8fb761807d89553"></a>
+
+Checks whether InventoryBucketUseRuleSets_Optional is set to null.
+
 #### `public inline `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` & `[`GetVendors`](#structFRHAPI__Catalog_1a64d67996d1fc2c98bf369f53a4b90f32)`()` <a id="structFRHAPI__Catalog_1a64d67996d1fc2c98bf369f53a4b90f32"></a>
 
 Gets the value of Vendors_Optional, regardless of it having been set.
@@ -402,6 +476,14 @@ Clears the value of Vendors_Optional and sets Vendors_IsSet to false.
 #### `public inline bool `[`IsVendorsSet`](#structFRHAPI__Catalog_1aa8a9182d29955a8ddfe31365352b6afe)`() const` <a id="structFRHAPI__Catalog_1aa8a9182d29955a8ddfe31365352b6afe"></a>
 
 Checks whether Vendors_Optional has been set.
+
+#### `public inline void `[`SetVendorsToNull`](#structFRHAPI__Catalog_1a2ae1f2aed94f3e5755414b87a12accc2)`()` <a id="structFRHAPI__Catalog_1a2ae1f2aed94f3e5755414b87a12accc2"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsVendorsNull`](#structFRHAPI__Catalog_1aed08870996d53781cc7bb203c0225818)`() const` <a id="structFRHAPI__Catalog_1aed08870996d53781cc7bb203c0225818"></a>
+
+Checks whether Vendors_Optional is set to null.
 
 #### `public inline `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` & `[`GetLoot`](#structFRHAPI__Catalog_1afbe85a4a43862447853b6ce623835d86)`()` <a id="structFRHAPI__Catalog_1afbe85a4a43862447853b6ce623835d86"></a>
 
@@ -443,6 +525,14 @@ Clears the value of Loot_Optional and sets Loot_IsSet to false.
 
 Checks whether Loot_Optional has been set.
 
+#### `public inline void `[`SetLootToNull`](#structFRHAPI__Catalog_1acd424493e425a45ecd3061a46a044ebc)`()` <a id="structFRHAPI__Catalog_1acd424493e425a45ecd3061a46a044ebc"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsLootNull`](#structFRHAPI__Catalog_1a468f22db8c4ac2ab4ae464355e5f6526)`() const` <a id="structFRHAPI__Catalog_1a468f22db8c4ac2ab4ae464355e5f6526"></a>
+
+Checks whether Loot_Optional is set to null.
+
 #### `public inline `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` & `[`GetItems`](#structFRHAPI__Catalog_1a1cac251d88c1c0717bdf808a7ed5a37d)`()` <a id="structFRHAPI__Catalog_1a1cac251d88c1c0717bdf808a7ed5a37d"></a>
 
 Gets the value of Items_Optional, regardless of it having been set.
@@ -482,6 +572,14 @@ Clears the value of Items_Optional and sets Items_IsSet to false.
 #### `public inline bool `[`IsItemsSet`](#structFRHAPI__Catalog_1a101cc8a5d1104bff025b3f334d84b691)`() const` <a id="structFRHAPI__Catalog_1a101cc8a5d1104bff025b3f334d84b691"></a>
 
 Checks whether Items_Optional has been set.
+
+#### `public inline void `[`SetItemsToNull`](#structFRHAPI__Catalog_1a1e6fa8818f2629023a2fff88bbb0450f)`()` <a id="structFRHAPI__Catalog_1a1e6fa8818f2629023a2fff88bbb0450f"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsItemsNull`](#structFRHAPI__Catalog_1a22be9a69e1d1577fe8885e7263439c54)`() const` <a id="structFRHAPI__Catalog_1a22be9a69e1d1577fe8885e7263439c54"></a>
+
+Checks whether Items_Optional is set to null.
 
 #### `public inline `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` & `[`GetPricePoints`](#structFRHAPI__Catalog_1ae0eca8bbadedebe2a11030ee9b2fa4e1)`()` <a id="structFRHAPI__Catalog_1ae0eca8bbadedebe2a11030ee9b2fa4e1"></a>
 
@@ -523,6 +621,14 @@ Clears the value of PricePoints_Optional and sets PricePoints_IsSet to false.
 
 Checks whether PricePoints_Optional has been set.
 
+#### `public inline void `[`SetPricePointsToNull`](#structFRHAPI__Catalog_1a23e2d08e818e84194a05dabf4c20a865)`()` <a id="structFRHAPI__Catalog_1a23e2d08e818e84194a05dabf4c20a865"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsPricePointsNull`](#structFRHAPI__Catalog_1ad111897f8b34c6314dc7a8ad6ea3cb67)`() const` <a id="structFRHAPI__Catalog_1ad111897f8b34c6314dc7a8ad6ea3cb67"></a>
+
+Checks whether PricePoints_Optional is set to null.
+
 #### `public inline `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` & `[`GetTimeFrames`](#structFRHAPI__Catalog_1ae0d04ad6ed7e83038fcce80673c8a4d2)`()` <a id="structFRHAPI__Catalog_1ae0d04ad6ed7e83038fcce80673c8a4d2"></a>
 
 Gets the value of TimeFrames_Optional, regardless of it having been set.
@@ -562,6 +668,14 @@ Clears the value of TimeFrames_Optional and sets TimeFrames_IsSet to false.
 #### `public inline bool `[`IsTimeFramesSet`](#structFRHAPI__Catalog_1a5e728abf43f75208f41a27a8be18b05d)`() const` <a id="structFRHAPI__Catalog_1a5e728abf43f75208f41a27a8be18b05d"></a>
 
 Checks whether TimeFrames_Optional has been set.
+
+#### `public inline void `[`SetTimeFramesToNull`](#structFRHAPI__Catalog_1a196fb026ce590cd409e4488b83399ebd)`()` <a id="structFRHAPI__Catalog_1a196fb026ce590cd409e4488b83399ebd"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsTimeFramesNull`](#structFRHAPI__Catalog_1aacce42554e7ece554049f9f1126fb121)`() const` <a id="structFRHAPI__Catalog_1aacce42554e7ece554049f9f1126fb121"></a>
+
+Checks whether TimeFrames_Optional is set to null.
 
 #### `public inline `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` & `[`GetSkus`](#structFRHAPI__Catalog_1a53e4d20e6002876f5b43ef51a4b90d78)`()` <a id="structFRHAPI__Catalog_1a53e4d20e6002876f5b43ef51a4b90d78"></a>
 
@@ -603,6 +717,14 @@ Clears the value of Skus_Optional and sets Skus_IsSet to false.
 
 Checks whether Skus_Optional has been set.
 
+#### `public inline void `[`SetSkusToNull`](#structFRHAPI__Catalog_1aeee52e1f406b51c528860f3766ec7934)`()` <a id="structFRHAPI__Catalog_1aeee52e1f406b51c528860f3766ec7934"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsSkusNull`](#structFRHAPI__Catalog_1a7fe2711b269d8160ddc80b9444f2afde)`() const` <a id="structFRHAPI__Catalog_1a7fe2711b269d8160ddc80b9444f2afde"></a>
+
+Checks whether Skus_Optional is set to null.
+
 #### `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Catalog_1a9b31d9b09b6ace54995dff359a0ccaa1)`()` <a id="structFRHAPI__Catalog_1a9b31d9b09b6ace54995dff359a0ccaa1"></a>
 
 Gets the value of CacheInfo_Optional, regardless of it having been set.
@@ -642,4 +764,12 @@ Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 #### `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__Catalog_1a16c8e55bcacaf94092e48c0592172f51)`() const` <a id="structFRHAPI__Catalog_1a16c8e55bcacaf94092e48c0592172f51"></a>
 
 Checks whether CacheInfo_Optional has been set.
+
+#### `public inline void `[`SetCacheInfoToNull`](#structFRHAPI__Catalog_1ab841d85836bf65f838b5255a3a346ebc)`()` <a id="structFRHAPI__Catalog_1ab841d85836bf65f838b5255a3a346ebc"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsCacheInfoNull`](#structFRHAPI__Catalog_1a8420c3fffcdfb4e4be08d59672c8b282)`() const` <a id="structFRHAPI__Catalog_1a8420c3fffcdfb4e4be08d59672c8b282"></a>
+
+Checks whether CacheInfo_Optional is set to null.
 

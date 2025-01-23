@@ -21,10 +21,11 @@ Collection of Create Inventory Requests. This will create new Inventory for each
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public ERHAPI_Source `[`Source_Optional`](#structFRHAPI__CreateInventoryRequests_1a5b4aab4ca2903df59450ecbd606a6738) | Source of this Inventory Operation.
+`public ERHAPI_Source `[`Source_Optional`](#structFRHAPI__CreateInventoryRequests_1a5b4aab4ca2903df59450ecbd606a6738) | 
 `public bool `[`Source_IsSet`](#structFRHAPI__CreateInventoryRequests_1a3e42709481fb0b75617b3bbd7314bbfb) | true if Source_Optional has been set to a value
-`public FGuid `[`ClientOrderRefId_Optional`](#structFRHAPI__CreateInventoryRequests_1a4c62974407c099235da7ecc889b1f5da) | Arbitrary UUID that can be used by clients to correlate Order requests with Order responses.
+`public FGuid `[`ClientOrderRefId_Optional`](#structFRHAPI__CreateInventoryRequests_1a4c62974407c099235da7ecc889b1f5da) | 
 `public bool `[`ClientOrderRefId_IsSet`](#structFRHAPI__CreateInventoryRequests_1a65113778350c9bdc67e1c97626afb562) | true if ClientOrderRefId_Optional has been set to a value
+`public bool `[`ClientOrderRefId_IsNull`](#structFRHAPI__CreateInventoryRequests_1a28e3631f1b94bc9a4774091b83c8015b) | true if ClientOrderRefId_Optional has been explicitly set to null
 `public TArray< `[`FRHAPI_CreateInventoryRequest`](RHAPI_CreateInventoryRequest.md#structFRHAPI__CreateInventoryRequest)` > `[`Inventory`](#structFRHAPI__CreateInventoryRequests_1ad5c1065a425471ead065a069b830e19a) | 
 `public virtual bool `[`FromJson`](#structFRHAPI__CreateInventoryRequests_1a0df8d837ee113e5821c56ecf7a46374a)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__CreateInventoryRequests_1a93a5f85754d955ad4b15bcd9156cbe41)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
@@ -48,6 +49,8 @@ Collection of Create Inventory Requests. This will create new Inventory for each
 `public inline void `[`SetClientOrderRefId`](#structFRHAPI__CreateInventoryRequests_1abfcc2485ded03c4584f0f97e76567449)`(FGuid && NewValue)` | Sets the value of ClientOrderRefId_Optional and also sets ClientOrderRefId_IsSet to true using move semantics.
 `public inline void `[`ClearClientOrderRefId`](#structFRHAPI__CreateInventoryRequests_1ad1d3d71c22d0fa589bbd5574932c60a8)`()` | Clears the value of ClientOrderRefId_Optional and sets ClientOrderRefId_IsSet to false.
 `public inline bool `[`IsClientOrderRefIdSet`](#structFRHAPI__CreateInventoryRequests_1add1a1d74d3e2317f98ceac8d0708b0fa)`() const` | Checks whether ClientOrderRefId_Optional has been set.
+`public inline void `[`SetClientOrderRefIdToNull`](#structFRHAPI__CreateInventoryRequests_1a4cacdf3d52aa692de45792e52c4450ff)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsClientOrderRefIdNull`](#structFRHAPI__CreateInventoryRequests_1a5214a40eb8f9dd43c196359215443d54)`() const` | Checks whether ClientOrderRefId_Optional is set to null.
 `public inline TArray< `[`FRHAPI_CreateInventoryRequest`](RHAPI_CreateInventoryRequest.md#structFRHAPI__CreateInventoryRequest)` > & `[`GetInventory`](#structFRHAPI__CreateInventoryRequests_1acceff6e4d5d60df6a4c34c8d4e90c0cd)`()` | Gets the value of Inventory.
 `public inline const TArray< `[`FRHAPI_CreateInventoryRequest`](RHAPI_CreateInventoryRequest.md#structFRHAPI__CreateInventoryRequest)` > & `[`GetInventory`](#structFRHAPI__CreateInventoryRequests_1ae3b08535f0429aed68a927928abed4cd)`() const` | Gets the value of Inventory.
 `public inline void `[`SetInventory`](#structFRHAPI__CreateInventoryRequests_1a8165f96527b37b8baed72db3aa8ed4e0)`(const TArray< `[`FRHAPI_CreateInventoryRequest`](RHAPI_CreateInventoryRequest.md#structFRHAPI__CreateInventoryRequest)` > & NewValue)` | Sets the value of Inventory.
@@ -57,19 +60,19 @@ Collection of Create Inventory Requests. This will create new Inventory for each
 
 #### `public ERHAPI_Source `[`Source_Optional`](#structFRHAPI__CreateInventoryRequests_1a5b4aab4ca2903df59450ecbd606a6738) <a id="structFRHAPI__CreateInventoryRequests_1a5b4aab4ca2903df59450ecbd606a6738"></a>
 
-Source of this Inventory Operation.
-
 #### `public bool `[`Source_IsSet`](#structFRHAPI__CreateInventoryRequests_1a3e42709481fb0b75617b3bbd7314bbfb) <a id="structFRHAPI__CreateInventoryRequests_1a3e42709481fb0b75617b3bbd7314bbfb"></a>
 
 true if Source_Optional has been set to a value
 
 #### `public FGuid `[`ClientOrderRefId_Optional`](#structFRHAPI__CreateInventoryRequests_1a4c62974407c099235da7ecc889b1f5da) <a id="structFRHAPI__CreateInventoryRequests_1a4c62974407c099235da7ecc889b1f5da"></a>
 
-Arbitrary UUID that can be used by clients to correlate Order requests with Order responses.
-
 #### `public bool `[`ClientOrderRefId_IsSet`](#structFRHAPI__CreateInventoryRequests_1a65113778350c9bdc67e1c97626afb562) <a id="structFRHAPI__CreateInventoryRequests_1a65113778350c9bdc67e1c97626afb562"></a>
 
 true if ClientOrderRefId_Optional has been set to a value
+
+#### `public bool `[`ClientOrderRefId_IsNull`](#structFRHAPI__CreateInventoryRequests_1a28e3631f1b94bc9a4774091b83c8015b) <a id="structFRHAPI__CreateInventoryRequests_1a28e3631f1b94bc9a4774091b83c8015b"></a>
+
+true if ClientOrderRefId_Optional has been explicitly set to null
 
 #### `public TArray< `[`FRHAPI_CreateInventoryRequest`](RHAPI_CreateInventoryRequest.md#structFRHAPI__CreateInventoryRequest)` > `[`Inventory`](#structFRHAPI__CreateInventoryRequests_1ad5c1065a425471ead065a069b830e19a) <a id="structFRHAPI__CreateInventoryRequests_1ad5c1065a425471ead065a069b830e19a"></a>
 
@@ -169,6 +172,14 @@ Clears the value of ClientOrderRefId_Optional and sets ClientOrderRefId_IsSet to
 #### `public inline bool `[`IsClientOrderRefIdSet`](#structFRHAPI__CreateInventoryRequests_1add1a1d74d3e2317f98ceac8d0708b0fa)`() const` <a id="structFRHAPI__CreateInventoryRequests_1add1a1d74d3e2317f98ceac8d0708b0fa"></a>
 
 Checks whether ClientOrderRefId_Optional has been set.
+
+#### `public inline void `[`SetClientOrderRefIdToNull`](#structFRHAPI__CreateInventoryRequests_1a4cacdf3d52aa692de45792e52c4450ff)`()` <a id="structFRHAPI__CreateInventoryRequests_1a4cacdf3d52aa692de45792e52c4450ff"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsClientOrderRefIdNull`](#structFRHAPI__CreateInventoryRequests_1a5214a40eb8f9dd43c196359215443d54)`() const` <a id="structFRHAPI__CreateInventoryRequests_1a5214a40eb8f9dd43c196359215443d54"></a>
+
+Checks whether ClientOrderRefId_Optional is set to null.
 
 #### `public inline TArray< `[`FRHAPI_CreateInventoryRequest`](RHAPI_CreateInventoryRequest.md#structFRHAPI__CreateInventoryRequest)` > & `[`GetInventory`](#structFRHAPI__CreateInventoryRequests_1acceff6e4d5d60df6a4c34c8d4e90c0cd)`()` <a id="structFRHAPI__CreateInventoryRequests_1acceff6e4d5d60df6a4c34c8d4e90c0cd"></a>
 

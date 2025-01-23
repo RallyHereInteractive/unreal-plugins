@@ -51,12 +51,14 @@ struct RALLYHEREAPI_API FRHAPI_LootPriceCurrency : public FRHAPI_Model
 	/** @brief Sets the value of PriceItemId using move semantics */
 	void SetPriceItemId(FGuid&& NewValue) { PriceItemId = NewValue;   }
 
-	/** @brief The Item used as the currency for the purchase. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 PriceLegacyItemId_Optional{ 0 };
 	/** @brief true if PriceLegacyItemId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PriceLegacyItemId_IsSet{ false };
+	/** @brief true if PriceLegacyItemId_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool PriceLegacyItemId_IsNull{ false };
 	/** @brief Gets the value of PriceLegacyItemId_Optional, regardless of it having been set */
 	int32& GetPriceLegacyItemId() { return PriceLegacyItemId_Optional; }
 	/** @brief Gets the value of PriceLegacyItemId_Optional, regardless of it having been set */
@@ -64,23 +66,27 @@ struct RALLYHEREAPI_API FRHAPI_LootPriceCurrency : public FRHAPI_Model
 	/** @brief Gets the value of PriceLegacyItemId_Optional, if it has been set, otherwise it returns DefaultValue */
 	const int32& GetPriceLegacyItemId(const int32& DefaultValue) const { if (PriceLegacyItemId_IsSet) return PriceLegacyItemId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of PriceLegacyItemId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPriceLegacyItemId(int32& OutValue) const { if (PriceLegacyItemId_IsSet) OutValue = PriceLegacyItemId_Optional; return PriceLegacyItemId_IsSet; }
+	bool GetPriceLegacyItemId(int32& OutValue) const { if (PriceLegacyItemId_IsSet && !PriceLegacyItemId_IsNull) OutValue = PriceLegacyItemId_Optional; return PriceLegacyItemId_IsSet; }
 	/** @brief Returns a pointer to PriceLegacyItemId_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetPriceLegacyItemIdOrNull() { if (PriceLegacyItemId_IsSet) return (&PriceLegacyItemId_Optional); return nullptr; }
+	int32* GetPriceLegacyItemIdOrNull() { if (PriceLegacyItemId_IsSet) return (PriceLegacyItemId_IsNull ? nullptr : &PriceLegacyItemId_Optional); return nullptr; }
 	/** @brief Returns a pointer to PriceLegacyItemId_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetPriceLegacyItemIdOrNull() const { if (PriceLegacyItemId_IsSet) return (&PriceLegacyItemId_Optional); return nullptr; }
+	const int32* GetPriceLegacyItemIdOrNull() const { if (PriceLegacyItemId_IsSet) return (PriceLegacyItemId_IsNull ? nullptr : &PriceLegacyItemId_Optional); return nullptr; }
 	/** @brief Sets the value of PriceLegacyItemId_Optional and also sets PriceLegacyItemId_IsSet to true */
-	void SetPriceLegacyItemId(const int32& NewValue) { PriceLegacyItemId_Optional = NewValue; PriceLegacyItemId_IsSet = true;  }
+	void SetPriceLegacyItemId(const int32& NewValue) { PriceLegacyItemId_Optional = NewValue; PriceLegacyItemId_IsSet = true; PriceLegacyItemId_IsNull = false; }
 	/** @brief Sets the value of PriceLegacyItemId_Optional and also sets PriceLegacyItemId_IsSet to true using move semantics */
-	void SetPriceLegacyItemId(int32&& NewValue) { PriceLegacyItemId_Optional = NewValue; PriceLegacyItemId_IsSet = true;  }
+	void SetPriceLegacyItemId(int32&& NewValue) { PriceLegacyItemId_Optional = NewValue; PriceLegacyItemId_IsSet = true; PriceLegacyItemId_IsNull = false; }
 	/** @brief Clears the value of PriceLegacyItemId_Optional and sets PriceLegacyItemId_IsSet to false */
-	void ClearPriceLegacyItemId() { PriceLegacyItemId_Optional = 0; PriceLegacyItemId_IsSet = false;  }
+	void ClearPriceLegacyItemId() { PriceLegacyItemId_Optional = 0; PriceLegacyItemId_IsSet = false; PriceLegacyItemId_IsNull = false; }
 	/** @brief Checks whether PriceLegacyItemId_Optional has been set */
 	bool IsPriceLegacyItemIdSet() const { return PriceLegacyItemId_IsSet; }
 	/** @brief Returns true if PriceLegacyItemId_Optional is set and matches the default value */
 	bool IsPriceLegacyItemIdDefaultValue() const { return PriceLegacyItemId_IsSet && PriceLegacyItemId_Optional == 0; }
 	/** @brief Sets the value of PriceLegacyItemId_Optional to its default and also sets PriceLegacyItemId_IsSet to true */
 	void SetPriceLegacyItemIdToDefault() { SetPriceLegacyItemId(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetPriceLegacyItemIdToNull() { PriceLegacyItemId_IsSet = true; PriceLegacyItemId_IsNull = true; }
+	/** @brief Checks whether PriceLegacyItemId_Optional is set to null */
+	bool IsPriceLegacyItemIdNull() const { return PriceLegacyItemId_IsSet && PriceLegacyItemId_IsNull; }
 
 	/** @brief The current amount of the item needed to use this price currency */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -98,12 +104,14 @@ struct RALLYHEREAPI_API FRHAPI_LootPriceCurrency : public FRHAPI_Model
 	/** @brief Sets the value of CurrentPrice to its default  */
 	void SetCurrentPriceToDefault() { SetCurrentPrice(0); }
 
-	/** @brief The amount of the item needed before the sale began */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 OriginalPrice_Optional{ 0 };
 	/** @brief true if OriginalPrice_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool OriginalPrice_IsSet{ false };
+	/** @brief true if OriginalPrice_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool OriginalPrice_IsNull{ false };
 	/** @brief Gets the value of OriginalPrice_Optional, regardless of it having been set */
 	int32& GetOriginalPrice() { return OriginalPrice_Optional; }
 	/** @brief Gets the value of OriginalPrice_Optional, regardless of it having been set */
@@ -111,23 +119,27 @@ struct RALLYHEREAPI_API FRHAPI_LootPriceCurrency : public FRHAPI_Model
 	/** @brief Gets the value of OriginalPrice_Optional, if it has been set, otherwise it returns DefaultValue */
 	const int32& GetOriginalPrice(const int32& DefaultValue) const { if (OriginalPrice_IsSet) return OriginalPrice_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of OriginalPrice_Optional and returns true if it has been set, otherwise returns false */
-	bool GetOriginalPrice(int32& OutValue) const { if (OriginalPrice_IsSet) OutValue = OriginalPrice_Optional; return OriginalPrice_IsSet; }
+	bool GetOriginalPrice(int32& OutValue) const { if (OriginalPrice_IsSet && !OriginalPrice_IsNull) OutValue = OriginalPrice_Optional; return OriginalPrice_IsSet; }
 	/** @brief Returns a pointer to OriginalPrice_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetOriginalPriceOrNull() { if (OriginalPrice_IsSet) return (&OriginalPrice_Optional); return nullptr; }
+	int32* GetOriginalPriceOrNull() { if (OriginalPrice_IsSet) return (OriginalPrice_IsNull ? nullptr : &OriginalPrice_Optional); return nullptr; }
 	/** @brief Returns a pointer to OriginalPrice_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetOriginalPriceOrNull() const { if (OriginalPrice_IsSet) return (&OriginalPrice_Optional); return nullptr; }
+	const int32* GetOriginalPriceOrNull() const { if (OriginalPrice_IsSet) return (OriginalPrice_IsNull ? nullptr : &OriginalPrice_Optional); return nullptr; }
 	/** @brief Sets the value of OriginalPrice_Optional and also sets OriginalPrice_IsSet to true */
-	void SetOriginalPrice(const int32& NewValue) { OriginalPrice_Optional = NewValue; OriginalPrice_IsSet = true;  }
+	void SetOriginalPrice(const int32& NewValue) { OriginalPrice_Optional = NewValue; OriginalPrice_IsSet = true; OriginalPrice_IsNull = false; }
 	/** @brief Sets the value of OriginalPrice_Optional and also sets OriginalPrice_IsSet to true using move semantics */
-	void SetOriginalPrice(int32&& NewValue) { OriginalPrice_Optional = NewValue; OriginalPrice_IsSet = true;  }
+	void SetOriginalPrice(int32&& NewValue) { OriginalPrice_Optional = NewValue; OriginalPrice_IsSet = true; OriginalPrice_IsNull = false; }
 	/** @brief Clears the value of OriginalPrice_Optional and sets OriginalPrice_IsSet to false */
-	void ClearOriginalPrice() { OriginalPrice_Optional = 0; OriginalPrice_IsSet = false;  }
+	void ClearOriginalPrice() { OriginalPrice_Optional = 0; OriginalPrice_IsSet = false; OriginalPrice_IsNull = false; }
 	/** @brief Checks whether OriginalPrice_Optional has been set */
 	bool IsOriginalPriceSet() const { return OriginalPrice_IsSet; }
 	/** @brief Returns true if OriginalPrice_Optional is set and matches the default value */
 	bool IsOriginalPriceDefaultValue() const { return OriginalPrice_IsSet && OriginalPrice_Optional == 0; }
 	/** @brief Sets the value of OriginalPrice_Optional to its default and also sets OriginalPrice_IsSet to true */
 	void SetOriginalPriceToDefault() { SetOriginalPrice(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetOriginalPriceToNull() { OriginalPrice_IsSet = true; OriginalPrice_IsNull = true; }
+	/** @brief Checks whether OriginalPrice_Optional is set to null */
+	bool IsOriginalPriceNull() const { return OriginalPrice_IsSet && OriginalPrice_IsNull; }
 };
 
 /** @} */

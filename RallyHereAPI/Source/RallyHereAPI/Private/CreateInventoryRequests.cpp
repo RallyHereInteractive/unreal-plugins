@@ -30,6 +30,9 @@ void FRHAPI_CreateInventoryRequests::WriteJson(TSharedRef<TJsonWriter<>>& Writer
 	if (ClientOrderRefId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("client_order_ref_id"));
+		if (ClientOrderRefId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, ClientOrderRefId_Optional);
 	}
 	Writer->WriteIdentifierPrefix(TEXT("inventory"));
@@ -54,7 +57,8 @@ bool FRHAPI_CreateInventoryRequests::FromJson(const TSharedPtr<FJsonValue>& Json
 	const TSharedPtr<FJsonValue> JsonClientOrderRefIdField = (*Object)->TryGetField(TEXT("client_order_ref_id"));
 	if (JsonClientOrderRefIdField.IsValid())
 	{
-		ClientOrderRefId_IsSet = TryGetJsonValue(JsonClientOrderRefIdField, ClientOrderRefId_Optional);
+		ClientOrderRefId_IsNull = JsonClientOrderRefIdField->IsNull();
+		ClientOrderRefId_IsSet = ClientOrderRefId_IsNull || TryGetJsonValue(JsonClientOrderRefIdField, ClientOrderRefId_Optional);
 		ParseSuccess &= ClientOrderRefId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonInventoryField = (*Object)->TryGetField(TEXT("inventory"));

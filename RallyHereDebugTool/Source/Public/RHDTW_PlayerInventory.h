@@ -42,27 +42,7 @@ private:
 	void HandleGetInventory(bool bSuccess);
 
 	//Inventory Session Tab
-	int32 SelectedPlatform;
-	TArray<ERHAPI_Platform> Platforms =
-	{
-		{},
-		ERHAPI_Platform::Anon,
-		ERHAPI_Platform::Basic,
-		ERHAPI_Platform::XboxLive,
-		ERHAPI_Platform::Psn,
-		ERHAPI_Platform::NintendoNaid,
-		ERHAPI_Platform::NintendoSwitch,
-		ERHAPI_Platform::NintendoPpid,
-		ERHAPI_Platform::Google,
-		ERHAPI_Platform::GooglePlay,
-		ERHAPI_Platform::Apple,
-		ERHAPI_Platform::Epic,
-		ERHAPI_Platform::Steam,
-		ERHAPI_Platform::Amazon,
-		ERHAPI_Platform::Twitch,
-	};
-	TArray<std::string> PlatformStrings;
-	TArray<const ANSICHAR*> PlatformChars;
+	TOptional<ERHAPI_InventoryPlatform> SelectedPlatform;
 	void HandleInventorySessionUpdated(bool bSucess, FGuid PlayerUuid);
 	FString InventorySessionResult;
 

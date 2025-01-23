@@ -23,9 +23,10 @@ An Item. Item come in a couple of different flavors; determined by the &#x60;typ
 --------------------------------|---------------------------------------------
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__Item_1ab4471f233af6d1c7692344d7dc338a47) | Custom data associated with the resource.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__Item_1a9672eb702f349f9b39e8de502b307f16) | true if CustomData_Optional has been set to a value
-`public FGuid `[`ItemUuid_Optional`](#structFRHAPI__Item_1a80b591249bcf6a162cea03625859730b) | The Item UUID.
+`public FGuid `[`ItemUuid_Optional`](#structFRHAPI__Item_1a80b591249bcf6a162cea03625859730b) | 
 `public bool `[`ItemUuid_IsSet`](#structFRHAPI__Item_1ac78db9c246fdea6afcec61519e3bae79) | true if ItemUuid_Optional has been set to a value
-`public ERHAPI_ItemType `[`Type_Optional`](#structFRHAPI__Item_1afe34e2073c58c7e118c14e292e75b4fe) | The type of item.
+`public bool `[`ItemUuid_IsNull`](#structFRHAPI__Item_1a41a57f8ca3f0575ed2909f80b779a10a) | true if ItemUuid_Optional has been explicitly set to null
+`public ERHAPI_ItemType `[`Type_Optional`](#structFRHAPI__Item_1afe34e2073c58c7e118c14e292e75b4fe) | 
 `public bool `[`Type_IsSet`](#structFRHAPI__Item_1a0cc1c2c5e9833d046535ee67c6044d5b) | true if Type_Optional has been set to a value
 `public int32 `[`LegacyType_Optional`](#structFRHAPI__Item_1a9105c322f788b420009e19957dc9ef3f) | 
 `public bool `[`LegacyType_IsSet`](#structFRHAPI__Item_1a351cad97d7e9511c49556f52d97779a5) | true if LegacyType_Optional has been set to a value
@@ -35,20 +36,24 @@ An Item. Item come in a couple of different flavors; determined by the &#x60;typ
 `public bool `[`RefItemId_IsSet`](#structFRHAPI__Item_1aaeecdeed1bedbf5b25576e28ccd2c2b1) | true if RefItemId_Optional has been set to a value
 `public int32 `[`AvailabilityFlags_Optional`](#structFRHAPI__Item_1ac0bdf0c75ad5b86f6032270151f4ad0e) | 
 `public bool `[`AvailabilityFlags_IsSet`](#structFRHAPI__Item_1a67bf7d179a5204d5ca2386582f437248) | true if AvailabilityFlags_Optional has been set to a value
-`public FGuid `[`EntitledLootUuid_Optional`](#structFRHAPI__Item_1a55a6d7ad83368dc6d41cb20842ca11c3) | This is only valid for an entitlement Item. When this item is granted and Inventory Session creation, this is the Loot that will be fulfilled.
+`public FGuid `[`EntitledLootUuid_Optional`](#structFRHAPI__Item_1a55a6d7ad83368dc6d41cb20842ca11c3) | 
 `public bool `[`EntitledLootUuid_IsSet`](#structFRHAPI__Item_1a7b278bd51c30e2aa654e801bf8b778bd) | true if EntitledLootUuid_Optional has been set to a value
+`public bool `[`EntitledLootUuid_IsNull`](#structFRHAPI__Item_1a61e93b42ac1107188bc9234168667f12) | true if EntitledLootUuid_Optional has been explicitly set to null
 `public int32 `[`EntitledLootId_Optional`](#structFRHAPI__Item_1aaa68f0eea3db70f908d899ecf68bc9bf) | This is only valid for an entitlement Item. When this item is granted and Inventory Session creation, this is the Loot ID that will be fulfilled.
 `public bool `[`EntitledLootId_IsSet`](#structFRHAPI__Item_1af42c3dae98945b853dd863c498951980) | true if EntitledLootId_Optional has been set to a value
-`public FGuid `[`LevelXpTableUuid_Optional`](#structFRHAPI__Item_1a797b9427d09a024a7e262926ea9c5f18) | The XP Table that is used to determine the Player's level for this XP. The level increase occurs when the quantity of this Item increases above the minimum XP of an XP Level. This is only valid for an unit Item.
+`public FGuid `[`LevelXpTableUuid_Optional`](#structFRHAPI__Item_1a797b9427d09a024a7e262926ea9c5f18) | 
 `public bool `[`LevelXpTableUuid_IsSet`](#structFRHAPI__Item_1ad36b1735e32314959dbc6e6a44957833) | true if LevelXpTableUuid_Optional has been set to a value
+`public bool `[`LevelXpTableUuid_IsNull`](#structFRHAPI__Item_1a7a2a2c9d8bd0d598dc5c746bbb272a32) | true if LevelXpTableUuid_Optional has been explicitly set to null
 `public int32 `[`LevelXpTableId_Optional`](#structFRHAPI__Item_1a4cfe4b49ca4f2f5c014d4d86b3486471) | The XP Table that is used to determine the Player's level for this XP. The level increase occurs when the quantity of this Item increases above the minimum XP of an XP Level. This is only valid for an unit Item.
 `public bool `[`LevelXpTableId_IsSet`](#structFRHAPI__Item_1add1db69a09d1d80305df5206c0424544) | true if LevelXpTableId_Optional has been set to a value
-`public FGuid `[`LevelVendorUuid_Optional`](#structFRHAPI__Item_1a54af64f2166321a3d54bfd49eb33d126) | The Vendor that is used filfill level up rewards for this item. The level of the Player is used as the index into the Vendor's Loot table. This is only valid for an unit Item.
+`public FGuid `[`LevelVendorUuid_Optional`](#structFRHAPI__Item_1a54af64f2166321a3d54bfd49eb33d126) | 
 `public bool `[`LevelVendorUuid_IsSet`](#structFRHAPI__Item_1a2b83904f2221e90ebc9d8da3c9020ba2) | true if LevelVendorUuid_Optional has been set to a value
+`public bool `[`LevelVendorUuid_IsNull`](#structFRHAPI__Item_1ac8411fd42c89fb739a4227815afa0ae3) | true if LevelVendorUuid_Optional has been explicitly set to null
 `public int32 `[`LevelVendorId_Optional`](#structFRHAPI__Item_1a76aba527b53bb5846856feb9303acf9e) | The Vendor that is used filfill level up rewards for this item. The level of the Player is used as the index into the Vendor's Loot table. This is only valid for an unit Item.
 `public bool `[`LevelVendorId_IsSet`](#structFRHAPI__Item_1a8e31f620f2509aa5edb703e7bf2f7387) | true if LevelVendorId_Optional has been set to a value
-`public FGuid `[`CouponDiscountCurrencyItemUuid_Optional`](#structFRHAPI__Item_1aeff374c8804054ba04ab0eba08ea990b) | The item of the currency used by this coupon. This is only valid for an unit Item.
+`public FGuid `[`CouponDiscountCurrencyItemUuid_Optional`](#structFRHAPI__Item_1aeff374c8804054ba04ab0eba08ea990b) | 
 `public bool `[`CouponDiscountCurrencyItemUuid_IsSet`](#structFRHAPI__Item_1a1e52daf9baa1a3f8e08e674d61d057f2) | true if CouponDiscountCurrencyItemUuid_Optional has been set to a value
+`public bool `[`CouponDiscountCurrencyItemUuid_IsNull`](#structFRHAPI__Item_1a6e30b9c5762a9f58a1b9c87326349726) | true if CouponDiscountCurrencyItemUuid_Optional has been explicitly set to null
 `public int32 `[`CouponDiscountCurrencyItemId_Optional`](#structFRHAPI__Item_1aac9de3a09ab34aa9feabf22202daae80) | The item of the currency used by this coupon. This is only valid for an unit Item.
 `public bool `[`CouponDiscountCurrencyItemId_IsSet`](#structFRHAPI__Item_1a0809de18d707f4af24019793672bbd25) | true if CouponDiscountCurrencyItemId_Optional has been set to a value
 `public float `[`CouponDiscountPercentage_Optional`](#structFRHAPI__Item_1a809a2484d750588a4c62337e2b47ead5) | The percentage of the discount. This is only valid for an unit Item.
@@ -57,14 +62,16 @@ An Item. Item come in a couple of different flavors; determined by the &#x60;typ
 `public bool `[`CouponConsumeOnUse_IsSet`](#structFRHAPI__Item_1a6901af6f3e9c28935f44f0a479391d27) | true if CouponConsumeOnUse_Optional has been set to a value
 `public int32 `[`ItemPortalUseRulesetId_Optional`](#structFRHAPI__Item_1ae1b19e8759742961745126c8858ce167) | 
 `public bool `[`ItemPortalUseRulesetId_IsSet`](#structFRHAPI__Item_1ad179470bc0eac912b9de30cec699f45d) | true if ItemPortalUseRulesetId_Optional has been set to a value
-`public FString `[`InventoryBucketUseRuleSetId_Optional`](#structFRHAPI__Item_1a0e0d5505b14a2ac60dbadfd639eda910) | The Inventory Bucket Use Rule Set ID that determines how this item can be used across buckets.
+`public FString `[`InventoryBucketUseRuleSetId_Optional`](#structFRHAPI__Item_1a0e0d5505b14a2ac60dbadfd639eda910) | 
 `public bool `[`InventoryBucketUseRuleSetId_IsSet`](#structFRHAPI__Item_1a3a38815ad3856cc8269d105b833cd90a) | true if InventoryBucketUseRuleSetId_Optional has been set to a value
+`public bool `[`InventoryBucketUseRuleSetId_IsNull`](#structFRHAPI__Item_1a8f466f9549bf32101e624dfb63b1f4b1) | true if InventoryBucketUseRuleSetId_Optional has been explicitly set to null
 `public TArray< int32 > `[`CouponDiscountLoot_Optional`](#structFRHAPI__Item_1a24aa5f6c74bb93cf565ea8d89f5f73bd) | List of Loot IDs this item can discount.
 `public bool `[`CouponDiscountLoot_IsSet`](#structFRHAPI__Item_1ad2d14cf5b7a5f19a37b8e25eee4d6e09) | true if CouponDiscountLoot_Optional has been set to a value
 `public TArray< FGuid > `[`CouponDiscountLootUuid_Optional`](#structFRHAPI__Item_1a5784ccafb6f7909f659810f797202a84) | List of Loot this item can discount.
 `public bool `[`CouponDiscountLootUuid_IsSet`](#structFRHAPI__Item_1aa70b15d223288176fcaced0e7622087e) | true if CouponDiscountLootUuid_Optional has been set to a value
-`public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__Item_1ac645ac2ba254ea2e37fa6d701704f527) | Cache information for this item.
+`public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__Item_1ac645ac2ba254ea2e37fa6d701704f527) | 
 `public bool `[`CacheInfo_IsSet`](#structFRHAPI__Item_1a0d52a68ad73bca520721e74545ee2084) | true if CacheInfo_Optional has been set to a value
+`public bool `[`CacheInfo_IsNull`](#structFRHAPI__Item_1aba48c9d3eb60b570bba2b1855f67f3bb) | true if CacheInfo_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__Item_1a5e75ef0aa4b1af5286da65c549597c73)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__Item_1af420192ca00e833b25ecebe48ea0408a)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Item_1a454f466ad8f83a8a10b7b7b3cb50c56e)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
@@ -87,6 +94,8 @@ An Item. Item come in a couple of different flavors; determined by the &#x60;typ
 `public inline void `[`SetItemUuid`](#structFRHAPI__Item_1afa8eda7ecbd1c8cc0e299a2c2f9fdf0e)`(FGuid && NewValue)` | Sets the value of ItemUuid_Optional and also sets ItemUuid_IsSet to true using move semantics.
 `public inline void `[`ClearItemUuid`](#structFRHAPI__Item_1ae117f4643d50d55557c3472cbf5839c1)`()` | Clears the value of ItemUuid_Optional and sets ItemUuid_IsSet to false.
 `public inline bool `[`IsItemUuidSet`](#structFRHAPI__Item_1a32232968f40beb8608b89bea1f71195a)`() const` | Checks whether ItemUuid_Optional has been set.
+`public inline void `[`SetItemUuidToNull`](#structFRHAPI__Item_1ad455962b5ae89a2cb9e7fe2da0d56424)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsItemUuidNull`](#structFRHAPI__Item_1a6b75713e68d697699fe25d2e0b0cc5c0)`() const` | Checks whether ItemUuid_Optional is set to null.
 `public inline ERHAPI_ItemType & `[`GetType`](#structFRHAPI__Item_1a3da7e87d3fb39720c8978643f0608048)`()` | Gets the value of Type_Optional, regardless of it having been set.
 `public inline const ERHAPI_ItemType & `[`GetType`](#structFRHAPI__Item_1a167463cfa205ffd92e595fadbae521b4)`() const` | Gets the value of Type_Optional, regardless of it having been set.
 `public inline const ERHAPI_ItemType & `[`GetType`](#structFRHAPI__Item_1ab08927d0116d8262149d2a7f479fad33)`(const ERHAPI_ItemType & DefaultValue) const` | Gets the value of Type_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -155,6 +164,8 @@ An Item. Item come in a couple of different flavors; determined by the &#x60;typ
 `public inline void `[`SetEntitledLootUuid`](#structFRHAPI__Item_1a56ba00061fb3c807ae5f1a7a34e7555e)`(FGuid && NewValue)` | Sets the value of EntitledLootUuid_Optional and also sets EntitledLootUuid_IsSet to true using move semantics.
 `public inline void `[`ClearEntitledLootUuid`](#structFRHAPI__Item_1a80b307d98d2d4dfd01c5f180d8afb707)`()` | Clears the value of EntitledLootUuid_Optional and sets EntitledLootUuid_IsSet to false.
 `public inline bool `[`IsEntitledLootUuidSet`](#structFRHAPI__Item_1a5d3d67041b84635a8c2d641ff1f26e0a)`() const` | Checks whether EntitledLootUuid_Optional has been set.
+`public inline void `[`SetEntitledLootUuidToNull`](#structFRHAPI__Item_1adbe4c3be863a8da8fc19e0b1f3919272)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsEntitledLootUuidNull`](#structFRHAPI__Item_1a991c70ad3e9d145c35401504ee11bfb8)`() const` | Checks whether EntitledLootUuid_Optional is set to null.
 `public inline int32 & `[`GetEntitledLootId`](#structFRHAPI__Item_1ae7c458dc55f2f24701123939f674aaea)`()` | Gets the value of EntitledLootId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetEntitledLootId`](#structFRHAPI__Item_1a64d792574e0c14ab1cba1d7310277eb4)`() const` | Gets the value of EntitledLootId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetEntitledLootId`](#structFRHAPI__Item_1accf5503c5de62bd6209ba26d088f0c9a)`(const int32 & DefaultValue) const` | Gets the value of EntitledLootId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -177,6 +188,8 @@ An Item. Item come in a couple of different flavors; determined by the &#x60;typ
 `public inline void `[`SetLevelXpTableUuid`](#structFRHAPI__Item_1ae2d873fe4792b0657cd0d9c0a7cd905b)`(FGuid && NewValue)` | Sets the value of LevelXpTableUuid_Optional and also sets LevelXpTableUuid_IsSet to true using move semantics.
 `public inline void `[`ClearLevelXpTableUuid`](#structFRHAPI__Item_1aa045a9bebae787bfd2ca849c041b3a4f)`()` | Clears the value of LevelXpTableUuid_Optional and sets LevelXpTableUuid_IsSet to false.
 `public inline bool `[`IsLevelXpTableUuidSet`](#structFRHAPI__Item_1a4a011653b815f41974b88e5bc21df0ce)`() const` | Checks whether LevelXpTableUuid_Optional has been set.
+`public inline void `[`SetLevelXpTableUuidToNull`](#structFRHAPI__Item_1a374acbf3626627b060ec2c78ecdec5d6)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsLevelXpTableUuidNull`](#structFRHAPI__Item_1a94e18011fd34561c9829e421c97f3d4d)`() const` | Checks whether LevelXpTableUuid_Optional is set to null.
 `public inline int32 & `[`GetLevelXpTableId`](#structFRHAPI__Item_1a09dd729edd44e83abbaa7d885e90d9fc)`()` | Gets the value of LevelXpTableId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetLevelXpTableId`](#structFRHAPI__Item_1a89ffc96012836dbbcb52fe856777e5b8)`() const` | Gets the value of LevelXpTableId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetLevelXpTableId`](#structFRHAPI__Item_1ad1087a14c51e23ce212aed7c8b9ba650)`(const int32 & DefaultValue) const` | Gets the value of LevelXpTableId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -199,6 +212,8 @@ An Item. Item come in a couple of different flavors; determined by the &#x60;typ
 `public inline void `[`SetLevelVendorUuid`](#structFRHAPI__Item_1a5e15a80ca954fc6ae976fba37878cdf6)`(FGuid && NewValue)` | Sets the value of LevelVendorUuid_Optional and also sets LevelVendorUuid_IsSet to true using move semantics.
 `public inline void `[`ClearLevelVendorUuid`](#structFRHAPI__Item_1a5e63c9d337ee6543483319fa12b01c6d)`()` | Clears the value of LevelVendorUuid_Optional and sets LevelVendorUuid_IsSet to false.
 `public inline bool `[`IsLevelVendorUuidSet`](#structFRHAPI__Item_1a1eb134198a801e945e40c861208a30a5)`() const` | Checks whether LevelVendorUuid_Optional has been set.
+`public inline void `[`SetLevelVendorUuidToNull`](#structFRHAPI__Item_1a314344e8aabe27d33b3e8310d9a8407d)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsLevelVendorUuidNull`](#structFRHAPI__Item_1ae3465e2291b884421a8976cf3e79304d)`() const` | Checks whether LevelVendorUuid_Optional is set to null.
 `public inline int32 & `[`GetLevelVendorId`](#structFRHAPI__Item_1ac0267cbf41820c783d2fd20991585153)`()` | Gets the value of LevelVendorId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetLevelVendorId`](#structFRHAPI__Item_1ad0ccbe959c0b5eeb8123badceeee37a6)`() const` | Gets the value of LevelVendorId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetLevelVendorId`](#structFRHAPI__Item_1a249c565fc1bc9a9b07e75364e0d82951)`(const int32 & DefaultValue) const` | Gets the value of LevelVendorId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -221,6 +236,8 @@ An Item. Item come in a couple of different flavors; determined by the &#x60;typ
 `public inline void `[`SetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1afa57506fd183e4e65cd8ad955e588242)`(FGuid && NewValue)` | Sets the value of CouponDiscountCurrencyItemUuid_Optional and also sets CouponDiscountCurrencyItemUuid_IsSet to true using move semantics.
 `public inline void `[`ClearCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1aad2f0040ddc2e9e4f217aed5358cd17b)`()` | Clears the value of CouponDiscountCurrencyItemUuid_Optional and sets CouponDiscountCurrencyItemUuid_IsSet to false.
 `public inline bool `[`IsCouponDiscountCurrencyItemUuidSet`](#structFRHAPI__Item_1af9580809322a553ee79f764eaff8b15b)`() const` | Checks whether CouponDiscountCurrencyItemUuid_Optional has been set.
+`public inline void `[`SetCouponDiscountCurrencyItemUuidToNull`](#structFRHAPI__Item_1ae4ac5789fd52ab5b743c66ecdaa786a0)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsCouponDiscountCurrencyItemUuidNull`](#structFRHAPI__Item_1a520303a5d9dccf123db6d105fd179508)`() const` | Checks whether CouponDiscountCurrencyItemUuid_Optional is set to null.
 `public inline int32 & `[`GetCouponDiscountCurrencyItemId`](#structFRHAPI__Item_1a54c5bee3b0fa90382725b859cf6413ab)`()` | Gets the value of CouponDiscountCurrencyItemId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetCouponDiscountCurrencyItemId`](#structFRHAPI__Item_1ac179ef75f5caaf4218f25d4cfb462bdc)`() const` | Gets the value of CouponDiscountCurrencyItemId_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetCouponDiscountCurrencyItemId`](#structFRHAPI__Item_1acbc01922d7bd546f049702a758ca3b74)`(const int32 & DefaultValue) const` | Gets the value of CouponDiscountCurrencyItemId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -277,6 +294,8 @@ An Item. Item come in a couple of different flavors; determined by the &#x60;typ
 `public inline void `[`SetInventoryBucketUseRuleSetId`](#structFRHAPI__Item_1a765a19c21abc7b6f2510220b303759c6)`(FString && NewValue)` | Sets the value of InventoryBucketUseRuleSetId_Optional and also sets InventoryBucketUseRuleSetId_IsSet to true using move semantics.
 `public inline void `[`ClearInventoryBucketUseRuleSetId`](#structFRHAPI__Item_1afd23945b8a24b88e3f1bea74901cb8c0)`()` | Clears the value of InventoryBucketUseRuleSetId_Optional and sets InventoryBucketUseRuleSetId_IsSet to false.
 `public inline bool `[`IsInventoryBucketUseRuleSetIdSet`](#structFRHAPI__Item_1a3bc734432134f82dd3c3222f4c783a4b)`() const` | Checks whether InventoryBucketUseRuleSetId_Optional has been set.
+`public inline void `[`SetInventoryBucketUseRuleSetIdToNull`](#structFRHAPI__Item_1a334a2c1de68d3f3271998a04b7cfc0f9)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsInventoryBucketUseRuleSetIdNull`](#structFRHAPI__Item_1a2a8a0c6cf31bd3ce87455cda00d39df0)`() const` | Checks whether InventoryBucketUseRuleSetId_Optional is set to null.
 `public inline TArray< int32 > & `[`GetCouponDiscountLoot`](#structFRHAPI__Item_1a8f20801a07174512d41f6317af38aa88)`()` | Gets the value of CouponDiscountLoot_Optional, regardless of it having been set.
 `public inline const TArray< int32 > & `[`GetCouponDiscountLoot`](#structFRHAPI__Item_1a61240a94f9e017f869841ab65b2dbda5)`() const` | Gets the value of CouponDiscountLoot_Optional, regardless of it having been set.
 `public inline const TArray< int32 > & `[`GetCouponDiscountLoot`](#structFRHAPI__Item_1ae7b6e717d8bc5eeeb6fed59db496d354)`(const TArray< int32 > & DefaultValue) const` | Gets the value of CouponDiscountLoot_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -307,6 +326,8 @@ An Item. Item come in a couple of different flavors; determined by the &#x60;typ
 `public inline void `[`SetCacheInfo`](#structFRHAPI__Item_1a4deaa7b49f5c2a74e6c9623265a07d66)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__Item_1a8a81e5e596e24291c204b1a28c28a6d0)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__Item_1a9e9f1fe041fe7d0913950d86191a00b8)`() const` | Checks whether CacheInfo_Optional has been set.
+`public inline void `[`SetCacheInfoToNull`](#structFRHAPI__Item_1aa77d2d59f41442f6ed4f3f9cabf7c772)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsCacheInfoNull`](#structFRHAPI__Item_1ad1b8287ef3e99ef065a2b1786ea793f0)`() const` | Checks whether CacheInfo_Optional is set to null.
 
 ### Members
 
@@ -320,15 +341,15 @@ true if CustomData_Optional has been set to a value
 
 #### `public FGuid `[`ItemUuid_Optional`](#structFRHAPI__Item_1a80b591249bcf6a162cea03625859730b) <a id="structFRHAPI__Item_1a80b591249bcf6a162cea03625859730b"></a>
 
-The Item UUID.
-
 #### `public bool `[`ItemUuid_IsSet`](#structFRHAPI__Item_1ac78db9c246fdea6afcec61519e3bae79) <a id="structFRHAPI__Item_1ac78db9c246fdea6afcec61519e3bae79"></a>
 
 true if ItemUuid_Optional has been set to a value
 
-#### `public ERHAPI_ItemType `[`Type_Optional`](#structFRHAPI__Item_1afe34e2073c58c7e118c14e292e75b4fe) <a id="structFRHAPI__Item_1afe34e2073c58c7e118c14e292e75b4fe"></a>
+#### `public bool `[`ItemUuid_IsNull`](#structFRHAPI__Item_1a41a57f8ca3f0575ed2909f80b779a10a) <a id="structFRHAPI__Item_1a41a57f8ca3f0575ed2909f80b779a10a"></a>
 
-The type of item.
+true if ItemUuid_Optional has been explicitly set to null
+
+#### `public ERHAPI_ItemType `[`Type_Optional`](#structFRHAPI__Item_1afe34e2073c58c7e118c14e292e75b4fe) <a id="structFRHAPI__Item_1afe34e2073c58c7e118c14e292e75b4fe"></a>
 
 #### `public bool `[`Type_IsSet`](#structFRHAPI__Item_1a0cc1c2c5e9833d046535ee67c6044d5b) <a id="structFRHAPI__Item_1a0cc1c2c5e9833d046535ee67c6044d5b"></a>
 
@@ -360,11 +381,13 @@ true if AvailabilityFlags_Optional has been set to a value
 
 #### `public FGuid `[`EntitledLootUuid_Optional`](#structFRHAPI__Item_1a55a6d7ad83368dc6d41cb20842ca11c3) <a id="structFRHAPI__Item_1a55a6d7ad83368dc6d41cb20842ca11c3"></a>
 
-This is only valid for an entitlement Item. When this item is granted and Inventory Session creation, this is the Loot that will be fulfilled.
-
 #### `public bool `[`EntitledLootUuid_IsSet`](#structFRHAPI__Item_1a7b278bd51c30e2aa654e801bf8b778bd) <a id="structFRHAPI__Item_1a7b278bd51c30e2aa654e801bf8b778bd"></a>
 
 true if EntitledLootUuid_Optional has been set to a value
+
+#### `public bool `[`EntitledLootUuid_IsNull`](#structFRHAPI__Item_1a61e93b42ac1107188bc9234168667f12) <a id="structFRHAPI__Item_1a61e93b42ac1107188bc9234168667f12"></a>
+
+true if EntitledLootUuid_Optional has been explicitly set to null
 
 #### `public int32 `[`EntitledLootId_Optional`](#structFRHAPI__Item_1aaa68f0eea3db70f908d899ecf68bc9bf) <a id="structFRHAPI__Item_1aaa68f0eea3db70f908d899ecf68bc9bf"></a>
 
@@ -376,11 +399,13 @@ true if EntitledLootId_Optional has been set to a value
 
 #### `public FGuid `[`LevelXpTableUuid_Optional`](#structFRHAPI__Item_1a797b9427d09a024a7e262926ea9c5f18) <a id="structFRHAPI__Item_1a797b9427d09a024a7e262926ea9c5f18"></a>
 
-The XP Table that is used to determine the Player's level for this XP. The level increase occurs when the quantity of this Item increases above the minimum XP of an XP Level. This is only valid for an unit Item.
-
 #### `public bool `[`LevelXpTableUuid_IsSet`](#structFRHAPI__Item_1ad36b1735e32314959dbc6e6a44957833) <a id="structFRHAPI__Item_1ad36b1735e32314959dbc6e6a44957833"></a>
 
 true if LevelXpTableUuid_Optional has been set to a value
+
+#### `public bool `[`LevelXpTableUuid_IsNull`](#structFRHAPI__Item_1a7a2a2c9d8bd0d598dc5c746bbb272a32) <a id="structFRHAPI__Item_1a7a2a2c9d8bd0d598dc5c746bbb272a32"></a>
+
+true if LevelXpTableUuid_Optional has been explicitly set to null
 
 #### `public int32 `[`LevelXpTableId_Optional`](#structFRHAPI__Item_1a4cfe4b49ca4f2f5c014d4d86b3486471) <a id="structFRHAPI__Item_1a4cfe4b49ca4f2f5c014d4d86b3486471"></a>
 
@@ -392,11 +417,13 @@ true if LevelXpTableId_Optional has been set to a value
 
 #### `public FGuid `[`LevelVendorUuid_Optional`](#structFRHAPI__Item_1a54af64f2166321a3d54bfd49eb33d126) <a id="structFRHAPI__Item_1a54af64f2166321a3d54bfd49eb33d126"></a>
 
-The Vendor that is used filfill level up rewards for this item. The level of the Player is used as the index into the Vendor's Loot table. This is only valid for an unit Item.
-
 #### `public bool `[`LevelVendorUuid_IsSet`](#structFRHAPI__Item_1a2b83904f2221e90ebc9d8da3c9020ba2) <a id="structFRHAPI__Item_1a2b83904f2221e90ebc9d8da3c9020ba2"></a>
 
 true if LevelVendorUuid_Optional has been set to a value
+
+#### `public bool `[`LevelVendorUuid_IsNull`](#structFRHAPI__Item_1ac8411fd42c89fb739a4227815afa0ae3) <a id="structFRHAPI__Item_1ac8411fd42c89fb739a4227815afa0ae3"></a>
+
+true if LevelVendorUuid_Optional has been explicitly set to null
 
 #### `public int32 `[`LevelVendorId_Optional`](#structFRHAPI__Item_1a76aba527b53bb5846856feb9303acf9e) <a id="structFRHAPI__Item_1a76aba527b53bb5846856feb9303acf9e"></a>
 
@@ -408,11 +435,13 @@ true if LevelVendorId_Optional has been set to a value
 
 #### `public FGuid `[`CouponDiscountCurrencyItemUuid_Optional`](#structFRHAPI__Item_1aeff374c8804054ba04ab0eba08ea990b) <a id="structFRHAPI__Item_1aeff374c8804054ba04ab0eba08ea990b"></a>
 
-The item of the currency used by this coupon. This is only valid for an unit Item.
-
 #### `public bool `[`CouponDiscountCurrencyItemUuid_IsSet`](#structFRHAPI__Item_1a1e52daf9baa1a3f8e08e674d61d057f2) <a id="structFRHAPI__Item_1a1e52daf9baa1a3f8e08e674d61d057f2"></a>
 
 true if CouponDiscountCurrencyItemUuid_Optional has been set to a value
+
+#### `public bool `[`CouponDiscountCurrencyItemUuid_IsNull`](#structFRHAPI__Item_1a6e30b9c5762a9f58a1b9c87326349726) <a id="structFRHAPI__Item_1a6e30b9c5762a9f58a1b9c87326349726"></a>
+
+true if CouponDiscountCurrencyItemUuid_Optional has been explicitly set to null
 
 #### `public int32 `[`CouponDiscountCurrencyItemId_Optional`](#structFRHAPI__Item_1aac9de3a09ab34aa9feabf22202daae80) <a id="structFRHAPI__Item_1aac9de3a09ab34aa9feabf22202daae80"></a>
 
@@ -446,11 +475,13 @@ true if ItemPortalUseRulesetId_Optional has been set to a value
 
 #### `public FString `[`InventoryBucketUseRuleSetId_Optional`](#structFRHAPI__Item_1a0e0d5505b14a2ac60dbadfd639eda910) <a id="structFRHAPI__Item_1a0e0d5505b14a2ac60dbadfd639eda910"></a>
 
-The Inventory Bucket Use Rule Set ID that determines how this item can be used across buckets.
-
 #### `public bool `[`InventoryBucketUseRuleSetId_IsSet`](#structFRHAPI__Item_1a3a38815ad3856cc8269d105b833cd90a) <a id="structFRHAPI__Item_1a3a38815ad3856cc8269d105b833cd90a"></a>
 
 true if InventoryBucketUseRuleSetId_Optional has been set to a value
+
+#### `public bool `[`InventoryBucketUseRuleSetId_IsNull`](#structFRHAPI__Item_1a8f466f9549bf32101e624dfb63b1f4b1) <a id="structFRHAPI__Item_1a8f466f9549bf32101e624dfb63b1f4b1"></a>
+
+true if InventoryBucketUseRuleSetId_Optional has been explicitly set to null
 
 #### `public TArray< int32 > `[`CouponDiscountLoot_Optional`](#structFRHAPI__Item_1a24aa5f6c74bb93cf565ea8d89f5f73bd) <a id="structFRHAPI__Item_1a24aa5f6c74bb93cf565ea8d89f5f73bd"></a>
 
@@ -470,11 +501,13 @@ true if CouponDiscountLootUuid_Optional has been set to a value
 
 #### `public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__Item_1ac645ac2ba254ea2e37fa6d701704f527) <a id="structFRHAPI__Item_1ac645ac2ba254ea2e37fa6d701704f527"></a>
 
-Cache information for this item.
-
 #### `public bool `[`CacheInfo_IsSet`](#structFRHAPI__Item_1a0d52a68ad73bca520721e74545ee2084) <a id="structFRHAPI__Item_1a0d52a68ad73bca520721e74545ee2084"></a>
 
 true if CacheInfo_Optional has been set to a value
+
+#### `public bool `[`CacheInfo_IsNull`](#structFRHAPI__Item_1aba48c9d3eb60b570bba2b1855f67f3bb) <a id="structFRHAPI__Item_1aba48c9d3eb60b570bba2b1855f67f3bb"></a>
+
+true if CacheInfo_Optional has been explicitly set to null
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__Item_1a5e75ef0aa4b1af5286da65c549597c73)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__Item_1a5e75ef0aa4b1af5286da65c549597c73"></a>
 
@@ -572,6 +605,14 @@ Clears the value of ItemUuid_Optional and sets ItemUuid_IsSet to false.
 #### `public inline bool `[`IsItemUuidSet`](#structFRHAPI__Item_1a32232968f40beb8608b89bea1f71195a)`() const` <a id="structFRHAPI__Item_1a32232968f40beb8608b89bea1f71195a"></a>
 
 Checks whether ItemUuid_Optional has been set.
+
+#### `public inline void `[`SetItemUuidToNull`](#structFRHAPI__Item_1ad455962b5ae89a2cb9e7fe2da0d56424)`()` <a id="structFRHAPI__Item_1ad455962b5ae89a2cb9e7fe2da0d56424"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsItemUuidNull`](#structFRHAPI__Item_1a6b75713e68d697699fe25d2e0b0cc5c0)`() const` <a id="structFRHAPI__Item_1a6b75713e68d697699fe25d2e0b0cc5c0"></a>
+
+Checks whether ItemUuid_Optional is set to null.
 
 #### `public inline ERHAPI_ItemType & `[`GetType`](#structFRHAPI__Item_1a3da7e87d3fb39720c8978643f0608048)`()` <a id="structFRHAPI__Item_1a3da7e87d3fb39720c8978643f0608048"></a>
 
@@ -845,6 +886,14 @@ Clears the value of EntitledLootUuid_Optional and sets EntitledLootUuid_IsSet to
 
 Checks whether EntitledLootUuid_Optional has been set.
 
+#### `public inline void `[`SetEntitledLootUuidToNull`](#structFRHAPI__Item_1adbe4c3be863a8da8fc19e0b1f3919272)`()` <a id="structFRHAPI__Item_1adbe4c3be863a8da8fc19e0b1f3919272"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsEntitledLootUuidNull`](#structFRHAPI__Item_1a991c70ad3e9d145c35401504ee11bfb8)`() const` <a id="structFRHAPI__Item_1a991c70ad3e9d145c35401504ee11bfb8"></a>
+
+Checks whether EntitledLootUuid_Optional is set to null.
+
 #### `public inline int32 & `[`GetEntitledLootId`](#structFRHAPI__Item_1ae7c458dc55f2f24701123939f674aaea)`()` <a id="structFRHAPI__Item_1ae7c458dc55f2f24701123939f674aaea"></a>
 
 Gets the value of EntitledLootId_Optional, regardless of it having been set.
@@ -932,6 +981,14 @@ Clears the value of LevelXpTableUuid_Optional and sets LevelXpTableUuid_IsSet to
 #### `public inline bool `[`IsLevelXpTableUuidSet`](#structFRHAPI__Item_1a4a011653b815f41974b88e5bc21df0ce)`() const` <a id="structFRHAPI__Item_1a4a011653b815f41974b88e5bc21df0ce"></a>
 
 Checks whether LevelXpTableUuid_Optional has been set.
+
+#### `public inline void `[`SetLevelXpTableUuidToNull`](#structFRHAPI__Item_1a374acbf3626627b060ec2c78ecdec5d6)`()` <a id="structFRHAPI__Item_1a374acbf3626627b060ec2c78ecdec5d6"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsLevelXpTableUuidNull`](#structFRHAPI__Item_1a94e18011fd34561c9829e421c97f3d4d)`() const` <a id="structFRHAPI__Item_1a94e18011fd34561c9829e421c97f3d4d"></a>
+
+Checks whether LevelXpTableUuid_Optional is set to null.
 
 #### `public inline int32 & `[`GetLevelXpTableId`](#structFRHAPI__Item_1a09dd729edd44e83abbaa7d885e90d9fc)`()` <a id="structFRHAPI__Item_1a09dd729edd44e83abbaa7d885e90d9fc"></a>
 
@@ -1021,6 +1078,14 @@ Clears the value of LevelVendorUuid_Optional and sets LevelVendorUuid_IsSet to f
 
 Checks whether LevelVendorUuid_Optional has been set.
 
+#### `public inline void `[`SetLevelVendorUuidToNull`](#structFRHAPI__Item_1a314344e8aabe27d33b3e8310d9a8407d)`()` <a id="structFRHAPI__Item_1a314344e8aabe27d33b3e8310d9a8407d"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsLevelVendorUuidNull`](#structFRHAPI__Item_1ae3465e2291b884421a8976cf3e79304d)`() const` <a id="structFRHAPI__Item_1ae3465e2291b884421a8976cf3e79304d"></a>
+
+Checks whether LevelVendorUuid_Optional is set to null.
+
 #### `public inline int32 & `[`GetLevelVendorId`](#structFRHAPI__Item_1ac0267cbf41820c783d2fd20991585153)`()` <a id="structFRHAPI__Item_1ac0267cbf41820c783d2fd20991585153"></a>
 
 Gets the value of LevelVendorId_Optional, regardless of it having been set.
@@ -1108,6 +1173,14 @@ Clears the value of CouponDiscountCurrencyItemUuid_Optional and sets CouponDisco
 #### `public inline bool `[`IsCouponDiscountCurrencyItemUuidSet`](#structFRHAPI__Item_1af9580809322a553ee79f764eaff8b15b)`() const` <a id="structFRHAPI__Item_1af9580809322a553ee79f764eaff8b15b"></a>
 
 Checks whether CouponDiscountCurrencyItemUuid_Optional has been set.
+
+#### `public inline void `[`SetCouponDiscountCurrencyItemUuidToNull`](#structFRHAPI__Item_1ae4ac5789fd52ab5b743c66ecdaa786a0)`()` <a id="structFRHAPI__Item_1ae4ac5789fd52ab5b743c66ecdaa786a0"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsCouponDiscountCurrencyItemUuidNull`](#structFRHAPI__Item_1a520303a5d9dccf123db6d105fd179508)`() const` <a id="structFRHAPI__Item_1a520303a5d9dccf123db6d105fd179508"></a>
+
+Checks whether CouponDiscountCurrencyItemUuid_Optional is set to null.
 
 #### `public inline int32 & `[`GetCouponDiscountCurrencyItemId`](#structFRHAPI__Item_1a54c5bee3b0fa90382725b859cf6413ab)`()` <a id="structFRHAPI__Item_1a54c5bee3b0fa90382725b859cf6413ab"></a>
 
@@ -1333,6 +1406,14 @@ Clears the value of InventoryBucketUseRuleSetId_Optional and sets InventoryBucke
 
 Checks whether InventoryBucketUseRuleSetId_Optional has been set.
 
+#### `public inline void `[`SetInventoryBucketUseRuleSetIdToNull`](#structFRHAPI__Item_1a334a2c1de68d3f3271998a04b7cfc0f9)`()` <a id="structFRHAPI__Item_1a334a2c1de68d3f3271998a04b7cfc0f9"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsInventoryBucketUseRuleSetIdNull`](#structFRHAPI__Item_1a2a8a0c6cf31bd3ce87455cda00d39df0)`() const` <a id="structFRHAPI__Item_1a2a8a0c6cf31bd3ce87455cda00d39df0"></a>
+
+Checks whether InventoryBucketUseRuleSetId_Optional is set to null.
+
 #### `public inline TArray< int32 > & `[`GetCouponDiscountLoot`](#structFRHAPI__Item_1a8f20801a07174512d41f6317af38aa88)`()` <a id="structFRHAPI__Item_1a8f20801a07174512d41f6317af38aa88"></a>
 
 Gets the value of CouponDiscountLoot_Optional, regardless of it having been set.
@@ -1452,4 +1533,12 @@ Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 #### `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__Item_1a9e9f1fe041fe7d0913950d86191a00b8)`() const` <a id="structFRHAPI__Item_1a9e9f1fe041fe7d0913950d86191a00b8"></a>
 
 Checks whether CacheInfo_Optional has been set.
+
+#### `public inline void `[`SetCacheInfoToNull`](#structFRHAPI__Item_1aa77d2d59f41442f6ed4f3f9cabf7c772)`()` <a id="structFRHAPI__Item_1aa77d2d59f41442f6ed4f3f9cabf7c772"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsCacheInfoNull`](#structFRHAPI__Item_1ad1b8287ef3e99ef065a2b1786ea793f0)`() const` <a id="structFRHAPI__Item_1ad1b8287ef3e99ef065a2b1786ea793f0"></a>
+
+Checks whether CacheInfo_Optional is set to null.
 

@@ -9,7 +9,7 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "Platform.h"
+#include "InventoryPlatform.h"
 #include "InventorySession.generated.h"
 
 /** @defgroup RHAPI_InventorySession RallyHere API Model InventorySession
@@ -52,32 +52,38 @@ struct RALLYHEREAPI_API FRHAPI_InventorySession : public FRHAPI_Model
 	/** @brief Sets the value of SessionId using move semantics */
 	void SetSessionId(FString&& NewValue) { SessionId = NewValue;   }
 
-	/** @brief Platform for this Inventory Session. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	ERHAPI_Platform SessionPlatform_Optional{  };
+	ERHAPI_InventoryPlatform SessionPlatform_Optional{  };
 	/** @brief true if SessionPlatform_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool SessionPlatform_IsSet{ false };
+	/** @brief true if SessionPlatform_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool SessionPlatform_IsNull{ false };
 	/** @brief Gets the value of SessionPlatform_Optional, regardless of it having been set */
-	ERHAPI_Platform& GetSessionPlatform() { return SessionPlatform_Optional; }
+	ERHAPI_InventoryPlatform& GetSessionPlatform() { return SessionPlatform_Optional; }
 	/** @brief Gets the value of SessionPlatform_Optional, regardless of it having been set */
-	const ERHAPI_Platform& GetSessionPlatform() const { return SessionPlatform_Optional; }
+	const ERHAPI_InventoryPlatform& GetSessionPlatform() const { return SessionPlatform_Optional; }
 	/** @brief Gets the value of SessionPlatform_Optional, if it has been set, otherwise it returns DefaultValue */
-	const ERHAPI_Platform& GetSessionPlatform(const ERHAPI_Platform& DefaultValue) const { if (SessionPlatform_IsSet) return SessionPlatform_Optional; return DefaultValue; }
+	const ERHAPI_InventoryPlatform& GetSessionPlatform(const ERHAPI_InventoryPlatform& DefaultValue) const { if (SessionPlatform_IsSet) return SessionPlatform_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of SessionPlatform_Optional and returns true if it has been set, otherwise returns false */
-	bool GetSessionPlatform(ERHAPI_Platform& OutValue) const { if (SessionPlatform_IsSet) OutValue = SessionPlatform_Optional; return SessionPlatform_IsSet; }
+	bool GetSessionPlatform(ERHAPI_InventoryPlatform& OutValue) const { if (SessionPlatform_IsSet && !SessionPlatform_IsNull) OutValue = SessionPlatform_Optional; return SessionPlatform_IsSet; }
 	/** @brief Returns a pointer to SessionPlatform_Optional, if it has been set, otherwise returns nullptr */
-	ERHAPI_Platform* GetSessionPlatformOrNull() { if (SessionPlatform_IsSet) return (&SessionPlatform_Optional); return nullptr; }
+	ERHAPI_InventoryPlatform* GetSessionPlatformOrNull() { if (SessionPlatform_IsSet) return (SessionPlatform_IsNull ? nullptr : &SessionPlatform_Optional); return nullptr; }
 	/** @brief Returns a pointer to SessionPlatform_Optional, if it has been set, otherwise returns nullptr */
-	const ERHAPI_Platform* GetSessionPlatformOrNull() const { if (SessionPlatform_IsSet) return (&SessionPlatform_Optional); return nullptr; }
+	const ERHAPI_InventoryPlatform* GetSessionPlatformOrNull() const { if (SessionPlatform_IsSet) return (SessionPlatform_IsNull ? nullptr : &SessionPlatform_Optional); return nullptr; }
 	/** @brief Sets the value of SessionPlatform_Optional and also sets SessionPlatform_IsSet to true */
-	void SetSessionPlatform(const ERHAPI_Platform& NewValue) { SessionPlatform_Optional = NewValue; SessionPlatform_IsSet = true;  }
+	void SetSessionPlatform(const ERHAPI_InventoryPlatform& NewValue) { SessionPlatform_Optional = NewValue; SessionPlatform_IsSet = true; SessionPlatform_IsNull = false; }
 	/** @brief Sets the value of SessionPlatform_Optional and also sets SessionPlatform_IsSet to true using move semantics */
-	void SetSessionPlatform(ERHAPI_Platform&& NewValue) { SessionPlatform_Optional = NewValue; SessionPlatform_IsSet = true;  }
+	void SetSessionPlatform(ERHAPI_InventoryPlatform&& NewValue) { SessionPlatform_Optional = NewValue; SessionPlatform_IsSet = true; SessionPlatform_IsNull = false; }
 	/** @brief Clears the value of SessionPlatform_Optional and sets SessionPlatform_IsSet to false */
-	void ClearSessionPlatform() { SessionPlatform_IsSet = false;  }
+	void ClearSessionPlatform() { SessionPlatform_IsSet = false; SessionPlatform_IsNull = false; }
 	/** @brief Checks whether SessionPlatform_Optional has been set */
 	bool IsSessionPlatformSet() const { return SessionPlatform_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetSessionPlatformToNull() { SessionPlatform_IsSet = true; SessionPlatform_IsNull = true; }
+	/** @brief Checks whether SessionPlatform_Optional is set to null */
+	bool IsSessionPlatformNull() const { return SessionPlatform_IsSet && SessionPlatform_IsNull; }
 
 	/** @brief Durable Loot that has been applied when this Inventory Session was created. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

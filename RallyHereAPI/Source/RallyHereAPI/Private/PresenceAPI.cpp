@@ -117,14 +117,6 @@ FString FRequest_GetPlayerPresencePublicById::ComputePath() const
 
 	FString Path = FString::Format(TEXT("/presence/v1/player/id/{player_id}/presence"), PathParams);
 
-	TArray<FString> QueryParams;
-	if(UseCache.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("use_cache=")) + ToUrlString(UseCache.GetValue()));
-	}
-	Path += TCHAR('?');
-	Path += FString::Join(QueryParams, TEXT("&"));
-
 	return Path;
 }
 
@@ -453,14 +445,6 @@ FString FRequest_GetPlayerPresencePublicByUuid::ComputePath() const
 
 	FString Path = FString::Format(TEXT("/presence/v1/player/uuid/{player_uuid}/presence"), PathParams);
 
-	TArray<FString> QueryParams;
-	if(UseCache.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("use_cache=")) + ToUrlString(UseCache.GetValue()));
-	}
-	Path += TCHAR('?');
-	Path += FString::Join(QueryParams, TEXT("&"));
-
 	return Path;
 }
 
@@ -784,14 +768,6 @@ FName FRequest_GetPlayerPresenceSelf::GetSimplifiedPathWithVerb() const
 FString FRequest_GetPlayerPresenceSelf::ComputePath() const
 {
 	FString Path = GetSimplifiedPath().ToString();
-	TArray<FString> QueryParams;
-	if(UseCache.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("use_cache=")) + ToUrlString(UseCache.GetValue()));
-	}
-	Path += TCHAR('?');
-	Path += FString::Join(QueryParams, TEXT("&"));
-
 	return Path;
 }
 
@@ -840,8 +816,6 @@ FString FResponse_GetPlayerPresenceSelf::GetHttpResponseCodeDescription(EHttpRes
 		return TEXT("Successful Response");
 	case 403:
 		return TEXT("Forbidden");
-	case 422:
-		return TEXT("Validation Error");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -872,8 +846,6 @@ bool FResponse_GetPlayerPresenceSelf::ParseHeaders()
 	case 200:
 		break;
 	case 403:
-		break;
-	case 422:
 		break;
 	default:
 		break;
@@ -920,18 +892,6 @@ bool FResponse_GetPlayerPresenceSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetPlayerPresenceSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
-{
-	// if this is not the correct response code, fail quickly.
-	if ((int)GetHttpResponseCode() != 422)
-	{
-		return false;
-	}
-
-	// forward on to type only handler
-	return TryGetContent(OutContent);
-}
-
 bool FResponse_GetPlayerPresenceSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	bool bParsed = false;
@@ -956,16 +916,6 @@ bool FResponse_GetPlayerPresenceSelf::FromJson(const TSharedPtr<FJsonValue>& Jso
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
-				break;
-			} 
-		case 422:
-			{
-				// parse into the structured data format from the json object
-				FRHAPI_HTTPValidationError Object;
-				bParsed = TryGetJsonValue(JsonValue, Object);
-				
-				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -1286,14 +1236,6 @@ FName FRequest_UpdatePlayerPresenceSelf::GetSimplifiedPathWithVerb() const
 FString FRequest_UpdatePlayerPresenceSelf::ComputePath() const
 {
 	FString Path = GetSimplifiedPath().ToString();
-	TArray<FString> QueryParams;
-	if(UseCache.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("use_cache=")) + ToUrlString(UseCache.GetValue()));
-	}
-	Path += TCHAR('?');
-	Path += FString::Join(QueryParams, TEXT("&"));
-
 	return Path;
 }
 

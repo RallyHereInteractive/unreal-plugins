@@ -27,11 +27,17 @@ void FRHAPI_InventorySessionCreateResponse::WriteJson(TSharedRef<TJsonWriter<>>&
 	if (SessionPlatform_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("session_platform"));
+		if (SessionPlatform_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, EnumToString(SessionPlatform_Optional));
 	}
 	if (OrderId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("order_id"));
+		if (OrderId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, OrderId_Optional);
 	}
 	Writer->WriteObjectEnd();
@@ -51,13 +57,15 @@ bool FRHAPI_InventorySessionCreateResponse::FromJson(const TSharedPtr<FJsonValue
 	const TSharedPtr<FJsonValue> JsonSessionPlatformField = (*Object)->TryGetField(TEXT("session_platform"));
 	if (JsonSessionPlatformField.IsValid())
 	{
-		SessionPlatform_IsSet = TryGetJsonValue(JsonSessionPlatformField, SessionPlatform_Optional);
+		SessionPlatform_IsNull = JsonSessionPlatformField->IsNull();
+		SessionPlatform_IsSet = SessionPlatform_IsNull || TryGetJsonValue(JsonSessionPlatformField, SessionPlatform_Optional);
 		ParseSuccess &= SessionPlatform_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonOrderIdField = (*Object)->TryGetField(TEXT("order_id"));
 	if (JsonOrderIdField.IsValid())
 	{
-		OrderId_IsSet = TryGetJsonValue(JsonOrderIdField, OrderId_Optional);
+		OrderId_IsNull = JsonOrderIdField->IsNull();
+		OrderId_IsSet = OrderId_IsNull || TryGetJsonValue(JsonOrderIdField, OrderId_Optional);
 		ParseSuccess &= OrderId_IsSet;
 	}
 

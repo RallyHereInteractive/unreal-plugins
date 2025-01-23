@@ -399,7 +399,18 @@ void URH_LocalPlayerSubsystem::OnUserChanged()
 			const auto PlatformId = GetPlayerPlatformId();
 			if (PlatformId.IsValid())
 			{
-				PlayerInfoCache->GetPlayerInventory()->CreateInventorySession(PlatformId.PlatformType, InventoryDelegate);
+				TOptional<ERHAPI_InventoryPlatform> InventoryPlatformOptional;
+				ERHAPI_InventoryPlatform InventoryPlatform;
+				if (!EnumFromString(EnumToString(PlatformId.PlatformType), InventoryPlatform))
+				{
+					// if we don't have a valid inventory platform, we can't create an inventory session
+					UE_LOG(LogRallyHereIntegration, Warning, TEXT("Failed to get inventory platform for player"));
+				}
+				else
+				{
+					InventoryPlatformOptional = InventoryPlatform;
+				}
+				PlayerInfoCache->GetPlayerInventory()->CreateInventorySession(InventoryPlatformOptional, InventoryDelegate);
 			}
 		}
 		else

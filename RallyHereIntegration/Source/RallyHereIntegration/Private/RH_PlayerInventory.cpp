@@ -263,7 +263,7 @@ void URH_PlayerInventory::IsInventoryItemRented_INTERNAL(URH_CatalogItem* Item, 
 	Delegate.ExecuteIfBound(false);
 }
 
-void URH_PlayerInventory::CreateInventorySession(const TOptional<ERHAPI_Platform> Platform, const FRH_OnInventorySessionUpdateDelegateBlock& Delegate)
+void URH_PlayerInventory::CreateInventorySession(const TOptional<ERHAPI_InventoryPlatform> Platform, const FRH_OnInventorySessionUpdateDelegateBlock& Delegate)
 {
 	auto Request = RallyHereAPI::FRequest_CreateNewInventorySessionByPlayerUuid();
 
@@ -632,7 +632,7 @@ void URH_PlayerInventory::HandleCreateInventory(const RallyHereAPI::FResponse_Cr
 {
 	if (Response.GetHttpResponseCode() == EHttpResponseCodes::Accepted)
 	{
-		FRHAPI_PlayerOrderCreate Response202;
+		FRHAPI_PlayerOrderCreateOutput Response202;
 		FString OrderId;
 		if (Response.TryGetContentFor202(Response202) && Response202.GetOrderId(OrderId))
 		{
@@ -711,7 +711,7 @@ void URH_PlayerInventory::HandleUpdateInventory(const RallyHereAPI::FResponse_Mo
 {
 	if (Response.GetHttpResponseCode() == EHttpResponseCodes::Accepted)
 	{
-		FRHAPI_PlayerOrderCreate Response202;
+		FRHAPI_PlayerOrderCreateOutput Response202;
 		FString OrderId;
 		if (Response.TryGetContentFor202(Response202) && Response202.GetOrderId(OrderId))
 		{
@@ -944,13 +944,13 @@ void URH_PlayerInventory::RedeemPromoCode(const FString& PromoCode, const FRH_Pr
 		return;
 	}
 
-	Request.PlayerOrderCreate.SetSource(ERHAPI_Source::Client);
+	Request.PlayerOrderCreateInput.SetSource(ERHAPI_Source::Client);
 	Request.PlayerUuid = GetRHPlayerUuid();
-	FRHAPI_PlayerOrderEntryCreate NewOrderEntry;
+	FRHAPI_PlayerOrderEntryCreateInput NewOrderEntry;
 	NewOrderEntry.Type = ERHAPI_PlayerOrderEntryType::PromotionCode;
 	NewOrderEntry.SetExternalTranId(PromoCode);
 	NewOrderEntry.Quantity = 1;
-	Request.PlayerOrderCreate.Entries.Push(NewOrderEntry);
+	Request.PlayerOrderCreateInput.Entries.Push(NewOrderEntry);
 
 	if (!TCreateOrder::DoCall(RH_APIs::GetInventoryAPI(), Request, TCreateOrder::Delegate::CreateUObject(this, &URH_PlayerInventory::RedeemPromoCodeResponse, Delegate, PromoCode), GetDefault<URH_IntegrationSettings>()->InventoryCreateOrderPriority))
 	{
@@ -962,7 +962,7 @@ void URH_PlayerInventory::RedeemPromoCodeResponse(const TCreateOrder::Response& 
 {
 	if (Response.GetHttpResponseCode() == EHttpResponseCodes::Accepted)
 	{
-		FRHAPI_PlayerOrderCreate Response202;
+		FRHAPI_PlayerOrderCreateOutput Response202;
 		FString OrderId;
 		if (Response.TryGetContentFor202(Response202) && Response202.GetOrderId(OrderId))
 		{
@@ -1123,7 +1123,7 @@ void URH_PlayerInventory::UpdateInventoryFromOrderDetails(const TArray<FRHAPI_Pl
 	}
 }
 
-void URH_PlayerInventory::PopulateInstanceData(FRHAPI_PlayerOrderCreate& PlayerOrderCreate) const
+void URH_PlayerInventory::PopulateInstanceData(FRHAPI_PlayerOrderCreateInput& PlayerOrderCreate) const
 {
 	if (const URH_GameInstanceSubsystem* RHGI = GetGameInstanceSubsystem())
 	{
@@ -1156,13 +1156,13 @@ void URH_PlayerInventory::CreateNewPlayerOrder(ERHAPI_Source OrderSource, bool I
 	}
 
 	// #RHTODO: Expose or remove PlayerOrderCreate.ClientOrderRefId
-	PopulateInstanceData(Request.PlayerOrderCreate);
-	Request.PlayerOrderCreate.SetIsTransaction(IsTransaction);
-	Request.PlayerOrderCreate.SetSource(OrderSource);
+	PopulateInstanceData(Request.PlayerOrderCreateInput);
+	Request.PlayerOrderCreateInput.SetIsTransaction(IsTransaction);
+	Request.PlayerOrderCreateInput.SetSource(OrderSource);
 	Request.PlayerUuid = GetRHPlayerUuid();
-	WriteOrderEntries(Request.PlayerOrderCreate.Entries, OrderEntries);
+	WriteOrderEntries(Request.PlayerOrderCreateInput.Entries, OrderEntries);
 
-	if (Request.PlayerOrderCreate.Entries.Num() == 0)
+	if (Request.PlayerOrderCreateInput.Entries.Num() == 0)
 	{
 		Delegate.ExecuteIfBound(GetPlayerInfo(), OrderEntries, FRHAPI_PlayerOrder());
 		return;
@@ -1174,12 +1174,12 @@ void URH_PlayerInventory::CreateNewPlayerOrder(ERHAPI_Source OrderSource, bool I
 	}
 }
 
-void URH_PlayerInventory::WriteOrderEntries(TArray<FRHAPI_PlayerOrderEntryCreate>& Entries, const TArray<URH_PlayerOrderEntry*>& OrderEntries)
+void URH_PlayerInventory::WriteOrderEntries(TArray<FRHAPI_PlayerOrderEntryCreateInput>& Entries, const TArray<URH_PlayerOrderEntry*>& OrderEntries)
 {
 	// transcribe the object order entries to the api structure
 	for (const auto& OrderEntry : OrderEntries)
 	{
-		FRHAPI_PlayerOrderEntryCreate NewOrderEntry;
+		FRHAPI_PlayerOrderEntryCreateInput NewOrderEntry;
 		NewOrderEntry.Type = OrderEntry->GetFillType();
 
 		// specify the loot id if we have one, prefer the one from the loot item
@@ -1238,7 +1238,7 @@ void URH_PlayerInventory::CreatePlayerOrderResponse(const TCreateOrder::Response
 {
 	if (Response.GetHttpResponseCode() == EHttpResponseCodes::Accepted)
 	{
-		FRHAPI_PlayerOrderCreate Response202;
+		FRHAPI_PlayerOrderCreateOutput Response202;
 		FString OrderId;
 		if (Response.TryGetContentFor202(Response202) && Response202.GetOrderId(OrderId))
 		{

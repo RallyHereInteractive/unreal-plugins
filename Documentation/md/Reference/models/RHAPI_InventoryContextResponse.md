@@ -21,7 +21,7 @@ Inventory Context for a Player.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public `[`FRHAPI_Inventory`](RHAPI_Inventory.md#structFRHAPI__Inventory)` `[`Inventory_Optional`](#structFRHAPI__InventoryContextResponse_1adf1766726cd900f692cdab6e1816713c) | Inventory Context for a Player.
+`public `[`FRHAPI_Inventory`](RHAPI_Inventory.md#structFRHAPI__Inventory)` `[`Inventory_Optional`](#structFRHAPI__InventoryContextResponse_1adf1766726cd900f692cdab6e1816713c) | 
 `public bool `[`Inventory_IsSet`](#structFRHAPI__InventoryContextResponse_1a78e0c2b4d95885d45a22e322049fc23a) | true if Inventory_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__InventoryContextResponse_1a4537312bdb09846842039fd6d2b5db00)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__InventoryContextResponse_1a3b1c1352d844744a5d4c68449d5ca246)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
@@ -39,8 +39,6 @@ Inventory Context for a Player.
 ### Members
 
 #### `public `[`FRHAPI_Inventory`](RHAPI_Inventory.md#structFRHAPI__Inventory)` `[`Inventory_Optional`](#structFRHAPI__InventoryContextResponse_1adf1766726cd900f692cdab6e1816713c) <a id="structFRHAPI__InventoryContextResponse_1adf1766726cd900f692cdab6e1816713c"></a>
-
-Inventory Context for a Player.
 
 #### `public bool `[`Inventory_IsSet`](#structFRHAPI__InventoryContextResponse_1a78e0c2b4d95885d45a22e322049fc23a) <a id="structFRHAPI__InventoryContextResponse_1a78e0c2b4d95885d45a22e322049fc23a"></a>
 

@@ -96,7 +96,6 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlement : public FRHAPI_Model
 	/** @brief Sets the value of Quantity_Optional to its default and also sets Quantity_IsSet to true */
 	void SetQuantityToDefault() { SetQuantity(1); }
 
-	/** @brief status of this entitlement */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_EntitlementStatus Status_Optional{  };
 	/** @brief true if Status_Optional has been set to a value */
@@ -123,7 +122,6 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlement : public FRHAPI_Model
 	/** @brief Checks whether Status_Optional has been set */
 	bool IsStatusSet() const { return Status_IsSet; }
 
-	/** @brief Error code for this entitlement */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_EntitlementErrorCode ErrorCode_Optional{  };
 	/** @brief true if ErrorCode_Optional has been set to a value */

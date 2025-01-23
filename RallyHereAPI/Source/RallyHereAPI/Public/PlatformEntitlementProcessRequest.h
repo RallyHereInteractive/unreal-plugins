@@ -78,7 +78,6 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessRequest : public FRHAPI
 	/** @brief Sets the value of PlatformId using move semantics */
 	void SetPlatformId(FString&& NewValue) { PlatformId = NewValue;   }
 
-	/** @brief region this purchase was made in */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_PlatformRegion PlatformRegion{  };
 	/** @brief Gets the value of PlatformRegion */
@@ -90,7 +89,6 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessRequest : public FRHAPI
 	/** @brief Sets the value of PlatformRegion using move semantics */
 	void SetPlatformRegion(ERHAPI_PlatformRegion&& NewValue) { PlatformRegion = NewValue;   }
 
-	/** @brief client type this purchase was made on */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_ClientType ClientType{  };
 	/** @brief Gets the value of ClientType */

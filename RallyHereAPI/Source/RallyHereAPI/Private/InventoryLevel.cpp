@@ -27,6 +27,9 @@ void FRHAPI_InventoryLevel::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (ItemId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("item_id"));
+		if (ItemId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, ItemId_Optional);
 	}
 	Writer->WriteIdentifierPrefix(TEXT("level"));
@@ -52,7 +55,8 @@ bool FRHAPI_InventoryLevel::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonItemIdField = (*Object)->TryGetField(TEXT("item_id"));
 	if (JsonItemIdField.IsValid())
 	{
-		ItemId_IsSet = TryGetJsonValue(JsonItemIdField, ItemId_Optional);
+		ItemId_IsNull = JsonItemIdField->IsNull();
+		ItemId_IsSet = ItemId_IsNull || TryGetJsonValue(JsonItemIdField, ItemId_Optional);
 		ParseSuccess &= ItemId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonLevelField = (*Object)->TryGetField(TEXT("level"));

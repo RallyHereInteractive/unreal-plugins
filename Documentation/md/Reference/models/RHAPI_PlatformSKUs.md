@@ -23,8 +23,9 @@ A collection of SKUs.
 --------------------------------|---------------------------------------------
 `public TArray< `[`FRHAPI_PlatformSKU`](RHAPI_PlatformSKU.md#structFRHAPI__PlatformSKU)` > `[`Skus_Optional`](#structFRHAPI__PlatformSKUs_1a0a8a66e63cd86b4aa4a6ceead1affbc9) | A collection of SKUs.
 `public bool `[`Skus_IsSet`](#structFRHAPI__PlatformSKUs_1ad02e809536bac106a826d6475e4bd4c5) | true if Skus_Optional has been set to a value
-`public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__PlatformSKUs_1a246d0a0bc4366646fbaef51ea057a45e) | Cache info for the Platform SKUs.
+`public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__PlatformSKUs_1a246d0a0bc4366646fbaef51ea057a45e) | 
 `public bool `[`CacheInfo_IsSet`](#structFRHAPI__PlatformSKUs_1aae1ce5ef5205e6d7c5414b1640f2b18f) | true if CacheInfo_Optional has been set to a value
+`public bool `[`CacheInfo_IsNull`](#structFRHAPI__PlatformSKUs_1ad16a2580b71c05b627b1b580efa2eba4) | true if CacheInfo_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__PlatformSKUs_1a160ce0dbf1d0db985fbb7f3b64d1af61)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PlatformSKUs_1ab817f94ea403a0dd4add11d363ea05e0)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< `[`FRHAPI_PlatformSKU`](RHAPI_PlatformSKU.md#structFRHAPI__PlatformSKU)` > & `[`GetSkus`](#structFRHAPI__PlatformSKUs_1a3f0aa747d847132a1ac7921c56310eca)`()` | Gets the value of Skus_Optional, regardless of it having been set.
@@ -47,6 +48,8 @@ A collection of SKUs.
 `public inline void `[`SetCacheInfo`](#structFRHAPI__PlatformSKUs_1a882f66a9e09db87937061352f349b2b0)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__PlatformSKUs_1ab850ddbfa9a2c1ea59ff31d5c08825e3)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__PlatformSKUs_1a8f7e3f1b7d722de5229da09b8add613a)`() const` | Checks whether CacheInfo_Optional has been set.
+`public inline void `[`SetCacheInfoToNull`](#structFRHAPI__PlatformSKUs_1a7353fd8c44ea788ea72479fd984c650f)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsCacheInfoNull`](#structFRHAPI__PlatformSKUs_1a77a7fa5b060c73328526fb47daba489d)`() const` | Checks whether CacheInfo_Optional is set to null.
 
 ### Members
 
@@ -60,11 +63,13 @@ true if Skus_Optional has been set to a value
 
 #### `public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__PlatformSKUs_1a246d0a0bc4366646fbaef51ea057a45e) <a id="structFRHAPI__PlatformSKUs_1a246d0a0bc4366646fbaef51ea057a45e"></a>
 
-Cache info for the Platform SKUs.
-
 #### `public bool `[`CacheInfo_IsSet`](#structFRHAPI__PlatformSKUs_1aae1ce5ef5205e6d7c5414b1640f2b18f) <a id="structFRHAPI__PlatformSKUs_1aae1ce5ef5205e6d7c5414b1640f2b18f"></a>
 
 true if CacheInfo_Optional has been set to a value
+
+#### `public bool `[`CacheInfo_IsNull`](#structFRHAPI__PlatformSKUs_1ad16a2580b71c05b627b1b580efa2eba4) <a id="structFRHAPI__PlatformSKUs_1ad16a2580b71c05b627b1b580efa2eba4"></a>
+
+true if CacheInfo_Optional has been explicitly set to null
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__PlatformSKUs_1a160ce0dbf1d0db985fbb7f3b64d1af61)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlatformSKUs_1a160ce0dbf1d0db985fbb7f3b64d1af61"></a>
 
@@ -162,4 +167,12 @@ Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 #### `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__PlatformSKUs_1a8f7e3f1b7d722de5229da09b8add613a)`() const` <a id="structFRHAPI__PlatformSKUs_1a8f7e3f1b7d722de5229da09b8add613a"></a>
 
 Checks whether CacheInfo_Optional has been set.
+
+#### `public inline void `[`SetCacheInfoToNull`](#structFRHAPI__PlatformSKUs_1a7353fd8c44ea788ea72479fd984c650f)`()` <a id="structFRHAPI__PlatformSKUs_1a7353fd8c44ea788ea72479fd984c650f"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsCacheInfoNull`](#structFRHAPI__PlatformSKUs_1a77a7fa5b060c73328526fb47daba489d)`() const` <a id="structFRHAPI__PlatformSKUs_1a77a7fa5b060c73328526fb47daba489d"></a>
+
+Checks whether CacheInfo_Optional is set to null.
 

@@ -27,6 +27,9 @@ void FRHAPI_PlayerOrderEntry::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (LootId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("loot_id"));
+		if (LootId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, LootId_Optional);
 	}
 	Writer->WriteIdentifierPrefix(TEXT("quantity"));
@@ -34,66 +37,105 @@ void FRHAPI_PlayerOrderEntry::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (VendorVersion_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("vendor_version"));
+		if (VendorVersion_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, VendorVersion_Optional);
 	}
 	if (VendorEtag_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("vendor_etag"));
+		if (VendorEtag_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, VendorEtag_Optional);
 	}
 	if (DynamicBundleLootIds_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("dynamic_bundle_loot_ids"));
+		if (DynamicBundleLootIds_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, DynamicBundleLootIds_Optional);
 	}
 	if (PurchasePrice_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("purchase_price"));
+		if (PurchasePrice_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, PurchasePrice_Optional);
 	}
 	if (ExternalTranId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("external_tran_id"));
+		if (ExternalTranId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, ExternalTranId_Optional);
 	}
 	if (ExternalItemSku_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("external_item_sku"));
+		if (ExternalItemSku_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, ExternalItemSku_Optional);
 	}
 	if (UseInventoryBucket_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("use_inventory_bucket"));
+		if (UseInventoryBucket_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, EnumToString(UseInventoryBucket_Optional));
 	}
 	if (PlayerPortalEventId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("player_portal_event_id"));
+		if (PlayerPortalEventId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, PlayerPortalEventId_Optional);
 	}
 	if (InventoryId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("inventory_id"));
+		if (InventoryId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, InventoryId_Optional);
 	}
 	if (LegacyInventoryId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("legacy_inventory_id"));
+		if (LegacyInventoryId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, LegacyInventoryId_Optional);
 	}
 	if (ItemId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("item_id"));
+		if (ItemId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, ItemId_Optional);
 	}
 	if (Expires_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("expires"));
+		if (Expires_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, Expires_Optional);
 	}
 	if (CustomData_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("custom_data"));
+		if (CustomData_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
 	}
 	Writer->WriteIdentifierPrefix(TEXT("entry_id"));
@@ -125,7 +167,8 @@ bool FRHAPI_PlayerOrderEntry::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonLootIdField = (*Object)->TryGetField(TEXT("loot_id"));
 	if (JsonLootIdField.IsValid())
 	{
-		LootId_IsSet = TryGetJsonValue(JsonLootIdField, LootId_Optional);
+		LootId_IsNull = JsonLootIdField->IsNull();
+		LootId_IsSet = LootId_IsNull || TryGetJsonValue(JsonLootIdField, LootId_Optional);
 		ParseSuccess &= LootId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonQuantityField = (*Object)->TryGetField(TEXT("quantity"));
@@ -134,79 +177,92 @@ bool FRHAPI_PlayerOrderEntry::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonVendorVersionField = (*Object)->TryGetField(TEXT("vendor_version"));
 	if (JsonVendorVersionField.IsValid())
 	{
-		VendorVersion_IsSet = TryGetJsonValue(JsonVendorVersionField, VendorVersion_Optional);
+		VendorVersion_IsNull = JsonVendorVersionField->IsNull();
+		VendorVersion_IsSet = VendorVersion_IsNull || TryGetJsonValue(JsonVendorVersionField, VendorVersion_Optional);
 		ParseSuccess &= VendorVersion_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonVendorEtagField = (*Object)->TryGetField(TEXT("vendor_etag"));
 	if (JsonVendorEtagField.IsValid())
 	{
-		VendorEtag_IsSet = TryGetJsonValue(JsonVendorEtagField, VendorEtag_Optional);
+		VendorEtag_IsNull = JsonVendorEtagField->IsNull();
+		VendorEtag_IsSet = VendorEtag_IsNull || TryGetJsonValue(JsonVendorEtagField, VendorEtag_Optional);
 		ParseSuccess &= VendorEtag_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonDynamicBundleLootIdsField = (*Object)->TryGetField(TEXT("dynamic_bundle_loot_ids"));
 	if (JsonDynamicBundleLootIdsField.IsValid())
 	{
-		DynamicBundleLootIds_IsSet = TryGetJsonValue(JsonDynamicBundleLootIdsField, DynamicBundleLootIds_Optional);
+		DynamicBundleLootIds_IsNull = JsonDynamicBundleLootIdsField->IsNull();
+		DynamicBundleLootIds_IsSet = DynamicBundleLootIds_IsNull || TryGetJsonValue(JsonDynamicBundleLootIdsField, DynamicBundleLootIds_Optional);
 		ParseSuccess &= DynamicBundleLootIds_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPurchasePriceField = (*Object)->TryGetField(TEXT("purchase_price"));
 	if (JsonPurchasePriceField.IsValid())
 	{
-		PurchasePrice_IsSet = TryGetJsonValue(JsonPurchasePriceField, PurchasePrice_Optional);
+		PurchasePrice_IsNull = JsonPurchasePriceField->IsNull();
+		PurchasePrice_IsSet = PurchasePrice_IsNull || TryGetJsonValue(JsonPurchasePriceField, PurchasePrice_Optional);
 		ParseSuccess &= PurchasePrice_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonExternalTranIdField = (*Object)->TryGetField(TEXT("external_tran_id"));
 	if (JsonExternalTranIdField.IsValid())
 	{
-		ExternalTranId_IsSet = TryGetJsonValue(JsonExternalTranIdField, ExternalTranId_Optional);
+		ExternalTranId_IsNull = JsonExternalTranIdField->IsNull();
+		ExternalTranId_IsSet = ExternalTranId_IsNull || TryGetJsonValue(JsonExternalTranIdField, ExternalTranId_Optional);
 		ParseSuccess &= ExternalTranId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonExternalItemSkuField = (*Object)->TryGetField(TEXT("external_item_sku"));
 	if (JsonExternalItemSkuField.IsValid())
 	{
-		ExternalItemSku_IsSet = TryGetJsonValue(JsonExternalItemSkuField, ExternalItemSku_Optional);
+		ExternalItemSku_IsNull = JsonExternalItemSkuField->IsNull();
+		ExternalItemSku_IsSet = ExternalItemSku_IsNull || TryGetJsonValue(JsonExternalItemSkuField, ExternalItemSku_Optional);
 		ParseSuccess &= ExternalItemSku_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonUseInventoryBucketField = (*Object)->TryGetField(TEXT("use_inventory_bucket"));
 	if (JsonUseInventoryBucketField.IsValid())
 	{
-		UseInventoryBucket_IsSet = TryGetJsonValue(JsonUseInventoryBucketField, UseInventoryBucket_Optional);
+		UseInventoryBucket_IsNull = JsonUseInventoryBucketField->IsNull();
+		UseInventoryBucket_IsSet = UseInventoryBucket_IsNull || TryGetJsonValue(JsonUseInventoryBucketField, UseInventoryBucket_Optional);
 		ParseSuccess &= UseInventoryBucket_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlayerPortalEventIdField = (*Object)->TryGetField(TEXT("player_portal_event_id"));
 	if (JsonPlayerPortalEventIdField.IsValid())
 	{
-		PlayerPortalEventId_IsSet = TryGetJsonValue(JsonPlayerPortalEventIdField, PlayerPortalEventId_Optional);
+		PlayerPortalEventId_IsNull = JsonPlayerPortalEventIdField->IsNull();
+		PlayerPortalEventId_IsSet = PlayerPortalEventId_IsNull || TryGetJsonValue(JsonPlayerPortalEventIdField, PlayerPortalEventId_Optional);
 		ParseSuccess &= PlayerPortalEventId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonInventoryIdField = (*Object)->TryGetField(TEXT("inventory_id"));
 	if (JsonInventoryIdField.IsValid())
 	{
-		InventoryId_IsSet = TryGetJsonValue(JsonInventoryIdField, InventoryId_Optional);
+		InventoryId_IsNull = JsonInventoryIdField->IsNull();
+		InventoryId_IsSet = InventoryId_IsNull || TryGetJsonValue(JsonInventoryIdField, InventoryId_Optional);
 		ParseSuccess &= InventoryId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonLegacyInventoryIdField = (*Object)->TryGetField(TEXT("legacy_inventory_id"));
 	if (JsonLegacyInventoryIdField.IsValid())
 	{
-		LegacyInventoryId_IsSet = TryGetJsonValue(JsonLegacyInventoryIdField, LegacyInventoryId_Optional);
+		LegacyInventoryId_IsNull = JsonLegacyInventoryIdField->IsNull();
+		LegacyInventoryId_IsSet = LegacyInventoryId_IsNull || TryGetJsonValue(JsonLegacyInventoryIdField, LegacyInventoryId_Optional);
 		ParseSuccess &= LegacyInventoryId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonItemIdField = (*Object)->TryGetField(TEXT("item_id"));
 	if (JsonItemIdField.IsValid())
 	{
-		ItemId_IsSet = TryGetJsonValue(JsonItemIdField, ItemId_Optional);
+		ItemId_IsNull = JsonItemIdField->IsNull();
+		ItemId_IsSet = ItemId_IsNull || TryGetJsonValue(JsonItemIdField, ItemId_Optional);
 		ParseSuccess &= ItemId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonExpiresField = (*Object)->TryGetField(TEXT("expires"));
 	if (JsonExpiresField.IsValid())
 	{
-		Expires_IsSet = TryGetJsonValue(JsonExpiresField, Expires_Optional);
+		Expires_IsNull = JsonExpiresField->IsNull();
+		Expires_IsSet = Expires_IsNull || TryGetJsonValue(JsonExpiresField, Expires_Optional);
 		ParseSuccess &= Expires_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
 	if (JsonCustomDataField.IsValid())
 	{
-		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
+		CustomData_IsNull = JsonCustomDataField->IsNull();
+		CustomData_IsSet = CustomData_IsNull || TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonEntryIdField = (*Object)->TryGetField(TEXT("entry_id"));

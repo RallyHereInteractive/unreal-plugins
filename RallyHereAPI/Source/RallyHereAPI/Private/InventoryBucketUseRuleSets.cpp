@@ -30,6 +30,9 @@ void FRHAPI_InventoryBucketUseRuleSets::WriteJson(TSharedRef<TJsonWriter<>>& Wri
 	if (CacheInfo_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("cache_info"));
+		if (CacheInfo_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, CacheInfo_Optional);
 	}
 	Writer->WriteObjectEnd();
@@ -52,7 +55,8 @@ bool FRHAPI_InventoryBucketUseRuleSets::FromJson(const TSharedPtr<FJsonValue>& J
 	const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
 	if (JsonCacheInfoField.IsValid())
 	{
-		CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
+		CacheInfo_IsNull = JsonCacheInfoField->IsNull();
+		CacheInfo_IsSet = CacheInfo_IsNull || TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
 		ParseSuccess &= CacheInfo_IsSet;
 	}
 

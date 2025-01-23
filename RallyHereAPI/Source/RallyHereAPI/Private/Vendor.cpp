@@ -30,6 +30,9 @@ void FRHAPI_Vendor::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (VendorUuid_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("vendor_uuid"));
+		if (VendorUuid_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, VendorUuid_Optional);
 	}
 	if (Type_IsSet)
@@ -55,6 +58,9 @@ void FRHAPI_Vendor::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (CacheInfo_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("cache_info"));
+		if (CacheInfo_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, CacheInfo_Optional);
 	}
 	Writer->WriteObjectEnd();
@@ -77,7 +83,8 @@ bool FRHAPI_Vendor::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonVendorUuidField = (*Object)->TryGetField(TEXT("vendor_uuid"));
 	if (JsonVendorUuidField.IsValid())
 	{
-		VendorUuid_IsSet = TryGetJsonValue(JsonVendorUuidField, VendorUuid_Optional);
+		VendorUuid_IsNull = JsonVendorUuidField->IsNull();
+		VendorUuid_IsSet = VendorUuid_IsNull || TryGetJsonValue(JsonVendorUuidField, VendorUuid_Optional);
 		ParseSuccess &= VendorUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
@@ -107,7 +114,8 @@ bool FRHAPI_Vendor::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
 	if (JsonCacheInfoField.IsValid())
 	{
-		CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
+		CacheInfo_IsNull = JsonCacheInfoField->IsNull();
+		CacheInfo_IsSet = CacheInfo_IsNull || TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
 		ParseSuccess &= CacheInfo_IsSet;
 	}
 

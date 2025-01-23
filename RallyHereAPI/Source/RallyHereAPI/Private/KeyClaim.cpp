@@ -25,11 +25,17 @@ void FRHAPI_KeyClaim::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (PortalId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("portal_id"));
+		if (PortalId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, EnumToString(PortalId_Optional));
 	}
 	if (PortalUserId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("portal_user_id"));
+		if (PortalUserId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, PortalUserId_Optional);
 	}
 	Writer->WriteIdentifierPrefix(TEXT("key_claim_uuid"));
@@ -37,31 +43,49 @@ void FRHAPI_KeyClaim::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (Claimed_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("claimed"));
+		if (Claimed_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, Claimed_Optional);
 	}
 	if (ExternalKey_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("external_key"));
+		if (ExternalKey_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, ExternalKey_Optional);
 	}
 	if (ExternalKeyCampaignUuid_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("external_key_campaign_uuid"));
+		if (ExternalKeyCampaignUuid_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, ExternalKeyCampaignUuid_Optional);
 	}
 	if (ExternalKeyType_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("external_key_type"));
+		if (ExternalKeyType_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, ExternalKeyType_Optional);
 	}
 	if (CreatedOn_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("created_on"));
+		if (CreatedOn_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, CreatedOn_Optional);
 	}
 	if (LastModifiedOn_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("last_modified_on"));
+		if (LastModifiedOn_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, LastModifiedOn_Optional);
 	}
 	Writer->WriteObjectEnd();
@@ -78,13 +102,15 @@ bool FRHAPI_KeyClaim::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonPortalIdField = (*Object)->TryGetField(TEXT("portal_id"));
 	if (JsonPortalIdField.IsValid())
 	{
-		PortalId_IsSet = TryGetJsonValue(JsonPortalIdField, PortalId_Optional);
+		PortalId_IsNull = JsonPortalIdField->IsNull();
+		PortalId_IsSet = PortalId_IsNull || TryGetJsonValue(JsonPortalIdField, PortalId_Optional);
 		ParseSuccess &= PortalId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPortalUserIdField = (*Object)->TryGetField(TEXT("portal_user_id"));
 	if (JsonPortalUserIdField.IsValid())
 	{
-		PortalUserId_IsSet = TryGetJsonValue(JsonPortalUserIdField, PortalUserId_Optional);
+		PortalUserId_IsNull = JsonPortalUserIdField->IsNull();
+		PortalUserId_IsSet = PortalUserId_IsNull || TryGetJsonValue(JsonPortalUserIdField, PortalUserId_Optional);
 		ParseSuccess &= PortalUserId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonKeyClaimUuidField = (*Object)->TryGetField(TEXT("key_claim_uuid"));
@@ -93,37 +119,43 @@ bool FRHAPI_KeyClaim::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonClaimedField = (*Object)->TryGetField(TEXT("claimed"));
 	if (JsonClaimedField.IsValid())
 	{
-		Claimed_IsSet = TryGetJsonValue(JsonClaimedField, Claimed_Optional);
+		Claimed_IsNull = JsonClaimedField->IsNull();
+		Claimed_IsSet = Claimed_IsNull || TryGetJsonValue(JsonClaimedField, Claimed_Optional);
 		ParseSuccess &= Claimed_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonExternalKeyField = (*Object)->TryGetField(TEXT("external_key"));
 	if (JsonExternalKeyField.IsValid())
 	{
-		ExternalKey_IsSet = TryGetJsonValue(JsonExternalKeyField, ExternalKey_Optional);
+		ExternalKey_IsNull = JsonExternalKeyField->IsNull();
+		ExternalKey_IsSet = ExternalKey_IsNull || TryGetJsonValue(JsonExternalKeyField, ExternalKey_Optional);
 		ParseSuccess &= ExternalKey_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonExternalKeyCampaignUuidField = (*Object)->TryGetField(TEXT("external_key_campaign_uuid"));
 	if (JsonExternalKeyCampaignUuidField.IsValid())
 	{
-		ExternalKeyCampaignUuid_IsSet = TryGetJsonValue(JsonExternalKeyCampaignUuidField, ExternalKeyCampaignUuid_Optional);
+		ExternalKeyCampaignUuid_IsNull = JsonExternalKeyCampaignUuidField->IsNull();
+		ExternalKeyCampaignUuid_IsSet = ExternalKeyCampaignUuid_IsNull || TryGetJsonValue(JsonExternalKeyCampaignUuidField, ExternalKeyCampaignUuid_Optional);
 		ParseSuccess &= ExternalKeyCampaignUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonExternalKeyTypeField = (*Object)->TryGetField(TEXT("external_key_type"));
 	if (JsonExternalKeyTypeField.IsValid())
 	{
-		ExternalKeyType_IsSet = TryGetJsonValue(JsonExternalKeyTypeField, ExternalKeyType_Optional);
+		ExternalKeyType_IsNull = JsonExternalKeyTypeField->IsNull();
+		ExternalKeyType_IsSet = ExternalKeyType_IsNull || TryGetJsonValue(JsonExternalKeyTypeField, ExternalKeyType_Optional);
 		ParseSuccess &= ExternalKeyType_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCreatedOnField = (*Object)->TryGetField(TEXT("created_on"));
 	if (JsonCreatedOnField.IsValid())
 	{
-		CreatedOn_IsSet = TryGetJsonValue(JsonCreatedOnField, CreatedOn_Optional);
+		CreatedOn_IsNull = JsonCreatedOnField->IsNull();
+		CreatedOn_IsSet = CreatedOn_IsNull || TryGetJsonValue(JsonCreatedOnField, CreatedOn_Optional);
 		ParseSuccess &= CreatedOn_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonLastModifiedOnField = (*Object)->TryGetField(TEXT("last_modified_on"));
 	if (JsonLastModifiedOnField.IsValid())
 	{
-		LastModifiedOn_IsSet = TryGetJsonValue(JsonLastModifiedOnField, LastModifiedOn_Optional);
+		LastModifiedOn_IsNull = JsonLastModifiedOnField->IsNull();
+		LastModifiedOn_IsSet = LastModifiedOn_IsNull || TryGetJsonValue(JsonLastModifiedOnField, LastModifiedOn_Optional);
 		ParseSuccess &= LastModifiedOn_IsSet;
 	}
 

@@ -51,12 +51,14 @@ struct RALLYHEREAPI_API FRHAPI_InventoryLevel : public FRHAPI_Model
 	/** @brief Sets the value of ItemUuid using move semantics */
 	void SetItemUuid(FGuid&& NewValue) { ItemUuid = NewValue;   }
 
-	/** @brief Item ID for this Inventory Level. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 ItemId_Optional{ 0 };
 	/** @brief true if ItemId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ItemId_IsSet{ false };
+	/** @brief true if ItemId_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool ItemId_IsNull{ false };
 	/** @brief Gets the value of ItemId_Optional, regardless of it having been set */
 	int32& GetItemId() { return ItemId_Optional; }
 	/** @brief Gets the value of ItemId_Optional, regardless of it having been set */
@@ -64,23 +66,27 @@ struct RALLYHEREAPI_API FRHAPI_InventoryLevel : public FRHAPI_Model
 	/** @brief Gets the value of ItemId_Optional, if it has been set, otherwise it returns DefaultValue */
 	const int32& GetItemId(const int32& DefaultValue) const { if (ItemId_IsSet) return ItemId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of ItemId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetItemId(int32& OutValue) const { if (ItemId_IsSet) OutValue = ItemId_Optional; return ItemId_IsSet; }
+	bool GetItemId(int32& OutValue) const { if (ItemId_IsSet && !ItemId_IsNull) OutValue = ItemId_Optional; return ItemId_IsSet; }
 	/** @brief Returns a pointer to ItemId_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetItemIdOrNull() { if (ItemId_IsSet) return (&ItemId_Optional); return nullptr; }
+	int32* GetItemIdOrNull() { if (ItemId_IsSet) return (ItemId_IsNull ? nullptr : &ItemId_Optional); return nullptr; }
 	/** @brief Returns a pointer to ItemId_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetItemIdOrNull() const { if (ItemId_IsSet) return (&ItemId_Optional); return nullptr; }
+	const int32* GetItemIdOrNull() const { if (ItemId_IsSet) return (ItemId_IsNull ? nullptr : &ItemId_Optional); return nullptr; }
 	/** @brief Sets the value of ItemId_Optional and also sets ItemId_IsSet to true */
-	void SetItemId(const int32& NewValue) { ItemId_Optional = NewValue; ItemId_IsSet = true;  }
+	void SetItemId(const int32& NewValue) { ItemId_Optional = NewValue; ItemId_IsSet = true; ItemId_IsNull = false; }
 	/** @brief Sets the value of ItemId_Optional and also sets ItemId_IsSet to true using move semantics */
-	void SetItemId(int32&& NewValue) { ItemId_Optional = NewValue; ItemId_IsSet = true;  }
+	void SetItemId(int32&& NewValue) { ItemId_Optional = NewValue; ItemId_IsSet = true; ItemId_IsNull = false; }
 	/** @brief Clears the value of ItemId_Optional and sets ItemId_IsSet to false */
-	void ClearItemId() { ItemId_Optional = 0; ItemId_IsSet = false;  }
+	void ClearItemId() { ItemId_Optional = 0; ItemId_IsSet = false; ItemId_IsNull = false; }
 	/** @brief Checks whether ItemId_Optional has been set */
 	bool IsItemIdSet() const { return ItemId_IsSet; }
 	/** @brief Returns true if ItemId_Optional is set and matches the default value */
 	bool IsItemIdDefaultValue() const { return ItemId_IsSet && ItemId_Optional == 0; }
 	/** @brief Sets the value of ItemId_Optional to its default and also sets ItemId_IsSet to true */
 	void SetItemIdToDefault() { SetItemId(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetItemIdToNull() { ItemId_IsSet = true; ItemId_IsNull = true; }
+	/** @brief Checks whether ItemId_Optional is set to null */
+	bool IsItemIdNull() const { return ItemId_IsSet && ItemId_IsNull; }
 
 	/** @brief Current Level */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

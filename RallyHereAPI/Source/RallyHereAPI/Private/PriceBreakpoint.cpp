@@ -25,11 +25,17 @@ void FRHAPI_PriceBreakpoint::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (PriceItemUuid_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("price_item_uuid"));
+		if (PriceItemUuid_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, PriceItemUuid_Optional);
 	}
 	if (PriceItemId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("price_item_id"));
+		if (PriceItemId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, PriceItemId_Optional);
 	}
 	Writer->WriteIdentifierPrefix(TEXT("quantity"));
@@ -37,11 +43,17 @@ void FRHAPI_PriceBreakpoint::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (Price_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("price"));
+		if (Price_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, Price_Optional);
 	}
 	if (Currencies_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("currencies"));
+		if (Currencies_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, Currencies_Optional);
 	}
 	Writer->WriteObjectEnd();
@@ -58,13 +70,15 @@ bool FRHAPI_PriceBreakpoint::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonPriceItemUuidField = (*Object)->TryGetField(TEXT("price_item_uuid"));
 	if (JsonPriceItemUuidField.IsValid())
 	{
-		PriceItemUuid_IsSet = TryGetJsonValue(JsonPriceItemUuidField, PriceItemUuid_Optional);
+		PriceItemUuid_IsNull = JsonPriceItemUuidField->IsNull();
+		PriceItemUuid_IsSet = PriceItemUuid_IsNull || TryGetJsonValue(JsonPriceItemUuidField, PriceItemUuid_Optional);
 		ParseSuccess &= PriceItemUuid_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPriceItemIdField = (*Object)->TryGetField(TEXT("price_item_id"));
 	if (JsonPriceItemIdField.IsValid())
 	{
-		PriceItemId_IsSet = TryGetJsonValue(JsonPriceItemIdField, PriceItemId_Optional);
+		PriceItemId_IsNull = JsonPriceItemIdField->IsNull();
+		PriceItemId_IsSet = PriceItemId_IsNull || TryGetJsonValue(JsonPriceItemIdField, PriceItemId_Optional);
 		ParseSuccess &= PriceItemId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonQuantityField = (*Object)->TryGetField(TEXT("quantity"));
@@ -73,13 +87,15 @@ bool FRHAPI_PriceBreakpoint::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonPriceField = (*Object)->TryGetField(TEXT("price"));
 	if (JsonPriceField.IsValid())
 	{
-		Price_IsSet = TryGetJsonValue(JsonPriceField, Price_Optional);
+		Price_IsNull = JsonPriceField->IsNull();
+		Price_IsSet = Price_IsNull || TryGetJsonValue(JsonPriceField, Price_Optional);
 		ParseSuccess &= Price_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCurrenciesField = (*Object)->TryGetField(TEXT("currencies"));
 	if (JsonCurrenciesField.IsValid())
 	{
-		Currencies_IsSet = TryGetJsonValue(JsonCurrenciesField, Currencies_Optional);
+		Currencies_IsNull = JsonCurrenciesField->IsNull();
+		Currencies_IsSet = Currencies_IsNull || TryGetJsonValue(JsonCurrenciesField, Currencies_Optional);
 		ParseSuccess &= Currencies_IsSet;
 	}
 

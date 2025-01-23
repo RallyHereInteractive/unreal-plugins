@@ -68,7 +68,6 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrdersResponse : public FRHAPI_Model
 	/** @brief Checks whether Data_Optional has been set */
 	bool IsDataSet() const { return Data_IsSet; }
 
-	/** @brief Page metadata for the Player Orders. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_InventoryPageMeta Page{  };
 	/** @brief Gets the value of Page */

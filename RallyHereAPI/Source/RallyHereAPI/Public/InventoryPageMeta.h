@@ -46,6 +46,9 @@ struct RALLYHEREAPI_API FRHAPI_InventoryPageMeta : public FRHAPI_Model
 	/** @brief true if StartingPosition_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool StartingPosition_IsSet{ false };
+	/** @brief true if StartingPosition_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool StartingPosition_IsNull{ false };
 	/** @brief Gets the value of StartingPosition_Optional, regardless of it having been set */
 	FDateTime& GetStartingPosition() { return StartingPosition_Optional; }
 	/** @brief Gets the value of StartingPosition_Optional, regardless of it having been set */
@@ -53,26 +56,32 @@ struct RALLYHEREAPI_API FRHAPI_InventoryPageMeta : public FRHAPI_Model
 	/** @brief Gets the value of StartingPosition_Optional, if it has been set, otherwise it returns DefaultValue */
 	const FDateTime& GetStartingPosition(const FDateTime& DefaultValue) const { if (StartingPosition_IsSet) return StartingPosition_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of StartingPosition_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStartingPosition(FDateTime& OutValue) const { if (StartingPosition_IsSet) OutValue = StartingPosition_Optional; return StartingPosition_IsSet; }
+	bool GetStartingPosition(FDateTime& OutValue) const { if (StartingPosition_IsSet && !StartingPosition_IsNull) OutValue = StartingPosition_Optional; return StartingPosition_IsSet; }
 	/** @brief Returns a pointer to StartingPosition_Optional, if it has been set, otherwise returns nullptr */
-	FDateTime* GetStartingPositionOrNull() { if (StartingPosition_IsSet) return (&StartingPosition_Optional); return nullptr; }
+	FDateTime* GetStartingPositionOrNull() { if (StartingPosition_IsSet) return (StartingPosition_IsNull ? nullptr : &StartingPosition_Optional); return nullptr; }
 	/** @brief Returns a pointer to StartingPosition_Optional, if it has been set, otherwise returns nullptr */
-	const FDateTime* GetStartingPositionOrNull() const { if (StartingPosition_IsSet) return (&StartingPosition_Optional); return nullptr; }
+	const FDateTime* GetStartingPositionOrNull() const { if (StartingPosition_IsSet) return (StartingPosition_IsNull ? nullptr : &StartingPosition_Optional); return nullptr; }
 	/** @brief Sets the value of StartingPosition_Optional and also sets StartingPosition_IsSet to true */
-	void SetStartingPosition(const FDateTime& NewValue) { StartingPosition_Optional = NewValue; StartingPosition_IsSet = true;  }
+	void SetStartingPosition(const FDateTime& NewValue) { StartingPosition_Optional = NewValue; StartingPosition_IsSet = true; StartingPosition_IsNull = false; }
 	/** @brief Sets the value of StartingPosition_Optional and also sets StartingPosition_IsSet to true using move semantics */
-	void SetStartingPosition(FDateTime&& NewValue) { StartingPosition_Optional = NewValue; StartingPosition_IsSet = true;  }
+	void SetStartingPosition(FDateTime&& NewValue) { StartingPosition_Optional = NewValue; StartingPosition_IsSet = true; StartingPosition_IsNull = false; }
 	/** @brief Clears the value of StartingPosition_Optional and sets StartingPosition_IsSet to false */
-	void ClearStartingPosition() { StartingPosition_IsSet = false;  }
+	void ClearStartingPosition() { StartingPosition_IsSet = false; StartingPosition_IsNull = false; }
 	/** @brief Checks whether StartingPosition_Optional has been set */
 	bool IsStartingPositionSet() const { return StartingPosition_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetStartingPositionToNull() { StartingPosition_IsSet = true; StartingPosition_IsNull = true; }
+	/** @brief Checks whether StartingPosition_Optional is set to null */
+	bool IsStartingPositionNull() const { return StartingPosition_IsSet && StartingPosition_IsNull; }
 
-	/** @brief The cursor value pointing to the next page of results. If cursor is provided, starting_position is ignored */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Cursor_Optional{  };
 	/** @brief true if Cursor_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Cursor_IsSet{ false };
+	/** @brief true if Cursor_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Cursor_IsNull{ false };
 	/** @brief Gets the value of Cursor_Optional, regardless of it having been set */
 	FString& GetCursor() { return Cursor_Optional; }
 	/** @brief Gets the value of Cursor_Optional, regardless of it having been set */
@@ -80,26 +89,32 @@ struct RALLYHEREAPI_API FRHAPI_InventoryPageMeta : public FRHAPI_Model
 	/** @brief Gets the value of Cursor_Optional, if it has been set, otherwise it returns DefaultValue */
 	const FString& GetCursor(const FString& DefaultValue) const { if (Cursor_IsSet) return Cursor_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Cursor_Optional and returns true if it has been set, otherwise returns false */
-	bool GetCursor(FString& OutValue) const { if (Cursor_IsSet) OutValue = Cursor_Optional; return Cursor_IsSet; }
+	bool GetCursor(FString& OutValue) const { if (Cursor_IsSet && !Cursor_IsNull) OutValue = Cursor_Optional; return Cursor_IsSet; }
 	/** @brief Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetCursorOrNull() { if (Cursor_IsSet) return (&Cursor_Optional); return nullptr; }
+	FString* GetCursorOrNull() { if (Cursor_IsSet) return (Cursor_IsNull ? nullptr : &Cursor_Optional); return nullptr; }
 	/** @brief Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetCursorOrNull() const { if (Cursor_IsSet) return (&Cursor_Optional); return nullptr; }
+	const FString* GetCursorOrNull() const { if (Cursor_IsSet) return (Cursor_IsNull ? nullptr : &Cursor_Optional); return nullptr; }
 	/** @brief Sets the value of Cursor_Optional and also sets Cursor_IsSet to true */
-	void SetCursor(const FString& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true;  }
+	void SetCursor(const FString& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true; Cursor_IsNull = false; }
 	/** @brief Sets the value of Cursor_Optional and also sets Cursor_IsSet to true using move semantics */
-	void SetCursor(FString&& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true;  }
+	void SetCursor(FString&& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true; Cursor_IsNull = false; }
 	/** @brief Clears the value of Cursor_Optional and sets Cursor_IsSet to false */
-	void ClearCursor() { Cursor_IsSet = false;  }
+	void ClearCursor() { Cursor_IsSet = false; Cursor_IsNull = false; }
 	/** @brief Checks whether Cursor_Optional has been set */
 	bool IsCursorSet() const { return Cursor_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetCursorToNull() { Cursor_IsSet = true; Cursor_IsNull = true; }
+	/** @brief Checks whether Cursor_Optional is set to null */
+	bool IsCursorNull() const { return Cursor_IsSet && Cursor_IsNull; }
 
-	/** @brief The direction to search. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_SortOrder Sort_Optional{  };
 	/** @brief true if Sort_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Sort_IsSet{ false };
+	/** @brief true if Sort_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Sort_IsNull{ false };
 	/** @brief Gets the value of Sort_Optional, regardless of it having been set */
 	ERHAPI_SortOrder& GetSort() { return Sort_Optional; }
 	/** @brief Gets the value of Sort_Optional, regardless of it having been set */
@@ -107,19 +122,23 @@ struct RALLYHEREAPI_API FRHAPI_InventoryPageMeta : public FRHAPI_Model
 	/** @brief Gets the value of Sort_Optional, if it has been set, otherwise it returns DefaultValue */
 	const ERHAPI_SortOrder& GetSort(const ERHAPI_SortOrder& DefaultValue) const { if (Sort_IsSet) return Sort_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Sort_Optional and returns true if it has been set, otherwise returns false */
-	bool GetSort(ERHAPI_SortOrder& OutValue) const { if (Sort_IsSet) OutValue = Sort_Optional; return Sort_IsSet; }
+	bool GetSort(ERHAPI_SortOrder& OutValue) const { if (Sort_IsSet && !Sort_IsNull) OutValue = Sort_Optional; return Sort_IsSet; }
 	/** @brief Returns a pointer to Sort_Optional, if it has been set, otherwise returns nullptr */
-	ERHAPI_SortOrder* GetSortOrNull() { if (Sort_IsSet) return (&Sort_Optional); return nullptr; }
+	ERHAPI_SortOrder* GetSortOrNull() { if (Sort_IsSet) return (Sort_IsNull ? nullptr : &Sort_Optional); return nullptr; }
 	/** @brief Returns a pointer to Sort_Optional, if it has been set, otherwise returns nullptr */
-	const ERHAPI_SortOrder* GetSortOrNull() const { if (Sort_IsSet) return (&Sort_Optional); return nullptr; }
+	const ERHAPI_SortOrder* GetSortOrNull() const { if (Sort_IsSet) return (Sort_IsNull ? nullptr : &Sort_Optional); return nullptr; }
 	/** @brief Sets the value of Sort_Optional and also sets Sort_IsSet to true */
-	void SetSort(const ERHAPI_SortOrder& NewValue) { Sort_Optional = NewValue; Sort_IsSet = true;  }
+	void SetSort(const ERHAPI_SortOrder& NewValue) { Sort_Optional = NewValue; Sort_IsSet = true; Sort_IsNull = false; }
 	/** @brief Sets the value of Sort_Optional and also sets Sort_IsSet to true using move semantics */
-	void SetSort(ERHAPI_SortOrder&& NewValue) { Sort_Optional = NewValue; Sort_IsSet = true;  }
+	void SetSort(ERHAPI_SortOrder&& NewValue) { Sort_Optional = NewValue; Sort_IsSet = true; Sort_IsNull = false; }
 	/** @brief Clears the value of Sort_Optional and sets Sort_IsSet to false */
-	void ClearSort() { Sort_IsSet = false;  }
+	void ClearSort() { Sort_IsSet = false; Sort_IsNull = false; }
 	/** @brief Checks whether Sort_Optional has been set */
 	bool IsSortSet() const { return Sort_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetSortToNull() { Sort_IsSet = true; Sort_IsNull = true; }
+	/** @brief Checks whether Sort_Optional is set to null */
+	bool IsSortNull() const { return Sort_IsSet && Sort_IsNull; }
 
 	/** @brief The number of Orders to return */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

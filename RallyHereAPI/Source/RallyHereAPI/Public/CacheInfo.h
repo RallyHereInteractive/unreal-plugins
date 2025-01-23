@@ -49,32 +49,6 @@ struct RALLYHEREAPI_API FRHAPI_CacheInfo : public FRHAPI_Model
 	void SetEtag(const FString& NewValue) { Etag = NewValue;   }
 	/** @brief Sets the value of Etag using move semantics */
 	void SetEtag(FString&& NewValue) { Etag = NewValue;   }
-
-	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FString StrRep_Optional{  };
-	/** @brief true if StrRep_Optional has been set to a value */
-	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool StrRep_IsSet{ false };
-	/** @brief Gets the value of StrRep_Optional, regardless of it having been set */
-	FString& GetStrRep() { return StrRep_Optional; }
-	/** @brief Gets the value of StrRep_Optional, regardless of it having been set */
-	const FString& GetStrRep() const { return StrRep_Optional; }
-	/** @brief Gets the value of StrRep_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetStrRep(const FString& DefaultValue) const { if (StrRep_IsSet) return StrRep_Optional; return DefaultValue; }
-	/** @brief Fills OutValue with the value of StrRep_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStrRep(FString& OutValue) const { if (StrRep_IsSet) OutValue = StrRep_Optional; return StrRep_IsSet; }
-	/** @brief Returns a pointer to StrRep_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStrRepOrNull() { if (StrRep_IsSet) return (&StrRep_Optional); return nullptr; }
-	/** @brief Returns a pointer to StrRep_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStrRepOrNull() const { if (StrRep_IsSet) return (&StrRep_Optional); return nullptr; }
-	/** @brief Sets the value of StrRep_Optional and also sets StrRep_IsSet to true */
-	void SetStrRep(const FString& NewValue) { StrRep_Optional = NewValue; StrRep_IsSet = true;  }
-	/** @brief Sets the value of StrRep_Optional and also sets StrRep_IsSet to true using move semantics */
-	void SetStrRep(FString&& NewValue) { StrRep_Optional = NewValue; StrRep_IsSet = true;  }
-	/** @brief Clears the value of StrRep_Optional and sets StrRep_IsSet to false */
-	void ClearStrRep() { StrRep_IsSet = false;  }
-	/** @brief Checks whether StrRep_Optional has been set */
-	bool IsStrRepSet() const { return StrRep_IsSet; }
 };
 
 /** @} */

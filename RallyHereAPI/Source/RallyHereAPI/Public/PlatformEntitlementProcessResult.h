@@ -10,7 +10,7 @@
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
 #include "ClientType.h"
-#include "Platform.h"
+#include "InventoryPlatform.h"
 #include "PlatformEntitlement.h"
 #include "PlatformRegion.h"
 #include "PlatformEntitlementProcessResult.generated.h"
@@ -55,7 +55,6 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
 	/** @brief Sets the value of RequestId using move semantics */
 	void SetRequestId(FString&& NewValue) { RequestId = NewValue;   }
 
-	/** @brief client type this purchase was made on */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_ClientType ClientType{  };
 	/** @brief Gets the value of ClientType */
@@ -79,7 +78,6 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
 	/** @brief Sets the value of TransactionId using move semantics */
 	void SetTransactionId(FString&& NewValue) { TransactionId = NewValue;   }
 
-	/** @brief region this purchase was made in */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_PlatformRegion PlatformRegion{  };
 	/** @brief Gets the value of PlatformRegion */
@@ -122,12 +120,14 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
 	/** @brief Sets the value of Status_Optional to its default and also sets Status_IsSet to true */
 	void SetStatusToDefault() { SetStatus(TEXT("SUBMITTED")); }
 
-	/** @brief Error code for failures not associated with a specific entitlement */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString ErrorCode_Optional{  };
 	/** @brief true if ErrorCode_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ErrorCode_IsSet{ false };
+	/** @brief true if ErrorCode_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool ErrorCode_IsNull{ false };
 	/** @brief Gets the value of ErrorCode_Optional, regardless of it having been set */
 	FString& GetErrorCode() { return ErrorCode_Optional; }
 	/** @brief Gets the value of ErrorCode_Optional, regardless of it having been set */
@@ -135,19 +135,23 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
 	/** @brief Gets the value of ErrorCode_Optional, if it has been set, otherwise it returns DefaultValue */
 	const FString& GetErrorCode(const FString& DefaultValue) const { if (ErrorCode_IsSet) return ErrorCode_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of ErrorCode_Optional and returns true if it has been set, otherwise returns false */
-	bool GetErrorCode(FString& OutValue) const { if (ErrorCode_IsSet) OutValue = ErrorCode_Optional; return ErrorCode_IsSet; }
+	bool GetErrorCode(FString& OutValue) const { if (ErrorCode_IsSet && !ErrorCode_IsNull) OutValue = ErrorCode_Optional; return ErrorCode_IsSet; }
 	/** @brief Returns a pointer to ErrorCode_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetErrorCodeOrNull() { if (ErrorCode_IsSet) return (&ErrorCode_Optional); return nullptr; }
+	FString* GetErrorCodeOrNull() { if (ErrorCode_IsSet) return (ErrorCode_IsNull ? nullptr : &ErrorCode_Optional); return nullptr; }
 	/** @brief Returns a pointer to ErrorCode_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetErrorCodeOrNull() const { if (ErrorCode_IsSet) return (&ErrorCode_Optional); return nullptr; }
+	const FString* GetErrorCodeOrNull() const { if (ErrorCode_IsSet) return (ErrorCode_IsNull ? nullptr : &ErrorCode_Optional); return nullptr; }
 	/** @brief Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true */
-	void SetErrorCode(const FString& NewValue) { ErrorCode_Optional = NewValue; ErrorCode_IsSet = true;  }
+	void SetErrorCode(const FString& NewValue) { ErrorCode_Optional = NewValue; ErrorCode_IsSet = true; ErrorCode_IsNull = false; }
 	/** @brief Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true using move semantics */
-	void SetErrorCode(FString&& NewValue) { ErrorCode_Optional = NewValue; ErrorCode_IsSet = true;  }
+	void SetErrorCode(FString&& NewValue) { ErrorCode_Optional = NewValue; ErrorCode_IsSet = true; ErrorCode_IsNull = false; }
 	/** @brief Clears the value of ErrorCode_Optional and sets ErrorCode_IsSet to false */
-	void ClearErrorCode() { ErrorCode_IsSet = false;  }
+	void ClearErrorCode() { ErrorCode_IsSet = false; ErrorCode_IsNull = false; }
 	/** @brief Checks whether ErrorCode_Optional has been set */
 	bool IsErrorCodeSet() const { return ErrorCode_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetErrorCodeToNull() { ErrorCode_IsSet = true; ErrorCode_IsNull = true; }
+	/** @brief Checks whether ErrorCode_Optional is set to null */
+	bool IsErrorCodeNull() const { return ErrorCode_IsSet && ErrorCode_IsNull; }
 
 	/** @brief Client entitlements that have been processed */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -203,17 +207,16 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
 	/** @brief Checks whether ServerEntitlements_Optional has been set */
 	bool IsServerEntitlementsSet() const { return ServerEntitlements_IsSet; }
 
-	/** @brief Platform these transactions were processed on */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	ERHAPI_Platform PlatformId{  };
+	ERHAPI_InventoryPlatform PlatformId{  };
 	/** @brief Gets the value of PlatformId */
-	ERHAPI_Platform& GetPlatformId() { return PlatformId; }
+	ERHAPI_InventoryPlatform& GetPlatformId() { return PlatformId; }
 	/** @brief Gets the value of PlatformId */
-	const ERHAPI_Platform& GetPlatformId() const { return PlatformId; }
+	const ERHAPI_InventoryPlatform& GetPlatformId() const { return PlatformId; }
 	/** @brief Sets the value of PlatformId */
-	void SetPlatformId(const ERHAPI_Platform& NewValue) { PlatformId = NewValue;   }
+	void SetPlatformId(const ERHAPI_InventoryPlatform& NewValue) { PlatformId = NewValue;   }
 	/** @brief Sets the value of PlatformId using move semantics */
-	void SetPlatformId(ERHAPI_Platform&& NewValue) { PlatformId = NewValue;   }
+	void SetPlatformId(ERHAPI_InventoryPlatform&& NewValue) { PlatformId = NewValue;   }
 
 	/** @brief Unique identifier for the platform user that processed this entitlement */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

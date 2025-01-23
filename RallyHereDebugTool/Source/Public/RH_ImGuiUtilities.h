@@ -199,6 +199,63 @@ bool RALLYHEREDEBUGTOOL_API ImGuiDisplayEnumCombo(const FString& ComboLabel, T& 
 	return bChanged;
 }
 
+// changes current value reference if changed, returns true if changed
+template<typename T>
+bool RALLYHEREDEBUGTOOL_API ImGuiDisplayOptionalEnumCombo(const FString& ComboLabel, TOptional<T>& CurrentValue)
+{
+	// look up the UEnum for the type
+	static_assert(TIsEnum<T>::Value, "Should only call this with enum types");
+	UEnum* EnumClass = StaticEnum<T>();
+	check(EnumClass != nullptr);
+	
+	// build value list
+	TArray<FString> Values;
+	TMap<FString, FString> DisplayNames;
+	Values.Reserve(EnumClass->NumEnums() + 1);
+	DisplayNames.Reserve(EnumClass->NumEnums() + 1);
+
+	Values.Add(TEXT("<UNSET>"));
+	DisplayNames.Add(TEXT("<UNSET>"), TEXT("<UNSET>"));
+	
+	for (int64 EnumIndex = 0; EnumIndex < EnumClass->NumEnums(); ++EnumIndex)
+	{
+		const auto ValueName = EnumClass->GetNameStringByIndex(EnumIndex);
+
+		// exclude the _MAX entry
+		bool bIndexIsMAXEntry = EnumClass->ContainsExistingMax() && (ValueName.EndsWith(TEXT("_MAX"), ESearchCase::CaseSensitive));
+		if (bIndexIsMAXEntry)
+		{
+			continue;
+		}
+
+		const auto ValueDisplayname = EnumClass->GetDisplayNameTextByIndex(EnumIndex).ToString();
+		Values.Add(ValueName);
+		DisplayNames.Add(ValueName, ValueDisplayname);
+	}
+
+	// look up current value
+	FString CurrentString = CurrentValue.IsSet() ? EnumClass->GetNameStringByValue((int64)CurrentValue.GetValue()) : TEXT("<UNSET>");
+
+	// display combo
+	bool bChanged = ImGuiDisplayCombo(ComboLabel, CurrentString, Values, &DisplayNames);
+	if (bChanged)
+	{
+		if (CurrentString == TEXT("<UNSET>"))
+		{
+			CurrentValue.Reset();
+		}
+		else
+		{
+			int64 NewValueInt64 = EnumClass->GetValueByNameString(CurrentString);
+			if (NewValueInt64 != INDEX_NONE)
+			{
+				CurrentValue = (T)NewValueInt64;
+			}
+		}
+	}
+	return bChanged;
+}
+
 namespace ImGuiColors
 {
 	FORCEINLINE static const ImGuiStyle& GetDefaultStyle()
