@@ -21,19 +21,7 @@ FRHDTW_PlayerInventory::FRHDTW_PlayerInventory()
 	SelectedInventoryBucket{}
 {
 	DefaultPos = FVector2D(610, 20);
-
-	PlatformStrings.Emplace("None");
-	for (auto i = 1; i < Platforms.Num(); i++)
-	{
-		PlatformStrings.Emplace(TCHAR_TO_UTF8(*RH_GETENUMSTRING("/Script/RallyHereAPI", "ERHAPI_Platform", Platforms[i])));
-	}
-
-	// Intentionally done in 2 separate for loops as it cause the first 4 elements to be corrupted otherwise
-	for (const auto& PlatformName : PlatformStrings)
-	{
-		PlatformChars.Emplace(PlatformName.c_str());
-	}
-
+	
 	InventoryTypeStrings = {
 		"All",
 		TCHAR_TO_UTF8(*RH_GETENUMSTRING("/Script/RallyHereAPI", "ERHAPI_InventoryType", ERHAPI_InventoryType::Persistent)),
@@ -145,7 +133,7 @@ void FRHDTW_PlayerInventory::DoInventorySession()
 
 	ImGui::Text("For [%d] selected players with UUIDs.", NumSelectedPlayers);
 
-	ImGui::Combo("Platform", &SelectedPlatform, PlatformChars.GetData(), PlatformChars.Num());
+	ImGuiDisplayOptionalEnumCombo(TEXT("Platform"), SelectedPlatform);
 	if (ImGui::Button("Create New Inventory Session"))
 	{
 		InventorySessionResult.Empty();
@@ -156,14 +144,8 @@ void FRHDTW_PlayerInventory::DoInventorySession()
 					if (URH_PlayerInventory* pURH_PlayerInventory = PlayerInfo->GetPlayerInventory())
 					{
 						auto Delegate = FRH_OnInventorySessionUpdateDelegate::CreateSP(SharedThis(this), &FRHDTW_PlayerInventory::HandleInventorySessionUpdated, PlayerInfo->GetRHPlayerUuid());
-						if (SelectedPlatform == 0)
-						{
-							pURH_PlayerInventory->CreateInventorySession({}, MoveTemp(Delegate));
-						}
-						else
-						{
-							pURH_PlayerInventory->CreateInventorySession(Platforms[SelectedPlatform], MoveTemp(Delegate));
-						}
+						
+						pURH_PlayerInventory->CreateInventorySession(SelectedPlatform, MoveTemp(Delegate));
 					}
 					else
 					{
