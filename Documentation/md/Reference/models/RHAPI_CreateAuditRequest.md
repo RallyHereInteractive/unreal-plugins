@@ -21,6 +21,8 @@ struct FRHAPI_CreateAuditRequest
 --------------------------------|---------------------------------------------
 `public FString `[`EventName`](#structFRHAPI__CreateAuditRequest_1ae34f7ce8c8b4026dac0e127a26675792) | Name of the audit event you are creating. Customer created events will be prepended with 'customer.'.
 `public FString `[`SessionId`](#structFRHAPI__CreateAuditRequest_1a96ea5b0bba5f6138edd463fe70754e12) | ID of the session this event occurred in.
+`public FString `[`Reason_Optional`](#structFRHAPI__CreateAuditRequest_1ac966719ae7731b9d6838580a935c46fe) | Reason for this event to occur.
+`public bool `[`Reason_IsSet`](#structFRHAPI__CreateAuditRequest_1af5b2daa64d6e20dba16e9e7ae043487b) | true if Reason_Optional has been set to a value
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__CreateAuditRequest_1adcb02cf43f2f10325f81639c5c8f2406) | Custom data for this audit request.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__CreateAuditRequest_1a65dca695cd5d761a47f019c3de090c34) | true if CustomData_Optional has been set to a value
 `public FString `[`SessionType_Optional`](#structFRHAPI__CreateAuditRequest_1ac5167ce52494f7cc9fceabe4b75c75dc) | Type of the session this event occurred in.
@@ -97,6 +99,16 @@ struct FRHAPI_CreateAuditRequest
 `public inline const FString & `[`GetSessionId`](#structFRHAPI__CreateAuditRequest_1a173d34cd08b2d1f338ca3060c2455cf9)`() const` | Gets the value of SessionId.
 `public inline void `[`SetSessionId`](#structFRHAPI__CreateAuditRequest_1a07b7d6ba6db6a09732b0803cf1613fbc)`(const FString & NewValue)` | Sets the value of SessionId.
 `public inline void `[`SetSessionId`](#structFRHAPI__CreateAuditRequest_1aeab59058eda7191fce7e4ff6b9f3fcb1)`(FString && NewValue)` | Sets the value of SessionId using move semantics.
+`public inline FString & `[`GetReason`](#structFRHAPI__CreateAuditRequest_1a42e5353e5bcf2d30d548a20b5231df06)`()` | Gets the value of Reason_Optional, regardless of it having been set.
+`public inline const FString & `[`GetReason`](#structFRHAPI__CreateAuditRequest_1a6d5051af11edb7a8a39fe35186f8a39e)`() const` | Gets the value of Reason_Optional, regardless of it having been set.
+`public inline const FString & `[`GetReason`](#structFRHAPI__CreateAuditRequest_1acda010d73cfaeb2fdc93d56027caec21)`(const FString & DefaultValue) const` | Gets the value of Reason_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetReason`](#structFRHAPI__CreateAuditRequest_1a9b202928341273a221ed02ff811fcab5)`(FString & OutValue) const` | Fills OutValue with the value of Reason_Optional and returns true if it has been set, otherwise returns false.
+`public inline FString * `[`GetReasonOrNull`](#structFRHAPI__CreateAuditRequest_1aa362ff6532018bc3bef52963b534ec5d)`()` | Returns a pointer to Reason_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetReasonOrNull`](#structFRHAPI__CreateAuditRequest_1abcd6571434c02a436aa049ed1d5cc643)`() const` | Returns a pointer to Reason_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetReason`](#structFRHAPI__CreateAuditRequest_1ab78171a656e3e553d9fd51a739b84030)`(const FString & NewValue)` | Sets the value of Reason_Optional and also sets Reason_IsSet to true.
+`public inline void `[`SetReason`](#structFRHAPI__CreateAuditRequest_1a24e233448ca803a91e982338d200aaff)`(FString && NewValue)` | Sets the value of Reason_Optional and also sets Reason_IsSet to true using move semantics.
+`public inline void `[`ClearReason`](#structFRHAPI__CreateAuditRequest_1a6375d709e17e8bb9ecff0c349fd4125c)`()` | Clears the value of Reason_Optional and sets Reason_IsSet to false.
+`public inline bool `[`IsReasonSet`](#structFRHAPI__CreateAuditRequest_1a6224c0c862b237b11df78bab5c0602fa)`() const` | Checks whether Reason_Optional has been set.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__CreateAuditRequest_1adf7af672642bbeb437739eb502f25bb7)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__CreateAuditRequest_1a40328d64cba30c56951aa09778a444e7)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__CreateAuditRequest_1a85509064a7ef3a5017522c65331f77ff)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -442,6 +454,14 @@ Name of the audit event you are creating. Customer created events will be prepen
 
 ID of the session this event occurred in.
 
+#### `public FString `[`Reason_Optional`](#structFRHAPI__CreateAuditRequest_1ac966719ae7731b9d6838580a935c46fe) <a id="structFRHAPI__CreateAuditRequest_1ac966719ae7731b9d6838580a935c46fe"></a>
+
+Reason for this event to occur.
+
+#### `public bool `[`Reason_IsSet`](#structFRHAPI__CreateAuditRequest_1af5b2daa64d6e20dba16e9e7ae043487b) <a id="structFRHAPI__CreateAuditRequest_1af5b2daa64d6e20dba16e9e7ae043487b"></a>
+
+true if Reason_Optional has been set to a value
+
 #### `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__CreateAuditRequest_1adcb02cf43f2f10325f81639c5c8f2406) <a id="structFRHAPI__CreateAuditRequest_1adcb02cf43f2f10325f81639c5c8f2406"></a>
 
 Custom data for this audit request.
@@ -754,6 +774,46 @@ Sets the value of SessionId.
 #### `public inline void `[`SetSessionId`](#structFRHAPI__CreateAuditRequest_1aeab59058eda7191fce7e4ff6b9f3fcb1)`(FString && NewValue)` <a id="structFRHAPI__CreateAuditRequest_1aeab59058eda7191fce7e4ff6b9f3fcb1"></a>
 
 Sets the value of SessionId using move semantics.
+
+#### `public inline FString & `[`GetReason`](#structFRHAPI__CreateAuditRequest_1a42e5353e5bcf2d30d548a20b5231df06)`()` <a id="structFRHAPI__CreateAuditRequest_1a42e5353e5bcf2d30d548a20b5231df06"></a>
+
+Gets the value of Reason_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetReason`](#structFRHAPI__CreateAuditRequest_1a6d5051af11edb7a8a39fe35186f8a39e)`() const` <a id="structFRHAPI__CreateAuditRequest_1a6d5051af11edb7a8a39fe35186f8a39e"></a>
+
+Gets the value of Reason_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetReason`](#structFRHAPI__CreateAuditRequest_1acda010d73cfaeb2fdc93d56027caec21)`(const FString & DefaultValue) const` <a id="structFRHAPI__CreateAuditRequest_1acda010d73cfaeb2fdc93d56027caec21"></a>
+
+Gets the value of Reason_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetReason`](#structFRHAPI__CreateAuditRequest_1a9b202928341273a221ed02ff811fcab5)`(FString & OutValue) const` <a id="structFRHAPI__CreateAuditRequest_1a9b202928341273a221ed02ff811fcab5"></a>
+
+Fills OutValue with the value of Reason_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline FString * `[`GetReasonOrNull`](#structFRHAPI__CreateAuditRequest_1aa362ff6532018bc3bef52963b534ec5d)`()` <a id="structFRHAPI__CreateAuditRequest_1aa362ff6532018bc3bef52963b534ec5d"></a>
+
+Returns a pointer to Reason_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const FString * `[`GetReasonOrNull`](#structFRHAPI__CreateAuditRequest_1abcd6571434c02a436aa049ed1d5cc643)`() const` <a id="structFRHAPI__CreateAuditRequest_1abcd6571434c02a436aa049ed1d5cc643"></a>
+
+Returns a pointer to Reason_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetReason`](#structFRHAPI__CreateAuditRequest_1ab78171a656e3e553d9fd51a739b84030)`(const FString & NewValue)` <a id="structFRHAPI__CreateAuditRequest_1ab78171a656e3e553d9fd51a739b84030"></a>
+
+Sets the value of Reason_Optional and also sets Reason_IsSet to true.
+
+#### `public inline void `[`SetReason`](#structFRHAPI__CreateAuditRequest_1a24e233448ca803a91e982338d200aaff)`(FString && NewValue)` <a id="structFRHAPI__CreateAuditRequest_1a24e233448ca803a91e982338d200aaff"></a>
+
+Sets the value of Reason_Optional and also sets Reason_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearReason`](#structFRHAPI__CreateAuditRequest_1a6375d709e17e8bb9ecff0c349fd4125c)`()` <a id="structFRHAPI__CreateAuditRequest_1a6375d709e17e8bb9ecff0c349fd4125c"></a>
+
+Clears the value of Reason_Optional and sets Reason_IsSet to false.
+
+#### `public inline bool `[`IsReasonSet`](#structFRHAPI__CreateAuditRequest_1a6224c0c862b237b11df78bab5c0602fa)`() const` <a id="structFRHAPI__CreateAuditRequest_1a6224c0c862b237b11df78bab5c0602fa"></a>
+
+Checks whether Reason_Optional has been set.
 
 #### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__CreateAuditRequest_1adf7af672642bbeb437739eb502f25bb7)`()` <a id="structFRHAPI__CreateAuditRequest_1adf7af672642bbeb437739eb502f25bb7"></a>
 

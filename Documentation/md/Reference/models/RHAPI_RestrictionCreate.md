@@ -28,6 +28,8 @@ Restriction applied to a player.
 `public bool `[`Expiration_IsSet`](#structFRHAPI__RestrictionCreate_1a37ada59cfad3ecce8a0c3a5574caa28b) | true if Expiration_Optional has been set to a value
 `public ERHAPI_RestrictionIssuerType `[`IssuerType`](#structFRHAPI__RestrictionCreate_1abe11d5d16d3b2a151e8ad5255586958c) | Type of the Issuer.
 `public FString `[`Issuer`](#structFRHAPI__RestrictionCreate_1aefdcfacbf07f36db7af539b99b74ffd1) | The creator of the restriction.
+`public FString `[`ReasonDetail_Optional`](#structFRHAPI__RestrictionCreate_1ab584f517df6d46becf6a506b0328b754) | Additional reason describing the restriction.
+`public bool `[`ReasonDetail_IsSet`](#structFRHAPI__RestrictionCreate_1aa3c0b7e557877efea4bd553473b6878d) | true if ReasonDetail_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__RestrictionCreate_1a560ac591b3992acfd40be3711cbe7ba0)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__RestrictionCreate_1ad36ca37a3a2ce88b52f5eb288597ddba)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_RestrictionType & `[`GetType`](#structFRHAPI__RestrictionCreate_1a10651fe9c291a5deadab02af13b246b9)`()` | Gets the value of Type.
@@ -62,6 +64,16 @@ Restriction applied to a player.
 `public inline const FString & `[`GetIssuer`](#structFRHAPI__RestrictionCreate_1a4e9afff3b24e2f7d417af1738df22b30)`() const` | Gets the value of Issuer.
 `public inline void `[`SetIssuer`](#structFRHAPI__RestrictionCreate_1adaf0d17a24e07a07b4ec533f1eebcdb4)`(const FString & NewValue)` | Sets the value of Issuer.
 `public inline void `[`SetIssuer`](#structFRHAPI__RestrictionCreate_1a6e166369710df8de3900aa53d6feda3c)`(FString && NewValue)` | Sets the value of Issuer using move semantics.
+`public inline FString & `[`GetReasonDetail`](#structFRHAPI__RestrictionCreate_1ab4237c3f1db4d621d347f3cfae5b4037)`()` | Gets the value of ReasonDetail_Optional, regardless of it having been set.
+`public inline const FString & `[`GetReasonDetail`](#structFRHAPI__RestrictionCreate_1a6302c7beb2c7c536f8bdb4eaf5761ddc)`() const` | Gets the value of ReasonDetail_Optional, regardless of it having been set.
+`public inline const FString & `[`GetReasonDetail`](#structFRHAPI__RestrictionCreate_1a17ecc2d6ed480c592f4eeb5527b054e7)`(const FString & DefaultValue) const` | Gets the value of ReasonDetail_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetReasonDetail`](#structFRHAPI__RestrictionCreate_1a21e8bcfd0efa0c79f51d4404b5dc23aa)`(FString & OutValue) const` | Fills OutValue with the value of ReasonDetail_Optional and returns true if it has been set, otherwise returns false.
+`public inline FString * `[`GetReasonDetailOrNull`](#structFRHAPI__RestrictionCreate_1afe2a0f298264bc35c9c0a19ae30a076b)`()` | Returns a pointer to ReasonDetail_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetReasonDetailOrNull`](#structFRHAPI__RestrictionCreate_1a5bb8c13f85dc8b3fe76b15b6e524af83)`() const` | Returns a pointer to ReasonDetail_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetReasonDetail`](#structFRHAPI__RestrictionCreate_1a089eb493b706fa75153bcf1ef0b32caa)`(const FString & NewValue)` | Sets the value of ReasonDetail_Optional and also sets ReasonDetail_IsSet to true.
+`public inline void `[`SetReasonDetail`](#structFRHAPI__RestrictionCreate_1a735dfef88ae6709deb75e9019c1ecb4d)`(FString && NewValue)` | Sets the value of ReasonDetail_Optional and also sets ReasonDetail_IsSet to true using move semantics.
+`public inline void `[`ClearReasonDetail`](#structFRHAPI__RestrictionCreate_1aea59ca09f4c9f3f0f3ee7b77af25c6ce)`()` | Clears the value of ReasonDetail_Optional and sets ReasonDetail_IsSet to false.
+`public inline bool `[`IsReasonDetailSet`](#structFRHAPI__RestrictionCreate_1ad807474e4842e1a1982a4b66d6e1baa8)`() const` | Checks whether ReasonDetail_Optional has been set.
 
 ### Members
 
@@ -92,6 +104,14 @@ Type of the Issuer.
 #### `public FString `[`Issuer`](#structFRHAPI__RestrictionCreate_1aefdcfacbf07f36db7af539b99b74ffd1) <a id="structFRHAPI__RestrictionCreate_1aefdcfacbf07f36db7af539b99b74ffd1"></a>
 
 The creator of the restriction.
+
+#### `public FString `[`ReasonDetail_Optional`](#structFRHAPI__RestrictionCreate_1ab584f517df6d46becf6a506b0328b754) <a id="structFRHAPI__RestrictionCreate_1ab584f517df6d46becf6a506b0328b754"></a>
+
+Additional reason describing the restriction.
+
+#### `public bool `[`ReasonDetail_IsSet`](#structFRHAPI__RestrictionCreate_1aa3c0b7e557877efea4bd553473b6878d) <a id="structFRHAPI__RestrictionCreate_1aa3c0b7e557877efea4bd553473b6878d"></a>
+
+true if ReasonDetail_Optional has been set to a value
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__RestrictionCreate_1a560ac591b3992acfd40be3711cbe7ba0)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__RestrictionCreate_1a560ac591b3992acfd40be3711cbe7ba0"></a>
 
@@ -237,4 +257,44 @@ Sets the value of Issuer.
 #### `public inline void `[`SetIssuer`](#structFRHAPI__RestrictionCreate_1a6e166369710df8de3900aa53d6feda3c)`(FString && NewValue)` <a id="structFRHAPI__RestrictionCreate_1a6e166369710df8de3900aa53d6feda3c"></a>
 
 Sets the value of Issuer using move semantics.
+
+#### `public inline FString & `[`GetReasonDetail`](#structFRHAPI__RestrictionCreate_1ab4237c3f1db4d621d347f3cfae5b4037)`()` <a id="structFRHAPI__RestrictionCreate_1ab4237c3f1db4d621d347f3cfae5b4037"></a>
+
+Gets the value of ReasonDetail_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetReasonDetail`](#structFRHAPI__RestrictionCreate_1a6302c7beb2c7c536f8bdb4eaf5761ddc)`() const` <a id="structFRHAPI__RestrictionCreate_1a6302c7beb2c7c536f8bdb4eaf5761ddc"></a>
+
+Gets the value of ReasonDetail_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetReasonDetail`](#structFRHAPI__RestrictionCreate_1a17ecc2d6ed480c592f4eeb5527b054e7)`(const FString & DefaultValue) const` <a id="structFRHAPI__RestrictionCreate_1a17ecc2d6ed480c592f4eeb5527b054e7"></a>
+
+Gets the value of ReasonDetail_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetReasonDetail`](#structFRHAPI__RestrictionCreate_1a21e8bcfd0efa0c79f51d4404b5dc23aa)`(FString & OutValue) const` <a id="structFRHAPI__RestrictionCreate_1a21e8bcfd0efa0c79f51d4404b5dc23aa"></a>
+
+Fills OutValue with the value of ReasonDetail_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline FString * `[`GetReasonDetailOrNull`](#structFRHAPI__RestrictionCreate_1afe2a0f298264bc35c9c0a19ae30a076b)`()` <a id="structFRHAPI__RestrictionCreate_1afe2a0f298264bc35c9c0a19ae30a076b"></a>
+
+Returns a pointer to ReasonDetail_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const FString * `[`GetReasonDetailOrNull`](#structFRHAPI__RestrictionCreate_1a5bb8c13f85dc8b3fe76b15b6e524af83)`() const` <a id="structFRHAPI__RestrictionCreate_1a5bb8c13f85dc8b3fe76b15b6e524af83"></a>
+
+Returns a pointer to ReasonDetail_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetReasonDetail`](#structFRHAPI__RestrictionCreate_1a089eb493b706fa75153bcf1ef0b32caa)`(const FString & NewValue)` <a id="structFRHAPI__RestrictionCreate_1a089eb493b706fa75153bcf1ef0b32caa"></a>
+
+Sets the value of ReasonDetail_Optional and also sets ReasonDetail_IsSet to true.
+
+#### `public inline void `[`SetReasonDetail`](#structFRHAPI__RestrictionCreate_1a735dfef88ae6709deb75e9019c1ecb4d)`(FString && NewValue)` <a id="structFRHAPI__RestrictionCreate_1a735dfef88ae6709deb75e9019c1ecb4d"></a>
+
+Sets the value of ReasonDetail_Optional and also sets ReasonDetail_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearReasonDetail`](#structFRHAPI__RestrictionCreate_1aea59ca09f4c9f3f0f3ee7b77af25c6ce)`()` <a id="structFRHAPI__RestrictionCreate_1aea59ca09f4c9f3f0f3ee7b77af25c6ce"></a>
+
+Clears the value of ReasonDetail_Optional and sets ReasonDetail_IsSet to false.
+
+#### `public inline bool `[`IsReasonDetailSet`](#structFRHAPI__RestrictionCreate_1ad807474e4842e1a1982a4b66d6e1baa8)`() const` <a id="structFRHAPI__RestrictionCreate_1ad807474e4842e1a1982a4b66d6e1baa8"></a>
+
+Checks whether ReasonDetail_Optional has been set.
 
