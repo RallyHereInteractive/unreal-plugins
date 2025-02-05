@@ -24,7 +24,8 @@ A profile that describes what pools of players a session will be a part of when 
 `public FString `[`MatchMakingProfileId`](#structFRHAPI__MatchMakingProfileV2_1a1fac1d90d7052f77ed54c7ef0158d767) | ID of the matchmaking profile to join.
 `public ERHAPI_ProfileJoinMode `[`JoinMode_Optional`](#structFRHAPI__MatchMakingProfileV2_1a942eea841d6b9ab8a304ecc1e3486967) | What mode to set on the matchmaking profile (normal, backfill etc)
 `public bool `[`JoinMode_IsSet`](#structFRHAPI__MatchMakingProfileV2_1a7d05d638ad7e6bdc38adbee05fc65bb1) | true if JoinMode_Optional has been set to a value
-`public FGuid `[`InstanceRequestTemplateId`](#structFRHAPI__MatchMakingProfileV2_1acc1ae567ca4eae15dd5ba058009eb1bf) | Which instance template to use when launching a match in this profile.
+`public FGuid `[`InstanceRequestTemplateId_Optional`](#structFRHAPI__MatchMakingProfileV2_1a00bde0c1cfcea95fd3d1c3e3d43f621a) | Which instance template to use when launching a match in this profile.
+`public bool `[`InstanceRequestTemplateId_IsSet`](#structFRHAPI__MatchMakingProfileV2_1ac43efaeb9480938620528c2af51d1f45) | true if InstanceRequestTemplateId_Optional has been set to a value
 `public FString `[`RankId_Optional`](#structFRHAPI__MatchMakingProfileV2_1afd26627e8543724e350b3961995a4434) | Which rank this profile should use MMR from to make matches from, and update at the end of match (1v1 MMR or 2v2 MMR for example)
 `public bool `[`RankId_IsSet`](#structFRHAPI__MatchMakingProfileV2_1a60ec35f19ebed9d47879447dcc660f39) | true if RankId_Optional has been set to a value
 `public int32 `[`NumSides_Optional`](#structFRHAPI__MatchMakingProfileV2_1a05d7bde5226bb55b7361fc9d447b2639) | The number of sides a game in this profile will have (2 in a 1v1 and 3 in a 1v1v1 for example.
@@ -57,10 +58,16 @@ A profile that describes what pools of players a session will be a part of when 
 `public inline void `[`SetJoinMode`](#structFRHAPI__MatchMakingProfileV2_1a6e541aa635e3442b93c226fbdbd7e02f)`(ERHAPI_ProfileJoinMode && NewValue)` | Sets the value of JoinMode_Optional and also sets JoinMode_IsSet to true using move semantics.
 `public inline void `[`ClearJoinMode`](#structFRHAPI__MatchMakingProfileV2_1aab63f74fb4ae0fb21419a3cecdacb647)`()` | Clears the value of JoinMode_Optional and sets JoinMode_IsSet to false.
 `public inline bool `[`IsJoinModeSet`](#structFRHAPI__MatchMakingProfileV2_1acd4af257d70798efcaae31e992a07295)`() const` | Checks whether JoinMode_Optional has been set.
-`public inline FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingProfileV2_1ac48ddccec3a00502dab1102335a5e3bb)`()` | Gets the value of InstanceRequestTemplateId.
-`public inline const FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingProfileV2_1a3c788d021c23b2c9d519b86feb70d217)`() const` | Gets the value of InstanceRequestTemplateId.
-`public inline void `[`SetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingProfileV2_1ae5c65b0dc895cdcdf081ebcb23d6822a)`(const FGuid & NewValue)` | Sets the value of InstanceRequestTemplateId.
-`public inline void `[`SetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingProfileV2_1a81bcba79254b0d4e94c95606031cbd23)`(FGuid && NewValue)` | Sets the value of InstanceRequestTemplateId using move semantics.
+`public inline FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingProfileV2_1ac48ddccec3a00502dab1102335a5e3bb)`()` | Gets the value of InstanceRequestTemplateId_Optional, regardless of it having been set.
+`public inline const FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingProfileV2_1a3c788d021c23b2c9d519b86feb70d217)`() const` | Gets the value of InstanceRequestTemplateId_Optional, regardless of it having been set.
+`public inline const FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingProfileV2_1ab9fdff95c57ddb61659104e4b761244a)`(const FGuid & DefaultValue) const` | Gets the value of InstanceRequestTemplateId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingProfileV2_1a45ef2c5c8194c0c8d3e9182f4edd98cb)`(FGuid & OutValue) const` | Fills OutValue with the value of InstanceRequestTemplateId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FGuid * `[`GetInstanceRequestTemplateIdOrNull`](#structFRHAPI__MatchMakingProfileV2_1a57282a6e5883655cf86d4fe4dc86cbfe)`()` | Returns a pointer to InstanceRequestTemplateId_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FGuid * `[`GetInstanceRequestTemplateIdOrNull`](#structFRHAPI__MatchMakingProfileV2_1a19303601ae41adac85c695929ca80bb8)`() const` | Returns a pointer to InstanceRequestTemplateId_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingProfileV2_1ae5c65b0dc895cdcdf081ebcb23d6822a)`(const FGuid & NewValue)` | Sets the value of InstanceRequestTemplateId_Optional and also sets InstanceRequestTemplateId_IsSet to true.
+`public inline void `[`SetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingProfileV2_1a81bcba79254b0d4e94c95606031cbd23)`(FGuid && NewValue)` | Sets the value of InstanceRequestTemplateId_Optional and also sets InstanceRequestTemplateId_IsSet to true using move semantics.
+`public inline void `[`ClearInstanceRequestTemplateId`](#structFRHAPI__MatchMakingProfileV2_1af7bc7c5a7798d61a73e030162eaa4298)`()` | Clears the value of InstanceRequestTemplateId_Optional and sets InstanceRequestTemplateId_IsSet to false.
+`public inline bool `[`IsInstanceRequestTemplateIdSet`](#structFRHAPI__MatchMakingProfileV2_1a2c3cb34fd3d6b1b166c302a8915928a4)`() const` | Checks whether InstanceRequestTemplateId_Optional has been set.
 `public inline FString & `[`GetRankId`](#structFRHAPI__MatchMakingProfileV2_1a1067977f194ba6bfcf11f9c1f3373514)`()` | Gets the value of RankId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetRankId`](#structFRHAPI__MatchMakingProfileV2_1a027902a0cf2af415e72c25e06b89627b)`() const` | Gets the value of RankId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetRankId`](#structFRHAPI__MatchMakingProfileV2_1a5a445eba9573a7944ea0caf77369dfe9)`(const FString & DefaultValue) const` | Gets the value of RankId_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -162,9 +169,13 @@ What mode to set on the matchmaking profile (normal, backfill etc)
 
 true if JoinMode_Optional has been set to a value
 
-#### `public FGuid `[`InstanceRequestTemplateId`](#structFRHAPI__MatchMakingProfileV2_1acc1ae567ca4eae15dd5ba058009eb1bf) <a id="structFRHAPI__MatchMakingProfileV2_1acc1ae567ca4eae15dd5ba058009eb1bf"></a>
+#### `public FGuid `[`InstanceRequestTemplateId_Optional`](#structFRHAPI__MatchMakingProfileV2_1a00bde0c1cfcea95fd3d1c3e3d43f621a) <a id="structFRHAPI__MatchMakingProfileV2_1a00bde0c1cfcea95fd3d1c3e3d43f621a"></a>
 
 Which instance template to use when launching a match in this profile.
+
+#### `public bool `[`InstanceRequestTemplateId_IsSet`](#structFRHAPI__MatchMakingProfileV2_1ac43efaeb9480938620528c2af51d1f45) <a id="structFRHAPI__MatchMakingProfileV2_1ac43efaeb9480938620528c2af51d1f45"></a>
+
+true if InstanceRequestTemplateId_Optional has been set to a value
 
 #### `public FString `[`RankId_Optional`](#structFRHAPI__MatchMakingProfileV2_1afd26627e8543724e350b3961995a4434) <a id="structFRHAPI__MatchMakingProfileV2_1afd26627e8543724e350b3961995a4434"></a>
 
@@ -305,19 +316,43 @@ Checks whether JoinMode_Optional has been set.
 
 #### `public inline FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingProfileV2_1ac48ddccec3a00502dab1102335a5e3bb)`()` <a id="structFRHAPI__MatchMakingProfileV2_1ac48ddccec3a00502dab1102335a5e3bb"></a>
 
-Gets the value of InstanceRequestTemplateId.
+Gets the value of InstanceRequestTemplateId_Optional, regardless of it having been set.
 
 #### `public inline const FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingProfileV2_1a3c788d021c23b2c9d519b86feb70d217)`() const` <a id="structFRHAPI__MatchMakingProfileV2_1a3c788d021c23b2c9d519b86feb70d217"></a>
 
-Gets the value of InstanceRequestTemplateId.
+Gets the value of InstanceRequestTemplateId_Optional, regardless of it having been set.
+
+#### `public inline const FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingProfileV2_1ab9fdff95c57ddb61659104e4b761244a)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__MatchMakingProfileV2_1ab9fdff95c57ddb61659104e4b761244a"></a>
+
+Gets the value of InstanceRequestTemplateId_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingProfileV2_1a45ef2c5c8194c0c8d3e9182f4edd98cb)`(FGuid & OutValue) const` <a id="structFRHAPI__MatchMakingProfileV2_1a45ef2c5c8194c0c8d3e9182f4edd98cb"></a>
+
+Fills OutValue with the value of InstanceRequestTemplateId_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline FGuid * `[`GetInstanceRequestTemplateIdOrNull`](#structFRHAPI__MatchMakingProfileV2_1a57282a6e5883655cf86d4fe4dc86cbfe)`()` <a id="structFRHAPI__MatchMakingProfileV2_1a57282a6e5883655cf86d4fe4dc86cbfe"></a>
+
+Returns a pointer to InstanceRequestTemplateId_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const FGuid * `[`GetInstanceRequestTemplateIdOrNull`](#structFRHAPI__MatchMakingProfileV2_1a19303601ae41adac85c695929ca80bb8)`() const` <a id="structFRHAPI__MatchMakingProfileV2_1a19303601ae41adac85c695929ca80bb8"></a>
+
+Returns a pointer to InstanceRequestTemplateId_Optional, if it has been set, otherwise returns nullptr.
 
 #### `public inline void `[`SetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingProfileV2_1ae5c65b0dc895cdcdf081ebcb23d6822a)`(const FGuid & NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1ae5c65b0dc895cdcdf081ebcb23d6822a"></a>
 
-Sets the value of InstanceRequestTemplateId.
+Sets the value of InstanceRequestTemplateId_Optional and also sets InstanceRequestTemplateId_IsSet to true.
 
 #### `public inline void `[`SetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingProfileV2_1a81bcba79254b0d4e94c95606031cbd23)`(FGuid && NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1a81bcba79254b0d4e94c95606031cbd23"></a>
 
-Sets the value of InstanceRequestTemplateId using move semantics.
+Sets the value of InstanceRequestTemplateId_Optional and also sets InstanceRequestTemplateId_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearInstanceRequestTemplateId`](#structFRHAPI__MatchMakingProfileV2_1af7bc7c5a7798d61a73e030162eaa4298)`()` <a id="structFRHAPI__MatchMakingProfileV2_1af7bc7c5a7798d61a73e030162eaa4298"></a>
+
+Clears the value of InstanceRequestTemplateId_Optional and sets InstanceRequestTemplateId_IsSet to false.
+
+#### `public inline bool `[`IsInstanceRequestTemplateIdSet`](#structFRHAPI__MatchMakingProfileV2_1a2c3cb34fd3d6b1b166c302a8915928a4)`() const` <a id="structFRHAPI__MatchMakingProfileV2_1a2c3cb34fd3d6b1b166c302a8915928a4"></a>
+
+Checks whether InstanceRequestTemplateId_Optional has been set.
 
 #### `public inline FString & `[`GetRankId`](#structFRHAPI__MatchMakingProfileV2_1a1067977f194ba6bfcf11f9c1f3373514)`()` <a id="structFRHAPI__MatchMakingProfileV2_1a1067977f194ba6bfcf11f9c1f3373514"></a>
 

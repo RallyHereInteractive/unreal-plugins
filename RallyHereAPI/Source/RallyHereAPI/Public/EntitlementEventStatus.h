@@ -22,6 +22,7 @@ enum class ERHAPI_EntitlementEventStatus : uint8
 	SkuNotFound UMETA(ToolTip="The SKU was not found"),
 	NotImplemented UMETA(ToolTip="The requested operation is not implemented yet"),
 	PlayerNotFound UMETA(ToolTip="The player was not found"),
+	BanFailed UMETA(ToolTip="The player should have been banned, but an error occurred"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_EntitlementEventStatus& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_EntitlementEventStatus& EnumValue);

@@ -34,6 +34,8 @@ FString EnumToString(const ERHAPI_RestrictionIssuerType& Value)
 		return TEXT("punish_system");
 	case ERHAPI_RestrictionIssuerType::Guardian:
 		return TEXT("guardian");
+	case ERHAPI_RestrictionIssuerType::Shop:
+		return TEXT("shop");
 	}
 
 	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_RestrictionIssuerType::Values Value (%d)"), (int)Value);
@@ -48,7 +50,8 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_RestrictionIssuerType& V
 		{ TEXT("admin"), ERHAPI_RestrictionIssuerType::Admin },
 		{ TEXT("anticheat"), ERHAPI_RestrictionIssuerType::Anticheat },
 		{ TEXT("punish_system"), ERHAPI_RestrictionIssuerType::PunishSystem },
-		{ TEXT("guardian"), ERHAPI_RestrictionIssuerType::Guardian },	};
+		{ TEXT("guardian"), ERHAPI_RestrictionIssuerType::Guardian },
+		{ TEXT("shop"), ERHAPI_RestrictionIssuerType::Shop },	};
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)

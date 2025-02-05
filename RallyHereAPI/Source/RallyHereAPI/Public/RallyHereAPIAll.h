@@ -19,6 +19,7 @@
 #include "EventsAPI.h"
 #include "RemoteFileAPI.h"
 #include "FriendsAPI.h"
+#include "GuideAPI.h"
 #include "InventoryAPI.h"
 #include "KeyClaimsAPI.h"
 #include "MatchAPI.h"
@@ -75,6 +76,9 @@ public:
 	TSharedRef<FFriendsAPI> GetFriends();
 	const TSharedRef<FFriendsAPI> GetFriends() const;
 
+	TSharedRef<FGuideAPI> GetGuide();
+	const TSharedRef<FGuideAPI> GetGuide() const;
+
 	TSharedRef<FInventoryAPI> GetInventory();
 	const TSharedRef<FInventoryAPI> GetInventory() const;
 
@@ -123,6 +127,7 @@ private:
 	TSharedRef<FEventsAPI> Events;
 	TSharedRef<FRemoteFileAPI> RemoteFile;
 	TSharedRef<FFriendsAPI> Friends;
+	TSharedRef<FGuideAPI> Guide;
 	TSharedRef<FInventoryAPI> Inventory;
 	TSharedRef<FKeyClaimsAPI> KeyClaims;
 	TSharedRef<FMatchAPI> Match;

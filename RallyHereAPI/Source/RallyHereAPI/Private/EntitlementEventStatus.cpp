@@ -30,6 +30,8 @@ FString EnumToString(const ERHAPI_EntitlementEventStatus& Value)
 		return TEXT("not_implemented");
 	case ERHAPI_EntitlementEventStatus::PlayerNotFound:
 		return TEXT("player_not_found");
+	case ERHAPI_EntitlementEventStatus::BanFailed:
+		return TEXT("ban_failed");
 	}
 
 	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_EntitlementEventStatus::Values Value (%d)"), (int)Value);
@@ -42,7 +44,8 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_EntitlementEventStatus& 
 		{ TEXT("success"), ERHAPI_EntitlementEventStatus::Success },
 		{ TEXT("sku_not_found"), ERHAPI_EntitlementEventStatus::SkuNotFound },
 		{ TEXT("not_implemented"), ERHAPI_EntitlementEventStatus::NotImplemented },
-		{ TEXT("player_not_found"), ERHAPI_EntitlementEventStatus::PlayerNotFound },	};
+		{ TEXT("player_not_found"), ERHAPI_EntitlementEventStatus::PlayerNotFound },
+		{ TEXT("ban_failed"), ERHAPI_EntitlementEventStatus::BanFailed },	};
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)

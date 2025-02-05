@@ -81,15 +81,30 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingProfileV2 : public FRHAPI_Model
 
 	/** @brief Which instance template to use when launching a match in this profile */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FGuid InstanceRequestTemplateId{  };
-	/** @brief Gets the value of InstanceRequestTemplateId */
-	FGuid& GetInstanceRequestTemplateId() { return InstanceRequestTemplateId; }
-	/** @brief Gets the value of InstanceRequestTemplateId */
-	const FGuid& GetInstanceRequestTemplateId() const { return InstanceRequestTemplateId; }
-	/** @brief Sets the value of InstanceRequestTemplateId */
-	void SetInstanceRequestTemplateId(const FGuid& NewValue) { InstanceRequestTemplateId = NewValue;   }
-	/** @brief Sets the value of InstanceRequestTemplateId using move semantics */
-	void SetInstanceRequestTemplateId(FGuid&& NewValue) { InstanceRequestTemplateId = NewValue;   }
+	FGuid InstanceRequestTemplateId_Optional{  };
+	/** @brief true if InstanceRequestTemplateId_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool InstanceRequestTemplateId_IsSet{ false };
+	/** @brief Gets the value of InstanceRequestTemplateId_Optional, regardless of it having been set */
+	FGuid& GetInstanceRequestTemplateId() { return InstanceRequestTemplateId_Optional; }
+	/** @brief Gets the value of InstanceRequestTemplateId_Optional, regardless of it having been set */
+	const FGuid& GetInstanceRequestTemplateId() const { return InstanceRequestTemplateId_Optional; }
+	/** @brief Gets the value of InstanceRequestTemplateId_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FGuid& GetInstanceRequestTemplateId(const FGuid& DefaultValue) const { if (InstanceRequestTemplateId_IsSet) return InstanceRequestTemplateId_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of InstanceRequestTemplateId_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInstanceRequestTemplateId(FGuid& OutValue) const { if (InstanceRequestTemplateId_IsSet) OutValue = InstanceRequestTemplateId_Optional; return InstanceRequestTemplateId_IsSet; }
+	/** @brief Returns a pointer to InstanceRequestTemplateId_Optional, if it has been set, otherwise returns nullptr */
+	FGuid* GetInstanceRequestTemplateIdOrNull() { if (InstanceRequestTemplateId_IsSet) return (&InstanceRequestTemplateId_Optional); return nullptr; }
+	/** @brief Returns a pointer to InstanceRequestTemplateId_Optional, if it has been set, otherwise returns nullptr */
+	const FGuid* GetInstanceRequestTemplateIdOrNull() const { if (InstanceRequestTemplateId_IsSet) return (&InstanceRequestTemplateId_Optional); return nullptr; }
+	/** @brief Sets the value of InstanceRequestTemplateId_Optional and also sets InstanceRequestTemplateId_IsSet to true */
+	void SetInstanceRequestTemplateId(const FGuid& NewValue) { InstanceRequestTemplateId_Optional = NewValue; InstanceRequestTemplateId_IsSet = true;  }
+	/** @brief Sets the value of InstanceRequestTemplateId_Optional and also sets InstanceRequestTemplateId_IsSet to true using move semantics */
+	void SetInstanceRequestTemplateId(FGuid&& NewValue) { InstanceRequestTemplateId_Optional = NewValue; InstanceRequestTemplateId_IsSet = true;  }
+	/** @brief Clears the value of InstanceRequestTemplateId_Optional and sets InstanceRequestTemplateId_IsSet to false */
+	void ClearInstanceRequestTemplateId() { InstanceRequestTemplateId_IsSet = false;  }
+	/** @brief Checks whether InstanceRequestTemplateId_Optional has been set */
+	bool IsInstanceRequestTemplateIdSet() const { return InstanceRequestTemplateId_IsSet; }
 
 	/** @brief Which rank this profile should use MMR from to make matches from, and update at the end of match (1v1 MMR or 2v2 MMR for example) */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

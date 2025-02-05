@@ -15,6 +15,7 @@ FRallyHereAPIAll::FRallyHereAPIAll()
 	, Events(MakeShareable(new FEventsAPI()))
 	, RemoteFile(MakeShareable(new FRemoteFileAPI()))
 	, Friends(MakeShareable(new FFriendsAPI()))
+	, Guide(MakeShareable(new FGuideAPI()))
 	, Inventory(MakeShareable(new FInventoryAPI()))
 	, KeyClaims(MakeShareable(new FKeyClaimsAPI()))
 	, Match(MakeShareable(new FMatchAPI()))
@@ -39,6 +40,7 @@ FRallyHereAPIAll::FRallyHereAPIAll()
 	AllAPIs.Add(Events);
 	AllAPIs.Add(RemoteFile);
 	AllAPIs.Add(Friends);
+	AllAPIs.Add(Guide);
 	AllAPIs.Add(Inventory);
 	AllAPIs.Add(KeyClaims);
 	AllAPIs.Add(Match);
@@ -156,6 +158,16 @@ TSharedRef<FFriendsAPI> FRallyHereAPIAll::GetFriends()
 const TSharedRef<FFriendsAPI> FRallyHereAPIAll::GetFriends() const
 {
 	return Friends;
+}
+
+TSharedRef<FGuideAPI> FRallyHereAPIAll::GetGuide()
+{
+	return Guide;
+}
+
+const TSharedRef<FGuideAPI> FRallyHereAPIAll::GetGuide() const
+{
+	return Guide;
 }
 
 TSharedRef<FInventoryAPI> FRallyHereAPIAll::GetInventory()
