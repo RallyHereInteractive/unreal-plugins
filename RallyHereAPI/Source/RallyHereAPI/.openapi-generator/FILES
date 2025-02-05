@@ -63,6 +63,7 @@ Private/EntitlementEventStatus.cpp
 Private/EntitlementStatus.cpp
 Private/EntitlementType.cpp
 Private/EntitlementsAPI.cpp
+Private/EntityGuideEngagement.cpp
 Private/EntityType.cpp
 Private/EnvironmentConfig.cpp
 Private/EventList.cpp
@@ -70,6 +71,8 @@ Private/EventParamsSchemaResponse.cpp
 Private/EventsAPI.cpp
 Private/ExternalKeyEntitlement.cpp
 Private/FastapicommonPlatformsPortal.cpp
+Private/FavoriteGuideRequest.cpp
+Private/FavoriteGuideResponse.cpp
 Private/FileListResponse.cpp
 Private/FileResponse.cpp
 Private/FileType.cpp
@@ -79,6 +82,14 @@ Private/FriendsAPI.cpp
 Private/FriendsList.cpp
 Private/FriendshipStatus.cpp
 Private/GrantType.cpp
+Private/GuideAPI.cpp
+Private/GuideCreateRequest.cpp
+Private/GuideEntityType.cpp
+Private/GuideFull.cpp
+Private/GuideRating.cpp
+Private/GuideSearchResult.cpp
+Private/GuideSectionCreate.cpp
+Private/GuideSectionFull.cpp
 Private/HTTPValidationError.cpp
 Private/HostType.cpp
 Private/HzApiErrorModel.cpp
@@ -142,6 +153,8 @@ Private/LootPriceCurrencies.cpp
 Private/LootPriceCurrency.cpp
 Private/Loots.cpp
 Private/MMRGroupingMethod.cpp
+Private/ManyEntityGuideEngagement.cpp
+Private/ManyEntityGuideEngagementRequest.cpp
 Private/MapConfig.cpp
 Private/MapConfigV2.cpp
 Private/MapSelectionList.cpp
@@ -331,6 +344,9 @@ Private/Role.cpp
 Private/RoleAuthBypass.cpp
 Private/Rule.cpp
 Private/RuleType.cpp
+Private/SearchFavoriteGuideSort.cpp
+Private/SearchGuideResponse.cpp
+Private/SearchGuideSort.cpp
 Private/SelfSessionPlayerUpdateRequest.cpp
 Private/Session.cpp
 Private/SessionInviteRequest.cpp
@@ -351,6 +367,7 @@ Private/SettingData.cpp
 Private/SettingType.cpp
 Private/SettingTypeVersion.cpp
 Private/SettingsAPI.cpp
+Private/SortDirection.cpp
 Private/SortOrder.cpp
 Private/Source.cpp
 Private/StorageInformation.cpp
@@ -445,6 +462,7 @@ Public/EntitlementEventStatus.h
 Public/EntitlementStatus.h
 Public/EntitlementType.h
 Public/EntitlementsAPI.h
+Public/EntityGuideEngagement.h
 Public/EntityType.h
 Public/EnvironmentConfig.h
 Public/EventList.h
@@ -452,6 +470,8 @@ Public/EventParamsSchemaResponse.h
 Public/EventsAPI.h
 Public/ExternalKeyEntitlement.h
 Public/FastapicommonPlatformsPortal.h
+Public/FavoriteGuideRequest.h
+Public/FavoriteGuideResponse.h
 Public/FileListResponse.h
 Public/FileResponse.h
 Public/FileType.h
@@ -461,6 +481,14 @@ Public/FriendsAPI.h
 Public/FriendsList.h
 Public/FriendshipStatus.h
 Public/GrantType.h
+Public/GuideAPI.h
+Public/GuideCreateRequest.h
+Public/GuideEntityType.h
+Public/GuideFull.h
+Public/GuideRating.h
+Public/GuideSearchResult.h
+Public/GuideSectionCreate.h
+Public/GuideSectionFull.h
 Public/HTTPValidationError.h
 Public/HostType.h
 Public/HzApiErrorModel.h
@@ -524,6 +552,8 @@ Public/LootPriceCurrencies.h
 Public/LootPriceCurrency.h
 Public/Loots.h
 Public/MMRGroupingMethod.h
+Public/ManyEntityGuideEngagement.h
+Public/ManyEntityGuideEngagementRequest.h
 Public/MapConfig.h
 Public/MapConfigV2.h
 Public/MapSelectionList.h
@@ -713,6 +743,9 @@ Public/Role.h
 Public/RoleAuthBypass.h
 Public/Rule.h
 Public/RuleType.h
+Public/SearchFavoriteGuideSort.h
+Public/SearchGuideResponse.h
+Public/SearchGuideSort.h
 Public/SelfSessionPlayerUpdateRequest.h
 Public/Session.h
 Public/SessionInviteRequest.h
@@ -733,6 +766,7 @@ Public/SettingData.h
 Public/SettingType.h
 Public/SettingTypeVersion.h
 Public/SettingsAPI.h
+Public/SortDirection.h
 Public/SortOrder.h
 Public/Source.h
 Public/StorageInformation.h

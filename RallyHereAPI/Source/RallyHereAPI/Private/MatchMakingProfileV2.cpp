@@ -29,8 +29,11 @@ void FRHAPI_MatchMakingProfileV2::WriteJson(TSharedRef<TJsonWriter<>>& Writer) c
 		Writer->WriteIdentifierPrefix(TEXT("join_mode"));
 		RallyHereAPI::WriteJsonValue(Writer, EnumToString(JoinMode_Optional));
 	}
-	Writer->WriteIdentifierPrefix(TEXT("instance_request_template_id"));
-	RallyHereAPI::WriteJsonValue(Writer, InstanceRequestTemplateId);
+	if (InstanceRequestTemplateId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("instance_request_template_id"));
+		RallyHereAPI::WriteJsonValue(Writer, InstanceRequestTemplateId_Optional);
+	}
 	if (RankId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("rank_id"));
@@ -92,8 +95,11 @@ bool FRHAPI_MatchMakingProfileV2::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 		ParseSuccess &= JoinMode_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonInstanceRequestTemplateIdField = (*Object)->TryGetField(TEXT("instance_request_template_id"));
-	const bool InstanceRequestTemplateId_IsValid = JsonInstanceRequestTemplateIdField.IsValid() && (!JsonInstanceRequestTemplateIdField->IsNull() && TryGetJsonValue(JsonInstanceRequestTemplateIdField, InstanceRequestTemplateId));
-	ParseSuccess &= InstanceRequestTemplateId_IsValid; 
+	if (JsonInstanceRequestTemplateIdField.IsValid())
+	{
+		InstanceRequestTemplateId_IsSet = TryGetJsonValue(JsonInstanceRequestTemplateIdField, InstanceRequestTemplateId_Optional);
+		ParseSuccess &= InstanceRequestTemplateId_IsSet;
+	}
 	const TSharedPtr<FJsonValue> JsonRankIdField = (*Object)->TryGetField(TEXT("rank_id"));
 	if (JsonRankIdField.IsValid())
 	{

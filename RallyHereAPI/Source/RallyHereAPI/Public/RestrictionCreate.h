@@ -131,6 +131,33 @@ struct RALLYHEREAPI_API FRHAPI_RestrictionCreate : public FRHAPI_Model
 	void SetIssuer(const FString& NewValue) { Issuer = NewValue;   }
 	/** @brief Sets the value of Issuer using move semantics */
 	void SetIssuer(FString&& NewValue) { Issuer = NewValue;   }
+
+	/** @brief Additional reason describing the restriction */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString ReasonDetail_Optional{  };
+	/** @brief true if ReasonDetail_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool ReasonDetail_IsSet{ false };
+	/** @brief Gets the value of ReasonDetail_Optional, regardless of it having been set */
+	FString& GetReasonDetail() { return ReasonDetail_Optional; }
+	/** @brief Gets the value of ReasonDetail_Optional, regardless of it having been set */
+	const FString& GetReasonDetail() const { return ReasonDetail_Optional; }
+	/** @brief Gets the value of ReasonDetail_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetReasonDetail(const FString& DefaultValue) const { if (ReasonDetail_IsSet) return ReasonDetail_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of ReasonDetail_Optional and returns true if it has been set, otherwise returns false */
+	bool GetReasonDetail(FString& OutValue) const { if (ReasonDetail_IsSet) OutValue = ReasonDetail_Optional; return ReasonDetail_IsSet; }
+	/** @brief Returns a pointer to ReasonDetail_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetReasonDetailOrNull() { if (ReasonDetail_IsSet) return (&ReasonDetail_Optional); return nullptr; }
+	/** @brief Returns a pointer to ReasonDetail_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetReasonDetailOrNull() const { if (ReasonDetail_IsSet) return (&ReasonDetail_Optional); return nullptr; }
+	/** @brief Sets the value of ReasonDetail_Optional and also sets ReasonDetail_IsSet to true */
+	void SetReasonDetail(const FString& NewValue) { ReasonDetail_Optional = NewValue; ReasonDetail_IsSet = true;  }
+	/** @brief Sets the value of ReasonDetail_Optional and also sets ReasonDetail_IsSet to true using move semantics */
+	void SetReasonDetail(FString&& NewValue) { ReasonDetail_Optional = NewValue; ReasonDetail_IsSet = true;  }
+	/** @brief Clears the value of ReasonDetail_Optional and sets ReasonDetail_IsSet to false */
+	void ClearReasonDetail() { ReasonDetail_IsSet = false;  }
+	/** @brief Checks whether ReasonDetail_Optional has been set */
+	bool IsReasonDetailSet() const { return ReasonDetail_IsSet; }
 };
 
 /** @} */

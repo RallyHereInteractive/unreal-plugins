@@ -38,6 +38,11 @@ void FRHAPI_RestrictionCreate::WriteJson(TSharedRef<TJsonWriter<>>& Writer) cons
 	RallyHereAPI::WriteJsonValue(Writer, EnumToString(IssuerType));
 	Writer->WriteIdentifierPrefix(TEXT("issuer"));
 	RallyHereAPI::WriteJsonValue(Writer, Issuer);
+	if (ReasonDetail_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("reason_detail"));
+		RallyHereAPI::WriteJsonValue(Writer, ReasonDetail_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -70,6 +75,12 @@ bool FRHAPI_RestrictionCreate::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonIssuerField = (*Object)->TryGetField(TEXT("issuer"));
 	const bool Issuer_IsValid = JsonIssuerField.IsValid() && (!JsonIssuerField->IsNull() && TryGetJsonValue(JsonIssuerField, Issuer));
 	ParseSuccess &= Issuer_IsValid; 
+	const TSharedPtr<FJsonValue> JsonReasonDetailField = (*Object)->TryGetField(TEXT("reason_detail"));
+	if (JsonReasonDetailField.IsValid())
+	{
+		ReasonDetail_IsSet = TryGetJsonValue(JsonReasonDetailField, ReasonDetail_Optional);
+		ParseSuccess &= ReasonDetail_IsSet;
+	}
 
 	return ParseSuccess;
 }

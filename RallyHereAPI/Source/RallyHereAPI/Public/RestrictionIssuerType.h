@@ -24,6 +24,7 @@ enum class ERHAPI_RestrictionIssuerType : uint8
 	Anticheat UMETA(ToolTip="Anti-cheat provider (see issuer for more specific information)"),
 	PunishSystem UMETA(ToolTip="Automated Punishment system, based on user activity"),
 	Guardian UMETA(ToolTip="User&#39;s parent/guardian"),
+	Shop UMETA(ToolTip="Automated Shop System, based on user activity"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_RestrictionIssuerType& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_RestrictionIssuerType& EnumValue);
