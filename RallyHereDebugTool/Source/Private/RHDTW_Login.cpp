@@ -447,7 +447,7 @@ void FRHDTW_Login::DoServerLoginTab()
 
 void FRHDTW_Login::DoEnvironmentTab()
 {
-	auto RHIntegration = FRallyHereIntegrationModule::Get();
+	auto& RHIntegration = FRallyHereIntegrationModule::Get();
 
 	// need a player controller to run the set console commands.  Note that console commands are defined in RH_Integration.cpp
 	auto LP = GetFirstSelectedLocalPlayer();
