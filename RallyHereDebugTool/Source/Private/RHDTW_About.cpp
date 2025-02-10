@@ -46,7 +46,6 @@ void FRHDTW_About::Do()
 	{
 		FRH_DiagnosticReportOptions Options;
 		Options.World = GetWorld();
-		GetGameInstance();
 		Options.bWriteToFile = true;
 		Options.OnReportComplete.BindLambda([](const TSharedRef<const FRH_DiagnosticReportGenerator>& Report)
 			{
