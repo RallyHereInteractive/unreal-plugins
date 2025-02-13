@@ -173,6 +173,7 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	FileDownloadPriority = 1000000;
 	FileBrowsePriority = 1000000;
 	FileDeletePriority = 1000000;
+	GuideSearchGuidesPriority = 1000000;
 }
 
 const FRH_EnvironmentConfiguration* URH_IntegrationSettings::GetEnvironmentConfiguration(const FString& EnvironmentId) const

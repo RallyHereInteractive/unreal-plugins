@@ -624,6 +624,9 @@ public:
 	/** @brief Sets the request priority of File Delete calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "File API Priority", AdvancedDisplay)
 	int32 FileDeletePriority;
+	/** @brief Sets the request priority of Search Guides calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Guide API Priority", AdvancedDisplay)
+	int32 GuideSearchGuidesPriority;
 };
 
 /** @} */
