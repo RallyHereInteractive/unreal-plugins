@@ -257,20 +257,20 @@ public:
 	 * @param SearchGuideHandle 
 	 * @return request info
 	 */
-	const FRH_GuideSearchRequest& GetSearchGuideRequest(int32 SearchGuideHandle) const;
+	const FRH_GuideSearchRequest* GetSearchGuideRequest(int32 SearchGuideHandle) const;
 	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Guide Subsystem", meta = (DisplayName = "Get Search Guide Request", AutoCreateRefTerm = "Delegate"))
-	const FRH_GuideSearchRequest& BLUEPRINT_GetSearchGuideRequest(int32 SearchGuideHandle) { return GetSearchGuideRequest(SearchGuideHandle); }
+	bool BLUEPRINT_GetSearchGuideRequest(int32 SearchGuideHandle, FRH_GuideSearchRequest& OutRequest) const;
 
 	/**
 	 * @brief Get the responses for a GuideSearch
 	 * @param SearchGuideHandle 
 	 * @return array of pages containing the responses
 	 */
-	const TArray<FRHAPI_SearchGuideResponse>& GetSearchGuideResultPages(int32 SearchGuideHandle) const;
+	const TArray<FRHAPI_SearchGuideResponse>* GetSearchGuideResultPages(int32 SearchGuideHandle) const;
 	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Guide Subsystem", meta = (DisplayName = "Get Search Guide Result Pages", AutoCreateRefTerm = "Delegate"))
-	const TArray<FRHAPI_SearchGuideResponse>& BLUEPRINT_GetSearchGuideResultPages(int32 SearchGuideHandle) { return GetSearchGuideResultPages(SearchGuideHandle); }
+	bool BLUEPRINT_GetSearchGuideResultPages(int32 SearchGuideHandle, TArray<FRHAPI_SearchGuideResponse>& OutPages) const;
 	
 	/**
 	 * @brief Get the searches and their handles
@@ -342,11 +342,11 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Guide Subsystem", meta = (DisplayName = "Update Guide", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_DeleteGuide(const FGuid& GuideID, const FRH_GuideUpdateCallDynamicDelegate& Delegate) { return DeleteGuide(GuideID, Delegate); }
 protected:
-	void OnSearchGuidesResponse(const TSearchGuides::Response& Resp, int32 SearchGuideHandle, const FRH_GuideSearchCallBlock& Delegate);
-	void OnGuideGetAsync(const TGetGuideById::Response& Resp, const FRH_GuideGetCallBlock& Delegate);
-	void OnGuideCreate(const TCreateGuide::Response& Resp, const FRH_GuideUpdateCallBlock& Delegate);
-	void OnGuideUpdate(const TUpdateGuideById::Response& Resp, const FRH_GuideUpdateCallBlock& Delegate, const FGuid& GuideID);
-	void OnGuideDelete(const TDeleteGuideById::Response& Resp, const FRH_GuideUpdateCallBlock& Delegate, const FGuid& GuideID);
+	void OnSearchGuidesResponse(const TSearchGuides::Response& Resp, FRH_GuideSearchCallBlock Delegate, int32 SearchGuideHandle);
+	void OnGuideGetAsync(const TGetGuideById::Response& Resp, FRH_GuideGetCallBlock Delegate);
+	void OnGuideCreate(const TCreateGuide::Response& Resp, FRH_GuideUpdateCallBlock Delegate);
+	void OnGuideUpdate(const TUpdateGuideById::Response& Resp, FRH_GuideUpdateCallBlock Delegate, FGuid GuideID);
+	void OnGuideDelete(const TDeleteGuideById::Response& Resp, FRH_GuideUpdateCallBlock Delegate, FGuid GuideID);
 	
 	UPROPERTY(Transient)
 	TMap<FGuid, FRHAPI_GuideFull> Guides;

@@ -9,7 +9,7 @@
 #include "GenericPlatform/GenericPlatformChunkInstall.h"
 #include "RallyHereIntegrationModule.h"
 #include "RallyHereAPIHelpers.h"
-#include "GuideFull.h"
+#include "GuideAPI.h"
 #include "Engine/World.h"
 
 void URH_GuideSubsystem::Initialize()
@@ -234,7 +234,7 @@ bool URH_GuideSubsystem::RequestNextSearchGuidePage(int32 SearchGuideHandle, con
 	}
 
 	Search->bRequestInProgress = true;
-	auto Delegate = TSearchGuides::Delegate::CreateUObject(this, &URH_GuideSubsystem::OnSearchGuidesResponse, SearchGuideHandle, InDelegate);
+	auto Delegate = TSearchGuides::Delegate::CreateUObject(this, &URH_GuideSubsystem::OnSearchGuidesResponse, InDelegate, SearchGuideHandle);
 	if (!TSearchGuides::DoCall(RH_APIs::GetGuideAPI(), Search->SearchRequest, Delegate, GetDefault<URH_IntegrationSettings>()->GuideSearchGuidesPriority))
 	{
 		Search->bRequestInProgress = false;
@@ -244,7 +244,7 @@ bool URH_GuideSubsystem::RequestNextSearchGuidePage(int32 SearchGuideHandle, con
 	return true;
 }
 
-void URH_GuideSubsystem::OnSearchGuidesResponse(const TSearchGuides::Response& Resp, int32 SearchGuideHandle, const FRH_GuideSearchCallBlock& Delegate)
+void URH_GuideSubsystem::OnSearchGuidesResponse(const TSearchGuides::Response& Resp, FRH_GuideSearchCallBlock Delegate, int32 SearchGuideHandle)
 {
 	SCOPED_NAMED_EVENT(RallyHere_OnSearchGuidesResponse, FColor::Purple);
 	auto Search = Searches.Find(SearchGuideHandle);
@@ -265,6 +265,50 @@ void URH_GuideSubsystem::OnSearchGuidesResponse(const TSearchGuides::Response& R
 	Search->ResultPages.Add(MoveTemp(Content));
 	Delegate.ExecuteIfBound(true, FRH_ErrorInfo(), SearchGuideHandle);
 }
+
+const FRH_GuideSearchRequest* URH_GuideSubsystem::GetSearchGuideRequest(int32 SearchGuideHandle) const
+{
+	auto Search = Searches.Find(SearchGuideHandle);
+	if (!Search)
+	{
+		return nullptr;
+	}
+	return &Search->InputRequest;
+}
+
+
+bool URH_GuideSubsystem::BLUEPRINT_GetSearchGuideRequest(int32 SearchGuideHandle, FRH_GuideSearchRequest& OutRequest) const
+{
+	auto Search = Searches.Find(SearchGuideHandle);
+	if (!Search)
+	{
+		return false;
+	}
+	OutRequest = Search->InputRequest;
+	return true;
+}
+
+const TArray<FRHAPI_SearchGuideResponse>* URH_GuideSubsystem::GetSearchGuideResultPages(int32 SearchGuideHandle) const
+{
+	auto Search = Searches.Find(SearchGuideHandle);
+	if (!Search)
+	{
+		return nullptr;
+	}
+	return &Search->ResultPages;
+}
+
+bool URH_GuideSubsystem::BLUEPRINT_GetSearchGuideResultPages(int32 SearchGuideHandle, TArray<FRHAPI_SearchGuideResponse>& OutPages) const
+{
+	auto Search = Searches.Find(SearchGuideHandle);
+	if (!Search)
+	{
+		return false;
+	}
+	OutPages = Search->ResultPages;
+	return true;
+}
+
 
 const FRHAPI_GuideFull* URH_GuideSubsystem::GetCachedGuide(const FGuid& GuideID) const
 {
@@ -307,7 +351,7 @@ void URH_GuideSubsystem::GetGuideAsync(const FGuid& GuideID, bool bIgnoreCache, 
 	}
 }
 
-void URH_GuideSubsystem::OnGuideGetAsync(const TGetGuideById::Response& Resp, const FRH_GuideGetCallBlock& Delegate)
+void URH_GuideSubsystem::OnGuideGetAsync(const TGetGuideById::Response& Resp, FRH_GuideGetCallBlock Delegate)
 {
 	FRHAPI_GuideFull Content;
 	if (!Resp.TryGetContentFor200(Content))
@@ -332,7 +376,7 @@ void URH_GuideSubsystem::CreateGuide(FRHAPI_GuideCreateRequest InRequest, const 
 	}
 }
 
-void URH_GuideSubsystem::OnGuideCreate(const TCreateGuide::Response& Resp, const FRH_GuideUpdateCallBlock& Delegate)
+void URH_GuideSubsystem::OnGuideCreate(const TCreateGuide::Response& Resp, FRH_GuideUpdateCallBlock Delegate)
 {
 	FRHAPI_GuideFull Content;
 	if (!Resp.TryGetContentFor201(Content))
@@ -358,7 +402,7 @@ void URH_GuideSubsystem::UpdateGuide(const FGuid& GuideID, FRHAPI_GuideCreateReq
 	}
 }
 
-void URH_GuideSubsystem::OnGuideUpdate(const TUpdateGuideById::Response& Resp, const FRH_GuideUpdateCallBlock& Delegate, const FGuid& GuideID)
+void URH_GuideSubsystem::OnGuideUpdate(const TUpdateGuideById::Response& Resp, FRH_GuideUpdateCallBlock Delegate, FGuid GuideID)
 {
 	FRHAPI_GuideFull Content;
 	if (!Resp.TryGetContentFor200(Content))
@@ -377,13 +421,13 @@ void URH_GuideSubsystem::DeleteGuide(const FGuid& GuideID, const FRH_GuideUpdate
 	TDeleteGuideById::Request Request;
 	Request.AuthContext = GetAuthContext();
 	Request.GuideId = GuideID;
-	if (!TDeleteGuideById::DoCall(RH_APIs::GetGuideAPI(), Request, TDeleteGuideById::Delegate::CreateUObject(this, &URH_GuideSubsystem::OnGuideUpdate, InDelegate, GuideID)))
+	if (!TDeleteGuideById::DoCall(RH_APIs::GetGuideAPI(), Request, TDeleteGuideById::Delegate::CreateUObject(this, &URH_GuideSubsystem::OnGuideDelete, InDelegate, GuideID)))
 	{
 		InDelegate.ExecuteIfBound(false, FRH_ErrorInfo(), GuideID);
 	}
 }
 
-void URH_GuideSubsystem::OnGuideDelete(const TDeleteGuideById::Response& Resp, const FRH_GuideUpdateCallBlock& Delegate, const FGuid& GuideID)
+void URH_GuideSubsystem::OnGuideDelete(const TDeleteGuideById::Response& Resp, FRH_GuideUpdateCallBlock Delegate, FGuid GuideID)
 {
 	if (!Resp.IsSuccessful())
 	{
