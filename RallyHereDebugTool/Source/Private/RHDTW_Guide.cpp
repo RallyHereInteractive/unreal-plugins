@@ -590,9 +590,16 @@ void FRHDTW_Guide::DoSearchGuides()
 		ImGui::EndCombo();
 	}
 
+	ImGui::SameLine();
 	if (ImGui::Button("Create New"))
 	{
 		ImGui::OpenPopup("CreateNewGuideSearch");
+	}
+
+	ImGui::SameLine();
+	if (ImGui::Button("Clear All"))
+	{
+		GuideSS->ClearAllSearchGuides();
 	}
 
 	if (ImGui::BeginPopup("CreateNewGuideSearch"))
@@ -805,6 +812,13 @@ void FRHDTW_Guide::DoShowGuideFull(const FRHAPI_GuideFull& Result, class URH_Gui
 	{
 		bNeedsDelete = true; // Delay to end, so we can still display this frame properly
 	}
+
+	ImGui::SameLine();
+	bool bNeedsCacheRemoval = false;
+	if (ImGui::Button("Remove from cache"))
+	{
+		bNeedsCacheRemoval = true;
+	}
 	
 	ImGuiDisplayCopyableValue(TEXT("ID"), Result.GetGuideId());
 	ImGuiDisplayCopyableValue(TEXT("Name"), Result.GetName());
@@ -867,6 +881,10 @@ void FRHDTW_Guide::DoShowGuideFull(const FRHAPI_GuideFull& Result, class URH_Gui
 	if (bNeedsDelete)
 	{
 		GuideSS->DeleteGuide(Result.GetGuideId());
+	}
+	if (bNeedsCacheRemoval)
+	{
+		GuideSS->RemoveCachedGuide(Result.GetGuideId());
 	}
 }
 
