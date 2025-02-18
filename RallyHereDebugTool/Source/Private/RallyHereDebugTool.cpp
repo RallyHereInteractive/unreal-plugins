@@ -49,6 +49,7 @@
 #include "RHDTW_About.h"
 #include "RHDTW_Match.h"
 #include "RHDTW_RemoteFile.h"
+#include "RHDTW_Guide.h"
 #include "RHDTW_Automation.h"
 
 #include "Runtime/Launch/Resources/Version.h"
@@ -145,6 +146,9 @@ void URallyHereDebugTool::Initialize(FSubsystemCollectionBase& Collection)
 
 	RemoteFileWindow = MakeShared<FRHDTW_RemoteFile>();
 	RemoteFileWindow->Init(this, TEXT("Remote Files"));
+
+	GuidesWindow = MakeShared<FRHDTW_Guide>();
+	GuidesWindow->Init(this, TEXT("Guides"));
 
 #if WITH_DEV_AUTOMATION_TESTS
 	AutomationWindow = MakeShared<FRHDTW_Automation>();
