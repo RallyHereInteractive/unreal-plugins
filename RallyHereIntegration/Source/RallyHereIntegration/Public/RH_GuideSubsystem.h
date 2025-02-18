@@ -171,6 +171,9 @@ struct FRH_GuideSearchRequest
 	{
 		Sort = ERHAPI_SortDirection::Desc;
 		SortBy = ERHAPI_SearchGuideSort::Created;
+		PageSize = 0;
+		bDoOwnerSearch = false;
+		OwnerEntityType = ERHAPI_GuideEntityType::Player;
 	}
 };
 
