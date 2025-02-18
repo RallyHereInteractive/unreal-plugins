@@ -515,16 +515,62 @@ void FRHDTW_Guide::DoShowCurrentGuideSearch()
 		return;
 	}
 
-	// TODO set up table
 	for (TArray<FRHAPI_GuideSearchResult>::TConstIterator Itr(*PageResults); Itr; ++Itr)
 	{
-		DoShowGuideSearchResult(*Itr);
+		const FString ExpandName = FString::Format(TEXT("{0} - {1}"), {Itr->GuideId.ToString(), Itr->Name});
+		if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*ExpandName), RH_DefaultTreeFlags))
+		{
+			DoShowGuideSearchPage(*Itr);
+		}
 	}
 }
 
-void DoShowGuideSearchPage(const FRHAPI_GuideSearchResult& Result)
+void FRHDTW_Guide::DoShowGuideSearchPage(const FRHAPI_GuideSearchResult& Result)
 {
-	// TODO set up values on table
-	ImGuiDisplayCopyableValue(TEXT("Guide ID"), Result.GetGuideId());
+	ImGuiDisplayCopyableValue(TEXT("ID"), Result.GetGuideId());
+	ImGuiDisplayCopyableValue(TEXT("Name"), Result.GetName());
 	ImGuiDisplayCopyableValue(TEXT("Guide Type"), Result.GetGuideType());
+	ImGuiDisplayCopyableValue(TEXT("Owner Type"), EnumToString(Result.GetOwnerEntityType()));
+	ImGuiDisplayCopyableValue(TEXT("Owner ID"), Result.GetOwnerEntityId());
+	ImGuiDisplayCopyableValue(TEXT("Language"), Result.GetLanguage());
+	ImGuiDisplayCopyableValue(TEXT("Game Version"), Result.GetGameVersion());
+	ImGuiDisplayCopyableValue(TEXT("Short Desc"), Result.GetShortDescOrNull());
+	ImGuiDisplayCopyableValue(TEXT("Created"), Result.GetCreated());
+	ImGuiDisplayCopyableValue(TEXT("Modified"), Result.GetModified());
+	ImGuiDisplayCopyableValue(TEXT("Favorites"), Result.GetFavoritesOrNull());
+	ImGuiDisplayCopyableValue(TEXT("Upvotes"), Result.GetUpvotesOrNull());
+	ImGuiDisplayCopyableValue(TEXT("Downvotes"), Result.GetDownvotesOrNull());
+	ImGuiDisplayCopyableValue(TEXT("Ref1"), Result.GetRef1());
+	ImGuiDisplayCopyableValue(TEXT("Ref2"), Result.GetRef2());
+	ImGuiDisplayCopyableValue(TEXT("Ref3"), Result.GetRef3());
+	ImGuiDisplayCopyableValue(TEXT("Ref4"), Result.GetRef4());
+	ImGuiDisplayCopyableValue(TEXT("Ref5"), Result.GetRef5());
+	ImGuiDisplayCopyableValue(TEXT("Ref6"), Result.GetRef6());
+	ImGuiDisplayCopyableValue(TEXT("Ref7"), Result.GetRef7());
+	ImGuiDisplayCopyableValue(TEXT("Ref8"), Result.GetRef8());
+	ImGuiDisplayCopyableValue(TEXT("Ref9"), Result.GetRef9());
+	ImGuiDisplayCopyableValue(TEXT("Ref10"), Result.GetRef10());
+	ImGuiDisplayCopyableValue(TEXT("Ref11"), Result.GetRef11());
+	ImGuiDisplayCopyableValue(TEXT("Ref12"), Result.GetRef12());
+	ImGuiDisplayCopyableValue(TEXT("Ref13"), Result.GetRef13());
+	ImGuiDisplayCopyableValue(TEXT("Ref14"), Result.GetRef14());
+	ImGuiDisplayCopyableValue(TEXT("Ref15"), Result.GetRef15());
+	ImGuiDisplayCopyableValue(TEXT("Ref16"), Result.GetRef16());
+	ImGuiDisplayCopyableValue(TEXT("Ref17"), Result.GetRef17());
+	ImGuiDisplayCopyableValue(TEXT("Ref18"), Result.GetRef18());
+	ImGuiDisplayCopyableValue(TEXT("Ref19"), Result.GetRef19());
+	ImGuiDisplayCopyableValue(TEXT("Ref20"), Result.GetRef20());
+	ImGuiDisplayCopyableValue(TEXT("Ref21"), Result.GetRef21());
+	ImGuiDisplayCopyableValue(TEXT("Ref22"), Result.GetRef22());
+	ImGuiDisplayCopyableValue(TEXT("Ref23"), Result.GetRef23());
+	ImGuiDisplayCopyableValue(TEXT("Ref24"), Result.GetRef24());
+	ImGuiDisplayCopyableValue(TEXT("Ref25"), Result.GetRef25());
+	ImGuiDisplayCopyableValue(TEXT("Ref26"), Result.GetRef26());
+	ImGuiDisplayCopyableValue(TEXT("Ref27"), Result.GetRef27());
+	ImGuiDisplayCopyableValue(TEXT("Ref28"), Result.GetRef28());
+	ImGuiDisplayCopyableValue(TEXT("Ref29"), Result.GetRef29());
+	ImGuiDisplayCopyableValue(TEXT("Ref30"), Result.GetRef30());
+	ImGuiDisplayCopyableValue(TEXT("Ref31"), Result.GetRef31());
+	ImGuiDisplayCopyableValue(TEXT("Ref32"), Result.GetRef32());
+	ImGuiDisplayCopyableValue(TEXT("Etag"), Result.GetEtag());
 }

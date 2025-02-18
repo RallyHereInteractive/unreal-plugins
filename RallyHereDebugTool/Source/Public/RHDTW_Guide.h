@@ -21,7 +21,7 @@ public:
 	virtual void DoShowCurrentGuideSearch();
 
 protected:
-	void DoShowGuideSearchResult(const struct FRHAPI_GuideSearchResult& Result);
+	void DoShowGuideSearchPage(const struct FRHAPI_GuideSearchResult& Result);
 	class URH_GuideSubsystem* GetSubsystemWithTextForFailures() const;
 	FString GetSearchString(const struct FRH_GuideSearch& Search) const;
 	
