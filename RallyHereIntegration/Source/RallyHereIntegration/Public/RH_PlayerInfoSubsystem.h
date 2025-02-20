@@ -92,6 +92,11 @@ DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_PlayerInfoCreatePlayerReportDynamicDele
 DECLARE_DELEGATE_ThreeParams(FRH_PlayerInfoCreatePlayerReportDelegate, bool, const FRHAPI_PlayerReport&, const FRH_ErrorInfo&);
 DECLARE_RH_DELEGATE_BLOCK(FRH_PlayerInfoCreatePlayerReportBlock, FRH_PlayerInfoCreatePlayerReportDelegate, FRH_PlayerInfoCreatePlayerReportDynamicDelegate, bool, const FRHAPI_PlayerReport&, const FRH_ErrorInfo&)
 
+UDELEGATE()
+DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_PlayerInfoGetGuideEngagementDynamicDelegate, bool, bSuccess, const FRHAPI_ManyEntityGuideEngagement&, Engagement, const FRH_ErrorInfo&, ErrorInfo);
+DECLARE_DELEGATE_ThreeParams(FRH_PlayerInfoGetGuideEngagementDelegate, bool, const FRHAPI_ManyEntityGuideEngagement&, const FRH_ErrorInfo&);
+DECLARE_RH_DELEGATE_BLOCK(FRH_PlayerInfoGetGuideEngagementBlock, FRH_PlayerInfoGetGuideEngagementDelegate, FRH_PlayerInfoGetGuideEngagementDynamicDelegate, bool, const FRHAPI_ManyEntityGuideEngagement&, const FRH_ErrorInfo&)
+
 // multicast delegates to notify listeners of player info subobject events
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FRH_OnPlayerInfoSubobjectUpdatedMulticastDynamicDelegate, URH_PlayerInfoSubobject*, Subobject);
 DECLARE_MULTICAST_DELEGATE_OneParam(FRH_OnPlayerInfoSubobjectUpdatedMulticastDelegate, URH_PlayerInfoSubobject*);
@@ -785,6 +790,100 @@ protected:
 	TArray<FRHAPI_PlayerReport> ReportsReceived;
 };
 
+
+/**
+ * @brief Player Guide Engagement class used to store and update guide engagement (favorites and votes)
+ */
+UCLASS(Config = RallyHereIntegration, DefaultConfig)
+class RALLYHEREINTEGRATION_API URH_PlayerGuideEngagement : public URH_PlayerInfoSubobject
+{
+	GENERATED_UCLASS_BODY()
+
+public:
+
+	typedef RallyHereAPI::Traits_GetEntityGuideEngagement GetEntityGuideEngageementType;
+	typedef RallyHereAPI::Traits_AddEntityFavoriteGuide AddEntityFavoriteGuideType;
+	typedef RallyHereAPI::Traits_RemoveEntityFavoriteGuide RemoveEntityFavoriteGuideType;
+	typedef RallyHereAPI::Traits_AddEntityRatingForGuide AddEntityRatingForGuideType;
+	
+	/**
+	 * @brief Add a guide to the player's favorite guides
+	 * @param GuideID Guide to add to favorite list
+	 * @param Delegate Callback delegate for the request.
+	 */
+	virtual void AddGuideToFavorites(const FGuid& GuideID, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate = FRH_GenericSuccessWithErrorDynamicDelegate());
+
+	/**
+	 * @private
+	 * @brief Add a guide to the player's favorite guides
+	 * @param GuideID Guide to add to favorite list
+	 * @param Delegate Callback delegate for the request.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Guide Engagement", meta = (DisplayName = "Add Guide to Favorites", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_AddGuideToFavorites(const FGuid& GuideID, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate) { AddGuideToFavorites(GuideID, Delegate); }
+
+	/**
+	 * @brief Remove a guide to the player's favorite guides
+	 * @param GuideID Guide to add to favorite list
+	 * @param Delegate Callback delegate for the request.
+	 */
+	virtual void RemoveGuideFromFavorites(const FGuid& GuideID, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate = FRH_GenericSuccessWithErrorDynamicDelegate());
+
+	/**
+	 * @private
+	 * @brief Remove a guide to the player's favorite guides
+	 * @param GuideID Guide to add to favorite list
+	 * @param Delegate Callback delegate for the request.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Guide Engagement", meta = (DisplayName = "Remove Guide from Favorites", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_RemoveGuideFromFavorites(const FGuid& GuideID, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate) { RemoveGuideFromFavorites(GuideID, Delegate); }
+
+	/**
+	 * @brief Update the player's rating for a guide
+	 * @param GuideID Guide to change rating
+	 * @param Rating Rating (-1, 0, 1) that the player is giving the guide
+	 * @param Delegate Callback delegate for the request.
+	 */
+	virtual void RateGuide(const FGuid& GuideID, int32 Rating, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate = FRH_GenericSuccessWithErrorDynamicDelegate());
+
+	/**
+	 * @brief Update the player's rating for a guide
+	 * @param GuideID Guide to change rating
+	 * @param Rating Rating (-1, 0, 1) that the player is giving the guide
+	 * @param Delegate Callback delegate for the request.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Guide Engagement", meta = (DisplayName = "Rate Guide", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_RateGuide(const FGuid& GuideID, int32 Rating, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate) { RateGuide(GuideID, Rating, Delegate); }
+	
+	/**
+	 * @brief Request a list of player reports received by this player
+	 * @param Cursor The cursor to use for the request.
+	 * @param PageSize The size of the pages to poll, if 0, uses default
+	 * @param Delegate Callback delegate for the request.
+	 */
+	virtual void GetGuideEngagementAsync(TArray<FGuid> GuideIDs, const FRH_PlayerInfoGetGuideEngagementBlock& Delegate = FRH_PlayerInfoGetGuideEngagementBlock());
+
+	/**
+	 * @private
+	 * @brief Request a list of player reports received by this player
+	 * @param Cursor The cursor to use for the request.
+	 * @param PageSize The size of the pages to poll, if 0, uses default
+	 * @param Delegate Callback delegate for the request.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Guide Engagement", meta = (DisplayName = "Get Player Guide Engagement Async", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_GetGuideEngagementAsync(TArray<FGuid> GuideIDs, const FRH_PlayerInfoGetGuideEngagementDynamicDelegate& Delegate) { GetGuideEngagementAsync(MoveTemp(GuideIDs), Delegate); }
+	
+	/**
+	 * @brief Get the current cached list of guide engagement by this player
+	 */
+	UFUNCTION(BlueprintGetter, Category = "Player Info Subsystem | Player Guide Engagement")
+	const TMap<FGuid, FRHAPI_EntityGuideEngagement>& GetGuideEngagement() const { return GuideEngagement; }
+
+protected:
+	UPROPERTY(BlueprintReadOnly, BlueprintGetter = GetGuideEngagement, Category = "Player Info Subsystem | Player Guide Engagement")
+	TMap<FGuid, FRHAPI_EntityGuideEngagement> GuideEngagement;
+};
+
 /**
  * @brief Wrapper to help with setting keys for player settings.
  */
@@ -910,6 +1009,13 @@ public:
 	*/
 	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Info")
 	FORCEINLINE URH_PlayerReports* GetReports() const { return PlayerReports; }
+
+	/**
+	* @brief Gets The players Guide engagement class.
+	* @return The players Guide engagemetn class.
+	*/
+	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Info")
+	FORCEINLINE URH_PlayerGuideEngagement* GetGuideEngagement() const { return PlayerGuideEngagement; }
 
 	/**
 	* @brief Gets the associated platform ids of the player.
@@ -1150,6 +1256,11 @@ protected:
 	 */
 	UPROPERTY(BlueprintGetter = GetReports, Category = "Reports")
 	URH_PlayerReports* PlayerReports;
+	/**
+	 * @brief The players Guide Engagement Information.
+	 */
+	UPROPERTY(BlueprintGetter = GetGuideEngagement, Category = "Guides")
+	URH_PlayerGuideEngagement* PlayerGuideEngagement;
 	/**
 	 * @brief The Players Inventory Subsystem.
 	 */

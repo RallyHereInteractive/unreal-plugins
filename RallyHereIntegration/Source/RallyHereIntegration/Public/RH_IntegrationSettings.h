@@ -630,6 +630,9 @@ public:
 	/** @brief Sets the request priority of Search Guides calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Guide API Priority", AdvancedDisplay)
 	int32 GuideSearchGuidesPriority;
+	/** @brief Sets the request priority of Guides Favorite calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Guide API Priority", AdvancedDisplay)
+	int32 GuideFavoritePriority;
 };
 
 /** @} */

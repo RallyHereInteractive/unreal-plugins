@@ -225,16 +225,12 @@ void URH_PlayerInfoSubsystem::OnLookupPlayerByPlatformUserIdResponse(const TLook
 URH_PlayerInfo::URH_PlayerInfo(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
 	PlayerPresence = CreateDefaultSubobject<URH_PlayerPresence>(TEXT("PlayerPresence"));
-
 	PlayerSettings = CreateDefaultSubobject<URH_PlayerSettings>(TEXT("PlayerSettings"));
-
 	PlayerSessions = CreateDefaultSubobject<URH_PlayerSessions>(TEXT("PlayerSessions"));
-
 	PlayerDeserter = CreateDefaultSubobject<URH_PlayerDeserter>(TEXT("PlayerDeserter"));
-
 	PlayerMatches = CreateDefaultSubobject<URH_PlayerMatches>(TEXT("PlayerMatches"));
-
 	PlayerReports = CreateDefaultSubobject<URH_PlayerReports>(TEXT("PlayerReports"));
+	PlayerGuideEngagement = CreateDefaultSubobject<URH_PlayerGuideEngagement>(TEXT("PlayerGuideEngagement"));
 
 	PlayerInventory = CreateDefaultSubobject<URH_PlayerInventory>(TEXT("PlayerInventory"));
 	PlayerInventory->SetPlayerInfo(this);
@@ -1401,3 +1397,88 @@ void URH_PlayerReports::CreateReport(const FRHAPI_PlayerReportCreate& Report, FA
 	Helper->Start(RH_APIs::GetReportsAPI(), Request);
 }
 
+///
+
+URH_PlayerGuideEngagement::URH_PlayerGuideEngagement(const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer)
+{
+	
+}
+
+void URH_PlayerGuideEngagement::AddGuideToFavorites(const FGuid& GuideID, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate)
+{
+	typedef AddEntityFavoriteGuideType BaseType;
+
+	auto Request = BaseType::Request();
+	Request.EntityType = ERHAPI_GuideEntityType::Player;
+	Request.EntityId = GetPlayerInfo()->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphensLower);
+	Request.AuthContext = GetPlayerInfo()->GetAuthContext();
+	Request.FavoriteGuideRequest.GuideId = GuideID;
+
+	const auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(BaseType::Delegate(), Delegate, GetDefault<URH_IntegrationSettings>()->GuideFavoritePriority);
+	Helper->Start(RH_APIs::GetGuideAPI(), Request);
+}
+
+void URH_PlayerGuideEngagement::RemoveGuideFromFavorites(const FGuid& GuideID, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate)
+{
+	typedef RemoveEntityFavoriteGuideType BaseType;
+
+	auto Request = BaseType::Request();
+	Request.EntityType = ERHAPI_GuideEntityType::Player;
+	Request.EntityId = GetPlayerInfo()->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphensLower);
+	Request.AuthContext = GetPlayerInfo()->GetAuthContext();
+	Request.GuideId = GuideID;
+
+	const auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(BaseType::Delegate(), Delegate, GetDefault<URH_IntegrationSettings>()->GuideFavoritePriority);
+	Helper->Start(RH_APIs::GetGuideAPI(), Request);
+}
+
+void URH_PlayerGuideEngagement::RateGuide(const FGuid& GuideID, int32 Rating, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate)
+{
+	typedef AddEntityRatingForGuideType BaseType;
+
+	auto Request = BaseType::Request();
+	Request.EntityType = ERHAPI_GuideEntityType::Player;
+	Request.EntityId = GetPlayerInfo()->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphensLower);
+	Request.AuthContext = GetPlayerInfo()->GetAuthContext();
+	Request.GuideRating.GuideId = GuideID;
+	Request.GuideRating.Rating = Rating;
+
+	const auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(BaseType::Delegate(), Delegate, GetDefault<URH_IntegrationSettings>()->GuideFavoritePriority);
+	Helper->Start(RH_APIs::GetGuideAPI(), Request);
+}
+
+void URH_PlayerGuideEngagement::GetGuideEngagementAsync(TArray<FGuid> GuideIDs, const FRH_PlayerInfoGetGuideEngagementBlock& Delegate)
+{
+	typedef GetEntityGuideEngageementType BaseType;
+
+	auto Request = BaseType::Request();
+	Request.EntityType = ERHAPI_GuideEntityType::Player;
+	Request.EntityId = GetPlayerInfo()->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphensLower);
+	Request.AuthContext = GetPlayerInfo()->GetAuthContext();
+	Request.ManyEntityGuideEngagementRequest.SetGuides(MoveTemp(GuideIDs));
+
+	auto ResponseContent = MakeShared<FRHAPI_ManyEntityGuideEngagement>();
+	
+	const auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate::CreateWeakLambda(this, [this, ResponseContent](const BaseType::Response& Response)
+			{
+				const auto Content = Response.TryGetDefaultContentAsPointer();
+				if (Response.IsSuccessful() && Content != nullptr)
+				{
+					*ResponseContent = *Content;
+					// merge the response into our local cache
+					for (const auto& Eng : Content->GetResults())
+					{
+						GuideEngagement.Add(Eng.GetGuideId(), Eng);
+					}
+				}
+			}),
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, ResponseContent, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				Delegate.ExecuteIfBound(bSuccess, ResponseContent.Get(), ErrorInfo);
+			}),
+		GetDefault<URH_IntegrationSettings>()->GuideFavoritePriority
+	);
+	Helper->Start(RH_APIs::GetGuideAPI(), Request);
+}

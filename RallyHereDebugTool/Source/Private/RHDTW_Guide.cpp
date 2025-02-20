@@ -46,6 +46,7 @@ FRHDTW_Guide::FRHDTW_Guide()
 	SelectedGuideSearchHandle = 0;
 	SelectedGuideSearchPage = 0;
 	SelectedGuideSearchDisplayString = "Select a Search";
+	GuideUpdateRating = 0;
 }
 
 FRHDTW_Guide::~FRHDTW_Guide()
@@ -71,6 +72,12 @@ void FRHDTW_Guide::Do()
 		if (ImGui::BeginTabItem("Guide Full"))
 		{
 			DoGuideFull();
+			ImGui::EndTabItem();
+		}
+
+		if (ImGui::BeginTabItem("Engagement"))
+		{
+			DoGuideEngagement();
 			ImGui::EndTabItem();
 		}
 
@@ -110,6 +117,86 @@ URH_GuideSubsystem* FRHDTW_Guide::GetSubsystemWithTextForFailures() const
 	return pGIGuideSubsystem;
 }
 
+TArray<FGuid> FRHDTW_Guide::GetGuideIDsFromInput(const FString& Input) const
+{
+	TArray<FGuid> GuideIDs;
+	TArray<FString> GuideIDStrings;
+	Input.ParseIntoArray(GuideIDStrings, TEXT(","));
+	for (const FString& GuideIDString : GuideIDStrings)
+	{
+		FGuid GuideID;
+		if (FGuid::Parse(GuideIDString, GuideID))
+		{
+			GuideIDs.Add(GuideID);
+		}
+	}
+	return GuideIDs;
+}
+
+void FRHDTW_Guide::DoGuideEngagement()
+{
+	URH_PlayerGuideEngagement* pURH_PlayerGuideEngagement = nullptr;
+	if (URallyHereDebugTool* pOwner = GetOwner())
+	{
+		if (URH_PlayerInfo* ActivePlayerInfo = pOwner->GetFirstSelectedPlayerInfo())
+		{
+			ImGui::Text("For first selected player with UUID %s", TCHAR_TO_UTF8(*ActivePlayerInfo->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphens)));
+			pURH_PlayerGuideEngagement  = ActivePlayerInfo->GetGuideEngagement();
+		}
+	}
+	if (pURH_PlayerGuideEngagement == nullptr)
+	{
+		ImGui::Text("%s", "URH_PlayerGuideEngagement not available for first selected player.");
+		return;
+	}
+	
+	ImGui::InputText("Guide IDs CSV", &RequestGuideById);
+	TArray<FGuid> GuideIDs = GetGuideIDsFromInput(RequestGuideById);
+	ImGui::SameLine();
+	if (ImGui::Button("Request Current Engagement"))
+	{
+		RequestEngagementForAllGuides(GuideIDs);
+	}
+	ImGuiEngagementInput_Favorite(GuideIDs);
+	ImGuiEngagementInput_Rate(GuideIDs);
+	
+	ImGui::Separator();
+
+	if (ImGui::BeginTable("GuideEnagement", 4, RH_TableFlagsPropSizing))
+	{
+		ImGui::TableSetupColumn("Guide ID");
+		ImGui::TableSetupColumn("Rating");
+		ImGui::TableSetupColumn("Favorited At");
+		ImGui::TableHeadersRow();
+		
+		for (TMap<FGuid, FRHAPI_EntityGuideEngagement>::TConstIterator Itr(pURH_PlayerGuideEngagement->GetGuideEngagement()); Itr; ++Itr)
+		{
+			ImGui::TableNextRow();
+			ImGui::TableNextColumn();
+			ImGuiDisplayCopyableValue(TEXT("ID"), Itr->Value.GetGuideId(), ECopyMode::Value);
+			ImGui::TableNextColumn();
+			ImGuiDisplayCopyableValue(TEXT("Rating"), Itr->Value.GetRatingOrNull(), ECopyMode::Value);
+			ImGui::TableNextColumn();
+			ImGuiDisplayCopyableValue(TEXT("Favorited At"), Itr->Value.GetFavoritedAtOrNull(), ECopyMode::Value);
+		}
+		ImGui::EndTable();
+	}
+}
+
+void FRHDTW_Guide::RequestEngagementForAllGuides(const TArray<FGuid>& GuideIDs)
+{
+	ForEachSelectedRHPlayer(FRHDT_RHPAction::CreateLambda([GuideIDs](URH_PlayerInfo* PlayerInfo)
+	{
+		if (PlayerInfo)
+		{
+			if (auto PlayerGuideEngagement = PlayerInfo->GetGuideEngagement())
+			{
+				PlayerGuideEngagement->GetGuideEngagementAsync(GuideIDs);
+			}
+		}
+	}));
+}
+
 void FRHDTW_Guide::DoGuideFull()
 {
 	auto GuideSS = GetSubsystemWithTextForFailures();
@@ -123,7 +210,7 @@ void FRHDTW_Guide::DoGuideFull()
 	if (ImGui::Button("Request"))
 	{
 		FGuid GuideIdToRequest;
-		if (FGuid::Parse(UTF8_TO_TCHAR(RequestGuideById.c_str()), GuideIdToRequest))
+		if (FGuid::Parse(RequestGuideById, GuideIdToRequest))
 		{
 			GuideSS->GetGuideAsync(GuideIdToRequest, true);
 		}
@@ -132,7 +219,7 @@ void FRHDTW_Guide::DoGuideFull()
 	if (ImGui::Button("Delete"))
 	{
 		FGuid GuideIdToRequest;
-		if (FGuid::Parse(UTF8_TO_TCHAR(RequestGuideById.c_str()), GuideIdToRequest))
+		if (FGuid::Parse(RequestGuideById, GuideIdToRequest))
 		{
 			GuideSS->DeleteGuide(GuideIdToRequest);
 		}
@@ -166,7 +253,7 @@ void FRHDTW_Guide::DoGuideFull()
 
 	for (TArray<const FRHAPI_GuideFull*>::TConstIterator Itr(AllGuides); Itr; ++Itr)
 	{
-		const FString ExpandName = FString::Format(TEXT("{0} - {1} - {2}"), {(*Itr)->GuideId.ToString(EGuidFormats::DigitsWithHyphens), (*Itr)->GuideType, (*Itr)->Name});
+		const FString ExpandName = FString::Format(TEXT("{0} - {1} - {2}"), {(*Itr)->GuideId.ToString(EGuidFormats::DigitsWithHyphensLower), (*Itr)->GuideType, (*Itr)->Name});
 		if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*ExpandName), RH_DefaultTreeFlags))
 		{
 			DoShowGuideFull(**Itr, GuideSS);
@@ -741,12 +828,23 @@ void FRHDTW_Guide::DoShowCurrentGuideSearch()
 		return;
 	}
 
+	if (ImGui::Button("Request Engagement For All"))
+	{
+		TArray<FGuid> GuideIDs;
+		for (TArray<FRHAPI_GuideSearchResult>::TConstIterator Itr(*PageResults); Itr; ++Itr)
+		{
+			GuideIDs.Add(Itr->GuideId);
+		}
+		RequestEngagementForAllGuides(GuideIDs);
+	}
+
 	for (TArray<FRHAPI_GuideSearchResult>::TConstIterator Itr(*PageResults); Itr; ++Itr)
 	{
 		const FString ExpandName = FString::Format(TEXT("{0} - {1} - {2}"), {Itr->GuideId.ToString(), Itr->GuideType, Itr->Name});
 		if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*ExpandName), RH_DefaultTreeFlags))
 		{
 			DoShowGuideSearchPage(*Itr, GuideSS);
+			ImGui::TreePop();
 		}
 	}
 }
@@ -757,6 +855,9 @@ void FRHDTW_Guide::DoShowGuideSearchPage(const FRHAPI_GuideSearchResult& Result,
 	{
 		GuideSS->GetGuideAsync(Result.GetGuideId(), true);
 	}
+	ImGuiEngagementInput_Favorite({ Result.GetGuideId() });
+	ImGuiEngagementInput_Rate({ Result.GetGuideId() });
+	
 	ImGuiDisplayCopyableValue(TEXT("ID"), Result.GetGuideId());
 	ImGuiDisplayCopyableValue(TEXT("Name"), Result.GetName());
 	ImGuiDisplayCopyableValue(TEXT("Guide Type"), Result.GetGuideType());
@@ -805,6 +906,78 @@ void FRHDTW_Guide::DoShowGuideSearchPage(const FRHAPI_GuideSearchResult& Result,
 	ImGuiDisplayCopyableValue(TEXT("Etag"), Result.GetEtag());
 }
 
+void FRHDTW_Guide::ImGuiEngagementInput_Favorite(const TArray<FGuid>& GuideIDs)
+{
+	if (ImGui::Button("Favorite"))
+	{
+		ForEachSelectedRHPlayer(FRHDT_RHPAction::CreateLambda([GuideIDs](URH_PlayerInfo* PlayerInfo)
+		{
+			if (PlayerInfo)
+			{
+				if (auto PlayerGuideEngagement = PlayerInfo->GetGuideEngagement())
+				{
+					for (const auto& GuideID : GuideIDs)
+					{
+						PlayerGuideEngagement->AddGuideToFavorites(GuideID);
+					}
+				}
+			}
+		}));
+	}
+	ImGui::SameLine();
+	if (ImGui::Button("Unfavorite"))
+	{
+		ForEachSelectedRHPlayer(FRHDT_RHPAction::CreateLambda([GuideIDs](URH_PlayerInfo* PlayerInfo)
+		{
+			if (PlayerInfo)
+			{
+				if (auto PlayerGuideEngagement = PlayerInfo->GetGuideEngagement())
+				{
+					for (const auto& GuideID : GuideIDs)
+					{
+						PlayerGuideEngagement->RemoveGuideFromFavorites(GuideID);
+					}
+				}
+			}
+		}));
+	}
+}
+
+void FRHDTW_Guide::ImGuiEngagementInput_Rate(const TArray<FGuid>& GuideIDs)
+{
+	if (ImGui::InputInt("Rating (-1,0,1)", &GuideUpdateRating))
+	{
+		ForEachSelectedRHPlayer(FRHDT_RHPAction::CreateLambda([this, GuideIDs](URH_PlayerInfo* PlayerInfo)
+		{
+			if (PlayerInfo)
+			{
+				if (auto PlayerGuideEngagement = PlayerInfo->GetGuideEngagement())
+				{
+					for (const auto& GuideID : GuideIDs)
+					{
+						PlayerGuideEngagement->RateGuide(GuideID, GuideUpdateRating);
+					}
+				}
+			}
+		}));
+	}
+}
+
+const FRHAPI_EntityGuideEngagement* FRHDTW_Guide::FindGuideEngagement(const FGuid& GuideID) const
+{
+	if (URallyHereDebugTool* pOwner = GetOwner())
+	{
+		if (URH_PlayerInfo* ActivePlayerInfo = pOwner->GetFirstSelectedPlayerInfo())
+		{
+			if (URH_PlayerGuideEngagement* pURH_PlayerGuideEngagement = ActivePlayerInfo->GetGuideEngagement())
+			{
+				return pURH_PlayerGuideEngagement->GetGuideEngagement().Find(GuideID);
+			}
+		}
+	}
+	return nullptr;
+}
+
 void FRHDTW_Guide::DoShowGuideFull(const FRHAPI_GuideFull& Result, class URH_GuideSubsystem* GuideSS)
 {
 	bool bNeedsDelete = false;
@@ -819,6 +992,8 @@ void FRHDTW_Guide::DoShowGuideFull(const FRHAPI_GuideFull& Result, class URH_Gui
 	{
 		bNeedsCacheRemoval = true;
 	}
+	ImGuiEngagementInput_Favorite({ Result.GetGuideId() });
+	ImGuiEngagementInput_Rate({ Result.GetGuideId() });
 	
 	ImGuiDisplayCopyableValue(TEXT("ID"), Result.GetGuideId());
 	ImGuiDisplayCopyableValue(TEXT("Name"), Result.GetName());

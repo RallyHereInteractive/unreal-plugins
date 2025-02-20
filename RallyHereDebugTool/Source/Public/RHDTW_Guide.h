@@ -21,6 +21,7 @@ public:
 	virtual void DoShowCurrentGuideSearch();
 	virtual void DoGuideFull();
 	virtual bool DoCreateNewGuide();
+	virtual void DoGuideEngagement();
 
 protected:
 	void DoShowGuideSearchPage(const struct FRHAPI_GuideSearchResult& Result, class URH_GuideSubsystem* GuideSS);
@@ -29,6 +30,12 @@ protected:
 	void DoCreateNewGuideSection(struct FRHAPI_GuideSectionCreate& SectionCreate);
 	class URH_GuideSubsystem* GetSubsystemWithTextForFailures() const;
 	FString GetSearchString(const struct FRH_GuideSearch& Search) const;
+	void RequestEngagementForAllGuides(const TArray<FGuid>& GuideIDs);
+	void ImGuiEngagementInput_Favorite(const TArray<FGuid>& GuideIDs);
+	void ImGuiEngagementInput_Rate(const TArray<FGuid>& GuideIDs);
+
+	TArray<FGuid> GetGuideIDsFromInput(const FString& Input) const;
+	const FRHAPI_EntityGuideEngagement* FindGuideEngagement(const FGuid& GuideID) const;
 	
 	FRH_GuideSearchRequest SearchParams;
 	FRHAPI_GuideCreateRequest GuideCreateRequest;
@@ -37,5 +44,6 @@ protected:
 	int32 SelectedGuideSearchHandle;
 	int32 SelectedGuideSearchPage;
 
-	std::string RequestGuideById;
+	FString RequestGuideById;
+	int32 GuideUpdateRating;
 };
