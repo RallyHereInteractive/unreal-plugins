@@ -22,8 +22,8 @@ Container for a Search request and its results.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public void `[`Initialize`](#classURH__GuideSearch_1a0a504f5cf35b2ed4e2b1356c33fe4248)`(const `[`FRH_GuideSearchRequest`](GuideSearch.md#structFRH__GuideSearchRequest)` & InRequest,TSharedPtr< RallyHereAPI::FAuthContext > InAuthContext)` | 
-`public bool `[`RequestNextPage`](#classURH__GuideSearch_1aa0c38833a0df7bc3724be953c665641a)`(const FRH_GenericSuccessWithErrorBlock & Delegate)` | Request the next page of results for a search guide.
+`public virtual void `[`Initialize`](#classURH__GuideSearch_1a0e55a83b7a60a49d5d5af38d12856f76)`(const `[`FRH_GuideSearchRequest`](GuideSearch.md#structFRH__GuideSearchRequest)` & InRequest,TSharedPtr< RallyHereAPI::FAuthContext > InAuthContext)` | 
+`public virtual bool `[`RequestNextPage`](#classURH__GuideSearch_1a6ac8d6de8487a887704e7eedf251f9d4)`(const FRH_GenericSuccessWithErrorBlock & Delegate)` | Request the next page of results for a search guide.
 `public bool `[`HasMorePages`](#classURH__GuideSearch_1a182e1382af53be741a9bf9d353906095)`() const` | Are there more pages to request for this search? If false, requesting additional pages will always fail.
 `public inline const TArray< `[`FRHAPI_SearchGuideResponse`](RHAPI_SearchGuideResponse.md#structFRHAPI__SearchGuideResponse)` > & `[`GetResultPages`](#classURH__GuideSearch_1a55a9b6e979c93146bbd7795f5c0b597d)`() const` | Paged search results.
 `public inline const `[`FRH_GuideSearchRequest`](GuideSearch.md#structFRH__GuideSearchRequest)` & `[`GetInputRequest`](#classURH__GuideSearch_1af733ea0468ca5b3d2313ac990217f0ac)`() const` | Input that was used to generate these results.
@@ -32,15 +32,14 @@ Container for a Search request and its results.
 `protected `[`FRH_GuideSearchRequest`](GuideSearch.md#structFRH__GuideSearchRequest)` `[`InputRequest`](#classURH__GuideSearch_1a048ed0a66c2a22d4235dae9bd8ad5312) | Input that was used to generate these results.
 `protected bool `[`bRequestInProgress`](#classURH__GuideSearch_1a3a734bfff92c0d0e1cab17e71c9928d3) | Is there a request in progress? If so, attempting to request a new page will fail.
 `protected TSearchGuides::Request `[`SearchRequest`](#classURH__GuideSearch_1ad47067809f6b88ffd24e2faf8734dec5) | Cached request object that will be used for API calls.
-`protected void `[`OnSearchGuidesResponse`](#classURH__GuideSearch_1a49f52d787b1c42358982028f6cfdfed4)`(const TSearchGuides::Response & Resp,FRH_GenericSuccessWithErrorBlock Delegate)` | 
-`protected FString * `[`GetNextPageCursor`](#classURH__GuideSearch_1a1bf8b5954ce62e227cc919f77ea534af)`() const` | 
+`protected virtual FString * `[`GetNextPageCursor`](#classURH__GuideSearch_1a938fe3ed6cbc1ff9d1a88de47b786602)`() const` | 
 `typedef `[`TSearchGuides`](#classURH__GuideSearch_1a5114a536c22669ff9cfdcabb7c8c745c) | 
 
 ### Members
 
-#### `public void `[`Initialize`](#classURH__GuideSearch_1a0a504f5cf35b2ed4e2b1356c33fe4248)`(const `[`FRH_GuideSearchRequest`](GuideSearch.md#structFRH__GuideSearchRequest)` & InRequest,TSharedPtr< RallyHereAPI::FAuthContext > InAuthContext)` <a id="classURH__GuideSearch_1a0a504f5cf35b2ed4e2b1356c33fe4248"></a>
+#### `public virtual void `[`Initialize`](#classURH__GuideSearch_1a0e55a83b7a60a49d5d5af38d12856f76)`(const `[`FRH_GuideSearchRequest`](GuideSearch.md#structFRH__GuideSearchRequest)` & InRequest,TSharedPtr< RallyHereAPI::FAuthContext > InAuthContext)` <a id="classURH__GuideSearch_1a0e55a83b7a60a49d5d5af38d12856f76"></a>
 
-#### `public bool `[`RequestNextPage`](#classURH__GuideSearch_1aa0c38833a0df7bc3724be953c665641a)`(const FRH_GenericSuccessWithErrorBlock & Delegate)` <a id="classURH__GuideSearch_1aa0c38833a0df7bc3724be953c665641a"></a>
+#### `public virtual bool `[`RequestNextPage`](#classURH__GuideSearch_1a6ac8d6de8487a887704e7eedf251f9d4)`(const FRH_GenericSuccessWithErrorBlock & Delegate)` <a id="classURH__GuideSearch_1a6ac8d6de8487a887704e7eedf251f9d4"></a>
 
 Request the next page of results for a search guide.
 
@@ -94,9 +93,7 @@ Is there a request in progress? If so, attempting to request a new page will fai
 
 Cached request object that will be used for API calls.
 
-#### `protected void `[`OnSearchGuidesResponse`](#classURH__GuideSearch_1a49f52d787b1c42358982028f6cfdfed4)`(const TSearchGuides::Response & Resp,FRH_GenericSuccessWithErrorBlock Delegate)` <a id="classURH__GuideSearch_1a49f52d787b1c42358982028f6cfdfed4"></a>
-
-#### `protected FString * `[`GetNextPageCursor`](#classURH__GuideSearch_1a1bf8b5954ce62e227cc919f77ea534af)`() const` <a id="classURH__GuideSearch_1a1bf8b5954ce62e227cc919f77ea534af"></a>
+#### `protected virtual FString * `[`GetNextPageCursor`](#classURH__GuideSearch_1a938fe3ed6cbc1ff9d1a88de47b786602)`() const` <a id="classURH__GuideSearch_1a938fe3ed6cbc1ff9d1a88de47b786602"></a>
 
 #### `typedef `[`TSearchGuides`](#classURH__GuideSearch_1a5114a536c22669ff9cfdcabb7c8c745c) <a id="classURH__GuideSearch_1a5114a536c22669ff9cfdcabb7c8c745c"></a>
 

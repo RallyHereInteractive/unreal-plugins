@@ -54,7 +54,7 @@ Class used to help track and interact with the catalog to get Items, Vendors, an
 `public bool const FRH_GuideGetCallDynamicDelegate & `[`Delegate`](#classURH__GuideSubsystem_1af2f14b086fd01c68339a085d831e275d) | 
 `public virtual void `[`Initialize`](#classURH__GuideSubsystem_1aad87ef5fd0a49aaa9ded2a2b06e4b21e)`()` | Initialize the subsystem.
 `public virtual void `[`Deinitialize`](#classURH__GuideSubsystem_1ab5ccd14262089bc37b629f14fa36f088)`()` | Safely tears down the subsystem.
-`public `[`URH_GuideSearch`](GuideSearch.md#classURH__GuideSearch)` * `[`CreateGuideSearch`](#classURH__GuideSubsystem_1a24edb5aa9919daf45fb6ca2f8c7cac7c)`(const struct `[`FRH_GuideSearchRequest`](GuideSearch.md#structFRH__GuideSearchRequest)` & InRequest)` | Searching for many guides.
+`public virtual `[`URH_GuideSearch`](GuideSearch.md#classURH__GuideSearch)` * `[`CreateGuideSearch`](#classURH__GuideSubsystem_1ada667cdce02d42b26bc5b3217da09049)`(const struct `[`FRH_GuideSearchRequest`](GuideSearch.md#structFRH__GuideSearchRequest)` & InRequest)` | Searching for many guides.
 `public inline void `[`RemoveGuideSearchAt`](#classURH__GuideSubsystem_1acf3e37d554c0421ae9613c47dcb155c4)`(int32 Index)` | Removed the cached data for an existing guide search by index.
 `public inline void `[`RemoveGuideSearch`](#classURH__GuideSubsystem_1a4822f46eb65aef51d99d26153a55644f)`(`[`URH_GuideSearch`](GuideSearch.md#classURH__GuideSearch)` * GuideSearch)` | Removed the cached data for an existing guide search.
 `public inline void `[`RemoveAllGuideSearches`](#classURH__GuideSubsystem_1ad7363e2eab0b94653ecea290a6f47c3a)`()` | Remove the cached data for all search guides.
@@ -63,16 +63,12 @@ Class used to help track and interact with the catalog to get Items, Vendors, an
 `public const `[`FRHAPI_GuideFull`](RHAPI_GuideFull.md#structFRHAPI__GuideFull)` * `[`GetCachedGuide`](#classURH__GuideSubsystem_1af2e85c3859b84b6304edc1e244634668)`(const FGuid & GuideID) const` | Get a single guide that is already cached.
 `public bool `[`RemoveCachedGuide`](#classURH__GuideSubsystem_1a99535190b572155b8e6f628ac0125953)`(const FGuid & GuideID)` | Remove a guide from the local cache.
 `public bool `[`GetGuide`](#classURH__GuideSubsystem_1adc3cbeca365635da547acea14d728c69)`(const FGuid & GuideID,`[`FRHAPI_GuideFull`](RHAPI_GuideFull.md#structFRHAPI__GuideFull)` & OutGuide) const` | Get a guide that is already cached.
-`public void `[`GetGuideAsync`](#classURH__GuideSubsystem_1a117de54086fc93dbd9ed47909cfbc5b8)`(const FGuid & GuideID,bool bIgnoreCache,const FRH_GuideGetCallBlock & Delegate)` | Get a guide from the cache, or request it from the API.
-`public void `[`CreateGuide`](#classURH__GuideSubsystem_1a205ed02f3de4df9df08736f119d0cd29)`(`[`FRHAPI_GuideCreateRequest`](RHAPI_GuideCreateRequest.md#structFRHAPI__GuideCreateRequest)` Request,const FRH_GuideUpdateCallBlock & Delegate)` | Create a new guide.
-`public void `[`UpdateGuide`](#classURH__GuideSubsystem_1a9438689f3c19428df61f608291331a69)`(const FGuid & GuideID,`[`FRHAPI_GuideCreateRequest`](RHAPI_GuideCreateRequest.md#structFRHAPI__GuideCreateRequest)` Request,const FRH_GuideUpdateCallBlock & Delegate)` | Update a new guide.
-`public void `[`DeleteGuide`](#classURH__GuideSubsystem_1a5e9f8f5e113c3cd3c39578cb174e7a0f)`(const FGuid & GuideID,const FRH_GuideUpdateCallBlock & Delegate)` | Delete a new guide.
+`public virtual void `[`GetGuideAsync`](#classURH__GuideSubsystem_1a3adb82a4f2eaea1460c42d37c19e8dc7)`(const FGuid & GuideID,bool bIgnoreCache,const FRH_GuideGetCallBlock & Delegate)` | Get a guide from the cache, or request it from the API.
+`public virtual void `[`CreateGuide`](#classURH__GuideSubsystem_1a4e6f17848e9fcdaaf7ab48918749b0c9)`(`[`FRHAPI_GuideCreateRequest`](RHAPI_GuideCreateRequest.md#structFRHAPI__GuideCreateRequest)` Request,const FRH_GuideUpdateCallBlock & Delegate)` | Create a new guide.
+`public virtual void `[`UpdateGuide`](#classURH__GuideSubsystem_1ae8bc114517d4a51ff6358b84327d97fa)`(const FGuid & GuideID,`[`FRHAPI_GuideCreateRequest`](RHAPI_GuideCreateRequest.md#structFRHAPI__GuideCreateRequest)` Request,const FRH_GuideUpdateCallBlock & Delegate)` | Update a new guide.
+`public virtual void `[`DeleteGuide`](#classURH__GuideSubsystem_1a273b3860e7b7760cdbca0ba5fa3dd587)`(const FGuid & GuideID,const FRH_GuideUpdateCallBlock & Delegate)` | Delete a new guide.
 `protected TMap< FGuid, `[`FRHAPI_GuideFull`](RHAPI_GuideFull.md#structFRHAPI__GuideFull)` > `[`Guides`](#classURH__GuideSubsystem_1a65165d2d69cc1625c1eb8ade83243ef7) | 
 `protected TArray< `[`URH_GuideSearch`](GuideSearch.md#classURH__GuideSearch)` * > `[`Searches`](#classURH__GuideSubsystem_1a2da567d77814644f715dffc32c13fcfe) | 
-`protected void `[`OnGuideGetAsync`](#classURH__GuideSubsystem_1a16c279afe37487b0ea5dac8b7f6f7198)`(const TGetGuideById::Response & Resp,FRH_GuideGetCallBlock Delegate)` | 
-`protected void `[`OnGuideCreate`](#classURH__GuideSubsystem_1a9a8d190f9ac0cdbbf191076dc41f9691)`(const TCreateGuide::Response & Resp,FRH_GuideUpdateCallBlock Delegate)` | 
-`protected void `[`OnGuideUpdate`](#classURH__GuideSubsystem_1a482b376c37aeb12f566f4e93ce48419b)`(const TUpdateGuideById::Response & Resp,FRH_GuideUpdateCallBlock Delegate,FGuid GuideID)` | 
-`protected void `[`OnGuideDelete`](#classURH__GuideSubsystem_1a5bb25760fe1f4dab29701851e136de32)`(const TDeleteGuideById::Response & Resp,FRH_GuideUpdateCallBlock Delegate,FGuid GuideID)` | 
 `protected virtual void `[`InitPropertiesWithDefaultValues`](#classURH__GuideSubsystem_1a0b2498b16033e2e6de76e81c7a795ce5)`()` | Initializes the subsystem with defaults for its cached data.
 `protected inline virtual TStatId `[`GetStatId`](#classURH__GuideSubsystem_1abbd427f8a2bd6b3cfe2a29de9d35ff39)`() const` | Gets the guide subsystem stat Id.
 `typedef `[`TSearchGuides`](#classURH__GuideSubsystem_1a4f5a37af74b865ad11d68cc1b53f507a) | Type Define for API Calls.
@@ -95,7 +91,7 @@ Initialize the subsystem.
 
 Safely tears down the subsystem.
 
-#### `public `[`URH_GuideSearch`](GuideSearch.md#classURH__GuideSearch)` * `[`CreateGuideSearch`](#classURH__GuideSubsystem_1a24edb5aa9919daf45fb6ca2f8c7cac7c)`(const struct `[`FRH_GuideSearchRequest`](GuideSearch.md#structFRH__GuideSearchRequest)` & InRequest)` <a id="classURH__GuideSubsystem_1a24edb5aa9919daf45fb6ca2f8c7cac7c"></a>
+#### `public virtual `[`URH_GuideSearch`](GuideSearch.md#classURH__GuideSearch)` * `[`CreateGuideSearch`](#classURH__GuideSubsystem_1ada667cdce02d42b26bc5b3217da09049)`(const struct `[`FRH_GuideSearchRequest`](GuideSearch.md#structFRH__GuideSearchRequest)` & InRequest)` <a id="classURH__GuideSubsystem_1ada667cdce02d42b26bc5b3217da09049"></a>
 
 Searching for many guides.
 
@@ -154,33 +150,25 @@ Get a guide that is already cached.
 #### Returns
 if the guide was found
 
-#### `public void `[`GetGuideAsync`](#classURH__GuideSubsystem_1a117de54086fc93dbd9ed47909cfbc5b8)`(const FGuid & GuideID,bool bIgnoreCache,const FRH_GuideGetCallBlock & Delegate)` <a id="classURH__GuideSubsystem_1a117de54086fc93dbd9ed47909cfbc5b8"></a>
+#### `public virtual void `[`GetGuideAsync`](#classURH__GuideSubsystem_1a3adb82a4f2eaea1460c42d37c19e8dc7)`(const FGuid & GuideID,bool bIgnoreCache,const FRH_GuideGetCallBlock & Delegate)` <a id="classURH__GuideSubsystem_1a3adb82a4f2eaea1460c42d37c19e8dc7"></a>
 
 Get a guide from the cache, or request it from the API.
 
-#### `public void `[`CreateGuide`](#classURH__GuideSubsystem_1a205ed02f3de4df9df08736f119d0cd29)`(`[`FRHAPI_GuideCreateRequest`](RHAPI_GuideCreateRequest.md#structFRHAPI__GuideCreateRequest)` Request,const FRH_GuideUpdateCallBlock & Delegate)` <a id="classURH__GuideSubsystem_1a205ed02f3de4df9df08736f119d0cd29"></a>
+#### `public virtual void `[`CreateGuide`](#classURH__GuideSubsystem_1a4e6f17848e9fcdaaf7ab48918749b0c9)`(`[`FRHAPI_GuideCreateRequest`](RHAPI_GuideCreateRequest.md#structFRHAPI__GuideCreateRequest)` Request,const FRH_GuideUpdateCallBlock & Delegate)` <a id="classURH__GuideSubsystem_1a4e6f17848e9fcdaaf7ab48918749b0c9"></a>
 
 Create a new guide.
 
-#### `public void `[`UpdateGuide`](#classURH__GuideSubsystem_1a9438689f3c19428df61f608291331a69)`(const FGuid & GuideID,`[`FRHAPI_GuideCreateRequest`](RHAPI_GuideCreateRequest.md#structFRHAPI__GuideCreateRequest)` Request,const FRH_GuideUpdateCallBlock & Delegate)` <a id="classURH__GuideSubsystem_1a9438689f3c19428df61f608291331a69"></a>
+#### `public virtual void `[`UpdateGuide`](#classURH__GuideSubsystem_1ae8bc114517d4a51ff6358b84327d97fa)`(const FGuid & GuideID,`[`FRHAPI_GuideCreateRequest`](RHAPI_GuideCreateRequest.md#structFRHAPI__GuideCreateRequest)` Request,const FRH_GuideUpdateCallBlock & Delegate)` <a id="classURH__GuideSubsystem_1ae8bc114517d4a51ff6358b84327d97fa"></a>
 
 Update a new guide.
 
-#### `public void `[`DeleteGuide`](#classURH__GuideSubsystem_1a5e9f8f5e113c3cd3c39578cb174e7a0f)`(const FGuid & GuideID,const FRH_GuideUpdateCallBlock & Delegate)` <a id="classURH__GuideSubsystem_1a5e9f8f5e113c3cd3c39578cb174e7a0f"></a>
+#### `public virtual void `[`DeleteGuide`](#classURH__GuideSubsystem_1a273b3860e7b7760cdbca0ba5fa3dd587)`(const FGuid & GuideID,const FRH_GuideUpdateCallBlock & Delegate)` <a id="classURH__GuideSubsystem_1a273b3860e7b7760cdbca0ba5fa3dd587"></a>
 
 Delete a new guide.
 
 #### `protected TMap< FGuid, `[`FRHAPI_GuideFull`](RHAPI_GuideFull.md#structFRHAPI__GuideFull)` > `[`Guides`](#classURH__GuideSubsystem_1a65165d2d69cc1625c1eb8ade83243ef7) <a id="classURH__GuideSubsystem_1a65165d2d69cc1625c1eb8ade83243ef7"></a>
 
 #### `protected TArray< `[`URH_GuideSearch`](GuideSearch.md#classURH__GuideSearch)` * > `[`Searches`](#classURH__GuideSubsystem_1a2da567d77814644f715dffc32c13fcfe) <a id="classURH__GuideSubsystem_1a2da567d77814644f715dffc32c13fcfe"></a>
-
-#### `protected void `[`OnGuideGetAsync`](#classURH__GuideSubsystem_1a16c279afe37487b0ea5dac8b7f6f7198)`(const TGetGuideById::Response & Resp,FRH_GuideGetCallBlock Delegate)` <a id="classURH__GuideSubsystem_1a16c279afe37487b0ea5dac8b7f6f7198"></a>
-
-#### `protected void `[`OnGuideCreate`](#classURH__GuideSubsystem_1a9a8d190f9ac0cdbbf191076dc41f9691)`(const TCreateGuide::Response & Resp,FRH_GuideUpdateCallBlock Delegate)` <a id="classURH__GuideSubsystem_1a9a8d190f9ac0cdbbf191076dc41f9691"></a>
-
-#### `protected void `[`OnGuideUpdate`](#classURH__GuideSubsystem_1a482b376c37aeb12f566f4e93ce48419b)`(const TUpdateGuideById::Response & Resp,FRH_GuideUpdateCallBlock Delegate,FGuid GuideID)` <a id="classURH__GuideSubsystem_1a482b376c37aeb12f566f4e93ce48419b"></a>
-
-#### `protected void `[`OnGuideDelete`](#classURH__GuideSubsystem_1a5bb25760fe1f4dab29701851e136de32)`(const TDeleteGuideById::Response & Resp,FRH_GuideUpdateCallBlock Delegate,FGuid GuideID)` <a id="classURH__GuideSubsystem_1a5bb25760fe1f4dab29701851e136de32"></a>
 
 #### `protected virtual void `[`InitPropertiesWithDefaultValues`](#classURH__GuideSubsystem_1a0b2498b16033e2e6de76e81c7a795ce5)`()` <a id="classURH__GuideSubsystem_1a0b2498b16033e2e6de76e81c7a795ce5"></a>
 

@@ -655,9 +655,9 @@ Player Guide Engagement class used to store and update guide engagement (favorit
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public virtual void `[`AddGuideToFavorites`](#classURH__PlayerGuideEngagement_1a152c931c90fe2a638410875f9b135412)`(const FGuid & GuideID,const FRH_GenericSuccessWithErrorDynamicDelegate & Delegate)` | Add a guide to the player's favorite guides.
-`public virtual void `[`RemoveGuideFromFavorites`](#classURH__PlayerGuideEngagement_1a496be0eea0e1dbd096ef85da2249c275)`(const FGuid & GuideID,const FRH_GenericSuccessWithErrorDynamicDelegate & Delegate)` | Remove a guide to the player's favorite guides.
-`public virtual void `[`RateGuide`](#classURH__PlayerGuideEngagement_1a18373e29591956214a260f8f5b6f7ebe)`(const FGuid & GuideID,int32 Rating,const FRH_GenericSuccessWithErrorDynamicDelegate & Delegate)` | Update the player's rating for a guide.
+`public virtual void `[`AddGuideToFavorites`](#classURH__PlayerGuideEngagement_1a7e68d8860390c2f87b7fcda8574c3c76)`(const FGuid & GuideID,const FRH_GenericSuccessWithErrorBlock & Delegate)` | Add a guide to the player's favorite guides.
+`public virtual void `[`RemoveGuideFromFavorites`](#classURH__PlayerGuideEngagement_1afc31986a9ad4915553dec34c949f8ff8)`(const FGuid & GuideID,const FRH_GenericSuccessWithErrorBlock & Delegate)` | Remove a guide to the player's favorite guides.
+`public virtual void `[`RateGuide`](#classURH__PlayerGuideEngagement_1a69a1fcae68f5cefb69f603f2e092b9b2)`(const FGuid & GuideID,int32 Rating,const FRH_GenericSuccessWithErrorBlock & Delegate)` | Update the player's rating for a guide.
 `public inline void `[`BLUEPRINT_RateGuide`](#classURH__PlayerGuideEngagement_1adea886c006756cd1bd5ebe44e76f9536)`(const FGuid & GuideID,int32 Rating,const FRH_GenericSuccessWithErrorDynamicDelegate & Delegate)` | Update the player's rating for a guide.
 `public virtual void `[`GetGuideEngagementAsync`](#classURH__PlayerGuideEngagement_1a957cdc2bbb6591016bed507d38616393)`(TArray< FGuid > GuideIDs,const FRH_PlayerInfoGetGuideEngagementBlock & Delegate)` | Request a list of player reports received by this player.
 `public inline const TMap< FGuid, `[`FRHAPI_EntityGuideEngagement`](RHAPI_EntityGuideEngagement.md#structFRHAPI__EntityGuideEngagement)` > & `[`GetGuideEngagement`](#classURH__PlayerGuideEngagement_1ab440bdff8c900735418c063bdda6b4ef)`() const` | Get the current cached list of guide engagement by this player.
@@ -669,7 +669,7 @@ Player Guide Engagement class used to store and update guide engagement (favorit
 
 ### Members
 
-#### `public virtual void `[`AddGuideToFavorites`](#classURH__PlayerGuideEngagement_1a152c931c90fe2a638410875f9b135412)`(const FGuid & GuideID,const FRH_GenericSuccessWithErrorDynamicDelegate & Delegate)` <a id="classURH__PlayerGuideEngagement_1a152c931c90fe2a638410875f9b135412"></a>
+#### `public virtual void `[`AddGuideToFavorites`](#classURH__PlayerGuideEngagement_1a7e68d8860390c2f87b7fcda8574c3c76)`(const FGuid & GuideID,const FRH_GenericSuccessWithErrorBlock & Delegate)` <a id="classURH__PlayerGuideEngagement_1a7e68d8860390c2f87b7fcda8574c3c76"></a>
 
 Add a guide to the player's favorite guides.
 
@@ -678,7 +678,7 @@ Add a guide to the player's favorite guides.
 
 * `Delegate` Callback delegate for the request.
 
-#### `public virtual void `[`RemoveGuideFromFavorites`](#classURH__PlayerGuideEngagement_1a496be0eea0e1dbd096ef85da2249c275)`(const FGuid & GuideID,const FRH_GenericSuccessWithErrorDynamicDelegate & Delegate)` <a id="classURH__PlayerGuideEngagement_1a496be0eea0e1dbd096ef85da2249c275"></a>
+#### `public virtual void `[`RemoveGuideFromFavorites`](#classURH__PlayerGuideEngagement_1afc31986a9ad4915553dec34c949f8ff8)`(const FGuid & GuideID,const FRH_GenericSuccessWithErrorBlock & Delegate)` <a id="classURH__PlayerGuideEngagement_1afc31986a9ad4915553dec34c949f8ff8"></a>
 
 Remove a guide to the player's favorite guides.
 
@@ -687,7 +687,7 @@ Remove a guide to the player's favorite guides.
 
 * `Delegate` Callback delegate for the request.
 
-#### `public virtual void `[`RateGuide`](#classURH__PlayerGuideEngagement_1a18373e29591956214a260f8f5b6f7ebe)`(const FGuid & GuideID,int32 Rating,const FRH_GenericSuccessWithErrorDynamicDelegate & Delegate)` <a id="classURH__PlayerGuideEngagement_1a18373e29591956214a260f8f5b6f7ebe"></a>
+#### `public virtual void `[`RateGuide`](#classURH__PlayerGuideEngagement_1a69a1fcae68f5cefb69f603f2e092b9b2)`(const FGuid & GuideID,int32 Rating,const FRH_GenericSuccessWithErrorBlock & Delegate)` <a id="classURH__PlayerGuideEngagement_1a69a1fcae68f5cefb69f603f2e092b9b2"></a>
 
 Update the player's rating for a guide.
 
