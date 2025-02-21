@@ -5,6 +5,7 @@
 #include <string>
 #include "RH_DebugToolWindow.h"
 #include "RH_GuideSubsystem.h"
+#include "RH_GuideSearch.h"
 
 struct FRHDTW_Guide : public FRH_DebugToolWindow
 {
@@ -29,7 +30,7 @@ protected:
 	void DoShowGuideSectionFull(const struct FRHAPI_GuideSectionFull& Result);
 	void DoCreateNewGuideSection(struct FRHAPI_GuideSectionCreate& SectionCreate);
 	class URH_GuideSubsystem* GetSubsystemWithTextForFailures() const;
-	FString GetSearchString(const struct FRH_GuideSearch& Search) const;
+	FString GetSearchString(const class URH_GuideSearch* Search) const;
 	void RequestEngagementForAllGuides(const TArray<FGuid>& GuideIDs);
 	void ImGuiEngagementInput_Favorite(const TArray<FGuid>& GuideIDs);
 	void ImGuiEngagementInput_Rate(const TArray<FGuid>& GuideIDs);
@@ -41,7 +42,7 @@ protected:
 	FRHAPI_GuideCreateRequest GuideCreateRequest;
 	
 	std::string SelectedGuideSearchDisplayString;
-	int32 SelectedGuideSearchHandle;
+	int32 SelectedGuideSearchIndex;
 	int32 SelectedGuideSearchPage;
 
 	FString RequestGuideById;

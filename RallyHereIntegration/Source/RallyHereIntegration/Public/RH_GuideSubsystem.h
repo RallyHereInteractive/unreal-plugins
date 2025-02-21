@@ -16,6 +16,7 @@
 #include "RH_GuideSubsystem.generated.h"
 
 struct FRHAPI_GuideFull;
+class URH_GuideSearch;
 
 /** @defgroup GuideSubsystem RallyHere Guide Subsystem
  *  @{
@@ -35,162 +36,6 @@ UDELEGATE()
 DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_GuideGetCallDynamicDelegate, bool, bSuccess, const FRH_ErrorInfo&, ErrorInfo, const FRHAPI_GuideFull&, Guide);
 DECLARE_DELEGATE_ThreeParams(FRH_GuideGetCallDelegate, bool, const FRH_ErrorInfo&, const FRHAPI_GuideFull&);
 DECLARE_RH_DELEGATE_BLOCK(FRH_GuideGetCallBlock, FRH_GuideGetCallDelegate, FRH_GuideGetCallDynamicDelegate, bool, const FRH_ErrorInfo&, const FRHAPI_GuideFull&);
-
-USTRUCT(BlueprintType)
-struct FRH_GuideSearchRequest
-{
-	GENERATED_BODY()
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	ERHAPI_SearchGuideSort SortBy;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	ERHAPI_SortDirection Sort;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	int32 PageSize;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	bool bDoOwnerSearch;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	ERHAPI_GuideEntityType OwnerEntityType;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString OwnerEntityId;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Language;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString GuideType;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString GameVersion;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Name;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Ref1;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Ref2;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Ref3;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Ref4;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Ref5;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Ref6;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Ref7;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Ref8;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Ref9;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Ref10;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Ref11;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Ref12;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Ref13;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Ref14;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Ref15;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Ref16;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Ref17;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Ref18;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Ref19;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Ref20;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Ref21;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Ref22;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Ref23;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Ref24;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Ref25;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Ref26;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Ref27;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Ref28;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Ref29;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Ref30;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Ref31;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	FString Ref32;
-
-	FRH_GuideSearchRequest()
-	{
-		Sort = ERHAPI_SortDirection::Desc;
-		SortBy = ERHAPI_SearchGuideSort::Created;
-		PageSize = 0;
-		bDoOwnerSearch = false;
-		OwnerEntityType = ERHAPI_GuideEntityType::Player;
-	}
-};
-
-USTRUCT()
-struct FRH_GuideSearch
-{
-	GENERATED_BODY()
-	
-	typedef RallyHereAPI::Traits_SearchGuides TSearchGuides;
-
-	TArray<FRHAPI_SearchGuideResponse> ResultPages;
-	FRH_GuideSearchRequest InputRequest;
-	RallyHereAPI::Traits_SearchGuides::Request SearchRequest;
-	int32 Handle;
-	bool bRequestInProgress;
-};
-
 
 /**
  * @brief Class used to help track and interact with the catalog to get Items, Vendors, and their data.
@@ -226,59 +71,40 @@ public:
 	 * @param [in] InRequest Search parameters for the API call.
 	 * @return SearchGuideHandle Handle to the search request, results
 	 */
-	int32 CreateSearchGuides(const FRH_GuideSearchRequest& InRequest);
+	URH_GuideSearch* CreateGuideSearch(const struct FRH_GuideSearchRequest& InRequest);
 	/** @private */
-	UFUNCTION(BlueprintCallable, Category = "Guide Subsystem", meta = (DisplayName = "Create Search Guides", AutoCreateRefTerm = "Delegate"))
-	int32 BLUEPRINT_CreateSearchGuides(const FRH_GuideSearchRequest& InRequest) { return CreateSearchGuides(InRequest); }
-
-	/**
-	 * @brief Request the next page of results for a search guide.
-	 */
-	bool RequestNextSearchGuidePage(int32 SearchGuideHandle, const FRH_GuideSearchCallBlock& Delegate = FRH_GuideSearchCallBlock());
-	/** @private */
-	UFUNCTION(BlueprintCallable, Category = "Guide Subsystem", meta = (DisplayName = "Search Next Guide Page", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_RequestNextSearchGuidePage(int32 SearchGuideHandle, const FRH_GuideSearchCallDynamicDelegate& Delegate) { RequestNextSearchGuidePage(SearchGuideHandle, Delegate); }
-
-	/**
-	 * @brief Clear the cached data for an existing guide search
-	 */
-	void ClearSearchGuide(int32 SearchGuideHandle) { Searches.Remove(SearchGuideHandle); }
-	/** @private */
-	UFUNCTION(BlueprintCallable, Category = "Guide Subsystem", meta = (DisplayName = "Clear Search Guide", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_ClearSearchGuide(int32 SearchGuideHandle) { ClearSearchGuide(SearchGuideHandle); }
-
-	/**
-	 * @brief Clear the cached data for all search guides
-	 */
-	void ClearAllSearchGuides() { Searches.Empty(); }
-	/** @private */
-	UFUNCTION(BlueprintCallable, Category = "Guide Subsystem", meta = (DisplayName = "Clear All Search Guides", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_ClearAllSearchGuides() { ClearAllSearchGuides(); }
-
-	/**
-	 * @brief Get the request info that was used to create the GuideSearch
-	 * @param SearchGuideHandle 
-	 * @return request info
-	 */
-	const FRH_GuideSearchRequest* GetSearchGuideRequest(int32 SearchGuideHandle) const;
-	/** @private */
-	UFUNCTION(BlueprintCallable, Category = "Guide Subsystem", meta = (DisplayName = "Get Search Guide Request", AutoCreateRefTerm = "Delegate"))
-	bool BLUEPRINT_GetSearchGuideRequest(int32 SearchGuideHandle, FRH_GuideSearchRequest& OutRequest) const;
-
-	/**
-	 * @brief Get the responses for a GuideSearch
-	 * @param SearchGuideHandle 
-	 * @return array of pages containing the responses
-	 */
-	const TArray<FRHAPI_SearchGuideResponse>* GetSearchGuideResultPages(int32 SearchGuideHandle) const;
-	/** @private */
-	UFUNCTION(BlueprintCallable, Category = "Guide Subsystem", meta = (DisplayName = "Get Search Guide Result Pages", AutoCreateRefTerm = "Delegate"))
-	bool BLUEPRINT_GetSearchGuideResultPages(int32 SearchGuideHandle, TArray<FRHAPI_SearchGuideResponse>& OutPages) const;
+	UFUNCTION(BlueprintCallable, Category = "Guide Subsystem", meta = (DisplayName = "Create Guide Search", AutoCreateRefTerm = "Delegate"))
+	URH_GuideSearch* BLUEPRINT_CreateGuideSearch(const struct FRH_GuideSearchRequest& InRequest) { return CreateGuideSearch(InRequest); }
 	
+	/**
+	 * @brief Removed the cached data for an existing guide search by index
+	 */
+	void RemoveGuideSearchAt(int32 Index) { Searches.RemoveAt(Index); }
+	/** @private */
+	UFUNCTION(BlueprintCallable, Category = "Guide Subsystem", meta = (DisplayName = "Remove Guide Search By Index", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_RemoveGuideSearchAt(int32 Index) { RemoveGuideSearchAt(Index); }
+	
+	/**
+	 * @brief Removed the cached data for an existing guide search
+	 */
+	void RemoveGuideSearch(URH_GuideSearch* GuideSearch) { Searches.Remove(GuideSearch); }
+	/** @private */
+	UFUNCTION(BlueprintCallable, Category = "Guide Subsystem", meta = (DisplayName = "Remove Guide Search", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_RemoveGuideSearch(URH_GuideSearch* GuideSearch) { RemoveGuideSearch(GuideSearch); }
+
+	/**
+	 * @brief Remove the cached data for all search guides
+	 */
+	void RemoveAllGuideSearches() { Searches.Empty(); }
+	/** @private */
+	UFUNCTION(BlueprintCallable, Category = "Guide Subsystem", meta = (DisplayName = "Remove All Search Guides", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_RemoveAllGuideSearches() { RemoveAllGuideSearches(); }
+
 	/**
 	 * @brief Get the searches and their handles
 	 */
-	const TMap<int32, FRH_GuideSearch>& GetSearches() const { return Searches; }
+	UFUNCTION(BlueprintCallable, Category = "Guide Subsystem", meta = (DisplayName = "Get Guide Searches", AutoCreateRefTerm = "Delegate"))
+	const TArray<URH_GuideSearch*>& GetGuideSearches() const { return Searches; }
 
 	/////////////////////////////////////////////////////////////////////////////////////////
 	/// Working with full guides (create, read, update, delete)
@@ -345,7 +171,6 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Guide Subsystem", meta = (DisplayName = "Update Guide", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_DeleteGuide(const FGuid& GuideID, const FRH_GuideUpdateCallDynamicDelegate& Delegate) { return DeleteGuide(GuideID, Delegate); }
 protected:
-	void OnSearchGuidesResponse(const TSearchGuides::Response& Resp, FRH_GuideSearchCallBlock Delegate, int32 SearchGuideHandle);
 	void OnGuideGetAsync(const TGetGuideById::Response& Resp, FRH_GuideGetCallBlock Delegate);
 	void OnGuideCreate(const TCreateGuide::Response& Resp, FRH_GuideUpdateCallBlock Delegate);
 	void OnGuideUpdate(const TUpdateGuideById::Response& Resp, FRH_GuideUpdateCallBlock Delegate, FGuid GuideID);
@@ -355,11 +180,8 @@ protected:
 	TMap<FGuid, FRHAPI_GuideFull> Guides;
 	
 	UPROPERTY(Transient)
-	TMap<int32, FRH_GuideSearch> Searches;
+	TArray<URH_GuideSearch*> Searches;
 
-	UPROPERTY(Transient)
-	int32 LastSearchGuideRequestHandle;
-	
 	/** @brief Initializes the subsystem with defaults for its cached data. */
 	virtual void InitPropertiesWithDefaultValues();
 

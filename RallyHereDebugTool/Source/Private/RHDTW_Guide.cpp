@@ -43,7 +43,7 @@ namespace
 
 FRHDTW_Guide::FRHDTW_Guide()
 {
-	SelectedGuideSearchHandle = 0;
+	SelectedGuideSearchIndex = 0;
 	SelectedGuideSearchPage = 0;
 	SelectedGuideSearchDisplayString = "Select a Search";
 	GuideUpdateRating = 0;
@@ -381,264 +381,270 @@ void FRHDTW_Guide::DoCreateNewGuideSection(struct FRHAPI_GuideSectionCreate& Sec
 	ImGuiOptionalNullableValue("Ref32", &SectionCreate.Ref32_IsSet, &SectionCreate.Ref32_IsNull, SectionCreate.Ref32_Optional);
 }
 
-FString FRHDTW_Guide::GetSearchString(const FRH_GuideSearch& Search) const
+FString FRHDTW_Guide::GetSearchString(const URH_GuideSearch* InSearch) const
 {
+	if (!InSearch)
+	{
+		return FString();
+	}
+	const FRH_GuideSearchRequest& Input = InSearch->GetInputRequest();
+	
 	FString Result;
-	if (!Search.InputRequest.Name.IsEmpty())
+	if (!Input.Name.IsEmpty())
 	{
 		Result += TEXT("Name:");
-		Result += Search.InputRequest.Name;
+		Result += Input.Name;
 		Result += TEXT(" ");
 	}
 	
-	if (Search.InputRequest.bDoOwnerSearch)
+	if (Input.bDoOwnerSearch)
 	{
-		Result += EnumToString(Search.InputRequest.OwnerEntityType);
+		Result += EnumToString(Input.OwnerEntityType);
 		Result += TEXT(":");
-		Result += Search.InputRequest.OwnerEntityId;
+		Result += Input.OwnerEntityId;
 	}
 
-	if (!Search.InputRequest.Language.IsEmpty())
+	if (!Input.Language.IsEmpty())
 	{
-		Result += Search.InputRequest.Language;
+		Result += Input.Language;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.GuideType.IsEmpty())
+	if (!Input.GuideType.IsEmpty())
 	{
 		Result += TEXT("Type:");
-		Result += Search.InputRequest.GuideType;
+		Result += Input.GuideType;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.GameVersion.IsEmpty())
+	if (!Input.GameVersion.IsEmpty())
 	{
 		Result += TEXT("Version:");
-		Result += Search.InputRequest.GameVersion;
+		Result += Input.GameVersion;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.Ref1.IsEmpty())
+	if (!Input.Ref1.IsEmpty())
 	{
 		Result += TEXT("Ref1:");
-		Result += Search.InputRequest.Ref1;
+		Result += Input.Ref1;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.Ref2.IsEmpty())
+	if (!Input.Ref2.IsEmpty())
 	{
 		Result += TEXT("Ref2:");
-		Result += Search.InputRequest.Ref2;
+		Result += Input.Ref2;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.Ref3.IsEmpty())
+	if (!Input.Ref3.IsEmpty())
 	{
 		Result += TEXT("Ref3:");
-		Result += Search.InputRequest.Ref3;
+		Result += Input.Ref3;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.Ref4.IsEmpty())
+	if (!Input.Ref4.IsEmpty())
 	{
 		Result += TEXT("Ref4:");
-		Result += Search.InputRequest.Ref4;
+		Result += Input.Ref4;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.Ref5.IsEmpty())
+	if (!Input.Ref5.IsEmpty())
 	{
 		Result += TEXT("Ref5:");
-		Result += Search.InputRequest.Ref5;
+		Result += Input.Ref5;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.Ref6.IsEmpty())
+	if (!Input.Ref6.IsEmpty())
 	{
 		Result += TEXT("Ref6:");
-		Result += Search.InputRequest.Ref6;
+		Result += Input.Ref6;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.Ref7.IsEmpty())
+	if (!Input.Ref7.IsEmpty())
 	{
 		Result += TEXT("Ref7:");
-		Result += Search.InputRequest.Ref7;
+		Result += Input.Ref7;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.Ref8.IsEmpty())
+	if (!Input.Ref8.IsEmpty())
 	{
 		Result += TEXT("Ref8:");
-		Result += Search.InputRequest.Ref8;
+		Result += Input.Ref8;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.Ref9.IsEmpty())
+	if (!Input.Ref9.IsEmpty())
 	{
 		Result += TEXT("Ref9:");
-		Result += Search.InputRequest.Ref9;
+		Result += Input.Ref9;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.Ref10.IsEmpty())
+	if (!Input.Ref10.IsEmpty())
 	{
 		Result += TEXT("Ref10:");
-		Result += Search.InputRequest.Ref10;
+		Result += Input.Ref10;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.Ref11.IsEmpty())
+	if (!Input.Ref11.IsEmpty())
 	{
 		Result += TEXT("Ref11:");
-		Result += Search.InputRequest.Ref11;
+		Result += Input.Ref11;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.Ref12.IsEmpty())
+	if (!Input.Ref12.IsEmpty())
 	{
 		Result += TEXT("Ref12:");
-		Result += Search.InputRequest.Ref12;
+		Result += Input.Ref12;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.Ref13.IsEmpty())
+	if (!Input.Ref13.IsEmpty())
 	{
 		Result += TEXT("Ref13:");
-		Result += Search.InputRequest.Ref13;
+		Result += Input.Ref13;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.Ref14.IsEmpty())
+	if (!Input.Ref14.IsEmpty())
 	{
 		Result += TEXT("Ref14:");
-		Result += Search.InputRequest.Ref14;
+		Result += Input.Ref14;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.Ref15.IsEmpty())
+	if (!Input.Ref15.IsEmpty())
 	{
 		Result += TEXT("Ref15:");
-		Result += Search.InputRequest.Ref15;
+		Result += Input.Ref15;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.Ref16.IsEmpty())
+	if (!Input.Ref16.IsEmpty())
 	{
 		Result += TEXT("Ref16:");
-		Result += Search.InputRequest.Ref16;
+		Result += Input.Ref16;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.Ref17.IsEmpty())
+	if (!Input.Ref17.IsEmpty())
 	{
 		Result += TEXT("Ref17:");
-		Result += Search.InputRequest.Ref17;
+		Result += Input.Ref17;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.Ref18.IsEmpty())
+	if (!Input.Ref18.IsEmpty())
 	{
 		Result += TEXT("Ref18:");
-		Result += Search.InputRequest.Ref18;
+		Result += Input.Ref18;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.Ref19.IsEmpty())
+	if (!Input.Ref19.IsEmpty())
 	{
 		Result += TEXT("Ref19:");
-		Result += Search.InputRequest.Ref19;
+		Result += Input.Ref19;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.Ref20.IsEmpty())
+	if (!Input.Ref20.IsEmpty())
 	{
 		Result += TEXT("Ref20:");
-		Result += Search.InputRequest.Ref20;
+		Result += Input.Ref20;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.Ref21.IsEmpty())
+	if (!Input.Ref21.IsEmpty())
 	{
 		Result += TEXT("Ref21:");
-		Result += Search.InputRequest.Ref21;
+		Result += Input.Ref21;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.Ref22.IsEmpty())
+	if (!Input.Ref22.IsEmpty())
 	{
 		Result += TEXT("Ref22:");
-		Result += Search.InputRequest.Ref22;
+		Result += Input.Ref22;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.Ref23.IsEmpty())
+	if (!Input.Ref23.IsEmpty())
 	{
 		Result += TEXT("Ref23:");
-		Result += Search.InputRequest.Ref23;
+		Result += Input.Ref23;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.Ref24.IsEmpty())
+	if (!Input.Ref24.IsEmpty())
 	{
 		Result += TEXT("Ref24:");
-		Result += Search.InputRequest.Ref24;
+		Result += Input.Ref24;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.Ref25.IsEmpty())
+	if (!Input.Ref25.IsEmpty())
 	{
 		Result += TEXT("Ref25:");
-		Result += Search.InputRequest.Ref25;
+		Result += Input.Ref25;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.Ref26.IsEmpty())
+	if (!Input.Ref26.IsEmpty())
 	{
 		Result += TEXT("Ref26:");
-		Result += Search.InputRequest.Ref26;
+		Result += Input.Ref26;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.Ref27.IsEmpty())
+	if (!Input.Ref27.IsEmpty())
 	{
 		Result += TEXT("Ref27:");
-		Result += Search.InputRequest.Ref27;
+		Result += Input.Ref27;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.Ref28.IsEmpty())
+	if (!Input.Ref28.IsEmpty())
 	{
 		Result += TEXT("Ref28:");
-		Result += Search.InputRequest.Ref28;
+		Result += Input.Ref28;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.Ref29.IsEmpty())
+	if (!Input.Ref29.IsEmpty())
 	{
 		Result += TEXT("Ref29:");
-		Result += Search.InputRequest.Ref29;
+		Result += Input.Ref29;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.Ref30.IsEmpty())
+	if (!Input.Ref30.IsEmpty())
 	{
 		Result += TEXT("Ref30:");
-		Result += Search.InputRequest.Ref30;
+		Result += Input.Ref30;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.Ref31.IsEmpty())
+	if (!Input.Ref31.IsEmpty())
 	{
 		Result += TEXT("Ref31:");
-		Result += Search.InputRequest.Ref31;
+		Result += Input.Ref31;
 		Result += TEXT(" ");
 	}
 	
-	if (!Search.InputRequest.Ref32.IsEmpty())
+	if (!Input.Ref32.IsEmpty())
 	{
 		Result += TEXT("Ref32:");
-		Result += Search.InputRequest.Ref32;
+		Result += Input.Ref32;
 		Result += TEXT(" ");
 	}
 	
@@ -657,14 +663,15 @@ void FRHDTW_Guide::DoSearchGuides()
 
 	if (ImGui::BeginCombo("Search", SelectedGuideSearchDisplayString.c_str()))
 	{
-		for (TMap<int32, FRH_GuideSearch>::TConstIterator Itr(GuideSS->GetSearches()); Itr; ++Itr)
+		for (TArray<URH_GuideSearch*>::TConstIterator Itr(GuideSS->GetGuideSearches()); Itr; ++Itr)
 		{
-			FString SearchText = GetSearchString(Itr.Value()) + FString::Format(TEXT("#{0}"), {Itr.Key()});
+			ImGui::PushID(*Itr);
+			FString SearchText = GetSearchString(*Itr);
 			FTCHARToUTF8 UTF8SearchText(*SearchText);
-			bool bIsSelected = Itr.Key() == SelectedGuideSearchHandle;
+			bool bIsSelected = Itr.GetIndex() == SelectedGuideSearchIndex;
 			if (ImGui::Selectable(UTF8SearchText.Get(), bIsSelected))
 			{
-				SelectedGuideSearchHandle = Itr.Key();
+				SelectedGuideSearchIndex = Itr.GetIndex();
 				SelectedGuideSearchDisplayString = UTF8SearchText.Get();
 				SelectedGuideSearchPage = 0;
 				bIsSelected = true;
@@ -673,6 +680,7 @@ void FRHDTW_Guide::DoSearchGuides()
 			{
 				ImGui::SetItemDefaultFocus();
 			}
+			ImGui::PopID();
 		}
 		ImGui::EndCombo();
 	}
@@ -684,9 +692,9 @@ void FRHDTW_Guide::DoSearchGuides()
 	}
 
 	ImGui::SameLine();
-	if (ImGui::Button("Clear All"))
+	if (ImGui::Button("Remove All"))
 	{
-		GuideSS->ClearAllSearchGuides();
+		GuideSS->RemoveAllGuideSearches();
 	}
 
 	if (ImGui::BeginPopup("CreateNewGuideSearch"))
@@ -694,8 +702,9 @@ void FRHDTW_Guide::DoSearchGuides()
 		if (DoCreateNewSearch())
 		{
 			ImGui::CloseCurrentPopup();
-			SelectedGuideSearchHandle = GuideSS->CreateSearchGuides(SearchParams);
-			SelectedGuideSearchDisplayString = TCHAR_TO_UTF8(*GetSearchString(*GuideSS->GetSearches().Find(SelectedGuideSearchHandle)));
+			URH_GuideSearch* NewSearch = GuideSS->CreateGuideSearch(SearchParams);
+			SelectedGuideSearchIndex = GuideSS->GetGuideSearches().Find(NewSearch);
+			SelectedGuideSearchDisplayString = TCHAR_TO_UTF8(*GetSearchString(NewSearch));
 			SelectedGuideSearchPage = 0;
 		}
 		ImGui::EndPopup();
@@ -704,8 +713,8 @@ void FRHDTW_Guide::DoSearchGuides()
 	ImGui::SameLine();
 	if (ImGui::Button("Remove Current"))
 	{
-		GuideSS->ClearSearchGuide(SelectedGuideSearchHandle);
-		SelectedGuideSearchHandle = 0;
+		GuideSS->RemoveGuideSearchAt(SelectedGuideSearchIndex);
+		SelectedGuideSearchIndex = INDEX_NONE;
 		SelectedGuideSearchPage = 0;
 		SelectedGuideSearchDisplayString = "Select a Search";
 	}
@@ -787,7 +796,12 @@ void FRHDTW_Guide::DoShowCurrentGuideSearch()
 		return;
 	}
 
-	auto GuideSearch = GuideSS->GetSearches().Find(SelectedGuideSearchHandle);
+	if (SelectedGuideSearchIndex >= GuideSS->GetGuideSearches().Num())
+	{
+		return;
+	}
+
+	URH_GuideSearch* GuideSearch = GuideSS->GetGuideSearches()[SelectedGuideSearchIndex];
 	if (!GuideSearch)
 	{
 		return;
@@ -795,7 +809,7 @@ void FRHDTW_Guide::DoShowCurrentGuideSearch()
 
 	ImGui::Text("Page: ");
 	ImGui::SameLine();
-	for (int32 x = 0; x < GuideSearch->ResultPages.Num(); ++x)
+	for (int32 x = 0; x < GuideSearch->GetResultPages().Num(); ++x)
 	{
 		std::string ButtonText = std::to_string(x);
 		if (x == SelectedGuideSearchPage)
@@ -811,16 +825,16 @@ void FRHDTW_Guide::DoShowCurrentGuideSearch()
 	
 	if (ImGui::Button("Request Next"))
 	{
-		GuideSS->RequestNextSearchGuidePage(SelectedGuideSearchHandle);
+		GuideSearch->RequestNextPage();
 	}
 
-	if (SelectedGuideSearchPage >= GuideSearch->ResultPages.Num())
+	if (SelectedGuideSearchPage >= GuideSearch->GetResultPages().Num())
 	{
 		ImGui::Text("Invalid Page");
 		return;
 	}
 
-	const auto& Page = GuideSearch->ResultPages[SelectedGuideSearchPage];
+	const auto& Page = GuideSearch->GetResultPages()[SelectedGuideSearchPage];
 	auto PageResults = Page.GetResultsOrNull();
 	if (!PageResults)
 	{
