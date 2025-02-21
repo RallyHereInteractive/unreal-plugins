@@ -811,7 +811,7 @@ public:
 	 * @param GuideID Guide to add to favorite list
 	 * @param Delegate Callback delegate for the request.
 	 */
-	virtual void AddGuideToFavorites(const FGuid& GuideID, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate = FRH_GenericSuccessWithErrorDynamicDelegate());
+	virtual void AddGuideToFavorites(const FGuid& GuideID, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock());
 
 	/**
 	 * @private
@@ -827,7 +827,7 @@ public:
 	 * @param GuideID Guide to add to favorite list
 	 * @param Delegate Callback delegate for the request.
 	 */
-	virtual void RemoveGuideFromFavorites(const FGuid& GuideID, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate = FRH_GenericSuccessWithErrorDynamicDelegate());
+	virtual void RemoveGuideFromFavorites(const FGuid& GuideID, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock());
 
 	/**
 	 * @private
@@ -844,7 +844,7 @@ public:
 	 * @param Rating Rating (-1, 0, 1) that the player is giving the guide
 	 * @param Delegate Callback delegate for the request.
 	 */
-	virtual void RateGuide(const FGuid& GuideID, int32 Rating, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate = FRH_GenericSuccessWithErrorDynamicDelegate());
+	virtual void RateGuide(const FGuid& GuideID, int32 Rating, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock());
 
 	/**
 	 * @brief Update the player's rating for a guide

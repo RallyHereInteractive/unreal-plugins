@@ -1405,7 +1405,7 @@ URH_PlayerGuideEngagement::URH_PlayerGuideEngagement(const FObjectInitializer& O
 	
 }
 
-void URH_PlayerGuideEngagement::AddGuideToFavorites(const FGuid& GuideID, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate)
+void URH_PlayerGuideEngagement::AddGuideToFavorites(const FGuid& GuideID, const FRH_GenericSuccessWithErrorBlock& Delegate)
 {
 	typedef AddEntityFavoriteGuideType BaseType;
 
@@ -1419,7 +1419,7 @@ void URH_PlayerGuideEngagement::AddGuideToFavorites(const FGuid& GuideID, const 
 	Helper->Start(RH_APIs::GetGuideAPI(), Request);
 }
 
-void URH_PlayerGuideEngagement::RemoveGuideFromFavorites(const FGuid& GuideID, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate)
+void URH_PlayerGuideEngagement::RemoveGuideFromFavorites(const FGuid& GuideID, const FRH_GenericSuccessWithErrorBlock& Delegate)
 {
 	typedef RemoveEntityFavoriteGuideType BaseType;
 
@@ -1433,7 +1433,7 @@ void URH_PlayerGuideEngagement::RemoveGuideFromFavorites(const FGuid& GuideID, c
 	Helper->Start(RH_APIs::GetGuideAPI(), Request);
 }
 
-void URH_PlayerGuideEngagement::RateGuide(const FGuid& GuideID, int32 Rating, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate)
+void URH_PlayerGuideEngagement::RateGuide(const FGuid& GuideID, int32 Rating, const FRH_GenericSuccessWithErrorBlock& Delegate)
 {
 	typedef AddEntityRatingForGuideType BaseType;
 

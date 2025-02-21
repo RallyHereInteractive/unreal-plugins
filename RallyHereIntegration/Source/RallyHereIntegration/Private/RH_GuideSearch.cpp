@@ -196,12 +196,12 @@ FString* URH_GuideSearch::GetNextPageCursor() const
 	return NextPageCursor;
 }
 
-bool URH_GuideSearch::RequestNextPage(const FRH_GenericSuccessWithErrorBlock& InDelegate)
+bool URH_GuideSearch::RequestNextPage(const FRH_GenericSuccessWithErrorBlock& Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 	if (bRequestInProgress)
 	{
-		InDelegate.ExecuteIfBound(false, FRH_ErrorInfo());
+		Delegate.ExecuteIfBound(false, FRH_ErrorInfo());
 		return false;
 	}
 	
@@ -210,7 +210,7 @@ bool URH_GuideSearch::RequestNextPage(const FRH_GenericSuccessWithErrorBlock& In
 		auto NextPageCursor = GetNextPageCursor();
 		if (!NextPageCursor)
 		{
-			InDelegate.ExecuteIfBound(false, FRH_ErrorInfo());
+			Delegate.ExecuteIfBound(false, FRH_ErrorInfo());
 			return false;
 		}
 		
@@ -218,28 +218,24 @@ bool URH_GuideSearch::RequestNextPage(const FRH_GenericSuccessWithErrorBlock& In
 	}
 
 	bRequestInProgress = true;
-	auto Delegate = TSearchGuides::Delegate::CreateUObject(this, &URH_GuideSearch::OnSearchGuidesResponse, InDelegate);
-	if (!TSearchGuides::DoCall(RH_APIs::GetGuideAPI(), SearchRequest, Delegate, GetDefault<URH_IntegrationSettings>()->GuideSearchGuidesPriority))
-	{
-		bRequestInProgress = false;
-		InDelegate.ExecuteIfBound(false, FRH_ErrorInfo());
-		return false;
-	}
-	return true;
-}
-
-void URH_GuideSearch::OnSearchGuidesResponse(const TSearchGuides::Response& Resp, FRH_GenericSuccessWithErrorBlock Delegate)
-{
-	SCOPED_NAMED_EVENT(RallyHere_OnSearchGuidesResponse, FColor::Purple);
-	bRequestInProgress = false;
-
-	FRHAPI_SearchGuideResponse Content;
-	if (!Resp.TryGetContentFor200(Content))
-	{
-		Delegate.ExecuteIfBound(false, FRH_ErrorInfo(Resp));
-		return;
-	}
+	typedef TSearchGuides BaseType;
 	
-	ResultPages.Add(MoveTemp(Content));
-	Delegate.ExecuteIfBound(true, FRH_ErrorInfo());
+	const auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate::CreateWeakLambda(this, [this](const BaseType::Response& Response)
+			{
+				FRHAPI_SearchGuideResponse Content;
+				if (Response.TryGetContentFor200(Content))
+				{
+					ResultPages.Add(MoveTemp(Content));
+				}
+			}),
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				bRequestInProgress = false;
+				Delegate.ExecuteIfBound(bSuccess, ErrorInfo);
+			}),
+		GetDefault<URH_IntegrationSettings>()->GuideSearchGuidesPriority
+	);
+	Helper->Start(RH_APIs::GetGuideAPI(), SearchRequest);
+	return true;
 }

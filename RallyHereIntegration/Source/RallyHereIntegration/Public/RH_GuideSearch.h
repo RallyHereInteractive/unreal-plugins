@@ -215,14 +215,14 @@ class RALLYHEREINTEGRATION_API URH_GuideSearch : public UObject
 public:
 	typedef RallyHereAPI::Traits_SearchGuides TSearchGuides;
 
-	void Initialize(const FRH_GuideSearchRequest& InRequest, TSharedPtr<RallyHereAPI::FAuthContext> InAuthContext);
+	virtual void Initialize(const FRH_GuideSearchRequest& InRequest, TSharedPtr<RallyHereAPI::FAuthContext> InAuthContext);
 
 	/**
 	 * @brief Request the next page of results for a search guide.
 	 * @param [in] Delegate Callback when the API call is complete.
 	 * @return True if the request was attempted, false if a request is already in progress or the search is complete.
 	 */
-	bool RequestNextPage(const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock());
+	virtual bool RequestNextPage(const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock());
 	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Guide Subsystem", meta = (DisplayName = "Search Next Guide Page", AutoCreateRefTerm = "Delegate"))
 	bool BLUEPRINT_RequestNextPage(const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate) { return RequestNextPage(Delegate); }
@@ -231,33 +231,32 @@ public:
 	 * @brief Are there more pages to request for this search?  If false, requesting additional pages will always fail
 	 * @return True if the search has more pages to return, false if the last page has been received
 	 */
-	UFUNCTION(BlueprintCallable, Category = "Guide | Search", meta= (DisplayName = "Has More Pages"))
+	UFUNCTION(BlueprintPure, Category = "Guide | Search", meta= (DisplayName = "Has More Pages"))
 	bool HasMorePages() const;
 	
 	/**
 	 * @brief Paged search results
 	 * @return Array of search result pages 
 	 */
-	UFUNCTION(BlueprintCallable, Category = "Guide | Search", meta = (DisplayName = "Get Result Pages"))
+	UFUNCTION(BlueprintPure, Category = "Guide | Search", meta = (DisplayName = "Get Result Pages"))
 	const TArray<FRHAPI_SearchGuideResponse>& GetResultPages() const { return ResultPages; }
 	
 	/**
 	 * @brief Input that was used to generate these results
 	 * @return Input request object
 	 */
-	UFUNCTION(BlueprintCallable, Category = "Guide | Search", meta = (DisplayName = "Get Input Request"))
+	UFUNCTION(BlueprintPure, Category = "Guide | Search", meta = (DisplayName = "Get Input Request"))
 	const FRH_GuideSearchRequest& GetInputRequest() const { return InputRequest; }
 
 	/**
 	 * @brief Is there a request in progress?  If so, attempting to request a new page will fail.
 	 * @return True if a request is in progress, false otherwise.
 	 */
-	UFUNCTION(BlueprintCallable, Category = "Guide | Search", meta = (DisplayName = "Get Request In Progress"))
+	UFUNCTION(BlueprintPure, Category = "Guide | Search", meta = (DisplayName = "Get Request In Progress"))
 	bool GetRequestInProgress() const { return bRequestInProgress; }
 
 protected:
-	void OnSearchGuidesResponse(const TSearchGuides::Response& Resp, FRH_GenericSuccessWithErrorBlock Delegate);
-	FString* GetNextPageCursor() const;
+	virtual FString* GetNextPageCursor() const;
 	
 	/** @brief Paged search results */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Guide|Search")

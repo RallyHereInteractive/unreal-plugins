@@ -72,98 +72,110 @@ void URH_GuideSubsystem::GetGuideAsync(const FGuid& GuideID, bool bIgnoreCache, 
 	TGetGuideById::Request Request;
 	Request.AuthContext = GetAuthContext();
 	Request.GuideId = GuideID;
-	if (!TGetGuideById::DoCall(RH_APIs::GetGuideAPI(), Request, TGetGuideById::Delegate::CreateUObject(this, &URH_GuideSubsystem::OnGuideGetAsync, Delegate)))
-	{
-		Delegate.ExecuteIfBound(false, FRH_ErrorInfo(), FRHAPI_GuideFull());
-	}
+	
+	typedef TGetGuideById BaseType;
+	TSharedPtr<FRHAPI_GuideFull> ResponseContent = MakeShared<FRHAPI_GuideFull>();
+	
+	const auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate::CreateWeakLambda(this, [this, ResponseContent](const BaseType::Response& Response)
+			{
+				FRHAPI_GuideFull Content;
+				if (Response.TryGetContentFor200(Content))
+				{
+					*ResponseContent = Content;
+					Guides.Add(Content.GuideId, MoveTemp(Content));
+				}
+			}),
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Delegate, ResponseContent](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				Delegate.ExecuteIfBound(bSuccess, ErrorInfo, *ResponseContent);
+			}),
+		GetDefault<URH_IntegrationSettings>()->GuideSearchGuidesPriority
+	);
+	Helper->Start(RH_APIs::GetGuideAPI(), Request);
 }
 
-void URH_GuideSubsystem::OnGuideGetAsync(const TGetGuideById::Response& Resp, FRH_GuideGetCallBlock Delegate)
-{
-	FRHAPI_GuideFull Content;
-	if (!Resp.TryGetContentFor200(Content))
-	{
-		Delegate.ExecuteIfBound(false, FRH_ErrorInfo(Resp), FRHAPI_GuideFull());
-		return;
-	}
-
-	const auto& NewGuide = Guides.Add(Content.GuideId, MoveTemp(Content));
-	Delegate.ExecuteIfBound(true, FRH_ErrorInfo(), NewGuide);
-}
-
-void URH_GuideSubsystem::CreateGuide(FRHAPI_GuideCreateRequest InRequest, const FRH_GuideUpdateCallBlock& InDelegate)
+void URH_GuideSubsystem::CreateGuide(FRHAPI_GuideCreateRequest InRequest, const FRH_GuideUpdateCallBlock& Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 	TCreateGuide::Request Request;
 	Request.AuthContext = GetAuthContext();
 	Request.GuideCreateRequest = MoveTemp(InRequest);
-	if (!TCreateGuide::DoCall(RH_APIs::GetGuideAPI(), Request, TCreateGuide::Delegate::CreateUObject(this, &URH_GuideSubsystem::OnGuideCreate, InDelegate)))
-	{
-		InDelegate.ExecuteIfBound(false, FRH_ErrorInfo(), FGuid());
-	}
+	
+	typedef TCreateGuide BaseType;
+	TSharedPtr<FGuid> NewGuideID = MakeShared<FGuid>();
+	
+	const auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate::CreateWeakLambda(this, [this, NewGuideID](const BaseType::Response& Response)
+			{
+				FRHAPI_GuideFull Content;
+				if (Response.TryGetContentFor201(Content))
+				{
+					Guides.Add(Content.GuideId, MoveTemp(Content));
+					*NewGuideID = Content.GuideId;
+				}
+			}),
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Delegate, NewGuideID](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				Delegate.ExecuteIfBound(bSuccess, ErrorInfo, *NewGuideID);
+			}),
+		GetDefault<URH_IntegrationSettings>()->GuideSearchGuidesPriority
+	);
+	Helper->Start(RH_APIs::GetGuideAPI(), Request);
 }
 
-void URH_GuideSubsystem::OnGuideCreate(const TCreateGuide::Response& Resp, FRH_GuideUpdateCallBlock Delegate)
-{
-	FRHAPI_GuideFull Content;
-	if (!Resp.TryGetContentFor201(Content))
-	{
-		Delegate.ExecuteIfBound(false, FRH_ErrorInfo(Resp), FGuid());
-		return;
-	}
-
-	auto& NewGuide = Guides.Add(Content.GuideId, MoveTemp(Content));
-	Delegate.ExecuteIfBound(true, FRH_ErrorInfo(), NewGuide.GuideId);
-}
-
-void URH_GuideSubsystem::UpdateGuide(const FGuid& GuideID, FRHAPI_GuideCreateRequest InRequest, const FRH_GuideUpdateCallBlock& InDelegate)
+void URH_GuideSubsystem::UpdateGuide(const FGuid& GuideID, FRHAPI_GuideCreateRequest InRequest, const FRH_GuideUpdateCallBlock& Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 	TUpdateGuideById::Request Request;
 	Request.AuthContext = GetAuthContext();
 	Request.GuideId = GuideID;
 	Request.GuideCreateRequest = MoveTemp(InRequest);
-	if (!TUpdateGuideById::DoCall(RH_APIs::GetGuideAPI(), Request, TUpdateGuideById::Delegate::CreateUObject(this, &URH_GuideSubsystem::OnGuideUpdate, InDelegate, GuideID)))
-	{
-		InDelegate.ExecuteIfBound(false, FRH_ErrorInfo(), GuideID);
-	}
+	
+	typedef TUpdateGuideById BaseType;
+	
+	const auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate::CreateWeakLambda(this, [this, GuideID](const BaseType::Response& Response)
+			{
+				FRHAPI_GuideFull Content;
+				if (Response.TryGetContentFor200(Content))
+				{
+					Guides.Add(Content.GuideId, MoveTemp(Content));
+				}
+			}),
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Delegate, GuideID](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				Delegate.ExecuteIfBound(bSuccess, ErrorInfo, GuideID);
+			}),
+		GetDefault<URH_IntegrationSettings>()->GuideSearchGuidesPriority
+	);
+	Helper->Start(RH_APIs::GetGuideAPI(), Request);
 }
 
-void URH_GuideSubsystem::OnGuideUpdate(const TUpdateGuideById::Response& Resp, FRH_GuideUpdateCallBlock Delegate, FGuid GuideID)
-{
-	FRHAPI_GuideFull Content;
-	if (!Resp.TryGetContentFor200(Content))
-	{
-		Delegate.ExecuteIfBound(false, FRH_ErrorInfo(Resp), GuideID);
-		return;
-	}
-
-	Guides.Add(GuideID, MoveTemp(Content));
-	Delegate.ExecuteIfBound(true, FRH_ErrorInfo(), GuideID);
-}
-
-void URH_GuideSubsystem::DeleteGuide(const FGuid& GuideID, const FRH_GuideUpdateCallBlock& InDelegate)
+void URH_GuideSubsystem::DeleteGuide(const FGuid& GuideID, const FRH_GuideUpdateCallBlock& Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 	TDeleteGuideById::Request Request;
 	Request.AuthContext = GetAuthContext();
 	Request.GuideId = GuideID;
-	if (!TDeleteGuideById::DoCall(RH_APIs::GetGuideAPI(), Request, TDeleteGuideById::Delegate::CreateUObject(this, &URH_GuideSubsystem::OnGuideDelete, InDelegate, GuideID)))
-	{
-		InDelegate.ExecuteIfBound(false, FRH_ErrorInfo(), GuideID);
-	}
-}
-
-void URH_GuideSubsystem::OnGuideDelete(const TDeleteGuideById::Response& Resp, FRH_GuideUpdateCallBlock Delegate, FGuid GuideID)
-{
-	if (!Resp.IsSuccessful())
-	{
-		Delegate.ExecuteIfBound(false, FRH_ErrorInfo(Resp), GuideID);
-		return;
-	}
-
-	Guides.Remove(GuideID);
-	Delegate.ExecuteIfBound(true, FRH_ErrorInfo(), GuideID);
+	
+	typedef TDeleteGuideById BaseType;
+	
+	const auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate::CreateWeakLambda(this, [this, GuideID](const BaseType::Response& Response)
+			{
+				if (Response.IsSuccessful())
+				{
+					Guides.Remove(GuideID);
+				}
+			}),
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Delegate, GuideID](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				Delegate.ExecuteIfBound(bSuccess, ErrorInfo, GuideID);
+			}),
+		GetDefault<URH_IntegrationSettings>()->GuideSearchGuidesPriority
+	);
+	Helper->Start(RH_APIs::GetGuideAPI(), Request);
 }
 
 void URH_GuideSubsystem::InitPropertiesWithDefaultValues()
