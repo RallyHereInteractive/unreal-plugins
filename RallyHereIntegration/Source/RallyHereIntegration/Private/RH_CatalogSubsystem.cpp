@@ -949,8 +949,12 @@ int32 URH_CatalogBlueprintLibrary::GetLevelAtXp(const FRHAPI_XpTable& XpTable, i
 {
 	if (const auto& Entries = XpTable.GetXpEntriesOrNull())
 	{
+		// sort the entries by their value in case they are out of order
+		TMap<FString, int32> SortedEntries = *Entries;
+		SortedEntries.ValueSort(TGreater<int32>());
+		
 		int32 CurrentIndex = 0;
-		for (auto const& XpEntry : *Entries)
+		for (auto const& XpEntry : SortedEntries)
 		{
 			if (XpEntry.Value > XpPoints)
 			{
