@@ -13,6 +13,7 @@ title: PlayerInfo
 `class `[`URH_PlayerDeserter`](#classURH__PlayerDeserter) | Player Deserters class used to store player deserter information.
 `class `[`URH_PlayerMatches`](#classURH__PlayerMatches) | Player Matches class used to store player match history information.
 `class `[`URH_PlayerReports`](#classURH__PlayerReports) | Player Reports class used to store and send player report information.
+`class `[`URH_PlayerGuideEngagement`](#classURH__PlayerGuideEngagement) | Player Guide Engagement class used to store and update guide engagement (favorites and votes)
 `class `[`URH_PlayerPlatformInfo`](#classURH__PlayerPlatformInfo) | Stores information a specific platform the player has linked to their account.
 `class `[`URH_PlayerInfo`](#classURH__PlayerInfo) | Stores and fetchs all the information about a given player.
 `class `[`URH_PlayerInfoSubsystem`](#classURH__PlayerInfoSubsystem) | Subsystem used to track and request information about players.
@@ -641,6 +642,98 @@ Create a new report for the target player with a specific auth context.
 
 #### `typedef `[`CreateReportType`](#classURH__PlayerReports_1a6b101fa42b9857a05a752b07cade837d) <a id="classURH__PlayerReports_1a6b101fa42b9857a05a752b07cade837d"></a>
 
+## class `URH_PlayerGuideEngagement` <a id="classURH__PlayerGuideEngagement"></a>
+
+```
+class URH_PlayerGuideEngagement
+  : public URH_PlayerInfoSubobject
+```
+
+Player Guide Engagement class used to store and update guide engagement (favorites and votes)
+
+### Summary
+
+ Members                        | Descriptions                                
+--------------------------------|---------------------------------------------
+`public virtual void `[`AddGuideToFavorites`](#classURH__PlayerGuideEngagement_1a7e68d8860390c2f87b7fcda8574c3c76)`(const FGuid & GuideID,const FRH_GenericSuccessWithErrorBlock & Delegate)` | Add a guide to the player's favorite guides.
+`public virtual void `[`RemoveGuideFromFavorites`](#classURH__PlayerGuideEngagement_1afc31986a9ad4915553dec34c949f8ff8)`(const FGuid & GuideID,const FRH_GenericSuccessWithErrorBlock & Delegate)` | Remove a guide to the player's favorite guides.
+`public virtual void `[`RateGuide`](#classURH__PlayerGuideEngagement_1a69a1fcae68f5cefb69f603f2e092b9b2)`(const FGuid & GuideID,int32 Rating,const FRH_GenericSuccessWithErrorBlock & Delegate)` | Update the player's rating for a guide.
+`public inline void `[`BLUEPRINT_RateGuide`](#classURH__PlayerGuideEngagement_1adea886c006756cd1bd5ebe44e76f9536)`(const FGuid & GuideID,int32 Rating,const FRH_GenericSuccessWithErrorDynamicDelegate & Delegate)` | Update the player's rating for a guide.
+`public virtual void `[`GetGuideEngagementAsync`](#classURH__PlayerGuideEngagement_1a957cdc2bbb6591016bed507d38616393)`(TArray< FGuid > GuideIDs,const FRH_PlayerInfoGetGuideEngagementBlock & Delegate)` | Request a list of player reports received by this player.
+`public inline const TMap< FGuid, `[`FRHAPI_EntityGuideEngagement`](RHAPI_EntityGuideEngagement.md#structFRHAPI__EntityGuideEngagement)` > & `[`GetGuideEngagement`](#classURH__PlayerGuideEngagement_1ab440bdff8c900735418c063bdda6b4ef)`() const` | Get the current cached list of guide engagement by this player.
+`protected TMap< FGuid, `[`FRHAPI_EntityGuideEngagement`](RHAPI_EntityGuideEngagement.md#structFRHAPI__EntityGuideEngagement)` > `[`GuideEngagement`](#classURH__PlayerGuideEngagement_1aa1b43f01fbe1e59c21140751ddf2fabf) | 
+`typedef `[`GetEntityGuideEngageementType`](#classURH__PlayerGuideEngagement_1a9baa717087b0ad5639b2950f9dd0dc25) | 
+`typedef `[`AddEntityFavoriteGuideType`](#classURH__PlayerGuideEngagement_1a5a430361fec3b5b4d6734133146bf804) | 
+`typedef `[`RemoveEntityFavoriteGuideType`](#classURH__PlayerGuideEngagement_1a38ff50425f9a98d341ba19fee593a176) | 
+`typedef `[`AddEntityRatingForGuideType`](#classURH__PlayerGuideEngagement_1a60702e0dd111cc2b977e177a9b55c4c4) | 
+
+### Members
+
+#### `public virtual void `[`AddGuideToFavorites`](#classURH__PlayerGuideEngagement_1a7e68d8860390c2f87b7fcda8574c3c76)`(const FGuid & GuideID,const FRH_GenericSuccessWithErrorBlock & Delegate)` <a id="classURH__PlayerGuideEngagement_1a7e68d8860390c2f87b7fcda8574c3c76"></a>
+
+Add a guide to the player's favorite guides.
+
+#### Parameters
+* `GuideID` Guide to add to favorite list 
+
+* `Delegate` Callback delegate for the request.
+
+#### `public virtual void `[`RemoveGuideFromFavorites`](#classURH__PlayerGuideEngagement_1afc31986a9ad4915553dec34c949f8ff8)`(const FGuid & GuideID,const FRH_GenericSuccessWithErrorBlock & Delegate)` <a id="classURH__PlayerGuideEngagement_1afc31986a9ad4915553dec34c949f8ff8"></a>
+
+Remove a guide to the player's favorite guides.
+
+#### Parameters
+* `GuideID` Guide to add to favorite list 
+
+* `Delegate` Callback delegate for the request.
+
+#### `public virtual void `[`RateGuide`](#classURH__PlayerGuideEngagement_1a69a1fcae68f5cefb69f603f2e092b9b2)`(const FGuid & GuideID,int32 Rating,const FRH_GenericSuccessWithErrorBlock & Delegate)` <a id="classURH__PlayerGuideEngagement_1a69a1fcae68f5cefb69f603f2e092b9b2"></a>
+
+Update the player's rating for a guide.
+
+#### Parameters
+* `GuideID` Guide to change rating 
+
+* `Rating` Rating (-1, 0, 1) that the player is giving the guide 
+
+* `Delegate` Callback delegate for the request.
+
+#### `public inline void `[`BLUEPRINT_RateGuide`](#classURH__PlayerGuideEngagement_1adea886c006756cd1bd5ebe44e76f9536)`(const FGuid & GuideID,int32 Rating,const FRH_GenericSuccessWithErrorDynamicDelegate & Delegate)` <a id="classURH__PlayerGuideEngagement_1adea886c006756cd1bd5ebe44e76f9536"></a>
+
+Update the player's rating for a guide.
+
+#### Parameters
+* `GuideID` Guide to change rating 
+
+* `Rating` Rating (-1, 0, 1) that the player is giving the guide 
+
+* `Delegate` Callback delegate for the request.
+
+#### `public virtual void `[`GetGuideEngagementAsync`](#classURH__PlayerGuideEngagement_1a957cdc2bbb6591016bed507d38616393)`(TArray< FGuid > GuideIDs,const FRH_PlayerInfoGetGuideEngagementBlock & Delegate)` <a id="classURH__PlayerGuideEngagement_1a957cdc2bbb6591016bed507d38616393"></a>
+
+Request a list of player reports received by this player.
+
+#### Parameters
+* `Cursor` The cursor to use for the request. 
+
+* `PageSize` The size of the pages to poll, if 0, uses default 
+
+* `Delegate` Callback delegate for the request.
+
+#### `public inline const TMap< FGuid, `[`FRHAPI_EntityGuideEngagement`](RHAPI_EntityGuideEngagement.md#structFRHAPI__EntityGuideEngagement)` > & `[`GetGuideEngagement`](#classURH__PlayerGuideEngagement_1ab440bdff8c900735418c063bdda6b4ef)`() const` <a id="classURH__PlayerGuideEngagement_1ab440bdff8c900735418c063bdda6b4ef"></a>
+
+Get the current cached list of guide engagement by this player.
+
+#### `protected TMap< FGuid, `[`FRHAPI_EntityGuideEngagement`](RHAPI_EntityGuideEngagement.md#structFRHAPI__EntityGuideEngagement)` > `[`GuideEngagement`](#classURH__PlayerGuideEngagement_1aa1b43f01fbe1e59c21140751ddf2fabf) <a id="classURH__PlayerGuideEngagement_1aa1b43f01fbe1e59c21140751ddf2fabf"></a>
+
+#### `typedef `[`GetEntityGuideEngageementType`](#classURH__PlayerGuideEngagement_1a9baa717087b0ad5639b2950f9dd0dc25) <a id="classURH__PlayerGuideEngagement_1a9baa717087b0ad5639b2950f9dd0dc25"></a>
+
+#### `typedef `[`AddEntityFavoriteGuideType`](#classURH__PlayerGuideEngagement_1a5a430361fec3b5b4d6734133146bf804) <a id="classURH__PlayerGuideEngagement_1a5a430361fec3b5b4d6734133146bf804"></a>
+
+#### `typedef `[`RemoveEntityFavoriteGuideType`](#classURH__PlayerGuideEngagement_1a38ff50425f9a98d341ba19fee593a176) <a id="classURH__PlayerGuideEngagement_1a38ff50425f9a98d341ba19fee593a176"></a>
+
+#### `typedef `[`AddEntityRatingForGuideType`](#classURH__PlayerGuideEngagement_1a60702e0dd111cc2b977e177a9b55c4c4) <a id="classURH__PlayerGuideEngagement_1a60702e0dd111cc2b977e177a9b55c4c4"></a>
+
 ## class `URH_PlayerPlatformInfo` <a id="classURH__PlayerPlatformInfo"></a>
 
 ```
@@ -719,6 +812,7 @@ Stores and fetchs all the information about a given player.
 `public inline FORCEINLINE `[`URH_PlayerDeserter`](PlayerInfo.md#classURH__PlayerDeserter)` * `[`GetDeserter`](#classURH__PlayerInfo_1ae0f62a5c1c239065cf553b271028df78)`() const` | Gets The players deserter class.
 `public inline FORCEINLINE `[`URH_PlayerMatches`](PlayerInfo.md#classURH__PlayerMatches)` * `[`GetMatches`](#classURH__PlayerInfo_1adf80a62480686f8a0a07df3984549e6d)`() const` | Gets The players matches class.
 `public inline FORCEINLINE `[`URH_PlayerReports`](PlayerInfo.md#classURH__PlayerReports)` * `[`GetReports`](#classURH__PlayerInfo_1a4c837d7a547fd1cf311315834e0416d1)`() const` | Gets The players reports class.
+`public inline FORCEINLINE `[`URH_PlayerGuideEngagement`](PlayerInfo.md#classURH__PlayerGuideEngagement)` * `[`GetGuideEngagement`](#classURH__PlayerInfo_1a2131dce1c13fb73eac8a52bef55a4bf6)`() const` | Gets The players Guide engagement class.
 `public inline virtual TArray< `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` > & `[`GetPlayerPlatformIds`](#classURH__PlayerInfo_1a3a419c311ffbd17b766e293407663f1c)`()` | Gets the associated platform ids of the player.
 `public inline virtual const TArray< `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` > & `[`GetPlayerPlatformIds`](#classURH__PlayerInfo_1ae2979dea7727e07acfba65d1ee9e5ceb)`() const` | Gets the associated platform ids of the player.
 `public virtual TArray< `[`URH_PlayerPlatformInfo`](PlayerInfo.md#classURH__PlayerPlatformInfo)` * > `[`GetPlayerPlatforms`](#classURH__PlayerInfo_1ad81c81dd9e0267d0aa3a22e99ececc93)`() const` | Gets the associated platforms of the player.
@@ -750,6 +844,7 @@ Stores and fetchs all the information about a given player.
 `protected `[`URH_PlayerDeserter`](PlayerInfo.md#classURH__PlayerDeserter)` * `[`PlayerDeserter`](#classURH__PlayerInfo_1ae80f624b84391b5e096fcca335c8e8e4) | The players Deserter Information.
 `protected `[`URH_PlayerMatches`](PlayerInfo.md#classURH__PlayerMatches)` * `[`PlayerMatches`](#classURH__PlayerInfo_1a1f355fbb71f17bc3bb40283c931138aa) | The players Matches Information.
 `protected `[`URH_PlayerReports`](PlayerInfo.md#classURH__PlayerReports)` * `[`PlayerReports`](#classURH__PlayerInfo_1a99a08ebcbd1c9c030f1d4ca7f9fcb572) | The players Reports Information.
+`protected `[`URH_PlayerGuideEngagement`](PlayerInfo.md#classURH__PlayerGuideEngagement)` * `[`PlayerGuideEngagement`](#classURH__PlayerInfo_1aa7c569ce12168e33685201a4d99bcb5d) | The players Guide Engagement Information.
 `protected `[`URH_PlayerInventory`](Inventory.md#classURH__PlayerInventory)` * `[`PlayerInventory`](#classURH__PlayerInfo_1ab06228dae3921d141dbbf2bf895c55da) | The Players Inventory Subsystem.
 `protected `[`URH_PlayerNotifications`](Notifications.md#classURH__PlayerNotifications)` * `[`PlayerNotifications`](#classURH__PlayerInfo_1ac1eb1a25b4d89a7f7c75cbb6d4c9e4a8) | The Players Inventory Subsystem.
 `protected TMap< FString, `[`FRHAPI_PlayerRankResponseV2`](RHAPI_PlayerRankResponseV2.md#structFRHAPI__PlayerRankResponseV2)` > `[`PlayerRankingsByRankingId`](#classURH__PlayerInfo_1a5728d3241aef0abed0788e90422ad071) | List of the player's rankings.
@@ -814,6 +909,13 @@ Gets The players reports class.
 
 #### Returns
 The players reports class.
+
+#### `public inline FORCEINLINE `[`URH_PlayerGuideEngagement`](PlayerInfo.md#classURH__PlayerGuideEngagement)` * `[`GetGuideEngagement`](#classURH__PlayerInfo_1a2131dce1c13fb73eac8a52bef55a4bf6)`() const` <a id="classURH__PlayerInfo_1a2131dce1c13fb73eac8a52bef55a4bf6"></a>
+
+Gets The players Guide engagement class.
+
+#### Returns
+The players Guide engagemetn class.
 
 #### `public inline virtual TArray< `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` > & `[`GetPlayerPlatformIds`](#classURH__PlayerInfo_1a3a419c311ffbd17b766e293407663f1c)`()` <a id="classURH__PlayerInfo_1a3a419c311ffbd17b766e293407663f1c"></a>
 
@@ -1054,6 +1156,10 @@ The players Matches Information.
 #### `protected `[`URH_PlayerReports`](PlayerInfo.md#classURH__PlayerReports)` * `[`PlayerReports`](#classURH__PlayerInfo_1a99a08ebcbd1c9c030f1d4ca7f9fcb572) <a id="classURH__PlayerInfo_1a99a08ebcbd1c9c030f1d4ca7f9fcb572"></a>
 
 The players Reports Information.
+
+#### `protected `[`URH_PlayerGuideEngagement`](PlayerInfo.md#classURH__PlayerGuideEngagement)` * `[`PlayerGuideEngagement`](#classURH__PlayerInfo_1aa7c569ce12168e33685201a4d99bcb5d) <a id="classURH__PlayerInfo_1aa7c569ce12168e33685201a4d99bcb5d"></a>
+
+The players Guide Engagement Information.
 
 #### `protected `[`URH_PlayerInventory`](Inventory.md#classURH__PlayerInventory)` * `[`PlayerInventory`](#classURH__PlayerInfo_1ab06228dae3921d141dbbf2bf895c55da) <a id="classURH__PlayerInfo_1ab06228dae3921d141dbbf2bf895c55da"></a>
 

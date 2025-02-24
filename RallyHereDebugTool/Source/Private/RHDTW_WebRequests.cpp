@@ -205,9 +205,9 @@ void FRHDTW_WebRequests::DoViewRequests(FRH_WebRequests* WebRequestsTracker)
 
 		ImGuiColors::HeaderStyle::ScopedHeaderStyle ScopedHeaderStyle(ResultColor);
 
-		if (ImGui::CollapsingHeader(label.data()))
+		ImGui::PushID(&request->Metadata);
+		if (ImGui::CollapsingHeader(label.c_str()))
 		{
-			ImGui::PushID(&request->Metadata);
 			std::string tabBarLabel = std::string{ "ReqOrResp##request-tab-bar-" } + TCHAR_TO_UTF8(*request->Metadata.Identifier.ToString()) + std::to_string(request->Metadata.RetryCount);
 			static ImGuiTabBarFlags tab_bar_flags =
 				ImGuiTabBarFlags_AutoSelectNewTabs | ImGuiTabBarFlags_FittingPolicyResizeDown | ImGuiTabBarFlags_FittingPolicyScroll;
@@ -248,9 +248,8 @@ void FRHDTW_WebRequests::DoViewRequests(FRH_WebRequests* WebRequestsTracker)
 
 				ImGui::EndTabBar();
 			}
-
-			ImGui::PopID();
 		}
+		ImGui::PopID();
 		++indexId;
 	}
 

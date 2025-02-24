@@ -312,6 +312,9 @@ public:
 	/** @brief Extensible RemoteFileSubsystem class path */
 	UPROPERTY(EditAnywhere, Config, Category = "Subsystem Classes")
 	FSoftClassPath RemoteFileSubsystemClass;
+	/** @brief Extensible GuideSubsystem class path */
+	UPROPERTY(EditAnywhere, Config, Category = "Subsystem Classes")
+	FSoftClassPath GuideSubsystemClass;
 
 	/** @brief Flag to determine if the local player subsystem should use its own subsystems instead of relying on GameInstanceSubsystem shared caches. */
 	UPROPERTY(EditAnywhere, Config, Category = "Subsystem Classes")
@@ -624,6 +627,12 @@ public:
 	/** @brief Sets the request priority of File Delete calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "File API Priority", AdvancedDisplay)
 	int32 FileDeletePriority;
+	/** @brief Sets the request priority of Search Guides calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Guide API Priority", AdvancedDisplay)
+	int32 GuideSearchGuidesPriority;
+	/** @brief Sets the request priority of Guides Favorite calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Guide API Priority", AdvancedDisplay)
+	int32 GuideFavoritePriority;
 };
 
 /** @} */

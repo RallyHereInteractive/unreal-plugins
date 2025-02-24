@@ -25,6 +25,7 @@ class URH_ConfigSubsystem;
 class URH_SettingsSubsystem;
 class URH_MatchSubsystem;
 class URH_RemoteFileSubsystem;
+class URH_GuideSubsystem;
 
 /** @defgroup GameInstance RallyHere Game Instance
  *  @{
@@ -74,57 +75,62 @@ public:
 	* @brief Gets the session subsystem on the instance.
 	*/
 	UFUNCTION(BlueprintGetter, Category = "Session")
-	FORCEINLINE URH_GameInstanceSessionSubsystem* GetSessionSubsystem() const { return SessionSubsystem; };
+	FORCEINLINE URH_GameInstanceSessionSubsystem* GetSessionSubsystem() const { return SessionSubsystem; }
 	/**
 	* @brief Gets the session search cache on the instance.
 	*/
 	UFUNCTION(BlueprintGetter, Category = "Session")
-	FORCEINLINE URH_SessionBrowserCache* GetSessionSearchCache() const { return SessionSearchCache; };
+	FORCEINLINE URH_SessionBrowserCache* GetSessionSearchCache() const { return SessionSearchCache; }
 	/**
 	* @brief Gets the matchmaking cache on the instance.
 	*/
 	UFUNCTION(BlueprintGetter, Category = "Matchmaking")
-	FORCEINLINE URH_MatchmakingBrowserCache* GetMatchmakingCache() const { return MatchmakingCache; };
+	FORCEINLINE URH_MatchmakingBrowserCache* GetMatchmakingCache() const { return MatchmakingCache; }
 	/**
 	* @brief Gets the server bootstrapper on the instance.
 	*/
 	UFUNCTION(BlueprintGetter, Category = "Session")
-	FORCEINLINE URH_GameInstanceServerBootstrapper* GetServerBootstrapper() const { return ServerBootstrapper; };
+	FORCEINLINE URH_GameInstanceServerBootstrapper* GetServerBootstrapper() const { return ServerBootstrapper; }
 	/**
 	* @brief Gets the client boostrapper on the instance.
 	*/
 	UFUNCTION(BlueprintGetter, Category = "Session")
-	FORCEINLINE URH_GameInstanceClientBootstrapper* GetClientBootstrapper() const { return ClientBootstrapper; };
+	FORCEINLINE URH_GameInstanceClientBootstrapper* GetClientBootstrapper() const { return ClientBootstrapper; }
 	/**
 	* @brief Gets the player info subsystem on the instance.
 	*/
 	UFUNCTION(BlueprintGetter, Category = "PlayerInfo")
-	FORCEINLINE URH_PlayerInfoSubsystem* GetPlayerInfoSubsystem() const { return PlayerInfoSubsystem; };
+	FORCEINLINE URH_PlayerInfoSubsystem* GetPlayerInfoSubsystem() const { return PlayerInfoSubsystem; }
 	/**
 	* @brief Gets the catalog subsystem on the instance.
 	*/
 	UFUNCTION(BlueprintGetter, Category = "Catalog")
-	FORCEINLINE URH_CatalogSubsystem* GetCatalogSubsystem() const { return CatalogSubsystem; };
+	FORCEINLINE URH_CatalogSubsystem* GetCatalogSubsystem() const { return CatalogSubsystem; }
 	/**
 	* @brief Gets the config subsystem on the instance.
 	*/
 	UFUNCTION(BlueprintGetter, Category = "Config")
-	FORCEINLINE URH_ConfigSubsystem* GetConfigSubsystem() const { return ConfigSubsystem; };
+	FORCEINLINE URH_ConfigSubsystem* GetConfigSubsystem() const { return ConfigSubsystem; }
 	/**
 	* @brief Gets the settings subsystem on the instance.
 	*/
 	UFUNCTION(BlueprintGetter, Category = "Config")
-	FORCEINLINE URH_SettingsSubsystem* GetSettingsSubsystem() const { return SettingsSubsystem; };
+	FORCEINLINE URH_SettingsSubsystem* GetSettingsSubsystem() const { return SettingsSubsystem; }
 	/**
 	* @brief Gets the match subsystem on the instance.
 	*/
 	UFUNCTION(BlueprintGetter, Category = "Match")
-	FORCEINLINE URH_MatchSubsystem* GetMatchSubsystem() const { return MatchSubsystem; };
+	FORCEINLINE URH_MatchSubsystem* GetMatchSubsystem() const { return MatchSubsystem; }
 	/**
 	* @brief Gets the remote file subsystem on the instance.
 	*/
 	UFUNCTION(BlueprintGetter, Category = "File")
-	FORCEINLINE URH_RemoteFileSubsystem* GetRemoteFileSubsystem() const { return RemoteFileSubsystem; };
+	FORCEINLINE URH_RemoteFileSubsystem* GetRemoteFileSubsystem() const { return RemoteFileSubsystem; }
+	/**
+	* @brief Gets the guide subsystem on the instance.
+	*/
+	UFUNCTION(BlueprintGetter, Category = "Guide")
+	FORCEINLINE URH_GuideSubsystem* GetGuideSubsystem() const { return GuideSubsystem; }
 
 	/**
 	* @brief Gets if server boostrapping is enabled
@@ -256,6 +262,9 @@ protected:
 	/** @brief The File Subsystem */
 	UPROPERTY(VisibleInstanceOnly, BlueprintGetter = GetRemoteFileSubsystem, Category = "Match")
 	URH_RemoteFileSubsystem* RemoteFileSubsystem;
+	/** @brief The Guide Subsystem */
+	UPROPERTY(VisibleInstanceOnly, BlueprintGetter = GetGuideSubsystem, Category = "Guide")
+	URH_GuideSubsystem* GuideSubsystem;
 	
 	UPROPERTY(VisibleInstanceOnly, BlueprintGetter = GetLastKnownIPAddress, Category = "Match")
 	FString LastKnownIPAddress;
