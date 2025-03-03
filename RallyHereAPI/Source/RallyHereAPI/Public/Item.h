@@ -624,6 +624,37 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
 	/** @brief Checks whether InventoryBucketUseRuleSetId_Optional is set to null */
 	bool IsInventoryBucketUseRuleSetIdNull() const { return InventoryBucketUseRuleSetId_IsSet && InventoryBucketUseRuleSetId_IsNull; }
 
+	/** @brief Maximum ownership (permanent+rental) allowed for this item.  0 means no limit */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 TotalOwnershipMax_Optional{ 0 };
+	/** @brief true if TotalOwnershipMax_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool TotalOwnershipMax_IsSet{ false };
+	/** @brief Gets the value of TotalOwnershipMax_Optional, regardless of it having been set */
+	int32& GetTotalOwnershipMax() { return TotalOwnershipMax_Optional; }
+	/** @brief Gets the value of TotalOwnershipMax_Optional, regardless of it having been set */
+	const int32& GetTotalOwnershipMax() const { return TotalOwnershipMax_Optional; }
+	/** @brief Gets the value of TotalOwnershipMax_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetTotalOwnershipMax(const int32& DefaultValue) const { if (TotalOwnershipMax_IsSet) return TotalOwnershipMax_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of TotalOwnershipMax_Optional and returns true if it has been set, otherwise returns false */
+	bool GetTotalOwnershipMax(int32& OutValue) const { if (TotalOwnershipMax_IsSet) OutValue = TotalOwnershipMax_Optional; return TotalOwnershipMax_IsSet; }
+	/** @brief Returns a pointer to TotalOwnershipMax_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetTotalOwnershipMaxOrNull() { if (TotalOwnershipMax_IsSet) return (&TotalOwnershipMax_Optional); return nullptr; }
+	/** @brief Returns a pointer to TotalOwnershipMax_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetTotalOwnershipMaxOrNull() const { if (TotalOwnershipMax_IsSet) return (&TotalOwnershipMax_Optional); return nullptr; }
+	/** @brief Sets the value of TotalOwnershipMax_Optional and also sets TotalOwnershipMax_IsSet to true */
+	void SetTotalOwnershipMax(const int32& NewValue) { TotalOwnershipMax_Optional = NewValue; TotalOwnershipMax_IsSet = true;  }
+	/** @brief Sets the value of TotalOwnershipMax_Optional and also sets TotalOwnershipMax_IsSet to true using move semantics */
+	void SetTotalOwnershipMax(int32&& NewValue) { TotalOwnershipMax_Optional = NewValue; TotalOwnershipMax_IsSet = true;  }
+	/** @brief Clears the value of TotalOwnershipMax_Optional and sets TotalOwnershipMax_IsSet to false */
+	void ClearTotalOwnershipMax() { TotalOwnershipMax_Optional = 0; TotalOwnershipMax_IsSet = false;  }
+	/** @brief Checks whether TotalOwnershipMax_Optional has been set */
+	bool IsTotalOwnershipMaxSet() const { return TotalOwnershipMax_IsSet; }
+	/** @brief Returns true if TotalOwnershipMax_Optional is set and matches the default value */
+	bool IsTotalOwnershipMaxDefaultValue() const { return TotalOwnershipMax_IsSet && TotalOwnershipMax_Optional == 0; }
+	/** @brief Sets the value of TotalOwnershipMax_Optional to its default and also sets TotalOwnershipMax_IsSet to true */
+	void SetTotalOwnershipMaxToDefault() { SetTotalOwnershipMax(0); }
+
 	/** @brief List of Loot IDs this item can discount */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<int32> CouponDiscountLoot_Optional{  };

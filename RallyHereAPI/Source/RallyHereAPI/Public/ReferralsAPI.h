@@ -12,9 +12,9 @@
 #include "RallyHereAPIHelpers.h"
 #include "HTTPValidationError.h"
 #include "HzApiErrorModel.h"
-#include "PlayerReport.h"
-#include "PlayerReportCreate.h"
-#include "PlayerReportList.h"
+#include "PlayerReferral.h"
+#include "PlayerReferralCode.h"
+#include "PlayerReferralSetPayload.h"
 
 namespace RallyHereAPI
 {
@@ -23,19 +23,22 @@ using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
 // forward declaration
-class FReportsAPI;
+class FReferralsAPI;
 
 /**
- * @brief Create Report For Target Player Uuid
- * Create a new report for a target player
+ * @brief Generate Referral Code
+ * Generate and return a player's referral code if they don't already have one.
+ * 
  * Required Permissions:
- * If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:self`, `sanction:report:create:any`, `sanction:*`
- * Otherwise: any of: `sanction:report:create:any`, `sanction:*`
+ * 
+ * - For any player (including themselves) : `refer:set:any`
+ * 
+ * - For the player themselves : `refer:set:self`
 */
-struct RALLYHEREAPI_API FRequest_CreateReportForTargetPlayerUuid : public FRequest
+struct RALLYHEREAPI_API FRequest_GenerateReferralCode : public FRequest
 {
-	FRequest_CreateReportForTargetPlayerUuid();
-	virtual ~FRequest_CreateReportForTargetPlayerUuid() = default;
+	FRequest_GenerateReferralCode();
+	virtual ~FRequest_GenerateReferralCode() = default;
 	
 	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
@@ -50,17 +53,17 @@ struct RALLYHEREAPI_API FRequest_CreateReportForTargetPlayerUuid : public FReque
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
+	/* The player_uuid to generate a referral code for */
 	FGuid PlayerUuid;
-	FRHAPI_PlayerReportCreate PlayerReportCreate;
 };
 
-/** The response type for FRequest_CreateReportForTargetPlayerUuid */
-struct RALLYHEREAPI_API FResponse_CreateReportForTargetPlayerUuid : public FResponseAccessorTemplate<FRHAPI_PlayerReport, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+/** The response type for FRequest_GenerateReferralCode */
+struct RALLYHEREAPI_API FResponse_GenerateReferralCode : public FResponseAccessorTemplate<FRHAPI_PlayerReferralCode, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PlayerReport, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerReferralCode, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
-	FResponse_CreateReportForTargetPlayerUuid(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_CreateReportForTargetPlayerUuid() = default;
+	FResponse_GenerateReferralCode(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GenerateReferralCode() = default;
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
@@ -72,27 +75,469 @@ struct RALLYHEREAPI_API FResponse_CreateReportForTargetPlayerUuid : public FResp
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_PlayerReport Content;
+	FRHAPI_PlayerReferralCode Content;
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
 	/** @brief Attempt to retrieve the content in the default response */
-	bool TryGetDefaultContent(FRHAPI_PlayerReport& OutContent) const { return TryGetContent<FRHAPI_PlayerReport>(OutContent); }
+	bool TryGetDefaultContent(FRHAPI_PlayerReferralCode& OutContent) const { return TryGetContent<FRHAPI_PlayerReferralCode>(OutContent); }
 	/** @brief Attempt to retrieve the content in the default response */
-	bool TryGetDefaultContent(TOptional<FRHAPI_PlayerReport>& OutContent) const { return TryGetContent<FRHAPI_PlayerReport>(OutContent); }
+	bool TryGetDefaultContent(TOptional<FRHAPI_PlayerReferralCode>& OutContent) const { return TryGetContent<FRHAPI_PlayerReferralCode>(OutContent); }
 	/** @brief Attempt to retrieve the content in the default response */
-	const FRHAPI_PlayerReport* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlayerReport>(); }
+	const FRHAPI_PlayerReferralCode* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlayerReferralCode>(); }
 	/** @brief Attempt to retrieve the content in the default response */
-	TOptional<FRHAPI_PlayerReport> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlayerReport>(); }
+	TOptional<FRHAPI_PlayerReferralCode> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlayerReferralCode>(); }
 
 	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
-	bool TryGetContentFor200(FRHAPI_PlayerReport& OutContent) const;
+	bool TryGetContentFor200(FRHAPI_PlayerReferralCode& OutContent) const;
+
+	/* Response 403
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GenerateReferralCode */
+DECLARE_DELEGATE_OneParam(FDelegate_GenerateReferralCode, const FResponse_GenerateReferralCode&);
+
+/** @brief A helper metadata object for GenerateReferralCode that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GenerateReferralCode
+{
+	/** The request type */
+	typedef FRequest_GenerateReferralCode Request;
+	/** The response type */
+	typedef FResponse_GenerateReferralCode Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GenerateReferralCode Delegate;
+	/** The API object that supports this API call */
+	typedef FReferralsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Player Referrals
+ * Get all referrals where this player is the referrer.
+ * 
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) : `refer:read:any`
+ * 
+ * - For the player themselves : `refer:read:self`
+*/
+struct RALLYHEREAPI_API FRequest_GetPlayerReferrals : public FRequest
+{
+	FRequest_GetPlayerReferrals();
+	virtual ~FRequest_GetPlayerReferrals() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	/* The player_uuid to get the referrals for */
+	FGuid PlayerUuid;
+};
+
+/** The response type for FRequest_GetPlayerReferrals */
+struct RALLYHEREAPI_API FResponse_GetPlayerReferrals : public FResponseAccessorTemplate<TArray<FRHAPI_PlayerReferral>, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<TArray<FRHAPI_PlayerReferral>, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_GetPlayerReferrals(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetPlayerReferrals() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	TArray<FRHAPI_PlayerReferral> Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TArray<FRHAPI_PlayerReferral>& OutContent) const { return TryGetContent<TArray<FRHAPI_PlayerReferral>>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<TArray<FRHAPI_PlayerReferral>>& OutContent) const { return TryGetContent<TArray<FRHAPI_PlayerReferral>>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const TArray<FRHAPI_PlayerReferral>* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<TArray<FRHAPI_PlayerReferral>>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<TArray<FRHAPI_PlayerReferral>> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<TArray<FRHAPI_PlayerReferral>>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(TArray<FRHAPI_PlayerReferral>& OutContent) const;
+
+	/* Response 403
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetPlayerReferrals */
+DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerReferrals, const FResponse_GetPlayerReferrals&);
+
+/** @brief A helper metadata object for GetPlayerReferrals that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetPlayerReferrals
+{
+	/** The request type */
+	typedef FRequest_GetPlayerReferrals Request;
+	/** The response type */
+	typedef FResponse_GetPlayerReferrals Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetPlayerReferrals Delegate;
+	/** The API object that supports this API call */
+	typedef FReferralsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Player Referrer
+ * Get the player_uuid of the player who referred this player.
+ * 
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) : `refer:read:any`
+ * 
+ * - For the player themselves : `refer:read:self`
+*/
+struct RALLYHEREAPI_API FRequest_GetPlayerReferrer : public FRequest
+{
+	FRequest_GetPlayerReferrer();
+	virtual ~FRequest_GetPlayerReferrer() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	/* The referred player_uuid to get the referrer for */
+	FGuid PlayerUuid;
+};
+
+/** The response type for FRequest_GetPlayerReferrer */
+struct RALLYHEREAPI_API FResponse_GetPlayerReferrer : public FResponseAccessorTemplate<FRHAPI_PlayerReferral, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerReferral, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_GetPlayerReferrer(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetPlayerReferrer() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_PlayerReferral Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_PlayerReferral& OutContent) const { return TryGetContent<FRHAPI_PlayerReferral>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_PlayerReferral>& OutContent) const { return TryGetContent<FRHAPI_PlayerReferral>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_PlayerReferral* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlayerReferral>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_PlayerReferral> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlayerReferral>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerReferral& OutContent) const;
+
+	/* Response 403
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetPlayerReferrer */
+DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerReferrer, const FResponse_GetPlayerReferrer&);
+
+/** @brief A helper metadata object for GetPlayerReferrer that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetPlayerReferrer
+{
+	/** The request type */
+	typedef FRequest_GetPlayerReferrer Request;
+	/** The response type */
+	typedef FResponse_GetPlayerReferrer Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetPlayerReferrer Delegate;
+	/** The API object that supports this API call */
+	typedef FReferralsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Referral Code
+ * Get a player's referral code if they have one. Otherwise, return an 404 error.
+ * 
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) : `refer:read:any`
+ * 
+ * - For the player themselves : `refer:read:self`
+*/
+struct RALLYHEREAPI_API FRequest_GetReferralCode : public FRequest
+{
+	FRequest_GetReferralCode();
+	virtual ~FRequest_GetReferralCode() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	/* The player_uuid to get the referral code for */
+	FGuid PlayerUuid;
+};
+
+/** The response type for FRequest_GetReferralCode */
+struct RALLYHEREAPI_API FResponse_GetReferralCode : public FResponseAccessorTemplate<FRHAPI_PlayerReferralCode, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerReferralCode, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_GetReferralCode(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetReferralCode() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_PlayerReferralCode Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_PlayerReferralCode& OutContent) const { return TryGetContent<FRHAPI_PlayerReferralCode>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_PlayerReferralCode>& OutContent) const { return TryGetContent<FRHAPI_PlayerReferralCode>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_PlayerReferralCode* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlayerReferralCode>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_PlayerReferralCode> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlayerReferralCode>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerReferralCode& OutContent) const;
+
+	/* Response 403
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetReferralCode */
+DECLARE_DELEGATE_OneParam(FDelegate_GetReferralCode, const FResponse_GetReferralCode&);
+
+/** @brief A helper metadata object for GetReferralCode that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetReferralCode
+{
+	/** The request type */
+	typedef FRequest_GetReferralCode Request;
+	/** The response type */
+	typedef FResponse_GetReferralCode Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetReferralCode Delegate;
+	/** The API object that supports this API call */
+	typedef FReferralsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Set Player Referrer
+ * Set a player's referrer using either a player_uuid or referral code.
+ * 
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) : `refer:set:any`
+ * 
+ * - For the player themselves : `refer:set:self`
+*/
+struct RALLYHEREAPI_API FRequest_SetPlayerReferrer : public FRequest
+{
+	FRequest_SetPlayerReferrer();
+	virtual ~FRequest_SetPlayerReferrer() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	/* The player_uuid to set the referrer for */
+	FGuid PlayerUuid;
+	FRHAPI_PlayerReferralSetPayload PlayerReferralSetPayload;
+};
+
+/** The response type for FRequest_SetPlayerReferrer */
+struct RALLYHEREAPI_API FResponse_SetPlayerReferrer : public FResponseAccessorTemplate<FRHAPI_PlayerReferral, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerReferral, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_SetPlayerReferrer(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_SetPlayerReferrer() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_PlayerReferral Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_PlayerReferral& OutContent) const { return TryGetContent<FRHAPI_PlayerReferral>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_PlayerReferral>& OutContent) const { return TryGetContent<FRHAPI_PlayerReferral>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_PlayerReferral* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlayerReferral>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_PlayerReferral> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlayerReferral>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlayerReferral& OutContent) const;
 
 	/* Response 400
-	 Error Codes: - `source_player_required` - Source Player must be provided in request or with a user token 
+	Bad Request
 	*/
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -102,7 +547,7 @@ struct RALLYHEREAPI_API FResponse_CreateReportForTargetPlayerUuid : public FResp
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 404
-	 Error Codes: - `player_not_found` - Player {id} not found 
+	Not Found
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -113,490 +558,20 @@ struct RALLYHEREAPI_API FResponse_CreateReportForTargetPlayerUuid : public FResp
 
 };
 
-/** The delegate class for FRequest_CreateReportForTargetPlayerUuid */
-DECLARE_DELEGATE_OneParam(FDelegate_CreateReportForTargetPlayerUuid, const FResponse_CreateReportForTargetPlayerUuid&);
+/** The delegate class for FRequest_SetPlayerReferrer */
+DECLARE_DELEGATE_OneParam(FDelegate_SetPlayerReferrer, const FResponse_SetPlayerReferrer&);
 
-/** @brief A helper metadata object for CreateReportForTargetPlayerUuid that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
-struct RALLYHEREAPI_API Traits_CreateReportForTargetPlayerUuid
+/** @brief A helper metadata object for SetPlayerReferrer that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_SetPlayerReferrer
 {
 	/** The request type */
-	typedef FRequest_CreateReportForTargetPlayerUuid Request;
+	typedef FRequest_SetPlayerReferrer Request;
 	/** The response type */
-	typedef FResponse_CreateReportForTargetPlayerUuid Response;
+	typedef FResponse_SetPlayerReferrer Response;
 	/** The delegate type, triggered by the response */
-	typedef FDelegate_CreateReportForTargetPlayerUuid Delegate;
+	typedef FDelegate_SetPlayerReferrer Delegate;
 	/** The API object that supports this API call */
-	typedef FReportsAPI API;
-	/** A human readable name for this API call */
-	static FString Name;
-
-	/**
-	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
-	 * @param [in] InAPI The API object the call will be made with
-	 * @param [in] InRequest The request to submit to the API call
-	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
-	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
-	 * @return A http request object, if the call was successfully queued.
-	 */
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
-};
-
-/**
- * @brief Get Reports For Target Player Uuid
- * Get reports for a target player
- * Required Permissions:
- * 
- * - For any player (including themselves) any of: `sanction:*`, `sanction:report:read:target-any`
- * 
- * - For the player themselves : `sanction:report:read:target-self`
- * 
- * Source players will be empty without the Required Permissions:
- * 
- * - For any player (including themselves) any of: `sanction:*`, `sanction:report:read:source-any`
- * 
- * - For the player themselves : `sanction:report:read:source-self`
-*/
-struct RALLYHEREAPI_API FRequest_GetReportsForTargetPlayerUuid : public FRequest
-{
-	FRequest_GetReportsForTargetPlayerUuid();
-	virtual ~FRequest_GetReportsForTargetPlayerUuid() = default;
-	
-	/** @brief Given a http request, apply data and settings from this request object to it */
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	/** @brief Compute the URL path for this request instance */
-	FString ComputePath() const override;
-	/** @brief Get the simplified URL path for this request, not including the verb */
-	FName GetSimplifiedPath() const override;
-	/** @brief Get the simplified URL path for this request, including the verb */
-	FName GetSimplifiedPathWithVerb() const override;
-	/** @brief Get the auth context used for this request */
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	/** The specified auth context to use for this request */
-	TSharedPtr<FAuthContext> AuthContext;
-	FGuid PlayerUuid;
-	/* Pass this on subsequent calls to iterate forwards.  Null/missing value indicates the first page */
-	TOptional<FString> Cursor;
-	TOptional<int32> PageSize;
-};
-
-/** The response type for FRequest_GetReportsForTargetPlayerUuid */
-struct RALLYHEREAPI_API FResponse_GetReportsForTargetPlayerUuid : public FResponseAccessorTemplate<FRHAPI_PlayerReportList, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
-{
-	typedef FResponseAccessorTemplate<FRHAPI_PlayerReportList, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
-
-	FResponse_GetReportsForTargetPlayerUuid(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetReportsForTargetPlayerUuid() = default;
-	
-	/** @brief Parse out response content into local storage from a given JsonValue */
-	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	/** @brief Parse out header information for later usage */
-	virtual bool ParseHeaders() override;
-	/** @brief Gets the description of the response code */
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	/** Default Response Content */
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_PlayerReportList Content;
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	/** @brief Attempt to retrieve the content in the default response */
-	bool TryGetDefaultContent(FRHAPI_PlayerReportList& OutContent) const { return TryGetContent<FRHAPI_PlayerReportList>(OutContent); }
-	/** @brief Attempt to retrieve the content in the default response */
-	bool TryGetDefaultContent(TOptional<FRHAPI_PlayerReportList>& OutContent) const { return TryGetContent<FRHAPI_PlayerReportList>(OutContent); }
-	/** @brief Attempt to retrieve the content in the default response */
-	const FRHAPI_PlayerReportList* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlayerReportList>(); }
-	/** @brief Attempt to retrieve the content in the default response */
-	TOptional<FRHAPI_PlayerReportList> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlayerReportList>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_PlayerReportList& OutContent) const;
-
-	/* Response 403
-	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	 Error Codes: - `player_not_found` - Player {id} not found 
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-/** The delegate class for FRequest_GetReportsForTargetPlayerUuid */
-DECLARE_DELEGATE_OneParam(FDelegate_GetReportsForTargetPlayerUuid, const FResponse_GetReportsForTargetPlayerUuid&);
-
-/** @brief A helper metadata object for GetReportsForTargetPlayerUuid that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
-struct RALLYHEREAPI_API Traits_GetReportsForTargetPlayerUuid
-{
-	/** The request type */
-	typedef FRequest_GetReportsForTargetPlayerUuid Request;
-	/** The response type */
-	typedef FResponse_GetReportsForTargetPlayerUuid Response;
-	/** The delegate type, triggered by the response */
-	typedef FDelegate_GetReportsForTargetPlayerUuid Delegate;
-	/** The API object that supports this API call */
-	typedef FReportsAPI API;
-	/** A human readable name for this API call */
-	static FString Name;
-
-	/**
-	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
-	 * @param [in] InAPI The API object the call will be made with
-	 * @param [in] InRequest The request to submit to the API call
-	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
-	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
-	 * @return A http request object, if the call was successfully queued.
-	 */
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
-};
-
-/**
- * @brief Get Reports For Target Player Uuid Self
- * Get reports for a target player
- * Required Permissions:
- * 
- * - For any player (including themselves) any of: `sanction:*`, `sanction:report:read:target-any`
- * 
- * - For the player themselves : `sanction:report:read:target-self`
- * 
- * Source players will be empty without the Required Permissions:
- * 
- * - For any player (including themselves) any of: `sanction:*`, `sanction:report:read:source-any`
- * 
- * - For the player themselves : `sanction:report:read:source-self`
-*/
-struct RALLYHEREAPI_API FRequest_GetReportsForTargetPlayerUuidSelf : public FRequest
-{
-	FRequest_GetReportsForTargetPlayerUuidSelf();
-	virtual ~FRequest_GetReportsForTargetPlayerUuidSelf() = default;
-	
-	/** @brief Given a http request, apply data and settings from this request object to it */
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	/** @brief Compute the URL path for this request instance */
-	FString ComputePath() const override;
-	/** @brief Get the simplified URL path for this request, not including the verb */
-	FName GetSimplifiedPath() const override;
-	/** @brief Get the simplified URL path for this request, including the verb */
-	FName GetSimplifiedPathWithVerb() const override;
-	/** @brief Get the auth context used for this request */
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	/** The specified auth context to use for this request */
-	TSharedPtr<FAuthContext> AuthContext;
-	/* Pass this on subsequent calls to iterate forwards.  Null/missing value indicates the first page */
-	TOptional<FString> Cursor;
-	TOptional<int32> PageSize;
-};
-
-/** The response type for FRequest_GetReportsForTargetPlayerUuidSelf */
-struct RALLYHEREAPI_API FResponse_GetReportsForTargetPlayerUuidSelf : public FResponseAccessorTemplate<FRHAPI_PlayerReportList, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
-{
-	typedef FResponseAccessorTemplate<FRHAPI_PlayerReportList, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
-
-	FResponse_GetReportsForTargetPlayerUuidSelf(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetReportsForTargetPlayerUuidSelf() = default;
-	
-	/** @brief Parse out response content into local storage from a given JsonValue */
-	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	/** @brief Parse out header information for later usage */
-	virtual bool ParseHeaders() override;
-	/** @brief Gets the description of the response code */
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	/** Default Response Content */
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_PlayerReportList Content;
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	/** @brief Attempt to retrieve the content in the default response */
-	bool TryGetDefaultContent(FRHAPI_PlayerReportList& OutContent) const { return TryGetContent<FRHAPI_PlayerReportList>(OutContent); }
-	/** @brief Attempt to retrieve the content in the default response */
-	bool TryGetDefaultContent(TOptional<FRHAPI_PlayerReportList>& OutContent) const { return TryGetContent<FRHAPI_PlayerReportList>(OutContent); }
-	/** @brief Attempt to retrieve the content in the default response */
-	const FRHAPI_PlayerReportList* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlayerReportList>(); }
-	/** @brief Attempt to retrieve the content in the default response */
-	TOptional<FRHAPI_PlayerReportList> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlayerReportList>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_PlayerReportList& OutContent) const;
-
-	/* Response 403
-	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	 Error Codes: - `player_not_found` - Player {id} not found 
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-/** The delegate class for FRequest_GetReportsForTargetPlayerUuidSelf */
-DECLARE_DELEGATE_OneParam(FDelegate_GetReportsForTargetPlayerUuidSelf, const FResponse_GetReportsForTargetPlayerUuidSelf&);
-
-/** @brief A helper metadata object for GetReportsForTargetPlayerUuidSelf that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
-struct RALLYHEREAPI_API Traits_GetReportsForTargetPlayerUuidSelf
-{
-	/** The request type */
-	typedef FRequest_GetReportsForTargetPlayerUuidSelf Request;
-	/** The response type */
-	typedef FResponse_GetReportsForTargetPlayerUuidSelf Response;
-	/** The delegate type, triggered by the response */
-	typedef FDelegate_GetReportsForTargetPlayerUuidSelf Delegate;
-	/** The API object that supports this API call */
-	typedef FReportsAPI API;
-	/** A human readable name for this API call */
-	static FString Name;
-
-	/**
-	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
-	 * @param [in] InAPI The API object the call will be made with
-	 * @param [in] InRequest The request to submit to the API call
-	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
-	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
-	 * @return A http request object, if the call was successfully queued.
-	 */
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
-};
-
-/**
- * @brief Get Reports From Source Player Uuid
- * Get reports from a source player
- * Required Permissions:
- * 
- * - For any player (including themselves) any of: `sanction:*`, `sanction:report:read:source-any`
- * 
- * - For the player themselves : `sanction:report:read:source-self`
-*/
-struct RALLYHEREAPI_API FRequest_GetReportsFromSourcePlayerUuid : public FRequest
-{
-	FRequest_GetReportsFromSourcePlayerUuid();
-	virtual ~FRequest_GetReportsFromSourcePlayerUuid() = default;
-	
-	/** @brief Given a http request, apply data and settings from this request object to it */
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	/** @brief Compute the URL path for this request instance */
-	FString ComputePath() const override;
-	/** @brief Get the simplified URL path for this request, not including the verb */
-	FName GetSimplifiedPath() const override;
-	/** @brief Get the simplified URL path for this request, including the verb */
-	FName GetSimplifiedPathWithVerb() const override;
-	/** @brief Get the auth context used for this request */
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	/** The specified auth context to use for this request */
-	TSharedPtr<FAuthContext> AuthContext;
-	FGuid PlayerUuid;
-	/* Pass this on subsequent calls to iterate forwards.  Null/missing value indicates the first page */
-	TOptional<FString> Cursor;
-	TOptional<int32> PageSize;
-};
-
-/** The response type for FRequest_GetReportsFromSourcePlayerUuid */
-struct RALLYHEREAPI_API FResponse_GetReportsFromSourcePlayerUuid : public FResponseAccessorTemplate<FRHAPI_PlayerReportList, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
-{
-	typedef FResponseAccessorTemplate<FRHAPI_PlayerReportList, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
-
-	FResponse_GetReportsFromSourcePlayerUuid(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetReportsFromSourcePlayerUuid() = default;
-	
-	/** @brief Parse out response content into local storage from a given JsonValue */
-	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	/** @brief Parse out header information for later usage */
-	virtual bool ParseHeaders() override;
-	/** @brief Gets the description of the response code */
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	/** Default Response Content */
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_PlayerReportList Content;
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	/** @brief Attempt to retrieve the content in the default response */
-	bool TryGetDefaultContent(FRHAPI_PlayerReportList& OutContent) const { return TryGetContent<FRHAPI_PlayerReportList>(OutContent); }
-	/** @brief Attempt to retrieve the content in the default response */
-	bool TryGetDefaultContent(TOptional<FRHAPI_PlayerReportList>& OutContent) const { return TryGetContent<FRHAPI_PlayerReportList>(OutContent); }
-	/** @brief Attempt to retrieve the content in the default response */
-	const FRHAPI_PlayerReportList* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlayerReportList>(); }
-	/** @brief Attempt to retrieve the content in the default response */
-	TOptional<FRHAPI_PlayerReportList> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlayerReportList>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_PlayerReportList& OutContent) const;
-
-	/* Response 403
-	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	 Error Codes: - `player_not_found` - Player {id} not found 
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-/** The delegate class for FRequest_GetReportsFromSourcePlayerUuid */
-DECLARE_DELEGATE_OneParam(FDelegate_GetReportsFromSourcePlayerUuid, const FResponse_GetReportsFromSourcePlayerUuid&);
-
-/** @brief A helper metadata object for GetReportsFromSourcePlayerUuid that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
-struct RALLYHEREAPI_API Traits_GetReportsFromSourcePlayerUuid
-{
-	/** The request type */
-	typedef FRequest_GetReportsFromSourcePlayerUuid Request;
-	/** The response type */
-	typedef FResponse_GetReportsFromSourcePlayerUuid Response;
-	/** The delegate type, triggered by the response */
-	typedef FDelegate_GetReportsFromSourcePlayerUuid Delegate;
-	/** The API object that supports this API call */
-	typedef FReportsAPI API;
-	/** A human readable name for this API call */
-	static FString Name;
-
-	/**
-	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
-	 * @param [in] InAPI The API object the call will be made with
-	 * @param [in] InRequest The request to submit to the API call
-	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
-	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
-	 * @return A http request object, if the call was successfully queued.
-	 */
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
-};
-
-/**
- * @brief Get Reports From Source Player Uuid Self
- * Get reports from a source player
- * Required Permissions:
- * 
- * - For any player (including themselves) any of: `sanction:*`, `sanction:report:read:source-any`
- * 
- * - For the player themselves : `sanction:report:read:source-self`
-*/
-struct RALLYHEREAPI_API FRequest_GetReportsFromSourcePlayerUuidSelf : public FRequest
-{
-	FRequest_GetReportsFromSourcePlayerUuidSelf();
-	virtual ~FRequest_GetReportsFromSourcePlayerUuidSelf() = default;
-	
-	/** @brief Given a http request, apply data and settings from this request object to it */
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	/** @brief Compute the URL path for this request instance */
-	FString ComputePath() const override;
-	/** @brief Get the simplified URL path for this request, not including the verb */
-	FName GetSimplifiedPath() const override;
-	/** @brief Get the simplified URL path for this request, including the verb */
-	FName GetSimplifiedPathWithVerb() const override;
-	/** @brief Get the auth context used for this request */
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	/** The specified auth context to use for this request */
-	TSharedPtr<FAuthContext> AuthContext;
-	/* Pass this on subsequent calls to iterate forwards.  Null/missing value indicates the first page */
-	TOptional<FString> Cursor;
-	TOptional<int32> PageSize;
-};
-
-/** The response type for FRequest_GetReportsFromSourcePlayerUuidSelf */
-struct RALLYHEREAPI_API FResponse_GetReportsFromSourcePlayerUuidSelf : public FResponseAccessorTemplate<FRHAPI_PlayerReportList, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
-{
-	typedef FResponseAccessorTemplate<FRHAPI_PlayerReportList, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
-
-	FResponse_GetReportsFromSourcePlayerUuidSelf(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetReportsFromSourcePlayerUuidSelf() = default;
-	
-	/** @brief Parse out response content into local storage from a given JsonValue */
-	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	/** @brief Parse out header information for later usage */
-	virtual bool ParseHeaders() override;
-	/** @brief Gets the description of the response code */
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	/** Default Response Content */
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_PlayerReportList Content;
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	/** @brief Attempt to retrieve the content in the default response */
-	bool TryGetDefaultContent(FRHAPI_PlayerReportList& OutContent) const { return TryGetContent<FRHAPI_PlayerReportList>(OutContent); }
-	/** @brief Attempt to retrieve the content in the default response */
-	bool TryGetDefaultContent(TOptional<FRHAPI_PlayerReportList>& OutContent) const { return TryGetContent<FRHAPI_PlayerReportList>(OutContent); }
-	/** @brief Attempt to retrieve the content in the default response */
-	const FRHAPI_PlayerReportList* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlayerReportList>(); }
-	/** @brief Attempt to retrieve the content in the default response */
-	TOptional<FRHAPI_PlayerReportList> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlayerReportList>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_PlayerReportList& OutContent) const;
-
-	/* Response 403
-	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	 Error Codes: - `player_not_found` - Player {id} not found 
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-/** The delegate class for FRequest_GetReportsFromSourcePlayerUuidSelf */
-DECLARE_DELEGATE_OneParam(FDelegate_GetReportsFromSourcePlayerUuidSelf, const FResponse_GetReportsFromSourcePlayerUuidSelf&);
-
-/** @brief A helper metadata object for GetReportsFromSourcePlayerUuidSelf that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
-struct RALLYHEREAPI_API Traits_GetReportsFromSourcePlayerUuidSelf
-{
-	/** The request type */
-	typedef FRequest_GetReportsFromSourcePlayerUuidSelf Request;
-	/** The response type */
-	typedef FResponse_GetReportsFromSourcePlayerUuidSelf Response;
-	/** The delegate type, triggered by the response */
-	typedef FDelegate_GetReportsFromSourcePlayerUuidSelf Delegate;
-	/** The API object that supports this API call */
-	typedef FReportsAPI API;
+	typedef FReferralsAPI API;
 	/** A human readable name for this API call */
 	static FString Name;
 
@@ -613,22 +588,22 @@ struct RALLYHEREAPI_API Traits_GetReportsFromSourcePlayerUuidSelf
 
 
 /** The API class itself, which will handle calls to */
-class RALLYHEREAPI_API FReportsAPI : public FAPI
+class RALLYHEREAPI_API FReferralsAPI : public FAPI
 {
 public:
-	FReportsAPI();
-	virtual ~FReportsAPI();
+	FReferralsAPI();
+	virtual ~FReferralsAPI();
 
-	FHttpRequestPtr CreateReportForTargetPlayerUuid(const FRequest_CreateReportForTargetPlayerUuid& Request, const FDelegate_CreateReportForTargetPlayerUuid& Delegate = FDelegate_CreateReportForTargetPlayerUuid(), int32 Priority = DefaultRallyHereAPIPriority);
-	void OnCreateReportForTargetPlayerUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateReportForTargetPlayerUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	FHttpRequestPtr GetReportsForTargetPlayerUuid(const FRequest_GetReportsForTargetPlayerUuid& Request, const FDelegate_GetReportsForTargetPlayerUuid& Delegate = FDelegate_GetReportsForTargetPlayerUuid(), int32 Priority = DefaultRallyHereAPIPriority);
-	void OnGetReportsForTargetPlayerUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetReportsForTargetPlayerUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	FHttpRequestPtr GetReportsForTargetPlayerUuidSelf(const FRequest_GetReportsForTargetPlayerUuidSelf& Request, const FDelegate_GetReportsForTargetPlayerUuidSelf& Delegate = FDelegate_GetReportsForTargetPlayerUuidSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-	void OnGetReportsForTargetPlayerUuidSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetReportsForTargetPlayerUuidSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	FHttpRequestPtr GetReportsFromSourcePlayerUuid(const FRequest_GetReportsFromSourcePlayerUuid& Request, const FDelegate_GetReportsFromSourcePlayerUuid& Delegate = FDelegate_GetReportsFromSourcePlayerUuid(), int32 Priority = DefaultRallyHereAPIPriority);
-	void OnGetReportsFromSourcePlayerUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetReportsFromSourcePlayerUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	FHttpRequestPtr GetReportsFromSourcePlayerUuidSelf(const FRequest_GetReportsFromSourcePlayerUuidSelf& Request, const FDelegate_GetReportsFromSourcePlayerUuidSelf& Delegate = FDelegate_GetReportsFromSourcePlayerUuidSelf(), int32 Priority = DefaultRallyHereAPIPriority);
-	void OnGetReportsFromSourcePlayerUuidSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetReportsFromSourcePlayerUuidSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GenerateReferralCode(const FRequest_GenerateReferralCode& Request, const FDelegate_GenerateReferralCode& Delegate = FDelegate_GenerateReferralCode(), int32 Priority = DefaultRallyHereAPIPriority);
+	void OnGenerateReferralCodeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GenerateReferralCode Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetPlayerReferrals(const FRequest_GetPlayerReferrals& Request, const FDelegate_GetPlayerReferrals& Delegate = FDelegate_GetPlayerReferrals(), int32 Priority = DefaultRallyHereAPIPriority);
+	void OnGetPlayerReferralsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerReferrals Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetPlayerReferrer(const FRequest_GetPlayerReferrer& Request, const FDelegate_GetPlayerReferrer& Delegate = FDelegate_GetPlayerReferrer(), int32 Priority = DefaultRallyHereAPIPriority);
+	void OnGetPlayerReferrerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerReferrer Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetReferralCode(const FRequest_GetReferralCode& Request, const FDelegate_GetReferralCode& Delegate = FDelegate_GetReferralCode(), int32 Priority = DefaultRallyHereAPIPriority);
+	void OnGetReferralCodeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetReferralCode Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr SetPlayerReferrer(const FRequest_SetPlayerReferrer& Request, const FDelegate_SetPlayerReferrer& Delegate = FDelegate_SetPlayerReferrer(), int32 Priority = DefaultRallyHereAPIPriority);
+	void OnSetPlayerReferrerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SetPlayerReferrer Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 

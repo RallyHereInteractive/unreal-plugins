@@ -901,7 +901,7 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 
 					FString InvitedSessionId = ImGuiGetStringFromTextInputBuffer(InviteSessionString);
 
-					FRHAPI_SessionInviteRequest InviteRequest;
+					FRHAPI_PlayerInviteRequest InviteRequest;
 					InviteRequest.SetTeamId(InvitePlayerTeam);
 					InviteRequest.SetCustomData(CustomData);
 

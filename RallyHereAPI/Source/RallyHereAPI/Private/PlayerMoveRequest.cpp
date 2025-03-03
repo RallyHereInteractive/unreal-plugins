@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 
-#include "SessionInviteRequest.h"
+#include "PlayerMoveRequest.h"
 #include "RallyHereAPIModule.h"
 #include "RallyHereAPIHelpers.h"
 #include "Templates/SharedPointer.h"
@@ -17,9 +17,9 @@ using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
 ////////////////////////////////////////////////////
-// Implementation for FRHAPI_SessionInviteRequest
+// Implementation for FRHAPI_PlayerMoveRequest
 
-void FRHAPI_SessionInviteRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
+void FRHAPI_PlayerMoveRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
 	Writer->WriteObjectStart();
 	if (TeamId_IsSet)
@@ -27,20 +27,10 @@ void FRHAPI_SessionInviteRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) c
 		Writer->WriteIdentifierPrefix(TEXT("team_id"));
 		RallyHereAPI::WriteJsonValue(Writer, TeamId_Optional);
 	}
-	if (OverflowAction_IsSet)
-	{
-		Writer->WriteIdentifierPrefix(TEXT("overflow_action"));
-		RallyHereAPI::WriteJsonValue(Writer, EnumToString(OverflowAction_Optional));
-	}
-	if (CustomData_IsSet)
-	{
-		Writer->WriteIdentifierPrefix(TEXT("custom_data"));
-		RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
-	}
 	Writer->WriteObjectEnd();
 }
 
-bool FRHAPI_SessionInviteRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FRHAPI_PlayerMoveRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	const TSharedPtr<FJsonObject>* Object;
 	if (!JsonValue->TryGetObject(Object))
@@ -53,18 +43,6 @@ bool FRHAPI_SessionInviteRequest::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 	{
 		TeamId_IsSet = TryGetJsonValue(JsonTeamIdField, TeamId_Optional);
 		ParseSuccess &= TeamId_IsSet;
-	}
-	const TSharedPtr<FJsonValue> JsonOverflowActionField = (*Object)->TryGetField(TEXT("overflow_action"));
-	if (JsonOverflowActionField.IsValid())
-	{
-		OverflowAction_IsSet = TryGetJsonValue(JsonOverflowActionField, OverflowAction_Optional);
-		ParseSuccess &= OverflowAction_IsSet;
-	}
-	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-	if (JsonCustomDataField.IsValid())
-	{
-		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
-		ParseSuccess &= CustomData_IsSet;
 	}
 
 	return ParseSuccess;

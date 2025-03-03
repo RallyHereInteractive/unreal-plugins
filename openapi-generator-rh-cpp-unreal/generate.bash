@@ -73,19 +73,14 @@ fi
 
 # remove the `propertyNames` from 3.1 spec, and set version as 3.0.3
 jq '
+  # First remove propertyNames from all objects recursively
   walk(
-    if type == "object" and has("components") then 
-      .components.schemas |= with_entries(
-        .value |= walk(
-          if type == "object" and has("propertyNames") then 
-            del(.propertyNames) 
-          else . 
-          end
-        )
-      )
+    if type == "object" and has("propertyNames") then 
+      del(.propertyNames) 
     else . 
     end
-  ) | 
+  ) |
+  # Set the version to 3.0.3
   .openapi = "3.0.3"
 ' $TEMP_DIR/openapi.json > $TEMP_DIR/openapi_converted.json
 

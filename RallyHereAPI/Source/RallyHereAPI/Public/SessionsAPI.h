@@ -41,8 +41,11 @@
 #include "MatchMakingTemplateGroupV2.h"
 #include "PagedPlayersResponse.h"
 #include "PlatformSession.h"
+#include "PlayerInviteRequest.h"
+#include "PlayerMoveRequest.h"
 #include "PlayerSessions.h"
 #include "PlayerSwapRequest.h"
+#include "PlayerUpdateRequest.h"
 #include "QueueJoinRequest.h"
 #include "QueueJoinResponse.h"
 #include "QueuesResponse.h"
@@ -50,7 +53,6 @@
 #include "RegionsResponse.h"
 #include "SelfSessionPlayerUpdateRequest.h"
 #include "Session.h"
-#include "SessionInviteRequest.h"
 #include "SessionInviteResponse.h"
 #include "SessionJoinResponse.h"
 #include "SessionPlayer.h"
@@ -3474,7 +3476,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerSessionsByUuidV2
  * Get all session IDs associated with the token's player.  NOTE This list is eventually consistent with the data from the session by ID endpoints.
  * 
  * Required Auth Permissions: `session:read-player:self`
- *             
+ * 
  * Required Session Permissions: None
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerSessionsSelf : public FRequest
@@ -4840,6 +4842,140 @@ struct RALLYHEREAPI_API Traits_InstanceHealthConfig
 };
 
 /**
+ * @brief Invite Player By Uuid V2
+ * Invite a player to the session
+ * 
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `session:*`, `session:update:any`, `session:update:self`
+ * 
+ * 
+ * 
+ * Required Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission
+*/
+struct RALLYHEREAPI_API FRequest_InvitePlayerByUuidV2 : public FRequest
+{
+	FRequest_InvitePlayerByUuidV2();
+	virtual ~FRequest_InvitePlayerByUuidV2() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PlayerUuid;
+	FString SessionId;
+	FRHAPI_PlayerInviteRequest PlayerInviteRequest;
+	TOptional<bool> RefreshTtl;
+};
+
+/** The response type for FRequest_InvitePlayerByUuidV2 */
+struct RALLYHEREAPI_API FResponse_InvitePlayerByUuidV2 : public FResponseAccessorTemplate<FRHAPI_SessionPlayerUpdateResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_SessionPlayerUpdateResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_InvitePlayerByUuidV2(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_InvitePlayerByUuidV2() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_SessionPlayerUpdateResponse Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_SessionPlayerUpdateResponse& OutContent) const { return TryGetContent<FRHAPI_SessionPlayerUpdateResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_SessionPlayerUpdateResponse>& OutContent) const { return TryGetContent<FRHAPI_SessionPlayerUpdateResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_SessionPlayerUpdateResponse* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_SessionPlayerUpdateResponse>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_SessionPlayerUpdateResponse> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_SessionPlayerUpdateResponse>(); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(FString& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_ETag() const { return TryGetHeaderAsPointer(TEXT("ETag")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_ETag() const { return TryGetHeaderAsOptional(TEXT("ETag")); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_SessionPlayerUpdateResponse& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Session doesn't exist or Player is not a member of the session.  See error code for more info
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_InvitePlayerByUuidV2 */
+DECLARE_DELEGATE_OneParam(FDelegate_InvitePlayerByUuidV2, const FResponse_InvitePlayerByUuidV2&);
+
+/** @brief A helper metadata object for InvitePlayerByUuidV2 that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_InvitePlayerByUuidV2
+{
+	/** The request type */
+	typedef FRequest_InvitePlayerByUuidV2 Request;
+	/** The response type */
+	typedef FResponse_InvitePlayerByUuidV2 Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_InvitePlayerByUuidV2 Delegate;
+	/** The API object that supports this API call */
+	typedef FSessionsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
  * @brief Invite Session To Session
  * Invite an entire session to a target session
  * 
@@ -4877,7 +5013,7 @@ struct RALLYHEREAPI_API FRequest_InviteSessionToSession : public FRequest
 	TSharedPtr<FAuthContext> AuthContext;
 	FString SessionId;
 	FString InvitedSessionId;
-	FRHAPI_SessionInviteRequest SessionInviteRequest;
+	FRHAPI_PlayerInviteRequest PlayerInviteRequest;
 };
 
 /** The response type for FRequest_InviteSessionToSession */
@@ -5255,7 +5391,6 @@ struct RALLYHEREAPI_API FRequest_JoinSessionByPlatformSessionByUuid : public FRe
 	FGuid PlayerUuid;
 	ERHAPI_Platform Platform;
 	FRHAPI_SelfSessionPlayerUpdateRequest SelfSessionPlayerUpdateRequest;
-	TOptional<int32> PlayerId;
 };
 
 /** The response type for FRequest_JoinSessionByPlatformSessionByUuid */
@@ -6395,6 +6530,140 @@ struct RALLYHEREAPI_API Traits_LeaveSessionByPlatformSessionSelf
 };
 
 /**
+ * @brief Move Player By Uuid V2
+ * Move a specific player to a different team in a specific session
+ * 
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `session:*`, `session:update-player:any`
+ * 
+ * - For the player themselves : `session:update-player:self`
+ * 
+ * Required Session Permissions: `SessionPermissions.session_admin` for users that do not have the `session:update:any` auth permission
+*/
+struct RALLYHEREAPI_API FRequest_MovePlayerByUuidV2 : public FRequest
+{
+	FRequest_MovePlayerByUuidV2();
+	virtual ~FRequest_MovePlayerByUuidV2() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PlayerUuid;
+	FString SessionId;
+	FRHAPI_PlayerMoveRequest PlayerMoveRequest;
+	TOptional<bool> RefreshTtl;
+};
+
+/** The response type for FRequest_MovePlayerByUuidV2 */
+struct RALLYHEREAPI_API FResponse_MovePlayerByUuidV2 : public FResponseAccessorTemplate<FRHAPI_SessionPlayerUpdateResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_SessionPlayerUpdateResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_MovePlayerByUuidV2(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_MovePlayerByUuidV2() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_SessionPlayerUpdateResponse Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_SessionPlayerUpdateResponse& OutContent) const { return TryGetContent<FRHAPI_SessionPlayerUpdateResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_SessionPlayerUpdateResponse>& OutContent) const { return TryGetContent<FRHAPI_SessionPlayerUpdateResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_SessionPlayerUpdateResponse* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_SessionPlayerUpdateResponse>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_SessionPlayerUpdateResponse> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_SessionPlayerUpdateResponse>(); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(FString& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_ETag() const { return TryGetHeaderAsPointer(TEXT("ETag")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_ETag() const { return TryGetHeaderAsOptional(TEXT("ETag")); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_SessionPlayerUpdateResponse& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Session doesn't exist or Player is not a member of the session.  See error code for more info
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_MovePlayerByUuidV2 */
+DECLARE_DELEGATE_OneParam(FDelegate_MovePlayerByUuidV2, const FResponse_MovePlayerByUuidV2&);
+
+/** @brief A helper metadata object for MovePlayerByUuidV2 that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_MovePlayerByUuidV2
+{
+	/** The request type */
+	typedef FRequest_MovePlayerByUuidV2 Request;
+	/** The response type */
+	typedef FResponse_MovePlayerByUuidV2 Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_MovePlayerByUuidV2 Delegate;
+	/** The API object that supports this API call */
+	typedef FSessionsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
  * @brief Post Browser Info
  * Register session in the public browser
  * 
@@ -6490,6 +6759,139 @@ struct RALLYHEREAPI_API Traits_PostBrowserInfo
 	typedef FResponse_PostBrowserInfo Response;
 	/** The delegate type, triggered by the response */
 	typedef FDelegate_PostBrowserInfo Delegate;
+	/** The API object that supports this API call */
+	typedef FSessionsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Promote Player By Uuid V2
+ * Invite a player to the session
+ * 
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `session:*`, `session:promote:any`, `session:promote:self`
+ * 
+ * 
+ * 
+ * Required Session Permissions: `SessionPermissions.session_admin` for users that do not have the `session:promote:any` auth permission
+*/
+struct RALLYHEREAPI_API FRequest_PromotePlayerByUuidV2 : public FRequest
+{
+	FRequest_PromotePlayerByUuidV2();
+	virtual ~FRequest_PromotePlayerByUuidV2() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PlayerUuid;
+	FString SessionId;
+	TOptional<bool> RefreshTtl;
+};
+
+/** The response type for FRequest_PromotePlayerByUuidV2 */
+struct RALLYHEREAPI_API FResponse_PromotePlayerByUuidV2 : public FResponseAccessorTemplate<FRHAPI_SessionPlayerUpdateResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_SessionPlayerUpdateResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_PromotePlayerByUuidV2(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_PromotePlayerByUuidV2() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_SessionPlayerUpdateResponse Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_SessionPlayerUpdateResponse& OutContent) const { return TryGetContent<FRHAPI_SessionPlayerUpdateResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_SessionPlayerUpdateResponse>& OutContent) const { return TryGetContent<FRHAPI_SessionPlayerUpdateResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_SessionPlayerUpdateResponse* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_SessionPlayerUpdateResponse>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_SessionPlayerUpdateResponse> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_SessionPlayerUpdateResponse>(); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(FString& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_ETag() const { return TryGetHeaderAsPointer(TEXT("ETag")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_ETag() const { return TryGetHeaderAsOptional(TEXT("ETag")); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_SessionPlayerUpdateResponse& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Session doesn't exist or Player is not a member of the session.  See error code for more info
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_PromotePlayerByUuidV2 */
+DECLARE_DELEGATE_OneParam(FDelegate_PromotePlayerByUuidV2, const FResponse_PromotePlayerByUuidV2&);
+
+/** @brief A helper metadata object for PromotePlayerByUuidV2 that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_PromotePlayerByUuidV2
+{
+	/** The request type */
+	typedef FRequest_PromotePlayerByUuidV2 Request;
+	/** The response type */
+	typedef FResponse_PromotePlayerByUuidV2 Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_PromotePlayerByUuidV2 Delegate;
 	/** The API object that supports this API call */
 	typedef FSessionsAPI API;
 	/** A human readable name for this API call */
@@ -6959,6 +7361,140 @@ struct RALLYHEREAPI_API Traits_UpdateInstanceInfo
 };
 
 /**
+ * @brief Update Player By Uuid V2
+ * Update data about a specific player in a specific session
+ * 
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `session:*`, `session:update-player:any`
+ * 
+ * - For the player themselves : `session:update-player:self`
+ * 
+ * Required Session Permissions: `SessionPermissions.session_admin` for users that do not have the `session:promote:any` auth permission
+*/
+struct RALLYHEREAPI_API FRequest_UpdatePlayerByUuidV2 : public FRequest
+{
+	FRequest_UpdatePlayerByUuidV2();
+	virtual ~FRequest_UpdatePlayerByUuidV2() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PlayerUuid;
+	FString SessionId;
+	FRHAPI_PlayerUpdateRequest PlayerUpdateRequest;
+	TOptional<bool> RefreshTtl;
+};
+
+/** The response type for FRequest_UpdatePlayerByUuidV2 */
+struct RALLYHEREAPI_API FResponse_UpdatePlayerByUuidV2 : public FResponseAccessorTemplate<FRHAPI_SessionPlayerUpdateResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_SessionPlayerUpdateResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_UpdatePlayerByUuidV2(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_UpdatePlayerByUuidV2() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_SessionPlayerUpdateResponse Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_SessionPlayerUpdateResponse& OutContent) const { return TryGetContent<FRHAPI_SessionPlayerUpdateResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_SessionPlayerUpdateResponse>& OutContent) const { return TryGetContent<FRHAPI_SessionPlayerUpdateResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_SessionPlayerUpdateResponse* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_SessionPlayerUpdateResponse>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_SessionPlayerUpdateResponse> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_SessionPlayerUpdateResponse>(); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(FString& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_ETag() const { return TryGetHeaderAsPointer(TEXT("ETag")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_ETag() const { return TryGetHeaderAsOptional(TEXT("ETag")); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_SessionPlayerUpdateResponse& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Session doesn't exist or Player is not a member of the session.  See error code for more info
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_UpdatePlayerByUuidV2 */
+DECLARE_DELEGATE_OneParam(FDelegate_UpdatePlayerByUuidV2, const FResponse_UpdatePlayerByUuidV2&);
+
+/** @brief A helper metadata object for UpdatePlayerByUuidV2 that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_UpdatePlayerByUuidV2
+{
+	/** The request type */
+	typedef FRequest_UpdatePlayerByUuidV2 Request;
+	/** The response type */
+	typedef FResponse_UpdatePlayerByUuidV2 Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_UpdatePlayerByUuidV2 Delegate;
+	/** The API object that supports this API call */
+	typedef FSessionsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
  * @brief Update Session By Id
  * Update session info by session id
  * 
@@ -7356,6 +7892,8 @@ struct RALLYHEREAPI_API Traits_UpdateSessionPlayerByUuid
  * 
  * Required Session Permissions: None if session is publicly joinable or the player has been invited. 
  * `SessionPermissions.session_admin` for other operations
+ * 
+ * **DEPRECATED** - Use the appropriate move, invite, promote, or update V2 endpoint instead
 */
 struct RALLYHEREAPI_API FRequest_UpdateSessionPlayerByUuidV2 : public FRequest
 {
@@ -7697,6 +8235,8 @@ public:
 	void OnInstanceHealthCheckResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_InstanceHealthCheck Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr InstanceHealthConfig(const FRequest_InstanceHealthConfig& Request, const FDelegate_InstanceHealthConfig& Delegate = FDelegate_InstanceHealthConfig(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnInstanceHealthConfigResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_InstanceHealthConfig Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr InvitePlayerByUuidV2(const FRequest_InvitePlayerByUuidV2& Request, const FDelegate_InvitePlayerByUuidV2& Delegate = FDelegate_InvitePlayerByUuidV2(), int32 Priority = DefaultRallyHereAPIPriority);
+	void OnInvitePlayerByUuidV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_InvitePlayerByUuidV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr InviteSessionToSession(const FRequest_InviteSessionToSession& Request, const FDelegate_InviteSessionToSession& Delegate = FDelegate_InviteSessionToSession(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnInviteSessionToSessionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_InviteSessionToSession Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr JoinQueue(const FRequest_JoinQueue& Request, const FDelegate_JoinQueue& Delegate = FDelegate_JoinQueue(), int32 Priority = DefaultRallyHereAPIPriority);
@@ -7723,8 +8263,12 @@ public:
 	void OnLeaveSessionByPlatformSessionByUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_LeaveSessionByPlatformSessionByUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr LeaveSessionByPlatformSessionSelf(const FRequest_LeaveSessionByPlatformSessionSelf& Request, const FDelegate_LeaveSessionByPlatformSessionSelf& Delegate = FDelegate_LeaveSessionByPlatformSessionSelf(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnLeaveSessionByPlatformSessionSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_LeaveSessionByPlatformSessionSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr MovePlayerByUuidV2(const FRequest_MovePlayerByUuidV2& Request, const FDelegate_MovePlayerByUuidV2& Delegate = FDelegate_MovePlayerByUuidV2(), int32 Priority = DefaultRallyHereAPIPriority);
+	void OnMovePlayerByUuidV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_MovePlayerByUuidV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr PostBrowserInfo(const FRequest_PostBrowserInfo& Request, const FDelegate_PostBrowserInfo& Delegate = FDelegate_PostBrowserInfo(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnPostBrowserInfoResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PostBrowserInfo Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr PromotePlayerByUuidV2(const FRequest_PromotePlayerByUuidV2& Request, const FDelegate_PromotePlayerByUuidV2& Delegate = FDelegate_PromotePlayerByUuidV2(), int32 Priority = DefaultRallyHereAPIPriority);
+	void OnPromotePlayerByUuidV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PromotePlayerByUuidV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr SwapPlayersInSession(const FRequest_SwapPlayersInSession& Request, const FDelegate_SwapPlayersInSession& Delegate = FDelegate_SwapPlayersInSession(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnSwapPlayersInSessionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SwapPlayersInSession Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr UpdateBackfillRequest(const FRequest_UpdateBackfillRequest& Request, const FDelegate_UpdateBackfillRequest& Delegate = FDelegate_UpdateBackfillRequest(), int32 Priority = DefaultRallyHereAPIPriority);
@@ -7733,6 +8277,8 @@ public:
 	void OnUpdateBrowserInfoResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateBrowserInfo Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr UpdateInstanceInfo(const FRequest_UpdateInstanceInfo& Request, const FDelegate_UpdateInstanceInfo& Delegate = FDelegate_UpdateInstanceInfo(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnUpdateInstanceInfoResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateInstanceInfo Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr UpdatePlayerByUuidV2(const FRequest_UpdatePlayerByUuidV2& Request, const FDelegate_UpdatePlayerByUuidV2& Delegate = FDelegate_UpdatePlayerByUuidV2(), int32 Priority = DefaultRallyHereAPIPriority);
+	void OnUpdatePlayerByUuidV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdatePlayerByUuidV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr UpdateSessionById(const FRequest_UpdateSessionById& Request, const FDelegate_UpdateSessionById& Delegate = FDelegate_UpdateSessionById(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnUpdateSessionByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateSessionById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr UpdateSessionPlayerById(const FRequest_UpdateSessionPlayerById& Request, const FDelegate_UpdateSessionPlayerById& Delegate = FDelegate_UpdateSessionPlayerById(), int32 Priority = DefaultRallyHereAPIPriority);
