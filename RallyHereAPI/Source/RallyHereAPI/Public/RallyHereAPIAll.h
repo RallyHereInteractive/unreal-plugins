@@ -28,6 +28,7 @@
 #include "PresenceAPI.h"
 #include "PresenceAdminAPI.h"
 #include "RankAPI.h"
+#include "ReferralsAPI.h"
 #include "ReportsAPI.h"
 #include "SessionsAPI.h"
 #include "SettingsAPI.h"
@@ -103,6 +104,9 @@ public:
 	TSharedRef<FRankAPI> GetRank();
 	const TSharedRef<FRankAPI> GetRank() const;
 
+	TSharedRef<FReferralsAPI> GetReferrals();
+	const TSharedRef<FReferralsAPI> GetReferrals() const;
+
 	TSharedRef<FReportsAPI> GetReports();
 	const TSharedRef<FReportsAPI> GetReports() const;
 
@@ -136,6 +140,7 @@ private:
 	TSharedRef<FPresenceAPI> Presence;
 	TSharedRef<FPresenceAdminAPI> PresenceAdmin;
 	TSharedRef<FRankAPI> Rank;
+	TSharedRef<FReferralsAPI> Referrals;
 	TSharedRef<FReportsAPI> Reports;
 	TSharedRef<FSessionsAPI> Sessions;
 	TSharedRef<FSettingsAPI> Settings;

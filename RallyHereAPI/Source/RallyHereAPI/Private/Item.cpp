@@ -135,6 +135,11 @@ void FRHAPI_Item::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		else
 		RallyHereAPI::WriteJsonValue(Writer, InventoryBucketUseRuleSetId_Optional);
 	}
+	if (TotalOwnershipMax_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("total_ownership_max"));
+		RallyHereAPI::WriteJsonValue(Writer, TotalOwnershipMax_Optional);
+	}
 	if (CouponDiscountLoot_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("coupon_discount_loot"));
@@ -283,6 +288,12 @@ bool FRHAPI_Item::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		InventoryBucketUseRuleSetId_IsNull = JsonInventoryBucketUseRuleSetIdField->IsNull();
 		InventoryBucketUseRuleSetId_IsSet = InventoryBucketUseRuleSetId_IsNull || TryGetJsonValue(JsonInventoryBucketUseRuleSetIdField, InventoryBucketUseRuleSetId_Optional);
 		ParseSuccess &= InventoryBucketUseRuleSetId_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonTotalOwnershipMaxField = (*Object)->TryGetField(TEXT("total_ownership_max"));
+	if (JsonTotalOwnershipMaxField.IsValid())
+	{
+		TotalOwnershipMax_IsSet = TryGetJsonValue(JsonTotalOwnershipMaxField, TotalOwnershipMax_Optional);
+		ParseSuccess &= TotalOwnershipMax_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCouponDiscountLootField = (*Object)->TryGetField(TEXT("coupon_discount_loot"));
 	if (JsonCouponDiscountLootField.IsValid())

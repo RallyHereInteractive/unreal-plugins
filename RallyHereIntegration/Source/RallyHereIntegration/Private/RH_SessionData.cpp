@@ -764,7 +764,7 @@ void URH_OfflineSession::KickPlayer(const FGuid& PlayerId, const FRH_OnSessionUp
 	Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
 }
 
-void URH_OfflineSession::InviteOtherSession(const FString& InvitedSessionId, const FRHAPI_SessionInviteRequest& SessionInviteRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+void URH_OfflineSession::InviteOtherSession(const FString& InvitedSessionId, const FRHAPI_PlayerInviteRequest& SessionInviteRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	// currently not supported for offline sessions
 	Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
@@ -1388,7 +1388,7 @@ void URH_OnlineSession::KickPlayer(const FGuid& PlayerUuid, const FRH_OnSessionU
 }
 
 
-void URH_OnlineSession::InviteOtherSession(const FString& InvitedSessionId, const FRHAPI_SessionInviteRequest& SessionInviteRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+void URH_OnlineSession::InviteOtherSession(const FString& InvitedSessionId, const FRHAPI_PlayerInviteRequest& SessionInviteRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	typedef RallyHereAPI::Traits_InviteSessionToSession BaseType;
 	auto SessionId = GetSessionId();
@@ -1398,7 +1398,7 @@ void URH_OnlineSession::InviteOtherSession(const FString& InvitedSessionId, cons
 	Request.AuthContext = SessionOwner->GetSessionAuthContext();
 	Request.SessionId = GetSessionId();
 	Request.InvitedSessionId = InvitedSessionId;
-	Request.SessionInviteRequest = SessionInviteRequest;
+	Request.PlayerInviteRequest = SessionInviteRequest;
 
 	auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(SessionOwner), SessionId, Delegate, GetDefault<URH_IntegrationSettings>()->SessionInvitePriority);
 	Helper->Start(Request);

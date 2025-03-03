@@ -24,6 +24,7 @@ FRallyHereAPIAll::FRallyHereAPIAll()
 	, Presence(MakeShareable(new FPresenceAPI()))
 	, PresenceAdmin(MakeShareable(new FPresenceAdminAPI()))
 	, Rank(MakeShareable(new FRankAPI()))
+	, Referrals(MakeShareable(new FReferralsAPI()))
 	, Reports(MakeShareable(new FReportsAPI()))
 	, Sessions(MakeShareable(new FSessionsAPI()))
 	, Settings(MakeShareable(new FSettingsAPI()))
@@ -49,6 +50,7 @@ FRallyHereAPIAll::FRallyHereAPIAll()
 	AllAPIs.Add(Presence);
 	AllAPIs.Add(PresenceAdmin);
 	AllAPIs.Add(Rank);
+	AllAPIs.Add(Referrals);
 	AllAPIs.Add(Reports);
 	AllAPIs.Add(Sessions);
 	AllAPIs.Add(Settings);
@@ -248,6 +250,16 @@ TSharedRef<FRankAPI> FRallyHereAPIAll::GetRank()
 const TSharedRef<FRankAPI> FRallyHereAPIAll::GetRank() const
 {
 	return Rank;
+}
+
+TSharedRef<FReferralsAPI> FRallyHereAPIAll::GetReferrals()
+{
+	return Referrals;
+}
+
+const TSharedRef<FReferralsAPI> FRallyHereAPIAll::GetReferrals() const
+{
+	return Referrals;
 }
 
 TSharedRef<FReportsAPI> FRallyHereAPIAll::GetReports()

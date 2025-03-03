@@ -3439,7 +3439,9 @@ struct RALLYHEREAPI_API Traits_Link
 
 /**
  * @brief Lookup Player By Portal
- * Lookup players by various parameters.  Note that this does NOT find the active player, or other metadata about the resulting players.  It is suggested to call `/v1/player/{player_id}/linked_portals` for each player for that info, if necessary.
+ * Lookup players by various parameters. 
+ *  
+ * Results will include the active player, if possible, otherwise will return the associated player directly.
 */
 struct RALLYHEREAPI_API FRequest_LookupPlayerByPortal : public FRequest
 {

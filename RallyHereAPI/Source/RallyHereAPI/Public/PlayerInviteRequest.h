@@ -10,9 +10,9 @@
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
 #include "TeamOverflowAction.h"
-#include "SessionInviteRequest.generated.h"
+#include "PlayerInviteRequest.generated.h"
 
-/** @defgroup RHAPI_SessionInviteRequest RallyHere API Model SessionInviteRequest
+/** @defgroup RHAPI_PlayerInviteRequest RallyHere API Model PlayerInviteRequest
  *  @{
  */
 
@@ -20,7 +20,7 @@
  * @brief 
  */
 USTRUCT(BlueprintType)
-struct RALLYHEREAPI_API FRHAPI_SessionInviteRequest : public FRHAPI_Model
+struct RALLYHEREAPI_API FRHAPI_PlayerInviteRequest : public FRHAPI_Model
 {
 	GENERATED_BODY()
 
@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_SessionInviteRequest : public FRHAPI_Model
 	*/
 	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-	/** @brief Which team the players in the source session should be on */
+	/** @brief Which team the invited players should prioritize being put on */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 TeamId_Optional{ 0 };
 	/** @brief true if TeamId_Optional has been set to a value */

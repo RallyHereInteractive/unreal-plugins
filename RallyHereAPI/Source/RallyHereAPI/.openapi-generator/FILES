@@ -248,9 +248,11 @@ Private/PlayerDeserterStatus.cpp
 Private/PlayerExperienceAPI.cpp
 Private/PlayerIdWrapper.cpp
 Private/PlayerInventoryChange.cpp
+Private/PlayerInviteRequest.cpp
 Private/PlayerIterateResponse.cpp
 Private/PlayerLastSeenUpdate.cpp
 Private/PlayerLinkedPortalsResponse.cpp
+Private/PlayerMoveRequest.cpp
 Private/PlayerOrder.cpp
 Private/PlayerOrderCreateInput.cpp
 Private/PlayerOrderCreateOutput.cpp
@@ -273,6 +275,9 @@ Private/PlayerRankResponseV2.cpp
 Private/PlayerRankUpdateRequest.cpp
 Private/PlayerRankUpdateResponse.cpp
 Private/PlayerRankUpdateResponseV2.cpp
+Private/PlayerReferral.cpp
+Private/PlayerReferralCode.cpp
+Private/PlayerReferralSetPayload.cpp
 Private/PlayerReport.cpp
 Private/PlayerReportCreate.cpp
 Private/PlayerReportList.cpp
@@ -282,6 +287,7 @@ Private/PlayerSessionInvite.cpp
 Private/PlayerSessions.cpp
 Private/PlayerStatsResponse.cpp
 Private/PlayerSwapRequest.cpp
+Private/PlayerUpdateRequest.cpp
 Private/PlayerUuidFromId.cpp
 Private/PlayerVisibility.cpp
 Private/PlayersToValidate.cpp
@@ -329,6 +335,9 @@ Private/RankRankData.cpp
 Private/RankUpdateRequest.cpp
 Private/RankUpdateRequestV2.cpp
 Private/RankedTeam.cpp
+Private/RecentlyPlayedPlayer.cpp
+Private/RecentlyPlayedWithResponse.cpp
+Private/ReferralsAPI.cpp
 Private/Region.cpp
 Private/RegionsResponse.cpp
 Private/RemoteFileAPI.cpp
@@ -349,7 +358,6 @@ Private/SearchGuideResponse.cpp
 Private/SearchGuideSort.cpp
 Private/SelfSessionPlayerUpdateRequest.cpp
 Private/Session.cpp
-Private/SessionInviteRequest.cpp
 Private/SessionInviteResponse.cpp
 Private/SessionJoinResponse.cpp
 Private/SessionPlayer.cpp
@@ -647,9 +655,11 @@ Public/PlayerDeserterStatus.h
 Public/PlayerExperienceAPI.h
 Public/PlayerIdWrapper.h
 Public/PlayerInventoryChange.h
+Public/PlayerInviteRequest.h
 Public/PlayerIterateResponse.h
 Public/PlayerLastSeenUpdate.h
 Public/PlayerLinkedPortalsResponse.h
+Public/PlayerMoveRequest.h
 Public/PlayerOrder.h
 Public/PlayerOrderCreateInput.h
 Public/PlayerOrderCreateOutput.h
@@ -672,6 +682,9 @@ Public/PlayerRankResponseV2.h
 Public/PlayerRankUpdateRequest.h
 Public/PlayerRankUpdateResponse.h
 Public/PlayerRankUpdateResponseV2.h
+Public/PlayerReferral.h
+Public/PlayerReferralCode.h
+Public/PlayerReferralSetPayload.h
 Public/PlayerReport.h
 Public/PlayerReportCreate.h
 Public/PlayerReportList.h
@@ -681,6 +694,7 @@ Public/PlayerSessionInvite.h
 Public/PlayerSessions.h
 Public/PlayerStatsResponse.h
 Public/PlayerSwapRequest.h
+Public/PlayerUpdateRequest.h
 Public/PlayerUuidFromId.h
 Public/PlayerVisibility.h
 Public/PlayersToValidate.h
@@ -728,6 +742,9 @@ Public/RankRankData.h
 Public/RankUpdateRequest.h
 Public/RankUpdateRequestV2.h
 Public/RankedTeam.h
+Public/RecentlyPlayedPlayer.h
+Public/RecentlyPlayedWithResponse.h
+Public/ReferralsAPI.h
 Public/Region.h
 Public/RegionsResponse.h
 Public/RemoteFileAPI.h
@@ -748,7 +765,6 @@ Public/SearchGuideResponse.h
 Public/SearchGuideSort.h
 Public/SelfSessionPlayerUpdateRequest.h
 Public/Session.h
-Public/SessionInviteRequest.h
 Public/SessionInviteResponse.h
 Public/SessionJoinResponse.h
 Public/SessionPlayer.h

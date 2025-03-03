@@ -23,6 +23,7 @@
 #include "PagedMatchResponse.h"
 #include "PagedPlayerMatchResponse.h"
 #include "PlayerStatsResponse.h"
+#include "RecentlyPlayedWithResponse.h"
 
 namespace RallyHereAPI
 {
@@ -466,7 +467,7 @@ struct RALLYHEREAPI_API Traits_DeleteMatch
  * 
  * Required Permissions:
  * 
- * - For any match any of: `match:*`, `match:match:edit:any`
+ * - For any match (including themselves) any of: `match:*`, `match:match:edit:any`
 */
 struct RALLYHEREAPI_API FRequest_DeleteMatchPlayer : public FRequest
 {
@@ -777,9 +778,11 @@ struct RALLYHEREAPI_API Traits_GetMatch
  * @brief Get Match Player
  * Get a player match record for the provided player_uuid and match_id
  * 
- * any of: `match:*`, `match:match:player:read`, `match:player:any:read` 
- *     
- * : `match:player:self:read`
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`
+ * 
+ * - For the player themselves : `match:player:self:read`
 */
 struct RALLYHEREAPI_API FRequest_GetMatchPlayer : public FRequest
 {
@@ -1119,9 +1122,11 @@ struct RALLYHEREAPI_API Traits_GetMatches
  * @brief Get Player Matches Self
  * Get all matches for self. Only provides matches for the player_uuid in the provided token.
  * 
- * any of: `match:*`, `match:match:player:read`, `match:player:any:read` 
- *     
- * : `match:player:self:read`
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`
+ * 
+ * - For the player themselves : `match:player:self:read`
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerMatchesSelf : public FRequest
 {
@@ -1224,12 +1229,124 @@ struct RALLYHEREAPI_API Traits_GetPlayerMatchesSelf
 };
 
 /**
+ * @brief Get Player Recently Player With
+ * Get the list of players this player recently played with
+ *     
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`
+ * 
+ * - For the player themselves : `match:player:self:read`
+*/
+struct RALLYHEREAPI_API FRequest_GetPlayerRecentlyPlayerWith : public FRequest
+{
+	FRequest_GetPlayerRecentlyPlayerWith();
+	virtual ~FRequest_GetPlayerRecentlyPlayerWith() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PlayerUuid;
+	/* Number of players to return */
+	TOptional<int32> PageSize;
+};
+
+/** The response type for FRequest_GetPlayerRecentlyPlayerWith */
+struct RALLYHEREAPI_API FResponse_GetPlayerRecentlyPlayerWith : public FResponseAccessorTemplate<FRHAPI_RecentlyPlayedWithResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_RecentlyPlayedWithResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_GetPlayerRecentlyPlayerWith(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetPlayerRecentlyPlayerWith() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_RecentlyPlayedWithResponse Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_RecentlyPlayedWithResponse& OutContent) const { return TryGetContent<FRHAPI_RecentlyPlayedWithResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_RecentlyPlayedWithResponse>& OutContent) const { return TryGetContent<FRHAPI_RecentlyPlayedWithResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_RecentlyPlayedWithResponse* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_RecentlyPlayedWithResponse>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_RecentlyPlayedWithResponse> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_RecentlyPlayedWithResponse>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_RecentlyPlayedWithResponse& OutContent) const;
+
+	/* Response 403
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetPlayerRecentlyPlayerWith */
+DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerRecentlyPlayerWith, const FResponse_GetPlayerRecentlyPlayerWith&);
+
+/** @brief A helper metadata object for GetPlayerRecentlyPlayerWith that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetPlayerRecentlyPlayerWith
+{
+	/** The request type */
+	typedef FRequest_GetPlayerRecentlyPlayerWith Request;
+	/** The response type */
+	typedef FResponse_GetPlayerRecentlyPlayerWith Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetPlayerRecentlyPlayerWith Delegate;
+	/** The API object that supports this API call */
+	typedef FMatchAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
  * @brief Get Player Stats
  * Get player stats for the provided player_uuid,.
  * 
- * any of: `match:*`, `match:match:player:read`, `match:player:any:read` 
- *     
- * : `match:player:self:read`
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`
+ * 
+ * - For the player themselves : `match:player:self:read`
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerStats : public FRequest
 {
@@ -1338,9 +1455,11 @@ struct RALLYHEREAPI_API Traits_GetPlayerStats
  * @brief Get Players Matches
  * Get All matches for a provided player_uuid.
  * 
- * any of: `match:*`, `match:match:player:read`, `match:player:any:read` 
- *     
- * : `match:player:self:read`
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`
+ * 
+ * - For the player themselves : `match:player:self:read`
 */
 struct RALLYHEREAPI_API FRequest_GetPlayersMatches : public FRequest
 {
@@ -1684,8 +1803,9 @@ struct RALLYHEREAPI_API Traits_PatchMatchPlayer
 /**
  * @brief Patch Match Segment
  * Update match segment by match_id and segment_id only with provided fields.
- * 
- * Match must be in pending state to be updated.
+ * If the segment doesn't exist, it will be created.
+ * The top-level match must exist.
+ * The top-level match must be in a pending state or authenticating user has overriding permissions.
  * 
  * Required Permissions:
  * 
@@ -2181,6 +2301,8 @@ public:
 	void OnGetMatchesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatches Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr GetPlayerMatchesSelf(const FRequest_GetPlayerMatchesSelf& Request, const FDelegate_GetPlayerMatchesSelf& Delegate = FDelegate_GetPlayerMatchesSelf(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetPlayerMatchesSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerMatchesSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetPlayerRecentlyPlayerWith(const FRequest_GetPlayerRecentlyPlayerWith& Request, const FDelegate_GetPlayerRecentlyPlayerWith& Delegate = FDelegate_GetPlayerRecentlyPlayerWith(), int32 Priority = DefaultRallyHereAPIPriority);
+	void OnGetPlayerRecentlyPlayerWithResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerRecentlyPlayerWith Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr GetPlayerStats(const FRequest_GetPlayerStats& Request, const FDelegate_GetPlayerStats& Delegate = FDelegate_GetPlayerStats(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetPlayerStatsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerStats Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr GetPlayersMatches(const FRequest_GetPlayersMatches& Request, const FDelegate_GetPlayersMatches& Delegate = FDelegate_GetPlayersMatches(), int32 Priority = DefaultRallyHereAPIPriority);
