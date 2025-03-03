@@ -65,6 +65,8 @@ An Item. Item come in a couple of different flavors; determined by the &#x60;typ
 `public FString `[`InventoryBucketUseRuleSetId_Optional`](#structFRHAPI__Item_1a0e0d5505b14a2ac60dbadfd639eda910) | 
 `public bool `[`InventoryBucketUseRuleSetId_IsSet`](#structFRHAPI__Item_1a3a38815ad3856cc8269d105b833cd90a) | true if InventoryBucketUseRuleSetId_Optional has been set to a value
 `public bool `[`InventoryBucketUseRuleSetId_IsNull`](#structFRHAPI__Item_1a8f466f9549bf32101e624dfb63b1f4b1) | true if InventoryBucketUseRuleSetId_Optional has been explicitly set to null
+`public int32 `[`TotalOwnershipMax_Optional`](#structFRHAPI__Item_1af4fb8962295c375ba8fbc31b8df5689b) | Maximum ownership (permanent+rental) allowed for this item. 0 means no limit.
+`public bool `[`TotalOwnershipMax_IsSet`](#structFRHAPI__Item_1adc6d1409971af43a666c5bb3cfab4970) | true if TotalOwnershipMax_Optional has been set to a value
 `public TArray< int32 > `[`CouponDiscountLoot_Optional`](#structFRHAPI__Item_1a24aa5f6c74bb93cf565ea8d89f5f73bd) | List of Loot IDs this item can discount.
 `public bool `[`CouponDiscountLoot_IsSet`](#structFRHAPI__Item_1ad2d14cf5b7a5f19a37b8e25eee4d6e09) | true if CouponDiscountLoot_Optional has been set to a value
 `public TArray< FGuid > `[`CouponDiscountLootUuid_Optional`](#structFRHAPI__Item_1a5784ccafb6f7909f659810f797202a84) | List of Loot this item can discount.
@@ -296,6 +298,18 @@ An Item. Item come in a couple of different flavors; determined by the &#x60;typ
 `public inline bool `[`IsInventoryBucketUseRuleSetIdSet`](#structFRHAPI__Item_1a3bc734432134f82dd3c3222f4c783a4b)`() const` | Checks whether InventoryBucketUseRuleSetId_Optional has been set.
 `public inline void `[`SetInventoryBucketUseRuleSetIdToNull`](#structFRHAPI__Item_1a334a2c1de68d3f3271998a04b7cfc0f9)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsInventoryBucketUseRuleSetIdNull`](#structFRHAPI__Item_1a2a8a0c6cf31bd3ce87455cda00d39df0)`() const` | Checks whether InventoryBucketUseRuleSetId_Optional is set to null.
+`public inline int32 & `[`GetTotalOwnershipMax`](#structFRHAPI__Item_1a60b8036bc6c5cfc37a784bf62978c543)`()` | Gets the value of TotalOwnershipMax_Optional, regardless of it having been set.
+`public inline const int32 & `[`GetTotalOwnershipMax`](#structFRHAPI__Item_1a80e71b3efde58a3045d840ab3a4d6c6a)`() const` | Gets the value of TotalOwnershipMax_Optional, regardless of it having been set.
+`public inline const int32 & `[`GetTotalOwnershipMax`](#structFRHAPI__Item_1a25dad5fe51ad267809ee8d13f215fb06)`(const int32 & DefaultValue) const` | Gets the value of TotalOwnershipMax_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetTotalOwnershipMax`](#structFRHAPI__Item_1a4c8c19b1a7b3269c580a110702b1c575)`(int32 & OutValue) const` | Fills OutValue with the value of TotalOwnershipMax_Optional and returns true if it has been set, otherwise returns false.
+`public inline int32 * `[`GetTotalOwnershipMaxOrNull`](#structFRHAPI__Item_1a9f299e5fbd55b91ad25a276c453043a4)`()` | Returns a pointer to TotalOwnershipMax_Optional, if it has been set, otherwise returns nullptr.
+`public inline const int32 * `[`GetTotalOwnershipMaxOrNull`](#structFRHAPI__Item_1a4155b1250f070fd47b6f696e1ff8e841)`() const` | Returns a pointer to TotalOwnershipMax_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetTotalOwnershipMax`](#structFRHAPI__Item_1a7f76e988265608c9ab3c7b242d3d1a5a)`(const int32 & NewValue)` | Sets the value of TotalOwnershipMax_Optional and also sets TotalOwnershipMax_IsSet to true.
+`public inline void `[`SetTotalOwnershipMax`](#structFRHAPI__Item_1ad4985107c0885028f5f2d177b7d52e7a)`(int32 && NewValue)` | Sets the value of TotalOwnershipMax_Optional and also sets TotalOwnershipMax_IsSet to true using move semantics.
+`public inline void `[`ClearTotalOwnershipMax`](#structFRHAPI__Item_1a252e461b463a6cf1b229bb55a79b8259)`()` | Clears the value of TotalOwnershipMax_Optional and sets TotalOwnershipMax_IsSet to false.
+`public inline bool `[`IsTotalOwnershipMaxSet`](#structFRHAPI__Item_1a530e54fdc415223c06042dcbfbcd3df0)`() const` | Checks whether TotalOwnershipMax_Optional has been set.
+`public inline bool `[`IsTotalOwnershipMaxDefaultValue`](#structFRHAPI__Item_1a74ce0bba5399e3277fb570e55a31bd25)`() const` | Returns true if TotalOwnershipMax_Optional is set and matches the default value.
+`public inline void `[`SetTotalOwnershipMaxToDefault`](#structFRHAPI__Item_1ae9495863ab58175e1125f18645480ef2)`()` | Sets the value of TotalOwnershipMax_Optional to its default and also sets TotalOwnershipMax_IsSet to true.
 `public inline TArray< int32 > & `[`GetCouponDiscountLoot`](#structFRHAPI__Item_1a8f20801a07174512d41f6317af38aa88)`()` | Gets the value of CouponDiscountLoot_Optional, regardless of it having been set.
 `public inline const TArray< int32 > & `[`GetCouponDiscountLoot`](#structFRHAPI__Item_1a61240a94f9e017f869841ab65b2dbda5)`() const` | Gets the value of CouponDiscountLoot_Optional, regardless of it having been set.
 `public inline const TArray< int32 > & `[`GetCouponDiscountLoot`](#structFRHAPI__Item_1ae7b6e717d8bc5eeeb6fed59db496d354)`(const TArray< int32 > & DefaultValue) const` | Gets the value of CouponDiscountLoot_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -482,6 +496,14 @@ true if InventoryBucketUseRuleSetId_Optional has been set to a value
 #### `public bool `[`InventoryBucketUseRuleSetId_IsNull`](#structFRHAPI__Item_1a8f466f9549bf32101e624dfb63b1f4b1) <a id="structFRHAPI__Item_1a8f466f9549bf32101e624dfb63b1f4b1"></a>
 
 true if InventoryBucketUseRuleSetId_Optional has been explicitly set to null
+
+#### `public int32 `[`TotalOwnershipMax_Optional`](#structFRHAPI__Item_1af4fb8962295c375ba8fbc31b8df5689b) <a id="structFRHAPI__Item_1af4fb8962295c375ba8fbc31b8df5689b"></a>
+
+Maximum ownership (permanent+rental) allowed for this item. 0 means no limit.
+
+#### `public bool `[`TotalOwnershipMax_IsSet`](#structFRHAPI__Item_1adc6d1409971af43a666c5bb3cfab4970) <a id="structFRHAPI__Item_1adc6d1409971af43a666c5bb3cfab4970"></a>
+
+true if TotalOwnershipMax_Optional has been set to a value
 
 #### `public TArray< int32 > `[`CouponDiscountLoot_Optional`](#structFRHAPI__Item_1a24aa5f6c74bb93cf565ea8d89f5f73bd) <a id="structFRHAPI__Item_1a24aa5f6c74bb93cf565ea8d89f5f73bd"></a>
 
@@ -1413,6 +1435,54 @@ Sets the value explicitly to be treated as null.
 #### `public inline bool `[`IsInventoryBucketUseRuleSetIdNull`](#structFRHAPI__Item_1a2a8a0c6cf31bd3ce87455cda00d39df0)`() const` <a id="structFRHAPI__Item_1a2a8a0c6cf31bd3ce87455cda00d39df0"></a>
 
 Checks whether InventoryBucketUseRuleSetId_Optional is set to null.
+
+#### `public inline int32 & `[`GetTotalOwnershipMax`](#structFRHAPI__Item_1a60b8036bc6c5cfc37a784bf62978c543)`()` <a id="structFRHAPI__Item_1a60b8036bc6c5cfc37a784bf62978c543"></a>
+
+Gets the value of TotalOwnershipMax_Optional, regardless of it having been set.
+
+#### `public inline const int32 & `[`GetTotalOwnershipMax`](#structFRHAPI__Item_1a80e71b3efde58a3045d840ab3a4d6c6a)`() const` <a id="structFRHAPI__Item_1a80e71b3efde58a3045d840ab3a4d6c6a"></a>
+
+Gets the value of TotalOwnershipMax_Optional, regardless of it having been set.
+
+#### `public inline const int32 & `[`GetTotalOwnershipMax`](#structFRHAPI__Item_1a25dad5fe51ad267809ee8d13f215fb06)`(const int32 & DefaultValue) const` <a id="structFRHAPI__Item_1a25dad5fe51ad267809ee8d13f215fb06"></a>
+
+Gets the value of TotalOwnershipMax_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetTotalOwnershipMax`](#structFRHAPI__Item_1a4c8c19b1a7b3269c580a110702b1c575)`(int32 & OutValue) const` <a id="structFRHAPI__Item_1a4c8c19b1a7b3269c580a110702b1c575"></a>
+
+Fills OutValue with the value of TotalOwnershipMax_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline int32 * `[`GetTotalOwnershipMaxOrNull`](#structFRHAPI__Item_1a9f299e5fbd55b91ad25a276c453043a4)`()` <a id="structFRHAPI__Item_1a9f299e5fbd55b91ad25a276c453043a4"></a>
+
+Returns a pointer to TotalOwnershipMax_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const int32 * `[`GetTotalOwnershipMaxOrNull`](#structFRHAPI__Item_1a4155b1250f070fd47b6f696e1ff8e841)`() const` <a id="structFRHAPI__Item_1a4155b1250f070fd47b6f696e1ff8e841"></a>
+
+Returns a pointer to TotalOwnershipMax_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetTotalOwnershipMax`](#structFRHAPI__Item_1a7f76e988265608c9ab3c7b242d3d1a5a)`(const int32 & NewValue)` <a id="structFRHAPI__Item_1a7f76e988265608c9ab3c7b242d3d1a5a"></a>
+
+Sets the value of TotalOwnershipMax_Optional and also sets TotalOwnershipMax_IsSet to true.
+
+#### `public inline void `[`SetTotalOwnershipMax`](#structFRHAPI__Item_1ad4985107c0885028f5f2d177b7d52e7a)`(int32 && NewValue)` <a id="structFRHAPI__Item_1ad4985107c0885028f5f2d177b7d52e7a"></a>
+
+Sets the value of TotalOwnershipMax_Optional and also sets TotalOwnershipMax_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearTotalOwnershipMax`](#structFRHAPI__Item_1a252e461b463a6cf1b229bb55a79b8259)`()` <a id="structFRHAPI__Item_1a252e461b463a6cf1b229bb55a79b8259"></a>
+
+Clears the value of TotalOwnershipMax_Optional and sets TotalOwnershipMax_IsSet to false.
+
+#### `public inline bool `[`IsTotalOwnershipMaxSet`](#structFRHAPI__Item_1a530e54fdc415223c06042dcbfbcd3df0)`() const` <a id="structFRHAPI__Item_1a530e54fdc415223c06042dcbfbcd3df0"></a>
+
+Checks whether TotalOwnershipMax_Optional has been set.
+
+#### `public inline bool `[`IsTotalOwnershipMaxDefaultValue`](#structFRHAPI__Item_1a74ce0bba5399e3277fb570e55a31bd25)`() const` <a id="structFRHAPI__Item_1a74ce0bba5399e3277fb570e55a31bd25"></a>
+
+Returns true if TotalOwnershipMax_Optional is set and matches the default value.
+
+#### `public inline void `[`SetTotalOwnershipMaxToDefault`](#structFRHAPI__Item_1ae9495863ab58175e1125f18645480ef2)`()` <a id="structFRHAPI__Item_1ae9495863ab58175e1125f18645480ef2"></a>
+
+Sets the value of TotalOwnershipMax_Optional to its default and also sets TotalOwnershipMax_IsSet to true.
 
 #### `public inline TArray< int32 > & `[`GetCouponDiscountLoot`](#structFRHAPI__Item_1a8f20801a07174512d41f6317af38aa88)`()` <a id="structFRHAPI__Item_1a8f20801a07174512d41f6317af38aa88"></a>
 
