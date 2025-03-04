@@ -3086,7 +3086,7 @@ FHttpRequestPtr Traits_GetPlayerMatchesSelf::DoCall(TSharedRef<API> InAPI, const
 	return InAPI->GetPlayerMatchesSelf(InRequest, InDelegate, InPriority);
 }
 
-FHttpRequestPtr FMatchAPI::GetPlayerRecentlyPlayerWith(const FRequest_GetPlayerRecentlyPlayerWith& Request, const FDelegate_GetPlayerRecentlyPlayerWith& Delegate /*= FDelegate_GetPlayerRecentlyPlayerWith()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+FHttpRequestPtr FMatchAPI::GetPlayerRecentlyPlayedWith(const FRequest_GetPlayerRecentlyPlayedWith& Request, const FDelegate_GetPlayerRecentlyPlayedWith& Delegate /*= FDelegate_GetPlayerRecentlyPlayedWith()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
 		return nullptr;
@@ -3119,7 +3119,7 @@ FHttpRequestPtr FMatchAPI::GetPlayerRecentlyPlayerWith(const FRequest_GetPlayerR
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FMatchAPI::OnGetPlayerRecentlyPlayerWithResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FMatchAPI::OnGetPlayerRecentlyPlayedWithResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -3131,7 +3131,7 @@ FHttpRequestPtr FMatchAPI::GetPlayerRecentlyPlayerWith(const FRequest_GetPlayerR
 	return RequestData->HttpRequest;
 }
 
-void FMatchAPI::OnGetPlayerRecentlyPlayerWithResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerRecentlyPlayerWith Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+void FMatchAPI::OnGetPlayerRecentlyPlayedWithResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerRecentlyPlayedWith Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
 	FHttpRequestCompleteDelegate ResponseDelegate;
 
@@ -3139,10 +3139,10 @@ void FMatchAPI::OnGetPlayerRecentlyPlayerWithResponse(FHttpRequestPtr HttpReques
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FMatchAPI::OnGetPlayerRecentlyPlayerWithResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FMatchAPI::OnGetPlayerRecentlyPlayedWithResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	TSharedRef<FResponse_GetPlayerRecentlyPlayerWith> Response = MakeShared<FResponse_GetPlayerRecentlyPlayerWith>(RequestMetadata);
+	TSharedRef<FResponse_GetPlayerRecentlyPlayedWith> Response = MakeShared<FResponse_GetPlayerRecentlyPlayedWith>(RequestMetadata);
 	
 	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
@@ -3153,26 +3153,26 @@ void FMatchAPI::OnGetPlayerRecentlyPlayerWithResponse(FHttpRequestPtr HttpReques
 	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
-FRequest_GetPlayerRecentlyPlayerWith::FRequest_GetPlayerRecentlyPlayerWith()
+FRequest_GetPlayerRecentlyPlayedWith::FRequest_GetPlayerRecentlyPlayedWith()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
-FName FRequest_GetPlayerRecentlyPlayerWith::GetSimplifiedPath() const
+FName FRequest_GetPlayerRecentlyPlayedWith::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/match/v1/player/{player_uuid}/recently-played"));
 	return Path;
 }
 
-FName FRequest_GetPlayerRecentlyPlayerWith::GetSimplifiedPathWithVerb() const
+FName FRequest_GetPlayerRecentlyPlayedWith::GetSimplifiedPathWithVerb() const
 {
 	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
 	return PathWithVerb;
 }
 
-FString FRequest_GetPlayerRecentlyPlayerWith::ComputePath() const
+FString FRequest_GetPlayerRecentlyPlayedWith::ComputePath() const
 {
 	TMap<FString, FStringFormatArg> PathParams = { 
 		{ TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
@@ -3191,22 +3191,32 @@ FString FRequest_GetPlayerRecentlyPlayerWith::ComputePath() const
 	return Path;
 }
 
-bool FRequest_GetPlayerRecentlyPlayerWith::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+bool FRequest_GetPlayerRecentlyPlayedWith::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
 	static const TArray<FString> Consumes = {  };
 	//static const TArray<FString> Produces = { TEXT("application/json") };
 
 	HttpRequest->SetVerb(TEXT("GET"));
 
+	// Header parameters
+	if (IfMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-match"), IfMatch.GetValue());
+	}
+	if (IfNoneMatch.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
+	}
+
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
 	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayerRecentlyPlayerWith - missing auth context"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayerRecentlyPlayedWith - missing auth context"));
 		return false;
 	}
 	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayerRecentlyPlayerWith - failed to add bearer token"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayerRecentlyPlayedWith - failed to add bearer token"));
 		return false;
 	}
 
@@ -3221,21 +3231,25 @@ bool FRequest_GetPlayerRecentlyPlayerWith::SetupHttpRequest(const FHttpRequestRe
 	}
 	else
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayerRecentlyPlayerWith - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPlayerRecentlyPlayedWith - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
 		return false;
 	}
 
 	return true;
 }
 
-FString FResponse_GetPlayerRecentlyPlayerWith::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+FString FResponse_GetPlayerRecentlyPlayedWith::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
 	switch ((int)InHttpResponseCode)
 	{
 	case 200:
 		return TEXT("Successful Response");
+	case 304:
+		return TEXT("The resource has not been modified from the provided preconditions.");
 	case 403:
 		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 412:
+		return TEXT("The resource does not meet the provided preconditions.");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -3243,7 +3257,7 @@ FString FResponse_GetPlayerRecentlyPlayerWith::GetHttpResponseCodeDescription(EH
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
-bool FResponse_GetPlayerRecentlyPlayerWith::ParseHeaders()
+bool FResponse_GetPlayerRecentlyPlayedWith::ParseHeaders()
 {
 	if (!Super::ParseHeaders())
 	{
@@ -3251,13 +3265,27 @@ bool FResponse_GetPlayerRecentlyPlayerWith::ParseHeaders()
 	}
 
 
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+	// parse into default header storage
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = FromHeaderString<FString>(*Val);
+    }
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
+#endif
+
 	// determine if all required headers were parsed
 	bool bParsedAllRequiredHeaders = true;
 	switch ((int)GetHttpResponseCode())
 	{
 	case 200:
 		break;
+	case 304:
+		break;
 	case 403:
+		break;
+	case 412:
 		break;
 	case 422:
 		break;
@@ -3268,7 +3296,7 @@ bool FResponse_GetPlayerRecentlyPlayerWith::ParseHeaders()
 	return bParsedAllRequiredHeaders;
 }
 
-bool FResponse_GetPlayerRecentlyPlayerWith::TryGetContentFor200(FRHAPI_RecentlyPlayedWithResponse& OutContent) const
+bool FResponse_GetPlayerRecentlyPlayedWith::TryGetContentFor200(FRHAPI_RecentlyPlayedWithResponse& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 200)
@@ -3280,7 +3308,35 @@ bool FResponse_GetPlayerRecentlyPlayerWith::TryGetContentFor200(FRHAPI_RecentlyP
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetPlayerRecentlyPlayerWith::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetPlayerRecentlyPlayedWith::GetHeader200_ETag() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FString>(HeaderVal);
+		}
+	}
+	return TOptional<FString>{};
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetPlayerRecentlyPlayedWith::GetHeader304_ETag() const
+{
+	if (HttpResponse)
+	{
+		FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+		if (!HeaderVal.IsEmpty())
+		{
+			return FromHeaderString<FString>(HeaderVal);
+		}
+	}
+	return TOptional<FString>{};
+}
+
+bool FResponse_GetPlayerRecentlyPlayedWith::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
@@ -3292,7 +3348,7 @@ bool FResponse_GetPlayerRecentlyPlayerWith::TryGetContentFor403(FRHAPI_HzApiErro
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetPlayerRecentlyPlayerWith::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_GetPlayerRecentlyPlayedWith::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -3304,7 +3360,7 @@ bool FResponse_GetPlayerRecentlyPlayerWith::TryGetContentFor422(FRHAPI_HTTPValid
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetPlayerRecentlyPlayerWith::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FResponse_GetPlayerRecentlyPlayedWith::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	bool bParsed = false;
 	// for non default responses, parse into a temporary object to validate the response can be parsed properly
@@ -3319,7 +3375,7 @@ bool FResponse_GetPlayerRecentlyPlayerWith::FromJson(const TSharedPtr<FJsonValue
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<FRHAPI_RecentlyPlayedWithResponse>(Object);
 				break;
-			} 
+			}  
 		case 403:
 			{
 				// parse into the structured data format from the json object
@@ -3329,7 +3385,7 @@ bool FResponse_GetPlayerRecentlyPlayerWith::FromJson(const TSharedPtr<FJsonValue
 				// even if parsing encountered errors, set the object in case parsing was partially successful
 				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
 				break;
-			} 
+			}  
 		case 422:
 			{
 				// parse into the structured data format from the json object
@@ -3354,16 +3410,16 @@ bool FResponse_GetPlayerRecentlyPlayerWith::FromJson(const TSharedPtr<FJsonValue
 	return bParsed;
 }
 
-FResponse_GetPlayerRecentlyPlayerWith::FResponse_GetPlayerRecentlyPlayerWith(FRequestMetadata InRequestMetadata)
+FResponse_GetPlayerRecentlyPlayedWith::FResponse_GetPlayerRecentlyPlayedWith(FRequestMetadata InRequestMetadata)
 	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
-FString Traits_GetPlayerRecentlyPlayerWith::Name = TEXT("GetPlayerRecentlyPlayerWith");
+FString Traits_GetPlayerRecentlyPlayedWith::Name = TEXT("GetPlayerRecentlyPlayedWith");
 
-FHttpRequestPtr Traits_GetPlayerRecentlyPlayerWith::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+FHttpRequestPtr Traits_GetPlayerRecentlyPlayedWith::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
 {
-	return InAPI->GetPlayerRecentlyPlayerWith(InRequest, InDelegate, InPriority);
+	return InAPI->GetPlayerRecentlyPlayedWith(InRequest, InDelegate, InPriority);
 }
 
 FHttpRequestPtr FMatchAPI::GetPlayerStats(const FRequest_GetPlayerStats& Request, const FDelegate_GetPlayerStats& Delegate /*= FDelegate_GetPlayerStats()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)

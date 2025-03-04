@@ -1229,7 +1229,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerMatchesSelf
 };
 
 /**
- * @brief Get Player Recently Player With
+ * @brief Get Player Recently Played With
  * Get the list of players this player recently played with
  *     
  * Required Permissions:
@@ -1238,10 +1238,10 @@ struct RALLYHEREAPI_API Traits_GetPlayerMatchesSelf
  * 
  * - For the player themselves : `match:player:self:read`
 */
-struct RALLYHEREAPI_API FRequest_GetPlayerRecentlyPlayerWith : public FRequest
+struct RALLYHEREAPI_API FRequest_GetPlayerRecentlyPlayedWith : public FRequest
 {
-	FRequest_GetPlayerRecentlyPlayerWith();
-	virtual ~FRequest_GetPlayerRecentlyPlayerWith() = default;
+	FRequest_GetPlayerRecentlyPlayedWith();
+	virtual ~FRequest_GetPlayerRecentlyPlayedWith() = default;
 	
 	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
@@ -1259,15 +1259,19 @@ struct RALLYHEREAPI_API FRequest_GetPlayerRecentlyPlayerWith : public FRequest
 	FGuid PlayerUuid;
 	/* Number of players to return */
 	TOptional<int32> PageSize;
+	/* Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information */
+	TOptional<FString> IfMatch;
+	/* Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.    See https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information */
+	TOptional<FString> IfNoneMatch;
 };
 
-/** The response type for FRequest_GetPlayerRecentlyPlayerWith */
-struct RALLYHEREAPI_API FResponse_GetPlayerRecentlyPlayerWith : public FResponseAccessorTemplate<FRHAPI_RecentlyPlayedWithResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+/** The response type for FRequest_GetPlayerRecentlyPlayedWith */
+struct RALLYHEREAPI_API FResponse_GetPlayerRecentlyPlayedWith : public FResponseAccessorTemplate<FRHAPI_RecentlyPlayedWithResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
 	typedef FResponseAccessorTemplate<FRHAPI_RecentlyPlayedWithResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
-	FResponse_GetPlayerRecentlyPlayerWith(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetPlayerRecentlyPlayerWith() = default;
+	FResponse_GetPlayerRecentlyPlayedWith(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetPlayerRecentlyPlayedWith() = default;
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
@@ -1280,6 +1284,11 @@ struct RALLYHEREAPI_API FResponse_GetPlayerRecentlyPlayerWith : public FResponse
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
 	FRHAPI_RecentlyPlayedWithResponse Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
@@ -1291,17 +1300,38 @@ struct RALLYHEREAPI_API FResponse_GetPlayerRecentlyPlayerWith : public FResponse
 	const FRHAPI_RecentlyPlayedWithResponse* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_RecentlyPlayedWithResponse>(); }
 	/** @brief Attempt to retrieve the content in the default response */
 	TOptional<FRHAPI_RecentlyPlayedWithResponse> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_RecentlyPlayedWithResponse>(); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(FString& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_ETag() const { return TryGetHeaderAsPointer(TEXT("ETag")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_ETag() const { return TryGetHeaderAsOptional(TEXT("ETag")); }
 
 	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
 	bool TryGetContentFor200(FRHAPI_RecentlyPlayedWithResponse& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+
+	/* Response 304
+	The resource has not been modified from the provided preconditions.
+	*/
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader304_ETag() const;
 
 	/* Response 403
 	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 412
+	The resource does not meet the provided preconditions.
+	*/
 
 	/* Response 422
 	Validation Error
@@ -1310,18 +1340,18 @@ struct RALLYHEREAPI_API FResponse_GetPlayerRecentlyPlayerWith : public FResponse
 
 };
 
-/** The delegate class for FRequest_GetPlayerRecentlyPlayerWith */
-DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerRecentlyPlayerWith, const FResponse_GetPlayerRecentlyPlayerWith&);
+/** The delegate class for FRequest_GetPlayerRecentlyPlayedWith */
+DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerRecentlyPlayedWith, const FResponse_GetPlayerRecentlyPlayedWith&);
 
-/** @brief A helper metadata object for GetPlayerRecentlyPlayerWith that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
-struct RALLYHEREAPI_API Traits_GetPlayerRecentlyPlayerWith
+/** @brief A helper metadata object for GetPlayerRecentlyPlayedWith that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetPlayerRecentlyPlayedWith
 {
 	/** The request type */
-	typedef FRequest_GetPlayerRecentlyPlayerWith Request;
+	typedef FRequest_GetPlayerRecentlyPlayedWith Request;
 	/** The response type */
-	typedef FResponse_GetPlayerRecentlyPlayerWith Response;
+	typedef FResponse_GetPlayerRecentlyPlayedWith Response;
 	/** The delegate type, triggered by the response */
-	typedef FDelegate_GetPlayerRecentlyPlayerWith Delegate;
+	typedef FDelegate_GetPlayerRecentlyPlayedWith Delegate;
 	/** The API object that supports this API call */
 	typedef FMatchAPI API;
 	/** A human readable name for this API call */
@@ -2301,8 +2331,8 @@ public:
 	void OnGetMatchesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatches Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr GetPlayerMatchesSelf(const FRequest_GetPlayerMatchesSelf& Request, const FDelegate_GetPlayerMatchesSelf& Delegate = FDelegate_GetPlayerMatchesSelf(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetPlayerMatchesSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerMatchesSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	FHttpRequestPtr GetPlayerRecentlyPlayerWith(const FRequest_GetPlayerRecentlyPlayerWith& Request, const FDelegate_GetPlayerRecentlyPlayerWith& Delegate = FDelegate_GetPlayerRecentlyPlayerWith(), int32 Priority = DefaultRallyHereAPIPriority);
-	void OnGetPlayerRecentlyPlayerWithResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerRecentlyPlayerWith Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetPlayerRecentlyPlayedWith(const FRequest_GetPlayerRecentlyPlayedWith& Request, const FDelegate_GetPlayerRecentlyPlayedWith& Delegate = FDelegate_GetPlayerRecentlyPlayedWith(), int32 Priority = DefaultRallyHereAPIPriority);
+	void OnGetPlayerRecentlyPlayedWithResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerRecentlyPlayedWith Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr GetPlayerStats(const FRequest_GetPlayerStats& Request, const FDelegate_GetPlayerStats& Delegate = FDelegate_GetPlayerStats(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetPlayerStatsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerStats Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr GetPlayersMatches(const FRequest_GetPlayersMatches& Request, const FDelegate_GetPlayersMatches& Delegate = FDelegate_GetPlayersMatches(), int32 Priority = DefaultRallyHereAPIPriority);
