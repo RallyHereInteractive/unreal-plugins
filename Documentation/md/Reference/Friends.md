@@ -218,6 +218,7 @@ RH Friend and Platform Friend class that wraps a Rally Here Friend and Platform 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public FRH_OnPlayerInfoSubobjectUpdatedMulticastDelegate `[`OnPresenceUpdatedDelegate`](#classURH__RHFriendAndPlatformFriend_1a8a0e044ae90e40b27535bb747f7dbda0) | Native delegate to listen for presence updates.
+`public  `[`URH_RHFriendAndPlatformFriend`](#classURH__RHFriendAndPlatformFriend_1a71cd97832341439962bcbcda8799670f)`()` | 
 `public class `[`URH_FriendSubsystem`](Friends.md#classURH__FriendSubsystem)` * `[`GetFriendSubsystem`](#classURH__RHFriendAndPlatformFriend_1afa420f5cb5815210914145c8db2fc095)`() const` | 
 `public inline bool `[`AreFriends`](#classURH__RHFriendAndPlatformFriend_1a3614d4c1ddb543c6f262dd27b65ab67b)`() const` | Gets if the player is a friend through Rally Here systems or their platform.
 `public inline bool `[`AreRHFriends`](#classURH__RHFriendAndPlatformFriend_1a4fe2dc0a23755f8069aa7adac470b79b)`() const` | Gets if the player is a friend through Rally Here.
@@ -253,6 +254,10 @@ RH Friend and Platform Friend class that wraps a Rally Here Friend and Platform 
 `public void `[`GetLastKnownDisplayNameAsync`](#classURH__RHFriendAndPlatformFriend_1a3b8bf590fdccb5b793ed98b52918656d)`(const FTimespan & StaleThreshold,bool bForceRefresh,ERHAPI_Platform PreferredPlatformType,const FRH_PlayerInfoGetDisplayNameBlock & Delegate) const` | Gets the last known display name for the player, will request from API as needed.
 `public void `[`GetRHPlayerUuidAsync`](#classURH__RHFriendAndPlatformFriend_1a26d3a5a15aaf4b8787910b1a83927a82)`(const FRH_GetRHPlayerUuidBlock & Delegate)` | Gets the RH Player UUID for the player, will request from API as needed. As a side effect, it will update the RH Player Uuid on PlayerAndPlatformInfo.
 `public void `[`SetPlayerInfoUpdateBindings`](#classURH__RHFriendAndPlatformFriend_1a48c59900e8e56f6ab1a37e47af013eb7)`()` | Sets bindings for update callbacks from the player info so it can forward them to this object and the friend subsystem.
+`public inline bool `[`HasRHFriendInfo`](#classURH__RHFriendAndPlatformFriend_1a8b0a0ab8d661a8d40096c14ff04796af)`() const` | 
+`public inline bool `[`PreviouslyHadRHFriendInfo`](#classURH__RHFriendAndPlatformFriend_1a7c06b88f0a45299ca1a71bd5fcbe92f5)`() const` | 
+`public inline bool `[`IsFirstRHFriendUpdate`](#classURH__RHFriendAndPlatformFriend_1a976c93aa8d8de4be39a7e6f50accd8b1)`() const` | 
+`public inline void `[`ClearFirstRHFriendUpdate`](#classURH__RHFriendAndPlatformFriend_1ac34f365d520967e236e442264bf67842)`()` | 
 `protected `[`FRH_PlayerAndPlatformInfo`](PlayerInfo.md#structFRH__PlayerAndPlatformInfo)` `[`PlayerAndPlatformInfo`](#classURH__RHFriendAndPlatformFriend_1a85603f6ad7e4c8402012642ba70df5d3) | Player Info and Platform Info combined.
 `protected ERHAPI_FriendshipStatus `[`RHFriendshipStatus`](#classURH__RHFriendAndPlatformFriend_1a136ab1b34c8b46c64fc86541925ecce0) | Core friendship status.
 `protected ERHAPI_FriendshipStatus `[`PreviousRHFriendshipStatus`](#classURH__RHFriendAndPlatformFriend_1aaf0f45aa90c4f9f3947f4b4d7a023dfe) | cached previous core friendship status.
@@ -260,6 +265,8 @@ RH Friend and Platform Friend class that wraps a Rally Here Friend and Platform 
 `protected FString `[`Notes`](#classURH__RHFriendAndPlatformFriend_1a66cefbb47f0cad7d59bd18df980022c5) | Notes set for the friend.
 `protected TArray< `[`URH_PlatformFriend`](Friends.md#classURH__PlatformFriend)` * > `[`PlatformFriends`](#classURH__RHFriendAndPlatformFriend_1a2a7cea15c536d6f1dc0e372bd75a7dc3) | Array of platforms the player has linked to their account.
 `protected FString `[`Etag`](#classURH__RHFriendAndPlatformFriend_1ab4bca6808ed022b3d72edf548745c04c) | ETag of last friend update response.
+`protected bool `[`bHasRHFriendStatus`](#classURH__RHFriendAndPlatformFriend_1a7c3d3b567a8c6d6f891c80f4f85c2f3c) | Does this object currently have the RH friend data.
+`protected bool `[`bPreviousHadRHFriendStatus`](#classURH__RHFriendAndPlatformFriend_1ad9663ea9c12280dd75e181a462be3813) | Did this object have the RH friend data before the most recent operation on it?
 `protected inline virtual void `[`OnPresenceUpdated`](#classURH__RHFriendAndPlatformFriend_1a4621cd567a8229bce29ab035bb3fc469)`(`[`URH_PlayerInfoSubobject`](PlayerInfo.md#classURH__PlayerInfoSubobject)` * PlayerPresence)` | Passes presence updates of the player on through internal delgates.
 `protected inline virtual void `[`ClearRHFriendStatus`](#classURH__RHFriendAndPlatformFriend_1a192552b9a61592ae648c4e50afafeca0)`()` | Clears the cached friendship status for the player.
 `protected inline virtual void `[`ClearPlatformFriendStatus`](#classURH__RHFriendAndPlatformFriend_1a2868052b24a6cf21af2ba2ce0aab026b)`()` | Clears cached data for the platform friends for this player.
@@ -269,6 +276,8 @@ RH Friend and Platform Friend class that wraps a Rally Here Friend and Platform 
 #### `public FRH_OnPlayerInfoSubobjectUpdatedMulticastDelegate `[`OnPresenceUpdatedDelegate`](#classURH__RHFriendAndPlatformFriend_1a8a0e044ae90e40b27535bb747f7dbda0) <a id="classURH__RHFriendAndPlatformFriend_1a8a0e044ae90e40b27535bb747f7dbda0"></a>
 
 Native delegate to listen for presence updates.
+
+#### `public  `[`URH_RHFriendAndPlatformFriend`](#classURH__RHFriendAndPlatformFriend_1a71cd97832341439962bcbcda8799670f)`()` <a id="classURH__RHFriendAndPlatformFriend_1a71cd97832341439962bcbcda8799670f"></a>
 
 #### `public class `[`URH_FriendSubsystem`](Friends.md#classURH__FriendSubsystem)` * `[`GetFriendSubsystem`](#classURH__RHFriendAndPlatformFriend_1afa420f5cb5815210914145c8db2fc095)`() const` <a id="classURH__RHFriendAndPlatformFriend_1afa420f5cb5815210914145c8db2fc095"></a>
 
@@ -431,6 +440,14 @@ Gets the RH Player UUID for the player, will request from API as needed. As a si
 
 Sets bindings for update callbacks from the player info so it can forward them to this object and the friend subsystem.
 
+#### `public inline bool `[`HasRHFriendInfo`](#classURH__RHFriendAndPlatformFriend_1a8b0a0ab8d661a8d40096c14ff04796af)`() const` <a id="classURH__RHFriendAndPlatformFriend_1a8b0a0ab8d661a8d40096c14ff04796af"></a>
+
+#### `public inline bool `[`PreviouslyHadRHFriendInfo`](#classURH__RHFriendAndPlatformFriend_1a7c06b88f0a45299ca1a71bd5fcbe92f5)`() const` <a id="classURH__RHFriendAndPlatformFriend_1a7c06b88f0a45299ca1a71bd5fcbe92f5"></a>
+
+#### `public inline bool `[`IsFirstRHFriendUpdate`](#classURH__RHFriendAndPlatformFriend_1a976c93aa8d8de4be39a7e6f50accd8b1)`() const` <a id="classURH__RHFriendAndPlatformFriend_1a976c93aa8d8de4be39a7e6f50accd8b1"></a>
+
+#### `public inline void `[`ClearFirstRHFriendUpdate`](#classURH__RHFriendAndPlatformFriend_1ac34f365d520967e236e442264bf67842)`()` <a id="classURH__RHFriendAndPlatformFriend_1ac34f365d520967e236e442264bf67842"></a>
+
 #### `protected `[`FRH_PlayerAndPlatformInfo`](PlayerInfo.md#structFRH__PlayerAndPlatformInfo)` `[`PlayerAndPlatformInfo`](#classURH__RHFriendAndPlatformFriend_1a85603f6ad7e4c8402012642ba70df5d3) <a id="classURH__RHFriendAndPlatformFriend_1a85603f6ad7e4c8402012642ba70df5d3"></a>
 
 Player Info and Platform Info combined.
@@ -458,6 +475,14 @@ Array of platforms the player has linked to their account.
 #### `protected FString `[`Etag`](#classURH__RHFriendAndPlatformFriend_1ab4bca6808ed022b3d72edf548745c04c) <a id="classURH__RHFriendAndPlatformFriend_1ab4bca6808ed022b3d72edf548745c04c"></a>
 
 ETag of last friend update response.
+
+#### `protected bool `[`bHasRHFriendStatus`](#classURH__RHFriendAndPlatformFriend_1a7c3d3b567a8c6d6f891c80f4f85c2f3c) <a id="classURH__RHFriendAndPlatformFriend_1a7c3d3b567a8c6d6f891c80f4f85c2f3c"></a>
+
+Does this object currently have the RH friend data.
+
+#### `protected bool `[`bPreviousHadRHFriendStatus`](#classURH__RHFriendAndPlatformFriend_1ad9663ea9c12280dd75e181a462be3813) <a id="classURH__RHFriendAndPlatformFriend_1ad9663ea9c12280dd75e181a462be3813"></a>
+
+Did this object have the RH friend data before the most recent operation on it?
 
 #### `protected inline virtual void `[`OnPresenceUpdated`](#classURH__RHFriendAndPlatformFriend_1a4621cd567a8229bce29ab035bb3fc469)`(`[`URH_PlayerInfoSubobject`](PlayerInfo.md#classURH__PlayerInfoSubobject)` * PlayerPresence)` <a id="classURH__RHFriendAndPlatformFriend_1a4621cd567a8229bce29ab035bb3fc469"></a>
 
