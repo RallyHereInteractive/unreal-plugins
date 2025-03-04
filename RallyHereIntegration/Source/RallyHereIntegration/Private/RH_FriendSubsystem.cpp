@@ -916,13 +916,7 @@ void URH_FriendSubsystem::OnOSSBlockListChanged(int32 LocalUserNum, const FStrin
 			bool bWasBlocked = PlatformFriend->IsBlocked();
 			bool bShouldBeBlocked = PlatformBlockedPlayers.Contains(PlatformFriend->GetPlayerPlatformId().UserId);
 			PlatformFriend->SetBlocked(bShouldBeBlocked);
-
-			//$$ DLF BEGIN - Fixed platform blocked players not having a RallyHere UUID to look them up by
-			if (!Friend->GetRHPlayerUuid().IsValid())
-			{
-				Friend->GetRHPlayerUuidAsync();
-			}
-			//$$ DLF END - Fixed platform blocked players not having a RallyHere UUID to look them up by
+			Friend->GetRHPlayerUuidAsync();
 
 			// keep track of friends who have changed blocked status
 			if (bWasBlocked != bShouldBeBlocked)
@@ -961,8 +955,7 @@ void URH_FriendSubsystem::OnOSSBlockListChanged(int32 LocalUserNum, const FStrin
 					}));
 			}
 
-			NewFriend->GetRHPlayerUuidAsync(); //$$ DLF - Fixed platform blocked players not having a RallyHere UUID to look them up by
-
+			NewFriend->GetRHPlayerUuidAsync();
 			UpdatedFriends.Add(NewFriend);
 		}
 	}
@@ -1989,7 +1982,7 @@ bool URH_RHFriendAndPlatformFriend::CanViewPlatformProfile() const
 	}
 
 	const auto* OSS = IOnlineSubsystem::Get();
-	if (OSS == nullptr)
+	if (OSS == nullptr || !RH_PlatformSupportsViewProfile(OSS->GetSubsystemName()))
 	{
 		return false;
 	}
@@ -1999,13 +1992,6 @@ bool URH_RHFriendAndPlatformFriend::CanViewPlatformProfile() const
 	{
 		return false;
 	}
-
-	//$$ DLF BEGIN - Epic doesn't support "View Profile"
-	if (LocalPlayerPlatform == ERHAPI_Platform::Epic)
-	{
-		return false;
-	}
-	//$$ DLF END - Epic doesn't support "View Profile"
 
 	const FRH_PlayerPlatformId& PlatformId = GetPlayerPlatformId(GetPlayerAndPlatformInfo(), PlayerInfoSubsystem, LocalPlayerPlatform.GetValue());
 	if (!PlatformId.IsValid())
