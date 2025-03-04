@@ -69,6 +69,7 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	bAutoAddConnectedPlayersToMatches = true;
 	bAutoCloseMatchOnSessionInactive = true;
 
+	PlayerMatchRecentlyPlayedWithPageSize = 0; // use API default page size
 	PlayerMatchesPageSize = 0; // use API default page size
 	PlayerMatchesMaxPageCount = 5;
 	PlayerMatchesMaxAge = FTimespan(30, 0, 0, 0);
@@ -175,6 +176,7 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	FileDeletePriority = 1000000;
 	GuideSearchGuidesPriority = 1000000;
 	GuideFavoritePriority = 1000000;
+	MatchRecentlyPlayedWith = 1000000;
 }
 
 const FRH_EnvironmentConfiguration* URH_IntegrationSettings::GetEnvironmentConfiguration(const FString& EnvironmentId) const

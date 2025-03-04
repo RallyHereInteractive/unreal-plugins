@@ -169,6 +169,10 @@ public:
 	/** @brief What options should be checked when checking if optimized host map loading can be used (based on HostMapLoadMethod). */
 	TArray<FString> HostMapURLOptionsWhitelist;
 
+	/** @brief Sets the default page size when requesting a player's recently played with */
+	UPROPERTY(EditAnywhere, Config, Category = "Matches|Player History")
+	int32 PlayerMatchRecentlyPlayedWithPageSize;
+
 	/** @brief Sets the default page size when requesting a player's match history */
 	UPROPERTY(EditAnywhere, Config, Category = "Matches|Player History")
 	int32 PlayerMatchesPageSize;
@@ -633,6 +637,9 @@ public:
 	/** @brief Sets the request priority of Guides Favorite calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Guide API Priority", AdvancedDisplay)
 	int32 GuideFavoritePriority;
+	/** @brief Sets the request priority of Match Recent Players calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Match API Priority", AdvancedDisplay)
+	int32 MatchRecentlyPlayedWith;
 };
 
 /** @} */

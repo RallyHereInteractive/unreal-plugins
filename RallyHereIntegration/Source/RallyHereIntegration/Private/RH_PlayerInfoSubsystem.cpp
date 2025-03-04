@@ -229,6 +229,7 @@ URH_PlayerInfo::URH_PlayerInfo(const FObjectInitializer& ObjectInitializer) : Su
 	PlayerSessions = CreateDefaultSubobject<URH_PlayerSessions>(TEXT("PlayerSessions"));
 	PlayerDeserter = CreateDefaultSubobject<URH_PlayerDeserter>(TEXT("PlayerDeserter"));
 	PlayerMatches = CreateDefaultSubobject<URH_PlayerMatches>(TEXT("PlayerMatches"));
+	PlayerRecentlyPlayedWith = CreateDefaultSubobject<URH_PlayerRecentlyPlayedWith>(TEXT("PlayerRecentlyPlayedWith"));
 	PlayerReports = CreateDefaultSubobject<URH_PlayerReports>(TEXT("PlayerReports"));
 	PlayerGuideEngagement = CreateDefaultSubobject<URH_PlayerGuideEngagement>(TEXT("PlayerGuideEngagement"));
 
@@ -1395,6 +1396,40 @@ void URH_PlayerReports::CreateReport(const FRHAPI_PlayerReportCreate& Report, FA
 	);
 
 	Helper->Start(RH_APIs::GetReportsAPI(), Request);
+}
+
+///
+
+URH_PlayerRecentlyPlayedWith::URH_PlayerRecentlyPlayedWith(const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer)
+{
+	PollTimerName = FName(TEXT("PlayerRecentlyPlayedWith"));
+	PollPriority = GetDefault<URH_IntegrationSettings>()->MatchRecentlyPlayedWith;
+}
+
+void URH_PlayerRecentlyPlayedWith::Poll(const FRH_PollCompleteFunc& Delegate)
+{
+	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	typedef GetPlayerRecentlyPlayedWith BaseType;
+
+	auto Request = BaseType::Request();
+	Request.AuthContext = GetPlayerInfo()->GetAuthContext();
+	Request.PlayerUuid = GetPlayerInfo()->GetRHPlayerUuid();
+	int32 DesiredPageSize = GetDefault<URH_IntegrationSettings>()->PlayerMatchRecentlyPlayedWithPageSize;
+	if (DesiredPageSize != 0)
+	{
+		Request.PageSize = DesiredPageSize;
+	}
+	FRH_ObjectVersionCheck::ApplyDefaultGetBehavior(Request, ETag);
+	const auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate::CreateUObject(this, &URH_PlayerRecentlyPlayedWith::Update),
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+		{
+			PollComplete(bSuccess, Delegate);
+		})
+	);
+	Helper->Start(RH_APIs::GetMatchAPI(), Request);
 }
 
 ///

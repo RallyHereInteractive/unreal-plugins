@@ -18,6 +18,7 @@ struct FRHDTW_Friends : public FRH_DebugToolWindow
 	void DoRHFriendTab(URH_FriendSubsystem* pRH_FriendSubsystem);
 	void DoPlatformFriendTab(URH_FriendSubsystem* pRH_FriendSubsystem);
 	void DoBlockedPlayersTab(URH_FriendSubsystem* Urh_FriendSubsystem);
+	void DoRecentPlayers();
 
 	void HandleFetchFriendsList(bool bSuccessful, const FGuid InstigatorUuid);
 	void HandleAddFriend(bool bSuccessful, const FGuid& FriendsPlayerUuid, ERHAPI_FriendshipStatus FriendsStatus, const FGuid InstigatorUuid, const FGuid TargetUuid);

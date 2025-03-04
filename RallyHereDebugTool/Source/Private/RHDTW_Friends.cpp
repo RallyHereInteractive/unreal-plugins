@@ -637,7 +637,79 @@ void FRHDTW_Friends::Do()
 		ImGui::EndTabItem();
 	}
 
+	if (ImGui::BeginTabItem("Recent Players"))
+	{
+		ImGui::BeginChild("Recent Players");
+		DoRecentPlayers();
+		ImGui::EndChild();
+		ImGui::EndTabItem();
+	}
+
 	ImGui::EndTabBar();
+}
+
+void FRHDTW_Friends::DoRecentPlayers()
+{
+	URH_PlayerInfo* Player = GetFirstSelectedPlayerInfo();
+	if (!Player)
+	{
+		ImGui::Text("No selected player");
+		return;
+	}
+
+	URH_PlayerInfoSubsystem* pRH_PlayerInfoSubsystem = nullptr;
+	if (ULocalPlayer* lp = GetFirstSelectedLocalPlayer())
+	{
+		if (URH_LocalPlayerSubsystem* pRHLocalPlayerSubsystem = lp->GetSubsystem<URH_LocalPlayerSubsystem>())
+		{
+			pRH_PlayerInfoSubsystem = pRHLocalPlayerSubsystem->GetPlayerInfoSubsystem();
+		}
+	}
+
+	if (ImGui::Button("Refresh"))
+	{
+		ForEachSelectedRHPlayer(FRHDT_RHPAction::CreateLambda([](URH_PlayerInfo* PlayerInfo)
+		{
+			if (PlayerInfo)
+			{
+				if (auto RecentlyPlayedWith = PlayerInfo->GetRecentlyPlayedWith())
+				{
+					RecentlyPlayedWith->RequestUpdate();
+				}
+			}
+		}));
+	}
+
+	URH_PlayerRecentlyPlayedWith* PlayerRecentlyPlayedWith = Player->GetRecentlyPlayedWith();
+	if (!PlayerRecentlyPlayedWith)
+	{
+		return;
+	}
+
+	if (ImGui::BeginTable("RecentlyPlayedWith", 2, RH_TableFlagsPropSizing))
+	{
+		ImGui::TableSetupColumn("Player UUID");
+		ImGui::TableSetupColumn("Name");
+		ImGui::TableHeadersRow();
+		
+		for (TArray<FRHAPI_RecentlyPlayedPlayer>::TConstIterator Itr(PlayerRecentlyPlayedWith->GetRecentlyPlayedWith()); Itr; ++Itr)
+		{
+			ImGui::TableNextRow();
+			ImGui::TableNextColumn();
+			ImGuiDisplayCopyableValue(TEXT("UUID"), Itr->GetPlayerUuid(), ECopyMode::Value);
+			ImGui::TableNextColumn();
+			if (pRH_PlayerInfoSubsystem)
+			{
+				if (URH_PlayerInfo* OtherPlayerInfo = pRH_PlayerInfoSubsystem->GetPlayerInfo(Itr->GetPlayerUuid()))
+				{
+					FString DisplayName;
+					OtherPlayerInfo->GetLastKnownDisplayName(DisplayName);
+					ImGuiDisplayCopyableValue(TEXT("Name"), DisplayName, ECopyMode::Value);
+				}
+			}
+		}
+		ImGui::EndTable();
+	}
 }
 
 void FRHDTW_Friends::HandleFetchFriendsList(bool bSuccessful, const FGuid InstigatorUuid)
