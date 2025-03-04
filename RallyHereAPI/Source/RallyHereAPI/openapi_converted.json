@@ -23109,9 +23109,9 @@
         "tags": [
           "Match"
         ],
-        "summary": "Get Player Recently Player With",
+        "summary": "Get Player Recently Played With",
         "description": "Get the list of players this player recently played with\n    \nRequired Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`\n\n- For the player themselves : `match:player:self:read`",
-        "operationId": "get_player_recently_player_with",
+        "operationId": "get_player_recently_played_with",
         "security": [
           {
             "HTTPBearerHeadersOrCookie": []
@@ -23139,6 +23139,42 @@
               "title": "Page Size"
             },
             "description": "Number of players to return"
+          },
+          {
+            "name": "if-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information",
+              "title": "If-Match"
+            },
+            "description": "Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.\n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information"
+          },
+          {
+            "name": "if-none-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information",
+              "title": "If-None-Match"
+            },
+            "description": "Precondition check if the resource's current ETag does NOT match the provided values.  * can be used to match existing value, causing the request to fail.  \n\nSee https://www.rfc-editor.org/rfc/rfc9110#name-if-none-match for more information"
           }
         ],
         "responses": {
@@ -23149,6 +23185,25 @@
                 "schema": {
                   "$ref": "#/components/schemas/RecentlyPlayedWithResponse"
                 }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The ETag for the resource.  Used for caching and preconditions."
+              }
+            }
+          },
+          "304": {
+            "description": "The resource has not been modified from the provided preconditions.",
+            "headers": {
+              "ETag": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The ETag for the resource.  Used for caching and preconditions."
               }
             }
           },
@@ -23161,6 +23216,9 @@
                 }
               }
             }
+          },
+          "412": {
+            "description": "The resource does not meet the provided preconditions."
           },
           "422": {
             "description": "Validation Error",
