@@ -258,8 +258,8 @@ protected:
 	 */
 	virtual void PollComplete(bool bSuccess, const FRH_PollCompleteFunc& Delegate)
 	{
-		Delegate.ExecuteIfBound(bSuccess, ShouldPoll());
 		ExecuteUpdatedDelegates(bSuccess);
+		Delegate.ExecuteIfBound(bSuccess, ShouldPoll());
 	}
 	/**
 	 * @brief Handles executing any delegate listeners for the update.
@@ -790,7 +790,38 @@ protected:
 	TArray<FRHAPI_PlayerReport> ReportsReceived;
 };
 
+/**
+ * @brief Player Recent Players class used to store list of recently played with players
+ */
+UCLASS(Config = RallyHereIntegration, DefaultConfig)
+class RALLYHEREINTEGRATION_API URH_PlayerRecentlyPlayedWith : public URH_PlayerInfoSubobject
+{
+	GENERATED_UCLASS_BODY()
+public:
+	typedef RallyHereAPI::Traits_GetPlayerRecentlyPlayedWith GetPlayerRecentlyPlayedWith;
+	
+	/**
+	 * @brief Get the current cached list of guide engagement by this player
+	 */
+	UFUNCTION(BlueprintGetter, Category = "Player Info Subsystem | Player Recently Played With")
+	const TArray<FRHAPI_RecentlyPlayedPlayer>& GetRecentlyPlayedWith() const { return RecentlyPlayedWith; }
+protected:
+	void Poll(const FRH_PollCompleteFunc& Delegate) override;
+	
+	UPROPERTY(BlueprintReadOnly, BlueprintGetter = GetRecentlyPlayedWith, Category = "Player Info Subsystem | Player Recently Played With")
+	TArray<FRHAPI_RecentlyPlayedPlayer> RecentlyPlayedWith;
+	
+	virtual void Update(const GetPlayerRecentlyPlayedWith::Response& Other)
+	{
+		UpdateBase(Other);
 
+		Other.TryGetDefaultHeader_ETag(ETag);
+		if (auto Data = Other.TryGetDefaultContentAsPointer())
+		{
+			RecentlyPlayedWith = Data->GetPlayers();
+		}
+	}
+};
 /**
  * @brief Player Guide Engagement class used to store and update guide engagement (favorites and votes)
  */
@@ -1002,6 +1033,13 @@ public:
 	*/
 	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Info")
 	FORCEINLINE URH_PlayerMatches* GetMatches() const { return PlayerMatches; }
+	
+	/**
+	* @brief Gets The players recently played with class.
+	* @return The players recently played with class.
+	*/
+	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Info")
+	FORCEINLINE URH_PlayerRecentlyPlayedWith* GetRecentlyPlayedWith() const { return PlayerRecentlyPlayedWith; }
 
 	/**
 	* @brief Gets The players reports class.
@@ -1251,6 +1289,11 @@ protected:
 	 */
 	UPROPERTY(BlueprintGetter = GetMatches, Category = "Matches")
 	URH_PlayerMatches* PlayerMatches;
+	/**
+	 * @brief The players Recently Played Information.
+	 */
+	UPROPERTY(BlueprintGetter = GetRecentlyPlayedWith, Category = "Recently Played With")
+	URH_PlayerRecentlyPlayedWith* PlayerRecentlyPlayedWith;
 	/**
 	 * @brief The players Reports Information.
 	 */

@@ -297,6 +297,8 @@ class RALLYHEREINTEGRATION_API URH_RHFriendAndPlatformFriend : public UObject
 	friend class URH_FriendSubsystem;
 
 public:
+	URH_RHFriendAndPlatformFriend();
+	
 	UFUNCTION(BlueprintPure, Category = "RH And Platform Friend")
 	class URH_FriendSubsystem* GetFriendSubsystem() const;
 
@@ -596,7 +598,11 @@ public:
 
 	/** @brief Sets bindings for update callbacks from the player info so it can forward them to this object and the friend subsystem. */
 	void SetPlayerInfoUpdateBindings();
-	
+
+	bool HasRHFriendInfo() const { return bHasRHFriendStatus; }
+	bool PreviouslyHadRHFriendInfo() const { return bPreviousHadRHFriendStatus; }
+	bool IsFirstRHFriendUpdate() const { return bHasRHFriendStatus && !bPreviousHadRHFriendStatus; }
+	void ClearFirstRHFriendUpdate() { bPreviousHadRHFriendStatus = true; }
 protected:
 	/** @brief Player Info and Platform Info combined. */
 	FRH_PlayerAndPlatformInfo PlayerAndPlatformInfo;
@@ -613,6 +619,10 @@ protected:
 	TArray<URH_PlatformFriend*> PlatformFriends;
 	/** @brief ETag of last friend update response */
 	FString Etag;
+	/** @brief Does this object currently have the RH friend data */
+	bool bHasRHFriendStatus;
+	/** @brief Did this object have the RH friend data before the most recent operation on it? */
+	bool bPreviousHadRHFriendStatus;
 	/**
 	 * @brief Passes presence updates of the player on through internal delgates.
 	 * @param PlayerPresence The players precence information.

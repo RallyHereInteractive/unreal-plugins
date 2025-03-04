@@ -86,7 +86,7 @@ TOptional<ERHAPI_GrantType> RH_GetGrantTypeFromOSSName(FName OSSName)
 	return OutGrantType;
 }
 
-bool RH_LookupBoolOSSOverride(FName OSSName, const FString& OverrideMapName)
+bool RH_LookupBoolOSSOverride(FName OSSName, const FString& OverrideMapName, bool bDefault = false)
 {
 	FString OSSNameString = OSSName.ToString();
 
@@ -99,7 +99,7 @@ bool RH_LookupBoolOSSOverride(FName OSSName, const FString& OverrideMapName)
 		}
 	}
 
-	bool bValue = false;
+	bool bValue = bDefault;
 
 	FString VersionedOSSNameString = OSSNameString + FString::Printf(TEXT("_UE%d_%d"), ENGINE_MAJOR_VERSION, ENGINE_MINOR_VERSION);
 
@@ -135,6 +135,11 @@ bool RH_SkipEntitlementFinalization(FName OSSName)
 bool RH_UsesSonyEntitlementTokens(FName OSSName)
 {
 	return RH_LookupBoolOSSOverride(OSSName, TEXT("RH_UsesSonyEntitlementTokensFromOSSName"));
+}
+
+bool RH_PlatformSupportsViewProfile(FName OSSName)
+{
+	return RH_LookupBoolOSSOverride(OSSName, TEXT("RH_PlatformSupportsViewProfileFromOSSName"), true);
 }
 
 FString RH_GetPlatformNameFromPlatformEnum(const ERHAPI_Platform Platform)

@@ -1,4 +1,4 @@
-// Copyright 2022-2023 RallyHere Interactive
+// Copyright 2023-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 #include "RH_FriendSubsystem.h"
 #include "RH_GameInstanceSubsystem.h"
@@ -204,7 +204,13 @@ void URH_FriendSubsystem::OnFetchFriendsListResponse(const GetFriendsListType::R
 		TArray<URH_RHFriendAndPlatformFriend*> UpdatedFriends;
 		for (auto NewFriend : Content->Friends)
 		{
-			auto UpdatedFriend = GetOrAddFriend(NewFriend.GetFriendsPlayerUuid());
+			auto UpdatedFriend = GetFriendByUuid(NewFriend.GetFriendsPlayerUuid());
+			bool bIsNew = UpdatedFriend == nullptr;
+			if (bIsNew)
+			{
+				UpdatedFriend = CreateFriendObject(NewFriend.GetFriendsPlayerUuid());
+				UpdatedFriend->PreviousRHFriendshipStatus = NewFriend.Status;
+			}
 			
 			if (UpdatedFriend->LastModifiedOn != NewFriend.LastModifiedOn)
 			{
@@ -221,7 +227,9 @@ void URH_FriendSubsystem::OnFetchFriendsListResponse(const GetFriendsListType::R
 						}
 					}));
 			}
-
+			
+			UpdatedFriend->bPreviousHadRHFriendStatus = !bIsNew && UpdatedFriend->bHasRHFriendStatus;
+			UpdatedFriend->bHasRHFriendStatus = true;
 			UpdatedFriend->RHFriendshipStatus = NewFriend.Status;
 			UpdatedFriend->LastModifiedOn = NewFriend.LastModifiedOn;
 			NewFriend.GetNotes(UpdatedFriend->Notes);
@@ -283,8 +291,16 @@ void URH_FriendSubsystem::OnFetchFriendResponse(const GetFriendRelationshipType:
 	const auto NewFriend = Resp.TryGetDefaultContentAsPointer();
 	if (Resp.IsSuccessful() && NewFriend != nullptr)
 	{
-		URH_RHFriendAndPlatformFriend* UpdatedFriend = GetOrAddFriend(NewFriend->GetFriendsPlayerUuid());
+		URH_RHFriendAndPlatformFriend* UpdatedFriend = GetFriendByUuid(NewFriend->GetFriendsPlayerUuid());
+		bool bIsNew = UpdatedFriend == nullptr;
+		if (bIsNew)
+		{
+			UpdatedFriend = CreateFriendObject(NewFriend->GetFriendsPlayerUuid());
+			UpdatedFriend->PreviousRHFriendshipStatus = NewFriend->GetStatus();
+		}
 		
+		UpdatedFriend->bPreviousHadRHFriendStatus = !bIsNew && UpdatedFriend->bHasRHFriendStatus;
+		UpdatedFriend->bHasRHFriendStatus = true;
 		UpdatedFriend->RHFriendshipStatus = NewFriend->GetStatus();
 		UpdatedFriend->LastModifiedOn = NewFriend->GetLastModifiedOn();
 		Resp.TryGetDefaultHeader_ETag(UpdatedFriend->Etag);
@@ -312,17 +328,6 @@ URH_RHFriendAndPlatformFriend* URH_FriendSubsystem::CreateFriendObject(const FGu
 	
 	Friends.Add(Friend);
 
-	return Friend;
-}
-
-URH_RHFriendAndPlatformFriend* URH_FriendSubsystem::GetOrAddFriend(const FGuid& PlayerUuid)
-{
-	auto Friend = GetFriendByUuid(PlayerUuid);
-	if (Friend == nullptr)
-	{
-		Friend = CreateFriendObject(PlayerUuid);
-	}
-	
 	return Friend;
 }
 
@@ -419,8 +424,16 @@ void URH_FriendSubsystem::OnAddFriendResponse(const AddFriendType::Response& Res
 	const auto NewFriend = Resp.TryGetDefaultContentAsPointer();
 	if (Resp.IsSuccessful() && NewFriend != nullptr)
 	{
-		URH_RHFriendAndPlatformFriend* UpdatedFriend = GetOrAddFriend(NewFriend->GetFriendsPlayerUuid());
+		URH_RHFriendAndPlatformFriend* UpdatedFriend = GetFriendByUuid(NewFriend->GetFriendsPlayerUuid());
+		bool bIsNew = UpdatedFriend == nullptr;
+		if (bIsNew)
+		{
+			UpdatedFriend = CreateFriendObject(NewFriend->GetFriendsPlayerUuid());
+			UpdatedFriend->PreviousRHFriendshipStatus = NewFriend->GetStatus();
+		}
 		
+		UpdatedFriend->bPreviousHadRHFriendStatus = !bIsNew && UpdatedFriend->bHasRHFriendStatus;
+		UpdatedFriend->bHasRHFriendStatus = true;
 		UpdatedFriend->PreviousRHFriendshipStatus = UpdatedFriend->RHFriendshipStatus;
 		UpdatedFriend->RHFriendshipStatus = NewFriend->GetStatus();
 		UpdatedFriend->LastModifiedOn = NewFriend->GetLastModifiedOn();
@@ -903,6 +916,7 @@ void URH_FriendSubsystem::OnOSSBlockListChanged(int32 LocalUserNum, const FStrin
 			bool bWasBlocked = PlatformFriend->IsBlocked();
 			bool bShouldBeBlocked = PlatformBlockedPlayers.Contains(PlatformFriend->GetPlayerPlatformId().UserId);
 			PlatformFriend->SetBlocked(bShouldBeBlocked);
+			Friend->GetRHPlayerUuidAsync();
 
 			// keep track of friends who have changed blocked status
 			if (bWasBlocked != bShouldBeBlocked)
@@ -928,7 +942,20 @@ void URH_FriendSubsystem::OnOSSBlockListChanged(int32 LocalUserNum, const FStrin
 			NewFriend->PlatformFriends.Add(PlatformFriend);
 			NewFriend->PlayerAndPlatformInfo.PlayerPlatformId = PlayerPlatformId;
 			Friends.Add(NewFriend);
-			
+
+			if (const auto pRH_PlayerInfoSubsystem = GetRH_PlayerInfoSubsystem())
+			{
+				TWeakObjectPtr<URH_RHFriendAndPlatformFriend> WeakFriend = NewFriend;
+				pRH_PlayerInfoSubsystem->LookupPlayerByPlatformUserId(PlayerPlatformId, FRH_PlayerInfoLookupPlayerDelegate::CreateLambda([WeakFriend](bool bSuccess, const TArray<URH_PlayerInfo*>& PlayerInfos)
+					{
+						if (bSuccess && WeakFriend.IsValid() && PlayerInfos.IsValidIndex(0) && PlayerInfos[0] != nullptr)
+						{
+							WeakFriend->PlayerAndPlatformInfo.PlayerUuid = PlayerInfos[0]->GetRHPlayerUuid();
+						}
+					}));
+			}
+
+			NewFriend->GetRHPlayerUuidAsync();
 			UpdatedFriends.Add(NewFriend);
 		}
 	}
@@ -1168,7 +1195,11 @@ URH_RHFriendAndPlatformFriend* URH_FriendSubsystem::GetOrCreateFriend(URH_Player
 		return nullptr;
 	}
 
-	return GetOrAddFriend(PlayerInfo->GetRHPlayerUuid());
+	if (URH_RHFriendAndPlatformFriend* Friend = GetFriendByUuid(PlayerInfo->GetRHPlayerUuid()))
+	{
+		return Friend;
+	}
+	return CreateFriendObject(PlayerInfo->GetRHPlayerUuid());
 }
 
 URH_RHFriendAndPlatformFriend* URH_FriendSubsystem::GetFriendByPlayerInfo(URH_PlayerInfo* PlayerInfo) const
@@ -1898,6 +1929,20 @@ void URH_FriendSubsystem::UpdateRecentPlayerForOSS(const URH_LocalPlayerSubsyste
 
 ///
 
+URH_RHFriendAndPlatformFriend::URH_RHFriendAndPlatformFriend() :
+	Super(),
+	PlayerAndPlatformInfo{},
+	RHFriendshipStatus{},
+	PreviousRHFriendshipStatus{},
+	LastModifiedOn{},
+	Notes{},
+	PlatformFriends{},
+	Etag{},
+	bHasRHFriendStatus{},
+	bPreviousHadRHFriendStatus{}
+{
+}
+
 URH_FriendSubsystem* URH_RHFriendAndPlatformFriend::GetFriendSubsystem() const
 {
 	return CastChecked<URH_FriendSubsystem>(GetOuter());
@@ -1937,7 +1982,7 @@ bool URH_RHFriendAndPlatformFriend::CanViewPlatformProfile() const
 	}
 
 	const auto* OSS = IOnlineSubsystem::Get();
-	if (OSS == nullptr)
+	if (OSS == nullptr || !RH_PlatformSupportsViewProfile(OSS->GetSubsystemName()))
 	{
 		return false;
 	}
@@ -2146,5 +2191,4 @@ void URH_RHFriendAndPlatformFriend::SetPlayerInfoUpdateBindings()
 		OnPresenceUpdatedDelegate.AddUObject(FriendSubsystem, &URH_FriendSubsystem::OnPresenceUpdated);
 	}
 }
-
 

@@ -13,6 +13,7 @@ title: PlayerInfo
 `class `[`URH_PlayerDeserter`](#classURH__PlayerDeserter) | Player Deserters class used to store player deserter information.
 `class `[`URH_PlayerMatches`](#classURH__PlayerMatches) | Player Matches class used to store player match history information.
 `class `[`URH_PlayerReports`](#classURH__PlayerReports) | Player Reports class used to store and send player report information.
+`class `[`URH_PlayerRecentlyPlayedWith`](#classURH__PlayerRecentlyPlayedWith) | Player Recent Players class used to store list of recently played with players.
 `class `[`URH_PlayerGuideEngagement`](#classURH__PlayerGuideEngagement) | Player Guide Engagement class used to store and update guide engagement (favorites and votes)
 `class `[`URH_PlayerPlatformInfo`](#classURH__PlayerPlatformInfo) | Stores information a specific platform the player has linked to their account.
 `class `[`URH_PlayerInfo`](#classURH__PlayerInfo) | Stores and fetchs all the information about a given player.
@@ -642,6 +643,44 @@ Create a new report for the target player with a specific auth context.
 
 #### `typedef `[`CreateReportType`](#classURH__PlayerReports_1a6b101fa42b9857a05a752b07cade837d) <a id="classURH__PlayerReports_1a6b101fa42b9857a05a752b07cade837d"></a>
 
+## class `URH_PlayerRecentlyPlayedWith` <a id="classURH__PlayerRecentlyPlayedWith"></a>
+
+```
+class URH_PlayerRecentlyPlayedWith
+  : public URH_PlayerInfoSubobject
+```
+
+Player Recent Players class used to store list of recently played with players.
+
+### Summary
+
+ Members                        | Descriptions                                
+--------------------------------|---------------------------------------------
+`public inline const TArray< `[`FRHAPI_RecentlyPlayedPlayer`](RHAPI_RecentlyPlayedPlayer.md#structFRHAPI__RecentlyPlayedPlayer)` > & `[`GetRecentlyPlayedWith`](#classURH__PlayerRecentlyPlayedWith_1a74df1d48f573569a976c167dc73ecf63)`() const` | Get the current cached list of guide engagement by this player.
+`protected TArray< `[`FRHAPI_RecentlyPlayedPlayer`](RHAPI_RecentlyPlayedPlayer.md#structFRHAPI__RecentlyPlayedPlayer)` > `[`RecentlyPlayedWith`](#classURH__PlayerRecentlyPlayedWith_1a290ca2fafdcbfa9ffa31262c959f1ada) | 
+`protected virtual void `[`Poll`](#classURH__PlayerRecentlyPlayedWith_1a49f8aeba81382aa0776987b35afcd0e3)`(const FRH_PollCompleteFunc & Delegate)` | Starts a poll of the object data.
+`protected inline virtual void `[`Update`](#classURH__PlayerRecentlyPlayedWith_1aafa128b440a1b9b27cd29e3806e9926b)`(const GetPlayerRecentlyPlayedWith::Response & Other)` | 
+`typedef `[`GetPlayerRecentlyPlayedWith`](#classURH__PlayerRecentlyPlayedWith_1a01cb99587a23e231e3286ab060f1c25b) | 
+
+### Members
+
+#### `public inline const TArray< `[`FRHAPI_RecentlyPlayedPlayer`](RHAPI_RecentlyPlayedPlayer.md#structFRHAPI__RecentlyPlayedPlayer)` > & `[`GetRecentlyPlayedWith`](#classURH__PlayerRecentlyPlayedWith_1a74df1d48f573569a976c167dc73ecf63)`() const` <a id="classURH__PlayerRecentlyPlayedWith_1a74df1d48f573569a976c167dc73ecf63"></a>
+
+Get the current cached list of guide engagement by this player.
+
+#### `protected TArray< `[`FRHAPI_RecentlyPlayedPlayer`](RHAPI_RecentlyPlayedPlayer.md#structFRHAPI__RecentlyPlayedPlayer)` > `[`RecentlyPlayedWith`](#classURH__PlayerRecentlyPlayedWith_1a290ca2fafdcbfa9ffa31262c959f1ada) <a id="classURH__PlayerRecentlyPlayedWith_1a290ca2fafdcbfa9ffa31262c959f1ada"></a>
+
+#### `protected virtual void `[`Poll`](#classURH__PlayerRecentlyPlayedWith_1a49f8aeba81382aa0776987b35afcd0e3)`(const FRH_PollCompleteFunc & Delegate)` <a id="classURH__PlayerRecentlyPlayedWith_1a49f8aeba81382aa0776987b35afcd0e3"></a>
+
+Starts a poll of the object data.
+
+#### Parameters
+* `Delegate` Callback delegate for the poll.
+
+#### `protected inline virtual void `[`Update`](#classURH__PlayerRecentlyPlayedWith_1aafa128b440a1b9b27cd29e3806e9926b)`(const GetPlayerRecentlyPlayedWith::Response & Other)` <a id="classURH__PlayerRecentlyPlayedWith_1aafa128b440a1b9b27cd29e3806e9926b"></a>
+
+#### `typedef `[`GetPlayerRecentlyPlayedWith`](#classURH__PlayerRecentlyPlayedWith_1a01cb99587a23e231e3286ab060f1c25b) <a id="classURH__PlayerRecentlyPlayedWith_1a01cb99587a23e231e3286ab060f1c25b"></a>
+
 ## class `URH_PlayerGuideEngagement` <a id="classURH__PlayerGuideEngagement"></a>
 
 ```
@@ -811,6 +850,7 @@ Stores and fetchs all the information about a given player.
 `public inline FORCEINLINE `[`URH_PlayerSessions`](PlayerInfo.md#classURH__PlayerSessions)` * `[`GetSessions`](#classURH__PlayerInfo_1a2792b9d33049abbb1914e7a30aefc5d0)`() const` | Gets The players sessions class.
 `public inline FORCEINLINE `[`URH_PlayerDeserter`](PlayerInfo.md#classURH__PlayerDeserter)` * `[`GetDeserter`](#classURH__PlayerInfo_1ae0f62a5c1c239065cf553b271028df78)`() const` | Gets The players deserter class.
 `public inline FORCEINLINE `[`URH_PlayerMatches`](PlayerInfo.md#classURH__PlayerMatches)` * `[`GetMatches`](#classURH__PlayerInfo_1adf80a62480686f8a0a07df3984549e6d)`() const` | Gets The players matches class.
+`public inline FORCEINLINE `[`URH_PlayerRecentlyPlayedWith`](PlayerInfo.md#classURH__PlayerRecentlyPlayedWith)` * `[`GetRecentlyPlayedWith`](#classURH__PlayerInfo_1a8dddb52b8d043d8946b8019e90e13194)`() const` | Gets The players recently played with class.
 `public inline FORCEINLINE `[`URH_PlayerReports`](PlayerInfo.md#classURH__PlayerReports)` * `[`GetReports`](#classURH__PlayerInfo_1a4c837d7a547fd1cf311315834e0416d1)`() const` | Gets The players reports class.
 `public inline FORCEINLINE `[`URH_PlayerGuideEngagement`](PlayerInfo.md#classURH__PlayerGuideEngagement)` * `[`GetGuideEngagement`](#classURH__PlayerInfo_1a2131dce1c13fb73eac8a52bef55a4bf6)`() const` | Gets The players Guide engagement class.
 `public inline virtual TArray< `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` > & `[`GetPlayerPlatformIds`](#classURH__PlayerInfo_1a3a419c311ffbd17b766e293407663f1c)`()` | Gets the associated platform ids of the player.
@@ -843,6 +883,7 @@ Stores and fetchs all the information about a given player.
 `protected `[`URH_PlayerSessions`](PlayerInfo.md#classURH__PlayerSessions)` * `[`PlayerSessions`](#classURH__PlayerInfo_1a7af4d09bb83333d3028bc9a94cf067fd) | The players Sessions Information.
 `protected `[`URH_PlayerDeserter`](PlayerInfo.md#classURH__PlayerDeserter)` * `[`PlayerDeserter`](#classURH__PlayerInfo_1ae80f624b84391b5e096fcca335c8e8e4) | The players Deserter Information.
 `protected `[`URH_PlayerMatches`](PlayerInfo.md#classURH__PlayerMatches)` * `[`PlayerMatches`](#classURH__PlayerInfo_1a1f355fbb71f17bc3bb40283c931138aa) | The players Matches Information.
+`protected `[`URH_PlayerRecentlyPlayedWith`](PlayerInfo.md#classURH__PlayerRecentlyPlayedWith)` * `[`PlayerRecentlyPlayedWith`](#classURH__PlayerInfo_1aa0e6141159de5642088e422efe871b3c) | The players Recently Played Information.
 `protected `[`URH_PlayerReports`](PlayerInfo.md#classURH__PlayerReports)` * `[`PlayerReports`](#classURH__PlayerInfo_1a99a08ebcbd1c9c030f1d4ca7f9fcb572) | The players Reports Information.
 `protected `[`URH_PlayerGuideEngagement`](PlayerInfo.md#classURH__PlayerGuideEngagement)` * `[`PlayerGuideEngagement`](#classURH__PlayerInfo_1aa7c569ce12168e33685201a4d99bcb5d) | The players Guide Engagement Information.
 `protected `[`URH_PlayerInventory`](Inventory.md#classURH__PlayerInventory)` * `[`PlayerInventory`](#classURH__PlayerInfo_1ab06228dae3921d141dbbf2bf895c55da) | The Players Inventory Subsystem.
@@ -902,6 +943,13 @@ Gets The players matches class.
 
 #### Returns
 The players matches class.
+
+#### `public inline FORCEINLINE `[`URH_PlayerRecentlyPlayedWith`](PlayerInfo.md#classURH__PlayerRecentlyPlayedWith)` * `[`GetRecentlyPlayedWith`](#classURH__PlayerInfo_1a8dddb52b8d043d8946b8019e90e13194)`() const` <a id="classURH__PlayerInfo_1a8dddb52b8d043d8946b8019e90e13194"></a>
+
+Gets The players recently played with class.
+
+#### Returns
+The players recently played with class.
 
 #### `public inline FORCEINLINE `[`URH_PlayerReports`](PlayerInfo.md#classURH__PlayerReports)` * `[`GetReports`](#classURH__PlayerInfo_1a4c837d7a547fd1cf311315834e0416d1)`() const` <a id="classURH__PlayerInfo_1a4c837d7a547fd1cf311315834e0416d1"></a>
 
@@ -1152,6 +1200,10 @@ The players Deserter Information.
 #### `protected `[`URH_PlayerMatches`](PlayerInfo.md#classURH__PlayerMatches)` * `[`PlayerMatches`](#classURH__PlayerInfo_1a1f355fbb71f17bc3bb40283c931138aa) <a id="classURH__PlayerInfo_1a1f355fbb71f17bc3bb40283c931138aa"></a>
 
 The players Matches Information.
+
+#### `protected `[`URH_PlayerRecentlyPlayedWith`](PlayerInfo.md#classURH__PlayerRecentlyPlayedWith)` * `[`PlayerRecentlyPlayedWith`](#classURH__PlayerInfo_1aa0e6141159de5642088e422efe871b3c) <a id="classURH__PlayerInfo_1aa0e6141159de5642088e422efe871b3c"></a>
+
+The players Recently Played Information.
 
 #### `protected `[`URH_PlayerReports`](PlayerInfo.md#classURH__PlayerReports)` * `[`PlayerReports`](#classURH__PlayerInfo_1a99a08ebcbd1c9c030f1d4ca7f9fcb572) <a id="classURH__PlayerInfo_1a99a08ebcbd1c9c030f1d4ca7f9fcb572"></a>
 
