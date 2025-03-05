@@ -116,6 +116,10 @@
     {
       "name": "Ad",
       "description": "Ad endpoints are used to present ads to users, and grant rewards to them for doing so.\n\nThe system uses an external ad provider to present opportunities to the user.  Currently, the only supported provider is Unity Ads.  Please contact your RallyHere representative for more information.\n\nNote that each endpoint can return a `x-hz-ad-api-token` header, which should be reused whenever possible for future requests.  This is an optimization that should improve future request times, as they won't require a secondary authentication with the external ad provider.\n"
+    },
+    {
+      "name": "Leaderboard",
+      "description": "\nThis API is for requesting leaderboard data and the configuration around it\n"
     }
   ],
   "paths": {
@@ -32422,6 +32426,450 @@
           }
         }
       }
+    },
+    "/leaderboard/v1/leaderboard/{leaderboard_id}": {
+      "get": {
+        "tags": [
+          "Leaderboard"
+        ],
+        "summary": "Get Leaderboard",
+        "description": "Get a paged response for a leaderboard",
+        "operationId": "get_leaderboard",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "leaderboard_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Leaderboard Id"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Cursor for which page of leaderboard data you would like to retrieve",
+              "title": "Cursor"
+            },
+            "description": "Cursor for which page of leaderboard data you would like to retrieve"
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "maximum": 50,
+              "description": "The desired page size for the results",
+              "title": "Page Size"
+            },
+            "description": "The desired page size for the results"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeaderboardPage"
+                }
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leaderboard/v1/leaderboard/{leaderboard_id}/player/{player_uuid}": {
+      "get": {
+        "tags": [
+          "Leaderboard"
+        ],
+        "summary": "Get Friend Leaderboard",
+        "description": "Get a paged response for a friend leaderboard",
+        "operationId": "get_friend_leaderboard",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "leaderboard_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Leaderboard Id"
+            }
+          },
+          {
+            "name": "player_uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Cursor for which page of leaderboard data you would like to retrieve",
+              "title": "Cursor"
+            },
+            "description": "Cursor for which page of leaderboard data you would like to retrieve"
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "maximum": 50,
+              "description": "The desired page size for the results",
+              "title": "Page Size"
+            },
+            "description": "The desired page size for the results"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeaderboardPage"
+                }
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leaderboard/v1/leaderboard/{leaderboard_id}/metadata": {
+      "get": {
+        "tags": [
+          "Leaderboard"
+        ],
+        "summary": "Get Leaderboard Meta Data",
+        "description": "Get metadata about a specific leaderboard",
+        "operationId": "get_leaderboard_meta_data",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "leaderboard_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Leaderboard Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeaderboardMetaData"
+                }
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leaderboard/v1/leaderboard/{leaderboard_id}/position/{leaderboard_position}": {
+      "get": {
+        "tags": [
+          "Leaderboard"
+        ],
+        "summary": "Get Leaderboard Position Entry",
+        "description": "Get a leaderboard entry at a specific position",
+        "operationId": "get_leaderboard_position_entry",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "leaderboard_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Leaderboard Id"
+            }
+          },
+          {
+            "name": "leaderboard_position",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Leaderboard Position"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeaderboardPage"
+                }
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leaderboard/v1/config/leaderboard": {
+      "get": {
+        "tags": [
+          "Leaderboard"
+        ],
+        "summary": "Get All Leaderboard Config",
+        "description": "Get the leaderboard config for all leaderboards",
+        "operationId": "get_all_leaderboard_config",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeaderboardConfigList"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/leaderboard/v1/config/leaderboard/{leaderboard_id}": {
+      "get": {
+        "tags": [
+          "Leaderboard"
+        ],
+        "summary": "Get Leaderboard Config",
+        "description": "Get the leaderboard config for a specific leaderboard",
+        "operationId": "get_leaderboard_config",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "leaderboard_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Leaderboard Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeaderboardConfig"
+                }
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -53566,6 +54014,238 @@
           "User started watching the ad",
           "User finished watching the ad",
           "User stopped watching the ad partway through"
+        ]
+      },
+      "LeaderboardConfig": {
+        "properties": {
+          "leaderboard_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Leaderboard Id",
+            "description": "Unique ID for this leaderboard"
+          },
+          "player_list": {
+            "$ref": "#/components/schemas/PlayerListType",
+            "description": "The player scope of this leaderboard"
+          },
+          "max_size": {
+            "type": "integer",
+            "maximum": 10000,
+            "exclusiveMinimum": true,
+            "title": "Max Size",
+            "description": "The maximum size this leaderboard can reach",
+            "minimum": 0
+          },
+          "sort_order": {
+            "$ref": "#/components/schemas/LeaderboardSortOrder",
+            "description": "The sorting type this leaderboard"
+          },
+          "source": {
+            "$ref": "#/components/schemas/LeaderboardSource",
+            "description": "The data source for this leaderboard"
+          },
+          "source_id": {
+            "type": "string",
+            "title": "Source Id",
+            "description": "Unique Item or Rank ID for the data source of this leaderboard"
+          },
+          "remove_restricted": {
+            "type": "boolean",
+            "title": "Remove Restricted",
+            "description": "Whether or not restricted accounts (eg banned) should be removed from this leaderboard",
+            "default": true
+          },
+          "required_recent_login_days": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "exclusiveMinimum": true,
+                "minimum": 0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Required Recent Login Days",
+            "description": "How recently the account must have logged in to be included in the leaderboard"
+          },
+          "update_frequency_seconds": {
+            "type": "integer",
+            "minimum": 60,
+            "title": "Update Frequency Seconds",
+            "description": "How frequently the data for this leaderboard should be requested"
+          },
+          "expose_stat": {
+            "type": "boolean",
+            "title": "Expose Stat",
+            "description": "Whether or not the value of the stat that determines this leaderboard should be exposed when the leaderboard is queried",
+            "default": false
+          },
+          "expose_players": {
+            "type": "boolean",
+            "title": "Expose Players",
+            "description": "Whether or not individual player stats should be saved in the leaderboard, or if only the metadata can be returned",
+            "default": true
+          }
+        },
+        "type": "object",
+        "required": [
+          "leaderboard_id",
+          "player_list",
+          "max_size",
+          "sort_order",
+          "source",
+          "source_id",
+          "update_frequency_seconds"
+        ],
+        "title": "LeaderboardConfig"
+      },
+      "LeaderboardConfigList": {
+        "properties": {
+          "leaderboard_configs": {
+            "items": {
+              "$ref": "#/components/schemas/LeaderboardConfig"
+            },
+            "type": "array",
+            "title": "Leaderboard Configs",
+            "description": "List of leaderboard configs"
+          }
+        },
+        "type": "object",
+        "required": [
+          "leaderboard_configs"
+        ],
+        "title": "LeaderboardConfigList"
+      },
+      "LeaderboardEntry": {
+        "properties": {
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "Unique ID for the player in this leaderboard entry"
+          },
+          "stat_value": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stat Value",
+            "description": "Value for the stat of this leaderboard entry"
+          }
+        },
+        "type": "object",
+        "required": [
+          "player_uuid"
+        ],
+        "title": "LeaderboardEntry"
+      },
+      "LeaderboardMetaData": {
+        "properties": {
+          "entry_count": {
+            "type": "integer",
+            "minimum": 0,
+            "title": "Entry Count",
+            "description": "The number of entries in this leaderboard"
+          },
+          "last_updated_datetime": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "When this leaderboard was last updated",
+            "example": "2023-01-23T21:07:02.000000+00:00"
+          }
+        },
+        "type": "object",
+        "required": [
+          "entry_count",
+          "last_updated_datetime"
+        ],
+        "title": "LeaderboardMetaData"
+      },
+      "LeaderboardPage": {
+        "properties": {
+          "leaderboard_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Leaderboard Id",
+            "description": "Which leaderboard config is used for this leaderboard"
+          },
+          "cursor": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Cursor",
+            "description": "The cursor for the next page of results. 0 means there are no more"
+          },
+          "entries": {
+            "items": {
+              "$ref": "#/components/schemas/LeaderboardEntry"
+            },
+            "type": "array",
+            "title": "Entries",
+            "description": "List of leaderboard entries"
+          }
+        },
+        "type": "object",
+        "required": [
+          "leaderboard_id",
+          "cursor",
+          "entries"
+        ],
+        "title": "LeaderboardPage"
+      },
+      "LeaderboardSource": {
+        "type": "string",
+        "enum": [
+          "INVENTORY",
+          "RANK"
+        ],
+        "title": "LeaderboardSource",
+        "x-enum-descriptions": [
+          "",
+          ""
+        ],
+        "x-enum-varnames": [
+          "INVENTORY",
+          "RANK"
+        ]
+      },
+      "PlayerListType": {
+        "type": "string",
+        "enum": [
+          "GLOBAL",
+          "FRIENDS"
+        ],
+        "title": "PlayerListType",
+        "x-enum-descriptions": [
+          "",
+          ""
+        ],
+        "x-enum-varnames": [
+          "GLOBAL",
+          "FRIENDS"
+        ]
+      },
+      "LeaderboardSortOrder": {
+        "type": "string",
+        "enum": [
+          "asc",
+          "desc"
+        ],
+        "title": "SortOrder",
+        "x-enum-descriptions": [
+          "",
+          ""
+        ],
+        "x-enum-varnames": [
+          "ASC",
+          "DESC"
         ]
       }
     }

@@ -136,6 +136,14 @@ Private/KeyClaim.cpp
 Private/KeyClaims.cpp
 Private/KeyClaimsAPI.cpp
 Private/KeyType.cpp
+Private/LeaderboardAPI.cpp
+Private/LeaderboardConfig.cpp
+Private/LeaderboardConfigList.cpp
+Private/LeaderboardEntry.cpp
+Private/LeaderboardMetaData.cpp
+Private/LeaderboardPage.cpp
+Private/LeaderboardSortOrder.cpp
+Private/LeaderboardSource.cpp
 Private/LinkAction.cpp
 Private/LocationInner.cpp
 Private/LoginHistoryEntry.cpp
@@ -252,6 +260,7 @@ Private/PlayerInviteRequest.cpp
 Private/PlayerIterateResponse.cpp
 Private/PlayerLastSeenUpdate.cpp
 Private/PlayerLinkedPortalsResponse.cpp
+Private/PlayerListType.cpp
 Private/PlayerMoveRequest.cpp
 Private/PlayerOrder.cpp
 Private/PlayerOrderCreateInput.cpp
@@ -543,6 +552,14 @@ Public/KeyClaim.h
 Public/KeyClaims.h
 Public/KeyClaimsAPI.h
 Public/KeyType.h
+Public/LeaderboardAPI.h
+Public/LeaderboardConfig.h
+Public/LeaderboardConfigList.h
+Public/LeaderboardEntry.h
+Public/LeaderboardMetaData.h
+Public/LeaderboardPage.h
+Public/LeaderboardSortOrder.h
+Public/LeaderboardSource.h
 Public/LinkAction.h
 Public/LocationInner.h
 Public/LoginHistoryEntry.h
@@ -659,6 +676,7 @@ Public/PlayerInviteRequest.h
 Public/PlayerIterateResponse.h
 Public/PlayerLastSeenUpdate.h
 Public/PlayerLinkedPortalsResponse.h
+Public/PlayerListType.h
 Public/PlayerMoveRequest.h
 Public/PlayerOrder.h
 Public/PlayerOrderCreateInput.h

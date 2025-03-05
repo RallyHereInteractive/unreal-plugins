@@ -18,6 +18,7 @@ FRallyHereAPIAll::FRallyHereAPIAll()
 	, Guide(MakeShareable(new FGuideAPI()))
 	, Inventory(MakeShareable(new FInventoryAPI()))
 	, KeyClaims(MakeShareable(new FKeyClaimsAPI()))
+	, Leaderboard(MakeShareable(new FLeaderboardAPI()))
 	, Match(MakeShareable(new FMatchAPI()))
 	, Notification(MakeShareable(new FNotificationAPI()))
 	, PlayerExperience(MakeShareable(new FPlayerExperienceAPI()))
@@ -44,6 +45,7 @@ FRallyHereAPIAll::FRallyHereAPIAll()
 	AllAPIs.Add(Guide);
 	AllAPIs.Add(Inventory);
 	AllAPIs.Add(KeyClaims);
+	AllAPIs.Add(Leaderboard);
 	AllAPIs.Add(Match);
 	AllAPIs.Add(Notification);
 	AllAPIs.Add(PlayerExperience);
@@ -190,6 +192,16 @@ TSharedRef<FKeyClaimsAPI> FRallyHereAPIAll::GetKeyClaims()
 const TSharedRef<FKeyClaimsAPI> FRallyHereAPIAll::GetKeyClaims() const
 {
 	return KeyClaims;
+}
+
+TSharedRef<FLeaderboardAPI> FRallyHereAPIAll::GetLeaderboard()
+{
+	return Leaderboard;
+}
+
+const TSharedRef<FLeaderboardAPI> FRallyHereAPIAll::GetLeaderboard() const
+{
+	return Leaderboard;
 }
 
 TSharedRef<FMatchAPI> FRallyHereAPIAll::GetMatch()

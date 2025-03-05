@@ -22,6 +22,7 @@
 #include "GuideAPI.h"
 #include "InventoryAPI.h"
 #include "KeyClaimsAPI.h"
+#include "LeaderboardAPI.h"
 #include "MatchAPI.h"
 #include "NotificationAPI.h"
 #include "PlayerExperienceAPI.h"
@@ -86,6 +87,9 @@ public:
 	TSharedRef<FKeyClaimsAPI> GetKeyClaims();
 	const TSharedRef<FKeyClaimsAPI> GetKeyClaims() const;
 
+	TSharedRef<FLeaderboardAPI> GetLeaderboard();
+	const TSharedRef<FLeaderboardAPI> GetLeaderboard() const;
+
 	TSharedRef<FMatchAPI> GetMatch();
 	const TSharedRef<FMatchAPI> GetMatch() const;
 
@@ -134,6 +138,7 @@ private:
 	TSharedRef<FGuideAPI> Guide;
 	TSharedRef<FInventoryAPI> Inventory;
 	TSharedRef<FKeyClaimsAPI> KeyClaims;
+	TSharedRef<FLeaderboardAPI> Leaderboard;
 	TSharedRef<FMatchAPI> Match;
 	TSharedRef<FNotificationAPI> Notification;
 	TSharedRef<FPlayerExperienceAPI> PlayerExperience;
