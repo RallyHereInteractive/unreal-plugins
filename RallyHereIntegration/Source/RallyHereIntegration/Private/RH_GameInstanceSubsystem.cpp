@@ -22,6 +22,7 @@
 #include "RH_MatchSubsystem.h"
 #include "RH_RemoteFileSubsystem.h"
 #include "RH_GuideSubsystem.h"
+#include "RH_LeaderboardSubsystem.h"
 
 #include "RH_SessionBrowser.h"
 #include "RH_MatchmakingBrowser.h"
@@ -84,6 +85,7 @@ void URH_GameInstanceSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 	MatchSubsystem = AddSubsystemPlugin<URH_MatchSubsystem>(Settings->MatchSubsystemClass);
 	RemoteFileSubsystem = AddSubsystemPlugin<URH_RemoteFileSubsystem>(Settings->RemoteFileSubsystemClass);
 	GuideSubsystem = AddSubsystemPlugin<URH_GuideSubsystem>(Settings->GuideSubsystemClass);
+	LeaderboardSubsystem = AddSubsystemPlugin<URH_LeaderboardSubsystem>(Settings->LeaderboardSubsystemClass);
 
 	if (bEnableSessionBrowser)
 	{
@@ -126,6 +128,7 @@ void URH_GameInstanceSubsystem::Deinitialize()
 	GuideSubsystem = nullptr;
 	SessionSearchCache = nullptr;
 	MatchmakingCache = nullptr;
+	LeaderboardSubsystem = nullptr;
 
 	if (AppSuspendHandle.IsValid())
 	{

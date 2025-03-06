@@ -319,6 +319,9 @@ public:
 	/** @brief Extensible GuideSubsystem class path */
 	UPROPERTY(EditAnywhere, Config, Category = "Subsystem Classes")
 	FSoftClassPath GuideSubsystemClass;
+	/** @brief Extensible LeaderboardSubsystem class path */
+	UPROPERTY(EditAnywhere, Config, Category = "Subsystem Classes")
+	FSoftClassPath LeaderboardSubsystemClass;
 
 	/** @brief Flag to determine if the local player subsystem should use its own subsystems instead of relying on GameInstanceSubsystem shared caches. */
 	UPROPERTY(EditAnywhere, Config, Category = "Subsystem Classes")
@@ -640,6 +643,9 @@ public:
 	/** @brief Sets the request priority of Match Recent Players calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Match API Priority", AdvancedDisplay)
 	int32 MatchRecentlyPlayedWith;
+	/** @brief Sets the request priority of Leaderboard Config calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Leaderboard API Priority", AdvancedDisplay)
+	int32 LeaderboardConfigPriority;
 };
 
 /** @} */

@@ -51,6 +51,7 @@
 #include "RHDTW_RemoteFile.h"
 #include "RHDTW_Guide.h"
 #include "RHDTW_Automation.h"
+#include "RHDTW_Leaderboards.h"
 
 #include "Runtime/Launch/Resources/Version.h"
 
@@ -149,6 +150,9 @@ void URallyHereDebugTool::Initialize(FSubsystemCollectionBase& Collection)
 
 	GuidesWindow = MakeShared<FRHDTW_Guide>();
 	GuidesWindow->Init(this, TEXT("Guides"));
+
+	LeaderboardWindow = MakeShared<FRHDTW_Leaderboards>();
+	LeaderboardWindow->Init(this, TEXT("Leaderboards"));
 
 #if WITH_DEV_AUTOMATION_TESTS
 	AutomationWindow = MakeShared<FRHDTW_Automation>();
