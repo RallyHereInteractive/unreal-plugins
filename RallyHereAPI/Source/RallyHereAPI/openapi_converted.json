@@ -32700,7 +32700,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LeaderboardPage"
+                  "$ref": "#/components/schemas/LeaderboardEntry"
                 }
               }
             }

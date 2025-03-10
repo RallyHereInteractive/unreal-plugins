@@ -1648,7 +1648,7 @@ bool FResponse_GetLeaderboardPositionEntry::ParseHeaders()
 	return bParsedAllRequiredHeaders;
 }
 
-bool FResponse_GetLeaderboardPositionEntry::TryGetContentFor200(FRHAPI_LeaderboardPage& OutContent) const
+bool FResponse_GetLeaderboardPositionEntry::TryGetContentFor200(FRHAPI_LeaderboardEntry& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 200)
@@ -1705,11 +1705,11 @@ bool FResponse_GetLeaderboardPositionEntry::FromJson(const TSharedPtr<FJsonValue
 		case 200:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_LeaderboardPage Object;
+				FRHAPI_LeaderboardEntry Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_LeaderboardPage>(Object);
+				ParsedContent.Set<FRHAPI_LeaderboardEntry>(Object);
 				break;
 			} 
 		case 403:
