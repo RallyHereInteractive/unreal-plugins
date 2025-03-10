@@ -30,7 +30,7 @@ void FRHDTW_Leaderboards::Do()
 		}
 		if (ImGui::BeginTabItem("View Leaderboard", nullptr, ImGuiTabItemFlags_None))
 		{
-			DoViewLeaderboard();
+			DoViewLeaderboardPage();
 			ImGui::EndTabItem();
 		}
 		if (ImGui::BeginTabItem("View Leaderboard Position", nullptr, ImGuiTabItemFlags_None))
@@ -40,15 +40,50 @@ void FRHDTW_Leaderboards::Do()
 		}
 	}
 }
-void FRHDTW_Leaderboards::DoViewLeaderboard()
+void FRHDTW_Leaderboards::DoViewLeaderboardPage()
 {
 	ImGui::InputText("Leaderboard ID", &SelectedLeaderboardId);
+	ImGui::InputText("Cursor", &SelectedCursor);
+	ImGui::InputInt("Page Size", &PageSize);
 
-	if (ImGui::Button("Request Leaderboard"))
+	auto LeaderboardSS = GetSubsystemWithTextForFailures();
+	if (!LeaderboardSS)
 	{
-		
+		return;
 	}
-	ImGui::Separator();
+
+	if (ImGui::Button("Request Page"))
+	{
+
+		LeaderboardSS->GetLeaderboardPageAsync(SelectedLeaderboardId, SelectedCursor, PageSize);
+	}
+
+	if (ImGui::BeginTable("Leaderboard Page", 3, RH_TableFlagsPropSizing))
+	{
+		ImGui::TableSetupColumn("Leaderboard Position");
+		ImGui::TableSetupColumn("Player UUID");
+		ImGui::TableSetupColumn("Stat Value");
+
+		auto&& LatestPage = LeaderboardSS->GetCachedLeaderboardPage(SelectedLeaderboardId);
+		if (LatestPage == nullptr)
+		{
+			return;
+		}
+
+		int32 placement = 0;
+		for (auto&& entry : LatestPage->Entries)
+		{
+			ImGui::TableNextRow();
+			ImGui::TableNextColumn();
+			ImGuiDisplayCopyableValue("Position", placement, ECopyMode::Value);
+			ImGui::TableNextColumn();
+			ImGuiDisplayCopyableValue("PlayerUUID", entry.GetPlayerUuid(), ECopyMode::Value);
+			ImGui::TableNextColumn();
+			ImGuiDisplayCopyableValue("Stat", entry.GetStatValueOrNull(), ECopyMode::Value);
+			++placement;
+		}
+		ImGui::EndTable();
+	}
 }
 
 void FRHDTW_Leaderboards::DoViewConfig()

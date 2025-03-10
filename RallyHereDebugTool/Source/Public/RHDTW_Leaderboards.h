@@ -13,12 +13,14 @@ struct FRHDTW_Leaderboards : public FRH_DebugToolWindow
 
 	virtual void Do() override;
 
-	void DoViewLeaderboard();
+	void DoViewLeaderboardPage();
 	void DoViewConfig();
 	void DoViewLeaderboardPosition();
 	void DoRefreshLeaderboardConfig();
 	class URH_LeaderboardSubsystem* GetSubsystemWithTextForFailures() const;
 
 	FString SelectedLeaderboardId;
+	FString SelectedCursor{"0"};
+	int32 PageSize = 50;
 };
 

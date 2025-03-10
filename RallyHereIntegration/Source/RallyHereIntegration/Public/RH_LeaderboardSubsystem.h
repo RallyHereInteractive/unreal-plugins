@@ -12,17 +12,37 @@
 #include "LeaderboardConfig.h"
 #include "LeaderboardPage.h"
 #include "LeaderboardAPI.h"
+#include "LeaderboardMetaData.h"
 
 #include "RH_LeaderboardSubsystem.generated.h"
 
 
 struct FRHAPI_LeaderboardConfig;
 struct FRHAPI_LeaderboardPage;
+struct FRHAPI_LeaderboardMetaData;
 /** @defgroup LeaderboardSubsystem RallyHere Leaderboard Subsystem/
  * @{
  */
 
 typedef TMap<FString, FRHAPI_LeaderboardConfig> ConfigMap;
+
+/**
+ * @brief Struct to hold cached information about a leaderboard
+*/
+USTRUCT(BlueprintType)
+struct RALLYHEREINTEGRATION_API FRH_LeaderboardCache
+{
+	GENERATED_BODY()
+
+	/** @brief Metadata about this leaderboard */
+	UPROPERTY(BlueprintReadOnly, Category = "Leaderboard Subsystem")
+	FRHAPI_LeaderboardMetaData MetaData;
+
+	/** @brief List of leaderboard pages */
+	UPROPERTY(BlueprintReadOnly, Category = "Leaderboard Subsystem")
+	TArray<FRHAPI_LeaderboardPage> LeaderboardPages;
+
+};
 
 UDELEGATE()
 DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_LeaderboardConfigCallDynamicDelegate, bool, bSuccess, const FRH_ErrorInfo&, ErrorInfo, FRHAPI_LeaderboardConfigList&, ConfigList);
@@ -70,6 +90,9 @@ public:
 	 */
 	const FRHAPI_LeaderboardConfig* GetCachedLeaderboardConfig(const FString& LeaderboardID) const { return LeaderboardConfigs.Find(LeaderboardID); }
 
+	/** @brief Get latest successfully requested leaderboard page */
+	const FRHAPI_LeaderboardPage* GetCachedLeaderboardPage(const FString& LeaderboardID) const { return CachedPages.Find(LeaderboardID); }
+
 	/**
 	 * @brief Request All Leaderboard Config.
 	*/
@@ -79,18 +102,34 @@ public:
 	void BLUEPRINT_GetAllConfig(const FRH_LeaderboardConfigCallDynamicDelegate& Delegate) { return GetAllConfigAsync(Delegate); }
 
 	/**
-	 * @brief Request a specific leaderboard
+	 * @brief Request a page specific leaderboard
 	*/
-	virtual void GetLeaderboardAsync(const FString& LeaderboardID, const FRH_LeaderboardPageBlock& Delegate = FRH_LeaderboardPageBlock());
+	virtual void GetLeaderboardPageAsync(const FString& LeaderboardID, const FString& Cursor, int32 PageSize = 50, const FRH_LeaderboardPageBlock& Delegate = FRH_LeaderboardPageBlock());
 	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Leaderboard Subsystem", meta = (DisplayName = "Get Specific Leaderboard (async)", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_GetAllConfig(const FString& LeaderboardID, const FRH_LeaderboardPageDynamicDelegate& Delegate) { return GetLeaderboardAsync(LeaderboardID, Delegate); }
+	void BLUEPRINT_GetLeaderboardPage(const FString& LeaderboardID, const FString& Cursor, const FRH_LeaderboardPageDynamicDelegate& Delegate, int32 PageSize = 50) { return GetLeaderboardPageAsync(LeaderboardID, Cursor, PageSize, Delegate); }
 
+	/**
+	 * @brief Request a full leaderboard
+	*/
+	virtual void GetFullLeaderboardAsync(const FString& LeaderboardID, const FString& Cursor = "0", const FRH_LeaderboardPageBlock& Delegate = FRH_LeaderboardPageBlock(), int32 PageSize = 50);
+	/** @private */
+	UFUNCTION(BlueprintCallable, Category = "Leaderboard Subsystem", meta = (DisplayName = "Get Specific Leaderboard (async)", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_GetFullLeaderboard(const FString& LeaderboardID, const FRH_LeaderboardPageDynamicDelegate& Delegate, const FString& Cursor = "0", int32 PageSize = 50) { return GetFullLeaderboardAsync(LeaderboardID, Cursor, Delegate, PageSize); }
 
 protected:
-	UPROPERTY(Transient)
+	UPROPERTY(BlueprintReadOnly, Category = "Leaderboard Subsystem")
 	TMap<FString, FRHAPI_LeaderboardConfig> LeaderboardConfigs;
 
+	UPROPERTY(BlueprintReadOnly, Category = "Leaderboard Subsystem")
+	TMap<FString, FRH_LeaderboardCache> Leaderboards;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Leaderboard Subsystem")
+	TMap<FString, FRHAPI_LeaderboardPage> CachedPages;
+
 	/** @brief Initializes the subsystem with defaults for its cached data. */
-	virtual void InitPropertiesWithDefaultValues();
+	void InitPropertiesWithDefaultValues();
+
+	/** @brief Default behavior for handling a page response */
+	void HandleNewPage(const FRHAPI_LeaderboardPage& Page);
 };
