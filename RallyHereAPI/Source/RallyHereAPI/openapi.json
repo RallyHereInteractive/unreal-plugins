@@ -54137,11 +54137,18 @@
             ],
             "title": "Stat Value",
             "description": "Value for the stat of this leaderboard entry"
+          },
+          "position": {
+            "type": "integer",
+            "minimum": 1,
+            "title": "Position",
+            "description": "What position this entry is on the leaderboard"
           }
         },
         "type": "object",
         "required": [
-          "player_uuid"
+          "player_uuid",
+          "position"
         ],
         "title": "LeaderboardEntry"
       },
