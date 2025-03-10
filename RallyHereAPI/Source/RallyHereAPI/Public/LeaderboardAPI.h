@@ -14,6 +14,7 @@
 #include "HzApiErrorModel.h"
 #include "LeaderboardConfig.h"
 #include "LeaderboardConfigList.h"
+#include "LeaderboardEntry.h"
 #include "LeaderboardMetaData.h"
 #include "LeaderboardPage.h"
 
@@ -586,9 +587,9 @@ struct RALLYHEREAPI_API FRequest_GetLeaderboardPositionEntry : public FRequest
 };
 
 /** The response type for FRequest_GetLeaderboardPositionEntry */
-struct RALLYHEREAPI_API FResponse_GetLeaderboardPositionEntry : public FResponseAccessorTemplate<FRHAPI_LeaderboardPage, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_GetLeaderboardPositionEntry : public FResponseAccessorTemplate<FRHAPI_LeaderboardEntry, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_LeaderboardPage, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_LeaderboardEntry, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_GetLeaderboardPositionEntry(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetLeaderboardPositionEntry() = default;
@@ -603,24 +604,24 @@ struct RALLYHEREAPI_API FResponse_GetLeaderboardPositionEntry : public FResponse
 #if ALLOW_LEGACY_RESPONSE_CONTENT
 	/** Default Response Content */
 	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_LeaderboardPage Content;
+	FRHAPI_LeaderboardEntry Content;
 #endif //ALLOW_LEGACY_RESPONSE_CONTENT
 
 	// Default Response Helpers
 	/** @brief Attempt to retrieve the content in the default response */
-	bool TryGetDefaultContent(FRHAPI_LeaderboardPage& OutContent) const { return TryGetContent<FRHAPI_LeaderboardPage>(OutContent); }
+	bool TryGetDefaultContent(FRHAPI_LeaderboardEntry& OutContent) const { return TryGetContent<FRHAPI_LeaderboardEntry>(OutContent); }
 	/** @brief Attempt to retrieve the content in the default response */
-	bool TryGetDefaultContent(TOptional<FRHAPI_LeaderboardPage>& OutContent) const { return TryGetContent<FRHAPI_LeaderboardPage>(OutContent); }
+	bool TryGetDefaultContent(TOptional<FRHAPI_LeaderboardEntry>& OutContent) const { return TryGetContent<FRHAPI_LeaderboardEntry>(OutContent); }
 	/** @brief Attempt to retrieve the content in the default response */
-	const FRHAPI_LeaderboardPage* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_LeaderboardPage>(); }
+	const FRHAPI_LeaderboardEntry* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_LeaderboardEntry>(); }
 	/** @brief Attempt to retrieve the content in the default response */
-	TOptional<FRHAPI_LeaderboardPage> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_LeaderboardPage>(); }
+	TOptional<FRHAPI_LeaderboardEntry> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_LeaderboardEntry>(); }
 
 	// Individual Response Helpers	
 	/* Response 200
 	Successful Response
 	*/
-	bool TryGetContentFor200(FRHAPI_LeaderboardPage& OutContent) const;
+	bool TryGetContentFor200(FRHAPI_LeaderboardEntry& OutContent) const;
 
 	/* Response 403
 	Forbidden
