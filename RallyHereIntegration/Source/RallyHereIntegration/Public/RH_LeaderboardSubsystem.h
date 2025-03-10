@@ -19,30 +19,13 @@
 
 struct FRHAPI_LeaderboardConfig;
 struct FRHAPI_LeaderboardPage;
+struct FRHAPI_LeaderboardEntry;
 struct FRHAPI_LeaderboardMetaData;
 /** @defgroup LeaderboardSubsystem RallyHere Leaderboard Subsystem/
  * @{
  */
 
 typedef TMap<FString, FRHAPI_LeaderboardConfig> ConfigMap;
-
-/**
- * @brief Struct to hold cached information about a leaderboard
-*/
-USTRUCT(BlueprintType)
-struct RALLYHEREINTEGRATION_API FRH_LeaderboardCache
-{
-	GENERATED_BODY()
-
-	/** @brief Metadata about this leaderboard */
-	UPROPERTY(BlueprintReadOnly, Category = "Leaderboard Subsystem")
-	FRHAPI_LeaderboardMetaData MetaData;
-
-	/** @brief List of leaderboard pages */
-	UPROPERTY(BlueprintReadOnly, Category = "Leaderboard Subsystem")
-	TArray<FRHAPI_LeaderboardPage> LeaderboardPages;
-
-};
 
 UDELEGATE()
 DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_LeaderboardConfigCallDynamicDelegate, bool, bSuccess, const FRH_ErrorInfo&, ErrorInfo, FRHAPI_LeaderboardConfigList&, ConfigList);
@@ -53,6 +36,16 @@ UDELEGATE()
 DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_LeaderboardPageDynamicDelegate, bool, bSuccess, const FRH_ErrorInfo&, ErrorInfo, FRHAPI_LeaderboardPage&, LeaderboardPage);
 DECLARE_DELEGATE_ThreeParams(FRH_LeaderboardPageDelegate, bool, const FRH_ErrorInfo&, FRHAPI_LeaderboardPage&);
 DECLARE_RH_DELEGATE_BLOCK(FRH_LeaderboardPageBlock, FRH_LeaderboardPageDelegate, FRH_LeaderboardPageDynamicDelegate, bool, const FRH_ErrorInfo&, FRHAPI_LeaderboardPage&);
+
+UDELEGATE()
+DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_LeaderboardPositionDynamicDelegate, bool, bSuccess, const FRH_ErrorInfo&, ErrorInfo, FRHAPI_LeaderboardEntry&, LeaderboardEntry);
+DECLARE_DELEGATE_ThreeParams(FRH_LeaderboardPositionDelegate, bool, const FRH_ErrorInfo&, FRHAPI_LeaderboardEntry&);
+DECLARE_RH_DELEGATE_BLOCK(FRH_LeaderboardPositionBlock, FRH_LeaderboardPositionDelegate, FRH_LeaderboardPositionDynamicDelegate, bool, const FRH_ErrorInfo&, FRHAPI_LeaderboardEntry&);
+
+UDELEGATE()
+DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_LeaderboardMetaDataDynamicDelegate, bool, bSuccess, const FRH_ErrorInfo&, ErrorInfo, FRHAPI_LeaderboardMetaData&, LeaderboardMetaData);
+DECLARE_DELEGATE_ThreeParams(FRH_LeaderboardMetaDataDelegate, bool, const FRH_ErrorInfo&, FRHAPI_LeaderboardMetaData&);
+DECLARE_RH_DELEGATE_BLOCK(FRH_LeaderboardMetaDataBlock, FRH_LeaderboardMetaDataDelegate, FRH_LeaderboardMetaDataDynamicDelegate, bool, const FRH_ErrorInfo&, FRHAPI_LeaderboardMetaData&);
 
 /**
  * @brief Class used to view Leaderboard data and config
@@ -110,22 +103,33 @@ public:
 	void BLUEPRINT_GetLeaderboardPage(const FString& LeaderboardID, const FString& Cursor, const FRH_LeaderboardPageDynamicDelegate& Delegate, int32 PageSize = 50) { return GetLeaderboardPageAsync(LeaderboardID, Cursor, PageSize, Delegate); }
 
 	/**
-	 * @brief Request a full leaderboard
+	 * @brief Request a specific position in the leaderboard. Useful for determining thresholds
 	*/
-	virtual void GetFullLeaderboardAsync(const FString& LeaderboardID, const FString& Cursor = "0", const FRH_LeaderboardPageBlock& Delegate = FRH_LeaderboardPageBlock(), int32 PageSize = 50);
+	virtual void GetLeaderboardPositionAsync(const FString& LeaderboardID, int32 position, const FRH_LeaderboardPositionBlock& Delegate = FRH_LeaderboardPositionBlock());
 	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Leaderboard Subsystem", meta = (DisplayName = "Get Specific Leaderboard (async)", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_GetFullLeaderboard(const FString& LeaderboardID, const FRH_LeaderboardPageDynamicDelegate& Delegate, const FString& Cursor = "0", int32 PageSize = 50) { return GetFullLeaderboardAsync(LeaderboardID, Cursor, Delegate, PageSize); }
+	void BLUEPRINT_GetLeaderboardPosition(const FString& LeaderboardID, int32 position, const FRH_LeaderboardPositionDynamicDelegate& Delegate) { return GetLeaderboardPositionAsync(LeaderboardID, position, Delegate); }
+
+	/**
+	 * @brief Request metadata about a specific leaderboard
+	*/
+	virtual void GetLeaderboardMetaDataAsync(const FString& LeaderboardID, const FRH_LeaderboardMetaDataBlock& Delegate = FRH_LeaderboardMetaDataBlock());
+	/** @private */
+	UFUNCTION(BlueprintCallable, Category = "Leaderboard Subsystem", meta = (DisplayName = "Get Specific Leaderboard (async)", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_GetLeaderboardMetaData(const FString& LeaderboardID, const FRH_LeaderboardMetaDataDynamicDelegate& Delegate) { return GetLeaderboardMetaDataAsync(LeaderboardID, Delegate); }
 
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "Leaderboard Subsystem")
 	TMap<FString, FRHAPI_LeaderboardConfig> LeaderboardConfigs;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Leaderboard Subsystem")
-	TMap<FString, FRH_LeaderboardCache> Leaderboards;
+	TMap<FString, FRHAPI_LeaderboardPage> CachedPages;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Leaderboard Subsystem")
-	TMap<FString, FRHAPI_LeaderboardPage> CachedPages;
+	TMap<FString, FRHAPI_LeaderboardMetaData> CachedMetaData;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Leaderboard Subsystem")
+	FRHAPI_LeaderboardEntry CachedPositionEntry;
 
 	/** @brief Initializes the subsystem with defaults for its cached data. */
 	void InitPropertiesWithDefaultValues();

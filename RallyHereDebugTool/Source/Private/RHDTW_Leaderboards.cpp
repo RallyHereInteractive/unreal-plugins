@@ -60,27 +60,26 @@ void FRHDTW_Leaderboards::DoViewLeaderboardPage()
 
 	if (ImGui::BeginTable("Leaderboard Page", 3, RH_TableFlagsPropSizing))
 	{
-		ImGui::TableSetupColumn("Leaderboard Position");
-		ImGui::TableSetupColumn("Player UUID");
-		ImGui::TableSetupColumn("Stat Value");
-
 		auto&& LatestPage = LeaderboardSS->GetCachedLeaderboardPage(SelectedLeaderboardId);
 		if (LatestPage == nullptr)
 		{
 			return;
 		}
 
-		int32 placement = 0;
+		ImGui::TableSetupColumn("Leaderboard Position");
+		ImGui::TableSetupColumn("Player UUID");
+		ImGui::TableSetupColumn("Stat Value");
+		ImGui::TableHeadersRow();
+
 		for (auto&& entry : LatestPage->Entries)
 		{
 			ImGui::TableNextRow();
 			ImGui::TableNextColumn();
-			ImGuiDisplayCopyableValue("Position", placement, ECopyMode::Value);
+			ImGuiDisplayCopyableValue("Position", entry.GetPosition(), ECopyMode::Value);
 			ImGui::TableNextColumn();
 			ImGuiDisplayCopyableValue("PlayerUUID", entry.GetPlayerUuid(), ECopyMode::Value);
 			ImGui::TableNextColumn();
 			ImGuiDisplayCopyableValue("Stat", entry.GetStatValueOrNull(), ECopyMode::Value);
-			++placement;
 		}
 		ImGui::EndTable();
 	}

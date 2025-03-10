@@ -74,6 +74,7 @@ void URH_LeaderboardSubsystem::GetLeaderboardPageAsync(const FString& Leaderboar
 				FRHAPI_LeaderboardPage Content;
 				if (Response.TryGetContentFor200(Content))
 				{
+					CachedPages.FindOrAdd(LeaderboardID);
 					CachedPages[LeaderboardID] = MoveTemp(Content);
 				}
 			}),
@@ -86,30 +87,51 @@ void URH_LeaderboardSubsystem::GetLeaderboardPageAsync(const FString& Leaderboar
 	Helper->Start(RH_APIs::GetLeaderboardAPI(), Request);
 }
 
-void URH_LeaderboardSubsystem::GetFullLeaderboardAsync(const FString& LeaderboardID, const FString& Cursor, const FRH_LeaderboardPageBlock& Delegate, int32 PageSize)
+void URH_LeaderboardSubsystem::GetLeaderboardPositionAsync(const FString& LeaderboardID, int32 Position, const FRH_LeaderboardPositionBlock& Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
-	typedef TGetLeaderboard BaseType;
+	typedef TGetLeaderboardPositionEntry BaseType;
 	BaseType::Request Request;
 	Request.AuthContext = GetAuthContext();
-	Request.Cursor = Cursor;
-	Request.PageSize = PageSize;
-	TSharedPtr<FRHAPI_LeaderboardPage> ResponseContent = MakeShared<FRHAPI_LeaderboardPage>();
+	Request.LeaderboardId = LeaderboardID;
+	Request.LeaderboardPosition = Position;
+	TSharedPtr<FRHAPI_LeaderboardEntry> ResponseContent = MakeShared<FRHAPI_LeaderboardEntry>();
 
 	const auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
-		BaseType::Delegate::CreateWeakLambda(this, [this, LeaderboardID, Delegate, PageSize, ResponseContent](const BaseType::Response& Response)
+		BaseType::Delegate::CreateWeakLambda(this, [this, LeaderboardID, ResponseContent](const BaseType::Response& Response)
 			{
-				FRHAPI_LeaderboardPage Content;
+				FRHAPI_LeaderboardEntry Content;
 				if (Response.TryGetContentFor200(Content))
 				{
-					// Will create the new cache if it doesn't exist in the map yet
-					auto&& CachedLeaderboard = Leaderboards[Content.GetLeaderboardId()];
-					CachedLeaderboard.LeaderboardPages.Add(MoveTemp(Content));
+					CachedPositionEntry = MoveTemp(Content);
+				}
+			}),
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Delegate, ResponseContent](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				Delegate.ExecuteIfBound(bSuccess, ErrorInfo, *ResponseContent);
+			}),
+		GetDefault<URH_IntegrationSettings>()->LeaderboardConfigPriority
+	);
+	Helper->Start(RH_APIs::GetLeaderboardAPI(), Request);
+}
 
-					if (Content.GetCursor() != "0")
-					{
-						GetFullLeaderboardAsync(LeaderboardID, Content.GetCursor(), Delegate, PageSize);
-					}
+void URH_LeaderboardSubsystem::GetLeaderboardMetaDataAsync(const FString& LeaderboardID, int32 Position, const FRH_LeaderboardMetaDataBlock& Delegate)
+{
+	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+	typedef TGetLeaderboardMetaData BaseType;
+	BaseType::Request Request;
+	Request.AuthContext = GetAuthContext();
+	Request.LeaderboardId = LeaderboardID;
+	TSharedPtr<FRHAPI_LeaderboardMetaData> ResponseContent = MakeShared<FRHAPI_LeaderboardMetaData>();
+
+	const auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate::CreateWeakLambda(this, [this, LeaderboardID, ResponseContent](const BaseType::Response& Response)
+			{
+				FRHAPI_LeaderboardMetaData Content;
+				if (Response.TryGetContentFor200(Content))
+				{
+					CachedMetaData.FindOrAdd(LeaderboardID);
+					CachedMetaData[LeaderboardID] = MoveTemp(Content);
 				}
 			}),
 		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Delegate, ResponseContent](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
@@ -123,8 +145,4 @@ void URH_LeaderboardSubsystem::GetFullLeaderboardAsync(const FString& Leaderboar
 
 void URH_LeaderboardSubsystem::InitPropertiesWithDefaultValues()
 {
-}
-void URH_LeaderboardSubsystem::HandleNewPage(const FRHAPI_LeaderboardPage& Page)
-{
-
 }
