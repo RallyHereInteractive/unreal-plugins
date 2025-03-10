@@ -32,6 +32,8 @@ void FRHAPI_LeaderboardEntry::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		else
 		RallyHereAPI::WriteJsonValue(Writer, StatValue_Optional);
 	}
+	Writer->WriteIdentifierPrefix(TEXT("position"));
+	RallyHereAPI::WriteJsonValue(Writer, Position);
 	Writer->WriteObjectEnd();
 }
 
@@ -53,6 +55,9 @@ bool FRHAPI_LeaderboardEntry::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		StatValue_IsSet = StatValue_IsNull || TryGetJsonValue(JsonStatValueField, StatValue_Optional);
 		ParseSuccess &= StatValue_IsSet;
 	}
+	const TSharedPtr<FJsonValue> JsonPositionField = (*Object)->TryGetField(TEXT("position"));
+	const bool Position_IsValid = JsonPositionField.IsValid() && (!JsonPositionField->IsNull() && TryGetJsonValue(JsonPositionField, Position));
+	ParseSuccess &= Position_IsValid; 
 
 	return ParseSuccess;
 }

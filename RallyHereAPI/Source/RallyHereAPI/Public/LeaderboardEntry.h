@@ -83,6 +83,22 @@ struct RALLYHEREAPI_API FRHAPI_LeaderboardEntry : public FRHAPI_Model
 	void SetStatValueToNull() { StatValue_IsSet = true; StatValue_IsNull = true; }
 	/** @brief Checks whether StatValue_Optional is set to null */
 	bool IsStatValueNull() const { return StatValue_IsSet && StatValue_IsNull; }
+
+	/** @brief What position this entry is on the leaderboard */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Position{ 0 };
+	/** @brief Gets the value of Position */
+	int32& GetPosition() { return Position; }
+	/** @brief Gets the value of Position */
+	const int32& GetPosition() const { return Position; }
+	/** @brief Sets the value of Position */
+	void SetPosition(const int32& NewValue) { Position = NewValue;   }
+	/** @brief Sets the value of Position using move semantics */
+	void SetPosition(int32&& NewValue) { Position = NewValue;   }
+	/** @brief Returns true if Position matches the default value */
+	bool IsPositionDefaultValue() const { return Position == 0; }
+	/** @brief Sets the value of Position to its default  */
+	void SetPositionToDefault() { SetPosition(0); }
 };
 
 /** @} */

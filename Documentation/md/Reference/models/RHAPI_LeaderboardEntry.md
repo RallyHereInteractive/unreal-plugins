@@ -23,6 +23,7 @@ struct FRHAPI_LeaderboardEntry
 `public float `[`StatValue_Optional`](#structFRHAPI__LeaderboardEntry_1a6f8764c65207db12a8d9081daba20b51) | 
 `public bool `[`StatValue_IsSet`](#structFRHAPI__LeaderboardEntry_1ad60dd1ef0f62a1d6f91e121d8a1370e2) | true if StatValue_Optional has been set to a value
 `public bool `[`StatValue_IsNull`](#structFRHAPI__LeaderboardEntry_1a6f489b8233d3344bca2854b011a1ded2) | true if StatValue_Optional has been explicitly set to null
+`public int32 `[`Position`](#structFRHAPI__LeaderboardEntry_1ab8e2f090e46937756ae3c3ffc3115dbd) | What position this entry is on the leaderboard.
 `public virtual bool `[`FromJson`](#structFRHAPI__LeaderboardEntry_1a190bd5ee502e7af120154341f7cced2e)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__LeaderboardEntry_1ac62b460a8721ef56d4f1fe0ed879cc4e)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__LeaderboardEntry_1a72c177336529472656b1680fe977d9ed)`()` | Gets the value of PlayerUuid.
@@ -41,6 +42,12 @@ struct FRHAPI_LeaderboardEntry
 `public inline bool `[`IsStatValueSet`](#structFRHAPI__LeaderboardEntry_1a0c62b1358fcfa2be488f28ac89577012)`() const` | Checks whether StatValue_Optional has been set.
 `public inline void `[`SetStatValueToNull`](#structFRHAPI__LeaderboardEntry_1a5cff19b50cdecd03f0c01f67644626a3)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsStatValueNull`](#structFRHAPI__LeaderboardEntry_1ae67b742de247cedfbb9cfb942def4cae)`() const` | Checks whether StatValue_Optional is set to null.
+`public inline int32 & `[`GetPosition`](#structFRHAPI__LeaderboardEntry_1aa333f9e89f9e5c093cb588f98d7deac4)`()` | Gets the value of Position.
+`public inline const int32 & `[`GetPosition`](#structFRHAPI__LeaderboardEntry_1a2ed257ada151449a275acac8bb0a1307)`() const` | Gets the value of Position.
+`public inline void `[`SetPosition`](#structFRHAPI__LeaderboardEntry_1a73e8760a75cf69518a4238de87358fa0)`(const int32 & NewValue)` | Sets the value of Position.
+`public inline void `[`SetPosition`](#structFRHAPI__LeaderboardEntry_1ac2155bc78fcfdae2dc2b358efff67607)`(int32 && NewValue)` | Sets the value of Position using move semantics.
+`public inline bool `[`IsPositionDefaultValue`](#structFRHAPI__LeaderboardEntry_1a999939ee4b5c5a0e3b7b1d213eca8485)`() const` | Returns true if Position matches the default value.
+`public inline void `[`SetPositionToDefault`](#structFRHAPI__LeaderboardEntry_1acb6250428e784f316b2ad655de9b55c9)`()` | Sets the value of Position to its default
 
 ### Members
 
@@ -57,6 +64,10 @@ true if StatValue_Optional has been set to a value
 #### `public bool `[`StatValue_IsNull`](#structFRHAPI__LeaderboardEntry_1a6f489b8233d3344bca2854b011a1ded2) <a id="structFRHAPI__LeaderboardEntry_1a6f489b8233d3344bca2854b011a1ded2"></a>
 
 true if StatValue_Optional has been explicitly set to null
+
+#### `public int32 `[`Position`](#structFRHAPI__LeaderboardEntry_1ab8e2f090e46937756ae3c3ffc3115dbd) <a id="structFRHAPI__LeaderboardEntry_1ab8e2f090e46937756ae3c3ffc3115dbd"></a>
+
+What position this entry is on the leaderboard.
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__LeaderboardEntry_1a190bd5ee502e7af120154341f7cced2e)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__LeaderboardEntry_1a190bd5ee502e7af120154341f7cced2e"></a>
 
@@ -138,4 +149,28 @@ Sets the value explicitly to be treated as null.
 #### `public inline bool `[`IsStatValueNull`](#structFRHAPI__LeaderboardEntry_1ae67b742de247cedfbb9cfb942def4cae)`() const` <a id="structFRHAPI__LeaderboardEntry_1ae67b742de247cedfbb9cfb942def4cae"></a>
 
 Checks whether StatValue_Optional is set to null.
+
+#### `public inline int32 & `[`GetPosition`](#structFRHAPI__LeaderboardEntry_1aa333f9e89f9e5c093cb588f98d7deac4)`()` <a id="structFRHAPI__LeaderboardEntry_1aa333f9e89f9e5c093cb588f98d7deac4"></a>
+
+Gets the value of Position.
+
+#### `public inline const int32 & `[`GetPosition`](#structFRHAPI__LeaderboardEntry_1a2ed257ada151449a275acac8bb0a1307)`() const` <a id="structFRHAPI__LeaderboardEntry_1a2ed257ada151449a275acac8bb0a1307"></a>
+
+Gets the value of Position.
+
+#### `public inline void `[`SetPosition`](#structFRHAPI__LeaderboardEntry_1a73e8760a75cf69518a4238de87358fa0)`(const int32 & NewValue)` <a id="structFRHAPI__LeaderboardEntry_1a73e8760a75cf69518a4238de87358fa0"></a>
+
+Sets the value of Position.
+
+#### `public inline void `[`SetPosition`](#structFRHAPI__LeaderboardEntry_1ac2155bc78fcfdae2dc2b358efff67607)`(int32 && NewValue)` <a id="structFRHAPI__LeaderboardEntry_1ac2155bc78fcfdae2dc2b358efff67607"></a>
+
+Sets the value of Position using move semantics.
+
+#### `public inline bool `[`IsPositionDefaultValue`](#structFRHAPI__LeaderboardEntry_1a999939ee4b5c5a0e3b7b1d213eca8485)`() const` <a id="structFRHAPI__LeaderboardEntry_1a999939ee4b5c5a0e3b7b1d213eca8485"></a>
+
+Returns true if Position matches the default value.
+
+#### `public inline void `[`SetPositionToDefault`](#structFRHAPI__LeaderboardEntry_1acb6250428e784f316b2ad655de9b55c9)`()` <a id="structFRHAPI__LeaderboardEntry_1acb6250428e784f316b2ad655de9b55c9"></a>
+
+Sets the value of Position to its default
 
