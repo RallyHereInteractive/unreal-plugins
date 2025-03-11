@@ -16,11 +16,13 @@ struct FRHDTW_Leaderboards : public FRH_DebugToolWindow
 	void DoViewLeaderboardPage();
 	void DoViewConfig();
 	void DoViewLeaderboardPosition();
+	void DoViewMetaData();
 	void DoRefreshLeaderboardConfig();
 	class URH_LeaderboardSubsystem* GetSubsystemWithTextForFailures() const;
 
 	FString SelectedLeaderboardId;
 	FString SelectedCursor{"0"};
 	int32 PageSize = 50;
+	int32 SelectedLeaderboardPosition;
 };
 

@@ -87,6 +87,14 @@ public:
 	const FRHAPI_LeaderboardPage* GetCachedLeaderboardPage(const FString& LeaderboardID) const { return CachedPages.Find(LeaderboardID); }
 
 	/**
+	 * @brief Get a single leaderboard's meta data
+	 */
+	const FRHAPI_LeaderboardMetaData* GetCachedLeaderboardMetaData(const FString& LeaderboardID) const { return CachedMetaData.Find(LeaderboardID); }
+
+	/** @brief Get latest successfully requested position */
+	const FRHAPI_LeaderboardEntry& GetCachedLeaderboardPosition() const { return CachedPositionEntry; }
+
+	/**
 	 * @brief Request All Leaderboard Config.
 	*/
 	virtual void GetAllConfigAsync(const FRH_LeaderboardConfigCallBlock& Delegate = FRH_LeaderboardConfigCallBlock());

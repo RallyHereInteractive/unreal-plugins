@@ -38,6 +38,11 @@ void FRHDTW_Leaderboards::Do()
 			DoViewLeaderboardPosition();
 			ImGui::EndTabItem();
 		}
+		if (ImGui::BeginTabItem("View Meta Data", nullptr, ImGuiTabItemFlags_None))
+		{
+			DoViewMetaData();
+			ImGui::EndTabItem();
+		}
 	}
 }
 void FRHDTW_Leaderboards::DoViewLeaderboardPage()
@@ -146,6 +151,72 @@ void FRHDTW_Leaderboards::DoViewConfig()
 
 void FRHDTW_Leaderboards::DoViewLeaderboardPosition()
 {
+	ImGui::InputText("Leaderboard ID", &SelectedLeaderboardId);
+	ImGui::InputInt("Leaderboard Position", &SelectedLeaderboardPosition);
+
+	auto LeaderboardSS = GetSubsystemWithTextForFailures();
+	if (!LeaderboardSS)
+	{
+		return;
+	}
+
+	if (ImGui::Button("Request Leaderboard Position"))
+	{
+		LeaderboardSS->GetLeaderboardPositionAsync(SelectedLeaderboardId, SelectedLeaderboardPosition);
+	}
+	if (ImGui::BeginTable("LeaderboardConfigs", 3, RH_TableFlagsPropSizing))
+	{
+		ImGui::TableSetupColumn("Leaderboard Position");
+		ImGui::TableSetupColumn("Player UUID");
+		ImGui::TableSetupColumn("Stat Value");
+		ImGui::TableHeadersRow();
+
+
+		auto& Entry = LeaderboardSS->GetCachedLeaderboardPosition();
+		ImGui::TableNextRow();
+		ImGui::TableNextColumn();
+		ImGuiDisplayCopyableValue("Position", Entry.GetPosition(), ECopyMode::Value);
+		ImGui::TableNextColumn();
+		ImGuiDisplayCopyableValue("PlayerUUID", Entry.GetPlayerUuid(), ECopyMode::Value);
+		ImGui::TableNextColumn();
+		ImGuiDisplayCopyableValue("Stat", Entry.GetStatValueOrNull(), ECopyMode::Value);
+		ImGui::EndTable();
+	}
+
+}
+
+void FRHDTW_Leaderboards::DoViewMetaData()
+{
+	ImGui::InputText("Leaderboard ID", &SelectedLeaderboardId);
+
+	auto LeaderboardSS = GetSubsystemWithTextForFailures();
+	if (!LeaderboardSS)
+	{
+		return;
+	}
+
+	if (ImGui::Button("Request MetaData"))
+	{
+
+		LeaderboardSS->GetLeaderboardMetaDataAsync(SelectedLeaderboardId);
+	}
+
+	if (ImGui::BeginTable("Leaderboard MetaData", 2, RH_TableFlagsPropSizing))
+	{
+		ImGui::TableSetupColumn("Last Updated");
+		ImGui::TableSetupColumn("Entry Count");
+		ImGui::TableHeadersRow();
+		auto&& MetaData = LeaderboardSS->GetCachedLeaderboardMetaData(SelectedLeaderboardId);
+		if (MetaData != nullptr) 
+		{
+			ImGui::TableNextRow();
+			ImGui::TableNextColumn();
+			ImGuiDisplayCopyableValue("Last Updated", MetaData->GetLastUpdatedDatetime(), ECopyMode::Value);
+			ImGui::TableNextColumn();
+			ImGuiDisplayCopyableValue("Entry Count", MetaData->GetEntryCount(), ECopyMode::Value);
+		}
+		ImGui::EndTable();
+	}
 }
 
 URH_LeaderboardSubsystem* FRHDTW_Leaderboards::GetSubsystemWithTextForFailures() const

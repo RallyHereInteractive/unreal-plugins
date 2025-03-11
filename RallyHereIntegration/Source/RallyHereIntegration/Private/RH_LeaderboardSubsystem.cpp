@@ -115,7 +115,7 @@ void URH_LeaderboardSubsystem::GetLeaderboardPositionAsync(const FString& Leader
 	Helper->Start(RH_APIs::GetLeaderboardAPI(), Request);
 }
 
-void URH_LeaderboardSubsystem::GetLeaderboardMetaDataAsync(const FString& LeaderboardID, int32 Position, const FRH_LeaderboardMetaDataBlock& Delegate)
+void URH_LeaderboardSubsystem::GetLeaderboardMetaDataAsync(const FString& LeaderboardID, const FRH_LeaderboardMetaDataBlock& Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 	typedef TGetLeaderboardMetaData BaseType;
