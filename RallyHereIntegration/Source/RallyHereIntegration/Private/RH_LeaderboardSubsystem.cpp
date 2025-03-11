@@ -80,7 +80,7 @@ void URH_LeaderboardSubsystem::GetAllConfigAsync(const FRH_LeaderboardConfigCall
 	typedef TGetAllLeaderboardConfig BaseType;
 	BaseType::Request Request;
 	Request.AuthContext = GetAuthContext();
-	TSharedPtr<FRHAPI_LeaderboardConfigList> ResponseContent = MakeShared<FRHAPI_LeaderboardConfigList>();
+	TSharedRef<FRHAPI_LeaderboardConfigList> ResponseContent = MakeShareable(new FRHAPI_LeaderboardConfigList());
 
 	const auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateWeakLambda(this, [this, ResponseContent](const BaseType::Response& Response)
@@ -143,7 +143,7 @@ void URH_LeaderboardSubsystem::GetLeaderboardPositionAsync(const FString& Leader
 	Request.AuthContext = GetAuthContext();
 	Request.LeaderboardId = LeaderboardID;
 	Request.LeaderboardPosition = Position;
-	TSharedPtr<FRHAPI_LeaderboardEntry> ResponseContent = MakeShared<FRHAPI_LeaderboardEntry>();
+	TSharedRef<FRHAPI_LeaderboardEntry> ResponseContent = MakeShareable(new FRHAPI_LeaderboardEntry());
 
 	const auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateWeakLambda(this, [this, LeaderboardID, ResponseContent](const BaseType::Response& Response)
@@ -171,7 +171,7 @@ void URH_LeaderboardSubsystem::GetLeaderboardMetaDataAsync(const FString& Leader
 	BaseType::Request Request;
 	Request.AuthContext = GetAuthContext();
 	Request.LeaderboardId = LeaderboardID;
-	TSharedPtr<FRHAPI_LeaderboardMetaData> ResponseContent = MakeShared<FRHAPI_LeaderboardMetaData>();
+	TSharedRef<FRHAPI_LeaderboardMetaData> ResponseContent = MakeShareable(new FRHAPI_LeaderboardMetaData());
 
 	const auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateWeakLambda(this, [this, LeaderboardID, ResponseContent](const BaseType::Response& Response)
