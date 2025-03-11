@@ -135,7 +135,7 @@ public:
 	/**
 	* @brief Gets the leaderboard subsystem on the instance.
 	*/
-	UFUNCTION(BlueprintGetter, Category = "Guide")
+	UFUNCTION(BlueprintGetter, Category = "Leaderboard")
 	FORCEINLINE URH_LeaderboardSubsystem* GetLeaderboardSubsystem() const { return LeaderboardSubsystem; }
 
 	/**
