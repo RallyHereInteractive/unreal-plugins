@@ -20,17 +20,16 @@ title: LeaderboardSubsystem
 `public  `[`DECLARE_RH_DELEGATE_BLOCK`](#group__LeaderboardSubsystem_1gadf35416871e995467f76c1acfe6bb0fb)`(FRH_LeaderboardMetaDataBlock,FRH_LeaderboardMetaDataDelegate,FRH_LeaderboardMetaDataDynamicDelegate,bool,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` &,`[`FRHAPI_LeaderboardMetaData`](RHAPI_LeaderboardMetaData.md#structFRHAPI__LeaderboardMetaData)` &)`            | 
 `public virtual void `[`Initialize`](#group__LeaderboardSubsystem_1ga1b40d9786cdfe6536a078b559ec8a8f2)`()`            | Initialize the subsystem.
 `public virtual void `[`Deinitialize`](#group__LeaderboardSubsystem_1gac97c9c99eb0f24fd525a050c713a94bb)`()`            | Safely tears down the subsystem.
-`public inline const ConfigMap & `[`GetCachedLeaderboardConfigs`](#group__LeaderboardSubsystem_1gab32357e7033d7aa5a83c4f9ba825de73)`() const`            | Get all leaderboards' configs that have been requested.
-`public inline const `[`FRHAPI_LeaderboardConfig`](RHAPI_LeaderboardConfig.md#structFRHAPI__LeaderboardConfig)` * `[`GetCachedLeaderboardConfig`](#group__LeaderboardSubsystem_1ga6cb27a378673b56634a5d277ab1a7788)`(const FString & LeaderboardID) const`            | Get a single leaderboard's config.
-`public inline const `[`FRHAPI_LeaderboardPage`](RHAPI_LeaderboardPage.md#structFRHAPI__LeaderboardPage)` * `[`GetCachedLeaderboardPage`](#group__LeaderboardSubsystem_1gab0f0a484ff4839c6e947ebd1dd330cd9)`(const FString & LeaderboardID) const`            | Get latest successfully requested leaderboard page.
-`public inline const `[`FRHAPI_LeaderboardMetaData`](RHAPI_LeaderboardMetaData.md#structFRHAPI__LeaderboardMetaData)` * `[`GetCachedLeaderboardMetaData`](#group__LeaderboardSubsystem_1gac76f9a0031e864bd2304e90259216a07)`(const FString & LeaderboardID) const`            | Get a single leaderboard's meta data.
-`public inline const `[`FRHAPI_LeaderboardEntry`](RHAPI_LeaderboardEntry.md#structFRHAPI__LeaderboardEntry)` & `[`GetCachedLeaderboardPosition`](#group__LeaderboardSubsystem_1ga62a58d434cbe5b4e85f3f683b2ca690d)`() const`            | Get latest successfully requested position.
+`public bool `[`GetCachedLeaderboardConfigs`](#group__LeaderboardSubsystem_1gaa672a39a5a87a39e6ce266b852a8060b)`(TMap< FString, `[`FRHAPI_LeaderboardConfig`](RHAPI_LeaderboardConfig.md#structFRHAPI__LeaderboardConfig)` > & OutConfigMap) const`            | Get all leaderboards' configs that have been requested.
+`public bool `[`GetCachedLeaderboardConfig`](#group__LeaderboardSubsystem_1gac83d53413e08b03b4f29ad8fb5f6f9ba)`(const FString & LeaderboardID,`[`FRHAPI_LeaderboardConfig`](RHAPI_LeaderboardConfig.md#structFRHAPI__LeaderboardConfig)` & CachedConfig) const`            | Get a single leaderboard's config.
+`public bool `[`GetCachedLeaderboardPage`](#group__LeaderboardSubsystem_1gaf732c06d49219fe1e1f4a9aea1710de9)`(const FString & LeaderboardID,`[`FRHAPI_LeaderboardPage`](RHAPI_LeaderboardPage.md#structFRHAPI__LeaderboardPage)` & CachedPage) const`            | Get latest successfully requested leaderboard page.
+`public bool `[`GetCachedLeaderboardMetaData`](#group__LeaderboardSubsystem_1ga12367e80c53d40d9ed3ced24ff9200ee)`(const FString & LeaderboardID,`[`FRHAPI_LeaderboardMetaData`](RHAPI_LeaderboardMetaData.md#structFRHAPI__LeaderboardMetaData)` & OutMetaData) const`            | Get a single leaderboard's meta data.
+`public bool `[`GetCachedLeaderboardPosition`](#group__LeaderboardSubsystem_1ga0ad7a8e61a0946cd7ae5086289330e77)`(`[`FRHAPI_LeaderboardEntry`](RHAPI_LeaderboardEntry.md#structFRHAPI__LeaderboardEntry)` & OutEntry) const`            | Get latest successfully requested position.
 `public virtual void `[`GetAllConfigAsync`](#group__LeaderboardSubsystem_1ga37e10c997b425d49694c6c7a4c186d83)`(const FRH_LeaderboardConfigCallBlock & Delegate)`            | Request All Leaderboard Config.
-`private inline  `[`UFUNCTION`](#group__LeaderboardSubsystem_1gae8841f308c74dd008ec0df6358a4e5a1)`(BlueprintCallable,Category,meta) const`            | 
+`private inline  `[`UFUNCTION`](#group__LeaderboardSubsystem_1ga267b4243311ac5a4019ea1fb2d5d97d9)`(BlueprintCallable,Category,meta) const`            | 
 `public virtual void `[`GetLeaderboardPageAsync`](#group__LeaderboardSubsystem_1ga8019bbd6e3537f9c859ca4ec230e36a8)`(const FString & LeaderboardID,const FString & Cursor,int32 PageSize,const FRH_LeaderboardPageBlock & Delegate)`            | Request a page specific leaderboard.
 `public virtual void `[`GetLeaderboardMetaDataAsync`](#group__LeaderboardSubsystem_1gaac5a1202430057ca75265246e6ab161c)`(const FString & LeaderboardID,const FRH_LeaderboardMetaDataBlock & Delegate)`            | Request metadata about a specific leaderboard.
-`protected void `[`InitPropertiesWithDefaultValues`](#group__LeaderboardSubsystem_1ga55757d1294dbaa627c330de2af43f15d)`()`            | Initializes the subsystem with defaults for its cached data.
-`protected void `[`HandleNewPage`](#group__LeaderboardSubsystem_1ga1cf836026e33c6f724aaf1ca6f012ea4)`(const `[`FRHAPI_LeaderboardPage`](RHAPI_LeaderboardPage.md#structFRHAPI__LeaderboardPage)` & Page)`            | Default behavior for handling a page response.
+`protected virtual void `[`InitPropertiesWithDefaultValues`](#group__LeaderboardSubsystem_1ga7b262c81a01ee11682f58888a260abd2)`()`            | Initializes the subsystem with defaults for its cached data.
 `class `[`URH_LeaderboardSubsystem`](#classURH__LeaderboardSubsystem) | Class used to view Leaderboard data and config.
 
 ## Members
@@ -67,23 +66,23 @@ Initialize the subsystem.
 
 Safely tears down the subsystem.
 
-#### `public inline const ConfigMap & `[`GetCachedLeaderboardConfigs`](#group__LeaderboardSubsystem_1gab32357e7033d7aa5a83c4f9ba825de73)`() const` <a id="group__LeaderboardSubsystem_1gab32357e7033d7aa5a83c4f9ba825de73"></a>
+#### `public bool `[`GetCachedLeaderboardConfigs`](#group__LeaderboardSubsystem_1gaa672a39a5a87a39e6ce266b852a8060b)`(TMap< FString, `[`FRHAPI_LeaderboardConfig`](RHAPI_LeaderboardConfig.md#structFRHAPI__LeaderboardConfig)` > & OutConfigMap) const` <a id="group__LeaderboardSubsystem_1gaa672a39a5a87a39e6ce266b852a8060b"></a>
 
 Get all leaderboards' configs that have been requested.
 
-#### `public inline const `[`FRHAPI_LeaderboardConfig`](RHAPI_LeaderboardConfig.md#structFRHAPI__LeaderboardConfig)` * `[`GetCachedLeaderboardConfig`](#group__LeaderboardSubsystem_1ga6cb27a378673b56634a5d277ab1a7788)`(const FString & LeaderboardID) const` <a id="group__LeaderboardSubsystem_1ga6cb27a378673b56634a5d277ab1a7788"></a>
+#### `public bool `[`GetCachedLeaderboardConfig`](#group__LeaderboardSubsystem_1gac83d53413e08b03b4f29ad8fb5f6f9ba)`(const FString & LeaderboardID,`[`FRHAPI_LeaderboardConfig`](RHAPI_LeaderboardConfig.md#structFRHAPI__LeaderboardConfig)` & CachedConfig) const` <a id="group__LeaderboardSubsystem_1gac83d53413e08b03b4f29ad8fb5f6f9ba"></a>
 
 Get a single leaderboard's config.
 
-#### `public inline const `[`FRHAPI_LeaderboardPage`](RHAPI_LeaderboardPage.md#structFRHAPI__LeaderboardPage)` * `[`GetCachedLeaderboardPage`](#group__LeaderboardSubsystem_1gab0f0a484ff4839c6e947ebd1dd330cd9)`(const FString & LeaderboardID) const` <a id="group__LeaderboardSubsystem_1gab0f0a484ff4839c6e947ebd1dd330cd9"></a>
+#### `public bool `[`GetCachedLeaderboardPage`](#group__LeaderboardSubsystem_1gaf732c06d49219fe1e1f4a9aea1710de9)`(const FString & LeaderboardID,`[`FRHAPI_LeaderboardPage`](RHAPI_LeaderboardPage.md#structFRHAPI__LeaderboardPage)` & CachedPage) const` <a id="group__LeaderboardSubsystem_1gaf732c06d49219fe1e1f4a9aea1710de9"></a>
 
 Get latest successfully requested leaderboard page.
 
-#### `public inline const `[`FRHAPI_LeaderboardMetaData`](RHAPI_LeaderboardMetaData.md#structFRHAPI__LeaderboardMetaData)` * `[`GetCachedLeaderboardMetaData`](#group__LeaderboardSubsystem_1gac76f9a0031e864bd2304e90259216a07)`(const FString & LeaderboardID) const` <a id="group__LeaderboardSubsystem_1gac76f9a0031e864bd2304e90259216a07"></a>
+#### `public bool `[`GetCachedLeaderboardMetaData`](#group__LeaderboardSubsystem_1ga12367e80c53d40d9ed3ced24ff9200ee)`(const FString & LeaderboardID,`[`FRHAPI_LeaderboardMetaData`](RHAPI_LeaderboardMetaData.md#structFRHAPI__LeaderboardMetaData)` & OutMetaData) const` <a id="group__LeaderboardSubsystem_1ga12367e80c53d40d9ed3ced24ff9200ee"></a>
 
 Get a single leaderboard's meta data.
 
-#### `public inline const `[`FRHAPI_LeaderboardEntry`](RHAPI_LeaderboardEntry.md#structFRHAPI__LeaderboardEntry)` & `[`GetCachedLeaderboardPosition`](#group__LeaderboardSubsystem_1ga62a58d434cbe5b4e85f3f683b2ca690d)`() const` <a id="group__LeaderboardSubsystem_1ga62a58d434cbe5b4e85f3f683b2ca690d"></a>
+#### `public bool `[`GetCachedLeaderboardPosition`](#group__LeaderboardSubsystem_1ga0ad7a8e61a0946cd7ae5086289330e77)`(`[`FRHAPI_LeaderboardEntry`](RHAPI_LeaderboardEntry.md#structFRHAPI__LeaderboardEntry)` & OutEntry) const` <a id="group__LeaderboardSubsystem_1ga0ad7a8e61a0946cd7ae5086289330e77"></a>
 
 Get latest successfully requested position.
 
@@ -91,7 +90,7 @@ Get latest successfully requested position.
 
 Request All Leaderboard Config.
 
-#### `private inline  `[`UFUNCTION`](#group__LeaderboardSubsystem_1gae8841f308c74dd008ec0df6358a4e5a1)`(BlueprintCallable,Category,meta) const` <a id="group__LeaderboardSubsystem_1gae8841f308c74dd008ec0df6358a4e5a1"></a>
+#### `private inline  `[`UFUNCTION`](#group__LeaderboardSubsystem_1ga267b4243311ac5a4019ea1fb2d5d97d9)`(BlueprintCallable,Category,meta) const` <a id="group__LeaderboardSubsystem_1ga267b4243311ac5a4019ea1fb2d5d97d9"></a>
 
 #### `public virtual void `[`GetLeaderboardPageAsync`](#group__LeaderboardSubsystem_1ga8019bbd6e3537f9c859ca4ec230e36a8)`(const FString & LeaderboardID,const FString & Cursor,int32 PageSize,const FRH_LeaderboardPageBlock & Delegate)` <a id="group__LeaderboardSubsystem_1ga8019bbd6e3537f9c859ca4ec230e36a8"></a>
 
@@ -101,13 +100,9 @@ Request a page specific leaderboard.
 
 Request metadata about a specific leaderboard.
 
-#### `protected void `[`InitPropertiesWithDefaultValues`](#group__LeaderboardSubsystem_1ga55757d1294dbaa627c330de2af43f15d)`()` <a id="group__LeaderboardSubsystem_1ga55757d1294dbaa627c330de2af43f15d"></a>
+#### `protected virtual void `[`InitPropertiesWithDefaultValues`](#group__LeaderboardSubsystem_1ga7b262c81a01ee11682f58888a260abd2)`()` <a id="group__LeaderboardSubsystem_1ga7b262c81a01ee11682f58888a260abd2"></a>
 
 Initializes the subsystem with defaults for its cached data.
-
-#### `protected void `[`HandleNewPage`](#group__LeaderboardSubsystem_1ga1cf836026e33c6f724aaf1ca6f012ea4)`(const `[`FRHAPI_LeaderboardPage`](RHAPI_LeaderboardPage.md#structFRHAPI__LeaderboardPage)` & Page)` <a id="group__LeaderboardSubsystem_1ga1cf836026e33c6f724aaf1ca6f012ea4"></a>
-
-Default behavior for handling a page response.
 
 ## class `URH_LeaderboardSubsystem` <a id="classURH__LeaderboardSubsystem"></a>
 
