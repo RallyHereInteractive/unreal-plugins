@@ -22,7 +22,7 @@ struct FRHDTW_Leaderboards : public FRH_DebugToolWindow
 
 	FString SelectedLeaderboardId;
 	FString SelectedCursor{"0"};
-	int32 PageSize = 50;
-	int32 SelectedLeaderboardPosition;
+	int32 PageSize{ 50 };
+	int32 SelectedLeaderboardPosition{ 1 };
 };
 

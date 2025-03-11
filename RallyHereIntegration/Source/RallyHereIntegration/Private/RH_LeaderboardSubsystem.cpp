@@ -88,6 +88,7 @@ void URH_LeaderboardSubsystem::GetAllConfigAsync(const FRH_LeaderboardConfigCall
 				FRHAPI_LeaderboardConfigList Content;
 				if (Response.TryGetContentFor200(Content))
 				{
+					*ResponseContent = Content;
 					for (auto& SingleConfig : Content.GetLeaderboardConfigs())
 					{
 						LeaderboardConfigs.Add(SingleConfig.GetLeaderboardId(), SingleConfig);
@@ -112,7 +113,7 @@ void URH_LeaderboardSubsystem::GetLeaderboardPageAsync(const FString& Leaderboar
 	Request.LeaderboardId = LeaderboardID;
 	Request.Cursor = Cursor;
 	Request.PageSize = PageSize;
-	TSharedPtr<FRHAPI_LeaderboardPage> ResponseContent = MakeShared<FRHAPI_LeaderboardPage>();
+	TSharedRef<FRHAPI_LeaderboardPage> ResponseContent = MakeShareable(new FRHAPI_LeaderboardPage());
 
 	const auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateWeakLambda(this, [this, LeaderboardID, ResponseContent](const BaseType::Response& Response)
@@ -120,6 +121,7 @@ void URH_LeaderboardSubsystem::GetLeaderboardPageAsync(const FString& Leaderboar
 				FRHAPI_LeaderboardPage Content;
 				if (Response.TryGetContentFor200(Content))
 				{
+					*ResponseContent = Content;
 					CachedPages.FindOrAdd(LeaderboardID);
 					CachedPages[LeaderboardID] = MoveTemp(Content);
 				}
@@ -149,6 +151,7 @@ void URH_LeaderboardSubsystem::GetLeaderboardPositionAsync(const FString& Leader
 				FRHAPI_LeaderboardEntry Content;
 				if (Response.TryGetContentFor200(Content))
 				{
+					*ResponseContent = Content;
 					CachedPositionEntry = MoveTemp(Content);
 				}
 			}),
@@ -176,6 +179,7 @@ void URH_LeaderboardSubsystem::GetLeaderboardMetaDataAsync(const FString& Leader
 				FRHAPI_LeaderboardMetaData Content;
 				if (Response.TryGetContentFor200(Content))
 				{
+					*ResponseContent = Content;
 					CachedMetaData.FindOrAdd(LeaderboardID);
 					CachedMetaData[LeaderboardID] = MoveTemp(Content);
 				}

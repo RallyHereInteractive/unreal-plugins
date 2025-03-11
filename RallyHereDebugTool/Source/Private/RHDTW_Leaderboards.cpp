@@ -43,6 +43,7 @@ void FRHDTW_Leaderboards::Do()
 			DoViewMetaData();
 			ImGui::EndTabItem();
 		}
+		ImGui::EndTabBar();
 	}
 }
 void FRHDTW_Leaderboards::DoViewLeaderboardPage()
@@ -63,29 +64,22 @@ void FRHDTW_Leaderboards::DoViewLeaderboardPage()
 		LeaderboardSS->GetLeaderboardPageAsync(SelectedLeaderboardId, SelectedCursor, PageSize);
 	}
 
-	if (ImGui::BeginTable("Leaderboard Page", 3, RH_TableFlagsPropSizing))
+	if (ImGui::TreeNodeEx("Leaderboard Page", RH_DefaultTreeFlags))
 	{
-		ImGui::TableSetupColumn("Leaderboard Position");
-		ImGui::TableSetupColumn("Player UUID");
-		ImGui::TableSetupColumn("Stat Value");
-		ImGui::TableHeadersRow();
-
 		FRHAPI_LeaderboardPage LatestPage{};
 		bool success = LeaderboardSS->GetCachedLeaderboardPage(SelectedLeaderboardId, LatestPage);
 		if (success)
 		{
 			for (auto&& entry : LatestPage.Entries)
 			{
-				ImGui::TableNextRow();
-				ImGui::TableNextColumn();
-				ImGuiDisplayCopyableValue("Position", entry.GetPosition(), ECopyMode::Value);
-				ImGui::TableNextColumn();
-				ImGuiDisplayCopyableValue("PlayerUUID", entry.GetPlayerUuid(), ECopyMode::Value);
-				ImGui::TableNextColumn();
-				ImGuiDisplayCopyableValue("Stat", entry.GetStatValueOrNull(), ECopyMode::Value);
+				if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("Leaderboard Position %d"), entry.GetPosition())), RH_DefaultTreeFlags))
+				{
+					ImGuiDisplayModelData<FRHAPI_LeaderboardEntry>(entry);
+					ImGui::TreePop();
+				}
 			}
 		}
-		ImGui::EndTable();
+		ImGui::TreePop();
 	}
 }
 
@@ -102,21 +96,8 @@ void FRHDTW_Leaderboards::DoViewConfig()
 		LeaderboardSS->GetAllConfigAsync();
 	}
 
-	if (ImGui::BeginTable("LeaderboardConfigs", 11, RH_TableFlagsPropSizing))
+	if (ImGui::TreeNodeEx("Leaderboard Configs", RH_DefaultTreeFlags))
 	{
-
-		ImGui::TableSetupColumn("Leaderboard ID");
-		ImGui::TableSetupColumn("Player List Type");
-		ImGui::TableSetupColumn("Max Size");
-		ImGui::TableSetupColumn("Sort Order");
-		ImGui::TableSetupColumn("Source");
-		ImGui::TableSetupColumn("Source ID");
-		ImGui::TableSetupColumn("Remove Restricted");
-		ImGui::TableSetupColumn("Required Recent Login Days");
-		ImGui::TableSetupColumn("Update Frequency");
-		ImGui::TableSetupColumn("Expose Stats");
-		ImGui::TableSetupColumn("Expose Players");
-		ImGui::TableHeadersRow();
 
 		TMap<FString, FRHAPI_LeaderboardConfig> Configs{};
 		bool success = LeaderboardSS->GetCachedLeaderboardConfigs(Configs);
@@ -124,32 +105,14 @@ void FRHDTW_Leaderboards::DoViewConfig()
 		{
 			for (auto&& itr : Configs)
 			{
-				ImGui::TableNextRow();
-				ImGui::TableNextColumn();
-				ImGuiDisplayCopyableValue("Leaderboard ID", itr.Value.GetLeaderboardId(), ECopyMode::Value);
-				ImGui::TableNextColumn();
-				ImGuiDisplayCopyableValue("Player List Type", EnumToString(itr.Value.GetPlayerList()), ECopyMode::Value);
-				ImGui::TableNextColumn();
-				ImGuiDisplayCopyableValue("Max Size", itr.Value.GetMaxSize(), ECopyMode::Value);
-				ImGui::TableNextColumn();
-				ImGuiDisplayCopyableValue("Sort Order", EnumToString(itr.Value.GetSortOrder()), ECopyMode::Value);
-				ImGui::TableNextColumn();
-				ImGuiDisplayCopyableValue("Source", EnumToString(itr.Value.GetSource()), ECopyMode::Value);
-				ImGui::TableNextColumn();
-				ImGuiDisplayCopyableValue("Source ID", itr.Value.GetSourceId(), ECopyMode::Value);
-				ImGui::TableNextColumn();
-				ImGuiDisplayCopyableValue("Remove Restricted", itr.Value.GetRemoveRestrictedOrNull(), ECopyMode::Value);
-				ImGui::TableNextColumn();
-				ImGuiDisplayCopyableValue("Required Recent Login Days", itr.Value.GetRequiredRecentLoginDaysOrNull(), ECopyMode::Value);
-				ImGui::TableNextColumn();
-				ImGuiDisplayCopyableValue("Update Frequency", itr.Value.GetUpdateFrequencySeconds(), ECopyMode::Value);
-				ImGui::TableNextColumn();
-				ImGuiDisplayCopyableValue("Expose Stats", itr.Value.GetExposeStatOrNull(), ECopyMode::Value);
-				ImGui::TableNextColumn();
-				ImGuiDisplayCopyableValue("Expose Players", itr.Value.GetExposePlayersOrNull(), ECopyMode::Value);
+				if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*itr.Value.GetLeaderboardId()), RH_DefaultTreeFlags)) 
+				{
+					ImGuiDisplayModelData<FRHAPI_LeaderboardConfig>(itr.Value);
+					ImGui::TreePop();
+				}
 			}
 		}
-		ImGui::EndTable();
+		ImGui::TreePop();
 	}
 }
 
@@ -168,26 +131,19 @@ void FRHDTW_Leaderboards::DoViewLeaderboardPosition()
 	{
 		LeaderboardSS->GetLeaderboardPositionAsync(SelectedLeaderboardId, SelectedLeaderboardPosition);
 	}
-	if (ImGui::BeginTable("LeaderboardConfigs", 3, RH_TableFlagsPropSizing))
+	if (ImGui::TreeNodeEx("Leaderboard Position", RH_DefaultTreeFlags))
 	{
-		ImGui::TableSetupColumn("Leaderboard Position");
-		ImGui::TableSetupColumn("Player UUID");
-		ImGui::TableSetupColumn("Stat Value");
-		ImGui::TableHeadersRow();
-
 		FRHAPI_LeaderboardEntry Entry{};
 		bool success = LeaderboardSS->GetCachedLeaderboardPosition(Entry);
 		if (success)
 		{
-			ImGui::TableNextRow();
-			ImGui::TableNextColumn();
-			ImGuiDisplayCopyableValue("Position", Entry.GetPosition(), ECopyMode::Value);
-			ImGui::TableNextColumn();
-			ImGuiDisplayCopyableValue("PlayerUUID", Entry.GetPlayerUuid(), ECopyMode::Value);
-			ImGui::TableNextColumn();
-			ImGuiDisplayCopyableValue("Stat", Entry.GetStatValueOrNull(), ECopyMode::Value);
+			if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*SelectedLeaderboardId), RH_DefaultTreeFlags))
+			{
+				ImGuiDisplayModelData<FRHAPI_LeaderboardEntry>(Entry);
+				ImGui::TreePop();
+			}
 		}
-		ImGui::EndTable();
+		ImGui::TreePop();
 	}
 
 }
@@ -208,22 +164,19 @@ void FRHDTW_Leaderboards::DoViewMetaData()
 		LeaderboardSS->GetLeaderboardMetaDataAsync(SelectedLeaderboardId);
 	}
 
-	if (ImGui::BeginTable("Leaderboard MetaData", 2, RH_TableFlagsPropSizing))
+	if (ImGui::TreeNodeEx("Leaderboard MetaData", RH_DefaultTreeFlags))
 	{
-		ImGui::TableSetupColumn("Last Updated");
-		ImGui::TableSetupColumn("Entry Count");
-		ImGui::TableHeadersRow();
 		FRHAPI_LeaderboardMetaData MetaData{};
 		bool success = LeaderboardSS->GetCachedLeaderboardMetaData(SelectedLeaderboardId, MetaData);
 		if (success) 
 		{
-			ImGui::TableNextRow();
-			ImGui::TableNextColumn();
-			ImGuiDisplayCopyableValue("Last Updated", MetaData.GetLastUpdatedDatetime(), ECopyMode::Value);
-			ImGui::TableNextColumn();
-			ImGuiDisplayCopyableValue("Entry Count", MetaData.GetEntryCount(), ECopyMode::Value);
+			if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*SelectedLeaderboardId), RH_DefaultTreeFlags))
+			{
+				ImGuiDisplayModelData<FRHAPI_LeaderboardMetaData>(MetaData);
+				ImGui::TreePop();
+			}
 		}
-		ImGui::EndTable();
+		ImGui::TreePop();
 	}
 }
 
