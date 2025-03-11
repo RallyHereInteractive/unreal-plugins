@@ -724,6 +724,7 @@ Subsystem for the Game Instance.
 `public inline FORCEINLINE `[`URH_MatchSubsystem`](Match.md#classURH__MatchSubsystem)` * `[`GetMatchSubsystem`](#classURH__GameInstanceSubsystem_1af1e307ce8703fa96ce73485e81de4d46)`() const` | Gets the match subsystem on the instance.
 `public inline FORCEINLINE `[`URH_RemoteFileSubsystem`](File.md#classURH__RemoteFileSubsystem)` * `[`GetRemoteFileSubsystem`](#classURH__GameInstanceSubsystem_1a7a59712911e755b05c3c866355ee125e)`() const` | Gets the remote file subsystem on the instance.
 `public inline FORCEINLINE `[`URH_GuideSubsystem`](GuideSubsystem.md#classURH__GuideSubsystem)` * `[`GetGuideSubsystem`](#classURH__GameInstanceSubsystem_1aa0b6c4d091d6b7e6b3177d1fa0fdbcc4)`() const` | Gets the guide subsystem on the instance.
+`public inline FORCEINLINE `[`URH_LeaderboardSubsystem`](LeaderboardSubsystem.md#classURH__LeaderboardSubsystem)` * `[`GetLeaderboardSubsystem`](#classURH__GameInstanceSubsystem_1a9297ed0ab714179d8f59fe81f5d63777)`() const` | Gets the leaderboard subsystem on the instance.
 `public inline virtual bool `[`IsServerBootstrappingEnabled`](#classURH__GameInstanceSubsystem_1aeb44787c6b0cac3d121ae682ca77b191)`()` | Gets if server boostrapping is enabled.
 `public inline virtual bool `[`IsClientBootstrappingEnabled`](#classURH__GameInstanceSubsystem_1a2b838f400728010a6b525d6222cf3768)`()` | Gets if client boostrapping is enabled.
 `public virtual void `[`CustomEndpoint`](#classURH__GameInstanceSubsystem_1a0a69062a00fa3638f34752c643bd1a79)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const RallyHereAPI::FDelegate_CustomEndpointSend & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
@@ -746,6 +747,7 @@ Subsystem for the Game Instance.
 `protected `[`URH_MatchSubsystem`](Match.md#classURH__MatchSubsystem)` * `[`MatchSubsystem`](#classURH__GameInstanceSubsystem_1a3d15c09c7d7205f9e38ccc368ffaf62a) | The Match Subsystem.
 `protected `[`URH_RemoteFileSubsystem`](File.md#classURH__RemoteFileSubsystem)` * `[`RemoteFileSubsystem`](#classURH__GameInstanceSubsystem_1a02dcdefba948191414723ca5a5770190) | The File Subsystem.
 `protected `[`URH_GuideSubsystem`](GuideSubsystem.md#classURH__GuideSubsystem)` * `[`GuideSubsystem`](#classURH__GameInstanceSubsystem_1a8c21104e7f58af23ea7f4f7f865f3a4d) | The Guide Subsystem.
+`protected `[`URH_LeaderboardSubsystem`](LeaderboardSubsystem.md#classURH__LeaderboardSubsystem)` * `[`LeaderboardSubsystem`](#classURH__GameInstanceSubsystem_1a4685405bab90304364976587ae10f6eb) | The Leaderboard Subsystem.
 `protected FString `[`LastKnownIPAddress`](#classURH__GameInstanceSubsystem_1a9bc153d26a9a8045cde9f0cab0d9f883) | 
 `protected IpQueryState `[`LastKnownIPAddressQueryState`](#classURH__GameInstanceSubsystem_1abb85968bb9e0df901384875654e3d08b) | 
 `protected FSimpleMulticastDelegate `[`OnLastKnownIpAddressUpdated`](#classURH__GameInstanceSubsystem_1aef7b2a4e382c7d973521cf5dc4ca28f6) | 
@@ -846,6 +848,10 @@ Gets the remote file subsystem on the instance.
 #### `public inline FORCEINLINE `[`URH_GuideSubsystem`](GuideSubsystem.md#classURH__GuideSubsystem)` * `[`GetGuideSubsystem`](#classURH__GameInstanceSubsystem_1aa0b6c4d091d6b7e6b3177d1fa0fdbcc4)`() const` <a id="classURH__GameInstanceSubsystem_1aa0b6c4d091d6b7e6b3177d1fa0fdbcc4"></a>
 
 Gets the guide subsystem on the instance.
+
+#### `public inline FORCEINLINE `[`URH_LeaderboardSubsystem`](LeaderboardSubsystem.md#classURH__LeaderboardSubsystem)` * `[`GetLeaderboardSubsystem`](#classURH__GameInstanceSubsystem_1a9297ed0ab714179d8f59fe81f5d63777)`() const` <a id="classURH__GameInstanceSubsystem_1a9297ed0ab714179d8f59fe81f5d63777"></a>
+
+Gets the leaderboard subsystem on the instance.
 
 #### `public inline virtual bool `[`IsServerBootstrappingEnabled`](#classURH__GameInstanceSubsystem_1aeb44787c6b0cac3d121ae682ca77b191)`()` <a id="classURH__GameInstanceSubsystem_1aeb44787c6b0cac3d121ae682ca77b191"></a>
 
@@ -955,6 +961,10 @@ The File Subsystem.
 #### `protected `[`URH_GuideSubsystem`](GuideSubsystem.md#classURH__GuideSubsystem)` * `[`GuideSubsystem`](#classURH__GameInstanceSubsystem_1a8c21104e7f58af23ea7f4f7f865f3a4d) <a id="classURH__GameInstanceSubsystem_1a8c21104e7f58af23ea7f4f7f865f3a4d"></a>
 
 The Guide Subsystem.
+
+#### `protected `[`URH_LeaderboardSubsystem`](LeaderboardSubsystem.md#classURH__LeaderboardSubsystem)` * `[`LeaderboardSubsystem`](#classURH__GameInstanceSubsystem_1a4685405bab90304364976587ae10f6eb) <a id="classURH__GameInstanceSubsystem_1a4685405bab90304364976587ae10f6eb"></a>
+
+The Leaderboard Subsystem.
 
 #### `protected FString `[`LastKnownIPAddress`](#classURH__GameInstanceSubsystem_1a9bc153d26a9a8045cde9f0cab0d9f883) <a id="classURH__GameInstanceSubsystem_1a9bc153d26a9a8045cde9f0cab0d9f883"></a>
 
