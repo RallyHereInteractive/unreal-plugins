@@ -9,23 +9,14 @@
 #include "RallyHereIntegrationModule.h"
 #include "RH_SubsystemPluginBase.h"
 #include "Tickable.h"
-#include "LeaderboardConfig.h"
-#include "LeaderboardPage.h"
 #include "LeaderboardAPI.h"
-#include "LeaderboardMetaData.h"
 
 #include "RH_LeaderboardSubsystem.generated.h"
 
 
-struct FRHAPI_LeaderboardConfig;
-struct FRHAPI_LeaderboardPage;
-struct FRHAPI_LeaderboardEntry;
-struct FRHAPI_LeaderboardMetaData;
 /** @defgroup LeaderboardSubsystem RallyHere Leaderboard Subsystem/
  * @{
  */
-
-typedef TMap<FString, FRHAPI_LeaderboardConfig> ConfigMap;
 
 UDELEGATE()
 DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_LeaderboardConfigCallDynamicDelegate, bool, bSuccess, const FRH_ErrorInfo&, ErrorInfo, FRHAPI_LeaderboardConfigList&, ConfigList);
@@ -64,6 +55,8 @@ public:
 	typedef RallyHereAPI::Traits_GetLeaderboardMetaData TGetLeaderboardMetaData;
 	typedef RallyHereAPI::Traits_GetLeaderboardPositionEntry TGetLeaderboardPositionEntry;
 
+	typedef TMap<FString, FRHAPI_LeaderboardConfig> ConfigMap;
+
 	/**
 	 * @brief Initialize the subsystem.
 	 */
@@ -76,23 +69,28 @@ public:
 	/**
 	 * @brief Get all leaderboards' configs that have been requested 
 	 */
-	const ConfigMap& GetCachedLeaderboardConfigs() const { return LeaderboardConfigs; }
+	UFUNCTION(BlueprintCallable, Category = "Leaderboard Subsystem")
+	bool GetCachedLeaderboardConfigs(TMap<FString, FRHAPI_LeaderboardConfig>& OutConfigMap) const;
 
 	/**
 	 * @brief Get a single leaderboard's config
 	 */
-	const FRHAPI_LeaderboardConfig* GetCachedLeaderboardConfig(const FString& LeaderboardID) const { return LeaderboardConfigs.Find(LeaderboardID); }
+	UFUNCTION(BlueprintCallable, Category = "Leaderboard Subsystem")
+	bool GetCachedLeaderboardConfig(const FString& LeaderboardID, FRHAPI_LeaderboardConfig& CachedConfig) const;
 
 	/** @brief Get latest successfully requested leaderboard page */
-	const FRHAPI_LeaderboardPage* GetCachedLeaderboardPage(const FString& LeaderboardID) const { return CachedPages.Find(LeaderboardID); }
+	UFUNCTION(BlueprintCallable, Category = "Leaderboard Subsystem")
+	bool GetCachedLeaderboardPage(const FString& LeaderboardID, FRHAPI_LeaderboardPage& CachedPage) const;
 
 	/**
 	 * @brief Get a single leaderboard's meta data
 	 */
-	const FRHAPI_LeaderboardMetaData* GetCachedLeaderboardMetaData(const FString& LeaderboardID) const { return CachedMetaData.Find(LeaderboardID); }
+	UFUNCTION(BlueprintCallable, Category = "Leaderboard Subsystem")
+	bool GetCachedLeaderboardMetaData(const FString& LeaderboardID, FRHAPI_LeaderboardMetaData& OutMetaData) const;
 
 	/** @brief Get latest successfully requested position */
-	const FRHAPI_LeaderboardEntry& GetCachedLeaderboardPosition() const { return CachedPositionEntry; }
+	UFUNCTION(BlueprintCallable, Category = "Leaderboard Subsystem")
+	bool GetCachedLeaderboardPosition(FRHAPI_LeaderboardEntry& OutEntry) const;
 
 	/**
 	 * @brief Request All Leaderboard Config.
@@ -100,7 +98,7 @@ public:
 	virtual void GetAllConfigAsync(const FRH_LeaderboardConfigCallBlock& Delegate = FRH_LeaderboardConfigCallBlock());
 	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Leaderboard Subsystem", meta = (DisplayName = "Get All Leaderboard Config (async)", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_GetAllConfig(const FRH_LeaderboardConfigCallDynamicDelegate& Delegate) { return GetAllConfigAsync(Delegate); }
+	void BLUEPRINT_GetAllConfigAsync(const FRH_LeaderboardConfigCallDynamicDelegate& Delegate) { return GetAllConfigAsync(Delegate); }
 
 	/**
 	 * @brief Request a page specific leaderboard
@@ -108,7 +106,7 @@ public:
 	virtual void GetLeaderboardPageAsync(const FString& LeaderboardID, const FString& Cursor, int32 PageSize = 50, const FRH_LeaderboardPageBlock& Delegate = FRH_LeaderboardPageBlock());
 	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Leaderboard Subsystem", meta = (DisplayName = "Get Specific Leaderboard (async)", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_GetLeaderboardPage(const FString& LeaderboardID, const FString& Cursor, const FRH_LeaderboardPageDynamicDelegate& Delegate, int32 PageSize = 50) { return GetLeaderboardPageAsync(LeaderboardID, Cursor, PageSize, Delegate); }
+	void BLUEPRINT_GetLeaderboardPageAsync(const FString& LeaderboardID, const FString& Cursor, const FRH_LeaderboardPageDynamicDelegate& Delegate, int32 PageSize = 50) { return GetLeaderboardPageAsync(LeaderboardID, Cursor, PageSize, Delegate); }
 
 	/**
 	 * @brief Request a specific position in the leaderboard. Useful for determining thresholds
@@ -116,7 +114,7 @@ public:
 	virtual void GetLeaderboardPositionAsync(const FString& LeaderboardID, int32 position, const FRH_LeaderboardPositionBlock& Delegate = FRH_LeaderboardPositionBlock());
 	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Leaderboard Subsystem", meta = (DisplayName = "Get Specific Leaderboard (async)", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_GetLeaderboardPosition(const FString& LeaderboardID, int32 position, const FRH_LeaderboardPositionDynamicDelegate& Delegate) { return GetLeaderboardPositionAsync(LeaderboardID, position, Delegate); }
+	void BLUEPRINT_GetLeaderboardPositionAsync(const FString& LeaderboardID, int32 position, const FRH_LeaderboardPositionDynamicDelegate& Delegate) { return GetLeaderboardPositionAsync(LeaderboardID, position, Delegate); }
 
 	/**
 	 * @brief Request metadata about a specific leaderboard
@@ -124,7 +122,7 @@ public:
 	virtual void GetLeaderboardMetaDataAsync(const FString& LeaderboardID, const FRH_LeaderboardMetaDataBlock& Delegate = FRH_LeaderboardMetaDataBlock());
 	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Leaderboard Subsystem", meta = (DisplayName = "Get Specific Leaderboard (async)", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_GetLeaderboardMetaData(const FString& LeaderboardID, const FRH_LeaderboardMetaDataDynamicDelegate& Delegate) { return GetLeaderboardMetaDataAsync(LeaderboardID, Delegate); }
+	void BLUEPRINT_GetLeaderboardMetaDataAsync(const FString& LeaderboardID, const FRH_LeaderboardMetaDataDynamicDelegate& Delegate) { return GetLeaderboardMetaDataAsync(LeaderboardID, Delegate); }
 
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "Leaderboard Subsystem")
@@ -140,8 +138,5 @@ protected:
 	FRHAPI_LeaderboardEntry CachedPositionEntry;
 
 	/** @brief Initializes the subsystem with defaults for its cached data. */
-	void InitPropertiesWithDefaultValues();
-
-	/** @brief Default behavior for handling a page response */
-	void HandleNewPage(const FRHAPI_LeaderboardPage& Page);
+	virtual void InitPropertiesWithDefaultValues();
 };

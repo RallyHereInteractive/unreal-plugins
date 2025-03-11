@@ -28,6 +28,52 @@ void URH_LeaderboardSubsystem::Deinitialize()
 	InitPropertiesWithDefaultValues();
 }
 
+bool URH_LeaderboardSubsystem::GetCachedLeaderboardConfigs(TMap<FString, FRHAPI_LeaderboardConfig>& OutConfigMap) const
+{ 
+	OutConfigMap = LeaderboardConfigs;
+	return true;
+}
+
+bool URH_LeaderboardSubsystem::GetCachedLeaderboardConfig(const FString& LeaderboardID, FRHAPI_LeaderboardConfig& OutCachedConfig) const 
+{ 
+
+	auto&& Config =  LeaderboardConfigs.Find(LeaderboardID);
+	if (Config == nullptr)
+	{
+		return false;
+	}
+	OutCachedConfig = *Config;
+	return true;
+}
+
+bool URH_LeaderboardSubsystem::GetCachedLeaderboardPage(const FString& LeaderboardID, FRHAPI_LeaderboardPage& OutCachedPage) const
+{
+	auto&& Page = CachedPages.Find(LeaderboardID);
+	if (Page == nullptr)
+	{
+		return false;
+	}
+	OutCachedPage = *Page;
+	return true;
+}
+
+bool URH_LeaderboardSubsystem::GetCachedLeaderboardMetaData(const FString& LeaderboardID, FRHAPI_LeaderboardMetaData& OutMetaData) const 
+{ 
+	auto&& MetaData = CachedMetaData.Find(LeaderboardID);
+	if (MetaData == nullptr)
+	{
+		return false;
+	}
+	OutMetaData = *MetaData;
+	return true;
+}
+
+bool URH_LeaderboardSubsystem::GetCachedLeaderboardPosition(FRHAPI_LeaderboardEntry& OutEntry) const 
+{ 
+	OutEntry = CachedPositionEntry;
+	return true;
+}
+
 void URH_LeaderboardSubsystem::GetAllConfigAsync(const FRH_LeaderboardConfigCallBlock& Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
