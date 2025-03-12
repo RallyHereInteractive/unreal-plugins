@@ -130,6 +130,7 @@ public:
 	TSharedPtr<struct FRHDTW_RemoteFile> RemoteFileWindow;
 	TSharedPtr<struct FRHDTW_Guide> GuidesWindow;
 	TSharedPtr<struct FRHDTW_Automation> AutomationWindow;
+	TSharedPtr<struct FRHDTW_Leaderboards> LeaderboardWindow;
 
 	TMap<FString, bool> SavedWindowVisibilities;
 

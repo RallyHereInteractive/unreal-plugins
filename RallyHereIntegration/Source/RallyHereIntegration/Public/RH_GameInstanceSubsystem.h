@@ -26,6 +26,7 @@ class URH_SettingsSubsystem;
 class URH_MatchSubsystem;
 class URH_RemoteFileSubsystem;
 class URH_GuideSubsystem;
+class URH_LeaderboardSubsystem;
 
 /** @defgroup GameInstance RallyHere Game Instance
  *  @{
@@ -131,6 +132,11 @@ public:
 	*/
 	UFUNCTION(BlueprintGetter, Category = "Guide")
 	FORCEINLINE URH_GuideSubsystem* GetGuideSubsystem() const { return GuideSubsystem; }
+	/**
+	* @brief Gets the leaderboard subsystem on the instance.
+	*/
+	UFUNCTION(BlueprintGetter, Category = "Leaderboard")
+	FORCEINLINE URH_LeaderboardSubsystem* GetLeaderboardSubsystem() const { return LeaderboardSubsystem; }
 
 	/**
 	* @brief Gets if server boostrapping is enabled
@@ -265,6 +271,9 @@ protected:
 	/** @brief The Guide Subsystem */
 	UPROPERTY(VisibleInstanceOnly, BlueprintGetter = GetGuideSubsystem, Category = "Guide")
 	URH_GuideSubsystem* GuideSubsystem;
+	/** @brief The Leaderboard Subsystem */
+	UPROPERTY(VisibleInstanceOnly, BlueprintGetter = GetLeaderboardSubsystem, Category = "Guide")
+	URH_LeaderboardSubsystem* LeaderboardSubsystem;
 	
 	UPROPERTY(VisibleInstanceOnly, BlueprintGetter = GetLastKnownIPAddress, Category = "Match")
 	FString LastKnownIPAddress;
