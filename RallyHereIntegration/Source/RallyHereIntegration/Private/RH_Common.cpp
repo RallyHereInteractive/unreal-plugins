@@ -184,7 +184,7 @@ ERHAPI_InventoryBucket RH_GetInventoryBucketFromPlatform(ERHAPI_Platform Platfor
 	return ERHAPI_InventoryBucket::None;
 }
 
-TOptional<FGuid> RH_GetPlayerUuidFromPlayerController(APlayerController* PC)
+TOptional<FGuid> RH_GetPlayerUuidFromPlayerController(const APlayerController* PC)
 {
 	TOptional<FGuid> PlayerId;
 	if (PC != nullptr)
