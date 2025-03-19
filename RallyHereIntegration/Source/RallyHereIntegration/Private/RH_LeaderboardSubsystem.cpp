@@ -57,6 +57,28 @@ bool URH_LeaderboardSubsystem::GetCachedLeaderboardPage(const FString& Leaderboa
 	return true;
 }
 
+bool URH_LeaderboardSubsystem::GetCachedLeaderboardRef(const FString& LeaderboardID, TSharedPtr<FRH_LeaderboardResults> Ref) const
+{
+	auto&& Leaderboard = CachedLeaderboards.Find(LeaderboardID);
+	if (Leaderboard == nullptr)
+	{
+		return false;
+	}
+	Ref = *Leaderboard;
+	return true;
+}
+
+bool URH_LeaderboardSubsystem::GetCachedLeaderboard(const FString& LeaderboardID, FRH_LeaderboardResults& OutResults) const
+{
+	auto&& Leaderboard = CachedLeaderboards.Find(LeaderboardID);
+	if (Leaderboard == nullptr)
+	{
+		return false;
+	}
+	OutResults = **Leaderboard;
+	return true;
+}
+
 bool URH_LeaderboardSubsystem::GetCachedLeaderboardMetaData(const FString& LeaderboardID, FRHAPI_LeaderboardMetaData& OutMetaData) const 
 { 
 	auto&& MetaData = CachedMetaData.Find(LeaderboardID);
@@ -135,6 +157,78 @@ void URH_LeaderboardSubsystem::GetLeaderboardPageAsync(const FString& Leaderboar
 	Helper->Start(RH_APIs::GetLeaderboardAPI(), Request);
 }
 
+void URH_LeaderboardSubsystem::GetAllPages(const FString& LeaderboardID, const FString& Cursor, const FRH_LeaderboardPageBlock& Delegate)
+{
+	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+	typedef TGetLeaderboard BaseType;
+	BaseType::Request Request;
+	Request.AuthContext = GetAuthContext();
+	Request.LeaderboardId = LeaderboardID;
+	Request.Cursor = Cursor;
+	Request.PageSize = 50;
+	TSharedRef<FRHAPI_LeaderboardPage> ResponseContent = MakeShareable(new FRHAPI_LeaderboardPage());
+
+	auto UpdateLambda = BaseType::Delegate::CreateWeakLambda(this, [this, LeaderboardID, Delegate, ResponseContent](const BaseType::Response& Response)
+		{
+			FRHAPI_LeaderboardPage Content;
+			if (Response.TryGetContentFor200(Content))
+			{
+				*ResponseContent = Content;
+				CachedLeaderboards.FindOrAdd(LeaderboardID);
+				auto& Leaderboard = CachedLeaderboards[LeaderboardID];
+				FString NextCursor = *Content.GetCursor();
+				Leaderboard->Pages.Add(MoveTemp(Content));
+				if (!NextCursor.Equals(TEXT("0"), ESearchCase::IgnoreCase))
+				{
+					GetAllPages(LeaderboardID, NextCursor, Delegate);
+				}
+				else
+				{
+					Leaderboard->SearchComplete = true;
+					Leaderboard->LastUpdated = FDateTime::Now();
+				}
+			}
+			else
+			{ 
+				CachedLeaderboards.FindOrAdd(LeaderboardID);
+				CachedLeaderboards[LeaderboardID]->SearchComplete = true;
+			}
+		});
+	
+	auto OnCompleteLambda = FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Delegate, ResponseContent](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+		{
+			Delegate.ExecuteIfBound(bSuccess, ErrorInfo, *ResponseContent);
+		});
+
+	const auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(UpdateLambda, OnCompleteLambda, GetDefault<URH_IntegrationSettings>()->LeaderboardConfigPriority);
+	Helper->Start(RH_APIs::GetLeaderboardAPI(), Request);
+}
+
+void URH_LeaderboardSubsystem::GetLeaderboardAsync(const FString& LeaderboardID, const FRH_LeaderboardPageBlock& Delegate)
+{
+	// Create new results reference
+	if (CachedLeaderboards.Find(LeaderboardID))
+	{
+		CachedLeaderboards[LeaderboardID] = MakeShareable(new FRH_LeaderboardResults);
+	}
+	else
+	{
+		CachedLeaderboards.Add(LeaderboardID, MakeShareable(new FRH_LeaderboardResults));
+	}
+
+	auto& NewResults = CachedLeaderboards[LeaderboardID];
+
+	// Add the config if we have it
+	FRHAPI_LeaderboardConfig Config{};
+	if (GetCachedLeaderboardConfig(LeaderboardID, Config))
+	{
+		NewResults->Config = Config;
+	}
+
+	GetLeaderboardMetaDataAsync(LeaderboardID);
+	GetAllPages(LeaderboardID, FString(TEXT("0")), Delegate);
+}
+
 void URH_LeaderboardSubsystem::GetLeaderboardPositionAsync(const FString& LeaderboardID, int32 Position, const FRH_LeaderboardPositionBlock& Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
@@ -180,6 +274,11 @@ void URH_LeaderboardSubsystem::GetLeaderboardMetaDataAsync(const FString& Leader
 				if (Response.TryGetContentFor200(Content))
 				{
 					*ResponseContent = Content;
+					if (CachedLeaderboards.Find(LeaderboardID))
+					{
+						CachedLeaderboards[LeaderboardID]->MetaData = Content;
+					}
+
 					CachedMetaData.FindOrAdd(LeaderboardID);
 					CachedMetaData[LeaderboardID] = MoveTemp(Content);
 				}
