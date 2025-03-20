@@ -38,6 +38,26 @@ DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_LeaderboardMetaDataDynamicDelegate, boo
 DECLARE_DELEGATE_ThreeParams(FRH_LeaderboardMetaDataDelegate, bool, const FRH_ErrorInfo&, FRHAPI_LeaderboardMetaData&);
 DECLARE_RH_DELEGATE_BLOCK(FRH_LeaderboardMetaDataBlock, FRH_LeaderboardMetaDataDelegate, FRH_LeaderboardMetaDataDynamicDelegate, bool, const FRH_ErrorInfo&, FRHAPI_LeaderboardMetaData&);
 
+USTRUCT(BlueprintType)
+struct RALLYHEREINTEGRATION_API FRH_LeaderboardResults
+{
+	GENERATED_BODY()
+
+	UPROPERTY(BlueprintReadOnly, Category="Leaderboard Subsystem")
+	TArray<FRHAPI_LeaderboardPage> Pages{};
+	FRHAPI_LeaderboardConfig Config{};
+	FRHAPI_LeaderboardMetaData MetaData{};
+	bool SearchComplete{ false };
+	FDateTime LastUpdated{};
+
+	bool IsStale() const
+	{
+		// We haven't even requested the config, so we are missing the full data
+		if (!Config.UpdateFrequencySeconds) return true;
+		return FDateTime::Now().ToUnixTimestamp() - LastUpdated.ToUnixTimestamp() > Config.UpdateFrequencySeconds;
+	}
+};
+
 /**
  * @brief Class used to view Leaderboard data and config
 */
@@ -82,6 +102,12 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Leaderboard Subsystem")
 	bool GetCachedLeaderboardPage(const FString& LeaderboardID, FRHAPI_LeaderboardPage& CachedPage) const;
 
+	bool GetCachedLeaderboardRef(const FString& LeaderboardID, TSharedPtr<FRH_LeaderboardResults> Results) const;
+
+	/** @brief Get full cached leaderboards*/
+	UFUNCTION(BlueprintCallable, Category = "Leaderboard Subsystem")
+	bool GetCachedLeaderboard(const FString& LeaderboardID, FRH_LeaderboardResults& Results) const;
+
 	/**
 	 * @brief Get a single leaderboard's meta data
 	 */
@@ -109,6 +135,14 @@ public:
 	void BLUEPRINT_GetLeaderboardPageAsync(const FString& LeaderboardID, const FString& Cursor, const FRH_LeaderboardPageDynamicDelegate& Delegate, int32 PageSize = 50) { return GetLeaderboardPageAsync(LeaderboardID, Cursor, PageSize, Delegate); }
 
 	/**
+	 * @brief Request and cache a full leaderboard, including metadata. Config will be requested if missing. Will clear cache on call
+	*/
+	virtual void GetLeaderboardAsync(const FString& LeaderboardID, const FRH_LeaderboardPageBlock& Delegate = FRH_LeaderboardPageBlock());
+	/** @private */
+	UFUNCTION(BlueprintCallable, Category = "Leaderboard Subsystem", meta = (DisplayName = "Get Specific Leaderboard (async)", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_GetLeaderboardAsync(const FString& LeaderboardID, const FRH_LeaderboardPageDynamicDelegate& Delegate) { return GetLeaderboardAsync(LeaderboardID, Delegate); }
+
+	/**
 	 * @brief Request a specific position in the leaderboard. Useful for determining thresholds
 	*/
 	virtual void GetLeaderboardPositionAsync(const FString& LeaderboardID, int32 position, const FRH_LeaderboardPositionBlock& Delegate = FRH_LeaderboardPositionBlock());
@@ -131,6 +165,8 @@ protected:
 	UPROPERTY(BlueprintReadOnly, Category = "Leaderboard Subsystem")
 	TMap<FString, FRHAPI_LeaderboardPage> CachedPages;
 
+	TMap<FString, TSharedRef<FRH_LeaderboardResults>> CachedLeaderboards;
+
 	UPROPERTY(BlueprintReadOnly, Category = "Leaderboard Subsystem")
 	TMap<FString, FRHAPI_LeaderboardMetaData> CachedMetaData;
 
@@ -139,4 +175,7 @@ protected:
 
 	/** @brief Initializes the subsystem with defaults for its cached data. */
 	virtual void InitPropertiesWithDefaultValues();
+
+	/** Request all pages for a leaderboard */
+	void GetAllPages(const FString& LeaderboardID, const FString& Cursor, const FRH_LeaderboardPageBlock& Delegate);
 };
