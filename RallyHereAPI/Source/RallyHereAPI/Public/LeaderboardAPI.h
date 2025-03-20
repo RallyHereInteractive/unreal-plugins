@@ -124,118 +124,6 @@ struct RALLYHEREAPI_API Traits_GetAllLeaderboardConfig
 };
 
 /**
- * @brief Get Friend Leaderboard
- * Get a paged response for a friend leaderboard
-*/
-struct RALLYHEREAPI_API FRequest_GetFriendLeaderboard : public FRequest
-{
-	FRequest_GetFriendLeaderboard();
-	virtual ~FRequest_GetFriendLeaderboard() = default;
-	
-	/** @brief Given a http request, apply data and settings from this request object to it */
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	/** @brief Compute the URL path for this request instance */
-	FString ComputePath() const override;
-	/** @brief Get the simplified URL path for this request, not including the verb */
-	FName GetSimplifiedPath() const override;
-	/** @brief Get the simplified URL path for this request, including the verb */
-	FName GetSimplifiedPathWithVerb() const override;
-	/** @brief Get the auth context used for this request */
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	/** The specified auth context to use for this request */
-	TSharedPtr<FAuthContext> AuthContext;
-	FString LeaderboardId;
-	FGuid PlayerUuid;
-	/* Cursor for which page of leaderboard data you would like to retrieve */
-	FString Cursor;
-	/* The desired page size for the results */
-	int32 PageSize = 0;
-};
-
-/** The response type for FRequest_GetFriendLeaderboard */
-struct RALLYHEREAPI_API FResponse_GetFriendLeaderboard : public FResponseAccessorTemplate<FRHAPI_LeaderboardPage, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
-{
-	typedef FResponseAccessorTemplate<FRHAPI_LeaderboardPage, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
-
-	FResponse_GetFriendLeaderboard(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetFriendLeaderboard() = default;
-	
-	/** @brief Parse out response content into local storage from a given JsonValue */
-	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	/** @brief Parse out header information for later usage */
-	virtual bool ParseHeaders() override;
-	/** @brief Gets the description of the response code */
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	/** Default Response Content */
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_LeaderboardPage Content;
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	/** @brief Attempt to retrieve the content in the default response */
-	bool TryGetDefaultContent(FRHAPI_LeaderboardPage& OutContent) const { return TryGetContent<FRHAPI_LeaderboardPage>(OutContent); }
-	/** @brief Attempt to retrieve the content in the default response */
-	bool TryGetDefaultContent(TOptional<FRHAPI_LeaderboardPage>& OutContent) const { return TryGetContent<FRHAPI_LeaderboardPage>(OutContent); }
-	/** @brief Attempt to retrieve the content in the default response */
-	const FRHAPI_LeaderboardPage* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_LeaderboardPage>(); }
-	/** @brief Attempt to retrieve the content in the default response */
-	TOptional<FRHAPI_LeaderboardPage> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_LeaderboardPage>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_LeaderboardPage& OutContent) const;
-
-	/* Response 403
-	Forbidden
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 404
-	Not Found
-	*/
-	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-/** The delegate class for FRequest_GetFriendLeaderboard */
-DECLARE_DELEGATE_OneParam(FDelegate_GetFriendLeaderboard, const FResponse_GetFriendLeaderboard&);
-
-/** @brief A helper metadata object for GetFriendLeaderboard that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
-struct RALLYHEREAPI_API Traits_GetFriendLeaderboard
-{
-	/** The request type */
-	typedef FRequest_GetFriendLeaderboard Request;
-	/** The response type */
-	typedef FResponse_GetFriendLeaderboard Response;
-	/** The delegate type, triggered by the response */
-	typedef FDelegate_GetFriendLeaderboard Delegate;
-	/** The API object that supports this API call */
-	typedef FLeaderboardAPI API;
-	/** A human readable name for this API call */
-	static FString Name;
-
-	/**
-	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
-	 * @param [in] InAPI The API object the call will be made with
-	 * @param [in] InRequest The request to submit to the API call
-	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
-	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
-	 * @return A http request object, if the call was successfully queued.
-	 */
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
-};
-
-/**
  * @brief Get Leaderboard
  * Get a paged response for a leaderboard
 */
@@ -262,6 +150,8 @@ struct RALLYHEREAPI_API FRequest_GetLeaderboard : public FRequest
 	FString Cursor;
 	/* The desired page size for the results */
 	int32 PageSize = 0;
+	/* UUID of the player whose leaderboard data is being retrieved. Required for friend leaderboards */
+	TOptional<FGuid> PlayerUuid;
 };
 
 /** The response type for FRequest_GetLeaderboard */
@@ -678,8 +568,6 @@ public:
 
 	FHttpRequestPtr GetAllLeaderboardConfig(const FRequest_GetAllLeaderboardConfig& Request, const FDelegate_GetAllLeaderboardConfig& Delegate = FDelegate_GetAllLeaderboardConfig(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetAllLeaderboardConfigResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllLeaderboardConfig Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	FHttpRequestPtr GetFriendLeaderboard(const FRequest_GetFriendLeaderboard& Request, const FDelegate_GetFriendLeaderboard& Delegate = FDelegate_GetFriendLeaderboard(), int32 Priority = DefaultRallyHereAPIPriority);
-	void OnGetFriendLeaderboardResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetFriendLeaderboard Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr GetLeaderboard(const FRequest_GetLeaderboard& Request, const FDelegate_GetLeaderboard& Delegate = FDelegate_GetLeaderboard(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetLeaderboardResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetLeaderboard Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr GetLeaderboardConfig(const FRequest_GetLeaderboardConfig& Request, const FDelegate_GetLeaderboardConfig& Delegate = FDelegate_GetLeaderboardConfig(), int32 Priority = DefaultRallyHereAPIPriority);
