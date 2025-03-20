@@ -32445,108 +32445,25 @@
               "title": "Page Size"
             },
             "description": "The desired page size for the results"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LeaderboardPage"
-                }
-              }
-            }
-          },
-          "403": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "404": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HzApiErrorModel"
-                }
-              }
-            },
-            "description": "Not Found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/leaderboard/v1/leaderboard/{leaderboard_id}/player/{player_uuid}": {
-      "get": {
-        "tags": [
-          "Leaderboard"
-        ],
-        "summary": "Get Friend Leaderboard",
-        "description": "Get a paged response for a friend leaderboard",
-        "operationId": "get_friend_leaderboard",
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "leaderboard_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Leaderboard Id"
-            }
           },
           {
             "name": "player_uuid",
-            "in": "path",
-            "required": true,
+            "in": "query",
+            "required": false,
             "schema": {
-              "type": "string",
-              "format": "uuid",
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "UUID of the player whose leaderboard data is being retrieved. Required for friend leaderboards",
               "title": "Player Uuid"
-            }
-          },
-          {
-            "name": "cursor",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "description": "Cursor for which page of leaderboard data you would like to retrieve",
-              "title": "Cursor"
             },
-            "description": "Cursor for which page of leaderboard data you would like to retrieve"
-          },
-          {
-            "name": "page_size",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "maximum": 50,
-              "description": "The desired page size for the results",
-              "title": "Page Size"
-            },
-            "description": "The desired page size for the results"
+            "description": "UUID of the player whose leaderboard data is being retrieved. Required for friend leaderboards"
           }
         ],
         "responses": {
