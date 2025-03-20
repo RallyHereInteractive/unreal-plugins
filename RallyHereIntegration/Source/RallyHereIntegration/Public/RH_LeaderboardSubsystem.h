@@ -69,7 +69,6 @@ class RALLYHEREINTEGRATION_API URH_LeaderboardSubsystem : public URH_GameInstanc
 public:
 	/** @brief Type Define for API Calls. */
 	typedef RallyHereAPI::Traits_GetAllLeaderboardConfig TGetAllLeaderboardConfig;
-	typedef RallyHereAPI::Traits_GetFriendLeaderboard TGetFriendLeaderboard;
 	typedef RallyHereAPI::Traits_GetLeaderboard TGetLeaderboard;
 	typedef RallyHereAPI::Traits_GetLeaderboardConfig TGetLeaderboardConfig;
 	typedef RallyHereAPI::Traits_GetLeaderboardMetaData TGetLeaderboardMetaData;
@@ -129,18 +128,18 @@ public:
 	/**
 	 * @brief Request a page specific leaderboard
 	*/
-	virtual void GetLeaderboardPageAsync(const FString& LeaderboardID, const FString& Cursor, int32 PageSize = 50, const FRH_LeaderboardPageBlock& Delegate = FRH_LeaderboardPageBlock());
+	virtual void GetLeaderboardPageAsync(const FString& LeaderboardID, const FString& Cursor, const FGuid& PlayerUuid, int32 PageSize = 50, const FRH_LeaderboardPageBlock& Delegate = FRH_LeaderboardPageBlock());
 	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Leaderboard Subsystem", meta = (DisplayName = "Get Specific Leaderboard (async)", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_GetLeaderboardPageAsync(const FString& LeaderboardID, const FString& Cursor, const FRH_LeaderboardPageDynamicDelegate& Delegate, int32 PageSize = 50) { return GetLeaderboardPageAsync(LeaderboardID, Cursor, PageSize, Delegate); }
+	void BLUEPRINT_GetLeaderboardPageAsync(const FString& LeaderboardID, const FString& Cursor, const FGuid& PlayerUuid, const FRH_LeaderboardPageDynamicDelegate & Delegate, int32 PageSize = 50) { return GetLeaderboardPageAsync(LeaderboardID, Cursor, PlayerUuid, PageSize, Delegate); }
 
 	/**
 	 * @brief Request and cache a full leaderboard, including metadata. Config will be requested if missing. Will clear cache on call
 	*/
-	virtual void GetLeaderboardAsync(const FString& LeaderboardID, const FRH_LeaderboardPageBlock& Delegate = FRH_LeaderboardPageBlock());
+	virtual void GetLeaderboardAsync(const FString& LeaderboardID, const FGuid& PlayerUuid, const FRH_LeaderboardPageBlock & Delegate = FRH_LeaderboardPageBlock());
 	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Leaderboard Subsystem", meta = (DisplayName = "Get Specific Leaderboard (async)", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_GetLeaderboardAsync(const FString& LeaderboardID, const FRH_LeaderboardPageDynamicDelegate& Delegate) { return GetLeaderboardAsync(LeaderboardID, Delegate); }
+	void BLUEPRINT_GetLeaderboardAsync(const FString& LeaderboardID, const FGuid& PlayerUuid, const FRH_LeaderboardPageDynamicDelegate & Delegate) { return GetLeaderboardAsync(LeaderboardID, PlayerUuid, Delegate); }
 
 	/**
 	 * @brief Request a specific position in the leaderboard. Useful for determining thresholds
@@ -177,5 +176,5 @@ protected:
 	virtual void InitPropertiesWithDefaultValues();
 
 	/** Request all pages for a leaderboard */
-	void GetAllPages(const FString& LeaderboardID, const FString& Cursor, const FRH_LeaderboardPageBlock& Delegate);
+	void GetAllPages(const FString& LeaderboardID, const FString& Cursor, const FGuid& PlayerUuid, const FRH_LeaderboardPageBlock& Delegate);
 };

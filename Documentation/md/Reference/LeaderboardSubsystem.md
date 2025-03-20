@@ -30,11 +30,11 @@ title: LeaderboardSubsystem
 `public bool `[`GetCachedLeaderboardPosition`](#group__LeaderboardSubsystem_1ga0ad7a8e61a0946cd7ae5086289330e77)`(`[`FRHAPI_LeaderboardEntry`](RHAPI_LeaderboardEntry.md#structFRHAPI__LeaderboardEntry)` & OutEntry) const`            | Get latest successfully requested position.
 `public virtual void `[`GetAllConfigAsync`](#group__LeaderboardSubsystem_1ga37e10c997b425d49694c6c7a4c186d83)`(const FRH_LeaderboardConfigCallBlock & Delegate)`            | Request All Leaderboard Config.
 `private inline  `[`UFUNCTION`](#group__LeaderboardSubsystem_1ga267b4243311ac5a4019ea1fb2d5d97d9)`(BlueprintCallable,Category,meta) const`            | 
-`public virtual void `[`GetLeaderboardPageAsync`](#group__LeaderboardSubsystem_1ga8019bbd6e3537f9c859ca4ec230e36a8)`(const FString & LeaderboardID,const FString & Cursor,int32 PageSize,const FRH_LeaderboardPageBlock & Delegate)`            | Request a page specific leaderboard.
+`public virtual void `[`GetLeaderboardPageAsync`](#group__LeaderboardSubsystem_1ga02a75215969a673c334fde33f9e5bcf4)`(const FString & LeaderboardID,const FString & Cursor,const FGuid & PlayerUuid,int32 PageSize,const FRH_LeaderboardPageBlock & Delegate)`            | Request a page specific leaderboard.
 `public virtual void `[`GetLeaderboardPositionAsync`](#group__LeaderboardSubsystem_1gaaf8a946e387062b1ff891f4f9d76de37)`(const FString & LeaderboardID,int32 position,const FRH_LeaderboardPositionBlock & Delegate)`            | Request a specific position in the leaderboard. Useful for determining thresholds.
 `public virtual void `[`GetLeaderboardMetaDataAsync`](#group__LeaderboardSubsystem_1gaac5a1202430057ca75265246e6ab161c)`(const FString & LeaderboardID,const FRH_LeaderboardMetaDataBlock & Delegate)`            | Request metadata about a specific leaderboard.
 `protected virtual void `[`InitPropertiesWithDefaultValues`](#group__LeaderboardSubsystem_1ga7b262c81a01ee11682f58888a260abd2)`()`            | Initializes the subsystem with defaults for its cached data.
-`protected void `[`GetAllPages`](#group__LeaderboardSubsystem_1ga20a6d020a8e48dbf0aabba4e5321d3be)`(const FString & LeaderboardID,const FString & Cursor,const FRH_LeaderboardPageBlock & Delegate)`            | Request all pages for a leaderboard
+`protected void `[`GetAllPages`](#group__LeaderboardSubsystem_1gadc27ad669b223b70e07c50e1dc05d978)`(const FString & LeaderboardID,const FString & Cursor,const FGuid & PlayerUuid,const FRH_LeaderboardPageBlock & Delegate)`            | Request all pages for a leaderboard
 `class `[`URH_LeaderboardSubsystem`](#classURH__LeaderboardSubsystem) | Class used to view Leaderboard data and config.
 `struct `[`FRH_LeaderboardResults`](#structFRH__LeaderboardResults) | 
 
@@ -106,7 +106,7 @@ Request All Leaderboard Config.
 
 #### `private inline  `[`UFUNCTION`](#group__LeaderboardSubsystem_1ga267b4243311ac5a4019ea1fb2d5d97d9)`(BlueprintCallable,Category,meta) const` <a id="group__LeaderboardSubsystem_1ga267b4243311ac5a4019ea1fb2d5d97d9"></a>
 
-#### `public virtual void `[`GetLeaderboardPageAsync`](#group__LeaderboardSubsystem_1ga8019bbd6e3537f9c859ca4ec230e36a8)`(const FString & LeaderboardID,const FString & Cursor,int32 PageSize,const FRH_LeaderboardPageBlock & Delegate)` <a id="group__LeaderboardSubsystem_1ga8019bbd6e3537f9c859ca4ec230e36a8"></a>
+#### `public virtual void `[`GetLeaderboardPageAsync`](#group__LeaderboardSubsystem_1ga02a75215969a673c334fde33f9e5bcf4)`(const FString & LeaderboardID,const FString & Cursor,const FGuid & PlayerUuid,int32 PageSize,const FRH_LeaderboardPageBlock & Delegate)` <a id="group__LeaderboardSubsystem_1ga02a75215969a673c334fde33f9e5bcf4"></a>
 
 Request a page specific leaderboard.
 
@@ -122,7 +122,7 @@ Request metadata about a specific leaderboard.
 
 Initializes the subsystem with defaults for its cached data.
 
-#### `protected void `[`GetAllPages`](#group__LeaderboardSubsystem_1ga20a6d020a8e48dbf0aabba4e5321d3be)`(const FString & LeaderboardID,const FString & Cursor,const FRH_LeaderboardPageBlock & Delegate)` <a id="group__LeaderboardSubsystem_1ga20a6d020a8e48dbf0aabba4e5321d3be"></a>
+#### `protected void `[`GetAllPages`](#group__LeaderboardSubsystem_1gadc27ad669b223b70e07c50e1dc05d978)`(const FString & LeaderboardID,const FString & Cursor,const FGuid & PlayerUuid,const FRH_LeaderboardPageBlock & Delegate)` <a id="group__LeaderboardSubsystem_1gadc27ad669b223b70e07c50e1dc05d978"></a>
 
 Request all pages for a leaderboard
 

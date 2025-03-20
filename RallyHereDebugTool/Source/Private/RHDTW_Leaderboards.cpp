@@ -50,6 +50,7 @@ void FRHDTW_Leaderboards::DoViewLeaderboardPage()
 {
 	ImGui::InputText("Leaderboard ID", &SelectedLeaderboardId);
 	ImGui::InputText("Cursor", &SelectedCursor);
+	ImGui::InputText("Player UUID", &SelectedPlayerUUID);
 	ImGui::InputInt("Page Size", &PageSize);
 
 	auto LeaderboardSS = GetSubsystemWithTextForFailures();
@@ -60,8 +61,7 @@ void FRHDTW_Leaderboards::DoViewLeaderboardPage()
 
 	if (ImGui::Button("Request Page"))
 	{
-
-		LeaderboardSS->GetLeaderboardPageAsync(SelectedLeaderboardId, SelectedCursor, PageSize);
+		LeaderboardSS->GetLeaderboardPageAsync(SelectedLeaderboardId, SelectedCursor, FGuid(SelectedPlayerUUID), PageSize);
 	}
 
 	if (ImGui::TreeNodeEx("Leaderboard Page", RH_DefaultTreeFlags))
