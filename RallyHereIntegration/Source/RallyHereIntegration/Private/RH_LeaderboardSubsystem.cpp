@@ -126,7 +126,7 @@ void URH_LeaderboardSubsystem::GetAllConfigAsync(const FRH_LeaderboardConfigCall
 	Helper->Start(RH_APIs::GetLeaderboardAPI(), Request);
 }
 
-void URH_LeaderboardSubsystem::GetLeaderboardPageAsync(const FString& LeaderboardID, const FString& Cursor, int32 PageSize, const FRH_LeaderboardPageBlock& Delegate)
+void URH_LeaderboardSubsystem::GetLeaderboardPageAsync(const FString& LeaderboardID, const FString& Cursor, const FGuid& PlayerUuid, int32 PageSize, const FRH_LeaderboardPageBlock& Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 	typedef TGetLeaderboard BaseType;
@@ -135,6 +135,10 @@ void URH_LeaderboardSubsystem::GetLeaderboardPageAsync(const FString& Leaderboar
 	Request.LeaderboardId = LeaderboardID;
 	Request.Cursor = Cursor;
 	Request.PageSize = PageSize;
+	if (PlayerUuid.IsValid())
+	{
+		Request.PlayerUuid = PlayerUuid;
+	}
 	TSharedRef<FRHAPI_LeaderboardPage> ResponseContent = MakeShareable(new FRHAPI_LeaderboardPage());
 
 	const auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
@@ -157,7 +161,7 @@ void URH_LeaderboardSubsystem::GetLeaderboardPageAsync(const FString& Leaderboar
 	Helper->Start(RH_APIs::GetLeaderboardAPI(), Request);
 }
 
-void URH_LeaderboardSubsystem::GetAllPages(const FString& LeaderboardID, const FString& Cursor, const FRH_LeaderboardPageBlock& Delegate)
+void URH_LeaderboardSubsystem::GetAllPages(const FString& LeaderboardID, const FString& Cursor, const FGuid& PlayerUuid, const FRH_LeaderboardPageBlock& Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 	typedef TGetLeaderboard BaseType;
@@ -166,9 +170,13 @@ void URH_LeaderboardSubsystem::GetAllPages(const FString& LeaderboardID, const F
 	Request.LeaderboardId = LeaderboardID;
 	Request.Cursor = Cursor;
 	Request.PageSize = 50;
+	if (PlayerUuid.IsValid())
+	{
+		Request.PlayerUuid = PlayerUuid;
+	}
 	TSharedRef<FRHAPI_LeaderboardPage> ResponseContent = MakeShareable(new FRHAPI_LeaderboardPage());
 
-	auto UpdateLambda = BaseType::Delegate::CreateWeakLambda(this, [this, LeaderboardID, Delegate, ResponseContent](const BaseType::Response& Response)
+	auto UpdateLambda = BaseType::Delegate::CreateWeakLambda(this, [this, LeaderboardID, Delegate, PlayerUuid, ResponseContent](const BaseType::Response& Response)
 		{
 			FRHAPI_LeaderboardPage Content;
 			if (Response.TryGetContentFor200(Content))
@@ -180,7 +188,7 @@ void URH_LeaderboardSubsystem::GetAllPages(const FString& LeaderboardID, const F
 				Leaderboard->Pages.Add(MoveTemp(Content));
 				if (!NextCursor.Equals(TEXT("0"), ESearchCase::IgnoreCase))
 				{
-					GetAllPages(LeaderboardID, NextCursor, Delegate);
+					GetAllPages(LeaderboardID, NextCursor, PlayerUuid, Delegate);
 				}
 				else
 				{
@@ -204,7 +212,7 @@ void URH_LeaderboardSubsystem::GetAllPages(const FString& LeaderboardID, const F
 	Helper->Start(RH_APIs::GetLeaderboardAPI(), Request);
 }
 
-void URH_LeaderboardSubsystem::GetLeaderboardAsync(const FString& LeaderboardID, const FRH_LeaderboardPageBlock& Delegate)
+void URH_LeaderboardSubsystem::GetLeaderboardAsync(const FString& LeaderboardID, const FGuid& PlayerUuid, const FRH_LeaderboardPageBlock& Delegate)
 {
 	// Create new results reference
 	if (CachedLeaderboards.Find(LeaderboardID))
@@ -226,7 +234,7 @@ void URH_LeaderboardSubsystem::GetLeaderboardAsync(const FString& LeaderboardID,
 	}
 
 	GetLeaderboardMetaDataAsync(LeaderboardID);
-	GetAllPages(LeaderboardID, FString(TEXT("0")), Delegate);
+	GetAllPages(LeaderboardID, FString(TEXT("0")), PlayerUuid, Delegate);
 }
 
 void URH_LeaderboardSubsystem::GetLeaderboardPositionAsync(const FString& LeaderboardID, int32 Position, const FRH_LeaderboardPositionBlock& Delegate)
