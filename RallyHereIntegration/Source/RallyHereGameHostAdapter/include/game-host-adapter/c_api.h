@@ -237,7 +237,13 @@ extern "C"
     ///
     /// There are situations where you want to use the Reserve flow, but would like to reuse the operational paramaters
     /// provided to SIC by RallyHere operations. This allows you to get a string map with the public_host and
-    /// public_port that were provided to the game host. This is currently only valid in SIC mode.
+    /// public_port that were provided to the game host.
+    ///
+    /// The two values bind_ips and bind_ports are now also provided. These pass through values provided on the command
+    /// line from the game host. The bind_ips and bind_ports are comma separated lists of the IPs and ports that the
+    /// game host is expecting the game instance to bind to. The bind_ports are the same length as the bind_ips.
+    ///
+    /// This is currently only valid in SIC mode.
     ///
     /// Caller is responsible for freeing the string map with rallyhere_string_map_destroy.
     /// @public @memberof RallyHereGameInstanceAdapter
@@ -443,7 +449,13 @@ extern "C"
                                                        const RallyHereStatsBaseProvided *provided,
                                                        void (*callback)(const RallyHereStatusCode& code, void* user_data),
                                                        void* user_data);
-    //------------------------------------------------------------------------------
+
+    /// @brief Get a string map ptr with the "user_agent" set to the user agent string used for web requests
+    ///
+    /// Caller is responsible for freeing the string map with rallyhere_string_map_destroy.
+    /// @public @memberof RallyHereGameInstanceAdapter
+    RH_EXPORT void rallyhere_get_user_agent_string(RallyHereGameInstanceAdapterPtr adapter, RallyHereStringMapPtr* map);
+
     ///@}
     ///@name Stats gauges
     ///@{

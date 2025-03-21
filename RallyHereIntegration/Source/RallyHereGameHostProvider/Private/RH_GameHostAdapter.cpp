@@ -13,20 +13,7 @@
 
 static void* GetDeepDllHandle( const TCHAR* Filename )
 {
-#if PLATFORM_UNIX
-	check( Filename );
-	FString AbsolutePath = FPaths::ConvertRelativePathToFull(Filename);
-
-	void *Handle = dlopen( TCHAR_TO_UTF8(*AbsolutePath), RTLD_LAZY | RTLD_DEEPBIND );
-	if (!Handle)
-	{
-		UE_LOG(LogCore, Warning, TEXT("dlopen failed: %s"), UTF8_TO_TCHAR(dlerror()) );
-	}
-
-	return Handle;
-#else
 	return FPlatformProcess::GetDllHandle(Filename);
-#endif
 }
 
 GameHostAdapterImporter *GameHostAdapterImporter::Importer = nullptr;
