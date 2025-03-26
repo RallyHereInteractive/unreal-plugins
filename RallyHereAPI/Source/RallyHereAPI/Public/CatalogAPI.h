@@ -435,6 +435,135 @@ struct RALLYHEREAPI_API Traits_GetCatalogEntitlementSkuAll
 };
 
 /**
+ * @brief Get Catalog Entitlement Sku By Platform
+ * Get all Entitlement SKUs for a specific platform
+*/
+struct RALLYHEREAPI_API FRequest_GetCatalogEntitlementSkuByPlatform : public FRequest
+{
+	FRequest_GetCatalogEntitlementSkuByPlatform();
+	virtual ~FRequest_GetCatalogEntitlementSkuByPlatform() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	ERHAPI_InventoryPlatform Platform;
+	/* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+	TOptional<FString> IfNoneMatch;
+};
+
+/** The response type for FRequest_GetCatalogEntitlementSkuByPlatform */
+struct RALLYHEREAPI_API FResponse_GetCatalogEntitlementSkuByPlatform : public FResponseAccessorTemplate<FRHAPI_PlatformSKU, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_PlatformSKU, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_GetCatalogEntitlementSkuByPlatform(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetCatalogEntitlementSkuByPlatform() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_PlatformSKU Content;
+	
+	/** Default Response Headers */
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	UE_DEPRECATED(5.0, "Direct use of Headers is deprecated, please use TryGetDefaultHeader<>(), TryGetHeader() or GetHeader<>() instead.")
+	TOptional<FString> ETag;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_PlatformSKU& OutContent) const { return TryGetContent<FRHAPI_PlatformSKU>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_PlatformSKU>& OutContent) const { return TryGetContent<FRHAPI_PlatformSKU>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_PlatformSKU* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlatformSKU>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_PlatformSKU> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlatformSKU>(); }
+	
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(FString& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	bool TryGetDefaultHeader_ETag(TOptional<FString>& OutValue) const { return TryGetHeader(TEXT("ETag"), OutValue); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	const FString* TryGetDefaultHeaderAsPointer_ETag() const { return TryGetHeaderAsPointer(TEXT("ETag")); }
+	/** @brief Attempt to retrieve a specific header of the default response */
+	TOptional<FString> TryGetDefaultHeaderAsOptional_ETag() const { return TryGetHeaderAsOptional(TEXT("ETag")); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlatformSKU& OutContent) const;
+	/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+	TOptional<FString> GetHeader200_ETag() const;
+
+	/* Response 304
+	Content still has the same etag and has not changed
+	*/
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetCatalogEntitlementSkuByPlatform */
+DECLARE_DELEGATE_OneParam(FDelegate_GetCatalogEntitlementSkuByPlatform, const FResponse_GetCatalogEntitlementSkuByPlatform&);
+
+/** @brief A helper metadata object for GetCatalogEntitlementSkuByPlatform that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetCatalogEntitlementSkuByPlatform
+{
+	/** The request type */
+	typedef FRequest_GetCatalogEntitlementSkuByPlatform Request;
+	/** The response type */
+	typedef FResponse_GetCatalogEntitlementSkuByPlatform Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetCatalogEntitlementSkuByPlatform Delegate;
+	/** The API object that supports this API call */
+	typedef FCatalogAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
  * @brief Get Catalog Inventory Bucket Use Rule Set
  * Get a specific Inventory Bucket Use Rule Set.
 */
@@ -2504,6 +2633,8 @@ public:
 	void OnGetCatalogEntitlementSkuResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogEntitlementSku Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr GetCatalogEntitlementSkuAll(const FRequest_GetCatalogEntitlementSkuAll& Request, const FDelegate_GetCatalogEntitlementSkuAll& Delegate = FDelegate_GetCatalogEntitlementSkuAll(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetCatalogEntitlementSkuAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogEntitlementSkuAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetCatalogEntitlementSkuByPlatform(const FRequest_GetCatalogEntitlementSkuByPlatform& Request, const FDelegate_GetCatalogEntitlementSkuByPlatform& Delegate = FDelegate_GetCatalogEntitlementSkuByPlatform(), int32 Priority = DefaultRallyHereAPIPriority);
+	void OnGetCatalogEntitlementSkuByPlatformResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogEntitlementSkuByPlatform Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr GetCatalogInventoryBucketUseRuleSet(const FRequest_GetCatalogInventoryBucketUseRuleSet& Request, const FDelegate_GetCatalogInventoryBucketUseRuleSet& Delegate = FDelegate_GetCatalogInventoryBucketUseRuleSet(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetCatalogInventoryBucketUseRuleSetResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogInventoryBucketUseRuleSet Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr GetCatalogInventoryBucketUseRuleSetsAll(const FRequest_GetCatalogInventoryBucketUseRuleSetsAll& Request, const FDelegate_GetCatalogInventoryBucketUseRuleSetsAll& Delegate = FDelegate_GetCatalogInventoryBucketUseRuleSetsAll(), int32 Priority = DefaultRallyHereAPIPriority);

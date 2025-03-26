@@ -32,6 +32,8 @@ FString EnumToString(const ERHAPI_EntitlementStatus& Value)
 		return TEXT("FAILED");
 	case ERHAPI_EntitlementStatus::PreviouslyApplied:
 		return TEXT("PREVIOUSLY_APPLIED");
+	case ERHAPI_EntitlementStatus::Skipped:
+		return TEXT("SKIPPED");
 	}
 
 	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_EntitlementStatus::Values Value (%d)"), (int)Value);
@@ -45,7 +47,8 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_EntitlementStatus& Value
 		{ TEXT("SUBMITTED"), ERHAPI_EntitlementStatus::Submitted },
 		{ TEXT("FULFILLED"), ERHAPI_EntitlementStatus::Fulfilled },
 		{ TEXT("FAILED"), ERHAPI_EntitlementStatus::Failed },
-		{ TEXT("PREVIOUSLY_APPLIED"), ERHAPI_EntitlementStatus::PreviouslyApplied },	};
+		{ TEXT("PREVIOUSLY_APPLIED"), ERHAPI_EntitlementStatus::PreviouslyApplied },
+		{ TEXT("SKIPPED"), ERHAPI_EntitlementStatus::Skipped },	};
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)

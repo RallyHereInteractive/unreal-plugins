@@ -71,6 +71,11 @@ void FRHAPI_SessionPlayer::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		Writer->WriteIdentifierPrefix(TEXT("joined"));
 		RallyHereAPI::WriteJsonValue(Writer, Joined_Optional);
 	}
+	if (SessionPermissions_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("session_permissions"));
+		RallyHereAPI::WriteJsonValue(Writer, SessionPermissions_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -141,6 +146,12 @@ bool FRHAPI_SessionPlayer::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	{
 		Joined_IsSet = TryGetJsonValue(JsonJoinedField, Joined_Optional);
 		ParseSuccess &= Joined_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonSessionPermissionsField = (*Object)->TryGetField(TEXT("session_permissions"));
+	if (JsonSessionPermissionsField.IsValid())
+	{
+		SessionPermissions_IsSet = TryGetJsonValue(JsonSessionPermissionsField, SessionPermissions_Optional);
+		ParseSuccess &= SessionPermissions_IsSet;
 	}
 
 	return ParseSuccess;

@@ -10,7 +10,9 @@
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
 #include "ClientSettings.h"
+#include "Containers/Set.h"
 #include "CrossplayPreferences.h"
+#include "IntraSessionPermissions.h"
 #include "SessionPlayerStatus.h"
 #include "SessionPlayer.generated.h"
 
@@ -312,6 +314,33 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
 	void ClearJoined() { Joined_IsSet = false;  }
 	/** @brief Checks whether Joined_Optional has been set */
 	bool IsJoinedSet() const { return Joined_IsSet; }
+
+	/** @brief A list of intra session permissions granted to this specific player */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TSet<ERHAPI_IntraSessionPermissions> SessionPermissions_Optional{  };
+	/** @brief true if SessionPermissions_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool SessionPermissions_IsSet{ false };
+	/** @brief Gets the value of SessionPermissions_Optional, regardless of it having been set */
+	TSet<ERHAPI_IntraSessionPermissions>& GetSessionPermissions() { return SessionPermissions_Optional; }
+	/** @brief Gets the value of SessionPermissions_Optional, regardless of it having been set */
+	const TSet<ERHAPI_IntraSessionPermissions>& GetSessionPermissions() const { return SessionPermissions_Optional; }
+	/** @brief Gets the value of SessionPermissions_Optional, if it has been set, otherwise it returns DefaultValue */
+	const TSet<ERHAPI_IntraSessionPermissions>& GetSessionPermissions(const TSet<ERHAPI_IntraSessionPermissions>& DefaultValue) const { if (SessionPermissions_IsSet) return SessionPermissions_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of SessionPermissions_Optional and returns true if it has been set, otherwise returns false */
+	bool GetSessionPermissions(TSet<ERHAPI_IntraSessionPermissions>& OutValue) const { if (SessionPermissions_IsSet) OutValue = SessionPermissions_Optional; return SessionPermissions_IsSet; }
+	/** @brief Returns a pointer to SessionPermissions_Optional, if it has been set, otherwise returns nullptr */
+	TSet<ERHAPI_IntraSessionPermissions>* GetSessionPermissionsOrNull() { if (SessionPermissions_IsSet) return (&SessionPermissions_Optional); return nullptr; }
+	/** @brief Returns a pointer to SessionPermissions_Optional, if it has been set, otherwise returns nullptr */
+	const TSet<ERHAPI_IntraSessionPermissions>* GetSessionPermissionsOrNull() const { if (SessionPermissions_IsSet) return (&SessionPermissions_Optional); return nullptr; }
+	/** @brief Sets the value of SessionPermissions_Optional and also sets SessionPermissions_IsSet to true */
+	void SetSessionPermissions(const TSet<ERHAPI_IntraSessionPermissions>& NewValue) { SessionPermissions_Optional = NewValue; SessionPermissions_IsSet = true;  }
+	/** @brief Sets the value of SessionPermissions_Optional and also sets SessionPermissions_IsSet to true using move semantics */
+	void SetSessionPermissions(TSet<ERHAPI_IntraSessionPermissions>&& NewValue) { SessionPermissions_Optional = NewValue; SessionPermissions_IsSet = true;  }
+	/** @brief Clears the value of SessionPermissions_Optional and sets SessionPermissions_IsSet to false */
+	void ClearSessionPermissions() { SessionPermissions_IsSet = false;  }
+	/** @brief Checks whether SessionPermissions_Optional has been set */
+	bool IsSessionPermissionsSet() const { return SessionPermissions_IsSet; }
 };
 
 /** @} */

@@ -39,7 +39,7 @@ void FRHAPI_PlatformEntitlement::WriteJson(TSharedRef<TJsonWriter<>>& Writer) co
 	if (ErrorCode_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("error_code"));
-		RallyHereAPI::WriteJsonValue(Writer, EnumToString(ErrorCode_Optional));
+		RallyHereAPI::WriteJsonValue(Writer, ErrorCode_Optional);
 	}
 	if (OrderId_IsSet)
 	{

@@ -780,9 +780,9 @@ struct RALLYHEREAPI_API Traits_GetMatch
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`
+ * - For any player (including themselves) any of: `match:*`, `match:player:any:read`
  * 
- * - For the player themselves : `match:player:self:read`
+ * - For the player themselves any of: `match:match:player:read`, `match:player:self:read`
 */
 struct RALLYHEREAPI_API FRequest_GetMatchPlayer : public FRequest
 {
@@ -1124,9 +1124,9 @@ struct RALLYHEREAPI_API Traits_GetMatches
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`
+ * - For any player (including themselves) any of: `match:*`, `match:player:any:read`
  * 
- * - For the player themselves : `match:player:self:read`
+ * - For the player themselves any of: `match:match:player:read`, `match:player:self:read`
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerMatchesSelf : public FRequest
 {
@@ -1234,9 +1234,9 @@ struct RALLYHEREAPI_API Traits_GetPlayerMatchesSelf
  *     
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`
+ * - For any player (including themselves) any of: `match:*`, `match:player:any:read`
  * 
- * - For the player themselves : `match:player:self:read`
+ * - For the player themselves any of: `match:match:player:read`, `match:player:self:read`
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerRecentlyPlayedWith : public FRequest
 {
@@ -1374,9 +1374,9 @@ struct RALLYHEREAPI_API Traits_GetPlayerRecentlyPlayedWith
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`
+ * - For any player (including themselves) any of: `match:*`, `match:player:any:read`
  * 
- * - For the player themselves : `match:player:self:read`
+ * - For the player themselves any of: `match:match:player:read`, `match:player:self:read`
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerStats : public FRequest
 {
@@ -1487,9 +1487,9 @@ struct RALLYHEREAPI_API Traits_GetPlayerStats
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`
+ * - For any player (including themselves) any of: `match:*`, `match:player:any:read`
  * 
- * - For the player themselves : `match:player:self:read`
+ * - For the player themselves any of: `match:match:player:read`, `match:player:self:read`
 */
 struct RALLYHEREAPI_API FRequest_GetPlayersMatches : public FRequest
 {

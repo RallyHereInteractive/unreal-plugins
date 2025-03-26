@@ -55,7 +55,6 @@ Private/DeserterUpdateRequest.cpp
 Private/Determiner.cpp
 Private/DeviceType.cpp
 Private/EntitlementActionType.cpp
-Private/EntitlementErrorCode.cpp
 Private/EntitlementEvent.cpp
 Private/EntitlementEventList.cpp
 Private/EntitlementEventRequest.cpp
@@ -106,6 +105,7 @@ Private/InstanceLaunchTemplate.cpp
 Private/InstanceRequest.cpp
 Private/InstanceRequestTemplate.cpp
 Private/InstanceStartupParams.cpp
+Private/IntraSessionPermissions.cpp
 Private/Inventory.cpp
 Private/InventoryAPI.cpp
 Private/InventoryBucket.cpp
@@ -235,8 +235,11 @@ Private/PexHostScores.cpp
 Private/PexStat.cpp
 Private/Platform.cpp
 Private/PlatformEntitlement.cpp
+Private/PlatformEntitlementConnectionStatus.cpp
+Private/PlatformEntitlementPrepared.cpp
 Private/PlatformEntitlementProcessRequest.cpp
 Private/PlatformEntitlementProcessResult.cpp
+Private/PlatformEntitlementsPrepared.cpp
 Private/PlatformID.cpp
 Private/PlatformIdentityLookupResults.cpp
 Private/PlatformIndividualCCUs.cpp
@@ -369,6 +372,7 @@ Private/SelfSessionPlayerUpdateRequest.cpp
 Private/Session.cpp
 Private/SessionInviteResponse.cpp
 Private/SessionJoinResponse.cpp
+Private/SessionPermissions.cpp
 Private/SessionPlayer.cpp
 Private/SessionPlayerStatus.cpp
 Private/SessionPlayerUpdateRequest.cpp
@@ -471,7 +475,6 @@ Public/DeserterUpdateRequest.h
 Public/Determiner.h
 Public/DeviceType.h
 Public/EntitlementActionType.h
-Public/EntitlementErrorCode.h
 Public/EntitlementEvent.h
 Public/EntitlementEventList.h
 Public/EntitlementEventRequest.h
@@ -522,6 +525,7 @@ Public/InstanceLaunchTemplate.h
 Public/InstanceRequest.h
 Public/InstanceRequestTemplate.h
 Public/InstanceStartupParams.h
+Public/IntraSessionPermissions.h
 Public/Inventory.h
 Public/InventoryAPI.h
 Public/InventoryBucket.h
@@ -651,8 +655,11 @@ Public/PexHostScores.h
 Public/PexStat.h
 Public/Platform.h
 Public/PlatformEntitlement.h
+Public/PlatformEntitlementConnectionStatus.h
+Public/PlatformEntitlementPrepared.h
 Public/PlatformEntitlementProcessRequest.h
 Public/PlatformEntitlementProcessResult.h
+Public/PlatformEntitlementsPrepared.h
 Public/PlatformID.h
 Public/PlatformIdentityLookupResults.h
 Public/PlatformIndividualCCUs.h
@@ -785,6 +792,7 @@ Public/SelfSessionPlayerUpdateRequest.h
 Public/Session.h
 Public/SessionInviteResponse.h
 Public/SessionJoinResponse.h
+Public/SessionPermissions.h
 Public/SessionPlayer.h
 Public/SessionPlayerStatus.h
 Public/SessionPlayerUpdateRequest.h
