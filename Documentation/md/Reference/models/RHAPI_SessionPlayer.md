@@ -41,6 +41,8 @@ A player resource in a session.
 `public bool `[`Invited_IsSet`](#structFRHAPI__SessionPlayer_1a24180c0ac76cb70443d34261572d511c) | true if Invited_Optional has been set to a value
 `public FDateTime `[`Joined_Optional`](#structFRHAPI__SessionPlayer_1a98a0fa4e013c02e4f94d472459d7f9b7) | Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone.
 `public bool `[`Joined_IsSet`](#structFRHAPI__SessionPlayer_1ab5d3d5da597f5007fe3708826e570580) | true if Joined_Optional has been set to a value
+`public TSet< ERHAPI_IntraSessionPermissions > `[`SessionPermissions_Optional`](#structFRHAPI__SessionPlayer_1a9a5cdd357032df9fc5beb88d9b4d8c64) | A list of intra session permissions granted to this specific player.
+`public bool `[`SessionPermissions_IsSet`](#structFRHAPI__SessionPlayer_1a1b15c509cc2be5b3ecf4f3329c6351b5) | true if SessionPermissions_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__SessionPlayer_1adaeb1567dcb44f39b593b48b9fd67d64)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__SessionPlayer_1a96b445fb64ef372de855adabb1ec8bc3)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline int32 & `[`GetPlayerId`](#structFRHAPI__SessionPlayer_1a595af84274f20d6083eb9efc71a83666)`()` | Gets the value of PlayerId_Optional, regardless of it having been set.
@@ -143,6 +145,16 @@ A player resource in a session.
 `public inline void `[`SetJoined`](#structFRHAPI__SessionPlayer_1ad0a79f61b61e1166ac8c646637372d4b)`(FDateTime && NewValue)` | Sets the value of Joined_Optional and also sets Joined_IsSet to true using move semantics.
 `public inline void `[`ClearJoined`](#structFRHAPI__SessionPlayer_1a8b9c20d24a494d6a9c252112833d06e2)`()` | Clears the value of Joined_Optional and sets Joined_IsSet to false.
 `public inline bool `[`IsJoinedSet`](#structFRHAPI__SessionPlayer_1af47667b8cbff00b061bdfcf40a69ea54)`() const` | Checks whether Joined_Optional has been set.
+`public inline TSet< ERHAPI_IntraSessionPermissions > & `[`GetSessionPermissions`](#structFRHAPI__SessionPlayer_1aaeb473273193a256699a83eff7679aa1)`()` | Gets the value of SessionPermissions_Optional, regardless of it having been set.
+`public inline const TSet< ERHAPI_IntraSessionPermissions > & `[`GetSessionPermissions`](#structFRHAPI__SessionPlayer_1a4d66d79dcf0f57b9cb74a92e2dc9658f)`() const` | Gets the value of SessionPermissions_Optional, regardless of it having been set.
+`public inline const TSet< ERHAPI_IntraSessionPermissions > & `[`GetSessionPermissions`](#structFRHAPI__SessionPlayer_1a991fd39de080136360fd417224528583)`(const TSet< ERHAPI_IntraSessionPermissions > & DefaultValue) const` | Gets the value of SessionPermissions_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetSessionPermissions`](#structFRHAPI__SessionPlayer_1a9d5dacc44c11b36e8c0d85d4212c0c40)`(TSet< ERHAPI_IntraSessionPermissions > & OutValue) const` | Fills OutValue with the value of SessionPermissions_Optional and returns true if it has been set, otherwise returns false.
+`public inline TSet< ERHAPI_IntraSessionPermissions > * `[`GetSessionPermissionsOrNull`](#structFRHAPI__SessionPlayer_1a60fb1c5626044ca71b6a7fde9fdaf7dc)`()` | Returns a pointer to SessionPermissions_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TSet< ERHAPI_IntraSessionPermissions > * `[`GetSessionPermissionsOrNull`](#structFRHAPI__SessionPlayer_1a9306aafbbcddbcb88b04866324a606dc)`() const` | Returns a pointer to SessionPermissions_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetSessionPermissions`](#structFRHAPI__SessionPlayer_1abc6fe81b22782a36077809ddb3ccb1df)`(const TSet< ERHAPI_IntraSessionPermissions > & NewValue)` | Sets the value of SessionPermissions_Optional and also sets SessionPermissions_IsSet to true.
+`public inline void `[`SetSessionPermissions`](#structFRHAPI__SessionPlayer_1a5fbfda7bce6fca86346366240efe9d17)`(TSet< ERHAPI_IntraSessionPermissions > && NewValue)` | Sets the value of SessionPermissions_Optional and also sets SessionPermissions_IsSet to true using move semantics.
+`public inline void `[`ClearSessionPermissions`](#structFRHAPI__SessionPlayer_1a09ed5569363e26878835fbcd39ed58a1)`()` | Clears the value of SessionPermissions_Optional and sets SessionPermissions_IsSet to false.
+`public inline bool `[`IsSessionPermissionsSet`](#structFRHAPI__SessionPlayer_1aa96965d5e6f3a19f820bd160e2824a19)`() const` | Checks whether SessionPermissions_Optional has been set.
 
 ### Members
 
@@ -225,6 +237,14 @@ Datetime that enforces that a timezone is given. Unix timestamps are allowed and
 #### `public bool `[`Joined_IsSet`](#structFRHAPI__SessionPlayer_1ab5d3d5da597f5007fe3708826e570580) <a id="structFRHAPI__SessionPlayer_1ab5d3d5da597f5007fe3708826e570580"></a>
 
 true if Joined_Optional has been set to a value
+
+#### `public TSet< ERHAPI_IntraSessionPermissions > `[`SessionPermissions_Optional`](#structFRHAPI__SessionPlayer_1a9a5cdd357032df9fc5beb88d9b4d8c64) <a id="structFRHAPI__SessionPlayer_1a9a5cdd357032df9fc5beb88d9b4d8c64"></a>
+
+A list of intra session permissions granted to this specific player.
+
+#### `public bool `[`SessionPermissions_IsSet`](#structFRHAPI__SessionPlayer_1a1b15c509cc2be5b3ecf4f3329c6351b5) <a id="structFRHAPI__SessionPlayer_1a1b15c509cc2be5b3ecf4f3329c6351b5"></a>
+
+true if SessionPermissions_Optional has been set to a value
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__SessionPlayer_1adaeb1567dcb44f39b593b48b9fd67d64)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__SessionPlayer_1adaeb1567dcb44f39b593b48b9fd67d64"></a>
 
@@ -642,4 +662,44 @@ Clears the value of Joined_Optional and sets Joined_IsSet to false.
 #### `public inline bool `[`IsJoinedSet`](#structFRHAPI__SessionPlayer_1af47667b8cbff00b061bdfcf40a69ea54)`() const` <a id="structFRHAPI__SessionPlayer_1af47667b8cbff00b061bdfcf40a69ea54"></a>
 
 Checks whether Joined_Optional has been set.
+
+#### `public inline TSet< ERHAPI_IntraSessionPermissions > & `[`GetSessionPermissions`](#structFRHAPI__SessionPlayer_1aaeb473273193a256699a83eff7679aa1)`()` <a id="structFRHAPI__SessionPlayer_1aaeb473273193a256699a83eff7679aa1"></a>
+
+Gets the value of SessionPermissions_Optional, regardless of it having been set.
+
+#### `public inline const TSet< ERHAPI_IntraSessionPermissions > & `[`GetSessionPermissions`](#structFRHAPI__SessionPlayer_1a4d66d79dcf0f57b9cb74a92e2dc9658f)`() const` <a id="structFRHAPI__SessionPlayer_1a4d66d79dcf0f57b9cb74a92e2dc9658f"></a>
+
+Gets the value of SessionPermissions_Optional, regardless of it having been set.
+
+#### `public inline const TSet< ERHAPI_IntraSessionPermissions > & `[`GetSessionPermissions`](#structFRHAPI__SessionPlayer_1a991fd39de080136360fd417224528583)`(const TSet< ERHAPI_IntraSessionPermissions > & DefaultValue) const` <a id="structFRHAPI__SessionPlayer_1a991fd39de080136360fd417224528583"></a>
+
+Gets the value of SessionPermissions_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetSessionPermissions`](#structFRHAPI__SessionPlayer_1a9d5dacc44c11b36e8c0d85d4212c0c40)`(TSet< ERHAPI_IntraSessionPermissions > & OutValue) const` <a id="structFRHAPI__SessionPlayer_1a9d5dacc44c11b36e8c0d85d4212c0c40"></a>
+
+Fills OutValue with the value of SessionPermissions_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline TSet< ERHAPI_IntraSessionPermissions > * `[`GetSessionPermissionsOrNull`](#structFRHAPI__SessionPlayer_1a60fb1c5626044ca71b6a7fde9fdaf7dc)`()` <a id="structFRHAPI__SessionPlayer_1a60fb1c5626044ca71b6a7fde9fdaf7dc"></a>
+
+Returns a pointer to SessionPermissions_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const TSet< ERHAPI_IntraSessionPermissions > * `[`GetSessionPermissionsOrNull`](#structFRHAPI__SessionPlayer_1a9306aafbbcddbcb88b04866324a606dc)`() const` <a id="structFRHAPI__SessionPlayer_1a9306aafbbcddbcb88b04866324a606dc"></a>
+
+Returns a pointer to SessionPermissions_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetSessionPermissions`](#structFRHAPI__SessionPlayer_1abc6fe81b22782a36077809ddb3ccb1df)`(const TSet< ERHAPI_IntraSessionPermissions > & NewValue)` <a id="structFRHAPI__SessionPlayer_1abc6fe81b22782a36077809ddb3ccb1df"></a>
+
+Sets the value of SessionPermissions_Optional and also sets SessionPermissions_IsSet to true.
+
+#### `public inline void `[`SetSessionPermissions`](#structFRHAPI__SessionPlayer_1a5fbfda7bce6fca86346366240efe9d17)`(TSet< ERHAPI_IntraSessionPermissions > && NewValue)` <a id="structFRHAPI__SessionPlayer_1a5fbfda7bce6fca86346366240efe9d17"></a>
+
+Sets the value of SessionPermissions_Optional and also sets SessionPermissions_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearSessionPermissions`](#structFRHAPI__SessionPlayer_1a09ed5569363e26878835fbcd39ed58a1)`()` <a id="structFRHAPI__SessionPlayer_1a09ed5569363e26878835fbcd39ed58a1"></a>
+
+Clears the value of SessionPermissions_Optional and sets SessionPermissions_IsSet to false.
+
+#### `public inline bool `[`IsSessionPermissionsSet`](#structFRHAPI__SessionPlayer_1aa96965d5e6f3a19f820bd160e2824a19)`() const` <a id="structFRHAPI__SessionPlayer_1aa96965d5e6f3a19f820bd160e2824a19"></a>
+
+Checks whether SessionPermissions_Optional has been set.
 
