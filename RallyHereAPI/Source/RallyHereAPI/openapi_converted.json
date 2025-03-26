@@ -9901,6 +9901,102 @@
         }
       }
     },
+    "/inventory/v1/catalog/entitlement-sku/{platform}": {
+      "get": {
+        "tags": [
+          "Catalog"
+        ],
+        "summary": "Get Catalog Entitlement Sku By Platform",
+        "description": "Get all Entitlement SKUs for a specific platform",
+        "operationId": "get_catalog_entitlement_sku_by_platform",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "platform",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/InventoryPlatform"
+            }
+          },
+          {
+            "name": "if-none-match",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed.",
+              "title": "If-None-Match"
+            },
+            "description": "If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformSKU"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Content still has the same etag and has not changed"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/inventory/v1/catalog/entitlement-sku/{platform}/{sku}": {
       "get": {
         "tags": [
@@ -13182,7 +13278,7 @@
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -13256,14 +13352,14 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -13284,7 +13380,7 @@
           "Entitlements"
         ],
         "summary": "Retrieve Entitlement Request For Me",
-        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`\n\n- For the player themselves : `inv:platform_entitlements:self`",
+        "description": "Get the status of a platform entitlement request by request id.\n    \nRequired Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`\n\n- For the player themselves : `inv:platform_entitlements:self`",
         "operationId": "retrieve_entitlement_request_for_me",
         "security": [
           {
@@ -13314,14 +13410,24 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            },
-            "description": "Forbidden"
+            }
+          },
+          "404": {
+            "description": "The specified player was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -13342,7 +13448,7 @@
           "Entitlements"
         ],
         "summary": "Retrieve Entitlement Request By Player Uuid",
-        "description": "Get the status of a platform entitlement request by request id.\n    \n    Required Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`\n\n- For the player themselves : `inv:platform_entitlements:self`",
+        "description": "Get the status of a platform entitlement request by request id.\n    \nRequired Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`\n\n- For the player themselves : `inv:platform_entitlements:self`",
         "operationId": "retrieve_entitlement_request_by_player_uuid",
         "security": [
           {
@@ -13382,14 +13488,401 @@
             }
           },
           "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
+            }
+          },
+          "404": {
+            "description": "The specified player was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/inventory/v2/player/{player_uuid}/entitlement/raw": {
+      "get": {
+        "tags": [
+          "Entitlements"
+        ],
+        "summary": "Get Platform Entitlements Raw By Player Uuid",
+        "description": "Get list of entitlements directly from the platform, as they return it (sanitized).  \n\nWARNING: There is no guaranteed format for the response from this endpoint.  Do not depend on the layout or contents of it for anything other than debugging.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`\n\n- For the player themselves : `inv:platform_entitlements:self`",
+        "operationId": "get_platform_entitlements_raw_by_player_uuid",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "player_uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            }
+          },
+          {
+            "name": "platform_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Platform this entitlement was purchased was made on",
+              "title": "Platform Id"
             },
-            "description": "Forbidden"
+            "description": "Platform this entitlement was purchased was made on"
+          },
+          {
+            "name": "platform_token",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Platform token that can be used to verify the identity of the user",
+              "title": "Platform Token"
+            },
+            "description": "Platform token that can be used to verify the identity of the user"
+          },
+          {
+            "name": "platform_environment",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Platform Environment to check for ownership",
+              "title": "Platform Environment"
+            },
+            "description": "Platform Environment to check for ownership"
+          },
+          {
+            "name": "platform_region",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/PlatformRegion",
+              "description": "region this purchase was made in"
+            },
+            "description": "region this purchase was made in"
+          },
+          {
+            "name": "client_type",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ClientType",
+              "description": "client type this purchase was made on"
+            },
+            "description": "client type this purchase was made on"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/inventory/v2/player/{player_uuid}/entitlement/prepared": {
+      "get": {
+        "tags": [
+          "Entitlements"
+        ],
+        "summary": "Get Platform Entitlements Prepared By Player Uuid",
+        "description": "Get list of entitlements from the platform, as we will grant them to the user\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`\n\n- For the player themselves : `inv:platform_entitlements:self`",
+        "operationId": "get_platform_entitlements_prepared_by_player_uuid",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "player_uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            }
+          },
+          {
+            "name": "platform_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Platform this entitlement was purchased was made on",
+              "title": "Platform Id"
+            },
+            "description": "Platform this entitlement was purchased was made on"
+          },
+          {
+            "name": "platform_token",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Platform token that can be used to verify the identity of the user",
+              "title": "Platform Token"
+            },
+            "description": "Platform token that can be used to verify the identity of the user"
+          },
+          {
+            "name": "platform_environment",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Platform Environment to check for ownership",
+              "title": "Platform Environment"
+            },
+            "description": "Platform Environment to check for ownership"
+          },
+          {
+            "name": "platform_region",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/PlatformRegion",
+              "description": "region this purchase was made in"
+            },
+            "description": "region this purchase was made in"
+          },
+          {
+            "name": "client_type",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ClientType",
+              "description": "client type this purchase was made on"
+            },
+            "description": "client type this purchase was made on"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformEntitlementsPrepared"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/inventory/v2/user-entitlement:refresh-connection": {
+      "post": {
+        "tags": [
+          "Entitlements"
+        ],
+        "summary": "Refresh Connection Status For Platform Entitlements",
+        "description": "Check the status of the user with the platform, and if they are able to request entitlements\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`\n\n- For the player themselves : `inv:platform_entitlements:self`",
+        "operationId": "refresh_connection_status_for_platform_entitlements",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "platform_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Platform this entitlement was purchased was made on",
+              "title": "Platform Id"
+            },
+            "description": "Platform this entitlement was purchased was made on"
+          },
+          {
+            "name": "platform_user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Platform this entitlement was purchased was made on",
+              "title": "Platform User Id"
+            },
+            "description": "Platform this entitlement was purchased was made on"
+          },
+          {
+            "name": "platform_token",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Platform token that can be used to verify the identity of the user",
+              "title": "Platform Token"
+            },
+            "description": "Platform token that can be used to verify the identity of the user"
+          },
+          {
+            "name": "platform_environment",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Platform Environment to check for ownership",
+              "title": "Platform Environment"
+            },
+            "description": "Platform Environment to check for ownership"
+          },
+          {
+            "name": "platform_region",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/PlatformRegion",
+              "description": "region this purchase was made in"
+            },
+            "description": "region this purchase was made in"
+          },
+          {
+            "name": "client_type",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ClientType",
+              "description": "client type this purchase was made on"
+            },
+            "description": "client type this purchase was made on"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformEntitlementConnectionStatus"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -17279,7 +17772,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Uuid V2",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None for users operating on themselves. \nRequired Session Permissions: `kick` for users that do not have the above permissions, and are not a session admin",
         "operationId": "kick_player_from_session_by_uuid_v2",
         "parameters": [
           {
@@ -17302,6 +17795,16 @@
             },
             "name": "player_uuid",
             "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
           }
         ],
         "responses": {
@@ -17560,11 +18063,325 @@
             },
             "name": "session_id",
             "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
           }
         ],
         "responses": {
           "204": {
             "description": "Successful Response"
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Session doesn't exist or Player is not a member of the session.  See error code for more info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/session/v1/session/{session_id}/player/{player_uuid}/permission": {
+      "get": {
+        "tags": [
+          "Sessions"
+        ],
+        "summary": "Get Player Permission By Uuid",
+        "description": "Get a specific player's intra-session permissions\n\nFor all sessions:\n\n* Required auth permissions are any of: `session:*`, `session:read:permission:any`\n\n* Required session permissions are None\n\nFor sessions you are actively in:\n\n* Required auth permissions are any of: `session:*`, `session:read:permission:active`\n\n* Required session permissions are `SessionPermissions.active_in_session`\n\nFor sessions you are an admin in:\n\n* None",
+        "operationId": "get_player_permission_by_uuid",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1,
+              "title": "Session Id"
+            },
+            "name": "session_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionPermissions"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Session doesn't exist or Player is not a member of the session.  See error code for more info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/session/v1/session/{session_id}/player/{player_uuid}/permission/{permission}": {
+      "delete": {
+        "tags": [
+          "Sessions"
+        ],
+        "summary": "Remove Player Permission By Uuid",
+        "description": "Remove intra-session permissions from a specific player\n\nFor all sessions:\n\n* Required auth permissions are any of: `session:*`, `session:remove:permission:any`\n\n* Required session permissions are None\n\nFor sessions you are actively in:\n\n* Required auth permissions are any of: `session:*`, `session:remove:permission:active`\n\n* Required session permissions are `SessionPermissions.active_in_session`\n\nFor sessions you are an admin in:\n\n* None",
+        "operationId": "remove_player_permission_by_uuid",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/IntraSessionPermissions"
+            },
+            "name": "permission",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1,
+              "title": "Session Id"
+            },
+            "name": "session_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Successful Response"
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Session doesn't exist or Player is not a member of the session.  See error code for more info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "Sessions"
+        ],
+        "summary": "Give Player Permission By Uuid",
+        "description": "Give a specific player intra-session permissions\n\nFor all sessions:\n\n* Required auth permissions are any of: `session:*`, `session:give:permission:any`\n\n* Required session permissions are None\n\nFor sessions you are actively in:\n\n* Required auth permissions are any of: `session:*`, `session:give:permission:active`\n\n* Required session permissions are `SessionPermissions.active_in_session`\n\nFor sessions you are an admin in:\n\n* None",
+        "operationId": "give_player_permission_by_uuid",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/IntraSessionPermissions"
+            },
+            "name": "permission",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1,
+              "title": "Session Id"
+            },
+            "name": "session_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid"
+            },
+            "name": "player_uuid",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "headers": {
+              "ETag": {
+                "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionPermissions"
+                }
+              }
+            }
           },
           "403": {
             "description": "Forbidden",
@@ -17610,7 +18427,7 @@
           "Sessions"
         ],
         "summary": "Invite Player By Uuid V2",
-        "description": "Invite a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update:any`, `session:update:self`\n\n\n\nRequired Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission",
+        "description": "Invite a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update:any`, `session:update:self`\n\n\n\nRequired Session Permissions: `invite` for users that do not have the above permissions, and are not a session admin",
         "operationId": "invite_player_by_uuid_v2",
         "parameters": [
           {
@@ -17816,7 +18633,7 @@
           "Sessions"
         ],
         "summary": "Move Player By Uuid V2",
-        "description": "Move a specific player to a different team in a specific session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: `SessionPermissions.session_admin` for users that do not have the `session:update:any` auth permission",
+        "description": "Move a specific player to a different team in a specific session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: `move` for users that do not have the above permissions, and are not a session admin",
         "operationId": "move_player_by_uuid_v2",
         "parameters": [
           {
@@ -18032,7 +18849,7 @@
           "Sessions"
         ],
         "summary": "Update Session Player By Uuid",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:promote:any`, `session:promote:self`\n\n\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nTo promote players\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:promote:any`, `session:promote:self`\n\n\n\nTo invite players\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\nRequired Session Permissions: `invite` for users that do not have the above permissions, and are not a session admin\n\nTo move players\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\nRequired Session Permissions: `move` for users that do not have the above permissions, and are not a session admin\n\nFor all else\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
         "operationId": "update_session_player_by_uuid",
         "parameters": [
           {
@@ -18129,7 +18946,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Uuid",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None for users operating on themselves. \n`SessionPermissions.session_admin` for operating on other players in your session\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: `kick` for users that do not have the above permissions, and are not a session admin\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
         "operationId": "kick_player_from_session_by_uuid",
         "parameters": [
           {
@@ -18152,6 +18969,16 @@
             },
             "name": "player_uuid",
             "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
           }
         ],
         "responses": {
@@ -18299,7 +19126,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Id",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None for players operating on themselves.\n`SessionPermissions.session_admin` for operating on other players in your session\n\n**DEPRECATED** - Use the player endpoint instead",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None for players operating on themselves.\nRequired Session Permissions: `kick` for users that do not have the above permissions, and are not a session admin\n**DEPRECATED** - Use the player endpoint instead",
         "operationId": "kick_player_from_session_by_id",
         "parameters": [
           {
@@ -18321,6 +19148,16 @@
             },
             "name": "player_id",
             "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
           }
         ],
         "responses": {
@@ -22476,7 +23313,7 @@
           "Match"
         ],
         "summary": "Get Player Matches Self",
-        "description": "Get all matches for self. Only provides matches for the player_uuid in the provided token.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`\n\n- For the player themselves : `match:player:self:read`",
+        "description": "Get all matches for self. Only provides matches for the player_uuid in the provided token.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:player:any:read`\n\n- For the player themselves any of: `match:match:player:read`, `match:player:self:read`",
         "operationId": "get_player_matches_self",
         "security": [
           {
@@ -22553,7 +23390,7 @@
           "Match"
         ],
         "summary": "Get Player Stats",
-        "description": "Get player stats for the provided player_uuid,.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`\n\n- For the player themselves : `match:player:self:read`",
+        "description": "Get player stats for the provided player_uuid,.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:player:any:read`\n\n- For the player themselves any of: `match:match:player:read`, `match:player:self:read`",
         "operationId": "get_player_stats",
         "security": [
           {
@@ -22622,7 +23459,7 @@
           "Match"
         ],
         "summary": "Get Players Matches",
-        "description": "Get All matches for a provided player_uuid.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`\n\n- For the player themselves : `match:player:self:read`",
+        "description": "Get All matches for a provided player_uuid.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:player:any:read`\n\n- For the player themselves any of: `match:match:player:read`, `match:player:self:read`",
         "operationId": "get_players_matches",
         "security": [
           {
@@ -22709,7 +23546,7 @@
           "Match"
         ],
         "summary": "Get Match Player",
-        "description": "Get a player match record for the provided player_uuid and match_id\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`\n\n- For the player themselves : `match:player:self:read`",
+        "description": "Get a player match record for the provided player_uuid and match_id\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:player:any:read`\n\n- For the player themselves any of: `match:match:player:read`, `match:player:self:read`",
         "operationId": "get_match_player",
         "security": [
           {
@@ -23114,7 +23951,7 @@
           "Match"
         ],
         "summary": "Get Player Recently Played With",
-        "description": "Get the list of players this player recently played with\n    \nRequired Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:match:player:read`, `match:player:any:read`\n\n- For the player themselves : `match:player:self:read`",
+        "description": "Get the list of players this player recently played with\n    \nRequired Permissions:\n\n- For any player (including themselves) any of: `match:*`, `match:player:any:read`\n\n- For the player themselves any of: `match:match:player:read`, `match:player:self:read`",
         "operationId": "get_player_recently_played_with",
         "security": [
           {
@@ -32859,17 +33696,17 @@
         ],
         "title": "DeviceType",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "pc",
-          "xbox_series",
-          "xbox_one",
-          "web"
-        ],
         "x-enum-descriptions": [
           "",
           "",
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "pc",
+          "xbox_series",
+          "xbox_one",
+          "web"
         ]
       },
       "GrantType": {
@@ -33617,24 +34454,6 @@
         ],
         "title": "Platform",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "ANON",
-          "BASIC",
-          "XBOX_LIVE",
-          "PSN",
-          "NINTENDO_NAID",
-          "NINTENDO_SWITCH",
-          "NINTENDO_PPID",
-          "GOOGLE",
-          "GOOGLE_PLAY",
-          "APPLE",
-          "EPIC",
-          "STEAM",
-          "AMAZON",
-          "TWITCH",
-          "RALLYHERE",
-          "LEGACYNAME"
-        ],
         "x-enum-descriptions": [
           "",
           "",
@@ -33652,6 +34471,24 @@
           "",
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "BASIC",
+          "XBOX_LIVE",
+          "PSN",
+          "NINTENDO_NAID",
+          "NINTENDO_SWITCH",
+          "NINTENDO_PPID",
+          "GOOGLE",
+          "GOOGLE_PLAY",
+          "APPLE",
+          "EPIC",
+          "STEAM",
+          "AMAZON",
+          "TWITCH",
+          "RALLYHERE",
+          "LEGACYNAME"
         ]
       },
       "PlatformIdentityLookupResults": {
@@ -35538,59 +36375,6 @@
           "chargeback_reversal"
         ]
       },
-      "EntitlementErrorCode": {
-        "type": "string",
-        "enum": [
-          "none",
-          "auth_token_failure",
-          "missing_information",
-          "failed_to_consume",
-          "no_sku_found",
-          "wrong_sku_type_provided",
-          "durable_authority_type_not_valid",
-          "durable_single_use_authority_type_not_valid",
-          "consumable_authority_type_not_valid",
-          "unknown_sku_type_provided",
-          "failed_to_submit_order",
-          "already_applied_durable_single_use",
-          "quantity_zero",
-          "previously_applied"
-        ],
-        "title": "EntitlementErrorCode",
-        "description": "Error codes for Entitlements",
-        "x-enum-descriptions": [
-          "No error occured",
-          "Failed to find or validate the auth token",
-          "Missing information in the request",
-          "Failed to consume the entitlement",
-          "No SKU found for this entitlement on the backend",
-          "Entitlement is defined with a different SKU type than the one provided",
-          "Durable entitlements are not allowed by this platform",
-          "Durable single use entitlements are not allowed by this platform",
-          "Consumable entitlements are not allowed by this platform",
-          "Unknown SKU type provided",
-          "Failed to submit the order to the backend",
-          "Durable single use entitlement has already been applied",
-          "Quantity was zero, nothing to apply",
-          "Entitlement was previously applied"
-        ],
-        "x-enum-varnames": [
-          "NONE",
-          "AUTH_TOKEN_FAILURE",
-          "MISSING_INFORMATION",
-          "FAILED_TO_CONSUME",
-          "NO_SKU_FOUND",
-          "WRONG_SKU_TYPE_PROVIDED",
-          "DURABLE_AUTHORITY_TYPE_NOT_VALID",
-          "DURABLE_SINGLE_USE_AUTHORITY_TYPE_NOT_VALID",
-          "CONSUMABLE_AUTHORITY_TYPE_NOT_VALID",
-          "UNKNOWN_SKU_TYPE_PROVIDED",
-          "FAILED_TO_SUBMIT_ORDER",
-          "ALREADY_APPLIED_DURABLE_SINGLE_USE",
-          "QUANTITY_ZERO",
-          "PREVIOUSLY_APPLIED"
-        ]
-      },
       "EntitlementEvent": {
         "properties": {
           "event_id": {
@@ -35898,7 +36682,8 @@
           "SUBMITTED",
           "FULFILLED",
           "FAILED",
-          "PREVIOUSLY_APPLIED"
+          "PREVIOUSLY_APPLIED",
+          "SKIPPED"
         ],
         "title": "EntitlementStatus",
         "description": "Status of an Entitlement",
@@ -35907,14 +36692,16 @@
           "Entitlement has been submitted to the backend",
           "Entitlement has been fulfilled",
           "Entitlement has failed, check error_code for more information",
-          "Entitlement was previously applied"
+          "Entitlement was previously applied",
+          "Entitlement was skipped and not processed"
         ],
         "x-enum-varnames": [
           "UNKNOWN",
           "SUBMITTED",
           "FULFILLED",
           "FAILED",
-          "PREVIOUSLY_APPLIED"
+          "PREVIOUSLY_APPLIED",
+          "SKIPPED"
         ]
       },
       "EntitlementType": {
@@ -37617,7 +38404,8 @@
             "default": "UNKNOWN"
           },
           "error_code": {
-            "$ref": "#/components/schemas/EntitlementErrorCode",
+            "type": "string",
+            "title": "Error Code",
             "description": "Error code for this entitlement",
             "default": "none"
           },
@@ -37634,6 +38422,84 @@
         ],
         "title": "PlatformEntitlement",
         "description": "Entitlement for a platform. This takes in a sku and platform entitlement id and checks to see if the user has the entitlement on the platform"
+      },
+      "PlatformEntitlementConnectionStatus": {
+        "properties": {
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Code"
+          }
+        },
+        "type": "object",
+        "title": "PlatformEntitlementConnectionStatus"
+      },
+      "PlatformEntitlementPrepared": {
+        "properties": {
+          "platform_entitlement_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Platform Entitlement Id",
+            "description": "Unique identifier for this instance of an entitlement on the platform"
+          },
+          "sku": {
+            "type": "string",
+            "title": "Sku",
+            "description": "Unique SKU from the platform"
+          },
+          "quantity": {
+            "type": "integer",
+            "title": "Quantity",
+            "description": "Quantity available to be used from the platform",
+            "default": 1
+          },
+          "received_type": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntitlementType"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Type of entitlement the platform sent us.  If they provide this metadata, then RallyHere Entitlement SKUs must be configured with matching types, or the entitlement will not process"
+          },
+          "platform_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Platform Label"
+          },
+          "platform_metadata": {
+            "type": "object",
+            "title": "Platform Metadata",
+            "description": "Platform-specific metadata about this entitlement",
+            "default": {}
+          }
+        },
+        "type": "object",
+        "required": [
+          "sku"
+        ],
+        "title": "PlatformEntitlementPrepared",
+        "description": "Platform Entitlement that is prepared to be processed by RallyHere, and includes platform-specific metadata necessary for processing"
       },
       "PlatformEntitlementProcessRequest": {
         "properties": {
@@ -37652,6 +38518,18 @@
             "title": "Platform Id",
             "description": "Platform this entitlement was purchased was made on"
           },
+          "platform_environment": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Platform Environment",
+            "description": "Specific platform environment to target with entitlement processing.  Not supported by all platforms"
+          },
           "platform_region": {
             "$ref": "#/components/schemas/PlatformRegion",
             "description": "region this purchase was made in"
@@ -37668,6 +38546,18 @@
             "title": "Entitlements",
             "description": "Platform entitlements to process",
             "default": []
+          },
+          "check_durables": {
+            "type": "boolean",
+            "title": "Check Durables",
+            "description": "Should the system process durables during this request?",
+            "default": true
+          },
+          "check_consumables": {
+            "type": "boolean",
+            "title": "Check Consumables",
+            "description": "Should the system process consumables during this request?",
+            "default": true
           }
         },
         "type": "object",
@@ -37764,6 +38654,31 @@
         ],
         "title": "PlatformEntitlementProcessResult",
         "description": "Result of processing a platform entitlement"
+      },
+      "PlatformEntitlementsPrepared": {
+        "properties": {
+          "entitlements": {
+            "items": {
+              "$ref": "#/components/schemas/PlatformEntitlementPrepared"
+            },
+            "type": "array",
+            "title": "Entitlements",
+            "default": []
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Code"
+          }
+        },
+        "type": "object",
+        "title": "PlatformEntitlementsPrepared"
       },
       "PlatformRegion": {
         "type": "string",
@@ -40830,13 +41745,13 @@
         ],
         "title": "BackfillStyle",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "TEAM_REQUEST",
-          "COMPOSITION"
-        ],
         "x-enum-descriptions": [
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "TEAM_REQUEST",
+          "COMPOSITION"
         ]
       },
       "BackfillTeam": {
@@ -41370,17 +42285,17 @@
         ],
         "title": "CrossplayInput",
         "description": "Crossplay input preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches",
-        "x-enum-varnames": [
-          "ANY",
-          "KBM",
-          "GAMEPAD",
-          "TOUCH"
-        ],
         "x-enum-descriptions": [
           "No crossplay input preferences. Can play with players using any input",
           "Can only play with players using a keyboard and mouse",
           "Can only player with players using a gamepad/controller",
           "Can only player with players using a touch screen"
+        ],
+        "x-enum-varnames": [
+          "ANY",
+          "KBM",
+          "GAMEPAD",
+          "TOUCH"
         ]
       },
       "CrossplayPlatform": {
@@ -41392,15 +42307,15 @@
         ],
         "title": "CrossplayPlatform",
         "description": "Crossplay platform preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches",
-        "x-enum-varnames": [
-          "ANY",
-          "XBOX",
-          "PLAYSTATION"
-        ],
         "x-enum-descriptions": [
           "No crossplay platform preferences. Can play with players any platforms",
           "Can only play with players on xbox-like platforms (xbox-one, xsx etc.)",
           "Can only play with players on playstation-like platform (ps4, ps5 etc.)"
+        ],
+        "x-enum-varnames": [
+          "ANY",
+          "XBOX",
+          "PLAYSTATION"
         ]
       },
       "CrossplayPreferences": {
@@ -41441,19 +42356,19 @@
         ],
         "title": "DeleteTicketReason",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "assigned",
-          "backfilled",
-          "left_queue",
-          "timeout",
-          "party_changed"
-        ],
         "x-enum-descriptions": [
           "",
           "",
           "",
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "assigned",
+          "backfilled",
+          "left_queue",
+          "timeout",
+          "party_changed"
         ]
       },
       "DeserterConfig": {
@@ -41542,17 +42457,17 @@
         ],
         "title": "Determiner",
         "description": "Determiner for how many rules must be satisfied in order to satisfy the ruleset",
-        "x-enum-varnames": [
-          "ALL",
-          "ANY",
-          "ONE",
-          "NONE"
-        ],
         "x-enum-descriptions": [
           "All rules must be satisfied",
           "At least one rule must be satisfied",
           "Exactly one rule must be satisfied",
           "All rules must not be satisfied"
+        ],
+        "x-enum-varnames": [
+          "ALL",
+          "ANY",
+          "ONE",
+          "NONE"
         ]
       },
       "HostType": {
@@ -41564,15 +42479,15 @@
         ],
         "title": "HostType",
         "description": "Whether the host is another player, or a dedicated instance",
-        "x-enum-varnames": [
-          "dedicated",
-          "player",
-          "preallocated"
-        ],
         "x-enum-descriptions": [
           "A dedicated, standalone instance",
           "A player hosted instance",
           "A preallocated instance that isn't player owned"
+        ],
+        "x-enum-varnames": [
+          "dedicated",
+          "player",
+          "preallocated"
         ]
       },
       "Input": {
@@ -41584,15 +42499,15 @@
         ],
         "title": "Input",
         "description": "The different input types that players can use",
-        "x-enum-varnames": [
-          "KBM",
-          "GAMEPAD",
-          "TOUCH"
-        ],
         "x-enum-descriptions": [
           "Input for players using a keyboard and mouse",
           "Input for players using a gamepad/controller",
           "Input for players using a touch screen"
+        ],
+        "x-enum-varnames": [
+          "KBM",
+          "GAMEPAD",
+          "TOUCH"
         ]
       },
       "InstanceHealthSettingsResponse": {
@@ -41637,17 +42552,17 @@
         ],
         "title": "InstanceHealthStatus",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "HEALTHY",
-          "UNHEALTHY",
-          "DEGRADED",
-          "UNKNOWN"
-        ],
         "x-enum-descriptions": [
           "Instance is in a healthy state",
           "Instance is in an unhealthy state and cannot handle connections",
           "Instance performance is degraded, and may be unable to handle new or existing connections",
           "Instance health checks have stopped, and instance status is unknown"
+        ],
+        "x-enum-varnames": [
+          "HEALTHY",
+          "UNHEALTHY",
+          "DEGRADED",
+          "UNKNOWN"
         ]
       },
       "InstanceHealthStatusResponse": {
@@ -41886,14 +42801,6 @@
         ],
         "title": "InstanceJoinableStatus",
         "description": "What state the instance is currently in",
-        "x-enum-varnames": [
-          "requested",
-          "allocated",
-          "pending",
-          "joinable",
-          "unjoinable",
-          "closed"
-        ],
         "x-enum-descriptions": [
           "Searching for a host",
           "Host has been found, and is loading its session information",
@@ -41901,6 +42808,14 @@
           "Host is ready to accept players",
           "Host has marked itself as no longer ready to accept players, but may transition back to joinable",
           "Host has left, been timed out, or could not be found"
+        ],
+        "x-enum-varnames": [
+          "requested",
+          "allocated",
+          "pending",
+          "joinable",
+          "unjoinable",
+          "closed"
         ]
       },
       "InstanceLaunchTemplate": {
@@ -42087,6 +43002,26 @@
         "title": "InstanceStartupParams",
         "description": "Parameters given to an instance to change what map and mode it loads, and other gameplay behavior"
       },
+      "IntraSessionPermissions": {
+        "type": "string",
+        "enum": [
+          "invite",
+          "kick",
+          "move"
+        ],
+        "title": "IntraSessionPermissions",
+        "description": "Subset of leader permissions that can be individual assigned to specific players within a session",
+        "x-enum-descriptions": [
+          "",
+          "",
+          ""
+        ],
+        "x-enum-varnames": [
+          "invite",
+          "kick",
+          "move"
+        ]
+      },
       "InviteSource": {
         "type": "string",
         "enum": [
@@ -42096,15 +43031,15 @@
         ],
         "title": "InviteSource",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "BACKFILL",
-          "MATCHMAKING",
-          "PLAYER"
-        ],
         "x-enum-descriptions": [
           "",
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "BACKFILL",
+          "MATCHMAKING",
+          "PLAYER"
         ]
       },
       "JoinParams": {
@@ -42149,17 +43084,17 @@
         ],
         "title": "MMRGroupingMethod",
         "description": "What method should be used to determine a linking's group MMR based on the individuals",
-        "x-enum-varnames": [
-          "WORST",
-          "BEST",
-          "AVERAGE_BY_VARIANCE",
-          "AVERAGE"
-        ],
         "x-enum-descriptions": [
           "Use the lowest MMR of any player in the linking",
           "Use the highest MMR of any player in the linking",
           "Use the arithmetic mean of the players' skill multiplied by their variance. This is the sum of each player's skill times variance divided by the number of players",
           "Use the arithmetic mean of the players' skill. This is the sum of each player's skill divided by the number of players"
+        ],
+        "x-enum-varnames": [
+          "WORST",
+          "BEST",
+          "AVERAGE_BY_VARIANCE",
+          "AVERAGE"
         ]
       },
       "MapConfig": {
@@ -42927,16 +43862,6 @@
         ],
         "title": "Operation",
         "description": "What comparison operation should be used when evaluating a rule",
-        "x-enum-varnames": [
-          "EQUAL",
-          "NOT_EQUAL",
-          "LESS_THAN",
-          "LESS_THAN_EQUAL",
-          "GREATER_THAN",
-          "GREATER_THAN_EQUAL",
-          "INCLUDED_IN_SET",
-          "EXCLUDED_FROM_SET"
-        ],
         "x-enum-descriptions": [
           "The two values must be equal",
           "The two values must not be equal",
@@ -42946,6 +43871,16 @@
           "Value A must be greater than or equal to value B",
           "Value A must be in the set of values B",
           "Value A must not be in the set of values B"
+        ],
+        "x-enum-varnames": [
+          "EQUAL",
+          "NOT_EQUAL",
+          "LESS_THAN",
+          "LESS_THAN_EQUAL",
+          "GREATER_THAN",
+          "GREATER_THAN_EQUAL",
+          "INCLUDED_IN_SET",
+          "EXCLUDED_FROM_SET"
         ]
       },
       "PagedPlayersResponse": {
@@ -42990,20 +43925,6 @@
         ],
         "title": "PlatformID",
         "description": "DEPRECATED. Use Platform instead. Unique ids for different client platforms",
-        "x-enum-varnames": [
-          "ANON",
-          "AMAZON",
-          "STEAM",
-          "PSN",
-          "XBOX_LIVE",
-          "BASIC",
-          "GOOGLE",
-          "TWITCH",
-          "NINTENDO_SWITCH",
-          "APPLE",
-          "NINTENDO",
-          "EPIC"
-        ],
         "x-enum-descriptions": [
           "DEPRECATED. Use platform instead. ID for the platform Anon",
           "DEPRECATED. Use platform instead. ID for the platform Amazon",
@@ -43017,6 +43938,20 @@
           "DEPRECATED. Use platform instead. ID for the platform Apple",
           "DEPRECATED. Use platform instead. ID for the platform NintendoNAID",
           "DEPRECATED. Use platform instead. ID for the platform Epic"
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "AMAZON",
+          "STEAM",
+          "PSN",
+          "XBOX_LIVE",
+          "BASIC",
+          "GOOGLE",
+          "TWITCH",
+          "NINTENDO_SWITCH",
+          "APPLE",
+          "NINTENDO",
+          "EPIC"
         ]
       },
       "PlatformScout": {
@@ -43417,17 +44352,17 @@
         ],
         "title": "PlayerVisibility",
         "description": "What subset of players any given player will have information about",
-        "x-enum-varnames": [
-          "ALL",
-          "TEAM",
-          "SELF",
-          "NONE"
-        ],
         "x-enum-descriptions": [
           "",
           "",
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "ALL",
+          "TEAM",
+          "SELF",
+          "NONE"
         ]
       },
       "PlayersToValidate": {
@@ -43439,15 +44374,15 @@
         ],
         "title": "PlayersToValidate",
         "description": "Which subset of players in a session need to satisfy a ruleset for it to be considered valid",
-        "x-enum-varnames": [
-          "LEADER",
-          "ALL_MEMBERS",
-          "ANY_MEMBER"
-        ],
         "x-enum-descriptions": [
           "Only the leader must be validated",
           "All members of a session must be validated",
           "Any single member must be validated"
+        ],
+        "x-enum-varnames": [
+          "LEADER",
+          "ALL_MEMBERS",
+          "ANY_MEMBER"
         ]
       },
       "ProfileJoinMode": {
@@ -43459,15 +44394,15 @@
         ],
         "title": "ProfileJoinMode",
         "description": "Mode that determines what types of match requests the ticket will appear in",
-        "x-enum-varnames": [
-          "NORMAL",
-          "BACKFILL",
-          "CREATED_BEFORE"
-        ],
         "x-enum-descriptions": [
           "Ticket will be used to fulfill normal requests (players joining queue regularly to find games)",
           "Ticket will be used to fulfill backfill requests",
           "Ticket will be used in normal requests only after a specified amount of time. This makes tickets wait before having their linkings considered"
+        ],
+        "x-enum-varnames": [
+          "NORMAL",
+          "BACKFILL",
+          "CREATED_BEFORE"
         ]
       },
       "QueueConfig": {
@@ -43807,17 +44742,17 @@
         ],
         "title": "RuleType",
         "description": "What type of rule is being evaluated",
-        "x-enum-varnames": [
-          "INVENTORY",
-          "INVENTORY_LEVEL",
-          "JOINING_SESSION_SIZE",
-          "REGION_LIST"
-        ],
         "x-enum-descriptions": [
           "Comparing the count of a specific item that a player owns",
           "Comparing the level of a specific item that a player owns",
           "Comparing the number of session members to be queued",
           "Comparing the region of the session to a list of regions"
+        ],
+        "x-enum-varnames": [
+          "INVENTORY",
+          "INVENTORY_LEVEL",
+          "JOINING_SESSION_SIZE",
+          "REGION_LIST"
         ]
       },
       "SelfSessionPlayerUpdateRequest": {
@@ -44070,6 +45005,30 @@
         "title": "SessionJoinResponse",
         "description": "Response when a player successfully joins a session"
       },
+      "SessionPermissions": {
+        "properties": {
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "Unique identifier for this player"
+          },
+          "permissions": {
+            "items": {
+              "$ref": "#/components/schemas/IntraSessionPermissions"
+            },
+            "type": "array",
+            "uniqueItems": true,
+            "description": "List of intra session permissions for a specific player",
+            "default": []
+          }
+        },
+        "type": "object",
+        "required": [
+          "player_uuid"
+        ],
+        "title": "SessionPermissions"
+      },
       "SessionPlayer": {
         "properties": {
           "player_id": {
@@ -44151,6 +45110,15 @@
             "format": "date-time",
             "title": "Time Zone Aware Datetime",
             "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone"
+          },
+          "session_permissions": {
+            "items": {
+              "$ref": "#/components/schemas/IntraSessionPermissions"
+            },
+            "type": "array",
+            "uniqueItems": true,
+            "description": "A list of intra session permissions granted to this specific player",
+            "default": []
           }
         },
         "type": "object",
@@ -44171,17 +45139,17 @@
         ],
         "title": "SessionPlayerStatus",
         "description": "What membership state players have in a session",
-        "x-enum-varnames": [
-          "leader",
-          "member",
-          "invited",
-          "reserved"
-        ],
         "x-enum-descriptions": [
           "Player is the leader of the session. Is allowed to perform admin actions on the session",
           "Player is an active member of the session. Is allowed basic actions on the session",
           "Player has been invited to the session, but has not accepted or declined",
           "Player's spot has been reserved on the session, but the player has not yet been notified"
+        ],
+        "x-enum-varnames": [
+          "leader",
+          "member",
+          "invited",
+          "reserved"
         ]
       },
       "SessionPlayerUpdateRequest": {
@@ -44590,19 +45558,19 @@
         ],
         "title": "TeamOverflowAction",
         "description": "How too many players being invited to a single team should be handled",
-        "x-enum-varnames": [
-          "fail",
-          "allow_overflow",
-          "partial_with_overflow",
-          "partial_without_overflow",
-          "overfill"
-        ],
         "x-enum-descriptions": [
           "Raise an error when too many players are invited to the same team",
           "Attempt to fill other teams when too many players are invited to one team. Will return an error if there is not enough room for all players",
           "Invite as many players as possible, and allow them to overflow onto other teams if necessary. Some players may not get invited. Will return an error if no players are invited",
           "Invite as many players as possible to the chosen team, and do not allow them to overflow. Some players may not get invited. Will return an error if no players are invited",
           "Overfill the specific team (ex. allow 6 players on a team that normally only allows 5)"
+        ],
+        "x-enum-varnames": [
+          "fail",
+          "allow_overflow",
+          "partial_with_overflow",
+          "partial_without_overflow",
+          "overfill"
         ]
       },
       "TeamUpdate": {
@@ -44750,19 +45718,19 @@
         ],
         "title": "VivoxSessionActionSingle",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "JOIN",
-          "JOIN_MUTED",
-          "KICK",
-          "MUTE",
-          "TRANSCRIBE"
-        ],
         "x-enum-descriptions": [
           "",
           "",
           "",
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "JOIN",
+          "JOIN_MUTED",
+          "KICK",
+          "MUTE",
+          "TRANSCRIBE"
         ]
       },
       "VoipSessionType": {
@@ -44773,13 +45741,13 @@
         ],
         "title": "VoipSessionType",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "SESSION",
-          "TEAM"
-        ],
         "x-enum-descriptions": [
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "SESSION",
+          "TEAM"
         ]
       },
       "VoipTokenResponse": {
@@ -50138,17 +51106,17 @@
         ],
         "title": "OnlineStatus",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "Player is current online",
-          "Player is current online, but away.  Functionally identical to online",
-          "Player will appear offline to other players",
-          "Player is offline"
-        ],
         "x-enum-varnames": [
           "online",
           "away",
           "invisible",
           "offline"
+        ],
+        "x-enum-descriptions": [
+          "Player is current online",
+          "Player is current online, but away.  Functionally identical to online",
+          "Player will appear offline to other players",
+          "Player is offline"
         ]
       },
       "PlatformIndividualCCUs": {
@@ -50832,13 +51800,13 @@
         ],
         "title": "OffsetReset",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "latest",
-          "earliest"
-        ],
         "x-enum-descriptions": [
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "latest",
+          "earliest"
         ]
       },
       "EntityGuideEngagement": {
@@ -53864,13 +54832,13 @@
         ],
         "title": "OpportunityAbortReason",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "CANCEL",
-          "OTHER"
-        ],
         "x-enum-descriptions": [
           "Ad was closed by the user",
           "Ad was closed from a misc cause"
+        ],
+        "x-enum-varnames": [
+          "CANCEL",
+          "OTHER"
         ]
       },
       "OpportunityState": {
@@ -53882,15 +54850,15 @@
         ],
         "title": "OpportunityState",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "START",
-          "COMPLETE",
-          "ABORT"
-        ],
         "x-enum-descriptions": [
           "User started watching the ad",
           "User finished watching the ad",
           "User stopped watching the ad partway through"
+        ],
+        "x-enum-varnames": [
+          "START",
+          "COMPLETE",
+          "ABORT"
         ]
       },
       "LeaderboardConfig": {

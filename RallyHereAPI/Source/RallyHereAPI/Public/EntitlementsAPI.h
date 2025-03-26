@@ -10,14 +10,18 @@
 #include "CoreMinimal.h"
 #include "RallyHereAPIAuthContext.h"
 #include "RallyHereAPIHelpers.h"
+#include "ClientType.h"
+#include "PlatformRegion.h"
 #include "Portal.h"
 #include "EntitlementEvent.h"
 #include "EntitlementEventList.h"
 #include "EntitlementEventRequest.h"
 #include "HTTPValidationError.h"
 #include "HzApiErrorModel.h"
+#include "PlatformEntitlementConnectionStatus.h"
 #include "PlatformEntitlementProcessRequest.h"
 #include "PlatformEntitlementProcessResult.h"
+#include "PlatformEntitlementsPrepared.h"
 
 namespace RallyHereAPI
 {
@@ -239,6 +243,244 @@ struct RALLYHEREAPI_API Traits_GetEntitlementEvents
 	typedef FResponse_GetEntitlementEvents Response;
 	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetEntitlementEvents Delegate;
+	/** The API object that supports this API call */
+	typedef FEntitlementsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Platform Entitlements Prepared By Player Uuid
+ * Get list of entitlements from the platform, as we will grant them to the user
+ * 
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`
+ * 
+ * - For the player themselves : `inv:platform_entitlements:self`
+*/
+struct RALLYHEREAPI_API FRequest_GetPlatformEntitlementsPreparedByPlayerUuid : public FRequest
+{
+	FRequest_GetPlatformEntitlementsPreparedByPlayerUuid();
+	virtual ~FRequest_GetPlatformEntitlementsPreparedByPlayerUuid() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PlayerUuid;
+	/* Platform this entitlement was purchased was made on */
+	FString PlatformId;
+	/* region this purchase was made in */
+	ERHAPI_PlatformRegion PlatformRegion;
+	/* client type this purchase was made on */
+	ERHAPI_ClientType ClientType;
+	/* Platform token that can be used to verify the identity of the user */
+	TOptional<FString> PlatformToken;
+	/* Platform Environment to check for ownership */
+	TOptional<FString> PlatformEnvironment;
+};
+
+/** The response type for FRequest_GetPlatformEntitlementsPreparedByPlayerUuid */
+struct RALLYHEREAPI_API FResponse_GetPlatformEntitlementsPreparedByPlayerUuid : public FResponseAccessorTemplate<FRHAPI_PlatformEntitlementsPrepared, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_PlatformEntitlementsPrepared, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_GetPlatformEntitlementsPreparedByPlayerUuid(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetPlatformEntitlementsPreparedByPlayerUuid() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_PlatformEntitlementsPrepared Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_PlatformEntitlementsPrepared& OutContent) const { return TryGetContent<FRHAPI_PlatformEntitlementsPrepared>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_PlatformEntitlementsPrepared>& OutContent) const { return TryGetContent<FRHAPI_PlatformEntitlementsPrepared>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_PlatformEntitlementsPrepared* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlatformEntitlementsPrepared>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_PlatformEntitlementsPrepared> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlatformEntitlementsPrepared>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlatformEntitlementsPrepared& OutContent) const;
+
+	/* Response 403
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetPlatformEntitlementsPreparedByPlayerUuid */
+DECLARE_DELEGATE_OneParam(FDelegate_GetPlatformEntitlementsPreparedByPlayerUuid, const FResponse_GetPlatformEntitlementsPreparedByPlayerUuid&);
+
+/** @brief A helper metadata object for GetPlatformEntitlementsPreparedByPlayerUuid that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetPlatformEntitlementsPreparedByPlayerUuid
+{
+	/** The request type */
+	typedef FRequest_GetPlatformEntitlementsPreparedByPlayerUuid Request;
+	/** The response type */
+	typedef FResponse_GetPlatformEntitlementsPreparedByPlayerUuid Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetPlatformEntitlementsPreparedByPlayerUuid Delegate;
+	/** The API object that supports this API call */
+	typedef FEntitlementsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Platform Entitlements Raw By Player Uuid
+ * Get list of entitlements directly from the platform, as they return it (sanitized).  
+ * 
+ * WARNING: There is no guaranteed format for the response from this endpoint.  Do not depend on the layout or contents of it for anything other than debugging.
+ * 
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`
+ * 
+ * - For the player themselves : `inv:platform_entitlements:self`
+*/
+struct RALLYHEREAPI_API FRequest_GetPlatformEntitlementsRawByPlayerUuid : public FRequest
+{
+	FRequest_GetPlatformEntitlementsRawByPlayerUuid();
+	virtual ~FRequest_GetPlatformEntitlementsRawByPlayerUuid() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FGuid PlayerUuid;
+	/* Platform this entitlement was purchased was made on */
+	FString PlatformId;
+	/* region this purchase was made in */
+	ERHAPI_PlatformRegion PlatformRegion;
+	/* client type this purchase was made on */
+	ERHAPI_ClientType ClientType;
+	/* Platform token that can be used to verify the identity of the user */
+	TOptional<FString> PlatformToken;
+	/* Platform Environment to check for ownership */
+	TOptional<FString> PlatformEnvironment;
+};
+
+/** The response type for FRequest_GetPlatformEntitlementsRawByPlayerUuid */
+struct RALLYHEREAPI_API FResponse_GetPlatformEntitlementsRawByPlayerUuid : public FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_JsonValue, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_GetPlatformEntitlementsRawByPlayerUuid(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetPlatformEntitlementsRawByPlayerUuid() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_JsonValue Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_JsonValue& OutContent) const { return TryGetContent<FRHAPI_JsonValue>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_JsonValue>& OutContent) const { return TryGetContent<FRHAPI_JsonValue>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_JsonValue* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_JsonValue>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_JsonValue> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_JsonValue>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+	/* Response 403
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetPlatformEntitlementsRawByPlayerUuid */
+DECLARE_DELEGATE_OneParam(FDelegate_GetPlatformEntitlementsRawByPlayerUuid, const FResponse_GetPlatformEntitlementsRawByPlayerUuid&);
+
+/** @brief A helper metadata object for GetPlatformEntitlementsRawByPlayerUuid that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetPlatformEntitlementsRawByPlayerUuid
+{
+	/** The request type */
+	typedef FRequest_GetPlatformEntitlementsRawByPlayerUuid Request;
+	/** The response type */
+	typedef FResponse_GetPlatformEntitlementsRawByPlayerUuid Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetPlatformEntitlementsRawByPlayerUuid Delegate;
 	/** The API object that supports this API call */
 	typedef FEntitlementsAPI API;
 	/** A human readable name for this API call */
@@ -756,7 +998,7 @@ struct RALLYHEREAPI_API FResponse_ProcessPlatformEntitlementForMe : public FResp
 	bool TryGetContentFor200(FRHAPI_PlatformEntitlementProcessResult& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -867,7 +1109,7 @@ struct RALLYHEREAPI_API FResponse_ProcessPlatformEntitlementsByPlayerUuid : publ
 	bool TryGetContentFor200(FRHAPI_PlatformEntitlementProcessResult& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -907,10 +1149,129 @@ struct RALLYHEREAPI_API Traits_ProcessPlatformEntitlementsByPlayerUuid
 };
 
 /**
+ * @brief Refresh Connection Status For Platform Entitlements
+ * Check the status of the user with the platform, and if they are able to request entitlements
+ * 
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`
+ * 
+ * - For the player themselves : `inv:platform_entitlements:self`
+*/
+struct RALLYHEREAPI_API FRequest_RefreshConnectionStatusForPlatformEntitlements : public FRequest
+{
+	FRequest_RefreshConnectionStatusForPlatformEntitlements();
+	virtual ~FRequest_RefreshConnectionStatusForPlatformEntitlements() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	/* Platform this entitlement was purchased was made on */
+	FString PlatformId;
+	/* Platform this entitlement was purchased was made on */
+	FString PlatformUserId;
+	/* region this purchase was made in */
+	ERHAPI_PlatformRegion PlatformRegion;
+	/* client type this purchase was made on */
+	ERHAPI_ClientType ClientType;
+	/* Platform token that can be used to verify the identity of the user */
+	TOptional<FString> PlatformToken;
+	/* Platform Environment to check for ownership */
+	TOptional<FString> PlatformEnvironment;
+};
+
+/** The response type for FRequest_RefreshConnectionStatusForPlatformEntitlements */
+struct RALLYHEREAPI_API FResponse_RefreshConnectionStatusForPlatformEntitlements : public FResponseAccessorTemplate<FRHAPI_PlatformEntitlementConnectionStatus, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_PlatformEntitlementConnectionStatus, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_RefreshConnectionStatusForPlatformEntitlements(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_RefreshConnectionStatusForPlatformEntitlements() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_PlatformEntitlementConnectionStatus Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_PlatformEntitlementConnectionStatus& OutContent) const { return TryGetContent<FRHAPI_PlatformEntitlementConnectionStatus>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_PlatformEntitlementConnectionStatus>& OutContent) const { return TryGetContent<FRHAPI_PlatformEntitlementConnectionStatus>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_PlatformEntitlementConnectionStatus* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_PlatformEntitlementConnectionStatus>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_PlatformEntitlementConnectionStatus> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_PlatformEntitlementConnectionStatus>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_PlatformEntitlementConnectionStatus& OutContent) const;
+
+	/* Response 403
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_RefreshConnectionStatusForPlatformEntitlements */
+DECLARE_DELEGATE_OneParam(FDelegate_RefreshConnectionStatusForPlatformEntitlements, const FResponse_RefreshConnectionStatusForPlatformEntitlements&);
+
+/** @brief A helper metadata object for RefreshConnectionStatusForPlatformEntitlements that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_RefreshConnectionStatusForPlatformEntitlements
+{
+	/** The request type */
+	typedef FRequest_RefreshConnectionStatusForPlatformEntitlements Request;
+	/** The response type */
+	typedef FResponse_RefreshConnectionStatusForPlatformEntitlements Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_RefreshConnectionStatusForPlatformEntitlements Delegate;
+	/** The API object that supports this API call */
+	typedef FEntitlementsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
  * @brief Retrieve Entitlement Request By Player Uuid
  * Get the status of a platform entitlement request by request id.
  *     
- *     Required Permissions:
+ * Required Permissions:
  * 
  * - For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`
  * 
@@ -976,9 +1337,14 @@ struct RALLYHEREAPI_API FResponse_RetrieveEntitlementRequestByPlayerUuid : publi
 	bool TryGetContentFor200(FRHAPI_PlatformEntitlementProcessResult& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	The specified player was not found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 422
 	Validation Error
@@ -1019,7 +1385,7 @@ struct RALLYHEREAPI_API Traits_RetrieveEntitlementRequestByPlayerUuid
  * @brief Retrieve Entitlement Request For Me
  * Get the status of a platform entitlement request by request id.
  *     
- *     Required Permissions:
+ * Required Permissions:
  * 
  * - For any player (including themselves) any of: `inv:*`, `inv:platform_entitlements:any`
  * 
@@ -1084,9 +1450,14 @@ struct RALLYHEREAPI_API FResponse_RetrieveEntitlementRequestForMe : public FResp
 	bool TryGetContentFor200(FRHAPI_PlatformEntitlementProcessResult& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	The specified player was not found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 422
 	Validation Error
@@ -1135,6 +1506,10 @@ public:
 	void OnGenerateEntitlementEventResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GenerateEntitlementEvent Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr GetEntitlementEvents(const FRequest_GetEntitlementEvents& Request, const FDelegate_GetEntitlementEvents& Delegate = FDelegate_GetEntitlementEvents(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetEntitlementEventsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetEntitlementEvents Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetPlatformEntitlementsPreparedByPlayerUuid(const FRequest_GetPlatformEntitlementsPreparedByPlayerUuid& Request, const FDelegate_GetPlatformEntitlementsPreparedByPlayerUuid& Delegate = FDelegate_GetPlatformEntitlementsPreparedByPlayerUuid(), int32 Priority = DefaultRallyHereAPIPriority);
+	void OnGetPlatformEntitlementsPreparedByPlayerUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlatformEntitlementsPreparedByPlayerUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetPlatformEntitlementsRawByPlayerUuid(const FRequest_GetPlatformEntitlementsRawByPlayerUuid& Request, const FDelegate_GetPlatformEntitlementsRawByPlayerUuid& Delegate = FDelegate_GetPlatformEntitlementsRawByPlayerUuid(), int32 Priority = DefaultRallyHereAPIPriority);
+	void OnGetPlatformEntitlementsRawByPlayerUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlatformEntitlementsRawByPlayerUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr ProcessKeyEntitlements(const FRequest_ProcessKeyEntitlements& Request, const FDelegate_ProcessKeyEntitlements& Delegate = FDelegate_ProcessKeyEntitlements(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnProcessKeyEntitlementsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ProcessKeyEntitlements Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr ProcessKeyEntitlementsPlayerUuid(const FRequest_ProcessKeyEntitlementsPlayerUuid& Request, const FDelegate_ProcessKeyEntitlementsPlayerUuid& Delegate = FDelegate_ProcessKeyEntitlementsPlayerUuid(), int32 Priority = DefaultRallyHereAPIPriority);
@@ -1147,6 +1522,8 @@ public:
 	void OnProcessPlatformEntitlementForMeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ProcessPlatformEntitlementForMe Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr ProcessPlatformEntitlementsByPlayerUuid(const FRequest_ProcessPlatformEntitlementsByPlayerUuid& Request, const FDelegate_ProcessPlatformEntitlementsByPlayerUuid& Delegate = FDelegate_ProcessPlatformEntitlementsByPlayerUuid(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnProcessPlatformEntitlementsByPlayerUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ProcessPlatformEntitlementsByPlayerUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr RefreshConnectionStatusForPlatformEntitlements(const FRequest_RefreshConnectionStatusForPlatformEntitlements& Request, const FDelegate_RefreshConnectionStatusForPlatformEntitlements& Delegate = FDelegate_RefreshConnectionStatusForPlatformEntitlements(), int32 Priority = DefaultRallyHereAPIPriority);
+	void OnRefreshConnectionStatusForPlatformEntitlementsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_RefreshConnectionStatusForPlatformEntitlements Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr RetrieveEntitlementRequestByPlayerUuid(const FRequest_RetrieveEntitlementRequestByPlayerUuid& Request, const FDelegate_RetrieveEntitlementRequestByPlayerUuid& Delegate = FDelegate_RetrieveEntitlementRequestByPlayerUuid(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnRetrieveEntitlementRequestByPlayerUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_RetrieveEntitlementRequestByPlayerUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr RetrieveEntitlementRequestForMe(const FRequest_RetrieveEntitlementRequestForMe& Request, const FDelegate_RetrieveEntitlementRequestForMe& Delegate = FDelegate_RetrieveEntitlementRequestForMe(), int32 Priority = DefaultRallyHereAPIPriority);

@@ -23,6 +23,7 @@ enum class ERHAPI_EntitlementStatus : uint8
 	Fulfilled UMETA(ToolTip="Entitlement has been fulfilled"),
 	Failed UMETA(ToolTip="Entitlement has failed, check error_code for more information"),
 	PreviouslyApplied UMETA(ToolTip="Entitlement was previously applied"),
+	Skipped UMETA(ToolTip="Entitlement was skipped and not processed"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_EntitlementStatus& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_EntitlementStatus& EnumValue);

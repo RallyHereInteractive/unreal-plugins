@@ -28,6 +28,14 @@ void FRHAPI_PlatformEntitlementProcessRequest::WriteJson(TSharedRef<TJsonWriter<
 	RallyHereAPI::WriteJsonValue(Writer, PlatformToken);
 	Writer->WriteIdentifierPrefix(TEXT("platform_id"));
 	RallyHereAPI::WriteJsonValue(Writer, PlatformId);
+	if (PlatformEnvironment_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("platform_environment"));
+		if (PlatformEnvironment_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, PlatformEnvironment_Optional);
+	}
 	Writer->WriteIdentifierPrefix(TEXT("platform_region"));
 	RallyHereAPI::WriteJsonValue(Writer, EnumToString(PlatformRegion));
 	Writer->WriteIdentifierPrefix(TEXT("client_type"));
@@ -36,6 +44,16 @@ void FRHAPI_PlatformEntitlementProcessRequest::WriteJson(TSharedRef<TJsonWriter<
 	{
 		Writer->WriteIdentifierPrefix(TEXT("entitlements"));
 		RallyHereAPI::WriteJsonValue(Writer, Entitlements_Optional);
+	}
+	if (CheckDurables_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("check_durables"));
+		RallyHereAPI::WriteJsonValue(Writer, CheckDurables_Optional);
+	}
+	if (CheckConsumables_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("check_consumables"));
+		RallyHereAPI::WriteJsonValue(Writer, CheckConsumables_Optional);
 	}
 	Writer->WriteObjectEnd();
 }
@@ -57,6 +75,13 @@ bool FRHAPI_PlatformEntitlementProcessRequest::FromJson(const TSharedPtr<FJsonVa
 	const TSharedPtr<FJsonValue> JsonPlatformIdField = (*Object)->TryGetField(TEXT("platform_id"));
 	const bool PlatformId_IsValid = JsonPlatformIdField.IsValid() && (!JsonPlatformIdField->IsNull() && TryGetJsonValue(JsonPlatformIdField, PlatformId));
 	ParseSuccess &= PlatformId_IsValid; 
+	const TSharedPtr<FJsonValue> JsonPlatformEnvironmentField = (*Object)->TryGetField(TEXT("platform_environment"));
+	if (JsonPlatformEnvironmentField.IsValid())
+	{
+		PlatformEnvironment_IsNull = JsonPlatformEnvironmentField->IsNull();
+		PlatformEnvironment_IsSet = PlatformEnvironment_IsNull || TryGetJsonValue(JsonPlatformEnvironmentField, PlatformEnvironment_Optional);
+		ParseSuccess &= PlatformEnvironment_IsSet;
+	}
 	const TSharedPtr<FJsonValue> JsonPlatformRegionField = (*Object)->TryGetField(TEXT("platform_region"));
 	const bool PlatformRegion_IsValid = JsonPlatformRegionField.IsValid() && (!JsonPlatformRegionField->IsNull() && TryGetJsonValue(JsonPlatformRegionField, PlatformRegion));
 	ParseSuccess &= PlatformRegion_IsValid; 
@@ -68,6 +93,18 @@ bool FRHAPI_PlatformEntitlementProcessRequest::FromJson(const TSharedPtr<FJsonVa
 	{
 		Entitlements_IsSet = TryGetJsonValue(JsonEntitlementsField, Entitlements_Optional);
 		ParseSuccess &= Entitlements_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonCheckDurablesField = (*Object)->TryGetField(TEXT("check_durables"));
+	if (JsonCheckDurablesField.IsValid())
+	{
+		CheckDurables_IsSet = TryGetJsonValue(JsonCheckDurablesField, CheckDurables_Optional);
+		ParseSuccess &= CheckDurables_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonCheckConsumablesField = (*Object)->TryGetField(TEXT("check_consumables"));
+	if (JsonCheckConsumablesField.IsValid())
+	{
+		CheckConsumables_IsSet = TryGetJsonValue(JsonCheckConsumablesField, CheckConsumables_Optional);
+		ParseSuccess &= CheckConsumables_IsSet;
 	}
 
 	return ParseSuccess;

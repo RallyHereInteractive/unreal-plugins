@@ -9,7 +9,6 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "EntitlementErrorCode.h"
 #include "EntitlementStatus.h"
 #include "PlatformEntitlement.generated.h"
 
@@ -122,31 +121,36 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlement : public FRHAPI_Model
 	/** @brief Checks whether Status_Optional has been set */
 	bool IsStatusSet() const { return Status_IsSet; }
 
+	/** @brief Error code for this entitlement */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	ERHAPI_EntitlementErrorCode ErrorCode_Optional{  };
+	FString ErrorCode_Optional{ TEXT("none") };
 	/** @brief true if ErrorCode_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ErrorCode_IsSet{ false };
 	/** @brief Gets the value of ErrorCode_Optional, regardless of it having been set */
-	ERHAPI_EntitlementErrorCode& GetErrorCode() { return ErrorCode_Optional; }
+	FString& GetErrorCode() { return ErrorCode_Optional; }
 	/** @brief Gets the value of ErrorCode_Optional, regardless of it having been set */
-	const ERHAPI_EntitlementErrorCode& GetErrorCode() const { return ErrorCode_Optional; }
+	const FString& GetErrorCode() const { return ErrorCode_Optional; }
 	/** @brief Gets the value of ErrorCode_Optional, if it has been set, otherwise it returns DefaultValue */
-	const ERHAPI_EntitlementErrorCode& GetErrorCode(const ERHAPI_EntitlementErrorCode& DefaultValue) const { if (ErrorCode_IsSet) return ErrorCode_Optional; return DefaultValue; }
+	const FString& GetErrorCode(const FString& DefaultValue) const { if (ErrorCode_IsSet) return ErrorCode_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of ErrorCode_Optional and returns true if it has been set, otherwise returns false */
-	bool GetErrorCode(ERHAPI_EntitlementErrorCode& OutValue) const { if (ErrorCode_IsSet) OutValue = ErrorCode_Optional; return ErrorCode_IsSet; }
+	bool GetErrorCode(FString& OutValue) const { if (ErrorCode_IsSet) OutValue = ErrorCode_Optional; return ErrorCode_IsSet; }
 	/** @brief Returns a pointer to ErrorCode_Optional, if it has been set, otherwise returns nullptr */
-	ERHAPI_EntitlementErrorCode* GetErrorCodeOrNull() { if (ErrorCode_IsSet) return (&ErrorCode_Optional); return nullptr; }
+	FString* GetErrorCodeOrNull() { if (ErrorCode_IsSet) return (&ErrorCode_Optional); return nullptr; }
 	/** @brief Returns a pointer to ErrorCode_Optional, if it has been set, otherwise returns nullptr */
-	const ERHAPI_EntitlementErrorCode* GetErrorCodeOrNull() const { if (ErrorCode_IsSet) return (&ErrorCode_Optional); return nullptr; }
+	const FString* GetErrorCodeOrNull() const { if (ErrorCode_IsSet) return (&ErrorCode_Optional); return nullptr; }
 	/** @brief Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true */
-	void SetErrorCode(const ERHAPI_EntitlementErrorCode& NewValue) { ErrorCode_Optional = NewValue; ErrorCode_IsSet = true;  }
+	void SetErrorCode(const FString& NewValue) { ErrorCode_Optional = NewValue; ErrorCode_IsSet = true;  }
 	/** @brief Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true using move semantics */
-	void SetErrorCode(ERHAPI_EntitlementErrorCode&& NewValue) { ErrorCode_Optional = NewValue; ErrorCode_IsSet = true;  }
+	void SetErrorCode(FString&& NewValue) { ErrorCode_Optional = NewValue; ErrorCode_IsSet = true;  }
 	/** @brief Clears the value of ErrorCode_Optional and sets ErrorCode_IsSet to false */
-	void ClearErrorCode() { ErrorCode_IsSet = false;  }
+	void ClearErrorCode() { ErrorCode_Optional = TEXT("none"); ErrorCode_IsSet = false;  }
 	/** @brief Checks whether ErrorCode_Optional has been set */
 	bool IsErrorCodeSet() const { return ErrorCode_IsSet; }
+	/** @brief Returns true if ErrorCode_Optional is set and matches the default value */
+	bool IsErrorCodeDefaultValue() const { return ErrorCode_IsSet && ErrorCode_Optional == TEXT("none"); }
+	/** @brief Sets the value of ErrorCode_Optional to its default and also sets ErrorCode_IsSet to true */
+	void SetErrorCodeToDefault() { SetErrorCode(TEXT("none")); }
 
 	/** @brief Order ID for this entitlement */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
