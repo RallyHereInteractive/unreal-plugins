@@ -169,7 +169,7 @@ void FRHDTW_Entitlements::DoEntitlementsTab()
 					ImGuiDisplayCopyableEnumValue(TEXT("Status"), entitlement.GetStatus(), ECopyMode::Value);
 					ImGui::TableNextColumn();
 					// use raw value for error code, so it is easier to look up
-					ImGuiDisplayCopyableEnumValue(TEXT("ErrorCode"), entitlement.GetErrorCode(), ECopyMode::Value, false, false, false);
+					ImGuiDisplayCopyableValue(TEXT("ErrorCode"), entitlement.GetErrorCode(), ECopyMode::Value);
 				}
 				for (FRHAPI_PlatformEntitlement entitlement : result.GetClientEntitlements())
 				{
@@ -185,7 +185,7 @@ void FRHDTW_Entitlements::DoEntitlementsTab()
 					ImGuiDisplayCopyableEnumValue(TEXT("Status"), entitlement.GetStatus(), ECopyMode::Value);
 					ImGui::TableNextColumn();
 					// use raw value for error code, so it is easier to look up
-					ImGuiDisplayCopyableEnumValue(TEXT("ErrorCode"), entitlement.GetErrorCode(), ECopyMode::Value, false, false, false);
+					ImGuiDisplayCopyableValue(TEXT("ErrorCode"), entitlement.GetErrorCode(), ECopyMode::Value);
 				}
 
 				ImGui::EndTable();
