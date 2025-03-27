@@ -812,7 +812,7 @@ public:
 	 */
 	virtual void BLUEPRINT_GivePlayerPermission(UPARAM(ref) const FGuid& PlayerUuid, const ERHAPI_IntraSessionPermissions& Permission, const FRH_OnSessionUpdatedDelegateBlock& Delegate) { GivePlayerPermission(PlayerUuid, Permission); }
 	/**
-	 * @brief Revokes a player a specific session permission.
+	 * @brief Revokes a specific session permission from a player.
 	 * @param [in] PlayerUuid The unique player id who will receive the permission
 	 * @param [in] Permission The permission this player will receive
 	 * @param [in] Delegate Callback delegate for the update
@@ -1138,7 +1138,7 @@ public:
 	 */
 	virtual void GivePlayerPermission(const FGuid& PlayerUuid, const ERHAPI_IntraSessionPermissions& Permission, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
-	 * @brief Revokes a player a specific session permission.
+	 * @brief Revokes a specific session permission from a player.
 	 * @param [in] PlayerUuid The unique player id who will receive the permission
 	 * @param [in] Permission The permission this player will receive
 	 * @param [in] Delegate Callback delegate for the update
