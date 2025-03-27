@@ -34,6 +34,7 @@ public:
 	TArray<ANSICHAR> CreateByTypeRegionIdString;
 	bool CreateByTypeUsePlayerOptions;
 	FString SessionActionResult;
+	TOptional<ERHAPI_IntraSessionPermissions> SelectedPermission;
 
 	int32 InvitePlayerTeam;
 	TArray<ANSICHAR> InviteSessionString;

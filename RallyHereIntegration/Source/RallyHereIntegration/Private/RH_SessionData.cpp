@@ -854,7 +854,6 @@ void URH_OfflineSession::ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, c
 	Delegate.ExecuteIfBound(true, this, FRH_ErrorInfo());
 }
 
-
 void URH_OfflineSession::SwapPlayerTeams(const FGuid& PlayerUuidA, const FGuid& PlayerUuidB, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	// ensure session has both players to swap
@@ -1153,6 +1152,75 @@ void URH_OfflineSession::UpdateInstanceInfo(const FRHAPI_InstanceInfoUpdate& Ins
 
 	Delegate.ExecuteIfBound(true, this, FRH_ErrorInfo());
 }
+
+void URH_OfflineSession::GivePlayerPermission(const FGuid& PlayerUuid, const ERHAPI_IntraSessionPermissions& Permission, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+{
+	UE_LOG(LogRHSession, Verbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
+	FRH_APISessionWithETag UpdateWrapper(SessionData);
+	auto& Update = UpdateWrapper.Data;
+
+	{
+		auto& Teams = Update.GetTeams();
+		FRHAPI_SessionPlayer* FoundPlayer = nullptr;
+		for (auto& Team : Teams)
+		{
+			for (auto& Player : Team.GetPlayers())
+			{
+				if (Player.GetPlayerUuid() == PlayerUuid)
+				{
+					FoundPlayer = &Player;
+					break;
+				}
+			}
+		}
+		if (!FoundPlayer)
+		{
+			UE_LOG(LogRHSession, Log, TEXT("[%s] - Failed because player is not in session"), ANSI_TO_TCHAR(__FUNCTION__));
+			Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
+			return;
+		}
+
+		FoundPlayer->GetSessionPermissions().Add(Permission);
+	}
+
+	ImportSessionUpdateToAllPlayers(UpdateWrapper);
+	Delegate.ExecuteIfBound(true, this, FRH_ErrorInfo());
+}
+
+void URH_OfflineSession::RemovePlayerPermission(const FGuid& PlayerUuid, const ERHAPI_IntraSessionPermissions& Permission, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+{
+	UE_LOG(LogRHSession, Verbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
+	FRH_APISessionWithETag UpdateWrapper(SessionData);
+	auto& Update = UpdateWrapper.Data;
+
+	{
+		auto& Teams = Update.GetTeams();
+		FRHAPI_SessionPlayer* FoundPlayer = nullptr;
+		for (auto& Team : Teams)
+		{
+			for (auto& Player : Team.GetPlayers())
+			{
+				if (Player.GetPlayerUuid() == PlayerUuid)
+				{
+					FoundPlayer = &Player;
+					break;
+				}
+			}
+		}
+		if (!FoundPlayer)
+		{
+			UE_LOG(LogRHSession, Log, TEXT("[%s] - Failed because player is not in session"), ANSI_TO_TCHAR(__FUNCTION__));
+			Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
+			return;
+		}
+
+		FoundPlayer->GetSessionPermissions().Remove(Permission);
+	}
+
+	ImportSessionUpdateToAllPlayers(UpdateWrapper);
+	Delegate.ExecuteIfBound(true, this, FRH_ErrorInfo());
+}
+
 
 void URH_OfflineSession::UpdateBrowserInfo(bool bEnable, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
@@ -1618,6 +1686,32 @@ void URH_OnlineSession::UpdateInstanceInfo(const FRHAPI_InstanceInfoUpdate& Upda
 	Request.InstanceInfoUpdate = Update;
 
 	auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(GetSessionOwner()), GetSessionId(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionUpdateInstanceInfoPriority);
+	Helper->Start(Request);
+}
+
+void URH_OnlineSession::GivePlayerPermission(const FGuid& PlayerUuid, const ERHAPI_IntraSessionPermissions& Permission, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+{
+	typedef RallyHereAPI::Traits_GivePlayerPermissionByUuid BaseType;
+	BaseType::Request Request;
+	Request.AuthContext = GetSessionOwner()->GetSessionAuthContext();
+	Request.SessionId = GetSessionId();
+	Request.PlayerUuid = PlayerUuid;
+	Request.Permission = Permission;
+
+	auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(GetSessionOwner()), GetSessionId(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionGivePermissionPriority);
+	Helper->Start(Request);
+}
+
+void URH_OnlineSession::RemovePlayerPermission(const FGuid& PlayerUuid, const ERHAPI_IntraSessionPermissions& Permission, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+{
+	typedef RallyHereAPI::Traits_RemovePlayerPermissionByUuid BaseType;
+	BaseType::Request Request;
+	Request.AuthContext = GetSessionOwner()->GetSessionAuthContext();
+	Request.SessionId = GetSessionId();
+	Request.PlayerUuid = PlayerUuid;
+	Request.Permission = Permission;
+
+	auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(GetSessionOwner()), GetSessionId(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionRemovePermissionPriority);
 	Helper->Start(Request);
 }
 

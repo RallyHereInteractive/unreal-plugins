@@ -845,6 +845,8 @@ Offline Sessions are sessions the session owner is actively a member of that are
 `public virtual void `[`KickOtherSession`](#classURH__OfflineSession_1aef48af399b765fcf42bddbbb49242d18)`(const FString & KickedSessionId,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Currently not supported for offline sessions.
 `public virtual void `[`SetLeader`](#classURH__OfflineSession_1a88d682913b0247652317fa4ed3213152)`(const FGuid & PlayerUuid,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Currently not supported for offline sessions.
 `public virtual void `[`ChangePlayerTeam`](#classURH__OfflineSession_1a06bb9470b305e09a1eed9ffbc35153e8)`(const FGuid & PlayerUuid,int32 Team,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Changes the team a given player is associated with in the session.
+`public virtual void `[`GivePlayerPermission`](#classURH__OfflineSession_1af5790d39381821e9efa53ffbdd926f26)`(const FGuid & PlayerUuid,const ERHAPI_IntraSessionPermissions & Permission,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Grants a player a specific session permission.
+`public virtual void `[`RemovePlayerPermission`](#classURH__OfflineSession_1a61b2cd0bc8a71e505ad4c336cce13c06)`(const FGuid & PlayerUuid,const ERHAPI_IntraSessionPermissions & Permission,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Revokes a specific session permission from a player.
 `public virtual void `[`SwapPlayerTeams`](#classURH__OfflineSession_1a3c543c48fdc9fe0d82912ef2635bdae4)`(const FGuid & PlayerUuidA,const FGuid & PlayerUuidB,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Swaps the teams of a specified pair of players.
 `public virtual void `[`UpdatePlayerCustomData`](#classURH__OfflineSession_1aa58dc5637c9e083c6990f7832077a60d)`(const FGuid & PlayerUuid,const TMap< FString, FString > & CustomData,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Currently not supported for offline sessions.
 `public virtual void `[`Leave`](#classURH__OfflineSession_1ac9879abe8ef573431669f5e4b2c99f14)`(bool bFromOSSSession,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Leaves the session.
@@ -897,6 +899,28 @@ Changes the team a given player is associated with in the session.
 * `Team` The target team that the player will be associated with in the session. 
 
 * `Delegate` Callback delegate for the session being updated by the team change.
+
+#### `public virtual void `[`GivePlayerPermission`](#classURH__OfflineSession_1af5790d39381821e9efa53ffbdd926f26)`(const FGuid & PlayerUuid,const ERHAPI_IntraSessionPermissions & Permission,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OfflineSession_1af5790d39381821e9efa53ffbdd926f26"></a>
+
+Grants a player a specific session permission.
+
+#### Parameters
+* `PlayerUuid` The unique player id who will receive the permission 
+
+* `Permission` The permission this player will receive 
+
+* `Delegate` Callback delegate for the update
+
+#### `public virtual void `[`RemovePlayerPermission`](#classURH__OfflineSession_1a61b2cd0bc8a71e505ad4c336cce13c06)`(const FGuid & PlayerUuid,const ERHAPI_IntraSessionPermissions & Permission,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OfflineSession_1a61b2cd0bc8a71e505ad4c336cce13c06"></a>
+
+Revokes a specific session permission from a player.
+
+#### Parameters
+* `PlayerUuid` The unique player id who will lose the permission 
+
+* `Permission` The permission this player will lose 
+
+* `Delegate` Callback delegate for the update
 
 #### `public virtual void `[`SwapPlayerTeams`](#classURH__OfflineSession_1a3c543c48fdc9fe0d82912ef2635bdae4)`(const FGuid & PlayerUuidA,const FGuid & PlayerUuidB,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OfflineSession_1a3c543c48fdc9fe0d82912ef2635bdae4"></a>
 
@@ -1046,6 +1070,8 @@ Online Sessions are sessions that are synchronized from the API (and since it is
 `public  `[`UFUNCTION`](#classURH__OnlineSession_1a4e4d322afa4582235311cf5c2c0ba763)`(BlueprintCallable,Category,meta) const` | Blueprint compatible version of JoinQueue.
 `public inline void `[`BLUEPRINT_JoinQueueEx`](#classURH__OnlineSession_1a077e94f81edf865ddc55168c9ce2a353)`(const `[`FRHAPI_QueueJoinRequest`](RHAPI_QueueJoinRequest.md#structFRHAPI__QueueJoinRequest)` & Request,const FRH_OnSessionUpdatedDynamicDelegate & Delegate)` | Blueprint compatible version of JoinQueue.
 `public virtual void `[`LeaveQueue`](#classURH__OnlineSession_1a580de5cf705209f24551008caf72151c)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Leaves the currently active matchmaking queue.
+`public virtual void `[`GivePlayerPermission`](#classURH__OnlineSession_1a7615e5a17ed9456e4ef9996968bf5d55)`(const FGuid & PlayerUuid,const ERHAPI_IntraSessionPermissions & Permission,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Grants a player a specific session permission.
+`public virtual void `[`RemovePlayerPermission`](#classURH__OnlineSession_1ab020cc205c6fa00ea95dcb19884cf0e4)`(const FGuid & PlayerUuid,const ERHAPI_IntraSessionPermissions & Permission,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Revokes a player a specific session permission.
 `public virtual void `[`InvitePlayer`](#classURH__OnlineSession_1a8bf3c389551cbdf8ecf5112c8af151cf)`(const FGuid & PlayerUuid,int32 Team,const TMap< FString, FString > & CustomData,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Invites a player to the session.
 `public virtual void `[`KickPlayer`](#classURH__OnlineSession_1a4f8560ffb8ac393738907307ed2225bd)`(const FGuid & PlayerUuid,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Kicks a player from the session.
 `public virtual void `[`InviteOtherSession`](#classURH__OnlineSession_1a2a71476133c92c2f641766e7a1eeed36)`(const FString & InvitedSessionId,const `[`FRHAPI_PlayerInviteRequest`](RHAPI_PlayerInviteRequest.md#structFRHAPI__PlayerInviteRequest)` & SessionInviteRequest,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Invites a different session to this session.
@@ -1143,6 +1169,28 @@ Leaves the currently active matchmaking queue.
 
 #### Parameters
 * `Delegate` Callback delegate on the session being updated from leaving matchmaking.
+
+#### `public virtual void `[`GivePlayerPermission`](#classURH__OnlineSession_1a7615e5a17ed9456e4ef9996968bf5d55)`(const FGuid & PlayerUuid,const ERHAPI_IntraSessionPermissions & Permission,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OnlineSession_1a7615e5a17ed9456e4ef9996968bf5d55"></a>
+
+Grants a player a specific session permission.
+
+#### Parameters
+* `PlayerUuid` The unique player id who will receive the permission 
+
+* `Permission` The permission this player will receive 
+
+* `Delegate` Callback delegate for the update
+
+#### `public virtual void `[`RemovePlayerPermission`](#classURH__OnlineSession_1ab020cc205c6fa00ea95dcb19884cf0e4)`(const FGuid & PlayerUuid,const ERHAPI_IntraSessionPermissions & Permission,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OnlineSession_1ab020cc205c6fa00ea95dcb19884cf0e4"></a>
+
+Revokes a player a specific session permission.
+
+#### Parameters
+* `PlayerUuid` The unique player id who will lose the permission 
+
+* `Permission` The permission this player will lose 
+
+* `Delegate` Callback delegate for the update
 
 #### `public virtual void `[`InvitePlayer`](#classURH__OnlineSession_1a8bf3c389551cbdf8ecf5112c8af151cf)`(const FGuid & PlayerUuid,int32 Team,const TMap< FString, FString > & CustomData,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OnlineSession_1a8bf3c389551cbdf8ecf5112c8af151cf"></a>
 
