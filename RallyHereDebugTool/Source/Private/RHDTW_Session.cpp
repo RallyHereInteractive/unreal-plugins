@@ -394,6 +394,18 @@ void FRHDTW_Session::ImGuiDisplaySessionPlayer(URH_SessionView* RHSession, const
 				NewTeamId = FMath::Max(NewTeamId, 0);
 				RHJoinedSession->ChangePlayerTeam(Player.PlayerUuid, NewTeamId);
 			}
+
+			if (ImGui::Button("Give Permission") && SelectedPermission.IsSet())
+			{
+				RHJoinedSession->GivePlayerPermission(Player.PlayerUuid, SelectedPermission.GetValue());
+			}
+			ImGui::SameLine();
+			if (ImGui::Button("Remove Permission") && SelectedPermission.IsSet())
+			{
+				RHJoinedSession->RemovePlayerPermission(Player.PlayerUuid, SelectedPermission.GetValue());
+			}
+			ImGui::SameLine();
+			ImGuiDisplayOptionalEnumCombo(TEXT("Permission"), SelectedPermission);
 		}
 		ImGuiDisplayCopyableValue(TEXT("PlayerUuid"), Player.PlayerUuid);
 
@@ -408,6 +420,19 @@ void FRHDTW_Session::ImGuiDisplaySessionPlayer(URH_SessionView* RHSession, const
 		ImGui::Text("Client Settings:");
 		ImGui::SameLine();
 		ImGuiDisplayModelData(Player.GetClientSettings());
+
+		if (ImGui::BeginTable("Permissions:", 1, RH_TableFlagsPropSizing))
+		{
+			ImGui::TableSetupColumn("Permissions");
+			ImGui::TableHeadersRow();
+			for (auto Permission : Player.GetSessionPermissions())
+			{
+				ImGui::TableNextRow();
+				ImGui::TableNextColumn();
+				ImGuiDisplayCopyableEnumValue(TEXT("Permission"), Permission, ECopyMode::Value);
+			}
+			ImGui::EndTable();
+		}
 
 		ImGuiDisplayCustomData(Player.GetCustomData());
 

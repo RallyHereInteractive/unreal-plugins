@@ -798,6 +798,34 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Change Player Team", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_ChangePlayerTeam(UPARAM(ref) const FGuid& PlayerUuid, int32 Team, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { ChangePlayerTeam(PlayerUuid, Team, Delegate); }
 	/**
+	 * @brief Grants a player a specific session permission.
+	 * @param [in] PlayerUuid The unique player id who will receive the permission
+	 * @param [in] Permission The permission this player will receive
+	 * @param [in] Delegate Callback delegate for the update
+	 */
+	virtual void GivePlayerPermission(const FGuid& PlayerUuid, const ERHAPI_IntraSessionPermissions& Permission, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::GivePlayerPermission, ); }
+	/**
+	 * @brief Blueprint compatible version of GivePlayerPermission
+	 * @param [in] PlayerUuid The unique player id who will receive the permission
+	 * @param [in] Permission The permission this player will receive
+	 * @param [in] Delegate Callback delegate for the update
+	 */
+	virtual void BLUEPRINT_GivePlayerPermission(UPARAM(ref) const FGuid& PlayerUuid, const ERHAPI_IntraSessionPermissions& Permission, const FRH_OnSessionUpdatedDelegateBlock& Delegate) { GivePlayerPermission(PlayerUuid, Permission); }
+	/**
+	 * @brief Revokes a player a specific session permission.
+	 * @param [in] PlayerUuid The unique player id who will receive the permission
+	 * @param [in] Permission The permission this player will receive
+	 * @param [in] Delegate Callback delegate for the update
+	 */
+	virtual void RemovePlayerPermission(const FGuid& PlayerUuid, const ERHAPI_IntraSessionPermissions& Permission, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::RemovePlayerPermission, ); }
+	/**
+	 * @brief Blueprint compatible version of RemovePlayerPermission
+	 * @param [in] PlayerUuid The unique player id who will receive the permission
+	 * @param [in] Permission The permission this player will receive
+	 * @param [in] Delegate Callback delegate for the update
+	 */
+	virtual void BLUEPRINT_RemovePlayerPermission(UPARAM(ref) const FGuid& PlayerUuid, const ERHAPI_IntraSessionPermissions& Permission, const FRH_OnSessionUpdatedDelegateBlock& Delegate) { RemovePlayerPermission(PlayerUuid, Permission); }
+	/**
 	 * @brief Swaps the teams of a specified pair of players.
 	 * @param [in] PlayerUuidA The first unique player id to swap
 	 * @param [in] PlayerUuidB The second unique player id to swap
@@ -1103,6 +1131,20 @@ public:
 	 */
 	virtual void ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
+	 * @brief Grants a player a specific session permission.
+	 * @param [in] PlayerUuid The unique player id who will receive the permission
+	 * @param [in] Permission The permission this player will receive
+	 * @param [in] Delegate Callback delegate for the update
+	 */
+	virtual void GivePlayerPermission(const FGuid& PlayerUuid, const ERHAPI_IntraSessionPermissions& Permission, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	/**
+	 * @brief Revokes a player a specific session permission.
+	 * @param [in] PlayerUuid The unique player id who will receive the permission
+	 * @param [in] Permission The permission this player will receive
+	 * @param [in] Delegate Callback delegate for the update
+	 */
+	virtual void RemovePlayerPermission(const FGuid& PlayerUuid, const ERHAPI_IntraSessionPermissions& Permission, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	/**
 	 * @brief Swaps the teams of a specified pair of players.
 	 * @param [in] PlayerUuidA The first unique player id to swap
 	 * @param [in] PlayerUuidB The second unique player id to swap
@@ -1282,6 +1324,20 @@ public:
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Leave Queue", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_LeaveQueue(const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { LeaveQueue(Delegate); }
+	/**
+	 * @brief Grants a player a specific session permission.
+	 * @param [in] PlayerUuid The unique player id who will receive the permission
+	 * @param [in] Permission The permission this player will receive
+	 * @param [in] Delegate Callback delegate for the update
+	 */
+	virtual void GivePlayerPermission(const FGuid& PlayerUuid, const ERHAPI_IntraSessionPermissions& Permission, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	/**
+	 * @brief Revokes a player a specific session permission.
+	 * @param [in] PlayerUuid The unique player id who will receive the permission
+	 * @param [in] Permission The permission this player will receive
+	 * @param [in] Delegate Callback delegate for the update
+	 */
+	virtual void RemovePlayerPermission(const FGuid& PlayerUuid, const ERHAPI_IntraSessionPermissions& Permission, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	 * @brief Gets a set of default join details for a session owner.
 	 * @param [in] SessionOwner Owner of the session to join.

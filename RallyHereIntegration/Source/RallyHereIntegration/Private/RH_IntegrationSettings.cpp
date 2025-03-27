@@ -135,6 +135,8 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	SessionLeaderChangePriority = 1000000;
 	SessionChangeTeamsPriority = 1000000;
 	SessionLeaveQueuePriority = 700000;
+	SessionGivePermissionPriority = 700000;
+	SessionRemovePermissionPriority = 700000;
 	SessionRequestInstancePriority = 700000;
 	SessionEndInstancePriority = 700000;
 	SessionStartMatchPriority = 700000;

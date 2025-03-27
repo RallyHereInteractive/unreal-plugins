@@ -517,6 +517,12 @@ public:
 	/** @brief Sets the request priority of Session Leave Queue calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Session API Priority", AdvancedDisplay)
 	int32 SessionLeaveQueuePriority;
+	/** @brief Sets the request priority of Session Polling calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Session API Priority", AdvancedDisplay)
+	int32 SessionGivePermissionPriority;
+	/** @brief Sets the request priority of Session Polling calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Session API Priority", AdvancedDisplay)
+	int32 SessionRemovePermissionPriority;
 	/** @brief Sets the request priority of Session Request Instance calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Session API Priority", AdvancedDisplay)
 	int32 SessionRequestInstancePriority;
