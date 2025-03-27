@@ -916,9 +916,9 @@ Grants a player a specific session permission.
 Revokes a specific session permission from a player.
 
 #### Parameters
-* `PlayerUuid` The unique player id who will receive the permission 
+* `PlayerUuid` The unique player id who will lose the permission 
 
-* `Permission` The permission this player will receive 
+* `Permission` The permission this player will lose 
 
 * `Delegate` Callback delegate for the update
 
@@ -1186,9 +1186,9 @@ Grants a player a specific session permission.
 Revokes a player a specific session permission.
 
 #### Parameters
-* `PlayerUuid` The unique player id who will receive the permission 
+* `PlayerUuid` The unique player id who will lose the permission 
 
-* `Permission` The permission this player will receive 
+* `Permission` The permission this player will lose 
 
 * `Delegate` Callback delegate for the update
 
