@@ -811,7 +811,7 @@ public:
 	 * @param [in] Delegate Callback delegate for the update
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Remove Player Permission", AutoCreateRefTerm = "Delegate"))
-	virtual void BLUEPRINT_GivePlayerPermission(UPARAM(ref) const FGuid& PlayerUuid, const ERHAPI_IntraSessionPermissions& Permission, const FRH_OnSessionUpdatedDelegateBlock& Delegate) { GivePlayerPermission(PlayerUuid, Permission); }
+	virtual void BLUEPRINT_GivePlayerPermission(UPARAM(ref) const FGuid& PlayerUuid, const ERHAPI_IntraSessionPermissions& Permission, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { GivePlayerPermission(PlayerUuid, Permission); }
 	/**
 	 * @brief Revokes a specific session permission from a player.
 	 * @param [in] PlayerUuid The unique player id who will lose the permission
@@ -826,7 +826,7 @@ public:
 	 * @param [in] Delegate Callback delegate for the update
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Remove Player Permission", AutoCreateRefTerm = "Delegate"))
-	virtual void BLUEPRINT_RemovePlayerPermission(UPARAM(ref) const FGuid& PlayerUuid, const ERHAPI_IntraSessionPermissions& Permission, const FRH_OnSessionUpdatedDelegateBlock& Delegate) { RemovePlayerPermission(PlayerUuid, Permission); }
+	virtual void BLUEPRINT_RemovePlayerPermission(UPARAM(ref) const FGuid& PlayerUuid, const ERHAPI_IntraSessionPermissions& Permission, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { RemovePlayerPermission(PlayerUuid, Permission); }
 	/**
 	 * @brief Swaps the teams of a specified pair of players.
 	 * @param [in] PlayerUuidA The first unique player id to swap
