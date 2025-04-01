@@ -842,6 +842,7 @@ Offline Sessions are sessions the session owner is actively a member of that are
 `public virtual void `[`InvitePlayer`](#classURH__OfflineSession_1af16376f4dc510808b79aa74cf2ea461d)`(const FGuid & PlayerUuid,int32 Team,const TMap< FString, FString > & CustomData,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Currently not supported for offline sessions.
 `public virtual void `[`KickPlayer`](#classURH__OfflineSession_1a0b8bc9e0caafb5cb35a1e7c1caa4dfbe)`(const FGuid & PlayerUuid,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Currently not supported for offline sessions.
 `public virtual void `[`InviteOtherSession`](#classURH__OfflineSession_1a18222ea515b0ad2e08e2b262259f1ae2)`(const FString & InvitedSessionId,const `[`FRHAPI_PlayerInviteRequest`](RHAPI_PlayerInviteRequest.md#structFRHAPI__PlayerInviteRequest)` & SessionInviteRequest,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Currently not supported for offline sessions.
+`public virtual void `[`JoinOtherSession`](#classURH__OfflineSession_1ac300bb01ecbe1cf134eeed716f47abdb)`(const FString & TargetSessionId,const `[`FRHAPI_PlayerInviteRequest`](RHAPI_PlayerInviteRequest.md#structFRHAPI__PlayerInviteRequest)` & SessionInviteRequest,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Currently not supported for offline sessions.
 `public virtual void `[`KickOtherSession`](#classURH__OfflineSession_1aef48af399b765fcf42bddbbb49242d18)`(const FString & KickedSessionId,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Currently not supported for offline sessions.
 `public virtual void `[`SetLeader`](#classURH__OfflineSession_1a88d682913b0247652317fa4ed3213152)`(const FGuid & PlayerUuid,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Currently not supported for offline sessions.
 `public virtual void `[`ChangePlayerTeam`](#classURH__OfflineSession_1a06bb9470b305e09a1eed9ffbc35153e8)`(const FGuid & PlayerUuid,int32 Team,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Changes the team a given player is associated with in the session.
@@ -878,6 +879,10 @@ Currently not supported for offline sessions.
 Currently not supported for offline sessions.
 
 #### `public virtual void `[`InviteOtherSession`](#classURH__OfflineSession_1a18222ea515b0ad2e08e2b262259f1ae2)`(const FString & InvitedSessionId,const `[`FRHAPI_PlayerInviteRequest`](RHAPI_PlayerInviteRequest.md#structFRHAPI__PlayerInviteRequest)` & SessionInviteRequest,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OfflineSession_1a18222ea515b0ad2e08e2b262259f1ae2"></a>
+
+Currently not supported for offline sessions.
+
+#### `public virtual void `[`JoinOtherSession`](#classURH__OfflineSession_1ac300bb01ecbe1cf134eeed716f47abdb)`(const FString & TargetSessionId,const `[`FRHAPI_PlayerInviteRequest`](RHAPI_PlayerInviteRequest.md#structFRHAPI__PlayerInviteRequest)` & SessionInviteRequest,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OfflineSession_1ac300bb01ecbe1cf134eeed716f47abdb"></a>
 
 Currently not supported for offline sessions.
 
@@ -1075,6 +1080,7 @@ Online Sessions are sessions that are synchronized from the API (and since it is
 `public virtual void `[`InvitePlayer`](#classURH__OnlineSession_1a8bf3c389551cbdf8ecf5112c8af151cf)`(const FGuid & PlayerUuid,int32 Team,const TMap< FString, FString > & CustomData,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Invites a player to the session.
 `public virtual void `[`KickPlayer`](#classURH__OnlineSession_1a4f8560ffb8ac393738907307ed2225bd)`(const FGuid & PlayerUuid,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Kicks a player from the session.
 `public virtual void `[`InviteOtherSession`](#classURH__OnlineSession_1a2a71476133c92c2f641766e7a1eeed36)`(const FString & InvitedSessionId,const `[`FRHAPI_PlayerInviteRequest`](RHAPI_PlayerInviteRequest.md#structFRHAPI__PlayerInviteRequest)` & SessionInviteRequest,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Invites a different session to this session.
+`public virtual void `[`JoinOtherSession`](#classURH__OnlineSession_1a8a686709d5991532e0965fe576c4d118)`(const FString & TargetSessionId,const `[`FRHAPI_PlayerInviteRequest`](RHAPI_PlayerInviteRequest.md#structFRHAPI__PlayerInviteRequest)` & SessionInviteRequest,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | This entire session is invited to/joins another session.
 `public virtual void `[`KickOtherSession`](#classURH__OnlineSession_1aaea0484871603acf63a76317dd1ffe9e)`(const FString & KickedSessionId,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Kicks all players in a target tsession from this session.
 `public virtual void `[`SetLeader`](#classURH__OnlineSession_1ade15c14b576cf4c5ba384bc61fe25879)`(const FGuid & PlayerUuid,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Sets a new leader for the session.
 `public virtual void `[`ChangePlayerTeam`](#classURH__OnlineSession_1ab35d9139e68b21dd3ee9ed779fb37f16)`(const FGuid & PlayerUuid,int32 Team,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Changes the team a given player is associated with in the session.
@@ -1220,6 +1226,17 @@ Invites a different session to this session.
 
 #### Parameters
 * `InvitedSessionId` The session id to send the invite to 
+
+* `SessionInviteRequest` Information about the invite being sent, including team information 
+
+* `Delegate` Callback delegate for the session being updated by the invite.
+
+#### `public virtual void `[`JoinOtherSession`](#classURH__OnlineSession_1a8a686709d5991532e0965fe576c4d118)`(const FString & TargetSessionId,const `[`FRHAPI_PlayerInviteRequest`](RHAPI_PlayerInviteRequest.md#structFRHAPI__PlayerInviteRequest)` & SessionInviteRequest,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OnlineSession_1a8a686709d5991532e0965fe576c4d118"></a>
+
+This entire session is invited to/joins another session.
+
+#### Parameters
+* `TargetSessionId` The session id that you are attempting to join 
 
 * `SessionInviteRequest` Information about the invite being sent, including team information 
 

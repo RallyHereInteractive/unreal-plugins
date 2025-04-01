@@ -70,7 +70,9 @@ FRHDTW_Session::FRHDTW_Session()
 	SessionActionResult.Empty();
 
 	InvitePlayerTeam = 0;
+	JoinPlayerTeam = 0;
 	InviteSessionString.SetNumZeroed(IMGUI_SESSION_TEXTENTRY_PREALLOCATION_SIZE);
+	JoinSessionString.SetNumZeroed(IMGUI_SESSION_TEXTENTRY_PREALLOCATION_SIZE);
 	JoinQueueByIdString.SetNumZeroed(IMGUI_SESSION_TEXTENTRY_PREALLOCATION_SIZE);
 
 	InstanceLaunchParamsDisplay->ResetToDefaults();
@@ -97,6 +99,7 @@ FRHDTW_Session::FRHDTW_Session()
 	InstanceCustomDataStager.SetName("Instance Update");
 	InstanceJoinParamsCustomDataStager.SetName("Instance JoinParams Custom Data");
 	InvitePlayerCustomDataStager.SetName("Invite Players");
+	JoinPlayerCustomDataStager.SetName("Joining Players");
 	BrowserCustomDataStager.SetName("Browser");
 	SessionUpdateCustomDataStager.SetName("Session Update");
 }
@@ -936,6 +939,41 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 				}
 			}
 
+			ImGui::TreePop();
+		}
+
+		if (ImGui::TreeNodeEx("Whole Session Join Other", RH_DefaultTreeFlags))
+		{
+			if (RHJoinedSession != nullptr)
+			{
+				int NumTargetedPlayers = 0;
+				if (URallyHereDebugTool* pOwner = GetOwner())
+				{
+					NumTargetedPlayers = pOwner->GetAllTargetedPlayerInfos().Num();
+				}
+				ImGui::SetNextItemWidth(150.f);
+				ImGui::InputInt("Team", &JoinPlayerTeam, 1, 0);
+				JoinPlayerCustomDataStager.DisplayCustomDataStager(false);
+
+				// session to session invites
+				ImGui::InputText("Target Session Id", JoinSessionString.GetData(), JoinSessionString.Num());
+				ImGui::SameLine();
+				if (ImGui::Button("Whole Session Join"))
+				{
+					TMap<FString, FString> CustomData;
+					JoinPlayerCustomDataStager.GetCustomDataMap(CustomData);
+
+					FString JoinSessionId = ImGuiGetStringFromTextInputBuffer(JoinSessionString);
+
+					FRHAPI_PlayerInviteRequest InviteRequest;
+					InviteRequest.SetTeamId(JoinPlayerTeam);
+					InviteRequest.SetCustomData(CustomData);
+
+					// for now, do not specify an overflow action type
+
+					RHJoinedSession->JoinOtherSession(JoinSessionId, InviteRequest);
+				}
+			}
 			ImGui::TreePop();
 		}
 

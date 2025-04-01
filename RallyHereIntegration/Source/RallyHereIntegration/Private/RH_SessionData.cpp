@@ -770,6 +770,12 @@ void URH_OfflineSession::InviteOtherSession(const FString& InvitedSessionId, con
 	Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
 }
 
+void URH_OfflineSession::JoinOtherSession(const FString& TargetSessionId, const FRHAPI_PlayerInviteRequest& SessionInviteRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+{
+	// currently not supported for offline sessions
+	Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
+}
+
 void URH_OfflineSession::KickOtherSession(const FString& KickedSessionId, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	// currently not supported for offline sessions
@@ -1455,7 +1461,6 @@ void URH_OnlineSession::KickPlayer(const FGuid& PlayerUuid, const FRH_OnSessionU
 	Helper->Start(Request);
 }
 
-
 void URH_OnlineSession::InviteOtherSession(const FString& InvitedSessionId, const FRHAPI_PlayerInviteRequest& SessionInviteRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	typedef RallyHereAPI::Traits_InviteSessionToSession BaseType;
@@ -1466,6 +1471,22 @@ void URH_OnlineSession::InviteOtherSession(const FString& InvitedSessionId, cons
 	Request.AuthContext = SessionOwner->GetSessionAuthContext();
 	Request.SessionId = GetSessionId();
 	Request.InvitedSessionId = InvitedSessionId;
+	Request.PlayerInviteRequest = SessionInviteRequest;
+
+	auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(SessionOwner), SessionId, Delegate, GetDefault<URH_IntegrationSettings>()->SessionInvitePriority);
+	Helper->Start(Request);
+}
+
+void URH_OnlineSession::JoinOtherSession(const FString& TargetSessionId, const FRHAPI_PlayerInviteRequest& SessionInviteRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+{
+	typedef RallyHereAPI::Traits_InviteSessionToSession BaseType;
+	auto SessionId = GetSessionId();
+	auto SessionOwner = GetSessionOwner();
+	UE_LOG(LogRHSession, Log, TEXT("[%s::%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *BaseType::Name, *SessionId);
+	BaseType::Request Request;
+	Request.AuthContext = SessionOwner->GetSessionAuthContext();
+	Request.SessionId = TargetSessionId;
+	Request.InvitedSessionId = SessionId;
 	Request.PlayerInviteRequest = SessionInviteRequest;
 
 	auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(SessionOwner), SessionId, Delegate, GetDefault<URH_IntegrationSettings>()->SessionInvitePriority);
