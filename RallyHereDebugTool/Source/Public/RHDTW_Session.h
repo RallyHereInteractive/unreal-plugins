@@ -37,7 +37,9 @@ public:
 	TOptional<ERHAPI_IntraSessionPermissions> SelectedPermission;
 
 	int32 InvitePlayerTeam;
+	int32 JoinPlayerTeam;
 	TArray<ANSICHAR> InviteSessionString;
+	TArray<ANSICHAR> JoinSessionString;
 	TArray<ANSICHAR> JoinQueueByIdString;
 	
 	struct FInstanceLaunchParamsDisplay
@@ -132,6 +134,7 @@ protected:
 	FImGuiCustomDataStager InstanceJoinParamsCustomDataStager;
 
 	FImGuiCustomDataStager InvitePlayerCustomDataStager;
+	FImGuiCustomDataStager JoinPlayerCustomDataStager;
 	FImGuiCustomDataStager BrowserCustomDataStager;
 	TMap<FGuid, FImGuiCustomDataStager*> UpdatePlayerCustomDataStagers;
 };

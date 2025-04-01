@@ -753,6 +753,22 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Invite Other Session", AutoCreateRefTerm = "SessionInviteRequest,Delegate"))
 	void BLUEPRINT_InviteOtherSession(UPARAM(ref) const FString& InvitedSessionId, const FRHAPI_PlayerInviteRequest& SessionInviteRequest, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { InviteOtherSession(InvitedSessionId, SessionInviteRequest, Delegate); }
 	/**
+	 * @brief This entire session is invited to/joins another session
+	 * @param [in] TargetSessionId The session id that you are attempting to join
+	 * @param [in] SessionInviteRequest Information about the invite being sent, including team information
+	 * @param [in] Delegate Callback delegate for the session being updated by the invite.
+	 */
+	virtual void JoinOtherSession(const FString& TargetSessionId, const FRHAPI_PlayerInviteRequest& SessionInviteRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::InviteOtherSession, ); }
+	/**
+	 * @private
+	 * @brief Blueprint compatible version of JoinOtherSession
+	 * @param [in] TargetSessionId The session id that you are attempting to join
+	 * @param [in] SessionInviteRequest Information about the invite being sent, including team information
+	 * @param [in] Delegate Callback delegate for the session being updated by the invite.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Invite Other Session", AutoCreateRefTerm = "SessionInviteRequest,Delegate"))
+	void BLUEPRINT_JoinOtherSession(UPARAM(ref) const FString& TargetSessionId, const FRHAPI_PlayerInviteRequest& SessionInviteRequest, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { InviteOtherSession(TargetSessionId, SessionInviteRequest, Delegate); }
+	/**
 	 * @brief Kicks all players in a target tsession from this session.
 	 * @param [in] KickedSessionId The session Id to kick from this session.
 	 * @param [in] Delegate Callback delegate for the session being updated by the kick.
@@ -1122,6 +1138,8 @@ public:
 	/** @brief Currently not supported for offline sessions */
 	virtual void InviteOtherSession(const FString& InvitedSessionId, const FRHAPI_PlayerInviteRequest& SessionInviteRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/** @brief Currently not supported for offline sessions */
+	virtual void JoinOtherSession(const FString& TargetSessionId, const FRHAPI_PlayerInviteRequest& SessionInviteRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	/** @brief Currently not supported for offline sessions */
 	virtual void KickOtherSession(const FString& KickedSessionId, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/** @brief Currently not supported for offline sessions */
 	virtual void SetLeader(const FGuid& PlayerUuid, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
@@ -1402,6 +1420,13 @@ public:
 	 * @param [in] Delegate Callback delegate for the session being updated by the invite.
 	 */
 	virtual void InviteOtherSession(const FString& InvitedSessionId, const FRHAPI_PlayerInviteRequest& SessionInviteRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	/**
+	 * @brief This entire session is invited to/joins another session
+	 * @param [in] InvitedSessionId The session id to send the invite to
+	 * @param [in] SessionInviteRequest Information about the invite being sent, including team information
+	 * @param [in] Delegate Callback delegate for the session being updated by the invite.
+	 */
+	virtual void JoinOtherSession(const FString& TargetSessionId, const FRHAPI_PlayerInviteRequest& SessionInviteRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	 * @brief Kicks all players in a target tsession from this session.
 	 * @param [in] KickedSessionId The session Id to kick from this session.
