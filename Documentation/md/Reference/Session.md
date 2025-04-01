@@ -1236,7 +1236,7 @@ Invites a different session to this session.
 This entire session is invited to/joins another session.
 
 #### Parameters
-* `InvitedSessionId` The session id to send the invite to 
+* `TargetSessionId` The session id to send the invite to 
 
 * `SessionInviteRequest` Information about the invite being sent, including team information 
 
