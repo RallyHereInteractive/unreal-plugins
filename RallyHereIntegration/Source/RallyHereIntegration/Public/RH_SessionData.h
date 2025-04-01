@@ -1422,7 +1422,7 @@ public:
 	virtual void InviteOtherSession(const FString& InvitedSessionId, const FRHAPI_PlayerInviteRequest& SessionInviteRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	 * @brief This entire session is invited to/joins another session
-	 * @param [in] TargetSessionId The session id to send the invite to
+	 * @param [in] TargetSessionId The session id that you are attempting to join
 	 * @param [in] SessionInviteRequest Information about the invite being sent, including team information
 	 * @param [in] Delegate Callback delegate for the session being updated by the invite.
 	 */
