@@ -35,6 +35,8 @@ OAuth token exchange response. Successful response will contain an access_token 
 `public bool `[`RegeneratedCode_IsSet`](#structFRHAPI__OAuthTokenResponse_1a9bf5217730fe63a400e1a973cb394d3d) | true if RegeneratedCode_Optional has been set to a value
 `public FString `[`ErrorMessage_Optional`](#structFRHAPI__OAuthTokenResponse_1a77cf56edd8b3d7969c5501896adfae7a) | Error message if an error occurred.
 `public bool `[`ErrorMessage_IsSet`](#structFRHAPI__OAuthTokenResponse_1af813608595c71277d1cd587063eeacba) | true if ErrorMessage_Optional has been set to a value
+`public TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > `[`Restrictions_Optional`](#structFRHAPI__OAuthTokenResponse_1abad42f438bc78e70ee1e908011eaec39) | List of restrictions that prevented authentication.
+`public bool `[`Restrictions_IsSet`](#structFRHAPI__OAuthTokenResponse_1a98897ae8a23a9041120cc82841ca117d) | true if Restrictions_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__OAuthTokenResponse_1a568e0104dbb8bdeb652426c9a3b4958f)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__OAuthTokenResponse_1a4a3a575be8bc37b188be64634c62f830)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetAccessToken`](#structFRHAPI__OAuthTokenResponse_1a92dabecb88e121e9ad8473ec4a87a266)`()` | Gets the value of AccessToken_Optional, regardless of it having been set.
@@ -113,6 +115,16 @@ OAuth token exchange response. Successful response will contain an access_token 
 `public inline void `[`SetErrorMessage`](#structFRHAPI__OAuthTokenResponse_1adc81862d1923731f3d4404d9d184c49c)`(FString && NewValue)` | Sets the value of ErrorMessage_Optional and also sets ErrorMessage_IsSet to true using move semantics.
 `public inline void `[`ClearErrorMessage`](#structFRHAPI__OAuthTokenResponse_1a80ef23c341b72eb8297c8accfdbc2c91)`()` | Clears the value of ErrorMessage_Optional and sets ErrorMessage_IsSet to false.
 `public inline bool `[`IsErrorMessageSet`](#structFRHAPI__OAuthTokenResponse_1a4bd2721d8ddc393729cf2967697df088)`() const` | Checks whether ErrorMessage_Optional has been set.
+`public inline TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & `[`GetRestrictions`](#structFRHAPI__OAuthTokenResponse_1a494cc8bf84de5cd04dc71a881b8eccfd)`()` | Gets the value of Restrictions_Optional, regardless of it having been set.
+`public inline const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & `[`GetRestrictions`](#structFRHAPI__OAuthTokenResponse_1a60c55e5f7836f0df0e7bff46929d4706)`() const` | Gets the value of Restrictions_Optional, regardless of it having been set.
+`public inline const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & `[`GetRestrictions`](#structFRHAPI__OAuthTokenResponse_1a5be510ebd08c1885e21920507876937d)`(const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & DefaultValue) const` | Gets the value of Restrictions_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetRestrictions`](#structFRHAPI__OAuthTokenResponse_1af1e16c67902b5ec80cd6bf378ed0e7c2)`(TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & OutValue) const` | Fills OutValue with the value of Restrictions_Optional and returns true if it has been set, otherwise returns false.
+`public inline TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > * `[`GetRestrictionsOrNull`](#structFRHAPI__OAuthTokenResponse_1ab81698b816695840043abea39656ee7b)`()` | Returns a pointer to Restrictions_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > * `[`GetRestrictionsOrNull`](#structFRHAPI__OAuthTokenResponse_1a19157e69fb7218bfd23c9223379f7a39)`() const` | Returns a pointer to Restrictions_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetRestrictions`](#structFRHAPI__OAuthTokenResponse_1a4ec6f9021c806a7af7dd0a9863e70d52)`(const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & NewValue)` | Sets the value of Restrictions_Optional and also sets Restrictions_IsSet to true.
+`public inline void `[`SetRestrictions`](#structFRHAPI__OAuthTokenResponse_1ad3f4cee0b888d0872c685cc1eed62893)`(TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > && NewValue)` | Sets the value of Restrictions_Optional and also sets Restrictions_IsSet to true using move semantics.
+`public inline void `[`ClearRestrictions`](#structFRHAPI__OAuthTokenResponse_1a2cc2f58318024fe1815877cb012929be)`()` | Clears the value of Restrictions_Optional and sets Restrictions_IsSet to false.
+`public inline bool `[`IsRestrictionsSet`](#structFRHAPI__OAuthTokenResponse_1a3cc2b9303928cd658394079350169459)`() const` | Checks whether Restrictions_Optional has been set.
 
 ### Members
 
@@ -171,6 +183,14 @@ Error message if an error occurred.
 #### `public bool `[`ErrorMessage_IsSet`](#structFRHAPI__OAuthTokenResponse_1af813608595c71277d1cd587063eeacba) <a id="structFRHAPI__OAuthTokenResponse_1af813608595c71277d1cd587063eeacba"></a>
 
 true if ErrorMessage_Optional has been set to a value
+
+#### `public TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > `[`Restrictions_Optional`](#structFRHAPI__OAuthTokenResponse_1abad42f438bc78e70ee1e908011eaec39) <a id="structFRHAPI__OAuthTokenResponse_1abad42f438bc78e70ee1e908011eaec39"></a>
+
+List of restrictions that prevented authentication.
+
+#### `public bool `[`Restrictions_IsSet`](#structFRHAPI__OAuthTokenResponse_1a98897ae8a23a9041120cc82841ca117d) <a id="structFRHAPI__OAuthTokenResponse_1a98897ae8a23a9041120cc82841ca117d"></a>
+
+true if Restrictions_Optional has been set to a value
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__OAuthTokenResponse_1a568e0104dbb8bdeb652426c9a3b4958f)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__OAuthTokenResponse_1a568e0104dbb8bdeb652426c9a3b4958f"></a>
 
@@ -492,4 +512,44 @@ Clears the value of ErrorMessage_Optional and sets ErrorMessage_IsSet to false.
 #### `public inline bool `[`IsErrorMessageSet`](#structFRHAPI__OAuthTokenResponse_1a4bd2721d8ddc393729cf2967697df088)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a4bd2721d8ddc393729cf2967697df088"></a>
 
 Checks whether ErrorMessage_Optional has been set.
+
+#### `public inline TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & `[`GetRestrictions`](#structFRHAPI__OAuthTokenResponse_1a494cc8bf84de5cd04dc71a881b8eccfd)`()` <a id="structFRHAPI__OAuthTokenResponse_1a494cc8bf84de5cd04dc71a881b8eccfd"></a>
+
+Gets the value of Restrictions_Optional, regardless of it having been set.
+
+#### `public inline const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & `[`GetRestrictions`](#structFRHAPI__OAuthTokenResponse_1a60c55e5f7836f0df0e7bff46929d4706)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a60c55e5f7836f0df0e7bff46929d4706"></a>
+
+Gets the value of Restrictions_Optional, regardless of it having been set.
+
+#### `public inline const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & `[`GetRestrictions`](#structFRHAPI__OAuthTokenResponse_1a5be510ebd08c1885e21920507876937d)`(const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & DefaultValue) const` <a id="structFRHAPI__OAuthTokenResponse_1a5be510ebd08c1885e21920507876937d"></a>
+
+Gets the value of Restrictions_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetRestrictions`](#structFRHAPI__OAuthTokenResponse_1af1e16c67902b5ec80cd6bf378ed0e7c2)`(TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & OutValue) const` <a id="structFRHAPI__OAuthTokenResponse_1af1e16c67902b5ec80cd6bf378ed0e7c2"></a>
+
+Fills OutValue with the value of Restrictions_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > * `[`GetRestrictionsOrNull`](#structFRHAPI__OAuthTokenResponse_1ab81698b816695840043abea39656ee7b)`()` <a id="structFRHAPI__OAuthTokenResponse_1ab81698b816695840043abea39656ee7b"></a>
+
+Returns a pointer to Restrictions_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > * `[`GetRestrictionsOrNull`](#structFRHAPI__OAuthTokenResponse_1a19157e69fb7218bfd23c9223379f7a39)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a19157e69fb7218bfd23c9223379f7a39"></a>
+
+Returns a pointer to Restrictions_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetRestrictions`](#structFRHAPI__OAuthTokenResponse_1a4ec6f9021c806a7af7dd0a9863e70d52)`(const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1a4ec6f9021c806a7af7dd0a9863e70d52"></a>
+
+Sets the value of Restrictions_Optional and also sets Restrictions_IsSet to true.
+
+#### `public inline void `[`SetRestrictions`](#structFRHAPI__OAuthTokenResponse_1ad3f4cee0b888d0872c685cc1eed62893)`(TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > && NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1ad3f4cee0b888d0872c685cc1eed62893"></a>
+
+Sets the value of Restrictions_Optional and also sets Restrictions_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearRestrictions`](#structFRHAPI__OAuthTokenResponse_1a2cc2f58318024fe1815877cb012929be)`()` <a id="structFRHAPI__OAuthTokenResponse_1a2cc2f58318024fe1815877cb012929be"></a>
+
+Clears the value of Restrictions_Optional and sets Restrictions_IsSet to false.
+
+#### `public inline bool `[`IsRestrictionsSet`](#structFRHAPI__OAuthTokenResponse_1a3cc2b9303928cd658394079350169459)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a3cc2b9303928cd658394079350169459"></a>
+
+Checks whether Restrictions_Optional has been set.
 

@@ -26,6 +26,8 @@ struct FRHAPI_GuideFull
 `public FString `[`ShortDesc_Optional`](#structFRHAPI__GuideFull_1a4a390b7594132cac82a39976e6e23803) | 
 `public bool `[`ShortDesc_IsSet`](#structFRHAPI__GuideFull_1a572a21fe1e96a8e54a154dc6dfbc6d12) | true if ShortDesc_Optional has been set to a value
 `public bool `[`ShortDesc_IsNull`](#structFRHAPI__GuideFull_1a51c353ec9a843bc86b0084c8faf580e8) | true if ShortDesc_Optional has been explicitly set to null
+`public int32 `[`PromotionPriority_Optional`](#structFRHAPI__GuideFull_1a8a8a49fa23513958de415f971257d926) | Promotion priority of this guide in searches.
+`public bool `[`PromotionPriority_IsSet`](#structFRHAPI__GuideFull_1a351f0d27ba98a435dddc94790ad92448) | true if PromotionPriority_Optional has been set to a value
 `public FString `[`Ref1_Optional`](#structFRHAPI__GuideFull_1a02aad4219eb4cc89413656e00a80d4e3) | 
 `public bool `[`Ref1_IsSet`](#structFRHAPI__GuideFull_1a6c6c1bb19395d591355531abf514944a) | true if Ref1_Optional has been set to a value
 `public bool `[`Ref1_IsNull`](#structFRHAPI__GuideFull_1a85114b504de43ffb1fef7d170d6f2350) | true if Ref1_Optional has been explicitly set to null
@@ -169,6 +171,18 @@ struct FRHAPI_GuideFull
 `public inline bool `[`IsShortDescSet`](#structFRHAPI__GuideFull_1a58a9a2fb444b2d2f0e8a6d45560a12f3)`() const` | Checks whether ShortDesc_Optional has been set.
 `public inline void `[`SetShortDescToNull`](#structFRHAPI__GuideFull_1a80ee061c85bbecf047d4aacfa672ecba)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsShortDescNull`](#structFRHAPI__GuideFull_1acb80f3aeb6318c6656903f4687c02b2d)`() const` | Checks whether ShortDesc_Optional is set to null.
+`public inline int32 & `[`GetPromotionPriority`](#structFRHAPI__GuideFull_1ac15ed2f6d5de33fd5473d2d387fe0fca)`()` | Gets the value of PromotionPriority_Optional, regardless of it having been set.
+`public inline const int32 & `[`GetPromotionPriority`](#structFRHAPI__GuideFull_1a45f7bad30fba82a842674b5005069b4c)`() const` | Gets the value of PromotionPriority_Optional, regardless of it having been set.
+`public inline const int32 & `[`GetPromotionPriority`](#structFRHAPI__GuideFull_1a83afc96e277fe210bda8864b04c65d81)`(const int32 & DefaultValue) const` | Gets the value of PromotionPriority_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetPromotionPriority`](#structFRHAPI__GuideFull_1a30efd31cae08099f7e4b1eed8ba13eb3)`(int32 & OutValue) const` | Fills OutValue with the value of PromotionPriority_Optional and returns true if it has been set, otherwise returns false.
+`public inline int32 * `[`GetPromotionPriorityOrNull`](#structFRHAPI__GuideFull_1a31f570f071ac4e07d1064ebc7e91d091)`()` | Returns a pointer to PromotionPriority_Optional, if it has been set, otherwise returns nullptr.
+`public inline const int32 * `[`GetPromotionPriorityOrNull`](#structFRHAPI__GuideFull_1a7c1281f3bfe9f433645e4c6942dab004)`() const` | Returns a pointer to PromotionPriority_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetPromotionPriority`](#structFRHAPI__GuideFull_1a2ef362f7ce8717629c7f77bce536e073)`(const int32 & NewValue)` | Sets the value of PromotionPriority_Optional and also sets PromotionPriority_IsSet to true.
+`public inline void `[`SetPromotionPriority`](#structFRHAPI__GuideFull_1add30413170a410c24b6ef2476c4be493)`(int32 && NewValue)` | Sets the value of PromotionPriority_Optional and also sets PromotionPriority_IsSet to true using move semantics.
+`public inline void `[`ClearPromotionPriority`](#structFRHAPI__GuideFull_1aacfcaf90a380b70c3d1a61da30e10d0d)`()` | Clears the value of PromotionPriority_Optional and sets PromotionPriority_IsSet to false.
+`public inline bool `[`IsPromotionPrioritySet`](#structFRHAPI__GuideFull_1a76a81869247a9df0cf0d7f3be2da2acc)`() const` | Checks whether PromotionPriority_Optional has been set.
+`public inline bool `[`IsPromotionPriorityDefaultValue`](#structFRHAPI__GuideFull_1af726c983a61a6f2e1032d1015c6fd18b)`() const` | Returns true if PromotionPriority_Optional is set and matches the default value.
+`public inline void `[`SetPromotionPriorityToDefault`](#structFRHAPI__GuideFull_1a81c944d44ae8970cd8e1b460b80168b0)`()` | Sets the value of PromotionPriority_Optional to its default and also sets PromotionPriority_IsSet to true.
 `public inline FString & `[`GetRef1`](#structFRHAPI__GuideFull_1aaa6aa0b04f5ad73544342af59a5f71d0)`()` | Gets the value of Ref1_Optional, regardless of it having been set.
 `public inline const FString & `[`GetRef1`](#structFRHAPI__GuideFull_1a7cac191fd5ac8928838be4252246d94a)`() const` | Gets the value of Ref1_Optional, regardless of it having been set.
 `public inline const FString & `[`GetRef1`](#structFRHAPI__GuideFull_1a71a39d6b63aab8662b65471455cff04a)`(const FString & DefaultValue) const` | Gets the value of Ref1_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -657,6 +671,14 @@ true if ShortDesc_Optional has been set to a value
 #### `public bool `[`ShortDesc_IsNull`](#structFRHAPI__GuideFull_1a51c353ec9a843bc86b0084c8faf580e8) <a id="structFRHAPI__GuideFull_1a51c353ec9a843bc86b0084c8faf580e8"></a>
 
 true if ShortDesc_Optional has been explicitly set to null
+
+#### `public int32 `[`PromotionPriority_Optional`](#structFRHAPI__GuideFull_1a8a8a49fa23513958de415f971257d926) <a id="structFRHAPI__GuideFull_1a8a8a49fa23513958de415f971257d926"></a>
+
+Promotion priority of this guide in searches.
+
+#### `public bool `[`PromotionPriority_IsSet`](#structFRHAPI__GuideFull_1a351f0d27ba98a435dddc94790ad92448) <a id="structFRHAPI__GuideFull_1a351f0d27ba98a435dddc94790ad92448"></a>
+
+true if PromotionPriority_Optional has been set to a value
 
 #### `public FString `[`Ref1_Optional`](#structFRHAPI__GuideFull_1a02aad4219eb4cc89413656e00a80d4e3) <a id="structFRHAPI__GuideFull_1a02aad4219eb4cc89413656e00a80d4e3"></a>
 
@@ -1164,6 +1186,54 @@ Sets the value explicitly to be treated as null.
 #### `public inline bool `[`IsShortDescNull`](#structFRHAPI__GuideFull_1acb80f3aeb6318c6656903f4687c02b2d)`() const` <a id="structFRHAPI__GuideFull_1acb80f3aeb6318c6656903f4687c02b2d"></a>
 
 Checks whether ShortDesc_Optional is set to null.
+
+#### `public inline int32 & `[`GetPromotionPriority`](#structFRHAPI__GuideFull_1ac15ed2f6d5de33fd5473d2d387fe0fca)`()` <a id="structFRHAPI__GuideFull_1ac15ed2f6d5de33fd5473d2d387fe0fca"></a>
+
+Gets the value of PromotionPriority_Optional, regardless of it having been set.
+
+#### `public inline const int32 & `[`GetPromotionPriority`](#structFRHAPI__GuideFull_1a45f7bad30fba82a842674b5005069b4c)`() const` <a id="structFRHAPI__GuideFull_1a45f7bad30fba82a842674b5005069b4c"></a>
+
+Gets the value of PromotionPriority_Optional, regardless of it having been set.
+
+#### `public inline const int32 & `[`GetPromotionPriority`](#structFRHAPI__GuideFull_1a83afc96e277fe210bda8864b04c65d81)`(const int32 & DefaultValue) const` <a id="structFRHAPI__GuideFull_1a83afc96e277fe210bda8864b04c65d81"></a>
+
+Gets the value of PromotionPriority_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetPromotionPriority`](#structFRHAPI__GuideFull_1a30efd31cae08099f7e4b1eed8ba13eb3)`(int32 & OutValue) const` <a id="structFRHAPI__GuideFull_1a30efd31cae08099f7e4b1eed8ba13eb3"></a>
+
+Fills OutValue with the value of PromotionPriority_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline int32 * `[`GetPromotionPriorityOrNull`](#structFRHAPI__GuideFull_1a31f570f071ac4e07d1064ebc7e91d091)`()` <a id="structFRHAPI__GuideFull_1a31f570f071ac4e07d1064ebc7e91d091"></a>
+
+Returns a pointer to PromotionPriority_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const int32 * `[`GetPromotionPriorityOrNull`](#structFRHAPI__GuideFull_1a7c1281f3bfe9f433645e4c6942dab004)`() const` <a id="structFRHAPI__GuideFull_1a7c1281f3bfe9f433645e4c6942dab004"></a>
+
+Returns a pointer to PromotionPriority_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetPromotionPriority`](#structFRHAPI__GuideFull_1a2ef362f7ce8717629c7f77bce536e073)`(const int32 & NewValue)` <a id="structFRHAPI__GuideFull_1a2ef362f7ce8717629c7f77bce536e073"></a>
+
+Sets the value of PromotionPriority_Optional and also sets PromotionPriority_IsSet to true.
+
+#### `public inline void `[`SetPromotionPriority`](#structFRHAPI__GuideFull_1add30413170a410c24b6ef2476c4be493)`(int32 && NewValue)` <a id="structFRHAPI__GuideFull_1add30413170a410c24b6ef2476c4be493"></a>
+
+Sets the value of PromotionPriority_Optional and also sets PromotionPriority_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearPromotionPriority`](#structFRHAPI__GuideFull_1aacfcaf90a380b70c3d1a61da30e10d0d)`()` <a id="structFRHAPI__GuideFull_1aacfcaf90a380b70c3d1a61da30e10d0d"></a>
+
+Clears the value of PromotionPriority_Optional and sets PromotionPriority_IsSet to false.
+
+#### `public inline bool `[`IsPromotionPrioritySet`](#structFRHAPI__GuideFull_1a76a81869247a9df0cf0d7f3be2da2acc)`() const` <a id="structFRHAPI__GuideFull_1a76a81869247a9df0cf0d7f3be2da2acc"></a>
+
+Checks whether PromotionPriority_Optional has been set.
+
+#### `public inline bool `[`IsPromotionPriorityDefaultValue`](#structFRHAPI__GuideFull_1af726c983a61a6f2e1032d1015c6fd18b)`() const` <a id="structFRHAPI__GuideFull_1af726c983a61a6f2e1032d1015c6fd18b"></a>
+
+Returns true if PromotionPriority_Optional is set and matches the default value.
+
+#### `public inline void `[`SetPromotionPriorityToDefault`](#structFRHAPI__GuideFull_1a81c944d44ae8970cd8e1b460b80168b0)`()` <a id="structFRHAPI__GuideFull_1a81c944d44ae8970cd8e1b460b80168b0"></a>
+
+Sets the value of PromotionPriority_Optional to its default and also sets PromotionPriority_IsSet to true.
 
 #### `public inline FString & `[`GetRef1`](#structFRHAPI__GuideFull_1aaa6aa0b04f5ad73544342af59a5f71d0)`()` <a id="structFRHAPI__GuideFull_1aaa6aa0b04f5ad73544342af59a5f71d0"></a>
 

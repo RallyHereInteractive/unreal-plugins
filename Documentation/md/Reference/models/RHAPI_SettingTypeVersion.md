@@ -23,7 +23,7 @@ struct FRHAPI_SettingTypeVersion
 `public bool `[`AllowUpdate_IsSet`](#structFRHAPI__SettingTypeVersion_1aee033cacb8048accef460ffe06293b98) | true if AllowUpdate_Optional has been set to a value
 `public FString `[`KeyRegex_Optional`](#structFRHAPI__SettingTypeVersion_1a560ade93145afb89f7492f48cd498b22) | Regex that is used to verify keys at assignment time.
 `public bool `[`KeyRegex_IsSet`](#structFRHAPI__SettingTypeVersion_1a06f3feaf49700c1a9892c62a9c33cf5f) | true if KeyRegex_Optional has been set to a value
-`public `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` `[`ValueJsonschema`](#structFRHAPI__SettingTypeVersion_1adc61f49842f20cd4f9f9c37907bccbb8) | [jsonschema](https://json-schema.org/understanding-json-schema/index.html) that is used to verify values at assignment time
+`public TMap< FString, `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > `[`ValueJsonschema`](#structFRHAPI__SettingTypeVersion_1ae71ccc0448ef3a3d199a78c12f27a4c0) | [jsonschema](https://json-schema.org/understanding-json-schema/index.html) that is used to verify values at assignment time
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__SettingTypeVersion_1a7cbfb62ce0108a560c234e8eb60399f0) | Custom data that was provided when the setting type was created.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__SettingTypeVersion_1a417b1215b3b7522fe6f0d2c11a96bcda) | true if CustomData_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__SettingTypeVersion_1a847b27bcd2352e9669ec8e1ee7fc4725)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
@@ -52,10 +52,10 @@ struct FRHAPI_SettingTypeVersion
 `public inline bool `[`IsKeyRegexSet`](#structFRHAPI__SettingTypeVersion_1ac51e05129f1d60643b36bb5d78d97d84)`() const` | Checks whether KeyRegex_Optional has been set.
 `public inline bool `[`IsKeyRegexDefaultValue`](#structFRHAPI__SettingTypeVersion_1a5936bb1b4543b1a515ff9b69d296bc76)`() const` | Returns true if KeyRegex_Optional is set and matches the default value.
 `public inline void `[`SetKeyRegexToDefault`](#structFRHAPI__SettingTypeVersion_1a22341ac9a7abce8cbb643ac7cf1089d2)`()` | Sets the value of KeyRegex_Optional to its default and also sets KeyRegex_IsSet to true.
-`public inline `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetValueJsonschema`](#structFRHAPI__SettingTypeVersion_1a882b1f45db7c134ea1beb2d4b8d8665a)`()` | Gets the value of ValueJsonschema.
-`public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetValueJsonschema`](#structFRHAPI__SettingTypeVersion_1ac8422a78b39a267e379b4672dc020278)`() const` | Gets the value of ValueJsonschema.
-`public inline void `[`SetValueJsonschema`](#structFRHAPI__SettingTypeVersion_1ab4c9710bae0a93e49b3497481949bec1)`(const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & NewValue)` | Sets the value of ValueJsonschema.
-`public inline void `[`SetValueJsonschema`](#structFRHAPI__SettingTypeVersion_1a8ba40747ad92b0f6c66bd3c59be2ab3d)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` && NewValue)` | Sets the value of ValueJsonschema using move semantics.
+`public inline TMap< FString, `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > & `[`GetValueJsonschema`](#structFRHAPI__SettingTypeVersion_1a345675813990bbf3a0585f9b2c2f9b8a)`()` | Gets the value of ValueJsonschema.
+`public inline const TMap< FString, `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > & `[`GetValueJsonschema`](#structFRHAPI__SettingTypeVersion_1a082ff7440c9d9d09d3562d9782ab2db3)`() const` | Gets the value of ValueJsonschema.
+`public inline void `[`SetValueJsonschema`](#structFRHAPI__SettingTypeVersion_1a5d0fef2231c659b457c96fc6c313ed04)`(const TMap< FString, `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > & NewValue)` | Sets the value of ValueJsonschema.
+`public inline void `[`SetValueJsonschema`](#structFRHAPI__SettingTypeVersion_1a026ef0ecd81d62e9fa599d7337f248cd)`(TMap< FString, `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > && NewValue)` | Sets the value of ValueJsonschema using move semantics.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__SettingTypeVersion_1a457cef055c69aed21085fbf36b650388)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__SettingTypeVersion_1a0aaaa34bc17777c0293750c31df4a602)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__SettingTypeVersion_1adcbffd372f24647c8778955287f17e1b)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -85,7 +85,7 @@ Regex that is used to verify keys at assignment time.
 
 true if KeyRegex_Optional has been set to a value
 
-#### `public `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` `[`ValueJsonschema`](#structFRHAPI__SettingTypeVersion_1adc61f49842f20cd4f9f9c37907bccbb8) <a id="structFRHAPI__SettingTypeVersion_1adc61f49842f20cd4f9f9c37907bccbb8"></a>
+#### `public TMap< FString, `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > `[`ValueJsonschema`](#structFRHAPI__SettingTypeVersion_1ae71ccc0448ef3a3d199a78c12f27a4c0) <a id="structFRHAPI__SettingTypeVersion_1ae71ccc0448ef3a3d199a78c12f27a4c0"></a>
 
 [jsonschema](https://json-schema.org/understanding-json-schema/index.html) that is used to verify values at assignment time
 
@@ -210,19 +210,19 @@ Returns true if KeyRegex_Optional is set and matches the default value.
 
 Sets the value of KeyRegex_Optional to its default and also sets KeyRegex_IsSet to true.
 
-#### `public inline `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetValueJsonschema`](#structFRHAPI__SettingTypeVersion_1a882b1f45db7c134ea1beb2d4b8d8665a)`()` <a id="structFRHAPI__SettingTypeVersion_1a882b1f45db7c134ea1beb2d4b8d8665a"></a>
+#### `public inline TMap< FString, `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > & `[`GetValueJsonschema`](#structFRHAPI__SettingTypeVersion_1a345675813990bbf3a0585f9b2c2f9b8a)`()` <a id="structFRHAPI__SettingTypeVersion_1a345675813990bbf3a0585f9b2c2f9b8a"></a>
 
 Gets the value of ValueJsonschema.
 
-#### `public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetValueJsonschema`](#structFRHAPI__SettingTypeVersion_1ac8422a78b39a267e379b4672dc020278)`() const` <a id="structFRHAPI__SettingTypeVersion_1ac8422a78b39a267e379b4672dc020278"></a>
+#### `public inline const TMap< FString, `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > & `[`GetValueJsonschema`](#structFRHAPI__SettingTypeVersion_1a082ff7440c9d9d09d3562d9782ab2db3)`() const` <a id="structFRHAPI__SettingTypeVersion_1a082ff7440c9d9d09d3562d9782ab2db3"></a>
 
 Gets the value of ValueJsonschema.
 
-#### `public inline void `[`SetValueJsonschema`](#structFRHAPI__SettingTypeVersion_1ab4c9710bae0a93e49b3497481949bec1)`(const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & NewValue)` <a id="structFRHAPI__SettingTypeVersion_1ab4c9710bae0a93e49b3497481949bec1"></a>
+#### `public inline void `[`SetValueJsonschema`](#structFRHAPI__SettingTypeVersion_1a5d0fef2231c659b457c96fc6c313ed04)`(const TMap< FString, `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > & NewValue)` <a id="structFRHAPI__SettingTypeVersion_1a5d0fef2231c659b457c96fc6c313ed04"></a>
 
 Sets the value of ValueJsonschema.
 
-#### `public inline void `[`SetValueJsonschema`](#structFRHAPI__SettingTypeVersion_1a8ba40747ad92b0f6c66bd3c59be2ab3d)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` && NewValue)` <a id="structFRHAPI__SettingTypeVersion_1a8ba40747ad92b0f6c66bd3c59be2ab3d"></a>
+#### `public inline void `[`SetValueJsonschema`](#structFRHAPI__SettingTypeVersion_1a026ef0ecd81d62e9fa599d7337f248cd)`(TMap< FString, `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > && NewValue)` <a id="structFRHAPI__SettingTypeVersion_1a026ef0ecd81d62e9fa599d7337f248cd"></a>
 
 Sets the value of ValueJsonschema using move semantics.
 
